@@ -1,0 +1,53 @@
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+
+
+<div class="container-fluid" style="padding-top:10px;min-height: 1000px;">
+	<div class="col-lg-2" style="margin-left:0px; margin-top:50px;">
+
+
+    </div>
+
+	<div class="col-lg-8">
+		<h1>{{ .Title }}</h1>
+		{{ .Content }}
+
+      <hr>
+        <ul class="pager">
+            {{ if .PrevInSection }}
+            <li class="next"><a href="{{.PrevInSection.Permalink}}">Next</a></li>
+            {{ end }}
+            {{ if .NextInSection }}
+            <li class="previous"><a href="{{.NextInSection.Permalink}}">Previous</a></li>
+
+            {{ end }}
+        </ul>
+	</div>
+
+
+	<!--div id="toc" style=" margin-top:30px;margin-right:10px;margin-left:40;background:#f6f8f9" class="col-lg-2 toc {{ if gt (len .TableOfContents) 1 }}compact{{ end }}">
+		<center><h5>In This Page</h5></center>
+		{{ .TableOfContents }}
+	</div-->
+
+    <div class="col-lg-2">
+        <div id="toc"></div>
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+{{ partial "footer.html" . }}
+
+
+
+

@@ -1,0 +1,47 @@
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+
+
+<div class="container-fluid" style="padding-top:10px;min-height: 650px;">
+
+	<div class="col-lg-2">
+	</div>
+	<!--div class="col-lg-2">
+        <nav class="sidebar-nav">
+            {{ $currentNode := . }}
+            {{ range .Site.Menus.xap110 }}
+            <a class="sidebar-nav-item{{if or ($currentNode.IsMenuCurrent "xap110" .) ($currentNode.HasMenuCurrent "xap110" .) }} active{{end}}" href="{{.URL}}">{{ .Name }}</a>
+            {{ end }}
+        </nav>
+     </div-->
+
+
+	<div class="col-lg-7">
+		<h1>{{ .Title }}</h1>
+        <hr>
+		{{ .Content }}
+      <hr>
+
+		<!--hr>
+        <ul class="pager">
+            {{ if .PrevInSection }}
+            <li class="next"><a href="{{.PrevInSection.Permalink}}">Next</a></li>
+            {{ end }}
+            {{ if .NextInSection }}
+            <li class="previous"><a href="{{.NextInSection.Permalink}}">Previous</a></li>
+
+            {{ end }}
+        </ul-->
+	</div>
+
+
+    {{ partial "toc.html" .}}
+
+
+
+
+</div>
+
+{{ partial "footer.html" . }}
+
+ 

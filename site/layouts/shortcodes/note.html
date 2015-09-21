@@ -1,0 +1,8 @@
+{{if isset .Params 0}}
+<div class='bs-callout bs-callout-warning'><h4>{{ .Get 0}}</h4>{{.Inner}}</div>
+{{else}}
+<div class='bs-callout bs-callout-warning'>{{.Inner}}</div>
+{{end}}
+
+
+

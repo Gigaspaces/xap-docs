@@ -1,0 +1,8 @@
+<!--div class="col-lg-2">
+       <nav class="sidebar-nav">
+           {{ $currentNode := . }}
+           {{ range .Site.Menus.xap110 }}
+           <a class="sidebar-nav-item{{if or ($currentNode.IsMenuCurrent "xap110" .) ($currentNode.HasMenuCurrent "xap110" .) }} active{{end}}" href="{{.URL}}">{{ .Name }}</a>
+           {{ end }}
+       </nav>
+    </div-->

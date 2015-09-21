@@ -1,0 +1,6 @@
+{{ if in .Page.Permalink "xap97" }}      {{ "/xap97adm/"}}
+{{ else if in .Page.Permalink "xap100" }}{{ "/xap100adm/" }}
+{{ else if in .Page.Permalink "xap101" }}{{ "/xap101adm/"}}
+{{ else if in .Page.Permalink "xap102" }}{{ "/xap102adm/"}}
+{{ else if in .Page.Permalink "xap110" }}{{ "/xap110adm/"}}
+{{ else }}{{.Page.Site.Params.latest_adm_url}}{{ end }}

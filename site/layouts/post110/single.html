@@ -1,0 +1,446 @@
+{{ partial "header.html" . }}
+{{ partial "navbar110.html" . }}
+
+
+<div class="container-fluid" style="padding-top:10px;min-height: 650px;">
+
+    <div class="col-lg-2">
+
+        <div class='panel-grou' id='accordion' >
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse0'>Installation</a>
+                    </h4>
+                </div>
+                <div id='collapse0' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./installation.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./license-key.html' style='color: rgb(30,144,255)' class='list-group-item'>License Key</a>
+                        <a href='./installation-java.html' style='color: rgb(30,144,255)' class='list-group-item'>XAP Java Installation</a>
+                        <a href='./installing-cpp-api-package.html' style='color: rgb(30,144,255)' class='list-group-item'>C++</a>
+                        <a href='./maven-plugin.html' style='color: rgb(30,144,255)' class='list-group-item'>Maven Plugin</a>
+                        <a href='./setting-up-eclipse-to-work-with-xap.html' style='color: rgb(30,144,255)' class='list-group-item'>Eclipse setup</a>
+                        <a href='./running-and-debugging-within-your-ide.html' style='color: rgb(30,144,255)' class='list-group-item'>Running and Debugging Within Your IDE</a>
+                        <a href='./running-gigaspaces-as-a-windows-service.html' style='color: rgb(30,144,255)' class='list-group-item'>XAP as Windows Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse1'>POJO Support</a>
+                    </h4>
+                </div>
+                <div id='collapse1' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./pojo-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./pojo-support.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./dynamic-properties.html' style='color: rgb(30,144,255)' class='list-group-item'>Dynamic Properties</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse2'>Space Document</a>
+                    </h4>
+                </div>
+                <div id='collapse2' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./document-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./document-api.html' style='color: rgb(30,144,255)' class='list-group-item'>Document API</a>
+                        <a href='./document-extending.html' style='color: rgb(30,144,255)' class='list-group-item'>Extended Document</a>
+                        <a href='./document-pojo-interoperability.html' style='color: rgb(30,144,255)' class='list-group-item'>Interoperability</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse3'>Modeling your Data</a>
+                    </h4>
+                </div>
+                <div id='collapse3' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./modeling-your-data.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./space-object-id-operations.html' style='color: rgb(30,144,255)' class='list-group-item'>Space Object ID</a>
+                        <a href='./pojo-annotation-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Annotation based Metadata</a>
+                        <a href='./pojo-xml-metadata-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>XML based Metadata</a>
+                        <a href='./storage-types---controlling-serialization.html' style='color: rgb(30,144,255)' class='list-group-item'>Storage Types</a>
+                        <a href='./custom-serialization.html' style='color: rgb(30,144,255)' class='list-group-item'>Custom Serialization</a>
+                        <a href='./routing-in-partitioned-spaces.html' style='color: rgb(30,144,255)' class='list-group-item'>Routing In Partitioned Spaces</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse4'>The Space Interface</a>
+                    </h4>
+                </div>
+                <div id='collapse4' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./the-gigaspace-interface-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./the-gigaspace-interface.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./the-space-configuration.html' style='color: rgb(30,144,255)' class='list-group-item'>Configuration</a>
+                        <a href='./the-space-operations.html' style='color: rgb(30,144,255)' class='list-group-item'>Operations</a>
+                        <a href='./change-api-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Change API</a>
+                        <a href='./the-space-counters.html' style='color: rgb(30,144,255)' class='list-group-item'>Counters</a>
+                        <a href='./aggregators.html' style='color: rgb(30,144,255)' class='list-group-item'>Aggregators</a>
+                        <a href='./the-space-transactions.html' style='color: rgb(30,144,255)' class='list-group-item'>Transactions</a>
+                        <a href='./the-space-notifications.html' style='color: rgb(30,144,255)' class='list-group-item'>Notifications</a>
+                        <a href='./the-space-filters.html' style='color: rgb(30,144,255)' class='list-group-item'>Space Filters</a>
+                        <a href='./space-mode-context-loader.html' style='color: rgb(30,144,255)' class='list-group-item'>Space Mode Context Loader</a>
+                        <a href='./leases-automatic-expiration.html' style='color: rgb(30,144,255)' class='list-group-item'>Lease Time</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse5'>Querying the Space</a>
+                    </h4>
+                </div>
+                <div id='collapse5' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./querying-the-space.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./query-by-id.html' style='color: rgb(30,144,255)' class='list-group-item'>Id Queries</a>
+                        <a href='./query-template-matching.html' style='color: rgb(30,144,255)' class='list-group-item'>Template Matching</a>
+                        <a href='./query-sql.html' style='color: rgb(30,144,255)' class='list-group-item'>SQLQuery</a>
+                        <a href='./query-free-text-search.html' style='color: rgb(30,144,255)' class='list-group-item'>Free Text Search</a>
+                        <a href='./query-nested-properties.html' style='color: rgb(30,144,255)' class='list-group-item'>Nested Properties</a>
+                        <a href='./query-user-defined-classes.html' style='color: rgb(30,144,255)' class='list-group-item'>User Defined Classes</a>
+                        <a href='./query-paging-support.html' style='color: rgb(30,144,255)' class='list-group-item'>Paging Support</a>
+                        <a href='./query-partial-results.html' style='color: rgb(30,144,255)' class='list-group-item'>Projection</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse6'>Indexing</a>
+                    </h4>
+                </div>
+                <div id='collapse6' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./indexing-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./indexing.html' style='color: rgb(30,144,255)' class='list-group-item'>Basic Index</a>
+                        <a href='./indexing-nested-properties.html' style='color: rgb(30,144,255)' class='list-group-item'>Nested Property Index</a>
+                        <a href='./indexing-collections.html' style='color: rgb(30,144,255)' class='list-group-item'>Collection Index</a>
+                        <a href='./indexing-compound.html' style='color: rgb(30,144,255)' class='list-group-item'>Compound Index</a>
+                        <a href='./indexing-unique.html' style='color: rgb(30,144,255)' class='list-group-item'>Unique Index</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse7'>Transactions</a>
+                    </h4>
+                </div>
+                <div id='collapse7' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./transaction-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./transaction-management.html' style='color: rgb(30,144,255)' class='list-group-item'>Transaction Management</a>
+                        <a href='./transaction-locking-and-blocking.html' style='color: rgb(30,144,255)' class='list-group-item'>Locking and Blocking</a>
+                        <a href='./transaction-read-modifiers.html' style='color: rgb(30,144,255)' class='list-group-item'>Read Modifiers</a>
+                        <a href='./transaction-optimistic-locking.html' style='color: rgb(30,144,255)' class='list-group-item'>Optimistic Locking</a>
+                        <a href='./transaction-pessimistic-locking.html' style='color: rgb(30,144,255)' class='list-group-item'>Pessimistic Locking</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse8'>Space Persistency</a>
+                    </h4>
+                </div>
+                <div id='collapse8' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./space-persistency-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./space-persistency.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./direct-persistency.html' style='color: rgb(30,144,255)' class='list-group-item'>Direct Persistency</a>
+                        <a href='./hibernate-space-persistency.html' style='color: rgb(30,144,255)' class='list-group-item'>Hibernate Integration</a>
+                        <a href='./space-data-source-api.html' style='color: rgb(30,144,255)' class='list-group-item'>Data Source</a>
+                        <a href='./space-synchronization-endpoint-api.html' style='color: rgb(30,144,255)' class='list-group-item'>Synchronization Endpoint</a>
+                        <a href='./space-persistency-initial-load.html' style='color: rgb(30,144,255)' class='list-group-item'>Initial Load</a>
+                        <a href='./asynchronous-persistency-with-the-mirror.html' style='color: rgb(30,144,255)' class='list-group-item'>Asynchronous Persistency - Write Behind</a>
+                        <a href='./transient-entries.html' style='color: rgb(30,144,255)' class='list-group-item'>Transient Entries</a>
+                        <a href='./space-persistency-advanced-topics.html' style='color: rgb(30,144,255)' class='list-group-item'>Advanced Topics</a>
+                        <a href='./persistency-migrating-hibernate.html' style='color: rgb(30,144,255)' class='list-group-item'>Migrating from Hibernate</a>
+                        <a href='./migrating-from-external-data-source-api.html' style='color: rgb(30,144,255)' class='list-group-item'>Migrating From External Data Source API</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse9'>Other Data Access APIs</a>
+                    </h4>
+                </div>
+                <div id='collapse9' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./other-data-access-apis.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./jdbc-driver.html' style='color: rgb(30,144,255)' class='list-group-item'>JDBC Driver</a>
+                        <a href='./jpa-api-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>JPA API</a>
+                        <a href='./map-api.html' style='color: rgb(30,144,255)' class='list-group-item'>Map API</a>
+                        <a href='./memcached-api.html' style='color: rgb(30,144,255)' class='list-group-item'>Memcached API</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse10'>Client Side Caching</a>
+                    </h4>
+                </div>
+                <div id='collapse10' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./client-side-caching.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./local-cache.html' style='color: rgb(30,144,255)' class='list-group-item'>Local Cache</a>
+                        <a href='./local-view.html' style='color: rgb(30,144,255)' class='list-group-item'>Local View</a>
+                        <a href='./client-side-caching-over-the-wan.html' style='color: rgb(30,144,255)' class='list-group-item'>Caching over the WAN</a>
+                        <a href='./monitoring-the-client-side-cache.html' style='color: rgb(30,144,255)' class='list-group-item'>Monitoring Client Side Cache</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse11'>Task Execution</a>
+                    </h4>
+                </div>
+                <div id='collapse11' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./task-execution-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./task-execution-over-the-space.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./dynamic-language-tasks.html' style='color: rgb(30,144,255)' class='list-group-item'>Dynamic Language Tasks</a>
+                        <a href='./task-metadata.html' style='color: rgb(30,144,255)' class='list-group-item'>Metadata</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse12'>Event Processing</a>
+                    </h4>
+                </div>
+                <div id='collapse12' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./event-processing.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./notify-container-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Notify Container</a>
+                        <a href='./polling-container-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Polling Container</a>
+                        <a href='./data-event-listener.html' style='color: rgb(30,144,255)' class='list-group-item'>Data Event Listener</a>
+                        <a href='./event-exception-handler.html' style='color: rgb(30,144,255)' class='list-group-item'>Event Exception Handler</a>
+                        <a href='./fifo-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>FIFO Ordering</a>
+                        <a href='./messaging-support.html' style='color: rgb(30,144,255)' class='list-group-item'>JMS Messaging Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse13'>Space Based Remoting</a>
+                    </h4>
+                </div>
+                <div id='collapse13' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./space-based-remoting-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./space-based-remoting.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./executor-based-remoting.html' style='color: rgb(30,144,255)' class='list-group-item'>Executor Based Remoting</a>
+                        <a href='./event-driven-remoting.html' style='color: rgb(30,144,255)' class='list-group-item'>Event Driven Remoting</a>
+                        <a href='./remoting-metadata.html' style='color: rgb(30,144,255)' class='list-group-item'>Metadata Summary</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse14'>Mule ESB Integration</a>
+                    </h4>
+                </div>
+                <div id='collapse14' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./mule-esb.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./mule-event-container-transport.html' style='color: rgb(30,144,255)' class='list-group-item'>Event Container Transport</a>
+                        <a href='./mule-processing-unit.html' style='color: rgb(30,144,255)' class='list-group-item'>Processing Unit</a>
+                        <a href='./mule-queue-provider.html' style='color: rgb(30,144,255)' class='list-group-item'>Queue Provider</a>
+                        <a href='./mule-seda-model.html' style='color: rgb(30,144,255)' class='list-group-item'>SEDA Model</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse15'>Big Data Integration</a>
+                    </h4>
+                </div>
+                <div id='collapse15' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./big-data.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./archive-container.html' style='color: rgb(30,144,255)' class='list-group-item'>Archive Container</a>
+                        <a href='./cassandra.html' style='color: rgb(30,144,255)' class='list-group-item'>Cassandra Integration</a>
+                        <a href='./mongodb.html' style='color: rgb(30,144,255)' class='list-group-item'>MongoDB Integration</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse16'>Admin API</a>
+                    </h4>
+                </div>
+                <div id='collapse16' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./administration-and-monitoring-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./administration-and-monitoring-api.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./dump.html' style='color: rgb(30,144,255)' class='list-group-item'>Dump</a>
+                        <a href='./snmp-connectivity-via-alert-logging-gateway.html' style='color: rgb(30,144,255)' class='list-group-item'>SNMP Alerts</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse17'>The Processing Unit</a>
+                    </h4>
+                </div>
+                <div id='collapse17' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./the-processing-unit-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./the-processing-unit-structure-and-configuration.html' style='color: rgb(30,144,255)' class='list-group-item'>Directory Structure</a>
+                        <a href='./configuring-processing-unit-elements.html' style='color: rgb(30,144,255)' class='list-group-item'>Configuration</a>
+                        <a href='./obtaining-cluster-information.html' style='color: rgb(30,144,255)' class='list-group-item'>Cluster Information</a>
+                        <a href='./reloading-business-logic.html' style='color: rgb(30,144,255)' class='list-group-item'>Reloading Business Logic</a>
+                        <a href='./custom-processing-unit-details-and-monitors.html' style='color: rgb(30,144,255)' class='list-group-item'>Custom Processing Unit</a>
+                        <a href='./deploying-and-running-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Deploying and Running</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse18'>Elastic Processing Unit</a>
+                    </h4>
+                </div>
+                <div id='collapse18' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./elastic-processing-unit-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./elastic-processing-unit.html' style='color: rgb(30,144,255)' class='list-group-item'>EPU Overview</a>
+                        <a href='./elastic-processing-unit-deploy.html' style='color: rgb(30,144,255)' class='list-group-item'>Deployment</a>
+                        <a href='./elastic-processing-unit-trigger.html' style='color: rgb(30,144,255)' class='list-group-item'>Scale Triggers</a>
+                        <a href='./elastic-processing-unit-provisioning.html' style='color: rgb(30,144,255)' class='list-group-item'>Machine Provisioning</a>
+                        <a href='./elastic-processing-unit-properties.html' style='color: rgb(30,144,255)' class='list-group-item'>Configuration Properties</a>
+                        <a href='./elastic-processing-unit-example.html' style='color: rgb(30,144,255)' class='list-group-item'>Example</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse19'>Web Application Support</a>
+                    </h4>
+                </div>
+                <div id='collapse19' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./web-application-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./web-application-support.html' style='color: rgb(30,144,255)' class='list-group-item'>Web Application Support - Overview</a>
+                        <a href='./web-jetty-processing-unit-container.html' style='color: rgb(30,144,255)' class='list-group-item'>Jetty Processing Unit Container</a>
+                        <a href='./http-session-management.html' style='color: rgb(30,144,255)' class='list-group-item'>HTTP Session Management</a>
+                        <a href='./web-processing-unit-container.html' style='color: rgb(30,144,255)' class='list-group-item'>Web Processing Unit Container</a>
+                        <a href='./apache-load-balancer-agent.html' style='color: rgb(30,144,255)' class='list-group-item'>Apache Load Balancer Agent</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse20'>Global HTTP Session Sharing</a>
+                    </h4>
+                </div>
+                <div id='collapse20' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./global-http-session-sharing-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./global-http-session-sharing.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./global-http-session-sharing-configuration.html' style='color: rgb(30,144,255)' class='list-group-item'>Configuration & Deployment</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse21'>Multi Site LAN Replication</a>
+                    </h4>
+                </div>
+                <div id='collapse21' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./multi-space-replication-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./multi-space-replication-over-the-lan-or-vpn.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./replication-gateway-lan-bootstrapping-process.html' style='color: rgb(30,144,255)' class='list-group-item'>Gateway Bootstrapping</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse22'>Multi Site WAN Replication</a>
+                    </h4>
+                </div>
+                <div id='collapse22' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./multi-site-replication-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./multi-site-replication-over-the-wan.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./communication-filter-over-the-wan-(ssl,zip).html' style='color: rgb(30,144,255)' class='list-group-item'>Communication Filter</a>
+                        <a href='./replication-gateway-components.html' style='color: rgb(30,144,255)' class='list-group-item'>Gateway Components</a>
+                        <a href='./configuring-space-gateway-targets.html' style='color: rgb(30,144,255)' class='list-group-item'>Configuring Targets</a>
+                        <a href='./replication-gateway-bootstrapping-process.html' style='color: rgb(30,144,255)' class='list-group-item'>Bootstrapping Process</a>
+                        <a href='./multi-site-conflict-resolution.html' style='color: rgb(30,144,255)' class='list-group-item'>Conflict Resolution</a>
+                        <a href='./changing-multi-site-deployment-during-runtime.html' style='color: rgb(30,144,255)' class='list-group-item'>Changing Deployment during Runtime</a>
+                        <a href='./replication-gateway-filtering.html' style='color: rgb(30,144,255)' class='list-group-item'>Filtering  Data</a>
+                        <a href='./intercepting-replication-events-at-the-gateway.html' style='color: rgb(30,144,255)' class='list-group-item'>Intercepting Replication Events</a>
+                        <a href='./multi-site-replication-limitations.html' style='color: rgb(30,144,255)' class='list-group-item'>Limitations</a>
+                    </div>
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <h4 class='panel-title'>
+                        <a data-toggle='collapse' data-parent='#accordion' href='#collapse23'>Platform Interoperability</a>
+                    </h4>
+                </div>
+                <div id='collapse23' class='panel-collapse collapse'>
+                    <div class='list-group'>
+                        <a href='./interoperability-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>Section Content</a>
+                        <a href='./interoperability.html' style='color: rgb(30,144,255)' class='list-group-item'>Overview</a>
+                        <a href='./xap-cpp.html' style='color: rgb(30,144,255)' class='list-group-item'>CPP</a>
+                        <a href='./rest-service-overview.html' style='color: rgb(30,144,255)' class='list-group-item'>The REST Service</a>
+                        <a href='./scala.html' style='color: rgb(30,144,255)' class='list-group-item'>Scala</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    {{ partial "nav.html" .}}
+
+    <div class="col-lg-7">
+        <h1>{{ .Title }}</h1>
+        <hr>
+        {{ .Content }}
+        <hr>
+
+        {{ partial "pager.html" .}}
+
+    </div>
+
+
+    {{ partial "toc.html" .}}
+
+</div>
+
+{{ partial "footer.html" . }}
+
+ 

@@ -1,0 +1,6 @@
+{{ if in .Page.Permalink "xap97" }}      {{"/xap97net/"}}
+{{ else if in .Page.Permalink "xap100" }}{{"/xap100net/"}}
+{{ else if in .Page.Permalink "xap101" }}{{"/xap101net/"}}
+{{ else if in .Page.Permalink "xap102" }}{{"/xap102net/"}}
+{{ else if in .Page.Permalink "xap110" }}{{"/xap110net/"}}
+{{ else }}{{.Page.Site.Params.latest_net_url}}{{ end }}

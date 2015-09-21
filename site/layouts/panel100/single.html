@@ -1,0 +1,23 @@
+{{ partial "header.html" . }}
+{{ partial "navbar100.html" . }}
+
+
+<div class="container-fluid" style="padding-top:10px;min-height: 650px;">
+
+    <div class="col-lg-2">
+        {{ partial "nav.html" .}}
+    </div>
+
+
+
+    <div class="col-lg-8">
+        <h1>{{ .Title }}</h1>
+        <hr>
+        {{ .Content }}
+    </div>
+
+</div>
+
+{{ partial "footer.html" . }}
+
+ 

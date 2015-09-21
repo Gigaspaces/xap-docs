@@ -1,0 +1,45 @@
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+
+
+<div class="container-fluid" style="padding-top:10px;min-height: 650px;">
+	<div class="col-lg-2" style="margin-left:10px; margin-top:100px;">
+		<nav class="sidebar-nav">
+			{{ $currentNode := . }}
+			{{ range .Site.Menus.product }}
+
+			<li>
+				<a class="sidebar-nav-item{{if or ($currentNode.IsMenuCurrent "product" .) ($currentNode.HasMenuCurrent "product" .) }} active{{end}}" href="{{.URL}}">{{ .Name }}</a>
+			</li>
+
+			{{ end }}
+		</nav>
+	</div>
+
+
+
+	<div class="col-lg-7">
+		<h1>{{ .Title }}</h1>
+		{{ .Content }}
+        <hr>
+
+        <ul class="pager">
+            {{ if .PrevInSection }}
+            <li class="next"><a href="{{.PrevInSection.Permalink}}">Next</a></li>
+            {{ end }}
+            {{ if .NextInSection }}
+            <li class="previous"><a href="{{.NextInSection.Permalink}}">Previous</a></li>
+
+            {{ end }}
+        </ul>
+	</div>
+
+
+	{{ partial "toc.html" .}}
+
+
+
+</div>
+
+{{ partial "footer.html" . }}
+
