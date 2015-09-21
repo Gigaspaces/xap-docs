@@ -54,18 +54,14 @@ private String name;
 
 {{%accord title="accordion2"  %}}
 
- fdslfsdkfldkfdsf
- dsfsdf
- sdfsdfdsf
+Some Text goes here
 
 {{%/accord%}}
 
 
 {{%accord title="accordion3"  %}}
 
- fdslfsdkfldkfdsf
- dsfsdf
- sdfsdfdsf
+ Some Text goes here
 
 {{%/accord%}}
 
