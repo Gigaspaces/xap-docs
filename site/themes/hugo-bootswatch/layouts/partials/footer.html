@@ -32,6 +32,8 @@
 
 <script type="text/javascript" src="/js/jquery.easyui.min.js"></script>
 
+
+
 <script type="text/javascript">
     $(function() {
     $("#toTop").scrollToTop(1000);
@@ -60,6 +62,37 @@ $(document).ready(function(){
 });
 
 </script>
+
+<script type="text/javascript" src="/js/navgoco/jquery.navgoco.min.js"></script>
+<script type="text/javascript" src="/js/navgoco/jquery.cookie.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.xapnav').navgoco({
+             /* caretHtml: '<i class="some-random-icon-class"></i>',*/
+              accordion: false,
+              openClass: 'open',
+              save: true,
+               cookie: {
+                  name: 'navgoco',
+                  expires: false,
+                  path: '/'
+              },
+              slide: {
+              /*    duration: 400,*/
+                  easing: 'swing'
+              }
+          });
+    });
+</script>
+
+
+<!--script>
+    $(document).ready(function() {
+        $('.nav').navgoco();
+    });
+</script-->
+
+
 
 <script type="text/javascript">
     $(document).ready(function() {

@@ -17,7 +17,7 @@ Navigate to the anchor [point](#hello)
 Navigate to the anchor [point](#hello1)
 
 
-
+{{/*<anchor hello/*>}}
 
 
 some text here 
