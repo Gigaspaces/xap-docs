@@ -4,9 +4,9 @@ This repo is intended to host XAP documentation, and is currently under construc
 
 # Installation
 
-- [Download Hugo](https://github.com/spf13/hugo/releases)
+- Download [Hugo](https://github.com/spf13/hugo/releases) and unzip it
 
-- Clone the documentation repository [XAP-Docs](https://github.com/Gigaspaces/xap-docs)
+- Clone the [xap-docs](https://github.com/Gigaspaces/xap-docs) repository 
 
 
 # Running
