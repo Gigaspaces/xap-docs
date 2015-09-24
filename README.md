@@ -13,3 +13,7 @@ Feel free to experiment with it, but do not push any changes as this is not read
 - Change directory to the `site` directory
 - Start the Hugo server: `hugo server --watch`
 - Browse to `localhost:1313`
+
+# Known Issues
+
+- Table of contents on left side is missing (work in progress)
