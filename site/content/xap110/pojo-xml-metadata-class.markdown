@@ -47,7 +47,10 @@ Example:
 ```
 
 
-{{%learn "./space-persistency.html"%}}
+{{%refer%}}
+[Space Persistence](./space-persistency.html)
+{{%/refer%}}
+
 
 # Replication
 
@@ -69,7 +72,11 @@ Example:
 ```
 
 
-{{%learn "currentadmurl/replication.html"%}}
+
+{{%refer%}}
+[Replication]({{%currentadmurl%}}/replication.html")
+{{%/refer%}}
+
 
 
 # FIFO Support
@@ -92,7 +99,12 @@ Example:
 ```
 
 
-{{%learn "./fifo-support.html"%}}
+
+
+{{%refer%}}
+[FIFO Support](./fifo-support.html")
+{{%/refer%}}
+
 
 # Storage Type
 
@@ -114,7 +126,12 @@ Example:
 ```
 
 
-{{%learn "./storage-types-controlling-serialization.html"%}}
+
+{{%refer%}}
+[Storage Tyes and Serialization](./storage-types-controlling-serialization.html")
+{{%/refer%}}
+
+
 
 
 # Include Properties
@@ -155,7 +172,13 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./indexing.html"%}}
+
+{{%refer%}}
+[Indexing Space Objects](./indexing.html)
+{{%/refer%}}
+
+
+
 
 
 # Compound Index
@@ -180,7 +203,11 @@ Example:
 ```
 
 
-{{%learn "./indexing-compound.html"%}}
+{{%refer%}}
+[Compound Indexing ](./indexing-compound.html)
+{{%/refer%}}
+
+
 
 
 # Blob Store
@@ -206,7 +233,11 @@ Example:
 ```
 
 
-{{%learn "currentadmurl//memoryxtend.html"%}}
+
+{{%refer%}}
+[MemoryXtend]({{%currentadmurl%}}/memoryxtend.html")
+{{%/refer%}}
+
 
 
 

@@ -405,8 +405,9 @@ public class Message {
 }
 ```
 
-{{%learn "./storage-types-controlling-serialization.html"%}}
-
+{{%refer%}}
+[Storage Types and Serialisation](./storage-types-controlling-serialization.html)
+{{%/refer%}}
 
 # SpaceFifoGroupingProperty
 
@@ -436,7 +437,11 @@ public class FlightReservation
 }
 ```
 
-{{%learn "./fifo-grouping.html"%}}
+{{%refer%}}
+[FIFO Grouping](./fifo-grouping.html)
+{{%/refer%}}
+
+
 
 
 # SpaceFifoGroupingIndex
@@ -463,7 +468,11 @@ Example:
 
 ```
 
-{{%learn "./fifo-grouping.html"%}}
+{{%refer%}}
+[FIFO Grouping](./fifo-grouping.html)
+{{%/refer%}}
+
+
 
 
 
@@ -501,7 +510,11 @@ public class Person {
 }
 ```
 
-{{%learn "./dynamic-properties.html"%}}
+{{%refer%}}
+[Dynamic Properties](./dynamic-properties.html)
+{{%/refer%}}
+
+
 
 
 # SpaceDocumentSupport
@@ -528,7 +541,11 @@ public class Person {
 }
 ```
 
-{{%learn "./document-pojo-interoperability.html#deep-interoperability"%}}
+
+
+{{%refer%}}
+[Document POJO Interoperability](./document-pojo-interoperability.html#deep-interoperability)
+{{%/refer%}}
 
 
 

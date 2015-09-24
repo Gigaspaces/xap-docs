@@ -98,7 +98,10 @@ Example:
 ```
 
 
-{{%learn "./storage-types-controlling-serialization.html"%}}
+{{%refer%}}
+[Storage Types and Serialization](./storage-types-controlling-serialization.html)
+{{%/refer%}}
+
 
 ### SpaceIndex
 
@@ -128,7 +131,11 @@ Example:
 ```
 
 
-{{%learn "./indexing.html"%}}
+{{%refer%}}
+[Indexing Space Objects](./indexing.html)
+{{%/refer%}}
+
+
 
 ### SpaceIndex Path
 
@@ -152,7 +159,11 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./indexing-nested-properties.html"%}}
+
+{{%refer%}}
+[Indexing Nested Properties](./indexing-nested-properties.html)
+{{%/refer%}}
+
 
 
 ### Unique Index
