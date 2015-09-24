@@ -1,5 +1,5 @@
 ---
-type: post110admadm
+type: post110adm
 title:  ALL IN CACHE-Cache Policy
 categories: XAP110ADM
 parent: memory-management-overview.html
