@@ -9,21 +9,18 @@
 
 
 </div>
-<!--script src="https://code.jquery.com/jquery-1.10.2.min.js"></script-->
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/bootswatch.js"></script>
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- jQuery Before bootstrap ! -->
 <script src="/js/jquery-1.11.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/js/bootstrap.min.js"></script>
 
-
+<!-- Hihlighting script-->
 <script src="/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/jquery.scrollToTop.js"></script>
+
 <script src="/js/jquery.scrollToTop.min.js"></script>
 
 <script src="/js/tocify/jquery-ui-1.9.1.custom.min.js"></script>
@@ -33,13 +30,6 @@
 <script type="text/javascript" src="/js/jquery.easyui.min.js"></script>
 
 
-
-<script type="text/javascript">
-    $(function() {
-    $("#toTop").scrollToTop(1000);
-    });
-
-</script>
 
 <script>
 $(document).ready(function(){
@@ -86,13 +76,6 @@ $(document).ready(function(){
 </script>
 
 
-<!--script>
-    $(document).ready(function() {
-        $('.nav').navgoco();
-    });
-</script-->
-
-
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -128,23 +111,9 @@ $(document).ready(function(){
     e.preventDefault();
     $(this).ekkoLightbox();
     });
-    //   $('#open-youtube').click(function (e) {
-    //       e.preventDefault();
-    //       $(this).ekkoLightbox();
-    //   });
+ 
 
     });
-
-    //mixpanel tracking 
-    if(mixpanel.cookie.props.Email) {
-        mixpanel.identify(mixpanel.cookie.props.Email);
-    }
-
-    var pageObj = {'Page Name' : document.title, 'URL' : window.location.pathname};
-    mixpanel.track('XAP Docs Page View', pageObj);
-    mixpanel.people.increment('XAP docs page views');
-
-
 </script>
 
 
