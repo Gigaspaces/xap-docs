@@ -1,7 +1,9 @@
-/*! jQuery UI - v1.12.0-pre - 2015-07-24
+/*! jQuery UI - v1.11.4 - 2015-03-11
 * http://jqueryui.com
-* Includes: core.css, accordion.css, autocomplete.css, button.css, datepicker.css, dialog.css, draggable.css, menu.css, progressbar.css, resizable.css, selectable.css, selectmenu.css, sortable.css, slider.css, spinner.css, tabs.css, tooltip.css, theme.css
-* Copyright jQuery Foundation and other contributors; Licensed  */
+* Includes: core.css, accordion.css, autocomplete.css, button.css, datepicker.css, dialog.css, draggable.css, menu.css, progressbar.css, resizable.css, selectable.css, selectmenu.css, slider.css, sortable.css, spinner.css, tabs.css, tooltip.css, theme.css
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Trebuchet%20MS%2CTahoma%2CVerdana%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=f6a828&bgTextureHeader=gloss_wave&bgImgOpacityHeader=35&borderColorHeader=e78f08&fcHeader=ffffff&iconColorHeader=ffffff&bgColorContent=eeeeee&bgTextureContent=highlight_soft&bgImgOpacityContent=100&borderColorContent=dddddd&fcContent=333333&iconColorContent=222222&bgColorDefault=f6f6f6&bgTextureDefault=glass&bgImgOpacityDefault=100&borderColorDefault=cccccc&fcDefault=1c94c4&iconColorDefault=ef8c08&bgColorHover=fdf5ce&bgTextureHover=glass&bgImgOpacityHover=100&borderColorHover=fbcb09&fcHover=c77405&iconColorHover=ef8c08&bgColorActive=ffffff&bgTextureActive=glass&bgImgOpacityActive=65&borderColorActive=fbd850&fcActive=eb8f00&iconColorActive=ef8c08&bgColorHighlight=ffe45c&bgTextureHighlight=highlight_soft&bgImgOpacityHighlight=75&borderColorHighlight=fed22f&fcHighlight=363636&iconColorHighlight=228ef1&bgColorError=b81900&bgTextureError=diagonals_thick&bgImgOpacityError=18&borderColorError=cd0a0a&fcError=ffffff&iconColorError=ffd27a&bgColorOverlay=666666&bgTextureOverlay=diagonals_thick&bgImgOpacityOverlay=20&opacityOverlay=50&bgColorShadow=000000&bgTextureShadow=flat&bgImgOpacityShadow=10&opacityShadow=20&thicknessShadow=5px&offsetTopShadow=-5px&offsetLeftShadow=-5px&cornerRadiusShadow=5px
+* Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
+
 /* Layout helpers
 ----------------------------------*/
 .ui-helper-hidden {
@@ -36,6 +38,9 @@
 .ui-helper-clearfix:after {
 	clear: both;
 }
+.ui-helper-clearfix {
+	min-height: 0; /* support: IE7 */
+}
 .ui-helper-zfix {
 	width: 100%;
 	height: 100%;
@@ -55,7 +60,6 @@
 ----------------------------------*/
 .ui-state-disabled {
 	cursor: default !important;
-	pointer-events: none;
 }
 
 
@@ -82,13 +86,13 @@
 	width: 100%;
 	height: 100%;
 }
-
 .ui-accordion .ui-accordion-header {
 	display: block;
 	cursor: pointer;
 	position: relative;
 	margin: 2px 0 0 0;
 	padding: .5em .5em .5em .7em;
+	min-height: 0; /* support: IE7 */
 	font-size: 100%;
 }
 .ui-accordion .ui-accordion-icons {
@@ -108,14 +112,12 @@
 	border-top: 0;
 	overflow: auto;
 }
-
 .ui-autocomplete {
 	position: absolute;
 	top: 0;
 	left: 0;
 	cursor: default;
 }
-
 .ui-button {
 	display: inline-block;
 	position: relative;
@@ -220,7 +222,6 @@ button.ui-button::-moz-focus-inner {
 	border: 0;
 	padding: 0;
 }
-
 .ui-datepicker {
 	width: 17em;
 	padding: .2em .2em 0;
@@ -386,8 +387,8 @@ button.ui-button::-moz-focus-inner {
 	border-right-width: 0;
 	border-left-width: 1px;
 }
-
 .ui-dialog {
+	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -436,54 +437,20 @@ button.ui-button::-moz-focus-inner {
 	margin: .5em .4em .5em 0;
 	cursor: pointer;
 }
-.ui-dialog .ui-resizable-n {
-	height: 2px;
-	top: 0;
-}
-.ui-dialog .ui-resizable-e {
-	width: 2px;
-	right: 0;
-}
-.ui-dialog .ui-resizable-s {
-	height: 2px;
-	bottom: 0;
-}
-.ui-dialog .ui-resizable-w {
-	width: 2px;
-	left: 0;
-}
-.ui-dialog .ui-resizable-se,
-.ui-dialog .ui-resizable-sw,
-.ui-dialog .ui-resizable-ne,
-.ui-dialog .ui-resizable-nw {
-	width: 7px;
-	height: 7px;
-}
 .ui-dialog .ui-resizable-se {
-	right: 0;
-	bottom: 0;
-}
-.ui-dialog .ui-resizable-sw {
-	left: 0;
-	bottom: 0;
-}
-.ui-dialog .ui-resizable-ne {
-	right: 0;
-	top: 0;
-}
-.ui-dialog .ui-resizable-nw {
-	left: 0;
-	top: 0;
+	width: 12px;
+	height: 12px;
+	right: -5px;
+	bottom: -5px;
+	background-position: 16px 16px;
 }
 .ui-draggable .ui-dialog-titlebar {
 	cursor: move;
 }
-
 .ui-draggable-handle {
 	-ms-touch-action: none;
 	touch-action: none;
 }
-
 .ui-menu {
 	list-style: none;
 	padding: 0;
@@ -495,14 +462,13 @@ button.ui-button::-moz-focus-inner {
 	position: absolute;
 }
 .ui-menu .ui-menu-item {
+	position: relative;
 	margin: 0;
+	padding: 3px 1em 3px .4em;
 	cursor: pointer;
+	min-height: 0; /* support: IE7 */
 	/* support: IE10, see #8844 */
 	list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
-}
-.ui-menu .ui-menu-item-wrapper {
-	position: relative;
-	padding: 3px 1em 3px .4em;
 }
 .ui-menu .ui-menu-divider {
 	margin: 5px 0;
@@ -520,7 +486,7 @@ button.ui-button::-moz-focus-inner {
 .ui-menu-icons {
 	position: relative;
 }
-.ui-menu-icons .ui-menu-item-wrapper {
+.ui-menu-icons .ui-menu-item {
 	padding-left: 2em;
 }
 
@@ -538,7 +504,6 @@ button.ui-button::-moz-focus-inner {
 	left: auto;
 	right: 0;
 }
-
 .ui-progressbar {
 	height: 2em;
 	text-align: left;
@@ -557,7 +522,6 @@ button.ui-button::-moz-focus-inner {
 .ui-progressbar-indeterminate .ui-progressbar-value {
 	background-image: none;
 }
-
 .ui-resizable {
 	position: relative;
 }
@@ -628,7 +592,6 @@ button.ui-button::-moz-focus-inner {
 	right: -5px;
 	top: -5px;
 }
-
 .ui-selectable {
 	-ms-touch-action: none;
 	touch-action: none;
@@ -638,7 +601,6 @@ button.ui-button::-moz-focus-inner {
 	z-index: 100;
 	border: 1px dotted black;
 }
-
 .ui-selectmenu-menu {
 	padding: 0;
 	margin: 0;
@@ -649,6 +611,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-selectmenu-menu .ui-menu {
 	overflow: auto;
+	/* Support: IE7 */
 	overflow-x: hidden;
 	padding-bottom: 1px;
 }
@@ -670,7 +633,6 @@ button.ui-button::-moz-focus-inner {
 	position: relative;
 	text-decoration: none;
 	cursor: pointer;
-	width: 14em;
 }
 .ui-selectmenu-button span.ui-icon {
 	right: 0.5em;
@@ -688,12 +650,6 @@ button.ui-button::-moz-focus-inner {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-
-.ui-sortable-handle {
-	-ms-touch-action: none;
-	touch-action: none;
-}
-
 .ui-slider {
 	position: relative;
 	text-align: left;
@@ -759,7 +715,10 @@ button.ui-button::-moz-focus-inner {
 .ui-slider-vertical .ui-slider-range-max {
 	top: 0;
 }
-
+.ui-sortable-handle {
+	-ms-touch-action: none;
+	touch-action: none;
+}
 .ui-spinner {
 	position: relative;
 	display: inline-block;
@@ -815,7 +774,6 @@ button.ui-button::-moz-focus-inner {
 	/* need to fix icons sprite */
 	background-position: -65px -16px;
 }
-
 .ui-tabs {
 	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	padding: .2em;
@@ -857,12 +815,13 @@ button.ui-button::-moz-focus-inner {
 	padding: 1em 1.4em;
 	background: none;
 }
-
 .ui-tooltip {
 	padding: 8px;
 	position: absolute;
 	z-index: 9999;
 	max-width: 300px;
+	-webkit-box-shadow: 0 0 5px #aaa;
+	box-shadow: 0 0 5px #aaa;
 }
 body .ui-tooltip {
 	border-width: 2px;
@@ -871,8 +830,8 @@ body .ui-tooltip {
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-	font-family: Arial,Helvetica,sans-serif/*{ffDefault}*/;
-	font-size: 1em/*{fsDefault}*/;
+	font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+	font-size: 1.1em;
 }
 .ui-widget .ui-widget {
 	font-size: 1em;
@@ -881,25 +840,25 @@ body .ui-tooltip {
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-	font-family: Arial,Helvetica,sans-serif/*{ffDefault}*/;
+	font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #dddddd/*{borderColorContent}*/;
-	background: #ffffff/*{bgColorContent}*/ /*{bgImgUrlContent}*/ /*{bgContentXPos}*/ /*{bgContentYPos}*/ /*{bgContentRepeat}*/;
-	color: #333333/*{fcContent}*/;
+	border: 1px solid #dddddd;
+	background: #eeeeee url("images/ui-bg_highlight-soft_100_eeeeee_1x100.png") 50% top repeat-x;
+	color: #333333;
 }
 .ui-widget-content a {
-	color: #333333/*{fcContent}*/;
+	color: #333333;
 }
 .ui-widget-header {
-	border: 1px solid #dddddd/*{borderColorHeader}*/;
-	background: #e9e9e9/*{bgColorHeader}*/ /*{bgImgUrlHeader}*/ /*{bgHeaderXPos}*/ /*{bgHeaderYPos}*/ /*{bgHeaderRepeat}*/;
-	color: #333333/*{fcHeader}*/;
+	border: 1px solid #e78f08;
+	background: #f6a828 url("images/ui-bg_gloss-wave_35_f6a828_500x100.png") 50% 50% repeat-x;
+	color: #ffffff;
 	font-weight: bold;
 }
 .ui-widget-header a {
-	color: #333333/*{fcHeader}*/;
+	color: #ffffff;
 }
 
 /* Interaction states
@@ -907,15 +866,15 @@ body .ui-tooltip {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-	border: 1px solid #c5c5c5/*{borderColorDefault}*/;
-	background: #f6f6f6/*{bgColorDefault}*/ /*{bgImgUrlDefault}*/ /*{bgDefaultXPos}*/ /*{bgDefaultYPos}*/ /*{bgDefaultRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #454545/*{fcDefault}*/;
+	border: 1px solid #cccccc;
+	background: #f6f6f6 url("images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
+	font-weight: bold;
+	color: #1c94c4;
 }
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited {
-	color: #454545/*{fcDefault}*/;
+	color: #1c94c4;
 	text-decoration: none;
 }
 .ui-state-hover,
@@ -924,10 +883,10 @@ body .ui-tooltip {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #cccccc/*{borderColorHover}*/;
-	background: #ededed/*{bgColorHover}*/ /*{bgImgUrlHover}*/ /*{bgHoverXPos}*/ /*{bgHoverYPos}*/ /*{bgHoverRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #2b2b2b/*{fcHover}*/;
+	border: 1px solid #fbcb09;
+	background: #fdf5ce url("images/ui-bg_glass_100_fdf5ce_1x400.png") 50% 50% repeat-x;
+	font-weight: bold;
+	color: #c77405;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -937,21 +896,21 @@ body .ui-tooltip {
 .ui-state-focus a:hover,
 .ui-state-focus a:link,
 .ui-state-focus a:visited {
-	color: #2b2b2b/*{fcHover}*/;
+	color: #c77405;
 	text-decoration: none;
 }
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-	border: 1px solid #003eff/*{borderColorActive}*/;
-	background: #007fff/*{bgColorActive}*/ /*{bgImgUrlActive}*/ /*{bgActiveXPos}*/ /*{bgActiveYPos}*/ /*{bgActiveRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #ffffff/*{fcActive}*/;
+	border: 1px solid #fbd850;
+	background: #ffffff url("images/ui-bg_glass_65_ffffff_1x400.png") 50% 50% repeat-x;
+	font-weight: bold;
+	color: #eb8f00;
 }
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-	color: #ffffff/*{fcActive}*/;
+	color: #eb8f00;
 	text-decoration: none;
 }
 
@@ -960,31 +919,31 @@ body .ui-tooltip {
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-	border: 1px solid #dad55e/*{borderColorHighlight}*/;
-	background: #fffa90/*{bgColorHighlight}*/ /*{bgImgUrlHighlight}*/ /*{bgHighlightXPos}*/ /*{bgHighlightYPos}*/ /*{bgHighlightRepeat}*/;
-	color: #777620/*{fcHighlight}*/;
+	border: 1px solid #fed22f;
+	background: #ffe45c url("images/ui-bg_highlight-soft_75_ffe45c_1x100.png") 50% top repeat-x;
+	color: #363636;
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
 .ui-widget-header .ui-state-highlight a {
-	color: #777620/*{fcHighlight}*/;
+	color: #363636;
 }
 .ui-state-error,
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
-	border: 1px solid #f1a899/*{borderColorError}*/;
-	background: #fddfdf/*{bgColorError}*/ /*{bgImgUrlError}*/ /*{bgErrorXPos}*/ /*{bgErrorYPos}*/ /*{bgErrorRepeat}*/;
-	color: #5f3f3f/*{fcError}*/;
+	border: 1px solid #cd0a0a;
+	background: #b81900 url("images/ui-bg_diagonals-thick_18_b81900_40x40.png") 50% 50% repeat;
+	color: #ffffff;
 }
 .ui-state-error a,
 .ui-widget-content .ui-state-error a,
 .ui-widget-header .ui-state-error a {
-	color: #5f3f3f/*{fcError}*/;
+	color: #ffffff;
 }
 .ui-state-error-text,
 .ui-widget-content .ui-state-error-text,
 .ui-widget-header .ui-state-error-text {
-	color: #5f3f3f/*{fcError}*/;
+	color: #ffffff;
 }
 .ui-priority-primary,
 .ui-widget-content .ui-priority-primary,
@@ -1019,41 +978,41 @@ body .ui-tooltip {
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url("images/ui-icons_444444_256x240.png")/*{iconsContent}*/;
+	background-image: url("images/ui-icons_222222_256x240.png");
 }
 .ui-widget-header .ui-icon {
-	background-image: url("images/ui-icons_444444_256x240.png")/*{iconsHeader}*/;
+	background-image: url("images/ui-icons_ffffff_256x240.png");
 }
 .ui-state-default .ui-icon {
-	background-image: url("images/ui-icons_777777_256x240.png")/*{iconsDefault}*/;
+	background-image: url("images/ui-icons_ef8c08_256x240.png");
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
-	background-image: url("images/ui-icons_555555_256x240.png")/*{iconsHover}*/;
+	background-image: url("images/ui-icons_ef8c08_256x240.png");
 }
 .ui-state-active .ui-icon {
-	background-image: url("images/ui-icons_ffffff_256x240.png")/*{iconsActive}*/;
+	background-image: url("images/ui-icons_ef8c08_256x240.png");
 }
 .ui-state-highlight .ui-icon {
-	background-image: url("images/ui-icons_777620_256x240.png")/*{iconsHighlight}*/;
+	background-image: url("images/ui-icons_228ef1_256x240.png");
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url("images/ui-icons_cc0000_256x240.png")/*{iconsError}*/;
+	background-image: url("images/ui-icons_ffd27a_256x240.png");
 }
 
 /* positioning */
 .ui-icon-blank { background-position: 16px 16px; }
-.ui-icon-caret-1-n { background-position: 0 0; }
-.ui-icon-caret-1-ne { background-position: -16px 0; }
-.ui-icon-caret-1-e { background-position: -32px 0; }
-.ui-icon-caret-1-se { background-position: -48px 0; }
-.ui-icon-caret-1-s { background-position: -64px 0; }
-.ui-icon-caret-1-sw { background-position: -80px 0; }
-.ui-icon-caret-1-w { background-position: -96px 0; }
-.ui-icon-caret-1-nw { background-position: -112px 0; }
-.ui-icon-caret-2-n-s { background-position: -128px 0; }
-.ui-icon-caret-2-e-w { background-position: -144px 0; }
+.ui-icon-carat-1-n { background-position: 0 0; }
+.ui-icon-carat-1-ne { background-position: -16px 0; }
+.ui-icon-carat-1-e { background-position: -32px 0; }
+.ui-icon-carat-1-se { background-position: -48px 0; }
+.ui-icon-carat-1-s { background-position: -64px 0; }
+.ui-icon-carat-1-sw { background-position: -80px 0; }
+.ui-icon-carat-1-w { background-position: -96px 0; }
+.ui-icon-carat-1-nw { background-position: -112px 0; }
+.ui-icon-carat-2-n-s { background-position: -128px 0; }
+.ui-icon-carat-2-e-w { background-position: -144px 0; }
 .ui-icon-triangle-1-n { background-position: 0 -16px; }
 .ui-icon-triangle-1-ne { background-position: -16px -16px; }
 .ui-icon-triangle-1-e { background-position: -32px -16px; }
@@ -1229,34 +1188,38 @@ body .ui-tooltip {
 .ui-corner-top,
 .ui-corner-left,
 .ui-corner-tl {
-	border-top-left-radius: 3px/*{cornerRadius}*/;
+	border-top-left-radius: 4px;
 }
 .ui-corner-all,
 .ui-corner-top,
 .ui-corner-right,
 .ui-corner-tr {
-	border-top-right-radius: 3px/*{cornerRadius}*/;
+	border-top-right-radius: 4px;
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-left,
 .ui-corner-bl {
-	border-bottom-left-radius: 3px/*{cornerRadius}*/;
+	border-bottom-left-radius: 4px;
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-right,
 .ui-corner-br {
-	border-bottom-right-radius: 3px/*{cornerRadius}*/;
+	border-bottom-right-radius: 4px;
 }
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #aaaaaa/*{bgColorOverlay}*/ /*{bgImgUrlOverlay}*/ /*{bgOverlayXPos}*/ /*{bgOverlayYPos}*/ /*{bgOverlayRepeat}*/;
-	opacity: .3/*{opacityOverlay}*/;
-	filter: Alpha(Opacity=30)/*{opacityFilterOverlay}*/; /* support: IE8 */
+	background: #666666 url("images/ui-bg_diagonals-thick_20_666666_40x40.png") 50% 50% repeat;
+	opacity: .5;
+	filter: Alpha(Opacity=50); /* support: IE8 */
 }
 .ui-widget-shadow {
-	-webkit-box-shadow: 0/*{offsetLeftShadow}*/ 0/*{offsetTopShadow}*/ 5px/*{thicknessShadow}*/ #666666/*{bgColorShadow}*/;
-	box-shadow: 0/*{offsetLeftShadow}*/ 0/*{offsetTopShadow}*/ 5px/*{thicknessShadow}*/ #666666/*{bgColorShadow}*/;
+	margin: -5px 0 0 -5px;
+	padding: 5px;
+	background: #000000 url("images/ui-bg_flat_10_000000_40x100.png") 50% 50% repeat-x;
+	opacity: .2;
+	filter: Alpha(Opacity=20); /* support: IE8 */
+	border-radius: 5px;
 }
