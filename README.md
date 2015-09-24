@@ -1,6 +1,7 @@
 # xap-docs
 
-This repo is intended to host XAP documentation, and is currently under construction
+This repo is intended to host XAP documentation, and is currently under construction.
+Feel free to experiment with it, but do not push any changes as this is not ready yet.
 
 # Installation
 
