@@ -12,5 +12,5 @@ This repo is intended to host XAP documentation, and is currently under construc
 # Running
 
 - Change directory to the `site` directory
-- Start the Hugo server:  hugo server --watch
-- Open the url : localhost:1313
+- Start the Hugo server: `hugo server --watch`
+- Browse to `localhost:1313`
