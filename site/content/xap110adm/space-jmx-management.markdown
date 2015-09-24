@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  JMX Management
 categories: XAP110ADM
 parent: monitoring.html

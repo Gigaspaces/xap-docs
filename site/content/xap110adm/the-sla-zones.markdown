@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Hosts, Zones & Machine Utilization
 categories: XAP110ADM
 parent: the-sla-overview.html

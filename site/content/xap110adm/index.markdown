@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Deployment and Administration
 categories: XAP110ADM
 

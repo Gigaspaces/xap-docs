@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110admadm
 title:  Asynchronous Replication
 categories: XAP110ADM
 parent: replication.html

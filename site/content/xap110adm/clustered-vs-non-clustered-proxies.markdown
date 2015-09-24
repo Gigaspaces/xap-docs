@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Clustered vs Non-Clustered Proxies
 categories: XAP110ADM
 parent: data-grid-clustering.html

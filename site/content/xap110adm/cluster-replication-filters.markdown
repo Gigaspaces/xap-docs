@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Replication Filters
 categories: XAP110ADM
 parent: replication.html

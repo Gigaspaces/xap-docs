@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Multiple Network-Cards
 categories: XAP110ADM
 parent: network.html

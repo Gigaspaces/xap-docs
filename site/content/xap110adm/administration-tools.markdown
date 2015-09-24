@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110admadm
 title:  Administration Tools
 categories: XAP110ADM
 weight: 600

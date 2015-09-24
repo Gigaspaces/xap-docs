@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  C++ Benchmark
 categories: XAP110ADM
 parent: benchmarking.html

@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110admadm
 title:  Browser View
 categories: XAP110ADM
 parent: benchmarking.html

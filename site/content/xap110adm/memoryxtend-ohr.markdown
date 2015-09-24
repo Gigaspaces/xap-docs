@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Off Heap RAM
 categories: XAP110ADM
 parent: memoryxtend.html
