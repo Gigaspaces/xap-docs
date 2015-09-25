@@ -331,8 +331,9 @@ ResultSet rs = stmt.executeQuery("SELECT * FROM STUDENT WHERE GRADE >= (SELECT A
 ```
 
 
-### Joined sub-queries are not supported.
-
+{{%warning%}}
+ Joined sub-queries are not supported.
+{{%/warning%}}
 
 {{%/accord%}}
 {{%/accordion%}}
@@ -354,9 +355,9 @@ Statement stmt = conn.createStatement();
 int result = stmt.executeUpdate("UPDATE PERSON SET VERSION = VERSION + 1 WHERE ID = 10000");
 ```
 
-
-### Field incrementing is only supported for `Integer` fields using a '+' operator.
-
+{{%warning%}}
+Field incrementing is only supported for `Integer` fields using a '+' operator.
+{{%/warning%}}
 
 {{%/accord%}}
 {{%/accordion%}}

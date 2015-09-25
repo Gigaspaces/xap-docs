@@ -1,0 +1,11 @@
+{{ partial "header.html" . }}
+
+<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+    <ul class="nav bs-docs-sidenav">
+<!--div id="toc" class="well col-md-4 col-sm-6"-->
+    {{ .TableOfContents }}
+   </ul>
+</nav>
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+{{ partial "footer.html" . }}
