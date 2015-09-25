@@ -40,7 +40,10 @@ public class Person {
 }
 ```
 
-{{%learn "./poco-object-id.html"%}}
+
+{{%refer%}}
+[Space Object ID](./poco-object-id.html)
+{{%/refer%}}
 
 
 # SpaceRouting
@@ -64,7 +67,9 @@ public class Employee {
 }
 ```
 
-{{%learn "currentadmurl/data-partitioning.html"%}}
+{{%refer%}}
+[Data Partitioning]({{%currentadmurl%}}/data-partitioning.html)
+{{%/refer%}}
 
 
 # SpaceProperty
@@ -113,7 +118,9 @@ public class User {
 ```
 
 
-{{%learn "./indexing.html"%}}
+{{%refer%}}
+[Indexing Objects](./indexing.html)
+{{%/refer%}}
 
 # Unique Index
 
@@ -137,8 +144,9 @@ public class Person
 }
 ```
 
-
-{{%learn "./indexing.html"%}}
+{{%refer%}}
+[Indexing Objects](./indexing.html)
+{{%/refer%}}
 
 # SpaceIndex Path
 
@@ -168,7 +176,11 @@ public class Info : Serializable {
 
 ```
 
-{{%learn "./indexing-nested-properties.html"%}}
+{{%refer%}}
+[Indexing Nested Properties]{./indexing-nested-properties.html)
+{{%/refer%}}
+
+
 
 # SpaceVersion
 
@@ -193,7 +205,9 @@ public class Employee {
 }
 ```
 
-{{%learn "./transaction-optimistic-locking.html"%}}
+{{%refer%}}
+[Transactions Optimistic Locking](./transaction-optimistic-locking.html)
+{{%/refer%}}
 
 
 # SpacePersist
@@ -261,7 +275,10 @@ public class Message {
 }
 ```
 
-{{%learn "./poco-storage-type.html"%}}
+
+{{%refer%}}
+[Space Object Storage Type](./poco-storage-type.html)
+{{%/refer%}}
 
 
 # SpaceFifoGroupingProperty
@@ -286,7 +303,9 @@ public class FlightReservation
 }
 ```
 
-{{%learn "./fifo-grouping.html"%}}
+{{%refer%}}
+[FIFO Grouping]{./fifo-grouping.html)
+{{%/refer%}}
 
 
 # SpaceFifoGroupingIndex
@@ -309,7 +328,9 @@ public Person Customer { get; set; }
 
 ```
 
-{{%learn "./fifo-grouping.html"%}}
+{{%refer%}}
+[FIFO Grouping]{./fifo-grouping.html)
+{{%/refer%}}
 
 
 
@@ -336,7 +357,11 @@ public class Person {
 }
 ```
 
-{{%learn "./poco-dynamic-properties.html"%}}
+
+{{%refer%}}
+[Dynamic Properties](./poco-dynamic-properties.html)
+{{%/refer%}}
+
 
 
 # Alias Name
@@ -360,6 +385,10 @@ public class Person {
 }
 ```
 
-{{%learn "./interoperability.html"%}}
+
+{{%refer%}}
+[Interoperability](./interoperability.html)
+{{%/refer%}}
+
 
 

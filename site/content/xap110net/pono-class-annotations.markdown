@@ -32,8 +32,9 @@ public class Person {
 //
 }
 ```
-
-{{%learn "./interoperability.html"%}}
+{{%refer%}}
+[Interoperability](./interoperability.html)
+{{%/refer%}}
 
 # Persistence
 
@@ -54,7 +55,9 @@ public class Person {
 }
 ```
 
-{{%learn "./space-persistency.html"%}}
+{{%refer%}}
+[Space Persistency](./space-persistency-overview.html)
+{{%/refer%}}
 
 
 # Include Properties
@@ -106,7 +109,11 @@ public class Person {
 }
 ```
 
-{{%learn "./fifo-support.html"%}}
+
+{{%refer%}}
+[FIFO Support]{./fifo-support.html)
+{{%/refer%}}
+
 
 
 # Inherit Index
@@ -127,8 +134,9 @@ public class Person {
   //
 }
 ```
-
-{{%learn "./indexing.html"%}}
+{{%refer%}}
+[Indexing Objects](./indexing.html)
+{{%/refer%}}
 
 
 # Replication
@@ -150,9 +158,11 @@ public class Person {
 }
 ```
 
+{{%refer%}}
+[Replication]({{%currentadmurl%}}/replication.html)
+{{%/refer%}}
 
 
-{{%learn "currentadmurl/replication.html"%}}
 
 
 # Compound Index
@@ -179,5 +189,8 @@ public class User {
 
 ```
 
-{{%learn "./indexing-compound.html"%}}
+
+{{%refer%}}
+[Compound Indexes](./indexing-compound.html)
+{{%/refer%}}
 

@@ -7,18 +7,10 @@ parent: none
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![cassandra.png](/attachment_files/qsg/security.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary   %}} {{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
-
-
+{{%bannerleft "/attachment_files/qsg/security.png" %}}
 In this part of the tutorial we will introduce you to XAP security, where it fits in the XAP architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements.
 XAP Security provides comprehensive support for securing your data and services.
+{{%/bannerleft%}}
 
 
 
@@ -107,22 +99,24 @@ GS_HOME\bin\gs-ui.sh
 The default username and password for the security are admin/admin.
 
 {{%section%}}
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Admin0.png"  "Start UI Admin"%}}
 {{%/column%}}
-{{%column width="25%"%}}
+
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Security-select.png"  "Select Security options"%}}
 {{%/column%}}
-{{%column width="25%"%}}
+
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/SecurityLogin.png"  "Login admin/admin default"%}}
 {{%/column%}}
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/CreateRole.png"  "Create a Role"%}}
 {{%/column%}}
 
 {{%/section%}}
 {{%section%}}
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/CreateRole2.png"  "Display Roles"%}}
 {{%/column%}}
 {{%/section%}}

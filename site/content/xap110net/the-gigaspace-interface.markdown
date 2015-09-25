@@ -139,7 +139,10 @@ ISpaceProxy localCache = GigaSpacesFactory.CreateLocalCache(spaceProxy);
 
 ```
 
-{{%learn "./local-cache.html"%}}
+{{%refer%}}
+[Local Cache](./local-cache.html)
+{{%/refer%}}
+
 
 
 # Local View
@@ -169,9 +172,9 @@ View[] views = new View[] { new View(typeName1, "DepartmentNumber=1"), new View(
 IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(spaceProxy, views);
 
 ```
-
-{{%learn "./local-view.html"%}}
-
+{{%refer%}}
+[Local View](./local-view.html)
+{{%/refer%}}
 
 # Security
 
@@ -217,8 +220,9 @@ A secured Space should be configured with a security context so that it can be a
 The grid components are secured using the Security Administration.
 
 
-
-{{%learn "currentsecurl/security-administration.html"%}}
+{{%refer%}}
+[Security Administration]({{%currentsecurl%}}/security-administration.html)
+{{%/refer%}}
 
 
 
@@ -253,7 +257,6 @@ When constructing a Space, it is possible to provide [Space Persistency](./space
 The above example configures both a custom JDBC `DataSource` and a NHibernate `SessionFactory` to define and use the GigaSpaces built-in `NHibernateSpaceDataSource`. The GigaSpaces data source is then injected into the Space construction and causes the Space to use it.
 
 
-
-
-{{%learn "space-persistency-overview.html"%}}
-
+{{%refer%}}
+[Space Persistency](./space-persistency-overview.html)
+{{%/refer%}}

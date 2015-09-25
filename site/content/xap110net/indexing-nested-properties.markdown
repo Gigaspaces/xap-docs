@@ -85,8 +85,9 @@ SqlQuery<Person> query = new SqlQuery<Person>(
     "PersonalInfo.SocialSecurity<10000050L and PersonalInfo.SocialSecurity>=10000010");
 ```
 
-{{%learn "./query-sql.html#Nested Object Query"%}}
-
+{{%refer%}}
+[SQL Query netsed Objects](./query-sql.html#Nested Object Query)
+{{%refer%}}
 
 # Nested Objects
 

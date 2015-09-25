@@ -127,8 +127,9 @@ Example:
 </gigaspaces-mapping>
 ```
 
-
-{{%learn "./indexing.html"%}}
+{{%refer%}}
+[Indexing Objects](./indexing.html)
+{{%/refer%}}
 
 ### SpaceIndex Path
 
@@ -152,7 +153,11 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./indexing-nested-properties.html"%}}
+
+{{%refer%}}
+[Indexing Nested Properties]{./indexing-nested-properties.html)
+{{%/refer%}}
+
 
 
 ### Unique Index
@@ -184,8 +189,9 @@ Example:
 
 ```
 
-
-{{%learn "./indexing.html"%}}
+{{%refer%}}
+[Indexing Objects](./indexing.html)
+{{%/refer%}}
 
 
 ### SpaceFifoGroupingIndex
@@ -212,7 +218,11 @@ Example:
 
 ```
 
-{{%learn "./fifo-grouping.html"%}}
+
+{{%refer%}}
+[FIFO Grouping]{./fifo-grouping.html)
+{{%/refer%}}
+
 
 
 
@@ -267,7 +277,10 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "currentadmurl/data-partitioning.html"%}}
+
+{{%refer%}}
+[Data Partitioning]({{%currentadmurl%}}/data-partitioning.html)
+{{%/refer%}}
 
 # Class Reference
 
@@ -335,7 +348,11 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./transaction-optimistic-locking.html"%}}
+{{%refer%}}
+[Transactions Optimistic Locking](./transaction-optimistic-locking.html)
+{{%/refer%}}
+
+
 
 
 
@@ -412,7 +429,9 @@ Example:
 
 ```
 
-{{%learn "./fifo-grouping.html"%}}
+{{%refer%}}
+[FIFO Grouping]{./fifo-grouping.html)
+{{%/refer%}}
 
 
 # SpaceDynamicProperties

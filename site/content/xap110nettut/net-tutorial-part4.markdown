@@ -221,7 +221,8 @@ In GigaSpaces XAP, you can implement the Master-Worker pattern using several met
 {{%/column%}}
 {{%/section%}}
 
-{{%learn "/sbp/master-worker-pattern.html"%}}
-
+{{%refer%}}
+[Master Worker Pattern](/sbp/master-worker-pattern.html)
+{{%/refer%}}
 
 

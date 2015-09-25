@@ -103,10 +103,10 @@ Partitioning is used when the total number of objects is too big to be stored in
 
 {{%info%}}
 The routing attribute can be explicitly set using the @SpaceRouting annotation for POJO entries or via the SpaceTypeDescriptorBuilder for document entries. If the routing attribute is not explicitly set, the space id attribute is used for routing. If the space id attribute is not defined, the first indexed attribute (alphabetically) is used for routing, otherwise the first attribute (alphabetically) is used for routing.
-{{%refer%}}[Routing in partitioned Space]({{%currentjavaurl%}}/routing-in-partitioned-spaces.html){{%/refer%}}
+
 {{%/info%}}
 
-
+{{%refer%}}[Routing in partitioned Space]({{%currentjavaurl%}}/routing-in-partitioned-spaces.html){{%/refer%}}
 
 # Space Document
 
@@ -154,9 +154,10 @@ Only properties with special roles like ID and Routing are part of the schema de
 
 {{%info%}}
 It is possible to write a POJO to the space and read it back as a document, and vice versa. This scenario is useful when you want to read or modify POJO objects without loading the concrete java classes.
-{{%refer%}}[Document POJO Interoperability]({{%currentjavaurl%}}/document-pojo-interoperability.html){{%/refer%}}
+
 {{%/info%}}
 
+{{%refer%}}[Document POJO Interoperability]({{%currentjavaurl%}}/document-pojo-interoperability.html){{%/refer%}}
 
 # Interacting with the Space
 

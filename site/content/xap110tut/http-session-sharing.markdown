@@ -35,7 +35,7 @@ With XAP you can share HTTP session data across multiple data centers, multiple 
 
 This tutorial will show you:
 
-1. [Single-Applications Session Sharing](#Single Application Session Sharing) sharing the same session between different Tomcat instances. <br>
+1. [Single-Applications Session Sharing](#SingleApplication Session Sharing) sharing the same session between different Tomcat instances. <br>
     a. Using Apache Load Balancer with **Sticky** Session configuration
 {{%wbr%}}    b. Using Apache Load Balancer with **Non-Sticky** Session configuration
 2. [Multiple-Applications Session Sharing](#multi-applications-session-sharing) - sharing the same session between **different applications** running in different Web servers - Tomcat and JBoss.

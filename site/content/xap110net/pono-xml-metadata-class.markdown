@@ -85,8 +85,11 @@ Example:
 </gigaspaces-mapping>
 ```
 
+{{%refer%}}
+[Replication]({{%currentadmurl%}}/replication.html)
+{{%/refer%}}
 
-{{%learn "currentadmurl/replication.html"%}}
+
 
 
 # FIFO Support
@@ -153,9 +156,9 @@ Example:
     <class name="Model.Person" inherit-indexes="false" />
 </gigaspaces-mapping>
 ```
-
-{{%learn "./indexing.html"%}}
-
+{{%refer%}}
+[Indexing Objects](./indexing.html)
+{{%/refer%}}
 
 # Compound Index
 

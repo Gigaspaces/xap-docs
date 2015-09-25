@@ -45,13 +45,20 @@ The Lookup Service provides a mechanism for services to discover each other. Eac
 - Grid Service Agent (GSA)
 The GSA is a process manager that can spawn and manage service grid processes (Operating System level processes) such as the Grid Service Manager, The Grid Service Container, and The Lookup Service. Using the agent, you can bootstrap the entire data grid very easily, and start and stop additional GSCs, GSMs and lookup services at will. Usually, a single GSA is run per machine.
 
-{{%learn "/product_overview/service-grid.html"%}}
+
+{{%refer%}}
+[Service Grid](/product_overview/service-grid.html)
+{{%/refer%}}
 
 
 When you execute the gs-agent command above without any arguments, 1 GSA, 1 GSM, 1 LUS and 2 GSC's will be started. The gs-agent command takes several different parameters as arguments.
 
-{{%learn "currentadmurl/scripts.html"%}}
- 
+
+{{%refer%}}
+[Scripts]({{%currentadmurl%}}/scripts.html)
+{{%/refer%}}
+
+
  
 # Connecting to a Data Grid
 
@@ -113,7 +120,11 @@ GS_HOME\bin\gs-cli deploy-space  -cluster schema=partitioned-sync2backup total_m
 ```
 When the application write Payment objects into this space, XAP will use the routing information provided `[SpaceRouting]` by the Payment class to route the object to the right partition.
 
-{{%learn "/product_overview/space-topologies.html"%}}
+
+
+{{%refer%}}
+[Service Grid](/product_overview/space-topologies.html)
+{{%/refer%}}
 
 
 
@@ -173,7 +184,9 @@ Example : select UID,* from xap.tutorial.user.model.User *where creditLimit > 10
  
 The Admin UI console has many more features which we will introduce you to throughout this tutorial.
 
-   
 
-{{%learn "latestadmurl/web-management-console.html"%}}
+
+{{%refer%}}
+[Web Management Console]({{%currentadmurl%}}/web-management-console.html)
+{{%/refer%}}
 

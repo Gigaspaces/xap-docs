@@ -195,9 +195,9 @@ Example:
 
 ```
 
-
-{{%learn "./indexing.html"%}}
-
+{{%refer%}}
+[Indexing Objects](./indexing.html)
+{{%/refer%}}
 
 ### SpaceFifoGroupingIndex
 
@@ -224,15 +224,10 @@ Example:
 
 ```
 
-{{%learn "./fifo-grouping.html"%}}
 
-
-
-
-
-
-
-
+{{%refer%}}
+[FIFO](./fifo-grouping.html)
+{{%/refer%}}
 
 
 # SpaceId
@@ -259,8 +254,10 @@ Example:
 </gigaspaces-mapping>
 ```
 
+{{%refer%}}
+[Space Object ID Operations{./space-object-id-operations.html)
+{{%/refer%}}
 
-{{%learn "./space-object-id-operations.html"%}}
 
 
 # SpaceRouting
@@ -286,7 +283,11 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "currentadmurl/data-partitioning.html"%}}
+
+{{%refer%}}
+[FIFO]({{%currentadmurl%}}/data-partitioning.html)
+{{%/refer%}}
+
 
 # Class Reference
 
@@ -354,7 +355,10 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./transaction-optimistic-locking.html"%}}
+
+{{%refer%}}
+[Transactions Optimistic locking]{./transaction-optimistic-locking.html)
+{{%/refer%}}
 
 
 
@@ -408,7 +412,12 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./leases-automatic-expiration.html"%}}
+
+{{%refer%}}
+[Lease automatic expiration]{./leases-automatic-expiration.html)
+{{%/refer%}}
+
+
 
 # SpaceFifoGroupingProperty
 
@@ -431,7 +440,17 @@ Example:
 
 ```
 
-{{%learn "./fifo-grouping.html"%}}
+
+{{%refer%}}
+[FIFO Grouping]{./fifo-grouping.html)
+{{%/refer%}}
+
+
+
+{{%refer%}}
+[FIFO Grouping]{./fifo-grouping.html)
+{{%/refer%}}
+
 
 
 # SpaceDynamicProperties
@@ -459,7 +478,12 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./dynamic-properties.html"%}}
+
+{{%refer%}}
+[Dynamic Properties]{./dynamic-properties.html)
+{{%/refer%}}
+
+
 
 
 # SpaceDocumentSupport
@@ -483,7 +507,11 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./document-pojo-interoperability.html#deep-interoperability"%}}
+
+
+{{%refer%}}
+[Document POJO Interoperability]{./document-pojo-interoperability.html#deep-interoperability)
+{{%/refer%}}
 
 
 

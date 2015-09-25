@@ -43,19 +43,15 @@ The Archive Container differs from Space Persistency in the following ways:
 
 
 # Cassandra Integration
-{{%section%}}
-{{%column width="80%" %}}
+
+{{%imagertext "/attachment_files/qsg/archive-container-cassandra.jpg" %}}
+
 The Apache Cassandra Project  is a scalable multi-master database with no single points of failure. The Apache Cassandra Project provides a highly scalable second-generation distributed database, bringing together Dynamo's fully distributed design and Bigtable's ColumnFamily-based data model.
 
 XAP provides out of the box support for Cassandra and uses the [Hector Library](http://hector-client.github.com/hector/build/html/index.html) to communicate with the Cassandra cluster.
 Lets take our online payment system; every transaction that is performed in our application creates an Audit Record. Each one of these records will be persisted in Cassandra for future auditing reviews. First, lets defining the archive container:
 
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/qsg/archive-container-cassandra.jpg"%}}
-{{%/column%}}
-{{%/section%}}
-
+{{%/imagertext%}}
 
 ```xml
 ......

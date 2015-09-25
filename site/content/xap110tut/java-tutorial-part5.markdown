@@ -361,30 +361,22 @@ There is complete example available of  a PU on GitHub. You can download, build 
 {{%section%}}
 {{%column width="25%"%}}
 Deploy PU
-
 {{%popup   "/attachment_files/qsg/EventPU1.png"%}}
-
 {{%/column%}}
 
 {{%column width="25%"%}}
 Applications deployed
-
 {{%popup   "/attachment_files/qsg/EventPU2.png"%}}
-
 {{%/column%}}
 
 {{%column width="25%"%}}
 Data Grid
-
 {{%popup   "/attachment_files/qsg/EventPU3.png"%}}
-
 {{%/column%}}
 
 {{%column width="25%"%}}
 Statistics
-
 {{%popup   "/attachment_files/qsg/EventPU4.png"%}}
-
 {{%/column%}}
 {{%/section%}}
 

@@ -41,7 +41,7 @@ When running in direct persistency mode the IMDG interacts with the data source 
 {{%/column%}}
 {{%column width="20%" %}}
 
-{{%popup   "/attachment_files/qsg/data-grid-sync-persistNew.jpg"%}}
+{{%popup   "/attachment_files/qsg/data-grid-sync-persistNew.jpg" "Mongo Persistence"%}}
 
 
 {{%/column%}}
