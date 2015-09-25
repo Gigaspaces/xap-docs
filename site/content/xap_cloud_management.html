@@ -1,0 +1,256 @@
+---
+
+---
+<div id="resultsDiv" class="DocumentsWrap"></div>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="span6 no-margin">
+                <h1>Try out <strong>XAP in one Click</strong></h1>
+
+                <h2><strong>Test drive XAP API and Management with Real Server on Demand </strong></h2>
+
+                <p class="lead">This is a tutorial that will setup a XAP Cluster on a real server on demand. The
+                    tutorial include an interactive shell that will allow you to execute the various XAP API for writing
+                    and reading data as well as open a groovy shell to write your own code and experience the full XAP
+                    API. The tutorial also allows you explore the <a
+                            href="http://www.gigaspaces.com/xap-deployment-management-and-automation-solution"
+                            target="_blank">XAP orchestration and deployment automation</a> as well as the XAP Data
+                    management console. The tutorial is also available for download - see instructions <a href="#"
+                                                                                                          target="_blank"></a>here.
+                </p>
+
+                <p>NOTE: Installing XAP can take 2-3 minutes.</p>
+
+                <a class="btn btn-lg btn-default launchPlay disabled" id="launch" style="float:left;" href="javascript:void(0)"
+                   data-launched="false">
+                    <span class="glyphicon glyphicon-play"></span>
+                    Launch Now
+                </a>
+                <a id="loadingSpinner" style="display: none; float: left" href="javascript:void(0)">
+                    <i class="fa fa-spinner fa-spin" ></i>&nbsp&nbsp&nbspLaunching...
+                </a>
+
+                <div class="container" style="width:400px;margin:5px 0 0 15px">
+
+                    <div class="progress progress-striped active">
+                        <div class="bar" style="width: 0%; display: none"></div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default" style="display:none">
+                    <div class="panel-heading">
+                        <a href="#" id="manage" class="btn btn-large btn-green btn-rounded disabled" target="manage">» Deployment
+                            Management</a>
+                        <a href="#" id="use" class="btn btn-large btn-green btn-rounded disabled" target="use">» XAP Management</a>
+
+                        <div class="pull-right time-left">
+                            <p>Time Left: <strong id="time-left">...</strong> minutes.</p>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+              <pre id="log">                <!-- Log goes here -->
+              </pre>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!--<a class="btn btn-large btn-green btn-rounded" href="http://www.gigaspaces.com/xap-download"-->
+                <!--target="_blank"><i class="icon-plus"></i> Download XAP</a>-->
+                <!--
+                        <a id="mixpanelSubscribe" class="btn btn-large btn-green btn-rounded" href="#"><i class="icon-plus"></i>  Get Free Cloud Package</a> -->
+
+            </div>
+
+            <div class="span6">
+                <div id="butterfly-iframe">
+                    <div class="span12 center lead" id="loading" style="display:none">
+                        <i class="icon-spinner icon-spin icon-large blue"></i>Loading interactive shell...
+                        <br/>
+                        Until then feel free to watch this XAP introductory video.
+
+                    </div>
+                    <iframe id="ytIframe" width="500" height="400" src="//www.youtube.com/embed/ZI8Q0FPxcGM?rel=0"
+                            frameborder="0" allowfullscreen></iframe>
+                    <div id="butterflyWrapper" style="display:none; width: 820px">
+                        <h1>Try out <strong>the interactive shell</strong></h1>
+
+                        <iframe id="butterfly" src="about:blank" width="768px" height="400px" frameborder="1"
+                                scrolling="auto"></iframe>
+                        <!--
+                                                <a id="watchVideoBtn" class="hover-wrap fancybox fancybox.iframe" data-fancybox-group="gallery"
+                                                   title="Cloudify Your App on Chef" href="#" rel="gallery"><span
+                                                        class="btn btn-rounded btn-default"><i class="icon-play"></i> Watch</span></a>
+                        -->
+
+                        <h2 class="butterfly-footer">Type 1,2,3 in the console above to select and run one of the demos listed above.<br><br>
+                            Click <b><a href="http://docs.gigaspaces.com/xap100/interactive-api-guide.html#running-the-tutorial" target="_blank">here</a></b> to learn more on how to use or download the tutorial.</h2>
+                        <!-- Add Text Here for Widget Instructions -->
+                        <!--	<ul>
+                                <li>connect 127.0.0.1</li>
+                                <li>list-applications</li>
+                                <li>use-application chef-server</li>
+                                <li>invoke chef-server listCookbooks</li>
+                                <li>invoke chef-server updateCookbooks tar "http://s3.amazonaws.com/yoramw/apache.tgz" </li>
+                                <li>invoke chef-server listCookbooks</li>
+                                <li>install-service -overrides /tmp/apache.properties /tmp/base_chef</li>
+                                <li>list-applications</li>
+                                <li>invoke chef-server knife node list</li>
+                                <li>invoke chef-server knife node show <node FQDN from previous list command></li>
+                                <li>Click <a id="viewApachePage" href="#">here to view the Apache welcome page </a> you have just deploy</li>
+                            </ul> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="/css/fancybox/jquery.fancybox.css" rel="stylesheet">
+<link href="/css/overwrite.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<script src="http://ricostacruz.com/nprogress/nprogress.js"></script>
+<div id="hidden-iframe" style="display:none">
+    <!--<iframe id="iframe" src="http://launch.cloudifysource.org/widget/widget?apiKey=5bb7150f-5636-4087-b78e-4132b686c227&amp;title=Launch&amp;origin_page_url=http://getcloudify.org/xap_cloud_management.html" width="600" height="463"></iframe>-->
+</div>
+<script type="text/javascript">var WIDGET_ID = '5bb7150f-5636-4087-b78e-4132b686c227';</script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+<script type="text/javascript" src="/js/widget/script.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.postmessage/0.5/jquery.ba-postmessage.min.js"></script>
+
+<script>
+    $(function () {
+
+    //Manage Downloads Gating;
+    //========================================//
+    var gotName = false;
+    var gotValidCaptcha = false;
+    var downloadHref = "";
+    var strVar = "";
+    var formEmail = "";
+    var formName = "";
+    strVar += "<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">";
+    strVar += "            <a  style=\"float:right \" class=\"gattingWrapperClose\" href=\"#\"><i class=\"fa fa-times\">&nbsp;&nbsp;<\/i> <\/a>";
+    strVar += "<div class=\"gattingWrapper\">";
+    strVar += "           <form class=\"regiterToMixpanel\" name=\"mc-embedded-subscribe-form\" id=\"mc-embedded-subscribe-form\" action=\"https:\/\/cloudifysource.us4.list-manage.com\/subscribe\/post?u=5e963581396e0c0e43ed217f8&id=b43defea9b\" method=\"POST\">";
+    strVar += "			<div class=\"regTitle\">Subscribe here<\/div>";
+    strVar += "			<div style=\"position:relative\">";
+    strVar += "				<input  id=\"last_name\" name=\"last_name\" type=\"text\" class=\"cuInput\" placeholder=\"Your Name\" \/>";
+    strVar += "				<div class=\"cuValid\"><\/div>";
+    strVar += "			<\/div>";
+    strVar += "			<div style=\"position:relative\">";
+    strVar += "				<input  id=\"company\" name=\"company\" type=\"text\" class=\"cuInput\" placeholder=\"Your Company Name\" \/>";
+    strVar += "				<div class=\"cuValid\"><\/div>";
+    strVar += "			<\/div>";
+    strVar += "			<div style=\"position:relative\">";
+    strVar += "				<input  id=\"mce-EMAIL\" name=\"email\"  type=\"text\"  placeholder=\"Your Email\"\/>";
+    strVar += "				<div class=\"cuValid\"><\/div>";
+    strVar += "			<\/div>";
+    strVar += "          <input id=\"website\" name=\"website\" type=\"text\" value=\"\"  \/>";
+    strVar += "			<input type=\"submit\" class=\"cuSendGatting btn btn-info\" id=\"mc-embedded-subscribe\" =\"submit\" value=\"Subscribe\" \/>";
+    strVar += "			<\/form>";
+    strVar += "        <\/div>";
+    strVar += "        <\/div>";
+
+
+    $("#mixpanelSubscribe").click(function (e) {
+
+    $(this).before(strVar);
+    downloadValid();
+    formEmail = mixpanel.cookie.props.__alias;
+    if (formEmail == undefined) {
+    $('#myModal').modal('toggle');
+    } else {
+    alert("You have already registered.")
+    }
+    });
+
+    $('#pageContent').on("click", "a.gattingWrapperClose", function () {
+    $('#myModal').modal('hide');
+    });
+
+    function downloadValid() {
+    //Validation
+    $('.regiterToMixpanel').validate({ // initialize the plugin
+    errorLabelContainer: "#error-note",
+    rules: {
+    last_name: {
+    required: true
+    },
+    company: {
+    required: true
+    },
+    email: {
+    required: true,
+    email: true
+    }
+
+    },
+    messages: {
+    last_name: {
+    required: "Please enter your first name",
+    },
+    company: {
+    required: "Please enter your company name",
+    },
+    email: {
+    required: "Please specify your email",
+    email: "Correct format is name@domain.com"
+    }
+
+    },
+    submitHandler: function (form, e) { // for demo
+    if ($('input#website').val().length != 0) {
+    return false;
+    } else {
+    var chefemail = $("#mce-EMAIL").val();
+    var chef_first_name = $("#last_name").val();
+    var company = $("#company").val();
+    mixpanel.identify();
+    mixpanel.people.set_once({
+    $email: chefemail,
+    $first_name: chef_first_name,
+    $company: company,
+    $created: new Date(),
+    $last_seen: new Date(),
+    });
+    mixpanel.track('HP Chef Widget Campaign', {'page name': document.title, 'url': window.location.pathname});
+    $('#myModal .gattingWrapper form input').hide();
+    $('#myModal .regTitle').text("Thank you for registering! We will be in touch with further details.");
+    setTimeout(function () {
+    $('#myModal').modal('hide');
+    }, 4000);
+    }
+    //return false; // for demo
+    }
+    });
+    //End Validation
+    }
+
+
+    //Blocking Spam http://blog.supermedia.com/honeypot-technique/
+    $('#regiterToDownload').submit(function () {
+    if ($('input#website').val().length != 0) {
+    return false;
+    }
+    });
+    //End Blocking Spam
+
+    });
+</script>
+
+
+<!--
+---
+layout: nil
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="refresh" content="0;url=/tutorials"/>
+</head>
+</html>
+-->
