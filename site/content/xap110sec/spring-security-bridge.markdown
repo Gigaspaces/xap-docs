@@ -6,7 +6,7 @@ parent: none
 weight: 900
 ---
 
-<br>
+
 
 Spring Security is one of the most mature and widely used Spring projects. In the following sections, we present a brief introduction to Spring Security and GigaSpaces Spring-based security bridge.
 

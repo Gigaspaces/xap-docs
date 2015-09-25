@@ -121,7 +121,7 @@ The default username and password for the security are admin/admin.
 
 You may have noticed that you can assign fine grained access control for space operations (read/write/etc) per space class(slide 4).
 
-{{%learn "/xap100sec/gigaspaces-management-center-(ui)-security.html"%}}
+{{%learn "/xap100sec/gigaspaces-management-center-ui-security.html"%}}
 
 
 # Managing Users
@@ -182,7 +182,7 @@ private Role createRole() {
 {{% /tab  %}}
 {{% /tabs %}}
 
-{{%learn "/xap100sec/gigaspaces-management-center-(ui)-security.html"%}}
+{{%learn "/xap100sec/gigaspaces-management-center-ui-security.html"%}}
 
 
 # Securing XAP Components

@@ -82,24 +82,41 @@ public class AuditListener {
 }
 ```
 
-{{%learn "currentneturl/polling-container.html"%}}
+{{%refer%}}
+[Polling Container]({{%currentneturl%}}/polling-container.html)
+{{%/refer%}}
+
+
 
 
 ### Notify Container
 Just like the Polling container, both the receive operation and the actual event action can be configured to be performed under a transaction. However, in case an error occurs (rollback), the notification is lost and not sent again.
 
-{{%learn "currentneturl/notify-container.html"%}}
+{{%refer%}}
+[Notify Container]({{%currentneturl%}}/notify-container.html)
+{{%/refer%}}
+
+
 
 
 # Task Execution
 Executors fully support transactions similar to other XAP operations. Once an execute operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on and added declaratively to it. This means that any XAP operation performed within the task execute operation will automatically join the transaction started on the client side.
-{{%learn "currentneturl/task-execution-over-the-space.html"%}}
+
+{{%refer%}}
+[Task Execution over the Space]({{%currentneturl%}}/task-execution-over-the-space.html)
+{{%/refer%}}
+
+
 
 
 
 # Remoting Service
 Executor remoting supports transactional execution of services. On the client side, if there is an ongoing declarative transaction during the service invocation (a Space based transaction), the service will be executed under the same transaction. The transaction itself is passed to the server and any Space related operations (performed using XAP) will be executed under the same transaction.
-{{%learn "currentneturl/space-based-remoting-overview.html"%}}
+
+{{%refer%}}
+[Space based Remoting]({{%currentneturl%}}/space-based-remoting-overview.html)
+{{%/refer%}}
+
 
 
 
@@ -183,6 +200,10 @@ XAP provides additional read modifiers to denote the isolation level:
 - ReadCommitted
 - ExclusiveReadLock
 
-{{%learn "currentneturl/transaction-read-modifiers.html"%}}
+{{%refer%}}
+[Transaction Read Modifiers]({{%currentneturl%}}/transaction-read-modifiers.html)
+{{%/refer%}}
+
+
 
 

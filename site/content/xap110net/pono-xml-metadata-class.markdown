@@ -63,8 +63,9 @@ Example:
 </gigaspaces-mapping>
 ```
 
-
-{{%learn "./space-persistency.html"%}}
+{{%refer%}}
+[Space Persistence](./space-persistency.html)
+{{%refer%}}
 
 # Replication
 
@@ -111,8 +112,9 @@ Example:
 </gigaspaces-mapping>
 ```
 
-
-{{%learn "./fifo-support.html"%}}
+{{%refer%}}
+[Space Persistence](./fifo-support.html)
+{{%refer%}}
 
 # Storage Type
 
@@ -134,7 +136,10 @@ Example:
 ```
 
 
-{{%learn "./poco-storage-type.html"%}}
+{{%refer%}}
+[Space Object storage types](./poco-storage-type.html)
+{{%refer%}}
+
 
 
 
@@ -182,7 +187,9 @@ Example:
 ```
 
 
-{{%learn "./indexing-compound.html"%}}
+{{%refer%}}
+[Compound Indexing](././indexing-compound.html)
+{{%refer%}}
 
 
 

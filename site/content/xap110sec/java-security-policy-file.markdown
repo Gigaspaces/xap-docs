@@ -36,7 +36,7 @@ For more details on Java security, refer to: [Sun;Default Policy Implementation 
 If you want to create your own security policy file, you need to add, at least, the following security grants.
 
 
-```console
+```bash
 grant {
   permission java.util.PropertyPermission "*", "read, write";
   permission java.lang.RuntimePermission "getProtectionDomain";

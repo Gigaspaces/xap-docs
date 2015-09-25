@@ -23,8 +23,7 @@ In Part I you have learned about XAP's capabilities as a data store. In this par
 
 To start an XAP data grid, launch `gs-agent.exe` from the product's `bin` folder. This will start all the infrastructure required to run the data grid. The following components are started: 
 
-{{%section%}}
-{{%column width="60%" %}}
+{{%imagertext "/attachment_files/gs_runtime.jpg"%}}
 
 - Grid Service Manager (GSM)
 The Grid Service Manager is the component which manages the deployment and life cycle of the processing unit.
@@ -33,11 +32,7 @@ The Grid Service Manager is the component which manages the deployment and life 
 - Grid Service Container (GSC)
 The Grid Service Container provides an isolated runtime for one (or more) processing unit instance and exposes its state to the GSM.
 
-{{%/column%}}
-{{%column width="30%" %}}
-<img src="/attachment_files/gs_runtime.jpg"  >
-{{%/column%}}
-{{%/section%}}
+
 
 - The Lookup Service (LUS)
 The Lookup Service provides a mechanism for services to discover each other. Each service can query the lookup service for other services, and register itself in the lookup service so other services may find it. For example, the GSM queries the LUS to find active GSCs.
@@ -45,6 +40,7 @@ The Lookup Service provides a mechanism for services to discover each other. Eac
 - Grid Service Agent (GSA)
 The GSA is a process manager that can spawn and manage service grid processes (Operating System level processes) such as the Grid Service Manager, The Grid Service Container, and The Lookup Service. Using the agent, you can bootstrap the entire data grid very easily, and start and stop additional GSCs, GSMs and lookup services at will. Usually, a single GSA is run per machine.
 
+{{%/imagertext%}}
 
 {{%refer%}}
 [Service Grid](/product_overview/service-grid.html)
@@ -143,38 +139,36 @@ You can start XAP's console and inspect the Data Grid components that have been 
 
  
 {{%section%}}
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Shot0.png"  "Login"%}}
 {{%/column%}}
-{{%column width="25%"%}}
-
-
+{{%column width="20%"%}}
 {{%popup   "/attachment_files/qsg/Shot1.pngDashboard"%}}
 {{%/column%}}
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Shot11.pngDeployed"  "Applications"%}}
 {{%/column%}}
 
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Shot2.pngHosts"  "(GSA,GSC,GSM,LUS)"%}}
 {{%/column%}}
 {{%/section%}}
  
 
 {{%section%}}
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Shot3.pngDeployed"  "Data Grids"%}}
 {{%/column%}}
 
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Shot4.pngClasses"  "in Space"%}}
 {{%/column%}}
 
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Shot5.pngClass"  "attributes"%}}
 {{%/column%}}
 
-{{%column width="25%"%}}
+{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Shot6.pngSpace"  "Query"%}}
 {{%/column%}}
 {{%/section%}}

@@ -537,7 +537,13 @@ public SpaceDocument[] readProductsBySQL() {
 }
 ```
 
-{{%learn "currentneturl/document-api.html"%}}
+
+{{%refer%}}
+[The Document API]({{%currentneturl%}}/document-api.html)
+{{%/refer%}}
+
+
+
 
 #### LINQ Queries
 XAP includes a custom LINQ provider, which enables developers to take advantage of their existing C# skills to query the Space without learning a new language.  Here is an example :
@@ -556,7 +562,10 @@ using GigaSpaces.Core.Linq;
    }
 ```
 
-{{%learn "currentneturl/query-linq.html"%}}
+{{%refer%}}
+[LINQ Query]({{%currentneturl%}}/query-linq.html)
+{{%/refer%}}
+
 
 
 #### Removing Objects from Space
@@ -643,7 +652,11 @@ Person youngestPersonInSpace = queryable.MinEntry(p => p.Age);
 
 XAP also supports, `Compound` and `Embedded Fields`   Aggregation.
 
-{{%learn "currentneturl/aggregators.html"%}}
+{{%refer%}}
+[Aggregators]({{%currentneturl%}}/aggregators.html)
+{{%/refer%}}
+
+
 
 # Indexing
 

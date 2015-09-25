@@ -20,11 +20,19 @@ The Space is accessed via a programmatic interface which supports the following 
 - Take - get the value from the Space and delete its content.
 - Notify - alert when the contents of an entry of interest have registered changes.
 
-{{%learn "./the-space-operations.html"%}}
+
+{{%refer%}}
+[The Space Operations](./the-space-operations.html)
+{{%/refer%}}
+
 
 A Space proxy is created to interact with the Space. Several configuration parameters are available.
 
-{{%learn "./the-space-configuration.html"%}}
+
+{{%refer%}}
+[The Space Configuration](./the-space-configuration.html)
+{{%/refer%}}
+
 
 
 # Embedded Space

@@ -98,7 +98,9 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./poco-storage-type.html"%}}
+{{%refer%}}
+[Object Sorage Types](./poco-storage-type.html)
+{{%/refer%}}
 
 ### SpaceIndex
 
@@ -251,8 +253,9 @@ Example:
 ```
 
 
-{{%learn "./poco-object-id.html"%}}
-
+{{%refer%}}
+[Object Id](./poco-object-id.html)
+{{%/refer%}}
 
 # SpaceRouting
 
@@ -406,7 +409,10 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./leases-automatic-expiration.html"%}}
+{{%refer%}}
+[Lease automatic expiration](./leases-automatic-expiration.html)
+{{%/refer%}}
+
 
 # SpaceFifoGroupingProperty
 
@@ -459,7 +465,10 @@ Example:
 </gigaspaces-mapping>
 ```
 
-{{%learn "./poco-dynamic-properties.html"%}}
+{{%refer%}}
+[Dynamic Properties](./poco-dynamic-properties.html)
+{{%/refer%}}
+
 
 
 

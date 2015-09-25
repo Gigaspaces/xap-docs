@@ -34,7 +34,7 @@ GigaSpaces Data-Grid support standard data access API. One of them is the [JDBC 
 
 # Create a new user
 Create a new user "user" and password "password" and grant it all access privileges.
-See [GigaSpaces Management Center Security]({{%latestsecurl%}}/gigaspaces-management-center-(ui)-security.html) for instructions.
+See [GigaSpaces Management Center Security]({{%latestsecurl%}}/gigaspaces-management-center-ui-security.html) for instructions.
 
 # Deploy a Secured Space
 
