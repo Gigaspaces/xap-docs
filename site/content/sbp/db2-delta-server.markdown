@@ -33,7 +33,7 @@ weight: 1250
 
 
 
- We will show you how you can implement this scenario with XAP. A fully functional example is available for [download]("/download_files/sbp/db2gs.jar).
+ We will show you how you can implement this scenario with XAP. A fully functional example is available for [download](/download_files/sbp/db2gs.jar).
 
 
 # Prerequisites
@@ -42,7 +42,7 @@ weight: 1250
 
 
 # Installation
- For simplicity, we install and execute this demo using the DB2 default user db2inst1. Log in to the Linux machine using the user db2inst1. [download]("/download_files/sbp/db2gs.jar) the sample code and extract to a folder say /home/db2inst1/db2mqrep. We'll refer to this path as DEMO_HOME.
+ For simplicity, we install and execute this demo using the DB2 default user db2inst1. Log in to the Linux machine using the user db2inst1. [download](/download_files/sbp/db2gs.jar) the sample code and extract to a folder say /home/db2inst1/db2mqrep. We'll refer to this path as DEMO_HOME.
 
  The following jar files are needed for this example:
 

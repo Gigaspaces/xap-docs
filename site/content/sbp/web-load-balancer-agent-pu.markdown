@@ -27,7 +27,7 @@ GigaSpaces provides an example in the `tools` folder of the product that shows h
 
 This page describes how to create a Web Load Balancer Agent as a Processing Unit that utilizes the GigaSpaces [Administration and Monitoring API]({{%latestjavaurl%}}/administration-and-monitoring-api.html). This will mean the Web Load Balancer Agent will run within the GigaSpaces service grid, and thus will become fault-tolerant.
 
-Click [here]("/download_files/sbp/eAuctionWebLoadBalancer.zip) to download a working code sample that uses the Apache Load Balancer as an example. The example is simple to extend so it can incorporate other load balancers as well.
+Click [here](/download_files/sbp/eAuctionWebLoadBalancer.zip) to download a working code sample that uses the Apache Load Balancer as an example. The example is simple to extend so it can incorporate other load balancers as well.
 
 # Usage
 

@@ -31,7 +31,7 @@ Please read the [XAP-Excel integration prerequisites](./prerequisites---gigaspac
 8. Run the following command from the `Release` folder:
     `%WinDir%\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe \[MY_RTD_CLASSNAME\].dll /Codebase`
 
-9. Save the [excel.exe.config]("/download_files/sbp/excel.exe.config) file in your Excel runtime folder. For example: `C:\Program Files\Microsoft Office\OFFICE11`
+9. Save the [excel.exe.config](/download_files/sbp/excel.exe.config) file in your Excel runtime folder. For example: `C:\Program Files\Microsoft Office\OFFICE11`
 10. Open Excel.
 11. To add the UDF function:
     1. In Excel, go to **Tools** > **add ins** > **automation**.

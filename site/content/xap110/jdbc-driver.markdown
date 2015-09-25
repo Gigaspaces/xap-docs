@@ -329,7 +329,9 @@ Connection conn;
 Statement stmt = conn.createStatement();
 ResultSet rs = stmt.executeQuery("SELECT * FROM STUDENT WHERE GRADE >= (SELECT AVG(GRADE) FROM STUDENT)");
 ```
-### Joined sub-queries are not supported.
+{{%warning%}}
+Joined sub-queries are not supported.
+{{%/warning%}}
 
 {{%/accord%}}
 {{%/accordion%}}
@@ -351,8 +353,9 @@ Statement stmt = conn.createStatement();
 int result = stmt.executeUpdate("UPDATE PERSON SET VERSION = VERSION + 1 WHERE ID = 10000");
 ```
 
-
-### Field incrementing is only supported for `Integer` fields using a '+' operator.
+{{%warning%}}
+Field incrementing is only supported for `Integer` fields using a '+' operator.
+{{%/warning%}}
 
 {{%/accord%}}
 {{%/accordion%}}
@@ -587,6 +590,9 @@ Example:
 # JDBC Error Codes
 
 List of JDBC error codes and their descriptions:
+
+```bash
+
 `100`: No (more) data
 `0`: Successful Completion
 
@@ -653,3 +659,4 @@ List of JDBC error codes and their descriptions:
 - `161`: The `next()` method must be called at least once
 - `162`: Exhausted `ResultSet`
 - `201`: Invalid SQL syntax
+```

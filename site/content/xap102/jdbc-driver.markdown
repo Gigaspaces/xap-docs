@@ -592,6 +592,8 @@ Example:
 # JDBC Error Codes
 
 List of JDBC error codes and their descriptions:
+
+```bash
 `100`: No (more) data
 `0`: Successful Completion
 
@@ -658,3 +660,4 @@ List of JDBC error codes and their descriptions:
 - `161`: The `next()` method must be called at least once
 - `162`: Exhausted `ResultSet`
 - `201`: Invalid SQL syntax
+```
