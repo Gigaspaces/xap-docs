@@ -36,7 +36,7 @@ This space we just created can also be accessed remotely from another JVM by con
 GigaSpace gigaSpace = new GigaSpaceConfigurer(new UrlSpaceConfigurer("jini://*/*/xapTutorialSpace")).gigaSpace();
 ```
 
-{{%learn "You can configure the Space URL  with several options.  ./the-space-configuration.html"%}}
+{{%learn "./the-space-configuration.html"%}}
 
 
 When a client connects to a space, a proxy is created that holds a connection which implements the space API. All client interaction is performed through this proxy.
@@ -48,7 +48,7 @@ With XAP you can also create a Local Cache and a Local View.
 - Local View  : This client side cache maintains a specific subset of the data. The subset is predefined by the user. The cache is populated when the client application is started.
 In both cases, updates are performed (objects are added/updated/removed) on the master space, the master space then propagates the changes to all relevant local views and caches.
 
-{{%learn "These two scenarios are only applicable for remote clients.  ./client-side-caching.html"%}}
+{{%learn "./client-side-caching.html"%}}
 
 
 

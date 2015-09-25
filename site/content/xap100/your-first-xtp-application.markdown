@@ -48,7 +48,7 @@ We recommend that you follow these 4 basic tutorials in the specified order:
 
 {{% /column %}}
 {{% column width="35%" %}}
-[**Using Processing Units for Scaling**](./step-one---using-processing-units-for-scaling.html)
+[**Using Processing Units for Scaling**](./step-one-using-processing-units-for-scaling.html)
 {{% color grey %}}~5 minutes{{% /color %}}
 A short introduction that shows what a Processing Unit is, and how it is used for scaling your applications
 
@@ -56,7 +56,7 @@ A short introduction that shows what a Processing Unit is, and how it is used fo
 {{% column width="50%" %}}
 {{% align center %}}
 
-[![What is a Processing Unit.jpg](/attachment_files/What is a Processing Unit.jpg)](./step-one---using-processing-units-for-scaling.html)
+[![What is a Processing Unit.jpg](/attachment_files/What is a Processing Unit.jpg)](./step-one-using-processing-units-for-scaling.html)
 {{% /align %}}
 
 {{% /column %}}
@@ -76,7 +76,7 @@ A short introduction that shows what a Processing Unit is, and how it is used fo
 
 {{% /column %}}
 {{% column width="35%" %}}
-[**Creating the Hello World Application**](./step-two---creating-the-hello-world-application.html)
+[**Creating the Hello World Application**](./step-two-creating-the-hello-world-application.html)
 {{% color grey %}}~10 minutes{{% /color %}}
 How to create, deploy, run and monitor your Processing Unit
 
@@ -113,7 +113,7 @@ How to create, deploy, run and monitor your Processing Unit
 
 {{% /column %}}
 {{% column width="35%" %}}
-[**Deploying the Hello World Application onto the ServiceGrid**](./step-three---deploying-onto-the-service-grid.html)
+[**Deploying the Hello World Application onto the ServiceGrid**](./step-three-deploying-onto-the-service-grid.html)
 {{% color grey %}}~10 minutes{{% /color %}}
 How to deploy the _Hello World Processing Unit_ onto the grid enabled infrastructure (the ServiceGrid) to enable instant fail-over, recovery, SLA management and runtime monitoring capabilities for your application
 
@@ -152,7 +152,7 @@ How to deploy the _Hello World Processing Unit_ onto the grid enabled infrastruc
 
 {{% /column %}}
 {{% column width="35%" %}}
-[**Scaling the Hello World Application**](./step-four---scaling-the-hello-world-application.html)
+[**Scaling the Hello World Application**](./step-four-scaling-the-hello-world-application.html)
 {{% color grey %}}~10 minutes{{% /color %}}
 How to scale the _Hello World Processing Unit_ application
 

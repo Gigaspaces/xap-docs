@@ -272,7 +272,7 @@ For defaults and configuration options, refer to [Jini Lookup Service configurat
 
 #### Description
 
-{{% refer %}}[Command Line Interface (CLI) Security]({{%currentsecurl%}}/command-line-interface-(cli)-security.html){{% /refer %}}
+{{% refer %}}[Command Line Interface (CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html){{% /refer %}}
 
 This CLI command allows you to login to secured services: GSM, GSC and spaces.
 Each time you invoke this command, you are required afterwards to type in the user name and password (if not supplied in the command). The user name and password are used in order to attempt to authenticate secured services before invoking any operation for them ( e.g. pudeploy, undeploy, space clear, space connections ... ).

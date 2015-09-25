@@ -314,7 +314,7 @@ custom-security.server-address = myServer
 Use the **`-user-details-provider`** and **`-user-details-properties`** arguments to use a custom credentials provider with the CLI.
 
 {{% refer %}}
-For a full list of command usage, please refer to: [Command Line Interface (CLI) Security](./command-line-interface-(cli)-security.html)
+For a full list of command usage, please refer to: [Command Line Interface (CLI) Security](./command-line-interface-cli-security.html)
 {{%/refer%}}
 
 Run the `gs` script, and then use the **`login`** command:

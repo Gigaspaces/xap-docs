@@ -66,7 +66,7 @@ You will learn how to:
 - querying the space
 - indexing objects in space
 
-{{%learn "align right./net-tutorial-part1.html/align"%}}
+{{%learn "./net-tutorial-part1.html"%}}
 {{%/column%}}
 {{%/section%}}
 {{%/panel%}}
@@ -95,7 +95,7 @@ You will learn how to:
 - interact with the data grid
 - how to use the administration UI
 
-{{%learn "align right./net-tutorial-part2.html/align"%}}
+{{%learn "./net-tutorial-part2.html"%}}
 {{%/column%}}
 {{%/section%}}
 {{%/panel%}}
@@ -120,7 +120,7 @@ You will learn how to use:
 - Remoting service
 
 
-{{%learn "align right./net-tutorial-part3.html/align"%}}
+{{%learn "./net-tutorial-part3.html"%}}
 
 {{%/column%}}
 {{%/section%}}
@@ -147,7 +147,7 @@ You will learn how to use:
 - Notify container
 - Polling container
 
-{{%learn "align right./net-tutorial-part4.html/align"%}}
+{{%learn "./net-tutorial-part4.html"%}}
 
 {{%/column%}}
 {{%/section%}}
@@ -176,7 +176,7 @@ You will learn how to:
 - how to scale and provide failover
 
 
-{{%learn "align right./net-tutorial-part5.html/align"%}}
+{{%learn "./net-tutorial-part5.html"%}}
 
 {{%/column%}}
 {{%/section%}}
@@ -205,7 +205,7 @@ You will learn about:
 - Concurrency
 - Locking
 
-{{%learn "align right./net-tutorial-part6.html/align"%}}
+{{%learn "./net-tutorial-part6.html"%}}
 
 {{%/column%}}
 {{%/section%}}
@@ -232,7 +232,7 @@ You will learn about:
 - Asynchronos persistence
 - Persistence Adapter
 
-{{%learn "align right./net-tutorial-part7.html/align"%}}
+{{%learn "./net-tutorial-part7.html"%}}
 
 {{%/column%}}
 {{%/section%}}

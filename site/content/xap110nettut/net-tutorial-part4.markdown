@@ -205,7 +205,7 @@ namespace xaptutorial.model
 ```
 
 {{%refer%}}
-[FIFO Support]({{%currentneturl%}}/gfifo-support.html)
+[FIFO Support]({{%currentneturl%}}/fifo-support.html)
 {{%/refer%}}
 
 

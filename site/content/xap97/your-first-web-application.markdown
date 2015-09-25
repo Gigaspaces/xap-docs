@@ -37,7 +37,7 @@ This tutorial will also contain in the near future more advanced examples and pa
 
 {{% /column %}}
 {{% column width="35%" %}}
-[**Adding Self-Healing and Automatic Scaling to Your Existing Web Application**](./step-1---deploying-your-web-application-to-the-gigaspaces-environment.html)
+[**Adding Self-Healing and Automatic Scaling to Your Existing Web Application**](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html)
 {{% color grey %}}~15 minutes{{% /color %}}
 Shows how to take an existing web application (in our case a very simple servlet and JSP example) and deploy it to the GigaSpaces environment to achieve high availability and dynamic load balancer configuration
 {{% /column %}}
@@ -74,7 +74,7 @@ Shows how to take an existing web application (in our case a very simple servlet
 
 {{% /column %}}
 {{% column width="35%" %}}
-[**Enabling HTTP Session Failover & Fault Tolerance**](./step-2---enabling-http-session-failover-and-fault-tolerance.html)
+[**Enabling HTTP Session Failover & Fault Tolerance**](./step-2-enabling-http-session-failover-and-fault-tolerance.html)
 {{% color grey %}}~15 minutes{{% /color %}}
 Shows how to back your application's HTTP session store with the Space to achieve high availability and fault-tolerance
 {{% /column %}}
@@ -111,7 +111,7 @@ Shows how to back your application's HTTP session store with the Space to achiev
 {{% /column %}}
 {{% column width="35%" %}}
 
-[**Removing the Database Bottleneck**](./step-3---scaling-the-data-access-layer.html)
+[**Removing the Database Bottleneck**](./step-3-scaling-the-data-access-layer.html)
 {{% color grey %}}~15 minutes{{% /color %}}
 Shows how to access the GigaSpaces XAP in memory data grid from within your web application to achieve unparalleled scalability and performance compared to a relational database.
 
