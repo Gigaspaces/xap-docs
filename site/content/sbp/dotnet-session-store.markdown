@@ -127,7 +127,7 @@ The application would be configured to communicate with the local/near local act
 # Prerequisites
 The following instructions assume that you have downloaded/installed the prerequisites:
 
-- [Download the sample ASP.NET web application](/sbp"/download_files/GigaSpacesSessionStateProvider.zip)
+- [Download the sample ASP.NET web application](/sbp/download_files/GigaSpacesSessionStateProvider.zip)
 
 - [Download XAP.NET latest version](http://www.gigaspaces.com/xap-download)
 

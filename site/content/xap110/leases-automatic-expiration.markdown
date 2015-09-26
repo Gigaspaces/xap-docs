@@ -221,7 +221,7 @@ The TaskManager that manages the renewal threads has a bound on the number of si
 
 ### Example
 
-Following example shows a client writing `Order`'s to the space with a limited lease. It uses a LeaseRenewalManager to renew the Lease for the `Order`. It also uses a LeaseListener which is triggered in case LeaseRenewalManager runs into errors renewing a lease. Example source can be downloaded from [here]("/download_files/LeaseRenewalManager.zip).
+Following example shows a client writing `Order`'s to the space with a limited lease. It uses a LeaseRenewalManager to renew the Lease for the `Order`. It also uses a LeaseListener which is triggered in case LeaseRenewalManager runs into errors renewing a lease. Example source can be downloaded from [here](/download_files/LeaseRenewalManager.zip).
 
 {{%tabs%}}
 {{%tab "  LeaseManagerClient "%}}
@@ -470,7 +470,7 @@ SimpleNotifyEventListenerContainer notifyEventListenerContainer = new SimpleNoti
     .notifyContainer();
 ```
 
-Notifications for expired space objects are delivered both from the primary and backup space instances. In some cases you may want to handle notifications sent only from the primary instances. The [lease expiration notification example]("/download_files/LeaseExpirationNotificationExample.zip) show how you can identify from which instance (primary or a backup) the lease expiration notifications has been sent.
+Notifications for expired space objects are delivered both from the primary and backup space instances. In some cases you may want to handle notifications sent only from the primary instances. The [lease expiration notification example](/download_files/LeaseExpirationNotificationExample.zip) show how you can identify from which instance (primary or a backup) the lease expiration notifications has been sent.
 
 # Space Object Lease with a Persistent Space
 

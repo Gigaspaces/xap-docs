@@ -37,7 +37,7 @@ We have an In Memory Data Grid (IMDG) that is used for querying information. The
 {{%/column%}}
 {{%/section%}}
 
-We will show you how you can implement this scenario with XAP.NET. A fully functional example is available [here]("/download_files/SqlDeltaServer.zip).
+We will show you how you can implement this scenario with XAP.NET. A fully functional example is available [here](/download_files/SqlDeltaServer.zip).
 
 
 # Change Data Capture (CDC)
@@ -189,7 +189,7 @@ GO
 
 # Running the Example
 
-1. [Download the example]("/download_files/SqlDeltaServer.zip). Extract the SqlDeltaServer.zip in a directory of your choice (e.g. C:\temp\). Open the project to make some customizations for your project.
+1. [Download the example](/download_files/SqlDeltaServer.zip). Extract the SqlDeltaServer.zip in a directory of your choice (e.g. C:\temp\). Open the project to make some customizations for your project.
 a. Change the Database properties according to your environment:
 
 

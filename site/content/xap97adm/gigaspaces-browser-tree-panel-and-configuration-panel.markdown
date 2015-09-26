@@ -74,14 +74,14 @@ For this option to work, the **Objects Count** checkbox must also be selected.
 - **Primary** -- whether the space is primary (**Yes**) or a backup space (**No**).
 - **Used Memory (MB)** -- the amount of used memory in this space, in MB.
 
-```This column is ed in orange if the space memory usage is more than the minimum (low) watermark percentage and lower than the write only block percentage (defined in the [memory usage tag](currentjavaurl/memory-management-facilities.html)), for example:
+```This column is ed in orange if the space memory usage is more than the minimum (low) watermark percentage and lower than the write only block percentage (defined in the [memory usage tag]({{%currentjavaurl%}}/memory-management-facilities.html)), for example:
 
 {{% indent %}}
 ![GMC_space_SpaceNetworkView_UsedMoemory_Column_Orange_6.5_RC2.jpg](/attachment_files/GMC_space_SpaceNetworkView_UsedMoemory_Column_Orange_6.5_RC2.jpg)
 {{% /indent %}}
 
 
-```This column is ed in red if the space memory exceeds the write only block percentage (defined in the [memory usage tag](currentjavaurl/memory-management-facilities.html)), for example:
+This column is ed in red if the space memory exceeds the write only block percentage (defined in the [memory usage tag]({{%currentjavaurl%}}/memory-management-facilities.html)), for example:
 
 {{% indent %}}
 ![space_network_view_memoryUsage_red_6.5.jpg](/attachment_files/space_network_view_memoryUsage_red_6.5.jpg)

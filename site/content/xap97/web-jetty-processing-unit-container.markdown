@@ -451,12 +451,12 @@ Web Applications running inside the Jetty container can use SSL. Here is an exam
 </property>
 ```
 
-You can find a complete Jetty container definition [here]("/download_files/jetty.pu.xml) and the associated properties file [here]("/download_files/pu.properties)
+You can find a complete Jetty container definition [here](/download_files/jetty.pu.xml) and the associated properties file [here](/download_files/pu.properties)
 
 Jetty documentation outlines all the steps involved in configuring SSL. Please refer to this [link](http://docs.codehaus.org/display/JETTY/How+to+configure+SSL) for more information.
 
 {{% tip %}}
-Find a complete example with a keystore and certificate file included [here]("/download_files/jetty-ssl.zip).
+Find a complete example with a keystore and certificate file included [here](/download_files/jetty-ssl.zip).
 {{% /tip %}}
 
 ## Authentication and Access Control using Security Realms
@@ -475,7 +475,7 @@ Jetty documentation has more information about Security Realms and how to config
 
 ### Hash Login Example
 
-Attached [example]("/download_files/webapp-hash-security.zip) shows a web processing unit configured to use `HashLoginService`. This uses a security realm file for storing userid and passwords which are used for authenticating users. Roles authorized for the app are defined in the web.xml file.
+Attached [example](/download_files/webapp-hash-security.zip) shows a web processing unit configured to use `HashLoginService`. This uses a security realm file for storing userid and passwords which are used for authenticating users. Roles authorized for the app are defined in the web.xml file.
 
 Jetty configuration should include SecurityHandler configuration (`HashLoginService`) which will be something like below,
 
@@ -498,7 +498,7 @@ Web.xml file should include security-constraint, login-config and roles.
 
 ### Custom JAAS Security Example
 
-Attached [example]("/download_files/webapp-jaas.zip) shows a web processing unit configured to use `JAASLoginService` and a custom Login Module. Authentication request is passed to the login module and behavior of this can be customized to application specific needs. In this simplistic example any request with a password of "password" goes thru successfully.
+Attached [example](/download_files/webapp-jaas.zip) shows a web processing unit configured to use `JAASLoginService` and a custom Login Module. Authentication request is passed to the login module and behavior of this can be customized to application specific needs. In this simplistic example any request with a password of "password" goes thru successfully.
 
 Jetty configuration should include SecurityHandler configuration (`JAASLoginService`) which will be something like below,
 

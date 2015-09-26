@@ -32,7 +32,7 @@ The example writes 10000 parent-child graphs into the space. Two types of graphs
 The example demonstrates a simple approach locating all the parent objects that have two child objects with values of `1` and `2` -- effectively a join operation using ID operations. This will return 5 matching graphs.
 
 {{% tip %}}
-The full example source code can be downloaded [here]("/download_files/ParentChild_711.zip).
+The full example source code can be downloaded [here](/download_files/ParentChild_711.zip).
 {{% /tip %}}
 
 

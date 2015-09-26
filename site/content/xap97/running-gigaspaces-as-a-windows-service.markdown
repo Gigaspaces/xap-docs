@@ -37,7 +37,7 @@ Following are some popular software that can help:
 
 # Example
 
-An example GSA windows service configuration created using [Java Service Wrapper](http://wrapper.tanukisoftware.org/) can be downloaded from [here]("/download_files/myApp.zip). It was created using the [instructions](http://wrapper.tanukisoftware.com/doc/english/integrate-simple-win.html#allTogether) on Tanuki software website.
+An example GSA windows service configuration created using [Java Service Wrapper](http://wrapper.tanukisoftware.org/) can be downloaded from [here](/download_files/myApp.zip). It was created using the [instructions](http://wrapper.tanukisoftware.com/doc/english/integrate-simple-win.html#allTogether) on Tanuki software website.
 
 - Modify the wrapper.config file per your environment.
 - Set the values for all the environment variables (look for set.xxx) per your environment.

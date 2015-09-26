@@ -36,7 +36,7 @@ The REST API exposing HTTP based interface Space. It is leveraging the [XAP API]
 | | |
 |----|----|
 |Description |Introduce the specific type to space. |
-|Request URL| PUT http://localhost:8080/{Type}/_introduce_type  |
+|Request URL| PUT `http://localhost:8080/{Type}/_introduce_type`  |
 
 Request Schema:
 
@@ -129,7 +129,7 @@ curl -XPUT -H "Content-Type: application/json" -d '{"idProperty":{"propertyName"
 | | |
 |----|----|
 |Description | Write single entry to the space.|
-|Request URL | POST http://localhost:8080/{Type}/ |
+|Request URL | POST `http://localhost:8080/{Type}/` |
 |Request Headers|Content-Type: application/json   |
 |Request Body | JSON object representation of a SpaceDocument object.|
 
@@ -155,7 +155,7 @@ curl -XPOST -H "Content-Type: application/json" -d '{"id":1, "name":"myName", "a
 | | |
 |----|----|
 |Description| Write multiple entries to the space. |
-|Request URL|POST http://localhost:8080/{Type}/ |
+|Request URL|POST `http://localhost:8080/{Type}/` |
 |Request Headers|Content-Type: application/json |
 |Request Body|JSON array representation of a SpaceDocument objects.|
 
@@ -183,7 +183,7 @@ curl -XPOST -H "Content-Type: application/json" -d '[{"id":2, "name":"John", "ag
 | | |
 |----|----|
 |Description| Returns the number of entries in space of the specified type|
-|Request URL|GET http://localhost:8080/{Type}/count  |
+|Request URL|GET `http://localhost:8080/{Type}/count`  |
 
 Response Schema:
 
@@ -207,7 +207,7 @@ curl -XGET http://localhost:8080/{Type}/count
 | | |
 |----|----|
 |Description| Read multiple entries from space that matches the query. |
-|Request URL|GET http://localhost:8080/{Type}/ |
+|Request URL|GET `http://localhost:8080/{Type}/` |
 |Request Query Parameters|query - a [SQLQuery](./query-sql.html) that is a SQL-like syntax {{%wbr%}}max - the maximum amount of entries to read |
 
 Response Schema:
@@ -245,7 +245,7 @@ curl -XGET http://localhost:8080/MyObject/?query=id=%271%27%20or%20id=%272%27%20
 | | |
 |----|----|
 |Description|  Read entry from space with the provided id  |
-|Request URL|GET http://localhost:8080/{Type}/{id}  |
+|Request URL|GET `http://localhost:8080/{Type}/{id}`  |
 
 Response Schema:
 
@@ -273,7 +273,7 @@ curl -XGET http://localhost:8080/MyObject/3
 | | |
 |----|----|
 |Description|  Update entries in space  |
-|Request URL|POST http://localhost:8080/{Type}  |
+|Request URL|POST `http://localhost:8080/{Type}`  |
 
 Response Schema:
 
@@ -302,7 +302,7 @@ curl http://localhost:8080/MyObject/?query=age=11
 | | |
 |----|----|
 |Description| Gets and deletes entries from space that matches the query. |
-|Request URL|DELETE http://localhost:8080/{Type}/  |
+|Request URL|DELETE `http://localhost:8080/{Type}/`  |
 |Request Query Parameters|query - a [SQLQuery](./query-sql.html) that is a SQL-like syntax  |
 
 
@@ -343,7 +343,7 @@ curl -XGET http://localhost:8080/MyObject/?query=id=%271%27%20or%20id=%272%27%20
 | | |
 |----|----|
 |Description|  Gets and deletes the entry from space with the provided id |
-|Request URL|DELETE http://localhost:8080/{Type}/{id}   |
+|Request URL|DELETE `http://localhost:8080/{Type}/{id}`   |
 
 Response Schema:
 

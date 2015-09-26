@@ -20,7 +20,7 @@ weight: 50
 9.6<br>
 February 2014<br>
 [Apache Kafka](http://kafka.apache.org)<br>
-{{%zip "/download_files/sbp/kafka-integration.tar "%}}
+{{%zip "/download_files/sbp/kafka-integration.tar"%}}
 {{%/column%}}
 {{%column  width="10%" %}}
 {{%align right%}}
