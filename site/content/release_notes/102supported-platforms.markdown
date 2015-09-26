@@ -38,7 +38,7 @@ GigaSpaces is being tested with the following JVMs (32bit and 64bit):
 - IBM 1.6.0 - XAP was tested using IBM JVM version 1.6.0 SR15. 
 - IBM 1.7.0 - XAP was tested using IBM JVM version 1.7.0 SR6.
 
-{{%note title="Java SE 1.5 EOL"%}}
+{{%note "Java SE 1.5 EOL"%}}
 Based on information made publicly available by The Oracle Corporation (formerly Sun Microsystems), as of October 30th 2009, Java SE 1.5 SDK has reached its End of Service Life (EOSL). Oracle has already ceased to support the 1.5 JVM. In addition, the other major JVM vendor, namely IBM, announced its limited ability to support these JVMs in light of Oracle's announcement. This in turn will limit GigaSpaces' ability to provide support for applications running on this JVM. Furthermore, from version 8.0 onwards, GigaSpaces XAP no longer supports the Java 1.5 SDK, and requires the use of Java 1.6 SDK or higher.
 
 Please refer to the public website page for the latest updates about the [JVM & Third-Party End-Of-Life Policy](http://www.gigaspaces.com/EOL).

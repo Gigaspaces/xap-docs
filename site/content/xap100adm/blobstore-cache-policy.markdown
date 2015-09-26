@@ -343,7 +343,7 @@ You may use the ZetaScale Management command line to access underlying SSD stora
 
 ## Statistics
 
-{{%vbar title="FDF available Statistics:"%}}
+{{%vbar "FDF available Statistics:"%}}
 
 - Counts of FDF access types
 - Counts of various flash activities

@@ -76,7 +76,7 @@ The file structure is composed of several key elements:
 - User class files: Your processing unit's classes (PaymentEventProcessor.cs)
 
 
-{{%note title="Building the project with Visual Studio"%}}
+{{%note "Building the project with Visual Studio"%}}
 
 - Include in the References the GigaSpaceCore.dll
 - Change the project properties so the output directory points to `GS_HOME\NET v...\deploy\[pu-name\]`. The Admin UI and the command line interface will find the PU's to deploy under this file structure.

@@ -417,7 +417,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
 
 Many times a class has embedded classes as attributes. You can query for attributes within the embedded classes. Matching a nested attribute is done by specifying a Path which describes how to obtain its value. For example, our user class has an embedded attribute of an Address that has a zipCode attribute.
 
-{{%note title="Nested Objects"%}}
+{{%note "Nested Objects"%}}
 By default, nested objects are kept in a binary form inside the Space. In order to support nested matching, the relevant property should be stored as document, or as object if it is in an interoperability scenario and it has a corresponding Java class.
 {{%/note%}}
 
@@ -757,7 +757,7 @@ There are several additional indexing options available. For example you can ind
 # Best Practice
 
 
-{{%vbar title="When you code your Space classes make sure:"%}}
+{{%vbar "When you code your Space classes make sure:"%}}
 
 - there are indexes for all relevant attributes including nested attributes you use for queries
 

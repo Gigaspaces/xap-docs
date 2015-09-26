@@ -78,11 +78,11 @@ public class Person {
 }
 ```
 
-{{%note title="Different Accessor for Properties"%}}
+{{%note "Different Accessor for Properties"%}}
 Starting with .NET v2.0, properties can have different accessors for getters and setters (e.g. public getter and private setter). In such cases, if either the getter or the setter is public, the space treats the property as public (i.e. IncludeProperties=IncludeMembers.Public means that this property is stored).
 {{%/note%}}
 
-{{%note title="Read-Only Properties "%}}
+{{%note "Read-Only Properties "%}}
 Read-only properties (getter without setter) are stored in the space, but when the object is de-serialized, the value is not restored, since there is no setter. This enables the space to be queried using such properties. There are two common scenarios for read-only properties:
 
 - Calculated value - the property returns a calculated value based on other properties. This isn't a problem since no data is lost due to the 'missing' setter.

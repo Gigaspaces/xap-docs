@@ -12,7 +12,7 @@ XAP 10.0 is a major release which includes [new features and improvements.](./xa
 
 We try to maintain backward compatibility wherever possible. However, in some cases, no backward compatibility is provided.
 
-{{%note title="There is a backwards compatibility issue that was found in 10.0:"%}}
+{{%note "There is a backwards compatibility issue that was found in 10.0:"%}}
 Issue number is GS-11936. For more information see [known issues](./100known-issues.html).
 
 This issue was fixed in service pack [10.0.1](http://www.gigaspaces.com/xap-download).
@@ -24,7 +24,7 @@ As a best practice, when upgrading to XAP 10.0, unzip the latest version of XAP 
 {{%/note%}}
 
 
-{{%note title="The following elements affect backward compatibility:"%}}
+{{%note "The following elements affect backward compatibility:"%}}
 
 - XAP API and Configuration
 - XAP XAP binary compatibility (including XAP management tools)

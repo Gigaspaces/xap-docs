@@ -11,7 +11,7 @@ parent: tutorials.html
 This tutorial explains how to deploy and use a XAP [Data Grid](/product_overview/the-in-memory-data-grid.html) from a Java client application.
 
 
-{{%vbar title="Download and Install XAP "%}}
+{{%vbar "Download and Install XAP "%}}
 - Download and unzip the latest XAP release from the [downloads page](http://www.gigaspaces.com/xap-download)
 - Unzip the distribution into a working directory; GS_HOME
 - Set the JAVA_HOME environment variable to point to the JDK root directory

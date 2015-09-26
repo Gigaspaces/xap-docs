@@ -37,7 +37,7 @@ The basic concept of our application;
 
 You can download all examples presented here from {{%git "https://github.com/Gigaspaces/xap-tutorial"%}}. Feel free to clone, fork and contribute to the tutorial code.
 
-{{%vbar title="Download and Install XAP"%}}
+{{%vbar "Download and Install XAP"%}}
 - Download and unzip the latest XAP release {{%download "http://www.gigaspaces.com/xap-download"%}}
 - Unzip the distribution into a working directory; GS_HOME
 - Set the JAVA_HOME environment variable to point to the JDK root directory

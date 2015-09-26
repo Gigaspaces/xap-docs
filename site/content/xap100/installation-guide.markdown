@@ -54,7 +54,7 @@ Once you accept the licence agreement, you will be asked to choose a setup type.
 
 
 
-{{%vbar title="How to create a XAP.NET Project in Visual Studio "%}}
+{{%vbar "How to create a XAP.NET Project in Visual Studio "%}}
 
 1. Open Microsoft Visual Studio. From the **File** menu select **New > Project**. The **New Project** dialog appears.
 2. In the **Project types** tree, select **Visual C#**, then select **Console Application** in the **Templates** list.

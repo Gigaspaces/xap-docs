@@ -11,7 +11,7 @@ weight= "900"
 
 
 
-{{%panel%}}
+{{%panel "hello there"%}}
 This is a simple panel
 {{%/panel%}}
 

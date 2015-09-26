@@ -295,7 +295,7 @@ The following information represents the SQL to Java mapping conducted at runtim
 
 # Supported Features
 
-{{%vbar title="XAP JDBC supports the following:"%}}
+{{%vbar "XAP JDBC supports the following:"%}}
 
 - All Basic SQL statements: `SELECT, INSERT, DELETE, UPDATE, CREATE TABLE, DROP TABLE`.
 - `AND/OR` operators to join two or more conditions in a `WHERE` clause.

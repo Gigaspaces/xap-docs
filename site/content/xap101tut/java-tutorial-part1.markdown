@@ -603,7 +603,7 @@ There are several additional indexing options available. For example you can ind
 # Best Practice
 
 
-{{%vbar title="When you code your space classes make sure:"%}}
+{{%vbar "When you code your space classes make sure:"%}}
 
 there are indexes for all relevant attributes including nested attributes you use for queries
 
@@ -640,7 +640,7 @@ XAP provides a JDBC Driver, JPA API, MAP and Memcached API's.
 # Spring Integration
 All XAP components can be wired and configured with the application using corresponding Spring Beans.
 
-{{%vbar title="The GigaSpaces Spring Integration supports:"%}}
+{{%vbar "The GigaSpaces Spring Integration supports:"%}}
 Spring Automatic Transaction Demarcation{{%wbr%}}
 Spring Data{{%wbr%}}
 Spring JMS{{%wbr%}}

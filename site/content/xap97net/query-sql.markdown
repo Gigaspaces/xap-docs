@@ -42,7 +42,7 @@ This time instead of specifying the values directly in the expression we've used
 
 # Supported SQL Features
 
-{{%vbar title="SqlQuery supports the following:"%}}
+{{%vbar "SqlQuery supports the following:"%}}
 
 - `AND` / `OR` operators to combine two or more conditions.
 - All basic logical operations to create conditions: `=, <>, <,>, >=, <=, like, NOT like, is null, is NOT null, IN`.
@@ -238,7 +238,7 @@ The following features support only simple SQL queries
 
 
 
-{{%vbar title="SqlQuery **does not** support the following:"%}}
+{{%vbar "SqlQuery **does not** support the following:"%}}
 - Aggregate functions: COUNT, MAX, MIN, SUM, AVG.
 - Multiple tables select.
 - `DISTINCT`
@@ -256,7 +256,7 @@ The following features support only simple SQL queries
 
 
 
-{{%vbar title="The following are reserved keywords in the GigaSpaces SQL syntax:"%}}
+{{%vbar "The following are reserved keywords in the GigaSpaces SQL syntax:"%}}
 ALTER ADD AND ASC BETWEEN BY CREATE CALL DROP DEFAULT_NULL DESC  DISTINCT END FROM GROUP IN IS LIKE
 MAX MIN NOT NULL OR ORDER SELECT SUBSTR SUM SYSDATE UPPER WHERE COUNT DELETE EXCEPTION ROWNUM INDEX
 INSERT INTO SET TABLE TO_CHAR TO_NUMBER FOR_UPDATE UPDATE UNION VALUES COMMIT ROLLBACK PRIMARY_KEY
@@ -267,6 +267,6 @@ UID USING
 
 
 
-{{%vbar title="Reserved syntax:"%}}
+{{%vbar "Reserved syntax:"%}}
 := || ; . ROWTYPE ~ < <= >  >= => != <> \(+\) ( ) \* / + - ? \{ \}
 {{%/vbar%}}

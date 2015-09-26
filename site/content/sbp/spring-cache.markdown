@@ -53,7 +53,7 @@ Since version 3.1, the `Spring Framework` provides support for transparently add
 
 
 
-{{%vbar title="Benefits when using XAP as a Spring caching provider: "%}}
+{{%vbar "Benefits when using XAP as a Spring caching provider: "%}}
 
 -	**Decreased Latency** -  Ability to utilize local cache across all server instances for localized reads, greatly reducing serialization across the wire
 

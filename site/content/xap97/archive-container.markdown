@@ -19,7 +19,7 @@ The typical scenario is when streaming vast number of raw events through the Spa
 {{%/column%}}
 {{%/section%}}
 
-{{%vbar title="The Archive Container:"%}}
+{{%vbar "The Archive Container:"%}}
 - automatically moves objects from the Space to the Big-Data storage.
 - configures the set of objects to be archived.
 - supports Space fail-over, and Big-Data storage unavailability.

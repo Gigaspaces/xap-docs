@@ -298,7 +298,7 @@ When having Network Address Translation (NAT) data transit across different rout
 
 # Security
 
-{{%note title="Space PU Security Before addressing the gateway security, first make sure your space PU is deployed as secured."%}}
+{{%note "Space PU Security Before addressing the gateway security, first make sure your space PU is deployed as secured."%}}
 
 On Multiple Site topologies, securing grid components and spaces is done as described in GigaSpaces [Security](./security.html) page. When using a secured environment it is required to provide security credentials for the Gateway components (Sink & Delegator).
 The security credentials are used for accessing a secured space and for performing administrative operations such as creating a new GSC for the gateway components if necessary.

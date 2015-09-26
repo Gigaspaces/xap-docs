@@ -13,14 +13,14 @@ Three options are presented. The first two options demonstrate the various API c
 
 # Installation
 
-{{%vbar title="Download and Install XAP"%}}
+{{%vbar "Download and Install XAP"%}}
 - Download and unzip the latest XAP release {{%zip "http://www.gigaspaces.com/xap-download"%}}
 - Unzip the distribution into a working directory
 - Set the environment variable `GS_HOME` to `/home/user/xap-distribution` or `C:\xap-distribution` for Linux and Windows respectively.
 - Set the JAVA_HOME environment variable to point to the JDK root directory
 {{%/vbar%}}
 
-{{%vbar title="The Interactive Tutorial is hosted on Github"%}}
+{{%vbar "The Interactive Tutorial is hosted on Github"%}}
 - Download the Interactive Tutorial {{%git "https://github.com/Gigaspaces/XAP-Interactive-Tutorial/releases"%}}
 - Unzip it to your favorite directory. For this guide we will use /home/user/xap-tutorial and C:\xap-tutorial for Linux and Windows users respectively. 
 {{%/vbar%}}

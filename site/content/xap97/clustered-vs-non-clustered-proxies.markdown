@@ -13,7 +13,7 @@ weight: 70
 When deploying a Processing Unit(PU) configured with an embedded [Space](./the-space-configuration.html) with a clustered SLA or when running a remote clustered space, a clustered `GigaSpace` proxy is created.
 
 
-{{%vbar title="A clustered proxy is a smart proxy that performs operations against the entire cluster when needed."%}}
+{{%vbar "A clustered proxy is a smart proxy that performs operations against the entire cluster when needed."%}}
 * The `write` operation will be routed based on the routing field value to the relevant partition (using the routing field hashcode to calculate the the target partition).{{%wbr%}}
 * The `read` operation will do the same by routing the operation to the relevant partition.{{%wbr%}}
 * The `writeMultiple` will generate a entries bucket per partition for all entries that should be placed within the same partition and perform a parallel write to all relevant partition.{{%wbr%}}

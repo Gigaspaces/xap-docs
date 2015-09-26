@@ -21,7 +21,7 @@ It's becoming increasingly important for organizations to share HTTP session dat
 
 XAPs Global HTTP Session Management is designed to deliver maximum performance for the application with ZERO application code changes.
 
-{{%vbar title="Global HTTP Session Management features:"%}}
+{{%vbar "Global HTTP Session Management features:"%}}
 - **Reduce App/Web server memory footprint** storing the session within a remote JVM.
 
 - **No code changes required** to share the session with other remote Web/App servers - Support **Serialized and Non-Serialized** Session attributes. Your attributes do not need to implement Serializable or Externalizable interface.

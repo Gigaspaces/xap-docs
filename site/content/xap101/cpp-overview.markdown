@@ -35,7 +35,7 @@ The GigaSpaces c++ API has been designed to address the following:
 GigaSpaces c++ API offers a very straightforward API that directly accepts the developers c++ objects. No additional serialization or marshalling code needs to be developed and maintained.
 
 
-{{%vbar title="The GigaSpaces c++ API provides the following:"%}}
+{{%vbar "The GigaSpaces c++ API provides the following:"%}}
 
 - **Single space operations and batch space operations**.
 - **Space transactions support**.

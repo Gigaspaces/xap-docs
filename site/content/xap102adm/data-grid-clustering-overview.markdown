@@ -24,7 +24,7 @@ XAP's Data-Grid clustering, scalability and High-Availability are based on the f
 
 
 
-{{%vbar title="Scalability"%}}
+{{%vbar "Scalability"%}}
 
 - Data is segmented into [partitions](./data-partitioning.html). Each partition includes a primary instance and ZERO or more backups instances. A partition (primary or a backup) hosted within a single [Grid Service container]({{%currentadmurl%}}/the-runtime-environment.html).
 - Data access is load-balanced across the different partitions using a routing field or a [routing value]({{%currentjavaurl%}}/routing-in-partitioned-spaces.html) specified as part of the space object or as part of the read/execute request. This allows the application to control the data distribution in a transparent manner.
@@ -34,7 +34,7 @@ XAP's Data-Grid clustering, scalability and High-Availability are based on the f
 - The number of Data-Grid partitions is determined at the deployment time. The number of Grid Service containers hosting the Data-Grid partitions is dynamic and may change in runtime. It can scale in an [elastic]({{%currentjavaurl%}}/elastic-processing-unit.html) manner when using the ESM.
 {{%/vbar%}}
 
-{{%vbar title="High-Availability"%}}
+{{%vbar "High-Availability"%}}
 
 - Data Availability using [synchronous replication](./synchronous-replication.html) to remote in-memory backups.
 - Backup instances are always running on different physical machines than the ones running primary instances
