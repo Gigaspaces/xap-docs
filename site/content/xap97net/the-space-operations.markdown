@@ -17,14 +17,14 @@ The interface includes the following main operations:
 
 {{%section%}}
 {{%column width="50%" %}}
-{{%panel bgColor=white | title="Write objects into the space:"%}}
+{{%panel  "Write objects into the space:"%}}
 [write](#write) one object into the space{{%wbr%}}
 [writeMultiple](#writeMultiple) objects into the space{{%wbr%}}
 [asynchronous write](#asynchronousWrite) to the space
 {{%/panel%}}
 {{%/column%}}
 {{%column width="45%" %}}
-{{%panel bgColor=white | title="Change objects in space:"%}}
+{{%panel  "Change objects in space:"%}}
 [change](./change-api.html) one object in space{{%wbr%}}
 [changeMultiple](./change-api.html) objects in space {{%wbr%}}
 {{%/panel%}}
@@ -34,7 +34,7 @@ The interface includes the following main operations:
 
 {{%section%}}
 {{%column width="50%" %}}
-{{%panel bgColor=white |  title="Reading objects from the space:"%}}
+{{%panel  "Reading objects from the space:"%}}
 [readById](#read) from the space{{%wbr%}}
 [readByIds](#readMultiple) from the space{{%wbr%}}
 [read](#read) object by template from the space{{%wbr%}}
@@ -45,7 +45,7 @@ The interface includes the following main operations:
 {{%/panel%}}
 {{%/column%}}
 {{%column width="45%" %}}
-{{%panel bgColor=white |  title="Removing objects from the space:"%}}
+{{%panel  "Removing objects from the space:"%}}
 [take](#take) object by template from space{{%wbr%}}
 [takeById](#take) object by id from space{{%wbr%}}
 [takeByIds](#takeMultiple) objects by ids from space{{%wbr%}}
@@ -59,7 +59,7 @@ The interface includes the following main operations:
 
 {{%section%}}
 {{%column width="50%" %}}
-{{%panel bgColor=white |  title="Other operations:"%}}
+{{%panel  "Other operations:"%}}
 [clear](#clear) an object type from space {{%wbr%}}
 [count](#count) objects in space
 {{%/panel%}}
