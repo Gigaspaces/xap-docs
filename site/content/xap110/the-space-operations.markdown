@@ -247,7 +247,7 @@ Writing an object into a space might generate [notifications](./notify-container
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Writes a new object to the space, returning its LeaseContext.{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#write(T){{%/javaapi%}}
+Writes a new object to the space, returning its LeaseContext.[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#write(T))
 
 
 ```java
@@ -257,7 +257,7 @@ Writes a new object to the space, returning its LeaseContext.{{%javaapi%}}http:/
 
 ```
 
-Writes new objects to the space, returning its LeaseContexts.{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#writeMultiple(T[]){{%/javaapi%}}
+Writes new objects to the space, returning its LeaseContexts.[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#writeMultiple(T[]))
 
 ```java
 <T> LeaseContext<T>[] writeMultiple(T[] entries) throws DataAccessException
@@ -504,7 +504,7 @@ For further details on each of the available modifiers see: [ReadModifiers](http
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Read by template:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#read(T){{%/javaapi%}}
+Read by template:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#read(T))
 
 ```java
 <T> T read(T template) throws DataAccessException
@@ -512,7 +512,7 @@ Read by template:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentv
 .....
 ```
 
-Read by Id:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readById(java.lang.Class,%20java.lang.Object){{%/javaapi%}}
+Read by Id:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readById(java.lang.Class,%20java.lang.Object))
 
 ```java
 <T> T readById(Class<T> clazz, Object id) throws DataAccessException
@@ -520,7 +520,7 @@ Read by Id:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion
 .....
 ```
 
-Read by ISpaceQuery:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#read(com.gigaspaces.query.ISpaceQuery){{%/javaapi%}}
+Read by ISpaceQuery:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#read(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T read(ISpaceQuery<T> query, Object id)throws DataAccessException
@@ -528,7 +528,7 @@ Read by ISpaceQuery:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% curre
 ....
 ```
 
-Read multiple:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readMultiple(com.gigaspaces.query.ISpaceQuery){{%/javaapi%}}
+Read multiple:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readMultiple(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T[] readMultiple(ISpaceQuery<T> query) throws DataAccessException
@@ -539,7 +539,7 @@ Read multiple:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentvers
 ...
 ```
 
-Asynchronous Read:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#asyncRead(com.gigaspaces.query.ISpaceQuery){{%/javaapi%}}
+Asynchronous Read:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#asyncRead(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> AsyncFuture<T> asyncRead(T template) throws DataAccessException
@@ -549,7 +549,7 @@ Asynchronous Read:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% current
 .....
 ```
 
-Read if exists:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readIfExists(com.gigaspaces.query.ISpaceQuery){{%/javaapi%}}
+Read if exists:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readIfExists(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T readIfExists(T template)throws DataAccessException
@@ -786,7 +786,7 @@ For further details on each of the available modifiers see: [TakeModifiers](http
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Take by template:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#take(T){{%/javaapi%}}
+Take by template:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#take(T))
 
 ```java
 <T> T take(T template) throws DataAccessException
@@ -794,7 +794,7 @@ Take by template:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentv
 .....
 ```
 
-Take by Id:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeById(java.lang.Class,%20java.lang.Object){{%/javaapi%}}
+Take by Id:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeById(java.lang.Class,%20java.lang.Object))
 
 ```java
 <T> T takeById(Class<T> clazz, Object id) throws DataAccessException
@@ -802,7 +802,7 @@ Take by Id:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion
 .....
 ```
 
-Take by ISpaceQuery:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#take(com.gigaspaces.query.ISpaceQuery){{%/javaapi%}}
+Take by ISpaceQuery:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#take(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T take(ISpaceQuery<T> query, Object id)throws DataAccessException
@@ -810,7 +810,7 @@ Take by ISpaceQuery:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% curre
 ....
 ```
 
-Take multiple:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeMultiple(com.gigaspaces.query.ISpaceQuery){{%/javaapi%}}
+Take multiple:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeMultiple(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T[] takeMultiple(ISpaceQuery<T> query) throws DataAccessException
@@ -821,7 +821,7 @@ Take multiple:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentvers
 ...
 ```
 
-Asynchronous take:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#asyncTake(com.gigaspaces.query.ISpaceQuery){{%/javaapi%}}
+Asynchronous take:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#asyncTake(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> AsyncFuture<T> asyncTake(T template) throws DataAccessException
@@ -831,7 +831,7 @@ Asynchronous take:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% current
 .....
 ```
 
-Take if exists:{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeIfExists(com.gigaspaces.query.ISpaceQuery){{%/javaapi%}}
+Take if exists:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeIfExists(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T takeIfExists(T template)throws DataAccessException
@@ -896,7 +896,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Clears objects from space.{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#clear(java.lang.Object){{%/javaapi%}}
+Clears objects from space.[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#clear(java.lang.Object))
 
 
 ```java
@@ -957,7 +957,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Count objects in space.{{%javaapi%}}http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#count(java.lang.Object){{%/javaapi%}}
+Count objects in space.[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#count(java.lang.Object))
 
 
 ```java
