@@ -7,14 +7,11 @@ weight: 600
 ---
 
 
+{{%imagertext "/attachment_files/cpp-dev-process.jpg" %}}
 
 The `*gs.xml` file and the `gsxml2cpp` utility allow you to use your C++ classes in the space without a need for mapping or special knowledge regarding other APIs. This file is in charge of generating the C++ class serialization code, allowing you to use your C++ classes in the space. It can also be used to generate the C++ class header file and POJO Java file.
 
 Here is the general flow:
-
-{{% indent %}}
-![cpp-dev-process.jpg](/attachment_files/cpp-dev-process.jpg)
-{{% /indent %}}
 
 - To define your classes in the space using the `*.gs.xml` file, perform the following steps:
 
@@ -24,6 +21,7 @@ Here is the general flow:
 1. Compiling the serializer code generates a DLL/OS file in the format of: `serialize.dll` or  `serialize.so`. Copy the DLL/SO file to the `<XAP Root>\lib\platform\native` directory.
 
 You can now use your C++ classes inside the space.
+{{%/imagertext%}}
 
 {{% refer %}}
 

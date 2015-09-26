@@ -52,7 +52,7 @@ or
 
 
 | Attribute name | Use | Description |
-|:-----|:----------|
+|:-----|:----------|:------|
 | port | required | The port which the rest service will be available on. {{% wbr %}}If there are multiple instances, the port for each instance will be port+runningNumber (starting from 0) |
 | giga-space | required* | Reference to GigaSpace |
 | space-name |  required* | Name of the Space that the rest should connect to. |
@@ -140,7 +140,7 @@ In order to do so, you will need to do the following:
 
 For example:
 
-```bash linenos
+```bash
 #Specify the space parameters using the following properties:
 spaceName=mySpace
 lookupGroups=myGroups

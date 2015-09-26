@@ -102,7 +102,7 @@ Predefined types and their conversion:
 
 
 | Type name | Java class |
-|:-----|:----------|:-----------|
+|:-----|:----------|
 | int32 | java.lang.Integer |
 | int64 | java.lang.Long |
 | double | java.lang.Double |
