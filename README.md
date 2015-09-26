@@ -17,3 +17,8 @@ Feel free to experiment with it, but do not push any changes as this is not read
 # Known Issues
 
 - Table of contents on left side is missing (work in progress)
+
+- Include Shortcode does not work (Not supported)
+
+- Images do not resize properly
+
