@@ -40,7 +40,7 @@ Here is an overview of the most commonly used POJO annotations:
 When using  annotations and the gs.xml file to define metadata, the metadata in the gs.xml will be used and the annotations will be ignored. **It is not recommended to use the two metadata definitions for a space class at the same time**.
 {{%/warning%}}
 
-{{% vbar title="Primitives or Wrapper Classes for POJO Properties? "%}}
+{{% vbar "Primitives or Wrapper Classes for POJO Properties? "%}}
 XAP supports both primitives (`int`, `long`, `double`, `float`, etc.), and primitive wrappers (`java.lang.Integer`, `java.lang.Double`, etc.). In general, it is recommended that you use the primitive wrapper. This enables you to use the `null` values as a wildcard when using template matching.
 
 If you use primitives make sure you define the following for your POJO class:

@@ -47,9 +47,9 @@ Example:
 ```
 
 
-{{%primary%}}
+{{%refer%}}
 [Space persistence](./space-persistency.html)
-{{%/primary%}}
+{{%/refer%}}
 
 # Replication
 

@@ -1,5 +1,8 @@
 {{if isset .Params 0}}
-<div class='bs-callout bs-callout-default'><h4>{{.Get 0}}</h4>{{.Inner}}</div>
+<div class='bs-callout bs-callout-default'>
+    <b style="color:#777;font-size:17px">{{.Get 0}}</b><br>
+    {{.Inner}}</div>
 {{else}}
-<div class='bs-callout bs-callout-default'>{{ .Inner }}</div>
+<div class='bs-callout bs-callout-default'>{{.Inner}}</div>
 {{end}}
+
