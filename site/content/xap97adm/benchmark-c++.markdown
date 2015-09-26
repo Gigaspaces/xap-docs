@@ -65,14 +65,14 @@ All the classes above inherit from benchmarkBase Class, which includes a `long` 
 - Benchmark command example communicating with a remote space:
 
 
-```console
+```bash
 benchmark "jini://localhost/*/mySpace?NoWriteLease=true" 1 1 2 10000 1000 100 Payload false
 ```
 
 - Benchmark command example communicating with an embedded space (collocated with the benchmark program running in the same process):
 
 
-```console
+```bash
 benchmark "/./mySpace?NoWriteLease=true" 1 1 2 10000 1000 100 Payload false
 ```
 
@@ -83,34 +83,34 @@ The benchmark produces an output file that includes the test name, its duration 
 The benchmark program is located at:
 
 
-```console
+```bash
 <XAP Root>\cpp\examples\benchmark\
 ```
 
 The benchmark classes xml declaration file is located at:
 
 
-```console
+```bash
 <XAP Root>\cpp\examples\benchmark\serializer\benchmark.gs.xml
 ```
 
 The benchmark generated serializer code is located at:
 
 
-```console
+```bash
 <XAP Root>\cpp\examples\benchmark\serializer\
 ```
 The benchmark serializer DLL is located at:
 
 
-```console
+```bash
 <XAP Root>\cpp\lib\platform\native\
 ```
 
 The benchmark program executable is located at:
 
 
-```console
+```bash
 <XAP Root>\cpp\bin\$(PLATFORM)\$(COMPILER)\
 ```
 # Adding your Space Class

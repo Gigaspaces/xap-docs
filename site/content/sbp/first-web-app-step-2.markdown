@@ -172,7 +172,7 @@ Now that we've gone over all the details, let's see everything in action. In thi
 {{%accordion%}}
 {{%accord title="Click to show expected output..."%}}
 
-```console
+```bash
 Starting apache-lb-agent with line:
 "c:\Java\jdk1.6.0_11\bin\java"  -server -XX:+AggressiveOpts -showversion -Xmx512m -Xbootclasspath/p:.;
 "c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\..\lib\platform\xml\serializer.jar";
@@ -249,7 +249,7 @@ Now let's deliberately terminate one of the GSCs on which the application is dep
 **Step 1:** Locate one of the GSCs on which a request was received. To do that, check the console of the running GSCs and find the one that has shows the following output one or more times at the bottom:
 
 
-```console
+```bash
 
 ********** Got Request **********
 

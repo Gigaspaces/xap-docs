@@ -107,7 +107,7 @@ The Client application will display the following output:
 {{%tab "  Initial State "%}}
 
 
-```console
+```bash
 Welcome to GigaSpaces scalability Demo
 Log file: C:\gigaspaces-xap-premium-X.x-ga\logs\2011-03-01~12.34-gigaspaces-service-127.0.0.1-6760.log
 Created Admin - OK!
@@ -128,7 +128,7 @@ Initial Deploy done! - Time to deploy system:32 seconds
 {{%tab "  Scaling to 128 MB "%}}
 
 
-```console
+```bash
 About to start changing data-grid memory capacity from 64.0 MB to 128 MB
 Hit enter to scale the data grid...
 
@@ -150,7 +150,7 @@ Data-Grid Memory capacity change done! - Time to scale system:27 seconds
 {{%tab "  Scaling to 256 MB "%}}
 
 
-```console
+```bash
 About to start changing data-grid memory capacity from 128.0 MB to 256 MB
 Hit enter to scale the data grid...
 
@@ -181,7 +181,7 @@ Data-Grid Memory capacity change done! - Time to scale system:51 seconds
 {{%tab "  Scaling to 64 MB "%}}
 
 
-```console
+```bash
 About to start changing data-grid memory capacity from 256.0 MB to 64 MB
 Hit enter to scale the data grid...
 

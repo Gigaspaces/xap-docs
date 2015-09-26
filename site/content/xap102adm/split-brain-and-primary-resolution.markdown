@@ -69,7 +69,7 @@ Each primary upon discovery of a split-brain enters a Self-Quiesce mode, suspend
 
 The logs, will show a message similar to:
 
-```console
+```bash
 ... "Space instance [gigaSpace_container1:gigaSpace] is in Quiesce state until split-brain is resolved - Quiesce token [gigaSpace]"
 ```
 

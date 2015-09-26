@@ -61,7 +61,7 @@ or whatever was reported by find
 When you receive the following error:
 
 
-```console
+```bash
 Aug 12 10:24:00 2014 3cfcb700 fatal mcd_rec.c:638 read_label Invalid signature '' read from fd 0
 ```
 

@@ -26,14 +26,14 @@ Note that the login is being performed against the GSM. If the Grid is not secur
 Run the `gs` script and use the command line arguments **`-user`** and **`-password`** with the user credentials.
 
 
-```console
+```bash
 gs(.sh/bat) -user uuu -password ppp
 ```
 
 or, run the `gs` script, and then use the **`login`** command
 
 
-```console
+```bash
 gs(.sh/bat)
 gs> login -user uuu -password ppp
 gs> ...
@@ -44,7 +44,7 @@ gs> ...
 Run the `gs` script, and prefix **any** command with the command line arguments **`-user`** and **`-password`**.
 
 
-```console
+```bash
 gs(.sh/.bat) -user uuu -password ppp [command]
 ```
 
@@ -73,7 +73,7 @@ Here are some examples and how they are accomplished in both CLI modes:
 {{%tab "   Interactive "%}}
 
 
-```console
+```bash
 gs(.sh/bat)
 gs> login -user uuu -password ppp
 gs> deploy /templates/datagrid
@@ -85,7 +85,7 @@ gs> deploy -user xxx -password yyy processor
 {{%tab "   Non-Interactive "%}}
 
 
-```console
+```bash
 gs -user uuu -password ppp deploy /templates/datagrid
 gs -user uuu -password ppp deploy -secured true -override-name myDataGrid /templates/datagrid
 gs -user uuu -password ppp deploy -user xxx -password yyy processor
@@ -102,7 +102,7 @@ The CLI **`undeploy`** command of a processing unit is done on its managing GSM.
 {{%tab "   Interactive "%}}
 
 
-```console
+```bash
 gs(.sh/bat)
 gs> login -user uuu -password ppp
 gs> undeploy processor
@@ -112,7 +112,7 @@ gs> undeploy processor
 {{%tab "   Non-Interactive "%}}
 
 
-```console
+```bash
 gs -user uuu -password ppp undeploy processor
 ```
 
@@ -133,7 +133,7 @@ For example, for the **`space clean`** command, the user _(uuu/ppp)_ needs **`Al
 {{%tab "   Interactive "%}}
 
 
-```console
+```bash
 gs(.sh/bat)
 gs> login -user uuu -password ppp
 gs> space clean -url jini://*/*/space
@@ -143,7 +143,7 @@ gs> space clean -url jini://*/*/space
 {{%tab "   Non-Interactive "%}}
 
 
-```console
+```bash
 gs -user uuu -password ppp space clean -url jini://*/*/space
 ```
 
@@ -156,7 +156,7 @@ For the **`space copy`** command, the user needs **`Read`** privileges on the so
 {{%tab "   Interactive "%}}
 
 
-```console
+```bash
 gs(.sh/bat)
 gs> login -user uuu -password ppp
 gs> space copy jini://*/*/sourceSpace jini://*/*/targetSpace
@@ -166,7 +166,7 @@ gs> space copy jini://*/*/sourceSpace jini://*/*/targetSpace
 {{%tab "   Non-Interactive "%}}
 
 
-```console
+```bash
 gs -user uuu -password ppp space copy jini://*/*/sourceSpace jini://*/*/targetSpace
 ```
 

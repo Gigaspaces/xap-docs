@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Serialization and Thread Pool
 categories: XAP110ADM
 parent: working-with-spaces-gigaspaces-browser.html

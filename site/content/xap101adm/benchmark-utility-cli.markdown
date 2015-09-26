@@ -193,7 +193,7 @@ Other possible values are:
 The following example uses the JavaSpaces API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
 
 
-```console
+```bash
 run -read -objecttype entry -i 1000 -s 1024
 ```
 

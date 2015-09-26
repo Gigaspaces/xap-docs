@@ -200,7 +200,7 @@ The Processing Unit configuration file (`<XAP Root>\cpp\examples\CppServiceOpenS
 - Run:
 
 
-```console
+```bash
 <XAP Root>\bin\gs-agent.bat/sh
 ```
 
@@ -208,14 +208,14 @@ The build and configuration files are located in `<XAP Root>\cpp\examples\CppSer
 To deploy the processing unit , move to the above folder and run the following:
 
 
-```console
+```bash
 build deploy-local-cppexample
 ```
 
 The following output will be displayed:
 
 
-```console
+```bash
 D:\gigaspaces-xap-premium-7.1.0-ga\cpp\examples\CppServiceOpenSpaces>build.bat deploy-local-cppexample
 Buildfile: build.xml
 
@@ -252,7 +252,7 @@ Total time: 26 seconds
 The gs-agent console will have the following output:
 
 
-```console
+```bash
 [gsc][5/5352]   ----Find Proxy ------
 [gsc][5/5352]   -- Snapshot Done
 [gsc][5/5352]   *****Worker Running*****

@@ -277,7 +277,7 @@ This example includes `Build.bat` script.
 From the `<Example Root>` directory (`<XAP Root>\Examples\ProcessingUnit`), call:
 
 
-```console
+```bash
 compile
 ```
 
@@ -309,7 +309,7 @@ The `pu.config` resides in the `Deployment\DataFeeder(\Processor)` directory of 
 After you run the build script and the copy deployment files script, the two directories are copied to the `<XAP Root>\Runtime\deploy` directory. This example runs in a partitioned cluster with two primary spaces and one backup space for each partition, you need to run Grid Service Agent which will start and manage one Grid Service Manager (GSM) and two Grid Service Containers (GSC), and then start the Management Center.
 
 
-```console
+```bash
 <XAP Root>\Bin\Gs-Agent.exe
 <XAP Root>\Bin\Gs-ui
 ```
@@ -333,7 +333,7 @@ Since the spaces are running inside the `DataProcessor`, the `DataProcessor` sho
 Another way to deploy the processing units will be to use XAP's Command Line Interface, in this case we do not require using XAP Management Center, we deploy it in the following manner:
 
 
-```console
+```bash
 <XAP Root>\Bin\Gs-Cli.exe deploy DataProcessor
 <XAP Root>\Bin\Gs-Cli.exe deploy DataFeeder
 ```

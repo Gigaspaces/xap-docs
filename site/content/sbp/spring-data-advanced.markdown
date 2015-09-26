@@ -102,7 +102,7 @@ Then, add the source processor to your maven build (`pom.xml`) using Maven Annot
 This configuration will call `XapQueryDslAnnotationProcessor` before compiling your project sources. It will look for POJOs marked with `@SpaceClass` annotation and generate `Q...` classes for them that allow you to build up Querydsl `Predicate`s. Before using such classes, you have to call this processor with `process-sources` maven goal, or just call `install` if you are already using it:
 
 
-```console
+```bash
 mvn clean process-sources
 mvn clean install
 ```

@@ -43,20 +43,20 @@ Make sure your network and machines running GigaSpaces are configured to have mu
 
 **Accessing Remote Space Using Jini Lookup Service - Unicast Discovery**
 
-```console
+```bash
 jini://LookupServiceHostname/*/mySpace
 ```
 
 
 **Accessing Remote Space Using the Jini Lookup Service - Multicast Discovery**
 
-```console
+```bash
 jini://*/*/mySpace
 ```
 
 **Starting Embedded Space Using the Java Protocol**
 
-```console
+```bash
 /./mySpace (which translates to java://localhost:10098/containerName/mySpace?schema=default)
 /./mySpace?schema=cache (which translates to java://localhost:10098/containerName/mySpace?schema=cache)
 java://LookupServiceHostName:port/myContainerName/spaceName
@@ -69,7 +69,7 @@ In environments that do not support multicast, you can use the `locators` space 
 The following URL formats are supported:{{%wbr%}}
 
 
-```console
+```bash
 jini://*/*/space_name?locators=h1:port,h2:port,h3:port
 jini://LookupServiceHostName1:port1,....LookupServiceHostName n:port n/*/space_name
 jini://LookupServiceHostName1:port1,....LookupServiceHostName n:port n/*/space_name?locators=LookupServiceHostName1:port,LookupServiceHostName2:port,LookupServiceHostName3:port
@@ -83,7 +83,7 @@ The Space URL uses the following notation to start a space: `/./<Space Name>`. F
 
 When using that space URL the system will instantiate (create) a space instance named `mySpace` using the default schema configuration. The default schema is set to transient space configuration and it is equivalent to using the following URL:
 
-```console
+```bash
 java://localhost:10098/mySpace_container/mySpace?schema=default
 ```
 
@@ -93,7 +93,7 @@ You can use "." as the container name in the space URL. A value of "." as the co
 
 When a URL is provided without the protocol (java) and host name (localhost), the following URL is created /./mySpace as:
 
-```console
+```bash
 java://localhost:10098/mySpace_container/mySpace?schema=default
 ```
 

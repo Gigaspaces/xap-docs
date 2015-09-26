@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Configuration
 categories: XAP110ADM
 parent: web-management-console.html
@@ -44,7 +44,7 @@ are Chinese and English (which is the default). Users wishing to change the loca
 {{%tab "  Linux "%}}
 
 
-```console
+```bash
 # specify the locale context location
 export WEBUI_JAVA_OPTIONS=-Dcom.gs.webui.context=classpath:config/locale.xml
 
@@ -56,7 +56,7 @@ bin/gs-webui.sh
 {{%tab "  Windows "%}}
 
 
-```console
+```bash
 :: specify the locale context location
 set WEBUI_JAVA_OPTIONS=-Dcom.gs.webui.context=classpath:config/locale.xml
 

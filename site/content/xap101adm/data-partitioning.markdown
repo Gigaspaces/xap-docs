@@ -176,7 +176,7 @@ static int safeABS(int value) {
 Here is an example output:
 
 
-```console
+```bash
 Total amount of objects:1000
 Total amount of partitions:10
 Partition 0 has 107 objects

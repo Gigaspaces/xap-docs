@@ -48,7 +48,7 @@ To install the XAP Maven plugin:
 Run the `installmavenrep` script from the `<XAP Home>\tools\maven` directory:
 
 
-```console
+```bash
 D:<XAP Home>\tools\maven>installmavenrep.bat
 ```
 
@@ -103,7 +103,7 @@ You can install the XAP artifacts using a public repository:
 You may view list of available project templates and their description using the following command:
 
 
-```console
+```bash
 mvn os:create
 ```
 

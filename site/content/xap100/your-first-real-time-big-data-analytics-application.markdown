@@ -123,7 +123,7 @@ The source are maintained in [Github Gigaspaces cloudify-recipes repository](htt
 If you're a github user and have already [setup the github client](http://help.github.com/mac-set-up-git/), you can [fork](http://help.github.com/fork-a-repo) the repository and clone it to your local machine, as follows:
 
 
-```console
+```bash
 cd <project root directory>
 git clone --branch=2_5_1 <your new repository URL>
 ```
@@ -143,7 +143,7 @@ xap-version
 Edit the pom.xml file and make sure the <gsVersion> include the correct   XAP release you have installed. For example if you have XAP {{%version "xap-version"%}} installed you should have the following:
 
 
-```console
+```bash
 <properties>
 maven-version
 	<gsVersion>{{%version "maven-version"%}}</gsVersion>
@@ -153,21 +153,21 @@ maven-version
 To Build the project type the following at your command (Windows) or shell (*nix):
 
 
-```console
+```bash
 mvn install
 ```
 
 If you are getting **No gslicense.xml license file was found in current directory** error, please run the following:
 
 
-```console
+```bash
 mvn package -DargLine="-Dcom.gs.home="<XapInstallationRoot>"
 ```
 
 Where **XapInstallationRoot** should be XAP root folder - example:
 
 
-```console
+```bash
 gshome-directory
 mvn package -DargLine="-Dcom.gs.home="c:/{{%version "gshome-directory"%}}"
 ```
@@ -180,7 +180,7 @@ The Maven build will download the required dependencies, compile the source file
 Once the build is complete, a summary message similar to the following is displayed:
 
 
-```console
+```bash
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO]
@@ -270,7 +270,7 @@ Make sure you have updated **gslicense.xml** located under the GigaSpaces XAP ro
 To run the application, run the **processor** configuration, and then the **feeder** configuration. An output similar to the following is displayed:
 
 
-```console
+```bash
 2013-02-22 13:09:38,524  INFO [org.openspaces.bigdata.processor.TokenFilter] - filtering tweet 305016632265297920
 2013-02-22 13:09:38,526  INFO [org.openspaces.bigdata.processor.FileArchiveOperationHandler] - Writing 1 object(s) to File
 2013-02-22 13:09:38,534  INFO [org.openspaces.bigdata.processor.TweetArchiveFilter] - Archived tweet 305016632265297920
@@ -317,7 +317,7 @@ The following are step-by-step instructions for running the application in XAP:
 1. Run
 
 
-```console
+```bash
 mvn package
 ```
 
@@ -330,7 +330,7 @@ Step 2: Choose between the `twitter-feeder` and the `list-feeder` spring profile
 {{%tab "  Unix twitter "%}}
 
 
-```console
+```bash
 export GSC_JAVA_OPTIONS="-Dspring.profiles.active=twitter-feeder,file-archiver"
 ```
 
@@ -338,7 +338,7 @@ export GSC_JAVA_OPTIONS="-Dspring.profiles.active=twitter-feeder,file-archiver"
 {{%tab "  Unix list "%}}
 
 
-```console
+```bash
 export GSC_JAVA_OPTIONS="-Dspring.profiles.active=list-feeder,file-archiver"
 ```
 
@@ -346,7 +346,7 @@ export GSC_JAVA_OPTIONS="-Dspring.profiles.active=list-feeder,file-archiver"
 {{%tab "  Windows twitter "%}}
 
 
-```console
+```bash
 set GSC_JAVA_OPTIONS=-Dspring.profiles.active=twitter-feeder,file-archiver
 ```
 
@@ -354,7 +354,7 @@ set GSC_JAVA_OPTIONS=-Dspring.profiles.active=twitter-feeder,file-archiver
 {{%tab "  Windows list "%}}
 
 
-```console
+```bash
 set GSC_JAVA_OPTIONS=-Dspring.profiles.active=list-feeder,file-archiver
 ```
 
@@ -367,7 +367,7 @@ Step 3: Start a [Grid Service Agent](/product_overview/service-grid.html#gsa) by
 {{%tab "  Unix "%}}
 
 
-```console
+```bash
 nohup ./gs-agent.sh >/dev/null 2>&1
 ```
 
@@ -375,7 +375,7 @@ nohup ./gs-agent.sh >/dev/null 2>&1
 {{%tab "  Windows "%}}
 
 
-```console
+```bash
 start /min gs-agent.bat
 ```
 
@@ -388,7 +388,7 @@ Step 4: Then deploy the processor
 {{%tab "  Unix "%}}
 
 
-```console
+```bash
 ./gs.sh deploy ../recipes/apps/streaming-bigdata/bigDataApp/processor/rt-analytics-processor.jar
 ```
 
@@ -396,7 +396,7 @@ Step 4: Then deploy the processor
 {{%tab "  Windows "%}}
 
 
-```console
+```bash
 gs deploy ..\recipes\apps\streaming-bigdata\bigDataApp\processor\rt-analytics-processor.jar
 ```
 
@@ -406,7 +406,7 @@ gs deploy ..\recipes\apps\streaming-bigdata\bigDataApp\processor\rt-analytics-pr
 You should see the following output:
 
 
-```console
+```bash
 default-lookup-group
 Deploying [rt-analytics-processor.jar] with name [rt-processor-XAP-{{% currentversion %}}] under groups [{{%version "default-lookup-group"%}}] under groups [{{%version default-lookup-group %}}] and locators []
 Uploading [rt-analytics-processor] to [http://127.0.0.1:61765/]
@@ -424,7 +424,7 @@ Step 5: Next, deploy the feeder:
 {{%tab "  Unix "%}}
 
 
-```console
+```bash
 ./gs.sh deploy ../recipes/apps/streaming-bigdata/bigDataApp/feeder/rt-analytics-feeder.jar
 ```
 
@@ -432,7 +432,7 @@ Step 5: Next, deploy the feeder:
 {{%tab "  Windows "%}}
 
 
-```console
+```bash
 gs deploy ..\recipes\apps\streaming-bigdata\bigDataApp\feeder\rt-analytics-feeder.jar
 ```
 
@@ -470,7 +470,7 @@ To learn about additional options for deploying your XAP processing units, pleas
 To view the most popular words on Twitter , start the GS-UI using the gs-ui.bat/sh , click the Query icon as demonstrated below and execute the following SQL Query by clicking the ![rt-tw6.jpg](/attachment_files/rt-tw6.jpg) button:
 
 
-```console
+```bash
 select uid,* from org.openspaces.bigdata.common.counters.GlobalCounter order by counter DESC
 ```
 
@@ -500,7 +500,7 @@ The following are step-by-step instructions configuring the application to persi
 2. Define the TWITTER cassandra keyspace by running the following shell command:
 
 
-```console
+```bash
 <cassandra home>/bin/cassandra-cli --host <cassandra host name> --file <project home>/bigDataApp/cassandra/cassandraKeyspace.txt
 ```
 
@@ -513,7 +513,7 @@ Notice how this time we use the `cassandra-archiver` profile (instead of the `fi
 {{%tab "  Unix "%}}
 
 
-```console
+```bash
 ./gs.sh gsa shutdown
 export GSC_JAVA_OPTIONS="-Dspring.profiles.active=twitter-feeder,cassandra-archiver -Dcassandra.hosts=127.0.0.1"
 nohup ./gs-agent.sh >/dev/null 2>&1
@@ -525,7 +525,7 @@ nohup ./gs-agent.sh >/dev/null 2>&1
 {{%tab "  Windows "%}}
 
 
-```console
+```bash
 gs.bat gsa shutdown
 set GSC_JAVA_OPTIONS=-Dspring.profiles.active=twitter-feeder,cassandra-archiver -Dcassandra.hosts=127.0.0.1
 start /min gs-agent.bat
@@ -539,7 +539,7 @@ gs deploy ..\recipes\apps\streaming-bigdata\bigDataApp\feeder\rt-analytics-feede
 5. You can view the data within Cassandra using the Tweet column family - Move to the Cassandra `bin` folder and run the `cassandra-cli` command:
 
 
-```console
+```bash
 >cassandra-cli.bat
 [default@unknown] connect localhost/9160;
 [default@unknown] use TWITTER;
@@ -633,7 +633,7 @@ XAP comes with a cloud emulator called `localcloud`. It allows you to test the r
 1. To deploy the application, at the prompt, type:
 
 
-```console
+```bash
 install-application <XapInstallationRoot>/recipes/apps/streaming-bigdata/bigDataApp
 ```
 

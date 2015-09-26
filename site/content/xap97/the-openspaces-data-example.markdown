@@ -409,7 +409,7 @@ This example includes a `build.xml` `ant` file and with a `build.bat/sh` script 
 From the `<Example Root>` directory (`<GigaSpaces Root>/examples/data`) call:
 
 
-```console
+```bash
 build.bat/sh build
 ```
 
@@ -434,7 +434,7 @@ Run the GS-UI in order to see the 4 PU instances deployed (two partitions, each 
 Another option to deploy the example can be using the GS CLI using the deploy option. An interesting example of externally providing the SLA that applies to the deployed processing unit can be running:
 
 
-```console
+```bash
 gs.(sh/bat) deploy -sla ../examples/data/partitioned-sla.xml ../examples/data/processor/dist/data-processor.jar
 ```
 

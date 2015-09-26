@@ -21,7 +21,7 @@ The logging configuration is initialized using a logging configuration file that
 The default configuration file is located under:
 
 
-```console
+```bash
 <XAP>/config/gs_logging.properties
 ```
 
@@ -69,7 +69,7 @@ Here are the different modules , their logging names and their default logging l
 ### Client General
 
 
-```console
+```bash
 com.gigaspaces.client.level = INFO
 com.gigaspaces.client.cluster.liveness.level = INFO
 ```
@@ -84,7 +84,7 @@ The logging configuration file includes declarations of the loggers available at
 
 
 
-```console
+```bash
 com.gigaspaces.externaldatasource.dotnet.level = INFO
 com.gigaspaces.bridge.dispatcher.level = INFO
 com.gigaspaces.bridge.pbsexecuter.level = INFO
@@ -96,14 +96,14 @@ com.gigaspaces.dotnet.pu.level = INFO
 The logging configuration file includes declarations of the C++ Java Proxy logger, which logs info such as exceptions and JVM creation.
 
 
-```console
+```bash
 com.gigaspaces.cpp.proxy.level = INFO
 ```
 
 ### OpenSpaces
 
 
-```console
+```bash
 org.openspaces.level = INFO
 org.openspaces.pu.container.support.level = WARNING
 org.openspaces.pu.container.jee.context.ProcessingUnitWebApplicationContext.level = WARNING
@@ -115,7 +115,7 @@ OpenSpaces wraps the GigaSpaces core product with Spring which enables Spring co
 ### Spring
 
 
-```console
+```bash
 com.gigaspaces.spring.level = INFO
 ```
 
@@ -124,14 +124,14 @@ GigaSpaces Spring application logging
 ### JMS API
 
 
-```console
+```bash
 com.gigaspaces.jms.level = INFO
 ```
 
 {{% /tab %}}
 {{%tab Console%}}
 
-```console
+```bash
 com.gigaspaces.lrmi.nio.filters.SSLFilterFactory.level = INFO
 com.gigaspaces.lrmi.level = INFO
 com.gigaspaces.lrmi.stubcache.level = INFO
@@ -153,7 +153,7 @@ com.gigaspaces.lrmi.channel.protocol.level = INFO
 
 
 
-```console
+```bash
 com.gigaspaces.core.classloadercleaner.level = INFO
 com.gigaspaces.core.classloadercache.level = INFO
 ```
@@ -166,7 +166,7 @@ Application jars/classes are packaged in different folders and some of the class
 ### Space Core & Kernel
 
 
-```console
+```bash
 com.gigaspaces.core.engine.level = INFO
 com.gigaspaces.core.lease.level = INFO
 com.gigaspaces.core.types.level = INFO
@@ -182,7 +182,7 @@ Core runtime for the space component of GigaSpaces, above loggers relate to this
 ### Space Filters
 
 
-```console
+```bash
 com.gigaspaces.filters.level = INFO
 ```
 
@@ -191,7 +191,7 @@ Space filters are described [here]({{%currentjavaurl%}}/the-space-filters.html)
 ### Space Persistency
 
 
-```console
+```bash
 com.gigaspaces.persistent.level = INFO
 com.gigaspaces.persistent.shared_iterator.level = INFO
 org.hibernate.level = WARNING
@@ -202,7 +202,7 @@ GigaSpaces persistence options are explained [here]({{%currentjavaurl%}}/space-p
 ### Space Query
 
 
-```console
+```bash
 com.gigaspaces.query.level = INFO
 ```
 
@@ -211,7 +211,7 @@ GigaSpaces supports SQL queries on the data in space and logger corresponds to t
 ### Space LRU and Eviction
 
 
-```console
+```bash
 com.gigaspaces.cache.level = INFO
 ```
 
@@ -220,7 +220,7 @@ More information about LRU policy and Eviction behavior is [here]({{%currentjava
 ### Space Notifications
 
 
-```console
+```bash
 com.gigaspaces.core.notify.level = INFO
 ```
 
@@ -230,7 +230,7 @@ Another way notifications can be used is thru Session based messaging which is d
 ### Space FIFO
 
 
-```console
+```bash
 com.gigaspaces.core.fifo.level = INFO
 ```
 
@@ -239,7 +239,7 @@ FIFO functionality is applicable for writes, reads and events (notifications) an
 ### Space Replication
 
 
-```console
+```bash
 com.gigaspaces.core.cluster.replication.level = INFO
 com.gigaspaces.core.cluster.replication.redolog.level = INFO
 com.gigaspaces.core.cluster.sync_replication.level = INFO
@@ -251,7 +251,7 @@ Replication between spaces is one of the core features of GigaSpaces and is expl
 ### Space Partitioning
 
 
-```console
+```bash
 com.gigaspaces.core.cluster.partition.level = INFO
 ```
 
@@ -260,7 +260,7 @@ When cluster uses partitioned topology, data is partitioned across multiple inst
 ### Space Active-Election
 
 
-```console
+```bash
 com.gigaspaces.cluster.active_election.level = INFO
 ```
 
@@ -269,7 +269,7 @@ When multiple instances (primary/backup(s)), Active Election process is used by 
 ### POJO
 
 
-```console
+```bash
 com.gigaspaces.pojo.level = INFO
 ```
 
@@ -278,7 +278,7 @@ Logger corresponding to GigaSpaces POJO support, more info [here]({{%currentjava
 ### Space XA manager
 
 
-```console
+```bash
 com.gigaspaces.core.xa.level = INFO
 ```
 
@@ -287,7 +287,7 @@ Logger corresponding to XA Transaction manager running in the space, more inform
 ### Space Jini Dist. TX manager
 
 
-```console
+```bash
 com.sun.jini.mahalo.startup.level = INFO
 com.sun.jini.mahalo.destroy.level = INFO
 ```
@@ -297,7 +297,7 @@ Logger for Jini Distributed Transaction manager, more information [here]({{%curr
 ### SpaceURL, SpaceValidator, SpaceURLParser
 
 
-```console
+```bash
 com.gigaspaces.common.spaceurl.level = INFO
 com.gigaspaces.common.spacefinder.level = INFO
 com.gigaspaces.common.lookupfinder.level = INFO
@@ -310,7 +310,7 @@ Other loggers are related to this and applicable when a client trying to create 
 ### Space Multicast Notifications
 
 
-```console
+```bash
 com.gigaspaces.worker.multicast.level = INFO
 ```
 
@@ -321,7 +321,7 @@ Space notifications support multicast mode and this logger corresponds to this [
 ### Service Container - General
 
 
-```console
+```bash
 com.gigaspaces.grid.space.SpaceHandler.level = FINE
 org.jini.rio.level = INFO
 com.gigaspaces.start.level = CONFIG
@@ -333,7 +333,7 @@ com.gigaspaces.management.level = INFO
 ### Lookup Service
 
 
-```console
+```bash
 com.gigaspaces.core.lookupmanager.level = INFO
 com.sun.jini.reggie.level = INFO
 net.jini.discovery.LookupLocatorDiscovery.level = INFO
@@ -350,7 +350,7 @@ Lookup Service is a runtime registry of GigaSpaces components. Each component re
 ### GSM
 
 
-```console
+```bash
 com.gigaspaces.grid.gsm.level = INFO
 com.gigaspaces.grid.gsm.peer.level = INFO
 com.gigaspaces.grid.gsm.feedback.level = INFO
@@ -366,7 +366,7 @@ GSM manages the applications and maintains the SLA's of deployments. More inform
 ### GSC
 
 
-```console
+```bash
 com.gigaspaces.grid.gsc.level = INFO
 com.gigaspaces.grid.gsc.GSCFaultDetectionHandler.level = INFO
 com.gigaspaces.grid.gsm.GSMFaultDetectionHandler.level = INFO
@@ -378,7 +378,7 @@ GSC is the runtime environment for GigaSpaces applications. More information abo
 ### ESM
 
 
-```console
+```bash
 org.openspaces.grid.esm.level = INFO
 ```
 
@@ -388,7 +388,7 @@ Elastic Service Manager (ESM) is an implementation of the Elastic Middleware Ser
 ### GSA
 
 
-```console
+```bash
 com.gigaspaces.grid.gsa.level = INFO
 ```
 
@@ -397,7 +397,7 @@ The GigaSpaces Agent (GSA) acts as a process manager that can spawn and manage S
 {{%tab "  Security "%}}
 
 
-```console
+```bash
 com.gigaspaces.security.level = INFO
 ```
 
@@ -408,7 +408,7 @@ Logger corresponding to security of GigaSpaces components. This includes configu
 Any web application default logging level (logger name for them is web.`[processing unit name].[instance id]`)
 
 
-```console
+```bash
 web.level = INFO
 org.mortbay.level = WARNING
 ```
@@ -418,7 +418,7 @@ Web application support in GigaSpaces is provided using a Jetty container. These
 {{%tab "  Mule Integration "%}}
 
 
-```console
+```bash
 org.mule.level = WARNING
 org.mule.MuleServer.level = INFO
 org.mule.RegistryContext.level = INFO
@@ -432,7 +432,7 @@ These loggers correspond to Mule integration. More information about Mule integr
 For GUI, browser, cluster view, JMX logging:
 
 
-```console
+```bash
 com.gigaspaces.admin.level = INFO
 com.gigaspaces.admin.ui.level = INFO
 com.gigaspaces.admin.ui.cluster.view.level = INFO
@@ -450,14 +450,14 @@ Loggers corresponding to GigaSpaces Management Console/UI. Additional informatio
 The configuration defined in the `gs_logging.properties` file may be overridden by either using system properties or by providing an external configuration file with overrides. This external configuration file should be located in the classpath under:
 
 
-```console
+```bash
 /config/gs_ext_logging.properties
 ```
 
 Any configuration that you wish to override in `gs_logging.properties` file, should appear in `gs_ext_logging.properties` with its new value. The same applies for system properties, e.g.
 
 
-```console
+```bash
 -Dcom.gigaspaces.exceptions.level=WARNING
 ```
 
@@ -470,14 +470,14 @@ The recommended way to define system properties when starting service grid compo
 Your own configuration file may also be used instead of the platform's default. This is done by setting the configuration file location using a system property:
 
 
-```console
+```bash
 -Djava.util.logging.config.file=myfile.properties
 ```
 
 GigaSpaces scripts rely on the exported environment variable `GS_LOGGING_CONFIG_FILE` (declared in `<GigaSpaces>/bin/setenv script`). The preferred way to apply your override file is to use a wrapper script: export the new setting of this variable and call the original script. This ensures that when `setenv.sh(bat)` is called from within the platform's scripts, it will pick up the override.
 
 
-```console
+```bash
 # unix
 
 export GS_LOGGING_CONFIG_FILE=myfile.properties
@@ -487,7 +487,7 @@ export GS_LOGGING_CONFIG_FILE=myfile.properties
 Provided that your application initializes the logging facility via the Logging API (e.g. `LogManager.readConfiguration(InputStream ins)`), you may wish to disable the GigaSpaces configuration altogether. Once disabled, your Java logging settings will take place. This is done with the following system property:
 
 
-```console
+```bash
 -Dcom.gs.logging.disabled=true
 ```
 
@@ -496,7 +496,7 @@ Provided that your application initializes the logging facility via the Logging 
 To troubleshoot and detect which logging properties file was loaded and from which location, set the following system property to **true**. This property already exists in the scripts (for convenience) and by default is set to **false**.
 
 
-```console
+```bash
 -Dcom.gs.logging.debug=true
 ```
 
@@ -520,7 +520,7 @@ GigaSpaces configures the logging `Handler`'s `formatter` property with a single
 GigaSpaces prints exception stack traces for messages with level `SEVERE` or higher.
 
 
-```console
+```bash
 com.gigaspaces.exceptions.level = SEVERE
 ```
 

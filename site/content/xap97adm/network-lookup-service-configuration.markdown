@@ -77,7 +77,7 @@ Using the [list LUS ](./command-line-interface.html) CLI option, run from `<Giga
 The following result examples appear on the console:
 
 
-```console
+```bash
 -----------------------------------------------------------------------
 -- Discovered Lookup Service at host [ 192.168.10.233 ].
 -- Lookup Service registered to the following jini groups:

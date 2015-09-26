@@ -92,7 +92,7 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
 In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable **REMOTE_JMX**
 
 
-```console
+```bash
 REMOTE_JMX=-Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 ```
 

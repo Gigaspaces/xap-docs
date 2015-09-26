@@ -36,7 +36,7 @@ Logging granularity and information assists in tracing the availability of clust
 # Examples
 
 
-```console
+```bash
 May 30, 2007 7:13:42 PM
 CONFIG [com.gigaspaces.client.cluster.liveness]: [fooSpace] Space status Monitor frequency is configured to 10000 ms.
 Use -Dcom.gs.cluster.livenessMonitorFrequency=<value in milliseconds> to configure differently.

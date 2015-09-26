@@ -93,12 +93,12 @@ Once you have the space running, Websphere running, Tomcat running, and Apache h
 {{%accord parent=acc1 | title="Step 6: Apache httpd balancer console"%}}
 Once you performed the above steps, access the following URL:
 
-```console
+```bash
 http://127.0.0.1:8888/HttpSession
 ```
 You should have the web application running. Any access to the web application will be routed between Websphere and Tomcat. You can check this by accessing the Apache httpd balancer console:
 
-```console
+```bash
 http://127.0.0.1:8888/balancer-manager
 ```
 

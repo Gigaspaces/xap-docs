@@ -44,13 +44,13 @@ In this tutorial you'll launch a single node service grid on your machine. To st
 {{%tabs%}}
 {{%tab "  Unix "%}}
 
-```console
+```bash
 <GS_HOME>/bin/gs-agent.sh
 ```
 {{% /tab %}}
 {{%tab "  Windows "%}}
 
-```console
+```bash
 <GS_HOME>\bin\gs-agent.bat
 ```
 {{% /tab %}}
@@ -65,13 +65,13 @@ The Data Grid can be deployed from command line, from the web management tool or
 {{%tabs%}}
 {{%tab "  Unix "%}}
 
-```console
+```bash
 <GS_HOME>/bin/gs.sh deploy-space -cluster total_members=2,1 myDataGrid
 ```
 {{% /tab %}}
 {{%tab "  Windows "%}}
 
-```console
+```bash
 <GS_HOME>\bin\gs.bat deploy-space -cluster total_members=2,1 myDataGrid
 ```
 {{% /tab %}}
@@ -91,13 +91,13 @@ First, we need to point to the XAP distribution directory by setting the `GS_HOM
 {{%tabs%}}
 {{%tab "  Unix "%}}
 
-```console
+```bash
 export GS_HOME="/home/user/xap-distribution/"
 ```
 {{% /tab %}}
 {{%tab "  Windows "%}}
 
-```console
+```bash
 set GS_HOME="C:\xap-distribution"
 ```
 {{% /tab %}}
@@ -109,13 +109,13 @@ To start the tutorial run:
 {{%tabs%}}
 {{%tab "  Unix "%}}
 
-```console
+```bash
 ./start_tutorial.sh
 ```
 {{% /tab %}}
 {{%tab "  Windows "%}}
 
-```console
+```bash
 start_tutorial.bat
 ```
 {{% /tab %}}
@@ -374,13 +374,13 @@ You can start XAP's console and inspect the Data Grid components that have been 
 {{%tabs%}}
 {{%tab "  Unix"%}}
 
-```console
+```bash
 <GS_HOME>/bin/gs_webui.sh
 ```
 {{% /tab %}}
 {{%tab "  Windows"%}}
 
-```console
+```bash
 <GS_HOME>\bin\gs_webui.bat
 ```
 {{% /tab %}}

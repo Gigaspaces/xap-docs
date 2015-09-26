@@ -32,7 +32,7 @@ The way to load and enable the communication filter, is by setting the system pr
 For example, to use an SSL communication filter, run GigaSpaces with:
 
 
-```console
+```bash
 -Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 ```
 
@@ -51,7 +51,7 @@ If the communication filter needs its own parameters, it can acquire them by dir
 It uses the following system properties to get them:
 
 
-```console
+```bash
 -Dcom.gs.lrmi.filter.security.keystore=keystore.ks
 -Dcom.gs.lrmi.filter.security.password=password
 ```
@@ -116,7 +116,7 @@ As you can see, until now there is nothing special in the code -- it is the same
 However, when you wish to run this code with SSL encryption, you should run it with the following system properties (both server and client), and have the [keystore](/download_files/keystore.ks) anywhere in the classpath (both server and client).
 
 
-```console
+```bash
 -Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 -Dcom.gs.lrmi.filter.security.keystore=keystore.ks
 -Dcom.gs.lrmi.filter.security.password=password
@@ -129,7 +129,7 @@ With production environment you should have the SSLFilterFactory password (or an
 The indication that SSL is used is the message:
 
 
-```console
+```bash
 Communication Filters Information:
 	CommunicationFilterFactory: com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 ```

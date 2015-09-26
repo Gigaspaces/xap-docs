@@ -369,7 +369,7 @@ Applications can optionally enable periodic dumping of statistics to a specified
 {{%accordion%}}
 {{%accord title="Typical statistics output"%}}
 
-```console
+```bash
 Per Container Statistics
 Container Properties:
 	name = e12e3940
@@ -485,7 +485,7 @@ ZetaScale provides a simple command line interface (CLI) through a TCP port. The
 {{%accord title="Sample ZetaScale CLI usage"%}}
 
 
-```console
+```bash
 [root@xen200v03]~# telnet localhost 51350
 Trying 127.0.0.1...
 Connected to localhost.localdomain (127.0.0.1).

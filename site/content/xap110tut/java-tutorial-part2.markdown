@@ -31,14 +31,14 @@ To start an XAP data grid, run the following command:
 {{%tabs%}}
 {{%tab "  Windows "%}}
 
-```console
+```bash
 GS_HOME\bin\gs-agent.bat  
 ```
 {{% /tab %}}
 
 {{%tab "  Unix "%}}
 
-```console
+```bash
 GS_HOME/bin/gs-agent.sh
 ```
 {{% /tab %}}
@@ -81,7 +81,7 @@ There are several ways you can deploy a new Data Grid; by command line, with jav
 We want to deploy a data grid that has two primary partitions and one backup for each primary partition.
 Here is the gs command that you would execute to achieve this:
 
-```console
+```bash
 GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned-sync2backup total_members=2,1  xapTutorialSpace
 ```
 This command will start a space called xapTutorialSpace with two primary partitions and a backup for failover for each primary. 
@@ -117,7 +117,7 @@ Here is how you would configure your IMDG:
 Lets assume we have 4 machines available. On all machines we will start a GSA. The default gs-agent script will give us a total number of 8 GSC's. We want to deploy 4 partitions each having a backup and there should only be one instance per machine. 
 
 
-```console
+```bash
 GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned-sync2backup total_members=4,1 
        -max-instances-per-machine 1 xapTutorialSpace
 ```
@@ -153,13 +153,13 @@ You can start XAP's console and inspect the Data Grid components that have been 
 {{%tabs%}}
 {{%tab "  Windows"%}}
 
-```console
+```bash
 GS_HOME\bin\gs_webui.bat
 ```
 {{% /tab %}}
 {{%tab "  Unix"%}}
 
-```console
+```bash
 GS_HOME/bin/gs_webui.sh
 ```
 {{% /tab %}}

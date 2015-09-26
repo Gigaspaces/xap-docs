@@ -93,7 +93,7 @@ Step 5. This is what you should see:
 Here is an example for a linux makefile:
 
 
-```console
+```bash
 CXXFLAGS = -fPIC -rdynamic -c -w -shared
 
 OBJS = HelloWorldMessage.o
@@ -280,7 +280,7 @@ The last path might differ from the example above, depending on your Java instal
 Libraries:
 
 
-```console
+```bash
 -lgscpplib -lACE -lxerces-c -ljvm
 ```
 
@@ -326,7 +326,7 @@ The `id` tag defines the `uid` field as the primary key, while the `routing` tag
 This XML file is used by the `gsxml2cpp` command that produces the `HelloWorldMessage.h` and `HelloworldMessage.cpp` files. This is performed by the following command:
 
 
-```console
+```bash
 gsxml2cpp ../serializer/helloWorld.gs.xml HelloWorld ../serializer/HelloWorldMessage.cpp ../serializer/HelloWorldMessage.h
 ```
 

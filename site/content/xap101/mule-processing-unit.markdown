@@ -58,7 +58,7 @@ Since version 10.1 XAP is using spring 4.1.1 jars and Mule does not support spri
 In the [Mule ESB example](/sbp/mule-esb-example.html), the following jars are required and should be placed under <XAP Root>\lib\platform\mule
 
 
-```console
+```bash
 commons-beanutils-1.8.0.jar
 commons-cli-1.2.jar
 commons-io-1.4.jar

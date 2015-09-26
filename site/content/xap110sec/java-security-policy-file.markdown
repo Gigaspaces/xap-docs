@@ -13,7 +13,7 @@ You may use a default security file bundled with the distribution. It is located
 `<XAP Root>\policy\policy.all`:
 
 
-```console
+```bash
 grant {
     permission java.security.AllPermission "", "";
 };

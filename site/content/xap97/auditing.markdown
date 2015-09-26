@@ -19,7 +19,7 @@ Currently auditing of operations is limited to Space operations.
 The configurations should be placed in the logging configuration file `<XAP root>/config/gs_logging.properties`.
 
 
-```console
+```bash
 # gs_logging.properties
 
 com.gigaspaces.security.audit.enabled = true
@@ -30,7 +30,7 @@ com.gigaspaces.security.audit.handler = com.gigaspaces.security.audit.AuditHandl
 This configuration can also be supplied using system properties.
 
 
-```console
+```bash
 -Dcom.gigaspaces.security.audit.enabled=true -Dcom.gigaspaces.security.audit.level=SEVERE ...
 ```
 
@@ -45,7 +45,7 @@ The defaults of these configurations are:
 The `AuditHandler` is a declarable extension to the default GigaSpaces logging `Handler` (see [GigaSpaces Logging]({{%currentadmurl%}}/logging-overview.html)). As such, it accepts properties that configure the handler - amongst others are the logging message **formatter** and the **filename-pattern**.
 
 
-```console
+```bash
 # gs_logging.properties
 
 ...
@@ -76,7 +76,7 @@ In the example below, there are two users "writer" (only privileges to write), a
 
 
 
-```console
+```bash
 
 FINE: Access granted; user [writer] at host [some-pc.gspaces.com/192.168.10.172] has [Write] privileges for class [com.gigaspaces.data.car.CarPojo]; session-id [827282038]
 18/12/2014 12:23:50 com.gigaspaces.security.audit.SecurityAudit accessGranted

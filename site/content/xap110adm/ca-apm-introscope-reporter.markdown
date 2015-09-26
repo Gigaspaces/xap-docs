@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  CA APM Introscope Reporter
 categories: XAP110ADM
 parent: metrics-overview.html

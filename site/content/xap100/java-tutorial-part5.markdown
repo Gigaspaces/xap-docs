@@ -68,7 +68,7 @@ XAP's Mule integration allows you to run a pure Mule application (with or withou
 Much like a JEE web application or an OSGi bundle, The PU is packaged as a .jar file and follows a certain directory structure which enables the XAP runtime environment to easily locate the deployment descriptor and load its classes and the libraries it depends on. A typical PU looks as follows:
 
 
-```console
+```bash
 |----META-INF
 |--------spring
 |------------pu.xml
@@ -283,14 +283,14 @@ First we start the GigaSpace Agent (GSA) that will create our IMDG on this machi
 {{%tabs%}}
 {{%tab "  Windows "%}}
 
-```console
+```bash
 GS_HOME\bin\gs-agent.bat
 ```
 {{% /tab %}}
 
 {{%tab "  Linux "%}}
 
-```console
+```bash
 GS_HOME/bin/gs-agent.sh
 ```
 {{% /tab %}}
@@ -299,7 +299,7 @@ GS_HOME/bin/gs-agent.sh
 
 And now we deploy the PU onto the IMDG:
 
-```console
+```bash
 GS_HOME\bin\gs.sh deploy  eventPU.jar
 ```
 We assume that the jar we created is named eventPU.jar
@@ -423,7 +423,7 @@ Lets assume that we have two machines available for our deployment. We want to d
 
 The deployment script for this scenario looks like this:
 
-```console
+```bash
 
 With a statefull PU, embedded space
 ./gs.sh deploy -cluster schema=partitioned total_members=4,0 -max-instances-per-machine 2 eventPU.jar

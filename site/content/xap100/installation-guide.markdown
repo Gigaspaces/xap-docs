@@ -92,7 +92,7 @@ that is located under the GS_HOME directory.
 The activation license key is in the following form:
 
 
-```console
+```bash
 "Nov 16, 2020~user@XXXXXXXXXXXXXXXXXXXXX#PREMIUM^9.7XAPPremium%UNBOUND+UNLIMITED"
 ```
 
@@ -101,7 +101,7 @@ The activation license key is in the following form:
 To install the license, insert the license string between the license key tags:
 
 
-```console
+```bash
 <com>
   <j_spaces>
         <kernel>

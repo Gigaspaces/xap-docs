@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Hosts, Zones & Machine Utilization
 categories: XAP110ADM
 parent: the-sla-overview.html
@@ -307,21 +307,21 @@ To accommodate partitions with different size we can use the zones configuration
 
 To start the small zone:
 
-```console
+```bash
 set GSC_JAVA_OPTIONS=-Dcom.gs.zones=zoneSmall -Xmx1g
 gs-agent.bat
 ```
 
 To start the medium zone:
 
-```console
+```bash
 set GSC_JAVA_OPTIONS=-Dcom.gs.zones=zoneMedium -Xmx2g
 gs-agent.bat
 ```
 
 To start the large zone:
 
-```console
+```bash
 set GSC_JAVA_OPTIONS=-Dcom.gs.zones=zoneLarge -Xmx3g
 gs-agent.bat
 ```

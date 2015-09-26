@@ -22,7 +22,7 @@ To install the XAP maven plugin run the `installmavenrep` script:
 {{%tab " Windows"%}}
 
 
-```console
+```bash
 /tools/maven/installmavenrep.bat
 ```
 {{%/tab%}}
@@ -271,7 +271,7 @@ Now we are ready to run some query:
 You should see something like this:
 
 
-```console
+```bash
     Before writing objects to space...
         Book{id='1234', author='Eccel', copies=10000}
         Book{id='2345', author='Bloch', copies=20000}

@@ -71,42 +71,42 @@ Add the following system properties to the command line:
 - **Optional** -- use the following system property to **disable the Jini multicast activity**. For unicast-only solutions:
 
 
-```console
+```bash
 -Dcom.gs.multicast.enabled=false
 ```
 
 - **Mandatory** -- Reggie Lookup Service: in this context, modify `com.gs.multicast.discoveryPort`, the port used during discovery for both unicast and multicast requests. Default value is `4174`.
 
 
-```console
+```bash
 -Dcom.gs.multicast.discoveryPort=
 ```
 
 - **Mandatory** -- Reggie Lookup Service: in this context, modify `com.sun.jini.reggie.initialUnicastDiscoveryPort`, the port used during unicast discovery. Default value is `0` - any available port.
 
 
-```console
+```bash
 -Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=
 ```
 
 - **Optional** -- `RMIRegistry` port (used for RMI lookup and for JMX MBean server). Default value is `10098`.
 
 
-```console
+```bash
 -Dcom.gigaspaces.system.registryPort=
 ```
 
 - **Mandatory** -- Webster HTTPD service port.
 
 
-```console
+```bash
 -Dcom.gigaspaces.start.httpPort=
 ```
 
 Settings example:
 
 
-```console
+```bash
 -Dcom.gs.multicast.enabled=false
 -Dcom.gs.multicast.discoveryPort=7102
 -Dcom.gigaspaces.system.registryPort=7103
@@ -120,35 +120,35 @@ Add the following system properties to the command line:
 - **Mandatory** -- use the following system property to **disable the Jini multicast activity**. For unicast-only solutions:
 
 
-```console
+```bash
 -Dcom.gs.multicast.enabled=false
 ```
 
 - **Mandatory** -- Reggie Lookup Service: in this context, modify `com.gs.multicast.discoveryPort`, the port used during discovery for both unicast and multicast requests. Default value is `4174`.
 
 
-```console
+```bash
 -Dcom.gs.multicast.discoveryPort=
 ```
 
 - **Mandatory** -- `RMIRegistry` port (used for RMI lookup and for JMX MBean server). Default value is `10098`.
 
 
-```console
+```bash
 -Dcom.gigaspaces.system.registryPort=
 ```
 
 - **Optional** -- Webster HTTPD service port.
 
 
-```console
+```bash
 -Dcom.gigaspaces.start.httpPort=
 ```
 
 Settings example:
 
 
-```console
+```bash
 -Dcom.gs.multicast.enabled=false
 -Dcom.gs.multicast.discoveryPort=7102
 -Dcom.gigaspaces.system.registryPort=7103
@@ -160,7 +160,7 @@ Settings example:
 Lookup locators unicast discovery port should be the same as defined in `gs.sh`, for example:
 
 
-```console
+```bash
 LOOKUPLOCATORS=server111:7102; export LOOKUPLOCATORS
 ```
 
@@ -169,7 +169,7 @@ LOOKUPLOCATORS=server111:7102; export LOOKUPLOCATORS
 The `com.gigaspaces.start.httpPort` Webster port number property can be defined by overriding as shown below, or using a system property:
 
 
-```console
+```bash
 gsm.sh webster.xml
 gsc.sh webster.xml
 startJiniTX_Mahalo.sh webster.xml

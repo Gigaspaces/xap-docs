@@ -27,7 +27,7 @@ For more information on setting the environment refer to [Installing C++ Package
 After running the example the console will have the following output:
 
 
-```console
+```bash
 
 Retrieved a space proxy to /./APIUsageExampleEmbeddedSpace?groups=CPP-GROUP
 Did snapshot for Person class

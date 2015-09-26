@@ -123,7 +123,7 @@ Make sure the user that started the GS-UI has write permissions to the location 
 The dump file structure would look like this:
 
 
-```console
+```bash
 dump_file.zip
 
     gsa-10.10.10.249-23610--1284928573201

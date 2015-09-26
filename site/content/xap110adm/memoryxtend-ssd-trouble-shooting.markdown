@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Troubleshooting
 categories: XAP110ADM
 parent: memoryxtend-ssd.html
@@ -63,7 +63,7 @@ or whatever was reported by find
 When you receive the following error:
 
 
-```console
+```bash
 Aug 12 10:24:00 2014 3cfcb700 fatal mcd_rec.c:638 read_label Invalid signature '' read from fd 0
 ```
 
@@ -92,7 +92,7 @@ When a single flash device is not responding or has an hardware malfunction and 
 For example /dev/sdc has an HW malfunction, you should replace the flash device, delete the second row which contains /dev/scd and restart GSC which contains mySpace_container1_1-mySpace.
 
 
-```console
+```bash
 mySpace_container1-mySpace=/dev/sdb@Consistent^Sat Jul 18 10\:47\:48 GMT+02\:00 2015
 mySpace_container1_1-mySpace=/dev/sdc@Consistent^Sat Jul 18 10\:47\:56 GMT+02\:00 2015
 ```

@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Web Management Console
 categories: XAP110ADM
 parent: none

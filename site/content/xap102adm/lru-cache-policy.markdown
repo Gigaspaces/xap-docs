@@ -113,7 +113,7 @@ LRU eviction based on the amount of available memory, performs the following:
 The used memory rate is calculated via:
 
 
-```console
+```bash
 Used_memory_rate = (Runtime.totalMemory() - Runtime.freeMemory() * 100.0) / Runtime.maxMemory()
 ```
 
@@ -131,7 +131,7 @@ The `org.openspaces.core.SpaceMemoryShortageException` (which wraps the `com.j_s
 If a client is running a local cache, and the local cache cannot evict its data fast enough, or somehow there is no available memory for the local cache to function, the following is thrown:
 
 
-```console
+```bash
 org.openspaces.core.SpaceMemoryShortageException: Memory shortage at: host: MachineHostName,
 container: mySpace_container_container1, space mySpace_container_DCache, total memory: 1527 mb,
 used memory: 1497 mb
@@ -147,7 +147,7 @@ You can monitor the memory manager activity for a space running in LRU mode by m
 It displays log entries when evicting objects (starting, during, and when completing the eviction cycle), and when waiting for incoming activities. See below example for log entries displayed once an eviction cycle is executed:
 
 
-```console
+```bash
 22:42:44,915  FINE [com.gigaspaces.core.memorymanager] - SpaceName: mySpace Cache eviction started:
 Available memory[%]85.39833755194752
 22:42:44,917  FINE [com.gigaspaces.core.memorymanager] - Call evict on operation: true

@@ -23,7 +23,7 @@ This occurs when a large amount of memory is consumed in the process, causing ex
 To avoid the unregistering of spaces, add resources (memory, CPU) or spaces, or tune the `LeaseRenewal maxLeaseDuration` and `roundTripTime`. These two values can be configured using the system properties:
 
 
-```console
+```bash
 //Default value for roundTripTime 4 seconds
 -Dcom.gs.jini.config.roundTripTime=4000
 

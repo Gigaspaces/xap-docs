@@ -30,7 +30,7 @@ To override the default port, you can either use the `com.gs.webui.port` system 
 {{%tab "  Linux "%}}
 
 
-```console
+```bash
 #Specify port via a command line argument
 ./gs-webui.sh -port 80
 
@@ -43,7 +43,7 @@ export WEBUI_PORT=80
 {{%tab "  Windows "%}}
 
 
-```console
+```bash
 #Specify port via a command line argument
 gs-webui.bat -port 80
 
@@ -63,7 +63,7 @@ In order to disable anonymous login and define user name login field as mandator
 {{%tab "  Linux "%}}
 
 
-```console
+```bash
 
 #Specify user name field as mandatory
 export USER_NAME_MANDATORY=true
@@ -74,7 +74,7 @@ export USER_NAME_MANDATORY=true
 {{%tab "  Windows "%}}
 
 
-```console
+```bash
 
 #Specify user name field as mandatory
 set USER_NAME_MANDATORY=true
@@ -94,7 +94,7 @@ Note that in this case the management console application actually monitors the 
 Here's an example of how this can be done using the GS CLI:
 
 
-```console
+```bash
 <XAP root>/bin/gs.sh(bat} deploy -properties embed://web.port=80;web.context=/
 <XAP root>/tools/gs-webui/gs-webui.war
 ```
@@ -145,7 +145,7 @@ It is possible to set up a reverse proxy for the management console. This can be
 Enable the relevant modules, by un-commenting (or adding) the following lines inside `httpd.conf`:
 
 
-```console
+```bash
 LoadModule  proxy_module         modules/mod_proxy.so
 LoadModule  proxy_http_module    modules/mod_proxy_http.so
 ```

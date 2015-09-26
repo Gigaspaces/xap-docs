@@ -89,7 +89,7 @@ Step 4. **Rebuild** and run your code.
 The console will have the following output:
 
 
-```console
+```bash
 
     Retrieved a space proxy
     Did snapshot for UserMessage class

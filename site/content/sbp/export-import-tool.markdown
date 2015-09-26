@@ -71,7 +71,7 @@ java -classpath D:\gigaspaces-xap-premium-10.1.1-ga\lib\required\*;D:\gigaspaces
 for Linux:
 
 
-```console
+```bash
 cd <project_root>
 java -classpath /home/adminuser/gigaspaces-xap-premium-10.1.1-ga/lib/required/*:/home/adminuser/gigaspaces-xap-premium-10.1.1-ga/lib/platform/benchmark/*:target/*:lib/* com.gigaspaces.tools.importexport.SpaceDataImportExportMain -e -s space -l 127.0.0.1 -d /tmp/gs
 ```
@@ -85,7 +85,7 @@ Make sure that classes directory for serialized files(you specify it with -d {di
 {{%/note%}}
 
 
-```console
+```bash
 2015-07-14 17:47:08,432  INFO [com.gigaspaces.common] - (tid-821) : found 1 classes
 2015-07-14 17:47:08,449  INFO [com.gigaspaces.common] - (tid-821) : starting export to file /tmp/gs/com.j_spaces.examples.benchmark.messages.MessagePOJO.1.1.ser.gz
 2015-07-14 17:47:08,449  INFO [com.gigaspaces.common] - (tid-821) : starting export thread for com.j_spaces.examples.benchmark.messages.MessagePOJO
@@ -113,13 +113,13 @@ For each exported space class data `/tmp/gs`(or any other directory you specify)
 Once you restart the data grid you can reload your data back. This will reload the data from the zip files into the space:
 For Windows:
 
-```console
+```bash
 cd <project_root>
 java -classpath D:\gigaspaces-xap-premium-10.1.1-ga\lib\required\*;D:\gigaspaces-xap-premium-10.1.1-ga\lib\platform\benchmark;target\*;lib\* com.gigaspaces.tools.importexport.SpaceDataImportExportMain -i -l 127.0.0.1 -s space -d D:\gs
 ```
 for Linux:
 
-```console
+```bash
 cd <project_root>
 java -classpath /home/adminuser/gigaspaces-xap-premium-10.1.1-ga/lib/required/*:/home/adminuser/gigaspaces-xap-premium-10.1.1-ga/lib/platform/benchmark/*:target/*:lib/* com.gigaspaces.tools.importexport.SpaceDataImportExportMain -i -s space -l 10.23.11.212 -d /tmp/gs
 ```

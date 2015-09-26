@@ -77,21 +77,21 @@ With this demo we will simulate session sharing between different tomcat instanc
 -	Move to the `\gigaspaces-xap-premium-10.0.1-ga\bin` folder and start GigaSpaces agent by running:
 
 
-```console
+```bash
 gs-agent.bat
 ```
 
 -	Deploy a space named **sessionSpace**. You may have a single instance Space or deploy a clustered Space using the command line , GS-UI or the Web-UI. Here is how you can do this via the CLI
 
 
-```console
+```bash
 gs.bat deploy-space sessionSpace
 ```
 
 -	Double check the **shiro.ini** within the `demo-app.war` file located under the `WEB-INF` folder includes the lookup service host name as part of the `connector.url` property. With the example below we are using a lookup service running locally - hence the `localhost` is used:
 
 
-```console
+```bash
 connector.url=jini://localhost/*/sessionSpace
 ```
 
@@ -99,7 +99,7 @@ connector.url=jini://localhost/*/sessionSpace
 -	Start your web browser and access the web application via the following URL:
 
 
-```console
+```bash
 http://localhost:8080/demo-app
 ```
 
@@ -123,7 +123,7 @@ The URL above assumes the Tomcat is configured to use port 8080.
 -	Start Tomcat again using :
 
 
-```console
+```bash
 \apache-tomcat-7.0.23\bin\startup.bat
 ```
 
@@ -148,7 +148,7 @@ With this demo we will simulate session sharing between Tomcat and JBoss web ser
 
 -	Double check the **shiro.ini** within the `demo-app2.war` file located under the `WEB-INF` folder includes the lookup service host name as part of the `connector.url` property. With the example below we are using a lookup service running locally - hence the `localhost` is used:
 
-```console
+```bash
 connector.url=jini://localhost/*/sessionSpace
 ```
 -	Deploy `demo-app2.war` into Tomcat by placing it into `\apache-tomcat-7.0.23\webapps`
@@ -165,7 +165,7 @@ To have:
 -	Start JBoss by running :
 
 
-```console
+```bash
 \jboss-as-7.1.1.Final\bin\standalone.bat
 ```
 
@@ -173,7 +173,7 @@ To have:
 -	Start your web browser and access the web application running in Tomcat via the following URL:
 
 
-```console
+```bash
 http://localhost:8080/demo-app2
 ```
 
@@ -194,7 +194,7 @@ http://localhost:8080/demo-app2
 -	Start your browser and access the web application running in JBoss via the following URL:
 
 
-```console
+```bash
 http://localhost:8081/demo-app2
 ```
 
@@ -221,7 +221,7 @@ http://localhost:8081/demo-app2
 -	Switch to Tomcat:
 
 
-```console
+```bash
 http://localhost:8080/demo-app2
 ```
 
@@ -235,7 +235,7 @@ http://localhost:8080/demo-app2
 -	Refresh these by press the `F5` key :
 
 
-```console
+```bash
 http://localhost:8080/demo-app2
 http://localhost:8081/demo-app2
 

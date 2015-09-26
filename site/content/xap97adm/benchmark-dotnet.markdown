@@ -64,7 +64,7 @@ The structure of the [configuration xml file](http://wiki.gigaspaces.com/wiki/di
 The syntax of the command line for running the out-of-the-box benchmark is as follows:
 
 
-```console
+```bash
 ..\..\lib\GigaSpaces.Core.Benchmarks.Launcher.exe {space-url}  {Input xml} {Results xml}
 ```
 
@@ -73,14 +73,14 @@ Examples:
 Embedded:
 
 
-```console
+```bash
 "/./benchmarkSpace?NoWriteLease=true&schema=cache&groups=myGroup"
 ```
 
 Remote:
 
 
-```console
+```bash
 "jini://localhost/*/remoteBenchmarkSpace?NoWriteLease=true&groups=myGroup"
 ```
 
@@ -104,7 +104,7 @@ The Benchmark elements contain the following parameters:
 Example:
 
 
-```console
+```bash
 <type>GigaSpaces.Core.Benchmarks.Implementations.Basic.ReadBenchmark`2[[GigaSpaces.Core.Benchmarks.Implementations.Basic.Objects.Person,
 GigaSpaces.Core.Benchmarks.Implementations.Basic],[GigaSpaces.Core.Benchmarks.Implementations.Basic.ObjectAdapters.PersonAdapter,
 GigaSpaces.Core.Benchmarks.Implementations.Basic]], GigaSpaces.Core.Benchmarks.Implementations.Basic</type>
@@ -137,7 +137,7 @@ Develop a custom benchmark with your own code for the benchmark scenario and the
 - Type your object definition
 
 
-```console
+```bash
 <type>GigaSpaces.Core.Benchmarks.Implementations.Basic.ReadBenchmark`2
 
 [[GigaSpaces.Core.Benchmarks.Implementations.Basic.Objects. MyObject, GigaSpaces.Core.Benchmarks.Implementations.Basic],
@@ -160,14 +160,14 @@ Develop a custom benchmark with your own code for the benchmark scenario and the
 Both run scripts use the following pattern:
 
 
-```console
+```bash
 ..\..\lib\GigaSpaces.Core.Benchmarks.Launcher.exe {space-url}  {Input xml} {Results xml}
 ```
 
 Example command line for running an embedded benchmark run:
 
 
-```console
+```bash
 ..\..\lib\GigaSpaces.Core.Benchmarks.Launcher.exe "/./benchmarkSpace?NoWriteLease=true&schema=cache&groups=myGroup"
 
  Xmls\BenchmarkPerson.xml Results\EmbeddedBenchmarkPersonResult.xml

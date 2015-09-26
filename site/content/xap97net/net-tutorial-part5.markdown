@@ -49,7 +49,7 @@ This type of PU's includes both business logic and a space. Typically, the busin
 Here is an example how the directory structure looks like using Visual Studio:
 
 
-```console
+```bash
 |ProcessingUnit
 |--common
 |----Properties
@@ -225,7 +225,7 @@ First we start the XAP Agent (GSA) that will create our IMDG on this machine:
 
 
 
-```console
+```bash
 GS_HOME\bin\gs-agent.exe
 ```
 
@@ -233,7 +233,7 @@ GS_HOME\bin\gs-agent.exe
 
 And now we deploy the PU onto the IMDG:
 
-```console
+```bash
 GS_HOME\bin\Gs-cli deploy  PaymentProcessor
 ```
 
@@ -361,7 +361,7 @@ Lets assume that we have two machines available for our deployment. We want to d
 
 The deployment script for this scenario looks like this:
 
-```console
+```bash
 
 With a statefull PU, embedded space
 ./Gs-cli  deploy -cluster schema=partitioned total_members=4,0 -max-instances-per-machine 2 eventProcessor

@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Global vs. Local LUS
 categories: XAP110ADM
 parent: runtime-configuration.html

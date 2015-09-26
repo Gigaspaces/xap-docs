@@ -67,14 +67,14 @@ When opening this page in a web browser, it looks as follows:
 Once you extract the zip file, open a shell / command prompt window in the directory and type the following:
 
 
-```console
+```bash
 build.(sh/bat) dist
 ```
 
 You should see an output similar to the following:
 
 
-```console
+```bash
 C:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\examples\web\plain>build dist
 Buildfile: build.xml
 
@@ -129,7 +129,7 @@ web.threadPool.maxThreads=100
 - By using the command line (when deploying using the command line). You can add deployment properties as arguments to the pu deploy command. These arguments will override the values in the `pu.properties` file. This can be done as follows:
 
 
-```console
+```bash
 <gs root>/bin/gs.(sh/bat) pudeploy -properties "embed://web.port=8080;web.sslPort=9443" <.war file path>
 ```
 
@@ -178,7 +178,7 @@ By default, each application instance provisioned to the GSC will have its own J
 
 - By using the command line (when deploying using the command line). You can specify the total number of instances and the number of instances per JVM / machine as command line arguments. These arguments will override the values in the `pu.properties` file:
 
-```console
+```bash
 <gs root>/bin/gs.(sh/bat) deploy -cluster total_members=3 -max-instances-per-vm 1 -max-instances-per-machine 3 <.war file path>
 ```
 
@@ -287,7 +287,7 @@ Once deployed, you will see the two instances of the web application deployed wi
 {{%accordion%}}
 {{%accord title=" **Click to show expected output...**"%}}
 
-```console
+```bash
 Starting apache-lb-agent with line:
 "c:\Java\jdk1.6.0_11\bin\java"  -server -XX:+AggressiveOpts -showversion -Xmx512m
 -Xbootclasspath/p:.;"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\xml\serializer.jar";

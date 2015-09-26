@@ -44,7 +44,7 @@ Download the Send.Signal EXE file from the [project webpage](http://www.latenigh
 Usage:
 
 
-```console
+```bash
     SendSignal <pid>
       <pid> - send ctrl-break to process <pid> (hex ok)
 ```

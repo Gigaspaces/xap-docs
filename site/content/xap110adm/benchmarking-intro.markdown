@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Overview
 categories: XAP110ADM
 parent: benchmarking.html

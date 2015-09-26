@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Tools
 categories: XAP110ADM
 parent: troubleshooting.html
@@ -44,7 +44,7 @@ Download the Send.Signal EXE file from the [project webpage](http://www.latenigh
 Usage:
 
 
-```console
+```bash
     SendSignal <pid>
       <pid> - send ctrl-break to process <pid> (hex ok)
 ```

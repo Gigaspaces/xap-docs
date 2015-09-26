@@ -37,7 +37,7 @@ Configuring failure detection time can help you handle extreme failure scenarios
 Here is a good combination for the space settings you may use to reduce the failover time - these should be used with a fast network:
 
 
-```console
+```bash
 cluster-config.groups.group.fail-over-policy.active-election.yield-time=300
 cluster-config.groups.group.fail-over-policy.active-election.fault-detector.invocation-delay=300
 cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retry-count=2
@@ -46,7 +46,7 @@ cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retr
 The following should be specified as system properties:
 
 
-```console
+```bash
 -Dcom.gs.transport_protocol.lrmi.connect_timeout=3
 -Dcom.gs.transport_protocol.lrmi.request_timeout=3
 -Dcom.gs.jini.config.maxLeaseDuration=2000
@@ -56,7 +56,7 @@ By default, the maximum time it takes for a backup space to switch into a primar
 If you would like to reduce the failover time , you should use the following formula:
 
 
-```console
+```bash
 100 [ms] + (yield-time * 7) + invocation-delay + (retry-count * retry-timeout) = failover time
 ```
 
@@ -119,7 +119,7 @@ The GSM and GSC fault-detection handler settings are controlled via the relevant
 For logging information, it is advised to monitor service failure by setting the logging level to `Level.FINE`.
 
 
-```console
+```bash
 # ServiceGrid FaultDetectionHandler logging
 
 com.gigaspaces.grid.gsc.GSCFaultDetectionHandler.level = INFO

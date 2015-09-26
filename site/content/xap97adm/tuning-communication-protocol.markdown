@@ -37,14 +37,14 @@ The client LRMI connection pool maintained per server component - i.e. by each s
 You may need to change the `com.gs.transport_protocol.lrmi.max-conn-pool` value (1024) to have a smaller number. The default might be high for application with multiple partitions.
 
 
-```console
+```bash
 Client total # of open connections = com.gs.transport_protocol.lrmi.max-conn-pool * # of partitions
 ```
 
 This may result very large amount of connections started at the client side resulting "Too many open files" error. You should increase the OS' max file descriptors amount by calling the following before running the client application (on UNIX):
 
 
-```console
+```bash
 ulimit -n 32000
 ```
 
@@ -164,7 +164,7 @@ You can define port range using the `com.gigaspaces.transport.bind-port` propert
 Here is how you can set a listening port rage for GSA/GSC/GSM:
 
 
-```console
+```bash
 export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100
 ```
 
@@ -192,7 +192,7 @@ You can troubleshoot the space activity using LRMI logging. You can turn on LRMI
 `Step 2:` Locate the following line:
 
 
-```console
+```bash
 com.gigaspaces.lrmi.level = INFO
 ```
 
@@ -213,7 +213,7 @@ LRMI communication transport protocol debug messages are displayed.
 `Step 1:` Start `gsInstance` using the following Java system properties:
 
 
-```console
+```bash
 -Dcom.sun.management.jmxremote.port=5001
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
@@ -248,7 +248,7 @@ When LRMI logging is turned on, the space displays the following when started:
 To test LRMI logging, you can run the space `ping` utility using the following command:
 
 
-```console
+```bash
 /bin/gs.bat/space ping mySpace_container mySpace -r -i 1
 ```
 
@@ -273,7 +273,7 @@ The client displays the following:
 In some cases you may encounter the following exception:
 
 
-```console
+```bash
 CONFIG [com.gigaspaces.grid.gsc]: initialServiceLoadDelay=5000
 Exception in thread "LRMI Connection--pool-1-thread-1" java.lang.NullPointerException
 at sun.nio.ch.PollSelectorImpl.wakeup(PollSelectorImpl.java:84)
@@ -432,7 +432,7 @@ You may monitor the remote communication activity via the Administration and Mon
 
    	Example output:
 
-```console
+```bash
    	--------- GSC 6af9bdbf-0754-4410-b3b9-3f78fd939e1c running on Machine 10.10.10.108 Pid:10212 Start Time:Wed Oct 09 15:17:09 EDT 2013 ---------
    	All Thread Count:156
    	LRMI Connection Thread Count:66

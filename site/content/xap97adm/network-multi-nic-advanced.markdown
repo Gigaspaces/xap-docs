@@ -17,7 +17,7 @@ When loading an XAP space (or when using the `<XAP Root>\bin\PlatformInfo` scrip
 For example, the following information describes 3 network cards: `(eth0/192.168.80.145, eth1/212.143.27.76, ipoib0/192.168.60.145)`
 
 
-```console
+```bash
     Network Interfaces Information:
                  Host Name: [Lab15.gigaspaces.com]
                  Network Interface Name: ipoib0 / ipoib0
@@ -45,14 +45,14 @@ There are multiple ways to specify the `NIC_ADDR`:
 ### Specifying an explicit IP address. For example:
 
 
-```console
+```bash
 NIC_ADDR=192.168.80.145
 ```
 
 ### Specifying a network interface name. For example:
 
 
-```console
+```bash
 NIC_ADDR="#eth0:ip#"
 ```
 
@@ -61,7 +61,7 @@ In the above example, `eth0` is the interface name and the `ip` indicates that t
 ### Specifying the "local" network interface. For example:
 
 
-```console
+```bash
 NIC_ADDR="#local:ip#"
 ```
 
@@ -81,7 +81,7 @@ The lookup service should be configured to run against a specific Network IP Add
 The server hostname should be configured to use the `NIC_ADDR` variable. By default The `NIC_ADDR` environment variable (exposed as part of the `<GigaSpaces Installation>\bin\setenv` script) omits the system property `java.rmi.server.hostname`. **Append the property to the `RMI_OPTIONS`**:
 
 
-```console
+```bash
 RMI_OPTIONS="-Djava.rmi.server.hostname=${NIC_ADDR}
 -Djava.rmi.server.logCalls=false ..."
 ```
@@ -89,7 +89,7 @@ RMI_OPTIONS="-Djava.rmi.server.hostname=${NIC_ADDR}
 **On Windows-based machines**:
 
 
-```console
+```bash
 RMI_OPTIONS="-Djava.rmi.server.hostname=%NIC_ADDR%
 -Djava.rmi.server.logCalls=false ..."
 ```
@@ -191,7 +191,7 @@ The lookup host is overridden by merely setting the `NIC_ADDR` (steps 1 and 2)
 Otherwise, to use **`eth0/192.169.80.145`** as the unicast discovery channel, set the two system properties accordingly.
 
 
-```console
+```bash
 -Dcom.gs.jini_lus.unicast_discovery.enabled=true
 -Dcom.gs.jini_lus.locators=${NIC_ADDR}
 ```
@@ -199,7 +199,7 @@ Otherwise, to use **`eth0/192.169.80.145`** as the unicast discovery channel, se
 Or, on Windows-based machines:
 
 
-```console
+```bash
 -Dcom.gs.jini_lus.locators=%NIC_ADDR%
 ```
 
@@ -227,14 +227,14 @@ To use unicast, specify the exact machine network interface card by which the Ji
 When loading a cluster using a cluster schema XSL configuration file, the cluster members' information is built during runtime. To specify the protocol for the member-url, set the following system property accordingly:
 
 
-```console
+```bash
 -Dcom.gs.cluster.url-protocol-prefix=jini://${NIC_ADDR}
 ```
 
 Or, on a Windows-based machine:
 
 
-```console
+```bash
 -Dcom.gs.cluster.url-protocol-prefix=jini://%NIC_ADDR%/
 ```
 
@@ -260,7 +260,7 @@ To apply this configuration easily, the `NIC_ADDR` can be passed at the **script
 For example:
 
 
-```console
+```bash
 bin/start-node1 script should set NIC_ADDR with 192.168.80.146
 bin/start-node2 script should set NIC_ADDR with 192.168.80.147
 ```
@@ -268,7 +268,7 @@ bin/start-node2 script should set NIC_ADDR with 192.168.80.147
 On unix:
 
 
-```console
+```bash
 NIC_ADDR=192.168.80.146; export NIC_ADDR
 . setExampleEnv.sh
 ```
@@ -276,7 +276,7 @@ NIC_ADDR=192.168.80.146; export NIC_ADDR
 On windows:
 
 
-```console
+```bash
 @set NIC_ADDR=192.168.80.146
 @call setExampleEnv.bat
 ```
@@ -284,7 +284,7 @@ On windows:
 The example attempts to locate the cluster members, and once communication has been established with each, the cluster is announced as active.
 
 
-```console
+```bash
 Replicator: Connection established with target space
 [ source space: rep_cache_container1:rep_cache  ]
 [ target space: rep_cache_container2:rep_cache   ]
@@ -299,7 +299,7 @@ Additionally, you can set the `SpaceURL` `locators` attribute.
 setenv:
 
 
-```console
+```bash
 UNIX_ENABLED=-Dcom.gs.jini_lus.unicast_discovery.enabled=true
 URL_PREFIX=-Dcom.gs.cluster.url-protocol-prefix=jini://${NIC_ADDR}/
 ```
@@ -307,7 +307,7 @@ URL_PREFIX=-Dcom.gs.cluster.url-protocol-prefix=jini://${NIC_ADDR}/
 gsInstance:
 
 
-```console
+```bash
 ${JAVACMD} ${UNIX_ENABLED} ${URL_PREFIX} ${RMI_OPTIONS} ${JAVA_OPTIONS %}}
 
  -Dcom.gs.home=${JSHOMEDIR}
@@ -320,7 +320,7 @@ The `<GigaSpaces Root>\bin\start-node1` and the `<GigaSpaces Root>\bin\start-nod
 Remember that the `NIC_ADDR` variable is set prior to the call to `setExampleEnv`, thus overriding the `NIC_ADDR` set in the `setenv` script.
 
 
-```console
+```bash
 NIC_ADDR=192.168.80.146; export NIC_ADDR
 . setExampleEnv.sh
 ```
@@ -337,7 +337,7 @@ NIC_ADDR=192.168.80.146; export NIC_ADDR
 The `RMI_OPTIONS` environment variable specifies a system property used for logging calls:
 
 
-```console
+```bash
 java.rmi.server.logCalls=false
 ```
 
@@ -348,7 +348,7 @@ This property can be set to `true`, enabling log output to the screen. Both look
 Something similar to the following can indicate a wrong configuration:
 
 
-```console
+```bash
 Sep 12, 2005 8:00:13 PM sun.rmi.server.UnicastServerRef logCall
 FINER: RMI TCP Connection(6)-192.168.80.145: [192.168.80.145:
 sun.rmi.transport.DGCImpl[0:0:0, 2]: java.rmi.dgc.Lease
@@ -360,7 +360,7 @@ dirty(java.rmi.server.ObjID[], long, java.rmi.dgc.Lease)]
 A bind exception could be the cause of a machine trying to bind to a lookup service not on the correctly configured network interface. For example, if `node2` had its `$\{NIC_ADDR\`} configured to **`192.168.80.145`**, while its own network interface for `eth0` is **`192.168.80.147`**.
 
 
-```console
+```bash
 9/13/05 12:13:45 AM | rep_cache_container2 | main | Cannot initialize JoinManager Exception:
 java.rmi.RemoteException: Failed to init. Protocol Registry: java.rmi.RemoteException:
 Failed initialization of LRMI over NIO Protocol Adapter: Cannot assign requested address; nested exception is:

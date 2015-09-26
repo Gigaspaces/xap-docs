@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Main View
 categories: XAP110ADM
 parent: gigaspaces-management-center.html
@@ -22,13 +22,13 @@ XAP Management Center is a Graphical User Interface that allows you to view spac
 {{%tabs%}}
 {{%tab " Windows"%}}
 
-```console
+```bash
 <XAP Root>\bin\gs-ui.bat
 ```
 {{%/tab%}}
 {{%tab " Unix"%}}
 
-```console
+```bash
 <XAP Root>/bin/gs-ui.sh
 ```
 {{%/tab%}}

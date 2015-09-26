@@ -63,7 +63,7 @@ Run the following at the receiver machine:
 The sender should display the following:
 
 
-```console
+```bash
 <XAP Root>\bin\gs>admin multicastTest -sender -ba localhost  -verbose
 JAVA_HOME environment variable is set to D:\JDK\jdk1.5.0_04 in "<XAP Root>\bin\setenv.bat"
 Environment set successfully from c:\GigaSpacesXAP6.0\bin
@@ -88,7 +88,7 @@ Reply from 127.0.0.1:5558 bytes=100 time=0.876089ms
 The receiver should display the following:
 
 
-```console
+```bash
 <XAP Root>\bin\gs>admin multicastTest -receiver -ba localhost  -verbose
 JAVA_HOME environment variable is set to D:\JDK\jdk1.5.0_04 in "<XAP Root>\bin\setenv.bat"
 Environment set successfully from c:\GigaSpacesXAP6.0\bin

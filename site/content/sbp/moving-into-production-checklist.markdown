@@ -208,7 +208,7 @@ The client LRMI connection pool is maintained per server component - i.e. by eac
 You may need to change the `com.gs.transport_protocol.lrmi.max-conn-pool` value (1024) to have a smaller number. The default value might be high for application with multiple partitions.
 
 
-```console
+```bash
 Client total # of open connections = com.gs.transport_protocol.lrmi.max-conn-pool * # of partitions
 ```
 

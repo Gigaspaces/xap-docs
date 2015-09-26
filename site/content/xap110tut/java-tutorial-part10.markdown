@@ -93,7 +93,7 @@ Note that the monitoring is secured only by the 'tooling' (CLI/UI).
 You can create new roles and users with a configuration file or with the Admin UI. Here is an example how you use the Admin UI to create/update roles. Lets create a role called "training" that can access and interact with our xapTutorialSpace, but does not have monitoring authority.
 Start the Admin UI:
 
-```console
+```bash
 GS_HOME\bin\gs-ui.sh
 ```
 The default username and password for the security are admin/admin.
@@ -257,7 +257,7 @@ public void setupSpace()
 Grid Security is enabled in XAP by setting a global system property. This system property can be set when using the deployment scripts, or it can be appended in the setenv.sh/bat script in the GS_HOME/bin directory. Once the Grid Security is enabled, you can use the predefined roles and user names to protect and control the grid access.
 
 
-```console
+```bash
 -Dcom.gs.security.enabled=true
 ```
 

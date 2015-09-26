@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Memory Management
 categories: XAP110ADM
 weight: 400

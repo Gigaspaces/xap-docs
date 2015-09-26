@@ -42,14 +42,14 @@ By default, the script assumes that Apache is installed under `PROGRAM_FILES/Apa
 Linux:
 
 
-```console
+```bash
 apache-lb-agent.sh -apache /opt/apache
 ```
 
 Windows:
 
 
-```console
+```bash
 apache-lb-agent.bat -apache c:\Apache2.2
 ```
 
@@ -60,14 +60,14 @@ The specific location of the configuration directory where the load-balancer con
 Linux:
 
 
-```console
+```bash
 apache-lb-agent.sh -apache /opt/apache -conf-dir /var/apache/conf/gigaspaces
 ```
 
 Windows:
 
 
-```console
+```bash
 apache-lb-agent.bat -apache c:\Apache2.2 -conf-dir c:\Apache2.2\conf\gigaspaces
 ```
 
@@ -75,7 +75,7 @@ apache-lb-agent.bat -apache c:\Apache2.2 -conf-dir c:\Apache2.2\conf\gigaspaces
 The Apache configuration should be updated to include the load-balancer configuration directory, the relevant modules required and optionally to enable the load-balancer console. Here is an example of the configuration sections that should be added to Apache:
 
 
-```console
+```bash
 Include /opt/local/apache2/conf/gigaspaces/*.conf
 
 LoadModule proxy_module modules/mod_proxy.so

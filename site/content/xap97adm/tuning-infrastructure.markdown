@@ -28,7 +28,7 @@ Linux has a Max Processes per user, as well as the limit of file descriptors all
 To improve performance and stability, you must set the limit of processes for the super-user root to be at least **8192**, but note that 32,000:
 
 
-```console
+```bash
 ulimit -u 32000
 ```
 
@@ -45,7 +45,7 @@ Verify that you set the ulimit using the -n option e.g. ulimit -n 8192, rather t
 In /etc/system file, the descriptors **hard limit** should be set (8192), and the file descriptors **soft limit** should be increased from 1024 to 8192 as shown below:
 
 
-```console
+```bash
 set rlim_fd_max=8192
 set rlim_fd_cur=8192
 ```
@@ -92,7 +92,7 @@ Should be changed in order to secure fast fail-over in case of network failure (
 **Set**:
 
 
-```console
+```bash
 echo 1  > /proc/sys/net/ipv4/tcp_keepalive_time
 ```
 
@@ -107,7 +107,7 @@ Recommended value: 1 seconds
 **Set**:
 
 
-```console
+```bash
 echo 1 > /proc/sys/net/ipv4/tcp_keepalive_intvl
 ```
 
@@ -122,7 +122,7 @@ Recommended value: 1 seconds
 **Set**:
 
 
-```console
+```bash
 echo 5  > /proc/sys/net/ipv4/tcp_keepalive_probes
 ```
 
@@ -138,7 +138,7 @@ tcp_keepalive_interval is Solaris equivalent to the Linux TCP_KEEPALIVE_TIME set
 **Set**:
 
 
-```console
+```bash
 echo 3000 > /proc/sys/net/core/netdev_max_backlog
 ```
 
@@ -152,7 +152,7 @@ Should be changed when a high rate of incoming connection requests result in con
 **Set**:
 
 
-```console
+```bash
 echo 3000 > /proc/sys/net/core/somaxconn
 ```
 
@@ -168,7 +168,7 @@ To update the TCP parameters on widows run **regedit**.
 All the TCP/IP parameters are registry values that are located under the subkeys of
 
 
-```console
+```bash
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 ```
 

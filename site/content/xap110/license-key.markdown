@@ -54,7 +54,7 @@ XAP search for the license key using the following search path:
 1. Using the `com.gs.licensekey` system property. Example:
 
 
-```console
+```bash
 export EXT_JAVA_OPTIONS=-Dcom.gs.licensekey=Nov 16, 2020~user@XXXXXXX#PREMIUM^{{%version xap-version%}}XAPPremium%UNBOUND+UNLIMITED
 ./gs-agent.sh &
 ```

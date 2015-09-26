@@ -110,7 +110,7 @@ The **Commons-logging.properties** file is a commons logging configuration file 
 **log4j.properties** is a log4j configuration file which delegates log writes to the SNMPTrapAppender, resulting in SNMP traps.
 
 
-```console
+```bash
 log4j.rootCategory=INFO,TRAP_LOG
 log4j.appender.TRAP_LOG=org.apache.log4j.ext.SNMPTrapAppender
 log4j.appender.TRAP_LOG.ImplementationClassName=org.openspaces.example.alert.logging.snmp.SnmpTrapSender

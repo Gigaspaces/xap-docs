@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Deploy with Command Line
 categories: XAP110ADM
 parent: administration-tools.html
@@ -186,14 +186,14 @@ You may use the [Primary-Backup Zone Controller](/sbp/primary-backup-zone-contro
 
 The following deploys a processing unit jar file named `data-processor.jar` using the `sync_replicated` cluster schema with 2 instances (`total_members`).
 
-```console
+```bash
 gs> deploy -cluster schema=sync_replicated total_members=2 data-processor.jar
 ```
 
 The following deploys a processing unit archive called `data-processor.jar` using deployment properties file called `pu.properties`.
 
 
-```console
+```bash
 gs> deploy -properties file://config/pu.properties data-processor.jar
 
 ```
@@ -201,7 +201,7 @@ gs> deploy -properties file://config/pu.properties data-processor.jar
 The following deploys a processing unit archive called `data-processor.jar` direct injecting the properties.
 
 
-```console
+```bash
 gs> deploy -properties embed://DB_username=postgres;DB_password=pass mirror
 ```
 
@@ -219,14 +219,14 @@ Using the following pu configuration:
 
 The following deploys a processing unit archive called `data-processor.jar` using an SLA element read from an external `sla.xml` file.
 
-```console
+```bash
 gs> deploy -sla file://config/sla.xml data-processor.jar
 ```
 
 The following example deploys a `partitioned-sync2backup` space cluster with the name `mySpace` for both the processing unit and the Space it contains.
 
 
-```console
+```bash
 deploy -cluster schema=partitioned-sync2backup total_members=2,1 -override-name mySpace -properties embed://dataGridName=mySpace myPUFolder
 ```
 

@@ -25,7 +25,7 @@ The current supported platforms and compilers are:
 1. Unzip the file into your `<XAP Root>` directory (download GigaSpaces [here](http://www.gigaspaces.com/LatestProductVersion)), using your favorite unzip tool (.e.g WinZip). For example - On linux you should run the following to install the C++ libraries:
 
 
-```console
+```bash
 tar -xzvf gigaspaces-cpp-{{%version "xap-version" %}}-ga-linux-amd64-gcc-4.1.2.tar.gz
 ```
 
@@ -58,7 +58,7 @@ The following environment variables need to be defined:
 For example:
 
 
-```console
+```bash
 set JSHOMEDIR=C:\{{%version "gshome-directory" %}}
 set PLATFORM=win32
 set COMPILER=VS9.0
@@ -66,14 +66,14 @@ set COMPILER=VS9.0
 
 In addition, for windows 32 bit the **`PATH`** variable should be updated to include:
 
-```console
+```bash
 %JSHOMEDIR%\cpp\lib\%PLATFORM%\%COMPILER%;%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\client
 ```
 
 For windows 64 bit the **`PATH`** variable should be updated to include:
 
 
-```console
+```bash
 %JSHOMEDIR%\cpp\lib\%PLATFORM%\%COMPILER%;%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\server
 ```
 

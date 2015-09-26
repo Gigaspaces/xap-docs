@@ -233,7 +233,7 @@ The service is called using the following:
 
 The service output:
 
-```console
+```bash
 ...
 From Service - partition 1 - Cluster info name[null] schema[partitioned] numberOfInstances[2] numberOfBackups[null] instanceId[1] backupId[null]
 From Service - partition 1 writing object using embedded Non-Clustered proxy
@@ -253,7 +253,7 @@ partition 2 gigaSpaceRemote - total visible objects:2
 
 The client output:
 
-```console
+```bash
 Service call - routing 0 partition 1 gigaSpaceRemote - total visible objects:2
 Service call - routing 0 partition 1 gigaSpaceEmbed - total visible objects:1
 Service call - routing 1 partition 2 gigaSpaceRemote - total visible objects:2
@@ -428,7 +428,7 @@ space.write(d);
 
 Event Container output:
 
-```console
+```bash
 ...
 From Notify Container - partition 1 - Cluster info name[null] schema[partitioned] numberOfInstances[2] numberOfBackups[null] instanceId[1] backupId[null]
 From Notify Container - partition 1 Getting Remote Clustered proxy from the embedded Non-Clustered

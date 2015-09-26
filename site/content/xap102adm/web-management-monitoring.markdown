@@ -59,7 +59,7 @@ Refer to [Starting the Web Management Console](./web-management-console-starting
 {{%tab "  Linux "%}}
 
 
-```console
+```bash
 
 #Specify port via a command line argument
 ./gs-webui.sh -port 80
@@ -73,7 +73,7 @@ export WEBUI_PORT=80
 {{%tab "  Windows "%}}
 
 
-```console
+```bash
 #Specify port via a command line argument
 gs-webui.bat -port 80
 

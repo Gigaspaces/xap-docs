@@ -31,14 +31,14 @@ It should contain a line with a regular expression matching the remote sites gat
 The address matcher should look like this:
 
 
-```console
+```bash
 .*Site-A.*
 ```
 
 And on Site-A the address matcher file should look like this:
 
 
-```console
+```bash
 .*Site-B.*
 ```
 
@@ -49,7 +49,7 @@ This file can contain more than one line and can be commented using the # char a
 If you are starting your own GSC that will host the gateway processing unit, you should start it with the following system properties:
 
 
-```console
+```bash
 -Dcom.gs.lrmi.filter.factory=<filter name>
 -Dcom.gs.lrmi.filter.address-matchers-file=config/<file name>
 ```

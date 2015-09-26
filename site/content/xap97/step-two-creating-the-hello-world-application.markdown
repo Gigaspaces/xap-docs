@@ -420,7 +420,7 @@ Use the _Display Selected Console_ button ![display_selected_console_button_with
 
 The feeder starts, writes 100 message objects to the space, reads and prints one of them at random, and finally prints the number of processed messages in the space:
 
-```console
+```bash
     Starting the Feeder (Will wait for the space to initialize first...)
     FEEDER WROTE 1000 objects
     Here is one of them printed out: id[47] info[Hello World !!]
@@ -433,7 +433,7 @@ The feeder starts, writes 100 message objects to the space, reads and prints one
 The processor prints the _id_ and _info_ attributes for each messages it takes for processing:
 
 
-```console
+```bash
     Processor PROCESSING : id[445] info[Hello ]
     Processor PROCESSING : id[904] info[Hello ]
     Processor PROCESSING : id[896] info[Hello ]

@@ -36,7 +36,7 @@ The `org.openspaces.core.SpaceMemoryShortageException` or `com.j_spaces.core.Mem
 Here is an example of the `org.openspaces.core.SpaceMemoryShortageException` message:
 
 
-```console
+```bash
 org.openspaces.core.SpaceMemoryShortageException at: host: MachineHostName, container: mySpace_container1_1, space mySpace,
 total memory: 1820 mb, used memory: 1283 mb
 ```
@@ -44,7 +44,7 @@ total memory: 1820 mb, used memory: 1283 mb
 Getting `SpaceMemoryShortageException` when running in `ALL-IN_CACHE` policy mode points that the heap size allocated for the JVM is too low, or the garbage collection settings are not tuned correctly. You should consider increasing the JVM heap size or move into more advanced garbage collector such as CMS or iCMS. Here is an example for CMS garbage collector settings you may use:
 
 
-```console
+```bash
 -server -Xms8g -Xmx8g -Xmn300m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC
 -XX:CMSInitiatingOccupancyFraction=60 -XX:+UseCMSInitiatingOccupancyOnly
 -XX:MaxPermSize=256m -XX:+ExplicitGCInvokesConcurrent -XX:+UseCompressedOops

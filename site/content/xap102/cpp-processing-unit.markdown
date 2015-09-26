@@ -303,7 +303,7 @@ Here is how your processing unit deployed folder should look like:
 Run `<XAP Root>\bin\gsm` and  `<XAP Root>\bin\gsc` and deploy your processing unit using the following command:
 
 
-```console
+```bash
 <XAP Root>\bin\gs pudeploy cppPUexample
 ```
 

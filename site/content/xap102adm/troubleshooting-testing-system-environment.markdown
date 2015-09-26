@@ -20,7 +20,7 @@ To setup a production environment see the [Moving into Production Checklist](/sb
 1. Run a single GigaSpaces space instance by moving to the `<XAP Root>\bin` directory and running the `gsInstance.bat/sh` command. You should see such an output:
 
 
-```console
+```bash
 D:\gigaspaces-xap-premium-8.0.1-ga\bin>gsInstance.bat
 Starting a Space Instance
 Setting space url to "/./mySpace?schema=default&properties=gs&groups="gigaspaces-8.0.1-XAPPremium-ga""
@@ -95,7 +95,7 @@ The following using multicast lookup discovery protocol. The first `*` of the UR
 The following result output should appear on the console:
 
 
-```console
+```bash
 D:\gigaspaces-xap-premium-8.0.1-ga\bin>gs space ping -url jini://*/*/mySpace
 total 1
 ping from <mySpace> space
@@ -116,7 +116,7 @@ Subsequent space ping calls will have much faster response time. The fist space 
 If the space ping call fails with the following:
 
 
-```console
+```bash
 total 0
 Service is not found using the URL: jini://*/*/mySpace?timeout=5000
 ```
@@ -128,7 +128,7 @@ You have the following options:
 The following result should appear on the console:
 
 
-```console
+```bash
 D:\gigaspaces-xap-premium-8.0.1-ga\bin>gs space ping -url jini://localhost/*/mySpace
 total 1
 ping from <mySpace> space

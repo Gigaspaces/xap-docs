@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Unicast Discovery
 categories: XAP110ADM
 parent: network.html
@@ -25,7 +25,7 @@ Services will use the locators property to locate the Jini Lookup Service to loo
 For example, considering the GSM(+LUS) is running on linux-lab1:4174 and linux-lab2:4174 machines:
 
 
-```console
+```bash
 -Dcom.gs.jini_lus.locators=linux-lab1:4174,linux-lab2:4174
 ```
 
@@ -90,14 +90,14 @@ To tune the unicast retry intervals, the `com.gigaspaces.unicast.interval` syste
 Example:
 
 
-```console
+```bash
 -Dcom.gigaspaces.unicast.interval=5000
 ```
 
 Will cause the LookupLocatorDiscovery utility to wait 5 seconds between retries
 
 
-```console
+```bash
 -Dcom.gigaspaces.unicast.interval=5000,10000
 ```
 

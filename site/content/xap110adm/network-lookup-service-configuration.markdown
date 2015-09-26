@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Lookup Service Configuration
 categories: XAP110ADM
 parent: network.html
@@ -74,7 +74,7 @@ Using the [list LUS ](./command-line-interface.html) CLI option, run from `<XAP 
 The following result examples appear on the console:
 
 
-```console
+```bash
 -----------------------------------------------------------------------
 -- Discovered Lookup Service at host [ 192.168.10.233 ].
 -- Lookup Service registered to the following jini groups:

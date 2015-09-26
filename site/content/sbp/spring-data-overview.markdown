@@ -20,7 +20,7 @@ To start the Data Grid use the following command:
 {{%tabs%}}
 {{%tab " Windows"%}}
 
-```console
+```bash
 gs-agent.bat
 gs.bat deploy-space -cluster total_members=1,1 space
 ```

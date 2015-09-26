@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Proxy Connectivity
 categories: XAP110ADM
 parent:  tuning-gigaspaces-performance-overview.html

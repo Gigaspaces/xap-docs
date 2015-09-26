@@ -261,7 +261,7 @@ Now that we've gone over all the details, let's see everything in action. In thi
 {{%accordion%}}
 {{%accord title="Click to show expected output"%}}
 
-```console
+```bash
 Starting apache-lb-agent with line:
 "c:\Java\jdk1.6.0_11\bin\java"  -server -XX:+AggressiveOpts -showversion -Xmx512m -Xbootclasspath/p:.;
 "c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\xml\serializer.jar";

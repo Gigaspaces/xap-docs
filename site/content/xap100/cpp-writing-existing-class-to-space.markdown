@@ -115,7 +115,7 @@ Step 6. Create a custom build for `PocoFromExistingClass.gs.xml`:
 Step 7. Type the following lines in the **Command Line** text box:
 
 
-```console
+```bash
 "$(JSHOMEDIR)/cpp/bin/$(PLATFORM)\$(COMPILER)/gsxml2cpp" "$(InputPath)" NA "$(InputDir)\UserMessageSerializer.cpp" DummyHeaderFile
   nmake -f makefileSerializer.mk
 ```

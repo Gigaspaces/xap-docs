@@ -32,14 +32,14 @@ To enable Space Persistency logging, edit the `<GigaSpaces Root>\config\gs_loggi
 - `CONFIG` messages are intended to provide a variety of static configuration information, and to assist in debugging problems that may be associated with particular configurations.
 
 
-```console
+```bash
 com.gigaspaces.persistent.level = CONFIG
 ```
 
 - `FINER` messages log calls for entering, returning, or throwing an exception to and from the cache interface implementations.
 
 
-```console
+```bash
 com.gigaspaces.persistent.level = FINER
 ```
 

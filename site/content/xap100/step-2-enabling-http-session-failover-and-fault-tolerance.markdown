@@ -127,7 +127,7 @@ Next, you should open a shell / command prompt window in the example directory, 
 You should see an output similar to the following:
 
 
-```console
+```bash
 C:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\examples\web\session>build dist
 Buildfile: build.xml
 
@@ -234,7 +234,7 @@ Step 8. Start the load balancer agent by calling the script `<gs root>/tools/apa
 {{%accordion%}}
 {{%accord title=" **Click to show expected output...**"%}}
 
-```console
+```bash
 Starting apache-lb-agent with line:
 "c:\Java\jdk1.6.0_11\bin\java"  -server -XX:+AggressiveOpts -showversion -Xmx512m -Xbootclasspath/p:.;
 "c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\..\lib\platform\xml\serializer.jar";

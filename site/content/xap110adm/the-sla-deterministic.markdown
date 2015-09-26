@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Deterministic Deployment
 categories: XAP110ADM
 parent: the-sla-overview.html

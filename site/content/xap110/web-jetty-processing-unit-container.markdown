@@ -402,7 +402,7 @@ The second step (as per the link to jetty documentation) is to set the workerNam
 Then, the Apache httpd.conf should be modified to enable load balancing, here is an example:
 
 
-```console
+```bash
 ProxyPass /balancer !
 ProxyPass /petclinic balancer://petclinic_cluster/ stickysession=JSESSIONID nofailover=On
 
@@ -531,7 +531,7 @@ Jetty configuration should include SecurityHandler configuration (`JAASLoginServ
 Login module definition is a configuration file that maps the module name to a Java class implementation and will be something like below,
 
 
-```console
+```bash
 AASLogin {
           com.gigaspaces.web.jaas.MySecurityModule required
           debug="true" file="/realm.properties";

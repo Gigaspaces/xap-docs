@@ -20,7 +20,7 @@ In order to locate a space you need to specify its URL. The SpaceURL is used as 
 The general format of the space URL is:
 
 
-```console
+```bash
 <protocol>://<lookup service hostname>:<port>/<space container name>/<space name>?<properties>
 ```
 
@@ -43,19 +43,19 @@ Make sure your network and machines running GigaSpaces are configured to have mu
 
 **Accessing Remote Space Using Jini Lookup Service - Unicast Discovery**{{%wbr%}}
 
-```console
+```bash
 jini://LookupServiceHostname/*/mySpace
 ```
 
 
 **Accessing Remote Space Using the Jini Lookup Service - Multicast Discovery**{{%wbr%}}
 
-```console
+```bash
 jini://*/*/mySpace
 ```
 
 
-```console
+```bash
 /./mySpace (which translates to java://localhost:10098/containerName/mySpace?schema=default)
 /./mySpace?schema=cache (which translates to java://localhost:10098/containerName/mySpace?schema=cache)
 java://LookupServiceHostName:port/myContainerName/spaceName
@@ -68,7 +68,7 @@ In environments that do not support multicast, you can use the `locators` space 
 The following URL formats are supported:{{%wbr%}}
 
 
-```console
+```bash
 jini://*/*/space_name?locators=h1:port,h2:port,h3:port
 jini://LookupServiceHostName1:port1,....LookupServiceHostName n:port n/*/space_name
 jini://LookupServiceHostName1:port1,....LookupServiceHostName n:port n/*/space_name?locators=LookupServiceHostName1:port,LookupServiceHostName2:port,LookupServiceHostName3:port
@@ -89,7 +89,7 @@ You can use "." as the container name in the space URL. A value of "." as the co
 
 When a URL is provided without the protocol (java) and host name (localhost), the following URL is created /./mySpace as:
 
-```console
+```bash
 java://localhost:10098/mySpace_container/mySpace?schema=default
 ```
 
@@ -123,7 +123,7 @@ The following are optional property string values:
 Example for space URL using options:
 
 
-```console
+```bash
 jini://*/*/mySpace?useLocalCache&versioned=false
 /./mySpace?cluster_schema=partitioned&total_members=4&id=1
 ```

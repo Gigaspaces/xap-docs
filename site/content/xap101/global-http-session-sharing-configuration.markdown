@@ -84,7 +84,7 @@ The `shiro.ini` file should to be placed within the `WEB-INF` folder. See below 
 {{%accord title="Single Application Session Sharing Configuration Example..."%}}
 
 
-```console
+```bash
 
 	[main]
 	# space proxy wraper
@@ -142,7 +142,7 @@ The `shiro.ini` file should to be placed within the `WEB-INF` folder. See below 
 {{%accord title="Multiple Applications Session Sharing Configuration Example..."%}}
 {{% note %}}Note that this example uses the basic authentication configuration but, Shiro has various authenticator types see [realm modules](http://shiro.apache.org/static/1.2.1/apidocs/org/apache/shiro/authc/class-use/AuthenticationException.html) {{% /note %}}
 
-```console
+```bash
 
 	[main]
 	authc.loginUrl = /login.jsp
@@ -268,7 +268,7 @@ The [WAN Gateway]({{%currentjavaurl%}}/multi-site-replication-over-the-wan.html)
 When using a [Secure XAP cluster]({{%currentsecurl%}}/securing-your-data.html) you can pass security credentials using following parameters in the `shiro.ini` file:
 
 
-```console
+```bash
 connector.username = user
 connector.password = pass
 ```

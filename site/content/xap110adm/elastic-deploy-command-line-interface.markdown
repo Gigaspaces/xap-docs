@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Elastic Deployment with Command Line
 categories: XAP110ADM
 parent: administration-tools.html

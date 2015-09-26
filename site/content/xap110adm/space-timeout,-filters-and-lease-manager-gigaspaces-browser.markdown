@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Timeout, Filters and Lease Manager
 categories: XAP110ADM
 parent: working-with-spaces-gigaspaces-browser.html

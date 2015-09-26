@@ -17,7 +17,7 @@ The application sources and build scripts can be downloaded {{%git "https://gith
 
 
 
-```console
+```bash
 ~/gs/xap/{{%version "gshome-directory" %}}/tools/maven>installmavenrep.sh
 ""
 ""
@@ -38,7 +38,7 @@ For example, if you are using GigaSpaces XAP {{%version "xap-version" %}} you sh
 - Run the following Maven command:
 
 
-```console
+```bash
 mvn package
 ```
 

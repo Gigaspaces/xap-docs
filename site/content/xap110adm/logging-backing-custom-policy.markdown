@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Backing-up Files With a Custom Policy
 categories: XAP110ADM
 parent: logging-overview.html
@@ -23,7 +23,7 @@ By default, a file is kept for a 30 day period. After 30 days, the file is delet
 These properties can be configured either by modifying the logging configuration file:
 
 
-```console
+```bash
 com.gigaspaces.logger.RollingFileHandler.backup-policy = com.gigaspaces.logger.DeleteBackupPolicy
 com.gigaspaces.logger.DeleteBackupPolicy.period = 30
 com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
@@ -32,7 +32,7 @@ com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
 or by use of a system property override:
 
 
-```console
+```bash
 -Dcom.gigaspaces.logger.DeleteBackupPolicy.[property-name]=[property-value]
 
 For example:
@@ -44,7 +44,7 @@ For example:
 The `com.gigaspaces.logger.`**`BackupPolicy`** is an interface for a pluggable backup policy. For example, you may wish to write an implementation to zip files if reached a certain threshold. The interface has a single method, which is used to **track** newly created log files. A file is either created upon rollover or at initialization time. Implementation can keep track of files and decide whether to trigger the backup policy.
 
 
-```console
+```bash
     public void track(File file);
 ```
 

@@ -25,7 +25,7 @@ Consider for example our "Box-Office Employee"s: Edward, Arthur, and Thomas. The
 
 
 
-```console
+```bash
 ...
 dn: cn=Box-Office Employee,ou=groups,dc=example,dc=com
 objectclass: top

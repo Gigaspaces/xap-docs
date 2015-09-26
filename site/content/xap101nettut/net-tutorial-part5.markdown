@@ -166,7 +166,7 @@ First let's launch `gs-agent.exe` from the product's `bin` folder - this is the 
 
 Next we deploy the PU onto the IMDG:
 
-```console
+```bash
 GS_HOME\bin\gs-cli deploy PaymentProcessor
 ```
 
@@ -269,7 +269,7 @@ Lets assume that we have two machines available for our deployment. We want to d
 
 The deployment script for this scenario looks like this:
 
-```console
+```bash
 With a stateful PU, embedded space
 gs-cli deploy -cluster schema=partitioned total_members=4,0 -max-instances-per-machine 2 eventProcessor
 With a stateless PU

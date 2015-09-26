@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Policy Settings
 categories: XAP110ADM
 parent: cluster-view-gigaspaces-browser.html
