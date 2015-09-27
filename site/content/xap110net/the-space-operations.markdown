@@ -401,7 +401,7 @@ For further details on each of the available modifiers see: [ReadModifiers](http
 
 
 {{%accordion%}}
-{{%accord title=")Method summary"%}}
+{{%accord title="Method summary"%}}
 
 Read by template:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
 
@@ -643,7 +643,7 @@ For further details on each of the available modifiers see: [TakeModifiers](http
 
 
 {{%accordion%}}
-{{%accord title=")Method summary"%}}
+{{%accord title="Method summary"%}}
 
 Take by template:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_ISpaceProxy_Take.htm)
 
@@ -753,7 +753,7 @@ Examples:
 
 
 {{%accordion%}}
-{{%accord title=")Method summary"%}}
+{{%accord title="Method summary"%}}
 
 Count objects in space.[.NetAPI]http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Count.htm)
 
@@ -813,7 +813,7 @@ Examples:
 
 
 {{%accordion%}}
-{{%accord title=")Method summary"%}}
+{{%accord title="Method summary"%}}
 
 Clears objects from space.[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_ISpaceProxy.htm)
 
