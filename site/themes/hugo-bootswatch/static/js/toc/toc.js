@@ -172,7 +172,7 @@
 
                 // Add anchor icon to heading
                 $('<a/>').addClass('toc-anchor')
-                         .html('<i class="fa fa-link"></i>')
+                         .html('')
                          .attr('href', '#' + id)
                          .hide()
                          .appendTo(headings[i]);
