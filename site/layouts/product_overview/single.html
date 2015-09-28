@@ -3,8 +3,9 @@
 
 
 <div class="container-fluid" style="padding-top:10px;min-height: 650px;">
-	<div class="col-lg-2" style="margin-left:10px; margin-top:100px;">
-		<nav class="sidebar-nav">
+
+	<div class="col-lg-2">
+		<!--nav class="sidebar-nav">
 			{{ $currentNode := . }}
 			{{ range .Site.Menus.product }}
 
@@ -13,7 +14,7 @@
 			</li>
 
 			{{ end }}
-		</nav>
+		</nav-->
 	</div>
 
 
@@ -23,7 +24,7 @@
 		{{ .Content }}
         <hr>
 
-        <ul class="pager">
+        <!--ul class="pager">
             {{ if .PrevInSection }}
             <li class="next"><a href="{{.PrevInSection.Permalink}}">Next</a></li>
             {{ end }}
@@ -31,7 +32,7 @@
             <li class="previous"><a href="{{.NextInSection.Permalink}}">Previous</a></li>
 
             {{ end }}
-        </ul>
+        </ul-->
 	</div>
 
 
