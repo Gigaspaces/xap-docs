@@ -23,19 +23,21 @@
 
 <script src="/js/jquery.scrollToTop.min.js"></script>
 
-<script src="/js/tocify/jquery-ui-1.9.1.custom.min.js"></script>
-<script src="/js/tocify/jquery.tocify.min.js"></script>
+<!--script src="/js/tocify/jquery-ui-1.9.1.custom.min.js"></script>
+<script-- src="/js/tocify/jquery.tocify.min.js"></script-->
+
+<script src="/js/toc/toc.js"></script>
 
 
 <script type="text/javascript" src="/js/jquery.easyui.min.js"></script>
 
 
-<script>
+<!--script>
     $('body').scrollspy({
     target: '.bs-docs-sidebar',
     offset: 40
 });
-</script>
+</script-->
 
 <script>
 $(document).ready(function(){
@@ -59,8 +61,8 @@ $(document).ready(function(){
 
 </script>
 
-<script type="text/javascript" src="/js/navgoco/jquery.navgoco.min.js"></script>
-<script type="text/javascript" src="/js/navgoco/jquery.cookie.js"></script>
+<!--script type="text/javascript" src="/js/navgoco/jquery.navgoco.min.js"></script>
+<script type="text/javascript" src="/js/navgoco/jquery.cookie.js"></script-->
 <!--script>
     $(document).ready(function() {
         $('.xapnav').navgoco({
@@ -83,7 +85,7 @@ $(document).ready(function(){
 
 
 
-<script type="text/javascript">
+<!--script type="text/javascript">
     $(document).ready(function() {
 
     var toc = $("#toc").tocify({
@@ -94,6 +96,43 @@ $(document).ready(function(){
     });
 
     });
+</script-->
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // Set the width for table of content
+    $('#toc').width($('#toc').parents().width());
+
+    // Generate table of content
+    $('#toc').toc({
+        elementClass: 'toc',
+        ulClass: 'nav',
+        heading: 'Table of Contents'
+    });
+
+    // Scroll to the table of content section when user scroll the mouse
+    $('body').scrollspy({
+        target: '#toc',
+        offset: $('.navbar').outerHeight(true) + 40
+    });
+
+    setTimeout(function() {
+        var $sideBar = $('#toc');
+        $sideBar.affix({
+            offset: {
+                top: function() {
+                    var offsetTop      = $sideBar.offset().top,
+                        sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10),
+                        navOuterHeight = $('.navbar').height();
+                    return (this.top = offsetTop - navOuterHeight - sideBarMargin);
+                },
+                bottom: function() {
+                    return (this.bottom = $('footer').outerHeight(true));
+                }
+            }
+        });
+    }, 100);
+});
 </script>
 
 <script src="/js/ekko-lightbox.js"></script>
