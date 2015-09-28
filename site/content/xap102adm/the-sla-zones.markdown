@@ -204,7 +204,7 @@ The following example shows the requires isolation configuration:
 
 {{%tab "  AdminApi "%}}
 
-```java linenos
+```java
 gsm.deploy(new SpaceDeployment("mySpace").numberOfInstances(2).numberOfBackups(0).requiresIsolation(true));
 gsm.deploy((new ProcessingUnitDeployment("myPU").numberOfInstances(2).numberOfBackups(0).requiresIsolation(true)));
 ```

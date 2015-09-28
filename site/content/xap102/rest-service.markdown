@@ -140,7 +140,7 @@ In order to do so, you will need to do the following:
 
 For example:
 
-```bash linenos
+```bash
 #Specify the space parameters using the following properties:
 spaceName=mySpace
 lookupGroups=myGroups

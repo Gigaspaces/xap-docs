@@ -47,7 +47,7 @@ Default value of `-XX:MaxDirectMemorySize` is depends on your JVM version, Oracl
 Configuring an IMDG (Space) with BlobStore should be done via the `MapDBBlobStoreDataPolicyFactoryBean`, or the `MapDBBlobStoreConfigurer`. For example:
 
 
-```java linenos
+```java
 GSC_JAVA_OPTIONS="-server -Xms20g -Xmx20g -XX:MaxDirectMemorySize=100g -Xmn6g -XX:+UseG1GC"; export GSC_JAVA_OPTIONS
 ```
 
