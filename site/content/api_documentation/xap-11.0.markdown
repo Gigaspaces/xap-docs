@@ -63,7 +63,7 @@ parent: none
 
 # REST API
 {{%panel%}}
-[REST API](/xap110/rest-api.html)
+[REST API](/xap110/rest-service-api.html)
 {{%/panel%}}
 
 

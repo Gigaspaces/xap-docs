@@ -225,7 +225,7 @@ Click a thumbnail to watch the relevant video
 
 
 
-### Administration and Management
+# Administration and Management
 
 {{%section%}}
 {{%column width="20%" %}}
@@ -259,7 +259,7 @@ Click a thumbnail to watch the relevant video
 
 {{%anchor 11%}}
 
-### Interoperability
+# Interoperability
 
 {{%section%}}
 {{%column width="20%" %}}
@@ -273,7 +273,7 @@ Click a thumbnail to watch the relevant video
 
 
 
-### Other Data Access APIs
+# Other Data Access APIs
 
 {{%section%}}
 {{%column width="20%" %}}
