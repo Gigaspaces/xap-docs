@@ -1,11 +1,9 @@
-+++
+---
 
-Description = ""
-title = "Table"
 
-menu = "howto"
-weight= "1200"
-+++
+title: Table
+weight: 1200
+---
 
  
 

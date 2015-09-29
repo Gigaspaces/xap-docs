@@ -1,10 +1,8 @@
-+++
+---
 
-Description = ""
-title = "Section"
-menu = "howto"
-weight= "1000"
-+++
+title: Section
+weight: 1000
+---
 
 
  {{%section%}}

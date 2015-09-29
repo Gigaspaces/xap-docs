@@ -1,11 +1,9 @@
-+++
+---
 
-Description = ""
-title = "Media"
-parent="cheetscheet.html"
-menu = "howto"
-weight= "700"
-+++
+title: Media
+parent: cheetscheet.html
+weight: 700
+---
 
 
 

@@ -1,10 +1,10 @@
-+++
+---
 
-Description = ""
-title = "Accordion"
-menu = "howto"
-weight= "100"
-+++
+Description:
+title: Accordion
+menu: howto
+weight: 100
+---
 
 # Accordion
 
