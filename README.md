@@ -1,7 +1,6 @@
 # xap-docs
 
-This repo is intended to host XAP documentation, and is currently under construction.
-Feel free to experiment with it, but do not push any changes as this is not ready yet.
+This repo hosts XAP documentation, based on markdown and Hugo.
 
 # Installation
 
@@ -10,15 +9,13 @@ Feel free to experiment with it, but do not push any changes as this is not read
 
 # Running
 
-- Change directory to the `site` directory
-- Start the Hugo server: `hugo server --watch`
+- CD into the `site` directory and start the Hugo server: `hugo server --watch`
+   - Windows users can simply run `run.bat`
 - Browse to `localhost:1313`
 
 # Known Issues
 
+- The build process is not hooked yet, so content does not get pushed to `docs.gigaspaces.com` (work in progress)
 - Table of contents on left side is missing (work in progress)
-
 - Include Shortcode does not work (Not supported)
-
 - Images do not resize properly
-
