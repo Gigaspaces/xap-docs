@@ -2,7 +2,7 @@
 
 Description:
 title: Highlight
-categories: howto
+type: howto
 weight: 500
 ---
  

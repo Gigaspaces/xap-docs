@@ -1,7 +1,7 @@
 
 ---
 title: Tabs test
-menu: howto
+type: howto
 weight: 110
 ---
 

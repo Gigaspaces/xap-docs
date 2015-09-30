@@ -1,5 +1,5 @@
 ---
-
+type: howto
 Description:
 title: Anchor
 menu: howto

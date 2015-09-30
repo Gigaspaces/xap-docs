@@ -1,5 +1,6 @@
 ---
 
+type: howto
 title: Section
 weight: 1000
 ---

@@ -2,7 +2,7 @@
 
 Description:
 title: Image with wrapped text
-menu: howto
+type: howto
 weight: 600
 ---
 
