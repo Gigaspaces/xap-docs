@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Document API
 categories: XAP110NET
 weight: 100

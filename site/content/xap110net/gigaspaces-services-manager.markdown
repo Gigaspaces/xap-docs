@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Services Manager
 categories: XAP110NET
 parent: installation-overview.html

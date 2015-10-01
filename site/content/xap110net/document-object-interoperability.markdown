@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Interoperability
 categories: XAP110NET
 weight: 300

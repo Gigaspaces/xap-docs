@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Scaling Agent Example
 categories: XAP110NET
 parent:  admin-modules.html

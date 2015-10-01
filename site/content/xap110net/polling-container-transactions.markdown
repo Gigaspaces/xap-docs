@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Transaction support
 categories: XAP110NET
 parent: polling-container-overview.html

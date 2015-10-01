@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  FIFO Ordering
 categories: XAP110NET
 parent: event-processing.html

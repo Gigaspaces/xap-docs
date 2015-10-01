@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Notifications
 categories: XAP110NET
 parent: the-gigaspace-interface-overview.html

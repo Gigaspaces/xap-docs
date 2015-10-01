@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Application Debugging
 categories: XAP110NET
 parent: installation-overview.html

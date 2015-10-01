@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Asynchronous Persistency - Write Behind
 categories: XAP110NET
 parent: space-persistency-overview.html

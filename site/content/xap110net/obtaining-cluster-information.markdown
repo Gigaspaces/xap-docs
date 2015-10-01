@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Cluster Information
 categories: XAP110NET
 parent: the-processing-unit-overview.html

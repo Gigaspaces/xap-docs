@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Prepared Template
 categories: XAP110NET
 parent: querying-the-space.html

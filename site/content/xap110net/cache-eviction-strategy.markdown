@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Cache Eviction Strategy
 categories: XAP110NET
 parent: local-cache.html

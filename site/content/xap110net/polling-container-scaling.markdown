@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Concurrent Consumers
 categories: XAP110NET
 parent: polling-container-overview.html

@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Paging Support
 categories: XAP110NET
 parent:

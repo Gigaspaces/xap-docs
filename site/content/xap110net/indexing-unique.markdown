@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Unique Index
 categories: XAP110NET
 parent: indexing-overview.html

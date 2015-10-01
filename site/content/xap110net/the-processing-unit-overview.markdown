@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  The Processing Unit
 categories: XAP110NET
 parent: none

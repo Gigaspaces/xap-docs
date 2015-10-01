@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  JVM Configuration
 categories: XAP110NET
 parent: administrators-guide.html

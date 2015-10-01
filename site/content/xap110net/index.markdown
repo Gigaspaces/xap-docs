@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  .Net Developers Guide
 categories: XAP110NET
 ---

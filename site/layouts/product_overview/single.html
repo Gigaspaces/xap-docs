@@ -5,16 +5,9 @@
 <div class="container-fluid" style="padding-top:10px;min-height: 650px;">
 
 	<div class="col-lg-2">
-		<!--nav class="sidebar-nav">
-			{{ $currentNode := . }}
-			{{ range .Site.Menus.product }}
-
-			<li>
-				<a class="sidebar-nav-item{{if or ($currentNode.IsMenuCurrent "product" .) ($currentNode.HasMenuCurrent "product" .) }} active{{end}}" href="{{.URL}}">{{ .Name }}</a>
-			</li>
-
-			{{ end }}
-		</nav-->
+		<ul class="treeview" id="tree" style="margin-top:80px;border-color:black">
+			{{ partial "sidenav-product_overview.html" .}}
+		</ul>
 	</div>
 
 

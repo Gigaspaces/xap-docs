@@ -5,17 +5,18 @@
 <div class="container-fluid" style="padding-top:10px;min-height: 650px;">
 
     <div class="col-md-2">
-        <ul class="treeview" id="tree" style="width:15%;margin-top:80px;height:600px;overflow: auto;position:fixed" >
-            {{ partial "sidenav-xap110.html" .}}
+        <ul class="treeview" id="tree" style="margin-top:80px;border-color:black">
+            {{ partial "sidenav-xap110net.html" .}}
         </ul>
     </div>
+
+    {{ partial "nav.html" .}}
 
     <div class="col-md-8">
         <h1>{{ .Title }}</h1>
         <hr>
         {{ .Content }}
         <hr>
-
 
     </div>
 

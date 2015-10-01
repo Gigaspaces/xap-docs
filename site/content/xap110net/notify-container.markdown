@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Overview
 categories: XAP110NET
 parent: notify-container-overview.html

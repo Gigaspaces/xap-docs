@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Admin Modules
 categories: XAP110NET
 parent: none

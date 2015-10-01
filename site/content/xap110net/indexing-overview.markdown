@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Indexing
 categories: XAP110NET
 parent: none

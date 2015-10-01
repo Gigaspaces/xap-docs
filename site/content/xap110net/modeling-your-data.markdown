@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Modeling your Data
 categories: XAP110NET
 parent: none

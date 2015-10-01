@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Space Object ID
 categories: XAP110NET
 parent: modeling-your-data.html

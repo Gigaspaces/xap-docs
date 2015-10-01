@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110net
 title:  Properties Metadata
 categories: XAP110NET
 parent: pono-xml-metadata-overview.html
