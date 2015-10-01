@@ -1,5 +1,5 @@
 ---
-
+type: howto
 title:  Howto Hugo
 ---
 

@@ -1,6 +1,6 @@
 ---
 
-
+type: howto
 title: Table of Contents
 
 weight: 1300

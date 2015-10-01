@@ -1,6 +1,6 @@
 ---
 
-
+type: howto
 title: Table
 weight: 1200
 ---

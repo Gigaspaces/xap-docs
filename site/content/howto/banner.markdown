@@ -1,5 +1,5 @@
 ---
-
+type: howto
 Description:
 title: Banner with Image
 menu: howto

@@ -6,7 +6,7 @@ title: Numbers
 
 weight: 800
 
-menu: howto
+type: howto
 ---
  
 
