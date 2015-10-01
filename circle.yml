@@ -19,6 +19,7 @@ dependencies:
   override:
     - bundle install: 
         timeout: 3600 # fail if command has no output for 60 minutes
+    - bash ./build-site.sh
   cache_directories:
     - /home/ubuntu/.rvm/gems/ruby-2.1.2
     - hugo 
