@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102sec
 title:  Authentication
 categories: XAP102SEC
 parent: custom-security.html

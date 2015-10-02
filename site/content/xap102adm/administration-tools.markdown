@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Administration Tools
 categories: XAP102ADM
 weight: 600

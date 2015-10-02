@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Platform Configuration
 categories: XAP102NET
 parent: administrators-guide.html

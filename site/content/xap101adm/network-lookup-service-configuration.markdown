@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Lookup Service Configuration
 categories: XAP101ADM
 parent: network.html

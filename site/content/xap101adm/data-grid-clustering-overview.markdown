@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Clustering
 categories: XAP101ADM
 parent: data-grid-clustering.html

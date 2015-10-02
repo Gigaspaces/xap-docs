@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Custom Eviction Policy
 categories: XAP101ADM
 parent: lru-cache-policy.html

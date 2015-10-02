@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Synchronous Replication
 categories: XAP110ADM
 parent: replication.html

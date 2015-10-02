@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Configuration
 categories: XAP101ADM
 parent: metrics-overview.html

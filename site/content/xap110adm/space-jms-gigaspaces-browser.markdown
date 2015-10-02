@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Space JMS
 categories: XAP110ADM
 parent: working-with-spaces-gigaspaces-browser.html

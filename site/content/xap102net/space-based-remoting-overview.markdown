@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Space Based Remoting
 categories: XAP102NET
 parent: none

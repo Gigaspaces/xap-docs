@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Embedded Space
 categories: XAP102NET
 weight:

@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  Transaction support
 categories: XAP101NET
 parent: polling-container-overview.html

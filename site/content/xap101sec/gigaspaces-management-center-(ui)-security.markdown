@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101sec
 title:  Management Center
 categories: XAP101SEC
 parent: security-administration.html

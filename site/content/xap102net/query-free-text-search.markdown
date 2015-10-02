@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Free Text Search
 categories: XAP102NET
 parent: querying-the-space.html

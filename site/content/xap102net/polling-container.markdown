@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Overview
 categories: XAP102NET
 parent: polling-container-overview.html

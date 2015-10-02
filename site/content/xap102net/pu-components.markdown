@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Components
 categories: XAP102NET
 parent: the-processing-unit-overview.html

@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101sec
 title:  LDAP Authentication
 categories: XAP101SEC
 parent: spring-security-bridge.html

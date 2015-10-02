@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Advanced Tuning Guide
 categories: XAP101ADM
 parent: memoryxtend-ssd.html

@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  The Processing Unit
 categories: XAP102NET
 parent: none

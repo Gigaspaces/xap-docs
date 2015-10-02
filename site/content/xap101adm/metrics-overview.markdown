@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Metrics
 categories: XAP101ADM
 parent: none

@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Local Cache
 categories: XAP102NET
 parent: client-side-caching.html

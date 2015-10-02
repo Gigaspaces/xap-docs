@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Managing Log Files
 categories: XAP110ADM
 parent: logging-overview.html

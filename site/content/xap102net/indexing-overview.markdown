@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Indexing
 categories: XAP102NET
 parent: none

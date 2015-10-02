@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Policy Settings
 categories: XAP102ADM
 parent: cluster-view-gigaspaces-browser.html

@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  C++ Benchmark
 categories: XAP102ADM
 parent: benchmarking.html

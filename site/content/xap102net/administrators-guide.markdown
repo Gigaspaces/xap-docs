@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Deployment and Administration
 categories: XAP102NET
 parent: none

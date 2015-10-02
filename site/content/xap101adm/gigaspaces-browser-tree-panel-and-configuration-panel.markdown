@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Grid Tree & Configuration
 categories: XAP101ADM
 parent: gigaspaces-management-center.html

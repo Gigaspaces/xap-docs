@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  .Net Developers Guide
 categories: XAP102NET
 ---

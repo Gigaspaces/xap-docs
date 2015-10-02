@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  Services Manager
 categories: XAP101NET
 parent: installation-overview.html

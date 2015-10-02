@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Working with Spaces
 categories: XAP102ADM
 parent: gigaspaces-management-center.html

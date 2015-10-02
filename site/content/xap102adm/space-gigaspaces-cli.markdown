@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Space Command Line Interface
 categories: XAP102ADM
 parent: administration-tools.html

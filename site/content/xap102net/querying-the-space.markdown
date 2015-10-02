@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Querying the Space
 categories: XAP102NET
 parent: none

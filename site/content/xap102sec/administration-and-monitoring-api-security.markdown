@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102sec
 title:  Security Admin API
 categories: XAP102SEC
 parent: security-administration.html

@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  Class Metadata
 categories: XAP101NET
 parent: pono-xml-metadata-overview.html

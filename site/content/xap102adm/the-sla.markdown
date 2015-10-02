@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Overview
 categories: XAP102ADM
 parent: the-sla-overview.html

@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Transactions View
 categories: XAP102ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html

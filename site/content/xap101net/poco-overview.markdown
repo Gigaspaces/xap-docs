@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  PONO Support
 categories: XAP101NET
 parent: none

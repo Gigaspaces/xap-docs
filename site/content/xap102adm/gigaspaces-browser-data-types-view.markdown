@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Data Types View
 categories: XAP102ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html

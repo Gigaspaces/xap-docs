@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102sec
 title:  Securing the Transport Layer
 categories: XAP102SEC
 parent: securing-xap-components.html

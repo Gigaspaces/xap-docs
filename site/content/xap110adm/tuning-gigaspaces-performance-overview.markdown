@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  XAP Performance
 categories: XAP110ADM
 parent:  tuning.html

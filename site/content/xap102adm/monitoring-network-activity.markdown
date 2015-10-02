@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Network Monitoring
 categories: XAP102ADM
 parent: monitoring.html

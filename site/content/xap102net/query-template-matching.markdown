@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Template Matching
 categories: XAP102NET
 parent: querying-the-space.html

@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Replication Group
 categories: XAP102ADM
 parent: working-with-clusters-gigaspaces-browser.html

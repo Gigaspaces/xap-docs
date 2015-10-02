@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Platform Interoperability
 categories: XAP102NET
 parent: none

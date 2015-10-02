@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Deploying on a Cloud
 categories: XAP101ADM
 weight: 450

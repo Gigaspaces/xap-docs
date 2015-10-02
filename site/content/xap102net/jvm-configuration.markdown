@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  JVM Configuration
 categories: XAP102NET
 parent: administrators-guide.html

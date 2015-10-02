@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  Dynamic Properties
 categories: XAP101NET
 parent: poco-overview.html

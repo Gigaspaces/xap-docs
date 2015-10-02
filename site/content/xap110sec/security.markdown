@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110sec
 title:  Overview
 categories: XAP110SEC
 parent: none

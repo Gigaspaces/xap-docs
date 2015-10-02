@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Handling Large Objects
 categories: XAP101ADM
 parent:  tuning-gigaspaces-performance-overview.html

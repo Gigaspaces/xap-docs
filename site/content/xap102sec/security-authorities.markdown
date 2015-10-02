@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102sec
 title:  Authorities
 categories: XAP102SEC
 parent: none

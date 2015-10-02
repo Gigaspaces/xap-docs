@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102net
 title:  Executor Based Remoting
 categories: XAP102NET
 parent: space-based-remoting-overview.html

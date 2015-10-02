@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Solid State Drive
 categories: XAP110ADM
 parent: memoryxtend.html

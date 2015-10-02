@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Application View
 categories:
 parent: web-management-console.html

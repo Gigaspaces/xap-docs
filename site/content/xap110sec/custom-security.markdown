@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110sec
 title:  Custom Security
 categories: XAP110SEC
 parent: none

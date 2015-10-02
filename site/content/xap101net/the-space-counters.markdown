@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  Counters
 categories: XAP101NET
 weight: 500

@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Off Heap RAM
 categories: XAP101ADM
 parent: memoryxtend.html

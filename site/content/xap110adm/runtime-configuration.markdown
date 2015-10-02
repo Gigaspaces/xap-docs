@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Runtime Configuration
 categories: XAP110ADM
 weight: 700

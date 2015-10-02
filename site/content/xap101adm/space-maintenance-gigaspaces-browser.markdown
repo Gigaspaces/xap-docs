@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Maintenance
 categories: XAP101ADM
 parent: working-with-spaces-gigaspaces-browser.html

@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Formatting Log Messages
 categories: XAP101ADM
 parent: logging-overview.html

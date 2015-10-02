@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Global vs. Local GSM
 categories: XAP102ADM
 parent: runtime-configuration.html

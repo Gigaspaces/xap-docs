@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Replication Parameters
 categories: XAP101ADM
 parent: replication.html

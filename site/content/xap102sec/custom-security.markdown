@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102sec
 title:  Custom Security
 categories: XAP102SEC
 parent: none

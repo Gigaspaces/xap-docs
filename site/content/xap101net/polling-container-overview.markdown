@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  Polling Container
 categories: XAP101NET
 parent: event-processing.html

@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  The Runtime Environment
 categories: XAP102ADM
 parent: runtime-configuration.html

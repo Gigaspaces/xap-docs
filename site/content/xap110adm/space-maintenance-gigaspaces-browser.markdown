@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Maintenance
 categories: XAP110ADM
 parent: working-with-spaces-gigaspaces-browser.html

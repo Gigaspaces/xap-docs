@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  XAP Over NAT
 categories: XAP110ADM
 parent: network.html

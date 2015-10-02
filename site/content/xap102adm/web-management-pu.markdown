@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102adm
 title:  Processing Units
 categories: XAP102ADM
 parent: web-management-console.html

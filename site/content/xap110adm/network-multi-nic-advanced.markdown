@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Advanced Configuration
 categories: XAP110ADM
 parent: network-multi-nic.html

@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Quiesce Command Line
 categories: XAP101ADM
 parent: administration-tools.html

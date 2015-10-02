@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  API and Usage
 categories: XAP101ADM
 parent: quiescemode.html

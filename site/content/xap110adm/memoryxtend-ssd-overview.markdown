@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Overview
 categories: XAP110ADM
 parent: memoryxtend-ssd.html

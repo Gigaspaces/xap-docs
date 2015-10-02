@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Backing-up Files With a Custom Policy
 categories: XAP101ADM
 parent: logging-overview.html

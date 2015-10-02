@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101adm
 title:  Unicast Discovery
 categories: XAP101ADM
 parent: network.html

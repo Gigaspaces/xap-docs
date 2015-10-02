@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  Logging
 categories: XAP101NET
 parent: administrators-guide.html

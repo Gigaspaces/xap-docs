@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101sec
 title:  Command Line Interface
 categories: XAP101SEC
 parent: security-administration.html

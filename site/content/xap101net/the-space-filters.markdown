@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101net
 title:  Filters
 categories: XAP101NET
 parent: the-gigaspace-interface-overview.html

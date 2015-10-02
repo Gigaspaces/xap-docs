@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110adm
 title:  Object Inspector
 categories: XAP110ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
