@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Notifications
 categories: XAP97NET
 parent: the-gigaspace-interface-overview.html

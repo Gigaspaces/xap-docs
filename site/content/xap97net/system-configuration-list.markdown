@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Platform Configuration
 categories: XAP97NET
 parent: configuration.html

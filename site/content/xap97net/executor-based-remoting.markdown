@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Executor Based Remoting
 categories: XAP97NET
 parent: space-based-remoting.html

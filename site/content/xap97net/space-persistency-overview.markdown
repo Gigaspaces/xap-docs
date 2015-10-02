@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Space Persistency
 categories: XAP97NET
 parent: programmers-guide.html

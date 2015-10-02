@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Initial Load
 categories: XAP97NET
 parent: space-persistency-overview.html

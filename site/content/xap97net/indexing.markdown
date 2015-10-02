@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Basic Index
 categories: XAP97NET
 parent: indexing-overview.html

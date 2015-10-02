@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Advanced Scenarios
 categories: XAP97NET
 parent: installation-overview.html

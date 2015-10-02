@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Notify Container
 categories: XAP97NET
 parent: event-processing.html

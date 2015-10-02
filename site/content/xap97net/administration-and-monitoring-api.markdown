@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Administration API
 categories: XAP97NET
 parent: admin-modules.html

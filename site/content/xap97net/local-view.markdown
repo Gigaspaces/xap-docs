@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Local View
 categories: XAP97NET
 parent: client-side-caching.html

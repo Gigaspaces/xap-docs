@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Interacting with the Space
 categories: XAP97NET
 weight: 100

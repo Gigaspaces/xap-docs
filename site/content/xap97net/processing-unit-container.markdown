@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  PU Container
 categories: XAP97NET
 parent: processing-units.html

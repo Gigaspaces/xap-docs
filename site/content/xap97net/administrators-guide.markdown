@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Deployment and Administration
 categories: XAP97NET
 parent: none

@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Read Modifiers
 categories: XAP97NET
 parent: transaction-overview.html

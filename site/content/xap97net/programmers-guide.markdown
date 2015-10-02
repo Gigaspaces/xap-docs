@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Development
 categories: XAP97NET
 parent: none

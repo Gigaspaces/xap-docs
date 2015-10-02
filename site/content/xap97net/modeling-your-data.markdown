@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Modeling your Data
 categories: XAP97NET
 parent: programmers-guide.html

@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Domain Service Host
 categories: XAP97NET
 parent: space-based-remoting.html

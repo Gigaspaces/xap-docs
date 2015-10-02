@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Cache Eviction Strategy
 categories: XAP97NET
 parent: local-cache.html

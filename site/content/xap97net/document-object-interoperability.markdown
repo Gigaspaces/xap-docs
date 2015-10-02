@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Interoperability
 categories: XAP97NET
 weight: 300

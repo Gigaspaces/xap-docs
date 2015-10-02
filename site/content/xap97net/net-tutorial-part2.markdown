@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Deploying a Space
 categories: XAP97NET
 weight: 200

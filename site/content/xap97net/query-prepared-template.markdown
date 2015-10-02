@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Prepared Template
 categories: XAP97NET
 parent: querying-the-space.html

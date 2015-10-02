@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Routing In Partitioned Spaces
 categories: XAP97NET
 parent: modeling-your-data.html

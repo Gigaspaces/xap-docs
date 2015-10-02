@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Your First XAP Application
 categories: XAP97NET
 parent: cook-books.html

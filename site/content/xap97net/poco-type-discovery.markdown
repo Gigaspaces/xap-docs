@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Type Discovery
 categories: XAP97NET
 parent: modeling-your-data.html

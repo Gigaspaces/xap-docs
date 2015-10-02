@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Class Annotations
 categories: XAP97NET
 parent: pono-annotation-overview.html

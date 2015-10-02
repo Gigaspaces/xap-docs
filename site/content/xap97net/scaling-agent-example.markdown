@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Scaling Agent Example
 categories: XAP97NET
 parent:  admin-modules.html

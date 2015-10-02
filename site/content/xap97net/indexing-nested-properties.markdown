@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Nested Property Index
 categories: XAP97NET
 parent: indexing-overview.html

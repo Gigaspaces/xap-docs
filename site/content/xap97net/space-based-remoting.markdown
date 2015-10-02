@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Space Based Remoting
 categories: XAP97NET
 parent: programmers-guide.html

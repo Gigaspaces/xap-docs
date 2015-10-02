@@ -4,12 +4,13 @@
 
 <div class="container-fluid" style="padding-top:10px;min-height: 650px;">
 
-    <div class="col-lg-2">
+    <div class="col-md-2" >
+        <ul class="treeview" id="tree" style="margin-top:80px;border-color:black">
+            {{ partial "sidenav-xap97adm.html" .}}
+        </ul>
     </div>
 
-    {{ partial "nav.html" .}}
-
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <h1>{{ .Title }}</h1>
         <hr>
         {{ .Content }}

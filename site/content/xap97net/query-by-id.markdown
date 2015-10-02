@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  ID Queries
 categories: XAP97NET
 parent: querying-the-space.html

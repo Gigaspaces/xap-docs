@@ -1,5 +1,5 @@
 ---
-type: post97
+type: post97net
 title:  Services Manager
 categories: XAP97NET
 parent: installation-overview.html
