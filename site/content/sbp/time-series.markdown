@@ -483,9 +483,9 @@ This demo will use a `sla.xml` file which contains the SLA definitions within th
 
 Step 1.	Download the [realTimeAnalyticsTimeSerie](/download_files/sbp/realTimeAnalyticsTimeSeries.rar) file and extract it into a folder named `realTimeAnalyticsTimeSeries`.<br>
 
-Step 2.	Update setenv.bat to have the right value for `JAVA_HOME` and `JSHOMEDIR` variables {{%wbr%}}
+Step 2.	Update setenv.bat to have the right value for `JAVA_HOME` and `JSHOMEDIR` variables {{<wbr>}}
 
-Step 3.	Add `maven\bin` to your path if you dont have it already installed and run: {{%wbr%}}
+Step 3.	Add `maven\bin` to your path if you dont have it already installed and run: {{<wbr>}}
 
 
 ```java
@@ -499,7 +499,7 @@ Step 4.	Build the demo by running the following command:
 mvn package
 ```
 
-Step 5.	Execute the demo by running the start and deploy scripts in the following order: {{%wbr%}}
+Step 5.	Execute the demo by running the start and deploy scripts in the following order: {{<wbr>}}
 
 Start 1 GSA, 2 GSCs, 1 GSM and 1 LUS
 
@@ -513,6 +513,6 @@ gs-ui.bat
 ```
 
 
-Step 6.	Deploy Applications{{%wbr%}}
-    	Find the `Launch` menu at the top of the GS Management Center UI{{%wbr%}}
+Step 6.	Deploy Applications{{<wbr>}}
+    	Find the `Launch` menu at the top of the GS Management Center UI{{<wbr>}}
 	Choose SBA Ap

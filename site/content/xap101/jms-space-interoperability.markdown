@@ -22,11 +22,11 @@ To summarize, the table below shows which operations are supported, allowing int
 
 | Operation | JMS Application | Space Application |
 |:----------|:---------------:|:-----------------:|
-| Write JMS messages to space | {{% oksign %}} | {{% oksign %}} |
-| Write Entries to space | {{% oksign %}}  | {{% oksign %}} |
-| Write POJOs (or objects of any type) to space | {{% oksign %}} | {{% oksign %}} |
-| Read JMS messages from space | {{% oksign %}} | {{% oksign %}} |
-| Read Entries/POJOs from space | {{% remove %}} | {{% oksign %}} |
+| Write JMS messages to space | {{<oksign>}} | {{<oksign>}} |
+| Write Entries to space | {{<oksign>}}  | {{<oksign>}} |
+| Write POJOs (or objects of any type) to space | {{<oksign>}} | {{<oksign>}} |
+| Read JMS messages from space | {{<oksign>}} | {{<oksign>}} |
+| Read Entries/POJOs from space | {{% remove %}} | {{<oksign>}} |
 
 {{% note %}}
 As shown above, a JMS application **cannot read POJOs/Entries** from the space, unless they are part of a JMS message.

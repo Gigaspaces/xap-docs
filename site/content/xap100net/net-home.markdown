@@ -27,7 +27,7 @@ Here is the simplified Class Model:
 {{%popup "/attachment_files/qsg/class_diagram.png"  "Class Diagram Class Diagram"%}}
 {{%/column%}}
 {{%/section%}}
-{{%wbr%}}
+{{<wbr>}}
 
 
 You can download all examples presented here from {{%git "https://github.com/Gigaspaces/xapnet-tutorial"%}}. Feel free to clone, fork and contribute to the tutorial code.

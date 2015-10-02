@@ -6,7 +6,7 @@ parent: big-data.html
 weight: 200
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column width="10%" %}}
@@ -32,10 +32,10 @@ This will explain how to implement your own custom Archive Container.
 
 
 
-- [Space Persistence](./cassandra-space-persistency.html){{%wbr%}}
+- [Space Persistence](./cassandra-space-persistency.html){{<wbr>}}
 A MongoDB Space Persistency Solution
 
-- [Archive Handler](./cassandra-archive-operation-handler.html){{%wbr%}}
+- [Archive Handler](./cassandra-archive-operation-handler.html){{<wbr>}}
 Archives space objects to a Cassandra backend.
 
 

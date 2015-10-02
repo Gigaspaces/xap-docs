@@ -18,16 +18,16 @@ The Spring-based security bridge leverages our [Custom Security](./custom-securi
 
 {{%fpanel%}}
 
-[Overview](./introducing-spring-security.html){{%wbr%}}
+[Overview](./introducing-spring-security.html){{<wbr>}}
 Introduction Spring Security Framework.
 
-[Spring based bridge](./gigaspaces-spring-based-security-bridge.html){{%wbr%}}
+[Spring based bridge](./gigaspaces-spring-based-security-bridge.html){{<wbr>}}
 Introducing GigaSpaces Spring-based security bridge.
 
-[Data base authentication](./authenticating-against-a-database.html){{%wbr%}}
+[Data base authentication](./authenticating-against-a-database.html){{<wbr>}}
 Storing user details in a relational database using DaoAuthenticationProvider.
 
-[Ldap authentication](./authenticating-against-an-ldap-repository.html){{%wbr%}}
+[Ldap authentication](./authenticating-against-an-ldap-repository.html){{<wbr>}}
 Using LDAP (Lightweight Directory Access Protocol) with Spring Security.
 
 

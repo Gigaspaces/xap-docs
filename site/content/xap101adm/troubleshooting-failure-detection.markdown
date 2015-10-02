@@ -133,8 +133,8 @@ The `LeaseRenewalManager` in the `advanced-space.config` file is also related to
 
 |Parameter|Parameter Description|Default Value|
 |:--------|:--------------------|:------------|
-| maxLeaseDuration | The time the system waits between every lease renewal, for example: if the parameter value is `8000`, the system renews the space lease every 8000 `[milliseconds]`.{{% wbr %}}{{% infosign %}} As this value is reduced, renewal requests are performed more frequently while the service is up, and lease expiration occurs sooner when the service goes down. | `8000` |
-| roundTripTime | This parameter instructs the renewal process to begin a certain amount of time (by default, 100 `[milliseconds]`) before the actual renewal time, thus making sure that the renewal process is successful.{{% wbr %}}{{% exclamation %}} Significantly low values might result in failure to renew a lease. Durations of managed leases should exceed the `roundTripTime`. | `4000` |
+| maxLeaseDuration | The time the system waits between every lease renewal, for example: if the parameter value is `8000`, the system renews the space lease every 8000 `[milliseconds]`.{{<wbr>}}{{<infosign>}} As this value is reduced, renewal requests are performed more frequently while the service is up, and lease expiration occurs sooner when the service goes down. | `8000` |
+| roundTripTime | This parameter instructs the renewal process to begin a certain amount of time (by default, 100 `[milliseconds]`) before the actual renewal time, thus making sure that the renewal process is successful.{{<wbr>}}{{% exclamation %}} Significantly low values might result in failure to renew a lease. Durations of managed leases should exceed the `roundTripTime`. | `4000` |
 
 
 

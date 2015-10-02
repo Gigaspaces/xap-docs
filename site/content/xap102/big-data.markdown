@@ -18,14 +18,14 @@ XAP integrates with Cassandra and MongoDB NoSql data bases. These data bases can
 
 {{%fpanel%}}
 
-[Archive Handler](./archive-container.html){{%wbr%}}
+[Archive Handler](./archive-container.html){{<wbr>}}
 Allows archiving of space objects to an external persistency service.
 
 
-[Cassandra](./cassandra.html){{%wbr%}}
+[Cassandra](./cassandra.html){{<wbr>}}
 XAP Integration with Cassandra
 
-[MongoDB](./mongodb.html){{%wbr%}}
+[MongoDB](./mongodb.html){{<wbr>}}
 XAP Integration with MongoDB
 {{%/fpanel%}}
 

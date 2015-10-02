@@ -7,7 +7,7 @@ weight: 100
 ---
 
 
-{{%wbr%}}
+{{<wbr>}}
 
 
 XAP comes with built in implementations of [Space Data Source](./space-data-source-api.html) and [Space Synchronization Endpoint](./space-synchronization-endpoint-api.html) for Cassandra, called `CassandraSpaceDataSource` and `CassandraSpaceSynchronizationEndpoint`, respectively.
@@ -15,7 +15,7 @@ XAP comes with built in implementations of [Space Data Source](./space-data-sour
 
 ![CassMirrorNew.jpg](/attachment_files/CassMirrorNew.jpg)
 
-{{%wbr%}}
+{{<wbr>}}
 
 
 For further details about the persistency APIs used see [Space Persistency](./space-persistency.html).
@@ -23,13 +23,13 @@ For further details about the persistency APIs used see [Space Persistency](./sp
 
 ## Related Topics
 
-- [Data Source](./cassandra-space-data-source.html){{%wbr%}}
+- [Data Source](./cassandra-space-data-source.html){{<wbr>}}
 The Space Data Source API is used for reading data and meta data from the Cassandra.
 
-- [Synchronization Endpoint](./cassandra-space-synchronization-endpoint.html){{%wbr%}}
+- [Synchronization Endpoint](./cassandra-space-synchronization-endpoint.html){{<wbr>}}
 The space synchronization endpoint API is used for synchronizing data from the space to Cassandra data base.
 
-- [Hector Library](./cassandra-hector-client.html){{%wbr%}}
+- [Hector Library](./cassandra-hector-client.html){{<wbr>}}
 Hector client library.
 
 

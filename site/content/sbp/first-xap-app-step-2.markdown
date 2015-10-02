@@ -20,7 +20,7 @@ There are two components in our scenario:
 {{% section %}}
 {{% column width="40%" %}}
 (1)[Processor Processing Unit](#Processor Processing Unit) - Processes Message objects as they are written to the data grid (Space)
-It contains 3 components: {{%wbr%}}
+It contains 3 components: {{<wbr>}}
 a `Polling Container` component that listens to new Message objects written to the `Space`, and a `Processor Bean` that is delegated the actual processing work by the `Polling Container`.
 
 {{% /column %}}

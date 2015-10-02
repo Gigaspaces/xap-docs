@@ -14,10 +14,10 @@ The XAP API supports class  and properties decorations with POJOs. These can be 
 
 
 {{%fpanel%}}
-[Class annotations](./pojo-class-annotations.html){{%wbr%}}
+[Class annotations](./pojo-class-annotations.html){{<wbr>}}
 Class annotations for POJOs.
 
-[Property annotations](./pojo-attribute-annotations.html){{%wbr%}}
+[Property annotations](./pojo-attribute-annotations.html){{<wbr>}}
 Property level annotations for POJOs.
 
 {{%/fpanel%}}

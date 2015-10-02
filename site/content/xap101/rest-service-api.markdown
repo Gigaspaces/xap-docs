@@ -208,7 +208,7 @@ curl -XGET http://localhost:8080/{Type}/count
 |----------------|-------------|
 |Description| Read multiple entries from space that matches the query. |
 |Request URL|GET http://localhost:8080/{Type}/ |
-|Request Query Parameters|query - a [SQLQuery](./query-sql.html) that is a SQL-like syntax {{%wbr%}}max - the maximum amount of entries to read |
+|Request Query Parameters|query - a [SQLQuery](./query-sql.html) that is a SQL-like syntax {{<wbr>}}max - the maximum amount of entries to read |
 
 Response Schema:
 

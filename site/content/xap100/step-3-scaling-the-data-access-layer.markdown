@@ -19,12 +19,12 @@ parent: your-first-web-application.html
 # Example Location & Covered Topics
 
 
-{{% infosign %}} The Sample application for this step is located under `<XAP Root>/examples/web/space-access`.
+{{<infosign>}} The Sample application for this step is located under `<XAP Root>/examples/web/space-access`.
 
 ##### Features Introduced
 
-{{% oksign %}} Connecting to the space from within your web application
-{{% oksign %}} Reading from and writing to the Space
+{{<oksign>}} Connecting to the space from within your web application
+{{<oksign>}} Reading from and writing to the Space
 {{% /section %}}
 
 

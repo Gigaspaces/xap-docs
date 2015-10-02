@@ -18,15 +18,15 @@ The interface includes the following main operations:
 {{%section%}}
 {{%column width="50%" %}}
 {{%panel  "Write objects into the space:"%}}
-[write](#write) one object into the space{{%wbr%}}
-[writeMultiple](#writeMultiple) objects into the space{{%wbr%}}
+[write](#write) one object into the space{{<wbr>}}
+[writeMultiple](#writeMultiple) objects into the space{{<wbr>}}
 [asynchronous write](#asynchronousWrite) to the space
 {{%/panel%}}
 {{%/column%}}
 {{%column width="45%" %}}
 {{%panel  "Change objects in space:"%}}
-[change](./change-api.html) one object in space{{%wbr%}}
-[changeMultiple](./change-api.html) objects in space {{%wbr%}}
+[change](./change-api.html) one object in space{{<wbr>}}
+[changeMultiple](./change-api.html) objects in space {{<wbr>}}
 {{%/panel%}}
 {{%/column%}}
 {{%/section%}}
@@ -35,23 +35,23 @@ The interface includes the following main operations:
 {{%section%}}
 {{%column width="50%" %}}
 {{%panel  "Reading objects from the space:"%}}
-[readById](#read) from the space{{%wbr%}}
-[readByIds](#readMultiple) from the space{{%wbr%}}
-[read](#read) object by template from the space{{%wbr%}}
-[readMultiple](#readMultiple) objects from the space {{%wbr%}}
-[read asynchronous](#asynchronousRead) from the space {{%wbr%}}
-[read if exists](#readIfExists) {{%wbr%}}
+[readById](#read) from the space{{<wbr>}}
+[readByIds](#readMultiple) from the space{{<wbr>}}
+[read](#read) object by template from the space{{<wbr>}}
+[readMultiple](#readMultiple) objects from the space {{<wbr>}}
+[read asynchronous](#asynchronousRead) from the space {{<wbr>}}
+[read if exists](#readIfExists) {{<wbr>}}
 [read if exists by id](#readIfExists)
 {{%/panel%}}
 {{%/column%}}
 {{%column width="45%" %}}
 {{%panel  "Removing objects from the space:"%}}
-[take](#take) object by template from space{{%wbr%}}
-[takeById](#take) object by id from space{{%wbr%}}
-[takeByIds](#takeMultiple) objects by ids from space{{%wbr%}}
-[takeMultiple](#takeMultiple) objects from space {{%wbr%}}
-[take asynchronous](#asynchronousTake){{%wbr%}}
-[take if exists](#takeIfExists){{%wbr%}}
+[take](#take) object by template from space{{<wbr>}}
+[takeById](#take) object by id from space{{<wbr>}}
+[takeByIds](#takeMultiple) objects by ids from space{{<wbr>}}
+[takeMultiple](#takeMultiple) objects from space {{<wbr>}}
+[take asynchronous](#asynchronousTake){{<wbr>}}
+[take if exists](#takeIfExists){{<wbr>}}
 [take if exists by id](#takeIfExists)
 {{%/panel%}}
 {{%/column%}}
@@ -60,7 +60,7 @@ The interface includes the following main operations:
 {{%section%}}
 {{%column width="50%" %}}
 {{%panel  "Other operations:"%}}
-[clear](#clear) an object type from space {{%wbr%}}
+[clear](#clear) an object type from space {{<wbr>}}
 [count](#count) objects in space
 {{%/panel%}}
 {{%/column%}}

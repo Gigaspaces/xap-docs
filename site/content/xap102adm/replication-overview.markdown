@@ -69,7 +69,7 @@ The table below shows a conceptual comparison between synchronous and asynchrono
 |:-------|:------------------------|:-------------------------|
 | Data loss | Each space operation waits until completion is confirmed at the source space instance, as well as the target space instances. | May sometimes lose some data (latest operations) if there is a failure at the source space instance. |
 | Latency | Less tolerant to high network latency | Highly tolerant of network latency, and can be used when the space instances are located in different geographical sites (different cities). |
-| Performance Impact | Cliensx must wait for confirmation of each space operation from the source and target space instances.{{% wbr %}}Performance is mainly dependent on source space instances resources (CPU/memory), target space instance resources (CPU/memory), and the network bandwidth and latency between the source space and the target space instances. | Client is acknowledged immediately after the source space instances has processed incoming operations.{{% wbr %}}Performance is mainly dependent on source space resources (CPU/memory). |
+| Performance Impact | Cliensx must wait for confirmation of each space operation from the source and target space instances.{{<wbr>}}Performance is mainly dependent on source space instances resources (CPU/memory), target space instance resources (CPU/memory), and the network bandwidth and latency between the source space and the target space instances. | Client is acknowledged immediately after the source space instances has processed incoming operations.{{<wbr>}}Performance is mainly dependent on source space resources (CPU/memory). |
 | Data Integrity | Very accurate | Less accurate |
 
 ## Configuration

@@ -43,10 +43,10 @@ Embedding  Tomcat along with one or more associated web application is simply a 
 
 The tomcat processing unit hierarchy, once built with maven, will have the following structure:
 
-Tomcat PU {{%wbr%}}
-|-   com  {{%wbr%}}
-|-   lib    {{%wbr%}}
-|-   META-INF  {{%wbr%}}
+Tomcat PU {{<wbr>}}
+|-   com  {{<wbr>}}
+|-   lib    {{<wbr>}}
+|-   META-INF  {{<wbr>}}
 |-   webapps
 
 
@@ -91,7 +91,7 @@ Step 2:	Configure the Tomcat instance through PU.XML to specify the container an
 |webapps |	The collection of web applications contained in the processing unit.|
 
 
-Step 3:	Place your web applications in src/main/resources/webapps{{%wbr%}}
+Step 3:	Place your web applications in src/main/resources/webapps{{<wbr>}}
 Step 4:	(optional) Specify the SLA parameters for fault isolation and redundancy through an SLA.XML file in META-INF/spring
 
 
@@ -102,7 +102,7 @@ Step 4:	(optional) Specify the SLA parameters for fault isolation and redundancy
 |Maximum of one Tomcat instance per zone (sets of machines or availability zone)|`<os-sla:sla max-instances-per-zone="1" />`|
 
 
-Step 5:	Build the project through mvn package{{%wbr%}}
+Step 5:	Build the project through mvn package{{<wbr>}}
 Step 6:	Deploy processing unit in XAP, once deployed Tomcat should appear as the following
 
 

@@ -21,16 +21,16 @@ The Java Persistency API (JPA) is a Java programming language framework managing
 <br>
 
 {{%fpanel%}}
-[Overview](./jpa-api.html){{%wbr%}}
+[Overview](./jpa-api.html){{<wbr>}}
 XAP allows applications to use the JPA API to access the Space.
 
-[JPA Entity Id](./jpa-entity-id.html){{%wbr%}}
+[JPA Entity Id](./jpa-entity-id.html){{<wbr>}}
 Various options for mapping the identifier property of your JPA entities are provided.
 
-[JPA Relationships](./jpa-relationships.html){{%wbr%}}
+[JPA Relationships](./jpa-relationships.html){{<wbr>}}
 The XAP JPA relationships model is different than Relational Databases model. In GigaSpaces relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space.
 
-[Limitations](./jpa-limitations.html){{%wbr%}}
+[Limitations](./jpa-limitations.html){{<wbr>}}
 Functionalities that are not supported by the XAP JPA API.
 
 {{%/fpanel%}}

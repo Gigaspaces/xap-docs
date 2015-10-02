@@ -25,8 +25,8 @@ The Admin API provides a way to administer and monitor all of XAP services and c
 
 {{%fpanel%}}
 
-[Admin API](./administration-and-monitoring-api.html){{%wbr%}}
+[Admin API](./administration-and-monitoring-api.html){{<wbr>}}
 Simple API to monitor and administer XAP services and components.
 
-[Dump API](./dump.html){{%wbr%}}
+[Dump API](./dump.html){{<wbr>}}
 Simple API to genera

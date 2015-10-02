@@ -18,32 +18,32 @@ The Event Session API is the low level API for notifications. It is preferable t
 
 *Basic Flow*:
 
-* The JavaSpaces API includes the standard notify method, that allows an application to receive notifications once a new Entry has been written into the space. To receive notifications, the client application needs to register for notification delivery.{{%wbr%}}
-* The most important part of the notify registration is preparing the right template - all Entries that match the template (conducted by the appropriate operation), trigger an event back to the registered client application. {{%wbr%}}
+* The JavaSpaces API includes the standard notify method, that allows an application to receive notifications once a new Entry has been written into the space. To receive notifications, the client application needs to register for notification delivery.{{<wbr>}}
+* The most important part of the notify registration is preparing the right template - all Entries that match the template (conducted by the appropriate operation), trigger an event back to the registered client application. {{<wbr>}}
 * When a new Entry that matches the template arrives at the space, the notify method of the `RemoteEventListener` in the registration is invoked, supplying the client with a `RemoteEvent` object.
 
-*When using the Session Event API, you should implement 3 basic routines*: {{%wbr%}}
-1. Register for notifications. {{%wbr%}}
-2. Filter the events before sent to the client (optional). {{%wbr%}}
+*When using the Session Event API, you should implement 3 basic routines*: {{<wbr>}}
+1. Register for notifications. {{<wbr>}}
+2. Filter the events before sent to the client (optional). {{<wbr>}}
 3. Receive the event.
 
 ![sessionbasedmessagingapt11.jpg](/attachment_files/sessionbasedmessagingapi11.jpg)
 
-The session-based messaging API is designed with the following objectives:{{%wbr%}}
-* *Simple and unified interfaces*  {{%wbr%}}
-* *Single entry point* \- users access all the event-related services from a single entry point. {{%wbr%}}
-* *Extensibility* \- allows simple extensions for other types of event services, as well as other configuration parameters.{{%wbr%}}
-* *Backwards compatibility* \- coexists with the existing API in a way that allows a deprecation period without duplicating the code. {{%wbr%}}
-* Support for Spring bean creation/configuration.{{%wbr%}}
-* Batch notification support. {{%wbr%}}
+The session-based messaging API is designed with the following objectives:{{<wbr>}}
+* *Simple and unified interfaces*  {{<wbr>}}
+* *Single entry point* \- users access all the event-related services from a single entry point. {{<wbr>}}
+* *Extensibility* \- allows simple extensions for other types of event services, as well as other configuration parameters.{{<wbr>}}
+* *Backwards compatibility* \- coexists with the existing API in a way that allows a deprecation period without duplicating the code. {{<wbr>}}
+* Support for Spring bean creation/configuration.{{<wbr>}}
+* Batch notification support. {{<wbr>}}
 
-Some advanced options supported with the Session messaging API: {{%wbr%}}
-* No client codebase needs to be set. {{%wbr%}}
-* Support registering large amount of listeners using the same session reducing resource consumption. {{%wbr%}}
-* Provides the ability to get the Entry that triggered the event in the space.{{%wbr%}}
-* Allows registration for specific notification events, for example, write, update, take, and lease expiration events.{{%wbr%}}
-* Option delivering events in FIFO order (default is non-FIFO).{{%wbr%}}
-* Supports server-side notification filtering capabilities.{{%wbr%}}
+Some advanced options supported with the Session messaging API: {{<wbr>}}
+* No client codebase needs to be set. {{<wbr>}}
+* Support registering large amount of listeners using the same session reducing resource consumption. {{<wbr>}}
+* Provides the ability to get the Entry that triggered the event in the space.{{<wbr>}}
+* Allows registration for specific notification events, for example, write, update, take, and lease expiration events.{{<wbr>}}
+* Option delivering events in FIFO order (default is non-FIFO).{{<wbr>}}
+* Supports server-side notification filtering capabilities.{{<wbr>}}
 
 The session API provides a convenient and efficient mechanism for sending messaging to multiple recipients through the space. Every recipient can register for notifications by creating a `DataEventSession` object.
 
@@ -202,15 +202,15 @@ The `DataEventSession` is a unified class that encapsulate the capabilities of t
 * `NotifyDelegator`
 * `NotifyDelegatorMultiplextor`
 
-The `addListener()` method on the `DataEventSession` receives, among other parameters, the `NotifyActionType` parameter: {{%wbr%}}
-* `NOTIFY_WRITE` {{%wbr%}}
-* `NOTIFY_TAKE`   {{%wbr%}}
-* `NOTIFY_UPDATE`  {{%wbr%}}
-* `NOTIFY_LEASE_EXPIRATION`{{%wbr%}}
-* `NOTIFY_NONE` {{%wbr%}}
-* `NOTIFY_UNMATCHED`{{%wbr%}}
-* `NOTIFY_MATCHED_UPDATE`  {{%wbr%}}
-* `NOTIFY_REMATCHED_UPDATE`{{%wbr%}}
+The `addListener()` method on the `DataEventSession` receives, among other parameters, the `NotifyActionType` parameter: {{<wbr>}}
+* `NOTIFY_WRITE` {{<wbr>}}
+* `NOTIFY_TAKE`   {{<wbr>}}
+* `NOTIFY_UPDATE`  {{<wbr>}}
+* `NOTIFY_LEASE_EXPIRATION`{{<wbr>}}
+* `NOTIFY_NONE` {{<wbr>}}
+* `NOTIFY_UNMATCHED`{{<wbr>}}
+* `NOTIFY_MATCHED_UPDATE`  {{<wbr>}}
+* `NOTIFY_REMATCHED_UPDATE`{{<wbr>}}
 * `NOTIFY_ALL`
 
 {{%note%}}
@@ -606,9 +606,9 @@ The space includes a mechanism that detects stale notify registrations. Once a n
 The root cause of this behavior is the thread pool within the space engine that is responsible for delivering events to clients. When all pool threads are fully consumed, notification delivery time suffers, due to the time it takes to detect and remove all stale registrations.
 
 {{%note%}}
-To configure the notification thread pool size you should use the following Space properties: {{%wbr%}}
-space-config.engine.notify_min_threads {{%wbr%}}
-space-config.engine.notify_max_threads {{%wbr%}}
+To configure the notification thread pool size you should use the following Space properties: {{<wbr>}}
+space-config.engine.notify_min_threads {{<wbr>}}
+space-config.engine.notify_max_threads {{<wbr>}}
 See the [Scaling Notification Delivery](./notify-container.html#Scaling Notification Delivery) for details.
 {{%/note%}}
 
@@ -637,8 +637,8 @@ Notifications are asynchronous by nature. The client that triggered the notifica
 
 When a space running in a fault tolerant configuration (`primary-backup` or `partitioned-sync2backup` cluster schemas) and the primary space fails, the backup space takes over and sends the notifications to the registered clients. In such a configuration, the primary and backup spaces do not establish a handshake mechanism when a notification is sent to the client. The backup space, that is running in stand-by mode, is unaware of the notifications that have been sent by the primary space, and the acknowledgement that the recipients clients provided when receiving the events is not sent.
 
-To allow the backup space to send notifications when the primary fails and move to active mode, the backup space should have the notification registration information (notify templates) replicated/recovered from the primary space. The cluster configuration includes the following properties allowing notification registrations to survive space failures:{{%wbr%}}
-* `replicate-notify-templates` -- boolean value. Set to `true` if you want to make notification templates available in the target space.{{%wbr%}}
+To allow the backup space to send notifications when the primary fails and move to active mode, the backup space should have the notification registration information (notify templates) replicated/recovered from the primary space. The cluster configuration includes the following properties allowing notification registrations to survive space failures:{{<wbr>}}
+* `replicate-notify-templates` -- boolean value. Set to `true` if you want to make notification templates available in the target space.{{<wbr>}}
 * `trigger-notify-templates` -- boolean value. Set to `true` if you want to trigger matching notification templates when Entries are written to the space, because of replication (and thus causing remote events to be generated and sent to the notify template listeners). If set to `true`, triggering occurs; if set to `false`, triggering does not occur.
 
 ### Replicate Notify Template and Trigger Notify Template
@@ -650,10 +650,10 @@ Here is the system behavior when using these options:
 
 |Replicate Notify Template Setting | Trigger Notify Template Setting | Description |
 |:---------------------------------|:--------------------------------|:------------|
-| `true` | `false` | The client gets notifications from the master space while it is active after registration.{{%wbr%}}If failover has been configured, it gets notifications from the replica space when the master space fails. |
-| `false` | `true` | The client gets notifications only from the spaces it registered to for notifications.{{%wbr%}}A notification occurs when data has been delivered to the space, either by a client application, or from the replication. |
-| `true` | `true` | The client gets notifications from all clustered spaces after registration.{{%wbr%}}The client gets multiple notifications for every space event. |
-| `false` | `false` | The client gets notifications only from the spaces to which it registered.{{%wbr%}}The client does not get notifications from spaces that received their data by replication. |
+| `true` | `false` | The client gets notifications from the master space while it is active after registration.{{<wbr>}}If failover has been configured, it gets notifications from the replica space when the master space fails. |
+| `false` | `true` | The client gets notifications only from the spaces it registered to for notifications.{{<wbr>}}A notification occurs when data has been delivered to the space, either by a client application, or from the replication. |
+| `true` | `true` | The client gets notifications from all clustered spaces after registration.{{<wbr>}}The client gets multiple notifications for every space event. |
+| `false` | `false` | The client gets notifications only from the spaces to which it registered.{{<wbr>}}The client does not get notifications from spaces that received their data by replication. |
 
 Replicated notify templates and triggered notify templates are orthogonal. However, if you enable them both, you should be aware that for each Entry that matches the notify template and is replicated to another space, you get an event.
 

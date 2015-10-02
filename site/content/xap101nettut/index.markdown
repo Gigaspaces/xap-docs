@@ -4,7 +4,7 @@ title:  Tutorials
 categories:  XAP101NETTUT
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column width="10%" %}}

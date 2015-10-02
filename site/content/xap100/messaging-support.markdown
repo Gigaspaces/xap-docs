@@ -16,25 +16,25 @@ XAP provide a JMS implementation, built on top of the core JavaSpaces layer. JMS
 
 {{%fpanel%}}
 
-[JMS Basics](./jms-api-basic-usage.html){{%wbr%}}
+[JMS Basics](./jms-api-basic-usage.html){{<wbr>}}
 JMS basics and concepts.
 
-[JMS Messages with XAP](./jms-messages-in-gigaspaces.html){{%wbr%}}
+[JMS Messages with XAP](./jms-messages-in-gigaspaces.html){{<wbr>}}
 JMS messages implementation; supported and unsupported message types; message compression; accessing JMS messages via space API.
 
-[JMS-Space Interoperability](./jms-space-interoperability.html){{%wbr%}}
+[JMS-Space Interoperability](./jms-space-interoperability.html){{<wbr>}}
 Creating JMS messages with the space API; reading/taking JMS messages with the space API; using JMS API with the MessageConverter to send custom POJOs to the space.
 
-[JMS Example](./jms-with-openspaces-example.html){{%wbr%}}
+[JMS Example](./jms-with-openspaces-example.html){{<wbr>}}
 Including a JMS feeder in a processing unit using Spring JmsTemplate, and using the JMS message converter to send POJOs to the space, using the JMS API.
 
-[XAP JNDI](./jms-with-gigaspaces-jndi.html){{%wbr%}}
+[XAP JNDI](./jms-with-gigaspaces-jndi.html){{<wbr>}}
 JNDI Overview, Binding/Obtaining ConnectionFactory and Destination instances.
 
-[JMS resources without JNDI](./jms-with-gsjmsadmin.html){{%wbr%}}
+[JMS resources without JNDI](./jms-with-gsjmsadmin.html){{<wbr>}}
 Obtaining JMS resources without JNDI, using JNDI with GSJMSAdmin.
 
-[Andvanced Options](./jms-advanced.html){{%wbr%}}
+[Andvanced Options](./jms-advanced.html){{<wbr>}}
 Advanced options including transaction support and security.
 {{%/fpanel%}}
 

@@ -15,13 +15,13 @@ This is useful when performing a safe shutdown or for a rolling system upgrade.
 
 {{%fpanel%}}
 
-[Overview](./quiesce-overview.html){{%wbr%}}
+[Overview](./quiesce-overview.html){{<wbr>}}
 Overview of quiesce mode in XAP
 
-[API and Usage](./quiesce-pu-api.html){{%wbr%}}
+[API and Usage](./quiesce-pu-api.html){{<wbr>}}
 Quiesce mode API and usage examples
 
-[Limitations](./quiesce-limitations.html){{%wbr%}}
+[Limitations](./quiesce-limitations.html){{<wbr>}}
 Limitations and considerations
 
 {{%/fpanel%}}

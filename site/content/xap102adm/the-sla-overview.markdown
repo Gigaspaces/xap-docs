@@ -19,14 +19,14 @@ The XAP runtime environment (Service Grid) provides SLA-driven capabilities via 
 
 {{%fpanel%}}
 
-[Overview](./the-sla.html){{%wbr%}}
+[Overview](./the-sla.html){{<wbr>}}
 The SLA enables you to define requirements which control the provisioning process of processing unit instances on the available GSCs.
 
 
-[Hosts, Zones & Machine Utilization](./the-sla-zones.html){{%wbr%}}
+[Hosts, Zones & Machine Utilization](./the-sla-zones.html){{<wbr>}}
 The SLA requirements are based on machine level statistics and grouping of the GSC processes to zones.
 
-[Deterministic Deployment](./the-sla-deterministic.html){{%wbr%}}
+[Deterministic Deployment](./the-sla-deterministic.html){{<wbr>}}
 Defining the primary and backup instances location in an explicit manner.
 
 {{%/fpanel%}}

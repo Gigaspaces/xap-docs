@@ -130,7 +130,7 @@ The following table summarizes the available deployment properties:
 
 |Property Name|Description|Example values|Mandatory?|
 |:------------|:----------|:-------------|:---------|
-|jetty.sessions.spaceUrl|specifies the URL of the space with the HTTP session store will be backed. Use the `bean://` notation to reference a space proxy defined within the `META-INF/spring/pu.xml` file.|jini://sessionSpace?useLocalCache{{% wbr %}}   /./sessionSpace?cluster_schema=replicated{{% wbr %}}   bean://sessionSpace| Yes |
+|jetty.sessions.spaceUrl|specifies the URL of the space with the HTTP session store will be backed. Use the `bean://` notation to reference a space proxy defined within the `META-INF/spring/pu.xml` file.|jini://sessionSpace?useLocalCache{{<wbr>}}   /./sessionSpace?cluster_schema=replicated{{<wbr>}}   bean://sessionSpace| Yes |
 |jetty.sessions.scavengePeriod | Determines how often the web container will check for expired sessions. Set in seconds and defaults to 300 seconds (5 minutes) | `300` | No |
 |jetty.sessions.savePeriod | How often an actual update of a **non dirty** session will be performed to the Space. Set in seconds and defaults to 60 seconds. This is useful for cases where a session attribute is not updated explicitly using the `HttpSession#setAttribute` method. More importantly, it makes sure to report the last time the user has accessed the application to the space so that the user session will not expire | `60` | No |
 |jetty.sessions.timeout | Determines the HTTP session timeout in minutes (similar to `session-timeout` element in `web.xml`. Defaults to 30 minutes | `15` | No |

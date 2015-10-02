@@ -19,7 +19,7 @@ The [XAP API](./the-gigaspace-interface-overview.html) supports  field-level dec
 |Syntax     |  SpaceId autoGenerate |
 |Argument   |  boolean          |
 |Default    | false |
-|Description| Defines whether this field value is used when generating the Object ID. The field value should be unique -- i.e., no multiple objects with the same value should be written into the space (each object should have a different field value). When writing an object into the space with an existing `id` field value, an `EntryAlreadyInSpaceException` is thrown. The Object ID is created, based on the `id` field value.{{%wbr%}}Specifies if the object ID is generated automatically by the space when written into the space. If `false`, the field is indexed automatically, and if `true`, the field isn't indexed. If `autoGenerate` is declared as `false`, the field is indexed automatically. If `autoGenerate` is declared as `true`, the field isn't indexed. If `autoGenerate` is `true`, the field must be of the type `java.lang.String`. |
+|Description| Defines whether this field value is used when generating the Object ID. The field value should be unique -- i.e., no multiple objects with the same value should be written into the space (each object should have a different field value). When writing an object into the space with an existing `id` field value, an `EntryAlreadyInSpaceException` is thrown. The Object ID is created, based on the `id` field value.{{<wbr>}}Specifies if the object ID is generated automatically by the space when written into the space. If `false`, the field is indexed automatically, and if `true`, the field isn't indexed. If `autoGenerate` is declared as `false`, the field is indexed automatically. If `autoGenerate` is declared as `true`, the field isn't indexed. If `autoGenerate` is `true`, the field must be of the type `java.lang.String`. |
 
 <br>
 Example:
@@ -50,7 +50,7 @@ public class Person {
 | | |
 |----|----|
 |Syntax     | SpaceRouting|
-|Description| The `@SpaceRouting` annotation specifies a get method for the field to be used to calculate the target space for the space operation (read , write...). The `@SpaceRouting` field value hash code is used to calculate the target space when the space is running in **partitioned mode**.{{%wbr%}}The field value hash code is used to calculate the target space when the space is running in **partitioned mode**. |
+|Description| The `@SpaceRouting` annotation specifies a get method for the field to be used to calculate the target space for the space operation (read , write...). The `@SpaceRouting` field value hash code is used to calculate the target space when the space is running in **partitioned mode**.{{<wbr>}}The field value hash code is used to calculate the target space when the space is running in **partitioned mode**. |
 
 <br>
 
@@ -290,7 +290,7 @@ public class Employee {
 | | |
 |----|----|
 |Syntax     | SpacePersist|
-|Description| This specifies a getter method for holding the persistency mode of the object overriding the class level persist declaration. This field should be of the boolean data type.{{%wbr%}}If the persist class level annotation is true, all objects of this class type will be persisted into the underlying data store (Mirror, ExternalDataSource, Storage Adapter).|
+|Description| This specifies a getter method for holding the persistency mode of the object overriding the class level persist declaration. This field should be of the boolean data type.{{<wbr>}}If the persist class level annotation is true, all objects of this class type will be persisted into the underlying data store (Mirror, ExternalDataSource, Storage Adapter).|
 |Note       | When using this option, you must have the space class level `persist` decoration specified.|
 
 <br>
@@ -320,7 +320,7 @@ public class Employee {
 |----|----|
 |Syntax     |  SpaceExclude|
 |Description| When this annotation is specified the attribute is not written into the space.|
-|Note | - When `IncludeProperties` is defined as `IMPLICIT`, `@SpaceExclude` should usually be used. This is because `IMPLICIT` instructs the system to take all POJO fields into account.{{%wbr%}}- When `IncludeProperties` is defined as `EXPLICIT`, there is no need to use `@SpaceExclude`.{{%wbr%}}- `@SpaceExclude` can still be used, even if `IncludeProperties` is not defined.  |
+|Note | - When `IncludeProperties` is defined as `IMPLICIT`, `@SpaceExclude` should usually be used. This is because `IMPLICIT` instructs the system to take all POJO fields into account.{{<wbr>}}- When `IncludeProperties` is defined as `EXPLICIT`, there is no need to use `@SpaceExclude`.{{<wbr>}}- `@SpaceExclude` can still be used, even if `IncludeProperties` is not defined.  |
 
 <br>
 
@@ -450,7 +450,7 @@ public class FlightReservation
 |----|----|
 |Syntax     | SpaceFifoGroupingIndex|
 |Description| This annotation is used to define a space FIFO grouping Index. |
-|Note |This annotation can be declared on several properties in a class in order to assist in efficient traversal.{{%wbr%}}If defined, there must be a property in the class, marked with the `@SpaceFifoGroupingProperty` annotation.{{%wbr%}}A compound index that contains this FIFO grouping index and the FIFO grouping property will be created.   |
+|Note |This annotation can be declared on several properties in a class in order to assist in efficient traversal.{{<wbr>}}If defined, there must be a property in the class, marked with the `@SpaceFifoGroupingProperty` annotation.{{<wbr>}}A compound index that contains this FIFO grouping index and the FIFO grouping property will be created.   |
 
 <br>
 Example:
@@ -554,7 +554,7 @@ public class Person {
 | | |
 |----|----|
 |Syntax     | SpaceClassConstructor|
-|Description| This annotation can be placed on a POJO constructor to denote that this constructor should be used during object instantiation.{{%wbr%}}Using this annotations, it is possible for the POJO to have immutable properties (i.e. `final` fields).{{%wbr%}}As opposed to a standard POJO, a POJO annotated with this annotation may omit setters for its properties.{{%wbr%}}Except for the case where the id property is auto generated, only properties defined in this constructor will be considered space properties.The annotations can be placed on at most one constructor.|
+|Description| This annotation can be placed on a POJO constructor to denote that this constructor should be used during object instantiation.{{<wbr>}}Using this annotations, it is possible for the POJO to have immutable properties (i.e. `final` fields).{{<wbr>}}As opposed to a standard POJO, a POJO annotated with this annotation may omit setters for its properties.{{<wbr>}}Except for the case where the id property is auto generated, only properties defined in this constructor will be considered space properties.The annotations can be placed on at most one constructor.|
 
 <br>
 

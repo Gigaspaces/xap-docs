@@ -6,7 +6,7 @@ parent: none
 weight: 150
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column width="10%" %}}
@@ -20,14 +20,14 @@ A full Java tutorial is also provided that will introduce you to the basic capab
 
 <hr/>
 
-- [XAP in 5 Minutes](./dotnet-your-first-data-grid-application.html){{%wbr%}}
+- [XAP in 5 Minutes](./dotnet-your-first-data-grid-application.html){{<wbr>}}
 This tutorial explains how to deploy and use a XAP Data Grid from a Java client application.
 
 
-- [Full Tutorial](./net-home.html){{%wbr%}}
+- [Full Tutorial](./net-home.html){{<wbr>}}
 This Tutorial provides a high-level overview of the GigaSpaces XAP platform. Hands on examples are provided to demonstrate the core concepts and API’s.
 
-- [Cook Books](./cook-books.html){{%wbr%}}
+- [Cook Books](./cook-books.html){{<wbr>}}
 Here you will find example applications that demonstrate basic XAP features.
 
 <hr/>

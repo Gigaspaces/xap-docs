@@ -46,8 +46,8 @@ Task execution comes in two flavors:
 Java Tasks can be more efficient in terms of performance and tend to be more type-safe then dynamic tasks. Dynamic tasks on the other hand can be changed more frequently without causing class version conflicts and are more concise given the nature of dynamic languages..
 
 {{%info "Tasks"%}}
-- execute in a "broadcast" mode on all the primary cluster members concurrently and reduced to a single result on the client side. {{%wbr%}}
-- can execute directly on a specific cluster member using typical routing declarations. {{%wbr%}}
+- execute in a "broadcast" mode on all the primary cluster members concurrently and reduced to a single result on the client side. {{<wbr>}}
+- can execute directly on a specific cluster member using typical routing declarations. {{<wbr>}}
 - are completely dynamic both in terms of content and class definitions (the task class definition does not have to be defined within the space classpath).
 {{%/info%}}
 

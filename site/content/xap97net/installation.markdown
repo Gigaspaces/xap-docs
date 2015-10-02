@@ -6,7 +6,7 @@ parent: installation-overview.html
 weight: 50
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 **Required Software:** [Microsoft .NET Framework 2.0](http://msdn.microsoft.com/en-us/netframework/aa731542.aspx) or later (including  [Microsoft .NET Framework 4.0](http://msdn.microsoft.com/en-us/netframework/aa569263.aspx)).
 

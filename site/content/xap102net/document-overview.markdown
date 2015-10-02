@@ -22,13 +22,13 @@ The XAP document API exposes the space as [Document Store](http://en.wikipedia.o
 
 {{%fpanel%}}
 
-[Document API](./document-api.html){{%wbr%}}
+[Document API](./document-api.html){{<wbr>}}
 Basic Document API
 
-[Extending the Document](./document-extending.html){{%wbr%}}
+[Extending the Document](./document-extending.html){{<wbr>}}
 XAP supports extending the SpaceDocument class to provide a type-safe wrapper for documents which is much easier to code with, while maintaining the dynamic schema.
 
-[Interoperability](./document-object-interoperability.html){{%wbr%}}
+[Interoperability](./document-object-interoperability.html){{<wbr>}}
 Interoperability between Concrete Object and Document space entries.
 
 {{%/fpanel%}}

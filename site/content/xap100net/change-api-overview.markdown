@@ -23,10 +23,10 @@ The `ISpaceProxy.Change` and the `ChangeSet` allows updating existing objects in
 
 {{%fpanel%}}
 
-[Overview](./change-api.html){{%wbr%}}
+[Overview](./change-api.html){{<wbr>}}
 Change API overview.
 
-[Advanced Change Options](./change-api-advanced.html){{%wbr%}}
+[Advanced Change Options](./change-api-advanced.html){{<wbr>}}
 Obtaining Change detailed results.
 
 {{%/fpanel%}}

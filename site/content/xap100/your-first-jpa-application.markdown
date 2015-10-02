@@ -29,7 +29,7 @@ Simply [download the sources as zip](https://github.com/Gigaspaces/petclinic-jpa
 
 ## Using XAP's JPA Support to Scale the Spring PetClinic Sample Application - Step by Step
 
-|![animals.png](/attachment_files/animals.png)|This tutorial explains how the Spring PetClinic sample application can be scaled by running on the Space, showing you how to: {{% wbr %}}{{% oksign %}} Adjust the PetClinic domain model to use the distributed XAP JPA implementation{{% wbr %}}{{% oksign %}} Utilize scalable distributed patterns such as partitioning, colocation of data and business logic and Map/Reduce to scale your JPA application{{% wbr %}}{{% oksign %}} Deploy the application on to the GigaSpaces XAP runtime environment to achieve high availability and self healing capabilities|
+|![animals.png](/attachment_files/animals.png)|This tutorial explains how the Spring PetClinic sample application can be scaled by running on the Space, showing you how to: {{<wbr>}}{{<oksign>}} Adjust the PetClinic domain model to use the distributed XAP JPA implementation{{<wbr>}}{{<oksign>}} Utilize scalable distributed patterns such as partitioning, colocation of data and business logic and Map/Reduce to scale your JPA application{{<wbr>}}{{<oksign>}} Deploy the application on to the GigaSpaces XAP runtime environment to achieve high availability and self healing capabilities|
 
 {{% panel   %}}
 

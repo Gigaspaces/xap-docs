@@ -33,9 +33,9 @@ Links:
 
 The Excel Space Viewer allows you to create views of data to a certain space class. The generated view is a tabular representation of the displayable class fields, numeric and textual types. In the view, each class field is represented by a column, and each row in this column represents an instance of the class.
 
-{{% infosign %}} Field values that are not of a numerical, textual or dates will not be displayed. This includes collections, arrays, user defined types or any other complex objects.
+{{<infosign>}} Field values that are not of a numerical, textual or dates will not be displayed. This includes collections, arrays, user defined types or any other complex objects.
 
-{{% infosign %}} It is possible to create several views in the same spreadsheet. All views can display data for the same space, or for different spaces. If you are displaying data for a different space, you need to connect to that space before creating an additional view.
+{{<infosign>}} It is possible to create several views in the same spreadsheet. All views can display data for the same space, or for different spaces. If you are displaying data for a different space, you need to connect to that space before creating an additional view.
 The Space Viewer toolbar includes the following options:
 
 - **[Create View](#Creating New View)** -- allows you to create and customize a new view
@@ -81,7 +81,7 @@ To create a new view:
 2. Make sure you are connected to a space.
 3. Use the arrow buttons ( ![arrowExcel.jpg](/attachment_files/sbp/arrowExcel.jpg)) to move columns from the **Available Columns** area to the **Selected Columns** area.
 4. If you want to narrow your view to more specific results (by querying your class fields), click the **Customize the Selection** button (see [**Customize the Selection**](#Customize the Selection)).
-{{% infosign %}} This step is optional. If you want to generate the view with all the existing entries of the selected type in the space, proceed to the next step.
+{{<infosign>}} This step is optional. If you want to generate the view with all the existing entries of the selected type in the space, proceed to the next step.
     1. On the left side of the Customize the Selection window, click the class field you want to query. (For example, the **Age** field is selected below.)
     {{% indent %}}
     ![CustomizeTheSelection1.jpg](/attachment_files/sbp/CustomizeTheSelection1.jpg)
@@ -96,9 +96,9 @@ To create a new view:
 6. Your selection is displayed in the spreadsheet:
 ![ExcelSheet1.jpg](/attachment_files/sbp/ExcelSheet1.jpg)
 
-{{% infosign %}} This view displays the selections you made in the Create View and Customize the Selection windows. The view is constantly refreshed (according to the last refresh rate you defined.).
+{{<infosign>}} This view displays the selections you made in the Create View and Customize the Selection windows. The view is constantly refreshed (according to the last refresh rate you defined.).
 
-{{% infosign %}} You can use all Excel capabilities on this list, such as column sorting and list. However, **column sorting is not saved when you update your view**.
+{{<infosign>}} You can use all Excel capabilities on this list, such as column sorting and list. However, **column sorting is not saved when you update your view**.
 
 ## Customize the Selection
 

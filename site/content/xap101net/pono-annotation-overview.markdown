@@ -14,10 +14,10 @@ The XAP API supports class  and properties decorations with PONOs. These can be 
 
 {{%fpanel%}}
 
-[Class annotations](./pono-class-annotations.html){{%wbr%}}
+[Class annotations](./pono-class-annotations.html){{<wbr>}}
 Class annotations for PONOs.
 
-[Property annotations](./pono-attribute-annotations.html){{%wbr%}}
+[Property annotations](./pono-attribute-annotations.html){{<wbr>}}
 Property level annotations for PONOs.
 
 {{%/fpanel%}}

@@ -17,10 +17,10 @@ XAP's [POJO](http://en.wikipedia.org/wiki/Plain_Old_Java_Object) support allows 
 
 
 {{% fpanel %}}
-[Overview](./pojo-support.html){{%wbr%}}
+[Overview](./pojo-support.html){{<wbr>}}
 Using POJOs as space objects.
 
-[Dynamic Properties](./dynamic-properties.html){{%wbr%}}
+[Dynamic Properties](./dynamic-properties.html){{<wbr>}}
 Using Dynamic Properties with POJO entries.
 {{%/fpanel%}}
 

@@ -13,7 +13,7 @@ weight: 100
 The [GigaSpaces API](./the-gigaspace-interface-overview.html) supports class level decorations with POJOs. These can be specified via annotations on the space class source itself  for all class instances.
 
 
-{{%wbr%}}
+{{<wbr>}}
 
 # Persistence
 
@@ -84,7 +84,7 @@ public class Person {
 |Syntax     | @SpaceClass(inheritIndexes=false) |
 |Argument   | boolean          |
 |Default    | true|
-|Description| Whether to use the class indexes list only, or to also include the superclass' indexes. {{% wbr %}}If the class does not define indexes, superclass indexes are used. {{% wbr %}}Options:{{% wbr %}}- `false` -- class indexes only.{{% wbr %}}- `true` -- class indexes and superclass indexes.|
+|Description| Whether to use the class indexes list only, or to also include the superclass' indexes. {{<wbr>}}If the class does not define indexes, superclass indexes are used. {{<wbr>}}Options:{{<wbr>}}- `false` -- class indexes only.{{<wbr>}}- `true` -- class indexes and superclass indexes.|
 
 Example:
 
@@ -148,7 +148,7 @@ public class Person {
 
 |           |                            |
 |-----------|----------------------------|
-|Syntax     | @CompoundSpaceIndexes( {{%wbr%}} {@CompoundSpaceIndex(paths = {"data1", "data2"}) }  {{%wbr%}}) |
+|Syntax     | @CompoundSpaceIndexes( {{<wbr>}} {@CompoundSpaceIndex(paths = {"data1", "data2"}) }  {{<wbr>}}) |
 |Argument(s)| string          |
 |Values     | attribute name(s)   |
 |Description| Indexes can be defined for multiple attributes of a class  |

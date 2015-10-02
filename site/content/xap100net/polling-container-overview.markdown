@@ -22,13 +22,13 @@ A polling event operation is mainly used when simulating Queue semantics or when
 
 {{%fpanel%}}
 
-[Overview](./polling-container.html){{%wbr%}}
+[Overview](./polling-container.html){{<wbr>}}
 The polling event container.
 
-[Concurrent consumers](./polling-container-scaling.html){{%wbr%}}
+[Concurrent consumers](./polling-container-scaling.html){{<wbr>}}
 By default, the polling event container starts a single thread that performs the receive operations, and invokes the event listener. It can be configured to start several concurrent consumer threads.
 
-[Transaction support](./polling-container-transactions.html){{%wbr%}}
+[Transaction support](./polling-container-transactions.html){{<wbr>}}
 Both the receive operation, and the actual event action can be configured to be performed under a transaction.
 
 {{%/fpanel%}}

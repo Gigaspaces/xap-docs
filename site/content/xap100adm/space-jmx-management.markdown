@@ -20,26 +20,26 @@ A JMX manageable resource can be an application, an implementation of a service,
 
 # Opening JMX
 
-Step 1. The easiest way to open JConsole for a specific service is through the GigaSpaces Management Center: {{%wbr%}}
- - In the Deployments tab, right-click the GSC, GSM, or LookupService tree node, or {{%wbr%}}
- - In the Space Browser tab: {{%wbr%}}
- - In the Grid Tree, right-click the relevant [space container node]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Container Node), or {{%wbr%}}
+Step 1. The easiest way to open JConsole for a specific service is through the GigaSpaces Management Center: {{<wbr>}}
+ - In the Deployments tab, right-click the GSC, GSM, or LookupService tree node, or {{<wbr>}}
+ - In the Space Browser tab: {{<wbr>}}
+ - In the Grid Tree, right-click the relevant [space container node]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Container Node), or {{<wbr>}}
 
-![space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg](/attachment_files/space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg) {{%wbr%}}
+![space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg](/attachment_files/space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg) {{<wbr>}}
 
- - Right-click the relevant [space node]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Space Node) or clustered space node, or {{%wbr%}}
+ - Right-click the relevant [space node]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Space Node) or clustered space node, or {{<wbr>}}
 
-![space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg](/attachment_files/space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg) {{%wbr%}}
+![space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg](/attachment_files/space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg) {{<wbr>}}
 
- - Right-click the relevant space from the [space network view]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Spaces Network View): {{%wbr%}}
+ - Right-click the relevant space from the [space network view]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Spaces Network View): {{<wbr>}}
 
-![space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg](/attachment_files/space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg)  {{%wbr%}}
+![space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg](/attachment_files/space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg)  {{<wbr>}}
 
-Step 2. Click **Launch JConsole**. {{%wbr%}}
-Step 3. This opens the JConsole (only if you are running JDK 1.5 and above) of the selected process.{{%wbr%}}
-Step 4. You can browse the various MBeans.{{%wbr%}}
-Step 5. Make sure you have a deployed space.   {{%wbr%}}
-Step 6. Open a console and type the following command: `jconsole`{{%wbr%}}
+Step 2. Click **Launch JConsole**. {{<wbr>}}
+Step 3. This opens the JConsole (only if you are running JDK 1.5 and above) of the selected process.{{<wbr>}}
+Step 4. You can browse the various MBeans.{{<wbr>}}
+Step 5. Make sure you have a deployed space.   {{<wbr>}}
+Step 6. Open a console and type the following command: `jconsole`{{<wbr>}}
 
 {{% info %}}
 By default, operations in the MBeans **Operations** tab which have GigaSpaces classes as their type are disabled. To enable these, type `jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\JSpaces.jar`in your console. Instead of `GS_HOME`, type the directory in which GigaSpaces is installed on your computer.
@@ -59,8 +59,8 @@ INFO:
  using service url: service:jmx:rmi:///jndi/rmi://localhost:10098/jmxrmi
 ```
 
-![space_JMX_4_space_JMX_IMG992.gif](/attachment_files/space_JMX_4_space_JMX_IMG992.gif)  {{%wbr%}}
-    c. Press **Connect**. {{%wbr%}}
+![space_JMX_4_space_JMX_IMG992.gif](/attachment_files/space_JMX_4_space_JMX_IMG992.gif)  {{<wbr>}}
+    c. Press **Connect**. {{<wbr>}}
 
 - Using the **Remote** tab:
 
@@ -70,11 +70,11 @@ INFO:
 
     c. In the **Port** text box, copy the port value from the same JNDI URL text field in the container configuration.
 
-![space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg](/attachment_files/space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg){{% wbr %}}
+![space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg](/attachment_files/space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg){{<wbr>}}
 
 ![space_JMX_6_jconsole_connect.jpg](/attachment_files/space_JMX_6_jconsole_connect.jpg)
 
-Step 8. Press **Connect**.{{% wbr %}}Here is a code example of implementing such an approach:{{% wbr %}}
+Step 8. Press **Connect**.{{<wbr>}}Here is a code example of implementing such an approach:{{<wbr>}}
 
 
 ```java

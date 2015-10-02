@@ -6,7 +6,7 @@ parent: none
 weight: 50
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column width="10%" %}}
@@ -24,23 +24,23 @@ For a list of supported platforms please consult [the realease notes](/release_n
 {{%/note%}}
 
 
-- [Basic installation](./installation.html){{%wbr%}}
+- [Basic installation](./installation.html){{<wbr>}}
 Basic installation instructions.
 
-- [XAP License](./license-key.html){{%wbr%}}
+- [XAP License](./license-key.html){{<wbr>}}
 Getting a license key and defining it in the space schema.
 
-- [Advanced installation](./advanced-installation-scenarios.html){{%wbr%}}
+- [Advanced installation](./advanced-installation-scenarios.html){{<wbr>}}
 Common questions and answers about XAP.NET installations.
 
-- [Product structure](./product-structure.html){{%wbr%}}
+- [Product structure](./product-structure.html){{<wbr>}}
 XAP .NET basic artifacts.
 
-- [XAP as a Windows Service](./gigaspaces-services-manager.html){{%wbr%}}
+- [XAP as a Windows Service](./gigaspaces-services-manager.html){{<wbr>}}
 Setting up XAP as a Windows Service.
 
 
-- [Debugging and monitoring](./debugging-a-xap.net-application.html){{%wbr%}}
+- [Debugging and monitoring](./debugging-a-xap.net-application.html){{<wbr>}}
 Debugging and monitoring a .NET application.
 
 <hr/>

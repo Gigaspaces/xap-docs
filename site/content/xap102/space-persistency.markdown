@@ -52,7 +52,7 @@ The ability to customize the space persistency functionality allows GigaSpaces t
 
 
 
-| Client Call | Space Data Source/{{%wbr%}}Synchronization Endpoint Call| Cache Policy Mode|EDS Usage Mode|
+| Client Call | Space Data Source/{{<wbr>}}Synchronization Endpoint Call| Cache Policy Mode|EDS Usage Mode|
 |:------------|:-----------------------------------------------|:-----------------|:-------------|
 |write , change , take , asyncTake , writeMultiple , takeMultiple , clear|onOperationsBatchSynchronization , afterOperationsBatchSynchronization|ALL_IN_CACHE, LRU|read-write|
 |readById|getById|ALL_IN_CACHE, LRU|read-write,read-only|

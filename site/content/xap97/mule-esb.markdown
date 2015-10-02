@@ -6,7 +6,7 @@ parent: programmers-guide.html
 weight: 1550
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column width="10%" %}}
@@ -25,17 +25,17 @@ A Mule application can be packaged and run as a Processing Unit  within one of t
 <hr/>
 
 
-- [Event Container](./mule-event-container-transport.html){{%wbr%}}
+- [Event Container](./mule-event-container-transport.html){{<wbr>}}
 XAP's event container transport uses event components that allow you to send and receive POJO messages over the Space using Mule.
 
-- [Processing Unit](./mule-processing-unit.html){{%wbr%}}
+- [Processing Unit](./mule-processing-unit.html){{<wbr>}}
 The Mule Processing Unit allows you to run Mule within a Processing Unit, thus leveraging all of the Processing Unit and SLA-driven container capabilities.
 
-- [Queue Provider](./mule-queue-provider.html){{%wbr%}}
+- [Queue Provider](./mule-queue-provider.html){{<wbr>}}
 The XAP queue provider is used for internal space-based communication between services managed by Mule.
 
 
-- [SEDA Model](./mule-seda-model.html){{%wbr%}}
+- [SEDA Model](./mule-seda-model.html){{<wbr>}}
 XAP's Mule SEDA model allows you to define services that are aware of the space mode they are working with; and to store SEDA queues in a virtualized space queue instead of Mule's default VM queues.
 
 <hr/>

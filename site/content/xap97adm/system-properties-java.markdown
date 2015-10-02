@@ -11,14 +11,14 @@ weight: 400
 
 | Property name | Description | Default value |
 |:--------------|:------------|:--------------|
-| `com.gs.home` | GigaSpaces home directory. {{% wbr %}}Not required, if not set explicitly, it is resolved | `JSHOMEDIR` |
+| `com.gs.home` | GigaSpaces home directory. {{<wbr>}}Not required, if not set explicitly, it is resolved | `JSHOMEDIR` |
 | `com.gs.grid.secured` | Security property indicating whether the GSM and GSC should be loaded in a secured mode.  | false (non-secured) |
 | `com.gs.deploy` | The location of the deploy directory of the GSM. | `GSHOME/deploy` |
 | `com.gs.work` | The location of the work directory of the GSM and GSC. | `GSHOME/work` |
 | `com.gs.active_election.timeout` | Defines the sleep timeout between iterations in the Active election algorithm | 1000 msec |
 | `com.gs.replication.disable-duplicate-filtering` | Disables the duplication filtering mechanism used to avoid double processing of packets after recovery. | false |
 | `com.gs.cluster.cache-loader.external-data-source` | Boolean property. Must be set to `true` when working with external data source | `false` |
-| `com.gs.cluster.cache-loader.central-data-source` | Boolean property. Must be set to `true` when the cluster uses external data source and{{% wbr %}}a central database to keep its data | `false` |
+| `com.gs.cluster.cache-loader.central-data-source` | Boolean property. Must be set to `true` when the cluster uses external data source and{{<wbr>}}a central database to keep its data | `false` |
 | `com.gs.lrmi.filter.factory` | Factory class that is used to load communication filter.| empty |
 | `com.gs.lrmi.filter.security.keystore` | Name of the keystore file that should be used by SSL communication filter. | empty |
 | `com.gs.lrmi.filter.security.password` | Keystore password that should be used by SSL communication filter. | empty |
@@ -71,5 +71,5 @@ as the parent directory of the `JSpaces.jar` file. | |
 | `com.gs.cluster.cache-loader.shared-data-source` | Used by the cluster schemas for the `CacheLoader`. | |
 | `com.gs.cluster.livenessMonitorFrequency` | Defines the frequency in which liveness of 'live' members in a cluster is monitored. See [Viewing Clustered Space Status](./troubleshooting-viewing-clustered-space-status.html) for more details. | Default 10000 ms&nbsp; |
 | `com.gs.cluster.livenessDetectorFrequency` | Defines the frequency in which liveness of members in a cluster is detected. See [Viewing Clustered Space Status](./troubleshooting-viewing-clustered-space-status.html) | Default 5000 ms |
-| `com.gs.callGC` | Boolean value.{{% wbr %}}Call garbage collection when performing eviction. This used when running in LRU cache policy and also at client side when using local cache. | `false` |
-| `com.gs.xa.failOnInvalidRollback` | Boolean value.{{% wbr %}}When set to `false`, the `XAResource` does not throw an error when attempting to roll back a non-existing transaction or a transaction the has already been rolled back. For more details, see {{% wbr %}}[Javadoc](http://docs.oracle.com/javase/1.5.0/docs/api/javax/transaction/xa/XAResource.html) | `true` {{% anchor maxbuffer %}} |
+| `com.gs.callGC` | Boolean value.{{<wbr>}}Call garbage collection when performing eviction. This used when running in LRU cache policy and also at client side when using local cache. | `false` |
+| `com.gs.xa.failOnInvalidRollback` | Boolean value.{{<wbr>}}When set to `false`, the `XAResource` does not throw an error when attempting to roll back a non-existing transaction or a transaction the has already been rolled back. For more details, see {{<wbr>}}[Javadoc](http://docs.oracle.com/javase/1.5.0/docs/api/javax/transaction/xa/XAResource.html) | `true` {{% anchor maxbuffer %}} |

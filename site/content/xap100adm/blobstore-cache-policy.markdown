@@ -61,10 +61,10 @@ The BlobStore settings includes the following options:
 | write-mode | `WRITE_THRU` - the data grid writes the data immediately into the blobstore and synchronously acknowledge the write after ZetaScale fully commits the operation. `WRITE_BEHIND` - the data grid writes the data immediately into the blobstore. ZetaScale asynchronously commits the operation to the SSD. This option improves write performance but may have a consistency issue with a sudden hardware failure.| `WRITE_THRU` | optional |
 | enable-admin | ZetaScale admin provides a simple command line interface (CLI) through a TCP port. ZetaScale CLI uses port 51350 by default. This port can be changed through the configuration parameter `FDF_ADMIN_PORT`. | false |
 | statistics-interval | Applications can optionally enable periodic dumping of statistics to a specified file (XAP_HOME/logs). This is disabled by default. | | optional |
-| durability-level | `SW_CRASH_SAFE` - Guarantees no data loss in the event of software crashes. But some data might be lost in the event of hardware failure.{{%wbr%}}`HW_CRASH_SAFE`- Guarantees no data loss if the hardware crashes.Since there are performance implication it is recommended to work with NVRAM device and configure log-flash-dir to a folder on this device. | SW_CRASH_SAFE | optional |
+| durability-level | `SW_CRASH_SAFE` - Guarantees no data loss in the event of software crashes. But some data might be lost in the event of hardware failure.{{<wbr>}}`HW_CRASH_SAFE`- Guarantees no data loss if the hardware crashes.Since there are performance implication it is recommended to work with NVRAM device and configure log-flash-dir to a folder on this device. | SW_CRASH_SAFE | optional |
 | log-flush-dir | When `HW_CRASH_SAFE` used , point to a directory in a file system on top of NVRAM backed disk. This directory must be unique per space, you can add ${clusterInfo.runningNumber} as suffix to generate a unique name | as volume-dir | optional |
 
-The IMDG BlobStore settings includes the following options:{{%wbr%}}
+The IMDG BlobStore settings includes the following options:{{<wbr>}}
 
 
 | Property | Description | Default | Use |
@@ -477,7 +477,7 @@ ZetaScale provides a simple command line interface (CLI) through a TCP port. The
 |container stats `<container name>[v]` | Prints stats of the given container. The option v (verbose) prints extended stats.|
 |container `stats_dump <container name|all> [v]` | Prints stats of a given container or all containers to the stats file configured through `FDF_STATS_FILE`. The option v(verbose) prints extended stats.
 |container autodump `<enable/disable/interval/printcfg> [interval in secs]`  | This command enables or disables periodic stats dump, and configures the dump interval.|
-|log_level {{%wbr%}}`<set/get> [fatal/error/warning/info/diagnostic/` {{%wbr%}}`debug/trace/trace_low/devel]`| Sets the log level|
+|log_level {{<wbr>}}`<set/get> [fatal/error/warning/info/diagnostic/` {{<wbr>}}`debug/trace/trace_low/devel]`| Sets the log level|
 |help | Prints help for all supported commands|
 |quit |Quits the telnet session|
 
@@ -494,7 +494,7 @@ help
 Supported commands:
 container stats <container name> [v]
 container stats_dump <container name|all> [v]
-container autodump {{%wbr%}}<enable/disable/interval/printcfg> [interval in secs]
+container autodump {{<wbr>}}<enable/disable/interval/printcfg> [interval in secs]
 container list
 log_level <set/get> [fatal/error/warning/info/diagnostic/debug/trace/trace_low/devel]
 help

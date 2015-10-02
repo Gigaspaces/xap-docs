@@ -5,7 +5,7 @@ categories: XAP97
 parent: programmers-guide.html
 weight: 800
 ---
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column width="10%" %}}
@@ -22,17 +22,17 @@ XAP promotes openness and interoperability, supporting common interfaces for acc
 
 ![anyapi.png](/attachment_files/anyapi.png)
 
-{{%wbr%}}
+{{<wbr>}}
 
-- [JDBC Driver](./jdbc-driver.html){{%wbr%}}
+- [JDBC Driver](./jdbc-driver.html){{<wbr>}}
 XAP allows applications to connect to the IMDG using a JDBC driver. AN XAP JDBC driver accepts SQL statements, translates them to space operations, and returns standard result sets.
 
-- [JPA](./jpa-api.html){{%wbr%}}
+- [JPA](./jpa-api.html){{<wbr>}}
 XAP's JPA allows you to use JPA's functionality, annotations and execute JPQL queries on Space.
 
-- [MAP API](./map-api.html){{%wbr%}}
+- [MAP API](./map-api.html){{<wbr>}}
 XAP allows applications to interact with the space and cache data using the Map API (JCache) or a HashTable API.
 
-- [memcached API](./memcached-api.html){{%wbr%}}
+- [memcached API](./memcached-api.html){{<wbr>}}
 The memcached support is provided as a template deployment (similar to how basic data grid deployment works), allowing to easily issue commands to deploy a memcached cluster
 <hr/>

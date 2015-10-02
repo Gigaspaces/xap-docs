@@ -8,7 +8,7 @@ weight: 300
 
 
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column width="10%" %}}
@@ -22,13 +22,13 @@ weight: 300
 
 MongoDB is built for scalability, performance and high availability, scaling from single server deployments to large, complex multi-site architectures. By leveraging in-memory computing, MongoDB provides high performance for both reads and writes. MongoDB's native replication and automated failover enable enterprise-grade reliability and operational flexibility.
 
-{{%wbr%}}
+{{<wbr>}}
 
 
-- [Space Persistence](./mongodb-space-persistency.html){{%wbr%}}
+- [Space Persistence](./mongodb-space-persistency.html){{<wbr>}}
 A MongoDB Space Persistency Solution
 
-- [Archive Handler](./mongodb-archive-operation-handler.html){{%wbr%}}
+- [Archive Handler](./mongodb-archive-operation-handler.html){{<wbr>}}
 Archives space objects to MongoDB.
 
 

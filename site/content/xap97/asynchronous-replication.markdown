@@ -103,4 +103,4 @@ When a source space instance is closed, it may have pending replication packets 
 
 | Property | Description | Default Value |
 |:---------|:------------|:--------------|
-| `cluster-config.groups.group.repl-policy.`{{%wbr%}}`async-replication.async-channel-shutdown-timeout` | Determines how long (in milliseconds) the primary space will wait for pending replication to be replicated to its targets before shutting down.| 300000 \[ms\]  |
+| `cluster-config.groups.group.repl-policy.`{{<wbr>}}`async-replication.async-channel-shutdown-timeout` | Determines how long (in milliseconds) the primary space will wait for pending replication to be replicated to its targets before shutting down.| 300000 \[ms\]  |

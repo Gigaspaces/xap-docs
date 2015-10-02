@@ -6,7 +6,7 @@ parent: programmers-guide.html
 weight: 20
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 
 {{% section %}}
@@ -22,14 +22,14 @@ The XAP document API exposes the space as [Document Store](http://en.wikipedia.o
 <hr/>
 
 
-- [Document API](./document-api.html){{%wbr%}}
+- [Document API](./document-api.html){{<wbr>}}
 Basic Document API
 
-- [Extending the Document](./document-extending.html){{%wbr%}}
+- [Extending the Document](./document-extending.html){{<wbr>}}
 XAP supports extending the SpaceDocument class to provide a type-safe wrapper for documents which is much easier to code with, while maintaining the dynamic schema.
 
 
-- [Interoperability](./document-pojo-interoperability.html){{%wbr%}}
+- [Interoperability](./document-pojo-interoperability.html){{<wbr>}}
 XAP offers interoperability between documents and POJOs via the space
 
 

@@ -9,7 +9,7 @@ parent: net-home.html
 
 {{%section%}}
 {{%column width="10%" %}}
-{{%wbr%}}
+{{<wbr>}}
 ![cassandra.png](/attachment_files/qsg/data.png)
 {{%/column%}}
 {{%column width="90%" %}}

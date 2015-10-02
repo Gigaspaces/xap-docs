@@ -36,11 +36,11 @@ XML mapping can be defined in the same package as the class (using the class nam
 | XML Attribute Name | Type | Description | Default Value |
 |:-------------------|:-----|:------------|:--------------|
 | `name` | string | The name of the class. | |
-| `cpp-name` | string | The C++ name of the class.{{% wbr %}}If not specified then 'name' is used. | |
-| `dotnet-name` | string | The .NET name of the class, including the namespace.{{% wbr %}}If not specified then 'name' is used. | |
+| `cpp-name` | string | The C++ name of the class.{{<wbr>}}If not specified then 'name' is used. | |
+| `dotnet-name` | string | The .NET name of the class, including the namespace.{{<wbr>}}If not specified then 'name' is used. | |
 | `replicate` | boolean | When running in partial replication mode, a `true` value for this field replicates all objects of this type to a target space or spaces. | `true` |
-| `persist` | boolean | When a space is defined as persistent, a `true` value for this annotation persists objects of this type.{{% wbr %}} For more details, refer to the [Persistency](./space-persistency.html) section. {{% wbr %}}| `true` |
-| `fifo` | boolean | To enable FIFO-based notifications and take operations, this annotation should be `true`.{{% wbr %}} For more details, refer to the [FIFO operations](./fifo-support.html) section. {{% wbr %}}| `false` |
+| `persist` | boolean | When a space is defined as persistent, a `true` value for this annotation persists objects of this type.{{<wbr>}} For more details, refer to the [Persistency](./space-persistency.html) section. {{<wbr>}}| `true` |
+| `fifo` | boolean | To enable FIFO-based notifications and take operations, this annotation should be `true`.{{<wbr>}} For more details, refer to the [FIFO operations](./fifo-support.html) section. {{<wbr>}}| `false` |
 
 {{% note %}}
 The default values for `replicate`, `persist`, and `fifo` should only be considered as +recommended+ default values. Actual values should be specified in the `gs.xml` file.
@@ -84,9 +84,9 @@ The `property` element defines a field in this class.
 
 | XML Attribute Name | Type | Description | Default Value |
 |:-------------------|:-----|:------------|:--------------|
-| `name` | string | The property name.{{% wbr %}}{{% infosign %}} It is recommended that property names start with a lowercase letter to avoid conflicts in Java. If POJO classes are generated too, then any property that starts with an uppercase letter will be excluded from its POJO class.  | `NONE` |
+| `name` | string | The property name.{{<wbr>}}{{<infosign>}} It is recommended that property names start with a lowercase letter to avoid conflicts in Java. If POJO classes are generated too, then any property that starts with an uppercase letter will be excluded from its POJO class.  | `NONE` |
 | `index` | string of `IndexType` | Defines if this field data is indexed. Querying indexed fields speeds up read and take operations. Possible values are `false` and `true`. | `false` |
-| `null-value` | String | Specifies that a value be treated as `null`.{{% wbr %}}For example: `<property name="m_Age" type="int" null-value="4711" />`, where `4711` functions as a `null` value. | |
+| `null-value` | String | Specifies that a value be treated as `null`.{{<wbr>}}For example: `<property name="m_Age" type="int" null-value="4711" />`, where `4711` functions as a `null` value. | |
 | `type` | String | Defines the type of the property. **This is required.** See possible values below. | |
 
 {{% anchor 1 %}}
@@ -134,7 +134,7 @@ When having a Java class and a C++ class sharing data you should use int/long/fl
 | `name` | string | The property name | `NONE` |
 | `class-ref` | string | The class name | `NONE` |
 | `type` | string | Determines if the object is an array or a single object | `NONE` |
-| `storage-type` | string | Determines how this field value is stored in the space.{{% wbr %}}options are:{{% wbr %}} `object` - The value of this property is stored explicitly, so entries can be matched by specific value. In this case you should generate a matching POJO for the embedded C++ class.{{% wbr %}} `binary` - The value is stored as a blob. In this case there is no need to generate a matching POJO for the embedded C++ class. It is more efficient option, but would not allow you to perform matching based on this field. See below example how you should use this option: {{% wbr %}}\<class name="complexPayloadAsBinary" persist="true" replicate="false" fifo="false"\>{{% wbr %}}   \<superclass name="benchmarkBase" /\>{{% wbr %}}   \<ref-property class-ref="payloadAsString" name="innerPayload" type="boost::shared_ptr" storage-type="binary"/\>{{% wbr %}} </class>{{% wbr %}}{{% wbr %}} `object` |
+| `storage-type` | string | Determines how this field value is stored in the space.{{<wbr>}}options are:{{<wbr>}} `object` - The value of this property is stored explicitly, so entries can be matched by specific value. In this case you should generate a matching POJO for the embedded C++ class.{{<wbr>}} `binary` - The value is stored as a blob. In this case there is no need to generate a matching POJO for the embedded C++ class. It is more efficient option, but would not allow you to perform matching based on this field. See below example how you should use this option: {{<wbr>}}\<class name="complexPayloadAsBinary" persist="true" replicate="false" fifo="false"\>{{<wbr>}}   \<superclass name="benchmarkBase" /\>{{<wbr>}}   \<ref-property class-ref="payloadAsString" name="innerPayload" type="boost::shared_ptr" storage-type="binary"/\>{{<wbr>}} </class>{{<wbr>}}{{<wbr>}} `object` |
 
 
 

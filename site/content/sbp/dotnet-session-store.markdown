@@ -18,16 +18,16 @@ weight: 250
 
 # XAP.NET ASP.NET Session State Store
 
-It's becoming increasingly important for organizations to share HTTP session data across multiple data centers, multiple web server instances or different types of web servers. Here are few scenarios where HTTP session sharing is required: {{%wbr%}}
+It's becoming increasingly important for organizations to share HTTP session data across multiple data centers, multiple web server instances or different types of web servers. Here are few scenarios where HTTP session sharing is required: {{<wbr>}}
 
 {{%vbar%}}
--  Multiple different Web servers running your web application - You may be porting your application from one web server to another and there will be a period of time when both types of servers need to be active in production.{{%wbr%}}
+-  Multiple different Web servers running your web application - You may be porting your application from one web server to another and there will be a period of time when both types of servers need to be active in production.{{<wbr>}}
 
--  Web Application is broken into multiple modules - When applications are modularized such that different functionalities are deployed across multiple server instances. For example, you may have login, basic info, check-in and shopping functionalities split into separate modules and deployed individually across different servers for manageability or scalability. In order for the user to be presented with a single, seamless, and transparent application, session data needs to be shared between all the servers.{{%wbr%}}
+-  Web Application is broken into multiple modules - When applications are modularized such that different functionalities are deployed across multiple server instances. For example, you may have login, basic info, check-in and shopping functionalities split into separate modules and deployed individually across different servers for manageability or scalability. In order for the user to be presented with a single, seamless, and transparent application, session data needs to be shared between all the servers.{{<wbr>}}
 
--  Reduce Web application memory footprint - The web application storing all session within the web application process heap, consuming large amount of memory. Having the session stored within a remote process will reduce web application utilization avoiding garbage collocation and long pauses.{{%wbr%}}
+-  Reduce Web application memory footprint - The web application storing all session within the web application process heap, consuming large amount of memory. Having the session stored within a remote process will reduce web application utilization avoiding garbage collocation and long pauses.{{<wbr>}}
 
--  Multiple Data-Center deployment - You may need to deploy your application across multiple data centers for high-availability, scalability or flexibility, so session data will need to be replicated.{{%wbr%}}
+-  Multiple Data-Center deployment - You may need to deploy your application across multiple data centers for high-availability, scalability or flexibility, so session data will need to be replicated.{{<wbr>}}
 {{%/vbar%}}
 
 {{%section%}}
@@ -42,25 +42,25 @@ With this solution, there is no need to deploy a database to store the session, 
 
 # Overview
 
-GigaSpaces XAP.NET ASP.NET Session State Store Management for .NET is designed to deliver the application maximum performance with **ZERO** application code changes. It features the following: {{%wbr%}}
+GigaSpaces XAP.NET ASP.NET Session State Store Management for .NET is designed to deliver the application maximum performance with **ZERO** application code changes. It features the following: {{<wbr>}}
 
 {{%vbar%}}
 
--  Reduced IIS memory footprint storing the session within a remote Data Grid.{{%wbr%}}
+-  Reduced IIS memory footprint storing the session within a remote Data Grid.{{<wbr>}}
 
--  No code changes required to share the session with other remote IIS servers.{{%wbr%}}
+-  No code changes required to share the session with other remote IIS servers.{{<wbr>}}
 
--  Application elasticity - Support session replication across different IIS applications located within the same or different data-centers/clouds allowing the application to scale dynamically without any downtime.{{%wbr%}}
+-  Application elasticity - Support session replication across different IIS applications located within the same or different data-centers/clouds allowing the application to scale dynamically without any downtime.{{<wbr>}}
 
--  Unlimited number of sessions and concurrent users support - Sub-millisecond session data access by using GigaSpaces In-Memory-Data-Grid as the session state store. {{%wbr%}}
+-  Unlimited number of sessions and concurrent users support - Sub-millisecond session data access by using GigaSpaces In-Memory-Data-Grid as the session state store. {{<wbr>}}
 
--  Session replication over the WAN support - Utilizing GigaSpaces Multi-Site Replication over the WAN technology. Support data compression and encryption.{{%wbr%}}
+-  Session replication over the WAN support - Utilizing GigaSpaces Multi-Site Replication over the WAN technology. Support data compression and encryption.{{<wbr>}}
 
--  HTTP Session data access scalability - Session data can utilize any of the supported In-Memory-Data-Grid topologies ; replicated or partitioned.{{%wbr%}}
+-  HTTP Session data access scalability - Session data can utilize any of the supported In-Memory-Data-Grid topologies ; replicated or partitioned.{{<wbr>}}
 
--  Transparent IIS Failover - Allow IIS restart without any session data loss.{{%wbr%}}
+-  Transparent IIS Failover - Allow IIS restart without any session data loss.{{<wbr>}}
 
--  Sticky session and Non-sticky session support - Your requests can move across multiple IIS seamlessly.{{%wbr%}}
+-  Sticky session and Non-sticky session support - Your requests can move across multiple IIS seamlessly.{{<wbr>}}
 
 {{%/vbar%}}
 

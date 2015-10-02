@@ -159,7 +159,7 @@ The following methods support exclusive read lock when used with a transaction:
 The exclusive read lock is supported in a clustered environment when using the Jini Transaction Manager.
 
 {{% tip %}}
-Starting with XAP 7.1.2 GigaSpaces throws `java.lang.IllegalArgumentException: Using EXCLUSIVE_READ_LOCK modifier without a transaction`{{%wbr%}}`is illegal` exception as a protection mechanism when performing exclusive read **without** using a transaction. You must use a transaction when using exclusive read lock.
+Starting with XAP 7.1.2 GigaSpaces throws `java.lang.IllegalArgumentException: Using EXCLUSIVE_READ_LOCK modifier without a transaction`{{<wbr>}}`is illegal` exception as a protection mechanism when performing exclusive read **without** using a transaction. You must use a transaction when using exclusive read lock.
 {{% /tip %}}
 
 ## Code Example

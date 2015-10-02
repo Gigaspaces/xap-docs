@@ -8,7 +8,7 @@ weight: 200
 
 {{% ssummary  %}}{{%/ssummary%}}
 
-{{%wbr%}}
+{{<wbr>}}
 
 Both the receive operation and the actual event action can be configured to be performed under a transaction. Transaction support is required when, for example, an exception occurs in the event listener, and the receive operation needs to be to rolled back (and the actual data event is returned to the space). Adding transaction support is very simple in the polling container, and can be done by injecting a transaction manager into it.
 

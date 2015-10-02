@@ -37,13 +37,13 @@ This feature requires a separate license in addition to the XAP commercial licen
 
 {{%fpanel%}}
 
-[Overview](./global-http-session-sharing.html){{%wbr%}}
+[Overview](./global-http-session-sharing.html){{<wbr>}}
 Configure your web application to use the XAP session manager, deploy the XAP in-memory data grid (IMDG) and deploy your web application.
 
-[Configuration & Deployment](./global-http-session-sharing-configuration.html){{%wbr%}}
+[Configuration & Deployment](./global-http-session-sharing-configuration.html){{<wbr>}}
 Configure the web application and Shiro for deployment on the grid.
 
-[Apache Load Balancer](./global-http-session-sharing-load-balancer.html){{%wbr%}}
+[Apache Load Balancer](./global-http-session-sharing-load-balancer.html){{<wbr>}}
 Configuring Apache load balancer.
 {{%/fpanel%}}
 

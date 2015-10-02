@@ -35,14 +35,14 @@ XAP is packaged with a number of predefined alerts whose thresholds are configur
 
 | Alert Type| Default Thresholds|
 |:----------|:------------------|
-| CPU Utilization Alert | - Raise an alert if CPU utilization is above 80% for 1 minute{{% wbr %}}- Resolve alert if CPU utilization is below 60% for 1 minute |
-| Physical Memory Utilization Alert | - Raise an alert if physical memory utilization is above 80% for 1 minute{{% wbr %}}- Resolve alert if physical memory utilization is below 60% for 1 minute |
-| Heap Memory Utilization Alert | - Raise an alert if JVM heap memory utilization is above 80% for 1 minute{{% wbr %}}- Resolve alert if JVM heap memory utilization is below 60% for 1 minute |
-| Garbage Collection Alert | - Raise an alert if a GC pause takes more than 10 seconds{{% wbr %}}- Resolve alert if GC pause takes less than 1 second |
-| Replication Channel Disconnection Alert | - Raise an alert if replication channel has been disconnected between source and target Space{{% wbr %}}- Resolve alert if replication channel is reconnected between source and target Space |
-| Replication Redo Log Overflow to Disk Alert | - Raise an alert if replication redo log has exceeded its memory capacity and has over flown to disk.{{% wbr %}}- Resolve alert if replication redo log no longer uses the disk |
-| Replication Redo Log Size Alert | -  Raise an alert if replication redo log size goes 100,000 packets{{% wbr %}}- Resolve alert if replication redo log size goes below 1,000 packets |
-| Mirror Persistence failure Alert | - Raise an alert if Mirror Space failed to persist due to an error (e.g. a DB error). The alert is reported via the replication channel{{% wbr %}}- Resolve alert if Mirror Space manages to persist to the DB for first time after the alert has been raised. |
+| CPU Utilization Alert | - Raise an alert if CPU utilization is above 80% for 1 minute{{<wbr>}}- Resolve alert if CPU utilization is below 60% for 1 minute |
+| Physical Memory Utilization Alert | - Raise an alert if physical memory utilization is above 80% for 1 minute{{<wbr>}}- Resolve alert if physical memory utilization is below 60% for 1 minute |
+| Heap Memory Utilization Alert | - Raise an alert if JVM heap memory utilization is above 80% for 1 minute{{<wbr>}}- Resolve alert if JVM heap memory utilization is below 60% for 1 minute |
+| Garbage Collection Alert | - Raise an alert if a GC pause takes more than 10 seconds{{<wbr>}}- Resolve alert if GC pause takes less than 1 second |
+| Replication Channel Disconnection Alert | - Raise an alert if replication channel has been disconnected between source and target Space{{<wbr>}}- Resolve alert if replication channel is reconnected between source and target Space |
+| Replication Redo Log Overflow to Disk Alert | - Raise an alert if replication redo log has exceeded its memory capacity and has over flown to disk.{{<wbr>}}- Resolve alert if replication redo log no longer uses the disk |
+| Replication Redo Log Size Alert | -  Raise an alert if replication redo log size goes 100,000 packets{{<wbr>}}- Resolve alert if replication redo log size goes below 1,000 packets |
+| Mirror Persistence failure Alert | - Raise an alert if Mirror Space failed to persist due to an error (e.g. a DB error). The alert is reported via the replication channel{{<wbr>}}- Resolve alert if Mirror Space manages to persist to the DB for first time after the alert has been raised. |
 
 # Static Configuration
 
@@ -126,7 +126,7 @@ The `org.openspaces.admin.alert.Alert` instance includes the following set of pr
 | Status | The alert status | `ESCALATED,` **`RAISED`** `, SUPPRESSED,` **`RESOLVED`** `, NA` |
 | UID | A unique identifier for this alert | component hash code with an incrementing number |
 | Component UID | The grid component UID that the alert has been triggered for | e.g. "service-id: 15f4b0b4-3a78-413f-bd3a-429a50dcdf05" |
-| Group UID | A unique identifier for a set of alerts triggered for the same component,{{% wbr %}}e.g. two different machines will have a different group UID if their CPU utilization {{% wbr %}}raised an alert.But for each machine, the raised alerts and resolved{{% wbr %}}alert for CPU utilization will have the same group UID | e.g. "aafb1222-826c3cbb-73c6-4903-bdc1-d858f1324e12" |
+| Group UID | A unique identifier for a set of alerts triggered for the same component,{{<wbr>}}e.g. two different machines will have a different group UID if their CPU utilization {{<wbr>}}raised an alert.But for each machine, the raised alerts and resolved{{<wbr>}}alert for CPU utilization will have the same group UID | e.g. "aafb1222-826c3cbb-73c6-4903-bdc1-d858f1324e12" |
 | Config | The configuration properties set for this alert | |
 | Properties | Any runtime properties that could be extracted and are relevant information for this alert | e.g. host name, host address, memory utilization,etc. |
 

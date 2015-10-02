@@ -26,10 +26,10 @@ MongoDB is built for scalability, performance and high availability, scaling fro
 <br>
 
 {{%fpanel%}}
-[Space Persistence](./mongodb-space-persistency.html){{%wbr%}}
+[Space Persistence](./mongodb-space-persistency.html){{<wbr>}}
 A MongoDB Space Persistency Solution
 
-[Archive Handler](./mongodb-archive-operation-handler.html){{%wbr%}}
+[Archive Handler](./mongodb-archive-operation-handler.html){{<wbr>}}
 Archives space objects to MongoDB.
 
 {{%/fpanel%}}

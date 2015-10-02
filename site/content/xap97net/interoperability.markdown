@@ -6,7 +6,7 @@ parent: none
 weight: 250
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column width="10%" %}}
@@ -22,10 +22,10 @@ The possibility for organizations whose projects include a combination of Java, 
 <hr/>
 
 
-- [.NET - Java Interoperability](./dotnet-java-interoperability.html){{%wbr%}}
+- [.NET - Java Interoperability](./dotnet-java-interoperability.html){{<wbr>}}
 This page is focused on designing interoperable classes manually, and some related advanced features.
 
-- [User Defined Objects](./interoperability-of-user-defined-objects.html){{%wbr%}}
+- [User Defined Objects](./interoperability-of-user-defined-objects.html){{<wbr>}}
 How to implement deep (complex) interoperable classes.
 
 <hr/>

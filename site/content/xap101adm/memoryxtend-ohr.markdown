@@ -29,7 +29,7 @@ The off-heap BlobStore settings includes the following options:
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
 | <nobr>write-only-block-percentage</nobr> | Specifies a maximum threshold for off-heap memory use. If the space containers off-heap memory usage exceeds this threshold, a `BlobStoreMemoryShortageException` is thrown. | 80 | optional |
 
-The IMDG BlobStore settings includes the following options:{{%wbr%}}
+The IMDG BlobStore settings includes the following options:{{<wbr>}}
 
 
 | Property | Description | Default | Use |

@@ -20,46 +20,46 @@ The Administrator's Guide will introduce you to the Management Center and Web Ma
 
 {{%fpanel%}}
 
-[Management Center](./gigaspaces-management-center.html){{%wbr%}}
+[Management Center](./gigaspaces-management-center.html){{<wbr>}}
 GigaSpaces Management Center is a GUI that allows you to view spaces, containers, and clusters and configure them, using the Space Browser tab. You can also deploy and manage services using the Deployments tab.
 
-[Web Management Console](./web-management-console.html){{%wbr%}}
+[Web Management Console](./web-management-console.html){{<wbr>}}
 The web management console is a new user interface for XAP allowing users to deploy, manage and monitor their Processing Units and Applications
 
-[Data grid clustering](./data-grid-clustering.html){{%wbr%}}
+[Data grid clustering](./data-grid-clustering.html){{<wbr>}}
 This section describe into details how the In-Memory-Data-Grid clustering works. It goes into the details of the fail-over, load-balancing, and replication facilities used.
 
-[Service Level Agreement](./the-sla-overview.html){{%wbr%}}
+[Service Level Agreement](./the-sla-overview.html){{<wbr>}}
 The XAP runtime environment (Service Grid) provides Service Level Agreement driven capabilities.
 
-[Memory Management](./memory-management-overview.html){{%wbr%}}
+[Memory Management](./memory-management-overview.html){{<wbr>}}
 In this section we will explain the different Space cache policies, memory usage, and rules for exceeding physical memory capacity.
 
-[Deploying onto a cloud](./deploying-your-application-on-a-cloud.html){{%wbr%}}
+[Deploying onto a cloud](./deploying-your-application-on-a-cloud.html){{<wbr>}}
 How to Deploy an application with Data Grid and Processing Units on any Cloud using a recipe
 
-[Logging](./logging-overview.html){{%wbr%}}
+[Logging](./logging-overview.html){{<wbr>}}
 This section explains how you can configure logging with XAP. We will show you how you can format the log output, choose file names and rollover policies.
 
-[Administration tools](./administration-tools.html){{%wbr%}}
+[Administration tools](./administration-tools.html){{<wbr>}}
 This guide will explain the command line interface that is used to deploy, manage and monitor Processing Units and Applications.
 
-[Runtime configuration](./runtime-configuration.html){{%wbr%}}
+[Runtime configuration](./runtime-configuration.html){{<wbr>}}
 This section lists and explains the different runtime configuration parameters.
 
-[Network Configuration](./network.html){{%wbr%}}
+[Network Configuration](./network.html){{<wbr>}}
 In this guide we will explain how to configure the network in order for XAP to work properly .
 
-[Monitoring](./monitoring.html){{%wbr%}}
+[Monitoring](./monitoring.html){{<wbr>}}
 In this guide you will find information on how to monitor XAP and your deployed application.
 
-[Performance Tuning](./tuning.html) {{%wbr%}}
+[Performance Tuning](./tuning.html) {{<wbr>}}
 In this guide you will find information on how to tune your XAP application. Amongst the topics covered are JVM tuning, thread usage and benchmarking.
 
-[Benchmarking](./benchmarking.html){{%wbr%}}
+[Benchmarking](./benchmarking.html){{<wbr>}}
 Performance benchmarks with XAP's In-Memory Data Grid mainly involve testing latency and throughput.
 
-[Troubleshooting](./troubleshooting.html){{%wbr%}}
+[Troubleshooting](./troubleshooting.html){{<wbr>}}
 In this guide you will find useful information on how to troubleshoot your XAP application.
 {{%/fpanel%}}
 

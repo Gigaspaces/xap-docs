@@ -10,7 +10,7 @@ parent: none
 
 
 
-{{% wbr %}}
+{{<wbr>}}
 
 {{%panel%}}
 - [What is GigaSpaces XAP-Community?](#1)

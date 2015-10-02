@@ -8,8 +8,8 @@ weight: 600
 
 {{% section %}}
  {{% column width="10%" %}}
- {{%wbr%}}
- {{%wbr%}}
+ {{<wbr>}}
+ {{<wbr>}}
  ![counter-logo.jpg](/attachment_files/subject/partitioning.png)
  {{% /column %}}
  {{% column width="90%" %}}

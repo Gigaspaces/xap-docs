@@ -31,8 +31,8 @@ Deploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.ht
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| -timeout | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{% wbr %}}Defaults to **5000** milliseconds (5 seconds).| -timeout [timeoutValue]|
-| -deploy-timeout | Timeout for deploy operation (in milliseconds),{{% wbr %}}otherwise blocks until all successful/failed deployment events arrive (default)" |-deploy-timeout [timeoutValue]|
+| -timeout | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to **5000** milliseconds (5 seconds).| -timeout [timeoutValue]|
+| -deploy-timeout | Timeout for deploy operation (in milliseconds),{{<wbr>}}otherwise blocks until all successful/failed deployment events arrive (default)" |-deploy-timeout [timeoutValue]|
 | -h / -help  | Prints help | |
 | -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -secured [true/false]|
 | -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
@@ -105,7 +105,7 @@ Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-|  -timeout  | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{% wbr %}}Defaults to  **5000  milliseconds (5 seconds).| `-timeout [timeoutValue]`|
+|  -timeout  | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to  **5000  milliseconds (5 seconds).| `-timeout [timeoutValue]`|
 | `-undeploy-timeout` | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |`-undeploy-timeout [timeoutValue]`|
 | `-h` / `-help`  | Prints help | |
 | `-secured` | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
@@ -159,14 +159,14 @@ Property files and other resources should be jared and placed within any of the 
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| Processing Unit Location/Name -- **mandatory** | The location of the processing unit directory or jar file on your file system (see [this page]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html)).{{% wbr %}}If you are using a few options in the `deploy` command, pass this option as the **last parameter**.{{% wbr %}}For example: `gs> deploy hello-world.jar`{{% wbr %}}(`hello-world.jar` is the processing jar file). | |
-| `-cluster` |Allows you to control the clustering characteristics of the processing unit.{{% wbr %}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists).{{% wbr %}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{% wbr %}}- `schema` -- the cluster schema used by the Processing Unit.{{% wbr %}}- `total_members` -- the number of instances, optionally followed by the number of backups{{% wbr %}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{% wbr %}}`total_members=`{{% wbr %}}`numberOfInstances[,numberOfBackups]` |
+| Processing Unit Location/Name -- **mandatory** | The location of the processing unit directory or jar file on your file system (see [this page]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html)).{{<wbr>}}If you are using a few options in the `deploy` command, pass this option as the **last parameter**.{{<wbr>}}For example: `gs> deploy hello-world.jar`{{<wbr>}}(`hello-world.jar` is the processing jar file). | |
+| `-cluster` |Allows you to control the clustering characteristics of the processing unit.{{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists).{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups{{<wbr>}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=`{{<wbr>}}`numberOfInstances[,numberOfBackups]` |
 | `-properties` | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | `-properties embed` | Direct property injection | -properties embed://user=admin|
 | `-sla` | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
 | `-zones` | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1 zoneName2 ... ]` |
 | `-timeout` | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
-| `-override-name` | Allows you to specify an override name for the deployed Processing Unit{{% wbr %}}(a different name than the directory name under `deploy`).{{% wbr %}}Mainly used when using a Processing Unit as a template.| `-override-name [processing unit name]` |
+| `-override-name` | Allows you to specify an override name for the deployed Processing Unit{{<wbr>}}(a different name than the directory name under `deploy`).{{<wbr>}}Mainly used when using a Processing Unit as a template.| `-override-name [processing unit name]` |
 | `-max-instances-per-vm` | Allows you to set the SLA number of instances per VM | |
 | `-max-instances-per-machine` | Allows you to set the SLA number of instances per machine | |
 | `-max-instances-per-zone` | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
@@ -297,11 +297,11 @@ gs> deploy-memcached [-sla ...] [-cluster ...] [-properties ...] [-user xxx -pas
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 | space_url | The url of the space, can be embedded, eg: `/./myMemcachedSpace`, or remote eg: `jini://*/*/myMemcachedSpace` | |
-| `-cluster` |Allows you to control the clustering characteristics of the processing unit. {{% wbr %}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists). {{% wbr %}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{% wbr %}}- `schema` -- the cluster schema used by the Processing Unit.{{% wbr %}}- `total_members` -- the number of instances, optionally followed by the number of backups {{% wbr %}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{%wbr%}} `total_members=numberOfInstances[,numberOfBackups]` |
+| `-cluster` |Allows you to control the clustering characteristics of the processing unit. {{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists). {{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}} `total_members=numberOfInstances[,numberOfBackups]` |
 | `-properties` | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | `-sla` | Allows you to specify a link (defaults to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
 | `-zones` | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
-| `-timeout` | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{% wbr %}}Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
+| `-timeout` | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
 | `-max-instances-per-vm` | Allows you to set the SLA number of instances per VM | |
 | `-max-instances-per-machine` | Allows you to set the SLA number of instances per machine | |
 | `-max-instances-per-zone` | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
@@ -345,7 +345,7 @@ A Space only Processing Unit can be easily deployed onto the Service Grid.
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 | Space Name -- **mandatory** | The name of the space to be deployed.| |
-| `-cluster` |Allows you to control the clustering characteristics of the space.{{% wbr %}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{% wbr %}}- `schema` -- the cluster schema used by the Processing Unit.{{% wbr %}}- `total_members` -- the number of instances, optionally followed by the number of backups {{% wbr %}}  (number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{% wbr %}}`total_members=numberOfInstances[,numberOfBackups]` |
+| `-cluster` |Allows you to control the clustering characteristics of the space.{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}  (number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=numberOfInstances[,numberOfBackups]` |
 | `-properties` | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | `-sla` | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
 | `-zones` | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |

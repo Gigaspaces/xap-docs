@@ -21,10 +21,10 @@ Supporting FIFO (First In, First Out) behavior for Entries is a critical require
 
 {{%fpanel%}}
 
-[FIFO Support](./fifo-support.html){{%wbr%}}
+[FIFO Support](./fifo-support.html){{<wbr>}}
 How to get entries in the same order in which they were written to the space.
 
-[FIFO Grouping](./fifo-grouping.html){{%wbr%}}
+[FIFO Grouping](./fifo-grouping.html){{<wbr>}}
 How to read/take a group of space entries with a common property value, in FIFO order (by order of insertion), without having to maintain a FIFO order for all the entries in the space.
 {{%/fpanel%}}
 

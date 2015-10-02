@@ -18,7 +18,7 @@ Throughout this tutorial we will create and use a simple internet payment servic
 - The Merchant will receive a percentage for each transaction.
 - Users will make payments with the online system.
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{%section%}}
 {{%column%}}
@@ -28,7 +28,7 @@ Here is the simplified Class Model:
 {{%popup "/attachment_files/qsg/class_diagram.png"  "Class Diagram Class Diagram"%}}
 {{%/column%}}
 {{%/section%}}
-{{%wbr%}}
+{{<wbr>}}
 
 
 

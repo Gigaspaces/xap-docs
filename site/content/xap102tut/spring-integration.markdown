@@ -13,14 +13,14 @@ All XAP components can be wired and configured with the application using corres
 
 
 # The XAP Spring Integration supports:
-Spring Automatic Transaction Demarcation{{%wbr%}}
-Spring Data{{%wbr%}}
-Spring JMS{{%wbr%}}
-Spring JPA{{%wbr%}}
-Spring Hibernate{{%wbr%}}
-Spring Remoting{{%wbr%}}
-String Batch{{%wbr%}}
-Spring Security{{%wbr%}}
+Spring Automatic Transaction Demarcation{{<wbr>}}
+Spring Data{{<wbr>}}
+Spring JMS{{<wbr>}}
+Spring JPA{{<wbr>}}
+Spring Hibernate{{<wbr>}}
+Spring Remoting{{<wbr>}}
+String Batch{{<wbr>}}
+Spring Security{{<wbr>}}
 Mule
 
 

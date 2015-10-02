@@ -15,20 +15,20 @@ This section explains the administration tools for managing GigaSpaces XAP. The 
 
 {{%fpanel%}}
 
-[Management Center](./gigaspaces-management-center-ui-security.html){{%wbr%}}
+[Management Center](./gigaspaces-management-center-ui-security.html){{<wbr>}}
 Security Administration using the GigaSpaces Management Center (UI)
 
 
-[Command Line Interface](./command-line-interface-cli-security.html){{%wbr%}}
+[Command Line Interface](./command-line-interface-cli-security.html){{<wbr>}}
 Applying security with the Command Line Interface
 
-[Administration API](./administration-and-monitoring-api-security.html){{%wbr%}}
+[Administration API](./administration-and-monitoring-api-security.html){{<wbr>}}
 Applying security to Admin API operations
 
-[Auditing](./auditing.html){{%wbr%}}
+[Auditing](./auditing.html){{<wbr>}}
 Auditing of authentication and operations
 
-[Java Security Policy](./java-security-policy-file.html){{%wbr%}}
+[Java Security Policy](./java-security-policy-file.html){{<wbr>}}
 Setting the java.security.policy property.
 {{%/fpanel%}}
 

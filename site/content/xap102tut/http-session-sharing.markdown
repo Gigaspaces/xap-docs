@@ -37,7 +37,7 @@ This tutorial will show you:
 
 1. [Single-Applications Session Sharing](#Single Application Session Sharing) sharing the same session between different Tomcat instances. <br>
     a. Using Apache Load Balancer with **Sticky** Session configuration
-{{%wbr%}}    b. Using Apache Load Balancer with **Non-Sticky** Session configuration
+{{<wbr>}}    b. Using Apache Load Balancer with **Non-Sticky** Session configuration
 2. [Multiple-Applications Session Sharing](#multi-applications-session-sharing) - sharing the same session between **different applications** running in different Web servers - Tomcat and JBoss.
 
 
@@ -68,7 +68,7 @@ With this session sharing model, the web user interacting with multiple web serv
 
 In this scenario the session is shared via its **ID**. Where there is a web server failure or when a new web server is added to the cluster the session **ID** is used to retrieve the session from the IMDG. Only the updated attributes (delta) are sent to the IMDG when the session is updated. This ensure best application performance and minimal network bandwidth usage.
 
-{{%wbr%}}
+{{<wbr>}}
 
 ### Configuring The Load Balancer
 
@@ -109,11 +109,11 @@ ProxyPass /balancer !
 </Location>
 ```
 
-{{% note %}}The `/tools/Apache2.2` folder name should be replaced with your correct Apache httpd location. {{%wbr%}} The `127.0.0.1` IP should be replaced with appropriate IP addresses of the machine that is running apache.{{% /note %}}
+{{% note %}}The `/tools/Apache2.2` folder name should be replaced with your correct Apache httpd location. {{<wbr>}} The `127.0.0.1` IP should be replaced with appropriate IP addresses of the machine that is running apache.{{% /note %}}
 {{%/accord%}}
 {{%/accordion%}}
 
-{{%wbr%}}
+{{<wbr>}}
 
 ### Demo Flow
 With this demo we will simulate session sharing between different tomcat instances by starting tomcat , running the application, terminating tomcat and later restarting tomcat without losing application HTTP Session data.
@@ -138,7 +138,7 @@ Place the following within the `HttpSession.conf` file. The `BalancerMember` sho
 
 {{% note %}} The `127.0.0.1` IP should be replaced with IP addresses of the machine(s)/port(s) of WebSphere/Tomcat instances.{{% /note %}}
 
-{{%wbr%}} 
+{{<wbr>}}
 
 -	Download Tomcat 7.0.23 {{%download "http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.23/bin/apache-tomcat-7.0.23.zip"%}}
 -	Install Tomcat by unzipping it into `c:\` or `d:\`
@@ -181,13 +181,13 @@ The URL above assumes the Apache Load Balancer is configured to use port 8888.
 
 ![http-session](/attachment_files/httpsession102/httpsession-webui-1.png)
 
-{{%wbr%}} 
+{{<wbr>}}
 
 -	Identify the Session ID
 
 ![http-session](/attachment_files/httpsession102/httpsession-webui-2.png)
 
-{{%wbr%}}
+{{<wbr>}}
 
 ### Webserver Failover
 
@@ -203,7 +203,7 @@ The URL above assumes the Apache Load Balancer is configured to use port 8888.
 -	Refresh the page on the browser (press the `F5` key).
 -	The session will be reloaded from the data grid. See tomcat console for log messages.
 
-{{%wbr%}}
+{{<wbr>}}
 
 ### b. Running Apache Load Balancer with Non-Sticky Session configuration
 

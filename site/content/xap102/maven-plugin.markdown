@@ -197,10 +197,10 @@ mvn os:run
 
 | Argument | Description | Required | Properties | Example |
 |:---------|:------------|:---------|:-----------|:--------|
-| `cluster` | Cluster properties | No| * `schema` -- the cluster schema name{{% wbr %}}- `total_members` -- a list of the cluster members, separated by a comma{{% wbr %}}- `id` -- the cluster ID{{% wbr %}}- `backup_id` -- the backup ID | * `schema=partitioned`{{% wbr %}}- `total_members=1,1`{{% wbr %}}- `id=1`{{% wbr %}}- `backup_id=1` |
+| `cluster` | Cluster properties | No| * `schema` -- the cluster schema name{{<wbr>}}- `total_members` -- a list of the cluster members, separated by a comma{{<wbr>}}- `id` -- the cluster ID{{<wbr>}}- `backup_id` -- the backup ID | * `schema=partitioned`{{<wbr>}}- `total_members=1,1`{{<wbr>}}- `id=1`{{<wbr>}}- `backup_id=1` |
 | `groups` | Comma-delimited list of lookup group names | No | | group1,group2 |
 | `locators` | Comma-delimited list of Jini locators hosts | No | | jini://<hostname1>, jini://<hostname2> |
-| `properties` | Location of context-level properties | No | * `file` -- the properties file{{% wbr %}}- `embed` -- property definition | file://config/context.properties{{% wbr %}}    embed://prop1=value1 |
+| `properties` | Location of context-level properties | No | * `file` -- the properties file{{<wbr>}}- `embed` -- property definition | file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
 | `module` | The name of the Processing Unit module to run | No | | `feeder` |
 
 **Example:**
@@ -288,10 +288,10 @@ mvn os:run-standalone
 
 | Argument | Description | Required | Properties | Example |
 |:---------|:------------|:---------|:-----------|:--------|
-| `cluster` | Cluster properties | No| * `schema` -- the cluster schema name{{% wbr %}}- `total_members` -- a list of the cluster members, separated by a comma{{% wbr %}}- `id` -- the cluster ID{{% wbr %}}- `backup_id` -- the backup ID | * `schema=partitioned`{{% wbr %}}- `total_members=1,1`{{% wbr %}}- `id=1`{{% wbr %}}- `backup_id=1` |
+| `cluster` | Cluster properties | No| * `schema` -- the cluster schema name{{<wbr>}}- `total_members` -- a list of the cluster members, separated by a comma{{<wbr>}}- `id` -- the cluster ID{{<wbr>}}- `backup_id` -- the backup ID | * `schema=partitioned`{{<wbr>}}- `total_members=1,1`{{<wbr>}}- `id=1`{{<wbr>}}- `backup_id=1` |
 | `groups` | Comma-delimited list of lookup group names | No | | group1,group2 |
 | `locators` | Comma-delimited list of Jini locators hosts | No| | jini://<hostname1>, jini://<hostname2> |
-| `properties` | Context-level properties location | No| * `file` -- properties file{{% wbr %}}- `embed` -- properties definition | {{% wbr %}}    file://config/context.properties{{% wbr %}}    embed://prop1=value1 |
+| `properties` | Context-level properties location | No| * `file` -- properties file{{<wbr>}}- `embed` -- properties definition | {{<wbr>}}    file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
 | `module` | The name of the Processing Unit module to run | No| | `feeder` |
 
 **Example:**

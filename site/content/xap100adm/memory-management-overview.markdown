@@ -25,17 +25,17 @@ In this section we will explain the different Space cache policies, memory usage
 
 {{%fpanel%}}
 
-[Overview](./memory-management-facilities.html){{%wbr%}}
+[Overview](./memory-management-facilities.html){{<wbr>}}
 Overview over the different cache policies.
 
-[All in Cache](./all-in-cache-cache-policy.html){{%wbr%}}
+[All in Cache](./all-in-cache-cache-policy.html){{<wbr>}}
 The ALL-In-Cache Cache policy.
 
-[LRU cache](./lru-cache-policy.html){{%wbr%}}
+[LRU cache](./lru-cache-policy.html){{<wbr>}}
 The LRU Cache policy.
 
 
-[Flash drive Storage](./blobstore-overview.html){{%wbr%}}
+[Flash drive Storage](./blobstore-overview.html){{<wbr>}}
 XAP 10 introduces a new Storage interface allowing Blob/Block/external type storage to act as a natural memory space for the IMDG.
 {{%/fpanel%}}
 

@@ -56,9 +56,9 @@ The following should be located under **main** section.
 |connector.url| Space url including groups and locators |Yes|`jini://*/*/<space_name>?groups=myGroup`|
 |connector.username| Space username|No|`<space username>`|
 |connector.password| Space password|No|`<space password>`|
-|connector.sessionLease|Lease timeout in milliseconds {{%wbr%}}Default to Lease.FOREVER so that the session won't be removed from the space |No|Any positive integer. Millisecond time unit|
-|connector.readTimeout|Read timeout in milliseconds {{%wbr%}}Default to 300000|No|Any positive interger. Millisecond time unit|
-|connector.sessionBaseName| Fully qualified type name that holds the session attributes in space.{{%wbr%}}Default is `com.gigaspaces.httpsession.models.DefaultSpaceSessionStore`|Yes|
+|connector.sessionLease|Lease timeout in milliseconds {{<wbr>}}Default to Lease.FOREVER so that the session won't be removed from the space |No|Any positive integer. Millisecond time unit|
+|connector.readTimeout|Read timeout in milliseconds {{<wbr>}}Default to 300000|No|Any positive interger. Millisecond time unit|
+|connector.sessionBaseName| Fully qualified type name that holds the session attributes in space.{{<wbr>}}Default is `com.gigaspaces.httpsession.models.DefaultSpaceSessionStore`|Yes|
 
 ###Store Mode - Configure how changes are saved to the space
 
@@ -68,7 +68,7 @@ The following should be located under **main** section.
 |listener|Fully qualified class name implementing `com.gigaspaces.httpsession.policies.GigaspacesNotifyListener`|No|`com.gigaspaces.httpsession.policies.TraceListener`|
 |:-------|:----------|:-------|:--------------|
 |storeMode|Provide functionality of how to save changes to the space. there is tow sessions store mode full and delta.|Yes| use on of two options:<br> 1.`com.gigaspaces.httpsession.sessions.FullStoreMode` 2.`com.gigaspaces.httpsession.sessions.DeltaStoreMode`|
-|storeMode.connector| Space connector to be used{{%wbr%}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
+|storeMode.connector| Space connector to be used{{<wbr>}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
 |storeMode.listener|Provides changes notification functionality. it must extends `com.gigaspaces.httpsession.policies.GigaspacesNotifyListener`|No| $listener |
 
 ###Session Manager - XAP Session Manager Implementation
@@ -88,8 +88,8 @@ The following should be located under **main** section.
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
 |policy|Provides functionality of session policy to apply e.g. with and without authentication. |Yes| Options:<br>1.`com.gigaspaces.httpsession.policies.SessionPolicyWithLogin` <br>2.`com.gigaspaces.httpsession.policies.SessionPolicyWithoutLogin` |
-|policy.connector|Instance of space connector implementation{{%wbr%}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
-|policy.storeMode|Instance of space storeMode implementation{{%wbr%}}See [Store Mode Section](#store-mode---configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
+|policy.connector|Instance of space connector implementation{{<wbr>}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
+|policy.storeMode|Instance of space storeMode implementation{{<wbr>}}See [Store Mode Section](#store-mode---configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
 
 ### Serializer
 
@@ -97,7 +97,7 @@ The following should be located under **main** section.
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
 |serializer|Provides serialization functionality|Yes| use one of the following options: 	1.`com.gigaspaces.httpsession.serialize.KryoSerializerImpl` (recomended)	2.`com.gigaspaces.httpsession.serialize.XStreamSerializerImpl` <br> 3. Custom - an implementation of the `com.gigaspaces.httpsession.serialize.Serializer` interface
-|serializer.logLevel|internal kryo logging level {{%wbr%}}Default to `LEVEL_INFO = 3`|No| 1. `NONE = 6` disables all logging.<br> 2. `ERROR = 5` is for critical errors. The application may no longer work correctly.<br> 3. `WARN = 4` is for important warnings. The application will continue to work correctly.<br> 4.`INFO = 3` is for informative messages. Typically used for deployment.<br> 5. `DEBUG = 2` is for debug messages. This level is useful during development.<br> 6. `TRACE = 1` is for trace messages. A lot of information is logged, so this level is usually only needed when debugging a problem. |
+|serializer.logLevel|internal kryo logging level {{<wbr>}}Default to `LEVEL_INFO = 3`|No| 1. `NONE = 6` disables all logging.<br> 2. `ERROR = 5` is for critical errors. The application may no longer work correctly.<br> 3. `WARN = 4` is for important warnings. The application will continue to work correctly.<br> 4.`INFO = 3` is for informative messages. Typically used for deployment.<br> 5. `DEBUG = 2` is for debug messages. This level is useful during development.<br> 6. `TRACE = 1` is for trace messages. A lot of information is logged, so this level is usually only needed when debugging a problem. |
 |serializer.classes|comma separate list full qualified class names to be loaded at the initialization of the Kryo Serializer|No||
 
 ### Cache Manager - XAP Cache Manager Implementation
@@ -110,10 +110,10 @@ The following should be located under **main** section.
 |cacheManager.initialCapacity|Specifies the initial capacity of the LRU used for caching session in memory.|No|1000|
 |cacheManager.maximumCapacity|Maximum capacity of the LRU used for caching session in memory.|No|10000|
 |cacheManager.concurrencyLevel|Specifies the estimated number of concurrently updating threads|No|16|
-|cacheManager.compressor|Set the compressor instance to be used. {{%wbr%}}Default to `com.gigaspaces.httpsession.serialize.NonCompressCompressor`|No|$compressor|
-|cacheManager.serializer|Instance of the serializer implementation{{%wbr%}}See [Serializer Section](#serializer)|Yes|$serializer|
-|cacheManager.policy|Instance of session policy implementation{{%wbr%}}See [Session Policy Section](#session-policy---authentication-settings)|Yes|$policy|
-|cacheManager.connector|Instance of space connector implementation{{%wbr%}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
+|cacheManager.compressor|Set the compressor instance to be used. {{<wbr>}}Default to `com.gigaspaces.httpsession.serialize.NonCompressCompressor`|No|$compressor|
+|cacheManager.serializer|Instance of the serializer implementation{{<wbr>}}See [Serializer Section](#serializer)|Yes|$serializer|
+|cacheManager.policy|Instance of session policy implementation{{<wbr>}}See [Session Policy Section](#session-policy---authentication-settings)|Yes|$policy|
+|cacheManager.connector|Instance of space connector implementation{{<wbr>}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
 
 
 The `shiro.ini` file should to be placed within the `WEB-INF` folder. See below examples for the `shiro.ini` file:
@@ -279,7 +279,7 @@ goodguy = winnebago:drive:eagle5
 
 {{%accord title="Session Sharing Configuration Example For Secured Application Using Spring Security..."%}}
 {{% note %}}Note that in order to use Spring Security you still have to provide `shiro.ini` configuration file.
-{{%wbr%}}The configuration should be similar to the one in the **Non-Secured Application** example above. {{% /note %}}
+{{<wbr>}}The configuration should be similar to the one in the **Non-Secured Application** example above. {{% /note %}}
 
 Below is an example for the spring-security.xml that should be located under `WEB-INF` folder.
 

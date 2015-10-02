@@ -6,7 +6,7 @@ parent: none
 weight: 2100
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 {{% section %}}
 {{% column width="10%" %}}
@@ -19,26 +19,26 @@ When a machine failure occurs, or when scale requirements change, new machines a
 {{% /section %}}
 
 
-{{%wbr%}}
+{{<wbr>}}
 
 
 {{%fpanel%}}
-[Overview](./elastic-processing-unit.html){{%wbr%}}
+[Overview](./elastic-processing-unit.html){{<wbr>}}
 Container and machine resources such as Memory and CPU are automatically provisioned based on Memory and CPU requirements.
 
-[Deployment](./elastic-processing-unit-deploy.html){{%wbr%}}
+[Deployment](./elastic-processing-unit-deploy.html){{<wbr>}}
 Deploying an Elastic Processing Unit.
 
-[Scale Triggers](./elastic-processing-unit-trigger.html){{%wbr%}}
+[Scale Triggers](./elastic-processing-unit-trigger.html){{<wbr>}}
 Defining the scaling triggers for an Elastic Processing Unit.
 
-[Provisioning](./elastic-processing-unit-provisioning.html){{%wbr%}}
+[Provisioning](./elastic-processing-unit-provisioning.html){{<wbr>}}
 Provisioning an Elastic Processing Unit according to requirements based on Memory and CPU.
 
-[Configuration Parameters](./elastic-processing-unit-properties.html){{%wbr%}}
+[Configuration Parameters](./elastic-processing-unit-properties.html){{<wbr>}}
 Configuration parameters for an Elastic Processing Unit.
 
-[Example](./elastic-processing-unit-example.html){{%wbr%}}
+[Example](./elastic-processing-unit-example.html){{<wbr>}}
 Example configuration and deployment of an Elastic Processing Unit.
 {{%/fpanel%}}
 

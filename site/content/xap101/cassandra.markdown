@@ -29,10 +29,10 @@ This will explain how to implement your own custom Archive Container.
 
 {{%fpanel%}}
 
-[Space Persistence](./cassandra-space-persistency.html){{%wbr%}}
+[Space Persistence](./cassandra-space-persistency.html){{<wbr>}}
 A Cassandra Space Persistency Solution
 
-[Archive Handler](./cassandra-archive-operation-handler.html){{%wbr%}}
+[Archive Handler](./cassandra-archive-operation-handler.html){{<wbr>}}
 Archives space objects to a Cassandra backend.
 {{%/fpanel%}}
 

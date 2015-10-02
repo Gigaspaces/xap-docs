@@ -21,15 +21,15 @@ weight: 900
 
 {{%fpanel%}}
 
-[Network Monitoring](./monitoring-network-activity.html){{%wbr%}}
+[Network Monitoring](./monitoring-network-activity.html){{<wbr>}}
 Monitoring network and usage activity used by the LRMI layer between GigaSpaces component.
 
 
-[JMX Management](./space-jmx-management.html){{%wbr%}}
+[JMX Management](./space-jmx-management.html){{<wbr>}}
 Controlling space attributes and operations using the JMX console.
 
 
-[Monitoring Tools](./suggested-monitoring-tools.html){{%wbr%}}
+[Monitoring Tools](./suggested-monitoring-tools.html){{<wbr>}}
 Suggested list of monitoring tools.
 {{%/fpanel%}}
 

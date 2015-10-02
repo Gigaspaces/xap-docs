@@ -15,11 +15,11 @@ The Space mapping configuration file gs.xml allows you to define space class met
 
 {{%fpanel%}}
 
-[Class metadata](./pojo-xml-metadata-class.html){{%wbr%}}
+[Class metadata](./pojo-xml-metadata-class.html){{<wbr>}}
 Class metadata for POJOs.
 
 
-[Property metadata](./pojo-xml-metadata-attribute.html){{%wbr%}}
+[Property metadata](./pojo-xml-metadata-attribute.html){{<wbr>}}
 Property level metadata for POJOs.
 {{%/fpanel%}}
 

@@ -229,4 +229,4 @@ The following table summarizes the configuration changes made in 8.0.5
 | `space-config.dist-cache.delay-between-retries` | Ignored - Irrelevant | Ignored - Irrelevant |
 | `space-config.dist-cache.events.batch.size` | `batch-size` | `batchSize()` |
 | `space-config.dist-cache.events.batch.timeout` | `batch-timeout` | `batchTimeout()` |
-| `space-config.dist-cache.events.lease-renew.round-trip-time` | Ignored in replication sync{{% wbr %}}Same in notification sync | Ignored in replication sync{{% wbr %}}Same in notification sync |
+| `space-config.dist-cache.events.lease-renew.round-trip-time` | Ignored in replication sync{{<wbr>}}Same in notification sync | Ignored in replication sync{{<wbr>}}Same in notification sync |

@@ -22,7 +22,7 @@ GigaSpaces
 {{%/column%}}
 {{%column   width="25%" %}}
 {{%align center%}}
-**XAP Version** {{%wbr%}}
+**XAP Version** {{<wbr>}}
 XAP 10.0.1
 {{%/align%}}
 {{%/column%}}

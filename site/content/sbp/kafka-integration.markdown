@@ -80,7 +80,7 @@ In order to run an example, please follow the instruction below:
 Step 1: Install Kafka<br/>
 
 Step 2:	Start Zookeeper and Kafka server<br/>
-bin/zookeeper-server-start.sh config/zookeeper.properties{{%wbr%}}
+bin/zookeeper-server-start.sh config/zookeeper.properties{{<wbr>}}
 bin/kafka-list-topic.sh --zookeeper localhost:2181
 
 Step 3:	Build project<br/>

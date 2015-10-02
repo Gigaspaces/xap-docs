@@ -17,13 +17,13 @@ The [GigaSpace.change](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion 
 <br>
 
 {{%fpanel%}}
-[Overview](./change-api.html){{%wbr%}}
+[Overview](./change-api.html){{<wbr>}}
 Change API overview.
 
-[Custom Change](./change-api-custom-operation.html){{%wbr%}}
+[Custom Change](./change-api-custom-operation.html){{<wbr>}}
 A custom change operation lets the user implement his own change operation.
 
-[Advanced Change Options](./change-api-advanced.html){{%wbr%}}
+[Advanced Change Options](./change-api-advanced.html){{<wbr>}}
 A SpaceSynchronizationEndpoint implementation can make use of the Change API and support change operation.
 {{%/fpanel%}}
 

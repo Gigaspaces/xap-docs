@@ -56,9 +56,9 @@ Port ranges should be chosen continuously, as Webster and LRMI port bindings are
 
 | Component | Listeners |
 |:----------|:----------|
-| GSM | Lookup Service{{% wbr %}}LRMI Transport{{% wbr %}}Webster{{% wbr %}}JMX |
-| GSC | LRMI Transport {{% wbr %}}Webster {{% wbr %}}JMX |
-| Transaction Manager (Mahalo) | LRMI Transport {{% wbr %}}Webster {{% wbr %}}JMX |
+| GSM | Lookup Service{{<wbr>}}LRMI Transport{{<wbr>}}Webster{{<wbr>}}JMX |
+| GSC | LRMI Transport {{<wbr>}}Webster {{<wbr>}}JMX |
+| Transaction Manager (Mahalo) | LRMI Transport {{<wbr>}}Webster {{<wbr>}}JMX |
 
 ## Required Configuration Modifications
 

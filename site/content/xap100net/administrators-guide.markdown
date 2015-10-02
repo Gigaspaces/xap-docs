@@ -17,17 +17,17 @@ At some point there's a need to tweak the configuration.
 
 {{%fpanel%}}
 
-[System configuration](./system-configuration.html){{%wbr%}}
+[System configuration](./system-configuration.html){{<wbr>}}
 Using System Properties to configure XAP.NET.
 
 
-[Platform configuration](./system-configuration-list.html){{%wbr%}}
+[Platform configuration](./system-configuration-list.html){{<wbr>}}
 This page explains how to configure XAP.NET Grid environment.
 
-[JVM configuration](./jvm-configuration.html){{%wbr%}}
+[JVM configuration](./jvm-configuration.html){{<wbr>}}
 .Net Client application JVM Settings Configuration.
 
-[Logging configuration](./log-configuration.html){{%wbr%}}
+[Logging configuration](./log-configuration.html){{<wbr>}}
 Logging and Tracing of XAP.NET components.
 
 {{%/fpanel%}}

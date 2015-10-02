@@ -9,7 +9,7 @@ parent: none
 
 {{%section%}}
 {{%column width="10%" %}}
-{{%wbr%}}
+{{<wbr>}}
 ![cassandra.png](/attachment_files/qsg/web.png)
 {{%/column%}}
 {{%column width="90%" %}}

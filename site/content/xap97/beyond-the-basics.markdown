@@ -6,7 +6,7 @@ weight: 700
 parent: cook-books.html
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 
 {{% section %}}
@@ -20,7 +20,7 @@ parent: cook-books.html
 
 {{% /column %}}
 {{% column width="55%" %}}
-{{%wbr%}}
+{{<wbr>}}
 [The OpenSpaces Data Example](./the-openspaces-data-example.html)
 A kitchen sink demonstration of all the major features in GigaSpaces XAP and the OpenSpaces API
 {{% /column %}}
@@ -39,7 +39,7 @@ A kitchen sink demonstration of all the major features in GigaSpaces XAP and the
 
 {{% /column %}}
 {{% column width="55%" %}}
-{{%wbr%}}
+{{<wbr>}}
 [XAP Order Management Tutorial](./xap-order-management-tutorial.html)
 Learn how to create a full blown order management system on top of XAP
 {{% /column %}}

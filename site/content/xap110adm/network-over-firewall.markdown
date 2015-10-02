@@ -65,9 +65,9 @@ Step 7: **Mandatory** -- the range of port numbers (just free unassigned ports a
 
 | Component | Listeners |
 |:----------|:----------|
-| GSM | Lookup Service{{% wbr %}}LRMI Transport{{% wbr %}}Webster{{% wbr %}}JMX |
-| GSC | LRMI Transport {{% wbr %}}Webster {{% wbr %}}JMX |
-| Transaction Manager (Mahalo) | LRMI Transport {{% wbr %}}Webster {{% wbr %}}JMX |
+| GSM | Lookup Service{{<wbr>}}LRMI Transport{{<wbr>}}Webster{{<wbr>}}JMX |
+| GSC | LRMI Transport {{<wbr>}}Webster {{<wbr>}}JMX |
+| Transaction Manager (Mahalo) | LRMI Transport {{<wbr>}}Webster {{<wbr>}}JMX |
 
 ## Required Configuration Modifications
 

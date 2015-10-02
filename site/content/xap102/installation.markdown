@@ -25,25 +25,25 @@ For a list of supported platforms please consult [the release notes](/release_no
 <br>
 
 {{%fpanel%}}
-[XAP License](./license-key.html){{%wbr%}}
+[XAP License](./license-key.html){{<wbr>}}
 Getting the license key and defining it in the XAP license file.
 
-[XAP Java Installation](./installation-java.html){{%wbr%}}
+[XAP Java Installation](./installation-java.html){{<wbr>}}
 Requirements and how to install XAP for Java users with Windows, Linux or Unix.
 
-[XAP C++ Installation](./installing-cpp-api-package.html){{%wbr%}}
+[XAP C++ Installation](./installing-cpp-api-package.html){{<wbr>}}
 Requirements and how to install XAP C++ API on Windows and Linux.
 
-[Maven Plugin](./maven-plugin.html){{%wbr%}}
+[Maven Plugin](./maven-plugin.html){{<wbr>}}
 Installing the XAP Maven plugin, creating and running a Processing Unit project.
 
-[Eclipse setup](./setting-up-eclipse-to-work-with-xap.html){{%wbr%}}
+[Eclipse setup](./setting-up-eclipse-to-work-with-xap.html){{<wbr>}}
 Setting up your IDE to work with XAP.
 
-[Debugging with Eclipse](./running-and-debugging-within-your-ide.html){{%wbr%}}
+[Debugging with Eclipse](./running-and-debugging-within-your-ide.html){{<wbr>}}
 Explains how to run your processing unit inside your IDE or in unit tests.
 
-[XAP as Windows Service](./running-gigaspaces-as-a-windows-service.html){{%wbr%}}
+[XAP as Windows Service](./running-gigaspaces-as-a-windows-service.html){{<wbr>}}
 Configuring XAP as a Windows service.
 {{%/fpanel%}}
 

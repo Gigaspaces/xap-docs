@@ -6,7 +6,7 @@ parent: polling-container-overview.html
 weight: 200
 ---
 
-{{%wbr%}}
+{{<wbr>}}
 
 
 

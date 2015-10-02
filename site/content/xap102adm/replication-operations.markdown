@@ -109,10 +109,10 @@ A table describing the behavior of combining the different properties:
 
 | Replicate Notify Template Setting | Trigger Notify Template Setting | Explanation |
 |:----------------------------------|:--------------------------------|:------------|
-| True | False | Client gets notification from the active space after registration.{{% wbr %}}If the active source space fails the target  space instance will continue to send the events to the registered listeners. |
-| False | False | Client gets notification only from those spaces to which it registered.{{% wbr %}}Client does not get notifications from spaces which received their data by replication. Failover is not supported|
-| False | True | Client gets notification only from those spaces that it registered for notification.{{% wbr %}}Notification occurs when data has been delivered to the space, either by a client application or from the replication. |
-| True | True | Client gets notification from all cluster spaces after registration.{{% wbr %}}Client gets multiple notifications for every space event. |
+| True | False | Client gets notification from the active space after registration.{{<wbr>}}If the active source space fails the target  space instance will continue to send the events to the registered listeners. |
+| False | False | Client gets notification only from those spaces to which it registered.{{<wbr>}}Client does not get notifications from spaces which received their data by replication. Failover is not supported|
+| False | True | Client gets notification only from those spaces that it registered for notification.{{<wbr>}}Notification occurs when data has been delivered to the space, either by a client application or from the replication. |
+| True | True | Client gets notification from all cluster spaces after registration.{{<wbr>}}Client gets multiple notifications for every space event. |
 
 {{% info %}}
 Enabling both the Replicate notify templates and trigger notify templates triggers an event for each space, so it may result in more events than you initially intended.

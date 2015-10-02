@@ -97,7 +97,7 @@ echo 1  > /proc/sys/net/ipv4/tcp_keepalive_time
 ```
 
 {{% info %}}
-Default value: 7200 seconds (2 hours){{%wbr%}}
+Default value: 7200 seconds (2 hours){{<wbr>}}
 Recommended value: 1 seconds
 {{%/info%}}
 
@@ -112,7 +112,7 @@ echo 1 > /proc/sys/net/ipv4/tcp_keepalive_intvl
 ```
 
 {{% info %}}
-Default value: 75 seconds{{%wbr%}}
+Default value: 75 seconds{{<wbr>}}
 Recommended value: 1 seconds
 {{%/info%}}
 
@@ -127,8 +127,8 @@ echo 5  > /proc/sys/net/ipv4/tcp_keepalive_probes
 ```
 
 {{% info %}}
-Default value: 9 {{%wbr%}}
-Recommended value: 5 {{%wbr%}}
+Default value: 9 {{<wbr>}}
+Recommended value: 5 {{<wbr>}}
 tcp_keepalive_interval is Solaris equivalent to the Linux TCP_KEEPALIVE_TIME setting. Default value in Solaris is 2 hours
 {{% /info %}}
 
@@ -143,7 +143,7 @@ echo 3000 > /proc/sys/net/core/netdev_max_backlog
 ```
 
 {{% info %}}
-Default value: 300{{%wbr%}}
+Default value: 300{{<wbr>}}
 Recommended value: 3000
 {{%/info%}}
 
@@ -157,8 +157,8 @@ echo 3000 > /proc/sys/net/core/somaxconn
 ```
 
 {{% info %}}
-Default value: 128 {{%wbr%}}
-Recommended value: 3000{{%wbr%}}
+Default value: 128 {{<wbr>}}
+Recommended value: 3000{{<wbr>}}
 See also: [http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html](http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html)
 {{% /info %}}
 

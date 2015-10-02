@@ -180,13 +180,13 @@ Here is a simple matrix you can use to determine if you should collocate your sp
 
 |Scenario|Collocate|Not Collocate|
 |:-------|:-------:|:-----------:|
-|Data model supports stickiness| {{% oksign %}}| |
-|Transaction takes a short time (<10ms)|{{% oksign %}} | |
-|Transaction takes a long time (>100ms) | |{{% oksign %}}|
-|Transaction uses a small data set (>1K)| | {{% oksign %}}|
-|Transaction uses a large data set (>100K)| {{% oksign %}}| |
-|Amount of data within the space <2GB| | {{% oksign %}}|
-|Amount of data within the space >2GB| {{% oksign %}}| |
+|Data model supports stickiness| {{<oksign>}}| |
+|Transaction takes a short time (<10ms)|{{<oksign>}} | |
+|Transaction takes a long time (>100ms) | |{{<oksign>}}|
+|Transaction uses a small data set (>1K)| | {{<oksign>}}|
+|Transaction uses a large data set (>100K)| {{<oksign>}}| |
+|Amount of data within the space <2GB| | {{<oksign>}}|
+|Amount of data within the space >2GB| {{<oksign>}}| |
 
 # Conclusion
 Choosing the right data colocation deployment topology involves several different considerations. There is no one golden rule you should follow. You should review the different considerations described above, to determine the right data colocation deployment topology that fits your application the best.

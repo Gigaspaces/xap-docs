@@ -9,7 +9,7 @@ parent: java-home.html
 
 {{%section%}}
 {{%column width="10%" %}}
-{{%wbr%}}
+{{<wbr>}}
 ![cassandra.png](/attachment_files/subject/pu.png)
 {{%/column%}}
 {{%column width="90%" %}}
