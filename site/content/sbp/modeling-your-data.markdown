@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Modeling your data
 categories: SBP
 parent: data-access-patterns.html

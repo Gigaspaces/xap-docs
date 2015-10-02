@@ -1,5 +1,5 @@
 ---
-type: post
+type: postrel
 title:  What's New
 categories: RELEASE_NOTES
 parent: xap97.html

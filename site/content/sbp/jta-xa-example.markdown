@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  JTA-XA Example
 categories: SBP
 parent: processing.html

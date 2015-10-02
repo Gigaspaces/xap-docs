@@ -1,5 +1,5 @@
 ---
-type: post
+type: postrel
 title:  Patches
 categories: RELEASE_NOTES
 parent: xap100.html

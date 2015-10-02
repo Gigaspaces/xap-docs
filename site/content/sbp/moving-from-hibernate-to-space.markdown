@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Moving from Hibernate to Space
 categories: SBP
 parent: data-access-patterns.html

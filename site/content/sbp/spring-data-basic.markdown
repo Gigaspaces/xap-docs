@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title: Basic Usage
 categories: SBP
 weight: 500

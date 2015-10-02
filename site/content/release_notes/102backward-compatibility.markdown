@@ -1,5 +1,5 @@
 ---
-type: post
+type: postrel
 title:  Backward Compatibility
 categories:
 parent: xap102.html

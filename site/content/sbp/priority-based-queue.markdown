@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Priority Based Queue
 categories: SBP
 parent: processing.html

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Advanced Usage
 categories: SBP
 weight: 600

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postrel
 title:  End of Life
 categories: RELEASE_NOTES
 parent: xap101.html

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  XAP Support
 categories: SBP
 weight: 200

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Adjusting the JPA Domain Model
 categories: SBP
 weight: 100

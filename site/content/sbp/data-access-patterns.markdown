@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Data Access Patterns
 categories: SBP
 parent: none

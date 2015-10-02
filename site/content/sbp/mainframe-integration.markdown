@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Mainframe Integration
 categories: SBP
 parent: solutions.html

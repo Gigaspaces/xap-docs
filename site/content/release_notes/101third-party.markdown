@@ -1,5 +1,5 @@
 ---
-type: post
+type: postrel
 title:  3rd-Party License Agreements 
 categories: RELEASE_NOTES
 parent: xap101.html

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Unit Of Work
 categories: SBP
 parent: processing.html

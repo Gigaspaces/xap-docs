@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Rapid Data Load
 categories: SBP
 parent: data-access-patterns.html

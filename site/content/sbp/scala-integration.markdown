@@ -1,6 +1,6 @@
 
 ---
-type: post
+type: postsbp
 title:  Scala Integration
 categories: SBP
 parent: data-access-patterns.html

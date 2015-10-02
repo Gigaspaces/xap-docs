@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Distributed Bitmap
 categories: SBP
 parent: data-access-patterns.html

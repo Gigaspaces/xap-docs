@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Global ID Generator
 categories: SBP
 parent: data-access-patterns.html

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Custom Matching
 categories: SBP
 parent: data-access-patterns.html

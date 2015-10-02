@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title: XAP.NET MongoDB Data Grid
 categories: SBP
 parent: data-access-patterns.html

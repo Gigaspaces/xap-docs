@@ -1,5 +1,5 @@
 ---
-type: post
+type: postrel
 title:  Patches
 categories:
 parent: xap101.html

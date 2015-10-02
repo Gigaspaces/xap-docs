@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Writing Your First RTD or UDF Application
 categories: SBP
 parent: excel-that-scales-solution.html

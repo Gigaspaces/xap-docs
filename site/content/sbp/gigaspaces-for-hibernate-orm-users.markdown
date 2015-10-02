@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  XAP as Hibernate Second Level Cache
 categories: SBP
 parent: data-access-patterns.html

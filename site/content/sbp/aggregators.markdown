@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  XAP.NET Custom Aggregators
 categories: SBP
 parent: processing.html

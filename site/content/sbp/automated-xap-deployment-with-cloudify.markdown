@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Automated XAP Deployment with Cloudify
 categories: SBP
 parent: production.html

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Trading Settlement
 categories: SBP
 parent: solutions.html

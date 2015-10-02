@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  WAN Based Deployment
 categories: SBP
 parent: none

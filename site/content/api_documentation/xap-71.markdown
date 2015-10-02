@@ -1,5 +1,5 @@
 ---
-type: post
+type: postapi
 title:  XAP 7.1
 categories: API_DOCUMENTATION
 weight: 1007

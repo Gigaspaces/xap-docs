@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Quick Start
 categories: SBP
 weight: 100

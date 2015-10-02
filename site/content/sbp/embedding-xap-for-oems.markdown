@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Embedding XAP for OEMs
 categories: SBP
 parent: production.html

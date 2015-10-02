@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Observable WAN
 categories: SBP
 parent: wan-based-deployment.html

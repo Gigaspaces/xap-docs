@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title: DB2 Delta Server
 categories: SBP
 parent: data-access-patterns.html
@@ -61,7 +61,7 @@ weight: 1250
  com.ibm.mq.jmqi.jar
  com.ibm.mq.jms.Nojndi.jar
  com.ibm.mq.pcf.jar
- com.ibm.mq.postcard.jar
+ com.ibm.mq.postsbpcard.jar
  com.ibm.mq.soap.jar
  com.ibm.mq.tools.ras.jar
  com.ibm.mqjms.jar

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  XAP.NET ASP.NET Session State Store
 categories: SBP
 parent: solutions.html

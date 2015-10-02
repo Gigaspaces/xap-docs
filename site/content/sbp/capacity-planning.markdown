@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Capacity Planning
 categories: SBP
 parent: production.html

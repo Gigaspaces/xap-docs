@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Hot deploy
 categories: SBP
 weight: 2100

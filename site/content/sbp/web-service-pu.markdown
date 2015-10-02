@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Web Service PU
 categories: SBP
 parent: data-access-patterns.html

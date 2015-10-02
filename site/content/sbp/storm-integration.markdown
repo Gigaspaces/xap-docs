@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  XAP Integration with Storm
 categories: SBP
 parent: data-access-patterns.html

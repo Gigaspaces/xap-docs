@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Export-Import Tool
 categories: SBP
 parent: solutions.html

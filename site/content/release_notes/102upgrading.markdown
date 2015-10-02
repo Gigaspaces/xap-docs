@@ -1,5 +1,5 @@
 ---
-type: post
+type: postrel
 title:  Upgrading from previous versions
 categories:
 parent: xap102.html

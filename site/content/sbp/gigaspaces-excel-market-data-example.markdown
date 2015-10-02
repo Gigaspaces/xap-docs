@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  GigaSpaces-Excel Market-Data Example
 categories: SBP
 parent: excel-that-scales-solution.html

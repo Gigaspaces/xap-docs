@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Dynamic Polling Container Templates using TriggerOperationHandler
 categories: SBP
 parent: data-access-patterns.html

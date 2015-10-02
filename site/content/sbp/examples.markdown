@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Examples
 categories: SBP
 parent: none

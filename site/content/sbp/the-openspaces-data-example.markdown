@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Data Example
 categories: SBP
 weight: 500

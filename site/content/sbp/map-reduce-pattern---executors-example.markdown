@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Map-Reduce Pattern - Executors Example
 categories: SBP
 parent: processing.html

@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Excel Space Viewer
 categories: SBP
 parent: excel-that-scales-solution.html

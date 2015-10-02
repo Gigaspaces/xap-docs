@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Universal Deployer
 categories: SBP
 parent: production.html

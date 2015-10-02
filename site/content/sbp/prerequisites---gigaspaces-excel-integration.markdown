@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Prerequisites - GigaSpaces-Excel Integration
 categories: SBP
 parent: writing-your-first-rtd-or-udf-application.html

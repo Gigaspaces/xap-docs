@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Web Load Balancer Agent PU
 categories: SBP
 parent: production.html

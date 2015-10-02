@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Scaling the Hello World Application
 categories: SBP
 weight: 400

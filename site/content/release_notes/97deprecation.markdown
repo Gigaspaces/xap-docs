@@ -1,5 +1,5 @@
 ---
-type: post
+type: postrel
 title:  Deprecated Functionality
 categories: RELEASE_NOTES
 parent: xap97.html

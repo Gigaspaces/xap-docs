@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Parallel Queue Pattern
 categories: SBP
 parent: processing.html

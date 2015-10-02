@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Primary-Backup Zone Controller
 categories: SBP
 parent: production.html

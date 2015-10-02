@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  Finding Partition Load
 categories: SBP
 parent: data-access-patterns.html

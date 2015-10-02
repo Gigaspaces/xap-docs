@@ -1,5 +1,5 @@
 ---
-type: post
+type: postsbp
 title:  XAP Integration WebSphere Dynamic Cache
 categories: SBP
 parent: data-access-patterns.html
