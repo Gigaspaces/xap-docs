@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Operations
 categories: XAP100NET
 weight: 300

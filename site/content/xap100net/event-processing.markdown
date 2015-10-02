@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Event Processing
 categories: XAP100NET
 parent: programmers-guide.html

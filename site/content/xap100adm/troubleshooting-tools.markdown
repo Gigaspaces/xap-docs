@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Tools
 categories: XAP100ADM
 parent: troubleshooting.html

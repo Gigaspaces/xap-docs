@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100sec
 title:  Java Security Policy File
 categories: XAP100SEC
 parent: security-administration.html

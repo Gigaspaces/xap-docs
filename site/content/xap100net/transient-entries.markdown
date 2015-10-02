@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Transient Entries
 categories: XAP100NET
 parent: space-persistency-overview.html

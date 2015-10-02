@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Admin Modules
 categories: XAP100NET
 parent: programmers-guide.html

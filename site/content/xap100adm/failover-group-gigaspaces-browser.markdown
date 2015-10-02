@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Failover Group
 categories: XAP100ADM
 parent: working-with-clusters-gigaspaces-browser.html

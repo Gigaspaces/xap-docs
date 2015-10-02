@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Type Discovery
 categories: XAP100NET
 parent: modeling-your-data.html

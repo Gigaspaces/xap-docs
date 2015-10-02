@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Space Containers
 categories: XAP100ADM
 parent: gigaspaces-management-center.html

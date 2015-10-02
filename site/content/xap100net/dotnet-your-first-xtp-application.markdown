@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Your First XAP Application
 categories: XAP100NET
 parent: cook-books.html

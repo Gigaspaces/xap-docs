@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Replication Filters
 categories: XAP100ADM
 parent: replication.html

@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Transaction support
 categories: XAP100NET
 parent: notify-container-overview.html

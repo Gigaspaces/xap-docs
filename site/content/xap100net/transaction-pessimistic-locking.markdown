@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Pessimistic Locking
 categories: XAP100NET
 parent: transaction-overview.html

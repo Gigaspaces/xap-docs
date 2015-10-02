@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Flash drive IMDG Storage - MemoryXtend for SSD
 categories: XAP100ADM
 parent: memory-management-overview.html

@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Pending Notify Templates
 categories: XAP100ADM
 parent: gigaspaces-management-center.html

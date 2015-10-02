@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  The Space Interface
 categories: XAP100NET
 weight: 400

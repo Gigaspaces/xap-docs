@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Multicast Configuration
 categories: XAP100ADM
 parent: network.html

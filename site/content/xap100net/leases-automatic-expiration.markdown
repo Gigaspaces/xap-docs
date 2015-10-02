@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Lease Time
 categories: XAP100NET
 weight: 700

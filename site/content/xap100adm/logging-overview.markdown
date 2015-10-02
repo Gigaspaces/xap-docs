@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Logging
 categories: XAP100ADM
 parent: none

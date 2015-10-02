@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Events and Messaging
 categories: XAP100NET
 weight: 400

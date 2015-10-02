@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Initial Load
 categories: XAP100NET
 parent: space-persistency-overview.html

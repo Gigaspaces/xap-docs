@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Advanced Tuning Guide
 categories: XAP100ADM
 parent: blobstore-overview.html

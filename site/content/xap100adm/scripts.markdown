@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Scripts
 categories: XAP100ADM
 parent: administration-tools.html

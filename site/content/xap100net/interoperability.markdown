@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Platform Interoperability
 categories: XAP100NET
 parent: none

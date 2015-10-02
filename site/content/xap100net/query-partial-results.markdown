@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Projection
 categories: XAP100NET
 parent: querying-the-space.html

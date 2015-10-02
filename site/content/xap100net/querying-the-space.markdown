@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Querying the Space
 categories: XAP100NET
 parent: programmers-guide.html

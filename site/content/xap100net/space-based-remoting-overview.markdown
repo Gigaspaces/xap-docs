@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Space Based Remoting
 categories: XAP100NET
 parent: programmers-guide.html

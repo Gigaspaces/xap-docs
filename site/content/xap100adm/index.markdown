@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Deployment and Administration
 categories: XAP100ADM
 

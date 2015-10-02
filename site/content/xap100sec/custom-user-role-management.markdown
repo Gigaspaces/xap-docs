@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100sec
 title:  User-Role Management
 categories: XAP100SEC
 parent: custom-security.html

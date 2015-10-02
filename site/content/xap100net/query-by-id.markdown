@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  ID Queries
 categories: XAP100NET
 parent: querying-the-space.html

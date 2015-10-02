@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  XAP.NET in 5 Minutes
 categories: XAP100NET
 parent: tutorials.html

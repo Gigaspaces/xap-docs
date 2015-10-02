@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Unique Index
 categories: XAP100NET
 parent: indexing-overview.html

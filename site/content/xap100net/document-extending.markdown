@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100net
 title:  Extending
 categories: XAP100NET
 weight: 200

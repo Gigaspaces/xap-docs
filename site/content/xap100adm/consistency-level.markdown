@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post100adm
 title:  Consistency Level
 categories: XAP100ADM
 parent: data-grid-clustering.html
