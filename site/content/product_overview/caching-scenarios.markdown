@@ -1,7 +1,9 @@
 ---
 
+type: product_overview
+
 title:  Caching Scenarios
-categories: PRODUCT_OVERVIEW
+type: product_overview
 parent: the-in-memory-data-grid.html
 weight: 100
 menu: product
