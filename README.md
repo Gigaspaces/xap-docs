@@ -16,6 +16,9 @@ This repo hosts XAP documentation, based on markdown and Hugo.
 # Known Issues
 
 - The build process is not hooked yet, so content does not get pushed to `docs.gigaspaces.com` (work in progress)
-- Table of contents on left side is missing (work in progress)
+
+- Section & columns size not correct
 - Include Shortcode does not work (Not supported)
-- Images do not resize properly
+- Breadcrumbs not yet implemented
+- Search not implemented
+- Github Edit not implemented

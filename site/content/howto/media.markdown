@@ -6,7 +6,14 @@ weight: 700
 ---
 
 
+# large Image
 
+
+<img src="/attachment_files/web-console/space-deploy.png" style='height: 100%; width: 100%; object-fit: contain'/>
+
+
+
+![hosts1.jpg](/attachment_files/web-console/space-deploy.png)
 
 
 
