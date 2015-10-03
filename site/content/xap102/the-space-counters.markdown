@@ -6,23 +6,18 @@ weight: 500
 parent: the-gigaspace-interface-overview.html
 ---
 
- {{% bannerleft "/attachment_files/counter-logo.jpg" %}}
+{{% bannerleft "/attachment_files/counter-logo.jpg" %}}
 
 A growing number of applications such as real time ad impressions , ad optimization engines, social network , on-line gaming , need real-time counters when processing incoming streaming of events. The challenge is to update the counter in atomic manner without introducing a bottleneck event processing flow.
 {{%/bannerleft%}}
 
+
+{{% imagertext "/attachment_files/change-api-counter.jpg"%}}
 XAP introducing Counter functionality via the `GigaSpace.change` API. It allows you to increment or decrement an Numerical field within your Space object (POCO or Document). This change may operate on a numeric property only (byte,short,int,long,float,double) or their corresponding Boxed variation. To maintain a counter you should use the Change operation with the `ChangeSet` increment/decrement method that adds/subtract the provided numeric value to the existing counter.
 
-
-{{% section %}}
-{{% column width="50%" %}}
 There is no need to use a transaction when getting the counter value as the counter is atomic.
 If the counter property does not exists, the delta will be set as its initial state. This simple API allows you to maintain counters with minimal impact on the system performance as it is replicating only the `ChangeSet` command and not the entire space object to the backup copy when running a clustered data-grid.
-{{% /column %}}
-{{% column width="45%" %}}
-![change-api-counter.jpg](/attachment_files/change-api-counter.jpg)
-{{% /column %}}
-{{% /section %}}
+{{%/imagertext %}}
 
 # Incrementing
 

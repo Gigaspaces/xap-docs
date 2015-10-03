@@ -7,14 +7,10 @@ weight: 100
 ---
 
 {{%ssummary%}}{{%/ssummary%}}
-{{%section%}}
-{{%column width="70%" %}}
+
+{{%imagertext "/attachment_files/Executors_task_flow_basic.jpg" %}}
 XAP supports `Task` execution in an asynchronous manner, collocated with the Space (Processing Unit that started an embedded Space). `Tasks` can be executed directly on a specific cluster member using routing declarations. `Tasks` can also be executed in "broadcast" mode on all the primary cluster members concurrently and reduced to a single result on the client-side. `Tasks` are dynamic in terms of content and class definition. (The `Task` does not have to be available within the space classpath.)
-{{%/column%}}
-{{%column width="30%" %}}
-![Executors_task_flow_basic.jpg](/attachment_files/Executors_task_flow_basic.jpg)
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
 
 {{%note%}}
 Please note that this feature allows dynamic class loading the first time a task is executed. If your use case requires loading a class afterward, use static import or keep the type as a member, changing the task in runtime is not supported.
