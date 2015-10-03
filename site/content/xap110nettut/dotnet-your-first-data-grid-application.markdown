@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110nettut
 title:  XAP.NET in 5 Minutes
 categories: XAP110NETTUT
 parent: none

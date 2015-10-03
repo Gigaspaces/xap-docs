@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102nettut
 title:  Deploying a Space
 categories: XAP102NETTUT
 weight: 300
