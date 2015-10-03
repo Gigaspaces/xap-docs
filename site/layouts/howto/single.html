@@ -25,10 +25,15 @@
 
     </div>
 
-	<div class="col-lg-8">
-        <div class="container">
-		<h1>{{ .Title }}</h1>
-		{{ .Content }}
+    <div id="content" class="col-md-8">
+        <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
+                style="float: right;"><i class="fa fa-github-alt icon-large"></i>&nbsp;&nbsp;Edit
+        </button>
+
+        <h1 style="margin-top: 0px;">{{ .Title }}</h1>
+        <hr>
+        {{ .Content }}
+    </div>
 
       <!--hr>
         <ul class="pager">
@@ -40,8 +45,8 @@
 
             {{ end }}
         </ul-->
-            </div>
-	</div>
+
+
 
 
 	<!--div id="toc" style=" margin-top:30px;margin-right:10px;margin-left:40;background:#f6f8f9" class="col-lg-2 toc {{ if gt (len .TableOfContents) 1 }}compact{{ end }}">
