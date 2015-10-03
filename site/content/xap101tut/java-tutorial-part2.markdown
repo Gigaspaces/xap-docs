@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101tut
 title:  Deploying a Space
 categories: XAP101TUT
 weight: 600

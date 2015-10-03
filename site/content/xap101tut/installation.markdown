@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101tut
 title:  Installation
 categories:  XAP101TUT
 parent: none

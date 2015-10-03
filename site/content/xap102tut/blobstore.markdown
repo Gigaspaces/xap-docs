@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102tut
 title:  Flash drive IMDG Storage
 categories: XAP102TUT
 parent: none

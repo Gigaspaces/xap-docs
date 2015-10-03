@@ -1,0 +1,35 @@
+{{ partial "header.html" . }}
+{{ partial "navbar101.html" . }}
+
+
+<div class="container-fluid" style="padding-top:10px;min-height: 650px;">
+
+    <div class="col-md-2">
+        <div class="leftbar">
+            <ul class="treeview" id="tree" >
+                {{ partial "sidenav-xap102tut.html" .}}
+            </ul>
+        </div>
+
+    </div>
+
+    {{ partial "nav.html" .}}
+
+    <div class="col-lg-8">
+        <h1>{{ .Title }}</h1>
+        <hr>
+        {{ .Content }}
+        <hr>
+
+        {{ partial "pager.html" .}}
+
+    </div>
+
+
+    {{ partial "toc.html" .}}
+
+</div>
+
+{{ partial "footer.html" . }}
+
+ 

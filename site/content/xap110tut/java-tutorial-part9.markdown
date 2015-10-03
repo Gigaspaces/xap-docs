@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110tut
 title:  Big Data
 categories: XAP110TUT
 weight: 1300

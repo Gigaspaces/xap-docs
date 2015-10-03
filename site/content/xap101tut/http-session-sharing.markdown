@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101tut
 title:  Global HTTP Session Sharing
 categories: XAP101TUT
 parent: none

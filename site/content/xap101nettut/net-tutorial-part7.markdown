@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101nettut
 title:  Space Persistence
 categories: XAP101NETTUT
 weight: 800

@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110tut
 title:  XAP in 5 Minutes
 categories: XAP110TUT
 parent: none

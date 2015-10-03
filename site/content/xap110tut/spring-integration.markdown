@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110tut
 title:  Spring Integration
 categories:  XAP110TUT
 parent: none

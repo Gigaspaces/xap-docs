@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101tut
 title:  Tutorials
 categories:  XAP101TUT
 ---

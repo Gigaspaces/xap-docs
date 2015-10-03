@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102tut
 title:  Interactive API Tutorial
 categories: XAP102TUT
 weight: 350

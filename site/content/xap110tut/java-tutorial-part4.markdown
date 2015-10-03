@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110tut
 title:  Events and Messaging
 categories: XAP110TUT
 weight: 800

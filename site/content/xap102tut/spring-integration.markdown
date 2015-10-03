@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102tut
 title:  Spring Integration
 categories:  XAP102TUT
 parent: none

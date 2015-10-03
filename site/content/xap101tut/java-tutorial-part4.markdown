@@ -1,5 +1,5 @@
 ---
-type: post101
+type: post101tut
 title:  Events and Messaging
 categories: XAP101TUT
 weight: 800

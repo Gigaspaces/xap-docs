@@ -1,5 +1,5 @@
 ---
-type: post110
+type: post110tut
 title:  The Processing Unit
 categories: XAP110TUT
 weight: 900

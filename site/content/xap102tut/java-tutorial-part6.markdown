@@ -1,5 +1,5 @@
 ---
-type: post102
+type: post102tut
 title:  Space Transactions
 categories: XAP102TUT
 weight: 1000
