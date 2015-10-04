@@ -14,6 +14,17 @@
     </div>
 
     <div class="col-lg-8">
+
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/xap97adm">9.7 Administration</a></li>
+            <li class="active">{{.Title}}</li>
+        </ol>
+
+        <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
+                style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
+        </button>
+
         <h1>{{ .Title }}</h1>
         <hr>
         {{ .Content }}
