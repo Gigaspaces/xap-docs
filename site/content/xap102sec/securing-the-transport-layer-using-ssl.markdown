@@ -113,7 +113,7 @@ public class SSLClient {
 ```
 
 As you can see, until now there is nothing special in the code -- it is the same code as if the SSL was not used.
-However, when you wish to run this code with SSL encryption, you should run it with the following system properties (both server and client), and have the [keystore]("/download_files/keystore.ks) anywhere in the classpath (both server and client).
+However, when you wish to run this code with SSL encryption, you should run it with the following system properties (both server and client), and have the [keystore](/download_files/keystore.ks) anywhere in the classpath (both server and client).
 
 
 ```bash

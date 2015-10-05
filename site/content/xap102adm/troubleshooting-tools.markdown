@@ -53,4 +53,4 @@ Usage:
 
 In many scenarios, mainly in production or large deployments, you many times face issues occurred in the same time over several components and cross several distributed machines. In order to track down what was the root cause of the event and which were just symptoms you need to review many log files and correlate what happened in that specific time.
 
-In order to correlate events from different log files and visualize it you have to create a Log Correlation which is where the **[Eclipse Log and Trace Analyzer component \(TPTP LTA\)](/presentation_files/Eclipse%20TPTP%20-%20Log%20And%20Trace%20Analyzer.doc)** shines. This component is an extensive and extendable framework that includes built in probes mechanism.
+In order to correlate events from different log files and visualize it you have to create a Log Correlation which is where the **[Eclipse Log and Trace Analyzer component TPTP LTA)](/presentation_files/Eclipse%20TPTP%20-%20Log%20And%20Trace%20Analyzer.doc)** shines. This component is an extensive and extendable framework that includes built in probes mechanism.
