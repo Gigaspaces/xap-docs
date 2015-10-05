@@ -52,7 +52,7 @@ Refer to [Tuning the communication protocol](./tuning-communication-protocol.htm
 
 
 
-#JMS
+# JMS
 
 {{% include "/COM/xap101/config-jms.markdown" %}}
 

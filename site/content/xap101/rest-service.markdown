@@ -52,7 +52,7 @@ or
 
 
 | Attribute name | Use | Description |
-|:-----|:----------|
+|:-----|:----------|----|
 | port | required | The port which the rest service will be available on. {{<wbr>}}If there are multiple instances, the port for each instance will be port+runningNumber (starting from 0) |
 | giga-space | required* | Reference to GigaSpace |
 | space-name |  required* | Name of the Space that the rest should connect to. |
@@ -62,7 +62,7 @@ or
 *giga-space and space-name attributes can not be used together.
 
 
-#Date Support
+# Date Support
 
 Date string is parsed with a different parser from XAP's parser. Therefore, a date format must be defined.
 
@@ -79,7 +79,7 @@ We provide a default format `yyyy-MM-dd HH:mm:ss` but you can override it by pro
 </os-core:rest>
 ```
 
-#Nested SpaceDocument
+# Nested SpaceDocument
 
 The REST API supports writing nested SpaceDocument.
 

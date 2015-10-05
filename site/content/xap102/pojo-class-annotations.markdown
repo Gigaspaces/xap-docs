@@ -58,10 +58,10 @@ public class Person {
 
 # FIFO Support
 
-| | |
+|    |    |
 |----|----|
 |Syntax     | fifoSupport |
-{{%javadoc "|Argument   | [FifoSupport](  com/gigaspaces/annotation/pojo/FifoSupport )|"%}}
+|Argument   | [FifoSupport](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/annotation/pojo/FifoSupport.html) |
 |Default    | FifoSupport.NOT_SET|
 |Description| To enable FIFO operations, set this attribute to `FifoSupport.OPERATION`|
 
@@ -104,7 +104,7 @@ public class Person {
 | | |
 |----|----|
 |Syntax     | storageType |
-{{%javadoc "|Argument   | [StorageType](  com/gigaspaces/metadata/StorageType )          |"%}}
+|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType.html)|
 |Default    | StorageType.OBJECT |
 |Description| To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.|
 
@@ -177,7 +177,7 @@ public class User {
 
 # Blob Store
 
-| | |
+|    |    |
 |----|----|
 |Syntax     | blobstoreEnabled  |
 |Argument | boolean          |
