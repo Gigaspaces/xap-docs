@@ -19,6 +19,5 @@ This repo hosts XAP documentation, based on markdown and Hugo.
 
 - Section & columns size not correct
 - Include Shortcode does not work (Not supported)
-- Breadcrumbs not yet implemented
 - Search not implemented
-- Github Edit not implemented
+
