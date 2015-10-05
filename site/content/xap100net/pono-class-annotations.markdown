@@ -37,7 +37,7 @@ public class Person {
 
 # Persistence
 
-|-----------|                     |
+|      |                     |
 |-----------|---------------------|
 |Syntax     | Persist|
 |Argument   | boolean          |
