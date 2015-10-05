@@ -100,5 +100,5 @@ In order to use these entities with XAP we need to introduce the following chang
 
 # What's Next?
 
-Step Two - [Implementing the PetClinic Data Access Layer](./step-2---using-the-power-of-the-space-to-scale-your-data-access-layer.html) - Shows how to utilize XAP's unique capabilities to implement the data access layer in a scalable manner.
+Step Two - [Implementing the PetClinic Data Access Layer](./step-2-using-the-power-of-the-space-to-scale-your-data-access-layer.html) - Shows how to utilize XAP's unique capabilities to implement the data access layer in a scalable manner.
 

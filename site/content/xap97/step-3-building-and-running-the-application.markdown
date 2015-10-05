@@ -12,8 +12,8 @@ parent: your-first-jpa-application.html
 
 We recommend that you do the following before starting this step of the Tutorial:
 
-- Follow [Step 1](./step-1---adjusting-your-jpa-domain-model-to-the-xap-jpa-implementation.html) of this tutorial
-- Follow [Step 2](./step-2---using-the-power-of-the-space-to-scale-your-data-access-layer.html) of this tutorial
+- Follow [Step 1](./step-1-adjusting-your-jpa-domain-model-to-the-xap-jpa-implementation.html) of this tutorial
+- Follow [Step 2](./step-2-using-the-power-of-the-space-to-scale-your-data-access-layer.html) of this tutorial
 
 # Building the Example Application
 
@@ -101,9 +101,9 @@ To monitor  the application, start the GigaSpaces UI using the `<GigaSpaces root
 
 # Backing the `HttpSession` with the Space for High Availability
 
-Please refer to [this page](./step-2---enabling-http-session-failover-and-fault-tolerance.html) for directions on how to enable `HttpSession` high availability for the web application.
+Please refer to [this page](./step-2-enabling-http-session-failover-and-fault-tolerance.html) for directions on how to enable `HttpSession` high availability for the web application.
 
 # Configuring Dynamic Load Balancing
 
-Please refer to [this page](./step-3---scaling-the-data-access-layer.html) for directions on how to enable `HttpSession` high availability for the web application.
+Please refer to [this page](./step-3-scaling-the-data-access-layer.html) for directions on how to enable `HttpSession` high availability for the web application.
 

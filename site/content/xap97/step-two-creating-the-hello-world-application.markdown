@@ -27,7 +27,7 @@ We recommend that you go through the following steps before you begin this tutor
 1. [Download XAP and set up your development environment](./installation-guide.html)
 to work with XAP - this is needed to run the sample application described in this tutorial.
 
-1. [Step One - Using Processing Units For Scaling](./step-one---using-processing-units-for-scaling.html)
+1. [Step One - Using Processing Units For Scaling](./step-one-using-processing-units-for-scaling.html)
 \- a short, one page introduction to scaling your application, using Processing Units - **Recommended**.
 
 
@@ -453,6 +453,6 @@ The processor prints the _id_ and _info_ attributes for each messages it takes f
 ## What's Next?
 
 
- Step three - [Deploying the Hello World Application onto the Service Grid](./step-three---deploying-onto-the-service-grid.html) - shows how to deploy our application onto the grid, to gain fail-over, recovery and self healing capabilities.
+ Step three - [Deploying the Hello World Application onto the Service Grid](./step-three-deploying-onto-the-service-grid.html) - shows how to deploy our application onto the grid, to gain fail-over, recovery and self healing capabilities.
 
 Or return to the [Quick Start Guide](./index.html).

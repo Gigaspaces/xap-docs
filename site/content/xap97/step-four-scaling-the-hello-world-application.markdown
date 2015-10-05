@@ -30,9 +30,9 @@ Features Introduced - Scaling, Partitioning, Routing, Routing Index.
 We recommend that you go through the following steps before starting this tutorial:
 
 1. [Download GigaSpaces and Set Up Your Development Environment](./installation-guide.html) to work with GigaSpaces - this is needed for running the tutorial sample application.
-1. [Step One - Using Processing Units for Scaling](./step-one---using-processing-units-for-scaling.html) - a short introduction to what a Processing Unit is - **Recommended**.
-1. [Step Two - Creating the Hello World Application](./step-two---creating-the-hello-world-application.html) - create and run a Processing Unit.
-1. [Step Three - Deploying the Hello World onto the Service Grid](./step-three---deploying-onto-the-service-grid.html) - deploy the Processing Unit onto the Service Grid and monitor it at runtime.
+1. [Step One - Using Processing Units for Scaling](./step-one-using-processing-units-for-scaling.html) - a short introduction to what a Processing Unit is - **Recommended**.
+1. [Step Two - Creating the Hello World Application](./step-two-creating-the-hello-world-application.html) - create and run a Processing Unit.
+1. [Step Three - Deploying the Hello World onto the Service Grid](./step-three-deploying-onto-the-service-grid.html) - deploy the Processing Unit onto the Service Grid and monitor it at runtime.
 
 
 
@@ -136,7 +136,7 @@ When your application is modeled as a Processing Unit, scaling it is as simple a
 
 #### Partitioning and Routing
 
-As mentioned earlier, scaling is done by making sure each Processing Unit instance runs independently of the other instances (you may recall the car wash analogy from [step one of this tutorial](./step-one---using-processing-units-for-scaling.html). This is done by making sure that the data that is needed to perform a certain business operation, resides in the same Processing Unit instance that does the actual processing (this is called data affinity). This in turn guarantees two things - latency is kept at a fixed minimum, and is not related to the number of processing unit instances that are used by the application.
+As mentioned earlier, scaling is done by making sure each Processing Unit instance runs independently of the other instances (you may recall the car wash analogy from [step one of this tutorial](./step-one-using-processing-units-for-scaling.html). This is done by making sure that the data that is needed to perform a certain business operation, resides in the same Processing Unit instance that does the actual processing (this is called data affinity). This in turn guarantees two things - latency is kept at a fixed minimum, and is not related to the number of processing unit instances that are used by the application.
 This is achieved by dividing the application data into partitions (each partition resides on a separate Processing Unit instance, in the form of a space), and intelligently distributing the data to these partitions. The business logic services deployed on each instance, operate only on the partition local to them, i.e. the one collocated in the same Processing Unit instance. This ensures extremely low latency, because data is kept in memory. It also ensures linear scalability when increasing the number of Processing Unit instances - see Figure 7 below.
 
 {{% align center %}}![Partition.jpg](/attachment_files/Partition.jpg)
@@ -160,7 +160,7 @@ For details about scaling a running space cluster **in runtime** see the [Elasti
 
 ## Walkthrough - the Routing Index applied to the Message Object
 
-As you may recall from [step 2 of this tutorial](./step-two---creating-the-hello-world-application.html), the @SpaceRouting annotation decorates the getId() method of the Message object. This designates the _id_ as the **Routing Index** of the Message object. It means that when a Message object is written to the partitioned space, the return value of this method determines the partition to which the Message is written. The calculation is very simple: the hashCode() method of the return value is called, and the result is used in a modulus calculation with the number of partitions. For example, if the result of the hashCode() method call is 30, and the number of partitions is 3, then 30%3 = 0, meaning the object will be sent to the first partition.
+As you may recall from [step 2 of this tutorial](./step-two-creating-the-hello-world-application.html), the @SpaceRouting annotation decorates the getId() method of the Message object. This designates the _id_ as the **Routing Index** of the Message object. It means that when a Message object is written to the partitioned space, the return value of this method determines the partition to which the Message is written. The calculation is very simple: the hashCode() method of the return value is called, and the result is used in a modulus calculation with the number of partitions. For example, if the result of the hashCode() method call is 30, and the number of partitions is 3, then 30%3 = 0, meaning the object will be sent to the first partition.
 
 
 ```java
@@ -185,7 +185,7 @@ Next, we show you how to start the service grid components, by starting a grid s
 
 **Install GigaSpaces**
 
-{{% exclamation %}} After going through the previous tutorial [Step Two - Creating the Hello World Application](./step-two---creating-the-hello-world-application.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment](./installation-guide.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
+{{% exclamation %}} After going through the previous tutorial [Step Two - Creating the Hello World Application](./step-two-creating-the-hello-world-application.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment](./installation-guide.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
 
 {{% anchor Start Service Grid %}}
 

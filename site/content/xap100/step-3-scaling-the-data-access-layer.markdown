@@ -36,8 +36,8 @@ parent: your-first-web-application.html
 We recommend that you go through the following steps before you begin this tutorial:
 
 - [Download GigaSpaces and set up your development environment](./installation-guide.html)  - needed to run the sample application described in this tutorial.
-- [Step 1 - Deploying Your Web Application to the GigaSpaces Environment](./step-1---deploying-your-web-application-to-the-gigaspaces-environment.html) - needed to understand how your web application can be deployed to the GigaSpaces environment and benefit from it.
-- [Step 2 - Enabling HTTP Session Failover & Fault Tolerance](./step-2---enabling-http-session-failover-and-fault-tolerance.html) - If you're interested in transparent failover and fault tolerance for your HTTP session.
+- [Step 1 - Deploying Your Web Application to the GigaSpaces Environment](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html) - needed to understand how your web application can be deployed to the GigaSpaces environment and benefit from it.
+- [Step 2 - Enabling HTTP Session Failover & Fault Tolerance](./step-2-enabling-http-session-failover-and-fault-tolerance.html) - If you're interested in transparent failover and fault tolerance for your HTTP session.
 {{% /section %}}
 
 
@@ -277,7 +277,7 @@ UserData[] spaceEntries = gigaSpace.readMultiple(new UserData(), Integer.MAX_VAL
 # Considerations - Space or HTTP Session?
 
 {{% section %}}
-In the [previous step](./step-2---enabling-http-session-failover-and-fault-tolerance.html) we demonstrated how to back your HTTP session with the space. So in effect, the application actually wrote object to space without using the space API explicitly. So you're probably wondering when you should use each of the approaches.
+In the [previous step](./step-2-enabling-http-session-failover-and-fault-tolerance.html) we demonstrated how to back your HTTP session with the space. So in effect, the application actually wrote object to space without using the space API explicitly. So you're probably wondering when you should use each of the approaches.
 Generally speaking the HTTP session API is completely portable and is designed to store session-specific information in a flat structure (key-value). The benefits here are quite obvious:
 
 - You don't use any GigaSpaces-specific API, and therefore your application is 100% portable
@@ -321,7 +321,7 @@ In some cases, you may want to access the space from an external web application
 
 # Putting It All Together
 
-Now that we've gone over all the details, let's see everything in action. In this section we will start a partitioned space with 2 primaries and 2 backups. We will deploy 3 web application instances to the GigaSpaces environment. We will then start Apache HTTP server and the Apache load balancer agent (see [Step 1](./step-1---deploying-your-web-application-to-the-gigaspaces-environment.html) of this tutorial for more details), and connect to the application from the load balancer. We will write some objects into the space and verify that they are indeed there. Finally, we will terminate one of the running containers (the one which handled our requests) and watch the failover and self-healing process in action, verifying that information stored in the space was not lost. Let's start:
+Now that we've gone over all the details, let's see everything in action. In this section we will start a partitioned space with 2 primaries and 2 backups. We will deploy 3 web application instances to the GigaSpaces environment. We will then start Apache HTTP server and the Apache load balancer agent (see [Step 1](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html) of this tutorial for more details), and connect to the application from the load balancer. We will write some objects into the space and verify that they are indeed there. Finally, we will terminate one of the running containers (the one which handled our requests) and watch the failover and self-healing process in action, verifying that information stored in the space was not lost. Let's start:
 
 1. Build the application [as described earlier in this tutorial](#BuildDirections)
 1. Start one GSM by calling `<gs root>/bin/gsm.(sh/bat)`

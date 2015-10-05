@@ -36,7 +36,7 @@ parent: your-first-web-application.html
 We recommend that you go through the following steps before you begin this tutorial:
 
 - [Download GigaSpaces and set up your development environment](./installation-guide.html) to work with GigaSpaces - this is needed to run the sample application described in this tutorial.
-- [Step 1 - Deploying Your Web Application to the GigaSpaces Environment](./step-1---deploying-your-web-application-to-the-gigaspaces-environment.html) - needed to understand how your web application can be deployed to the GigaSpaces environment and benefit from it.
+- [Step 1 - Deploying Your Web Application to the GigaSpaces Environment](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html) - needed to understand how your web application can be deployed to the GigaSpaces environment and benefit from it.
 {{% /section %}}
 
 
@@ -169,7 +169,7 @@ Note that when using a non-sticky load balancing policy with a web application t
 
 # Backing Your HTTP Session with the Space
 
-To save the application's HTTP session store on top of the space, you will have to use a number of deployment properties. If you're not familiar with the configuration of deployment properties, please make sure to review [Step 1](./step-1---deploying-your-web-application-to-the-gigaspaces-environment.html) of this tutorial which also includes [a detailed explanation](./step-1---deploying-your-web-application-to-the-gigaspaces-environment.html#Step1-DeployingYourWebApplicationtotheGigaSpacesEnvironment-DeployDirections) on how to configure these properties in the GigaSpaces XAP environment.
+To save the application's HTTP session store on top of the space, you will have to use a number of deployment properties. If you're not familiar with the configuration of deployment properties, please make sure to review [Step 1](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html) of this tutorial which also includes [a detailed explanation](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html#Step1-DeployingYourWebApplicationtotheGigaSpacesEnvironment-DeployDirections) on how to configure these properties in the GigaSpaces XAP environment.
 The first property you have to specify is the `jetty.sessions.spaceUrl`, which specifies the URL of the space with which you want to back the HTTP session store. You can specify a plain space URL, e.g. `jini://\*/\*/sessionSpace?useLocalCache` or `/./sessionSpace?cluster_schema=replicated`. If you are using a `pu.xml` file to configure the Space (and other elements of your web application - since the `pu.xml` file is full fledged Spring configuration file), you can use it to back the HTTP session store. The sample application contains the following `pu.xml` file:
 
 
@@ -201,7 +201,7 @@ The following table summarizes the available deployment properties:
 
 # Putting It All Together
 
-Now that we've gone over all the details, let's see everything in action. In this section we will start a partitioned space with 2 primaries and 2 backups. We will deploy 3 web application instances to the GigaSpaces environment. We will then start Apache HTTP server and the Apache load balancer agent (see [Step 1](./step-1---deploying-your-web-application-to-the-gigaspaces-environment.html) of this tutorial for more details), and connect to the application from the load balancer. We will write some objects into the HTTP session and verify that they are indeed there. Finally, we will terminate one of the running containers (the one which handled our requests) and watch the failover and self-healing process in action, verifying that session information was not lost. Let's start:
+Now that we've gone over all the details, let's see everything in action. In this section we will start a partitioned space with 2 primaries and 2 backups. We will deploy 3 web application instances to the GigaSpaces environment. We will then start Apache HTTP server and the Apache load balancer agent (see [Step 1](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html) of this tutorial for more details), and connect to the application from the load balancer. We will write some objects into the HTTP session and verify that they are indeed there. Finally, we will terminate one of the running containers (the one which handled our requests) and watch the failover and self-healing process in action, verifying that session information was not lost. Let's start:
 
 Step 1. Build the application [as described earlier in this tutorial](#BuildDirections)
 
@@ -321,6 +321,6 @@ Step 3. The load balancer agent will pick up the change in runtime state, and wi
 
 # What's Next?
 
-Step Three - [Scaling the Data Access Layer](./step-3---scaling-the-data-access-layer.html) - Shows how to access the space from within your web application as a potential replacement for direct database access.
+Step Three - [Scaling the Data Access Layer](./step-3-scaling-the-data-access-layer.html) - Shows how to access the space from within your web application as a potential replacement for direct database access.
 
 Or return to the [GigaSpaces for Web Applications Tutorial](./your-first-web-application.html).

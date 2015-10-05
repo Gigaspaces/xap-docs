@@ -27,8 +27,8 @@ Features Introduced - Service Grid, Grid Service Manager (GSM), Grid Service Con
 We recommend that you go through the following steps before starting this tutorial:
 
 1. [Download GigaSpaces and set up your development environment](./installation-guide.html) - this is needed to run the tutorial sample application.
-1. [Step One - Using Processing Units For Scaling](./step-one---using-processing-units-for-scaling.html) - a short introduction to how processing units are used for scaling your application - **Recommended**.
-1. [Step Two - Creating the Hello World Application](./step-two---creating-the-hello-world-application.html) - Create and run your first Processing Unit.
+1. [Step One - Using Processing Units For Scaling](./step-one-using-processing-units-for-scaling.html) - a short introduction to how processing units are used for scaling your application - **Recommended**.
+1. [Step Two - Creating the Hello World Application](./step-two-creating-the-hello-world-application.html) - Create and run your first Processing Unit.
 
 
 
@@ -57,7 +57,7 @@ Jump  ahead and [deploy the sample application](#Deploy and Run), in case you wa
 {{% section %}}
 {{% column width="70%" %}}
 
-The Processing Unit that we deploy onto the Service Grid is our Hello World Processor from the [previous step](./step-two---creating-the-hello-world-application.html).
+The Processing Unit that we deploy onto the Service Grid is our Hello World Processor from the [previous step](./step-two-creating-the-hello-world-application.html).
 Reminder - the Feeder application writes each Message object to the processor Processing Unit, which in turn processes them.
 {{% align center %}}
 
@@ -168,7 +168,7 @@ The only noticeable effect may be a slight delay in the space response time to t
 
 **Install GigaSpaces**
 
-{{% exclamation %}} After going through the previous tutorial [Step Two - Creating the Hello World Application](./step-two---creating-the-hello-world-application.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment](./installation-guide.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
+{{% exclamation %}} After going through the previous tutorial [Step Two - Creating the Hello World Application](./step-two-creating-the-hello-world-application.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment](./installation-guide.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
 
 {{% anchor Start Service Grid %}}
 
@@ -274,6 +274,6 @@ This compiles the processor into a JAR file, ready for deployment, located under
 
 ## What's Next?
 
-Step Four - [Scaling the Hello World Application](./step-four---scaling-the-hello-world-application.html)
+Step Four - [Scaling the Hello World Application](./step-four-scaling-the-hello-world-application.html)
 
 Or return to the [Quick Start Guide](./index.html).

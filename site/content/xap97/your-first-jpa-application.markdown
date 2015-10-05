@@ -45,7 +45,7 @@ Simply [download the sources as zip](https://github.com/Gigaspaces/petclinic-jpa
 
 {{% /column %}}
 {{% column width="35%" %}}
-[**Adjusting Your JPA Domain Model to XAP's Distributed JPA Implementation**](./step-1---adjusting-your-jpa-domain-model-to-the-xap-jpa-implementation.html)
+[**Adjusting Your JPA Domain Model to XAP's Distributed JPA Implementation**](./step-1-adjusting-your-jpa-domain-model-to-the-xap-jpa-implementation.html)
 {{% color grey %}}~15 minutes{{% /color %}}
 Shows how to adjust the PetClinic's JPA domain model to XAP's JPA implementation and deals with issues such as data partitioning and indexing
 {{% /column %}}
@@ -76,7 +76,7 @@ Shows how to adjust the PetClinic's JPA domain model to XAP's JPA implementation
 
 {{% /column %}}
 {{% column width="35%" %}}
-[**Using the Power of the Space to Scale Your Data Access Layer**](./step-2---using-the-power-of-the-space-to-scale-your-data-access-layer.html)
+[**Using the Power of the Space to Scale Your Data Access Layer**](./step-2-using-the-power-of-the-space-to-scale-your-data-access-layer.html)
 {{% color grey %}}~15 minutes{{% /color %}}
 Shows how to implement the PetClinic's data access layer using Space based remoting and colocation of data and business logic.
 {{% /column %}}
@@ -110,7 +110,7 @@ Shows how to implement the PetClinic's data access layer using Space based remot
 {{% /column %}}
 {{% column width="35%" %}}
 
-[**Building & Running the Application**](./step-3---building-and-running-the-application.html)
+[**Building & Running the Application**](./step-3-building-and-running-the-application.html)
 {{% color grey %}}~15 minutes{{% /color %}}
 Shows how to build and deploy the application to the GigaSpaces runtime environment
 {{% /column %}}

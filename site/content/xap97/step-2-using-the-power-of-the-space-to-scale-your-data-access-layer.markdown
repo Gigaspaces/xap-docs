@@ -12,7 +12,7 @@ parent: your-first-jpa-application.html
 
 We recommend that you do the following before starting this step of the Tutorial:
 
-- Follow [Step 1](./step-1---adjusting-your-jpa-domain-model-to-the-xap-jpa-implementation.html) of this tutorial
+- Follow [Step 1](./step-1-adjusting-your-jpa-domain-model-to-the-xap-jpa-implementation.html) of this tutorial
 
 #Preparing the `PetClinicService`
 The `PetClinicService` is an implementation of the `Clinic` interface that the Spring MVC layer of the application is using. The easiest way to implement this service is simply define an `EntityManagerFactory` that accesses the remote space from within the web application (similar the traditional database backed implementation). But in our case we want to be able to take advantage of the built in capabilities  that GigaSpaces XAP provides for scaling your business logic:
@@ -180,4 +180,4 @@ public class IdGeneratorImpl implements IdGenerator {
 
 # What's Next?
 
-Step Three - [Building and Running the Application](./step-3---building-and-running-the-application.html) - Shows how to build, package and deploy the application while taking advantage of XAP's dynamic load balancing capabilities and the Space as a highly `HttpSession` store.
+Step Three - [Building and Running the Application](./step-3-building-and-running-the-application.html) - Shows how to build, package and deploy the application while taking advantage of XAP's dynamic load balancing capabilities and the Space as a highly `HttpSession` store.

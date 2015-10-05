@@ -413,6 +413,6 @@ GSC INFO [com.gigaspaces.grid.gsc] - Instantiated PlainWebAppExample [1] in 3.03
 
 # What's Next?
 
-Step Two - [Enabling HTTP Session Failover & Fault Tolerance](./step-2---enabling-http-session-failover-and-fault-tolerance.html) - Shows how to back your HTTP session with the Space to achieve highly available and fault-tolerant HTTP session for your web application.
+Step Two - [Enabling HTTP Session Failover & Fault Tolerance](./step-2-enabling-http-session-failover-and-fault-tolerance.html) - Shows how to back your HTTP session with the Space to achieve highly available and fault-tolerant HTTP session for your web application.
 
 Or return to the [GigaSpaces for Web Applications Tutorial](./your-first-web-application.html).
