@@ -374,7 +374,7 @@ With a stateless PU
 Deploying with the command line options will override the sla definitions
 {{%/note%}}
 
-{{%learn "xap97adm/deploy-command-line-interface.html"%}}
+{{%learn "/xap97adm/deploy-command-line-interface.html"%}}
 
 
 
