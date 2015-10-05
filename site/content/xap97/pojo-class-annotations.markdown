@@ -103,7 +103,7 @@ public class Person {
 |           |                            |
 |-----------|----------------------------|
 |Syntax     | @SpaceClass(storageType=StorageType.BINARY) |
-{{%javadoc "|Argument   | [StorageType](  com/gigaspaces/metadata/StorageType )          |"%}}
+|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType.html) |
 |Default    | StorageType.OBJECT |
 |Description| To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.|
 

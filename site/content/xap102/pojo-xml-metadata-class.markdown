@@ -81,7 +81,7 @@ Example:
 | | |
 |----|----|
 |Syntax     | fifo-support  |
-{{%javadoc "|Argument   | [FifoSupport](  com/gigaspaces/annotation/pojo/FifoSupport )|"%}}
+|Argument   | [FifoSupport](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/annotation/pojo/FifoSupport.html) |
 |Default    | not_set|
 |Description| Enabling  FIFO operations.     |
 
@@ -103,7 +103,7 @@ Example:
 | | |
 |----|----|
 |Syntax     | storage-type |
-{{%javadoc "|Argument   | [StorageType](  com/gigaspaces/metadata/StorageType )          |"%}}
+|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType.html) |
 |Default    | object |
 |Description| To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.|
 

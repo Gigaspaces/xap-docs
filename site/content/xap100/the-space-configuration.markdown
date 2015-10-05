@@ -525,12 +525,12 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 
 For further details on each of the available modifiers see:
 
-{{%javadoc "- [ReadModifiers]( com/gigaspaces/client/ReadModifiers )"%}}
-{{%javadoc "- [WriteModifiers]( com/gigaspaces/client/WriteModifiers)"%}}
-{{%javadoc "- [TakeModifiers]( com/gigaspaces/client/TakeModifiers)"%}}
-{{%javadoc "- [CountModifiers]( com/gigaspaces/client/CountModifiers)"%}}
-{{%javadoc "- [ClearModifiers]( com/gigaspaces/client/ClearModifiers)"%}}
-{{%javadoc "- [ChangeModifiers]( com/gigaspaces/client/ChangeModifiers)"%}}
+- [ReadModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/ReadModifiers.html )
+- [WriteModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/WriteModifiers.html )
+- [TakeModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/TakeModifiers.html )
+- [CountModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/CountModifiers.html )
+- [ClearModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/ClearModifiers.html )
+- [ChangeModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/ChangeModifiers.html )
 
 # Exception Hierarchy
 

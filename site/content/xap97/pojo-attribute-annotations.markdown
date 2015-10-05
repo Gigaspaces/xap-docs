@@ -101,7 +101,7 @@ public class Employee {
 |           |                            |
 |-----------|----------------------------|
 |Syntax     |  @SpaceIndex(type=SpaceIndexType.BASIC)|
-|Argument   |  [SpaceIndexType]({{%javadoc "com/gigaspaces/metadata/index/SpaceIndexType"%}})|
+|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType"%}})|
 |Description| Querying indexed fields speeds up read and take operations. The `@SpaceIndex` annotation should be used to specify an indexed field.|
 
 Example:
@@ -148,7 +148,7 @@ public class User {
 |           |                            |
 |-----------|----------------------------|
 |Syntax     |   @SpaceIndex(type=SpaceIndexType.BASIC, unique = true)|
-|Argument   |  [SpaceIndexType]( {{%javadoc "com/gigaspaces/metadata/index/SpaceIndexType"%}})|
+|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType"%}})|
 |Description| Unique constraints can be defined for an attribute or attributes of a space class. |
 |Note |   The uniqueness is enforced per partition and not over the whole cluster. |
 
@@ -180,7 +180,7 @@ public class Person
 |           |                            |
 |-----------|----------------------------|
 |Syntax     |  @SpaceIndex(path = "attributeName",type = SpaceIndexType.EXTENDED)|
-|Argument   |  [SpaceIndexType]( {{%javadoc "com/gigaspaces/metadata/index/SpaceIndexType"%}} )  path - indexed attribute|
+|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType"%}} )  path - indexed attribute|
 |Description| The `path()` attribute represents the path of the indexed property within a nested object. |
 
 Example:
@@ -336,7 +336,7 @@ public class MyData {
 |           |                            |
 |-----------|----------------------------|
 |Syntax     | @SpaceStorageType(storageType=StorageType.BINARY)|
-|Argument   | [StorageType]( {{%javadoc "com/gigaspaces/metadata/StorageType"%}}) |
+|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType"%}}) |
 |Default    | StorageType.OBJECT |
 |Description| This annotation is used to specify how the attribute is stored in the space. |
 

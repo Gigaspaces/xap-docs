@@ -63,7 +63,7 @@ public class Person {
 | | |
 |----|----|
 |Syntax     | fifoSupport |
-|Argument   | [FifoSupport](  {{%javadoc "com/gigaspaces/annotation/pojo/FifoSupport"%}})|
+|Argument   | [FifoSupport](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/annotation/pojo/FifoSupport"%}})|
 |Default    | FifoSupport.NOT_SET|
 |Description| To enable FIFO operations, set this attribute to `FifoSupport.OPERATION`|
 
@@ -111,7 +111,7 @@ public class Person {
 | | |
 |----|----|
 |Syntax     | storageType |
-|Argument   | [StorageType](  {{%javadoc "com/gigaspaces/metadata/StorageType"%}})|
+|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType"%}})|
 |Default    | StorageType.OBJECT |
 |Description| To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.|
 

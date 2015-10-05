@@ -100,7 +100,7 @@ public class Employee {
 |     |   |
 |----|----|
 |Syntax     |  SpaceIndex type |
-{{%javadoc "|Argument   |  [SpaceIndexType]( com/gigaspaces/metadata/index/SpaceIndexType )  |"%}}
+|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType.html) |
 |Description| Querying indexed fields speeds up read and take operations. The `@SpaceIndex` annotation should be used to specify an indexed field.|
 
 Example:
@@ -147,7 +147,7 @@ public class User {
 |     |   |
 |----|----|
 |Syntax     |  SpaceIndex type , unique  |
-{{%javadoc "|Argument   |  [SpaceIndexType]( com/gigaspaces/metadata/index/SpaceIndexType )  |"%}}
+|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType.html) |
 |Description| Unique constraints can be defined for an attribute or attributes of a space class. |
 |Note |   The uniqueness is enforced per partition and not over the whole cluster. |
 
@@ -179,7 +179,7 @@ public class Person
 |     |   |
 |----|----|
 |Syntax     |  SpaceIndex path  ,type  |
-{{%javadoc "|Argument   |  [SpaceIndexType]( com/gigaspaces/metadata/index/SpaceIndexType )wbr path - indexed attribute|"%}}
+|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType.html |
 |Description| The `path()` attribute represents the path of the indexed property within a nested object. |
 
 Example:
@@ -335,7 +335,7 @@ public class MyData {
 |     |   |
 |----|----|
 |Syntax     | SpaceStorageType storageType|
-{{%javadoc "|Argument   | [StorageType](  com/gigaspaces/metadata/StorageType )          |"%}}
+|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType.html) |
 |Default    | StorageType.OBJECT |
 |Description| This annotation is used to specify how the attribute is stored in the space. |
 
