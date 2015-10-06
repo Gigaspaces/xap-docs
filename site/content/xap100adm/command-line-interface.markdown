@@ -81,7 +81,7 @@ The following gsa CLI commands are available:
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 The following prints a numbered list of GSA services, and you can choose a GSA service to create gsc within it:
 
     gs> gsa start-gsc
@@ -133,7 +133,7 @@ For more details on monitoring and management using JMX, refer to the [JMX Manag
 | `h` / `help`  | Prints help |
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
     gs> jconsole
     total services 2
@@ -185,7 +185,7 @@ Each option adds to (or subtracts from) the default information listed. You can 
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 
 ## List All Services in the Network
