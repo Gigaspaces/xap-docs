@@ -115,7 +115,7 @@ For details about scaling a running space cluster **in runtime** see the [Elasti
 
 ## Walkthrough - the Routing Index applied to the Message Object
 
-As you may recall from [step 2 of this tutorial](./first-xap-app-step-2.html.html), the @SpaceRouting annotation decorates the getId() method of the Message object. This designates the _id_ as the **Routing Index** of the Message object. It means that when a Message object is written to the partitioned space, the return value of this method determines the partition to which the Message is written. The calculation is very simple: the hashCode() method of the return value is called, and the result is used in a modulus calculation with the number of partitions. For example, if the result of the hashCode() method call is 30, and the number of partitions is 3, then 30%3 = 0, meaning the object will be sent to the first partition.
+As you may recall from [step 2 of this tutorial](./first-xap-app-step-2.html), the @SpaceRouting annotation decorates the getId() method of the Message object. This designates the _id_ as the **Routing Index** of the Message object. It means that when a Message object is written to the partitioned space, the return value of this method determines the partition to which the Message is written. The calculation is very simple: the hashCode() method of the return value is called, and the result is used in a modulus calculation with the number of partitions. For example, if the result of the hashCode() method call is 30, and the number of partitions is 3, then 30%3 = 0, meaning the object will be sent to the first partition.
 
 
 ```java
@@ -142,7 +142,7 @@ Next, we show you how to start the service grid components, by starting a grid s
 **Install GigaSpaces**
 
 {{% info%}}
-After going through the previous tutorial [Step Two - Creating the Hello World Application](./first-xap-app-step-2.html.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment]({{%latestjavaurl%}}/installation-guide.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
+After going through the previous tutorial [Step Two - Creating the Hello World Application](./first-xap-app-step-2.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment]({{%latestjavaurl%}}/installation-guide.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
 {{%/info%}}
 
 {{% anchor Start Service Grid %}}

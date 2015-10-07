@@ -280,7 +280,7 @@ gs-cli deploy -cluster total_members=4 -max-instances-per-machine 2 eventProcess
 Deploying with the command line options will override the sla definitions
 {{%/note%}}
 
-{{%learn "latestadmurl/deploy-command-line-interface.html"%}}
+{{%learn "/xap101adm/deploy-command-line-interface.html"%}}
 
 
 
