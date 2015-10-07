@@ -7,19 +7,10 @@ parent: none
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![cassandra.png](/attachment_files/qsg/security.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary   %}} {{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
-
-
+{{%bannerleft "/attachment_files/qsg/security.png" %}}
 In this part of the tutorial we will introduce you to XAP security, where it fits in the XAP architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements.
 XAP Security provides comprehensive support for securing your data and services.
-
+{{%/bannerleft%}}
 
 
 
@@ -45,12 +36,13 @@ XAP's authorization implementation is based on roles. A role is comprised of a c
 ### System Authority
 The System Authority consists of two privileges:
 
-{{%indent%}}
-|   |    |
-|----|----|----|
+
+
+|    |    |
+|----|----|
 |Manage Roles|Define roles (a set of privileges assigned to a logical role name)|
 |Manage Users|Assign users to pre-defined roles, or assign user-specific privileges|
-{{%/indent%}}
+
 
 
 ### Grid Authority
@@ -58,7 +50,7 @@ The Grid Authority consists of privileges for managing the Grid and its Services
 
 {{%indent%}}
 |   |    |
-|----|----|----|
+|----|----|
 |Provision PU	 |Deploy, Un-deploy of processing units|
 |Manage PU	 |Scale up/down, Relocate, Restart PU instance, Destroy PU instance|
 |Manage Grid    |Start, Terminate, Restart of GSC/GSM/LUS via GSA|
@@ -70,7 +62,7 @@ The Space Authority consists of privileges for operations on space data.
 
 {{%indent%}}
 |   |    |
-|----|----|----|
+|----|----|
 |Write	  |Write and Update operations|
 |Create  |Write only (no Update) operations|
 |Read	  |Read, Count and Notify operations|
@@ -85,7 +77,7 @@ Note that the monitoring is secured only by the 'tooling' (CLI/UI).
 
 {{%indent%}}
 |   |    |
-|----|----|----|
+|----|----|
 |Monitor JVM	 |Monitoring of JVM statistics|
 |Monitor PU	 |Monitoring of Processing Units (classes, connections, statistics, etc.)|
 {{%/indent%}}

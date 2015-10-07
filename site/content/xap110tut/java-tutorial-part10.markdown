@@ -114,8 +114,7 @@ The default username and password for the security are admin/admin.
 {{%popup "/attachment_files/qsg/CreateRole.png"  "Create a Role"%}}
 {{%/column%}}
 
-{{%/section%}}
-{{%section%}}
+
 {{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/CreateRole2.png"  "Display Roles"%}}
 {{%/column%}}
