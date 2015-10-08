@@ -6,7 +6,7 @@ parent: none
 weight: 1200
 ---
 
-<br>
+
 
 In this guide you will find useful information on how to troubleshoot your XAP application. Common user issues, failure detection and tools are presented.
 

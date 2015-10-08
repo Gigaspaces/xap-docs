@@ -6,7 +6,7 @@ parent: none
 weight: 900
 ---
 
-<br>
+
 
 {{%  bannerleft "/attachment_files/subject/monitoring.png" %}}
 

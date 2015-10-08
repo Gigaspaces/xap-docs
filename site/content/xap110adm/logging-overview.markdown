@@ -6,7 +6,6 @@ parent: none
 weight: 500
 ---
 
-<br>
 
 This section explains how you can configure logging with XAP. We will show you how you can format the log output, choose file names and rollover policies.
 
