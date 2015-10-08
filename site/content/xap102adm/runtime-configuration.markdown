@@ -8,7 +8,7 @@ parent: none
 
 
 
-<br>
+
 
 This section lists and explains the different runtime configuration parameters.
 

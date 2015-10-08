@@ -6,7 +6,7 @@ parent: none
 weight: 100
 ---
 
-<br>
+
 
 {{%bannerleft "/attachment_files/subject/MonitoringAndManagement.png" %}}
 XAP Management Center is a GUI that allows you to view spaces, containers, and clusters and configure them, using the Space Browser tab. You can also deploy and manage services using the Deployments tab.

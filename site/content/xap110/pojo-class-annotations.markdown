@@ -35,7 +35,7 @@ public class Person {
 ```
 
 {{%refer%}}
- [Space Persistency](/space-persistency.html)
+ [Space Persistency](./space-persistency.html)
  {{%/refer%}}
 
 

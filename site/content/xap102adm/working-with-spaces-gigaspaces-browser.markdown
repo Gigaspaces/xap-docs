@@ -6,7 +6,7 @@ parent: gigaspaces-management-center.html
 weight: 600
 ---
 
-<br>
+
 
 
 In this section we will show you how to configure and administrate spaces.

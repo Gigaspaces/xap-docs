@@ -139,7 +139,7 @@ Here is an example of a pu.xml file:
     <!--
         A bean representing a space. Here we configure an embedded space (note the url element which does
         not contain any remote protocol prefix. Also note that we do not specify here the cluster topology
-        of the space. It is declared by the os-sla:sla element of this pu.xml file.
+        of the space. It is declared by the `os-sla:sla` element of this pu.xml file.
     -->
     <os-core:embedded-space id="space" name="eventSpace" />
 
@@ -149,7 +149,7 @@ Here is an example of a pu.xml file:
 </beans>
 ```
 
-{{%learn "/xap102adm/configuring-processing-unit-elements.html"%}}
+{{%learn "/xap102/configuring-processing-unit-elements.html"%}}
 
 
 

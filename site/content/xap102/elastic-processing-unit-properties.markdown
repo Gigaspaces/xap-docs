@@ -1,5 +1,5 @@
 ---
-type: post100
+type: post102
 title:  Configuration Properties
 categories: XAP102
 parent: elastic-processing-unit-overview.html

@@ -8,7 +8,7 @@ weight: 200
 
 
 
-<br>
+
 
 In this guide you will find information on how to tune your XAP application.
 

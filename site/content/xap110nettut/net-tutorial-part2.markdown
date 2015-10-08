@@ -143,33 +143,33 @@ You can start XAP's console and inspect the Data Grid components that have been 
 {{%popup "/attachment_files/qsg/Shot0.png"  "Login"%}}
 {{%/column%}}
 {{%column width="20%"%}}
-{{%popup   "/attachment_files/qsg/Shot1.pngDashboard"%}}
+{{%popup   "/attachment_files/qsg/Shot1.png" "Dashboard"%}}
 {{%/column%}}
 {{%column width="20%"%}}
-{{%popup "/attachment_files/qsg/Shot11.pngDeployed"  "Applications"%}}
+{{%popup "/attachment_files/qsg/Shot11.png" "Deployed Applications"%}}
 {{%/column%}}
 
 {{%column width="20%"%}}
-{{%popup "/attachment_files/qsg/Shot2.pngHosts"  "(GSA,GSC,GSM,LUS)"%}}
+{{%popup "/attachment_files/qsg/Shot2.png"  "Hosts (GSA,GSC,GSM,LUS)"%}}
 {{%/column%}}
 {{%/section%}}
  
 
 {{%section%}}
 {{%column width="20%"%}}
-{{%popup "/attachment_files/qsg/Shot3.pngDeployed"  "Data Grids"%}}
+{{%popup "/attachment_files/qsg/Shot3.png"  "Deployed Data Grids"%}}
 {{%/column%}}
 
 {{%column width="20%"%}}
-{{%popup "/attachment_files/qsg/Shot4.pngClasses"  "in Space"%}}
+{{%popup "/attachment_files/qsg/Shot4.png"  "Classes in Space"%}}
 {{%/column%}}
 
 {{%column width="20%"%}}
-{{%popup "/attachment_files/qsg/Shot5.pngClass"  "attributes"%}}
+{{%popup "/attachment_files/qsg/Shot5.png" "Class attributes"%}}
 {{%/column%}}
 
 {{%column width="20%"%}}
-{{%popup "/attachment_files/qsg/Shot6.pngSpace"  "Query"%}}
+{{%popup "/attachment_files/qsg/Shot6.png" "Space Query"%}}
 {{%/column%}}
 {{%/section%}}
  

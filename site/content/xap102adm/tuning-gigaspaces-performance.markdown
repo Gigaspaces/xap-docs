@@ -5,7 +5,7 @@ categories: XAP102ADM
 parent:  tuning-gigaspaces-performance-overview.html
 weight: 100
 ---
-{{<wbr>}}
+
 
 This section lists helpful recommendations for tuning your application when using XAP to boost its performance, and improving its scalability.
 

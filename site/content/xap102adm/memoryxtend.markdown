@@ -6,7 +6,7 @@ parent: none
 weight: 430
 ---
 
-<br>
+
 
 {{% bannerleft "/attachment_files/subject/flash-imdg.png" %}}
 
