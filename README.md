@@ -18,6 +18,5 @@ This repo hosts XAP documentation, based on markdown and Hugo.
 Note: Since there are still some styling issues, the build process currently builds to a [temporary site](http://xapdocs.s3-website-us-east-1.amazonaws.com/) instead of `docs.gigaspaces.com`.
 
 - Section & columns size not correct
-- Include Shortcode does not work (Not supported)
 - Search not implemented
 
