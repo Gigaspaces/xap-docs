@@ -6,7 +6,7 @@ parent: programmers-guide.html
 weight: 1200
 ---
 
- 
+
 
 {{%bannerleft "/attachment_files/subject/remoting.png" %}}
 Remoting allows you to use remote invocations of POJO services, with the space as the transport layer.
