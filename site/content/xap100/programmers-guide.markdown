@@ -6,7 +6,7 @@ weight: 300
 parent: none
 ---
 
-{{<wbr>}}
+
 
 {{%section%}}
 {{%column width="10%" %}}

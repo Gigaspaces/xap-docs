@@ -191,6 +191,7 @@ Most memcached clients allow to provide a list of memcached servers to connect t
 # Performance
 
 The results below compares native memcached with GigaSpaces memcached:
+
 ![native_memcachedvsGigaSpaces_memcached.jpg](/attachment_files/native_memcachedvsGigaSpaces_memcached.jpg)
 
 The command used to generate the results is:

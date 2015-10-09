@@ -6,7 +6,7 @@ parent: none
 weight: 1400
 ---
 
-<br>
+
 
 {{%bannerleft "/attachment_files/subject/executor.png" %}}
 Task executors allow you to easily execute grid-wide tasks on the space using the XAP API.

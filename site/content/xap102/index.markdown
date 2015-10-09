@@ -4,7 +4,7 @@ title:  Java Developers Guide
 categories: XAP102
 ---
 
-{{<wbr>}}
+
 
 {{%bannerleft "/attachment_files/subject/imc.png" %}}
 This guide introduces the key concepts for building XAP applications. The topics in this guide span installation, tutorials, the XAP API, Processing Unit, web application support, Space replication, platform interoperability and security.
