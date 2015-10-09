@@ -63,7 +63,7 @@ public class Person {
 | | |
 |----|----|
 |Syntax     | fifoSupport |
-|Argument   | [FifoSupport](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/annotation/pojo/FifoSupport"%}})|
+|Argument   | [FifoSupport](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/annotation/pojo/FifoSupport.html)|
 |Default    | FifoSupport.NOT_SET|
 |Description| To enable FIFO operations, set this attribute to `FifoSupport.OPERATION`|
 

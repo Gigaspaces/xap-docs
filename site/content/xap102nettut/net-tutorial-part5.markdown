@@ -92,7 +92,7 @@ A sample SLA definition is shown below:
 </beans>
 ```
 
-{{%learn "/xap102net/the-sla-overview.html"%}}
+{{%learn "/xap102adm/the-sla-overview.html"%}}
 
 # Deployment
 When deploying the PU to the XAP Service Grid, the PU is uploaded to the XAP Manager (GSM) and extracted to the deploy directory of the local XAP installation (located by default under <XAP Root>\deploy).
