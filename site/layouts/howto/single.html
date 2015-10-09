@@ -5,22 +5,13 @@
 <div class="container-fluid" style="padding-top:10px;min-height: 1000px;">
 	<div class="col-lg-2" style="margin-left:0px; margin-top:50px;">
 
-        <ul class="treeview" id="tree" style="position:fixed;margin-top:80px;">
-
-            <!--li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="./index.html">Howto Hugo</a-->
-
-                    <li><a href="./accordion.html">Accordion</a></li>
-                    <li><a href="./anchor.html">Anchor</a></li>
-                    <li><a href="./banner.html">Banner</a></li>
-                    <li><a href="./cheetsheet.html">General</a></li>
-                    <li><a href="./table.html">Table</a></li>
-
-
-
-                <!--/ul-->
-            <!--/li-->
-        </ul>
-
+        <div class="col-md-2 hidden-xs" >
+            <div class="leftbar">
+                <ul class="treeview" id="tree">
+                    {{ partial "sidenav-howto.html" .}}
+                </ul>
+            </div>
+        </div>
 
 
     </div>
