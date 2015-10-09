@@ -615,7 +615,7 @@ A compound listener (implements several interfaces) can be registered using the 
 
 # Monitoring Processing Unit instance Fault-detection
 
-Using the member-alive-indicator (see [Monitoring the Liveness of Processing Unit Instances](./configuring-the-processing-unit-sla.html#ConfiguringtheProcessingUnitSLA-livenessDetection) ) the Grid Service Manager (GSM) actively monitors each processing unit instance. When an "is alive" check fails, it **suspects** that the processing unit instance is no longer alive, and retries to contact it (using the configured retries and timeouts in pu.xml under os-sla:member-alive-indicator). When all retries fail, the GSM reports that it **detected** a failure and tries to re-deploy it on an available Grid Service Container (GSC).
+Using the member-alive-indicator (see [Monitoring the Liveness of Processing Unit Instances](./configuring-the-processing-unit-sla.html#ConfiguringtheProcessingUnitSLA-livenessDetection) ) the Grid Service Manager (GSM) actively monitors each processing unit instance. When an "is alive" check fails, it **suspects** that the processing unit instance is no longer alive, and retries to contact it (using the configured retries and timeouts in pu.xml under `os-sla:member-alive-indicator`). When all retries fail, the GSM reports that it **detected** a failure and tries to re-deploy it on an available Grid Service Container (GSC).
 
 These member-alive-indicator transitions are reflected using the Admin API `MemberAliveIndicatorStatus`. Use the API to register for status changed events, and better visibility of GSM decisions based on the fault-detection mechanism. An alert is fired upon a fault- detection trigger, also visible in Web User Interface.
 

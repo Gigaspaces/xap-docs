@@ -242,7 +242,7 @@ The [GSM](/product_overview/service-grid.html#gsm) monitors the liveness of all 
 
 You can also control how often a processing unit instance will be monitored by the GSM, and in case of failure, how many times the GSM will retry to ping the instance and for how long it will wait between retry attempts.
 
-This is done using the <os-sla:member-alive-indicator> element. It contains the following attributes:
+This is done using the `<os-sla:member-alive-indicator>` element. It contains the following attributes:
 
 
 | Attribute | Description | Default |

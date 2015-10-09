@@ -41,7 +41,7 @@ Unzip the ZIP file using your favorite unzip tool (e.g., WinZip) to the location
 **What's Next?**
 
 - To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment]({{%currentadmurl%}}/troubleshooting-testing-system-environment.html) section.
-- See the [Quick Start Guide](/XAP110tut/) for your first steps with XAP.
+- See the [Quick Start Guide](/xap110tut/) for your first steps with XAP.
 
 
 # Installing on Linux
@@ -60,7 +60,7 @@ Step 3. Make sure all the machines running XAP can ping each other and their hos
 **What's Next?**
 
 - To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment]({{%currentadmurl%}}/troubleshooting-testing-system-environment.html) section.
-- See the [Quick Start Guide](/XAP110tut/) for your first steps with XAP.
+- See the [Quick Start Guide](/xap110tut/) for your first steps with XAP.
 
 {{% anchor 2 %}}
 
