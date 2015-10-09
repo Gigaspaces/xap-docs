@@ -748,7 +748,7 @@ SqlQuery<User> query = new SqlQuery<User>("Name = 'John Dow' AND CreditLimit > 1
 There are several additional indexing options available. For example you can index nested attributes, Nested Dictionaries, Collections, nested attributes within a Collection, free text search and others.
 
 {{%refer%}}
-[Indexing Objects]({{%currentneturl%}}./indexing.html)
+[Indexing Objects]({{%currentneturl%}}/indexing.html)
 {{%/refer%}}
 
 

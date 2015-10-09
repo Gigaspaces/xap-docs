@@ -160,7 +160,7 @@ spring
 </beans>
 ```
 
-{{%learn "/xap101adm/configuring-processing-unit-elements.html"%}}
+{{%learn "/xap101/configuring-processing-unit-elements.html"%}}
 
 
 

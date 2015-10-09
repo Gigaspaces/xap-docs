@@ -218,7 +218,7 @@ The grid components are secured using the Security Administration.
 
 
 
-{{%learn "/xap100adm/security-administration.html"%}}
+{{%learn "/xap100sec/security-administration.html"%}}
 
 
 

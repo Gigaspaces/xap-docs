@@ -8,10 +8,10 @@ weight: 100
 
 {{<wbr>}}
 
-**Required Software:** [Microsoft .NET Framework 3.5](http://msdn.microsoft.com/en-us/library/w0x726c2(v=vs.90).aspx) or later.
+**Required Software:** [Microsoft .NET Framework 3.5](https://msdn.microsoft.com/en-us/library/w0x726c2(v=vs.110).aspx) or later.
 
 {{% note %}}
-Recommended: [Microsoft .NET Framework 4.0](http://msdn.microsoft.com/en-us/library/w0x726c2(v=vs.100).aspx) or later.
+Recommended: [Microsoft .NET Framework 4.0](https://msdn.microsoft.com/en-us/library/w0x726c2(v=vs.100).aspx) or later.
 {{%/note%}}
 
 **Supported Operating Systems:** Any Windows operating system supported by the designated .NET Framework version.
