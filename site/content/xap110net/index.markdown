@@ -4,7 +4,7 @@ title:  .Net Developers Guide
 categories: XAP110NET
 ---
 
-<br>
+
 
 {{%section%}}
 {{%column width="10%" %}}

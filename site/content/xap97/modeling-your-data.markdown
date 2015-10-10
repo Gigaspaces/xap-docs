@@ -7,7 +7,7 @@ weight: 30
 ---
 
 
-{{<wbr>}}
+
 
 {{%section%}}
 {{%column width="10%" %}}

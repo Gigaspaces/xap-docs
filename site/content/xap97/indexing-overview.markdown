@@ -6,7 +6,7 @@ parent: programmers-guide.html
 weight: 400
 ---
 
-{{<wbr>}}
+
 
 {{%section%}}
 {{%column width="10%" %}}

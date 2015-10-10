@@ -5,7 +5,7 @@ categories: XAP100
 parent: programmers-guide.html
 weight: 900
 ---
-<br>
+
 
 {{%section%}}
 {{%column width="10%" %}}

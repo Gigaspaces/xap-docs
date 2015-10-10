@@ -40,7 +40,7 @@ CollectionIndexingExample[] result = gigaspace.readMultiple(sqlQuery);
 See the [Free Text Search](./query-sql.html#Free Text Search) section for more details.
 {{%/note%}}
 
-### Nested property within a Collection
+# Nested property within a Collection
 
 Its also possible to index a nested property within a collection.
 

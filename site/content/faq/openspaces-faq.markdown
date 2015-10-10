@@ -7,7 +7,7 @@ parent: none
 
 ---
 
-{{<wbr>}}
+
 
 
 {{%panel%}}

@@ -46,7 +46,7 @@ The web application requires a couple of configuration changes to the `web.xml` 
 In order to enable the **GigaSpacesHttpSession** you need to set shiro.ini configuration file first.
 The following should be located under **main** section.
 
-###Space Connector - Manages connections with the space
+### Space Connector - Manages connections with the space
 
 
 
@@ -60,18 +60,17 @@ The following should be located under **main** section.
 |connector.readTimeout|Read timeout in milliseconds {{<wbr>}}Default to 300000|No|Any positive interger. Millisecond time unit|
 |connector.sessionBaseName| Fully qualified type name that holds the session attributes in space.{{<wbr>}}Default is `com.gigaspaces.httpsession.models.DefaultSpaceSessionStore`|Yes|
 
-###Store Mode - Configure how changes are saved to the space
+### Store Mode - Configure how changes are saved to the space
 
 
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
 |listener|Fully qualified class name implementing `com.gigaspaces.httpsession.policies.GigaspacesNotifyListener`|No|`com.gigaspaces.httpsession.policies.TraceListener`|
-|:-------|:----------|:-------|:--------------|
 |storeMode|Provide functionality of how to save changes to the space. there is tow sessions store mode full and delta.|Yes| use on of two options:<br> 1.`com.gigaspaces.httpsession.sessions.FullStoreMode` 2.`com.gigaspaces.httpsession.sessions.DeltaStoreMode`|
 |storeMode.connector| Space connector to be used{{<wbr>}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
 |storeMode.listener|Provides changes notification functionality. it must extends `com.gigaspaces.httpsession.policies.GigaspacesNotifyListener`|No| $listener |
 
-###Session Manager - XAP Session Manager Implementation
+### Session Manager - XAP Session Manager Implementation
 
 
 |Property|Description|Required|Optional Values|
@@ -82,7 +81,7 @@ The following should be located under **main** section.
 |sessionManager.storeMode|Configure how changes are saved to the space. See [Store Mode Section](#store-mode---configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
 |securityManager.sessionManager|Ensure the securityManager uses our native SessionManager|Yes|$sessionManager|
 
-###Session Policy - Authentication settings
+### Session Policy - Authentication settings
 
 
 |Property|Description|Required|Optional Values|

@@ -6,7 +6,7 @@ parent: web-application-overview.html
 weight: 600
 ---
 
-<br>
+
 
 {{% section %}}
 {{% column width="10%" %}}

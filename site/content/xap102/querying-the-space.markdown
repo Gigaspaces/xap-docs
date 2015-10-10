@@ -6,7 +6,7 @@ parent: none
 weight: 800
 ---
 
-<br>
+
 
 
 {{%bannerleft "/attachment_files/subject/query.png" %}}

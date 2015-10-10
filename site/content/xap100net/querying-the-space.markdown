@@ -6,7 +6,6 @@ parent: programmers-guide.html
 weight: 500
 ---
 
-<br>
 
 
 

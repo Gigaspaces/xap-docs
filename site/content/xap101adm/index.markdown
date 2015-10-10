@@ -5,7 +5,7 @@ categories: XAP101ADM
 
 ---
 
-<br>
+
 
 {{%section%}}
 {{%column width="15%" %}}

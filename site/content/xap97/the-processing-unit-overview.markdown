@@ -6,7 +6,7 @@ parent: packaging-and-deployment.html
 weight: 100
 ---
 
-{{<wbr>}}
+
 
 The Processing Unit is the unit of packaging and deployment in the GigaSpaces XAP platform. This section describes its directory structure, deployment descriptor and SLA definition and configuration.
 

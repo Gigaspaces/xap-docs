@@ -6,7 +6,7 @@ parent: none
 weight: 1800
 ---
 
-<br>
+
 
 {{%bannerleft "/attachment_files/subject/big-data.png" %}}
 XAP integrates with Cassandra and MongoDB NoSql data bases. These data bases can be used for data archiving and data persistence.

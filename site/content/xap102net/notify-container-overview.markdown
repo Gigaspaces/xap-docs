@@ -6,7 +6,7 @@ parent: event-processing.html
 weight: 200
 ---
 
-<br>
+
 
 {{%section%}}
 {{%column width="10%" %}}

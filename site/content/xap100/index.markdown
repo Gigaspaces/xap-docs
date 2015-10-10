@@ -4,7 +4,6 @@ title:  Java Developers Guide
 categories: XAP100
 ---
 
-{{<wbr>}}
 
 {{%section%}}
 {{%column width="15%" %}}

@@ -6,8 +6,6 @@ parent: none
 weight: 600
 ---
 
-<br>
-
 {{%section%}}
 {{%column width="10%" %}}
 ![transaction.png](/attachment_files/subject/web.png)

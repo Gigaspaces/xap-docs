@@ -7,7 +7,7 @@ weight: 1000
 ---
 
 
-<br>
+
 
 XAP supports client side caching of space data within the client application's JVM. When using client-side caching, the user essentially uses a two-layer cache architecture: The first layer is stored locally, within the client's JVM, and the second layer is stored within the remote master space. The remote master space may be used with any of the supported deployment topologies.
 

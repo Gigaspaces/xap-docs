@@ -38,7 +38,7 @@ SqlQuery<CollectionIndexingExample> sqlQuery =
 CollectionIndexingExample[] result = spaceProxy.ReadMultiple(sqlQuery);
 ```
 
-### Nested property within a Collection
+# Nested property within a Collection
 
 Its also possible to index a nested property within a collection.
 

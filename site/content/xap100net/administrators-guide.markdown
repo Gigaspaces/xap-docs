@@ -6,7 +6,7 @@ parent: none
 weight: 500
 ---
 
-<br>
+
 
 
 The XAP.NET installer enables developers to start evaluating and using the product immediately, without any manual configuration changes.
