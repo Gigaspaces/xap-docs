@@ -6,7 +6,7 @@ parent: interoperability-overview.html
 weight: 200
 ---
 
-<br>
+
 
 {{%bannerleft "/attachment_files/subject/cpp.png" %}}
 

@@ -52,6 +52,7 @@ For both of the above topologies, replication is done in in a similar way: Each 
 ![wan_how_it_works.jpg](/attachment_files/wan_how_it_works.jpg)
 
 Replication may use Hub & Spoke, Ring, Hierarchical or Pass-Through architecture:
+
 ![wan_topologies.jpg](/attachment_files/wan_topologies.jpg)
 
 # Configuring a Space With Gateway Targets

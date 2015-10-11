@@ -75,6 +75,7 @@ When having multiple different web applications deployed across multiple web con
 ## The GigaSpaces Session Filter
 
 The web application configuration should include the GigaSpaces Session Filter. This filter interacts with the GigaSpaces session manager that store the session content within the data grid. It maintains a temporary cache to reduce remote activity with the data grid.
+
 ![HTTPSessionManagementcloserLook.jpg](/attachment_files/HTTPSessionManagementcloserLook.jpg)
 
 

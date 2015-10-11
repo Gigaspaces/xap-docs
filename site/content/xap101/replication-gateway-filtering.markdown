@@ -9,7 +9,9 @@ weight: 700
 
 
 In some cases, there can be data that should not be replicated between the sites but should still be replicated locally between the primary and the backup/mirror service. In this case using the replicate class level or object level decoration is irrelevant as there is a need to control the replication behavior only to the remote site. Since a replication channel to a gateway is like any other replication channel, therefore a custom [Replication Filter]({{%currentadmurl%}}/cluster-replication-filters.html) at the source space can be used to filter the relevant data from being sent to the target gateway.
+
 ![WAN-replicationfilter.jpg](/attachment_files/WAN-replicationfilter.jpg)
+
 This filtering should be based on the replication target name in order to identify the correct replication filter is called for the outgoing replication to the gateway.
 
 {{% tip %}}

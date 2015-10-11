@@ -41,7 +41,9 @@ This page will demonstrate two sample multi-space replication topologies. These 
 For both of the above topologies, replication is done in a similar way: Each space is replicating the relevant data to its target space(s) via the target space gateway which routes the data to the target space. The data is being replicated asynchronously in a reliable mode, which means that even if a primary space instance fails on the source space, the backup space instance which replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary space instance. This is very similar to the [Mirror Service](./asynchronous-persistency-with-the-mirror.html) replication scheme. The gateway is discussed in full below.
 
 ![gateway_lan_how_it_works.jpg](/attachment_files/gateway_lan_how_it_works.jpg)
+
 Replication may use Hub & Spoke, Ring, Hierarchical or Pass-Through architecture:
+
 ![wan_topologies.jpg](/attachment_files/wan_topologies.jpg)
 
 # Configuring a Space With Gateway Targets

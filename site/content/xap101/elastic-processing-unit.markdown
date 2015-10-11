@@ -39,9 +39,11 @@ Basic steps when using the EPU:
 - Undeploy
 
 Here is a simple example scaling a running EPU. With the following illustration the system using initially 2 machines, 20 partitions , 20 instances per machine (40 instances total), 4 instances per GSC, GSC capacity is **8GB**. Total memory capacity **80** GB.:
+
 ![epu1.jpg](/attachment_files/epu1.jpg)
 
 After scaling it to leverage 10 machines, we will have 4 instances per machine, 1 instance per GSC. Total memory capacity **400** GB.
+
 ![epu2.jpg](/attachment_files/epu2.jpg)
 
 
