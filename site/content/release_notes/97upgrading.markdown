@@ -45,7 +45,7 @@ Event listeners / Notify Containers with custom lease are deprecated and should 
 
 ## XAP for Java
 
-The `bin` folder now contains only the common scripts required to use the product: setenv, cli, ui/webui, and gs-agent. The rest of the scripts (which are rarely used, if at all) are still available in `advanced_scripts.zip` in the `bin` folder. For more information see [scripts]({{%latestjavaurl%}}/scripts.html). 
+The `bin` folder now contains only the common scripts required to use the product: setenv, cli, ui/webui, and gs-agent. The rest of the scripts (which are rarely used, if at all) are still available in `advanced_scripts.zip` in the `bin` folder. For more information see [scripts](/xap97adm/scripts.html).
 
 ## XAP for .NET
 

@@ -281,7 +281,7 @@ The example can be deployed into any web server (Tomcat, JBoss, Websphere, Weblo
 1. Download the demo web application {{%download "/download_files/demo-app.war"%}}.
 2. Deploy a space named **sessionSpace**. You may have a single instance Space or deploy a clustered Space using the command line , GS-UI or the Web-UI.
 3. Deploy the `demo-app.war` into Tomcat (or any other app server).
-4. Start your browser and access the web application via the following URL: http://localhost:8080/demo-app
+4. Start your browser and access the web application via the following URL: `http://localhost:8080/demo-app`
 
 {{% note %}}
 The URL above assumes the Web Server is configured to use port 8080.

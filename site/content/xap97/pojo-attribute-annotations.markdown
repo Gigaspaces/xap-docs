@@ -336,7 +336,7 @@ public class MyData {
 |           |                            |
 |-----------|----------------------------|
 |Syntax     | @SpaceStorageType(storageType=StorageType.BINARY)|
-|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType"%}}) |
+|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType.html) |
 |Default    | StorageType.OBJECT |
 |Description| This annotation is used to specify how the attribute is stored in the space. |
 

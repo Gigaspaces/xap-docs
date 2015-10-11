@@ -82,7 +82,7 @@ Example:
 |           |                            |
 |-----------|----------------------------|
 |Syntax     | storage-type|
-|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType"%}})|
+|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType.html)|
 |Default    | object |
 |Description| This tag is used to specify how the property is stored in the space. |
 
