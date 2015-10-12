@@ -2,39 +2,41 @@
 {{ partial "navbar102.html" . }}
 
 
-<div class="container-fluid" style="padding-top:10px;min-height: 650px;">
 
-
-
-    <div class="col-md-2 hidden-xs">
-        <div class="leftbar">
-            <ul class="treeview" id="tree">
-                {{ partial "sidenav-xap102.html" .}}
-            </ul>
-        </div>
-
-    </div>
-
-    <div id="content" class="col-md-8" style=margin-left:0px>
-
+<div class="container">
+    <div id="breadcrumbs" class="row">
         <ol class="breadcrumb">
             <li><a href="/">Home</a></li>
             <li><a href="/xap102">10.2 Java</a></li>
             <li class="active">{{.Title}}</li>
         </ol>
-
-        <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
-                style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
-        </button>
-
-        <h1 style="margin-top: 0px;">{{ .Title }}</h1>
-        <hr>
-        {{ .Content }}
     </div>
+    <div class="container-fluid">
+
+        <div id="leftbar-div" class="col-md-2 hidden-xs">
+            <div class="leftbar">
+                <ul class="treeview" id="tree">
+                    {{ partial "sidenav-xap102.html" .}}
+                </ul>
+            </div>
+
+        </div>
+
+        <div id="content" class="col-md-8">
+
+            <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
+                    style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
+            </button>
+
+            <h1 style="margin-top: 0px;">{{ .Title }}</h1>
+            <hr>
+            {{ .Content }}
+        </div>
 
 
-    {{ partial "toc.html" .}}
+        {{ partial "toc.html" .}}
 
+    </div>
 </div>
 
 {{ partial "footer.html" . }}
