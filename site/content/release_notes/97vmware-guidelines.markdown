@@ -3,7 +3,7 @@ type: postrel
 title:  VMWare Guidelines
 categories: RELEASE_NOTES
 parent: xap97.html
-weight: 700
+weight: 750
 ---
 
 {{%ssummary%}}GigaSpaces XAP fully supports deployment on virtualized environments running on VMWare Type 1 Hypervisors. This includes all major product featurs and APIs, including data access, messaging, code execution, local cache, remoting and persistency.{{%/ssummary%}}

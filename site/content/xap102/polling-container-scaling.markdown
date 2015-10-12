@@ -3,7 +3,7 @@ type: post102
 title:  Concurrent Consumers
 categories: XAP102
 parent: polling-container-overview.html
-weight: 200
+weight: 300
 ---
 
 {{<wbr>}}

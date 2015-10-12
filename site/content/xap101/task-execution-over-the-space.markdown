@@ -563,5 +563,5 @@ DistributedTask<Integer> task2 = TaskExecutors.task(new MyCallable(),
 
 
 {{% refer %}}
-The following [example](/sbp/map-reduce-pattern---executors-example.html) demonstrates how to use the `Task` Execution API
+The following [example](/sbp/map-reduce-pattern-executors-example.html) demonstrates how to use the `Task` Execution API
 {{% /refer %}}
