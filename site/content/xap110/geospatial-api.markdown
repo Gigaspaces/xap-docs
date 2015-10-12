@@ -16,7 +16,10 @@ The root directory that it uses can be configured with the system property `com.
 
 We create a directory for each class that is written to the space. A sub directory called entries will contain the indexed shapes. The full path looks like: *LuceneRoot/space_containerx:space/entries/*
 
+{{<wbr>}}
+
 # GeoSpatial API
+
 
 ### GeoSpatial Shapes
 
@@ -28,6 +31,8 @@ The supported shapes are:
 * Circle
 * Rectangle
 * Polygon
+
+{{<wbr>}}
 
 ### GeoSpatial Operations
 
@@ -45,7 +50,9 @@ There are three types of geospatial operations that can be used in the query:
 * geospatial:within
 * geospatial:intersects 
 
-## GeoSpatial Annotation
+{{<wbr>}}
+
+### GeoSpatial Annotation
 
 In order to index a shape field the field should be annotated with the `@SpaceSpatialIndex` annotation.
 
@@ -80,6 +87,7 @@ SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "notIndexedShape geospatia
 
 The first query will use lucene spatial index to perform the query while the second one will iterate over all Pojo objects in space and filter out the matching objects.
 
+{{<wbr>}}
 
 # Usage and Examples
 
@@ -98,6 +106,8 @@ public class Pojo {
 }
 ```
 
+{{<wbr>}}
+
 ### GeoSpatial Query
 
 ```java
@@ -107,6 +117,8 @@ SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "indexedShape geospatial:w
 
 gigaSpace.readMultiple(query);
 ```
+
+{{<wbr>}}
 
 ### Combining geospatial with space query
 
@@ -118,6 +130,8 @@ SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "indexedShape geospatial:w
     
 gigaSpace.readMultiple(query);
 ```
+
+{{<wbr>}}
 
 ### Notify Container
 
