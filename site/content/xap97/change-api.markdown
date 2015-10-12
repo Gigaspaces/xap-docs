@@ -2,7 +2,7 @@
 type: post97
 title:  Change API
 categories: XAP97
-weight: 300
+weight: 350
 parent: the-gigaspace-interface-overview.html
 ---
 

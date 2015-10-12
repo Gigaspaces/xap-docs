@@ -18,7 +18,7 @@ OpenSpaces supports `Task` execution in an asynchronous manner, collocated with 
 {{%/section%}}
 
 {{% refer %}}
-The following [example](/sbp/map-reduce-pattern---executors-example.html) demonstrates how to use the `Task` Execution API
+The following [example](/sbp/map-reduce-pattern-executors-example.html) demonstrates how to use the `Task` Execution API
 {{% /refer %}}
 
 

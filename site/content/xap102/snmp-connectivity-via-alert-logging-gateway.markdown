@@ -3,7 +3,7 @@ type: post102
 title:  SNMP Alerts
 categories: XAP102
 parent: administration-and-monitoring-overview.html
-weight: 300
+weight: 400
 ---
 
 {{% section %}}

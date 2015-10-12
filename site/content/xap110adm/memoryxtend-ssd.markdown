@@ -1,6 +1,6 @@
 ---
 type: post110adm
-title:  Solid State Drive
+title:  ZetaScale
 categories: XAP110ADM
 parent: memoryxtend.html
 weight: 200
@@ -16,10 +16,10 @@ All XAP APIs are supported with the BlobStore configuration. This includes the S
 {{%fpanel%}}
 
 [Overview](./memoryxtend-ssd-overview.html)<br>
-Overview and introduction to MemoryXtend SSD.
+Overview and introduction to anDisk ZetaScale.
 
 [Advanced Tuning Guide](./memoryxtend-ssd-tuning-guide.html)<br>
-Tuning options for MemoryXtend SSD.
+Tuning options for SanDisk ZetaScale.
 
 [Troubleshooting](./memoryxtend-ssd-trouble-shooting.html)<br>
 How to troubleshoot common problems.
@@ -29,6 +29,15 @@ How to troubleshoot common problems.
 
 #### Additional Resources
 
+{{%section%}}
+
+{{%column width="30%"  %}}
 {{%pdf "/download_files/XAP10-MemoryXtend Tutorial.pdf" %}}
 The MemoryXtend Tutorial describes how to experiment with MemoryXtend and comparing RAM based Data Grid with SSD based Data Grid.
+{{%/column%}}
+{{%column width="30%"  %}}
+{{%download "http://www.gigaspaces.com/xap-memoryxtend-flash-performance-big-data"%}}  Download MemoryXtend
+{{%/column%}}
+
+{{%/section%}}
 

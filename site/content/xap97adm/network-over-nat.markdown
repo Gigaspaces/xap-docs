@@ -3,7 +3,7 @@ type: post97adm
 title:  XAP Over NAT
 categories: XAP97ADM
 parent: network.html
-weight: 400
+weight: 450
 ---
 
 Some scenarios may include usage of XAP components where each component is  in a different private network, and the connection between the components needs to be on  a different public IP (i.e., via [network address translation](http://en.wikipedia.org/wiki/Network_address_translation).)

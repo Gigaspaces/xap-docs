@@ -3,7 +3,7 @@ type: post100adm
 title:  Troubleshooting
 categories: XAP100ADM
 parent: none
-weight: 1200
+weight: 1300
 ---
 
 <br>

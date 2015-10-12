@@ -3,7 +3,7 @@ type: postrel
 title:  VMWare Guidelines
 categories: RELEASE_NOTES
 parent: xap100.html
-weight: 700
+weight: 750
 ---
 
 

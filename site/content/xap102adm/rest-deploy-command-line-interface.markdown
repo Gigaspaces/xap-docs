@@ -3,7 +3,7 @@ type: post102adm
 title:  Deploying REST service with Command Line
 categories: XAP102ADM
 parent: administration-tools.html
-weight: 250
+weight: 260
 ---
 
 

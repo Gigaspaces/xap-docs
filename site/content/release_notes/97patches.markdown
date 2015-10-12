@@ -3,7 +3,7 @@ type: postrel
 title:  Patches
 categories: RELEASE_NOTES
 parent: xap97.html
-weight: 300
+weight: 350
 ---
 
 This document provides the information needed for patches of 9.7.X xap product 

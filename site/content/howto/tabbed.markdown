@@ -2,7 +2,7 @@
 ---
 title: Tabs test
 type: howto
-weight: 110
+weight: 1100
 ---
 
 # Tabs

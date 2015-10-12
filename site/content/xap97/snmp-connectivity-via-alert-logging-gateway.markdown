@@ -3,7 +3,7 @@ type: post97
 title:  SNMP Alerts
 categories: XAP97
 parent: administration-and-monitoring-overview.html
-weight: 300
+weight: 400
 ---
 
 
