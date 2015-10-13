@@ -1,8 +1,8 @@
 ---
 type: post110
-title:  GeoSpatial Support - API and Usage
+title:  API and Usage
 categories: XAP110
-parent: none
+parent: geospatial.html
 weight: 1200
 ---
 
@@ -149,3 +149,19 @@ SimpleNotifyEventListenerContainer simpleNotifyEventListenerContainer = new Simp
         }
     }).notifyContainer();
 ```
+
+{{<wbr>}}
+
+### Example Project
+
+An example project can be downloaded from {{%git  "https://github.com/Gigaspaces/xap-geospatial-example.git"%}}.
+
+It contains examples for:
+
+* Query within a radius from a certain location (find all entries that are within 5 miles of a certain coordinate)
+	* Querying on an indexed field.
+    * Querying on a not indexed field.
+    * Use of different types of geospatial operations: *geospatial:within*, *geospatial:contains*, *geospatial:intersects* and *geospatial:disjoint*.
+    * Compund query: GeoSpatial and space query.
+* Geo fencing: define a radius around a specific coordinate, and trigger an event container when an entry is written that resides in this radius
+* Query for all entries within a polygon: Define a polygon and a query for all entries that are inside it. 
