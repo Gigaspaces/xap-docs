@@ -1,5 +1,5 @@
 ---
-type: post100adm
+type: post100
 title:  Replication Operations
 categories: XAP100ADM
 parent: replication.html

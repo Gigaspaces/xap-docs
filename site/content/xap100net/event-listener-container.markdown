@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Event Listener Container
 categories: XAP100NET
 parent: event-processing.html

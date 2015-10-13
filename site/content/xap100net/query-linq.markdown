@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  LINQ
 categories: XAP100NET
 parent: querying-the-space.html

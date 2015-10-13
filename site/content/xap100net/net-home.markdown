@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Full Tutorial
 categories: XAP100NET
 parent: tutorials.html

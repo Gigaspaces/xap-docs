@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Client Side Caching
 categories: XAP100NET
 parent: programmers-guide.html

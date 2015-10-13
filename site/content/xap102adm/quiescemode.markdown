@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Quiesce Mode
 categories: XAP102ADM
 parent: none

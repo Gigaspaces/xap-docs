@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Product structure
 categories: XAP100NET
 parent: installation-overview.html

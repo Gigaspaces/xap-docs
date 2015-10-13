@@ -1,5 +1,5 @@
 ---
-type: post102sec
+type: post102
 title:  Data
 categories: XAP102SEC
 parent: securing-xap-components.html

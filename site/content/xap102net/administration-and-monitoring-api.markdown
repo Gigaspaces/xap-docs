@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Administration API
 categories: XAP102NET
 parent: admin-modules.html

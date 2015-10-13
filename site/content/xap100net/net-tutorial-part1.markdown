@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Interacting with the Space
 categories: XAP100NET
 weight: 100

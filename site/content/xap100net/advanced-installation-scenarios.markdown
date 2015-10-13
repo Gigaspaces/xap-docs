@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Advanced Scenarios
 categories: XAP100NET
 parent: installation-overview.html

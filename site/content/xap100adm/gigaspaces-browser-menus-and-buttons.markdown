@@ -1,5 +1,5 @@
 ---
-type: post100adm
+type: post100
 title:  Menus and Buttons
 categories: XAP100ADM
 parent: gigaspaces-management-center.html

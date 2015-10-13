@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Deployment and Administration
 categories: XAP100NET
 parent: none

@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Administration API
 categories: XAP100NET
 parent: admin-modules.html

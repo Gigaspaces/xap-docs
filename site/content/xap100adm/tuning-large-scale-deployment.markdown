@@ -1,5 +1,5 @@
 ---
-type: post100adm
+type: post100
 title:  Large Scale Deployment
 categories: XAP100ADM
 parent:  tuning-gigaspaces-performance-overview.html

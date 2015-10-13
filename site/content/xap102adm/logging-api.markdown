@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Logging API
 categories: XAP102ADM
 parent: logging-overview.html

@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Space Inter-relations
 categories: XAP102ADM
 parent: cluster-view-gigaspaces-browser.html

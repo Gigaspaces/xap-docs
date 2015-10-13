@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Statistics View
 categories: XAP102ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html

@@ -1,5 +1,5 @@
 ---
-type: post100adm
+type: post100
 title:  MemoryXtend Overview
 categories: XAP100ADM
 parent: blobstore-overview.html

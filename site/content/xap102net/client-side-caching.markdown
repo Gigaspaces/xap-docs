@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Client Side Caching
 categories: XAP102NET
 parent: none

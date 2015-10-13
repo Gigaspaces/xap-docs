@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Threads Usage
 categories: XAP102ADM
 parent: tuning.html

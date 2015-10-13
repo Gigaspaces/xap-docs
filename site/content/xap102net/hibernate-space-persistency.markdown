@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  NHibernate Integration
 categories: XAP102NET
 parent: space-persistency-overview.html

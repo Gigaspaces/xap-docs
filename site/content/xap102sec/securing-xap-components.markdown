@@ -1,5 +1,5 @@
 ---
-type: post102sec
+type: post102
 title:  Securing Components
 categories: XAP102SEC
 parent: none

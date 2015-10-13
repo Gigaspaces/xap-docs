@@ -1,5 +1,5 @@
 ---
-type: post100adm
+type: post100
 title:  Command Line Interface
 categories: XAP100ADM
 parent: administration-tools.html

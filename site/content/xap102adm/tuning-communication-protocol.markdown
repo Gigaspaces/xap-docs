@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Communication Protocol
 categories: XAP102ADM
 parent:  tuning-gigaspaces-performance-overview.html

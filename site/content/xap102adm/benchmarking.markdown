@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Benchmarking
 categories: XAP102ADM
 parent: none

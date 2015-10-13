@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Notifications
 categories: XAP102NET
 parent: the-gigaspace-interface-overview.html

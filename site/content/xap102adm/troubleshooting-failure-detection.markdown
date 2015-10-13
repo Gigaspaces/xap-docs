@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Failure Detection
 categories: XAP102ADM
 parent: troubleshooting.html

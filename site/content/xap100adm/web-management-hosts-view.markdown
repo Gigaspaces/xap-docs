@@ -1,5 +1,5 @@
 ---
-type: post100adm
+type: post100
 title:  Hosts View
 categories: XAP100ADM
 parent: web-management-console.html

@@ -1,5 +1,5 @@
 ---
-type: post100adm
+type: post100
 title:  Starting the Console
 categories: XAP100ADM
 parent: web-management-console.html

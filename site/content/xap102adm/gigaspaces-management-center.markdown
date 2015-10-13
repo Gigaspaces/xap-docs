@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Management Center
 categories: XAP102ADM
 parent: none

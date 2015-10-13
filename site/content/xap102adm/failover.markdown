@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Failover
 categories: XAP102ADM
 parent: data-grid-clustering.html

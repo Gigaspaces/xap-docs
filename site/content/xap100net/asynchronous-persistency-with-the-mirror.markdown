@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Asynchronous Persistency - Write Behind
 categories: XAP100NET
 parent: space-persistency-overview.html

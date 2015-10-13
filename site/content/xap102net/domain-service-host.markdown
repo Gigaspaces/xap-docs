@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Domain Service Host
 categories: XAP102NET
 parent: space-based-remoting-overview.html

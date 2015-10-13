@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Menu Bar
 categories: XAP102ADM
 parent: web-management-console.html

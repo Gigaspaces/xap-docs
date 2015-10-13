@@ -1,5 +1,5 @@
 ---
-type: post102sec
+type: post102
 title:  Administration
 categories: XAP102SEC
 parent: none

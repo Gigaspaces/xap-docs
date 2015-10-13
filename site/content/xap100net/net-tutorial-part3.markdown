@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Processing Services
 categories: XAP100NET
 weight: 300

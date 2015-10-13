@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Task Execution
 categories: XAP102NET
 parent: none

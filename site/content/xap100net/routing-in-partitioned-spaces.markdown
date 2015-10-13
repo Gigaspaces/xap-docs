@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Routing In Partitioned Spaces
 categories: XAP100NET
 parent: modeling-your-data.html

@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  System Properties
 categories: XAP102ADM
 parent: runtime-configuration.html

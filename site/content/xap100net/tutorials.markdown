@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Getting Started
 categories: XAP100NET
 parent: none

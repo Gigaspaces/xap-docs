@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Nested Property Index
 categories: XAP100NET
 parent: indexing-overview.html

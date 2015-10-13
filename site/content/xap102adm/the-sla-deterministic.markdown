@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Deterministic Deployment
 categories: XAP102ADM
 parent: the-sla-overview.html

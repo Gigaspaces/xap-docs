@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Advanced Topics
 categories: XAP100NET
 parent: space-persistency-overview.html

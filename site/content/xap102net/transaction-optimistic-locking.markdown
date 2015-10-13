@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Optimistic Locking
 categories: XAP102NET
 parent: transaction-overview.html

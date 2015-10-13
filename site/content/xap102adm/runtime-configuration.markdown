@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Runtime Configuration
 categories: XAP102ADM
 weight: 700

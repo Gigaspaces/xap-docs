@@ -1,5 +1,5 @@
 ---
-type: post100sec
+type: post100
 title:  Auditing
 categories: XAP100SEC
 parent: security-administration.html

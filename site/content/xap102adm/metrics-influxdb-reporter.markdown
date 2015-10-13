@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  InfluxDB Reporter
 categories: XAP102ADM
 parent: metrics-overview.html

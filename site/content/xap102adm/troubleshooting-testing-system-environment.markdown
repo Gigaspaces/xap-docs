@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Testing System Environment
 categories: XAP102ADM
 parent: troubleshooting.html

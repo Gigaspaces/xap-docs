@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Deploy with Command Line
 categories: XAP102ADM
 parent: administration-tools.html

@@ -1,5 +1,5 @@
 ---
-type: post102nettut
+type: post102
 title:  The Processing Unit
 categories: XAP102NETTUT
 weight: 600

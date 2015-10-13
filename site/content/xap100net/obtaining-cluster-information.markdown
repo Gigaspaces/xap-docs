@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Cluster Information
 categories: XAP100NET
 parent: the-processing-unit-overview.html

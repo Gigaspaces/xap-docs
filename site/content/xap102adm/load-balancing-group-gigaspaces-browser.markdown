@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Load-Balancing Group
 categories: XAP102ADM
 parent: working-with-clusters-gigaspaces-browser.html

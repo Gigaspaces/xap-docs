@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Application Debugging
 categories: XAP102NET
 parent: installation-overview.html

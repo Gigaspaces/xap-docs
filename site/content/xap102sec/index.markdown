@@ -1,5 +1,5 @@
 ---
-type: post102sec
+type: post102
 title:  Security Guide
 categories: XAP102SEC
 

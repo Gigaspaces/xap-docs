@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Tools
 categories: XAP102ADM
 parent: troubleshooting.html

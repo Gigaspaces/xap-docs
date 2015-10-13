@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Space Transactions
 categories: XAP100NET
 weight: 600

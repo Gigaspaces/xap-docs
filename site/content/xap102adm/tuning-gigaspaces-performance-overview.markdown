@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  XAP Performance
 categories: XAP102ADM
 parent:  tuning.html

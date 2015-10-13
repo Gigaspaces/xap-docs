@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  User-Defined Objects
 categories: XAP102NET
 parent: interoperability.html

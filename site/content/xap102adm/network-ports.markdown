@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Port usage Control
 categories: XAP102ADM
 parent: network.html

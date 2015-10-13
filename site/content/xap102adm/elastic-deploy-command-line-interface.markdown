@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Elastic Deployment with Command Line
 categories: XAP102ADM
 parent: administration-tools.html

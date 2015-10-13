@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  The Space Interface
 categories: XAP102NET
 weight: 500

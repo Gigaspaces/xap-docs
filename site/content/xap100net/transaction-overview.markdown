@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Transactions
 categories: XAP100NET
 parent: programmers-guide.html

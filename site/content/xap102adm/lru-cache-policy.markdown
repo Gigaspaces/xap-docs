@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  LRU-Cache Policy
 categories: XAP102ADM
 parent: memory-management-overview.html

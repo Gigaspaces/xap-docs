@@ -1,5 +1,5 @@
 ---
-type: post100sec
+type: post100
 title:  Default File-Based Security
 categories: XAP100SEC
 parent: none

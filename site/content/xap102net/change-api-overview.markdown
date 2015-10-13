@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Change API
 categories: XAP102NET
 weight: 400

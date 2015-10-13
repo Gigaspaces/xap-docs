@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Direct Persistency
 categories: XAP100NET
 parent: space-persistency-overview.html

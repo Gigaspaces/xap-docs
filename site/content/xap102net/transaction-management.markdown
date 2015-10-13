@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Transaction Management
 categories: XAP102NET
 parent: transaction-overview.html

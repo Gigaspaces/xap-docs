@@ -1,5 +1,5 @@
 ---
-type: post102net
+type: post102
 title:  Nested Properties
 categories: XAP102NET
 parent: querying-the-space.html

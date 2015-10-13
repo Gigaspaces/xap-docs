@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  Class Annotations
 categories: XAP100NET
 parent: pono-annotation-overview.html

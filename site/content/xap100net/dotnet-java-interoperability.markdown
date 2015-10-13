@@ -1,5 +1,5 @@
 ---
-type: post100net
+type: post100
 title:  .NET-Java Interoperability
 categories: XAP100NET
 parent: interoperability.html

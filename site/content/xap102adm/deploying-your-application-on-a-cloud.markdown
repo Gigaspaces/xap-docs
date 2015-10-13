@@ -1,5 +1,5 @@
 ---
-type: post102adm
+type: post102
 title:  Deploying on a Cloud
 categories: XAP102ADM
 weight: 450
