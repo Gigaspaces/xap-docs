@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  User-Defined Objects
 categories: XAP97NET
 parent: interoperability.html

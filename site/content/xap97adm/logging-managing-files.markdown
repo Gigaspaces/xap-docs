@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Managing Log Files
 categories: XAP97ADM
 parent: logging-overview.html

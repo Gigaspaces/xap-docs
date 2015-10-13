@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Transaction Management
 categories: XAP97NET
 parent: transaction-overview.html

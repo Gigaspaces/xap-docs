@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Indexing
 categories: XAP97NET
 parent: programmers-guide.html

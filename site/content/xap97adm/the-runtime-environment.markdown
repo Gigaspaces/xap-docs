@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  The Runtime Environment
 categories: XAP97ADM
 parent: runtime-configuration.html

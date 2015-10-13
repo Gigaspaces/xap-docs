@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  XAP Over a Firewall
 categories: XAP97ADM
 parent: network.html

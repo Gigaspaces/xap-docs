@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Formatting Log Messages
 categories: XAP97ADM
 parent: logging-overview.html

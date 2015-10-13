@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Communication Protocol
 categories: XAP97ADM
 parent: tuning-gigaspaces-performance.html

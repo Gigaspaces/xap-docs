@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Locking and Blocking
 categories: XAP97NET
 parent: transaction-overview.html

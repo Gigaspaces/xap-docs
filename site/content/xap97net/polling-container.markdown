@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Polling Container
 categories: XAP97NET
 parent: event-processing.html

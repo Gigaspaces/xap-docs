@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Change API
 categories: XAP97NET
 weight: 400

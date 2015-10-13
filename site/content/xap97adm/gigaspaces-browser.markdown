@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Main View
 categories: XAP97ADM
 parent: gigaspaces-management-center.html

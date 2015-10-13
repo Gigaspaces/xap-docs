@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  SqlQuery
 categories: XAP97NET
 parent: querying-the-space.html

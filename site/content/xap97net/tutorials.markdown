@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Getting Started
 categories: XAP97NET
 parent: none

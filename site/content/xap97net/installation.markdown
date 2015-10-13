@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Overview
 categories: XAP97NET
 parent: installation-overview.html

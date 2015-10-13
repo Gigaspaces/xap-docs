@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Performance Tuning
 categories: XAP97ADM
 parent: none

@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Monitoring Tools
 categories: XAP97ADM
 parent: monitoring.html

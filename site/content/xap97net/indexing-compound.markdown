@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Compound Index
 categories: XAP97NET
 parent: indexing-overview.html

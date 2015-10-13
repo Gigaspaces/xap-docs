@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  FIFO Grouping
 categories: XAP97NET
 parent: fifo-overview.html

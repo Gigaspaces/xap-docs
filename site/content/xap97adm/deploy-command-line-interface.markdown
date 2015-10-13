@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Deploy with Command Line
 categories: XAP97ADM
 parent: administration-tools.html

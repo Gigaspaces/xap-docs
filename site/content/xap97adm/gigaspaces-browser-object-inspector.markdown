@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Object Inspector
 categories: XAP97ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html

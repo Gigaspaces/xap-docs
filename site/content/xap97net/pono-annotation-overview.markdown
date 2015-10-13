@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Annotation based Metadata
 categories: XAP97NET
 parent: modeling-your-data.html

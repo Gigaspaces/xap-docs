@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Multiple Network-Cards
 categories: XAP97ADM
 parent: network.html

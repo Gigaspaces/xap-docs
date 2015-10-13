@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Java Virtual Machines
 categories: XAP97ADM
 parent: tuning.html

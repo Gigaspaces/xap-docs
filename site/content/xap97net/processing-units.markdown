@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Processing Units
 categories: XAP97NET
 parent: administrators-guide.html

@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Deployment and Administration
 categories: XAP97ADM
 

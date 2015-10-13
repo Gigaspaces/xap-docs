@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Advanced
 categories: XAP97NET
 parent: change-api.html

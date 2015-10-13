@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  The Space Interface
 categories: XAP97NET
 weight: 2000

@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  JVM Configuration
 categories: XAP97NET
 parent: configuration.html

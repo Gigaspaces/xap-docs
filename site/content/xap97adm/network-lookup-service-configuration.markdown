@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Lookup Service Configuration
 categories: XAP97ADM
 parent: network.html

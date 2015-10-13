@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Protective Modes
 categories: XAP97ADM
 weight: 150

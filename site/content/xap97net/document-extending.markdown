@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Extending
 categories: XAP97NET
 weight: 200

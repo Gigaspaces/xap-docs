@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Dashboard View
 categories: XAP97ADM
 parent: web-management-console.html

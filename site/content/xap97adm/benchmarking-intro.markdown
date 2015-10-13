@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Overview
 categories: XAP97ADM
 parent: benchmarking.html

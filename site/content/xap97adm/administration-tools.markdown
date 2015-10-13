@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Administration Tools
 categories: XAP97ADM
 weight: 760

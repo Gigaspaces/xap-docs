@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Client Side Caching
 categories: XAP97NET
 parent: programmers-guide.html

@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Platform Interoperability
 categories: XAP97NET
 parent: none

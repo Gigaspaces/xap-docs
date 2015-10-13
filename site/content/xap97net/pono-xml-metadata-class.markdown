@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Class Metadata
 categories: XAP97NET
 parent: pono-xml-metadata-overview.html

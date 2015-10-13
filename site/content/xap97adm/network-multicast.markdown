@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Multicast Configuration
 categories: XAP97ADM
 parent: network.html

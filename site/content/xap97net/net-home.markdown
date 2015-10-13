@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Full Tutorial
 categories: XAP97NET
 parent: tutorials.html

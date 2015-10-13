@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Customizing
 categories: XAP97ADM
 parent: cluster-view-gigaspaces-browser.html

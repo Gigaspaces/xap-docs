@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Installation
 categories: XAP97NET
 parent: none

@@ -1,5 +1,5 @@
 ---
-type: post97net
+type: post97
 title:  Operations
 categories: XAP97NET
 weight: 300

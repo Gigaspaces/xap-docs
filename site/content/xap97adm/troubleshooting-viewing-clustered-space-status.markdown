@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Viewing Clustered Space Status
 categories: XAP97ADM
 parent: troubleshooting.html

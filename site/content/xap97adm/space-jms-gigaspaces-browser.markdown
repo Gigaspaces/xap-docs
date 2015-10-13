@@ -1,5 +1,5 @@
 ---
-type: post97adm
+type: post97
 title:  Space JMS
 categories: XAP97ADM
 parent: working-with-spaces-gigaspaces-browser.html
