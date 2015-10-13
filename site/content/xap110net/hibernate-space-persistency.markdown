@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  NHibernate Integration
 categories: XAP110NET
 parent: space-persistency-overview.html

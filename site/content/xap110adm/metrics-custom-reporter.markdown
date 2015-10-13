@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Custom Reporter
 categories: XAP110ADM
 parent: metrics-overview.html

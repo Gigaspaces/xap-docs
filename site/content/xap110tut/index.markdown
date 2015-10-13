@@ -1,5 +1,5 @@
 ---
-type: post110tut
+type: post110
 title:  Tutorials
 categories:  XAP110TUT
 ---

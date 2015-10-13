@@ -1,5 +1,5 @@
 ---
-type: post110sec
+type: post110
 title:  Concepts
 categories: XAP110SEC
 parent: none

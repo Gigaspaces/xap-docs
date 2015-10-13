@@ -1,5 +1,5 @@
 ---
-type: post110nettut
+type: post110
 title:  Space Persistence
 categories: XAP110NETTUT
 weight: 800

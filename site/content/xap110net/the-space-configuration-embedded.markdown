@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Embedded Space
 categories: XAP110NET
 weight:

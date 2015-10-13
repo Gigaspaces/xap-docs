@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Platform Interoperability
 categories: XAP110NET
 parent: none

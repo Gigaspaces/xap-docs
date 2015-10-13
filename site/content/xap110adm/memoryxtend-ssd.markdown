@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  ZetaScale
 categories: XAP110ADM
 parent: memoryxtend.html

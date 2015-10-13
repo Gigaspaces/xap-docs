@@ -1,5 +1,5 @@
 ---
-type: post110tut
+type: post110
 title:  Installation
 categories:  XAP110TUT
 parent: none

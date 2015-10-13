@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  FIFO Grouping
 categories: XAP110NET
 parent: fifo-overview.html

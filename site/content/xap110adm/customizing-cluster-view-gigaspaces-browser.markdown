@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Customizing
 categories: XAP110ADM
 parent: cluster-view-gigaspaces-browser.html

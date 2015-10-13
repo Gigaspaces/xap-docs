@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Task Execution
 categories: XAP110NET
 parent: none

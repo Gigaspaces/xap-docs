@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Data Grid Clustering
 categories: XAP110ADM
 weight: 300

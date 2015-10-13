@@ -1,5 +1,5 @@
 ---
-type: post110nettut
+type: post110
 title:  Events and Messaging
 categories: XAP110NETTUT
 weight: 500

@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Pessimistic Locking
 categories: XAP110NET
 parent: transaction-overview.html

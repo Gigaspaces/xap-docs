@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Advanced Configuration
 categories: XAP110NET
 parent: asynchronous-persistency-with-the-mirror.html

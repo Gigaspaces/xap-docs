@@ -1,5 +1,5 @@
 ---
-type: post102tut
+type: post102
 title:  Web Deployment
 categories: XAP102TUT
 weight: 1200

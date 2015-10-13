@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Compound Index
 categories: XAP110NET
 parent: indexing-overview.html

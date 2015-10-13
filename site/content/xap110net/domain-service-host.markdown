@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Domain Service Host
 categories: XAP110NET
 parent: space-based-remoting-overview.html

@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Overview
 categories: XAP110NET
 parent: poco-overview.html

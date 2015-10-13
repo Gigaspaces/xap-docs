@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Advanced
 categories: XAP110NET
 parent: change-api-overview.html

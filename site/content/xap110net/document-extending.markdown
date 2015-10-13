@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Extending
 categories: XAP110NET
 weight: 200

@@ -1,5 +1,5 @@
 ---
-type: post110tut
+type: post110
 title:  Web Deployment
 categories: XAP110TUT
 weight: 1200

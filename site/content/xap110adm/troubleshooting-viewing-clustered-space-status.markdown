@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Viewing Clustered Space Status
 categories: XAP110ADM
 parent: troubleshooting.html

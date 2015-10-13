@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Filters
 categories: XAP110NET
 parent: the-gigaspace-interface-overview.html

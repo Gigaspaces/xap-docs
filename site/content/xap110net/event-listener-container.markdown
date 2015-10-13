@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Event Listener Container
 categories: XAP110NET
 parent: event-processing.html

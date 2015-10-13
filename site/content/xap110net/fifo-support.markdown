@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  FIFO Support
 categories: XAP110NET
 parent: fifo-overview.html

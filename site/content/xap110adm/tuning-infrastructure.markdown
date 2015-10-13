@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Infrastructure
 categories: XAP110ADM
 parent:  tuning.html

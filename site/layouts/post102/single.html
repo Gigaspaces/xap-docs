@@ -7,11 +7,11 @@
     <div id="breadcrumbs" class="row">
         <ol class="breadcrumb">
             <li><a href="/">Home</a></li>
-            {{ if in .Permalink "xap102nettut"}}<li><a href="/xap101nettut">10.2 .Net Tutorial</a></li>
+            {{ if in .Permalink "xap102nettut"}}<li><a href="/xap102nettut">10.2 .Net Tutorial</a></li>
             {{ else if in .Permalink "xap102sec"}}<li><a href="/xap102sec">10.2 Security</a></li>
             {{ else if in .Permalink "xap102net"}}<li><a href="/xap102net">10.2 .Net</a></li>
             {{ else if in .Permalink "xap102adm"}}<li><a href="/xap102adm">10.2 Administration</a></li>
-            {{ else if in .Permalink "xap102tut"}}<li><a href="/xap102adm">10.2 Java Tutorial</a></li>
+            {{ else if in .Permalink "xap102tut"}}<li><a href="/xap102tut">10.2 Java Tutorial</a></li>
             {{ else if in .Permalink "xap102"}}<li><a href="/xap102">10.2 Java</a></li>
             {{end}}
             <li class="active">{{.Title}}</li>

@@ -1,5 +1,5 @@
 ---
-type: post110tut
+type: post110
 title:  Deploying a Space
 categories: XAP110TUT
 weight: 600

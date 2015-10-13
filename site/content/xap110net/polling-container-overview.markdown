@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Polling Container
 categories: XAP110NET
 parent: event-processing.html

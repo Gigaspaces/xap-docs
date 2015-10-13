@@ -1,5 +1,5 @@
 ---
-type: post102tut
+type: post102
 title:  Processing Services
 categories: XAP102TUT
 weight: 700

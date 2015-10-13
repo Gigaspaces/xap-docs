@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Property Storage Type
 categories: XAP110NET
 parent: modeling-your-data.html

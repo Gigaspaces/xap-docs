@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Paging Support
 categories: XAP110NET
 parent: querying-the-space.html

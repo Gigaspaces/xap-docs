@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Counters
 categories: XAP110NET
 weight: 500

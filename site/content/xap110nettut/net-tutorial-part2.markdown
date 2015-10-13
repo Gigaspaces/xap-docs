@@ -1,5 +1,5 @@
 ---
-type: post110nettut
+type: post110
 title:  Deploying a Space
 categories: XAP110NETTUT
 weight: 300

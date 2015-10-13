@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Basic Index
 categories: XAP110NET
 parent: indexing-overview.html

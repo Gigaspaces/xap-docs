@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Locking and Blocking
 categories: XAP110NET
 parent: transaction-overview.html

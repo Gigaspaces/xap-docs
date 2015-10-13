@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Application View
 categories: XAP110ADM
 parent: web-management-console.html

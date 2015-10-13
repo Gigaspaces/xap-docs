@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  User-Defined Objects
 categories: XAP110NET
 parent: interoperability.html

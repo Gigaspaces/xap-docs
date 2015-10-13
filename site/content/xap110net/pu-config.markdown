@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Configuration
 categories: XAP110NET
 parent: the-processing-unit-overview.html

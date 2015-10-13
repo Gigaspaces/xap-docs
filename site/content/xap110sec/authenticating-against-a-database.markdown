@@ -1,5 +1,5 @@
 ---
-type: post110sec
+type: post110
 title:  Database Authentication
 categories: XAP110SEC
 parent: spring-security-bridge.html

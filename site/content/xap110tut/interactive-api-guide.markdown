@@ -1,5 +1,5 @@
 ---
-type: post110tut
+type: post110
 title:  Interactive API Tutorial
 categories: XAP110TUT
 weight: 350

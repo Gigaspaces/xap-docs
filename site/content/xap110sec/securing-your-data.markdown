@@ -1,5 +1,5 @@
 ---
-type: post110sec
+type: post110
 title:  Data
 categories: XAP110SEC
 parent: securing-xap-components.html

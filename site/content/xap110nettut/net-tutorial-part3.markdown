@@ -1,5 +1,5 @@
 ---
-type: post110nettut
+type: post110
 title:  Processing Services
 categories: XAP110NETTUT
 weight: 400

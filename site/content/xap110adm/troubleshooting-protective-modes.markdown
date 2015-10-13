@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Protective Modes
 categories: XAP110ADM
 weight: 150

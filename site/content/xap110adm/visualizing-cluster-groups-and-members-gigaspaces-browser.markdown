@@ -1,5 +1,5 @@
 ---
-type: post110adm
+type: post110
 title:  Groups and Members
 categories: XAP110ADM
 parent: cluster-view-gigaspaces-browser.html

@@ -1,5 +1,5 @@
 ---
-type: post110net
+type: post110
 title:  Deployment and Administration
 categories: XAP110NET
 parent: none

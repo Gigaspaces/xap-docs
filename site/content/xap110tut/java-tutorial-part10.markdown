@@ -1,5 +1,5 @@
 ---
-type: post110tut
+type: post110
 title:  Security
 categories: XAP110TUT
 weight: 1400
