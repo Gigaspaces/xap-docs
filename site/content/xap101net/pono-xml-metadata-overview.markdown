@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  XML based Metadata
 categories: XAP101NET
 parent: modeling-your-data.html

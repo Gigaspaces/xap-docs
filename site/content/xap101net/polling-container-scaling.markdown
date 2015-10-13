@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Concurrent Consumers
 categories: XAP101NET
 parent: polling-container-overview.html

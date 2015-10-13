@@ -188,7 +188,7 @@ Each option adds to (or subtracts from) the default information listed. You can 
 {{%accord title="Example"%}}
 
 
-## List All Services in the Network
+List All Services in the Network
 
     gs> list
     total services 4
@@ -197,14 +197,14 @@ Each option adds to (or subtracts from) the default information listed. You can 
     [3] Lookup gigaspaces-1365 11.0.0.5
     [4] Grid Service Manager gs-grid pc-nati@11.0.0.3
 
-## List all Service Containers
+List all Service Containers
 
     gs> list gsc
     total 1
     [1] Grid Service Container gs-grid pc-nati@11.0.0.3
     No contained services
 
-## List Grid Service Managers
+List Grid Service Managers
 
     gs> list gsm
     total 1
@@ -213,7 +213,7 @@ Each option adds to (or subtracts from) the default information listed. You can 
     GigaSpace planned=1 actual=1 pending=0
     id=1 11.0.0.3
 
-## List all Active Jini Lookup Service Instances and their Attributes
+List all Active Jini Lookup Service Instances and their Attributes
 
     gs> list lus
     Searching for available Jini Lookup Services...
@@ -373,7 +373,7 @@ See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html)
 {{%accord title="**Example**"%}}
 
 
-## Displaying Current System Variables
+Displaying Current System Variables
 
     gs> set
     groups ALL_GROUPS
@@ -388,7 +388,7 @@ See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html)
     wait-on-deploy true
     deploy-timeout 5000
 
-#### Setting New Location for Two Properties with Timeout
+Setting New Location for Two Properties with Timeout
 
 This example sets new locations for the properties `com.gigaspaces.lib` and `com.gs.home`, with a timeout of five and a half seconds for discovery.
 

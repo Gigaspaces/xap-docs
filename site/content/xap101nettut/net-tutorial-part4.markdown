@@ -1,5 +1,5 @@
 ---
-type: post101nettut
+type: post101
 title:  Events and Messaging
 categories: XAP101NETTUT
 weight: 500

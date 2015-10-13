@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Working with Clusters
 categories: XAP101ADM
 parent: gigaspaces-management-center.html

@@ -1,5 +1,5 @@
 ---
-type: post101tut
+type: post101
 title:  Space Persistence
 categories: XAP101TUT
 weight: 1100

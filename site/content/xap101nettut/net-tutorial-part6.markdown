@@ -1,5 +1,5 @@
 ---
-type: post101nettut
+type: post101
 title:  Space Transactions
 categories: XAP101NETTUT
 weight: 700

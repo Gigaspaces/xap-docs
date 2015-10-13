@@ -116,7 +116,7 @@ The result is a list of available template names and descriptions:
 |<nobr>basic-async-persistency-xml</nobr>|Creates a basic SBA application with three processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit. The Processor is connected to a Mirror and provides a reliable asynchronous replication and persistency to the Database using Hibernate.|
 |mule|Creates a SBA application with two processing units that use mule as an ESB. The Feeder processing unit writes Data objects to the Space. The Processor processing unit uses the extended SEDA model to defines 3 services. A Verifier service that verifies unprocessed Data objects, an Approver service that approves verified Data objects and a Processor service that processes approved Data objects. The Space and the Processor are collocated in the same processing unit.|
 
-Use the -Dtemplate=<template> argument to specify a project template. Example:
+Use the `-Dtemplate=<template>` argument to specify a project template. Example:
 
 
 ```bash

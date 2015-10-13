@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Slow Consumer
 categories: XAP101ADM
 parent:  tuning-gigaspaces-performance-overview.html

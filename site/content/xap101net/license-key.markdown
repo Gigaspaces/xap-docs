@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  License Key
 categories: XAP101NET
 parent: installation-overview.html

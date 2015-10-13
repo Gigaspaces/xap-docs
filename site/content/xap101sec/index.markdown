@@ -1,5 +1,5 @@
 ---
-type: post101sec
+type: post101
 title:  Security Guide
 categories: XAP101SEC
 

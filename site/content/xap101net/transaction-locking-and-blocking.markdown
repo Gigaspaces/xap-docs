@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Locking and Blocking
 categories: XAP101NET
 parent: transaction-overview.html

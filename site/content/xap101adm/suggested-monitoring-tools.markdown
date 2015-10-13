@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Monitoring Tools
 categories: XAP101ADM
 parent: monitoring.html

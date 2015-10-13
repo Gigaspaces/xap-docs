@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Advanced Configuration
 categories: XAP101NET
 parent: asynchronous-persistency-with-the-mirror.html

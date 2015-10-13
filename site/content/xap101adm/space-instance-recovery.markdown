@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Space Instance Recovery
 categories: XAP101ADM
 parent: replication.html

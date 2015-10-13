@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Connections View
 categories: XAP101ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html

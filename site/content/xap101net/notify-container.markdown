@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Overview
 categories: XAP101NET
 parent: notify-container-overview.html

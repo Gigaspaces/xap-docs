@@ -1,5 +1,5 @@
 ---
-type: post101tut
+type: post101
 title:  The Processing Unit
 categories: XAP101TUT
 weight: 900

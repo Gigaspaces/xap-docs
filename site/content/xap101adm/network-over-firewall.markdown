@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  XAP Over a Firewall
 categories: XAP101ADM
 parent: network.html

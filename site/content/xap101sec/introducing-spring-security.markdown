@@ -1,5 +1,5 @@
 ---
-type: post101sec
+type: post101
 title:  Spring Security
 categories: XAP101SEC
 parent: spring-security-bridge.html

@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Local View
 categories: XAP101NET
 parent: client-side-caching.html

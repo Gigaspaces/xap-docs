@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Collection Index
 categories: XAP101NET
 parent: indexing-overview.html

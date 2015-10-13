@@ -1,5 +1,5 @@
 ---
-type: post101sec
+type: post101
 title:  Directory Management
 categories: XAP101SEC
 parent: none

@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  User Defined Metrics
 categories: XAP101ADM
 parent: metrics-overview.html

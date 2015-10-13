@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Space Persistency
 categories: XAP101NET
 parent: none

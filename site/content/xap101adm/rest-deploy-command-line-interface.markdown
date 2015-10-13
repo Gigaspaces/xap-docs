@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Deploying REST service with Command Line
 categories: XAP101ADM
 parent: administration-tools.html

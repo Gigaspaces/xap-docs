@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Advanced Configuration
 categories: XAP101ADM
 parent: network-multi-nic.html

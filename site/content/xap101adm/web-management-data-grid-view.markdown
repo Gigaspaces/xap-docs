@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Spaces
 categories: XAP101ADM
 parent: web-management-console.html

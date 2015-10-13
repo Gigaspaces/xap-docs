@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Service Level Agreement
 categories: XAP101ADM
 weight: 350

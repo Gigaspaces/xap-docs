@@ -1,5 +1,5 @@
 ---
-type: post101sec
+type: post101
 title:  HelloWorld example
 categories: XAP101SEC
 parent: none

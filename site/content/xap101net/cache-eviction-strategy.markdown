@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Cache Eviction Strategy
 categories: XAP101NET
 parent: local-cache.html

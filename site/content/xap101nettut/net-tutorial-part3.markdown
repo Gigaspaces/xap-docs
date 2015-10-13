@@ -1,5 +1,5 @@
 ---
-type: post101nettut
+type: post101
 title:  Processing Services
 categories: XAP101NETTUT
 weight: 400

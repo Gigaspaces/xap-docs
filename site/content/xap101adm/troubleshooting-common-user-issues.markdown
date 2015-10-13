@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:   Common User Issues
 categories: XAP101ADM
 parent: troubleshooting.html

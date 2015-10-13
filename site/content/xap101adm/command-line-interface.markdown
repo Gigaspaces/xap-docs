@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Command Line Interface
 categories: XAP101ADM
 parent: administration-tools.html
@@ -188,7 +188,7 @@ Each option adds to (or subtracts from) the default information listed. You can 
 {{%accord title="**Example**"%}}
 
 
-## List All Services in the Network
+List All Services in the Network
 
     gs> list
     total services 9
@@ -202,7 +202,7 @@ Each option adds to (or subtracts from) the default information listed. You can 
     [8]  27780  Grid Service Agent           myLookupgroups  my-pc@192.168.10.199
     [9]  27882  myDataGrid          Primary  myLookupgroups  192.168.10.199
 
-## List all Service Containers
+List all Service Containers
 
     gs> list gsc
     total 2
@@ -211,7 +211,7 @@ Each option adds to (or subtracts from) the default information listed. You can 
     [2]  27882  GSC    myLookupgroups  my-pc@192.168.10.199
         myDataGrid.1		myLookupgroups		30 seconds
 
-## List Grid Service Managers
+List Grid Service Managers
 
     gs> list gsm
     Found 1 GSMs
@@ -222,7 +222,7 @@ Each option adds to (or subtracts from) the default information listed. You can 
                 id=2		192.168.10.199
 
 
-## List all Active Jini Lookup Service Instances and their Attributes
+List all Active Jini Lookup Service Instances and their Attributes
 
     gs> list lus
     Searching for available Jini Lookup Services...
@@ -383,7 +383,7 @@ See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html)
 {{%accord title="**Example**"%}}
 
 
-## Displaying Current System Variables
+Displaying Current System Variables
 
     gs> set
     groups ALL_GROUPS
@@ -398,7 +398,7 @@ See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html)
     wait-on-deploy true
     deploy-timeout 5000
 
-#### Setting New Location for Two Properties with Timeout
+Setting New Location for Two Properties with Timeout
 
 This example sets new locations for the properties `com.gigaspaces.lib` and `com.gs.home`, with a timeout of five and a half seconds for discovery.
 

@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Admin Modules
 categories: XAP101NET
 parent: none

@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Executor Based Remoting
 categories: XAP101NET
 parent: space-based-remoting-overview.html

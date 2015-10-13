@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Hosts, Zones & Machine Utilization
 categories: XAP101ADM
 parent: the-sla-overview.html

@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Is Multicast Available
 categories: XAP101ADM
 parent: network-multicast.html

@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Deployment and Administration
 categories: XAP101ADM
 

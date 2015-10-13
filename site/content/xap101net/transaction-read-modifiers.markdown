@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Read Modifiers
 categories: XAP101NET
 parent: transaction-overview.html

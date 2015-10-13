@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Hosts
 categories: XAP101ADM
 parent: web-management-console.html

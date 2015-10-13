@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  FIFO Ordering
 categories: XAP101NET
 parent: event-processing.html

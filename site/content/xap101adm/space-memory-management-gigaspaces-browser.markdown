@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Memory Management
 categories: XAP101ADM
 parent: working-with-spaces-gigaspaces-browser.html

@@ -1,5 +1,5 @@
 ---
-type: post101adm
+type: post101
 title:  Dashboard View
 categories:
 parent: web-management-console.html

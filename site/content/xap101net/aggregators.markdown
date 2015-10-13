@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Aggregators
 categories: XAP101NET
 weight: 550

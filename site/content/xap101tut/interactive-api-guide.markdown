@@ -1,5 +1,5 @@
 ---
-type: post101tut
+type: post101
 title:  Interactive API Tutorial
 categories: XAP101TUT
 weight: 350

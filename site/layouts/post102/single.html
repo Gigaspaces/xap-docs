@@ -7,7 +7,13 @@
     <div id="breadcrumbs" class="row">
         <ol class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li><a href="/xap102">10.2 Java</a></li>
+            {{ if in .Permalink "xap102nettut"}}<li><a href="/xap101nettut">10.2 .Net Tutorial</a></li>
+            {{ else if in .Permalink "xap102sec"}}<li><a href="/xap101sec">10.2 Security</a></li>
+            {{ else if in .Permalink "xap102net"}}<li><a href="/xap101net">10.2 .Net</a></li>
+            {{ else if in .Permalink "xap102adm"}}<li><a href="/xap101adm">10.2 Administration</a></li>
+            {{ else if in .Permalink "xap102tut"}}<li><a href="/xap101adm">10.2 Java Tutorial</a></li>
+            {{ else if in .Permalink "xap102"}}<li><a href="/xap101">10.2 Java</a></li>
+            {{end}}
             <li class="active">{{.Title}}</li>
         </ol>
     </div>
@@ -16,7 +22,13 @@
         <div id="leftbar-div" class="col-md-2 hidden-xs">
             <div class="leftbar">
                 <ul class="treeview" id="tree">
-                    {{ partial "sidenav-xap102.html" .}}
+                    {{ if in .Permalink "xap102nettut"}}{{ partial "sidenav-xap102nettut.html" .}}
+                    {{ else if in .Permalink "xap102sec"}}{{ partial "sidenav-xap102sec.html" .}}
+                    {{ else if in .Permalink "xap102net"}}{{ partial "sidenav-xap102net.html" .}}
+                    {{ else if in .Permalink "xap102adm"}}{{ partial "sidenav-xap102adm.html" .}}
+                    {{ else if in .Permalink "xap102tut"}}{{ partial "sidenav-xap102tut.html" .}}
+                    {{ else if in .Permalink "xap102"}}{{ partial "sidenav-xap102.html" .}}
+                    {{end}}
                 </ul>
             </div>
 

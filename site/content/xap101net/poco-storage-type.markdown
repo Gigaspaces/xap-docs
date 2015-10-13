@@ -1,5 +1,5 @@
 ---
-type: post101net
+type: post101
 title:  Property Storage Type
 categories: XAP101NET
 parent: modeling-your-data.html

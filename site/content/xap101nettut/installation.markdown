@@ -1,5 +1,5 @@
 ---
-type: post101nettut
+type: post101
 title:  Installation
 categories:  XAP101NETTUT
 parent: none
