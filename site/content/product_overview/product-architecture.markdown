@@ -1,5 +1,5 @@
 ---
-
+type: post
 title:  Product Architecture
 categories: PRODUCT_OVERVIEW
 weight: 420

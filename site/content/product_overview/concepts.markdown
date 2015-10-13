@@ -1,5 +1,5 @@
 ---
-type: product_overview
+type: post
 title:  Concepts
 categories: PRODUCT_OVERVIEW
 parent: none

@@ -1,5 +1,6 @@
 ---
 
+type: post
 title:  Services on top of the Data Grid
 categories: PRODUCT_OVERVIEW
 weight: 400

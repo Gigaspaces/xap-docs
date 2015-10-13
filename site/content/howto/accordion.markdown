@@ -1,5 +1,5 @@
 ---
-type: howto
+type: post
 Description:
 title: Accordion
 menu: howto

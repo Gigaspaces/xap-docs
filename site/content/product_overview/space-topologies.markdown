@@ -1,5 +1,5 @@
 ---
-
+type: post
 title:  Topologies
 categories: PRODUCT_OVERVIEW
 parent: the-in-memory-data-grid.html

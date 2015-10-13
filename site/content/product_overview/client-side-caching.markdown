@@ -1,5 +1,5 @@
 ---
-type: product_overview
+type: post
 title:  Client Side Caching
 categories: PRODUCT_OVERVIEW
 parent: the-in-memory-data-grid.html

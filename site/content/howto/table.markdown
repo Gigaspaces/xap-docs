@@ -1,6 +1,6 @@
 ---
 
-type: howto
+type: post
 title: Table
 weight: 1200
 ---

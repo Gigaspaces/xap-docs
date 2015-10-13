@@ -1,5 +1,6 @@
 ---
 
+type: post
 title:  GigaSpaces XAP
 categories: PRODUCT_OVERVIEW
 

@@ -1,7 +1,7 @@
 ---
 title: Panels
 weight: 900
-type: howto
+type: post
 ---
  
 # Info panels

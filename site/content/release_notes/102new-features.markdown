@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  New Features and Improvements
 categories: RELEASE_NOTES
 parent: xap102.html

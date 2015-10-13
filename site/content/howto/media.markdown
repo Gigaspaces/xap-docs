@@ -1,5 +1,5 @@
 ---
-type: howto
+type: post
 title: Media
 parent: cheetscheet.html
 weight: 700

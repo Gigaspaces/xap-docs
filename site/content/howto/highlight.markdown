@@ -2,7 +2,7 @@
 
 Description:
 title: Highlight
-type: howto
+type: post
 weight: 500
 ---
  

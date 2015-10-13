@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  Backward Compatibility
 categories:  RELEASE_NOTES
 parent: xap101.html

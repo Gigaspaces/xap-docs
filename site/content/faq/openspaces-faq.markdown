@@ -1,5 +1,5 @@
 ---
-type: faq
+type: post
 title:  OpenSpaces
 categories: FAQ
 weight: 100

@@ -1,5 +1,5 @@
 ---
-type: howto
+type: post
 title:  Howto Hugo
 ---
 

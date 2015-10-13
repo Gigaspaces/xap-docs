@@ -1,5 +1,5 @@
 ---
-
+type: post
 title:  The Service Grid
 categories: PRODUCT_OVERVIEW
 parent: none

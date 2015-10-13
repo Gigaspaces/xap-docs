@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  Upgrading from previous versions
 categories: RELEASE_NOTES
 parent: xap101.html

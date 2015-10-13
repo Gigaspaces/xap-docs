@@ -1,5 +1,5 @@
 ---
-
+type: post
 title:  The Lookup Service
 categories: PRODUCT_OVERVIEW
 weight: 200

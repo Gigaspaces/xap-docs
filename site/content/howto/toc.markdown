@@ -1,6 +1,6 @@
 ---
 
-type: howto
+type: post
 title: Table of Contents
 
 weight: 1300

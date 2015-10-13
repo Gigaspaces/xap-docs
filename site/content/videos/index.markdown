@@ -1,5 +1,5 @@
 ---
-type: videos
+type: post
 title:  XAP Videos 
 categories:
 parent: none
@@ -7,7 +7,7 @@ parent: none
 
 
 
-<br>
+
 
 Click a thumbnail to watch the relevant video
 

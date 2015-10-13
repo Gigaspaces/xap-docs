@@ -1,5 +1,5 @@
 ---
-type: postapi
+type: post
 title: API Documentation
 categories: API_DOCUMENTATION
 ---

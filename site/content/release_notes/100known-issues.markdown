@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  Known Issues and Limitations
 categories: RELEASE_NOTES
 parent: xap100.html

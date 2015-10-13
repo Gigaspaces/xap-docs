@@ -1,5 +1,5 @@
 ---
-type: faq
+type: post
 title:  Flash Drive Storage - MemoryXtend for SSD FAQ
 categories: FAQ
 parent: none

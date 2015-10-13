@@ -1,5 +1,5 @@
 ---
-
+type: post
 title:  Application Layer
 categories: PRODUCT_OVERVIEW
 weight: 500

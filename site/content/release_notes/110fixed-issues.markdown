@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  Resolved Issues
 categories: RELEASE_NOTES
 parent: xap110.html

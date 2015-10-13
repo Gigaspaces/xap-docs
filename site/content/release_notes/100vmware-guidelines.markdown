@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  VMWare Guidelines
 categories: RELEASE_NOTES
 parent: xap100.html

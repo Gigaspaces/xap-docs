@@ -3,7 +3,7 @@
 Description:
 title: Cheat sheet
 categories: howto
-type: howto
+type: post
 weight: 400
 ---
  

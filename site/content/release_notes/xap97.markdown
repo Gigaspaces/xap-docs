@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  XAP 9.7
 categories: RELEASE_NOTES
 parent: none

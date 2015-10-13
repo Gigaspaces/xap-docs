@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  End of Life
 categories:
 parent: xap102.html

@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  Release Notes
 categories: RELEASE_NOTES
 weight: 1

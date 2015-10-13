@@ -1,5 +1,5 @@
 ---
-type: postrel
+type: post
 title:  Supported Platforms
 categories: RELEASE_NOTES
 parent: xap97.html

@@ -1,6 +1,6 @@
 ---
 
-type: howto
+type: post
 title: Section
 weight: 1000
 ---

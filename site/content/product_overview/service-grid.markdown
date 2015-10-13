@@ -1,5 +1,5 @@
 ---
-
+type: post
 title:  Service Grid Components
 categories: PRODUCT_OVERVIEW
 weight: 100

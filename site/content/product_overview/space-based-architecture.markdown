@@ -1,5 +1,5 @@
 ---
-
+type: post
 title:  Space Based Architecture
 categories: PRODUCT_OVERVIEW
 weight: 1210

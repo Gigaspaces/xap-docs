@@ -1,7 +1,7 @@
 
 ---
 title: Tabs test
-type: howto
+type: post
 weight: 1100
 ---
 

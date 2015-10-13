@@ -1,5 +1,5 @@
 ---
-type: product_overview
+type: post
 title:  About Jini
 categories: PRODUCT_OVERVIEW
 weight: 1240

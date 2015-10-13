@@ -1,5 +1,6 @@
 ---
 
+type: post
 title:  Frequently Ask Questions
 categories: FAQ
 

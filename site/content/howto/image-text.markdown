@@ -2,7 +2,7 @@
 
 Description:
 title: Image with wrapped text
-type: howto
+type: post
 weight: 600
 ---
 
