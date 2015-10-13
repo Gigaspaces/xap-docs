@@ -8,14 +8,9 @@ weight: 1500
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![Events-Message.jpg](/attachment_files/subject/Events-Message.png)
-{{%/column%}}
-{{%column width="90%" %}}
+
 This section will guide you through the event processing APIs and configuration on top of the Space.
-{{%/column%}}
-{{%/section%}}
+
 
 <br>
 

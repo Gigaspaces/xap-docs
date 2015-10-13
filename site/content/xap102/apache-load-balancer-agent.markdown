@@ -6,9 +6,9 @@ parent: web-application-overview.html
 weight: 400
 ---
 
-{{% bannerleft "/attachment_files/subject/loadbalancing.png"%}}
+
 XAP comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.
-{{%/bannerleft%}}
+
 
 
 
@@ -23,6 +23,7 @@ Similar agents can be implemented for other HTTP load-balancers such as [F5](htt
 # How it Works?
 
 Here is a description of the flow that eventually scales the web application dynamically:
+
 ![httpd_lb_agent.jpg](/attachment_files/httpd_lb_agent.jpg)
 
 1. Monitoring Service getting statistics about the behavior of the web application. It could be statistics for a specific web application instance or multiple ones.

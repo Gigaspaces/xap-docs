@@ -8,14 +8,7 @@ weight: 2300
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![fifo-groups.png](/attachment_files/subject/multisite.png)
-{{%/column%}}
-{{%column width="90%" %}}
 Multiple space replication is the ability to replicate state between different deployed spaces, i.e different cluster of space instances. Where each of the space instances of each of the spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN.
-{{%/column%}}
-{{%/section%}}
 
 
 

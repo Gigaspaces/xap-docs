@@ -8,15 +8,10 @@ weight: 100
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/data-access.png)
-{{%/column%}}
-{{%column width="90%" %}}
 This guide provides step by step instructions on how to download and install XAP on different operating systems for the supported languages.
-{{%/column%}}
-{{%/section%}}
-<hr/>
+
+<br>
+
 {{%note%}}
 The latest version of XAP can be downloaded [here](http://www.gigaspaces.com/xap-download).
 For a list of supported platforms please consult [the release notes](/release_notes)

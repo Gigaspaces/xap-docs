@@ -8,10 +8,8 @@ weight: 2250
 
 
 
-{{% bannerleft "/attachment_files/subject/httpsession.png"%}}
-
 With XAP you can share HTTP session data across multiple data centers, multiple web server instances or different types of web servers.
-{{% /bannerleft %}}
+
 
 
 {{% info title="Licensing "%}}
