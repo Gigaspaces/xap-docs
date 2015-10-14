@@ -275,10 +275,6 @@ The integration dynamically creates and updates the mod_proxy_balancer configura
 
 
 
-<ul class="pager">
-  <li class="previous"><a href="./java-tutorial-part7.html">&larr; Space Persistency</a></li>
-  <li class="next"><a href="./java-tutorial-part9.html">Big Data &rarr;</a></li>
-</ul>
 
  
 

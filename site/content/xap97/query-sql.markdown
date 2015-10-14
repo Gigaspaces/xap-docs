@@ -480,8 +480,3 @@ new SQLQuery<MyData>(MyData.class, "`count` = 5")
 := || ; . ROWTYPE ~ < <= >  >= => != <> \(+\) ( ) \* / + - ? \{ \}
 {{% /panel %}}
 
-
-<ul class="pager">
-  <li class="previous"><a href="./query-template-matching.html">&larr; Template Matching</a></li>
-  <li class="next"><a href="./query-nested-properties.html">Nested Properties &rarr;</a></li>
-</ul>

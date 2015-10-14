@@ -8,15 +8,8 @@ weight: 800
 
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-![transaction.png](/attachment_files/subject/transaction.png)
-{{%/column%}}
-{{%column width="90%" %}}
 XAP .Net provides an explicit transaction management programing model. It allows developers to easily write transactional code with the lowest overhead possible while minimizing the amount of hand-crafted code and separating it from the application hosting environment and instance management.
-{{%/column%}}
-{{%/section%}}
+
 
 <br>
 

@@ -293,8 +293,3 @@ public class RemoteService {
 
 
 
-<ul class="pager">
-  <li class="previous"><a href="./java-tutorial-part2.html">&larr; The Data Grid</a></li>
-  <li class="next"><a href="./java-tutorial-part4.html">Events and Messaging &rarr;</a></li>
-</ul>
-

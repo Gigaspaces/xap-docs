@@ -9,6 +9,7 @@ weight: 100
 
 
 {{% ssummary %}}{{% /ssummary %}}
+
 This section presents the transaction management programming model and its main features.
 
 ![tx_manager.jpg](/attachment_files/tx_manager.jpg)

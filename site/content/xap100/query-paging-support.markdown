@@ -119,9 +119,3 @@ In most cases, the iterator will be leased and the lease proxy object can be obt
 
 Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template/SQLQuery will not be included as part of the matched set.
 
-
-
-<ul class="pager">
-  <li class="previous"><a href="./query-user-defined-classes.html">&larr; User Defined Class</a></li>
-  <li class="next"><a href="./query-partial-results.html">Partial Results &rarr;</a></li>
-</ul>

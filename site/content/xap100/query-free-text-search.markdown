@@ -153,8 +153,3 @@ Implementing case insensitive queries can be done via:
 - `like` operator or `rlike` operator. 
 - Store the data in lower case and query on via lower case String value (or upper case)
 
-
-<ul class="pager">
-  <li class="previous"><a href="./query-sql.html">&larr; SQL Query</a></li>
-  <li class="next"><a href="./query-nested-properties.html">Nested Properties &rarr;</a></li>
-</ul>

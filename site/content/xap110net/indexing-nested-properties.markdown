@@ -5,6 +5,7 @@ categories: XAP110NET
 parent: indexing-overview.html
 weight: 200
 ---
+
 {{% ssummary %}} {{% /ssummary %}}
 
 # Overview
@@ -97,7 +98,3 @@ By default, nested objects are kept in a binary form inside the space. In order 
 
 The same indexing techniques above are also applicable to Dictionary-based nested properties, which means that in the example above the `Info` and `Address` classes could be replaced with a `Dictionary<String,Object>`, with the dictionary keys representing the property names.
 
-<ul class="pager">
-  <li class="previous"><a href="./indexing.html">&larr; Basic Index</a></li>
-  <li class="next"><a href="./indexing-collections.html">Collection Index &rarr;</a></li>
-</ul>

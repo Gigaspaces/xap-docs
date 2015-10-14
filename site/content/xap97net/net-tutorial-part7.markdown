@@ -201,8 +201,4 @@ Before using the `ExternalDataSource.NHibernate` practice, compile it by calling
 {{%learn "./hibernate-space-persistency.html"%}}
 
 
-<ul class="pager">
-  <li class="previous"><a href="./net-tutorial-part6.html">&larr; Space Transactions</a></li>
-  <li class="next"><a href="./net-home.html">Tutorial Home &rarr;</a></li>
-</ul>
 

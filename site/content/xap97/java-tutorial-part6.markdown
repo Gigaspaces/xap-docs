@@ -224,8 +224,4 @@ XAP provides additional read modifiers to denote the isolation level:
 
 
 
-<ul class="pager">
-  <li class="previous"><a href="./java-tutorial-part5.html">&larr; The Processing Unit</a></li>
-  <li class="next"><a href="./java-tutorial-part7.html">Space Persistence &rarr;</a></li>
-</ul>
 

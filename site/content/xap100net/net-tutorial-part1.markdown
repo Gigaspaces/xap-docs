@@ -730,9 +730,3 @@ There are several additional indexing options available. For example you can ind
 - use change api instead of update , especially if collections are used.
 {{%/vbar%}}
 
-
-<ul class="pager">
-  <li class="previous"><a href="./net-home.html">&larr; Tutorial Home</a></li>
-  <li class="next"><a href="./net-tutorial-part2.html">The Data Grid &rarr;</a></li>
-</ul>
-

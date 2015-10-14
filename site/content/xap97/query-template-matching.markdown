@@ -128,7 +128,3 @@ It is highly recommended to use the  primitive wrapper classes instead of primit
 Nested template matching is not supported - to match nested properties, collections and arrays use [SQLQuery](./query-sql.html).
 
 
-<ul class="pager">
-  <li class="previous"><a href="./query-by-id.html">&larr; Id Query</a></li>
-  <li class="next"><a href="./query-sql.html">SQL Query &rarr;</a></li>
-</ul>

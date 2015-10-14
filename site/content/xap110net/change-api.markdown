@@ -10,14 +10,9 @@ parent: change-api-overview.html
 {{% ssummary %}}{{% /ssummary %}}
 
 
-{{%section%}}
-{{%column width="80%" %}}
+
 The `ISpaceProxy.Change` and the `ChangeSet` allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object. Thus reducing required network traffic between the client and the space, and the network traffic generated from replicating the changes between the space instances (e.g between the primary space instance and its backup).
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup "/attachment_files/change-api.jpg"  "Change API"%}}
-{{%/column%}}
-{{%/section%}}
+
 
 Moreover, using this API also can prevent the need of reading the existing object prior to the change operation because the change operation can specify how to change the existing property without knowing its current value. For instance, implementing atomic counters can be done by increasing a counter property of an integer property by some delta. Another example would be to add a value to a collection and so on.
 The change API supports transactions in the same way the other space operation supports it.

@@ -6,14 +6,8 @@ categories: XAP110NET
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-<img src="/attachment_files/subject/imc.png" width="80" height="80">
-{{%/column%}}
-{{%column width="90%" %}}
 This guide introduces the key concepts for building XAP applications. The topics in this guide span installation, tutorials, the XAP API, Processing Unit and platform interoperability.
-{{%/column%}}
-{{%/section%}}
+
 
 <br>
 

@@ -205,10 +205,3 @@ In GigaSpaces XAP, you can implement the Master-Worker pattern using several met
 {{%learn "/sbp/master-worker-pattern.html"%}}
 
 
-
-
-<ul class="pager">
-  <li class="previous"><a href="./java-tutorial-part3.html">&larr; Processing Services</a></li>
-  <li class="next"><a href="./java-tutorial-part5.html">The Processing Unit &rarr;</a></li>
-</ul>
-

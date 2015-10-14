@@ -6,14 +6,6 @@ parent: querying-the-space.html
 weight: 700
 ---
 
-{{% section %}}
- {{% column width="10%" %}}
- ![counter-logo.jpg](/attachment_files/subject/projection.png)
- {{% /column %}}
- {{% column width="90%" %}}
- {{% ssummary %}} {{% /ssummary %}}
- {{% /column %}}
- {{% /section %}}
 
 
 In some cases when querying the space for objects, only specific properties of objects are required and not the entire object (delta read). The same scenario is also relevant when subscribing for notifications on space data changes, where only specific properties are of interest to the subscriber. For that purpose the Projection API can be used where one can specify which properties are of interest and the space will only populate these properties with the actual data when the result is returned back to the user. This approach reduces network overhead , garbage memory generation and serialization CPU overhead.

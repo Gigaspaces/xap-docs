@@ -285,9 +285,3 @@ For more information see the [Collection Indexing](./indexing.html#Collection In
 - Nested properties' classes should be `Serializable`, otherwise the entry will not be accessible from remote clients.
 - Arrays of primitive types (int, boolean, etc.) are not supported - use the equivalent wrapper type (java.lang.Integer, java.lang.Boolean, etc.) instead.
 
-
-
-<ul class="pager">
-  <li class="previous"><a href="./query-free-text-search.html">&larr; Free Text Search</a></li>
-  <li class="next"><a href="./query-user-defined-classes.html">User Defined CLasses &rarr;</a></li>
-</ul>

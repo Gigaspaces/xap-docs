@@ -12,14 +12,9 @@ weight: 1100
 
 
 
-{{%section%}}
-{{%column width="60%" %}}
+
 XAP support executing tasks in a collocated Space (processing unit that started an embedded Space). Space tasks can be executed either directly on a specific cluster member using typical routing value. Space tasks can also be distributed, which means it is executed in a "broadcast" mode on all the primary cluster members concurrently and reduced to a single result on the client side, which is also known as the map reduce pattern which is used in many applications that does parallel processing. Space tasks are dynamic in terms of content, it contains user code that will be executed at the Space as is.
-{{%/column%}}
-{{%column width="40%" %}}
-![Executors_task_flow_basic.jpg](/attachment_files/Executors_task_flow_basic.jpg)
-{{%/column%}}
-{{%/section%}}
+
 
 # Space Task API
 

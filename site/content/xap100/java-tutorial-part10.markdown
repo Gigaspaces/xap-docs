@@ -274,9 +274,3 @@ The transport layer can be secured using an SSL communication filter.
 
 {{%info%}}This concludes this tutorial. For more detailed information of the XAP platform and its API please consult the [Programmers Guide](./programmers-guide.html) {{%/info%}}
 
-
-<ul class="pager">
-  <li class="previous"><a href="./java-tutorial-part9.html">&larr; Big Data</a></li>
-  <li class="next"><a href="./java-home.html">Tutorial Home &rarr;</a></li>
-</ul>
-

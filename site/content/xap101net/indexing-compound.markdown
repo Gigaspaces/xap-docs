@@ -106,8 +106,3 @@ The smallest set of space objects is the list of objects to perform the matching
 Class fields that are not indexed are not used to construct the candidates list.
 {{%/info%}}
 
-
-<ul class="pager">
-  <li class="previous"><a href="./indexing-collections.html">&larr;Collection Index</a></li>
-  <li class="next"><a href="./indexing-unique.html">Unique Index &rarr;</a></li>
-</ul>

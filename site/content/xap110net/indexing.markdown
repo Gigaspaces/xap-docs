@@ -101,9 +101,3 @@ Removing an index or changing an index type is currently not supported.
 
 
 
-<ul class="pager">
-  <li class="previous"><a href="./indexing-overview.html">&larr; Indexing Overview</a></li>
-  <li class="next"><a href="./indexing-nested-properties.html">Indexing Nested Properties &rarr;</a></li>
-</ul>
-
-

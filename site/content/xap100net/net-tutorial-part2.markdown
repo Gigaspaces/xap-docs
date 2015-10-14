@@ -178,9 +178,4 @@ The Admin UI console has many more features which we will introduce you to throu
 {{%learn "/xap100adm/web-management-console.html"%}}
 
 
-<ul class="pager">
-  <li class="previous"><a href="./net-tutorial-part1.html">&larr; The Space</a></li>
-  <li class="next"><a href="./net-tutorial-part3.html">Processing Services &rarr;</a></li>
-</ul>
-
  

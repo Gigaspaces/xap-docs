@@ -245,10 +245,5 @@ The Admin UI console has many more features which we will introduce you to throu
 
 
 
-<ul class="pager">
-  <li class="previous"><a href="./java-tutorial-part1.html">&larr; The Space</a></li>
-  <li class="next"><a href="./java-tutorial-part3.html">Processing Services &rarr;</a></li>
-</ul>
-
 
  

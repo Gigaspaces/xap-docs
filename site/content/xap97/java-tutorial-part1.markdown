@@ -668,9 +668,3 @@ public void findSpace()  {
 
 
 
-<ul class="pager">
-  <li class="previous"><a href="./java-home.html">&larr; Tutorial Home</a></li>
-  <li class="next"><a href="./java-tutorial-part2.html">The Data Grid &rarr;</a></li>
-</ul>
-
-

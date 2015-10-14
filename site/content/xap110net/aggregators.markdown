@@ -9,15 +9,10 @@ parent: the-gigaspace-interface-overview.html
 {{% ssummary  %}}  {{% /ssummary %}}
 
 
-{{%section%}}
-{{%column width="80%" %}}
+
 With many systems such as pricing systems, risk management, trading and other analytic and business intelligence applications you may need to perform an aggregation activity across data stored within the data grid when generating reports or when running some business process. Such activity can leverage data stored in memory and will be much faster than performing it with a database.
 XAP provides common functionality to perform aggregations across the space. There is no need to retrieve the entire data set from the space to the client side , iterate the result set and perform the aggregation. This would be an expensive activity as it might return large amount of data into the client application.
-{{%/column%}}
-{{%column width="20%" %}}
-{{%youtube "H22qPux8Fh8"  "Aggregations"%}}
-{{%/column%}}
-{{%/section%}}
+
 
 Built-in Aggregators allow you to perform the entire aggregation activity at the space side avoiding any data retrieval back to the client side. Only the result of each aggregation activity performed with each partition is returned back to the client side where all the results are reduced and returned to the client application. Such aggregation activity utilize the partitioned nature of the data-grid allowing each partition to execute the aggregation with its local data in parallel, where all the partitions intermediate results are fully aggregated at the client side using the relevant reducer implementation.
 

@@ -285,8 +285,3 @@ Deploying with the command line options will override the sla definitions
 
 
 
-<ul class="pager">
-  <li class="previous"><a href="./net-tutorial-part4.html">&larr; Events and Messaging</a></li>
-  <li class="next"><a href="./net-tutorial-part6.html">Space Transactions &rarr;</a></li>
-</ul>
-

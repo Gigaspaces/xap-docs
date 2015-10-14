@@ -94,8 +94,3 @@ public class Person
 *	Currently not supported for dynamic (on-the-fly) indices.
 
 
-<ul class="pager">
-  <li class="previous"><a href="./indexing-compound.html">&larr; Compound Indexing</a></li>
-  <li class="next"><a href="./indexing-overview.html">Indexing Overview&rarr;</a></li>
-</ul>
-
