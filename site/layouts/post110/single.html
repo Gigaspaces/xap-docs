@@ -1,55 +1,58 @@
 {{ partial "header.html" . }}
-{{ partial "navbar110.html" . }}
+<div id="wrap">
+    {{ partial "navbar110.html" . }}
 
 
 
-<div class="container">
-    <div id="breadcrumbs" class="row">
-        <ol class="breadcrumb">
-            <li><a href="/">Home</a></li>
-            {{ if in .Permalink "xap110nettut"}}<li><a href="/xap110nettut">11.0 .Net Tutorial</a></li>
-            {{ else if in .Permalink "xap110sec"}}<li><a href="/xap110sec">11.0 Security</a></li>
-            {{ else if in .Permalink "xap110net"}}<li><a href="/xap110net">11.0 .Net</a></li>
-            {{ else if in .Permalink "xap110adm"}}<li><a href="/xap110adm">11.0 Administration</a></li>
-            {{ else if in .Permalink "xap110tut"}}<li><a href="/xap110tut">11.0 Java Tutorial</a></li>
-            {{ else if in .Permalink "xap110"}}<li><a href="/xap110">11.0 Java</a></li>
-            {{end}}
-            <li class="active">{{.Title}}</li>
-        </ol>
-    </div>
-    <div class="container-fluid">
+    <div class="container">
+        <div id="breadcrumbs" class="row">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                {{ if in .Permalink "xap110nettut"}}<li><a href="/xap110nettut">11.0 .Net Tutorial</a></li>
+                {{ else if in .Permalink "xap110sec"}}<li><a href="/xap110sec">11.0 Security</a></li>
+                {{ else if in .Permalink "xap110net"}}<li><a href="/xap110net">11.0 .Net</a></li>
+                {{ else if in .Permalink "xap110adm"}}<li><a href="/xap110adm">11.0 Administration</a></li>
+                {{ else if in .Permalink "xap110tut"}}<li><a href="/xap110tut">11.0 Java Tutorial</a></li>
+                {{ else if in .Permalink "xap110"}}<li><a href="/xap110">11.0 Java</a></li>
+                {{end}}
+                <li class="active">{{.Title}}</li>
+            </ol>
+        </div>
+        <div class="container-fluid">
 
-        <div id="leftbar-div" class="col-md-2 hidden-xs">
-            <div class="leftbar">
-                <ul class="treeview" id="tree">
-                    {{ if in .Permalink "xap110nettut"}}{{ partial "sidenav-xap110nettut.html" .}}
-                    {{ else if in .Permalink "xap110sec"}}{{ partial "sidenav-xap110sec.html" .}}
-                    {{ else if in .Permalink "xap110net"}}{{ partial "sidenav-xap110net.html" .}}
-                    {{ else if in .Permalink "xap110adm"}}{{ partial "sidenav-xap110adm.html" .}}
-                    {{ else if in .Permalink "xap110tut"}}{{ partial "sidenav-xap110tut.html" .}}
-                    {{ else if in .Permalink "xap110"}}{{ partial "sidenav-xap110.html" .}}
-                    {{end}}
-                </ul>
+            <div id="leftbar-div" class="col-md-2 hidden-xs">
+                <div class="leftbar">
+                    <ul class="treeview" id="tree">
+                        {{ if in .Permalink "xap110nettut"}}{{ partial "sidenav-xap110nettut.html" .}}
+                        {{ else if in .Permalink "xap110sec"}}{{ partial "sidenav-xap110sec.html" .}}
+                        {{ else if in .Permalink "xap110net"}}{{ partial "sidenav-xap110net.html" .}}
+                        {{ else if in .Permalink "xap110adm"}}{{ partial "sidenav-xap110adm.html" .}}
+                        {{ else if in .Permalink "xap110tut"}}{{ partial "sidenav-xap110tut.html" .}}
+                        {{ else if in .Permalink "xap110"}}{{ partial "sidenav-xap110.html" .}}
+                        {{end}}
+                    </ul>
+                </div>
+
             </div>
+
+            <div id="content" class="col-md-8">
+                <div class="page-title">
+                    <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
+                            style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
+                    </button>
+                    <h1 style="margin-top: 0px;">{{ .Title }}</h1>
+                    <hr>
+                </div>
+                <div class="page-content">
+                    {{ .Content }}
+                </div>
+            </div>
+
+            {{ partial "toc.html" .}}
 
         </div>
-
-        <div id="content" class="col-md-8">
-            <div class="page-title">
-                <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
-                        style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
-                </button>
-                <h1 style="margin-top: 0px;">{{ .Title }}</h1>
-                <hr>
-            </div>
-            <div class="page-content">
-                {{ .Content }}
-            </div>
-        </div>
-
-        {{ partial "toc.html" .}}
-
     </div>
+    <div class="push"></div>
 </div>
 
 {{ partial "footer.html" . }}
