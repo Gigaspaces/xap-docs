@@ -28,12 +28,14 @@ GigaSpaces XAP is 100% pure Java, and therefore can run on any UNIX or Windows m
 - Optional: The network and machines running GigaSpaces are configured to enable multicast (see the [Multicast Configuration]({{%currentadmurl%}}/network-multicast.html) for more information).
 - Set the `NIC_ADDR` environment variable to the machine's IP address.
 
-{{%note "Using JRE instead of JDKIt is recommended to use a JDK (Java Development Kit), and not a JRE (Java Runtime Environment). If you do decide to use a JRE, make sure the `JAVA_HOME` environment variable points to the correct JRE directory, and remove JDK-specific command-line arguments, like `-server`, which do not exist in JRE.{{%/note"%}}
+{{%note%}}
+Using JRE instead of JDKIt is recommended to use a JDK (Java Development Kit), and not a JRE (Java Runtime Environment). If you do decide to use a JRE, make sure the `JAVA_HOME` environment variable points to the correct JRE directory, and remove JDK-specific command-line arguments, like `-server`, which do not exist in JRE.
+{{%/note%}}
 
 # Installing on Windows
 
 gshome-directory
-Unzip the ZIP file using your favorite unzip tool (e.g., WinZip) to the location of your choice. Unzipping the file creates a `<GigaSpaces Root>` directory (e.g. `{{%version "gshome-directory"%}}`) with the following files and folders:
+Unzip the ZIP file using your favorite unzip tool (e.g., WinZip) to the location of your choice. Unzipping the file creates a `<GigaSpaces Root>` directory e.g. {{%version "gshome-directory"%}} with the following files and folders:
 
 ![win_dirtree_XAP95.jpg](/attachment_files/win_dirtree_XAP95.jpg)
 

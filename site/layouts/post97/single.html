@@ -18,7 +18,7 @@
     </div>
 
     <div class="container-fluid">
-        <div class="col-md-2 hidden-xs">
+        <div id="leftbar-div" class="col-md-2 hidden-xs">
             <div class="leftbar">
                 <ul class="treeview" id="tree" >
                     {{ if in .Permalink "xap97net"}}{{ partial "sidenav-xap97net.html" .}}
@@ -31,18 +31,17 @@
 
 
         <div id="content" class="col-md-8">
-
-
-            <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
-                    style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
-            </button>
-
-            <h1>{{ .Title }}</h1>
-            <hr>
-            {{ .Content }}
-
+            <div class="page-title">
+                <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
+                        style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
+                </button>
+                <h1 style="margin-top: 0px;">{{ .Title }}</h1>
+                <hr>
+            </div>
+            <div class="page-content">
+                {{ .Content }}
+            </div>
         </div>
-
 
         {{ partial "toc.html" .}}
 

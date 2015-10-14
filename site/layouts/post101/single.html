@@ -5,49 +5,49 @@
 <div class="container">
     <div id="breadcrumbs" class="row">
         <ol class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        {{ if in .Permalink "xap101nettut"}}<li><a href="/xap101nettut">10.1 .Net Tutorial</a></li>
-        {{ else if in .Permalink "xap101sec"}}<li><a href="/xap101sec">10.1 Security</a></li>
-        {{ else if in .Permalink "xap101net"}}<li><a href="/xap101net">10.1 .Net</a></li>
-        {{ else if in .Permalink "xap101adm"}}<li><a href="/xap101adm">10.1 Administration</a></li>
-        {{ else if in .Permalink "xap101tut"}}<li><a href="/xap101tut">10.1 Java Tutorial</a></li>
-        {{ else if in .Permalink "xap101"}}<li><a href="/xap101">10.1 Java</a></li>
-        {{end}}
-        <li class="active">{{.Title}}</li>
-    </ol>
-   </div>
-
-    <div class="container-fluid">
-     <div class="col-md-2 hidden-xs">
-        <div class="leftbar">
-            <ul class="treeview" id="tree" >
-                {{ if in .Permalink "xap101nettut"}}{{ partial "sidenav-xap101nettut.html" .}}
-                {{ else if in .Permalink "xap101sec"}}{{ partial "sidenav-xap101sec.html" .}}
-                {{ else if in .Permalink "xap101net"}}{{ partial "sidenav-xap101net.html" .}}
-                {{ else if in .Permalink "xap101adm"}}{{ partial "sidenav-xap101adm.html" .}}
-                {{ else if in .Permalink "xap101tut"}}{{ partial "sidenav-xap101tut.html" .}}
-                {{ else if in .Permalink "xap101"}}{{ partial "sidenav-xap101.html" .}}
-                {{end}}
-            </ul>
-        </div>
+            <li><a href="/">Home</a></li>
+            {{ if in .Permalink "xap101nettut"}}<li><a href="/xap101nettut">10.1 .Net Tutorial</a></li>
+            {{ else if in .Permalink "xap101sec"}}<li><a href="/xap101sec">10.1 Security</a></li>
+            {{ else if in .Permalink "xap101net"}}<li><a href="/xap101net">10.1 .Net</a></li>
+            {{ else if in .Permalink "xap101adm"}}<li><a href="/xap101adm">10.1 Administration</a></li>
+            {{ else if in .Permalink "xap101tut"}}<li><a href="/xap101tut">10.1 Java Tutorial</a></li>
+            {{ else if in .Permalink "xap101"}}<li><a href="/xap101">10.1 Java</a></li>
+            {{end}}
+            <li class="active">{{.Title}}</li>
+        </ol>
     </div>
+    <div class="container-fluid">
 
+        <div id="leftbar-div" class="col-md-2 hidden-xs">
+            <div class="leftbar">
+                <ul class="treeview" id="tree">
+                    {{ if in .Permalink "xap101nettut"}}{{ partial "sidenav-xap101nettut.html" .}}
+                    {{ else if in .Permalink "xap101sec"}}{{ partial "sidenav-xap101sec.html" .}}
+                    {{ else if in .Permalink "xap101net"}}{{ partial "sidenav-xap101net.html" .}}
+                    {{ else if in .Permalink "xap101adm"}}{{ partial "sidenav-xap101adm.html" .}}
+                    {{ else if in .Permalink "xap101tut"}}{{ partial "sidenav-xap101tut.html" .}}
+                    {{ else if in .Permalink "xap101"}}{{ partial "sidenav-xap101.html" .}}
+                    {{end}}
+                </ul>
+            </div>
+
+        </div>
 
         <div id="content" class="col-md-8">
+            <div class="page-title">
+                <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
+                        style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
+                </button>
+                <h1 style="margin-top: 0px;">{{ .Title }}</h1>
+                <hr>
+            </div>
+            <div class="page-content">
+                {{ .Content }}
+            </div>
+        </div>
 
 
-        <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
-                style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
-        </button>
-
-        <h1>{{ .Title }}</h1>
-        <hr>
-        {{ .Content }}
-
-    </div>
-
-
-    {{ partial "toc.html" .}}
+        {{ partial "toc.html" .}}
 
     </div>
 </div>
