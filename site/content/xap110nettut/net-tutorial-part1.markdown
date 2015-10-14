@@ -7,16 +7,6 @@ parent: none
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-{{<wbr>}}
-![cassandra.png](/attachment_files/qsg/data.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary   %}} {{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
-
 
 In this part of the tutorial we will demonstrate how to create a Space and how you can interact with it. We will also demonstrate how you can improve your Space search performance by using indexes and returning partial results.
 

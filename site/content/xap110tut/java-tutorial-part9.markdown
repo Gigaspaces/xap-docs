@@ -7,14 +7,6 @@ parent: none
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![cassandra.png](/attachment_files/subject/big-data.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary   %}} {{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
 
 In this part of the tutorial will introduce you to XAP's Big Data interface. Will show you how you can use Cassandra and other Big-Data storage systems to archive data or use them for space persistence.
 

@@ -7,9 +7,9 @@ parent: none
 ---
 
 
-{{%bannerleft "/attachment_files/subject/pu.png" %}}
+
 The PU is the fundamental unit of deployment in XAP. The PU itself runs within a Processing Unit Container and is deployed onto the Service Grid. Once a PU is deployed, a PU instance is the actual runtime entity.
-{{%/bannerleft%}}
+
 
 
 

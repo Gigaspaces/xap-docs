@@ -6,11 +6,11 @@ parent: none
 weight: 50
 ---
 
-<br>
 
-{{%bannerleft "/attachment_files/subject/data-access.png" %}}
+
+
 Throughout this tutorial we will create and use a simple internet payment service application to demonstrate the basic XAP features.
-{{%/bannerleft%}}
+
 
 
 

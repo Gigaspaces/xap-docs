@@ -6,9 +6,9 @@ weight: 500
 parent: none
 ---
 
-{{%bannerleft "/attachment_files/qsg/data.png" %}}
+
 In this part of the tutorial we will demonstrate how to create a space and how you can interact with it. We will also demonstrate how you can improve your space search performance by using indexes and returning partial results.
-{{%/bannerleft%}}
+
 
 # Creating a Space
 Let's create a space called 'xapTutorialSpace' that is co-located within an application. This type of space is called embedded space.
