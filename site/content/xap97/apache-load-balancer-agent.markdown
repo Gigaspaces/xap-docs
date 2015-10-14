@@ -12,18 +12,6 @@ weight: 400
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![transaction.png](/attachment_files/subject/loadbalancing.png)
-{{%/column%}}
-{{%column width="90%" %}}
-XAP comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.
-{{%/column%}}
-{{%/section%}}
-
-
-
-
 The integration dynamically creates and updates the  [mod_proxy_balancer](http://httpd.apache.org/docs/2.2/mod/mod_proxy_balancer.html) configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.
 
 General information on how to enable the mod_proxy load balancer and configuration can be found in the [Jetty mod_proxy docs](http://docs.codehaus.org/display/JETTY/Configuring+mod_proxy). Note, the load balancer actual configuration of specific balancer members are generated automatically as explained below.

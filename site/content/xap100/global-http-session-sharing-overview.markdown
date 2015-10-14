@@ -8,14 +8,8 @@ weight: 600
 
 
 
-{{% section %}}
-{{% column width="10%" %}}
-![counter-logo.jpg](/attachment_files/subject/httpsession.png)
-{{% /column %}}
-{{% column width="90%" %}}
 With XAP you can share HTTP session data across multiple data centers, multiple web server instances or different types of web servers.
-{{% /column %}}
-{{% /section %}}
+
 
 
 XAP 10.0 Global HTTP Session Sharing includes the following new features:

@@ -8,14 +8,8 @@ parent: programmers-guide.html
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/data-access.png)
-{{%/column%}}
-{{%column width="90%" %}}
 In this section we will show you how to create and configure a Space and how to interact with it with the Space API.
-{{%/column%}}
-{{%/section%}}
+
 
 {{<wbr>}}
 

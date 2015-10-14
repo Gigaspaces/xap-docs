@@ -7,18 +7,6 @@ parent: java-home.html
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-{{<wbr>}}
-![cassandra.png](/attachment_files/subject/pu.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary   %}} {{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
-
-
-
 
 The PU is the fundamental unit of deployment in XAP. The PU itself runs within a Processing Unit Container and is deployed onto the Service Grid. Once a PU is deployed, a PU instance is the actual runtime entity.
 

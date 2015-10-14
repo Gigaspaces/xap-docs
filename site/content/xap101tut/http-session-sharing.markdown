@@ -6,14 +6,6 @@ parent: none
 weight: 1500
 ---
 
-{{% section %}}
-{{% column width="10%" %}}
-![counter-logo.jpg](/attachment_files/subject/httpsession.png)
-{{% /column %}}
-{{% column width="90%" %}}
-{{%ssummary%}}{{%/ssummary%}}
-{{% /column %}}
-{{% /section %}}
 
 
 

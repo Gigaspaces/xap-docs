@@ -248,17 +248,17 @@ You will learn about:
 
 
 
- {{%panel   %}}
+ {{%panel%}}
  {{%section%}}
- {{%column width="20%" %}}
- {{%align center %}}
+ {{%column width="20%"%}}
+ {{%align center%}}
  [Part VIII](./java-tutorial-part8.html)
 
  <img src="/attachment_files/qsg/web.png" width="100" height="100">
  {{%/align%}}
  {{%/column%}}
 
- {{%column width="70%" %}}
+ {{%column width="70%"%}}
  {{%align center%}}**Web Processing Unit**{{%/align%}}
  In this part of the tutorial we will introduce you to web deployment on top of the grid.
 
@@ -276,17 +276,17 @@ You will learn about:
 
 
 
- {{%panel   %}}
+ {{%panel%}}
  {{%section%}}
- {{%column width="20%" %}}
- {{%align center %}}
+ {{%column width="20%"%}}
+ {{%align center%}}
  [Part IX](./java-tutorial-part9.html)
 
  <img src="/attachment_files/subject/big-data.png" width="100" height="100">
  {{%/align%}}
  {{%/column%}}
 
- {{%column width="70%" %}}
+ {{%column width="70%"%}}
  {{%align center%}}**Big Data**{{%/align%}}
  In this part of the tutorial we will show how XAP integrates with Big Data.
 
@@ -303,7 +303,7 @@ You will learn about:
 
 
 
- {{%panel   %}}
+ {{%panel%}}
  {{%section%}}
  {{%column width="20%" %}}
  {{%align center %}}
@@ -313,7 +313,7 @@ You will learn about:
  {{%/align%}}
  {{%/column%}}
 
- {{%column width="70%" %}}
+ {{%column width="70%"%}}
  {{%align center%}}**Security**{{%/align%}}
  In this part of the tutorial we will demonstrated how to secure XAP components.
 

@@ -7,15 +7,8 @@ weight: 50
 ---
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/data-access.png)
-{{%/column%}}
-{{%column width="90%" %}}
 This guide provides step by step instructions on how to download and install XAP.
-{{%/column%}}
-{{%/section%}}
+
 <hr/>
 
 {{%note%}}

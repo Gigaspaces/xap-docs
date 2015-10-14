@@ -9,14 +9,9 @@ weight: 250
 
 {{% ssummary  %}}{{%/ssummary%}}
 
-{{%section%}}
-{{%column width="10%" %}}
-![transaction.png](/attachment_files/subject/httpsession.png)
-{{%/column%}}
-{{%column width="90%" %}}
+
 The XAP-Jetty integration comes with a support for storing the [javax.servlet.http.HttpSession](http://download.oracle.com/javaee/1.3/api/javax/servlet/http/HttpSession.html) in the Space allowing supporting session replication and failover between different web application instances deployed into XAP containers.
-{{%/column%}}
-{{%/section%}}
+
 
 
 The XAP HTTP Session Management provides the following:

@@ -7,14 +7,6 @@ parent: java-home.html
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![cassandra.png](/attachment_files/qsg/persistence.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary   %}} {{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
 
 
 There are many situations where space data needs to be persisted to permanent storage and retrieved from it.
