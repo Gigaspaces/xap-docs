@@ -10,10 +10,10 @@ parent: none
 
 
 
-{{% bannerleft "/attachment_files/subject/cache-eviction.png" %}}
+
 
 In this section we will explain the different Space cache policies, memory usage, and rules for exceeding physical memory capacity.
-{{% /bannerleft %}}
+
 
 
 

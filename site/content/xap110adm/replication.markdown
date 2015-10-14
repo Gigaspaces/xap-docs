@@ -7,10 +7,10 @@ weight: 400
 ---
 
 
-{{%bannerleft "/attachment_files/subject/replication-topology.png" %}}
-This section gives a detailed description of the Space's replication mechanism, and how to configure and optimize it.
-{{%/bannerleft%}}
 
+This section gives a detailed description of the Space's replication mechanism, and how to configure and optimize it.
+
+<br>
 
 {{%fpanel%}}
 

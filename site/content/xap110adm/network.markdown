@@ -8,14 +8,9 @@ weight: 800
 
 
 
-{{%section%}}
-{{%column width="15%" %}}
-<img src="/attachment_files/subject/Network.png" width="80" height="80">
-{{%/column%}}
-{{%column width="85%" %}}
+
 In this guide we will show you how to configure the network including configuring unicast, multicast, over a firewall and over NAT.
-{{%/column%}}
-{{%/section%}}
+
 
 <br>
 

@@ -7,20 +7,11 @@ weight: 50
 ---
 
 
-{{% ssummary %}} {{% /ssummary %}}
 
 
-{{%section%}}
-{{%column width="80%" %}}
-{{<wbr>}}
-{{<wbr>}}
-{{<wbr>}}
+
 XAP's Data-Grid clustering, scalability and High-Availability are based on the following concepts:
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup "/attachment_files/data-grid-clustering-explained.jpg"  "Data Grid Clustering"%}}
-{{%/column%}}
-{{%/section%}}
+
 
 
 

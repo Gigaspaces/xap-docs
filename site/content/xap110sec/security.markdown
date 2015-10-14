@@ -7,16 +7,9 @@ weight : 100
 ---
 
 
-{{% section %}}
-{{% column width="80%" %}}
+
 GigaSpaces Security provides comprehensive support for securing your data, services, or both. GigaSpaces provides a set of authorities granting privileged access to data, and for performing operations on services.
-{{% /column %}}
-{{% column width="20%" %}}
-{{%align center%}}
-{{%popup   "/attachment_files/security_ovreview.jpg"%}}
-{{%/align%}}
-{{% /column %}}
-{{% /section %}}
+
 
 
 Security comprises two major operations: **authentication** and **authorization**.

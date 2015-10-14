@@ -6,7 +6,7 @@ parent: none
 weight: 1200
 ---
 
-<br>
+
 
 Processing Units can be configured to be put into maintenance mode. Once a processing unit has entered into maintenance mode, it will reject all data-related operations with an exception.
 This is useful when performing a safe shutdown or for a rolling system upgrade.
