@@ -1,6 +1,6 @@
 ---
 type: post110
-title:  GeoSpatial Support
+title:  GeoSpatial Queries
 categories: XAP110
 parent: none
 weight: 1200
@@ -8,8 +8,7 @@ weight: 1200
 
 <br>
 
-Processing Units can be configured to be put into maintenance mode. Once a processing unit has entered into maintenance mode, it will reject all data-related operations with an exception.
-This is useful when performing a safe shutdown or for a rolling system upgrade.
+Geospatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
 
 <br>
 
