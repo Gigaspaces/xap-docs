@@ -9,10 +9,10 @@ weight: 600
 
 
 
-{{%bannerleft "/attachment_files/subject/data-access.png" %}}
+
 
 Modeling your objects that are used to interact with the space.
-{{%/bannerleft%}}
+
 
 {{<wbr>}}
 

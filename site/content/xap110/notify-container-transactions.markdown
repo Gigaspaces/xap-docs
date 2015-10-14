@@ -6,7 +6,7 @@ parent: notify-container-overview.html
 weight: 200
 ---
 
-{{<wbr>}}
+
 
 The notify container can be configured with transaction support, so the event action can be performed under a transaction. Exceptions thrown by the event listener cause the operations performed within the listener to be rolled back automatically.
 

@@ -6,7 +6,7 @@ parent: interoperability-overview.html
 weight: 400
 ---
 
-<br>
+
 
 {{%section%}}
 {{%column width="10%" %}}

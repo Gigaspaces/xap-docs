@@ -6,7 +6,6 @@ parent: messaging-support.html
 weight: 700
 ---
 
-<br>
 
 XAP provides advanced JMS options including security, transaction support and a queue browser.
 

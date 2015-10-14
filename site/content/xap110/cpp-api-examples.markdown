@@ -6,7 +6,7 @@ parent: xap-cpp.html
 weight: 800
 ---
 
-<br>
+
 
 C++ Examples that demonstrate the XAP API.
 

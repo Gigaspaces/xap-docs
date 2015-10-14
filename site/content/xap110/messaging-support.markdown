@@ -6,7 +6,6 @@ parent: event-processing.html
 weight: 700
 ---
 
-<br>
 
 XAP provide a JMS implementation, built on top of the core JavaSpaces layer. JMS messages are implemented as POJO, indexed, and routed to the relevant space partition according to the destination name. GigaSpaces XAP JMS implementation supports the unified messaging model, introduced in version 1.1 of the JMS specification.
 
