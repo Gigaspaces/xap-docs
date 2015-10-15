@@ -46,9 +46,12 @@ SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "indexedShape <geospatial 
 
 There are three types of geospatial operations that can be used in the query:
 
-* geospatial:contains
 * geospatial:within
+{{<wbr>}} The shape contains the target geometry, boundaries of shapes count too. It's the converse of *geospatial:contains*.
+* geospatial:contains
+{{<wbr>}} The shape is within the target geometry, boundaries of shapes count too. It's the converse of *geospatial:within*.
 * geospatial:intersects 
+{{<wbr>}} The shape shares some points/overlap with the target shape. If a shape is within/contains another then it also intersects with it. Points on the boundary count too.
 
 {{<wbr>}}
 

@@ -14,3 +14,4 @@ The following limitations and open issues apply to 11.0.0-m3 release:
 * Inheretence is not supported
 * No support for Space Document
 * Cannot execute query on a not indexed shape field (Fixed in m4)
+* Disjoint queries are not supported
