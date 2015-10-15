@@ -6,16 +6,8 @@ parent: none
 weight: 2500
 ---
 
- 
 
-{{%section%}}
-{{%column width="10%" %}}
-![apis.png](/attachment_files/subject/apis.png)
-{{%/column%}}
-{{%column width="90%" %}}
 The possibility for organizations whose projects include a combination of Java, .NET and C++ platforms to communicate and access each other easily and efficiently while also maintaining the benefits of the XAP scale-out application server.
-{{%/column%}}
-{{%/section%}}
 
 <br>
 

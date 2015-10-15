@@ -8,16 +8,7 @@ weight: 2400
 
 
 
-
-
-{{%section%}}
-{{%column width="10%" %}}
-![fifo-groups.png](/attachment_files/subject/multisite.png)
-{{%/column%}}
-{{%column width="90%" %}}
 Multiple site replication is the ability to replicate state between different deployed spaces, where each space can be also physically located in a different geographical location (also termed a different deployment site).
-{{%/column%}}
-{{%/section%}}
 
 {{% info title="Licensing "%}}
 The Gateway requires a separate license in addition to the GigaSpaces commercial license. Please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services) for more details.

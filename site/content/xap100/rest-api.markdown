@@ -7,18 +7,6 @@ weight: 300
 ---
 
 
-{{<wbr>}}
-
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/web-services.jpg)
-{{%/column%}}
-{{%column width="90%" %}}
-XAP REST interface.
-{{%/column%}}
-{{%/section%}}
-
-<hr/>
 
 The REST API exposing HTTP based interface Space. It is leveraging the [GigaSpace API](./the-gigaspace-interface.html). It support the following methods:
 

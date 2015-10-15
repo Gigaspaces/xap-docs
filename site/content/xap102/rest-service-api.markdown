@@ -6,15 +6,6 @@ parent: rest-service-overview.html
 weight: 400
 ---
 
-{{%section%}}
-{{%column width="10%" %}}
-<br>
-![data-access.jpg](/attachment_files/web-services.jpg)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary  %}}{{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
 
 
 The REST API exposing HTTP based interface Space. It is leveraging the [XAP API](./the-gigaspace-interface.html). It support the following methods:

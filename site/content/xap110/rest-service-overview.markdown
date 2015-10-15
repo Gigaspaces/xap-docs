@@ -8,14 +8,8 @@ weight: 300
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/web-services.jpg)
-{{%/column%}}
-{{%column width="90%" %}}
 In this section we will show you how to configure and use the rest service.
-{{%/column%}}
-{{%/section%}}
+
 
 {{<wbr>}}
 

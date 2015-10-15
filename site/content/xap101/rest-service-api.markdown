@@ -8,18 +8,6 @@ weight: 400
 
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-<br>
-![data-access.jpg](/attachment_files/web-services.jpg)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary  %}}{{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
-
-
 The REST API exposing HTTP based interface Space. It is leveraging the [XAP API](./the-gigaspace-interface.html). It support the following methods:
 
 1. GET - can be used to perform an introduceType, readByID or a readMultiple action by a space query.

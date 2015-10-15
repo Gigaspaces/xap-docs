@@ -6,16 +6,8 @@ parent: interoperability-overview.html
 weight: 400
 ---
 
-{{<wbr>}}
-
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/scala.jpeg)
-{{%/column%}}
-{{%column width="90%" %}}
 Several extensions to the XAP API have been introduced to provide a more natural way of combining Scala with XAP.
-{{%/column%}}
-{{%/section%}}
+ 
 
 <hr/>
 
