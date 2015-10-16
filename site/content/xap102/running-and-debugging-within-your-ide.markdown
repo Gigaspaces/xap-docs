@@ -239,6 +239,7 @@ Make sure you identify the `process id` of the newly started GSC. You will need 
 
 ### Step 4
 Open your eclipse and setup a remote debug configuration:
+
 ![reomte_debugging.jpg](/attachment_files/reomte_debugging.jpg)
 
 Place the right host name and port where the GSC in debug mode been started.

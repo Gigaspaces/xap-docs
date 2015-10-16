@@ -13,18 +13,9 @@ parent: java-home.html
 
 
 
-{{%section%}}
-{{%column width="15%" %}}
-<img src="/attachment_files/qsg/web.png" width="100" height="100">
-
-{{%/column%}}
-{{%column width="85%" %}}
 
 In this part of the tutorial we will show you how you can deploy a standard WAR file onto the Service Grid. XAP allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the Service Grid Processing Unit Container. The web container used behind the scenes is Jetty. 
-
-{{%/column%}}
-
-{{%/section%}}
+<br>
 
 The integration allows you to make use of the following Service Grid features:
 

@@ -8,9 +8,6 @@ parent: none
 
 
 
-In this part of the tutorial we will show you how you can deploy a standard WAR file onto the Service Grid.
-
-
 
 
 In this part of the tutorial we will show you how you can deploy a standard WAR file onto the Service Grid.
