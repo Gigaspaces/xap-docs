@@ -11,15 +11,8 @@ parent: net-home.html
 {{%/ssummary%}}
 
 
-
-{{%section%}}
-{{%column width="15%" %}}
-<img src="/attachment_files/qsg/pu.gif" width="100" height="100">
-{{%/column%}}
-{{%column width="85%" %}}
 The PU is the fundamental unit of deployment in XAP. The PU itself runs within a Processing Unit Container and is deployed onto the Service Grid. Once a PU is deployed, a PU instance is the actual runtime entity.
-{{%/column%}}
-{{%/section%}}
+
 
 There are two types of Processing Unit Containers:
 

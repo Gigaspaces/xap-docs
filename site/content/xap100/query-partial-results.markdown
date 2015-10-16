@@ -6,14 +6,6 @@ parent: querying-the-space.html
 weight: 800
 ---
 
-{{% section %}}
- {{% column width="10%" %}}
- ![counter-logo.jpg](/attachment_files/subject/projection.png)
- {{% /column %}}
- {{% column width="90%" %}}
- {{% ssummary %}} {{% /ssummary %}}
- {{% /column %}}
- {{% /section %}}
 
 {{% section %}}
 {{% column width="60%" %}}

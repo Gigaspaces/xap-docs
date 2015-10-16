@@ -7,9 +7,9 @@ weight: 300
 ---
 
 
-{{%bannerleft "/attachment_files/subject/zone.png" %}}
+
  The provisioning process of processing unit instances makes no guarantee regarding which GSCs each instance is provisioned on. It makes a best effort to evenly distribute the instances across available GSCs, taking into account the number of services on each host.
-{{%/bannerleft%}}
+
 
 The SLA enables you to define requirements which control the provisioning process of processing unit instances on the available GSCs. The requirements are based on machine level statistics and grouping of the GSC processes to zones (see below).
 

@@ -7,15 +7,6 @@ parent: net-home.html
 ---
 
 
-{{%section%}}
- {{%column width="10%" %}}
- ![cassandra.png](/attachment_files/qsg/processing.png)
- {{%/column%}}
- {{%column width="90%" %}}
- {{% ssummary   %}} {{% /ssummary %}}
- {{%/column%}}
- {{%/section%}}
-
 
 In this part of the tutorial we will introduce you to the different processing services you can run on top of the space.
  XAP includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns.

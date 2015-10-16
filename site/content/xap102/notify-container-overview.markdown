@@ -8,15 +8,8 @@ weight: 200
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![fifo-groups.png](/attachment_files/subject/pubsub.png)
-{{%/column%}}
-{{%column width="90%" %}}
 The notify event container uses the space inherited support for notifications (continuous query) using an XAP unified event session API.
 A notify event operation is mainly used when simulating Topic semantics.
-{{%/column%}}
-{{%/section%}}
 
 <br>
 

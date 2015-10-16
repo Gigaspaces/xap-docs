@@ -7,17 +7,6 @@ parent: none
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/data-access.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{%ssummary%}}{{%/ssummary%}}
-{{%/column%}}
-{{%/section%}}
-
-
-
 This tutorial lets you experience the XAP API in an interactive way.
 Three options are presented. The first two options demonstrate the various API calls you can use to interact with the Space. The third option provides an interactive shell that lets you exercise API calls.
 

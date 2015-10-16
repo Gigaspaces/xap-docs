@@ -7,15 +7,8 @@ weight: 2000
 ---
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-![cassandra.png](/attachment_files/subject/pu.png)
-{{%/column%}}
-{{%column width="90%" %}}
 The Processing Unit is the unit of packaging and deployment in the GigaSpaces XAP platform. This section describes its directory structure, deployment descriptor and SLA definition and configuration.
-{{%/column%}}
-{{%/section%}}
+
 
 
 <br>

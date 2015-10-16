@@ -6,16 +6,6 @@ parent: other-data-access-apis.html
 weight: 300
 ---
 
-{{%section%}}
-{{%column width="10%" %}}
-<br>
-![key-value.png](/attachment_files/subject/key-value.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary %}} {{%/ssummary%}}
-{{%/column%}}
-{{%/section%}}
-
 
 
 

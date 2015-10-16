@@ -7,16 +7,8 @@ categories: XAP101SEC
 
 
 
-
-{{% section %}}
-{{% column  width="10%" %}}
-![security.png](/attachment_files/subject/security.png)
-{{% /column %}}
-
-{{% column width="90%" %}}
 This section provides an understanding of GigaSpaces XAP Security, where it fits in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data, services, or both. XAP provides a set of authorities granting privileged access to data, and for performing operations on services.
-{{% /column %}}
-{{% /section %}}
+
 
 <br>
 

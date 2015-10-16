@@ -7,16 +7,6 @@ weight: 300
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![cassandra.png](/attachment_files/subject/zone.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary   %}} {{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
-
-
 
 
 The provisioning process of processing unit instances makes no guarantee regarding which GSCs each instance is provisioned on. It makes a best effort to evenly distribute the instances across available GSCs, taking into account the number of services on each host.

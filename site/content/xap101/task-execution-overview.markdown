@@ -7,15 +7,8 @@ weight: 1400
 ---
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-![executor.png](/attachment_files/subject/executor.png)
-{{%/column%}}
-{{%column width="90%" %}}
 Task executors allow you to easily execute grid-wide tasks on the space using the XAP API.
-{{%/column%}}
-{{%/section%}}
+
 
 <br>
 

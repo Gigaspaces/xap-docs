@@ -7,14 +7,6 @@ parent: none
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![cassandra.png](/attachment_files/subject/cloud.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{%ssummary%}}{{%/ssummary%}}
-{{%/column%}}
-{{%/section%}}
 
 
 XAP 10 Comes with a built-in Cloudify recipe feature that allows the deployment and management of an elastic Data Grid onto any cloud. For more information on supported Cloud and Cloud Drivers see the [Cloudify User Guide](http://www.cloudifysource.org/guide/). The following sections will demonstrate how to compose a recipe for deploying and managing your XAP Elastic Data Grid on the Cloud.

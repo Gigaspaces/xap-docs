@@ -6,15 +6,6 @@ weight: 800
 parent: none
 ---
 
-{{%section%}}
-{{%column width="10%" %}}
-{{<wbr>}}
-![cassandra.png](/attachment_files/qsg/Events-Message.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{% ssummary   %}} {{% /ssummary %}}
-{{%/column%}}
-{{%/section%}}
 
 The Space's Messaging and Events support provides messaging handlers that simplify event driven programming.
 

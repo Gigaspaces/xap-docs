@@ -8,14 +8,7 @@ weight: 1600
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![remoting.png](/attachment_files/subject/remoting.png)
-{{%/column%}}
-{{%column width="90%" %}}
 Remoting allows you to use remote invocations of POJO services, with the space as the transport layer.
-{{%/column%}}
-{{%/section%}}
 
 <br>
 

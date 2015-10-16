@@ -13,14 +13,8 @@ parent: java-home.html
 
 
 
-{{%section%}}
-{{%column width="15%" %}}
-<img src="/attachment_files/qsg/data.png" width="100" height="100">
-{{%/column%}}
-{{%column width="85%" %}}
 In this part of the tutorial we will demonstrate how to create a space and how you can interact with it. We will also demonstrate how you can improve your space search performance by using indexes and returning partial results.
-{{%/column%}}
-{{%/section%}}
+
 
 
 # Creating a Space

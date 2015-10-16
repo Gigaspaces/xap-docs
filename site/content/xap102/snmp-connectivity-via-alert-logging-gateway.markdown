@@ -6,15 +6,6 @@ parent: administration-and-monitoring-overview.html
 weight: 400
 ---
 
-{{% section %}}
- {{% column width="10%" %}}
- ![counter-logo.jpg](/attachment_files/subject/alerts.png)
- {{% /column %}}
- {{% column width="90%" %}}
- {{% ssummary %}} {{% /ssummary %}}
- {{% /column %}}
- {{% /section %}}
-
 
 
 The XAP `Alert` interface exposes the XAP environment and the application's health state. It allows users to register listeners on one or more alert types and receive notifications once an alert has been raised or has been resolved. You may use this framework to build a custom integration with a third party monitoring products to leverage the XAP alerting system.

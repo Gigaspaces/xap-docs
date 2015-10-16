@@ -6,10 +6,10 @@ weight: 500
 parent: the-gigaspace-interface-overview.html
 ---
 
-{{% bannerleft "/attachment_files/counter-logo.jpg" %}}
+
 
 A growing number of applications such as real time ad impressions , ad optimization engines, social network , on-line gaming , need real-time counters when processing incoming streaming of events. The challenge is to update the counter in atomic manner without introducing a bottleneck event processing flow.
-{{%/bannerleft%}}
+
 
 
 {{% imagertext "/attachment_files/change-api-counter.jpg"%}}

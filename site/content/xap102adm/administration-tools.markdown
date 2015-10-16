@@ -10,9 +10,9 @@ parent: none
 
 
 
-{{% bannerleft "/attachment_files/subject/admin-api.png"%}}
+
  This guide will explain the command line interface that is used to deploy, manage and monitor Processing Units and Applications.
- {{% /bannerleft %}}
+
 
 
 <br>

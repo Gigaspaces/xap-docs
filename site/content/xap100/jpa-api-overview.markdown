@@ -7,15 +7,8 @@ weight: 200
 ---
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-![jpa.png](/attachment_files/subject/jpa.png)
-{{%/column%}}
-{{%column width="90%" %}}
 The Java Persistency API (JPA) is a Java programming language framework managing relational data in applications using Java Platform. XAP's JPA allows you to use JPA's functionality, annotations and execute JPQL queries on Space. XAP's JPA implementation is based on [OpenJPA](http://openjpa.apache.org/).
-{{%/column%}}
-{{%/section%}}
+
 
 
 <br>

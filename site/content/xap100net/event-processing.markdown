@@ -8,9 +8,8 @@ weight: 1100
 
 
 
-{{%bannerleft "/attachment_files/subject/Events-Message.png" %}}
+
 This section will guide you through event processing APIs and configuration on top of the space.
-{{%/bannerleft%}}
 
 
 

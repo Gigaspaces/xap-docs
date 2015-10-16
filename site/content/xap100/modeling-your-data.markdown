@@ -8,15 +8,8 @@ weight: 300
 
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/data-access.png)
-{{%/column%}}
-{{%column width="90%" %}}
 Modeling your objects that are used to interact with the space.
-{{%/column%}}
-{{%/section%}}
+
 
 {{<wbr>}}
 

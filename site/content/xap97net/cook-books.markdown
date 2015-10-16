@@ -6,16 +6,7 @@ weight: 300
 parent: tutorials.html
 ---
 
- {{<wbr>}}
-
- {{%section%}}
- {{%column width="10%" %}}
- ![data-access.jpg](/attachment_files/subject/data-access.png)
- {{%/column%}}
- {{%column width="90%" %}}
  Here you will find example applications that will demonstrate basic XAP features.
- {{%/column%}}
- {{%/section%}}
 
  <hr/>
 

@@ -7,16 +7,8 @@ weight: 200
 ---
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-![fifo-groups.png](/attachment_files/subject/pubsub.png)
-{{%/column%}}
-{{%column width="90%" %}}
 The notify event container implements the [IEventListenerContainer](./event-listener-container.html) interface, and uses the Space inheritance support for notifications.
 A notify event operation is mainly used when simulating Topic semantics.
-{{%/column%}}
-{{%/section%}}
 
 <br>
 

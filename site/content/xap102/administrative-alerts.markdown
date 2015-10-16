@@ -7,15 +7,6 @@ parent: administration-and-monitoring-overview.html
 ---
 
 
-{{% section %}}
- {{% column width="10%" %}}
- ![counter-logo.jpg](/attachment_files/subject/alerts.png)
- {{% /column %}}
- {{% column width="90%" %}}
- {{% ssummary %}} {{% /ssummary %}}
- {{% /column %}}
- {{% /section %}}
-
 
 
 The alert mechanism provides the ability to receive alerts on various problematic conditions at runtime by using the [Administration and Monitoring API](./administration-and-monitoring-api.html). The alerts give indication for the "health state" of the system.

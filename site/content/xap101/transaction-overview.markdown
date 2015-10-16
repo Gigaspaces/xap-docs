@@ -9,14 +9,8 @@ weight: 1000
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![transaction.png](/attachment_files/subject/transaction.png)
-{{%/column%}}
-{{%column width="90%" %}}
 The Spring Framework provides a transaction manager abstraction using the `PlatformTransactionManager` interface with several different built-in implementations, such as JDBC Data Source and JTA. GigaSpaces provides several implementations for Spring's `PlatformTransactionManager`, allowing you to use the GigaSpaces local and Jini Distributed Transaction Managers.
-{{%/column%}}
-{{%/section%}}
+
 
 <br>
 

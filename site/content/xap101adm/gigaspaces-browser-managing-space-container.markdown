@@ -10,14 +10,8 @@ weight: 300
 
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![IMG501.jpg](/attachment_files/IMG501.jpg)
-{{%/column%}}
-{{%column width="90%" %}}
 To edit a container's configuration, select a container node in the **Container Tree** panel on the left, then select the **Container Configuration** tab at the bottom of the Configuration panel.|
-{{%/column%}}
-{{%/section%}}
+
 
 # Lookup service options
 

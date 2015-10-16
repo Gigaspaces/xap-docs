@@ -7,14 +7,7 @@ weight: 1200
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![apis.png](/attachment_files/subject/apis.png)
-{{%/column%}}
-{{%column width="90%" %}}
 XAP promotes openness and interoperability, supporting common interfaces for accessing data, such as JPA, Document, SQL, JDBC, Memcached, Spring Data and a native POJO based API. You can choose the best API for the case at hand, and be able to operate on the same data regardless of the APIs you have chosen. Look at the different API pages to learn about each and every use case for data accessing on XAP.
-{{%/column%}}
-{{%/section%}}
 
 
 <hr>

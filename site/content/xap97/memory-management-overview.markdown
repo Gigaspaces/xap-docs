@@ -6,20 +6,7 @@ parent: administrators-guide.html
 weight: 240
 ---
 
-
-{{<wbr>}}
-
-
-{{% section %}}
-{{% column  width="10%" %}}
-
-![space-document.png](/attachment_files/subject/cache-eviction.png)
-{{% /column %}}
-
-{{% column width="90%" %}}
 In this section we will explain the different Space cache policies, memory usage, and rules for exceeding physical memory capacity.
-{{% /column %}}
-{{% /section %}}
 
 
 

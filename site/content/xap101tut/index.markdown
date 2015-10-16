@@ -4,16 +4,8 @@ title:  Tutorials
 categories:  XAP101TUT
 ---
 
-{{<wbr>}}
-
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/data-access.png)
-{{%/column%}}
-{{%column width="90%" %}}
 This Tutorial provides a high-level overview of the GigaSpaces XAP platform. Hands on examples are provided to demonstrate the core concepts and API’s. The primary people who can benefit from this tutorial, are architects and developers who wish to build scaled-out applications with GigaSpaces XAP.
-{{%/column%}}
-{{%/section%}}
+
 
 
 <br>

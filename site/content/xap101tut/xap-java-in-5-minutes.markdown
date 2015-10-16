@@ -7,15 +7,6 @@ weight: 400
 ---
 
 
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/data-access.png)
-{{%/column%}}
-{{%column width="90%" %}}
-{{%ssummary%}}{{%/ssummary%}}
-{{%/column%}}
-{{%/section%}}
-
 
 This tutorial explains how to deploy and use a XAP [Data Grid](/product_overview/the-in-memory-data-grid.html) from a Java client application.
 

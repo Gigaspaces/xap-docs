@@ -7,7 +7,7 @@ weight: 400
 ---
 
 Several extensions to the XAP API have been introduced to provide a more natural way of combining Scala with XAP.
- 
+
 
 <hr/>
 

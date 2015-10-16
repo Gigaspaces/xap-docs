@@ -6,16 +6,7 @@ parent: the-processing-unit-overview.html
 weight: 600
 ---
 
-<br>
-
-{{% section %}}
-{{% column width="10%" %}}
-![counter-logo.jpg](/attachment_files/subject/deploy.png)
-{{% /column %}}
-{{% column width="90%" %}}
 This section describes the various options to debug and run your processing units.
-{{% /column %}}
-{{% /section %}}
 
 
 <br>

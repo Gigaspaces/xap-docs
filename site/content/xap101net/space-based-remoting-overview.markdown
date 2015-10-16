@@ -7,15 +7,8 @@ weight: 1300
 ---
 
 
-
-{{%section%}}
-{{%column width="10%" %}}
-![remoting.png](/attachment_files/subject/remoting.png)
-{{%/column%}}
-{{%column width="90%" %}}
 Remoting allows you to use remote invocations of PONO services, with the space as the transport layer.
-{{%/column%}}
-{{%/section%}}
+
 
 <br>
 

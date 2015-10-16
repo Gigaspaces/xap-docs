@@ -6,17 +6,8 @@ parent: data-grid-clustering.html
 weight: 400
 ---
 
-{{<wbr>}}
-
-{{%section%}}
-{{%column width="10%" %}}
-![replication.png](/attachment_files/subject/replication.png)
-{{%/column%}}
-{{%column width="90%" %}}
 This section gives a detailed description of the Space's replication mechanism, and how to configure and optimize it.
-{{%/column%}}
-{{%/section%}}
-
+ 
 
 
 <hr/>

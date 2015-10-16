@@ -8,10 +8,9 @@ weight: 900
 
 
 
-{{%  bannerleft "/attachment_files/subject/monitoring.png" %}}
 
  In this guide you will find information on how to monitor XAP and your deployed application.
- {{% /bannerleft %}}
+
 
 
 <br>

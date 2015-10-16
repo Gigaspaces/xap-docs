@@ -6,17 +6,8 @@ parent: none
 weight: 50
 ---
 
-<br>
-
-{{%section%}}
-{{%column width="10%" %}}
-![data-access.jpg](/attachment_files/subject/data-access.png)
-{{%/column%}}
-{{%column width="90%" %}}
-<br>
 Throughout this tutorial we will create and use a simple internet payment service application to demonstrate the basic XAP features.
-{{%/column%}}
-{{%/section%}}
+
 
 
 {{%section%}}

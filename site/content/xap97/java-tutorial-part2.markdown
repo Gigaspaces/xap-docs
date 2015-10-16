@@ -10,15 +10,8 @@ parent: java-home.html
 {{%ssummary%}}{{%/ssummary%}}
 
 
-{{%section%}}
-{{%column width="15%" %}}
-{{<wbr>}}
-<img src="/attachment_files/qsg/grid.gif" width="100" height="100">
-{{%/column%}}
-{{%column width="85%" %}}
 In Part I you have learned about XAP's capabilities as a data store. In this part of the tutorial we will show you how you can deploy an In Memory Data Grid (IMDG) that provides scalability and failover. XAP can be used as a scalable application platform on which you can host your Java application, similar to JEE and web containers. However, GigaSpaces XAP's IMDG can also be embedded within another Java application which is not hosted within the XAP platform. In this part of the tutorial we will show you how to start a data grid and how you can interact with it.
-{{%/column%}}
-{{%/section%}}
+
 
 
 

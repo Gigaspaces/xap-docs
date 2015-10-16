@@ -8,9 +8,9 @@ parent: none
 
 
 
-{{%bannerleft "/attachment_files/subject/replication.png" %}}
+
 This section describes in detail how In-Memory-Data-Grid clustering works. It covers fail-over, load-balancing and replication facilities.
-{{%/bannerleft%}}
+
 
 
 

@@ -7,9 +7,9 @@ weight: 10000
 ---
 
 
-{{%bannerleft "/attachment_files/subject/spring.png" %}}
+
 All XAP components can be wired and configured with the application using corresponding [Spring Beans](http://spring.io/).
-{{%/bannerleft%}}
+
 
 
 # The XAP Spring Integration supports:

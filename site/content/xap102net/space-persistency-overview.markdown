@@ -8,16 +8,8 @@ weight: 900
 
 
 
-
-{{% section %}}
-{{% column  width="10%" %}}
-![space-document.png](/attachment_files/subject/persistence.png)
-{{% /column %}}
-
-{{% column width="90%" %}}
 XAP provides advanced persistency capabilities for the space architecture.
-{{% /column %}}
-{{% /section %}}
+
 
 <br>
 

@@ -6,14 +6,6 @@ parent: indexing-overview.html
 weight: 500
 ---
 
-{{% section %}}
-{{% column width="10%" %}}
-![counter-logo.jpg](/attachment_files/subject/unique-index.png)
-{{% /column %}}
-{{% column width="90%" %}}
-{{% ssummary %}} {{% /ssummary %}}
-{{% /column %}}
-{{% /section %}}
 
 Unique constraints can be defined for an attribute or attributes of a space class. This will ensure that only one instance of the space class exists in the space with the specific attribute value. These indexes are applicable to all types of index; Basic, Extended, Compound and Collection indices.
 

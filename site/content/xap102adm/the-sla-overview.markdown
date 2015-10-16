@@ -8,9 +8,8 @@ parent: none
 
 
 
-{{%bannerleft "/attachment_files/subject/pu.png" %}}
+
 The XAP runtime environment (Service Grid) provides SLA-driven capabilities via the [GSM](/product_overview/service-grid.html#gsm) and the [GSC](/product_overview/service-grid.html#gsc) runtime components. The GSC is responsible for running one or more Processing Units; while the GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available GSCs.
-{{%/bannerleft%}}
 
 
 

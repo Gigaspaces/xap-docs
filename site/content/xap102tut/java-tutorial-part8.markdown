@@ -7,9 +7,9 @@ parent: none
 ---
 
 
-{{%bannerleft "/attachment_files/qsg/web.png" %}}
+
 In this part of the tutorial we will show you how you can deploy a standard WAR file onto the Service Grid.
-{{%/bannerleft %}}
+
 
 
 

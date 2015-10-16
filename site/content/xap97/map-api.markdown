@@ -9,16 +9,7 @@ weight: 300
 {{% ssummary %}} {{%/ssummary%}}
 
 
-{{<wbr>}}
-
-{{%section%}}
-{{%column width="10%" %}}
-![key-value.png](/attachment_files/subject/key-value.png)
-{{%/column%}}
-{{%column width="90%" %}}
 XAP allows applications to interact with the space and cache data using the Map API (JCache) or a [HashTable API](http://docs.oracle.com/javase/6/docs/api/java/util/Hashtable.html). Accessing the space via the Map API can be done using the [GigaMap](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaMap.html) interfaces. It includes enhanced options such as declarative transactions support, coherent runtime exception hierarchy, timeout operations , TTL, locking and versioning.
-{{%/column%}}
-{{%/section%}}
 
 
 

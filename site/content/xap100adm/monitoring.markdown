@@ -6,16 +6,7 @@ parent: none
 weight: 900
 ---
 
-<br>
-
-{{% section %}}
- {{% column width="10%" %}}
- ![counter-logo.jpg](/attachment_files/subject/monitoring.png)
- {{% /column %}}
- {{% column width="90%" %}}
  In this guide you will find information on how to monitor XAP and your deployed application.
- {{% /column %}}
- {{% /section %}}
 
 <br>
 

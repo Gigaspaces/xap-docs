@@ -6,16 +6,6 @@ parent: transaction-overview.html
 weight: 200
 ---
 
-{{% section %}}
-{{% column width="10%" %}}
-{{<wbr>}}
-![counter-logo.jpg](/attachment_files/subject/locking.png)
-{{% /column %}}
-{{% column width="90%" %}}
-{{% ssummary %}} {{% /ssummary %}}
-{{% /column %}}
-{{% /section %}}
-
 
 Locking of objects occurs in multi-user systems to preserve the integrity of changes, so that changes made by one process do not accidentally overwrite changes made by another process.
 GigaSpaces provides two strategies for locking objects: Optimistic and pessimistic. Both of these are discussed below. The focus is on optimistic locking, the preferred strategy in the GigaSpaces context.

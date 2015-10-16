@@ -9,14 +9,8 @@ parent: the-gigaspace-interface-overview.html
  {{% ssummary %}} {{% /ssummary %}}
 
 
-{{% section %}}
-{{% column width="10%" %}}
-![counter-logo.jpg](/attachment_files/counter-logo.jpg)
-{{% /column %}}
-{{% column width="90%" %}}
 A growing number of applications such as real time ad impressions , ad optimization engines, social network , on-line gaming , need real-time counters when processing incoming streaming of events. The challenge is to update the counter in atomic manner without introducing a bottleneck event processing flow.
-{{% /column %}}
-{{% /section %}}
+
 
 XAP introducing Counter functionality via the `ISpaceProxy.Change` API. It allows you to increment or decrement an Numerical field within your Space object (PONO or Document). This change may operate on a numeric property only (byte,short,int,long,float,double) or their corresponding Boxed variation. To maintain a counter you should use the Change operation with the `ChangeSet` increment/decrement method that adds/subtract the provided numeric value to the existing counter.
 
