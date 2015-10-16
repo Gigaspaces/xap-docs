@@ -31,7 +31,9 @@ Creating a processing unit is simple:
 </configuration>
 ```
 
-{{% note title="Upgrading from older versions The processing unit configuration scheme has been simplified in version 10.0, and the previous scheme is still supported for backwards compatibility but it depracated. If you're upgrading from older versions it is recommended to update your PU configuration accordingly.{{% /note "%}}
+{{% note%}}
+Upgrading from older versions The processing unit configuration scheme has been simplified in version 10.0, and the previous scheme is still supported for backwards compatibility but it depracated. If you're upgrading from older versions it is recommended to update your PU configuration accordingly.
+{{% /note %}}
 
 # Embedded Spaces
 
