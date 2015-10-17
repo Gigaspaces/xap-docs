@@ -6,8 +6,6 @@ parent: modeling-your-data.html
 weight: 110
 ---
 
-<br>
-
 The XAP API supports class  and properties decorations with POJOs. These can be specified via annotations on the space class source itself. You can define common behavior for all class instances, and specific behavior for class fields.
 
 <br>

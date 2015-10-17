@@ -78,7 +78,8 @@ public interface IDataProcessor {
 }
 ```
 
-{{% exclamation %}} The `Data` object should be `Serializable`, or better yet, `Externalizable` (for better performance).
+{{% note %}} The `Data` object should be `Serializable`, or better yet, `Externalizable` (for better performance).
+{{% /note %}}
 
 # Implementing the Contract
 

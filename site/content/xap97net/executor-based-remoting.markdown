@@ -30,7 +30,8 @@ public interface IDataProcessor
 }
 ```
 
-{{% exclamation %}} The `Data` object should be `Serializable`
+{{% note %}} The `Data` object should be `Serializable`
+{{% /note %}}
 
 # Implementing the Contract
 
