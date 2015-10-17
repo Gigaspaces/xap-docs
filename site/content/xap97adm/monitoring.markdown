@@ -6,8 +6,6 @@ parent: none
 weight: 850
 ---
 
-{{<wbr>}}
-
 In this guide you will find information on how to monitor XAP and your deployed application.
 
 <hr/>

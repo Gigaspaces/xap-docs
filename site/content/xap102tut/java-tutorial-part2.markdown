@@ -39,8 +39,8 @@ GS_HOME/bin/gs-agent.sh
 
 
 
-{{%section%}}
-{{%column width="60%" %}}
+{{%imagertext  "/attachment_files/gs_runtime.jpg"%}}
+
 This will start all the infrastructure required to run the data grid. The following components are started: 
 
 - Grid Service Manager (GSM)
@@ -50,17 +50,15 @@ The Grid Service Manager is the component which manages the deployment and life 
 - Grid Service Container (GSC)
 The Grid Service Container provides an isolated runtime for one (or more) processing unit instance and exposes its state to the GSM.
 
-{{%/column%}}
-{{%column width="30%" %}}
-<img src="/attachment_files/gs_runtime.jpg"  >
-{{%/column%}}
-{{%/section%}}
+
 
 - The Lookup Service (LUS)
 The Lookup Service provides a mechanism for services to discover each other. Each service can query the lookup service for other services, and register itself in the lookup service so other services may find it. For example, the GSM queries the LUS to find active GSCs.
 
 - Grid Service Agent (GSA)
 The GSA is a process manager that can spawn and manage service grid processes (Operating System level processes) such as the Grid Service Manager, The Grid Service Container, and The Lookup Service. Using the agent, you can bootstrap the entire data grid very easily, and start and stop additional GSCs, GSMs and lookup services at will. Usually, a single GSA is run per machine.
+
+{{%/imagertext%}}
 
 {{%learn "/product_overview/service-grid.html"%}}
 

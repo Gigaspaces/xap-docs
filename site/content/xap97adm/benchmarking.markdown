@@ -6,7 +6,7 @@ parent: none
 weight: 950
 ---
 
-{{<wbr>}}
+
 
 This section will introduce you to tools and utilities for benchmarking your XAP applications.
 

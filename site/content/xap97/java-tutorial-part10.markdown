@@ -10,14 +10,7 @@ parent: java-home.html
 
 
 
-{{%section%}}
-{{%column width="15%" %}}
-<img src="/attachment_files/qsg/security.png" width="100" height="100">
-{{%/column%}}
-{{%column width="85%" %}}
 In this part of the tutorial we will introduce you to XAP security, where it fits in the XAP architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data and services.
-{{%/column%}}
-{{%/section%}}
 
 
 

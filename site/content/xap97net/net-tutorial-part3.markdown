@@ -11,17 +11,10 @@ parent: net-home.html
 {{%ssummary%}} {{%/ssummary%}}
 
 
-
-{{%section%}}
-{{%column width="15%" %}}
-<img src="/attachment_files/qsg/processing.png" width="100" height="100">
-{{%/column%}}
-{{%column width="85%" %}}
 In this part of the tutorial we will introduce you to the different processing services you can run on top of the space.
  XAP includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns.
  It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications.
-{{%/column%}}
-{{%/section%}}
+
 
 # Task Execution
 Task Execution provides a fine-grained API for performing ad-hoc parallel execution of user defined tasks. This framework should be used in the following scenarios:

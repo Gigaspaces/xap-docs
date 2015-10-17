@@ -12,15 +12,8 @@ parent: net-home.html
  
 
 
-{{%section%}}
-{{%column width="15%" %}}
-<img src="/attachment_files/qsg/Events-Message.png" width="100" height="100">
-{{%/column%}}
-{{%column width="85%" %}}
 The Space's Messaging and Events support provides messaging handlers that simplify event driven programming. Events are generated when objects are written, updated or taken from the space. With this framework you select events based on its content and designate a method that would be triggered as a result of that event, all through a simple and non-intrusive configuration. There are two main event handlers that are available:
-{{%/column%}}
 
-{{%/section%}}
 
 # Notify Container
 The Notify Container is the equivalent of a publish/subscribe semantics. An event listener is registered with the space that declares the type of events it is interested in. Upon receiving an event the listener is triggered. In this case all registered matching subscribers will be notified at the same time. 

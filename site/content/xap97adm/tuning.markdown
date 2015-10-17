@@ -6,7 +6,6 @@ parent: none
 weight: 900
 ---
 
-{{<wbr>}}
 
 In this guide you will find information on how to tune your XAP application. Amongst the topics covered are JVM tuning and thread usage.
 

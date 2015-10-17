@@ -6,16 +6,7 @@ parent: none
 weight: 600
 ---
 
-{{<wbr>}}
-
-{{%section%}}
-{{%column width="15%" %}}
-<img src="/attachment_files/subject/MonitoringAndManagement.png" width="80" height="80">
-{{%/column%}}
-{{%column width="85%" %}}
 XAP Management Center is a GUI that allows you to view spaces, containers, and clusters and configure them, using the Space Browser tab. You can also deploy and manage services using the Deployments tab.
-{{%/column%}}
-{{%/section%}}
 
 <hr/>
 
