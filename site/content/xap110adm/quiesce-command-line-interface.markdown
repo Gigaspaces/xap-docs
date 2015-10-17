@@ -32,7 +32,7 @@ gs> quiesce [options] PU_NAME
 Sends a quiesce request to the GSM for the provided processing unit's name.
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 One option is to specify the processing unit's name in the command:
 
@@ -67,7 +67,7 @@ Quiesce command completed successfully [token=ee16f577-92df-430b-afc7-2dd9f2c169
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Option|Description|Value Format|
@@ -95,7 +95,7 @@ gs> unquiesce [options] PU_NAME
 Sends an unquiesce request to the GSM for the provided processing unit's name.
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 Like the quiesce command, the unquiesce command can be executed with a processing unit name;
 
@@ -130,7 +130,7 @@ Unquiesce command completed successfully
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Option|Description|Value Format|

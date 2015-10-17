@@ -8,7 +8,7 @@ weight: 110
 
 {{% ssummary%}}{{% /ssummary %}}
 
-# Large Cluster Considerations
+# Considerations
 
 
 

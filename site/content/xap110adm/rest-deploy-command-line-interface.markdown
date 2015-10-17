@@ -33,7 +33,7 @@ The processing unit's name will be `spacename`-rest unless the -puname [name] op
 
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 
 The following deploys rest processing unit and starts a rest service on port 8888 that connects to mySpace.
@@ -45,7 +45,7 @@ The following deploys rest processing unit and starts a rest service on port 888
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Syntax|Description|

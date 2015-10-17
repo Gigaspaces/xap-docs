@@ -278,7 +278,7 @@ This CLI command allows you to login to secured services: GSM, GSC and spaces.
 Each time you invoke this command, you are required afterwards to type in the user name and password (if not supplied in the command). The user name and password are used in order to attempt to authenticate secured services before invoking any operation for them ( e.g. pudeploy, undeploy, space clear, space connections ... ).
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
     gs> login
     Please enter user name:
@@ -370,7 +370,7 @@ See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html)
 {{% /refer %}}
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 
 Displaying Current System Variables
@@ -426,7 +426,7 @@ The `stats` command provides statistics from the Grid Service Container (GSC) an
 None.
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
     gs> stats
 

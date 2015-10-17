@@ -28,7 +28,7 @@ To avoid such behavior, you should start your GSCs with zones and specifies thes
 {{% /note %}}
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 
 The following deploys the data-app example application (which includes a feeder and a processor).
@@ -113,7 +113,7 @@ You can also use the [shared machine provisioning]({{%currentjavaurl%}}/elastic-
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Option|Description|Value Format|
@@ -143,7 +143,7 @@ Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.
 
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 The following undeploys the data-app example application (which includes a feeder and a processor).
 
@@ -153,7 +153,7 @@ The following undeploys the data-app example application (which includes a feede
 
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Option|Description|Value Format|
@@ -189,7 +189,7 @@ The options' order is important as some overrides others
 {{% /note %}}
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 The following deploys an elastic space named mySpace with memory-capacity-per-container=32m and number-of-partitions=8.
 
@@ -211,7 +211,7 @@ The following specifies command line arguments.
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Option|Description|Value Format|
@@ -258,7 +258,7 @@ The options' order is important as some overrides others
 {{% /note %}}
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 The following deploys an elastic stateless pu from file.
 
@@ -277,7 +277,7 @@ The following deploys a secured stateful pu with -puname option.
 
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Option|Description|Value Format|
@@ -321,7 +321,7 @@ The following provisioning properties may be used with the `-dedicated-machine-p
 
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 The following deploys an elastic space named mySpace with zones [zone1,zone2] while taking into consideration a reserved 1536m memory per machine.
 
@@ -331,7 +331,7 @@ The following deploys an elastic space named mySpace with zones [zone1,zone2] wh
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Syntax|Description|
@@ -350,7 +350,7 @@ The following provisioning properties may be used with the `-shared-machine-prov
 
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 The following deploys an elastic space named mySpace with zones [zone1,zone2] while taking into consideration a reserved 1536m memory per machine.
 
@@ -360,7 +360,7 @@ The following deploys an elastic space named mySpace with zones [zone1,zone2] wh
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Syntax|Description|
@@ -380,7 +380,7 @@ The following deploys an elastic space named mySpace with zones [zone1,zone2] wh
 The following scale properties may be used with the `-scale [scale properties]` option in `deploy-elastic-space` and `deploy-elastic-pu` commands.
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 The following deploys an elastic stateful pu from file with `manual` scale strategy and `memory-capacity=128m`.
 
@@ -395,7 +395,7 @@ The following deploys an elastic space named `mySpace` with `manual` scale strat
 
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Syntax|Description|
@@ -429,7 +429,7 @@ gs> scale [options] -name [processing unit name]
 Easily scale an already deployed elastic processing unit.
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
     gs> scale -name myspace -number-of-cpu-cores 2
 
@@ -439,7 +439,7 @@ Easily scale an already deployed elastic processing unit.
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Option|Description|Value Format|
@@ -466,7 +466,7 @@ gs> undeploy-pu pu_name
 Undeploys a processing unit from the service grid, while respecting pu dependency order.
 
 {{%accordion%}}
-{{%accord title="**<u>Example</u>**"%}}
+{{%accord title="Example"%}}
 
 The following undeploys the mySpace processing unit.
 
@@ -476,7 +476,7 @@ The following undeploys the mySpace processing unit.
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="**<u>Options</u>**"%}}
+{{%accord title="Options"%}}
 
 
 |Option|Description|Value Format|

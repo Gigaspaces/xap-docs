@@ -20,7 +20,7 @@ weight: 400
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 ```java
 // Service Implementation
@@ -65,7 +65,7 @@ public interface MyService {
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 ```java
 // Client remoting proxy
@@ -97,7 +97,7 @@ public class DataRemoting {
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 ```java
 // Service Implementation

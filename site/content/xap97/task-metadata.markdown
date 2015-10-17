@@ -18,7 +18,7 @@ weight: 400
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 ```java
 public class MyTask implements Task<Integer>  {
@@ -47,7 +47,7 @@ public class MyTask implements Task<Integer>  {
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 ```java
 public class MyTask implements Task<Integer>  {

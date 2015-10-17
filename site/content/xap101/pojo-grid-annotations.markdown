@@ -164,7 +164,7 @@ There is no need to have a setter for the `GigaSpace` instance, and by annotatin
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 ```java
 public class Process {

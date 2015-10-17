@@ -70,7 +70,7 @@ Some Text goes here
 
 # Complexe Accordion
 {{%accordion%}}
-{{%accord title="**Example**"  %}}
+{{%accord title="Example"  %}}
 
 
 The following deploys a processing unit jar file named `data-processor.jar` using the `sync_replicated` cluster schema with 2 instances (`total_members`).

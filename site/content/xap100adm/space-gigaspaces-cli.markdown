@@ -43,7 +43,7 @@ Using `-c` (or `-cluster`) with a URL of a clustered space clears **all** cluste
 | `help` / `h` | Prints help -- the command's usage and options. | |
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 Tbe following prints a numbered list of spaces, and you can choose a space to clear by its number, or `all` (clears all spaces).
 
@@ -91,7 +91,7 @@ Using `-c` (or `-cluster`) with a URL of a clustered space clears **all** cluste
 | `help` / `h` | Prints help -- the command's usage and options. | |
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 Tbe following prints a numbered list of spaces, and you can choose a space to clear by its number, or `all` (clears all spaces).
 
     space clear
@@ -122,7 +122,7 @@ This command prints a list of all cluster members (spaces belonging to the speci
 
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 The following prints a list of all members in a cluster named `test`:
 
@@ -227,7 +227,7 @@ The `space copy` command is relevant only for spaces that are in a started mode.
 | `help` \ `h` | Prints help -- the command's usage and options. | |
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 The following prints a list of all members in a cluster named `test`:
 
@@ -274,7 +274,7 @@ Using `\-c` (or `\-cluster`) with a URL of a clustered space lists **all** clust
 | `help` / `h` | Prints help -- the command's usage and options. | |
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 The following lists all spaces in the network:
 
@@ -332,7 +332,7 @@ Using `-c` (or `-cluster`) with a URL of a clustered space pings **all** cluster
 | `help` \ `h` | Prints help -- the command's usage and options. | |
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
 The following, writes a set of message objects to the space, and reads them back:
 
@@ -366,7 +366,7 @@ You can query spaces in a specific container (see the options below) -- specifyi
 | `help` \ `h` | Prints help -- the command's usage and options. | |
 
 {{%accordion%}}
-{{%accord title="**Example**"%}}
+{{%accord title="Example"%}}
 
     space sql -url rmi://localhost:10098/mySpace_container/mySpace -query select uid,* from com.j_spaces.examples.benchmark.messages.Message
     WHERE rownum<10
