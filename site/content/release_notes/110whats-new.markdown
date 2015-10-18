@@ -15,6 +15,8 @@ It's not an exhaustive list of all new features. For a full change log for 11.0 
 
 - [GeoSpatial Queries](#geo)
 
+- [RocksDB](#rocks)
+
 {{%/panel%}}
 
 <br>
@@ -28,4 +30,15 @@ GeoSpatial queries make use of geometry data types such as points, circles and p
 
 {{%refer%}}
 [GeoSpatial Queries](/xap110/geospatial.html)
+{{%/refer%}}
+
+
+{{%anchor rocks%}}
+
+# RocksDB
+
+XAP is using [RocksDB](http://rocksdb.org/) an embeddable persistent key-value store for fast storage. Keys and values are arbitrary byte streams.
+
+{{%refer%}}
+[RocksDB](/xap110adm/memoryxtend-rocksdb-ssd.html)
 {{%/refer%}}
