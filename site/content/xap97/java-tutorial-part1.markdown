@@ -629,7 +629,7 @@ Lets look at a Spring configuration file that represents the creation of an embe
 	xsi:schemaLocation="
    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-   http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{% latestxaprelease %}}/core/openspaces-core.xsd>
+   http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{% latestxaprelease %}}/core/openspaces-core.xsd">
 
 	<!-- Scan the packages for annotations / -->
 	<context:component-scan base-package="xap" />
