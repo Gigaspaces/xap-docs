@@ -92,7 +92,7 @@ The first query will use lucene spatial index to perform the query while the sec
 
 {{<wbr>}}
 
-# Usage and Examples
+# Examples
 
 Given the pojo:
 

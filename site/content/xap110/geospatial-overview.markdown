@@ -6,5 +6,4 @@ parent: none
 weight: 1200
 ---
 
-# Introduction
-
+This page explains about GeoSpatial in general and how XAP can help using the GeoSpatial Queries.
