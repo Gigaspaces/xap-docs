@@ -28,9 +28,6 @@ The XAP runtime environment (Service Grid) provides Service Level Agreement driv
 [Memory Management](./memory-management-overview.html){{<wbr>}}
 In this section we will explain the different Space cache policies, memory usage, and rules for exceeding physical memory capacity.
 
-[Deploying onto a cloud](./deploying-your-application-on-a-cloud.html){{<wbr>}}
-How to Deploy an application with Data Grid and Processing Units on any Cloud using a recipe
-
 [Logging](./logging-overview.html){{<wbr>}}
 This section explains how you can configure logging with XAP. We will show you how you can format the log output, choose file names and rollover policies.
 

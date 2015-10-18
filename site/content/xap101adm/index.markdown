@@ -30,8 +30,7 @@ In this section we will explain the different Space cache policies, memory usage
 [MemoryXtend](./memoryxtend.html){{<wbr>}}
 XAP 10 introduces a new Storage interface allowing Blob/Block/external type storage to act as a natural memory space for the IMDG.
 
-[Deploying onto a cloud](./deploying-your-application-on-a-cloud.html){{<wbr>}}
-How to Deploy an application with Data Grid and Processing Units on any Cloud using a recipe
+
 
 [Logging](./logging-overview.html){{<wbr>}}
 This section explains how you can configure logging with XAP. We will show you how you can format the log output, choose file names and rollover policies.

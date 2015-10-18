@@ -22,8 +22,7 @@ This section describes the various deployment options to debug and run your proc
 - [Elastic Processing Unit](./elastic-processing-unit.html){{<wbr>}}
 Explains how to deploy and manage an Elastic Processing Unit (EPU)
 
-- [Deploying onto a cloud](./deploying-your-application-on-a-cloud.html){{<wbr>}}
-How to Deploy an application with Data Grid and Processing Units on any Cloud using a recipe
+
 
 
 - [Obtaining Cluster information](./obtaining-cluster-information.html){{<wbr>}}
