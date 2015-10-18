@@ -3,12 +3,15 @@ type: post110
 title:  GeoSpatial Queries
 categories: XAP110
 parent: none
-weight: 1200
+weight: 850
 ---
 
-<br>
 
-Geospatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
+![local_cache.jpg](/attachment_files/under-construction.jpeg)
+
+
+
+GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
 
 <br>
 

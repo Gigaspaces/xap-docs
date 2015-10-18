@@ -33,6 +33,9 @@ In this section we will show you how to create and configure a Space and how to 
 [Querying the Space](./querying-the-space.html){{<wbr>}}
 This section explains the various mechanisms offered by GigaSpaces XAP to query the space for data.
 
+[Geospatial Queries](./geospatial.html){{<wbr>}}
+GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
+
 [Indexing](./indexing-overview.html){{<wbr>}}
 To improve performance, it is possible to index one or more properties.
 
@@ -41,6 +44,8 @@ Transaction concept and API.
 
 [Space Persistency](./space-persistency-overview.html){{<wbr>}}
 XAP provides advanced persistency capabilities for the space architecture.
+
+
 
 [Other Data Access API's](./other-data-access-apis.html){{<wbr>}}
 XAP promotes openness and interoperability, supporting common interfaces for accessing data, such as JPA, Document, SQL, JDBC, Memcached and a native POJO based API.

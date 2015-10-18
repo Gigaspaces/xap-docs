@@ -3,7 +3,7 @@ type: post110
 title:  API and Usage
 categories: XAP110
 parent: geospatial.html
-weight: 1200
+weight: 200
 ---
 
 # Configuration
