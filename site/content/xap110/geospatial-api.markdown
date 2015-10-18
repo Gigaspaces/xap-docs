@@ -6,6 +6,8 @@ parent: geospatial.html
 weight: 200
 ---
 
+![local_cache.jpg](/attachment_files/under-construction.jpeg)
+
 # Configuration
 
 ### Lucene Root Directory

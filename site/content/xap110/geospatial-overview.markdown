@@ -7,5 +7,7 @@ weight: 100
 ---
 
 
+![local_cache.jpg](/attachment_files/under-construction.jpeg)
+
 
 This page explains about GeoSpatial in general and how XAP can help using the GeoSpatial Queries.
