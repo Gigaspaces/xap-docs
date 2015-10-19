@@ -6,8 +6,6 @@ package xapdoc.parser;
  * Date: 10/18/15
 */
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,67 +18,36 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-
-
 public class MenuTree {
 
-
-    private static final String INPUT_PATH  = "/Users/chrisroffler/Documents/xap-docs/site/content/";
-
-    private static final String OUTPUT_PATH = "/Users/chrisroffler/Documents/xap-docs/site/themes/hugo-bootswatch/layouts/partials/sidenav-";
-
-
+	private static String BASE_PATH;
+	
+	private static final String[] dirs = new String[] {
+		"product_overview", "faq", "api_documentation", "release_notes", "howto", "videos", "sbp",
+		"xap97",  "xap97net",  "xap97adm", 
+		"xap100", "xap100net", "xap100adm", "xap100sec", 
+		"xap101", "xap101net", "xap101adm", "xap101sec", "xap101tut", "xap101nettut", 
+		"xap102", "xap102net", "xap102adm", "xap102sec", "xap102tut", "xap102nettut", 
+		"xap110", "xap110net", "xap110adm", "xap110sec", "xap110tut", "xap110nettut"
+	};
 
     public static void main(String[] args) throws Exception {
+		if (args.length < 1) {
+			System.out.println("Incorrect number of arguments: " + args.length);			
+			System.exit(1);
+		}
 
-        List<String> dirs = new ArrayList<String>();
-        dirs.add("xap97");
-        dirs.add("xap97net");
-        dirs.add("xap97adm");
-
-        dirs.add("xap100");
-        dirs.add("xap100net");
-        dirs.add("xap100adm");
-        dirs.add("xap100sec");
-
-        dirs.add("xap101");
-        dirs.add("xap101net");
-        dirs.add("xap101adm");
-        dirs.add("xap101sec");
-
-        dirs.add("xap102");
-        dirs.add("xap102net");
-        dirs.add("xap102adm");
-        dirs.add("xap102sec");
-
-        dirs.add("xap110");
-        dirs.add("xap110net");
-        dirs.add("xap110adm");
-        dirs.add("xap110sec");
-
-        dirs.add("product_overview");
-        dirs.add("faq");
-        dirs.add("api_documentation");
-        dirs.add("release_notes");
-        dirs.add("sbp");
-        dirs.add("howto");
-        dirs.add("videos");
-
-        dirs.add("xap101tut");
-        dirs.add("xap102tut");
-        dirs.add("xap110tut");
-
-        dirs.add("xap101nettut");
-        dirs.add("xap102nettut");
-        dirs.add("xap110nettut");
-
+		// e.g. BASE_PATH = "/Users/chrisroffler/Documents/xap-docs";
+		BASE_PATH = args[0];
+		System.out.println("Starting with base path" + BASE_PATH);			
+		long startTime = System.currentTimeMillis();
         // Read all pages
         for (String path : dirs) {
             Map<String, Page> originalList = new HashMap<String,Page>();
 
-            String str = INPUT_PATH + path;
+            String str = BASE_PATH + "/site/content/" + path;
 
-            System.out.println(str);
+            //System.out.println(str);
 
             File folder = new File(str);
             File[] listOfFiles = folder.listFiles();
@@ -94,7 +61,7 @@ public class MenuTree {
                     Page p = createPage(lines);
                     p.setFileName(fileName);
 
-                    originalList.put(StringUtils.replace(fileName, ".markdown", ".html"), p);
+                    originalList.put(fileName.replace(".markdown", ".html"), p);
                 }
             }
 
@@ -129,7 +96,7 @@ public class MenuTree {
             PrintWriter writer = null;
             try {
 
-                String fileName = OUTPUT_PATH + path + ".html";
+                String fileName = BASE_PATH + "/site/themes/hugo-bootswatch/layouts/partials/sidenav-" + path + ".html";
                 writer = new PrintWriter(fileName, "UTF-8");
 
                 writer.println(line);
@@ -139,8 +106,10 @@ public class MenuTree {
                 }
             }
 
-           System.out.println("Processed :" + path);
+           System.out.println("Processed: " + path);
         }
+		long duration = System.currentTimeMillis() - startTime;
+        System.out.println("Finished generating navbar (duration=" + duration + "ms)");
     }
 
     private static String createMenu(TreeSet<Page> pages) {
@@ -155,7 +124,7 @@ public class MenuTree {
     }
 
     public static String createMenuItem(String line, Page page) {
-        String fileName = StringUtils.replace(page.getFileName(), ".markdown", ".html");
+        String fileName = page.getFileName().replace(".markdown", ".html");
 
         TreeSet<Page> children = page.getChildren();
 
@@ -182,7 +151,7 @@ public class MenuTree {
     static void checkPages(Collection<Page> pages) throws Exception {
 
         for (Page p : pages) {
-            if (StringUtils.contains(p.getFileName(), "--")) {
+            if (p.getFileName().contains("--")) {
                 throw new Exception("File names can't conatin more then one '-' :"+p.getFileName());
             }
         }
@@ -191,42 +160,28 @@ public class MenuTree {
 
     static Page createPage(List<String> lines) {
 
+        Page p = new Page();
         int counter = 0;
 
-        Page p = new Page();
-
         for (String line : lines) {
-            if (StringUtils.contains(line, "---")) {
-                counter++;
-            }
+            if (line.contains("title:"))
+                p.setTitle(substringAfter(line, "title:").trim());
 
-            if (StringUtils.contains(line, "title:")) {
-                String str = StringUtils.substringAfter(line, "title:");
-                str = StringUtils.trim(str);
-                p.setTitle(str);
-            }
+            if (line.contains("parent:") && !line.contains("none"))
+                p.setParent(substringAfter(line, "parent:").trim());
 
-            if (StringUtils.contains(line, "parent:")) {
-                if (!StringUtils.contains(line, "none")) {
-                    String str = StringUtils.substringAfter(line, "parent:");
-                    str = StringUtils.trim(str);
-                    p.setParent(str);
-                }
-            }
-
-            if (StringUtils.contains(line, "weight:")) {
-
-                String str = StringUtils.substringAfter(line, "weight:");
-                str = StringUtils.trim(str);
-
+            if (line.contains("weight:")) {
+                String str = substringAfter(line, "weight:").trim();
                 if (!(str == null) && !(str.isEmpty())) {
                     p.setWeight(new Long(str));
                 }
             }
 
-            if (counter > 1) {
+			if (line.contains("---"))
+                counter++;
+
+            if (counter > 1)
                 break;
-            }
         }
 
         return p;
@@ -250,4 +205,7 @@ public class MenuTree {
         }
     }
 
+	private static String substringAfter(String s, String separator) {
+		return s.substring(s.indexOf(separator) + separator.length());
+	}
 }
