@@ -155,7 +155,7 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
             windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh">
         <argument>start</argument>
         <argument>"GSC"</argument>
-		<environment name="GSC_JAVA_OPTIONS">-Xmx512m -Dcom.gs.zones=Small</environment>
+		<environment name="GSC_JAVA_OPTIONS"> -Xms512m -Xmx512m -Dcom.gs.zones=Small</environment>
     </script>
     <vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot">
         <input-argument></input-argument>
@@ -173,7 +173,7 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
             windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh">
         <argument>start</argument>
         <argument>"GSC"</argument>
-		<environment name="GSC_JAVA_OPTIONS">-Xmx1024m -Dcom.gs.zones=Large</environment>
+		<environment name="GSC_JAVA_OPTIONS">-Xms1024m -Xmx1024m -Dcom.gs.zones=Large</environment>
     </script>
     <vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot">
         <input-argument></input-argument>

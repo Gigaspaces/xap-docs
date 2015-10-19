@@ -49,7 +49,7 @@ For example:
 ```java
 // Read all product entries as POJOs:
 Product[] objects = gigaSpace.readMultiple(new Product(), Integer.MAX_VALUE);
-// Read all product entries as Dcouments:
+// Read all product entries as Documents:
 SpaceDocument[] documents = gigaSpace.readMultiple(
     new SpaceDocument(Product.class.getName()), Integer.MAX_VALUE);
 ```

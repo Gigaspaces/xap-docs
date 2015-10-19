@@ -58,6 +58,25 @@ or whatever was reported by find
 
 #	Blobstore
 
+## Statistics error
+
+When receiving the following error:
+
+```bash
+info stats.c:918 zs_start_admin_thread Starting ZS admin on TCP Port:51350
+error stats.c:859 ZSAdminThread Unable to bind admin port 51350
+```
+
+This indicates that 2 spaces are trying to use the same default ZS admin port 51350.In order to overcome this
+
+```bash
+<blob-store:properties>
+    <props>
+        <prop key="FDF_ADMIN_PORT">5135${clusterInfo.runningNumber}</prop>
+    </props>
+</blob-store:properties>
+```
+
 ## Initialization error
 
 When you receive the following error:
