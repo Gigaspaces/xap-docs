@@ -333,7 +333,7 @@ The Admin discovers all the advertised services from the [Lookup Service](/produ
 
 Once the `Admin` is created, it will start to receive discovery events of all the advertised services / components within its lookup groups / lookup locators. Note, the events occur asynchronously and the data model within the Admin gets initialized in the background with services coming and going.
 
-This means that just creating the `Admin` and calling a specific "getter" for a data structure might not return what is currently deployed, and one should wait till the structures are filled. Some components has a waitFor method that allow to wait for specific number of services to be up. When navigating the data model, the Admin API will provide its most up to date state of the system it is monitoring.
+This means that just creating the `Admin` and calling a specific "getter" for a data structure might not return what is currently deployed, and one should wait till the structures are filled. Some components have a waitFor method that allow to wait for specific number of services to be up. When navigating the data model, the Admin API will provide its most up to date state of the system it is monitoring.
 
 # Domain Model
 
