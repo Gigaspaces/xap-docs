@@ -5,12 +5,11 @@ machine:
     version:
       2.1.2
 
-# checkout:
-#  post:
-#    - git submodule init
-#    - git submodule update
-#    - cd ./sbp && git checkout master && git pull
-#    - rm -rf ./_site
+checkout:
+ post:
+   - git submodule init
+   - git submodule update
+   - cd ./sbp && git checkout master && git pull
 
 ## Customize dependencies
 dependencies:
