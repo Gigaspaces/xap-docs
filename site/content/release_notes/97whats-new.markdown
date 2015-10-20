@@ -114,7 +114,7 @@ Starting from version 9.7, XAP implements separate thread pools for client notif
 
 # New Documentation Infrastructure and Enhanced Search 
 
-If you got here, you've been using our new docs infrastructure. We hope you like it. We've significantly improved the visuals, search experience, and also beefed up some of the content (checkout [our all new XAP tutorial](/xap97/java-home.html) for example). Last, all of the documentation website source are [stored in a public github repo](http://github.com/gigaspaces/gigaspaces-wiki-jekyll) and are based on [Jekyll](http://jekyllrb.com) and [Markdown](http://daringfireball.net/projects/markdown/). If you see an error or something you'd like to improve, you're more than welcome to fork this repository and submit pull requests.
+If you got here, you've been using our new docs infrastructure. We hope you like it. We've significantly improved the visuals, search experience, and also beefed up some of the content (checkout [our all new XAP tutorial](/xap97/java-home.html) for example). Last, all of the documentation website source are [stored in a public github repo](http://github.com/gigaspaces/xap-docs) and are based on [Hugo](http://gohugo.io) and [Markdown](http://daringfireball.net/projects/markdown/). If you see an error or something you'd like to improve, you're more than welcome to fork this repository and submit pull requests.
 
 ![New Docs](/attachment_files/new-docs.png)
 

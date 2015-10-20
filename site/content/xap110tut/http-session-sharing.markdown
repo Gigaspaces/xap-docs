@@ -328,10 +328,10 @@ http://localhost:8081/demo-app2
 
 {{%section%}}
 {{%column width="30%" %}}
-{{%popup "/attachment_files/httpsession102/httpsession-tomcat-2.png /"%}}
+{{%popup "/attachment_files/httpsession102/httpsession-tomcat-2.png"%}}
 {{%/column %}}
 {{%column width="30%" %}}
-{{%popup "column"  "/attachment_files/httpsession102/httpsession-jboss-2.png /"%}}
+{{%popup "column"  "/attachment_files/httpsession102/httpsession-jboss-2.png"%}}
 {{%/column %}}
 {{%/section%}}
 
