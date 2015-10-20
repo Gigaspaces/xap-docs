@@ -21,11 +21,9 @@ When using MemoryXtend with a primary-backup topology, the backup can now recove
 
 {{%anchor interscope%}}
 
-# XAP - APM Introscope
+# APM Introscope Metrics Reporter
 
-[CA APM](http://www.ca.com/us/products/application-performance-management.aspx) is a complex tool that helps to monitor applications and react quickly when certain performance issues may occur. XAP provides many metrics like: processing units, spaces and machines that compose the grid. The metrics can be reported to Instroscope, so that its advanced features might be used to further analyze metrics data.
-
-XAP CA APM Introscope Reporter- it provides a way to send XAP related metrics to Introscope.
+The XAP metrics framework was designed to support custom reporter implementations. In addition to the built-in InfluxDB reporter, we've now added a new reporter to integrate with [CA APM](http://www.ca.com/us/products/application-performance-management.aspx), which is a powerful product widely used in large companies to monitor applications and react quickly when certain performance issues may occur. 
 
 {{<infosign>}} For more information see [CA APM Introscope Reporter](/xap102adm/ca-apm-introscope-reporter.html)
 
