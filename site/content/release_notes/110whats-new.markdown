@@ -32,6 +32,10 @@ A new MemoryXtend add-on based on [RocksDB](http://rocksdb.org/) is now availabl
 
 Mule integration has been updated to support Mule 3.7.
 
+{{<infosign>}} For more information see [Mule ESB Integration](/xap110/mule-esb.html)
+
 ## InfluxDB 0.9
 
 InfluxDB integration has been updated to support InfluxDB 0.9.
+
+{{<infosign>}} For more information see [InfluxDB Reporter](/xap110adm/metrics-influxdb-reporter.html)
