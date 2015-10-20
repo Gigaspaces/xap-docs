@@ -134,32 +134,21 @@ public class Page implements Comparable<Page> {
 
     @Override
     public int compareTo(Page o) {
-
-        if (this.getWeight() == null)
+        if (this == o || this.getWeight() == null || o.getWeight() == null)
             return 0;
-
-        if (o.getWeight() == null)
-            return 0;
-
-        if (this == o) {
-            return 0;
-        }
 
         int c1 = this.getWeight().intValue();
         int c2 = o.getWeight().intValue();
 
-        if (c1 == c2) {
-            System.out.println(this.getParent());
-            System.out.println(this.fileName + "   " + c1);
-            System.out.println(o.fileName + "   " + c2);
-            System.out.println();
-
-            return 0;
-        }
-        if (c1 > c2)
+		if (c1 > c2)
             return 1;
+		if (c1 < c2)
+			return -1;
 
-        return -1;
+        System.out.println(this.getParent());
+        System.out.println(this.fileName + "   " + c1);
+        System.out.println(o.fileName + "   " + c2);
+        System.out.println();
+        return 0;
     }
-
 }

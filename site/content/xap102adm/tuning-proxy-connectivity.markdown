@@ -120,7 +120,7 @@ When using [Client side caching]({{%currentjavaurl%}}/client-side-caching.html),
 
 ## Unicast Lookup Service
 
-The space proxy router uses the [Lookup Service](/product_overview/service-grid.html#lus) to locate data grid members. The lookup service uses either [multicast](./network-multicast.html) or [unicast](./network-unicast-discovery.html) discovery (default is multicast). When a unicast lookup service is restarted, the space proxy will automatically re-discover after a while. If you need to better understand that process and  fine-tune it, refer to [Configuring lookup discovery intervals](./network-unicast-discovery.html#Configuring lookup discovery intervals).
+The space proxy router uses the [Lookup Service](/product_overview/service-grid.html#lus) to locate data grid members. The lookup service uses either [multicast](./network-multicast.html) or [unicast](./network-unicast-discovery.html) discovery (default is multicast). When a unicast lookup service is restarted, the space proxy will automatically re-discover after a while. If you need to better understand that process and  fine-tune it, refer to [Configuring lookup discovery intervals](./network-unicast-discovery.html#configuring-lookup-discovery-intervals).
 
 # Load balancing
 

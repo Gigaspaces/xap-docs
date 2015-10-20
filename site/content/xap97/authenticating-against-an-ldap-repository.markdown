@@ -163,7 +163,7 @@ Once the user identity is confirmed, `LdapAuthenticationProvider` must retrieve 
 The `groupRoleAttribute` property specifies the name of the attribute that will contain role information which effectively translate into a user's granted authorities. It defaults to `cn`, but for our example, we've set it to `ou`.
 
 {{% panel   %}}
-{{% exclamation %}} Notice that the `convertToUpperCase` and `rolePrefix` are different than the defaults. The granted authorities should be returned as-is, without any conversion. For example, the authority `SpacePrivilege READ ClassFilter eg.cinema.Movie` **should not** be converted to upper case, nor should it be prefixed with a role prefix "ROLE_".
+Notice that the `convertToUpperCase` and `rolePrefix` are different than the defaults. The granted authorities should be returned as-is, without any conversion. For example, the authority `SpacePrivilege READ ClassFilter eg.cinema.Movie` **should not** be converted to upper case, nor should it be prefixed with a role prefix "ROLE_".
 {{% /panel %}}
 
 Configured this way, the `DefaultLdapAuthoritiesPopulator` will retrieve all groups (roles) that the user is a member of - that is, all groups that have a `member` attribute with the user's DN.

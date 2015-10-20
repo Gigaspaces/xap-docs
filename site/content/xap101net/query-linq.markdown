@@ -140,7 +140,7 @@ Dictionary entries can be traversed as well. For example, to query for entries w
 
 ```csharp
 var query = from p in spaceProxy.Query<Person>() 
-            where p.Adresses["Home"].Street == "Main" 
+            where p.Addresses["Home"].Street == "Main"
             select p; 
 ```
 
