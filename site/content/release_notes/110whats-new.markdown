@@ -16,7 +16,7 @@ It's not an exhaustive list of all new features. For a full change log for 11.0 
 
 GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries. 
 
-For detailed information see [GeoSpatial Queries](/xap110/geospatial.html).
+{{<infosign>}} For more information see [GeoSpatial Queries](/xap110/geospatial.html).
 
 {{%anchor rocks%}}
 
@@ -24,4 +24,4 @@ For detailed information see [GeoSpatial Queries](/xap110/geospatial.html).
 
 A new MemoryXtend add-on based on [RocksDB](http://rocksdb.org/) is now available. RocksDB is a very popular open source project which offers an embeddable persistent key-value store for fast storage, used by many of the industry giants, such as Facebook, LinkedIn and Microsoft.
 
-For detailed information see [RocksDB](/xap110adm/memoryxtend-rocksdb-ssd.html)
+{{<infosign>}} For more information see [RocksDB](/xap110adm/memoryxtend-rocksdb-ssd.html)
