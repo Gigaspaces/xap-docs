@@ -31,23 +31,17 @@ parent: none
 # Java
 
 {{%panel%}}
-
 [Javadoc](http://www.gigaspaces.com/docs/JavaDoc11.0/index.html) -- _GigaSpaces XAP API, including all components_
-
 {{%/panel%}}
-
-
-# MongoDB
-{{%panel%}}
-[Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs11.0/apidocs/)
-{{%/panel%}}
-
-
-
 
 # .NET
 {{%panel%}}
 [.Net Documentation](http://www.gigaspaces.com/docs/dotnetdocs11.0/)
+{{%/panel%}}
+
+# MongoDB
+{{%panel%}}
+[Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs11.0/apidocs/)
 {{%/panel%}}
 
 # Scala
