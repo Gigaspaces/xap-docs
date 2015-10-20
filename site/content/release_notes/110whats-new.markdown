@@ -16,7 +16,7 @@ It's not an exhaustive list of all new features. For a full change log for 11.0 
 
 GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries. 
 
-{{<infosign>}} For more information see [GeoSpatial Queries](/xap110/geospatial.html).
+{{<infosign>}} For more information see [GeoSpatial Queries](/xap110/query-geospatial.html).
 
 {{%anchor rocks%}}
 

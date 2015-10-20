@@ -1,12 +1,15 @@
 ---
 type: post110
-title:  API and Usage
+title:  GeoSpatial Queries
 categories: XAP110
-parent: geospatial.html
-weight: 200
+parent: querying-the-space.html
+weight: 340
 ---
 
 ![local_cache.jpg](/attachment_files/under-construction.jpeg)
+
+
+GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
 
 # Configuration
 
@@ -170,3 +173,15 @@ It contains examples for:
     * Compund query: GeoSpatial and space query.
 * Geo fencing: define a radius around a specific coordinate, and trigger an event container when an entry is written that resides in this radius
 * Query for all entries within a polygon: Define a polygon and a query for all entries that are inside it. 
+
+# Limitations
+
+The following limitations and open issues apply to 11.0.0-m3 release:
+
+* Take operations are not supported
+* No support for Pulling Containers
+* No support for transactions
+* Inheritance is not supported
+* No support for Space Document
+* Cannot execute query on a not indexed shape field (Fixed in m4)
+* Disjoint queries are not supported
