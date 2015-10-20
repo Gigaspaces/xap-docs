@@ -9,8 +9,6 @@ weight: 200
 
 {{% ssummary  %}} {{% /ssummary %}}
 
-
-
 XAP allows to configure, package and deploy a [Processing Unit](./the-processing-unit-overview.html). The OpenSpaces Mule integration allows you to run a pure Mule application (with or without OpenSpaces special extension points and transports) as a Processing Unit.
 
 # Configuration
@@ -34,7 +32,7 @@ Packaging of the Processing Unit should follow the [Processing Unit structure](.
 When deploying a Processing Unit into the [SLA-driven container](./deploying-onto-the-service-grid.html), Mule JAR files should be "installed" into the XAP installation (on each node). The following minimum set of JARs need to be copied into **`<XAP Root>\lib\platform\mule`** (if the Mule directory does not exists, create it).
 {{%/note%}}
 
-- Download Mule 3.5 distribution from [mule's website](https://www.mulesoft.org/download-mule-esb-community-edition) and extract the file.
+- Download Mule 3.7 distribution from [mule's website](https://www.mulesoft.org/download-mule-esb-community-edition) and extract the file.
  
 - Copy the following JAR files from `<Mule Root>\lib\mule` to `<XAP Root>\lib\platform\mule`:
 `mule-commons`, `mule-core`, `mule-core-tests`, `mule-module-annotations`, `mule-module-client`, `mule-module-jbossts`, `mule-module-spring-config`, `mule-module-spring-extras`,  `mule-mvel2-2.1.9-MULE-003`, `mule-transport-http`, `mule-transport-quartz`, `mule-transport-stdio`, `mule-transport-vm` . Other transports (if used) should be copied as well.
@@ -46,17 +44,12 @@ When deploying a Processing Unit into the [SLA-driven container](./deploying-ont
 `commons-cli`, `log4j`, `mule-module-logging`, `wrapper`. Other required JAR files can be copied as well (or they can be put in the Processing Unit `lib` directory).
 
 {{% note %}}
-Since version 7.0, the required mule jar files can also be placed within the processing unit `lib` directory, without "installing" mule into each GSC node installation.
-{{%/note%}}
-
-{{% note %}}
-Since version 10.1 XAP is using spring 4.1.1 jars and Mule does not support spring 4 it is required to replace **`<XAP Root>\lib\required\spring-*4.1.1*.jar`** and **`<XAP Root>\lib\optional\spring-*4.1.1*.jar`** files to spring 3.2.4 version jars.
+The required mule jar files can also be placed within the processing unit `lib` directory, without "installing" mule into each GSC node installation.
 {{%/note%}}
 
 #### Packaging for Mule example
 
 In the [Mule ESB example](/sbp/mule-esb-example.html), the following jars are required and should be placed under <XAP Root>\lib\platform\mule
-
 
 ```bash
 commons-beanutils-1.8.0.jar
@@ -68,20 +61,20 @@ guava-16.0.1.jar
 jaxen-1.1.1.jar
 jgrapht-jdk1.5-0.7.3.jar
 log4j-1.2.16.jar
-mule-common-3.5.0.jar
-mule-core-3.5.0.jar
-mule-core-3.5.0-tests.jar
-mule-module-annotations-3.5.0.jar
-mule-module-client-3.5.0.jar
-mule-module-jbossts-3.5.0.jar
-mule-module-logging-3.5.0.jar
-mule-module-spring-config-3.5.0.jar
-mule-module-spring-extras-3.5.0.jar
+mule-common-3.7.0.jar
+mule-core-3.7.0.jar
+mule-core-3.7.0-tests.jar
+mule-module-annotations-3.7.0.jar
+mule-module-client-3.7.0.jar
+mule-module-jbossts-3.7.0.jar
+mule-module-logging-3.7.0.jar
+mule-module-spring-config-3.7.0.jar
+mule-module-spring-extras-3.7.0.jar
 mule-mvel2-2.1.9-MULE-003.jar
-mule-transport-http-3.5.0.jar
-mule-transport-quartz-3.5.0.jar
-mule-transport-stdio-3.5.0.jar
-mule-transport-vm-3.5.0.jar
+mule-transport-http-3.7.0.jar
+mule-transport-quartz-3.7.0.jar
+mule-transport-stdio-3.7.0.jar
+mule-transport-vm-3.7.0.jar
 quartz-1.8.5.jar
 uuid-3.4.0.jar
 wrapper-3.2.3.jar
