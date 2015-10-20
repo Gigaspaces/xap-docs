@@ -7,4 +7,3 @@ javac src/xapdoc/parser/* -d target
 
 echo Running navbar generator
 java -cp target xapdoc.parser.MenuTree %~dp0
-pause
