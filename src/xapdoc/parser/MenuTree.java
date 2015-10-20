@@ -36,7 +36,7 @@ public class MenuTree {
 			System.out.println("Incorrect number of arguments: " + args.length);			
 			System.exit(1);
 		}
-
+		int totalPages = 0;
 		// e.g. BASE_PATH = "/Users/chrisroffler/Documents/xap-docs";
 		BASE_PATH = args[0];
 		System.out.println("Starting with base path " + BASE_PATH);			
@@ -51,6 +51,7 @@ public class MenuTree {
                     pagesMap.put(file.getName().replace(".markdown", ".html"), p);
                 }
             }
+			totalPages += pagesMap.size();
 
             // now lets order them according to the weight
             TreeSet<Page> pagesTree = new TreeSet<Page>();
@@ -64,61 +65,37 @@ public class MenuTree {
                 }
             }
 
-            // create the HTML output
-            String line = createMenu(pagesTree);
-
             // write the html to the file system
             PrintWriter writer = null;
             try {
-
                 writer = new PrintWriter(BASE_PATH + "/site/themes/hugo-bootswatch/layouts/partials/sidenav-" + path + ".html", "UTF-8");
-                writer.println(line);
+				for (Page p : pagesTree)
+					printPage(writer, p);
             } finally {
                 if (writer != null) {
                     writer.close();
                 }
             }
 
-           System.out.println("Processed: " + path);
+           // System.out.println("Processed: " + path);
         }
 		long duration = System.currentTimeMillis() - startTime;
-        System.out.println("Finished generating navbar (duration=" + duration + "ms)");
+        System.out.println("Finished generating navbar (duration=" + duration + "ms, folders=" + dirs.length + ", pages=" + totalPages + ")");
     }
 
-    private static String createMenu(TreeSet<Page> pages) {
-
-        String line = "";
-
-        for (Page p : pages) {
-            line = createMenuItem(line, p);
-        }
-
-        return line;
-    }
-
-    public static String createMenuItem(String line, Page page) {
+    private static void printPage(PrintWriter writer, Page page) {
         String fileName = page.getFileName().replace(".markdown", ".html");
-
-        TreeSet<Page> children = page.getChildren();
-
-        if (children.size() > 0) {
-
-            line += "<li class='expandable'><div class='hitarea expandable-hitarea'></div><a href='./" + fileName + "'>"
-                    + page.getTitle() + "</a>\n";
-
-            line += "<ul style='display: none'>\n";
-
-            for (Page p1 : children) {
-                line = createMenuItem(line, p1);
-            }
-
-            line += "</ul>\n";
-
-            line += "</li>\n";
+        if (page.getChildren().size() != 0) {
+			writer.println("<li class='expandable'><div class='hitarea expandable-hitarea'></div><a href='./" + fileName + "'>" + page.getTitle() + "</a>");
+			writer.println("<ul style='display: none'>");
+            for (Page child : page.getChildren())
+                printPage(writer, child);
+			writer.println("</ul>");
+			writer.println("</li>");
+			
         } else {
-            line += "<li><a href='./" + fileName + "'>" + page.getTitle() + "</a></li>\n";
+			writer.println("<li><a href='./" + fileName + "'>" + page.getTitle() + "</a></li>");
         }
-        return line;
     }
 
     private static Page createPage(File file) throws IOException {
