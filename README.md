@@ -20,10 +20,8 @@ It's important for us to encourage your feedback and contribution. Contributing 
 
 # Known Issues
 
-Note: Since there are still some styling issues, the build process currently builds to a [temporary site](http://xapdocs.s3-website-us-east-1.amazonaws.com/) instead of `docs.gigaspaces.com`.
-
 - Section & columns size not correct
-- Search not implemented
+
 
 
 ## (Optional) Making Changes to the Solutions & Best Practices Repo
