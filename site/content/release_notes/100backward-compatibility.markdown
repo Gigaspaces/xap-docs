@@ -8,7 +8,7 @@ weight: 600
 
 
 
-XAP 10.0 is a major release which includes [new features and improvements.](./xap100whats-new.html)
+XAP 10.0 is a major release which includes [new features and improvements.](./100whats-new.html)
 
 We try to maintain backward compatibility wherever possible. However, in some cases, no backward compatibility is provided.
 

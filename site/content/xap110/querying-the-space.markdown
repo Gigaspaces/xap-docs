@@ -26,6 +26,9 @@ Template matching (a.k.a. Match by example) is a simple way to query the space.
 [SQL Query](./query-sql.html){{<wbr>}}
 The SQLQuery class is used to query the space using SQL-like syntax.
 
+[Geospatial Queries](./query-geospatial.html){{<wbr>}}
+GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
+
 [Free text search](./query-free-text-search.html){{<wbr>}}
 Search for records that include one or more words within a free text field.
 

@@ -33,9 +33,6 @@ In this section we will show you how to create and configure a Space and how to 
 [Querying the Space](./querying-the-space.html){{<wbr>}}
 This section explains the various mechanisms offered by GigaSpaces XAP to query the space for data.
 
-[Geospatial Queries](./geospatial.html){{<wbr>}}
-GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
-
 [Indexing](./indexing-overview.html){{<wbr>}}
 To improve performance, it is possible to index one or more properties.
 

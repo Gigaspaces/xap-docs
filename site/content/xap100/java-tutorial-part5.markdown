@@ -78,7 +78,7 @@ The PU jar file is composed of several key elements:
 
 - META-INF/spring/pu.xml (mandatory): This is the PU's deployment descriptor, which is in fact a Spring context XML configuration with a number of XAP-specific namespace bindings. These bindings include XAP specific components (such as the space for example). The pu.xml file typically contains definitions of XAP components (space, event containers, remote service exporters) and user defined beans.
 
-- META-INF/spring/sla.xml (not mandatory): This file contains SLA definitions for the PU (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an <os:sla> definition in the pu.xml file. If neither is present, the default SLA will be applied. SLA definitions can also be specified at the deploy time via command line arguments.
+- META-INF/spring/sla.xml (not mandatory): This file contains SLA definitions for the PU (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an `<os:sla>` definition in the pu.xml file. If neither is present, the default SLA will be applied. SLA definitions can also be specified at the deploy time via command line arguments.
 
 - META-INF/spring/pu.properties (not mandatory): Enables you to externalize properties included in the pu.xml file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties.
 
