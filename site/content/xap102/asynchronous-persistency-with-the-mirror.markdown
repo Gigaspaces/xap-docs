@@ -34,10 +34,10 @@ The above share the **same** [Space Persistency](./space-persistency.html) setti
 
 # The Data-Grid Processing Unit
 
-The `cluster-config.mirror-service` `space` settings specify the interaction between the IMDG primary spaces and the Mirror Service. The `mirror="true"` `space` element tag enables the replication mechanism from the IMDG Primary spaces to the Mirror Service. Once `mirror="true"` has been specified, all IMDG members will be Mirror aware and will be delegating their activities to the Mirror service. The IMDG primary instance will replicate the operations that have been logged within the primary redo log every `interval-millis` amount of time or `interval-opers` amount of operations. Both of these mechanisms are always active and the first one that is breached triggers the replication event.
+The `cluster-config.mirror-service` `space` settings specify the interaction between the IMDG primary spaces and the Mirror Service. The `mirrored="true"` `space` element tag enables the replication mechanism from the IMDG Primary spaces to the Mirror Service. Once `mirrored="true"` has been specified, all IMDG members will be Mirror aware and will be delegating their activities to the Mirror service. The IMDG primary instance will replicate the operations that have been logged within the primary redo log every `interval-millis` amount of time or `interval-opers` amount of operations. Both of these mechanisms are always active and the first one that is breached triggers the replication event.
 
 {{% tip %}}
-If you are not using the `mirror="true"` with the Data-Grid PU, you should use the following property instead:
+If you are not using the `mirrored="true"` with the Data-Grid PU, you should use the following property instead:
 `cluster-config.mirror-service.enabled=true`
 {{% /tip %}}
 
@@ -72,7 +72,7 @@ The Data-Grid Space settings would look like this:
 </bean>
 
 <os-core:embedded-space  id="space" name="mySpace" schema="persistent"
-    mirror="true" space-data-source="hibernateSpaceDataSource">
+    mirrored="true" space-data-source="hibernateSpaceDataSource">
     <os-core:properties>
         <props>
             <!-- Use ALL IN CACHE - Read Only from the database-->
