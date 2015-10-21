@@ -257,10 +257,13 @@ The following features support only simple SQL queries
 
 
 {{%vbar "The following are reserved keywords in the GigaSpaces SQL syntax:"%}}
-ALTER ADD AND ASC BETWEEN BY CREATE CALL DROP DEFAULT_NULL DESC  DISTINCT END FROM GROUP IN IS LIKE
-MAX MIN NOT NULL OR ORDER SELECT SUBSTR SUM SYSDATE UPPER WHERE COUNT DELETE EXCEPTION ROWNUM INDEX
-INSERT INTO SET TABLE TO_CHAR TO_NUMBER FOR_UPDATE UPDATE UNION VALUES COMMIT ROLLBACK PRIMARY_KEY
-UID USING
+alter add all and asc avg between by create call drop desc bit tinyint
+ 	 end from group in is like rlike max min not null or distinct
+ 	 order select substr sum sysdate upper where count delete varchar2 char
+ 	 exception rownum index insert into set table to_char to_number smallint
+ 	 update union values commit rollback uid using as date datetime time
+ 	 float real double number decimal numeric boolean integer
+ 	 varchar bigint long clob blob lob true false int timestamp longvarchar
 {{%/vbar%}}
 
 ### Reserved Separators and Operators:
