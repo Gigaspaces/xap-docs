@@ -8,14 +8,14 @@
         <div id="breadcrumbs" class="row">
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-home fa-lg"></i></a></li>
-                {{ if in .Permalink "faq"}}<li><a href="/faq">FAQ</a></li>
-                {{ else if in .Permalink "videos"}}<li><a href="/videos">Videos</a></li>
+                {{   if in .Permalink "videos"}}<li><a href="/videos">Videos</a></li>
                 {{ else if in .Permalink "product_overview"}}<li><a href="/product_overview">Product Overview</a></li>
                 {{ else if in .Permalink "release_notes"}}<li><a href="/release_notes">Release Notes</a></li>
                 {{ else if in .Permalink "api_documentation"}}<li><a href="/xap110tut">API Documentation</a></li>
                 {{ else if in .Permalink "early_access"}}<li><a href="/early_access">Early Access</a></li>
                 {{ else if in .Permalink "howto"}}<li><a href="/howto">Howto</a></li>
                 {{ else if in .Permalink "sbp"}}<li><a href="/sbp">Services & Best Practices</a></li>
+                {{ else if in .Permalink "faq"}}<li><a href="/faq">FAQ</a></li>
                 {{end}}
                 <li class="active">{{.Title}}</li>
             </ol>
@@ -25,13 +25,13 @@
             <div id="leftbar-div" class="col-md-2 hidden-xs">
                 <div class="leftbar">
                     <ul class="treeview" id="tree">
-                        {{ if in .Permalink "faq"}}{{ partial "sidenav-faq.html" .}}
-                        {{ else if in .Permalink "videos"}}{{ partial "sidenav-videos.html" .}}
+                        {{   if in .Permalink "videos"}}{{ partial "sidenav-videos.html" .}}
                         {{ else if in .Permalink "product_overview"}}{{ partial "sidenav-product_overview.html" .}}
                         {{ else if in .Permalink "release_notes"}}{{ partial "sidenav-release_notes.html" .}}
                         {{ else if in .Permalink "api_documentation"}}{{ partial "sidenav-api_documentation.html" .}}
                         {{ else if in .Permalink "howto"}}{{ partial "sidenav-howto.html" .}}
                         {{ else if in .Permalink "sbp"}}{{ partial "sidenav-sbp.html" .}}
+                        {{ else if in .Permalink "faq"}}{{ partial "sidenav-faq.html" .}}
                         {{end}}
                     </ul>
                 </div>
