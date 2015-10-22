@@ -67,7 +67,7 @@ The Data-Grid Space settings would look like this:
 
 
 ```xml
-<bean id="hibernateDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean">
+<bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean">
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
