@@ -14,6 +14,8 @@ weight: 110
 XAP is using [RocksDB](http://rocksdb.org/) an embeddable persistent key-value store for fast storage. Keys and values are arbitrary byte streams.It was developed at Facebook based on LevelDB , RocksDB can be configured to run on data on pure memory, flash, hard disks or on HDFS.
 XAP indexes are maintained in RAM (on-heap) allowing the XAP query engine to evaluate the query without accessing the raw data stored on the mounted flash device. This allows XAP to execute SQL based queries extremely efficiently even across large number of nodes. All XAP Data Grid APIs are supported including distributed transactions, leasing (Time To live) , FIFO , batch operations , etc. All clustering topologies supported. All client side cache options are supported.
 
+![ssdRocksDB.png](/attachment_files/ssd/ssdRocksDB.png)
+
 # The BlobStore Configuration
 
 The BlobStore settings includes the following options:
@@ -25,7 +27,8 @@ The BlobStore settings includes the following options:
 | mapping-dir | Point to a directory in a file system. This directory contains file which contains a mapping between space name and a RocksDB location. | /tmp/blobstore/paths | optional |
 | central-storage | Enable in case you have a centralized storage. in this case each space is connected to a predefined RocksDB mounted location. | false | optional |
 | options | RocksDB configuration options | | optional |  
-| strategy-type |  Merge or Override given options with XAP default RocksDB options. | merge | optional |                                
+| strategy-type |  Merge or Override given options with XAP default RocksDB options. | merge | optional | 
+| sync |  By default, each write returns after the data is pushed into the operating system. The transfer from operating system memory to the underlying persistent storage happens asynchronously. When configuring sync to true each write operation not return until the data being written has been pushed all the way to persistent storage. | false | optional |                                
 
 The IMDG BlobStore settings includes the following options:{{<wbr>}}
 
@@ -247,7 +250,7 @@ If we deploy a partitioned Space with a single backup (2,1), the first primary w
 
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/ssd/ssd-single-device.png"%}}
+{{%popup   "/attachment_files/ssd/ssdRocksDBCentral.png"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -268,7 +271,7 @@ cannot be provisioned to the same storage array.
 If we deploy a partitioned Space with a single backup (2,1), the first primary will use `/mnt/db1`, the second primary will use `/mnt/db2`, the first backup will use `/mnt/db3` and the second backup will use `/mnt/db4`.
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/ssd/ssd-multiple-device.png"%}}
+{{%popup   "/attachment_files/ssd/ssdRocksDB.png"%}}
 {{%/column%}}
 {{%/section%}}
 
