@@ -71,7 +71,7 @@ For array types, the array length and toString is displayed.
 The Statistics view provides graphical representation of Space/Space instance operations performed.
 
 
-![hosts1.jpg](/attachment_files/web-console/data-grid-stats.jpg)
+![hosts1.jpg](/attachment_files/web-console/data-grid-stats_v11_0.jpg)
 
 
 # Gateways
