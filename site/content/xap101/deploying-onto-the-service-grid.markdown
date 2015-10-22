@@ -54,7 +54,7 @@ Deploying via code is done using the GigaSpaces [Admin API](./administration-and
 ```java
 Admin admin = new AdminFactory().addGroup("myGroup").create();
 File puArchive = new File("/opt/gigaspaces/myPU.jar");
-ProcessingUnit pu = admin.getGridServiceManagers().deploy(
+ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
     new ProcessingUnitDeployment(puArchive));
 ```
 
