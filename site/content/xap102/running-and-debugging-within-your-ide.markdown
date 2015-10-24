@@ -66,9 +66,9 @@ You can run the Integrated Processing Unit Container without actually specifying
 The main usage of the `IntegratedProcessingUnitContainer` is to execute processing units in your IDE.
 The following screenshot displays the **Create, manage, and run configurations** Eclipse dialog for executing the processor processing unit of the [data example](/sbp/the-openspaces-data-example.html):
 
-{{% indent %}}
+{{% align center %}}
 ![IntegratedProcessingUnitContainer2.jpg](/attachment_files/IntegratedProcessingUnitContainer2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 In the screenshot above, we run the data processor module using the integrated processing unit container from within the Eclipse IDE (we simply imported the Eclipse project provided with the example into our Eclipse workspace). There are no arguments provided in this example, which means that the integrated processing unit container will use its defaults. Since our project source includes a `META-INF/spring/pu.xml` file, it is automatically detected by the `IntegratedProcessingUnitContainer` class and used as the processing unit's deployment descriptor (since it's part of the processor module's classpath). The processor Eclipse project also has all the required libraries in its project definition. These include all the jars located under the `XAP root>/lib/required` directory, namely `gs-openspaces.jar`, `gs-runtime.jar`, `commons-logging.jar` and the Spring framework jars (all start with `com.spring*`), so the integrated processing unit container is running with these libraries.
 
@@ -78,9 +78,9 @@ The `IntegratedProcessingUnitContainer` is a simple class that wraps the process
 
 The following screenshot shows how to run a data processor instance with a partitioned cluster schema and ID `1`, and the arguments that should provided in this configuration:
 
-{{% indent %}}
+{{% align center %}}
 ![IntegratedProcessingUnitContainer3.jpg](/attachment_files/IntegratedProcessingUnitContainer3.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% info title="Using Lookup Groups/Locators "%}}
 You can isolate your environment by defining [Lookup Groups/Locators](/product_overview/service-grid.html#lus). You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have LOOKUPGROUPS/LOOKUPLOCATORS OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using LOOKUPGROUPS environment variable you need to add the following as VM argument to the run configuration:
@@ -255,9 +255,9 @@ Click the Debug button. The IDE will connect to the GSC.
 
 Move a running PU instance to the newly started GSC. Use the `GS-UI` Hosts tab to move the PU instance by dragging and dropping the PU instance from its existing GSC to the newly started GSC running in debug mode. You can identify the GSC running in debug mode using its process id.
 
-{{% indent %}}
+{{% align center %}}
 ![Remote_Debugging.jpg](/attachment_files/Remote_Debugging.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The debugger will stop at the specified break point once the relevant method will be triggered.
 

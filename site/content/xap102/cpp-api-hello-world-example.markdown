@@ -86,9 +86,9 @@ Step 3. If you want to view the space in the [XAP Browser]({{%currentadmurl%}}/g
 Step 4. To start the sample application, execute `<Example Root>\bin\run_HelloWorld.sh/bat`.
 Step 5. This is what you should see:
 
-{{% indent %}}
+{{% align center %}}
 ![GigaSpacesCPP_BuildingandRunning_UsingScripts.jpg](/attachment_files/GigaSpacesCPP_BuildingandRunning_UsingScripts.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is an example for a linux makefile:
 
@@ -139,51 +139,51 @@ Step 6. Start Visual Studio using the `<XAP Root>\cpp\GigaVisualStudio.bat` scri
 
 Step 7. Once Visual Studio is started, open the examples solution `<XAP Root>\cpp\examples\examples.sln`:
 
-{{% indent %}}
+{{% align center %}}
 ![hello_CPP1.jpg](/attachment_files/hello_CPP1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Step 8. Make sure the Hello World project appears - make it the startup project:
 
-{{% indent %}}
+{{% align center %}}
 ![hello_CPP2.jpg](/attachment_files/hello_CPP2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Step 9. Modify the Hello World project to have the following as the Command Arguments (`jini://localhost/*/mySpace`):
 
-{{% indent %}}
+{{% align center %}}
 ![hello_CPP3.jpg](/attachment_files/hello_CPP3.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 1. Execute `<Example Root>\bin\startAll.sh/bat`. This starts a light version of the server with one space instance, and the Jini Lookup Service.
 
 {{% info %}}
 If you want to start an **embedded space**, there is no need to perform the last 2 steps. Running the Hello World example without any Command Arguments automatically launches a space collocated in the same process.
 
-{{% indent %}}
+{{% align center %}}
 ![hello_CPP4.jpg](/attachment_files/hello_CPP4.jpg)
-{{% /indent %}}
+{{% /align %}}
 {{% /info %}}
 
 Step 10. Make sure that Hello World is the Startup Project:
 
-{{% indent %}}
+{{% align center %}}
 ![hello_CPP5.jpg](/attachment_files/hello_CPP5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Step 11. Make sure that Hello World is configured to run in the `Release` solution configuration mode.
 Step 12. **Rebuild** the Hello World project.
 Step 13. Run the Hello World Application:
 
-{{% indent %}}
+{{% align center %}}
 ![hello_CPP6.jpg](/attachment_files/hello_CPP6.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Step 14. This is what you should see:
 
-{{% indent %}}
+{{% align center %}}
 ![hello_CPP7.jpg](/attachment_files/hello_CPP7.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% tip %}}
 To reduce the compilation time of the examples you may remove the **TestRead1** and **TestRead1Classes** projects from the examples project.

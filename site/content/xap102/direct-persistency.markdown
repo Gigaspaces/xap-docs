@@ -35,15 +35,15 @@ Direct persistency mode supports the following database topologies:
 
 - [A central database](#central)
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-sync-persistNew.jpg](/attachment_files/data-grid-sync-persistNew.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 - [Distributed databases](#distributed)
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-sync-persist_non_central_dbNew.jpg](/attachment_files/data-grid-sync-persist_non_central_dbNew.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% anchor central %}}
 

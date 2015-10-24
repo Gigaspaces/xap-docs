@@ -10,9 +10,9 @@ weight: 100
 
 A **Local Cache** is a Client Side Cache that maintains a subset of the master space's data based on the client application's recent activity. The local cache is created empty, and whenever the client application executes a query the local cache first tries to fulfill it from the cache, otherwise it executes it on the master space and caches the result locally for future queries.
 
-{{% indent %}}
+{{% align center %}}
 ![local_cache.jpg](/attachment_files/local_cache.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 
 # Usage

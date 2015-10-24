@@ -73,9 +73,9 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 The Embedded space can be used in a distributed architecture such as the replicated or partitioned clustered space:
 
-{{% indent %}}
+{{% align center %}}
 ![replicated-space1.jpg](/attachment_files/replicated-space1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 A simple way to use the embedded space in a clustered architecture would be by deploying a [clustered space]({{%currentadmurl%}}/data-grid-clustering.html) or packaging your application as a [Processing Unit](./the-processing-unit-overview.html) and deploy it using the relevant SLA.
 
@@ -85,9 +85,9 @@ A simple way to use the embedded space in a clustered architecture would be by d
 
 A client communicating with a remote space performs all its operation via a remote connection. The remote space can be partitioned (with or without backups) or replicated (sync or async replication based).
 
-{{% indent %}}
+{{% align center %}}
 ![remote-space.jpg](/attachment_files/remote-space.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is an example how a client application can create a proxy to interacting with a remote space:
 
@@ -143,9 +143,9 @@ When working with a **remote space**, the space may become unavailable (network 
 
 XAP supports a [Local Cache](./local-cache.html) (near cache) configuration. This provides a front-end client side cache that will be used with the `read` operations implicitly . The local cache will be loaded on demand or when you perform a `read` operation and will be updated implicitly by the space.
 
-{{% indent %}}
+{{% align center %}}
 ![local_cache.jpg](/attachment_files/local_cache.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is an example for a `GigaSpace` construct with a local cache:
 
@@ -199,9 +199,9 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 
 XAP supports a [Local View](./local-view.html) configuration. This provides a front-end client side cache that will be used with any `read` or `readMultiple` operations implicitly. The local view will be loaded on start and will be updated implicitly by the space.
 
-{{% indent %}}
+{{% align center %}}
 ![local_view.jpg](/attachment_files/local_view.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is an example for a `GigaSpace` construct with a local cache:
 

@@ -11,9 +11,9 @@ weight: 600
 
 The XAP Mirror Service provides reliable asynchronous persistency which allows you to asynchronously delegate the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database, significantly reducing the performance overhead.
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-async-persist.jpg](/attachment_files/data-grid-async-persist.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The Mirror service ensures that data will not be lost in the event of a failure. This way, you can add persistency to your application by attaching a Mirror Service, without touching the real-time portion of your application in either configuration or code. This service provides fine-grained control of which objects need to be persisted.
 

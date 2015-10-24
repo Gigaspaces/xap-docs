@@ -21,9 +21,9 @@ There are multiple runtime configurations you may use when caching your data wit
 
 A client communicating with a remote space performs all its operation via a remote connection. The remote space can be partitioned (with or without backups) or replicated (sync or async replication based).
 
-{{% indent %}}
+{{% align center %}}
 ![remote-space-map.jpg](/attachment_files/remote-space-map.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is a very simple example how a client application can create a `GigaMap` interface interacting with a remote space:
 
@@ -71,9 +71,9 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 
 A client communicating with a an embedded space performs all its operation via local connection. There is no network overhead when using this approach.
 
-{{% indent %}}
+{{% align center %}}
 ![embedded-space-map.jpg](/attachment_files/embedded-space-map.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 To create a `GigaMap` for a co-located (embedded) space the space URL should use embedded space URL format:
 
@@ -121,9 +121,9 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 
 The Embedded space can be used in a distributed architecture such as the replicated or partitioned clustered space:
 
-{{% indent %}}
+{{% align center %}}
 ![replicated-space-map.jpg](/attachment_files/replicated-space-map.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 A simple way to use the embedded space in a clustered architecture would be by packaging your application as a Processing Unit and deploy it using the relevant SLA.
 
@@ -131,9 +131,9 @@ A simple way to use the embedded space in a clustered architecture would be by p
 
 The `GigaMap` support [Local Cache](./local-cache.html) (near cache) configuration. This provides a front-end client side cache that will be used with the `get` operations implicitly. The local cache will be loaded on demand or when you perform a `put` operation (when the **putFirst** option is activated).
 
-{{% indent %}}
+{{% align center %}}
 ![local_cache-map.jpg](/attachment_files/local_cache-map.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is an example for a `GigaMap` construct with a local cache:
 
@@ -436,9 +436,9 @@ The `get` operation will do the same by routing the operation to the relevant pa
 
 Many times, especially when working with a Processing Unit that starts an embedded space, operations against the space should be performed directly on the cluster member without interacting with the other space cluster members (partitions). This is a core concept of the SBA and Processing Unit, where most if not all the operations should be performed in-memory without leaving the Processing Unit boundaries, when a Processing Unit starts an embedded space.
 
-{{% indent %}}
+{{% align center %}}
 ![clustered-gigamap.jpg](/attachment_files/clustered-gigamap.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 **Embedded Non-Clustered GigaMap proxy vs. Embedded Clustered GigaMap Proxy**
 

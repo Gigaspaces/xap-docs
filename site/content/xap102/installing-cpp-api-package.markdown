@@ -33,9 +33,9 @@ Where the `gigaspaces-cpp-9.X.X-ga-linux-amd64-gcc-4.1.2.tar.gz` should be locat
 
 1. After unzipping the ZIP file, you should have the following files and folders under your `<XAP Root>\cpp` folder:
 
-{{% indent %}}
+{{% align center %}}
 ![CppTree.PNG](/attachment_files/CppTree.PNG)
-{{% /indent %}}
+{{% /align %}}
 
 {{%anchor setting-the-environment %}}
 

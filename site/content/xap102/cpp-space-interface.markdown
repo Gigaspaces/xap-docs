@@ -30,13 +30,13 @@ Please refer to the [GigaSpaces c++ Documentation](http://www.gigaspaces.com/doc
 
 A C++ client may write and read objects from the space.
 
-{{% indent %}}
+{{% align center %}}
 ![POJO_write.jpg](/attachment_files/POJO_write.jpg)
-{{% /indent %}}
+{{% /align %}}
 
-{{% indent %}}
+{{% align center %}}
 ![POJO_read.jpg](/attachment_files/POJO_read.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The following code example constructs a space proxy by passing a [space URL](./the-space-configuration.html) string into the `SpaceFinder.find()` method.
 The returned object is the `SpaceProxy` object. This allows performing all space operations such as write, read, take, notify registration, etc.
@@ -79,9 +79,9 @@ if (personResponse == NULL) {
 
 In some cases, you might want to write a batch of objects into the space using one space call.
 
-{{% indent %}}
+{{% align center %}}
 ![POJO_update_multi.jpg](/attachment_files/POJO_update_multi.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 This can be used when the c++ application accesses a remote space. In this case, batch write operations is more efficient than multiple separate single write operations. This is because the communication protocol transforms the c++ objects to PBS, and their transportation to the space is performed in one single operations rather than multiple separate calls.
 
@@ -117,9 +117,9 @@ for (int i = 0; i < 100; i++) {
 
 You can read a single object or multiple matching objects from the space.
 
-{{% indent %}}
+{{% align center %}}
 ![POJO_read_multi.jpg](/attachment_files/POJO_read_multi.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 When using the `readMultiple` operation, the returned object includes all of the matching objects found in the space. This operation should be used carefully, since it might return a large amount of objects; causing the space and the client to use a large amount of memory, and cause a load on the network.
 
@@ -150,9 +150,9 @@ The space allows c++ client applications to receive notifications when a matchin
 
 Once the listener is registered with a relevant template and operation type, and a matching event occurs in the space (as a result of write, take, update, or lease expiration) the registered client `IRemoteEventListener.notify()` implementation is called, passing the event object originator.
 
-{{% indent %}}
+{{% align center %}}
 ![POJO_notify-api.jpg](/attachment_files/POJO_notify-api.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Below is an example for an `IRemoteEventListener` listener implementation:
 
@@ -357,6 +357,6 @@ The basic architecture consists of the following components:
 - **c++ worker wrapper** -- this worker might pass objects to the `ICppWorker` implementation.
 - **`ICppWorker` implementation** -- the c++ implementation can access the space directly, or receive data from the space via the Java worker wrapper and its c++ worker wrapper counterpart.
 
-{{% indent %}}
+{{% align center %}}
 ![cpp-arch-image012.jpg](/attachment_files/cpp-arch-image012.jpg)
-{{% /indent %}}
+{{% /align %}}

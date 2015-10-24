@@ -18,9 +18,9 @@ The [SpaceDataSource](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %
 
 The space data source API is adequate for different kinds of data sources which could be SQL based, object based and document based. This flexibility is possible due to the fact that every query the space data source implementation receives can be represented differently to support the desired data source. The available representations are: SQL Query, Space Document and POJO. In addition, `SpaceDataSource` provides hook points for new types introduction and dynamically added indexes.
 
-{{% indent %}}
+{{% align center %}}
 ![SpacedataSourceAPI.jpg](/attachment_files/SpacedataSourceAPI.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% refer %}}
 Persisting data to the data is explained in the [Space Synchronization Endpoint API](./space-synchronization-endpoint-api.html) page.

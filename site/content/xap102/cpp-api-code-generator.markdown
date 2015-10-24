@@ -12,9 +12,9 @@ The `*gs.xml` file and the `gsxml2cpp` utility allow you to use your C++ classes
 
 Here is the general flow:
 
-{{% indent %}}
+{{% align center %}}
 ![cpp-dev-process.jpg](/attachment_files/cpp-dev-process.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 - To define your classes in the space using the `*.gs.xml` file, perform the following steps:
 
