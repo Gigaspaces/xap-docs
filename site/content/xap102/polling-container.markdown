@@ -430,8 +430,7 @@ public interface ReceiveOperationHandler {
 
 XAP comes with several built-in receive operation-handler implementations:
 
-| | |
-|----|----|
+
 |Receive Operation Handler|Description|
 |:------------------------|:----------|
 |`SingleTakeReceiveOperationHandler`|Performs a single blocking take operation with the receive timeout.|
@@ -690,7 +689,12 @@ The above example uses a receive timeout of 10 seconds (10000 milliseconds). The
 Processing data in batches may improve the processing throughput performance. Instead of consuming object one at a time from the space and processing it, you may consume a batch with multiple objects and process these in one transaction. This may improve the overall throughput rate, but may impact the latency of the individual object processing time.
 
 See below a simple benchmark results comparing the different options:
+
+{{% align center%}}
 ![poll_bench.jpg](/attachment_files/poll_bench.jpg)
+{{% /align%}}
+
+
 See full benchmark description on the [How to Implement my Processor? - The Polling Container Benchmark](http://blog.gigaspaces.com/2008/10/03/how-to-implement-my-processor-the-polling-container-benchmark) GigaSpaces blog site.
 
 You may use batching via the `MultiTakeReceiveOperationHandler`. The `MultiTakeReceiveOperationHandler.setMaxEntries(integer)` allows you to set the maximum amount of objects to be consumed with each polling event. If the space does not have sufficient number of matching objects during the polling point in time, the event listener method will be called with the existing number of matching objects (will be smaller than the `MaxEntries` value. There will be no delay in such a case and the polling container will not wait until there will be exact amount of matching objects to consume as specified via the `MaxEntries`.

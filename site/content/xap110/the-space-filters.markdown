@@ -11,8 +11,9 @@ parent: the-gigaspace-interface-overview.html
 Space Filters are interceptors inside the XAP Space engine that enable integration with external systems and/or implementation of user-defined logic based once space operations are executed.
 
 
+{{% align center%}}
 ![Space Filter.JPG](/attachment_files/Space Filter.JPG)
-
+{{%/align%}}
 
 # Space Filters
 

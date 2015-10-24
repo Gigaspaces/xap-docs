@@ -37,7 +37,7 @@ In JMS 1.0.2, each domain used a separate set of interfaces. JMS 1.1 presents th
 ### Using Unified Messaging Model (JMS 1.1)
 
 {{%accordion%}}
-{{%accord title=""%}}
+{{%accord title="JMS 1.1"%}}
 {{% panel  %}}
 
 
@@ -87,7 +87,7 @@ connection.close();
 #### Publish/Subscribe
 
 {{%accordion%}}
-{{%accord title=""%}}
+{{%accord title="Publish/Subscribe"%}}
 {{% panel %}}
 
 
@@ -136,7 +136,7 @@ topicConnection.close();
 #### Point to Point
 
 {{%accordion%}}
-{{%accord title=""%}}
+{{%accord title="Point to Point"%}}
 {{% panel   %}}
 
 
