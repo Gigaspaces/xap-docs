@@ -116,8 +116,9 @@ start_tutorial.bat
 
 After executing the start command you should see the following output:
 
+{{% align center%}}
 ![xx](/attachment_files/qsg/XAP-Interactive-Tutorial-screenshot.png)
-
+{{% /align%}}
 
 <br>
 
@@ -239,7 +240,9 @@ This option will introduce you to some unique XAP features:
 This option opens an interactive Groovy shell with `XAP` classes preloaded, that allows you to exercise the `XAP API`.
 When you launch this option you should see the following screen:
 
+{{% align center%}}
 ![yy](/attachment_files/qsg/groovyshell.png)
+{{% /align%}}
 
 Here are some code snippets that you can copy and paste into the Interactive Shell:
 

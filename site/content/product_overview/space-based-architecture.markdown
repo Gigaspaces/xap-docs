@@ -29,7 +29,9 @@ menu: product
 - Full monitoring and management during runtime are available through the [Management UI](./terminology.html#Management UI).
 
 
+{{% align center%}}
 ![sba_with_backup.jpg](/attachment_files/sba_with_backup.jpg)
+{{% /align%}}
 
 {{%  sub %}}**An SBA implementation, with 3 primary instances and one backup for each them, accessed by two client applications**{{%  /sub %}}
 

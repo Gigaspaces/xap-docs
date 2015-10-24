@@ -26,8 +26,9 @@ Service-oriented architecture (SOA) is the dynamic network architecture discusse
 SOA takes the existing software components residing on the network and allows them to be published, invoked and discovered by each other. SOA allows a software programmer to model programming problems in terms of services offered by components to anyone, anywhere over the network.
 
 
+{{% align center%}}
 ![about_jini1.gif](/attachment_files/about_jini1.gif)
-
+{{% /align %}}
 
 # Network Federation and Infrastructure
 
@@ -57,9 +58,9 @@ As the following block diagram shows, the Jini technology is made possible by th
 - Polymorphic type system -- interfaces are not concrete types and can be used by a wide variety of systems.
 - Portable bytecode -- Java moves code from machine to machine and from operating system to operating system, using strong typing, class loading, and security.
 
-
+{{% align center%}}
 ![about_jini2.gif](/attachment_files/about_jini2.gif)
-
+{{% /align %}}
 
 The diagram above shows that the Jini services are layered on the Java language, which can itself be used on all major operating systems throughout a network. GigaSpaces provides also C++ and .Net applications to access deployed services. The polymorphic typing and portable code allows Java\-based Jini to span the network and serve various disparate network elements. The JavaSpaces service could be considered a "super" Jini service.
 
@@ -92,9 +93,9 @@ The service proxy is more than just a link to the service -- it itself is a Java
 
 As the diagram further indicates, the communication protocol required between client and provider is actually built into the interface code. Thus the client computer is relieved of handling the communication and it is possible for one client to communicate with multiple services, each with a different communications protocol.
 
-
+{{% align center%}}
 ![about_jini3.gif](/attachment_files/about_jini3.gif)
-
+{{% /align %}}
 
 ## Registering and Using a Service
 
@@ -102,9 +103,9 @@ The following diagram shows how a service provider registers a service with the 
 
 The service proxy is copied by the provider to the Lookup Service at registration. If the client decides to use the service, he downloads the service proxy and invokes the service by calling the methods of its proxy interface.
 
-
+{{% align center%}}
 ![about_jini4.gif](/attachment_files/about_jini4.gif)
-
+{{% /align %}}
 
 
 
@@ -256,9 +257,9 @@ The JavaSpace itself is a model of persisted data in a data source and abstracts
 
 A process can _write_ new objects into a space, _take_ objects from a space, or _read_ (make a copy of) objects in a space; the diagram below depicts several processes (represented by Dukes) interacting with spaces using these operations. When taking or reading objects, processes use simple matching, based on the values of fields, to find the objects that matter to them. If a matching object isn't found immediately, then a process can wait until one arrives. In JavaSpaces, unlike conventional object stores, processes don't modify objects in the space or invoke their methods directly - while there, objects are just passive data. To modify an object, a process must explicitly remove it, update it, and reinsert it into the space.
 
-
+{{% align center%}}
 ![about_jini5.gif](/attachment_files/about_jini5.gif)
-
+{{% /align %}}
 
 Some examples of the built-in Jini services in a JavaSpace:
 

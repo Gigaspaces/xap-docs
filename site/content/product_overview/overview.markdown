@@ -30,8 +30,9 @@ Applications running on XAP can be scaled out linearly, because XAP uses the [Sp
 
 The following diagram shows a component view of GigaSpaces XAP. The main components are described in more detail below.
 
+{{% align center%}}
 ![XAP Architecture Overview.jpg](/attachment_files/XAP Architecture Overview.jpg)
-
+{{% /align %}}
 
 ## OpenSpaces
 
@@ -79,7 +80,10 @@ With XAP, IMDG instances are constructed out of space instances. The IMDG can be
 
 The SLA-Driven Containers can also add self-healing characteristics. When one container crashes, the failed IMDG instances are automatically relocated to the available containers, providing the application with continuous high-availability.
 
+{{% align center%}}
 ![XAP SLA Container failover.jpg](/attachment_files/XAP SLA Container failover.jpg)
+{{% /align %}}
+
 {{%  anchor runtime %}}
 
 # Runtime Perspective
@@ -88,7 +92,9 @@ From a runtime perspective, a XAP cluster is a cluster of machines, each running
 
 An application running with XAP is built of multiple Processing Units. The Processing Units are packaged as part of a bundle; bundle structure is compliant with Spring/OSGI. Each bundle contains a deployment descriptor named `pu.xml`, a Spring application context file with Open Spaces component extensions. This file contains the Processing Unit's SLA definition, as well as associations between the application components, namely the POJO services, the space middleware components, and most commonly, a Data Grid.
 
+{{% align center%}}
 ![XAP Runtime Perspective2.jpg](/attachment_files/XAP Runtime Perspective2.jpg)
+{{% /align %}}
 
 The application is deployed through a GSM (Grid Service Manager) which performs match-making between the SLA definitions of the application's Processing Unit and the available SLA-Driven Containers. The SLA definitions include the number of instances that need to be deployed, the number of instances that should run per container and across the entire network, and system requirements such as the required JVM version or database version.
 
@@ -100,7 +106,9 @@ Different applications may have one or more instances of their Processing Units 
 
 The Space-Based Architecture (SBA) can be viewed as a special case of SOA/EDA, designed specifically for high-performance stateful applications.
 
+{{% align center%}}
 ![xap_soa1.gif](/attachment_files/xap_soa1.gif)
+{{% /align %}}
 
 A classic SOA is based on the Enterprise Service Bus (ESB) model, as shown in the diagram above. In this model, services become loosely-coupled through the use of a messaging bus. Scaling is done by adding more services into the bus and load-balancing the requests between them.
 
@@ -108,11 +116,15 @@ Most implementations of this model rely on web services to handle message flow b
 
 With SBA, a similar model can be implemented using the space. The space functions as an in-memory messaging bus -- an ESB for delivering and routing transactions -- but also as an In-Memory Data Grid which can support stateful services.
 
+{{% align center%}}
 ![xap_soa2.gif](/attachment_files/xap_soa2.gif)
+{{% /align %}}
 
 To avoid the I/O overhead associated with the interaction of these services with either the messaging layer or the data layer, SBA introduces the concept of a Processing Unit, which is essentially a deployment/runtime optimization. Instead of having each component of the architecture separate and remote, we bundle together the relevant message queue, its associated services, and the data into a single unit: the Processing Unit, which always runs in a single VM. In this case, the interaction between the messaging, the services, and the data layer is done in-process as well as in-memory, ensuring the lowest possible latency.
 
+{{% align center%}}
 ![xap_soa3.gif](/attachment_files/xap_soa3.gif)
+{{% /align %}}
 
 The services that reside within a Processing Unit are just like any other services in the web services world. Their lifecycle can be managed individually, and they can be deployed and upgraded dynamically without bringing down the entire Processing Unit (assuming they are implemented as OSGI services).
 
@@ -167,5 +179,6 @@ From a runtime perspective, there are several ways remote clients can interact w
 - **Plain Java clients, J2EE** -- this can be either a regular POJO client that interacts with the space, or a Session Bean that obtains a reference to the space through the GigaSpaces SpaceFinder method, and uses that reference to interact with the space directly.
 - **[.NET]({{% latestjavaurl%}}/index.html)**, **[C++]({{% latestjavaurl%}}/xap-cpp.html)** -- GigaSpaces provides .NET and C++ libraries that enable direct interaction with services via the space, just like a POJO client.
 
+{{% align center%}}
 ![Remote Clients.jpg](/attachment_files/Remote Clients.jpg)
-
+{{% /align %}}

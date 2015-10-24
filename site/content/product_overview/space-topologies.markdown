@@ -22,23 +22,32 @@ This section explains the topologies supported by XAP - replicated, partitioned 
 
 - **Space (data grid) instance** - an independent data storage unit. The Space is comprised of all the space instances running on the network.
 
+{{% align center%}}
 ![DGA-DataGrid.jpg](/attachment_files/DGA-DataGrid.jpg)
+{{% /align%}}
 
 - **Space** - GigaSpaces data grid implementation. A distributed, shared, memory-based repository for objects. A space runs in a _space container_ - this is usually transparent to the developer.
 
+{{% align center%}}
 ![DGA-GigaSpacesDataGrid.jpg](/attachment_files/DGA-GigaSpacesDataGrid.jpg)
+{{% /align%}}
 
 - **GigaSpaces Container (GSC)** - a generic container that can run one or more [processing units]({{% latestjavaurl%}}/the-processing-unit-overview.html). A space instances usually runs within processing unit. The GSC is launched on each machine that participates in the space cluster, and hosts the space instances.
 
+{{% align center%}}
 ![DGA-ServiceGridDataGrid.jpg](/attachment_files/DGA-ServiceGridDataGrid.jpg)
-
+{{% /align%}}
 - **Remote vs. Collocated** - The Space can be remote to the application or collocated with the application. With Remote mode any space operation involves network usage. With collocated mode there is no network utilization. This mode improves the performance and latency with activities that performs space operations.
 
+{{% align center%}}
 ![remote_embedded_space_topology.jpg](/attachment_files/remote_embedded_space_topology.jpg)
+{{% /align%}}
 
 - **Replication** - a relationship in which data is copied between two or more space instances, with the aim of having the same data in some or all of them.
 
+{{% align center%}}
 ![DGA-Replication2.jpg](/attachment_files/DGA-Replication2.jpg)
+{{% /align%}}
 
 - **Synchronous replication** - replication scheme in which space client applications are blocked until their changes are propagated to all peer spaces. This guarantees higher data consistency between space instances, at the expense of reduced performance since clients have to wait for the replication to complete before the operation is finished.
 
@@ -46,7 +55,9 @@ This section explains the topologies supported by XAP - replicated, partitioned 
 
 - **Partitioning** - new data or operations on data are routed to one of several space instances (partitions). Each space instance holds a subset of the data, with no overlap. Partitioning is done according to n _routing field_ in the data object. Each object written to the space defines a routing field whose value is used to determine the partition to which the object will be sent. The space client side proxy guarantees that if two object have the same value set for the routing field they will end up in the same partition, regardless o how many partitions are running.
 
+{{% align center%}}
 ![DGA-Partitioning2.jpg](/attachment_files/DGA-Partitioning2.jpg)
+{{% /align%}}
 
 - **Topology** - a specific configuration of space instances. For example, a replicated topology is a configuration in which all space instances replicate data between one another. In GigaSpaces, space topologies are defined by _clustering policies_ (explained in the following section).
 

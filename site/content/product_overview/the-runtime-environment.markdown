@@ -27,8 +27,9 @@ When developing your processing unit, you can [run and debug the processing unit
 
 The service grid is composed of a number of components:
 
+{{% align center%}}
 ![gs_runtime.jpg](/attachment_files/gs_runtime.jpg)
-
+{{% /align %}}
 
 
 # Core Components

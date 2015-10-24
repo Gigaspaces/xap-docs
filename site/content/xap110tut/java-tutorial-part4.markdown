@@ -217,6 +217,7 @@ In addition to the polling containers you can also use a JMS facade on top of th
 
 
 # Master Worker Pattern
+
 {{%section%}}
 {{%column width="85%" %}}
 The Master-Worker Pattern (sometimes called the Master-Slave or the Map-Reduce pattern) is used for parallel processing. It follows a simple approach that allows applications to perform simultaneous processing across multiple machines or processes via a `Master` and multiple `Workers`.

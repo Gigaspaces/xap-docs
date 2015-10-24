@@ -29,7 +29,9 @@ With this mechanism, the IMDG is the system of record. The database data is load
 - When running in `all-in-cache` [cache policy mode]({{% latestadmurl%}}/memory-management-facilities.html), all data is loaded from the database into the cache once it is started.
 - When running in `LRU` [cache policy]({{% latestadmurl%}}/memory-management-facilities.html) mode, a subset of the data is loaded from the database into the cache when it is started. Data is evicted from the cache based on available memory or a maximum amount of cache objects. Once there is a cache miss, the cache looks for the data within the underlying data-source. If matching data is found, it is loaded into the cache and delivered to the application.
 
+{{% align center%}}
 ![in-line-cache.jpg](/attachment_files/in-line-cache.jpg)
+{{% /align%}}
 
 The in-line cache is implemented using the following configurations:
 
@@ -66,10 +68,16 @@ With this mechanism, the application is responsible for maintaining the data in 
 4. The next time the application attempts to fetch the same object, it will be read from the cache - unless the object has been expired, evicted ore removed explicitly.
 
 Side cache without External Data Source:
+
+{{% align center%}}
 ![side_cache.jpg](/attachment_files/side_cache.jpg)
+{{% /align%}}
 
 Side cache with External Data Source:
+
+{{% align center%}}
 ![side_cache-lazy.jpg](/attachment_files/side_cache-lazy.jpg)
+{{% /align%}}
 
 With a Side Cache architecture there is no Mirror. The application responsible to write changes to the database. Data is evicted or expired from the space by writing it with a finite lease (TTL). There are two options how data is loaded into the space:
 
@@ -99,15 +107,21 @@ When using client cache, you use a two-layered cache architecture: The first lay
 
 #### In-line cache with a client cache:
 
+{{% align center%}}
 ![in-line_cache-local-cache.jpg](/attachment_files/in-line_cache-local-cache.jpg)
+{{% /align%}}
 
 #### Side cache with a client cache:
 
+{{% align center%}}
 ![side-cache-local-cache.jpg](/attachment_files/side-cache-local-cache.jpg)
+{{% /align%}}
 
 #### Side cache using External Data Source with a client cache:
 
+{{% align center%}}
 ![side_cache-lazy-localcache.jpg](/attachment_files/side_cache-lazy-localcache.jpg)
+{{% /align%}}
 
 The client cache size is limited to the client process heap size. The client-side cache is updated automatically once the master copy of the object within the IMDG is updated. The client cache can be implemented using the following configurations:
 
@@ -139,16 +153,22 @@ Here are few options you may use to refresh the cache:
 
 With this approach data is pushed into the cache in a periodic manner via a timer. The Timer will be fetching relevant data that was recently updated within the database and pushing it into the cache.
 
+{{% align center%}}
 ![query-service.jpg](/attachment_files/query-service.jpg)
+{{% /align%}}
 
 ## Refresh data using a Queue
 
 Any updates made to the database are also written to a queue. Refresher client consumes the messages on the queue and applies these changes to space.
 
+{{% align center%}}
 ![queue-refresh.jpg](/attachment_files/queue-refresh.jpg)
+{{% /align%}}
 
 ## Refresh data using Database Change Notifications
 
 Oracle and few other databases support [Database Change Notifications](/sbp/oracle-delta-server.html) where a client can register a listener for changes to data. Any changes made to the database will trigger the listener defined in a DCN Client. Listener can in turn write these messages into the space.
 
+{{% align center%}}
 ![Database Change Notification.png](/attachment_files/Database Change Notification.png)
+{{% /align%}}

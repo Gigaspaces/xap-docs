@@ -11,7 +11,9 @@ menu: product
 
 ### GigaSpaces XAP is built from the following sub-systems:
 
+{{% align center%}}
 ![archi_overview.jpg](/attachment_files/archi_overview.jpg)
+{{% /align %}}
 
 {{%  anchor Open-Interfacing-Layer%}}
 
