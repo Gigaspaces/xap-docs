@@ -24,6 +24,10 @@ If you're upgrading from a previous version and are using `Externalizable` POJOs
 the system property `com.gs.transport_protocol.lrmi.serialize-using-externalizable` to `true` to revert to the previous behaviour and test if the performance issue is resolved. Please note that this system property it only meant
 to aid for investigating these issues and will be removed in future versions, when `Externalizable` support will reach end of life.
 
+{{% refer %}}
+[Custom Serialization](/xap100/custom-serialization.html)
+{{% /refer %}}
+
 ## .NET 2.0 support
 
 In previous versions we've released XAP.NET for .NET 2.0 and 4.0. Since the vast majority of our customers have already moved to .NET 3.5 (or later), and supporting .NET 2.0 is becoming harder (e.g. complicates our LINQ support), 
