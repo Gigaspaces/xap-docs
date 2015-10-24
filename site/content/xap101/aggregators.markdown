@@ -446,3 +446,9 @@ Detailed Flow:
 The `aggregate(SpaceEntriesAggregatorContext context)` is called within each partition for each matching space object. The actual Aggregation is done within the instance members (in this case the `transient StringBuilder sb`). When all matching space objects have been scanned, the `getIntermediateResult` method is called to return the aggregation result of that partition (in this case - a string) back to the client (that is holding the clustered space proxy).
 
 The proxy holds a different instance of the `ConcatAggregator` custom aggregator, whenever it receives an intermediate result from each partition it calls `aggregateIntermediateResult(String partitionResult)`. Once all partitions have returned their results, the proxy invokes the `getFinalResult` method to retrieve the final aggregation result. This method is not shown in the example above since it's default implementation is to call `getIntermediateResult` method, which yields the correct value in most aggregation implementations. There might be some special cases where you will need to implement the `getFinalResult` method.
+
+
+
+{{% refer%}}
+For more examples see the Services & Best Practices [Custom Aggregator](/sbp/aggregators-custom.html)
+{{%/refer%}}
