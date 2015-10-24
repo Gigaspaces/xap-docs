@@ -30,7 +30,7 @@ In order to use the OpenSpaces queue provider, the following namespaces should b
 xmlns:os-queue=http://www.openspaces.org/schema/mule/os-queue
 
 xsi:schemaLocation="...
-http://www.openspaces.org/schema/mule/os-queue http://www.openspaces.org/schema/{{%currentversion%}}/mule/3.1/mule-os-queue.xsd">
+http://www.openspaces.org/schema/mule/os-queue http://www.openspaces.org/schema/{{%currentversion%}}/mule/{{%version mule%}}/mule-os-queue.xsd">
 ```
 
 # Connector

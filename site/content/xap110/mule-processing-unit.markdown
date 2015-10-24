@@ -61,20 +61,20 @@ guava-16.0.1.jar
 jaxen-1.1.1.jar
 jgrapht-jdk1.5-0.7.3.jar
 log4j-1.2.16.jar
-mule-common-3.7.0.jar
-mule-core-3.7.0.jar
-mule-core-3.7.0-tests.jar
-mule-module-annotations-3.7.0.jar
-mule-module-client-3.7.0.jar
-mule-module-jbossts-3.7.0.jar
-mule-module-logging-3.7.0.jar
-mule-module-spring-config-3.7.0.jar
-mule-module-spring-extras-3.7.0.jar
+mule-common-{{%version mule%}}.jar
+mule-core-{{%version mule%}}.jar
+mule-core-{{%version mule%}}-tests.jar
+mule-module-annotations-{{%version mule%}}.jar
+mule-module-client-{{%version mule%}}.jar
+mule-module-jbossts-{{%version mule%}}.jar
+mule-module-logging-{{%version mule%}}.jar
+mule-module-spring-config-{{%version mule%}}.jar
+mule-module-spring-extras-{{%version mule%}}.jar
 mule-mvel2-2.1.9-MULE-003.jar
-mule-transport-http-3.7.0.jar
-mule-transport-quartz-3.7.0.jar
-mule-transport-stdio-3.7.0.jar
-mule-transport-vm-3.7.0.jar
+mule-transport-http-{{%version mule%}}.jar
+mule-transport-quartz-{{%version mule%}}.jar
+mule-transport-stdio-{{%version mule%}}.jar
+mule-transport-vm-{{%version mule%}}.jar
 quartz-1.8.5.jar
 uuid-3.4.0.jar
 wrapper-3.2.3.jar
