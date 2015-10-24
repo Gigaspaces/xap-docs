@@ -14,7 +14,9 @@ XAP 10 introduces a new storage model called BlobStore Storage Model, which allo
 
 This storage model leverages on-heap LRU cache (deserialized form) and off-heap LRU cache (serialized form) to store data, on-heap to store indexes and external storage device to store the raw data in a serialized form. 
 
+{{% align center%}}
 ![blobstore1.jpg](/attachment_files/blobstore1.jpg)
+{{% /align%}}
 
 The JVM heap is used as a first level LRU cache for frequently used data. Repetitive read operations (by Id, by template or using a SQL query) for the same data will be loaded from off-heap LRU cache or from an external storage medium (SSD) upon the first request and later be served from the on-heap or off-heap based cache.
 

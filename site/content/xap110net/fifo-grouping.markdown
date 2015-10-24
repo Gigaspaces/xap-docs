@@ -20,9 +20,9 @@ In most cases, your application does not require total ordering, but rather orde
 - Within the same group, events will be processed in the order they arrived, and exclusively, meaning that only one event will be processed at a time, regardless of the number of event processors.
 - Across groups, any number of events can be processed simultaneously.
 
-{{% indent %}}
+{{% align center %}}
 ![fifo-group.jpg](/attachment_files/fifo-group.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The FIFO-Grouping can be used with financial systems to process **trade orders** , in healthcare systems to processes **patient medical data** , with transportation systems to process **reservations** , with airlines systems to process **flight schedule** , with billing system to processes **payments**, etc. With the flight reservation system scenario several reservations can be processed simultaneously but the reservations of a particular fight must be processed exclusively and in FIFO order.
 

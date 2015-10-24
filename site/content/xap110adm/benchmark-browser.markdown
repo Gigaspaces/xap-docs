@@ -41,9 +41,9 @@ These options and tabs are described in the sections below.
 
 The **Settings** tab allows you to configure the benchmark parameters.
 
-{{% indent %}}
+{{% align center %}}
 ![gmc_space_benchmark_6.0.2.jpg](/attachment_files/gmc_space_benchmark_6.0.2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 It contains the following areas:
 
@@ -146,9 +146,9 @@ The **Transaction** area allows you to perform operations under transactions:
 - Distributed - the Jini Distributed Transaction Manager is used to create the transaction object with the operations.
 In the **Txn Manager URL** text box, specify the host name and port in which your Jini Lookup Service is running:
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_benchmark_txManagerURL_6.1.jpg](/attachment_files/GMC_space_benchmark_txManagerURL_6.1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 - You can choose how many operations are performed before a transaction is committed. Default is **Commit every 1 operation**, meaning the transaction is committed after every single operation.
 
@@ -170,15 +170,15 @@ The benchmark results are printed to an Excel file, which allows you to easily s
 
 The **Configuration** area allows you to save specific options you selected in the *Service View*, instead of having to re-select them every time you run a new benchmark. You can save these options by clicking the **New** button. In the **New Configuration** dialog type the name of your choice, for example, `myConfiguration`:
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_benchmark_New_Configuration_dialog_small_6.0.jpg](/attachment_files/GMC_space_benchmark_New_Configuration_dialog_small_6.0.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Press **OK** to accept and close the dialog, and then click **Save**. The saved configuration now exists in the drop-down menu:
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_benchmark_Configuration_area_SavedConfiguration_6.0.jpg](/attachment_files/GMC_space_benchmark_Configuration_area_SavedConfiguration_6.0.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 You can add as many configurations as you like, and select the one you want to use from the drop-down menu. You can also delete or rename existing configurations using the **Delete** and **Rename** buttons.
 
@@ -187,9 +187,9 @@ You can add as many configurations as you like, and select the one you want to u
 
 The **Table** tab allows you to view the benchmark results in tabular format. The table provides the throughput for write, read, or take operations, and the client process memory available during the test period.
 
-{{% indent %}}
+{{% align center %}}
 ![benchmark_table_tab.gif](/attachment_files/benchmark_table_tab.gif)
-{{% /indent %}}
+{{% /align %}}
 
 To clear the **Table** tab, click the **Clear** button.
 
@@ -197,9 +197,9 @@ To clear the **Table** tab, click the **Clear** button.
 
 The **Graph** tab allows you to view the benchmark results using graphs. The graphs provided show the throughput for write/read/take operations and the client process memory available during the test period.
 
-{{% indent %}}
+{{% align center %}}
 ![benchmark_graph_tab.gif](/attachment_files/benchmark_graph_tab.gif)
-{{% /indent %}}
+{{% /align %}}
 
 To clear the **Graph** tab, click the **Clear** button.
 
@@ -211,9 +211,9 @@ When running multiple benchmarks, the last benchmark summary is added to the pre
 
 The Summary tab includes the client system environment -- OS, J2SE, memory, network interfaces information, the total time of the benchmark, the average throughput, the number of bytes written/read from the space, and the edition and build of GigaSpaces.
 
-{{% indent %}}
+{{% align center %}}
 ![benchmark_summary_tab.gif](/attachment_files/benchmark_summary_tab.gif)
-{{% /indent %}}
+{{% /align %}}
 
 To clear the **Summary** tab, click the **Clear** button.
 

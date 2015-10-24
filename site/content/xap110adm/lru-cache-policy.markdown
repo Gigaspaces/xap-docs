@@ -94,7 +94,7 @@ LRU eviction based on the amount of available memory, performs the following:
 
 - Check used memory. If not breached, the `space-config.engine.memory_usage.high_watermark_percentage` exits. If yes, it starts the eviction cycle:
 
-{{% indent %}}
+{{% align center %}}
 **Start eviction loop**
 
 1. Evicts a batch - this releases objects from the space.
@@ -106,7 +106,7 @@ LRU eviction based on the amount of available memory, performs the following:
 1. If the eviction counter value is larger than `space-config.engine.memory_usage.retry_count`, throw a `MemoryShortageException`.
 
 **End eviction loop**
-{{% /indent %}}
+{{% /align %}}
 
 - If the amount of memory used, is above the `space-config.engine.memory_usage.high_watermark_percentage` (for a non-write operation), or the `space-config.engine.memory_usage.write_only_block_percentage` (for a write operation) - throw a `MemoryShortageException`.
 
@@ -124,9 +124,9 @@ The `org.openspaces.core.SpaceMemoryShortageException` (which wraps the `com.j_s
 - There are no more space objects to evict and the utilized memory is above the `space-config.engine.memory_usage.high_watermark_percentage` threshold.
 - There are no more space objects to evict and the utilized memory is above the `space-config.engine.memory_usage.write_only_block_percentage` threshold and a **write-type** operation has been called.
 
-{{% indent %}}
+{{% align center %}}
 ![LRU_SpaceMemoryShortageException.jpg](/attachment_files/LRU_SpaceMemoryShortageException.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 If a client is running a local cache, and the local cache cannot evict its data fast enough, or somehow there is no available memory for the local cache to function, the following is thrown:
 
@@ -291,21 +291,21 @@ If the JVM is not using the incremental GC mode (i.e. regular behavior), the GC 
 
 See below an example of regular GC behavior, when eviction is going on (based on available memory), and new objects are written into the space:
 
-{{% indent %}}
+{{% align center %}}
 ![mem1.jpg](/attachment_files/mem1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Incremental GC behavior has more moderate activity with on-going garbage collection, without the risk of missing a garbage collection, and getting OOME - see below for an example of behavior when eviction is going on (based on available memory) and new objects are written into the space:
 
-{{% indent %}}
+{{% align center %}}
 ![mem2.jpg](/attachment_files/mem2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 When the LRU eviction is based on the maximum amount of objects, the memory utilization graph looks like this - a very small amplitude.
 
-{{% indent %}}
+{{% align center %}}
 ![mem3.jpg](/attachment_files/mem3.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 This behavior is achieved because the memory manager evicts objects one by one from the space, rather than in batches. So the amount of  work the JVM garbage collector needs to perform is relatively small. This also does not affect the clients communicating with the space, and provides a very deterministic response time - i.e. a very small chance of a client hiccup.
 

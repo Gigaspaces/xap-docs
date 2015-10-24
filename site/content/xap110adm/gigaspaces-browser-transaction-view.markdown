@@ -23,9 +23,9 @@ The Transactions view allows you to view all of the transactions that are curren
 - Drill into objects locked under the transaction by double-clicking them, using the [Object Inspector](./gigaspaces-browser-object-inspector.html).
 - Refresh rate -- every 1, 3, or 5 seconds (see [below](#2)).
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_transactions_view_6.5.jpg](/attachment_files/GMC_space_transactions_view_6.5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% refer %}}For details on transactions, refer to the Transaction Management {{%currentjavanet "transaction-management.html" %}} section.{{% /refer %}}
 
@@ -40,6 +40,6 @@ The Transactions view is dynamic:
 - The transaction's ID displayed at the top of the screen changes constantly. Every time the ID number changes, this means a new transaction is running. This continues until all of the transactions defined finish, then the table becomes empty. You won't be able to see each running transaction -- depending on the size of the transaction, it usually takes less than a second to finish.
 - The number of objects locked under a transaction displayed also changes constantly. Therefore, when you click on a transaction, the number of locked objects displayed below isn't 100% accurate. For example, if the refresh rate selected is one second, the locked objects displayed in the few seconds it took to click on the transaction and view its details, are not shown below.
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_x_RefreshRate_area_TopRight_6.0.gif](/attachment_files/GMC_space_x_RefreshRate_area_TopRight_6.0.gif)
-{{% /indent %}}
+{{% /align %}}

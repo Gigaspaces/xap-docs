@@ -11,7 +11,9 @@ Load-balancing (Data-Partitioning) is essential in any truly scalable architectu
 
 A clustered proxy for a partitioned data grid holds logical references to all space members in the cluster. The references are "logical", in the sense that no active connection to a space member is opened until it is needed. This is illustrated in the following diagram:
 
+{{% align center%}}
 ![load_balancing_basic.gif](/attachment_files/load_balancing_basic.gif)
+{{% /align%}}
 
 {{% refer %}}
 For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html) section.
@@ -69,7 +71,9 @@ Converting a numeric value to a String and using the string representation as th
 
 A cluster is defined with 3 partitions where each partition has one primary and one backup space.
 
+{{% align center%}}
 ![load_balancing1.jpg](/attachment_files/load_balancing1.jpg)
+{{% /align%}}
 
 The cluster configured to use the hash-based load-balancing policy. The application writes the `Account` space object into the clustered space. The `accountID` field as part of the `Account` class is defined as the routing field using the `@SpaceRouting` decoration.
 

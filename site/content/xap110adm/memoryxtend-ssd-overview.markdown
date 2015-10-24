@@ -21,7 +21,9 @@ All XAP APIs are supported with the BlobStore configuration. This includes the S
 
 XAP is using [SanDisk ZetaScale](http://www.sandisk.com/enterprise/zetascale) library, which uses direct flash access. It circumvents OS level storage interfaces when writing an object to the space, its indexed data maintained on Heap where the Storage interface implementing using the ZetaScale libraries to interact with the underlying flash drive.
 
+{{% align center%}}
 ![blobstore2.jpg](/attachment_files/blobstore2.jpg)
+{{% /align%}}
 
 The indexes maintain in RAM (on-heap) allowing the XAP query engine to evaluate the query without accessing the raw data stored on the flash device. This allows XAP to execute SQL based queries extremely efficiently even across large number of nodes. All XAP Data Grid APIs are supported including distributed transactions, leasing (Time To live) , FIFO , batch operations , etc. All clustering topologies supported. All client side cache options are supported.
 

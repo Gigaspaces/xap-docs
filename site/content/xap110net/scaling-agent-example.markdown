@@ -306,13 +306,13 @@ To simplify the deployment of the examples, there are several scripts in the exa
 
 ## Feeder Application
 
-{{% indent %}}
+{{% align center %}}
 ![ScalingAgentFeeder.jpg](/attachment_files/dotnet/ScalingAgentFeeder.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 ## Agent Application
 
-{{% indent %}}
+{{% align center %}}
 ![ScalingAgentConsole.jpg](/attachment_files/dotnet/ScalingAgentConsole.jpg)
-{{% /indent %}}
+{{% /align %}}
 

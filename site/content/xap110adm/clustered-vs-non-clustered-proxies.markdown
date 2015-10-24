@@ -24,8 +24,9 @@ When deploying a Processing Unit(PU) configured with an embedded [Space]({{%curr
 Many times, especially when working with a PU that starts an embedded space, operations against the space should be performed directly on the cluster member without interacting with the other space cluster members (partitions). This is a core concept of the SBA and Processing Unit, where most if not all the operations should be performed in-memory without leaving the Processing Unit boundaries, when a Processing Unit starts an embedded space.
 
 
+{{% align center%}}
 ![clustered-vs-non-clustered-proxy.jpg](/attachment_files/clustered-vs-non-clustered-proxy.jpg)
-
+{{% /align%}}
 
 The decision of working directly with a cluster member or against the whole cluster is done in the `GigaSpace` level. The `GigaSpacesFactoryBean` provides a clustered flag with the following logic as the default value: If the space is started in embedded mode (for example, `/./space`), the clustered flag is set to `false`. When the space is looked up in a remote protocol (i.e. `jini://*/*/space`, the clustered flag is set to `true`.
 

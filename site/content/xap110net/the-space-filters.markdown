@@ -11,8 +11,10 @@ weight: 800
 
 A Space Filter is a special hook point inside the engine that enables integration with external systems, or implementation of user defined logic. There are two ways to implement such a filter and integrate it with the space, both of which are covered in this page.
 
-![Space Filter.JPG](/attachment_files/Space Filter.JPG)
 
+{{% align center%}}
+![Space Filter.JPG](/attachment_files/Space Filter.JPG)
+{{%/align%}}
 
 # Integrating the Space Filter with a Space
 

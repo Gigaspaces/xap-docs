@@ -16,9 +16,9 @@ Data is streamed into the client's local view based on predefined criteria (a co
 
 During the local view initialization, data is loaded into the client's memory based on the view criteria. Afterwards, the local view is continuously updated by the master space asynchronously; any operation executed on the master space that affects an entry which matches the view criteria is automatically propagated to the client.
 
-{{% indent %}}
+{{% align center %}}
 ![local_view.jpg](/attachment_files/local_view.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 
 

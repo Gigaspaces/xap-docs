@@ -10,9 +10,9 @@ weight: 600
 
 The XAP Mirror Service provides reliable asynchronous persistency. This allows you to asynchronously delegate the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database, significantly reducing the performance overhead.
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-async-persist.jpg](/attachment_files/data-grid-async-persist.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The Mirror service ensures that data will not be lost in the event of a failure. This way, you can add persistency to your application just by running the Mirror Service, without touching the real-time portion of your application in either configuration or code. This service provides fine-grained control of which object needs to be persisted.
 
@@ -184,9 +184,9 @@ The activity of the mirror service can be monitored using the [Administration an
 
 You may view Mirror and its replication statistics via the [GigaSpaces Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html). Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.
 
-{{% indent %}}
+{{% align center %}}
 ![mirror_ui_stats.jpg](/attachment_files/mirror_ui_stats.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% refer %}}
 See also the [Mirror Monitor JMX utility](/sbp/mirror-monitor.html) for graphical mirror service monitoring via JMX

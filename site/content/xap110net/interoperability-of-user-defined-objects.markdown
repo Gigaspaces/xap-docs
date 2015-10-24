@@ -23,11 +23,10 @@ Properties mapping: when defining interoperability of properties the names of th
 For the purpose of explaining the subject we'll look at a Person class (a deep class)
 
 
-{{%panel%}}
+
 {{%section%}}
 {{%column width="50%" %}}
-C#
-
+**C#**
 
 ```csharp
 using GigaSpaces.Core.Metadata;
@@ -72,7 +71,7 @@ namespace MyCompany.MyProject.Entities
 {{%/column%}}
 
 {{%column width="50%" %}}
-Java
+**Java**
 
 
 ```java
@@ -100,5 +99,5 @@ public class Address
 ```
 {{%/column%}}
 {{%/section%}}
-{{%/panel%}}
+
 

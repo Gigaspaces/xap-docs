@@ -65,7 +65,7 @@ Example:
 
 {{%refer%}}
 [Space Persistence](./space-persistency.html)
-{{%refer%}}
+{{%/refer%}}
 
 # Replication
 
@@ -114,7 +114,7 @@ Example:
 
 {{%refer%}}
 [Space Persistence](./fifo-support.html)
-{{%refer%}}
+{{%/refer%}}
 
 # Storage Type
 
@@ -138,7 +138,7 @@ Example:
 
 {{%refer%}}
 [Space Object storage types](./poco-storage-type.html)
-{{%refer%}}
+{{%/refer%}}
 
 
 
@@ -189,7 +189,7 @@ Example:
 
 {{%refer%}}
 [Compound Indexing](././indexing-compound.html)
-{{%refer%}}
+{{%/refer%}}
 
 
 

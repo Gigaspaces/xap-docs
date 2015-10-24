@@ -85,9 +85,9 @@ Use a transactional with your write operation. You **must** use a transaction wh
 It is recommended that you call the update operation just before the commit operation. This minimizes the time the object is locked under a transaction.
 {{% /tip %}}
 
-{{% indent %}}
+{{% align center %}}
 ![optimistick_lock2.jpg](/attachment_files/optimistick_lock2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 #### Step 5 -- Update Failure
 

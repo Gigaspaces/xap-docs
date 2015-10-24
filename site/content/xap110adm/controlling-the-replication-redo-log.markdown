@@ -12,7 +12,9 @@ weight: 600
 
 On replicated clusters, each member, which is a source that sends replication events to its targets, has a replication redo log. This is a list of pending replication packets that need to be dispatched to the different targets.
 
+{{% align center%}}
 ![persistent_redolog.jpg](/attachment_files/persistent_redolog.jpg)
+{{% /align%}}
 
 A replication packet is either a single non-transactional "destructive" (write/take/update) operation, or a group of such operations that are done under the same transaction. The redo log contains a single list that is kept for all the targets, and for each target a different state is maintained, which represents its position in the redo log. When the cluster is at a normal state, this redo log should remain at some low constant size. However, in certain common scenarios, such as a momentary network disconnection, or a burst of high load, the redo log keeps all the pending events that need to be replicated until the source member manages to re-establish connection with the target, or until the replication target manages to catch up with the temporary load. As a result the redo log size starts to increase, and it can become quite large, depending on the different cluster usage, which affects the rate of replicated events creation.
 

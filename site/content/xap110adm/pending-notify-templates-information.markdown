@@ -19,8 +19,8 @@ You may view the information regarding pending notify templates. The following i
 
 In the Classes view, you can click a specific class to view all the pending notify templates that are registered. You can investigate the template values by opening the [Object Inspector](./gigaspaces-browser-object-inspector.html).
 
-{{% indent %}}
+{{% align center %}}
 ![Pending Notify Templates Information.gif](/attachment_files/Pending Notify Templates Information.gif)
-{{% /indent %}}
+{{% /align %}}
 
 - The information displayed is regards pending notify templates only. Other template types are not supported.

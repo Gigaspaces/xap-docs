@@ -9,9 +9,9 @@ weight: 600
 
 XAP provides a pluggable communication adaptor, LRMI (**Light Remote Method Invocation**), built on top of [NIO communication protocol](http://en.wikipedia.org/wiki/New_I/O).
 
-{{% indent %}}
+{{% align center %}}
 ![lrmi.jpg](/attachment_files/lrmi.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The LRMI uses a `GenericExporter` that implements the [net.jini.export.Exporter](http://www.gigaspaces.com/docs/JiniApi/net/jini/export/Exporter.html) interface.
 
@@ -19,9 +19,9 @@ All GigaSpaces components that represent remote objects/services (for example:Di
 
 The GigaSpaces LRMI protocol has been designed to allow multiple services running within the same JVM to share their communication resources and to allow non-blocking IO communication with minimal serialization overhead. For example, it allows different space instances hosted within the same GSC to share the same LRMI resources without exhausting the JVM and machine resources.  The LRMI comes with default settings that may not be optimized for every scenario. You may need to change the defaults for the client or server side to have the maximum throughput and lowest latency your network and hardware may provide.
 
-{{% indent %}}
+{{% align center %}}
 ![lrmi_archi2.jpg](/attachment_files/lrmi_archi2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The XAP LRMI using two independent resource pools working collaboratively allowing a client to communicate with a server in a scalable manner: A client connection pool configured via the `com.gs.transport_protocol.lrmi.max-conn-pool` at the server side and a server Connection thread pool configured via the `com.gs.transport_protocol.lrmi.max-threads` also at the server side. You may configure these two pools' sizes and their resource timeouts to provide maximum throughput and low latency when a client communicates with a server. The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
 
@@ -227,9 +227,9 @@ LRMI communication transport protocol debug messages are displayed.
 
 `Step 3:` Click **Connect**.
 
-{{% indent %}}
+{{% align center %}}
 ![lrmi_log_jmx_console1.jpg](/attachment_files/lrmi_log_jmx_console1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 `Step 4:` Set `com.gigaspaces.lrmi` with a desired log level.
 
@@ -237,17 +237,17 @@ LRMI communication transport protocol debug messages are displayed.
 
 `Step 6:` A new log level is defined.
 
-{{% indent %}}
+{{% align center %}}
 ![lrmi_log_jmx_console2.jpg](/attachment_files/lrmi_log_jmx_console2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% include "/COM/jconsolejmapwarning.markdown" %}}
 
 When LRMI logging is turned on, the space displays the following when started:
 
-{{% indent %}}
+{{% align center %}}
 ![lrmi_log1.JPG](/attachment_files/lrmi_log1.JPG)
-{{% /indent %}}
+{{% /align %}}
 
 To test LRMI logging, you can run the space `ping` utility using the following command:
 
@@ -256,21 +256,21 @@ To test LRMI logging, you can run the space `ping` utility using the following c
 /bin/gs.bat/space ping mySpace_container mySpace -r -i 1
 ```
 
-{{% indent %}}
+{{% align center %}}
 ![lrmi_ping.JPG](/attachment_files/lrmi_ping.JPG)
-{{% /indent %}}
+{{% /align %}}
 
 The space displays the following:
 
-{{% indent %}}
+{{% align center %}}
 ![lrmi_log2.JPG](/attachment_files/lrmi_log2.JPG)
-{{% /indent %}}
+{{% /align %}}
 
 The client displays the following:
 
-{{% indent %}}
+{{% align center %}}
 ![lrmi_log3.JPG](/attachment_files/lrmi_log3.JPG)
-{{% /indent %}}
+{{% /align %}}
 
 ## JVM Known Issue
 

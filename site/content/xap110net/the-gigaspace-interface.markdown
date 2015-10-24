@@ -40,8 +40,9 @@ A Space proxy is created to interact with the Space. Several configuration param
 
 A client communicating with a an embedded Space performs all its operation via local connection. There is no network overhead when using this approach.
 
+{{% align center%}}
 ![embedded-space.jpg](/attachment_files/embedded-space.jpg)
-
+{{%/align%}}
 
 Here is an example how to create an embedded Space. The `EmbeddedSpaceFactory` is used to configure the Space url:
 
@@ -74,9 +75,9 @@ ISpaceProxy spaceProxy = new EmbeddedSpaceFactory("mySpace").Create();
 
 The Embedded Space can be used in a distributed architecture such as the replicated or partitioned clustered Space:
 
-{{% indent %}}
+{{% align center %}}
 ![replicated-space1.jpg](/attachment_files/replicated-space1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 A simple way to use the embedded Space in a clustered architecture would be by deploying a clustered Space or packaging your application as a Processing Unit and deploy it using the relevant SLA.
 
@@ -86,9 +87,9 @@ A simple way to use the embedded Space in a clustered architecture would be by d
 
 A client communicating with a remote Space performs all its operation via a remote connection. The remote Space can be partitioned (with or without backups) or replicated (sync or async replication based).
 
-{{% indent %}}
+{{% align center %}}
 ![remote-space.jpg](/attachment_files/remote-space.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is an example how a client application can create a proxy to interacting with a remote Space:
 
@@ -132,9 +133,9 @@ When working with a **remote Space**, the Space may become unavailable (network 
 
 XAP supports a [Local Cache](./local-cache.html) (near cache) configuration. This provides a front-end client side cache that will be used with the `Read` operations implicitly . The local cache will be loaded on demand or when you perform a `Read` operation and will be updated implicitly by the Space.
 
-{{% indent %}}
+{{% align center %}}
 ![local_cache.jpg](/attachment_files/local_cache.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is an example for a `ISpaceProxy` construct with a local cache:
 
@@ -157,9 +158,9 @@ ISpaceProxy localCache = GigaSpacesFactory.CreateLocalCache(spaceProxy);
 
 XAP supports a [Local View](./local-view.html) configuration. This provides a front-end client side cache that will be used with any `Read` or `ReadMultiple` operations implicitly. The local view will be loaded on start and will be updated implicitly by the Space.
 
-{{% indent %}}
+{{% align center %}}
 ![local_view.jpg](/attachment_files/local_view.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Here is an example for a `ISpaceProxy` construct with a local cache:
 

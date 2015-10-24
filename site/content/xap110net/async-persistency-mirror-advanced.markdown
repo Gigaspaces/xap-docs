@@ -142,7 +142,7 @@ com.gigaspaces.persistent.level = INFO
 
 Logging is divided according to `Level` as follows:
 
-{{% indent %}}
+
 
 
 | Level | Description |
@@ -151,7 +151,7 @@ Logging is divided according to `Level` as follows:
 | `CONFIG` | Mirror Service-relevant configuration messages. |
 | `FINER` | Fairly detailed messages of:{{<wbr>}}- **Entering and exiting** interface methods (displaying the parameter's `toString()` method){{<wbr>}}- **Throwing of exceptions** between the space and the underlying implementation. |
 
-{{% /indent %}}
+
 
 # Failover Handling
 

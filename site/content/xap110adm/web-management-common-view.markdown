@@ -8,7 +8,9 @@ weight: 510
 
 {{%ssummary%}}{{%/ssummary%}}
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/menu-bar.png)
+{{% /align%}}
 
 The menu bar for the web management UI is common across all tabs. It lets you deploy Processing Units and Spaces, view Alerts and Events.
 
@@ -21,7 +23,9 @@ The Web UI supports the deployment of Processing Units and Spaces  as demonstrat
 
 Deployment options:
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/space-deploy.png)
+{{% /align%}}
 
 <br>
 
@@ -29,13 +33,17 @@ Deployment options:
 
 Deployment options:
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/pu-deploy.png)
+{{% /align%}}
 
 <br>
 
 ## Define SLA
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/sla-deploy.png)
+{{% /align%}}
 
 <br>
 
@@ -43,7 +51,9 @@ Deployment options:
 
 The Alerts panel displays XAP Alert groups (Alerts are grouped by correlation key) for more details see [Administrative Alerts]({{%currentjavaurl%}}/administrative-alerts.html)
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/alerts.jpg)
+{{% /align%}}
 
 ### Alerts dump
 
@@ -57,7 +67,9 @@ This can be done by opening the Alert Actions menu and clicking "Generate dump..
 {{%/column%}}
 {{%/section%}}
 
+{{% align center%}}
 ![generate_dump.png](/attachment_files/web-console/generate_dump.png)
+{{% /align%}}
 
 Select the desired components for the dump and click "Generate", and a zip file will be downloaded containing log files for each of the selected components.
 
@@ -67,7 +79,9 @@ Select the desired components for the dump and click "Generate", and a zip file 
 In the events panel you can see events for the selected component. It lets you filter the events and you can also choose the narrow down the
 events by date and time.
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/events.jpg)
+{{% /align%}}
 
 The events time-line shows the deployment life cycle of all the processing units.
 

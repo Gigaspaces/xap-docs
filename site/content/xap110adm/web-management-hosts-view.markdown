@@ -13,8 +13,9 @@ By clicking the `Hosts` tab at the top left, you will enter the hosts screen. Th
 
 <br>
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/host-view.jpg)
-
+{{% /align%}}
 <br>
 
 # Settings
@@ -32,16 +33,18 @@ maintenance operations and specific settings on individual components.
 
 <br>
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/host-setting.jpg)
-
+{{% /align%}}
 
 # Display control
 
 - You can filter which components you want to display<br>
 - You can also control the ordering of each column in the display.
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/host-display.jpg)
-
+{{% /align%}}
 
 # Display logs
 
@@ -49,7 +52,9 @@ For each component you can view the log information. It is possible to filter th
 
 <br>
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/host-view-logging.jpg)
+{{% /align%}}
 
 # SSH Terminal
 
@@ -57,14 +62,21 @@ There is an option to open an SSH terminal for a specific machine.
 
 <br>
 
+{{% align center%}}
 ![options_to_open_ssh_9_6.png](/attachment_files/web-console/ssh1.jpg)
+{{% /align%}}
 <br>
+{{% align center%}}
 ![options_to_open_ssh_9_6.png](/attachment_files/web-console/ssh2.jpg)
+{{% /align%}}
 <br>
+{{% align center%}}
 ![options_to_open_ssh_9_6.png](/attachment_files/web-console/ssh3.jpg)
+{{% /align%}}
 <br>
+{{% align center%}}
 ![options_to_open_ssh_9_6.png](/attachment_files/web-console/ssh4.jpg)
-
+{{% /align%}}
 
 
 

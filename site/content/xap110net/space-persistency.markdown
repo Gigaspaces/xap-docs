@@ -15,24 +15,24 @@ The Space Persistency is provided via a component called **External Data Source*
 
 GigaSpaces Space Persistency provides the `AbstractExternalDataSource` class which can be extended and then used to load data and store data into an existing data source. Data is [loaded from the data source](./space-persistency-initial-load.html) during space initialization, and from then onwards the application works with the space directly.
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-initial-loadNew.jpg](/attachment_files/data-grid-initial-loadNew.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 
 Persistency can be configured to run in Synchronous or Asynchronous mode:
 
 - Synchronous Mode - see [Direct Persistency](./direct-persistency.html)
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-sync-persist.jpg](/attachment_files/data-grid-sync-persist.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 - Asynchronous Mode - see  [Asynchronous Persistency with the Mirror](./asynchronous-persistency-with-the-mirror.html)
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-async-persist.jpg](/attachment_files/data-grid-async-persist.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% info %}}
 The difference between the Synchronous or Asynchronous persistency mode concerns how data is persisted back to the database. The Synchronous mode data is persisted immediately once the operation is conducted where the client application wait for the `ExternalDataSource` to confirm the write. With the Asynchronous mode (mirror Service), data is persisted in a **reliable** asynchronous manner using the mirror Service as a write behind activity. This mode provides maximum performance.

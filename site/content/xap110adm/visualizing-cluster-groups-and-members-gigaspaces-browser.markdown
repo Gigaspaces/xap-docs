@@ -28,9 +28,9 @@ When the cluster node is selected, the information panel shows the names of all 
 
 A space has five information views, which appear under the space node in the Grid Tree. To access these views, right-click the space you want to view in the Cluster view's visual display:
 
-{{% indent %}}
+{{% align center %}}
 ![Visualizing Cluster Groups and Members.gif](/attachment_files/Visualizing Cluster Groups and Members.gif)
-{{% /indent %}}
+{{% /align %}}
 
 From the context menu, select one of the options to access one of the space information views:
 

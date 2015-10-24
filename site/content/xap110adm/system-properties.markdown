@@ -319,6 +319,12 @@ Refer to [Replication](./replication.html)
 
 {{% include "/COM/xap101/config-xml.markdown" %}}
 
+| Property name | Description | Default   |
+|-----|-----|----|
+|  com.gs.xmlschema.validation  | Boolean value. If **false**, does not validate cluster XML config schema. | true |
+
+
+
 
 # Transaction
 
