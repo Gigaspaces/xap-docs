@@ -196,13 +196,11 @@ There are fully functional examples on GitHub available.{{%tryit "https://github
 
 {{%column width="25%"%}}
 Deploy http Space
-
 {{%popup "/attachment_files/qsg/Deploy-session1.png"  "Deploy http Space"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
 Define deployment
-
 {{%popup "/attachment_files/qsg/Deploy-session2.png"  "Define deployment"%}}
 {{%/column%}}
 
@@ -214,7 +212,6 @@ Inspect data grid
 
 {{%column width="25%"%}}
 Deploy war file
-
 {{%popup "/attachment_files/qsg/Deploy-session4.png"  "Deploy war file"%}}
 {{%/column%}}
 {{%/section%}}
@@ -222,25 +219,21 @@ Deploy war file
 {{%section%}}
 {{%column width="25%"%}}
 Select web URL
-
 {{%popup "/attachment_files/qsg/Deploy-session51.png"  "Select web URL"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
 Web page
-
 {{%popup "/attachment_files/qsg/Deploy-session6.png"  "Web page"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
 Inspect data grid
-
 {{%popup "/attachment_files/qsg/Deploy-session65.png"  "Inspect data grid"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
 Inspect session
-
 {{%popup "/attachment_files/qsg/Deploy-session7.png"  "Inspect session"%}}
 {{%/column%}}
 {{%/section%}}

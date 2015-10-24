@@ -16,7 +16,9 @@ You may have noticed that Spring's Security `AuthenticationProvider` and `Authen
 
 The **`org.openspaces.security.spring.SpringSecurityManager`** is a the GigaSpaces Spring Security bridge (between Spring Security and GigaSpaces Security Manager). It relies on the Spring Security XML configuration file for its context definitions. The Spring Security configuration resides in a standalone XML file.
 
+{{% align center%}}
 ![SpringSecurityBridge.png](/attachment_files/SpringSecurityBridge.png)
+{{% /align%}}
 
 The Spring Security XML configuration file contains the `AuthenticationManager`, `ProviderManager` and `AuthenticationProvider` references. The authentication manager is discovered by the GigaSpaces Spring Security bridge (i.e. it iterates through all the types of authentication manager and plugs it in automatically).
 

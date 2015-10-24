@@ -25,7 +25,9 @@ These alerts provide for better supportability and easier troubleshooting.
 
 The following diagram illustrates a simple flow of events/statistics sent to the 'Alert Trigger' which checks if the state answers the condition to raise an alert or to resolve an alert. Notice that an alert may be raised multiple times until it is finally resolved.
 
+{{% align center%}}
 ![alerts-flow-diagram.png](/attachment_files/alerts-flow-diagram.png)
+{{%/align%}}
 
 # Predefined Alerts
 
@@ -76,7 +78,9 @@ The alerts are grouped together by their 'type' (e.g. CPU, Memory, GC, etc.). Wh
 
 Sort the 'status' column in ascending order to show latest unresolved alerts.
 
+{{% align center%}}
 ![alerts-view-web-ui.png](/attachment_files/alerts-view-web-ui.png)
+{{% /align%}}
 
 # Listening for Alerts
 

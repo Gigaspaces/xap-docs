@@ -36,11 +36,15 @@ The first data base we will call `metrics` and the second one is called `grafana
 
 Creating the databases:
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/influxdb-create-db.jpg)
+{{% /align%}}
 
 <br>
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/influxdb-create-db2.jpg)
+{{% /align%}}
 
 <br>
 
@@ -145,7 +149,9 @@ Once this configuration is complete and XAP is restarted we are now ready to sta
 
 When you open the `Monitor` tab in the XAP web console, you will see the following view:
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/monitor.jpg)
+{{% /align%}}
 
 <br>
 
@@ -153,20 +159,25 @@ When you open the `Monitor` tab in the XAP web console, you will see the followi
 
 By selecting the folder icon on the right in the menu bar, the available dashboards will be displayed:
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/monitor1.jpg)
+{{% /align%}}
 
 <br>
 
 ## Default Space dashboard
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/monitor2.jpg)
+{{% /align%}}
 
 <br>
 
 ## Default Processing Unit dashboard
 
+{{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/monitor3.jpg)
-
+{{% /align%}}
 
 
 

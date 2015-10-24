@@ -25,16 +25,12 @@ The space synchronization endpoint can be called in synchronous or in asynchrono
 
 {{% column width="50%" %}}
 #### asynchronous mode
-
 {{%popup   "/attachment_files/SpacedataSourceAPI.jpg"%}}
-
 {{% /column %}}
 
 {{% column width="50%" %}}
 #### synchronous mode
-
 {{%popup   "/attachment_files/SpacedataSourceSyncAPI.jpg"%}}
-
 {{% /column %}}
 {{% /section %}}
 

@@ -11,7 +11,9 @@ weight: 500
 
 The directory provides the means for managing users and roles. User and role information stored in a persistent storage need to be accessed for authentication purposes and for management (adding/modifying,associating, etc.).
 
+{{% align center%}}
 ![security-seq5.PNG](/attachment_files/security-seq5.PNG)
+{{% /align%}}
 
 The `SecurityManager` access the directory for authenticating the user. The authentication process retrieves the user credentials and permissions. On the other hand, you need some tool to access the directory for managing the users/roles. It can be as simple as SQL statements modifying records in a database.
 

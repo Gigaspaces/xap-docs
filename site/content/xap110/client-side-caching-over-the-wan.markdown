@@ -10,7 +10,9 @@ weight: 300
 
 A common use case of the local cache or the local view is with remote geographical sites where most of the activities are read only. In this case each site may use an application server or a web application running a local view/cache caching a subset of the data or the entire data set.
 
+{{%align center%}}
 ![local_cache_view_wan.jpg](/attachment_files/local_cache_view_wan.jpg)
+{{%/align%}}
 
 With this approach there is one Master cluster storing the entire data in-memory, loading its data from the database (on demand or pre-fetch). The master site data is highly available (running primary-backup data-grid topology) where new remote sites can be started on the fly (Hub & Spoke model).
 

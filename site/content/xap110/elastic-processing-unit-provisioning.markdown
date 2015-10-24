@@ -134,7 +134,9 @@ Each stateful processing unit (embedding a space) has a fixed number of logical 
 - Number of instances per container is nearly the same across all containers.
 - Number primary instances per cores is nearly the same across all machines.
 
+{{% align center%}}
 ![rebalance_util.jpg](/attachment_files/rebalance_util.jpg)
+{{% /align %}}
 
 ## How Rebalancing works?
 

@@ -113,12 +113,12 @@ are all "Box-Office employees" which share this common role, with privileges to 
 , is a "Box-Office Administrator" who is responsible for setting up the "Box-Office" application, and **also** has (non-role) privileges to read and write all data related to the cinema.
 
 {{% section %}}
-{{% column width="30%"%}}
+{{% column width="50%"%}}
 **The database tables assumed by `JdbcDaoImpl`**
 
 ![Impl.png](/attachment_files/SpringSecurity-JdbcDaoImpl.png)
 {{% /column %}}
-{{% column width="30%" %}}
+{{% column width="50%" %}}
 **Box-Office users and roles**
 
 ![Tables.png](/attachment_files/SpringSecurity-JdbcTables.png)

@@ -13,8 +13,9 @@ XAP promotes openness and interoperability, supporting common interfaces for acc
 
 <hr>
 
-
+{{%align center%}}
 ![anyapi.png](/attachment_files/anyapi.png)
+{{%/align%}}
 
 <br>
 

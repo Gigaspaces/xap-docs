@@ -20,14 +20,18 @@ The bootstrap target space gateway sink will locate the gateway sink of the boot
 
 All the changes that are done in the bootstrap source space during this copy process are accumulated at the replication redo-log and will be sent to the bootstrap target gateway sink once the copy stage is complete. During the bootstrap copy stage, the gateway sink which is being bootstrapped will not be available for replication, and all the remote spaces will have a disconnected replication channel to that gateway sink.
 
+{{% align center%}}
 ![gateway-bootstrap-copy.jpg](/attachment_files/gateway-bootstrap-copy.jpg)
+{{% /align %}}
 
 1. NY Sink initiates bootstrap process from the London Sink
 1. The London Sink start reading data from the local London cluster
 1. The London sink sends the data to the NY Sink
 1. The NY sink pushes it to the local NY cluster
 
+{{% align center%}}
 ![gateway-bootstrap-sync.jpg](/attachment_files/gateway-bootstrap-sync.jpg)
+{{% /align%}}
 
 # Initiating a Bootstrap
 

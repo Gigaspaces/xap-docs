@@ -13,7 +13,10 @@ weight: 200
 Authentication is the act of supplying user credentials (usually username and password) to be confirmed as authentic against a secured service. Authentication fails either due to an unknown user or an invalid password, resulting in an `AuthenticationException`. A successful authentication results in an authenticated session used for further correspondence.
 
 The diagram illustrates the sequence of events:
+
+{{% align center%}}
 ![security-seq1.PNG](/attachment_files/security-seq1.PNG)
+{{% /align%}}
 
 The service (GSA/GSM/GSC/Processing Unit Space Instance) receives a request for authentication. Usually this is done by supplying a `UserDetails` object which holds the credentials of a user. This is passed along to the `SecurityManager` which is responsible for authenticating the request.
 
@@ -29,7 +32,9 @@ A two-way encryption is used to protect the credentials passed as part of the au
 Note that a password is usually encrypted using a one-way hash function, e.g. an `MD5` algorithm. This one-way encryption is an implementation detail of the `SecurityManager`. This should not be confused with the two-way encryption done at the transport layer of an authentication call.
 {{%/info%}}
 
+{{% align center%}}
 ![security-seq2.PNG](/attachment_files/security-seq2.PNG)
+{{% /align%}}
 
 # Authenticity Validation
 
@@ -37,7 +42,9 @@ As noted, the `SecurityManager` implementation is responsible for handling an au
 
 Our default `SecurityManager` implementation uses an `MD5` algorithm to encrypt the passwords. It can be customized with your own `PasswordEncoder` or you can replace the `SecurityManager` implementation all together.
 
+{{% align center%}}
 ![security-seq3.PNG](/attachment_files/security-seq3.PNG)
+{{% /align %}}
 
 # Managing users and roles
 
@@ -49,6 +56,8 @@ Our default `DirectoryManager` implementation utilizes the GUI (GigaSpaces Manag
 
 You may manage the directory directly using the `DirectoryManager` API. It has a clear distinction between a `UserManager` and a `RoleManager`.
 
+{{% align center%}}
 ![security-seq4.PNG](/attachment_files/security-seq4.PNG)
+{{% /align%}}
 
 The directory can be shared or defined individually for each service. This is an implementation specific configuration which is discussed in more detail in our "Default Security" section. As an example, in order for each service to access the same file-based directory, it needs to be shared or copied between the secured services - or better yet, configured to be downloaded from an HTTP server. If the implementation was based on a data-base, then the services can be configured with the same connection URL or a specific one.

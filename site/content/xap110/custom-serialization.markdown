@@ -27,7 +27,9 @@ The Externalization mechanism stores all the metadata, but writes out only the l
 
 When a POJO class with embedded properties uses the Space API, you may implement the `Externalizable` mechanism for the embedded property. This can be done to control serialization and deserialization when the Object is sent to the space (e.g. write, update and execute Operations) and when it is sent back to the client (e.g. read and take operations). This will optimize the remote call when using Remote Space configuration for single, partitioned, and replicated space topologies.
 
+{{%align center%}}
 ![storage-type-object.jpg](/attachment_files/serialization2.jpg)
+{{%/align%}}
 
 <br>
 

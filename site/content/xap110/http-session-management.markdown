@@ -69,13 +69,18 @@ The HTTP Session support several Deployment Topologies:
 ## Embedded Replicated
 
 - Support only Limited amount of Sessions
+{{% align center%}}
 ![session_embedded-replicated.jpg](/attachment_files/session_embedded-replicated.jpg)
+{{% /align %}}
 
 ## Partitioned+Replicated
 
 - Session Data is partitioned across multiple machines
 - Allows unlimited amount of data to be stored in memory
+
+{{% align center%}}
 ![session_partitioned.jpg](/attachment_files/session_partitioned.jpg)
+{{% /align %}}
 
 ## Partitioned+Replicated with Local-Cache
 
@@ -83,4 +88,8 @@ The HTTP Session support several Deployment Topologies:
 Avoid remote calls when there are repeated read calls for Session data that are stored in memory across multiple machines.
 
 - Provide total linear scalability.
+
+{{% align center%}}
+
 ![session_partitioned-localcache.jpg](/attachment_files/session_partitioned-localcache.jpg)
+{{% /align%}}

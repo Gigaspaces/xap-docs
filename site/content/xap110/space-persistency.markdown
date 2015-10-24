@@ -19,9 +19,9 @@ The two components mentioned above are in charge of the following activities:
 
 XAPs Space Persistency provides the [SpaceDataSource](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/datasource/SpaceDataSource.html) and [SpaceSynchronizationEndpoint](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/sync/SpaceSynchronizationEndpoint.html) classes which can be extended and then used to load data and store data into an existing data source. Data is [loaded from the data source](./space-persistency-initial-load.html) during space initialization (`SpaceDataSource`), and from then onwards the application works with the space directly.
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-initial-loadNew.jpg](/attachment_files/data-grid-initial-loadNew.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Meanwhile, the space persisting the changes made in the space via a `SpaceSynchronizationEndpoint` implementation.
 
@@ -29,15 +29,15 @@ Persistency can be configured to run in Synchronous or Asynchronous mode:
 
 - Synchronous Mode - see [Direct Persistency](./direct-persistency.html)
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-sync-persistNew.jpg](/attachment_files/data-grid-sync-persistNew.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 - Asynchronous Mode - see  [Asynchronous Persistency with the Mirror](./asynchronous-persistency-with-the-mirror.html)
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-async-persistNew.jpg](/attachment_files/data-grid-async-persistNew.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% info %}}
 The difference between the Synchronous or Asynchronous persistency mode concerns how data is persisted back to the database. The Synchronous mode data is persisted immediately once the operation is conducted where the client application wait for the `SpaceDataSource`/`SpaceSynchronizationEndpoint` to confirm the write. With the Asynchronous mode (mirror Service), data is persisted in a **reliable** asynchronous manner using the mirror service as a write behind activity. This mode provides maximum performance.

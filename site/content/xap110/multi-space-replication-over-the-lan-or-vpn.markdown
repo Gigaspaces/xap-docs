@@ -12,7 +12,9 @@ weight: 100
 
 Multiple space replication is the ability to replicate state between different deployed spaces, i.e different cluster of space instances. Where each of the space instances of each of the spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, it is required to have a direct network connection between all space instances of all of the clusters (or at least a connection between all space instances to the targeted space gateway machine). Replicating between spaces in the same network, is done using exactly the same mechanisms and gateway in the [Multi-Site Replication over the WAN](./multi-site-replication-over-the-wan.html) case, however in a simplified way since many if the configuration and some of the components are not needed as the spaces reside in the same network.
 
+{{% align center%}}
 ![wan_use_cases.jpg](/attachment_files/wan_use_cases.jpg)
+{{% /align%}}
 
 ## Gateway Features
 
@@ -40,11 +42,15 @@ This page will demonstrate two sample multi-space replication topologies. These 
 
 For both of the above topologies, replication is done in a similar way: Each space is replicating the relevant data to its target space(s) via the target space gateway which routes the data to the target space. The data is being replicated asynchronously in a reliable mode, which means that even if a primary space instance fails on the source space, the backup space instance which replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary space instance. This is very similar to the [Mirror Service](./asynchronous-persistency-with-the-mirror.html) replication scheme. The gateway is discussed in full below.
 
+{{% align center%}}
 ![gateway_lan_how_it_works.jpg](/attachment_files/gateway_lan_how_it_works.jpg)
+{{% /align%}}
 
 Replication may use Hub & Spoke, Ring, Hierarchical or Pass-Through architecture:
 
+{{% align center%}}
 ![wan_topologies.jpg](/attachment_files/wan_topologies.jpg)
+{{% /align %}}
 
 # Configuring a Space With Gateway Targets
 
@@ -190,7 +196,9 @@ packet which is unconsolidated and waits for consolidation which may never occur
 
 With this architecture, we have a master-slave topology where all data is being manipulated in one space, and two other spaces are reading the data but not updating it. In other words, the "other spaces" - the slaves - should not replicate data to the other gateways.
 
+{{% align center%}}
 ![wan_master_slave.jpg](/attachment_files/wan_master_slave.jpg)
+{{%/align%}}
 
 In this case, New York's space will be the active space while London and Hong Kong will be the passive spaces. As explained before, being passive does not necessarily means no work is done in these spaces. However, in terms of replication, these spaces should not replicate to the other spaces and usually should not alter data replicated from other spaces because it may cause conflicts.
 
@@ -352,7 +360,9 @@ Like all GigaSpaces Processing Units, the configuration details of each of the a
 
 With this architecture, we will have a multi-master topology where data is being generated and manipulated in all spaces.
 
+{{% align center%}}
 ![wan_multi_master.jpg](/attachment_files/wan_multi_master.jpg)
+{{% /align%}}
 
 We will demonstrate this using two spaces but any number of spaces is supported in the same manner. In a master-slave topology, each space should try to modify different subsets of the data as much as possible because many conflicts can occur if multiple spaces are changing the same space entries at the same time. Such conflict can be resolved using a conflict resolver which will be discussed fully at [Multi-Site Conflict Resolution](./multi-site-conflict-resolution.html).
 

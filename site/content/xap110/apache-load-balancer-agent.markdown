@@ -23,7 +23,10 @@ Similar agents can be implemented for other HTTP load-balancers such as [F5](htt
 # How it Works?
 
 Here is a description of the flow that eventually scales the web application dynamically:
+
+{{% align center%}}
 ![httpd_lb_agent.jpg](/attachment_files/httpd_lb_agent.jpg)
+{{% /align %}}
 
 1. Monitoring Service getting statistics about the behavior of the web application. It could be statistics for a specific web application instance or multiple ones.
 1. The Monitoring Service identifies that some SLA has been breached. It waits some time to make sure it is not a sudden behavior that should be ignored. If the value monitored still breach it threshold, The Monitor Service calling the relevant API to scale the web application by adding web application instances or removing existing web application instances.

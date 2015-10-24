@@ -17,17 +17,23 @@ The memcached support is provided as a template deployment (similar to how basic
 
 Memcached is a simple protocol, which makes it naturally cross-platform. This simplicity means a reduction in features, such as failover or distribution of data. The traditional memcached client/server architecture has one memcached client connected to a number of _disconnected_ memcached server instances, which share no data and are entirely unaware of each other.
 
+{{%align center%}}
 ![traditional_memcached_client.jpg](/attachment_files/traditional_memcached_client.jpg)
+{{%/align%}}
 
 One deployment model for memcached with XAP has one client connecting to multiple access points, each of which is a XAP node that wraps the XAP datagrid access with the memcached protocol:
 
+{{%align center%}}
 ![oneclient_manyproxies.jpg](/attachment_files/oneclient_manyproxies.jpg)
+{{%/align%}}
 
 This model is a drop-in replacement for the traditional memcached deployment, except it adds fault tolerance and distribution to memcached.
 
 The last deployment model uses a single access point for access - a single node compared to the previous model. This model shares locally cached information from the memcached instance, which reduces the infrastructure impact from duplicated cached data.
 
+{{%align center%}}
 ![xap_memcached_router.jpg](/attachment_files/xap_memcached_router.jpg)
+{{%/align%}}
 
 # Using memcached
 

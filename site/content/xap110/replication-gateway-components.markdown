@@ -13,8 +13,9 @@ weight: 200
 A replication gateway is used in order to send replication events from one data grid to another data grid by acting as the delegator of outgoing replication from one data grid to another, and by receiving incoming replication from a remote gateway and dispatching it to the local data grid. The gateway is composed of two components that handle this operation, a delegator and a sink. These components are configured in a standard `pu.xml` and usually the gateway should be deployed as a single processing unit (with one instance) into the service grid on each site configured with the local site relevant properties.
 
 
-
+{{% align center%}}
 ![wan_gatway_archi.jpg](/attachment_files/wan_gatway_archi.jpg)
+{{% /align%}}
 
 ## Gateway Delegator
 

@@ -6,10 +6,11 @@ parent: querying-the-space.html
 weight: 340
 ---
 
-![local_cache.jpg](/attachment_files/under-construction.jpeg)
 
 
+{{%imageltext "/attachment_files/under-construction.jpeg"%}}
 GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
+{{%/imageltext%}}
 
 # Configuration
 

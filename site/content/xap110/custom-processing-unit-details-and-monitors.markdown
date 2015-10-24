@@ -97,4 +97,6 @@ For the service monitors to be shown in the [web based dashboard]({{%currentadmu
 
 The `String` keys of the `ServiceMonitors.getMonitors()` `Map` are shown in the web based dashboard as custom properties (e.g. "successfully processed", "failed to process", "pending processing").
 
+{{% align center%}}
 ![customServiceMonitors.png](/attachment_files/customServiceMonitors.png)
+{{% /align%}}

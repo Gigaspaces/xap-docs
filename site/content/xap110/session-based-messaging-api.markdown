@@ -27,7 +27,9 @@ The Event Session API is the low level API for notifications. It is preferable t
 2. Filter the events before sent to the client (optional). {{<wbr>}}
 3. Receive the event.
 
+{{%align center%}}
 ![sessionbasedmessagingapt11.jpg](/attachment_files/sessionbasedmessagingapi11.jpg)
+{{%/align%}}
 
 The session-based messaging API is designed with the following objectives:{{<wbr>}}
 * *Simple and unified interfaces*  {{<wbr>}}
