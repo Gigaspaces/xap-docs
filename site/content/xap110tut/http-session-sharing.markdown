@@ -6,27 +6,24 @@ parent: none
 weight: 1500
 ---
 
+With XAP you can share HTTP session data across multiple data centers, multiple web server instances or different types of web servers.
 
 
 {{%section%}}
-{{%column width="70%" %}}
-<br>
-With XAP you can share HTTP session data across multiple data centers, multiple web server instances or different types of web servers.
 
-<br>
-[{{%pdf "/attachment_files/httpsession/globalhttpsessionsharing-screencast2014.pdf"%}} Global HTTP Session Sharing Screencast.
-{{%/column%}}
-{{%column width="30%" %}}
+{{%column width="50%" %}}
 {{%youtube "gRdGWMigJBI"  "Global HTTP Session sharing"%}}
+{{%/column%}}
+{{%column width="50%" %}}
+[{{%pdf "/attachment_files/httpsession/globalhttpsessionsharing-screencast2014.pdf"%}} Global HTTP Session Sharing Screencast.
 {{%/column%}}
 {{%/section%}}
 
 
 
-
 This tutorial will show you:
 
-1. [Single-Applications Session Sharing](#SingleApplication Session Sharing) sharing the same session between different Tomcat instances. <br>
+1. [Single-Applications Session Sharing](#single-application-session-sharing) sharing the same session between different Tomcat instances. <br>
     a. Using Apache Load Balancer with **Sticky** Session configuration
 {{<wbr>}}    b. Using Apache Load Balancer with **Non-Sticky** Session configuration
 2. [Multiple-Applications Session Sharing](#multi-applications-session-sharing) - sharing the same session between **different applications** running in different Web servers - Tomcat and JBoss.
@@ -42,9 +39,7 @@ Make sure you have enough disk space to install:
 - Apache Load Balancer (httpd-2.2.29) - 50 MB
 
 
-The demo application can be downloaded:
-
-[demo-app.war](/attachment_files/httpsession102/demo-app.war)
+The demo application can be downloaded: [demo-app.war](/attachment_files/httpsession102/demo-app.war)
 
 
 
@@ -327,11 +322,11 @@ http://localhost:8081/demo-app2
 -	See session been fully recovered.
 
 {{%section%}}
-{{%column width="30%" %}}
+{{%column   %}}
 {{%popup "/attachment_files/httpsession102/httpsession-tomcat-2.png"%}}
 {{%/column %}}
-{{%column width="30%" %}}
-{{%popup "column"  "/attachment_files/httpsession102/httpsession-jboss-2.png"%}}
+{{%column  %}}
+{{%popup "/attachment_files/httpsession102/httpsession-jboss-2.png"%}}
 {{%/column %}}
 {{%/section%}}
 
