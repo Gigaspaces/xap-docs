@@ -18,9 +18,22 @@ It's important for us to encourage your feedback and contribution. Contributing 
    - Windows users can simply run `run.bat`
 - Browse to `localhost:1313`
 
-# Known Issues
+# Navigation menu generation
 
-- Section & columns size not correct
+The navigation menu is generated outside of Hugo via a script.
+
+From the xap-docs home directory run the following script:
+
+Windows:
+
+```
+generate-navbar.bat /path-to/xap-docs
+```
+
+Unix:
+```
+generate-navbar.sh /path-to/xap-docs
+```
 
 
 
