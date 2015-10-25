@@ -47,7 +47,9 @@ Synchronous replication is most beneficial in the following scenarios:
 1. Once the replication packet is processed, the target space sends a confirmation to the source space.
 1. The source space sends acknowledgement to the client.
 
+{{%align center%}}
 ![replication-matrix-IMG503.jpg](/attachment_files/replication-matrix-IMG503.jpg)
+{{%/align%}}
 
 # Handling Disconnections and Errors
 

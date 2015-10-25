@@ -14,9 +14,7 @@ parent: none
 
 [Javadoc](http://www.gigaspaces.com/docs/JavaDoc9.7/index.html) -- _GigaSpaces XAP API, including all components_
 
-**gs.xml mapping schema**
 
-[gigaspaces-metadata.dtd](./schema-9.7/gs.html)
 
 **XAP Schemas**
 

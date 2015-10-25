@@ -46,14 +46,21 @@ The common usage of these modes is synchronous for Primary-Backup topology and a
 ## Synchronous Replication
 
 With synchronous replication, the client receives acknowledgement for any replicated operations only after all the space instances in the replication group have performed the operation.
+
+{{%align center%}}
 ![replication-matrix-IMG503.jpg](/attachment_files/replication-matrix-IMG503.jpg)
+{{%/align%}}
 
 {{% refer %}}For more info refer to [Synchronous Replication](./synchronous-replication.html){{% /refer %}}
 
 ## Asynchronous replication
 
 With asynchronous replication, operations are performed in the source space instance, and acknowledgement is immediately returned to the client.
+
+{{%align center%}}
 ![replication-matrix-IMG504.jpg](/attachment_files/replication-matrix-IMG504.jpg)
+{{%/align%}}
+
 Operations are accumulated in the source space and sent asynchronously to the target space, after a predefined period of time has elapsed, or after a predefined number of operations have been performed (the first of the two to occur). The downside of this replication mode is the possibility of data loss if the source space fails while transferring the accumulated operations to the target space. Another problem is data consistency - the source and the target do not have identical data at all times.
 
 {{% refer %}}For more info refer to [Asynchronous Replication](./asynchronous-replication.html){{% /refer %}}

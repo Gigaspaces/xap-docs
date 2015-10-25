@@ -55,7 +55,7 @@ The product directory structure as follows:
         - **Gs-cli.exe** -- Command Line Interface for XAP administration.
         - **Gs-webui.exe** -- [Web Management Console]({{%currentadmurl%}}/web-management-console.html).
         - **Gs-ui.exe** -- Standalone [Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html).
-        - **ServicesManager.exe** - [GigaSpaces Services Manager](./gigaspaces-services-manager.html).
+        - **ServicesManager.exe** - [GigaSpaces Services Manager]({{%currentneturl%}}/gigaspaces-services-manager.html).
     - **Config** -- Contains configuration files.
         - **Settings.xml** - Main product settings file.
     - **Deploy** -- Default location of Processing Units for Service Grid.

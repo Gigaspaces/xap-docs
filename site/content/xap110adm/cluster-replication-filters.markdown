@@ -15,7 +15,9 @@ When constructing a replicated space topology you may need to call some business
 
 The `IReplicationFilter` methods are called before data is sent to the replication channel from the source space (output mode) and after coming out from the replication channel - i.e. before written to the target space (input mode). The replication filter should implement the `IReplicationFilter` interface methods.
 
+{{%align center%}}
 ![replicationfilter.jpg](/attachment_files/replicationfilter.jpg)
+{{%/align%}}
 
 The replication filter can be used to monitor or alter the data passed through the replication channel. The replication channel passes `IReplicationFilterEntry` objects that store the replicated data. You should `DefaultReplicationFilterProviderFactory` and set its Replication Filter implementation when constructing the Space. You can use the same replication filter implementation class for both input and output replication modes. Here are the classes you will be using with your Replication Filter implementation:
 

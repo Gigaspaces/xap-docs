@@ -36,7 +36,7 @@ From the context menu, select one of the options to access one of the space info
 
 - [Query view](./gigaspaces-browser-query-view.html)
 - [Statistics view](./gigaspaces-browser-statistics-view.html)
-- [Benchmark view](./gigaspaces-browser-benchmark-view.html)
+- [Benchmark view](./benchmark-browser.html)
 - [Transactions view](./gigaspaces-browser-transaction-view.html)
 - [Date Types](./gigaspaces-browser-data-types-view.html)
 

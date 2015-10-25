@@ -53,7 +53,9 @@ must be aware to this fact.
 1.  Once they are received at the target space, the operations are processed according to their order.
 1.  The next batch is sent when the target space completes processing the replication packet.
 
+{{%align center%}}
 ![replication-matrix-IMG504.jpg](/attachment_files/replication-matrix-IMG504.jpg)
+{{%/align%}}
 
 # Handling Disconnections and Errors
 
