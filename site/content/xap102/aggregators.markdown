@@ -159,12 +159,15 @@ AggregationResult aggregationResult = space.aggregate(query,
 		new AggregationSet().maxEntry("age").minEntry("age").sum("age")
 			.average("age").minValue("age").maxValue("age"));
 
+//retrieve result by index
 Person oldest = (Person) aggregationResult.get(0);
 Person youngest = (Person) aggregationResult.get(1);
 Long sum = (Long) aggregationResult.get(2);
 Double average = (Double) aggregationResult.get(3);
-Long min = (Long) aggregationResult.get(4);
-Long max = (Long) aggregationResult.get(5);
+
+//retrieve result by string key
+Long min = (Long) aggregationResult.get("minValue(age)");
+Long max = (Long) aggregationResult.get("maxValue(age)");
 ```
 
 # Nested Fields Aggregation
