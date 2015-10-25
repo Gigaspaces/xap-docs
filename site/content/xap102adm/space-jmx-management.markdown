@@ -109,9 +109,9 @@ JConsole includes a [new tab](http://blog.luminis.nl/luminis/entry/top_threads_p
 
 - Install **[JDK 1.6](http://java.sun.com/javase/downloads/index.jsp)** -- download **JDK 6 Update 2** as seen below:
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_7_JDK6.jpg](/attachment_files/space_JMX_7_JDK6.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 - **[Download the topthreads.jar file](http://blog.luminis.nl/luminis/resource/peter/topthreads.jar)** and add it to your `<XAP Root>\lib\ui` folder.
 
@@ -123,15 +123,15 @@ Below are some example screenshots:
 
 ## topthread.jar
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_8_top_threads.jpg](/attachment_files/space_JMX_8_top_threads.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 ## JTop.jar
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_9_j_top.jpg](/attachment_files/space_JMX_9_j_top.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 # MBeans View
 
@@ -145,9 +145,9 @@ The container MBean exposes the space container's attributes and operations. The
 
 The container **Attributes** tab displays a list of container attributes. Attribute values appearing in blue can be controlled, while values in black can not be changed. Red values are unavailable.
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_10_IMG994.gif](/attachment_files/space_JMX_10_IMG994.gif)
-{{% /indent %}}
+{{% /align %}}
 
 ### Operations Tab
 
@@ -163,17 +163,17 @@ The container **Operations** tab allows you to perform different space container
 |createSpace (spaceName, schemaName) | creates a space with a unique name in this container. |
 |getRuntimeConfigReport |displays a runtime configuration report. For more details, refer to the [Runtime Configuration Report]({{%currentadmurl%}}/gigaspaces-browser-managing-space-container.html#Runtime Configuration Report) section.|
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_11_IMG995.gif](/attachment_files/space_JMX_11_IMG995.gif)
-{{% /indent %}}
+{{% /align %}}
 
 ### Info Tab
 
 The container **Info** tab displays the MBean name and its Java class.
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_12_IMG996.gif](/attachment_files/space_JMX_12_IMG996.gif)
-{{% /indent %}}
+{{% /align %}}
 
 ## Space MBean
 
@@ -185,9 +185,9 @@ The space **Attributes** tab displays a list of space attributes/elements by XPa
 
 
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_13_IMG993.gif](/attachment_files/space_JMX_13_IMG993.gif)
-{{% /indent %}}
+{{% /align %}}
 
 {{% anchor 1 %}}
 
@@ -222,17 +222,17 @@ For more details, see [Javadoc](http://www.gigaspaces.com/docs/JavaDoc{{% curren
 
 
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_14_IMG997.gif](/attachment_files/space_JMX_14_IMG997.gif)
-{{% /indent %}}
+{{% /align %}}
 
 ### Info Tab
 
 The space **Info** tab displays the MBean name and its Java class.
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_15_IMG998.gif](/attachment_files/space_JMX_15_IMG998.gif)
-{{% /indent %}}
+{{% /align %}}
 
 ## Space MBean Extension
 
@@ -244,17 +244,17 @@ The space extensions **Attributes** tab displays a list of advanced space attrib
 
 {{% refer %}}For details on specific configuration file elements, refer to the Configuration Files Element List\*** section. {{% /refer %}}
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_16_IMG999.gif](/attachment_files/space_JMX_16_IMG999.gif)
-{{% /indent %}}
+{{% /align %}}
 
 ### Info Tab
 
 The space extensions **Info** tab displays the MBean name and its Java class.
 
-{{% indent %}}
+{{% align center %}}
 ![space_JMX_17_IMG200.gif](/attachment_files/space_JMX_17_IMG200.gif)
-{{% /indent %}}
+{{% /align %}}
 
 # Restricting and Modifying MBeans
 

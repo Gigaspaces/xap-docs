@@ -21,9 +21,9 @@ The `org.openspaces.core.SpaceMemoryShortageException` (which wraps the `com.j_s
 - The utilized memory is above the `space-config.engine.memory_usage.high_watermark_percentage` threshold.
 - The utilized memory is above the `space-config.engine.memory_usage.write_only_block_percentage` threshold and a **write-type** operation has been called.
 
-{{% indent %}}
+{{% align center %}}
 ![ALL_IN_CACHE_SpaceMemoryShortageException.jpg](/attachment_files/ALL_IN_CACHE_SpaceMemoryShortageException.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The `org.openspaces.core.SpaceMemoryShortageException` or `com.j_spaces.core.MemoryShortageException` includes information about:
 

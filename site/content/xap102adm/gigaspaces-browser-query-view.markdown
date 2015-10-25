@@ -11,9 +11,9 @@ weight: 400
 
 The Query view allows you to query the space using SQL statements and to get the full resulting data set in tabular format.
 
-{{% indent %}}
+{{% align center %}}
 ![query_view.gif](/attachment_files/query_view.gif)
-{{% /indent %}}
+{{% /align %}}
 
 The Query view includes the following options:
 
@@ -41,9 +41,9 @@ Scroll right to see more attributes:
 
 - SQL queries can be saved to a file. Right-click the top of the **Service View** panel and click **Save to file**:
 
-{{% indent %}}
+{{% align center %}}
 ![query_options.gif](/attachment_files/query_options.gif)
-{{% /indent %}}
+{{% /align %}}
 
 {{% anchor 1 %}}
 

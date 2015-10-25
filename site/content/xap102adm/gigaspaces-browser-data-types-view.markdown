@@ -48,9 +48,9 @@ The **Data Type Info** panel at the bottom of the panel displays the following:
 
 The **Templates Info* tab at the bottom of the *Service View** displays the number of notification templates that exist in the space; and a table of all the notification templates, specifying when the template is supposed to expire, the UID of the object the template is registered for, and if the template indicates FIFO mode.
 
-{{% indent %}}
+{{% align center %}}
 ![Pending Notify Templates Information.gif](/attachment_files/Pending Notify Templates Information.gif)
-{{% /indent %}}
+{{% /align %}}
 
 # Refresh Options
 

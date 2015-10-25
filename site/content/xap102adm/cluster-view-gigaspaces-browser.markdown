@@ -29,18 +29,18 @@ Each cluster node (![GMC_space_OperationsClusterNode_icon_6.5.jpg](/attachment_f
 
 - **Visual display** -- this area changes according to your selection in the tree. When you select the cluster node, the visual display shows the groups in the cluster.
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_cluster_MainClusterNodeSelected_6.5.jpg](/attachment_files/GMC_space_cluster_MainClusterNodeSelected_6.5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 When you select a group node, the display shows the spaces in the node. When you select a space, either by double-clicking it here or by clicking its node in the tree, the display focuses on that space and shows its connections to other spaces (in a replication group).
 
 - **Legend** -- shows the meaning of the colors used in the visual display. There is a different legend for full cluster view and for spaces-in-group view.
 - **Information Panel** -- when you select the cluster node in the tree, basic details about all the cluster's members are displayed here. When you select a space, by clicking its node in the tree or its representation in the visual display, this area divides into a number of tabs that provide a detailed description of the space's configuration settings, and its replication connections (in a replication group). All the information displayed in this panel is read-only.
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_cluster_SpecificClusterNodeSelected_6.5.jpg](/attachment_files/GMC_space_cluster_SpecificClusterNodeSelected_6.5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% warning %}}
 The view above does not display the number of objects for persistent spaces in LRU mode, since this might result in very high CPU usage. To change this, see the [Menus and Buttons](./gigaspaces-browser-menus-and-buttons.html#Display Persistent LRU Space Metrics) section.
@@ -50,9 +50,9 @@ The view above does not display the number of objects for persistent spaces in L
 
 The **Operations** cluster node (![GMC_space_OperationsClusterNode_icon_6.5.jpg](/attachment_files/GMC_space_OperationsClusterNode_icon_6.5.jpg)) allows you to view all classes, data, statistics, transactions, and connections for the entire cluster under a single node.
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_cluster_OperationsNodeTree_6.5.jpg](/attachment_files/GMC_space_cluster_OperationsNodeTree_6.5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The views under the **Operations** node have the same functionality as the views under the regular space/cluster nodes:
 

@@ -1,4 +1,5 @@
 ---
+type: post
 layout: videos
 title:  Online Tutorials
 categories:
@@ -20,7 +21,7 @@ Here you will find online tutorials that demonstrate XAP features, capabilities 
 
 ### Interactive Online API Tutorial
 
-{{% panel   %}}
+
 {{%section%}}
 {{%column width="10%" %}}
 
@@ -46,6 +47,6 @@ The tutorial is available for [download]({{%latestjavatuturl%}}/interactive-api-
 {{%learn "./xap_cloud_management.html"%}}
 {{%/column%}}
 {{%/section%}}
-{{%/panel%}}
+
 
 

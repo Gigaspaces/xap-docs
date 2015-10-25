@@ -12,9 +12,9 @@ weight: 200
 
 The left hand panel of the Space Browser is the **Grid Tree**. This panel allows you to view and manage all registered space containers, their spaces on the network and clusters.
 
-{{% indent %}}
+{{% align center %}}
 ![IMG212.gif](/attachment_files/IMG212.gif)
-{{% /indent %}}
+{{% /align %}}
 
 {{%section%}}
 {{%column width="5%" %}}
@@ -30,21 +30,21 @@ The **Grid Tree** shows the following main types of nodes:
 
 Click the main node in the tree, labeled **Spaces**, to view all the spaces currently running in the network.
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_SpaceNetworkView_6.5_RC2.jpg](/attachment_files/GMC_space_SpaceNetworkView_6.5_RC2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 The table shows various information regarding each space. Each column represents a different type of information. You can select the columns you want to appear in the table by right-clicking one of the column names and clicking **Select Columns**:
 
-{{% indent %}}
+{{% align center %}}
 ![space_network_view_selectColumns_6.1.jpg](/attachment_files/space_network_view_selectColumns_6.1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 In the Select Columns window, check the checkboxes of the columns you want to see, or **Select All** (automatically selects all checkboxes):
 
-{{% indent %}}
+{{% align center %}}
 ![space_network_view_selectColumns_window_6.5.jpg](/attachment_files/space_network_view_selectColumns_window_6.5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% info %}}
 The **Name** (space name) and **Space Container Name** are default options and cannot be unchecked.
@@ -75,15 +75,15 @@ For this option to work, the **Objects Count** checkbox must also be selected.
 - **Used Memory (MB)** -- the amount of used memory in this space, in MB.
 This column is highlighted in orange if the space memory usage is more than the minimum (low) watermark percentage and lower than the write only block percentage (defined in the [memory usage tag](./memory-management-facilities.html)), for example:
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_SpaceNetworkView_UsedMoemory_Column_Orange_6.5_RC2.jpg](/attachment_files/GMC_space_SpaceNetworkView_UsedMoemory_Column_Orange_6.5_RC2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 This column is highlighted in red if the space memory exceeds the write only block percentage (defined in the [memory usage tag](./memory-management-facilities.html)), for example:
 
-{{% indent %}}
+{{% align center %}}
 ![space_network_view_memoryUsage_red_6.5.jpg](/attachment_files/space_network_view_memoryUsage_red_6.5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% refer %}}For more details on memory usage, refer to the [Memory Management](./memory-management-facilities.html) section.{{% /refer %}}
 
@@ -91,9 +91,9 @@ This column is highlighted in red if the space memory exceeds the write only blo
 
 You can right-click a row in the table to view options for a space. These are the same options available under each space node (see [Space Node](#spacenode) below). Clicking one of the options in the context menu switches to the clicked view, and selects the space in the tree on the left. This is an easy way to access a space or any its sub-nodes directly, without expanding the **Grid Tree**.
 
-{{% indent %}}
+{{% align center %}}
 ![space_network_view_spaceNodeSelected_6.5.jpg](/attachment_files/space_network_view_spaceNodeSelected_6.5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 {{% include "/COM/jconsolejmapwarning.markdown" %}}
 
@@ -103,9 +103,9 @@ You can choose to refresh the Space Network view periodically. Select the desire
 
 |![container.gif](/attachment_files/container.gif) | Right-clicking a space container node (invokes a context menu containing the following options:
 
-{{% indent %}}
+{{% align center %}}
 ![grid_tree_containerNodeSelected_6.5.jpg](/attachment_files/grid_tree_containerNodeSelected_6.5.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 - **Refresh** -- refreshes the tree panel display.
 - **Runtime Configuration Report** -- displays the current configuration of the selected space container (see [Runtime Configuration Report](./gigaspaces-browser-managing-space-container.html#Runtime Configuration Report)).
@@ -142,15 +142,15 @@ Right-clicking a space node invokes a context menu containing the following opti
 - **Clean** -- cleans the space.
 - **Ping** -- pings the space.
 
-{{% indent %}}
+{{% align center %}}
 ![IMG214.gif](/attachment_files/IMG214.gif)
-{{% /indent %}}
+{{% /align %}}
 
 When a space node is selected, its configuration data is displayed in the **Service View** panel on the right side:
 
-{{% indent %}}
+{{% align center %}}
 ![network_view_config.gif](/attachment_files/network_view_config.gif)
-{{% /indent %}}
+{{% /align %}}
 
 # Cluster Node
 

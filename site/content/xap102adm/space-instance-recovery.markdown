@@ -84,9 +84,9 @@ A backup instance recovers **all its data** from the primary instance - data is 
 
 A backup instance recovers **only transient** entries from the primary instance. Data is not loaded from the database.
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-sync-persist.jpg](/attachment_files/data-grid-sync-persist.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Since primary and backup use the same database instance, the data will be loaded to the backup on demand.
 
@@ -109,9 +109,9 @@ If there are other space instances in the same replication group, after recovery
 
 Replicated space instances  keep and manage their data in a separate databases.
 
-{{% indent %}}
+{{% align center %}}
 ![data-grid-sync-persist_non_central_db.jpg](/attachment_files/data-grid-sync-persist_non_central_db.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 With this scenario:
 

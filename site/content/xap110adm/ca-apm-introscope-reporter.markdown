@@ -21,14 +21,14 @@ XAP-apm-introscope requires a separate license in addition to the XAP commercial
 ![intro6a.jpg](/attachment_files/ca_apm/xap_ca_apm1.png)
 {{% /align %}}
 
-The major components of CA IntroscopeÂ® are the Enterprise Manager, CA IntroscopeÂ® agents, Workstation, WebView, SmartStor, and APM database as shown in the graphic above. Many smaller components are explained in the CA IntroscopeÂ® product documentation.
+The major components of CA Introscope are the Enterprise Manager, CA Introscope agents, Workstation, WebView, SmartStor, and APM database as shown in the graphic above. Many smaller components are explained in the CA Introscope product documentation.
 
 ### Enterprise Manager
-The Enterprise Manager acts as the repository of CA IntroscopeÂ® performance metrics. The Enterprise Manager receives performance metrics from one or more CA IntroscopeÂ® agents, allowing users to collect metrics centrally from many applications, application servers, and supporting systems. You can deploy the Enterprise Managers in different ways depending on the size and complexity of the enterprise system. The role of a specific Enterprise Manager depends on how it is deployed in a standalone or in a clustered CA APM environment.
+The Enterprise Manager acts as the repository of CA Introscope performance metrics. The Enterprise Manager receives performance metrics from one or more CA Introscope agents, allowing users to collect metrics centrally from many applications, application servers, and supporting systems. You can deploy the Enterprise Managers in different ways depending on the size and complexity of the enterprise system. The role of a specific Enterprise Manager depends on how it is deployed in a standalone or in a clustered CA APM environment.
 
 
 ### Agents
-CA Introscope agents collect and report several types of application and environmental performance metrics. One agent is deployed per process (Java Virtual Machine [JVM] or .NET CLR instance). The total number of agents depends on the size of the CA IntroscopeÂ® deployment, for example:
+CA Introscope agents collect and report several types of application and environmental performance metrics. One agent is deployed per process (Java Virtual Machine [JVM] or .NET CLR instance). The total number of agents depends on the size of the CA Introscope deployment, for example:
 A small pilot network uses as few as half a dozen agents to monitor a few test applications.
 A large extended enterprise production environment uses hundreds or thousands of agents to monitor applications across the enterprise.
 
@@ -38,8 +38,8 @@ CA Introscope agents collect performance metrics from several sources:
 - Performance and availability data from the surrounding computing environment.
 - The agents then report these metrics to the Enterprise Manager.
 
-You can import real-time generic and non-Java data into CA Introscope through modified version of the agent named the Environment Performance Agent (EPA or EPAgent). EPA uses simple scripts that allow CA IntroscopeÂ® to monitor virtually any type of application subsystem impacting performance.
-For example, using EPA CA Introscope can monitor directory servers, operating systems, messaging middleware, andÂ 
+You can import real-time generic and non-Java data into CA Introscope through modified version of the agent named the Environment Performance Agent (EPA or EPAgent). EPA uses simple scripts that allow CA Introscope to monitor virtually any type of application subsystem impacting performance.
+For example, using EPA CA Introscope can monitor directory servers, operating systems and messaging middleware. 
 
 
 # XAP Integration

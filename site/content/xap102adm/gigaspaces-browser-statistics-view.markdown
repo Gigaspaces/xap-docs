@@ -9,9 +9,9 @@ weight: 500
 
 The Statistics view provides graphical representation of space operations performed and average throughput.
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_statistics_7.1.jpg](/attachment_files/GMC_space_statistics_7.1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 # Operations Statistics Status
 
@@ -37,7 +37,7 @@ You can choose to refresh the statistics display periodically. When auto refresh
 Auto-refresh activity impacts server performance, so you might want to stop it when running benchmarks.
 {{%/info%}}
 
-{{% indent %}}
+{{% align center %}}
 ![GMC_space_statistics_RefreshRate_area_TopRight_7.1.jpg](/attachment_files/GMC_space_statistics_RefreshRate_area_TopRight_7.1.jpg)
-{{% /indent %}}
+{{% /align %}}
 

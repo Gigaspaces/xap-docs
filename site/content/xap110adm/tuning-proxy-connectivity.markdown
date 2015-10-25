@@ -11,8 +11,9 @@ weight: 400
 
 When a client connects to a data grid, the initial connection is actually a connection to a single member in the data grid, which is usually composed of multiple members (additional partitions, primary members vs. backup members, etc). That connection is implicitly wrapped in a proxy which implements the data grid API (write/read/take/etc), and contains an internal component called **Space Proxy Router** which communicates the executed operations from the proxy to the entire data grid.
 
+{{%align center%}}
 ![proxy-reconnect.jpg](/attachment_files/proxy-reconnect.jpg)
-
+{{%/align%}}
 
 Generally speaking, the space proxy router is transparent to the data grid user. That said, understanding how a system works under the hood can help analyzing and solving problems.
 
