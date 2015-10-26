@@ -24,7 +24,7 @@ The BlobStore settings includes the following options:
 | Property               | Description                                               | Default | Use |
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
 | paths | Comma separated available or new RocksDB folder locations.A path is a mounting point to a flash device.The list used as a search path from left to right.The first one exists will be used. |  | required |
-| mapping-dir | Point to a directory in a file system. This directory contains file which contains a mapping between space name and a RocksDB location. | /tmp/blobstore/paths | optional |
+| mapping-dir | Point to a directory in a file system. This directory contains file which contains a mapping between space name and a RocksDB location. |  | required |
 | central-storage | Enable in case you have a centralized storage. in this case each space is connected to a predefined RocksDB mounted location. | false | optional |
 | options | RocksDB configuration options | | optional |  
 | strategy-type |  Merge or Override given options with XAP default RocksDB options. | merge | optional | 
@@ -45,7 +45,6 @@ The IMDG BlobStore settings includes the following options:{{<wbr>}}
 - MemoryXtend currently supports Linux only. 
 - RocksDB MemoryXtend supports JDK 1.7 and above.
 - Make sure your user has read/write permissions to mounted flash devices.
-- Make sure your user has read/write permissions to /tmp.
 
 For best performance results the number of mounted flash devices/partitions should be aligned with the space instances number that you want to deploy on a machine.
 For creating partitions you can use fdisk like explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
