@@ -8,32 +8,26 @@ parent: the-gigaspace-interface-overview.html
 
 
 
-`GigaSpace` with the different OpenSpaces [transaction managers](./transaction-management.html) and Spring allow simple declarative definition of transactions. This boils down to the fact that if there is an ongoing transaction running, any operation performed using the `GigaSpace` interface joins it, using Spring's rich transaction support.
+`GigaSpace` with the different XAP [transaction managers](./transaction-management.html) and Spring allow simple declarative definition of transactions. This boils down to the fact that if there is an ongoing transaction running, any operation performed using the `GigaSpace` interface joins it, using Spring's rich transaction support.
 
 {{% note %}}
-In order to have GigaSpace transactional, the transaction manager must be provided as a reference when constructing the GigaSpace bean.
+In order to have XAP transactional, the transaction manager must be provided as a reference when constructing the GigaSpace bean.
 For example (using the distributed transaction manager):
 {{%/note%}}
 
 {{%tabs%}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="space" />
-
 <os-core:distributed-tx-manager id="transactionManager"/>
-
 <os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/>
 ```
 
 {{% /tab %}}
 {{%tab "  Plain XML "%}}
-
-
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -69,7 +63,7 @@ public interface TransactionProvider {
 
 OpenSpaces comes with a default transaction provider implementation, which uses Spring and its transaction manager in order to obtain the currently running transactions and automatically use them under transactional operations.
 
-`GigaSpace` allows access to the current running transaction using the transaction provider. The following code example shows how the take operation can be performed using `IJspace` (users normally won't be required to do so):
+XAP allows access to the current running transaction using the transaction provider. The following code example shows how the take operation can be performed using `IJspace` (users normally won't be required to do so):
 
 
 ```java
@@ -78,14 +72,13 @@ gigaSpace.getSpace().take(obj, gigaSpace.getCurrentTransaction(), 1000);
 
 # Isolation Level
 
-GigaSpaces supports three isolation levels: `READ_UNCOMMITTED`, `READ_COMMITTED` and `REPEATABLE_READ` (default). When using `GigaSpace`, the default isolation level that it will perform under can be defined in the following manner:
+XAP supports three isolation levels: `READ_UNCOMMITTED`, `READ_COMMITTED` and `REPEATABLE_READ` (default). When using `GigaSpace`, the default isolation level that it will perform under can be defined in the following manner:
 
 {{%tabs%}}
 {{%tab "  Namespace "%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="space" />
 
 <os-core:giga-space id="gigaSpace" space="space" default-isolation="READ_COMMITTED"/>
@@ -93,10 +86,7 @@ GigaSpaces supports three isolation levels: `READ_UNCOMMITTED`, `READ_COMMITTED`
 
 {{% /tab %}}
 {{%tab "  Plain XML "%}}
-
-
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -109,10 +99,7 @@ GigaSpaces supports three isolation levels: `READ_UNCOMMITTED`, `READ_COMMITTED`
 
 {{% /tab %}}
 {{%tab "  Code "%}}
-
-
 ```java
-
 IJSpace space = // get Space either by injection or code creation
 
 GigaSpace gigaSpace = new GigaSpaceConfigurer(space)

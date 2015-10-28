@@ -106,7 +106,9 @@ The space synchronization endpoint can get data about the current transaction pa
 ## After Transaction Synchronization
 
 This event is triggered after the entire transaction is successfully replicated to the final target and the `TransactionData` contains all the data that the transaction consists of, including metadata and the source of the transaction.
-{{% exclamation %}} When a consolidated transaction is executed, the source will contain the name of one of the participants.
+{{% note %}}
+When a consolidated transaction is executed, the source will contain the name of one of the participants.
+{{% /note %}}
 
 ## After Operations Batch Synchronization
 

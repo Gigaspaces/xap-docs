@@ -16,8 +16,10 @@ A `SpaceSynchronizationEndpoint` implementation can make use of the [Change API]
 
 
 Asynchronous Persistence
-![change](/attachment_files/change-space-datasource-async.jpg)
 
+{{%align center%}}
+![change](/attachment_files/change-space-datasource-async.jpg)
+{{%/align  %}}
 
 
 
@@ -92,17 +94,17 @@ By default, the change result will only contain the number of entries which were
 
 
 ```java
- 	GigaSpace space = // ... obtain a space reference
- 	Uuid id = ...;
- 	IdQuery<Account> idQuery = new IdQuery<Account>(Account.class, id, routing);
- 	ChangeResult<Account> changeResult = space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D), ChangeModifiers.RETURN_DETAILED_RESULTS);
- 	for(ChangedEntryDetails<Account> changedEntryDetails : changeResult.getResults()) {
- 	 //Will get the first change which was applied to an entry, in our case we did only single increment so we will have only one change operation.
- 	 //The order is corresponding to the order of operation applied on the ChangeSet.
- 	 ChangeOperationResult operationResult = changedEntryDetails.getChangeOperationsResults().get(0);
- 	 double newValue = IncrementOperation.getNewValue(operationResult);
- 	 ...
- 	}
+    GigaSpace space = // ... obtain a space reference
+    Uuid id = ...;
+    IdQuery<Account> idQuery = new IdQuery<Account>(Account.class, id, routing);
+    ChangeResult<Account> changeResult = space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D), ChangeModifiers.RETURN_DETAILED_RESULTS);
+    for(ChangedEntryDetails<Account> changedEntryDetails : changeResult.getResults()) {
+    //Will get the first change which was applied to an entry, in our case we did only single increment so we will have only one change operation.
+    //The order is corresponding to the order of operation applied on the ChangeSet.
+    ChangeOperationResult operationResult = changedEntryDetails.getChangeOperationsResults().get(0);
+    double newValue = IncrementOperation.getNewValue(operationResult);
+    ...
+    }
 ```
 
 
