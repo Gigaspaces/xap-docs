@@ -18,7 +18,7 @@ parent: cook-books.html
 {{%panel%}}
 Follow these [instructions](./installation-guide.html#java-installation) to download and install the latest version of XAP.
 
-If you also wish to utilize the GigaSpaces XAP load balancing agent, you should [download](http://httpd.apache.org/download.cgi){:target="_blank"} and install the [Apache 2.2 Http Server](http://httpd.apache.org/){:target="_blank"}.
+If you also wish to utilize the GigaSpaces XAP load balancing agent, you should [download](http://httpd.apache.org/download.cgi)  and install the [Apache 2.2 Http Server](http://httpd.apache.org/){:target="_blank"}.
 {{%/panel%}}
 {{% /section %}}
 
