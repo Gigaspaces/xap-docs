@@ -53,7 +53,9 @@ If the file doesn't exist, only a warning is displayed
 You should specify in the UI (manage security) the path to security configuration file containing this property ,otherwise the default fsm file will be used.
 {{%/note%}}
 
+{{%align center%}}
 ![security_namagement_config_file.jpg](/attachment_files/security_namagement_config_file.jpg)
+{{%/align  %}}
 
 # Custom Extensions
 
@@ -126,7 +128,7 @@ The default file-service implementation class is: `com.gigaspaces.security.fs.Lo
 {{%/info%}}
 
 {{% note%}}
-It might be obvious to note that you will need to manage the security directory as a local-file, upload the file to an HTTP server, and +only then+ configure your services with the above properties. If your HTTP server allows write-access, then the `URLFileService` can also be used for managing your directory; the `writeToFile` method (see interface) will use the output stream to write through this connection.
+It might be obvious to note that you will need to manage the security directory as a local-file, upload the file to an HTTP server, and only then configure your services with the above properties. If your HTTP server allows write-access, then the `URLFileService` can also be used for managing your directory; the `writeToFile` method (see interface) will use the output stream to write through this connection.
 {{%/note%}}
 
 ##### Custom File Service

@@ -10,7 +10,9 @@ weight: 300
 
 XAP provides a generic network filter that also provides SSL support, through an SSL communication filter.
 
+{{%align center%}}
 ![lrmi-filters](/attachment_files/lrmi-filters.jpg)
+{{%/align  %}}
 
 {{% refer %}}[How to Set XAP Over a Firewall]({{%currentadmurl%}}/network-over-firewall.html) {{%/refer%}}
 

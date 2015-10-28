@@ -13,7 +13,7 @@ weight: 100
 
 
 
-{{%panel%}}
+
 {{%section%}}
 {{%column width="50%" %}}
  C#
@@ -64,7 +64,7 @@ package com.mycompany.myproject.entities;
 ```
 {{%/column%}}
 {{%/section%}}
-{{%/panel%}}
+
 
 
 

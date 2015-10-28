@@ -51,7 +51,7 @@ public class Address
 ```
 {{% /tab %}}
 
-{{%tab "  Multiple Indexes Annotation "%}}
+{{%tab "Multiple Indexes Annotation"%}}
 
 ```csharp
 [SpaceClass]
@@ -88,7 +88,7 @@ SqlQuery<Person> query = new SqlQuery<Person>(
 
 {{%refer%}}
 [SQL Query netsed Objects](./query-sql.html#Nested Object Query)
-{{%refer%}}
+{{%/refer%}}
 
 # Nested Objects
 

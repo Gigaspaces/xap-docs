@@ -10,7 +10,9 @@ weight: 500
 
 The XAP Data-Grid includes special interceptor that allow users to pre-load the Data-Grid with data before it is available for clients access. This interceptor called **Initial Load** and has a default implementation that is using the [NHibernate Space Persistency](./hibernate-space-persistency.html) implementation to load data from a database directly into the Data-Grid instances.
 
+{{%align center%}}
 ![eds_initial_load.jpg](/attachment_files/eds_initial_load.jpg)
+{{%/align  %}}
 
 To enable the initial load activity an `ExternalDataSource` should be specified. Here is an example for a space configuration that performs only initial load from the database without writing back any changes into the database (replication to the Mirror service is not enabled with this example):
 
@@ -77,7 +79,7 @@ Of course we'll need to configure the space to use our custom extension instead 
 </ProcessingUnit>
 ```
 
-## Overriding the `InitialLoad` method
+## Overriding the InitialLoad method
 
 To implement your own Initial Load when using the NHibernate `ExternalDataSource` you can override the `InitialLoad` method to construct one or more `IDataEnumerator`. For example:
 
