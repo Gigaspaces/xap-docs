@@ -125,9 +125,11 @@ You may get the redo log size via the GS-UI or via the API.
 ## View Redo Size via the GigaSpaces Management Center
 
 Enable the redo log size monitoring:
+
 ![red-log1.jpg](/attachment_files/red-log1.jpg)
 
 A new column will be added to the space list table:
+
 ![red-log2.jpg](/attachment_files/red-log2.jpg)
 
 ## Get the redo log via the Admin API
