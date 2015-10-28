@@ -76,7 +76,7 @@ This page list all the 3rd party libraries shipped with GigaSpaces XAP on a per 
 | [Highcharts](http://www.highcharts.com/products/highcharts) | 2.1.9 | [Commercial](http://highsoft.com/legal/Highslide-Software-License-1-3.pdf) |
 | [Ext GWT](http://www.sencha.com/products/) | 2.2.5 | [Commercial](http://www.sencha.com/products/extjs/license/) |
 | [jQuery](http://www.jquery.com/) | 1.8.1 | [MIT](https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt) |
-| [RaphaÃ«l](http://www.raphaeljs.com/) | 2.1.0 | [MIT](http://raphaeljs.com/license.html) |
+| [Raphaël](http://www.raphaeljs.com/) | 2.1.0 | [MIT](http://raphaeljs.com/license.html) |
 | [Dracula Graph](http://www.graphdracula.net/) | 0.0.3 | [MIT](http://www.opensource.org/licenses/mit-license.php) |
 | [CCombo V2.0](http://www.christsam.blogspot.com/2011/05/ccombo-v20.html) | 2.0 | [MIT](http://www.opensource.org/licenses/mit-license.php) |
 | [SexyCombo](http://vladimir-k.blogspot.com/2009/02/sexy-combo-jquery-plugin.html) | 2.1.3 | [MIT](http://www.opensource.org/licenses/mit-license.php) |
