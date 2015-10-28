@@ -136,7 +136,7 @@ Each stateful processing unit (embedding a space) has a fixed number of logical 
 
 ![rebalance_util.jpg](/attachment_files/rebalance_util.jpg)
 
-## How Rebalancing works?
+## How Rebalancing works
 
 GigaSpaces runtime environment differentiate between a Container (GSC) or **Grid node** that is running within a single JVM instance and an **IMDG node**, also called a logical partition. A partition has one primary instance and zero or more backup instances.
 
