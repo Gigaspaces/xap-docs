@@ -24,7 +24,7 @@ The BlobStore settings includes the following options:
 | Property               | Description                                               | Default | Use |
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
 | paths | Comma separated available or new RocksDB folder locations.A path is a mounting point to a flash device.The list used as a search path from left to right.The first one exists will be used. |  | required |
-| mapping-dir | Point to a directory in a file system. This directory contains file which contains a mapping between space name and a RocksDB location. | /tmp/blobstore/paths | optional |
+| mapping-dir | Point to a directory in a file system. This directory contains file which contains a mapping between space name and a RocksDB location. |  | required |
 | central-storage | Enable in case you have a centralized storage. in this case each space is connected to a predefined RocksDB mounted location. | false | optional |
 | options | RocksDB configuration options | | optional |  
 | strategy-type |  Merge or Override given options with XAP default RocksDB options. | merge | optional | 
@@ -74,7 +74,7 @@ Configuring an IMDG (Space) with BlobStore should be done via the `RocksDBBlobSt
 
     <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
 
-    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]"/>
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" cache-entries-percentage="10" avg-object-size-KB="5" persistent="true"/>
@@ -100,6 +100,7 @@ Configuring an IMDG (Space) with BlobStore should be done via the `RocksDBBlobSt
 
     <bean id="blobstoreid" class="com.gigaspaces.blobstore.rocksdb.RocksDBBlobStoreHandler">
         <property name="paths" value="[/mnt/db1,/mnt/db2]"/>
+        <property name="mappingDir" value="/tmp/mapping"/>
     </bean>
 
     <os-core:embedded-space id="space" name="mySpace">
@@ -121,6 +122,7 @@ Programmatic approach to start a BlobStore space:
 ```java
 RocksDBBlobStoreConfigurer configurer = new RocksDBBlobStoreConfigurer();
 configurer.addPaths("[/mnt/db1,/mnt/db2]");
+configurer.setMappingDir("/tmp/mapping");
 
 RocksDBBlobStoreConfigurer blobStoreHandler = configurer.create();
 BlobStoreDataCachePolicy cachePolicy = new BlobStoreDataCachePolicy();
@@ -198,8 +200,39 @@ With the following `sla.xml` we have a partitioned (2 partitions) data grid with
 ## Last Primary
 
 ln order to prevent loss of data by selecting the least-updated space as primary the system keeps the id of the primary space for each partition. When a partition is brought up the primary election mechanism will elect a primary space randomly (or on basis of first-ready) but wait for the last primary to take the role of primary space. If the last primary cannot be resolved manual user intervention is required.
-The current default implementation is based on shared file on NFS.
+There are 2 implementations  the first is based on [ZooKeeper](./zookeeper.html) ensemble and the second is based on shared file on NFS.
 
+{{%tabs%}}
+{{%tab "  ZooKeeper "%}}
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
+
+    <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <bean id="attributeStoreHandler" class="org.openspaces.zk.attribute_store.ZooKeeperAttributeStore">
+        <constructor-arg name="name" value="blobstore_lastprimary"/>
+    </bean>
+
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]"/>
+
+    <os-core:embedded-space id="space" name="mySpace" >
+        <os-core:blob-store-data-policy blob-store-handler="myBlobStore" cache-entries-percentage="10" avg-object-size-KB="5" persistent="true"/>
+        <os-core:attribute-store store-handler="attributeStoreHandler"/>
+    </os-core:embedded-space>
+
+    <os-core:giga-space id="gigaSpace" space="space"/>
+</beans>
+```
+{{% /tab %}}
+{{%tab "  NFS "%}}
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -227,11 +260,13 @@ The current default implementation is based on shared file on NFS.
     <os-core:giga-space id="gigaSpace" space="space"/>
 </beans>
 ```
+{{% /tab %}}
+{{% /tabs %}}
 
 The above example:
 
 - Configures the RocksDB BlobStore bean.
-- Configures the Space bean (Data Grid) to use the blobStore implementation, Last Primary state is kept at shared a file lastprimary.properties. 
+- Configures the Space bean (Data Grid) to use the blobStore implementation, Last Primary state is kept on ZooKeeper or at shared a file lastprimary.properties. 
 
 
 # Central Storage Support
