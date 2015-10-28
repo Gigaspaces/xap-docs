@@ -21,7 +21,7 @@ weight: 700
 | `repl-full-take` | If set to `true` the entire object is replicated when take operations is called. If set to `false` only the ID, class information and primitive fields are replicated. This option is valid only when replicating data into a Mirror Service or a backup in non-central DB topology. | false |
 | `replicate-notify-templates` | Boolean value. If set to true, the notify templates are replicated to the target space. | true |
 | `trigger-notify-templates` | Boolean value. If set to true, the replicated operations will trigger the notify templates and send events to the registered listeners. | false |
-| `on-conflicting-packets` | Enum value. If set to ignore, the conflicting operations are ignored. If set to override the newest operation will override the data in the target. | ignore |
+| `on-conflicting-packets` | Enum value. If set to **ignore**, the conflicting operations are ignored. If set to **override** the newest operation will override the data in the target. | ignore |
 
 {{%note%}}
 Prefix the property with `cluster-config.groups.group.repl-policy.`
