@@ -9,7 +9,7 @@ weight: 110
 
 {{% ssummary %}}  {{% /ssummary %}}
 
-# How It Works?
+# How It Works
 
 XAP is using [RocksDB](http://rocksdb.org/) an embeddable persistent key-value store for fast storage. Keys and values are arbitrary byte streams.It was developed at Facebook based on LevelDB , RocksDB can be configured to run on data on pure memory, flash, hard disks or on HDFS.
 XAP indexes are maintained in RAM (on-heap) allowing the XAP query engine to evaluate the query without accessing the raw data stored on the mounted flash device. This allows XAP to execute SQL based queries extremely efficiently even across large number of nodes. All XAP Data Grid APIs are supported including distributed transactions, leasing (Time To live) , FIFO , batch operations , etc. All clustering topologies supported. All client side cache options are supported.
