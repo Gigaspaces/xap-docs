@@ -94,7 +94,7 @@ LRU eviction based on the amount of available memory, performs the following:
 
 - Check used memory. If not breached, the `space-config.engine.memory_usage.high_watermark_percentage` exits. If yes, it starts the eviction cycle:
 
-{{% align center %}}
+
 **Start eviction loop**
 
 1. Evicts a batch - this releases objects from the space.
@@ -106,7 +106,7 @@ LRU eviction based on the amount of available memory, performs the following:
 1. If the eviction counter value is larger than `space-config.engine.memory_usage.retry_count`, throw a `MemoryShortageException`.
 
 **End eviction loop**
-{{% /align %}}
+
 
 - If the amount of memory used, is above the `space-config.engine.memory_usage.high_watermark_percentage` (for a non-write operation), or the `space-config.engine.memory_usage.write_only_block_percentage` (for a write operation) - throw a `MemoryShortageException`.
 
@@ -161,7 +161,10 @@ Available memory[%]85.46128254359517 evicted all entries.
 ```
 
 You may change the logging level of the `com.gigaspaces.core.memorymanager` while the space is running. Start JConsole (you may start it via the GigaSpaces Management Center) for the JVM hosting the space running and change the `com.gigaspaces.core.memorymanager` logging level to `FINE`. See below screenshot:
+
+{{%align center%}}
 ![memorymanager.jpg](/attachment_files/memorymanager.jpg)
+{{%/align%}}
 
 {{% tip %}}
 To change the `com.gigaspaces.core.memorymanager` logging level back to its default value set it back to `INFO`.

@@ -94,7 +94,7 @@ LRU eviction based on the amount of available memory, performs the following:
 
 - Check used memory. If not breached, the `space-config.engine.memory_usage.high_watermark_percentage` exits. If yes, it starts the eviction cycle:
 
-{{% indent %}}
+
 **Start eviction loop**
 
 1. Evicts a batch - this releases objects from the space.
@@ -106,7 +106,7 @@ LRU eviction based on the amount of available memory, performs the following:
 1. If the eviction counter value is larger than `space-config.engine.memory_usage.retry_count`, throw a `MemoryShortageException`.
 
 **End eviction loop**
-{{% /indent %}}
+ 
 
 - If the amount of memory used, is above the `space-config.engine.memory_usage.high_watermark_percentage` (for a non-write operation), or the `space-config.engine.memory_usage.write_only_block_percentage` (for a write operation) - throw a `MemoryShortageException`.
 
