@@ -704,6 +704,9 @@ Certain receive operation handlers might return an array as a result of the rece
 
 Here is an example for batch processing using the `passArrayAsIs` - with this example the polling container will consume a batch of objects using `takeMultiple`, modify these and write these back into the space in one operation using `writeMultiple`:
 
+{{%tabs%}}
+{{%tab "  Annotation "%}}
+
 
 ```java
 @EventDriven
@@ -734,6 +737,48 @@ return events;
     }
 }
 ```
+{{% /tab %}}
+{{%tab "  Plain XML "%}}
+
+```xml
+
+<bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
+    <property name="name" value="space" />
+</bean>
+
+<bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean">
+    <property name="space" ref="space" />
+</bean>
+<bean id="simpleBatchListener" class="SimpleBatchListener" />
+
+<bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer">
+
+    <property name="gigaSpace" ref="gigaSpace" />
+
+    <property name="passArrayAsIs" value="true" />
+
+    <property name="receiveOperationHandler">
+        <bean class="org.openspaces.events.polling.receive.MultiTakeReceiveOperationHandler">
+            <property name="maxEntries" value="100" />
+        </bean>
+    </property>
+
+    <property name="template">
+        <bean class="org.openspaces.example.data.common.Data">
+            <property name="processed" value="false"/>
+        </bean>
+    </property>
+
+    <property name="eventListener">
+    	<bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter">
+    	    <property name="delegate" ref="simpleBatchListener" />
+    	</bean>
+    </property>
+</bean>
+
+```
+{{% /tab %}}
+{{% /tabs %}}
 
 # Free Polling Container Resources
 
