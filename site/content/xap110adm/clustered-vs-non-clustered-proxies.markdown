@@ -15,10 +15,10 @@ When deploying a Processing Unit(PU) configured with an embedded [Space]({{%curr
 {{%vbar "A clustered proxy is a smart proxy that performs operations against the entire cluster when needed."%}}
 - The `write` operation will be routed based on the routing field value to the relevant partition (using the routing field hashcode to calculate the the target partition).{{<wbr>}}
 - The `read` operation will do the same by routing the operation to the relevant partition.{{<wbr>}}
-- The `writeMultiple` will generate a entries bucket per partition for all entries that should be placed within the same partition and perform a parallel write to all relevant partition.{{<wbr>}}
+- The `writeMultiple` will generate an entries bucket per partition for all entries that should be placed within the same partition and perform a parallel write to all relevant partitions.{{<wbr>}}
 - The `readMultiple` and `clear` operations will access all cluster partitions in a map-reduce fashion in case the query/template routing value is not specified.{{<wbr>}}
-- The `execute` operation will be routing the `Task` to the relevant partition based on the routing value.{{<wbr>}}
-- The `execute` operation will be routing the `DistributedTask` to all partitions if no routing value been specified or to a specific partitions in case a routing value been specified.
+- The `execute` operation will route the `Task` to the relevant partition based on the routing value.{{<wbr>}}
+- The `execute` operation will route the `DistributedTask` to all partitions if no routing value been specified or to a specific partitions in case a routing value been specified.
 {{%/vbar%}}
 
 Many times, especially when working with a PU that starts an embedded space, operations against the space should be performed directly on the cluster member without interacting with the other space cluster members (partitions). This is a core concept of the SBA and Processing Unit, where most if not all the operations should be performed in-memory without leaving the Processing Unit boundaries, when a Processing Unit starts an embedded space.
@@ -26,6 +26,7 @@ Many times, especially when working with a PU that starts an embedded space, ope
 
 {{% align center%}}
 ![clustered-vs-non-clustered-proxy.jpg](/attachment_files/clustered-vs-non-clustered-proxy.jpg)
+
 {{% /align%}}
 
 The decision of working directly with a cluster member or against the whole cluster is done in the `GigaSpace` level. The `GigaSpacesFactoryBean` provides a clustered flag with the following logic as the default value: If the space is started in embedded mode (for example, `/./space`), the clustered flag is set to `false`. When the space is looked up in a remote protocol (i.e. `jini://*/*/space`, the clustered flag is set to `true`.
@@ -36,7 +37,7 @@ You can use the `clustered` property to control this behavior or use the API to 
 You may use Spring based configuration or API to create a Clustered Proxy.
 
 ## Using Spring
-When using a Spring based `pu.xml` to construct the [GigaSpace]({{%currentjavaurl%}}/the-gigaspace-interface.html) bean to be injected into the relevant other beans the following should be used to create a clustered and a non-clustered `GigaSpace` bean:
+When using a Spring based `pu.xml` to construct the [GigaSpace]({{%currentjavaurl%}}/the-gigaspace-interface.html) bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered `GigaSpace` bean:
 
 ```xml
 <os-core:embedded-space id="space" name="mySpace"/>
@@ -96,14 +97,14 @@ gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
 ```
 
 # Why Would I want a Clustered Proxy?
-A clustered proxy provide you access the entire cluster rather a specific partition. Once you will need to read/write/take/clear/execute against the entire cluster you must use a clustered proxy.
+A clustered proxy provides you access to the entire cluster rather than a specific partition. Once you will need to read/write/take/clear/execute against the entire cluster you must use a clustered proxy.
 
 # Performance Considerations of a Clustered Proxy
-With a remote client, serialization and network activity will impact the performance when writing/reading data. With a collocated non-clustered proxy serialization and network activity will not happen when the client code interacts with the embedded space so these should not be considered, but they will be considered when the embedded space have a backup pair. Here the replication activity will be impacted by the serialization and network activity. Still, this would be a single network hop rather two when having a remote client.
+With a remote client, serialization and network activity will impact the performance when writing/reading data. With a collocated non-clustered proxy serialization and network activity will not happen when the client code interacts with the embedded space so these should not be considered, but they will be considered when the embedded space has a backup pair. Here the replication activity will be impacted by the serialization and network activity. Still, this would be a single network hop rather than two when having a remote client.
 
 # Protective Mode Exception when using a Non-Clustered Proxy
 
-To protect a user using a non-clustered proxy from writing or updates objects using a wrong routing field value, GigaSpaces running by default in Protective Mode. This will throw the `ProtectiveModeException` and block users from getting into such scenarios. You can turn off this behavior by using the following: `com.gs.protectiveMode.wrongEntryRoutingUsage=false`.
+To protect a user using a non-clustered proxy from writing or updating objects using a wrong routing field value, GigaSpaces runs by default in Protective Mode. This will throw the `ProtectiveModeException` and block users from getting into such scenarios. You can turn off this behavior by using the following: `com.gs.protectiveMode.wrongEntryRoutingUsage=false`.
 
 The `com.gigaspaces.client.protective.ProtectiveModeException` is thrown when:
 - Writing a new object using a wrong routing field with a non-clustered proxy.
@@ -169,7 +170,7 @@ public String myMethod(@Routing Integer routing);
 }
 ```
 
-The `@Routing` used to decorate the method specified as the routing field.
+The `@Routing` annotation is used to decorate the method specified as the routing field.
 
 Here is how the service implementation looks like:
 
@@ -263,7 +264,7 @@ Service call - routing 1 partition 2 gigaSpaceEmbed - total visible objects:1
 
 ## A DistributedTask Usage of a Clustered and a Non-Clustered Proxy
 
-Our `DistributedTask` implements the [ClusterInfoAware]({{%currentjavaurl%}}/obtaining-cluster-information.html). This allows it to be injected with the `ClusterInfo` that provides information about the cluster topology and the local partition ID. Here is how the `DistributedTask` looks like:
+Our `DistributedTask` implements [ClusterInfoAware]({{%currentjavaurl%}}/obtaining-cluster-information.html). This allows it to be injected with the `ClusterInfo` that provides information about the cluster topology and the local partition ID. Here is how the `DistributedTask` looks:
 
 The `pu.xml` includes the following:
 
@@ -365,9 +366,9 @@ With this example the `pu.xml` includes the following:
 <context:component-scan base-package="com.test"/>
 ```
 
-Our Event Container (notify container) using the [@PostPrimary]({{%currentjavaurl%}}/the-space-notifications.html#Primary Backup Notifications) to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the [@ClusterInfoContext]({{%currentjavaurl%}}/obtaining-cluster-information.html) that provides information about the cluster topology and the local partition ID.
+Our Event Container (notify container) uses the [@PostPrimary]({{%currentjavaurl%}}/the-space-notifications.html#Primary Backup Notifications) to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the [@ClusterInfoContext]({{%currentjavaurl%}}/obtaining-cluster-information.html) that provides information about the cluster topology and the local partition ID.
 
-Here is how the event container looks like:
+Here is how the event container looks:
 
 ```java
 package com.test;
