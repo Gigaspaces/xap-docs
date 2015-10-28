@@ -16,7 +16,7 @@ For read and take operations, XAP iterates non-null values that match template o
 - [Basic concept](./indexing.html){{<wbr>}}
 Basic index types
 
-- [Indexing Netsted properties](./indexing-nested-properties.html){{<wbr>}}
+- [Indexing Nested properties](./indexing-nested-properties.html){{<wbr>}}
 An index can be defined on a nested property to improve performance of nested queries.
 
 - [Indexing collections](./indexing-collections.html){{<wbr>}}
