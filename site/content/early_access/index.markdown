@@ -14,7 +14,7 @@ If your're looking for the latest stable release, please refer to **10.2** - [Do
 
 <hr/>
 
-### 11.0 M4 (Oct 26th, 2015, 2015)
+### 11.0 M4 (Oct-26-2015)
 
 * Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-xap-premium-11.0.0-m4-b14705-with-license.zip) 
 * Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/GigaSpaces-XAP.NET-Premium-11.0.0.14705-M4-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/GigaSpaces-XAP.NET-Premium-11.0.0.14705-M4-x86.msi)\]
@@ -22,7 +22,7 @@ If your're looking for the latest stable release, please refer to **10.2** - [Do
 
 <hr/>
 
-### 11.0 M3 (Oct 12th, 2015)
+### 11.0 M3 (Oct-12-2015)
 
 * Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m3/gigaspaces-xap-premium-11.0.0-m3-b14704-with-license.zip) 
 * Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m3/GigaSpaces-XAP.NET-Premium-11.0.0.14704-M3-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m3/GigaSpaces-XAP.NET-Premium-11.0.0.14704-M3-x86.msi)\]
@@ -30,7 +30,7 @@ If your're looking for the latest stable release, please refer to **10.2** - [Do
 
 <hr/>
 
-### 11.0 M2 (Sep 13th, 2015)
+### 11.0 M2 (Sep-13-2015)
 
 * Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m2/gigaspaces-xap-premium-11.0.0-m2-b14702-with-license.zip) 
 * Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m2/GigaSpaces-XAP.NET-Premium-11.0.0.14702-M2-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m2/GigaSpaces-XAP.NET-Premium-11.0.0.14702-M2-x86.msi)\]
@@ -38,7 +38,7 @@ If your're looking for the latest stable release, please refer to **10.2** - [Do
 
 <hr/>
 
-### 11.0 M1 (Sep 1st, 2015)
+### 11.0 M1 (Sep-1-2015)
 
 * Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m1/gigaspaces-xap-premium-11.0.0-m1-b14701-with-license.zip) 
 * Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m1/GigaSpaces-XAP.NET-Premium-11.0.0.14701-M1-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m1/GigaSpaces-XAP.NET-Premium-11.0.0.14701-M1-x86.msi)\]
