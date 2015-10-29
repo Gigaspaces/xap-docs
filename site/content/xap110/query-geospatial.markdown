@@ -116,7 +116,7 @@ SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerCon
 
 ## Lucene 
 
-XAP uses [Lucene](https://lucene.apache.org/) to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Geospatial API. Howwever, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.
+XAP uses [Lucene](https://lucene.apache.org/) to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Geospatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.
 
 ### Store Directory
 
