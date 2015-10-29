@@ -8,9 +8,9 @@ weight: 340
 
 Geospatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
 
-{{%note "Technical Preview"%}}
+{{%warning "Technical Preview"%}}
 This feature is new in 11.0 and is currently a technical preview, i.e. it is subject to breaking changes until 11.0 is released.
-{{%/note%}}
+{{%/warning%}}
 
 # Getting Started
 
@@ -88,7 +88,9 @@ public GasStation findNearbyGasStation(Point location, int radius, double maxPri
 }
 ```
 
-{{<plus>}} If both `location` and `price` are indexed, the index which appears first in the query is the one that will be used. This may significantly effect the performance of your query, so it's recommended to think which index is most efficient for each query and put it first.
+{{%note%}}
+ If both `location` and `price` are indexed, the index which appears first in the query is the one that will be used. This may significantly effect the performance of your query, so it's recommended to think which index is most efficient for each query and put it first.
+{{%/note%}}
 
 # Geo-fencing
 
@@ -125,7 +127,9 @@ Lucene indexing is stored in a **Store Directory**. Lucene supports different St
 Lucene needs to store some files to maintain its indexes. The location of these files can be set using the `com.gs.foreignindex.lucene.work` system property (if not set, defaults to `user.home`).
 Within this directory, a sub directory is automatically created for each space (for example, `LuceneRoot/space_container1:space/entries/`
 
-{{<infosign>}} This default will be changed in one of the upcoming milestones - if the space is deployed in a processing unit, it will use its working directory instead, so data will be automatically deleted when the processing unit is undeployed.
+{{%note%}}
+ This default will be changed in one of the upcoming milestones - if the space is deployed in a processing unit, it will use its working directory instead, so data will be automatically deleted when the processing unit is undeployed.
+{{%/note%}}
 
 # Limitations
 
