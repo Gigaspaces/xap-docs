@@ -8,42 +8,38 @@ weight:
 
 {{%ssummary%}}Here you will find milestone release for XAP 11.0{{%/ssummary%}}
 
-# Milestone M4 b14705
+{{%info "XAP 11.0 is scheduled for release in Q1 2016"%}}
+If your're looking for the latest stable release, please refer to **10.2** - [Download](http://www.gigaspaces.com/xap-download) | [XAP docs](/xap102) | [XAP.NET docs](/xap102net)
+{{%/info%}}
 
-{{%panel title="Java"%}}
+<hr/>
 
-[XAP Premium](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-xap-premium-11.0.0-m4-b14705-with-license.zip)
+### 11.0 M4 (Oct 26th, 2015, 2015)
 
-[MemoryXtend](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/blobstore-11.0.0-14705_M4_1.noarch.rpm)
-{{%/panel%}}
+* Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-xap-premium-11.0.0-m4-b14705-with-license.zip) 
+* Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/GigaSpaces-XAP.NET-Premium-11.0.0.14705-M4-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/GigaSpaces-XAP.NET-Premium-11.0.0.14705-M4-x86.msi)\]
+* Download XAP for C++ \[[Linux x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-cpp-11.0.0-m4-linux-amd64-gcc-4.1.2.tar.gz) | [Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-cpp-11.0.0-m4-win64-vs10.0.tar.gz)\]
 
-{{%panel title=".Net"%}}
-[XAP Premium x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/GigaSpaces-XAP.NET-Premium-11.0.0.14705-M4-x86.msi)
+<hr/>
 
-[XAP Premium x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/GigaSpaces-XAP.NET-Premium-11.0.0.14705-M4-x64.msi)
+### 11.0 M3 (Oct 12th, 2015)
 
-{{%/panel%}}
+* Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m3/gigaspaces-xap-premium-11.0.0-m3-b14704-with-license.zip) 
+* Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m3/GigaSpaces-XAP.NET-Premium-11.0.0.14704-M3-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m3/GigaSpaces-XAP.NET-Premium-11.0.0.14704-M3-x86.msi)\]
+* Download XAP for C++ \[[Linux x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m3/gigaspaces-cpp-11.0.0-m3-linux-amd64-gcc-4.1.2.tar.gz) | [Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m3/gigaspaces-cpp-11.0.0-m3-win64-vs10.0.tar.gz)\]
 
-{{%panel title="CPP"%}}
+<hr/>
 
-[XAP Linux 32 gcc-4.1.2](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-cpp-11.0.0-m4-linux32-gcc-4.1.2.tar.gz)
+### 11.0 M2 (Sep 13th, 2015)
 
-[XAP linux-amd64-gcc-4.1.2](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-cpp-11.0.0-m4-linux-amd64-gcc-4.1.2.tar.gz)
+* Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m2/gigaspaces-xap-premium-11.0.0-m2-b14702-with-license.zip) 
+* Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m2/GigaSpaces-XAP.NET-Premium-11.0.0.14702-M2-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m2/GigaSpaces-XAP.NET-Premium-11.0.0.14702-M2-x86.msi)\]
+* Download XAP for C++ \[[Linux x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m2/gigaspaces-cpp-11.0.0-m2-linux-amd64-gcc-4.1.2.tar.gz) | [Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m2/gigaspaces-cpp-11.0.0-m2-win64-vs10.0.tar.gz)\]
 
-[XAP win64 vs10.0](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-cpp-11.0.0-m4-win64-vs10.0.tar.gz)
+<hr/>
 
-[XAP win32-vs10.0](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-cpp-11.0.0-m4-win32-vs10.0.tar.gz)
+### 11.0 M1 (Sep 1st, 2015)
 
-[XAP win64-vs9.0](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-cpp-11.0.0-m4-win64-vs9.0.tar.gz)
-
-[XAP win32-vs9.0](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m4/gigaspaces-cpp-11.0.0-m4-win32-vs9.0.tar.gz)
-{{%/panel%}}
-
-* Link to the API docs
-[API Documenation](/api_documentation)
-
-# Current Release
-
-[The current XAP release is 10.2](/xap102)
-
-[The current XAP .NET release is 10.2](/xap102net)
+* Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m1/gigaspaces-xap-premium-11.0.0-m1-b14701-with-license.zip) 
+* Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m1/GigaSpaces-XAP.NET-Premium-11.0.0.14701-M1-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m1/GigaSpaces-XAP.NET-Premium-11.0.0.14701-M1-x86.msi)\]
+* Download XAP for C++ \[[Linux x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m1/gigaspaces-cpp-11.0.0-m1-linux-amd64-gcc-4.1.2.tar.gz) | [Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/m1/gigaspaces-cpp-11.0.0-m1-win64-vs10.0.tar.gz)\]
