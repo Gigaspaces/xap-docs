@@ -1,188 +1,137 @@
 ---
 type: post110
-title:  GeoSpatial Queries
+title:  Geospatial Queries
 categories: XAP110
 parent: querying-the-space.html
 weight: 340
 ---
 
+Geospatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
 
+{{%note "Technical Preview"%}}
+This feature is new in 11.0 and is currently a technical preview, i.e. it is subject to breaking changes until 11.0 is released.
+{{%/note%}}
 
-{{%imageltext "/attachment_files/under-construction.jpeg"%}}
-GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
-{{%/imageltext%}}
+# Getting Started
 
-# Configuration
+Suppose we want to write an application to locate nearby gas stations. 
 
-### Lucene Root Directory
-
-XAP uses Lucene Spatial to index shapes and execute fast geospatial queries. It uses MMapDirectory to store index files in the file system. 
-
-The root directory that it uses can be configured with the system property `com.gs.foreignindex.lucene.work`. By default it will use the `user.home` directory.
-
-We create a directory for each class that is written to the space. A sub directory called entries will contain the indexed shapes. The full path looks like: *LuceneRoot/space_containerx:space/entries/*
-
-{{<wbr>}}
-
-# GeoSpatial API
-
-
-### GeoSpatial Shapes
-
-The shapes classes are located under the package `com.gigaspaces.spatial.shapes`. 
-
-The supported shapes are:
-
-* Point
-* Circle
-* Rectangle
-* Polygon
-
-{{<wbr>}}
-
-### GeoSpatial Operations
-
-GeoSpatial operations are available using the SQLQuery syntax:
+First, we should create a `GasStation` class which includes the location of the gas station:
 
 ```java
-Shape polygon = new Polygon(new Point(0.0d, 0.0d), new Point(4.0d, 0d), new Point(4, 4), new Point(0, 4));
-SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "indexedShape <geospatial operation> ? ")
-	.setParameter(1, polygon);         
-```
+import com.gigaspaces.spatial.shapes.Point;
 
-There are three types of geospatial operations that can be used in the query:
-
-* geospatial:within
-{{<wbr>}} The shape contains the target geometry, boundaries of shapes count too. It's the converse of *geospatial:contains*.
-* geospatial:contains
-{{<wbr>}} The shape is within the target geometry, boundaries of shapes count too. It's the converse of *geospatial:within*.
-* geospatial:intersects 
-{{<wbr>}} The shape shares some points/overlap with the target shape. If a shape is within/contains another then it also intersects with it. Points on the boundary count too.
-
-{{<wbr>}}
-
-### GeoSpatial Annotation
-
-In order to index a shape field the field should be annotated with the `@SpaceSpatialIndex` annotation.
-
-When the field in query is not annotated with the `@SpaceSpatialIndex` annotation a full scan will be used to serve the geospatial query.
-
-Given the pojo:
-
-```java
-public class Pojo {
-    ...
-    @SpaceSpatialIndex
-    private Polygon _indexedShape;
-    
-    private Circle _notIndexedShape
-    ...
+public class GasStation {
+	private Point location;
+	
+	public Point getLocation() {
+	    return location;
+	}
+	
+	public void setLocation(Point location) {
+		this.location = location;
+	}
 }
 ```
 
-Both queries will work:
+Next, assuming we've written some gas station entries to the space, we can query for a gas station within a certain radius of our location:
 
 ```java
-Shape point = new Point(4, 4);
-SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "indexedShape geospatial:contains ? ")
-	.setParameter(1, point);         
-```
-
-```java
-Shape point = new Point(4, 4);
-SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "notIndexedShape geospatial:contains ? ")
-	.setParameter(1, point);         
-```
-
-The first query will use lucene spatial index to perform the query while the second one will iterate over all Pojo objects in space and filter out the matching objects.
-
-{{<wbr>}}
-
-# Examples
-
-Given the pojo:
-
-```java
-public class Pojo {
-    ...
-    private String _author
-    
-    @SpaceSpatialIndex
-    private Polygon _indexedShape;
-    
-    private Circle _notIndexedShape
-    ...
+public GasStation findNearbyGasStation(Point location, int radius) {
+	SQLQuery<GasStation> query = new SQLQuery(GasStation.class, "location geospatial:within ?")
+		.setParameter(1, new Circle(location, radius));
+	return gigaSpace.read(query);
 }
 ```
 
-{{<wbr>}}
+# Model and Query API
 
-### GeoSpatial Query
+The supported shapes are `Point`, `Circle`, `Rectangle` and `Polygon`, which are all located in the `com.gigaspaces.spatial.shapes` package. 
+
+Geospatial queries are available through the `geospatial:` extension to the SQL query syntax. The following operations are supported:
+
+* `shape1 geospatial:contains shape2` - shape1 contains shape2, boundaries inclusive.
+* `shape1 geospatial:within shape2` - shape1 is within (contained in) shape2, boundaries inclusive.
+* `shape1 geospatial:intersects shape2` - The intersection between shape1 and shape 2 is not empty (i.e. some or all of shape1 overlaps some or all of shape2).
+
+Geospatial queries can be used with any space operation which supports SQL queries (`read`, `readMultiple`, `take`, etc.)
+
+# Indexing
+
+Our current implementation is valid, but not very efficient - if the space contains lots of `GasStation` entries and our query is only relevant to a small subset of them, the space is likely to scan lots of entries before finding a match. In order to improve that, we can index the location property using the `@SpaceSpatialIndex` annotation:
 
 ```java
-Shape circle = new Circle(new Point(0.0d, 0.0d), 5.0d);
-SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "indexedShape geospatial:within ?")
-    .setParameter(1, circle); 
+public class GasStation {
+	private Point location;
 
-gigaSpace.readMultiple(query);
+	@SpaceSpatialIndex
+	public Point getLocation() {
+	    return location;
+	}
+	
+	public void setLocation(Point location) {
+		this.location = location;
+	}
+}
 ```
 
-{{<wbr>}}
+# Combining Geospatial and Standard Predicates
 
-### Combining geospatial with space query
+Suppose our `GasStation` class contains a `price` property as well, and we want to enhance our query and find nearby gas stations whose price is lower than a certain threshold. We can simply add the relevant predicate to the query's criteria:
 
 ```java
-Shape circle = new Circle(new Point(0.0d, 0.0d), 5.0d);
-SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "indexedShape geospatial:within ? and author = ?")
-    .setParameter(1, circle)
-    .setParameter(2, "John");
-    
-gigaSpace.readMultiple(query);
+public GasStation findNearbyGasStation(Point location, int radius, double maxPrice) {
+	SQLQuery<GasStation> query = new SQLQuery(GasStation.class, "location geospatial:within ? AND price < ?")
+		.setParameter(1, new Circle(location, radius))
+		.setParameter(2, maxPrice);
+	return gigaSpace.read(query);
+}
 ```
 
-{{<wbr>}}
+{{<plus>}} If both `location` and `price` are indexed, the index which appears first in the query is the one that will be used. This may significantly effect the performance of your query, so it's recommended to think which index is most efficient for each query and put it first.
 
-### Notify Container
+# Geo-fencing
+
+Suppose we want something done when an event occurs within a certain area, for example - notify me when there's a new `GasStation` within a certain radius of my location. Event Containers can be used in conjunction with Geospatial queries to do just that. For example:
 
 ```java
-Shape circle = new Circle(new Point(0.0d, 0.0d), 5.0d);
-SQLQuery<Pojo> query = new SQLQuery<Pojo>(Pojo.class, "indexedShape geospatial:within ?")
-    .setParameter(1, circle); 
-    
-SimpleNotifyEventListenerContainer simpleNotifyEventListenerContainer = new SimpleNotifyContainerConfigurer(gigaSpace)
+Point location = new Point(0.0d, 0.0d);
+double radius = 5.0d;
+SQLQuery<GasStation> query = new SQLQuery(GasStation.class, "location geospatial:within ?")
+		.setParameter(1, new Circle(location, radius));
+   
+SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerConfigurer(gigaSpace)
     .template(query)
     .eventListenerAnnotation(new Object() {
         @SpaceDataEvent
-        public void eventHappened(Pojo data) {
-            System.out.println("Got "+data);
+        public void eventHappened(GasStation gasStation) {
+            System.out.println("Got " + gasStation);
         }
     }).notifyContainer();
 ```
 
-{{<wbr>}}
+# Configuration
 
-### Example Project
+## Lucene 
 
-An example project can be downloaded from {{%git  "https://github.com/Gigaspaces/xap-geospatial-example.git"%}}.
+XAP uses [Lucene](https://lucene.apache.org/) to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Geospatial API. Howwever, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.
 
-It contains examples for:
+### Store Directory
 
-* Query within a radius from a certain location (find all entries that are within 5 miles of a certain coordinate)
-	* Querying on an indexed field.
-    * Querying on a not indexed field.
-    * Use of different types of geospatial operations: *geospatial:within*, *geospatial:contains*, *geospatial:intersects* and *geospatial:disjoint*.
-    * Compund query: GeoSpatial and space query.
-* Geo fencing: define a radius around a specific coordinate, and trigger an event container when an entry is written that resides in this radius
-* Query for all entries within a polygon: Define a polygon and a query for all entries that are inside it. 
+Lucene indexing is stored in a **Store Directory**. Lucene supports different Store Directory implementations, but recommends using the [MMapDirectory](https://lucene.apache.org/core/4_1_0/core/org/apache/lucene/store/MMapDirectory.html), which is what XAP uses by default.
+
+### File System
+
+Lucene needs to store some files to maintain its indexes. The location of these files can be set using the `com.gs.foreignindex.lucene.work` system property (if not set, defaults to `user.home`).
+Within this directory, a sub directory is automatically created for each space (for example, `LuceneRoot/space_container1:space/entries/`
+
+{{<infosign>}} This default will be changed in one of the upcoming milestones - if the space is deployed in a processing unit, it will use its working directory instead, so data will be automatically deleted when the processing unit is undeployed.
 
 # Limitations
 
-The following limitations and open issues apply to 11.0.0-m3 release:
+The following limitations and open issues apply to 11.0.0 m4:
 
-* Take operations are not supported
-* No support for Pulling Containers
-* No support for transactions
-* Inheritance is not supported
-* No support for Space Document
-* Cannot execute query on a not indexed shape field (Fixed in m4)
-* Disjoint queries are not supported
+* Transactions are not supported (expected to be supported in m5)
+* Disjoint queries are not supported (expected to be supported in m5)
+* The property itself must be a `Shape` - nested properties, collections, dynamic properties and space documents are not supported.
+* There are some issues with inheritance which have not been isolated yet.
