@@ -48,10 +48,6 @@ The IMDG BlobStore settings includes the following options:{{<wbr>}}
 | avg-object-size-KB |  Average object size. | 5KB | optional |
 | persistent |  data is written to flash, space will perform recovery from flash if needed.  | | required |
 
-# Supported XAP APIs
-
-All XAP APIs are supported with the BlobStore configuration. This includes the Space API (POJO and Document), JDBC API, JPA API, JMS API, and Map API. 
-
 # Configuration
 Configuring an IMDG (Space) with BlobStore should be done via the `RocksDBBlobStoreDataPolicyFactoryBean`, or the `RocksDBBlobStoreConfigurer`. For example:
 
