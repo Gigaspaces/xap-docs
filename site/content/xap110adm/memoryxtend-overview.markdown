@@ -6,11 +6,7 @@ parent: memoryxtend.html
 weight: 100
 ---
 
-
-
 XAP 10 introduces a new storage model called BlobStore Storage Model, which allows an external storage medium (one that does not reside on the JVM heap) to store the IMDG data. This page describes the general architecture and functionality of this storage model, that is leveraging both on-heap, off-heap and SSD implementation, called `MemoryXtend`.
-
-
 
 This storage model leverages on-heap LRU cache (deserialized form) and off-heap LRU cache (serialized form) to store data, on-heap to store indexes and external storage device to store the raw data in a serialized form. 
 
@@ -28,3 +24,26 @@ When running a traditional persistence configuration, the IMDG serves as a front
 With the external storage medium mode, the entire data set is kept on the external SSD drive. The assumption is the SSD capacity across the grid is large enough to accommodate for the entire data set of the application.
 
 
+# Class Level Settings
+
+Once MemoryXtend is configured for a space, all entries stored in that space will be stored using the MemoryXtend settings. This is obviously somewhat slower than entries stored in-memory, in the traditional XAP storage mechanism. In some scenarios it makes sense to use MemoryXtend for some classes but not for others. For example, a user might say: "I have a limited amount of `Customer` entries, but tons of `Order` entries, and I want to disable MemoryXtend for the `Customer`s". This can be done via the space class metadata. For example:
+
+{{%tabs%}}
+{{%tab Annotation%}}
+```java
+@SpaceClass(blobstoreEnabled = false)
+public class Customer {
+    .......
+}
+```
+{{%/tab%}}
+{{%tab gs.xml%}}
+```xml
+<gigaspaces-mapping>
+    <class name="com.test.Customer" "blobstoreEnabled"="false" >
+     .....
+     </class>
+</gigaspaces-mapping>
+```
+{{%/tab%}}
+{{%/tabs%}}
