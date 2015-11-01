@@ -287,37 +287,3 @@ Configuration :
 RocksDB is created on  a given directory path, RocksDB path allocation per a machine is managed via the `/tmp/blobstore/paths/path-per-space.properties` file. Each time a new blobstore space is deployed an entry is added to this file listing the data grid instances provisioned on the machine.
 
 If 2 arrays are configured in central storage, a primary and it's backup will not attached to devices from the same array.  
-
-# BlobStore Space re-deploy
-
-When you undeploy a blobstore space use the `XAP_HOM/bin/undeploy-grid.groovy` that comes with the RPM. It undeploys the blobstore space and restarts all its GSCs.
-
-```bash
-export PATH=$PATH:/gigaspaces-xap-premium-{{%currentversion%}}.0/bin/tools/groovy/bin/
-cd /gigaspaces-xap-premium-{{%currentversion%}}/bin/bin
-$ groovy undeploy-grid.groovy <LUS HostName> <BlobStore-Space-Name>
-```
-
-
-# Controlling blobStore mode at the Space Class Level
-By default any Space Data Type is `blobStore` enabled. When decorating the space class with its meta data you may turn off the `blobStore` behavior using the `@SpaceClass blobstoreEnabled` annotation or gs.xml `blobstoreEnabled` tag.
-
-Here is a sample annotation disabling `blobStore` mode:
-
-
-```java
-@SpaceClass(blobstoreEnabled = false)
-public class Person {
-    .......
-}
-```
-
-Here is a sample xml decoration for a POJO class disabling `blobStore` mode:
-
-```xml
-<gigaspaces-mapping>
-    <class name="com.test.Person" "blobstoreEnabled"="false" >
-     .....
-     </class>
-</gigaspaces-mapping>
-```
