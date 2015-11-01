@@ -6,7 +6,6 @@ parent: memoryxtend.html
 weight: 110
 ---
 
-
 {{% ssummary %}}  {{% /ssummary %}}
 
 # How It Works
@@ -15,6 +14,15 @@ XAP is using [RocksDB](http://rocksdb.org/) an embeddable persistent key-value s
 XAP indexes are maintained in RAM (on-heap) allowing the XAP query engine to evaluate the query without accessing the raw data stored on the mounted flash device. This allows XAP to execute SQL based queries extremely efficiently even across large number of nodes. All XAP Data Grid APIs are supported including distributed transactions, leasing (Time To live) , FIFO , batch operations , etc. All clustering topologies supported. All client side cache options are supported.
 
 ![ssdRocksDB.png](/attachment_files/ssd/ssdRocksDB.png)
+
+# Prerequisites
+
+- Java 7 (or later)
+- Currently supports Linux only - Windows support is not available yet
+- Read/Write permissions to mounted flash devices
+
+For best performance results the number of mounted flash devices/partitions should be aligned with the space instances number that you want to deploy on a machine.
+For creating partitions you can use fdisk like explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
 
 # The BlobStore Configuration
 
@@ -39,15 +47,6 @@ The IMDG BlobStore settings includes the following options:{{<wbr>}}
 | <nobr>cache-entries-percentage</nobr> | On-Heap cache stores objects in their native format. This cache size determined based on the percentage of the GSC JVM max memory(-Xmx). If `-Xmx` is not specified the cache size default to `10000` objects. This is an LRU based data cache.| 20% | optional |
 | avg-object-size-KB |  Average object size. | 5KB | optional |
 | persistent |  data is written to flash, space will perform recovery from flash if needed.  | | required |
-
-# Prerequisites
-
-- MemoryXtend currently supports Linux only. 
-- RocksDB MemoryXtend supports JDK 1.7 and above.
-- Make sure your user has read/write permissions to mounted flash devices.
-
-For best performance results the number of mounted flash devices/partitions should be aligned with the space instances number that you want to deploy on a machine.
-For creating partitions you can use fdisk like explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
 
 # Supported XAP APIs
 
