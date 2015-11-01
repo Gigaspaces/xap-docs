@@ -29,7 +29,7 @@ With the external storage medium mode, the entire data set is kept on the extern
 Once MemoryXtend is configured for a space, all entries stored in that space will be stored using the MemoryXtend settings. This is obviously somewhat slower than entries stored in-memory, in the traditional XAP storage mechanism. In some scenarios it makes sense to use MemoryXtend for some classes but not for others. For example, a user might say: "I have a limited amount of `Customer` entries, but tons of `Order` entries, and I want to disable MemoryXtend for the `Customer`s". This can be done via the space class metadata. For example:
 
 {{%tabs%}}
-{{%tab Annotation%}}
+{{%tab "Annotation"%}}
 
 ```java
 @SpaceClass(blobstoreEnabled = false)
@@ -40,7 +40,7 @@ public class Customer {
 
 {{%/tab%}}
 
-{{%tab gs.xml%}}
+{{%tab "gs.xml"%}}
 ```xml
 <gigaspaces-mapping>
     <class name="com.test.Customer" "blobstoreEnabled"="false">
