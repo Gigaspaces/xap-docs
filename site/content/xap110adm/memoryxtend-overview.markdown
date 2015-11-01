@@ -30,20 +30,23 @@ Once MemoryXtend is configured for a space, all entries stored in that space wil
 
 {{%tabs%}}
 {{%tab Annotation%}}
+
 ```java
 @SpaceClass(blobstoreEnabled = false)
 public class Customer {
-    .......
+    //
 }
 ```
+
 {{%/tab%}}
+
 {{%tab gs.xml%}}
 ```xml
 <gigaspaces-mapping>
-    <class name="com.test.Customer" "blobstoreEnabled"="false" >
-     .....
+    <class name="com.test.Customer" "blobstoreEnabled"="false">
      </class>
 </gigaspaces-mapping>
 ```
 {{%/tab%}}
+
 {{%/tabs%}}
