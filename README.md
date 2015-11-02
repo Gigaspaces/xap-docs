@@ -15,7 +15,7 @@ It's important for us to encourage your feedback and contribution. Contributing 
 # Running
 
 - Simply run `run.sh` (Linux) or `run.bat` (Windows)
-- Browse to `localhost:1313`
+- Browse to [localhost:1313](http://localhost:1313)
 
 ## (Optional) Navigation menu generation
 
