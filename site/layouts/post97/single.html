@@ -32,14 +32,13 @@
 
 
             <div id="content" class="col-md-8">
-                <div class="page-title">
-                    <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
-                            style="float: right;border:0px"><i class="fa fa-pencil-square-o fa-lg"></i>
-                    </button>
-                    <h1 style="margin-top: 0px;">{{ .Title }}</h1>
-                    <hr>
-                </div>
                 <div id="page-content" class="page-content">
+                        <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
+                            style="float: right;border:0px;margin-top: 135px;"><i class="fa fa-pencil-square-o fa-lg"></i>
+                    </button>
+                    <h1 style="padding-top:135px;">{{ .Title }}</h1>
+                    <hr>
+                
                     {{ .Content }}
                 </div>
             </div>
