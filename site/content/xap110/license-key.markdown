@@ -8,54 +8,34 @@ weight: 100
 
 {{% ssummary %}}{{% /ssummary %}}
 
+GigaSpaces XAP requires a valid license to start. This page explains how to setup the initial evaluation license and provides additional related information.
 
-When downloading   XAP from the [GigaSpaces website](http://www.gigaspaces.com/LatestProductVersion) the installation already has a bundled license key for a limited period of time, therefore for the evaluation period, **there is no need to install any license key**.
+# Getting started
 
-# License Key File Validation
-
-The XAP license key is loaded once the XAP Container or a Space instance is started. To allow the XAP runtime to load a new license key, you should recycle the process (JVM) to allow it to load the new license key. If a license key expires, GigaSpaces will throw license key validation exception the next time the GigaSpaces Container or a space instance will be started and abort the space or container initialization. It will not throw license key validation exception while the system is running.
-
-# Extending the License
-
-If you need to extend your license key or change it, please edit the `<XAP Root>\gslicense.xml` file and copy the license key provided to the `<licensekey>` tag value.
-
-{{% tip %}}
-The license key file should be placed on each machine running a GSA/GSM/GSC.
-{{% /tip %}}
-
-The activation license key is in the following form:
-
-{{%panel%}}
-"Nov 16, 2020~user@XXXXXXXXXXXXXXXXXXXXX#PREMIUM^{{%version xap-version%}}XAPPremium%UNBOUND+UNLIMITED"
-{{%/panel%}}
-
-# Installing new License
-
-To install the license, insert the license string between the license key tags:
-
+When downloading XAP from the [XAP Download Center](http://www.gigaspaces.com/LatestProductVersion), you'll get an email with a license key for the evaluation period. To start your evaluation, simply edit the license file located in `<XAP Root>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
 
 ```xml
-<com>
-  <j_spaces>
-        <kernel>
-          <licensekey>Nov 16, 2020~user@XXXXXXX#PREMIUM^{{%version xap-version%}}XAPPremium%UNBOUND+UNLIMITED</licensekey>
-       </kernel>
-  </j_spaces>
-</com>
+# License can also be set via the system property com.gs.licensekey
+Version=11;Type=EVALUATION;Customer=yourname@yourcompany.com;Expiration=2015-Dec-31;Hash=NP6SQOOdOZrPRcN9OTYQ
 ```
 
-# License Key File Search path
+{{% infosign %}} If you're using more than one machine for the evaluation, make sure you copy the license to each of those machines.
 
-XAP search for the license key using the following search path:
+That's it! You're good to go!
 
-1. JVM Classpath.
-1. Current directory
-1. `com.gs.home` system property.
-1. Using the `com.gs.licensekey` system property. Example:
+{{% tip "Viewing the license in the logs" %}}
+When the system starts, it writes an information summary to the logs and console, including the license key. You can use that to verify that the system is using the correct license key.
+{{% /tip %}}
 
+# License Validation
 
-```bash
-export EXT_JAVA_OPTIONS=-Dcom.gs.licensekey=Nov 16, 2020~user@XXXXXXX#PREMIUM^{{%version xap-version%}}XAPPremium%UNBOUND+UNLIMITED
-./gs-agent.sh &
-```
+XAP validates the license whenever the Service Grid is started, and whenever a space is deployed. If the license is invalid (e.g. expired), the system will report there's a license problem and terminate. If the license expires while the system is running, it is not terminated, but if one of the system's components fails and tries to restart, it will fail because the license has expired.
 
+# License Lookup Order
+
+The system looks for the license key in the following order:
+
+1. The `com.gs.licensekey` system property.
+1. A `xap-license.txt` file in the Classpath.
+1. A `xap-license.txt` file in XAP installation folder (can be explicitly set using `com.gs.home` system property)
+1. A `xap-license.txt` file in the current directory.
