@@ -14,27 +14,12 @@ It's important for us to encourage your feedback and contribution. Contributing 
 
 # Running
 
-- CD into the `site` directory and start the Hugo server: `hugo server --watch`
-   - Windows users can simply run `run.bat`
-- Browse to `localhost:1313`
+- Simply run `run.sh` (Linux) or `run.bat` (Windows)
+- Browse to [localhost:1313](http://localhost:1313)
 
-# Navigation menu generation
+## (Optional) Navigation menu generation
 
-The navigation menu is generated outside of Hugo via a script.
-
-From the xap-docs home directory run the following script:
-
-Windows:
-
-```
-generate-navbar.bat /path-to/xap-docs
-```
-
-Unix:
-```
-generate-navbar.sh /path-to/xap-docs
-```
-
+The navigation menu is generated outside of Hugo via a script. The `run.sh` and `run.bat` scripts automatically genereate this menu by calling the `generate-navbar.sh` or `generate-navbar.bat` scripts before starting hugo. If you create a new page or change the weight of the pages, simply restart the script for the changes to take effect.
 
 
 ## (Optional) Making Changes to the Solutions & Best Practices Repo
@@ -60,6 +45,3 @@ Once you're done testing your changes in the `sbp` directory, check the changes 
 
         # push the changes to the solutions and best practices repo:
         git push
-
-
-
