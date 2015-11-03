@@ -67,27 +67,23 @@ XAP's metrics configuration is located at `[XAP_HOME]/config/metrics/metrics.xml
 
 Once you've installed InfluxDB and Grafana and configured `metrics.xml`, start the Web Management Console and navigate to the **Monitoring** tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default `admin`/`admin`, and you'll get the home page):
 
-![hosts1.jpg](/attachment_files/web-console/monitor.jpg)
+{{% popup "/attachment_files/web-console/monitor.jpg"  %}}
 
 Since we haven't deployed anything yet, the **Dashboards** list is empty. Go ahead and deploy a space or any other processing unit - you'll notice a default dashboard is created for each processing unit and space, with graphs showing commonly used metrics.
 
 # Dashboards
 
-By selecting the folder icon on the right in the menu bar, the available dashboards will be displayed:
-
-![hosts1.jpg](/attachment_files/web-console/monitor1.jpg)
+Click on image in order to see it in whole size
 {{% popup "/attachment_files/web-console/monitor1.jpg"  %}}
 
 <br>
 
 ## Default Space dashboard
-
-![hosts1.jpg](/attachment_files/web-console/monitor2.jpg)
+Click on image in order to see it in whole size
 {{% popup "/attachment_files/web-console/monitor2.jpg"  %}}
 
 <br>
 
 ## Default Processing Unit dashboard
-
-![hosts1.jpg](/attachment_files/web-console/monitor3.jpg)
+Click on image in order to see it in whole size
 {{% popup "/attachment_files/web-console/monitor3.jpg"  %}}
