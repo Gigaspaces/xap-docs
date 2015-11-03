@@ -76,15 +76,18 @@ Since we haven't deployed anything yet, the **Dashboards** list is empty. Go ahe
 By selecting the folder icon on the right in the menu bar, the available dashboards will be displayed:
 
 ![hosts1.jpg](/attachment_files/web-console/monitor1.jpg)
+{{% popup "/attachment_files/web-console/monitor1.jpg"  %}}
 
 <br>
 
 ## Default Space dashboard
 
 ![hosts1.jpg](/attachment_files/web-console/monitor2.jpg)
+{{% popup "/attachment_files/web-console/monitor2.jpg"  %}}
 
 <br>
 
 ## Default Processing Unit dashboard
 
 ![hosts1.jpg](/attachment_files/web-console/monitor3.jpg)
+{{% popup "/attachment_files/web-console/monitor3.jpg"  %}}
