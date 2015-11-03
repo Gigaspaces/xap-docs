@@ -6,56 +6,60 @@ parent: none
 weight: 430
 ---
 
+By default, XAP entries are stored in-memory (actually, in the JVM heap) to provide the fastest performance possible. As data grows in size and numbers, however, we encounter a few problems:
 
+- **Price** - While RAM performs much better than hard drive, its also much more expensive. As SSD gains popularity, we see new scenarios where storing part of the data in SSD and part in RAM provides great business value.
+- **Garbage Collection** - The bigger the JVM heaps get, the harder the garbage collector works. Storing some of the data off-heap (i.e. in the native heap instead of the managed JVM heap) and managing it manually will allow using a smaller JVM heap and relieving the pressure off the garbage collector.
 
+Obviously, simply storing the data in SSD means XAP will no longer be an In-Memory Data Grid. The solution is a hybrid storage model offered by XAP called **MemoryXtend**, which uses the best of both worlds.
 
+# How It Works
 
-XAP 10 introduced a new storage model called BlobStore Storage Model (commonly reffered to as MemoryXtend), which allows an external storage medium (one that does not reside on the JVM heap) to store the IMDG data. This guide describes the general architecture and functionality of this storage model that and its off-heap RAM and SSD implementations.
+In MemoryXtend, the entry's data is stored off-heap (e.g. in the native heap or on a file in SSD), but the indexes are stored in the managed JVM heap. This allows queries which leverage indexes to minimize off-heap penalty, since most of the work is done in-memory and only matched entries are loaded from the off-heap storage. 
+In addition, MemoryXtend uses an LRU cache for data entries, so that entries which are read frequently can be retrieved directly from the in-memory storage.
 
+MemoryXtend is designed as a pluggable architecture, supporting multiple implementations of an off-heap storage (also called **BlobStore**). XAP is bundled with two such plug-ins, or add-ons:
 
+- For storing data on an SSD device use the [MemoryXtend RocksDB add-on](./memoryxtend-rocksdb-ssd.html).
+- For storing data in RAM on the unmanaged heap use the [MemoryXtend MapDB add-on](./memoryxtend-ohr.html).
 
-<br>
+This page explains the general concepts and settings which apply to any MemoryXtend add-on. In addition, each MemoryXtend add-on has a specific page for it's additional settings and options.
 
-{{% info title="Licensing "%}}
-MemoryXtend requires a separate license in addition to the GigaSpaces commercial license. Please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services) for more details.
-{{% /info %}}
+# Supported XAP APIs
 
-<br>
+All XAP APIs are supported with the BlobStore configuration. This includes the Space API (POJO and Document), JDBC API, JPA API, JMS API, and Map API. 
 
+# Class Level Settings
 
-{{%fpanel%}}
+Once MemoryXtend is configured for a space, all entries stored in that space will be stored using the MemoryXtend settings. This is obviously somewhat slower than entries stored in-memory, in the traditional XAP storage mechanism. In some scenarios it makes sense to use MemoryXtend for some classes but not for others. For example, a user might say: "I have a limited amount of `Customer` entries, but tons of `Order` entries, and I want to disable MemoryXtend for the `Customer` entries". This can be done via the space class metadata. For example:
 
-[Overview](./memoryxtend-overview.html)<br>
-The BlobStore Storage Model allows an external storage medium (one that does not reside on the JVM heap) to store the IMDG data.
+{{%tabs%}}
+{{%tab "Annotation"%}}
 
-[RocksDB](./memoryxtend-rocksdb-ssd.html)<br>
-XAP is using [RocksDB](http://rocksdb.org/), an embeddable persistent key-value store for fast storage.
+```java
+@SpaceClass(blobstoreEnabled = false)
+public class Customer {
+    //
+}
+```
 
-[ZetaScale](./memoryxtend-ssd.html)<br>
-All Enterprise flash drives are supported. SanDisk, Fusion-IO, IntelÂ® SSD , etc are supported with the IMDG storage technology.
+{{%/tab%}}
 
-[MapDB - Off Heap RAM](./memoryxtend-ohr.html)<br>
-XAP is using [MapDB](http://www.mapdb.org/), an embedded database engine which provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory.
+{{%tab "gs.xml"%}}
+```xml
+<gigaspaces-mapping>
+    <class name="com.test.Customer" "blobstoreEnabled"="false">
+     </class>
+</gigaspaces-mapping>
+```
+{{%/tab%}}
 
-{{%/fpanel%}}
+{{%/tabs%}}
 
-<br>
+# Persistency
 
-#### Additional Resources
+Unlike the traditional XAP persistence model, where the IMDG backing store is usually a database with relatively slow response time, located in a central location, the storage interface assumes very fast access for write and read operations, and a local, dedicated data store that supports a key/value interface. Each IMDG primary and backup instance across the grid is interacting with its dedicated storage medium (in our case SSD drive) independently in an atomic manner. 
 
-{{%section%}}
-{{%column width="30%"  %}}
-{{%youtube "kAe-ZxFnIYc"  "XAP MemoryXtend"%}}
-{{%/column%}}
+When running a traditional persistence configuration, the IMDG serves as a front-end to the database, and is acting as a transactional cache storing a subset of the data. In this configuration data is loaded in a lazy manner to the IMDG with the assumption that the heap capacity is smaller than the entire data set.
 
-{{%column width="30%"  %}}
-{{%pdf "/download_files/White-Paper-ssd-V2.pdf" %}}
-This MemoryXtend white paper provides a high level overview of the technology and motivation behind MemoryXtend.
-{{%/column%}}
-
-{{%column width="30%"  %}}
-
-{{%/column%}}
-
-{{%/section%}}
-
+With the external storage medium mode, the entire data set is kept on the external SSD drive. The assumption is the SSD capacity across the grid is large enough to accommodate for the entire data set of the application.

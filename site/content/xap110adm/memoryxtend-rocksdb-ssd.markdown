@@ -1,9 +1,9 @@
 ---
 type: post110
-title:  RocksDB
+title:  SSD - RocksDB Add-On
 categories: XAP110ADM
 parent: memoryxtend.html
-weight: 110
+weight: 100
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}
