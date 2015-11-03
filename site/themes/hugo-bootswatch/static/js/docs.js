@@ -1,3 +1,4 @@
+
 //Scroll to top marker 
 $(document).ready(function(){
     
@@ -16,23 +17,21 @@ $(document).ready(function(){
         return false;
     });
     
-});
 
 
-//side tree 
-$(function() {
+	//side tree 
+
     $("#tree").treeview({
-    collapsed: true,
-    animated: "fast",
-    control:"#sidetreecontrol",
-    prerendered: true,
-    persist: "location"
+    	collapsed: true,
+    	animated: "fast",
+    	control:"#sidetreecontrol",
+    	prerendered: true,
+    	persist: "location"
     });
-})
 
 
-//side TOC 
-$(document).ready(function() {
+
+	//side TOC 
     // Set the width for table of content
     $('#toc').width($('#toc').parents().width());
 
@@ -66,26 +65,26 @@ $(document).ready(function() {
         });
     }, 100);
 
-});
 
-//lightbox for images 
-$(document).ready(function ($) {
+
+	//lightbox for images 
+
     // delegate calls to data-toggle="lightbox"
     $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-    event.preventDefault();
-    return $(this).ekkoLightbox({
-    onShown: function() {
-    if (window.console) {
-    return console.log('Checking our the events huh?');
-    }
-    }
-    });
+    	event.preventDefault();
+    	return $(this).ekkoLightbox({
+    		onShown: function() {
+    			if (window.console) {
+    				return console.log('Checking our the events huh?');
+    			}
+    		}
+    	});
     });
 
     //Programatically call
     $('#open-image').click(function (e) {
-    e.preventDefault();
-    $(this).ekkoLightbox();
+    	e.preventDefault();
+    	$(this).ekkoLightbox();
     });
  
 
