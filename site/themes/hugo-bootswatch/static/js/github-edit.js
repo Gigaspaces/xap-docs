@@ -58,20 +58,21 @@ $(document).ready(function() {
         }
 
         var githubPopupPresented = sessionStorage.getItem('githubPopupPresented');
-        if (githubPopupPresented == null && isScrolledIntoView($("#edit-on-github"), 115)) {
-            setTimeout(function() {
-                $('#edit-on-github').popover('show');
-                sessionStorage.setItem('githubPopupPresented', 'true');
-
+        if (githubPopupPresented == null) {
                 setTimeout(function() {
-                    $('#edit-on-github').popover('hide');
-                    enablePopoverOnMouseover();
-                }, 5000);
-            }, 500);
+                    if (isScrolledIntoView($("#edit-on-github"), 115)) {
+                        $('#edit-on-github').popover('show');
+                        sessionStorage.setItem('githubPopupPresented', 'true');
+
+                        setTimeout(function() {
+                            $('#edit-on-github').popover('hide');
+                            enablePopoverOnMouseover();
+                        }, 5000);
+                    }
+                }, 500);
         } else {
             enablePopoverOnMouseover();
         }
     }
-
 });
 
