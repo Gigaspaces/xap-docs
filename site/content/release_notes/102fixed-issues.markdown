@@ -14,8 +14,19 @@ Below is a list of issues that have been fixed in GigaSpaces 10.2.X.
 
 | Key | Summary | Fix Version/s | Sales Force ID | Platform/s |
 |:---------|:--------|:----------------|:---------------|:------------------|
-|  <nobr>GS-12492</nobr> | blob store fill the internal cache when initial load from mirror | 10.2 |  | Java |
+| <nobr>GS-12552</nobr> | ClassCastExeption is thrown on blobstore space when the LeaseManager is tring to clean an entry with blobstoreEnabled = false | 10.2.1, 11.0 | 10004 | All |
+| GS-12550 | Change in behavior of IPUC | 10.2.1, 11.0 | 9971 | Java |
+| GS-12523 | Blobstore persistent - wrong value is injected | 10.2.1, 11.0 |  | All |
+| GS-12519 | SQLQuery with composite condition might return wrong result | 10.2.1, 11.0 | 9936 | Java |
+| GS-12517 | Sigar version 1.6.5 which exist in XAP latest release (10.2) reports sometimes duplicate Nic names | 10.2.1, 11.0 | 9876 | All |
+| GS-12507 | Sigar occasionally reports duplicate NICs causing XAP to crash | 10.2.1, 11.0 | 9888, 9766 | All |
+| GS-12495 | Slow Memory leak in lease manager - empty cells remains after expiration | 10.2.1, 11.0 | 9876 | All |
+| GS-12486 | Distributed transaction timeout when using durable notifications or WAN | 10.2.1, 11.0 | 8935 | All |
+| GS-12476 | llegalArgumentException after connection between mirror and mongodb is re-established | 10.2.1, 11.0 | 9832 | Java |
+| GS-12422 | After GSC restart an instance was missing, until managing GSM was killed | 10.2.1, 11.0 | 9704 | All |
+| GS-12492 | blob store fill the internal cache when initial load from mirror | 10.2 |  | Java |
 | GS-12466 | Local Views view table in web-ui displayed as empty | 10.2 | | Java |
+| GS-12465 | Remote service execution fails sporadically on Failure to find definition within the application context on rare condition | 10.2 | 9826 | All |
 | GS-12453 | Backward issue using projection in old client against 10.1 Server cause InvalidClassException | 10.2 | 9789 | All |
 | GS-12448 | DefaultOperatingSystem.getStatistics() failed with NegativeArraysSizeException | 10.2 | 9777 | All |
 | GS-12446 | possible mem-leak in blobstore bulk ops | 10.2 |  | Java |
