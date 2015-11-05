@@ -32,7 +32,7 @@ Below is a list of issues that have been fixed in GigaSpaces 10.2.X.
 | GS-12440 | Add protection against exceptions/ throwables in FIFO processing | 10.2 | 9720 | All |
 | GS-12397 | On login mode with non-sticky session, session is not logged-in at all the web servers | 10.2 |  | All |
 | GS-12448 | DefaultOperatingSystem.getStatistics() failed with NegativeArraysSizeException | 10.2 | 9777 | All |
-| GS-12327 | in 'Spaces' view, 'types' shows 'Loading data types...' when no space is selected | 10.2 |  | All |
+| GS-12327 | In 'Spaces' view, 'types' shows 'Loading data types...' when no space is selected | 10.2 |  | All |
 | GS-12445 | 10.1 Web-UI in Spaces tab - when clicking on Reconnect icon new line is added | 10.2 | 9771 | All |
 | GS-12396 | Distinguish between processing unit instance failures and manual decrements| 10.2 | 8707 | All |
 | GS-12364 | Failed to launch Web-UI due to NoClassDefFoundError: org/apache/commons/codec/binary/Base64 | 10.2 |  | Java |
