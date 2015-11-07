@@ -39,8 +39,9 @@ When the Slow Consumer is enabled, once the space detects a slow consumer, it au
 
 Slow consumers are determined by measuring the network consumption throughput (configured via the `com.gs.transport_protocol.lrmi.slow-consumer.throughput` parameter) sent from the space into a client. Once the space detects a client that consumes notifications below the defined throughput, it waits for a specified duration (configured via the `com.gs.transport_protocol.lrmi.slow-consumer.latency` parameter) for it to recover. The space tries to determine several times (configured via the `com.gs.transport_protocol.lrmi.slow-consumer.retries` parameter) during the wait period if the client recovered - if it is still below the defined throughput, then its notify registration is forcibly canceled.
 
-
+{{%align center%}}
 ![IMG230.jpg](/attachment_files/IMG230.jpg)
+{{%/align%}}
 
 
 To allow the client to detect that the space removed its notify registration, it should register the notification using a short lease and renew it manually or automatically. See the Notify Container{{%currentjavanet "notify-container.html" %}} or the [Session Based Messaging API]({{%currentjavaurl%}}/session-based-messaging-api.html#Advanced Options) for details how to renew the registration lease automatically. If the lease renewal failed, it means the space canceled the notification. In this case, the client should remove the current listener to cleanup its resources and then re-register for notify registration.
