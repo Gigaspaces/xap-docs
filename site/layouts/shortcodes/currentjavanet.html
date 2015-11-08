@@ -1,4 +1,16 @@
-{{ $.Scratch.Add "a1"  "xap"}}
-{{ $.Scratch.Add "a1"  "110" }}
-{{ $.Scratch.Add "a1"  "net" }}
-{{ $.Scratch.Get "a1" }}
+{{ if in .Page.Permalink "xap97" }}
+<a href='/xap97/{{.Get 0}}'>Java version | </a> <a href='/xap97net/{{.Get 0}}'>.Net version</a>
+{{else if in .Page.Permalink "xap100"}}
+<a href='/xap100/{{.Get 0}}'>Java version | </a> <a href='/xap100net/{{.Get 0}}'>.Net version</a>
+{{else if in .Page.Permalink "xap101"}}
+<a href='/xap101/{{.Get 0}}'>Java version | </a> <a href='/xap101net/{{.Get 0}}'>.Net version</a>
+{{else if in .Page.Permalink "xap102"}}
+<a href='/xap102/{{.Get 0}}'>Java version | </a> <a href='/xap102net/{{.Get 0}}'>.Net version</a>
+{{else if in .Page.Permalink "xap110"}}
+<a href='/xap110/{{.Get 0}}'>Java version | </a> <a href='/xap110net/{{.Get 0}}'>.Net version</a>
+{{else}}
+<a href="{{index .Page.Site.Params "latest_java_url"}}/{{.Get 0}}">Java version | </a>
+<a href="{{index .Page.Site.Params "latest_net_url"}}/{{.Get 0}}">.Net version</a>
+{{end}}
+
+
