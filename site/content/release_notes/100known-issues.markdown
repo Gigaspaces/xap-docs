@@ -13,7 +13,9 @@ Below is a list of known issues in GigaSpaces 10.0.X.
 
 | Key | Summary | SalesForce ID | Since Version | Workaround | Platform/s |
 |:-------|:--------|:----------------|:---------------|:------------------|:----------|
-| <nobr>GS-12519</nobr> | SQLQuery with composite condition might return wrong result | 9936 | 10.2.0 | Instead of writing:  a in (x,y) AND  (b < z OR A in (w,v))  do write:  (b < z OR A in (w,v)) AND a in (x,y) | Java |
+| <nobr>GS-12607</nobr> | Update object lease will not update the lease manager,if update waited on a lock | 9949 | 9.7.2 |  | Java |
+| GS-12570 | XAP.NET HttpSessionProvider sporadically causes 100% CPU | 10029 | 9.7.0 | | Java |
+| GS-12519 | SQLQuery with composite condition might return wrong result | 9936 | 10.2.0 | Instead of writing:  a in (x,y) AND  (b < z OR A in (w,v))  do write:  (b < z OR A in (w,v)) AND a in (x,y) | Java |
 | GS-12495 | Slow Memory leak in lease manager - empty cells remains after expiration | 9876 | 9.7.0 | | All |
 | GS-12486 | Transaction consolidation issues with distributed transaction with durable notification and mirror when transaction contains both objects that meets the notify template and some that don't | 8935 | 9.7.0 |  | All |
 | GS-11589 | Not all threads are terminated when destroying UrlSapceContainer | | 10.0.0 | | All |
