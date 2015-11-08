@@ -139,11 +139,21 @@ For more details on XAP's web application support, please refer to [this page]({
 
 #### Deploying the Management Console Web Application to a 3rd Party JEE Servlet Container
 
-It is also possible to deploy the web application to a 3rd party servlet container (e.g. Apache Tomcat). Please consult your web container documentation for deployment instructions.
+It is also possible to deploy the web application to a 3rd party servlet container (e.g. Apache Tomcat (must be Tomcat 8 and above in order to support java 8)). Please consult your web container documentation for deployment instructions.
 
-{{% info%}}
-When deploying to a 3rd party web container like tomcat, you will need to repackage the `gs-webui.war` file and add all the `.jar` files located under `<XAP root>/lib/required` to the `WEB-INF/lib` directory of the `gs-webui.war` file. By default, they are not part of the the `gs-webui.war` file since they are automatically included in the classpath of both the standalone container and the XAP [Runtime Environment](./the-runtime-environment.html)
-{{% /info %}}
+
+{{% note%}}
+
+When deploying to a 3rd party web container like Tomcat, you will need to repackage the `gs-webui.war` file and add all the following `.jar` files to `WEB-INF/lib` directory of the `gs-webui.war` file:
+
+1. `.jar` files located under `<XAP root>/lib/required` <br>
+2. `<XAP root>/lib/required/optional/spring/spring-web-x.x.x.RELEASE.jar`<br>
+3. `<XAP root>/lib/platform/commons/commons-collections-x.x.x.jar`<br>
+4. `<XAP root>/lib/optional/spring/spring-webmvc-4.1.1.RELEASE.jar`<br>
+
+By default, they are not part of the the `gs-webui.war` file since they are automatically included in the classpath of both the standalone container and the XAP [Runtime Environment](./the-runtime-environment.html)
+
+{{% /note %}}
 
 #### Logging into the Web Dashboard
 
