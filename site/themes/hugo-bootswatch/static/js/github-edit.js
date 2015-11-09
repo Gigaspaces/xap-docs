@@ -24,11 +24,13 @@ $(document).ready(function() {
         if (path.indexOf("/", path.length - 1) !== -1) path = path.slice(0,-1);
         if (path.indexOf(".html") == -1) path += "/index.html";
         markdownFile = path.replace(".html", ".markdown");
+        location.href=repo + "/edit/master/site/content/" + markdownFile + "#";
+
         if (path.indexOf("/sbp/") != -1) {
             repo = "https://github.com/Gigaspaces/xap-docs-sbp";
             markdownFile = markdownFile.replace("/sbp/", "/")
+            location.href=repo + "/edit/master" + markdownFile + "#";
         }
-        location.href=repo + "/edit/master/site/content/" + markdownFile + "#";
     });
 
     
