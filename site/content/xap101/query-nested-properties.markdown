@@ -259,6 +259,15 @@ The following is not supported
 As it does not make sense to perform an OR in this case.
 {{%/warning%}}
 
+
+#### In operation
+
+Beginning 10.1, SQLQuery now supports `IN` when used with nested properties. For example, to search for a dealer with cars where company is either "Honda" or "Ford"
+
+```java
+... = new SQLQuery<Dealer>(Dealer.class, "cars[*].company in ('Honda', 'Ford') ");
+```
+
 ## Indexing
 
 Collection properties can be indexed to boost performance, similar to 'regular' paths, except that each item in the collection is indexed.
@@ -281,8 +290,6 @@ For more information see the [Collection Indexing](./indexing.html#Collection In
 
 # Limitations
 
-
-- The SQLQuery syntax for Nested Properties does not support the `IN` operation.
 - The type of the nested object must be a class - querying interfaces is not supported.
 - Nested properties' classes should be `Serializable`, otherwise the entry will not be accessible from remote clients.
 - Arrays of primitive types (int, boolean, etc.) are not supported - use the equivalent wrapper type (java.lang.Integer, java.lang.Boolean, etc.) instead.

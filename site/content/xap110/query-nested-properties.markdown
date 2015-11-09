@@ -241,7 +241,7 @@ The following example queries for a **Dealer** which has a **Car** whose *compan
 ... = new SqlQuery<Dealer>("Cars[*](company = 'Honda' AND color = 'Red' AND tags[*] = 'Convertible')");
 ```
 
-#### Here is a graphical representation of this query:
+Here is a graphical representation of this query:
 
 ![/attachment_files/nestedquery.jpg](/attachment_files/nestedquery.jpg)
 
@@ -256,9 +256,9 @@ The following is not supported
 As it does not make sense to perform an OR in this case.
 {{%/warning%}}
 
-#### In operation:
+#### In operation
 
-Beginning 10.1, SQLQuery now supports `in` when used with nested properties. For example, to search for a dealer with cars where company is either "Honda" or "Ford"
+Beginning 10.1, SQLQuery now supports `IN` when used with nested properties. For example, to search for a dealer with cars where company is either "Honda" or "Ford"
 
 ```java
 ... = new SQLQuery<Dealer>(Dealer.class, "cars[*].company in ('Honda', 'Ford') ");
