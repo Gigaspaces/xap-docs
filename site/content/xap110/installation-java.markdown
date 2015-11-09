@@ -36,7 +36,9 @@ Use a JDK and not JRE - Have a JDK (Java Development Kit) installed and not a JR
 
 Unzip the ZIP file using your favorite unzip tool (e.g., WinZip) to the location of your choice (`c:\` or `d:\` recommended - `C:\Program Files` is NOT recommended as it include a space as part of the folder name). Unzipping the file creates a `<XAP Root>` directory (e.g. `{{%version "gshome-directory"%}}`) with the following files and folders:
 
+{{%align center%}}
 ![win_dirtree_XAP95.jpg](/attachment_files/win_dirtree_XAP95.jpg)
+{{%/align%}}
 
 **What's Next?**
 

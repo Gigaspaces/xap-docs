@@ -36,12 +36,14 @@ Use a JDK and not JRE - Have a JDK (Java Development Kit) installed and not a JR
 
 Unzip the ZIP file using your favorite unzip tool (e.g., WinZip) to the location of your choice (`c:\` or `d:\` recommended - `C:\Program Files` is NOT recommended as it include a space as part of the folder name). Unzipping the file creates a `<XAP Root>` directory (e.g. `{{%version "gshome-directory"%}}`) with the following files and folders:
 
+{{%align center%}}
 ![win_dirtree_XAP95.jpg](/attachment_files/win_dirtree_XAP95.jpg)
+{{%/align%}}
 
 **What's Next?**
 
 - To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment]({{%currentadmurl%}}/troubleshooting-testing-system-environment.html) section.
-- See the [Quick Start Guide](/XAP102tut/) for your first steps with XAP.
+- See the [Quick Start Guide](/xap102tut/) for your first steps with XAP.
 
 
 # Installing on Linux
@@ -60,7 +62,7 @@ Step 3. Make sure all the machines running XAP can ping each other and their hos
 **What's Next?**
 
 - To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment]({{%currentadmurl%}}/troubleshooting-testing-system-environment.html) section.
-- See the [Quick Start Guide](/XAP102tut/) for your first steps with XAP.
+- See the [Quick Start Guide](/xap102tut/) for your first steps with XAP.
 
 {{% anchor 2 %}}
 
