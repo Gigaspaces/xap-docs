@@ -17,7 +17,7 @@ It's not an exhaustive list of all new features. For a full change log for 10.2 
 
 When using MemoryXtend with a primary-backup topology, the backup can now recover from is local SSD instead of pulling all the data from the primary over the network, which boosts performance tremendously.
 
-{{<infosign>}} For more information see [MemoryXtend](/xap102adm/memoryxtend-ssd-overview.html)
+{{<infosign>}} For more information see [MemoryXtend](/xap102adm/memoryxtend.html)
 
 {{%anchor interscope%}}
 
