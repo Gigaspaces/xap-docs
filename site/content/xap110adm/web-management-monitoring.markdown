@@ -62,6 +62,9 @@ XAP's metrics configuration is located at `[XAP_HOME]/config/metrics/metrics.xml
 - `grafana` - Grafana installation defaults to port `3000` with username/password `admin`/`admin`. In production you'll probably change those in Grafana, so make sure to change them in `metrics.xml` as well. Even better, you can generate an API key in Grafana and place it in the `api-key` attribute.
 - `datasource` - This tells Grafana how to connect to your InfluxDB database. Note that InfluxDB uses port `8086` by default for an API endpoint, and that we're connecting to the default `mydb` database.
 
+{{%note "Verifying the default database exists"%}}
+Some InfluxDB packages do not automatically create the default `mydb` database. we recommend you use the InfluxDB [Web Admin](https://influxdb.com/docs/v0.9/tools/web_admin.html) or [shell](https://influxdb.com/docs/v0.9/tools/shell.html) to check if it exists, and create it if needed. For more info see [Getting Started with InfluxDB](https://influxdb.com/docs/v0.9/introduction/getting_started.html#logging-in-and-creating-your-first-database).
+{{%/note%}}
 
 # Getting Started
 
