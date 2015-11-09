@@ -1,12 +1,16 @@
 ---
 type: post102
-title:  Solid State Drive
+title:  SSD - ZetaScale Add-On
 categories: XAP102ADM
 parent: memoryxtend.html
-weight: 200
+weight: 300
 ---
 
+{{% warning "Deprecation"%}}
+The ZetaScale MemoryXtend add-on is deprecated and will not be released in future versions. If you're looking for an SSD-based MemoryXtend solution, refer to the [MemoryXtend RocksDB add-on](./memoryxtend-rocksdb-ssd.html). If you're already using ZetaScale and interested in switching to RocksDB, please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services) for more information.
+{{% /warning %}}
 
+<br>
 
 All Enterprise flash drives are supported. SanDisk, Fusion-IO, IntelÂ® SSD , etc are supported with the IMDG storage technology. Central SSD (RAID) devices such as Tegile, Cisco Whiptail, DSSD, and Violin Memory are also supported.
 All XAP APIs are supported with the BlobStore configuration. This includes the Space API (POJO and Document), JDBC API, JPA API, JMS API, and Map API.
@@ -26,9 +30,4 @@ How to troubleshoot common problems.
 {{%/fpanel%}}
 
 <br>
-
-#### Additional Resources
-
-{{%pdf "/download_files/XAP10-MemoryXtend Tutorial.pdf" %}}
-The MemoryXtend Tutorial describes how to experiment with MemoryXtend and comparing RAM based Data Grid with SSD based Data Grid.
 
