@@ -9,164 +9,89 @@ weight: 540
 
 {{% ssummary %}}{{% /ssummary %}}
 
+# Overview
 
-The `Monitoring` view lets you view `Processing Unit Infrastructure` and  `Processing Unit properties` statistics. XAP provides
-default templates for this but all default dashboard templates can be changed. These are located under `[XAP_HOME]/config/webui/dashboards`.
+Monitoring a production environment of any system requires inspecting many statistics, and XAP is no different. The Web Management Console provides various metrics by polling the system's components, but these statistics have a few limitations:
 
-The monitoring view relies on [InfluxDB](http://influxdb.com/). InfluxDB is used to store the time series values that are generated from the XAP infrastructure.
-[Grafana](http://grafana.org) is embedded within the XAP web UI and connects to InfluxDB to visualise the time series data that is stored there.
+- **History** - Since statistics are polled and aggregated at runtime in memory, they're limited to a few minutes of history, whereas in production users often need to store metrics for a few days at least.
+- **Persistency** - If the web server goes down, all statistics are lost.
+- **Scalability** - The web server gathers statistics by polling each component. This approach is not scalable, and does not behave well on large clusters.
 
+To overcome these limitations, XAP provides a powerful and versatile [framework for reporting metrics](./metrics-overview.html) - each component can report its own metrics (or even user-defined metrics) to any database or tool the user favours by implementing a [metrics reporter](./metrics-custom-reporter.html). In addition, XAP provides a [built-in reporter for InfluxDB](./metrics-influxdb-reporter.html) and integration with Grafana to provide metrics storage and visualization: 
 
-{{%note%}}
-InfluxDB currently runs only on Linux. If you have a repository that runs on Windows, you can implement your own [custom reporter](./metrics-custom-reporter.html) to integrate with the repository.
-{{%/note%}}
+- [InfluxDB](http://influxdb.com/) is an open-source distributed time-series database with a powerful query language.
+- [Grafana](http://grafana.org) is a graph and dashboard builder for visualizing time-series metrics, which supports InfluxDB (and other data sources).
 
+Once enabled, XAP reports metrics to InfluxDB, and the Web Management Console provides an embedded Grafana view in the **Monitoring** tab, as well as automatic creation of dashboards in Grafana whenever a new Processing Unit is deployed.
 
-# InfluxDB
+# Setup
 
-Please refer to the InfluxDB website for [installation](http://influxdb.com/docs/v0.8/introduction/installation.html) instructions.
-Once InfluxDB is installed you need to create two data bases and then connect XAP to the repositories.  Follow the steps below to configure InfluxDB and connect your XAP environment to it.
+InfluxDB and Grafana are both open-source and free, but are not bundled in XAP distribution. Installation is straight-forward, as described below. Note that XAP's default metrics configuration is set to match the default settings of InfluxDB and Grafana, so if this is your first time we recommend sticking with the defaults to simplify the process.
 
+{{%info "Modified In 10.2.1"%}}
+The Web Management Console now uses Grafana 2.x, which requires a separate download and different configuration, whereas XAP 10.2.0 uses Grafana 1.x which was embedded in the Web Server. This page is relevant for 10.2.1. If you're looking for the previous version, please refer to [10.1 docs](../xap101adm/web-management-monitoring.html).
+{{%/info%}}
 
-### Create the databases
+## Installation
 
-After you installed the InfluxDB, login into the web console and create two data bases that will be used by XAP to store the time series values.
+- InfluxDB (0.9 or later) - Download [here](https://influxdb.com/download/index.html#) and follow the [installation instructions](https://influxdb.com/docs/v0.9/introduction/installation.html).
+- Grafana (2.5 or later) - Download [here](http://grafana.org/download/), and follow the [installation instructions](http://docs.grafana.org/installation/).
 
-The first data base we will call `metrics` and the second one is called `grafana`.
+## Configuration
 
-Creating the databases:
-
-![hosts1.jpg](/attachment_files/web-console/influxdb-create-db.jpg)
-
-<br>
-
-![hosts1.jpg](/attachment_files/web-console/influxdb-create-db2.jpg)
-
-<br>
-
-
-# Configuration
-
-### Web UI Configuration
-
-By Default InfluxDB uses ports 8083, 8086, 8090, and 8099. This conflicts with the default port for GigaSpaces Web UI Managment Console (8099). If you have Influxdb and XAP WEB UI on the same host you must change the default ports for Influxdb or the WebUI.
-
-{{%refer%}}
-Refer to [Starting the Web Management Console](./web-management-console-starting.html) for more information on the Web UI.
-{{%/refer%}}
-
-{{%tabs%}}
-{{%tab "  Linux "%}}
-
-
-```bash
-
-#Specify port via a command line argument
-./gs-webui.sh -port 80
-
-#Specify port with a system property
-export WEBUI_PORT=80
-./gs-webui.sh
-```
-
-{{% /tab %}}
-{{%tab "  Windows "%}}
-
-
-```bash
-#Specify port via a command line argument
-gs-webui.bat -port 80
-
-#Specify port with a system property
-set WEBUI_PORT=80
-gs-webui.bat
-```
-
-{{% /tab %}}
-{{% /tabs %}}
-
-
-### XAP Configuration
-
-Once the databases are created we need to configure the connection between XAP and InfluxDB. This is done by modifying the `metrics.xml` file which you can find in the XAP distribution
-folder `[XAP_HOME]/config/metrics`.
-
-First we configure the reporters:
-
+XAP's metrics configuration is located at `[XAP_HOME]/config/metrics/metrics.xml`. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB `reporter` and `grafana` elements, as shown below:
 
 ```xml
 <metrics-configuration>
     <reporters>
-        <reporter name="influxdb-http">
-            <property name="host" value="influxdb-host"/>
-            <property name="database" value="metrics"/>
-            <property name="username" value="root"/>
-            <property name="password" value="root"/>
+        <reporter name="influxdb">
+            <property name="host" value="localhost"/>
+            <property name="database" value="mydb"/>
         </reporter>
     </reporters>
-</metrics-configuration>
-```
-
-{{%refer%}}
-Please refer to the [InfluxDB Reporter](./metrics-influxdb-reporter.html) section for detailed configuration instructions.
-{{%/refer%}}
-
-Then we configure the dashboard connection for Grafana:
-
-
-```xml
-   <grafana>
+    <grafana url="http://localhost:3000" api-key="" user="admin" password="admin">
         <datasources>
-            <datasource name="influxdb">
+            <datasource name="xap">
                 <property name="type" value="influxdb"/>
-                <property name="url" value="http://influxdb-host:8086/db/metrics"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
-            </datasource>
-            <datasource name="grafana">
-                <property name="type" value="influxdb"/>
-                <property name="url" value="http://influxdb-host:8086/db/grafana"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
-                <property name="grafanaDB" value="true"/>
+                <property name="isDefault" value="true"/>
+                <property name="url" value="http://localhost:8086"/>
+                <property name="database" value="mydb"/>
+                <property name="access" value="proxy"/>
             </datasource>
         </datasources>
     </grafana>
+</metrics-configuration>
 ```
 
-{{%note%}}
-Please note that Grafana is fully client-side therefore even if InfluxDB is installed on the same host as the web UI the URL needs to be reachable by the client node accessing the UI.
+- `reporter` - InfluxDB installation automatically creates a database called `mydb`, which matches the default. See [InfluxDB Reporter](./metrics-influxdb-reporter.html) for information about other optional settings.
+- `grafana` - Grafana installation defaults to port `3000` with username/password `admin`/`admin`. In production you'll probably change those in Grafana, so make sure to change them in `metrics.xml` as well. Even better, you can generate an API key in Grafana and place it in the `api-key` attribute.
+- `datasource` - This tells Grafana how to connect to your InfluxDB database. Note that InfluxDB uses port `8086` by default for an API endpoint, and that we're connecting to the default `mydb` database.
+
+{{%note "Verifying the default database exists"%}}
+Some InfluxDB packages do not automatically create the default `mydb` database. we recommend you use the InfluxDB [Web Admin](https://influxdb.com/docs/v0.9/tools/web_admin.html) or [shell](https://influxdb.com/docs/v0.9/tools/shell.html) to check if it exists, and create it if needed. For more info see [Getting Started with InfluxDB](https://influxdb.com/docs/v0.9/introduction/getting_started.html#logging-in-and-creating-your-first-database).
 {{%/note%}}
 
-Once this configuration is complete and XAP is restarted we are now ready to start visualising our metrics. Our XAP infrastructure should now be connected and writing data to InfluxDB with the default configuration.
+# Getting Started
 
+Once you've installed InfluxDB and Grafana and configured `metrics.xml`, start the Web Management Console and navigate to the **Monitoring** tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default `admin`/`admin`, and you'll get the home page):
 
-# Monitor view
+{{% popup "/attachment_files/web-console/monitor.jpg"  %}}
 
-When you open the `Monitor` tab in the XAP web console, you will see the following view:
-
-![hosts1.jpg](/attachment_files/web-console/monitor.jpg)
-
-<br>
+Since we haven't deployed anything yet, the **Dashboards** list is empty. Go ahead and deploy a space or any other processing unit - you'll notice a default dashboard is created for each processing unit and space, with graphs showing commonly used metrics.
 
 # Dashboards
 
-By selecting the folder icon on the right in the menu bar, the available dashboards will be displayed:
-
-![hosts1.jpg](/attachment_files/web-console/monitor1.jpg)
+Click on image in order to see it in whole size
+{{% popup "/attachment_files/web-console/monitor1.jpg"  %}}
 
 <br>
 
 ## Default Space dashboard
-
-![hosts1.jpg](/attachment_files/web-console/monitor2.jpg)
+Click on image in order to see it in whole size
+{{% popup "/attachment_files/web-console/monitor2.jpg"  %}}
 
 <br>
 
 ## Default Processing Unit dashboard
-
-![hosts1.jpg](/attachment_files/web-console/monitor3.jpg)
-
-
-
-
+Click on image in order to see it in whole size
+{{% popup "/attachment_files/web-console/monitor3.jpg"  %}}
