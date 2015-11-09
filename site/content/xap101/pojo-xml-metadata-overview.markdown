@@ -27,7 +27,7 @@ Property level metadata for POJOs.
 
 #### Additional Resources
 
-- [XML Schema](/api_documentation/xap-{{%currentversion%}}.html)
+- [XML Schema](/api_documentation/)
 
 
 
