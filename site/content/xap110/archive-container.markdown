@@ -223,7 +223,7 @@ configurer.destroy();
 {{% /tabs %}}
 
 {{%note%}}
-For all possible Spring configuration options see the [schema definitions](/api_documentation/xap-{{%currentversion%}}.html#schemas)
+For all possible Spring configuration options see the [schema definitions](/api_documentation/)
 {{%/note%}}
 
 
