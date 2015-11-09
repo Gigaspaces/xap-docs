@@ -941,7 +941,7 @@ Learn more using about `TriggerOperationsHandler` using an example application o
 
 # Default Values of Polling Container Configuration Parameters
 
-The default values for all of the polling container configuration parameters such as `concurrent-consumers, active-when-primary, receive-timeout` and others can be found in the JavaDoc (and sources) of the class [SimplePollingEventListenerContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/events/polling/SimplePollingEventListenerContainer.html) and its super class, namely [AbstractPollingEventListenerContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/events/polling/AbstractPollingEventListenerContainer.html).
+The default values for all of the polling container configuration parameters such as `concurrent-consumers, active-when-primary, receive-timeout` and others can be found in the JavaDoc (and sources) of the class [SimplePollingEventListenerContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/events/polling/SimplePollingEventListenerContainer.html) and its super class, namely [AbstractEventListenerContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/events/AbstractEventListenerContainer.html).
 
 For example, `concurrent-consumers` default value is documented in the method `SimplePollingEventListenerContainer.setConcurrentConsumers(int)`
 
