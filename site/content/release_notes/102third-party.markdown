@@ -125,7 +125,7 @@ This page list all the 3rd party libraries shipped with GigaSpaces XAP on a per 
 | [Guava](https://code.google.com/p/guava-libraries/) | 15.0 | [Apache 2](http://www.opensource.org/licenses/mit-license.php) |
 | [Javassist](http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/) | 3.18.2 | [Apache 2](http://www.opensource.org/licenses/mit-license.php) |
 | [log4j](https://logging.apache.org/) | 1.2.17 | [Apache 2](http://www.opensource.org/licenses/mit-license.php) |
-| [Reflections](https://code.google.com/p/reflections/) | 0.9.9 | [WTFPL](hhttp://www.wtfpl.net/about/) |
+| [Reflections](https://code.google.com/p/reflections/) | 0.9.9 | [WTFPL](http://www.wtfpl.net/about/) |
 | [Jackson](http://wiki.fasterxml.com/JacksonHome) | 2.3 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
 
 {{% /tab %}}

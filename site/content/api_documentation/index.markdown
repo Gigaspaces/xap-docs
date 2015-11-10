@@ -226,7 +226,6 @@ This page provides links to the API documentation and related resources for each
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/9.0/core/openspaces-core.xsd)
 - [openspaces-admin.xsd](http://www.openspaces.org/schema/9.0/admin/openspaces-admin.xsd)
-- [openspaces-archive.xsd](http://www.openspaces.org/schema/9.0/archive/openspaces-archive.xsd)
 - [openspaces-events.xsd](http://www.openspaces.org/schema/9.0/events/openspaces-events.xsd)
 - [openspaces-gateway.xsd](http://www.openspaces.org/schema/9.0/core/gateway/openspaces-gateway.xsd)
 - [openspaces-jdbc.xsd](http://www.openspaces.org/schema/9.0/jdbc/openspaces-jdbc.xsd)
@@ -249,8 +248,6 @@ This page provides links to the API documentation and related resources for each
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/8.0/core/openspaces-core.xsd)
-- [openspaces-admin.xsd](http://www.openspaces.org/schema/8.0/admin/openspaces-admin.xsd)
-- [openspaces-archive.xsd](http://www.openspaces.org/schema/8.0/archive/openspaces-archive.xsd)
 - [openspaces-events.xsd](http://www.openspaces.org/schema/8.0/events/openspaces-events.xsd)
 - [openspaces-gateway.xsd](http://www.openspaces.org/schema/8.0/core/gateway/openspaces-gateway.xsd)
 - [openspaces-jdbc.xsd](http://www.openspaces.org/schema/8.0/jdbc/openspaces-jdbc.xsd)
