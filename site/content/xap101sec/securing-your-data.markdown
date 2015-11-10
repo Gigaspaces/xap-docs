@@ -142,7 +142,7 @@ For security reasons, you may not want to expose the security credentials in you
 # Processing Unit
 
 
-A processing unit {{%currentjavanet "/the-processing-unit-overview.html"%}} by itself is not secured. It inherits its security from the managing GSM and GSC. These protect the processing unit from being restarted, relocated, destroyed, and undeployed.
+A processing unit {{%currentjavanet "the-processing-unit-overview.html"%}} by itself is not secured. It inherits its security from the managing GSM and GSC. These protect the processing unit from being restarted, relocated, destroyed, and undeployed.
 
 A processing unit (for example a feeder application) may access a secured Space using a remote Space proxy.
 
