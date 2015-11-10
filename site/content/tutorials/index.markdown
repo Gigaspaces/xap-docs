@@ -40,7 +40,7 @@ This is a tutorial that will setup a XAP Cluster on a real server on demand. The
 
 
 
-The tutorial also allows you to explore the <a href="http://www.gigaspaces.com/xap-deployment-management-and-automation-solution" target="_blank">XAP orchestration and deployment automation</a> as well as the [XAP Data Management Console]({%latestadmurl%}}/web-management-console.html).
+The tutorial also allows you to explore the <a href="http://www.gigaspaces.com/xap-deployment-management-and-automation-solution" target="_blank">XAP orchestration and deployment automation</a> as well as the [XAP Data Management Console]({{%latestadmurl%}}/web-management-console.html).
 
 The tutorial is available for [download]({{%latestjavatuturl%}}/interactive-api-guide.html).
 

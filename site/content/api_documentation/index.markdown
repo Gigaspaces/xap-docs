@@ -271,20 +271,7 @@ This page provides links to the API documentation and related resources for each
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs7.1/)
 - [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs7.1/annotated.html)
 {{%/tab%}}
-{{%tab Schemas%}}
-- [openspaces-core.xsd](http://www.openspaces.org/schema/7.1/core/openspaces-core.xsd)
-- [openspaces-admin.xsd](http://www.openspaces.org/schema/7.1/admin/openspaces-admin.xsd)
-- [openspaces-archive.xsd](http://www.openspaces.org/schema/7.1/archive/openspaces-archive.xsd)
-- [openspaces-events.xsd](http://www.openspaces.org/schema/7.1/events/openspaces-events.xsd)
-- [openspaces-gateway.xsd](http://www.openspaces.org/schema/7.1/core/gateway/openspaces-gateway.xsd)
-- [openspaces-jdbc.xsd](http://www.openspaces.org/schema/7.1/jdbc/openspaces-jdbc.xsd)
-- [openspaces-jms.xsd](http://www.openspaces.org/schema/7.1/jms/openspaces-jms.xsd)
-- [openspaces-remoting.xsd](http://www.openspaces.org/schema/7.1/remoting/openspaces-remoting.xsd)
-- [openspaces-sla.xsd](http://www.openspaces.org/schema/7.1/sla/openspaces-sla.xsd)
-- [mule-os-eventcontainer.xsd](http://www.openspaces.org/schema/7.1/mule/mule-os-eventcontainer.xsd)
-- [mule-os-queue.xsd](http://www.openspaces.org/schema/7.1/mule/mule-os-queue.xsd)
-- [mule-os-seda.xsd](http://www.openspaces.org/schema/7.1/mule/mule-os-seda.xsd)
-{{%/tab%}}
+
 {{%/tabs%}}
 
 # XAP 7.0
@@ -294,19 +281,5 @@ This page provides links to the API documentation and related resources for each
 - [Javadoc](http://www.gigaspaces.com/docs/JavaDoc7.0/index.html)
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs7.0/)
 - [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs7.0/annotated.html)
-{{%/tab%}}
-{{%tab Schemas%}}
-- [openspaces-core.xsd](http://www.openspaces.org/schema/7.0/core/openspaces-core.xsd)
-- [openspaces-admin.xsd](http://www.openspaces.org/schema/7.0/admin/openspaces-admin.xsd)
-- [openspaces-archive.xsd](http://www.openspaces.org/schema/7.0/archive/openspaces-archive.xsd)
-- [openspaces-events.xsd](http://www.openspaces.org/schema/7.0/events/openspaces-events.xsd)
-- [openspaces-gateway.xsd](http://www.openspaces.org/schema/7.0/core/gateway/openspaces-gateway.xsd)
-- [openspaces-jdbc.xsd](http://www.openspaces.org/schema/7.0/jdbc/openspaces-jdbc.xsd)
-- [openspaces-jms.xsd](http://www.openspaces.org/schema/7.0/jms/openspaces-jms.xsd)
-- [openspaces-remoting.xsd](http://www.openspaces.org/schema/7.0/remoting/openspaces-remoting.xsd)
-- [openspaces-sla.xsd](http://www.openspaces.org/schema/7.0/sla/openspaces-sla.xsd)
-- [mule-os-eventcontainer.xsd](http://www.openspaces.org/schema/7.0/mule/mule-os-eventcontainer.xsd)
-- [mule-os-queue.xsd](http://www.openspaces.org/schema/7.0/mule/mule-os-queue.xsd)
-- [mule-os-seda.xsd](http://www.openspaces.org/schema/7.0/mule/mule-os-seda.xsd)
 {{%/tab%}}
 {{%/tabs%}}
