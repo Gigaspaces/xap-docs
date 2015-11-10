@@ -142,7 +142,7 @@ For security reasons, you may not want to expose the security credentials in you
 # Processing Unit
 
 
-A processing unit {{%currentjavanet "/the-processing-unit-overview.html"%}} by itself is not secured. It inherits its security from the managing GSM and GSC. These protect the processing unit from being restarted, relocated, destroyed, and undeployed.
+A processing unit {{%currentjavanet%}} "the-processing-unit-overview.html"%}} by itself is not secured. It inherits its security from the managing GSM and GSC. These protect the processing unit from being restarted, relocated, destroyed, and undeployed.
 
 A processing unit (for example a feeder application) may access a secured Space using a remote Space proxy.
 
@@ -200,7 +200,7 @@ Using the CLI deploy command supply username and password using the -user and -p
 
 
 
-The Local cache {{%currentjavanet "local-cache.html"%}} is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have **Read** privileges.
+The Local cache {{%currentjavanet "local-cache.html" %}} is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have **Read** privileges.
 Security is enforced by the remote Space, and the proxy should be acquired by supplying the username and password.
 
 {{%tabs%}}
