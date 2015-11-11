@@ -105,6 +105,18 @@ In addition to the general [MemoryXtend configuration options](./memoryxtend.htm
 
 RocksDB is created on a given directory path, RocksDB path allocation per a machine is managed via the `/tmp/blobstore/paths/path-per-space.properties` file. Each time a new blobstore space is deployed an entry is added to this file listing the data grid instances provisioned on the machine.
 
+
+# Local Flash Storage
+
+<br>
+
+{{%align center%}}
+![image](/attachment_files/ssd/ssd-local-architecture.png)
+{{%/align%}}
+
+<br>
+
+
 # Central Storage
 
 The RocksDB Add-on supports [`storage area network (SAN)`](http://en.wikipedia.org/wiki/Storage_area_network) which means the disk drive devices are installed in a remote machine but behave as if they're attached the the local machine. Most storage networks use the iSCSI or Fibre Channel protocol for communication between servers and disk drive devices.
@@ -124,7 +136,7 @@ The following example deployes a 2 partitions space with a single backup (2,1) i
 
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/ssd/ssdRocksDBCentral.png"%}}
+{{%popup   "/attachment_files/ssd/ssd-central-single.png"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -145,7 +157,7 @@ It is also possible to define two storage arrays instead of one, which will guar
 
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/ssd/ssdRocksDB.png"%}}
+{{%popup   "/attachment_files/ssd/ssd-central-multiple.png"%}}
 {{%/column%}}
 {{%/section%}}
 
