@@ -121,11 +121,10 @@ Enabling both the Replicate notify templates and trigger notify templates trigge
 
 # Conflict Resolution
 
-Certain scenarios may cause the replication target space instance to receive duplicate or conflicting data updates. It usually happens in an active-active topologies (sync replication / async-replication) where the replication channel is bi-directional. In this case both space replicas sending and receiving data updates via replication.
-Most common scenarios:
+Certain scenarios may cause the replication target space instance to receive duplicate or conflicting data updates. It usually happens in an active-active topologies (sync replication / async-replication) where the replication channel is bi-directional. In this case both space replicas sending and receiving data updates via replication. In some cases (split brain , LRU cache policy) it might be relevant also for primary-backup data grid topology. Most common scenarios:
 
 1. The same space object is added/updated or removed at the same time on two or more space instances (replicas).
-2. Data recovery in topology that has more than two space instances in the same replication group.
+2. Data recovery in a topology that has more than two space instances in the same replication group.
 3. Frequent lease expiration/renewal of the same object
 4. The replicated space object is locked under a transaction at the destination space
 
@@ -143,6 +142,9 @@ When a conflict happens you may observe the following messages in the logs:
 - Replication detected conflicting Update operation on entry - <com.mycomp.myclass> uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry not in space.
 - Replication detected illegal take operation on entry uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry class name wasn't replicated. Ignoring the illegal operation. 
 
+{{% refer %}}
+This conflict resolution does not cover replication over WAN when using the WAN Gateway. This has a different [Conflict resolution mechanism]({{%currentjavaurl%}}/multi-site-conflict-resolution.html).
+{{%/refer%}}
 
 # Replication Optimizations
 
