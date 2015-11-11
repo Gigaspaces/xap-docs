@@ -1,12 +1,11 @@
----
-layout: home
-title: XAP Documentation Portal
----
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+
     <div class="row" style="padding-top: 40px;">
       <div id="content" class="container">        
         <div style="height:550px">
-          <h3 class="searchNoResult" style="text-align:center;"></br>Oops, we couldn't find the page you were looking for...</h3></br>
-          <img style="height:400px; display: block;margin-left: auto;margin-right: auto;" src="/images/404.png"></br>/<br/>
+          <h3 class="searchNoResult" style="text-align:center;"><br>Oops, we couldn't find the page you were looking for...</h3><br>
+          <img style="height:400px; display: block;margin-left: auto;margin-right: auto;" src="/images/404.png"><br>/<br/>
         </div>
       </div>
     </div>
@@ -17,7 +16,7 @@ title: XAP Documentation Portal
             <div class="col-md-1">
             </div>
             <div class="col-md-10">
-              <a href="{% latestjavaurl %}" class="btn btn-primary btn-block btn-lg">XAP {% latestxaprelease %} &raquo;</a>
+              <a href='{{index .Page.Site.Params "latest_java_url"}}' class="btn btn-primary btn-block btn-lg">XAP {{index .Site.Params "latest_xap_release"}} &raquo;</a>
             </div>
             <div class="col-md-1">
             </div>
@@ -28,7 +27,7 @@ title: XAP Documentation Portal
             <div class="col-md-1">
             </div>
             <div class="col-md-10">
-              <a href="{% latestjavaurl %}net" class="btn btn-primary btn-block btn-lg">XAP.NET {% latestxaprelease %} &raquo;</a>
+              <a href='{{index .Page.Site.Params "latest_net_url"}}' class="btn btn-primary btn-block btn-lg">XAP.NET {{index .Site.Params "latest_xap_release"}} &raquo;</a>
             </div>
             <div class="col-md-1">
             </div>
@@ -50,4 +49,6 @@ title: XAP Documentation Portal
         <br>
         <br>
       </div>
-    </div> 
+    </div>
+
+{{ partial "footer.html" . }}
