@@ -32,7 +32,7 @@ All the operations that are replicated, are also recovered during the space reco
 - Space tasks
 - Read only operations - read/count etc.
 
-#  Replication Granularity
+# Granularity
 
 By default, all data and operations are replicated to all target spaces that belong to the same replication group.
 You can control the replication granularity and limit what is replicated and what not. Below are the different replication granularity options:
@@ -85,12 +85,12 @@ An empty value means no operations to be replicated.
 
 - **Instance level granularity** - [replication filters](#Replication Filters) can be used to control which objects are replicate and which are not, per object instance.
 
-## Transaction replication
+## Transactions
 
 Space transaction is replicated as part of the commit process. This means that uncommitted transactions are saved only on the active space instance and in case of a space instance failure must be restarted by the application.
 Once transaction is committed on the active space instance, it is replicated to all the target space instances as one atomic operation.
 
-## Notification registration replication
+## Notification registration
 
 By default notify registrations are replicated to the target space instance but only the source notifies the listener registered to those events.
 The replication in this case is done to ensure that if the source space fails the target will continue to send the events to the registered listeners.
@@ -121,11 +121,10 @@ Enabling both the Replicate notify templates and trigger notify templates trigge
 
 # Conflict Resolution
 
-Certain scenarios may cause the replication target space instance to receive duplicate or conflicting data updates. It usually happens in an active-active topologies (sync replication / async-replication) where the replication channel is bi-directional. In this case both space replicas sending and receiving data updates via replication.
-Most common scenarios:
+Certain scenarios may cause the replication target space instance to receive duplicate or conflicting data updates. It usually happens in an active-active topologies (sync replication / async-replication) where the replication channel is bi-directional. In this case both space replicas sending and receiving data updates via replication. In some cases (split brain , LRU cache policy) it might be relevant also for primary-backup data grid topology. Most common scenarios:
 
 1. The same space object is added/updated or removed at the same time on two or more space instances (replicas).
-2. Data recovery in topology that has more than two space instances in the same replication group.
+2. Data recovery in a topology that has more than two space instances in the same replication group.
 3. Frequent lease expiration/renewal of the same object
 4. The replicated space object is locked under a transaction at the destination space
 
@@ -143,8 +142,11 @@ When a conflict happens you may observe the following messages in the logs:
 - Replication detected conflicting Update operation on entry - <com.mycomp.myclass> uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry not in space.
 - Replication detected illegal take operation on entry uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry class name wasn't replicated. Ignoring the illegal operation. 
 
+{{% refer %}}
+This conflict resolution does not cover replication over WAN when using the WAN Gateway. This has a different [Conflict resolution mechanism]({{%currentjavaurl%}}/multi-site-conflict-resolution.html).
+{{%/refer%}}
 
-# Replication Optimizations
+#   Optimizations
 
 By default some operations are replicated in an optimized way - only the minimum required data for the operation is replicated.
 For example the take operation only replicates the object ID to minimize the network overhead.
@@ -155,7 +157,7 @@ Additional optimizations that can affect the replication performance is the upda
 When mirror is used additional settings are required to support the partial update. See [Optimizing the Mirror Activity]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html#Optimizing the Mirror Activity).
 {{%/refer%}}
 
-# Replication Filters
+#   Filters
 
 You can call your own business logic whenever the data is replicated. For example, you can modify the space objects data, compress/decompress, or block specific operations and space objects from being replicated to other spaces. Your business logic is called whenever the replication packet leaves the source space (output event), and arrives at the target space (input event).
 This is described under the [Cluster Replication Filters](./cluster-replication-filters.html) section.
