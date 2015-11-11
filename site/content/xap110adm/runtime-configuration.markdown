@@ -29,6 +29,9 @@ Configuring a global or local GSM.
 [System Properties](./system-properties.html){{<wbr>}}
 A list of system runtime parameters.
 
+[ZooKeeper](./zookeeper.html){{<wbr>}}
+ZooKeeper   Single and Clustered configuration.
+
 {{%/fpanel%}}
 
 
