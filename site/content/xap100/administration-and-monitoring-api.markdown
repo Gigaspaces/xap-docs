@@ -257,8 +257,9 @@ This means that just creating the `Admin` and calling a specific "getter" for a 
 
 The Admin Domain Model has representation to all GigaSpaces level main actors. They include:
 
+{{%align center%}}
 ![admin_DomainModel.jpg](/attachment_files/admin_DomainModel.jpg)
-
+{{%/align%}}
 
 {{%section%}}
 {{%column width="45%" %}}

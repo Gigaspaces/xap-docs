@@ -10,7 +10,9 @@ weight: 500
 
 The XAP Data-Grid includes special interceptor that allow users to pre-load the Data-Grid with data before it is available for clients access. This interceptor called **Initial Load** and has a default implementation that is using the [Hibernate Space Persistency](./hibernate-space-persistency.html) implementation to load data from a database directly into the Data-Grid instances.
 
+{{%align center%}}
 ![eds_initial_load.jpg](/attachment_files/eds_initial_load.jpg)
+{{%/align%}}
 
 To enable the initial load activity a `SpaceDataSource` should be specified. We distinguish between two modes of operation - if `SpaceSynchronizationEndpoint` is specified the mode is 'read-write', otherwise 'read-only'.
 
