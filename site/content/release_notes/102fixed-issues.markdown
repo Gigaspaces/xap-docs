@@ -14,7 +14,8 @@ Below is a list of issues that have been fixed in GigaSpaces 10.2.X.
 
 | Key | Summary | Fix Version/s | Sales Force ID | Platform/s |
 |:---------|:--------|:----------------|:---------------|:------------------|
-| <nobr>GS-12550</nobr> | Remote service might rout to wrong partition in IntegratedProcessingUnitContainer (from 10.2) | 10.2.1, 11.0 | 9971 | Java |
+| <nobr>GS-12588</nobr> | Resource leak in Conversation class when remote host name could not be resolved | 10.2.1, 11.0 | 10060 | All |
+| GS-12550 | Remote service might rout to wrong partition in IntegratedProcessingUnitContainer (from 10.2) | 10.2.1, 11.0 | 9971 | Java |
 | GS-12552 | ClassCastExeption is thrown when the LeaseManager is trying to clean an entry annotated with blobstoreEnabled = false | 10.2.1, 11.0 | 10004 | java |
 | GS-12422 | After GSC restart an instance was missing, until managing GSM was killed | 10.2.1, 11.0 | 9704 | All |
 | GS-12486 | Distributed transaction timeout when using durable notifications or WAN | 10.2.1, 11.0 | 8935 | All |
