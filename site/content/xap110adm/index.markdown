@@ -29,7 +29,7 @@ The XAP runtime environment (Service Grid) provides Service Level Agreement driv
 [Memory Management](./memory-management-overview.html){{<wbr>}}
 In this section we will explain the different Space cache policies, memory usage, and rules for exceeding physical memory capacity.
 
-[MemoryXtend](./memoryxtend.html){{<wbr>}}
+[MemoryXtend](./memoryxtend-overview.html){{<wbr>}}
 XAP 10 introduces a new Storage interface allowing Blob/Block/external type storage to act as a natural memory space for the IMDG.
 
 

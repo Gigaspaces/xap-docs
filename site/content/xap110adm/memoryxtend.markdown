@@ -1,9 +1,9 @@
 ---
 type: post110
-title:  MemoryXtend
+title:  MemoryXtend Overview
 categories: XAP110ADM
-parent: none
-weight: 430
+parent: memoryxtend-overview.html
+weight: 100
 ---
 
 By default, XAP entries are stored in-memory (actually, in the JVM heap) to provide the fastest performance possible. However, as data grows in size and numbers, the following issues become noticable:

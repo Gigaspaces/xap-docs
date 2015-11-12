@@ -2,8 +2,8 @@
 type: post110
 title:  Off Heap - MapDB Add-On
 categories: XAP110ADM
-parent: memoryxtend.html
-weight: 200
+parent: memoryxtend-overview.html
+weight: 300
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}
