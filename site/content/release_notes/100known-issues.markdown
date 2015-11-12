@@ -13,7 +13,8 @@ Below is a list of known issues in GigaSpaces 10.0.X.
 
 | Key | Summary | SalesForce ID | Since Version | Workaround | Platform/s |
 |:-------|:--------|:----------------|:---------------|:------------------|:----------|
-| <nobr>GS-12607</nobr> | Update object lease will not update the lease manager,if update waited on a lock | 9949 | 9.7.2 |  | Java |
+| <nobr>GS-12588</nobr> | Resource leak in Conversation class when remote host name could not be resolved | 10060 | 9.7.2 | | All |
+| GS-12607 | Update object lease will not update the lease manager,if update waited on a lock | 9949 | 9.7.2 |  | Java |
 | GS-12570 | XAP.NET HttpSessionProvider sporadically causes 100% CPU | 10029 | 9.7.0 | | Java |
 | GS-12519 | SQLQuery with composite condition might return wrong result | 9936 | 10.2.0 | Instead of writing:  a in (x,y) AND  (b < z OR A in (w,v))  do write:  (b < z OR A in (w,v)) AND a in (x,y) | Java |
 | GS-12495 | Slow Memory leak in lease manager - empty cells remains after expiration | 9876 | 9.7.0 | | All |
