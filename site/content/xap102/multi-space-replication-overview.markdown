@@ -12,7 +12,7 @@ Multiple space replication is the ability to replicate state between different d
 
 
 
-{{% info title="Licensing "%}}
+{{% info "Licensing "%}}
 The Gateway requires a separate license in addition to the GigaSpaces commercial license. Please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services) for more details.
 {{% /info %}}
 

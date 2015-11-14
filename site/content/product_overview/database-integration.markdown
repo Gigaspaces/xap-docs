@@ -41,7 +41,7 @@ GigaSpaces XAP provides two extension points (`SpaceDataSource`/`SpaceSynchroniz
 
 These extension points are used by the space to store and retrieve data from data sources (e.g. databases).
 
-{{%  tip title="About Memory Volatility" %}}
+{{%  tip "About Memory Volatility" %}}
 One of the common questions when it comes to memory as a critical system of record, is its volatility. There is no doubt that in-memory storage is much faster than disk storage, however, how can we guarantee information completeness if the data is stored in memory?
 In order to preserve data, it is common topology to make sure that each memory copy has a replica. In addition it is important to put both replicas on different hardware, in order to eliminate single points of failures. If for some reason a single copy is not enough, we create as many copies as we need.
 {{%  /tip %}}

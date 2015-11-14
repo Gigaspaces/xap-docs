@@ -172,15 +172,15 @@ To override and extend this behavior, you can implement an exception handler tha
 
 With the above, we use the `SpaceSynchronizationEndpointExceptionHandler`, and wrap the `DefaultHibernateSpaceSynchronizationEndpoint` with it (and pass that to the space). On the `SpaceSynchronizationEndpointExceptionHandler`, we set our own implementation of the `ExceptionHandler`, to be called when there is an exception. With the `ExceptionHandler` you can decide what to do with the Exception: "swallow it", execute some logic, or rethrow it.
 
-{{% warning %}}
-It's critical to _test your persistence in the mirror_.
+{{%note "It's critical to test your persistence in the mirror."%}}
+
 
 A configured mirror will repeatedly try to store things in the DB. In the case on unrecoverable failure (imagine an invalid mapping or a constraint issue), this can cause the redo log to grow, eventually resulting in overflow of the redo to disk, and then, when the predefined disk capacity is exhausted, leading to a rejection of any non-read space operation (similar to how the memory manager works). The exception that clients will see in this case is RedologCapacityExceededException (which inherits from ResourceCapacityExceededException).
 
 The application can handle this by using the ExceptionHandler at the mirror EDS level. It can count the number of consecutive failures returned from the DB and when a certain threshold is reached, log it somewhere and move on, for example.
 
 That said, the easiest thing to do is _test your persistence in the mirror_.
-{{% /warning %}}
+{{% /note %}}
 
 # Mirror behavior with Distributed Transactions
 

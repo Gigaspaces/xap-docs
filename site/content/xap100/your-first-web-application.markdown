@@ -57,7 +57,7 @@ Shows how to take an existing web application (in our case a very simple servlet
 {{% /section %}}
 
 {{%accordion%}}
-{{%accord title="  **In this step you will learn...**"%}}
+{{%accord title="In this step you will learn..."%}}
 
 - How to deploy a standard web application to the GigaSpaces XAP environment
 - How to define SLA attributes for your web application (minimum and maximum number of instances to maintain)
@@ -94,7 +94,7 @@ Shows how to back your application's HTTP session store with the Space to achiev
 {{% /section %}}
 
 {{%accordion%}}
-{{%accord title="  **In this step you will learn...**"%}}
+{{%accord title="In this step you will learn..."%}}
 
 - How to back the web container's HTTP session store with the space
 - What are the preferred space topologies for backing the HTTP session
@@ -132,7 +132,7 @@ Shows how to access the GigaSpaces XAP in memory data grid from within your web 
 {{% /section %}}
 
 {{%accordion%}}
-{{%accord title="  **In this step you will learn...**"%}}
+{{%accord title="In this step you will learn..."%}}
 
 - Various techniques to connect to the space from the web application
 - How to read from and write to the Space in your web application

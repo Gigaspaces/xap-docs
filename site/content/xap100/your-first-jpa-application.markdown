@@ -54,7 +54,7 @@ Shows how to adjust the PetClinic's JPA domain model to XAP's JPA implementation
 {{% /section %}}
 
 {{%accordion%}}
-{{%accord title="  **In this step you will learn...**"%}}
+{{%accord title="In this step you will learn..."%}}
 
 - The concepts basics of the GigaSpaces JPA implementation
 - The required adjustments to scale the PetClinic's JPA domain model and work in with the Space's distributed JPA implementation
@@ -87,7 +87,7 @@ Shows how to implement the PetClinic's data access layer using Space based remot
 {{% /section %}}
 
 {{%accordion%}}
-{{%accord title="  **In this step you will learn...**"%}}
+{{%accord title="In this step you will learn..."%}}
 
 - How to use space remoting to implement ultra-fast embedded access to your data using JPA
 
@@ -120,7 +120,7 @@ Shows how to build and deploy the application to the GigaSpaces runtime environm
 {{% /section %}}
 
 {{%accordion%}}
-{{%accord title="  **In this step you will learn...**"%}}
+{{%accord title="In this step you will learn..."%}}
 
 - Building and deploying the application
 - Scaling the web tier

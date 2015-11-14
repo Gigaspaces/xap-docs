@@ -18,9 +18,9 @@ The Event Session API is the low level API for notifications. It is preferable t
 
 *Basic Flow*:
 
-* The JavaSpaces API includes the standard notify method, that allows an application to receive notifications once a new Entry has been written into the space. To receive notifications, the client application needs to register for notification delivery.{{<wbr>}}
-* The most important part of the notify registration is preparing the right template - all Entries that match the template (conducted by the appropriate operation), trigger an event back to the registered client application. {{<wbr>}}
-* When a new Entry that matches the template arrives at the space, the notify method of the `RemoteEventListener` in the registration is invoked, supplying the client with a `RemoteEvent` object.
+- The JavaSpaces API includes the standard notify method, that allows an application to receive notifications once a new Entry has been written into the space. To receive notifications, the client application needs to register for notification delivery.{{<wbr>}}
+- The most important part of the notify registration is preparing the right template - all Entries that match the template (conducted by the appropriate operation), trigger an event back to the registered client application. {{<wbr>}}
+- When a new Entry that matches the template arrives at the space, the notify method of the `RemoteEventListener` in the registration is invoked, supplying the client with a `RemoteEvent` object.
 
 *When using the Session Event API, you should implement 3 basic routines*: {{<wbr>}}
 1. Register for notifications. {{<wbr>}}
@@ -32,20 +32,20 @@ The Event Session API is the low level API for notifications. It is preferable t
 {{%/align%}}
 
 The session-based messaging API is designed with the following objectives:{{<wbr>}}
-* *Simple and unified interfaces*  {{<wbr>}}
-* *Single entry point* \- users access all the event-related services from a single entry point. {{<wbr>}}
-* *Extensibility* \- allows simple extensions for other types of event services, as well as other configuration parameters.{{<wbr>}}
-* *Backwards compatibility* \- coexists with the existing API in a way that allows a deprecation period without duplicating the code. {{<wbr>}}
-* Support for Spring bean creation/configuration.{{<wbr>}}
-* Batch notification support. {{<wbr>}}
+- Simple and unified interfaces*  {{<wbr>}}
+- Single entry point* \- users access all the event-related services from a single entry point. {{<wbr>}}
+- Extensibility* \- allows simple extensions for other types of event services, as well as other configuration parameters.{{<wbr>}}
+- Backwards compatibility* \- coexists with the existing API in a way that allows a deprecation period without duplicating the code. {{<wbr>}}
+- Support for Spring bean creation/configuration.{{<wbr>}}
+- Batch notification support. {{<wbr>}}
 
 Some advanced options supported with the Session messaging API: {{<wbr>}}
-* No client codebase needs to be set. {{<wbr>}}
-* Support registering large amount of listeners using the same session reducing resource consumption. {{<wbr>}}
-* Provides the ability to get the Entry that triggered the event in the space.{{<wbr>}}
-* Allows registration for specific notification events, for example, write, update, take, and lease expiration events.{{<wbr>}}
-* Option delivering events in FIFO order (default is non-FIFO).{{<wbr>}}
-* Supports server-side notification filtering capabilities.{{<wbr>}}
+- No client codebase needs to be set. {{<wbr>}}
+- Support registering large amount of listeners using the same session reducing resource consumption. {{<wbr>}}
+- Provides the ability to get the Entry that triggered the event in the space.{{<wbr>}}
+- Allows registration for specific notification events, for example, write, update, take, and lease expiration events.{{<wbr>}}
+- Option delivering events in FIFO order (default is non-FIFO).{{<wbr>}}
+- Supports server-side notification filtering capabilities.{{<wbr>}}
 
 The session API provides a convenient and efficient mechanism for sending messaging to multiple recipients through the space. Every recipient can register for notifications by creating a `DataEventSession` object.
 
@@ -176,11 +176,11 @@ public class DataSessionEventExample implements RemoteEventListener
 {{%tab "  EventSession "%}}
 The session-based API defines an entity called `EventSession` -- a stateful registration service that is used to register/un-register listeners to the space. The `EventSession` is created using the `EventSessionFactory`, and configured using the `EventSessionConfig` entity.
 
-The `EventSessionConfig` can be configured using:
-* A specific API
-* The Properties object
-* The properties file located in the classpath
-* Using a Spring application context
+The `EventSessionConfig` can be configured using: <br>
+- A specific API  <br>
+- The Properties object <br>
+- The properties file located in the classpath<br>
+- Using a Spring application context <br>
 
 The created session is bound to a specific space (or cluster), and can be bounded to a specific transaction. Closing a session is done via the `close()` method.
 
@@ -205,15 +205,15 @@ The `DataEventSession` is a unified class that encapsulate the capabilities of t
 * `NotifyDelegatorMultiplextor`
 
 The `addListener()` method on the `DataEventSession` receives, among other parameters, the `NotifyActionType` parameter: {{<wbr>}}
-* `NOTIFY_WRITE` {{<wbr>}}
-* `NOTIFY_TAKE`   {{<wbr>}}
-* `NOTIFY_UPDATE`  {{<wbr>}}
-* `NOTIFY_LEASE_EXPIRATION`{{<wbr>}}
-* `NOTIFY_NONE` {{<wbr>}}
-* `NOTIFY_UNMATCHED`{{<wbr>}}
-* `NOTIFY_MATCHED_UPDATE`  {{<wbr>}}
-* `NOTIFY_REMATCHED_UPDATE`{{<wbr>}}
-* `NOTIFY_ALL`
+- `NOTIFY_WRITE` {{<wbr>}}
+- `NOTIFY_TAKE`   {{<wbr>}}
+- `NOTIFY_UPDATE`  {{<wbr>}}
+- `NOTIFY_LEASE_EXPIRATION`{{<wbr>}}
+- `NOTIFY_NONE` {{<wbr>}}
+- `NOTIFY_UNMATCHED`{{<wbr>}}
+- `NOTIFY_MATCHED_UPDATE`  {{<wbr>}}
+- `NOTIFY_REMATCHED_UPDATE`{{<wbr>}}
+- `NOTIFY_ALL`
 
 {{%note%}}
 This type is a type-safe replacement for the old `NotifyModifiers` constants.
@@ -272,23 +272,23 @@ Object getSource()
 
 This class is used to configure an `EventSession`. It contains a set of configuration parameters that influence the way event listeners are registered with the space, and how event notifications are processed.
 
-There are three different ways to create an `EventSessionConfig` object:
-* Use the empty constructor, and set the different parameters using API.
-* Pass a `Properties` object, that contains a list of parameters according the a list specified below, to the constructor.
-* Use a pre-configured, named set of parameters. The name is used to load a properties file that resides in the `config` directory
+There are three different ways to create an `EventSessionConfig` object: <br>
+- Use the empty constructor, and set the different parameters using API.  <br>
+- Pass a `Properties` object, that contains a list of parameters according the a list specified below, to the constructor.  <br>
+- Use a pre-configured, named set of parameters. The name is used to load a properties file that resides in the `config` directory <br>
 
-The names of the parameters that can be used in the `Properties` object or file:
-* `comType` -- specifies the communication protocol: `UNICAST`/`MULTIPLEX`.
-* `batchSize` -- buffered notifications -- the size of the batch used when sending notifications to the client. Must be used with `batchTime`.
-* `batchTime` -- the maximum elapsed time between two batch notifications. Must be used with `batchSize`.
-* `replicateNotifyTemplate` -- whether to replicate the registration to other spaces in the cluster.
-* `triggerNotifyTemplate` -- whether to send notifications from all spaces in the cluster.
-* `leaseListener` -- `LeaseListener` callback to be called in case the renew failed.
-* `fifo` -- whether to return notification in fifo order or as soon as possible.
-* `autoRenew` -- whether to automatically renew the lease of the registered listeners.
-* `renewExpiration` -- specifies the time of expiration of the registration. Used when `autoRenew=true`.
-* `renewDuration` -- specifies the time for each renew. Used when `autoRenew=true`.
-* `renewRTT` -- specifies the time that takes the Lease to renew. Used when `autoRenew=true`.
+The names of the parameters that can be used in the `Properties` object or file: <br>
+- `comType` -- specifies the communication protocol: `UNICAST`/`MULTIPLEX`. <br>
+- `batchSize` -- buffered notifications -- the size of the batch used when sending notifications to the client. Must be used with `batchTime`. <br>
+- `batchTime` -- the maximum elapsed time between two batch notifications. Must be used with `batchSize`.  <br>
+- `replicateNotifyTemplate` -- whether to replicate the registration to other spaces in the cluster.  <br>
+- `triggerNotifyTemplate` -- whether to send notifications from all spaces in the cluster. <br>
+- `leaseListener` -- `LeaseListener` callback to be called in case the renew failed. <br>
+- `fifo` -- whether to return notification in fifo order or as soon as possible.  <br>
+- `autoRenew` -- whether to automatically renew the lease of the registered listeners.
+- `renewExpiration` -- specifies the time of expiration of the registration. Used when `autoRenew=true`.  <br>
+- `renewDuration` -- specifies the time for each renew. Used when `autoRenew=true`.   <br>
+- `renewRTT` -- specifies the time that takes the Lease to renew. Used when `autoRenew=true`.
 {{% /tab   %}}
 
 {{% /tabs %}}
@@ -607,7 +607,7 @@ The space includes a mechanism that detects stale notify registrations. Once a n
 
 The root cause of this behavior is the thread pool within the space engine that is responsible for delivering events to clients. When all pool threads are fully consumed, notification delivery time suffers, due to the time it takes to detect and remove all stale registrations.
 
-{{%note%}}
+{{%note "Thread pool size"%}}
 To configure the notification thread pool size you should use the following Space properties: {{<wbr>}}
 space-config.engine.notify_min_threads {{<wbr>}}
 space-config.engine.notify_max_threads {{<wbr>}}
@@ -635,7 +635,9 @@ For the custom client-side FIFO-based notifications example, send a request to s
 
 Notifications are asynchronous by nature. The client that triggered the notification is unaware of the notification delivery, and does not wait for an acknowledgement from the client receiving the notification for successful arrival of the event before continuing with its operation -- i.e., when process A registers for notification delivery, and B writes an Entry to the space, process B does not wait for process A to receive the notification before taking control after the write operation. Process B might perform additional space operations before process A receives the notification.
 
+{{%align center%}}
 ![sessionbasedmessagingapi22.jpg](/attachment_files/sessionbasedmessagingapi22.jpg)
+{{%/align%}}
 
 When a space running in a fault tolerant configuration (`primary-backup` or `partitioned-sync2backup` cluster schemas) and the primary space fails, the backup space takes over and sends the notifications to the registered clients. In such a configuration, the primary and backup spaces do not establish a handshake mechanism when a notification is sent to the client. The backup space, that is running in stand-by mode, is unaware of the notifications that have been sent by the primary space, and the acknowledgement that the recipients clients provided when receiving the events is not sent.
 
@@ -652,10 +654,10 @@ Here is the system behavior when using these options:
 
 |Replicate Notify Template Setting | Trigger Notify Template Setting | Description |
 |:---------------------------------|:--------------------------------|:------------|
-| `true` | `false` | The client gets notifications from the master space while it is active after registration.{{<wbr>}}If failover has been configured, it gets notifications from the replica space when the master space fails. |
-| `false` | `true` | The client gets notifications only from the spaces it registered to for notifications.{{<wbr>}}A notification occurs when data has been delivered to the space, either by a client application, or from the replication. |
-| `true` | `true` | The client gets notifications from all clustered spaces after registration.{{<wbr>}}The client gets multiple notifications for every space event. |
-| `false` | `false` | The client gets notifications only from the spaces to which it registered.{{<wbr>}}The client does not get notifications from spaces that received their data by replication. |
+| true | false | The client gets notifications from the master space while it is active after registration.{{<wbr>}}If failover has been configured, it gets notifications from the replica space when the master space fails. |
+| false | true | The client gets notifications only from the spaces it registered to for notifications.{{<wbr>}}A notification occurs when data has been delivered to the space, either by a client application, or from the replication. |
+| true | true | The client gets notifications from all clustered spaces after registration.{{<wbr>}}The client gets multiple notifications for every space event. |
+| false | false | The client gets notifications only from the spaces to which it registered.{{<wbr>}}The client does not get notifications from spaces that received their data by replication. |
 
 Replicated notify templates and triggered notify templates are orthogonal. However, if you enable them both, you should be aware that for each Entry that matches the notify template and is replicated to another space, you get an event.
 

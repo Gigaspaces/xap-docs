@@ -72,7 +72,7 @@ The following screenshot displays the **Create, manage, and run configurations**
 
 In the screenshot above, we run the data processor module using the integrated processing unit container from within the Eclipse IDE (we simply imported the Eclipse project provided with the example into our Eclipse workspace). There are no arguments provided in this example, which means that the integrated processing unit container will use its defaults. Since our project source includes a `META-INF/spring/pu.xml` file, it is automatically detected by the `IntegratedProcessingUnitContainer` class and used as the processing unit's deployment descriptor (since it's part of the processor module's classpath). The processor Eclipse project also has all the required libraries in its project definition. These include all the jars located under the `GigaSpaces root>/lib/required` directory, namely `gs-openspaces.jar`, `gs-runtime.jar`, `commons-logging.jar` and the Spring framework jars (all start with `com.spring*`), so the integrated processing unit container is running with these libraries.
 
-{{% info title="Classpath Settings of the IntegratedProcessingUnitContainer "%}}
+{{% info "Classpath Settings of the IntegratedProcessingUnitContainer "%}}
 The `IntegratedProcessingUnitContainer` is a simple class that wraps the processing unit with Spring application context and makes all the proper initializations around it. Note that as with any other code you run within your IDE, you will have to manually include the classes your processing unit code depends on in your project classpath. In contrast, when [running your processing unit on the GigaSpaces service grid](./deploying-onto-the-service-grid.html) or in [standalone mode](./running-in-standalone-mode.html), all of the jars located under the processing unit's `lib` directory are automatically added to the classpath and GigaSpaces specific jar files (`gs-runtime.jar` and `gs-openspaces.jar` are added automatically).
 {{% /info %}}
 
@@ -82,7 +82,7 @@ The following screenshot shows how to run a data processor instance with a parti
 ![IntegratedProcessingUnitContainer3.jpg](/attachment_files/IntegratedProcessingUnitContainer3.jpg)
 {{% /indent %}}
 
-{{% info title="Using Lookup Groups/Locators "%}}
+{{% info "Using Lookup Groups/Locators "%}}
 You can isolate your environment by defining [Lookup Groups/Locators](/product_overview/service-grid.html#lus). You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have LOOKUPGROUPS/LOOKUPLOCATORS OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using LOOKUPGROUPS environment variable you need to add the following as VM argument to the run configuration:
 
 

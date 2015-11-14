@@ -59,7 +59,7 @@ Step 2. Execute `<Example Root>\bin\startAll.sh/bat`. This starts a light versio
 
 {{% anchor step2 %}}
 
-{{% vbar %}}
+
 If you want to start an **embedded space**, there is no need to perform this step.
 
 Open `<Example Root>\bin\run_HelloWorld.bat/.sh` in a text editor, and replace `jini://` with `java://`.
@@ -80,7 +80,7 @@ Another way to activate the example with an embedded space is:
 
     "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" /./mySpace?groups=%LOOKUPGROUPS%
 
-{{% /vbar %}}
+
 
 Step 3. If you want to view the space in the [XAP Browser]({{%currentadmurl%}}/gigaspaces-management-center.html), execute `<XAP Root>\bin\gs-ui.sh/bat`.
 Step 4. To start the sample application, execute `<Example Root>\bin\run_HelloWorld.sh/bat`.
@@ -127,7 +127,7 @@ clean:
 	rm -f $(OBJS) $(TARGET)
 ```
 
-{{% note title="Debugging in Linux "%}}
+{{% note "Debugging in Linux "%}}
 When debugging the code in Linux, you may receive the signal SIGSEGV (segmentation fault). It is recommended to instruct the debugger to ignore these signals ("`handle SIGSEGV nostop noprint`" in gdb, "`ignore SIGSEGV`" in most versions of dbx).
 {{% /note %}}
 {{% /tab %}}

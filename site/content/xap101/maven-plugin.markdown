@@ -37,7 +37,7 @@ OS name: "windows 7" version: "6.1" arch: "x86" Family: "windows"
 
 {{% note %}} **First uses of Maven require internet connection** in order for the local repository to be populated with required libraries. Once all required libraries are in the local repository the internet connection is not mandatory. {{%/note%}}
 
-{{% info title="Dependency Download by Maven "%}}
+{{% info "Dependency Download by Maven "%}}
 Maven uses repositories: a local repository where all required dependencies (artifacts) are stored for Maven's use, and remote repositories from which Maven downloads required dependencies that are missing in the local repository. If a dependency is missing from the local repository during execution, Maven automatically downloads the missing dependencies from the remote repositories. The download might take a few minutes (progress messages are printed to the console). When the download is finished, Maven returns to its original tasks.
 {{%/info%}}
 

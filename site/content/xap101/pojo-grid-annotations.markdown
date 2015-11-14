@@ -20,7 +20,7 @@ weight: 400
 
 
 {{%accordion%}}
-{{%accord title="**Annotation**"%}}
+{{%accord title="Annotation"%}}
 
 ```java
 
@@ -41,7 +41,7 @@ public class MyService {
 There is no need to have a setter for the GigaSpace instance, and by annotating it with GigaSpaceContext, a GigaSpace instance is automatically injected. In order to enable this feature, the following element needs to be configured in the Spring application context:
 
 {{%accordion%}}
-{{%accord title="**Spring Configuration**"%}}
+{{%accord title="Spring Configuration"%}}
 {{%tabs%}}
 {{%tab "  Namespace "%}}
 
@@ -98,7 +98,7 @@ There is no need to have a setter for the GigaSpace instance, and by annotating 
 |Description         |  XAP allows you to define beans (such as filters), that are later injected to the actual space. If such beans require access to the GigaSpace instance, a cyclic dependency occurs (GigaSpace requires the Space, but the Space requires the filter injection). XAP allows you to use the same annotation-based injection mechanism in order to inject the GigaSpace instance at a different lifecycle stage. |
 
 {{%accordion%}}
-{{%accord title="**Annotation**"%}}
+{{%accord title="Annotation"%}}
 
 ```java
 public class MyService {
@@ -114,7 +114,7 @@ public class MyService {
 There is no need to have a setter for the `GigaSpace` instance, and by annotating it with `GigaSpaceLateContext`, a `GigaSpace` instance is automatically injected. In order to enable this feature, the following element needs to be configured in the Spring application context:
 
 {{%accordion%}}
-{{%accord title="**Spring Configuration**"%}}
+{{%accord title="Spring Configuration"%}}
 {{%tabs%}}
 {{%tab "  Namespace "%}}
 

@@ -19,7 +19,9 @@ When downloading XAP from the [XAP Download Center](http://www.gigaspaces.com/La
 Version=11;Type=EVALUATION;Customer=yourname@yourcompany.com;Expiration=2015-Dec-31;Hash=NP6SQOOdOZrPRcN9OTYQ
 ```
 
-{{% infosign %}} If you're using more than one machine for the evaluation, make sure you copy the license to each of those machines.
+{{% info %}}
+If you're using more than one machine for the evaluation, make sure you copy the license to each of those machines.
+{{%/info%}}
 
 That's it! You're good to go!
 

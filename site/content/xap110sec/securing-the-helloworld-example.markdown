@@ -112,7 +112,7 @@ We have two users to declare - "helloProcessor" and the other "helloFeeder".
 The "helloProcessor" user will be granted **`Take`** access for `HelloObject` and **`Write`** access for `ProcessedHelloObject`.
 The "helloFeeder" user will be granted **`Write`** access for `HelloObject` and **`Read`** access for `ProcessedHelloObject`
 
-{{% note title="Some implementation notes: "%}}
+{{% note "Some implementation notes: "%}}
 
 - The `ProcessedHelloObject` is fictive. Actually the `Feeder` waits for `HelloObject` template matching the "Hello World !!" String.
 - The `HelloObject` was replaced by a `Message` Object in the products example. Thus the actual class that should be granted privileges for is `org.openspaces.example.helloworld.common.Message`.

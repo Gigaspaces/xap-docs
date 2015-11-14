@@ -11,7 +11,7 @@ XAP 10 introduced a new storage model called BlobStore Storage Model (commonly r
 
 <br>
 
-{{% info title="Licensing "%}}
+{{% info "Licensing "%}}
 MemoryXtend requires a separate license in addition to the GigaSpaces commercial license. Please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services) for more details.
 {{% /info %}}
 

@@ -461,7 +461,7 @@ Once the application is running, you can use the XAP UI tools to view your appli
 - For the Web Based UI run gs-webui.bat/sh and point your browser to localhost:8099 http://localhost:8099
 - For the Rich Based UI run gs-ui.bat/sh
 
-{{% info title="More Deployment Options "%}}
+{{% info "More Deployment Options "%}}
 To learn about additional options for deploying your XAP processing units, please see [Deploying onto the Service Grid](./deploying-onto-the-service-grid.html)
 {{% /info %}}
 
@@ -637,7 +637,7 @@ XAP comes with a cloud emulator called `localcloud`. It allows you to test the r
 install-application <XapInstallationRoot>/recipes/apps/streaming-bigdata/bigDataApp
 ```
 
-{{% info title="Tracking installation progress "%}}
+{{% info "Tracking installation progress "%}}
 You can track the progress on the shell and on the web management console (localhost:8099).
 {{% /info %}}
 
@@ -651,7 +651,7 @@ To run the application on one of the supported clouds, proceed the following ste
 1. Bootstrap the cloud. For more information, see [The Bootstrapping Process](http://shlomo-tech-tav.github.com/guide/bootstrapping/bootstrapping_process) page.
 1. To install and deploy the application, use the `install-application` command, as described in the previous section.
 
-{{% info title="Running XAP on the Cloud "%}}
+{{% info "Running XAP on the Cloud "%}}
 In order to use your license on the cloud environment you should perform the following:
 
 - cd to `<XAP installation root>/tools/cli/plugins/ecs/<cloud name>/upload`

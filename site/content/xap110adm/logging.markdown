@@ -489,7 +489,7 @@ Any configuration that you wish to override in `gs_logging.properties` file, sho
 -Dcom.gigaspaces.exceptions.level=WARNING
 ```
 
-{{% info title="Defining System Properties when Starting GSCs, GSMs and other runtime components "%}}
+{{% info "Defining System Properties when Starting GSCs, GSMs and other runtime components "%}}
 The recommended way to define system properties when starting service grid components is to wrap the original script, e.g. `gsc.sh(bat)` with a wrapper script which include the EXT_JAVA_OPTIONS variable. The `setenv.sh(bat)` script which is used by these components will pick these options automatically and use them as JVM arguments.
 {{% /info %}}
 

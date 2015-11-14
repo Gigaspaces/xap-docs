@@ -32,7 +32,7 @@ If you've already installed XAP.NET and wish to switch to a different JVM:
 1. Edit the `Settings.xml` file (located in `<XapNet>\config\Settings.xml`).
 2. Locate the `<XapNet.Runtime.JavaHome>` node and change its value to the location of the JVM you wish to use.
 
-{{% tip title="Using JAVA_HOME with <XapNet.Runtime.JavaHome> "%}}
+{{% tip  "Using JAVA_HOME with <XapNet.Runtime.JavaHome> "%}}
 Many systems define an environment variable called JAVA_HOME which points to the JVM installation, since most java applications and libraries (including GigaSpaces XAP) use JAVA_HOME to locate java. Since the Settings.xml file supports environment variable expansion, it is possible to set <XapNet.Runtime.JavaHome> to %JAVA_HOME%, so you can later on change the jvm location without editing the xml file.
 {{% /tip %}}
 

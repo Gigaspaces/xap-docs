@@ -121,7 +121,7 @@ The system needs to be configured with a set of one ore more base packages which
 </bean>
 ```
 
-## Overriding the `initialDataLoad` method
+## Overriding the initialDataLoad method
 
 To implement your own Initial Load when using the Hibernate `SpaceDataSource` you can override the `initialDataLoad` method to construct one or more `DefaultScrollableDataIterator`. For example:
 

@@ -109,7 +109,7 @@ When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html
 This can be specified as part of the command line arguments or as a program argument when running within your IDE.
 When deploying via the UI, click "Next" in the first screen of the deployment wizard and then "+" to add properties. Any property you specify here will be injected to the appropriate property place holder (if such exists) and will override the `pu.properties` within the processing unit.
 
-{{% info title="Property Injection for SLA Definitions "%}}
+{{% info "Property Injection for SLA Definitions "%}}
 From version 7.0 onwards, the processing unit's [SLA definitions](./configuring-the-processing-unit-sla.html) can be defined in a separate `sla.xml` file (unlike previous release in which they could only have been defined in the `pu.xml` file). As you may recall, the SLA definition are expressed via the `<os-sla:sla>` XML element in either the `pu.xml` of the `sla.xml` files.
 
 You should note however that property injection, as described in this page, and any external jars imports, is only available for SLA definitions expressed in a separate `sla.xml` file, and will not be applied to the `<os-sla:sla>` element if it is part of the `pu.xml` file.

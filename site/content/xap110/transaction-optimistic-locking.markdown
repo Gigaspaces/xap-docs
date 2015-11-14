@@ -20,12 +20,13 @@ The problem is that while the customer details object is away from the space ser
 
 For optimistic locking to work effectively, you must be able to detect these update-update conflicts, and to make the client aware of them, so they can be dealt with appropriately.
 
-XAP optimistic locking protocol:
+{{% tip "Optimistic locking protocol"%}}
 
 - Is best suited for environments with many read-only transactions, few read-update transactions, and a relatively low volume of objects that are changed.
 - Is more suitable for real-time systems than pessimistic locking, because the space runs best with short term transactions.
 - Has a big advantage when you want to read a large number of objects, but update only a few of them - or when it is unlikely that objects you want to work with are updated by other users.
 - Ensures that updated objects are the most recent ones, while improving the coherency of system behavior.
+{{%/tip%}}
 
 # Using the Optimistic Locking Protocol
 

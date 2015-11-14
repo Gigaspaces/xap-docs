@@ -127,7 +127,7 @@ clean:
 	rm -f $(OBJS) $(TARGET)
 ```
 
-{{% note title="Debugging in Linux "%}}
+{{% note "Debugging in Linux "%}}
 When debugging the code in Linux, you may receive the signal SIGSEGV (segmentation fault). It is recommended to instruct the debugger to ignore these signals ("`handle SIGSEGV nostop noprint`" in gdb, "`ignore SIGSEGV`" in most versions of dbx).
 {{% /note %}}
 {{% /tab %}}

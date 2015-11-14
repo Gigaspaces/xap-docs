@@ -68,7 +68,7 @@ The application is composed of a JSP page and a servlet.
 The `UpdateSessionServlet` is responsible for retrieving request parameters and adding their values to the `HttpSession` as session attributes, and the `SessionContents.jsp` displays the session attributes and renders two input fields, _Name_ and _Value_ for the user to input new session attributes.
 
 {{%accordion%}}
-{{%accord title=" **Click here for code snippets and screenshot of the sample application...**"%}}
+{{%accord title="Click here for code snippets and screenshot of the sample application..."%}}
 Here's a snippet of the doPost method of the `UpdateSessionServlet` class:
 
 
@@ -214,7 +214,7 @@ Step 4. Start four GSCs by calling `<gs root>/bin/gsc.(sh/bat)` four times
 Step 5. Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/bat)`. When the user interface is started, you should see the four GSCs presented in it.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshot...**"%}}
+{{%accord title="Click to view screenshot..."%}}
 ![empty-gsui4.jpg](/attachment_files/empty-gsui4.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -222,7 +222,7 @@ Step 5. Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/
 Step 6. Deploy the application using the provided build script, by calling `build.(sh.bat) deploy`. This will start a partitioned space with 2 primaries and 2 backups, and then three instances of the web application with the HttpSession backed by the space. The web application will utilize the GigaSpaces local cache functionality to front the remote space and gain in-memory read speeds for the HttpSession attributes. Once deployment is successful, you should see in the UI the space's two primary and two backup partitions, and 3 instances of the web application.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshot...**"%}}
+{{%accord title="Click to view screenshot..."%}}
 ![after-deploy2.jpg](/attachment_files/after-deploy2.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -232,7 +232,7 @@ Step 7. If you haven't already done so, start the Apache HTTP server on port 80 
 Step 8. Start the load balancer agent by calling the script `<gs root>/tools/apache/apache-lb-agent.(sh/bat) -apache <Apache home>`. `Apache home` is the location of the Apache installation on your disk.
 
 {{%accordion%}}
-{{%accord title=" **Click to show expected output...**"%}}
+{{%accord title="Click to show expected output..."%}}
 
 ```bash
 Starting apache-lb-agent with line:
@@ -297,7 +297,7 @@ Executed ["c:\Apache2.2/bin/httpd.exe" -k restart], exit code [0]
 Step 9. Now let's verify that the application works as expected. Assuming Apache runs on your local machine on port 80, open you web browser and point it to `http://localhost/HttpSession/`. You should see the application's welcome page. Another way to verify this is point your web browser to `http://localhost/balancer`. You should see the summary screen of Apache's load balancing module. In this screen you should see listed the two running web containers.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshots...**"%}}
+{{%accord title="Click to view screenshots..."%}}
 ![lb-summary2.jpg](/attachment_files/lb-summary2.jpg)
 {{%/accord%}}
 {{%/accordion%}}

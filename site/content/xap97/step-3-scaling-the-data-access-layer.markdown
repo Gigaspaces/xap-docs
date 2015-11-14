@@ -67,7 +67,7 @@ Solve the database bottle neck by accessing the in-memory data grid from within 
 The example application is composed of a JSP page, a servlet which accesses the space and simple data object. It is very similar to the example introduced in the previous step, but rather accesses the space directly instead of accessing the HTTP session. The `AccessSpaceServlet` is responsible for retrieving request parameters, creating an instance of type `UserData` and writing it to the space. The `SpaceContents.jsp` displays the contents of all the `UserData` instances stored in the Space, and renders two input fields, _Name_ and _Value_ for the user to input new values.
 
 {{%accordion%}}
-{{%accord title=" **Click here for code snippets and screenshot of the sample application...**"%}}
+{{%accord title="Click here for code snippets and screenshot of the sample application..."%}}
 Here's a snippet of the `UserData` class:
 
 
@@ -245,7 +245,7 @@ To obtain the space proxy reference, all your application needs to do is retriev
 GigaSpace gigaSpace = (GigaSpace) getServletContext().getAttribute("gigaSpace");
 ```
 
-{{% info title="Spring-Based Web Applications "%}}
+{{% info "Spring-Based Web Applications "%}}
 If you're application is Spring based and uses the Spring MVC framework, you can avoid any coding to get the space reference and use dependency injection to wire the space proxy into your application components.
 {{% /info %}}
 
@@ -300,7 +300,7 @@ By using the space, you gain the following benefits:
 - You can store information that outlives the user session
 - You can share information between all user sessions
 
-{{% info title="Mixing Space and HTTP Session Approaches "%}}
+{{% info "Mixing Space and HTTP Session Approaches "%}}
 Note that incase needed, you can use both approaches in the same application, and decide on a case by case basis.
 {{% /info %}}
 {{% /section %}}
@@ -328,7 +328,7 @@ Now that we've gone over all the details, let's see everything in action. In thi
 1. Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/bat)`. When the user interface is started, you should see the four GSCs presented in it.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshot...**"%}}
+{{%accord title="Click to view screenshot..."%}}
 ![empty-gsui4.jpg](/attachment_files/empty-gsui4.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -336,7 +336,7 @@ Now that we've gone over all the details, let's see everything in action. In thi
 1. Deploy the application using the provided build script, by calling `build.(sh.bat) deploy`. This will start a partitioned Space with 2 primaries and 2 backups, and then three instances of the web application which will connect to the Space. Once deployment is successful, you should see in the UI the Space's two primary and two backup partitions, and 3 instances of the web application.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshot...**"%}}
+{{%accord title="Click to view screenshot..."%}}
 ![after-deploy3.jpg](/attachment_files/after-deploy3.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -345,7 +345,7 @@ Now that we've gone over all the details, let's see everything in action. In thi
 1. Start the load balancer agent by calling the script `<gs root>/tools/apache/apache-lb-agent.(sh/bat) -apache <Apache home>`. `Apache home` is the location of the Apache installation on your disk.
 
 {{%accordion%}}
-{{%accord title=" **Click to show expected output...**"%}}
+{{%accord title="Click to show expected output..."%}}
 
 ```java
 Starting apache-lb-agent with line:
@@ -411,7 +411,7 @@ Executed ["c:\Apache2.2/bin/httpd.exe" -k restart], exit code [0]
 1. Now let's verify that the application works as expected. Assuming Apache runs on your local machine on port 80, open you web browser and point it to `http://localhost/SpaceAccess/`. You should see the application's welcome page. Another way to verify this is point your web browser to `http://localhost/balancer`. You should see the summary screen of Apache's load balancing module. In this screen you should see listed the two running web containers.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshots...**"%}}
+{{%accord title="Click to view screenshots..."%}}
 ![lb-summary3.jpg](/attachment_files/lb-summary3.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -419,7 +419,7 @@ Executed ["c:\Apache2.2/bin/httpd.exe" -k restart], exit code [0]
 1. Type in values once or twice by filling the "Field" and "Value" text boxes and clicking submit. You should see them now above the text boxes, which means they were inserted to the space. You can also see that they are stored in the space using the GUI. Click the "Space Browser" tab on the left, and then expand and click the following node on the "Grid Tree" pane on the right: Clusters --> mySpace --> Operations --> Data Types. You will notice that the number of instances of type `UserData` is more than 0.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshots...**"%}}
+{{%accord title="Click to view screenshots..."%}}
 ![space-browser.jpg](/attachment_files/space-browser.jpg)
 {{%/accord%}}
 {{%/accordion%}}

@@ -114,7 +114,7 @@ The power of the space model is that the combination of the various basic APIs c
 
 These capabilities are at the core of GigaSpaces XAP. This combination, plus the additional capabilities  of the basic APIs, allow synchronous and asynchronous applications to be built as the models for which first generation application servers apply. In addition, these models can be used in a wider range of applications, such as: real-time analytics, real-time batch processing, complex event-driven applications, caching scenarios, parallel processing and more.
 
-{{%  tip title="Template Matching" %}}
+{{%  tip "Template Matching" %}}
 Because the space stores entries in the form of objects, retrieval of information is done using template matching. The application creates a template object -- the class of the template object defines which type of objects the application wants to read (for example, a template of class `Message` will return `Message` objects), and the template object's properties are used as retrieval criteria. If a template property has a value, objects are only retrieved if they have the same value for that property. If properties in the template are null, they are ignored.
 GigaSpaces XAP extends template matching by providing semantics to query ranges on information as well. For additional information, please refer to the [SQLQuery API]({{% latestjavaurl%}}/query-sql.html) in the Programmer's Guide.
 {{%  /tip %}}

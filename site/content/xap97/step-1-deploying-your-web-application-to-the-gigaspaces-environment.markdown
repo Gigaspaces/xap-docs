@@ -68,7 +68,7 @@ The example application is a **completely standard JEE web application**. All st
 The application is composed of a very simple JSP page, which greets the user and prints the time, the hostname of the container that served the request and some additional details.
 
 {{%accordion%}}
-{{%accord title=" **Click here for a code snippet and a screenshot of the sample application...**"%}}
+{{%accord title="Click here for a code snippet and a screenshot of the sample application..."%}}
 Here's a snippet of the `hello.jsp` page which is the welcome page for the application:
 
 Here's the code snippet from `SessionContents.jsp` that displays the session attributes:
@@ -213,7 +213,7 @@ You can also define the maximum number of instances per machine, as follows:
 <os-sla:sla number-of-instances="1" max-instances-per-machine="1"/>
 ```
 
-{{% info title="Web Container Instantiation "%}}
+{{% info "Web Container Instantiation "%}}
 By default, each application instance provisioned to the GSC will have its own Jetty server. The server will share some of the Jetty resources like request buffers and thread pools, but will bind to separate ports. The service grid also allows for running the web container in a **shared** mode, in which case all of the deployed applications will use the same Jetty instance
 {{% /info %}}
 
@@ -227,7 +227,7 @@ By default, each application instance provisioned to the GSC will have its own J
 
 # Configuring Dynamic Load Balancing
 
-{{% info title="Prerequisite for this section "%}}
+{{% info "Prerequisite for this section "%}}
 To complete this section successfully you will need to download and install the [Apache 2.2 web server](http://httpd.apache.org/download.cgi) in your local environment. Also make sure that you have the GigaSpaces XAP distribution installed on the same machine that Apache is installed on.
 {{% /info %}}
 
@@ -302,7 +302,7 @@ Finally, we will terminate one of the running containers and watch the failover 
 1. Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/bat)`. When the user interface is started, you should see the three GSCs presented in it.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshot...**"%}}
+{{%accord title="Click to view screenshot..."%}}
 ![empty-gsui.jpg](/attachment_files/empty-gsui.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -310,7 +310,7 @@ Finally, we will terminate one of the running containers and watch the failover 
 1. Deploy the application using the user interface, [as described earlier in this tutorial](#DeployDirections). In the "Number of Instances" text field, type 2, and in the "Maximum Instances --> Per VM" text field type 1.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshot...**"%}}
+{{%accord title="Click to view screenshot..."%}}
 ![deploy-2pus.jpg](/attachment_files/deploy-2pus.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -321,7 +321,7 @@ Once deployed, you will see the two instances of the web application deployed wi
 1. Start the load balancer agent by calling the script `<gs root>/tools/apache/apache-lb-agent.(sh/bat) -apache <Apache home>`. `Apache home` is the location of the Apache installation on your disk.
 
 {{%accordion%}}
-{{%accord title=" **Click to show expected output...**"%}}
+{{%accord title="Click to show expected output..."%}}
 
 ```java
 Starting apache-lb-agent with line:
@@ -386,7 +386,7 @@ Executed ["c:\Apache2.2/bin/httpd.exe" -k restart], exit code [0]
 1. Now let's verify that the load balancer agent worked as expected. Assuming Apache runs on your local machine on port 80, open you web browser and point it to `http://localhost/PlainWebAppExample/`. You should see the application's welcome page. Another way to verify this is point your web browser to `http://localhost/balancer`. You should see the summary screen of Apache's load balancing module. In this screen you should see listed the two running web containers.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshots...**"%}}
+{{%accord title="Click to view screenshots..."%}}
 ![lb-summary.jpg](/attachment_files/lb-summary.jpg)
 {{%/accord%}}
 {{%/accordion%}}

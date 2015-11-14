@@ -15,15 +15,15 @@ XAP comes with a built-in utility allowing you to dynamically update an Apache h
 Here is an example configuration of the [apache httpd](http://httpd.apache.org)  to load-balance  web requests between the different web servers.
 
 {{%accordion%}}
-{{%accord parent=acc1 | title="Step 1:"%}}
+{{%accord   title="Step 1:"%}}
 Install [apache httpd](http://httpd.apache.org).
 {{%/accord%}}
 
-{{%accord parent=acc1 | title="Step 2:"%}}
+{{%accord   title="Step 2:"%}}
 Create a file named `HttpSession.conf` located at <Apache HTTPD 2.2 root>\conf\gigaspaces
 {{%/accord%}}
 
-{{%accord parent=acc1 | title="Step 3: Configure HttpSession.conf "%}}
+{{%accord   title="Step 3: Configure HttpSession.conf "%}}
 
 Place the following within the `HttpSession.conf` file. The `BalancerMember` should be mapped to different URLs of your web servers instances. With the example below we have Tomcat using port 8080 and Websphere using port 9080.
 
@@ -43,7 +43,7 @@ Place the following within the `HttpSession.conf` file. The `BalancerMember` sho
 {{% note %}} The `127.0.0.1` IP should be replaced with IP addresses of the machine(s)/port(s) of WebSphere/Tomcat instances.{{% /note %}}
 {{%/accord%}}
 
-{{%accord parent=acc1 | title="Step 4:"%}}
+{{%accord   title="Step 4:"%}}
  Configure the `<Apache2.2 HTTPD root>\conf\httpd.conf` to have the following:
 
 
@@ -70,7 +70,7 @@ ProxyPass /balancer !
 {{% note %}}The `/tools/Apache2.2` folder name should be replaced with your correct Apache httpd location. \\ The `127.0.0.1` IP should be replaced with appropriate IP addresses of the machine that is running apache.{{% /note %}}
 {{%/accord%}}
 
-{{%accord parent=acc1 | title="Step 5: Restart Apache"%}}
+{{%accord  title="Step 5: Restart Apache"%}}
 
 
 Once you have the space running, Websphere running, Tomcat running, and Apache httpd configured, restart the Apache http. On windows you can use its service.
@@ -78,7 +78,7 @@ Once you have the space running, Websphere running, Tomcat running, and Apache h
 ![httpSessionSharing7.jpg](/attachment_files/httpSessionSharing7.jpg)
 {{%/accord%}}
 
-{{%accord parent=acc1 | title="Step 6: Apache httpd balancer console"%}}
+{{%accord   title="Step 6: Apache httpd balancer console"%}}
 Once you performed the above steps, access the following URL:
 
 ```bash

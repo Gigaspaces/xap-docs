@@ -15,7 +15,7 @@ parent: your-first-xtp-application.html
 You can find the sample application under `<XAP Root>\examples\helloworld` in the distribution.
 
 
-{{% note title="Features Introduced "%}}
+{{% note "Features Introduced "%}}
 Space, GigaSpaces API, Processing Unit, Polling Container, Running inside the IDE.
 {{% /note %}}
 

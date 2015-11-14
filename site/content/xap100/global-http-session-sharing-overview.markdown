@@ -22,7 +22,7 @@ XAP 10.0 Global HTTP Session Sharing includes the following new features:
 - Improved logging
 
 
-{{% info title="Licensing "%}}
+{{% info "Licensing "%}}
 This feature requires a separate license in addition to the XAP commercial license. Please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services) for more details.
 {{% /info %}}
 

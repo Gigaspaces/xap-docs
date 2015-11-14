@@ -31,7 +31,7 @@ The definitions in the `pu.xml` file are divided into 2 major categories:
 
 - User defined beans, which define instances of user classes to be used by the processing unit. For example, user defined event handlers to which the event containers delegate events as those are received.
 
-{{% info title="SLA (Service Level Agreement) definitions "%}}
+{{% info "SLA (Service Level Agreement) definitions "%}}
 the `pu.xml` may also contain [SLA definitions](./configuring-the-processing-unit-sla.html). In previous releases, this was the recommended way to define your processing unit's SLA. As of version 7.0, the recommended way to do it is to use a separate sla.xml file, which separates this deployment and runtime aspect from the the processing unit's components. This enables better modularization and reuse of the processing unit.
 {{% /info %}}
 

@@ -130,7 +130,7 @@ SQLQuery<Person> query = new SQLQuery<Person>(Person.class,
 
 {{%learn "./query-sql.html#Nested Properties"%}}
 
-{{% info title="Map based nested properties "%}}
+{{% info "Map based nested properties "%}}
 Note that the same indexing techniques above are also applicable to Map-based nested properties, which means that in the example above the `Info` and `Address` classes could be replaced with a `java.util.Map<String,Object>`, with the map keys representing the property names.
 {{% /info %}}
 

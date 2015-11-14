@@ -66,11 +66,11 @@ public class Person
 }
 ```
 
-{{% info title="Properties with Separate Accessors "%}}
+{{% info "Properties with Separate Accessors "%}}
 Starting with .NET 2.0, properties can have separate accessors for getters and setters (e.g. public getter and private setter). In such cases, if either the getter or the setter is public, the property is considered public (i.e. setting `IncludeProperties=IncludeMembers.Public` includes the property in the entry).
 {{% /info %}}
 
-{{% info title="Read-Only Properties "%}}
+{{% info "Read-Only Properties "%}}
 Read-only properties (getter, without setter), are included in the entry, but when the object is de serialized, the value is not restored, since there's no setter. This enables the space to be queried using such properties. There are two common scenarios for read-only properties:
 
 - Calculated value -- the property returns a calculated value based on other fields/properties. This isn't a problem, since no data is lost due to the 'missing' setter.
@@ -90,7 +90,7 @@ public class Person
 }
 ```
 
-{{% info title="Indexing Pros and Cons "%}}
+{{% info "Indexing Pros and Cons "%}}
 Indexing a property speeds up queries which include the property, but slows down write operations for that object (since the space needs to index the property). For that reason, indexing is off by default, and it's up to the user to decide which fields should be indexed.
 {{% /info %}}
 
@@ -187,7 +187,7 @@ When working with a clustered space, one of the properties in a class is used to
 
 Note that only one property in a class can be marked as a routing property.
 
-{{% tip title="Declare the routing property explicitly "%}}
+{{% tip "Declare the routing property explicitly "%}}
 It's highly recommended to explicitly declare which property is the routing property, and not rely on rules 2 and onward. Relying on those rules can lead to confusing problems (e.g. the SpaceID is changed, or an index is added to a property, etc.). Explicitly declaring the routing property makes your code clearer and less error-prone.
 {{% /tip %}}
 
@@ -201,7 +201,7 @@ Note that only one property in a class can be marked as a version property, and 
 
 When a class contains a field or a property of not a nullable type, (for instance a primitive such as `int` or a struct such as `DateTime`), it is recommended to specify a null value for it that will be used when querying the space for that class. The `NullValue` attribute instructs the space to ignore this field, when performing matching or partial update, when the content of the field in the template equals the defined `NullValue`.
 
-{{% info title="Nullables "%}}
+{{% info "Nullables "%}}
 It is recommended that you avoid the usage of such fields and properties, and the need to define null values, by wrapping them with their corresponding Nullable, for instance Nullable<int> or Nullable<DateTime>.
 {{% /info %}}
 
@@ -248,7 +248,7 @@ namespace MyCompany.MyProject
 
 For more information, see [GigaSpaces.NET - Interoperability With Non .NET Applications](./interoperability.html).
 
-{{% note title="AliasName and SqlQuery "%}}
+{{% note "AliasName and SqlQuery "%}}
 When using space SqlQuery on an object with properties which are aliased, the query text needs to use the aliased property names. For more information about SqlQuery, see [GigaSpaces.NET - Sql Query](./query-sql.html).
 {{% /note %}}
 

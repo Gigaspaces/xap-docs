@@ -43,7 +43,7 @@ gs-agent.bat
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tip title="Optional - The Web Console "%}}
+{{% tip "Optional - The Web Console "%}}
 XAP provides a web-based tool for monitoring and management. From the `bin` folder start the `gs-webui` script, then browse to `localhost:8099`. Click the 'Login' button and take a look at the *Dashboard* and *Hosts* tabs - you'll see the service grid components created on your machine.
 {{% /tip %}}
 

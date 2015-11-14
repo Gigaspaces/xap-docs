@@ -12,7 +12,7 @@ XAP comes with a built in implementation of [Space Persistency](./space-persiste
 
 The `NHibernate Space Persistency Implementation` is used both with the [Synchronous](./direct-persistency.html) and the [Asynchronous Persistency](./asynchronous-persistency-with-the-mirror.html) modes.
 
-{{% info title="Building the plugin "%}}
+{{% info "Building the plugin "%}}
 The NHibernate External Data Source is provided as a reference implementation under `<XAP Root>\Practices\ExternalDataSource\NHibernate`. You'll need to build it before using it by using the `build.bat` script.
 {{%/info%}}
 

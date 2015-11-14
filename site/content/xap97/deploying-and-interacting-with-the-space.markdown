@@ -347,7 +347,7 @@ As with the read operation, the `GigaSpace` interface also supports asynchronous
 
 - **Change**: The Change operation allows you to change a specific content of an existing object(s) in the space. Unlike the write operation that may update an existing object, the change operation does not require reading the object and later sending its updated copy with the operation back to the space. The Change operation allow you to [manipulate numerical fields](./the-space-counters.html) directly (increment , decrements) directly on the space without reading these back to the client and later writing these back.
 
-{{% info title="Using the Space as a Messaging Bus "%}}
+{{% info "Using the Space as a Messaging Bus "%}}
 The Space can also be used to deliver events (messages) to your application. This is based on its ability to support blocking operations, and the Space's built-in notification API. This section only deals with the data access aspects of the Space. Refer to [this section](./messaging-support.html) for details about the Space's messaging capabilities.
 {{% /info %}}
 
@@ -403,7 +403,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new UrlSpaceConfigurer("jini://*/*
 
 Once you have access to a `GigaSpace` instance, you can start operating on the Space, namely write objects to it, and read and take objects from it.
 
-{{% note title="Cleaning up resources after using the space "%}}
+{{% note "Cleaning up resources after using the space "%}}
 There are two types of resources associated with space instances and space clients.
 
 1. **Thread and memory resources**: If your space client or embedded space are running within a Spring-enabled environment (e.g. the GigaSpaces service grid or a standalone Spring application), and are configured in a Spring application context, these resources will be cleaned up automatically when the Spring application context is destroyed. <br/> However, if you start the space client or space instance programmatically, you must call the `UrlSpaceConfigurer` method when your application no longer uses the space instance / space client.

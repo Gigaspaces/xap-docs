@@ -236,7 +236,7 @@ Before deploying the application with a backup, we first undeploy the current si
 
 #### Deploying as a Single Instance with Backup
 
-{{% note title="For Community Edition Users "%}}
+{{% note "For Community Edition Users "%}}
 If you are a community edition user, please note that you will not be able to perform this step since the community edition limits the number of space instances to one
 {{% /note %}}
 

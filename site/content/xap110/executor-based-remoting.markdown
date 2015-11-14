@@ -9,7 +9,7 @@ weight: 200
 {{% ssummary%}}{{%/ssummary%}}
 
 
-*Executor Based Remoting* uses [Executors](./task-execution-over-the-space.html) to provided remoting capabilities on top of the Space. Executor Based Remoting allows for direct invocation of services in an asynchronous manner in a broadcast or routed manner. Executor Remoting works with services that are deployed in a Processing Unit and execute within a collocated space.
+**Executor Based Remoting** uses [Executors](./task-execution-over-the-space.html) to provided remoting capabilities on top of the Space. Executor Based Remoting allows for direct invocation of services in an asynchronous manner in a broadcast or routed manner. Executor Remoting works with services that are deployed in a Processing Unit and execute within a collocated space.
 
 {{% align center %}}
 ![Executor.jpg](/attachment_files/Executor.jpg)
@@ -80,7 +80,9 @@ public interface IDataProcessor {
 }
 ```
 
-{{% exclamation %}} The `Data` object should be `Serializable`, or better yet, `Externalizable` (for better performance).
+{{% note %}}
+The `Data` object should be `Serializable`, or better yet, `Externalizable` (for better performance).
+{{%/note%}}
 
 # Implementing the Contract
 
@@ -433,8 +435,8 @@ public interface MyService {
 
 In the example, the `getProperty` method is called on the `Value` object, and its return value is subsequently used to extract the routing index.
 
-{{% note %}}
-**Note:** Using a [SpaceDocument](./document-api.html) as the annotated routing argument will cause an Exception since the `SpaceDocument` class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. To avoid the Exception, simply extend the `SpaceDocument` class as described in [Extending Space Documents](./document-extending.html) and then define the relevant `getProperty` method in the extension class. Alternatively, an Exception can be avoided by implementing a `RemoteRoutingHandler`, as described above.
+{{%note  %}}
+Using a [SpaceDocument](./document-api.html) as the annotated routing argument will cause an Exception since the `SpaceDocument` class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. To avoid the Exception, simply extend the `SpaceDocument` class as described in [Extending Space Documents](./document-extending.html) and then define the relevant `getProperty` method in the extension class. Alternatively, an Exception can be avoided by implementing a `RemoteRoutingHandler`, as described above.
 {{%/note%}}
 
 # Asynchronous Execution
@@ -898,10 +900,16 @@ The way to access the meta arguments on the server side is to configure a [serve
 When using executor remoting, a remote invocation can be broadcasted to all active (primary) cluster members. Each Service instance is invoked and return a result to its called which in turn reduce these and pass the final result to the application.
 
 The First phase involves the Service invocation:
+
+{{%align center%}}
 ![Executor1.jpg](/attachment_files/Executor1.jpg)
+{{%/align%}}
 
 The Second phase involves reducing the results retrieved from the Services:
+
+{{%align center%}}
 ![Executor2.jpg](/attachment_files/Executor2.jpg)
+{{%/align%}}
 
 The configuration of enabling broadcasting is done on the client level, by setting the broadcast flag to `true`:
 

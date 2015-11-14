@@ -14,8 +14,8 @@ XAP allows putting a processing unit in quiesce mode (a.k.a maintenance mode). T
 For more information please refer to the [Quiesce documentation](./quiesce-overview.html)
 {{%/refer%}}
 
-{{%info%}}
-Interacting with a secured gridIn order to interact with a secured grid you need to login first. See [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html).
+{{%info "Interacting with a Secured Grid"%}}
+In order to interact with a secured grid you need to login first. See [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html).
 {{%/info%}}
 
 # Quiesce A Processing Unit

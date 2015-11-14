@@ -217,7 +217,7 @@ The following example queries for a **Dealer** which has a **Car** whose *compan
 ```
 
 
-{{% note title="Caution "%}}
+{{% note "Caution "%}}
 Writing that last query without parentheses will yield results which are somewhat confusing:
 
 

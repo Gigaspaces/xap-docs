@@ -172,7 +172,7 @@ All the TCP/IP parameters are registry values that are located under the subkeys
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 ```
 
-{{% info title="See also: "%}}
+{{% info "See also: "%}}
 - [http://support.microsoft.com/kb/314053](http://support.microsoft.com/kb/314053)
 {{% /info %}}
 

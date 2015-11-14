@@ -11,7 +11,7 @@ When using a persistent space there are situations where not all the space objec
 
 Transient Space objects are treated the same as persistent objects, but when you call the write operation, only persistent objects are saved to the persistent store. All space operations, including batch operations, are valid for transient space object.
 
-{{% tip title="Non-Mirrored Entries "%}}
+{{% tip "Non-Mirrored Entries "%}}
 When using the [Space Persistency](./space-persistency.html) feature, you might not want all space objects to be persistent or to be delivered to some data source. The Space Persistency feature makes sure transient space objects are not persisted or delivered to the data source.
 {{% /tip %}}
 

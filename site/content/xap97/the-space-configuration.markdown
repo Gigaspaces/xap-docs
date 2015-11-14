@@ -192,7 +192,7 @@ Here is an example of a space working in FIFO mode, using specific lookup groups
 
 The space allows you to override specific schema configuration element values using the `Properties` object, that uses an XPath-like navigation as the name value. The `UrlSpaceFactoryBean` allows you to set the `Properties` object, specifying it within the Spring configuration.
 
-{{% tip title="Which component's configuration can be overridden? "%}}
+{{% tip "Which component's configuration can be overridden? "%}}
 The general properties are used to override various components such as the space, space container, cluster schema properties, space proxy/client configuration, space URL attributes and other system and environmental properties.
 {{% /tip %}}
 

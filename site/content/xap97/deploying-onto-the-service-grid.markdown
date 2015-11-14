@@ -28,7 +28,7 @@ Once built according to the processing unit [directory structure](./the-processi
 
 After you [package](./packaging-and-deployment.html) the processing unit and deploy it via one of the deployment tools, the deployment tool uploads it to all the running [GSMs](/product_overview/service-grid.html#gsm), where it is extracted and provisioned to the [GSCs](/product_overview/service-grid.html#gsc).
 
-{{% info title="To Jar or Not to Jar "%}}
+{{% info "To Jar or Not to Jar "%}}
 The recommended way to deploy the processing unit is by packaging it into a .jar or a .zip archive and specifying the location of the packaged file to the deployment tool in use.
 
 However, GigaSpaces XAP also supports the deployment of exploded processing units. (The deployment tool will package the processing unit directories into a jar file automatically). Another option to deploy a processing unit is by placing the exploded processing unit under the deploy directory of each of the GSMs and issuing  a deploy command with the processing unit name (the name of the directory under the deploy directory).

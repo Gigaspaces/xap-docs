@@ -446,7 +446,7 @@ public interface MyService {
 In the above example, the `getProperty` method is called on the `Value` object and its return value is used to extract the routing index.
 
 {{% note %}}
-**Note:** Using a [SpaceDocument](./document-api.html) as the annotated routing argument will cause an exception since the `SpaceDocument` class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. The solution is either to extend the `SpaceDocument` class as described in [Extending Space Documents](./document-extending.html), and define the relevant `getProperty` method in the extension class, or use the `RemoteRoutingHandler` mentioned above.
+Using a [SpaceDocument](./document-api.html) as the annotated routing argument will cause an exception since the `SpaceDocument` class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. The solution is either to extend the `SpaceDocument` class as described in [Extending Space Documents](./document-extending.html), and define the relevant `getProperty` method in the extension class, or use the `RemoteRoutingHandler` mentioned above.
 {{%/note%}}
 
 # Server Side Services Injection

@@ -39,7 +39,7 @@ Persistency can be configured to run in Synchronous or Asynchronous mode:
 ![data-grid-async-persistNew.jpg](/attachment_files/data-grid-async-persistNew.jpg)
 {{% /align %}}
 
-{{% info %}}
+{{% info "Synchronous verses Asynchronous"%}}
 The difference between the Synchronous or Asynchronous persistency mode concerns how data is persisted back to the database. The Synchronous mode data is persisted immediately once the operation is conducted where the client application wait for the `SpaceDataSource`/`SpaceSynchronizationEndpoint` to confirm the write. With the Asynchronous mode (mirror Service), data is persisted in a **reliable** asynchronous manner using the mirror service as a write behind activity. This mode provides maximum performance.
 
 If you're migrating from a GigaSpaces version prior to 9.7 please see the [Migrating From External Data Source API](./migrating-from-external-data-source-api.html) page.

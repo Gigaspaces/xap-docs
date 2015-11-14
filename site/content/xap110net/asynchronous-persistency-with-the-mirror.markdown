@@ -147,7 +147,7 @@ Before primary space is un deployed/redeployed, all data changes are flushed to 
 
 # Optimizing the Mirror Activity
 
-{{% warning title="Database Update Rate "%}}
+{{% warning "Database Update Rate "%}}
 The database update rate by the Mirror is a function of the number of IMDG partitions, database update speed with a single thread, database transaction size, network latency between the Mirror and the Database, hibernate overhead (if hibernate is being used as the persistence mechanism), relevant table indexed columns, and the database record size. Also, when distributed transactions are used with the IMDG, this may improve the database update rate (since multiple partitions will be sending their updates to the Mirror, which can batch all cumulative updates to the database), but this will impact the IMDG transaction latency.
 {{% /warning %}}
 
