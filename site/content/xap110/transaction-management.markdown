@@ -146,8 +146,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% info %}}
-Time based Parameters Units:
+{{% info "Time based Parameters Units" %}}
 
 - The **default-timeout** parameter is specified in seconds
 - Other parameters such as the commit and abort timeout, lookup-timeout, and others are specified in millisecond
@@ -260,7 +259,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% info %}}
+{{% info "Spring declarative transaction management"%}}
 When using Spring declarative transaction management, a transaction timeout can be set on the transaction scope. For more details, see [below](#spring-transactiondefinition-mapping-to-gigaspaces-readmodifiers).
 {{%/info%}}
 
@@ -268,7 +267,7 @@ When using Jini based transactions, a timeout value can be set for both the comm
 
 # Local Jini Transaction Manager - Deprecated
 
-{{% info %}}
+{{% info "Deprecated"%}}
 Local Jini Transaction Manager was deprecated in 8.0. Use [Distributed Jini Transaction Manager](#Distributed Jini Transaction Manager) instead.
 {{% /info %}}
 

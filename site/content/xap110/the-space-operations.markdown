@@ -100,7 +100,7 @@ In order to write objects to the Space, you use the write method of the GigaSpac
 
 
 
-#### POJO Example
+## POJO Example
 
 The following example writes an `Employee` object into the space:
 
@@ -114,7 +114,7 @@ The following example writes an `Employee` object into the space:
     LeaseContext<Employee> lc = space.write(employee);
 ```
 
-#### SpaceDocument Example
+## SpaceDocument Example
 
 Here is an example how you create a SpaceDocument, register it with the space and then write it into the space:
 
@@ -151,7 +151,7 @@ Here is an example how you create a SpaceDocument, register it with the space an
 ```
 
 
-#### Time To Live
+## Time To Live
 
 To write an object into the space with a limited time to live you should specify [a lease value](./leases-automatic-expiration.html) (in millisecond). The object will expire automatically from the space.
 
@@ -164,13 +164,13 @@ To write an object into the space with a limited time to live you should specify
 
 {{%anchor writeMultiple%}}
 
-#### Write Multiple
+## Write Multiple
 
 When writing a batch of objects into the space, these should be placed into an array to be used by the `GigaSpace.writeMultiple` operation. The returned array will include the corresponding `LeaseContext` object.
 
 
 
-#### Example
+## Example
 
 
 ```java

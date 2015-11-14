@@ -307,7 +307,7 @@ localViewConfigurer.destroy();
 
 ```
 
-{{%note%}}
+{{%note "Local View and Cache"%}}
 When using LocalCache and LocalView you need to call the `destroy()` method on their respective configurer.
 {{%/note%}}
 
