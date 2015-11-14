@@ -53,11 +53,13 @@ userPassword: koala
 ...
 ```
 
- [sample.ldif](/download_files/sample.ldif)
+
+Download the [sample.ldif](/download_files/sample.ldif)
 
 
+{{%align center%}}
 ![SpringSecurity-LDAP.png](/attachment_files/SpringSecurity-LDAP.png)
-
+{{%/align%}}
 
 
 # Configure Spring to use an LDAP Server
@@ -175,4 +177,6 @@ The `DefaultLdapAuthoritiesPopulator` allows us to obtain any additional roles f
 
 Take for example Emily, our "Box-Office Administrator" which needs extra authorities which are not part of the "Box-Office Administrator" role. We would like to be able to grant specific authorities on top of the user record, as illustrated below:
 
+{{%align center%}}
 ![SpringSecurity-LDAP-extra.png](/attachment_files/SpringSecurity-LDAP-extra.png)
+{{%/align%}}

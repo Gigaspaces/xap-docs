@@ -20,7 +20,9 @@ The example distribution can be found under `<XAP root>/examples/helloworld`.
 
 We have a processor bean that will process `HelloObjects` - it works with a polling container to talk to with a Space, all inside of a `Helloworld` Processing Unit. External to that process is the `Feeder` application, which gets a remote proxy to the Space and uses it to write objects (#1). The `HelloObject` written to the Space becomes interesting to the polling container. The polling container will take it out of the Space (#2), hand it to the `HelloWorld` processor bean for processing, and then write the results back to the Space (#3). In this case a `ProcessedHelloObject`. Later, our feeder application can read the results (#4) and print them out to the screen.
 
+{{%align center%}}
 ![helloworld.png](/attachment_files/helloworld.png)
+{{%/align%}}
 
 # What needs to be secured?
 

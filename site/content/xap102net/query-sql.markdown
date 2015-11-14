@@ -139,7 +139,7 @@ The following features support only simple SQL queries
 
 
 
-{{%vbar "SqlQuery **does not** support the following:"%}}
+{{%vbar "SqlQuery does not support the following:"%}}
 - Multiple tables select.
 - `DISTINCT`
 - The SQL statements: VIEW, TRIGGERS, EXISTS, BETWEEN, NOT, CREATE USER, GRANT, REVOKE, SET PASSWORD, CONNECT USER, ON.

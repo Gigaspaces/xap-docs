@@ -156,7 +156,7 @@ When applied to a processing unit which contains a space with primary-backup sem
 
 The most common usage of the max-instances feature is when using a processing unit which contains a space with primary-backup semantics. By setting its value to `1`, you ensure that a primary and its backup(s) cannot be provisioned to the same JVM (GSC) / physical machine.
 
-{{% vbar %}}
+{{% vbar "max-instances-per-vm"%}}
 The `max-instances-per-vm` means for a PU with an embedded space the max amount of instances per partition. A partition may have primary or backup instance. The `max-instances-per-vm=1` means you won't have primary and a backup of the same partition provisioned into the same GSC. You may have multiple partitions with primary or backup instances provisioned into the same GSC. You can't limit the amount of instances from different partitions a GSC may host.
 
 If you have enough GSCs (as the amount of partitions X 2) you will end up having a single instance per GSC.

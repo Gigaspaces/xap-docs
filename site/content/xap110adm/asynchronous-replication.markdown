@@ -77,14 +77,10 @@ The worker will wake up and replicate if either of these two occurs. The followi
 
 | Property | Description | Default Value |
 |:---------|:------------|:--------------|
-| repl-chunk-size | Number of packets transmitted together on the network when the replication event is triggered. The maximum value you can assign for this property is `repl-interval-opers`. | 500 |
-| <nobr>repl-interval-millis</nobr> | Time (in milliseconds) to wait between replication operations. | 3000 \[ms\] |
-| repl-interval-opers | Number of destructive operations to wait before replicating. | 500 |
+| cluster-config.groups.group.repl-policy.async-replication.repl-chunk-size | Number of packets transmitted together on the network when the replication event is triggered. The maximum value you can assign for this property is `repl-interval-opers`. | 500 |
+| cluster-config.groups.group.repl-policy.async-replication.repl-interval-millis | Time (in milliseconds) to wait between replication operations. | 3000 \[ms\] |
+| cluster-config.groups.group.repl-policy.async-replication.repl-interval-opers | Number of destructive operations to wait before replicating. | 500 |
 
-
-{{%note%}}
-Prefix the property with 'cluster-config.groups.group.repl-policy.async-replication.`
-{{%/note%}}
 
 To change the default replication settings you should modify the space properties when deployed. You may set these properties via the pu.xml or programmatically. Here is an example how you can set the replication parameters when using the pu.xml:
 

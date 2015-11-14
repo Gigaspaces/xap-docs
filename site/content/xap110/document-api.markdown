@@ -16,13 +16,14 @@ Before a certain Document instance is written to the space, its type should be i
 
 {{% tip %}}
 The Type controls **metadata** - so only the metadata is part of the type. A document can introduce new properties at will.
+The Type controls **metadata** - so only the metadata is part of the type. A document can introduce new properties at will.
 {{% /tip %}}
 
 Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties (although in most cases Document instances of the same type are likely to have identical or similar set of properties).
 
 
 
-# Schema Evolution with Space Documents
+# Schema Evolution
 
 Since a `SpaceDocument` is completely dynamic by nature, it is very easy to change or evolve your data model without ever taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist since the space does not enforce any restriction with regards to the property set of documents that belong to a certain type. This is a much more lightweight model in comparison to the classic POJO model, where a recompilation and in many cases a full space restart is required to change the data schema.
 
@@ -131,7 +132,7 @@ public void registerProductType(GigaSpace gigaspace) {
 
 Note that this code does not reflect the complete model - most of the properties does not need to be introduced to the schema. Only properties with special roles (ID, Routing) are part of the schema definition. These meta model **settings cannot be changed** without restarting the space or dropping the type, clearing all its instances and reintroducing it again.
 
-# Creating and Writing Documents
+# Creating and Writing
 
 To create a document create a `Map<String,Object>` with the requested properties, create a `SpaceDocument` object using the type name and properties, and write it to the space using the regular `GigaSpace` write method:
 
@@ -206,7 +207,7 @@ public void writeProduct2(GigaSpace gigaspace) {
 - Use only alphanumeric characters (a-z, A-Z, 0-9) and the underscore ('_') to construct properties keys. Other characters might have a special behavior in GigaSpaces (for example: the dot ('.') is used to distinguish nested paths).
 {{%/note%}}
 
-# Reading and Removing Documents
+# Reading and Removing
 
 There are three types of document queries:
 
@@ -791,7 +792,7 @@ Space Filter are supported for space documents.
 
 If you intend to use space filters in a mixed POJO-Document environment, please refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
 
-# Space Replication Filters
+# Replication Filters
 
 Space Replication Filter are supported for space documents.
 

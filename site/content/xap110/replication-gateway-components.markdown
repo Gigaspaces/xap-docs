@@ -221,7 +221,10 @@ In this configuration we have specifies that the delegator to Hong Kong should b
 
 In Direct delegation can be used by a [Bootstrap](./replication-gateway-bootstrapping-process.html) in the same manner, since the gateway sink in the bootstrapping site is using the local delegator in order to locate the bootstrap source site sink and therefor it will go through the same delegation path.
 
+{{%align center%}}
 ![wan-delegation.jpg](/attachment_files/wan-delegation.jpg)
+{{%/align%}}
+
 
 # Seperating or Bundling The Gateway Components
 

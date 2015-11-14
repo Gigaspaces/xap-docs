@@ -12,7 +12,7 @@ weight: 300
 
 
 
-# Manual Capacity Scale Trigger
+# Capacity Scale Trigger
 
 The system administrator may specify the memory and/or CPU core resources required for the processing unit in production. This should be specified during the deployment time, and could be specified also anytime after the deployment. The memory capacity trigger affects the number of provisioned containers. If there are not enough machines to host the provisioned containers the trigger also affects the number of provisioned machines. The number of CPUs affect directly the number of provisioned machines (even if it means that some of the machines have unused memory).
 
@@ -20,7 +20,7 @@ When specifying both memory and cores capacity requirements as part of the deplo
 
 Here is an example how you can scale a deployed EPU memory and CPU capacity.
 
-#### Step 1 - Deploy the PU:
+## Step 1:
 
 We deploy the PU having 512GB as the maximum total amount of memory utilized both for primary and backup instances where the entire system should consume maximum of 32 cores. At start only 128GB and 8 cores will be utilized.
 
@@ -42,7 +42,7 @@ ProcessingUnit pu = gsm.deploy(
 pu.waitForSpace().waitFor(pu.getTotalNumberOfInstances());
 ```
 
-#### Step 2 - Increase the memory capacity from 128GB to 256GB and number of cores from 8 to 16:
+## Step 2:
 
 
 ```java
@@ -55,7 +55,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
          .create());
 ```
 
-#### Step 3 - Increase the memory capacity from 256GB to 512GB and number of cores from 16 to 32:
+## Step 3:
 
 
 ```java
@@ -68,7 +68,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
          .create());
 ```
 
-#### Step 4 - Decrease the memory capacity and CPU capacity:
+## Step 4:
 
 
 ```java

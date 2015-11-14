@@ -85,7 +85,7 @@ The following operations support`SQLQuery` only with Simple Queries:
 
 # Unsupported SQL Features
 
-{{%vbar "SQLQuery **does not** support the following: "%}}
+{{%vbar "SQLQuery does not support the following: "%}}
 
 
 - Multiple tables select - This is supported with the [JDBC API](./jdbc-driver.html).

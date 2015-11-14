@@ -21,7 +21,9 @@ The bootstrap target site gateway sink will locate the gateway sink of the boots
 
 All the changes that are done in the bootstrap source site during this copy process are accumulated at the replication redo-log and will be sent via the bootstrap source site delegator to the bootstrap target site sink once the copy stage is complete. During the bootstrap copy stage, the gateway sink which is being bootstrapped will not be available for replication, and all the remote sites local spaces will have a disconnected replication channel to that gateway sink.
 
+{{%align center%}}
 ![wan-bootstrap-copy.jpg](/attachment_files/wan-bootstrap-copy.jpg)
+{{%/align%}}
 
 1. NY Sink initiates bootstrap process from the London GW
 1. The NY London GW sends the requests to the London Sink over the WAN
@@ -29,7 +31,9 @@ All the changes that are done in the bootstrap source site during this copy proc
 1. The London sink sends the data to the NY London GW
 1. The GW sends it to the sink which pushes it to the local NY cluster
 
+{{%align center%}}
 ![wan-bootstrap-sync.jpg](/attachment_files/wan-bootstrap-sync.jpg)
+{{%/align%}}
 
 # Initiating a Bootstrap
 

@@ -542,7 +542,7 @@ You can specify that the `SQLQuery` should contain only partial results which me
 
 #### Unsupported SQL Features
 
-{{%vbar "SQLQuery **does not** support the following: "%}}
+{{%vbar "SQLQuery does not support the following: "%}}
 
 
 - Multiple tables select - This is supported with the [JDBC API](./jdbc-driver.html).

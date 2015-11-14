@@ -415,7 +415,7 @@ You can specify that the `SQLQuery` should contain only partial results which me
 
 #### Unsupported SQL Features
 
-{{%panel title="SQLQuery **does not** support the following: "%}}
+{{%panel title="SQLQuery does not support the following: "%}}
 
 - Aggregate functions: COUNT, MAX, MIN, SUM, AVG are only supported in sub queries (These are fully supported with the [JDBC API](./jdbc-driver.html)).
 - Multiple tables select - This is supported with the [JDBC API](./jdbc-driver.html).

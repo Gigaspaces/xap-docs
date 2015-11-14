@@ -30,7 +30,9 @@ The `AuthenticationManager` interface is quite simple and you could easily imple
 
 The purpose of `ProviderManager` is to enable you to authenticate users against multiple identity management sources. Rather than relying on itself to perform authentication, `ProviderManager` steps one by one through a collection of authentication providers, until one of them successfully authenticates the user (or until it runs out of providers). This makes it possible for Spring Security to support multiple mechanisms for a single request.
 
+{{%align center%}}
 ![SpringSecurity-ProviderManager.png](/attachment_files/SpringSecurity-ProviderManager.png)
+{{%/align%}}
 
 The following chunk of XML shows a typical configuration of `ProviderManager` in the Spring configuration file:
 

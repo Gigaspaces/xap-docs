@@ -238,7 +238,7 @@ The following features support only simple SQL queries
 
 
 
-{{%vbar "SqlQuery **does not** support the following:"%}}
+{{%vbar "SqlQuery does not support the following:"%}}
 - Aggregate functions: COUNT, MAX, MIN, SUM, AVG.
 - Multiple tables select.
 - `DISTINCT`
