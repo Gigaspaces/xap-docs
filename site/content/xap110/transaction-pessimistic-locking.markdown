@@ -16,10 +16,10 @@ To enforce a sole reader and sole updater for the object we explicitly lock the 
 
 When performing read operations without locking the object via a transaction, users can immediately perform an update operation, without having to wait for other users to complete their transaction (since there is none). However, there is no guarantee that the update operation will be performed on the latest version of the object.
 
-{{%note%}}
+
 
 The optimistic locking protocol assumes that a client that retrieved an object from the space, might or might not update the object, so it never locks the object when it is reading it. This makes the object accessible for large amount of users avoiding the need to wait for the lock to be released. Using the optimistic locking protocol when every object that is read is also updated, will consume unnecessary resources at the client and space side since all the clients will try to get the latest version of the object when updating it.
-{{%/note%}}
+ 
 
 {{%note "To implement the pessimistic locking protocol you should have the following:"%}}
 

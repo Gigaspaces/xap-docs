@@ -13,18 +13,18 @@ To benefit from data caching and other capabilities, it is worthwhile to migrate
 The following tables show the correspondence between the Hibernate basic API methods to [GigaSpaces API](./the-gigaspace-interface.html) and the [GigaMap API](./map-api.html) methods.
 
 
-| `org.hibernate.Session Method` | `GigaSpace` Method| `GigaMap` Method|
+| org.hibernate.Session Method | XAP Method| XAP Method|
 |:-------------------------------|:------------------|:----------------|
-| `save` |write|put |
-| `persist` |write|put |
-| `delete` | clear |remove |
-| `update` |write|put |
-| `merge` |write|put |
-| `saveOrUpdate` |write|put |
-| `replicate` |write|put |
-| `get` |read, readByID|get |
-| `load` |read, readByID|get |
-| `createSQLQuery` | readByIDs, readMultiple(SQLQuery) , |Not supported|
+| save |write|put |
+| persist |write|put |
+| delete | clear |remove |
+| update |write|put |
+| merge |write|put |
+| saveOrUpdate |write|put |
+| replicate |write|put |
+| get |read, readByID|get |
+| load |read, readByID|get |
+| createSQLQuery | readByIDs, readMultiple(SQLQuery) , |Not supported|
 
 The [Moving from Hibernate to Space](/sbp/moving-from-hibernate-to-space.html) best practice includes step by step instructions for moving from Hibernate based application to GigaSpaces Data-Grid as the data access layer. This use Hibernate as the space persistency layer using write-through approach when pushing updates into the database.
 

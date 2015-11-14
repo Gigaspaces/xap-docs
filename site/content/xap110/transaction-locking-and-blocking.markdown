@@ -19,7 +19,7 @@ Space operations have rules that specify whether they should be blocked if anoth
 These rules should be considered very carefully when building space-based applications, especially in scenarios with many concurrent users.
 The following table describes space operation blocking rules. The operations listed on the top ("Operation B") are blocked, or allowed, when performed in conjunction with operations listed on the left ("Operation A").
 
-{{% tip %}}
+{{% tip "Blocking behavior"%}}
 TX denotes transaction, and it is assumed that operations A are called under a different transaction to operations B. If they are called under the same transaction, blocking behavior is different.
 {{% /tip %}}
 

@@ -267,9 +267,9 @@ When using Jini based transactions, a timeout value can be set for both the comm
 
 # Local Jini Transaction Manager - Deprecated
 
-{{% info "Deprecated"%}}
+{{% warning "Deprecated"%}}
 Local Jini Transaction Manager was deprecated in 8.0. Use [Distributed Jini Transaction Manager](#Distributed Jini Transaction Manager) instead.
-{{% /info %}}
+{{% /warning %}}
 
 # Renewing Transactions
 
@@ -508,7 +508,7 @@ If you don't want to leverage [Spring's declarative transaction management](http
 
 Here is how you should use the Transaction manager via the API:
 
-1. Get a reference to the relevant `PlatformTransactionManager`:
+Get a reference to the relevant `PlatformTransactionManager`:
 
 
 ```java
@@ -522,7 +522,7 @@ or
 PlatformTransactionManager ptm = new LookupJiniTxManagerConfigurer().lookupTimeout(5000).transactionManager();
 ```
 
-2. Use the `GigaSpace` to execute space operations and rollback/commit using the `PlatformTransactionManager` created:
+Use the `GigaSpace` to execute space operations and rollback/commit using the `PlatformTransactionManager` created:
 
 
 ```java

@@ -13,7 +13,7 @@ weight: 100
 
 A Mirror Service can be configured per Space cluster. You can't have multiple Mirror services configured for the same space cluster.
 
-{{% tip %}}
+{{% tip "Multiple mirrors"%}}
 If you need "multiple mirrors" for the same space cluster you can implement a Mirror Service that will route the data and operations to other multiple "agents" that will persist the data - effectively make the default Mirror act as a dispatcher.
 {{% /tip %}}
 
@@ -448,10 +448,6 @@ Here is a schematic flow of how two partitions (each a primary-backup pair) asyn
 
 # Considerations and Known Issues
 
-{{% refer %}}
-[Space persistency considerations](./space-persistency-advanced-topics.html#limits) also apply to the Mirror Service.
-{{%/refer%}}
-
 - The Mirror Service cannot be used with a single space or the `partitioned` cluster schema. It is supported with the `async-replicated`, and `partitioned-sync2backup` cluster schemas.
 - The Mirror Service is a single space which joins a replication group. The Mirror Service is not a clustered space or part of the replication group declaration.
 - When the Mirror Service is loaded, it does not perform memory recovery. See the [reliability section](#reliability) for more details.
@@ -459,6 +455,10 @@ Here is a schematic flow of how two partitions (each a primary-backup pair) asyn
 - You should have one Mirror Service running per Data-Grid cluster.
 - The Mirror Service cannot be clustered. Deploying it as a Processing unit ensures its high-availability.
 - The Mirror does not load data back into the space. The `SpaceDataSource` implementation of the space should be used to initialize the space when started.
+
+{{% refer %}}
+[Space persistency considerations](./space-persistency-advanced-topics.html#limits) also apply to the Mirror Service.
+{{%/refer%}}
 
 # Troubleshooting
 

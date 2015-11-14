@@ -43,7 +43,7 @@ The following table describes the mapping between the [Spring TransactionDefinit
 |ISOLATION_READ_COMMITTED|READ_COMMITTED|
 |ISOLATION_REPEATABLE_READ|REPEATABLE_READ|
 
-{{% warning %}}
+{{% warning "SERIALIZABLE"%}}
 `SERIALIZABLE`isolation is not supported.No exception is currently thrown when used.
 {{% /warning %}}
 
@@ -158,8 +158,8 @@ The following methods support exclusive read lock when used with a transaction:
 
 The exclusive read lock is supported in a clustered environment when using the Jini Transaction Manager.
 
-{{% tip %}}
-Starting with XAP 7.1.2 GigaSpaces throws `java.lang.IllegalArgumentException: Using EXCLUSIVE_READ_LOCK modifier without a transaction`{{<wbr>}}`is illegal` exception as a protection mechanism when performing exclusive read **without** using a transaction. You must use a transaction when using exclusive read lock.
+{{% tip "EXCLUSIVE_READ_LOCK modifier"%}}
+Starting with XAP 7.1.2 GigaSpaces throws `java.lang.IllegalArgumentException`: Using EXCLUSIVE_READ_LOCK modifier without a transaction is illegal exception as a protection mechanism when performing exclusive read **without** using a transaction. You must use a transaction when using exclusive read lock.
 {{% /tip %}}
 
 ## Code Example
