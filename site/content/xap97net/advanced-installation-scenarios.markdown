@@ -51,7 +51,7 @@ Yes. From the command line, type the following:
 `C:\>msiexec /i GigaSpaces-XAP.NET-9.0.0.5000-GA-x86.msi /quiet`
 
 {{% info %}}
-For more information about installing msi packages from command line, see [http://msdn.microsoft.com/en-us/library/aa372024(VS.85).aspx](http://msdn.microsoft.com/en-us/library/aa372024(VS.85).aspx).
+For more information about installing msi packages from command line, see [http://msdn.microsoft.com/en-us/library/aa372024.aspx](http://msdn.microsoft.com/en-us/library/aa372024.aspx).
 {{%/info%}}
 
 # Manual configuration without setup

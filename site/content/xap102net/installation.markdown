@@ -8,15 +8,15 @@ weight: 100
 
 {{<wbr>}}
 
-**Required Software:** [Microsoft .NET Framework 3.5](https://msdn.microsoft.com/en-us/library/w0x726c2(v=vs.90).aspx) or later.
+**Required Software:** [Microsoft .NET Framework 3.5](https://msdn.microsoft.com/en-us/library/w0x726c2.aspx) or later.
 
 {{% note %}}
-Recommended: [Microsoft .NET Framework 4.0](https://msdn.microsoft.com/en-us/library/w0x726c2(v=vs.100).aspx) or later.
+Recommended: [Microsoft .NET Framework 4.0](https://msdn.microsoft.com/en-us/library/w0x726c2.aspx) or later.
 {{%/note%}}
 
 **Supported Operating Systems:** Any Windows operating system supported by the designated .NET Framework version.
 
-**64 bit support:** XAP.NET is released in two separate packages for x86 and x64. The XAP.NET x86 package can be installed on a x64 environment and run using [WoW64](http://msdn.microsoft.com/en-us/library/aa384249(VS.85).aspx).
+**64 bit support:** XAP.NET is released in two separate packages for x86 and x64. The XAP.NET x86 package can be installed on a x64 environment and run using [WoW64](http://msdn.microsoft.com/en-us/library/aa384249.aspx).
 
 #  Installation
 

@@ -145,7 +145,7 @@ Jetty itself is configured using Spring, and allows you to control all aspects o
 {{%/column%}}
 {{%column width="20%" %}}
 
-{{%popup   "/attachment_files/qsg/web_app_archi.jpg"%}}
+{{%popup   "/attachment_files/qsg/web_app_archi.jpg" "Jetty Instance"%}}
 
 {{%/column%}}
 {{%/section%}}

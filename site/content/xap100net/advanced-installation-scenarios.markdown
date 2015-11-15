@@ -36,7 +36,7 @@ C:\>msiexec /i {{%version "msi-filename"%}} /quiet
 ```
 
 {{% refer %}}
-For more information about installing `msi` packages from command line, see [http://msdn.microsoft.com/en-us/library/aa372024(VS.85).aspx](http://msdn.microsoft.com/en-us/library/aa372024(VS.85).aspx).
+For more information about installing `msi` packages from command line, see [http://msdn.microsoft.com/en-us/library/aa372024.aspx](http://msdn.microsoft.com/en-us/library/aa372024.aspx).
 {{%/refer%}}
 
 # Manual configuration without setup

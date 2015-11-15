@@ -1,11 +1,25 @@
+{{if isset .Params 1}}
 <div class="container">
       <div class="row">
         <div style="float:left;width:150px;height=140px; border-style:solid;border-color:#E5E4E2;border-radius:10px;padding:0px;position:relative;margin:0px;">
          <p>
-          <a  class="example-image-link" href="{{.Get 0}}" data-toggle="lightbox" >
+          <a  class="example-image-link" href="{{.Get 0}}" data-toggle="lightbox" data-title="{{.Get 1}}">
              <img src="{{.Get 0}}" class="img-responsive img-rounded">
           </a>
          </p>
         </div>
       </div>
     </div>
+{{else}}
+<div class="container">
+    <div class="row">
+        <div style="float:left;width:150px;height=140px; border-style:solid;border-color:#E5E4E2;border-radius:10px;padding:0px;position:relative;margin:0px;">
+            <p>
+                <a  class="example-image-link" href="{{.Get 0}}" data-toggle="lightbox" >
+                <img src="{{.Get 0}}" class="img-responsive img-rounded">
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+{{end}}
