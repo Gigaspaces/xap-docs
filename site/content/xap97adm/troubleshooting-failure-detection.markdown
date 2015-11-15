@@ -15,9 +15,6 @@ Failure detection is the time it takes for the space and the client to detect th
 1. The backup space detects that the primary space is down, and takes over as primary.
 1. The client detects that the machine running the primary space is down. In case it is running against a clustered space, it routs its requests to the new primary space (the backup space that has just taken over as primary).
 
-{{% info %}}
-If the client is running against a single primary space, a disconnection exception is thrown, and the client cannot proceed.
-{{%/info%}}
 
 One of two main failure scenarios might occur:
 

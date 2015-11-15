@@ -51,7 +51,7 @@ results = gigaSpace.readMultiple(new SQLQuery<MyClass>(MyClass.class, "num > 1 O
 
 # Supported Space Operations
 
-{{%panel title="The following operations fully support GigaSpaces `SQLQuery`:"%}}
+{{%panel "The following operations fully support GigaSpaces `SQLQuery`:"%}}
 - `count`
 - `clear`
 - `read`, `readIfExists`, `readMultiple`
@@ -68,7 +68,7 @@ The following operations support`SQLQuery` only with Simple Queries:
 
 # Supported SQL Features
 
-{{%panel title="SQLQuery supports the following: "%}}
+{{%panel "SQLQuery supports the following: "%}}
 
 - `AND` / `OR` operators to combine two or more conditions.
 - All basic logical operations to create conditions: `=, <>, <, >, >=, <=, like, NOT like, is null, is NOT null, IN`.
@@ -415,7 +415,7 @@ You can specify that the `SQLQuery` should contain only partial results which me
 
 #### Unsupported SQL Features
 
-{{%panel title="SQLQuery does not support the following: "%}}
+{{%panel "SQLQuery does not support the following: "%}}
 
 - Aggregate functions: COUNT, MAX, MIN, SUM, AVG are only supported in sub queries (These are fully supported with the [JDBC API](./jdbc-driver.html)).
 - Multiple tables select - This is supported with the [JDBC API](./jdbc-driver.html).
@@ -458,7 +458,7 @@ The following features support only simple SQL queries
 
 The following are reserved keywords in the GigaSpaces SQL syntax:
 
-{{%panel title="Reserved words "%}}
+{{%panel "Reserved words "%}}
 alter add all and asc avg between by create call drop desc bit tinyint
  	 end from group in is like rlike max min not null or distinct
  	 order select substr sum sysdate upper where count delete varchar2 char
@@ -476,7 +476,7 @@ For example: if you need to query a property by the name of count, which is a re
 new SQLQuery<MyData>(MyData.class, "`count` = 5")
 ```
 
-{{%panel title="Reserved Separators and Operators:"%}}
+{{%panel "Reserved Separators and Operators:"%}}
 := || ; . ROWTYPE ~ < <= >  >= => != <> \(+\) ( ) \* / + - ? \{ \}
 {{% /panel %}}
 

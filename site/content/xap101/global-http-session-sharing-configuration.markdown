@@ -288,16 +288,16 @@ The URL above assumes the Web Server is configured to use port 8080.
 {{% /note %}}
 
 
-{{%panel title="Set some attributes with their name and value and click the **Update Session** button."%}}
+{{%panel "Set some attributes with their name and value and click the **Update Session** button."%}}
 ![httpSessionSharing4.jpg](/attachment_files/http-session-sharing-single-1.png)
 {{%/panel%}}
 
 
-{{%panel title="View the session updated within the space via the GS-UI or Web-UI."%}}
+{{%panel "View the session updated within the space via the GS-UI or Web-UI."%}}
 ![httpSessionSharing4.jpg](/attachment_files/http-session-sharing-single-2.png)
 {{%/panel%}}
 
-{{%panel title="Identify the Session ID"%}}
+{{%panel "Identify the Session ID"%}}
 ![httpSessionSharing4.jpg](/attachment_files/http-session-sharing-single-3.png)
 {{%/panel%}}
 

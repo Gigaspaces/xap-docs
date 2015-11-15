@@ -154,12 +154,12 @@ On Redhat systems you can configure this route statically via the network setup 
 
 Alternatively, try executing the command above as part of a startup script in `/etc/rc.d/\*`.
 
-{{% tip %}}
+{{% refer %}}
 For more details on Linux `ifconfig` and `route` commands, refer to:
 
 - [http://linux.about.com/od/commands/l/blcmdl8_ifconfi.htm](http://linux.about.com/od/commands/l/blcmdl8_ifconfi.htm)
 - [http://linux.about.com/od/commands/l/blcmdl8_route.htm](http://linux.about.com/od/commands/l/blcmdl8_route.htm)
-{{% /tip %}}
+{{% /refer %}}
 
 {{% tip %}}
 [tcpdump](http://www.tcpdump.org/) is another useful command which dumps traffic on a network:

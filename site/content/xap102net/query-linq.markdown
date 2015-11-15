@@ -55,7 +55,7 @@ It is highly recommended to use indexes on relevant properties to increase perfo
 
 # Supported LINQ operators 
 
-{{%panel title="The following LINQ operators are supported:"%}}
+{{%panel "The following LINQ operators are supported:"%}}
 
 - [Any](http://msdn.microsoft.com/en-us/library/system.linq.queryable.any) - Returns true if there are any entries matching the query in the space, false otherwise.
 - [Count](http://msdn.microsoft.com/en-us/library/system.linq.queryable.count) - Returns `int` `Count` of entries.
