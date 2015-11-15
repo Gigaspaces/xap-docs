@@ -14,7 +14,7 @@ GigaSpaces XAP.NET offers a collection of system properties which can be used to
 
 # Using Application Configuration File
 
-Like most .NET libraries, GigaSpaces XAP.NET configuration is based on [Application Configuration Files](http://msdn.microsoft.com/en-us/library/ms229689(VS.80).aspx). To set system properties via the configuration file:
+Like most .NET libraries, GigaSpaces XAP.NET configuration is based on [Application Configuration Files](http://msdn.microsoft.com/en-us/library/ms229689.aspx). To set system properties via the configuration file:
 
 Step 1. Add an Application Configuration File to your project (if your project already contains such a file skip this step):
 
