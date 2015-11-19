@@ -106,7 +106,11 @@ In addition to the general [MemoryXtend configuration options](./memoryxtend.htm
 RocksDB is created on a given directory path, RocksDB path allocation per a machine is managed via the `/tmp/blobstore/paths/path-per-space.properties` file. Each time a new blobstore space is deployed an entry is added to this file listing the data grid instances provisioned on the machine.
 
 
-# Local Flash Storage
+
+# Local Storage
+
+This configuration allows each Space instance within a cluster (primary or backup) to use a dedicated storage device (SSD / HDD). With this approach, primary instances using their local storage media to preserve the data, replicating to backup instances as well use their local storage media to preserve the data. Each Space instance once provisioned performs its data recovery (if enabled) from its local storage. This configuration will work well for development and small / medium data grids.
+
 
 <br>
 
@@ -115,6 +119,8 @@ RocksDB is created on a given directory path, RocksDB path allocation per a mach
 {{%/align%}}
 
 <br>
+
+Since each Space instance is using a local storage device, its survivability is low as there is no hardware level high-availability is running, keeping the data safe in another device in case the entire machine running the Space instance completely fails. The central storage option below is leveraging a single storage appliance or multiple appliances which offers much better data survivability and much larger data storage capacity.
 
 
 # Central Storage
