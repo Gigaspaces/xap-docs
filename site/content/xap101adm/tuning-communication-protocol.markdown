@@ -77,7 +77,7 @@ The number of connections a client should open also depends on the size of the o
 
 ## Watchdog
 
-java-version
+
 When reading from a [NIO SocketChannel](http://download.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/nio/channels/SocketChannel.html) and the connection between the client and server fails abnormally, no notification is generated. The most common example for such failure is disconnecting the network cable while performing the read operation. In this case the read operation is blocked for a long time, without ever knowing that the connection is closed. This can cause several problems such as exceeding the number of open sockets on the server or causing client read requests to hang.
 
 Known solutions and problems they may have:
