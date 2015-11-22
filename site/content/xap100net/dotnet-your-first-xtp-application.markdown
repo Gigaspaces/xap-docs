@@ -24,7 +24,7 @@ You can find the example in the distribution:
 This example includes a module that is deployed to the grid, and a domain model that consists of `Data` objects. The [DataFeeder](#datafeeder) module runs within a [Processing Unit](./the-processing-unit-overview.html) and writes `Data` objects with raw data into the remote space. The space is actually embedded within the other Processing Unit Container, which runs the [DataProcessor](#dataprocessor) module.
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup "/attachment_files/dotnet/dataexample"  "architecture.jpg"%}}
+{{%popup "/attachment_files/dotnet/dataexample architecture.jpg"%}}
 {{%/column%}}
 {{%/section%}}
 
