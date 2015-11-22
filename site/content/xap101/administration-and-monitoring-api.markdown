@@ -9,8 +9,6 @@ weight: 100
 
 {{% ssummary%}}{{% /ssummary %}}
 
-
-
 Before diving into the Admin API, here are some code examples showing how the Admin API can be used to display information on the of currently deployed services / components:
 
 {{%tabs%}}
