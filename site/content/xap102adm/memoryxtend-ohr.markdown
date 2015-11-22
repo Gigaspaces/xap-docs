@@ -38,7 +38,7 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
     <blob-store:mapdb-blob-store id="offheapBlobstore"/>
 
     <os-core:space id="space" url="/./myDataGrid">
-        <os-core:blob-store-data-policy blob-store-handler="offheapBlobstore"/>
+      <os-core:blob-store-data-policy persistent="false" blob-store-handler="offheapBlobstore"/>
     </os-core:space>
 
     <os-core:giga-space id="gigaSpace" space="space"/>
