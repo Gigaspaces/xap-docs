@@ -66,9 +66,10 @@ For troubleshooting purposes you should verify that the services (spaces, GSC, G
 
 # Configuring Jini Lookup Service Unicast Port
 
-To change the lookup service port when using the Service Grid, you can use the **`com.sun.jini.reggie.initialUnicastDiscoveryPort`** system property. The default value is the one assigned to the `com.gs.multicast.discoveryPort` system property, that is 4174 with XAP 7.x.
+To change the lookup service listening port use the `com.sun.jini.reggie.initialUnicastDiscoveryPort` system property. The default value is the one assigned to the `com.gs.multicast.discoveryPort`.
 
-- Set the `LOOKUPLOCATORS` system property in `<XAP Root>\bin\setenv.bat/sh` to match the port number you defined (in this case, `host:1234`). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly (see [**com.gs.multicast.discoveryPort system property**](./network-lookup-service-configuration.html#Multicast Settings)).
+- Set the `LOOKUPLOCATORS` system property in `<XAP Root>\bin\setenv.bat/sh` to match the port number you defined (in this case, `host:1234`). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly (see [com.gs.multicast.discoveryPort system property](./network-lookup-service-configuration.html#Multicast Settings)).
+
 
 # Configuring lookup discovery intervals
 
