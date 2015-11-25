@@ -18,6 +18,10 @@ If you're not familiar with MemoryXtend, make sure you read its [documentation](
 The MemoryXtend add-on is available for free during the evaluation period, but is not included in the premium edition license. For information about purchasing this add-on please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services).
 {{% /info %}}
 
+# Prerequisites
+
+- Java 7 (or later)
+
 # Configuration
 
 Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For example:
