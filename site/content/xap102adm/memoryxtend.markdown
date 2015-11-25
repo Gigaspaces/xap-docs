@@ -100,7 +100,7 @@ The following configuration options are supported:
 | blob-store-handler | BlobStore implementation |  | required |
 | <nobr>cache-entries-percentage</nobr> | On-Heap cache stores objects in their native format. This cache size determined based on the percentage of the GSC JVM max memory(-Xmx). If `-Xmx` is not specified the cache size default to `10000` objects. This is an LRU based data cache.| 20% | optional |
 | avg-object-size-KB |  Average object size. | 5KB | optional |
-| persistent |  data is written to flash, space will perform recovery from flash if needed.  | false | optional |
+| persistent |  data is written to flash, space will perform recovery from flash if needed.  |  | required |
 
 # Class Level Settings
 
