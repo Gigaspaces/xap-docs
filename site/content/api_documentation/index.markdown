@@ -31,6 +31,7 @@ This page provides links to the API documentation and related resources for each
 - [mule-os-eventcontainer.xsd](http://www.openspaces.org/schema/11.0/mule/mule-os-eventcontainer.xsd)
 - [mule-os-queue.xsd](http://www.openspaces.org/schema/11.0/mule/mule-os-queue.xsd)
 - [mule-os-seda.xsd](http://www.openspaces.org/schema/11.0/mule/mule-os-seda.xsd)
+- [openspaces-mapdb-blobstore.xsd](http://www.openspaces.org/schema/11.0/mapdb-blob-store/openspaces-mapdb-blobstore.xsd)
 {{%/tab%}}
 {{%/tabs%}}
 
@@ -59,6 +60,7 @@ This page provides links to the API documentation and related resources for each
 - [mule-os-eventcontainer.xsd](http://www.openspaces.org/schema/10.2/mule/mule-os-eventcontainer.xsd)
 - [mule-os-queue.xsd](http://www.openspaces.org/schema/10.2/mule/mule-os-queue.xsd)
 - [mule-os-seda.xsd](http://www.openspaces.org/schema/10.2/mule/mule-os-seda.xsd)
+- [openspaces-mapdb-blobstore.xsd](http://www.openspaces.org/schema/10.2/mapdb-blob-store/openspaces-mapdb-blobstore.xsd)
 {{%/tab%}}
 {{%/tabs%}}
 
