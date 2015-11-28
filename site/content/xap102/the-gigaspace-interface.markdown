@@ -30,8 +30,9 @@ The space is accessed via a programmatic interface which supports the following 
 
 A client communicating with a an embedded space performs all its operation via local connection. There is no network overhead when using this approach.
 
+{{%align center%}}
 ![embedded-space.jpg](/attachment_files/embedded-space.jpg)
-
+{{%/align%}}
 
 Here is an example how to create an embedded space. The `EmbeddedSpaceConfigurer` is used to configure the space url:
 

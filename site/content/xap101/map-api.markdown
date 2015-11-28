@@ -75,9 +75,9 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 
 A client communicating with a an embedded space performs all its operation via local connection. There is no network overhead when using this approach.
 
-{{% indent %}}
+{{%align center%}}
 ![embedded-space-map.jpg](/attachment_files/embedded-space-map.jpg)
-{{% /indent %}}
+{{%/align  %}}
 
 To create a `GigaMap` for a co-located (embedded) space the space URL should use embedded space URL format:
 

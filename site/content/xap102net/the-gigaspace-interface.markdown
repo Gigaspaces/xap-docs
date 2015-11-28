@@ -32,8 +32,9 @@ A Space proxy is created to interact with the Space. Several configuration param
 
 A client communicating with a an embedded Space performs all its operation via local connection. There is no network overhead when using this approach.
 
+{{%align center%}}
 ![embedded-space.jpg](/attachment_files/embedded-space.jpg)
-
+{{%/align%}}
 
 Here is an example how to create an embedded Space. The `EmbeddedSpaceFactory` is used to configure the Space url:
 
