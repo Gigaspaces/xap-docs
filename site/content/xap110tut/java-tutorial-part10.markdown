@@ -100,22 +100,32 @@ The default username and password for the security are admin/admin.
 
 {{%section%}}
 {{%column width="20%"%}}
+Start UI Admin
+
 {{%popup "/attachment_files/qsg/Admin0.png"  "Start UI Admin"%}}
 {{%/column%}}
 
 {{%column width="20%"%}}
+Select Security options
+
 {{%popup "/attachment_files/qsg/Security-select.png"  "Select Security options"%}}
 {{%/column%}}
 
 {{%column width="20%"%}}
+Login
+
 {{%popup "/attachment_files/qsg/SecurityLogin.png"  "Login admin/admin default"%}}
 {{%/column%}}
 {{%column width="20%"%}}
+Create a Role
+
 {{%popup "/attachment_files/qsg/CreateRole.png"  "Create a Role"%}}
 {{%/column%}}
 
 
 {{%column width="20%"%}}
+Display Roles
+
 {{%popup "/attachment_files/qsg/CreateRole2.png"  "Display Roles"%}}
 {{%/column%}}
 {{%/section%}}
@@ -130,14 +140,20 @@ A user is assigned roles. You can create new roles and users with a configuratio
 
 {{%section%}}
 {{%column width="30%"%}}
+Login
+
 {{%popup "/attachment_files/qsg/SecurityLogin.png"  "Login"%}}
 {{%/column%}}
 
 {{%column width="30%"%}}
+Create User
+
 {{%popup "/attachment_files/qsg/CreateUser1.png"  "Create User"%}}
 {{%/column%}}
 
 {{%column width="30%"%}}
+Display Users
+
 {{%popup "/attachment_files/qsg/CreateUser2.png"  "Display Users"%}}
 {{%/column%}}
 {{%/section%}}

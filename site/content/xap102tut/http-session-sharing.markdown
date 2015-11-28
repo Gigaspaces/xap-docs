@@ -27,8 +27,8 @@ With XAP you can share HTTP session data across multiple data centers, multiple 
 This tutorial will show you:
 
 1. [Single-Applications Session Sharing](#Single Application Session Sharing) sharing the same session between different Tomcat instances. <br>
-    a. Using Apache Load Balancer with **Sticky** Session configuration
-{{<wbr>}}    b. Using Apache Load Balancer with **Non-Sticky** Session configuration
+    a. Using Apache Load Balancer with **Sticky** Session configuration<br>
+    b. Using Apache Load Balancer with **Non-Sticky** Session configuration<br>
 2. [Multiple-Applications Session Sharing](#multi-applications-session-sharing) - sharing the same session between **different applications** running in different Web servers - Tomcat and JBoss.
 
 
@@ -54,12 +54,13 @@ The demo application can be downloaded:
 
 With this session sharing model, the web user interacting with multiple web servers through a load balancer where each web server running the same web application. In most cases you will have multiple instances of the same web app running in a cluster configuration.  The load balancer route requests based on the session configuration.
 
+{{%align center%}}
 ![http-session-1](/attachment_files/httpsession/http-session1.png)
-
+{{%/align%}}
 
 In this scenario the session is shared via its **ID**. Where there is a web server failure or when a new web server is added to the cluster the session **ID** is used to retrieve the session from the IMDG. Only the updated attributes (delta) are sent to the IMDG when the session is updated. This ensure best application performance and minimal network bandwidth usage.
 
-{{<wbr>}}
+<br>
 
 ### Configuring The Load Balancer
 
@@ -104,7 +105,7 @@ ProxyPass /balancer !
 {{%/accord%}}
 {{%/accordion%}}
 
-{{<wbr>}}
+<br>
 
 ### Demo Flow
 With this demo we will simulate session sharing between different tomcat instances by starting tomcat , running the application, terminating tomcat and later restarting tomcat without losing application HTTP Session data.
@@ -163,20 +164,26 @@ connector.url=jini://localhost/*/sessionSpace
 
 The URL above assumes the Apache Load Balancer is configured to use port 8888.
 
+{{%align center%}}
 {{%panel%}}
 ![http-session](/attachment_files/httpsession102/httpsession-loadbalancer.png)
 {{%/panel%}}
+{{%/align%}}
 
 -	Add some attributes using the interface provided
 -	View the session updated within the space via the GS-UI or Web-UI
 
+{{%align center%}}
 ![http-session](/attachment_files/httpsession102/httpsession-webui-1.png)
+{{%/align%}}
 
 {{<wbr>}}
 
 -	Identify the Session ID
 
+{{%align center%}}
 ![http-session](/attachment_files/httpsession102/httpsession-webui-2.png)
+{{%/align%}}
 
 {{<wbr>}}
 
@@ -228,7 +235,9 @@ With this demo we will simulate session sharing between Tomcat and JBoss web ser
 -	Download JBoss 7 {{%download "http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip"%}}
 -	Install JBoss 7 by unzipping it into `c:\` or `d:\`
 
+{{%align center%}}
 ![http-session](/attachment_files/httpsession/http-session5.png)
+{{%/align%}}
 
 -	Double check the **shiro.ini** within the `demo-app.war` file located under the `WEB-INF` folder includes the lookup service host name as part of the `connector.url` property. With the example below we are using a lookup service running locally - hence the `localhost` is used:
 
@@ -268,9 +277,11 @@ http://localhost:8080/demo-app
 
 -	Add some attributes using the interface provided
 
+{{%align center%}}
 {{%panel%}}
 ![http-session](/attachment_files/httpsession102/httpsession-tomcat-1.png)
 {{%/panel%}}
+{{%/align%}}
 
 -	Start your browser and access the web application running in JBoss via the following URL:
 
@@ -285,15 +296,19 @@ http://localhost:8081/demo-app2
 
 -	You should see all attributes added into the session via Tomcat are shared with the application running on JBoss.
 
+{{%align center%}}
 {{%panel%}}
 ![http-session](/attachment_files/httpsession102/httpsession-jboss-1.png)
 {{%/panel%}}
+{{%/align%}}
 
 -	Add / Modify some attributes
 
+{{%align center%}}
 {{%panel%}}
 ![http-session](/attachment_files/httpsession102/httpsession-jboss-2.png)
 {{%/panel%}}
+{{%/align%}}
 
 -	Switch to Tomcat:
 
@@ -304,9 +319,11 @@ http://localhost:8080/demo-app
 
 -	Refresh the page (press the `F5` key) - see all the attributes been updated.
 
+{{%align center%}}
 {{%panel%}}
 ![http-session](/attachment_files/httpsession102/httpsession-tomcat-2.png)
 {{%/panel%}}
+{{%/align%}}
 
 ### Webserver Failover
 
@@ -327,10 +344,10 @@ http://localhost:8081/demo-app2
 -	See session been fully recovered.
 
 {{%section%}}
-{{%column width="30%" %}}
+{{%column%}}
 {{%popup "/attachment_files/httpsession102/httpsession-tomcat-2.png"%}}
 {{%/column %}}
-{{%column width="30%" %}}
+{{%column %}}
 {{%popup "/attachment_files/httpsession102/httpsession-jboss-2.png"%}}
 {{%/column %}}
 {{%/section%}}

@@ -39,8 +39,9 @@ XAP.NET is packaged as a standard Windows Installer package (.msi file). You can
 
 Once you have downloaded the distribution, start the installation by double-clicking the msi file and the installation wizard will appear and guide you through the installation process.
 
-
+{{% align center%}}
 ![data-access.jpg](/attachment_files/dotnet/dotnet-installer.png)
+{{% /align%}}
 
 The default product location is **C:\GigaSpaces\XAP.NET \{Version\} \{Platform\}** (For example: C:\{{%version "gshome-net-directory"%}}). This convention supports side-by-side installation of different versions and platforms (x86, x64) of XAP.NET.
 

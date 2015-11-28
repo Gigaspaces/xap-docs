@@ -21,10 +21,10 @@ To apply this configuration easily, the `NIC_ADDR` variable can be passed at the
 
 {{% note %}}
 
-{{% indent %}}
+
 The following procedure explains the general configuration process required to test and configure the Multi-NIC settings in XAP.
 **Please refer to these sections only if the out-of-the-box settings fail to work**.
-{{% /indent %}}
+
 
 {{% /note %}}
 

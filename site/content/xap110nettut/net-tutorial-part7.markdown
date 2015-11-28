@@ -28,7 +28,7 @@ When running in direct persistency mode the IMDG interacts with the data source 
 {{%/column%}}
 {{%column width="20%" %}}
 
-{{%popup   "/attachment_files/qsg/data-grid-sync-persistNew.jpg"%}}
+{{%popup   "/attachment_files/qsg/data-grid-sync-persistNew.jpg" "Synchronous Persistence"%}}
 
 
 {{%/column%}}
@@ -49,7 +49,7 @@ The XAP Mirror Service provides reliable asynchronous persistency. This allows y
 {{%/column%}}
 {{%column width="20%" %}}
 
-{{%popup   "/attachment_files/qsg/data-grid-async-persistNew.jpg"%}}
+{{%popup   "/attachment_files/qsg/data-grid-async-persistNew.jpg" "Synchronous Persistence"%}}
 
 
 {{%/column%}}

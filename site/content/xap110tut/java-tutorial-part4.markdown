@@ -228,8 +228,7 @@ In GigaSpaces XAP, you can implement the Master-Worker pattern using several met
 
 {{%/column%}}
 {{%column width="15%" %}}
-
-{{%popup   "/attachment_files/qsg/the_master_worker.jpg"%}}
+{{%popup   "/attachment_files/qsg/the_master_worker.jpg" "Master Worker Pattern"%}}
 
 {{%/column%}}
 {{%/section%}}

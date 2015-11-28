@@ -69,3 +69,10 @@ public void findSpace()  {
 }
 ```
 
+# XAP Spring Data
+
+`XAP Spring Data` implements the Spring Data Framework that lets you use the concepts to the development of applications using XAP's In-Memory Data Grid (IMDG) as the data store
+
+{{%refer%}}
+You can find more information under [Services & Best Practises](/sbp/spring-data.html)
+{{%/refer%}}

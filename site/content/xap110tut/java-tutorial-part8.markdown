@@ -269,7 +269,12 @@ XAP lets you share HTTP session data across multiple data centers, multiple web 
 
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/qsg/httpSessionSharing1.png"%}}
+<br>
+<br>
+<br>
+<br>
+
+{{%popup   "/attachment_files/qsg/httpSessionSharing1.png" "Global HTTP Session Sharing"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -282,13 +287,16 @@ XAP lets you share HTTP session data across multiple data centers, multiple web 
 
 When deploying a highly available web site, usually a load balancer is used to load balance requests between at least two instances of a web containers that run the web applications. When using XAP to deploy web applications, running more than one instance of a web application becomes very easy. XAP comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.
 
+The integration dynamically creates and updates the mod_proxy_balancer configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.
+
+
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/qsg/httpd_lb_agent.jpg"%}}
+<br>
+{{%popup   "/attachment_files/qsg/httpd_lb_agent.jpg" "Load Balancing"%}}
 {{%/column%}}
 {{%/section%}}
 
-The integration dynamically creates and updates the mod_proxy_balancer configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.
 
  
  

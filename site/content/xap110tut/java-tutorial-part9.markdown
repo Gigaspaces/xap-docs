@@ -194,35 +194,51 @@ There is a fully working example on GitHub. You can download, build and execute 
 
 {{%section%}}
 {{%column width="25%"%}}
+Start deploy
+
 {{%popup "/attachment_files/qsg/Cassandra1.png"  "Start deploy"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
+Deploy Cassandra PU
+
 {{%popup "/attachment_files/qsg/Cassandra2.png"  "Deploy Cassandra PU"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
+Applications
+
 {{%popup "/attachment_files/qsg/Cassandra3.png"  "Applications"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
+Data Grid
+
 {{%popup "/attachment_files/qsg/Cassandra4.png"  "Data Grid"%}}
 {{%/column%}}
 {{%/section%}}
 
 {{%section%}}
 {{%column width="25%"%}}
+OpsCenter
+
 {{%popup "/attachment_files/qsg/OpsCenter1.png"  "OpsCenter"%}}
 {{%/column%}}
 {{%column width="25%"%}}
+OpsCenter schema
+
 {{%popup "/attachment_files/qsg/OpsCenter2.png"  "OpsCenter schema"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
+Keyspace
+
 {{%popup "/attachment_files/qsg/OpsCenter3.png"  "Keyspace"%}}
 {{%/column%}}
 
 {{%column width="25%"%}}
+Keyspace
+
 {{%popup "/attachment_files/qsg/OpsCenter4.png"  "Data Explorer"%}}
 {{%/column%}}
 {{%/section%}}
@@ -243,7 +259,7 @@ The XAP Mirror Service provides reliable asynchronous persistency. This allows y
 {{%/column%}}
 {{%column width="20%" %}}
 
-{{%popup   "/attachment_files/qsg/noSQL-EDS.jpg"%}}
+{{%popup   "/attachment_files/qsg/noSQL-EDS.jpg" "Mirror Service"%}}
 
 {{%/column%}}
 {{%/section%}}
