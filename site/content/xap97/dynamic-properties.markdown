@@ -15,6 +15,13 @@ Starting with version 8.0, GigaSpaces provides the [Document API](./document-api
 
 Starting with 8.0.1, dynamic properties can be used with POJOs as well. This provides better interoperability between POJO and document entries, and provides excellent schema evolution support without switching from POJO to document.
 
+
+
+{{%warning%}}
+Only one property per class can be annotated with `@SpaceDynamicProperties`.
+{{%/warning%}}
+
+
 # Enabling
 
 To enable dynamic properties, add a `Map<String, Object>` property to the relevant class and annotate it with `@SpaceDynamicProperties`. For example, the following **Person** class has two fixed properties (name and id), and an additional **extraInfo** property used to host the dynamic properties:
@@ -92,10 +99,6 @@ public class Person {
 ```
 
 
-{{%warning%}}
-Only one property per class can be annotated with `@SpaceDynamicProperties`.
-{{%/warning%}}
-
 
 Dynamic properties can also be used for matching. For example, suppose we want to get all persons who are not minors (age greater than 21) and email them something:
 
@@ -110,8 +113,16 @@ for (Person person : people) {
 }
 ```
 
-{{%note%}}
+{{%note "Note:"%}}
 - The query expression refers to 'age', not 'extraInfo.age' - the space recognizes that the extraInfo property is annotated with @SpaceDynamicProperties and treats the dynamic properties as if they were regular properties of the Person class.
 - Since 'age' and 'email' are dynamic properties, there's no guarantee they'll exist in each Person entry. The semantic for non-existent property is as if its value is null, which allows us to ignore it in the query expression and simply check for null before sending the email.
-- Dynamic properties can be indexed similar to fixed properties. For more info see [Indexing](./indexing.html).
+
 {{%/note%}}
+
+# Indexing
+
+Dynamic properties can be indexed similar to fixed properties.
+
+{{%refer%}}
+For more info see [Indexing](./indexing.html).
+{{%/refer%}}

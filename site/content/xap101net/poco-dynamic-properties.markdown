@@ -14,6 +14,10 @@ XAP provides the [Document API](./document-api.html), which is schema free, and 
 
 Dynamic properties can be used with Object as well. This provides better interoperability between Object and document entries, and provides excellent schema evolution support without switching from Objects to documents.
 
+{{%warning%}}
+Only one property per class can be annotated with `[SpaceDynamicProperties]`.
+{{%/warning%}}
+
 # Enabling Dynamic Properties
 
 To enable dynamic properties add a `Dictionary<String, Object>` property to the relevant class and decorate it with `[SpaceDynamicProperties]`. For example, the following **Person** class has two fixed properties (Name and Id), and an additional **ExtraInfo** property used to host the dynamic properties:
@@ -64,12 +68,18 @@ foreach (var person in people)
 }
 ```
 
-Note that:
+{{% note "Note:"%}}
 
 - The query expression refers to 'age', not 'ExtraInfo.age' - the space recognizes that the ExtraInfo property is decorated with \[SpaceDynamicProperties\] and treats the dynamic properties as if they were regular properties of the Person class.
 - Since 'age' and 'email' are dynamic properties, there's no guarantee that they will exist in a given Person entry. The semantic for non-existent property is as if its value is null, which allows us to ignore it in the query expression and simply check for null before sending the email.
-- Dynamic properties can be indexed similar to fixed properties. For more info see [Indexing](./indexing.html).
 
-{{%warning%}}
-Only one property per class can be annotated with `[SpaceDynamicProperties]`.
-{{%/warning%}}
+{{%/note%}}
+
+
+# Indexing
+
+Dynamic properties can be indexed similar to fixed properties.
+
+{{%refer%}}
+For more info see [Indexing](./indexing.html).
+{{%/refer%}}
