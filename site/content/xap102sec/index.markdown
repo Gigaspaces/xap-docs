@@ -48,7 +48,7 @@ This section explains the administration tools for managing XAP. The GUI provide
 
 
 [Hello World example](./securing-the-helloworld-example.html){{<wbr>}}
-securing-the-helloworld-example.html
+Securing the hello world example.
 
 
 

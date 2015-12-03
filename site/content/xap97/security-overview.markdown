@@ -38,7 +38,7 @@ XAP has security built over the major server component - GSA, GSM, GSC and also 
 This section explains the administration tools for managing XAP. The GUI provides a handy management tool for managing the users and roles, and comprehensive manageability of the secured components in the system.
 
 - [Hello World example](./securing-the-helloworld-example.html)<br>
-Securing-the-helloworld-example.html
+Securing the hello world example.
 
 - [Custom Security](./custom-security.html)<br>
 Customize security to meet your application requirements
