@@ -8,7 +8,7 @@ weight: 300
 
 
 
-This section provides an understanding of GigaSpaces XAP Security, where it fits in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data, services, or both. XAP provides a set of authorities granting privileged access to data, and for performing operations on services.
+This section provides an understanding of GigaSpaces XAP Security, where it fits in the XAP architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data, services, or both. XAP provides a set of authorities granting privileged access to data, and for performing operations on services.
 
  <br>
 
@@ -28,22 +28,22 @@ Configurations and defaults
 - [Directory Management](./programmatically-managing-the-security-directory.html)<br>
 User and Role directory API
 
-- [File Based](./default-file-based-security-implementation.html)<br>
+- [Default File Based](./default-file-based-security-implementation.html)<br>
 The default file-based users/roles directory; Overview, Getting Started, Configuration, and Custom Extensions
 
 - [Securing Components](./securing-xap-components.html)<br>
-GigaSpaces XAP has security built over the major “server” component - GSA, GSM, GSC and also Processing Unit with Space data. This section explains how security relates to each component and the configurations needed to securing your application.
+XAP has security built over the major server component - GSA, GSM, GSC and also Processing Unit with Space data. This section explains how security relates to each component and the configurations needed to securing your application.
 
 - [Administration](./security-administration.html)<br>
 This section explains the administration tools for managing XAP. The GUI provides a handy management tool for managing the users and roles, and comprehensive manageability of the secured components in the system.
 
 - [Hello World example](./securing-the-helloworld-example.html)<br>
-securing-the-helloworld-example.html
+Securing-the-helloworld-example.html
 
 - [Custom Security](./custom-security.html)<br>
 Customize security to meet your application requirements
 
-- [Spring Security](./spring-security-bridge.html)<br>
+- [Spring Security Bridge](./spring-security-bridge.html)<br>
 Declarative Spring-based custom security bridge
 
 <hr/>
