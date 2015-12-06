@@ -39,6 +39,10 @@ Explains how to run your processing unit inside your IDE or in unit tests.
 
 [XAP as Windows Service](./running-gigaspaces-as-a-windows-service.html){{<wbr>}}
 Configuring XAP as a Windows service.
+
+[XAP JUnit testing](./xap-junit.html){{<wbr>}}
+Unit testing with JUnit
+
 {{%/fpanel%}}
 
 <br>
