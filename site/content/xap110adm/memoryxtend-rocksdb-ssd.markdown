@@ -26,15 +26,17 @@ The MemoryXtend add-on is available for free during the evaluation period, but i
 - The number of mounted devices/partitions should match the number of space instances that will be deployed on the machine.
   - For creating partitions you can use `fdisk` like explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
 
-# How it works
 
-{{%align center%}}
-![image](/attachment_files/blobstore/rockdb4.png)
-{{%/align%}}
+
 
 <br>
 
 # Configuration
+
+
+{{%align center%}}
+![image](/attachment_files/blobstore/rockdb4.png)
+{{%/align%}}
 
 Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For example:
 
