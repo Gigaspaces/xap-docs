@@ -13,7 +13,9 @@ By default, XAP entries are stored in-memory (actually, in the JVM heap) to prov
 
 Obviously, simply storing the data in SSD means XAP will no longer be an In-Memory Data Grid. The solution is a hybrid storage model offered by XAP called **MemoryXtend**, which uses the best of both worlds.
 
-# How It Works
+
+
+# How it works
 
 In MemoryXtend, the entry's data is stored off-heap (e.g. in the native heap or on a file in SSD), but the indexes are stored in the managed JVM heap. This allows queries which leverage indexes to minimize off-heap penalty, since most of the work is done in-memory and only matched entries are loaded from the off-heap storage. 
 In addition, MemoryXtend uses an LRU cache for data entries, so that entries which are read frequently can be retrieved directly from the in-memory storage.
@@ -22,6 +24,12 @@ MemoryXtend is designed as a pluggable architecture, supporting multiple impleme
 
 - For storing data on an SSD device use the [MemoryXtend RocksDB add-on](./memoryxtend-rocksdb-ssd.html).
 - For storing data in RAM on the unmanaged heap use the [MemoryXtend MapDB add-on](./memoryxtend-ohr.html).
+
+
+{{%align center%}}
+![memstorage](/attachment_files/blobstore/ssd-overview.png)
+{{%/align%}}
+
 
 This page explains the general concepts and settings which apply to any MemoryXtend add-on. In addition, each MemoryXtend add-on has a specific page for it's additional settings and options.
 

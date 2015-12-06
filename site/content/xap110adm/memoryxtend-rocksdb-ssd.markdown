@@ -26,6 +26,14 @@ The MemoryXtend add-on is available for free during the evaluation period, but i
 - The number of mounted devices/partitions should match the number of space instances that will be deployed on the machine.
   - For creating partitions you can use `fdisk` like explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
 
+# How it works
+
+{{%align center%}}
+![image](/attachment_files/blobstore/rockdb4.png)
+{{%/align%}}
+
+<br>
+
 # Configuration
 
 Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For example:
@@ -114,7 +122,7 @@ This configuration allows each Space instance within a cluster (primary or backu
 <br>
 
 {{%align center%}}
-![image](/attachment_files/ssd/ssd-local-architecture.png)
+![image](/attachment_files/blobstore/rockdb1.png)
 {{%/align%}}
 
 <br>
@@ -141,7 +149,7 @@ The following example deployes a 2 partitions space with a single backup (2,1) i
 
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/ssd/ssd-central-single.png"%}}
+{{%popup   "/attachment_files/blobstore/rockdb2.png" "Single storage arrays"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -162,7 +170,7 @@ It is also possible to define two storage arrays instead of one, which will guar
 
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/ssd/ssd-central-multiple.png"%}}
+{{%popup   "/attachment_files/blobstore/rockdb3.png" "Two storage arrays"%}}
 {{%/column%}}
 {{%/section%}}
 
