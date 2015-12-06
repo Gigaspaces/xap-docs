@@ -61,6 +61,42 @@ A Compound Index can be defined within the gs.xml configuration file. Example: T
 </gigaspaces-mapping>
 ```
 
+# Dynamic Properties
+
+A Compound Space Index of [Dynamic Properties](./dynamic-properties.html) can be created via annotations. Here is an example:
+
+```java
+@SpaceClass
+@CompoundSpaceIndexes({ @CompoundSpaceIndex(paths = {"proprties.poNumber", "properties.supplier"}) })
+public class PaymentOrder {
+
+	String id;
+	DocumentProperties properties = new DocumentProperties();
+
+	@SpaceId(autoGenerate = false)
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void addProperty(String key, String value) {
+		properties.put(key, value);
+	}
+
+	public String getProperty(String key) {
+		return (String) properties.get(key);
+	}
+
+	@SpaceDynamicProperties
+	public DocumentProperties getProperties() {
+		return properties;
+	}
+}
+```
+
 # Space Document
 
 A Compound Space Index of a [space Document](./document-api.html) can be described by `pu.xml` configuration file. Example:
@@ -74,7 +110,10 @@ A Compound Space Index of a [space Document](./document-api.html) can be describ
 </os-core:embedded-space>
 ```
 
-# Dynamic Creation
+
+
+
+## Dynamic Creation
 
 A Compound Space Index can be added dynamically using the `GigaSpaceTypeManager` interface. Example:
 
