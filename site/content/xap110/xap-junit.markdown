@@ -110,15 +110,11 @@ public class TestXAP {
 
 # Partition/Routing test
 
-Testing partitioning and routing can be accomplished by manipulating the Space URL. You can start multiple partitions by defining in the Space URL the number of members and the `id` of the partition.
+Testing partitioning and routing can be accomplished by using the `IntegratedProcessingUnitContainerProvider`. You can start multiple partitions by defining with the `ClusterInfo` the number of members of a cluster.
 
-Example:
 
-```java
-"processorSpace?cluster_schema=partitioned&total_members=4&groups=junit&id=1"
-```
 
-In the example below 4 partitions are started by creating 4 `EmbeddedSpaceConfigurer` and then a fifth `SpaceProxyConfigurer` is constructed that points to the entire cluster.
+In the example below 4 partitions are started.
 
 ```java
 public class ClusterTest {
@@ -137,7 +133,7 @@ public class ClusterTest {
 			space.write(data);
 		}
 
-		SQLQuery<SpaceData> query = new SQLQuery<SpaceData>(SpaceData.class, "");
+        SQLQuery<SpaceData> query = new SQLQuery<SpaceData>(SpaceData.class, "");
         SpaceData[] result = space.readMultiple(query);
 
         Assert.assertEquals(result.length, 4);
@@ -145,21 +141,16 @@ public class ClusterTest {
 
 	@Before
 	public void init() {
+            IntegratedProcessingUnitContainerProvider provider = new IntegratedProcessingUnitContainerProvider();
+            provider.addConfigLocation("classpath:META-INF/application-context.xml");
+            ClusterInfo clusterInfo = new ClusterInfo();
+            clusterInfo.setSchema("partitioned");
+            clusterInfo.setNumberOfInstances(4);
+            provider.setClusterInfo(clusterInfo);
 
-		new EmbeddedSpaceConfigurer("processorSpace?cluster_schema=partitioned&total_members=4&groups=junit&id=1")
-		.lookupGroups("junit").space();
+            ProcessingUnitContainer c = provider.createContainer();
 
-		new EmbeddedSpaceConfigurer("processorSpace?cluster_schema=partitioned&total_members=4&groups=junit&id=2")
-		.lookupGroups("junit").space();
-
-		new EmbeddedSpaceConfigurer("processorSpace?cluster_schema=partitioned&total_members=4&groups=junit&id=3")
-		.lookupGroups("junit").space();
-
-		new EmbeddedSpaceConfigurer("processorSpace?cluster_schema=partitioned&total_members=4&groups=junit&id=4")
-		.lookupGroups("junit").space();
-
-
-		space = new GigaSpaceConfigurer(new SpaceProxyConfigurer("processorSpace").lookupGroups("junit")).gigaSpace();
+            space = new GigaSpaceConfigurer(new SpaceProxyConfigurer("processingSpace")).gigaSpace();
 	}
 }
 ```
