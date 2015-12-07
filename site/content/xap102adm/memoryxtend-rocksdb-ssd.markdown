@@ -26,7 +26,16 @@ The MemoryXtend add-on is available for free during the evaluation period, but i
 - The number of mounted devices/partitions should match the number of space instances that will be deployed on the machine.
   - For creating partitions you can use `fdisk` like explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
 
+<br>
+
 # Configuration
+
+
+{{%align center%}}
+![image](/attachment_files/blobstore/rockdb4.png)
+{{%/align%}}
+
+<br>
 
 Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For example:
 
@@ -106,7 +115,6 @@ In addition to the general [MemoryXtend configuration options](./memoryxtend.htm
 RocksDB is created on a given directory path, RocksDB path allocation per a machine is managed via the `/tmp/blobstore/paths/path-per-space.properties` file. Each time a new blobstore space is deployed an entry is added to this file listing the data grid instances provisioned on the machine.
 
 
-
 # Local Storage
 
 This configuration allows each Space instance within a cluster (primary or backup) to use a dedicated storage device (SSD / HDD). With this approach, primary instances using their local storage media to preserve the data, replicating to backup instances as well use their local storage media to preserve the data. Each Space instance once provisioned performs its data recovery (if enabled) from its local storage. This configuration will work well for development and small / medium data grids.
@@ -115,7 +123,7 @@ This configuration allows each Space instance within a cluster (primary or backu
 <br>
 
 {{%align center%}}
-![image](/attachment_files/ssd/ssd-local-architecture.png)
+![image](/attachment_files/blobstore/rockdb1.png)
 {{%/align%}}
 
 <br>
@@ -142,7 +150,7 @@ The following example deployes a 2 partitions space with a single backup (2,1) i
 
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/ssd/ssd-central-single.png"%}}
+{{%popup   "/attachment_files/blobstore/rockdb2.png" "Single storage arrays"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -163,7 +171,7 @@ It is also possible to define two storage arrays instead of one, which will guar
 
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/attachment_files/ssd/ssd-central-multiple.png"%}}
+{{%popup   "/attachment_files/blobstore/rockdb3.png" "Two storage arrays"%}}
 {{%/column%}}
 {{%/section%}}
 

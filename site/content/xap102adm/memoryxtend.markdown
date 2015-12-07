@@ -23,6 +23,14 @@ MemoryXtend is designed as a pluggable architecture, supporting multiple impleme
 - For storing data on an SSD device use the [MemoryXtend RocksDB add-on](./memoryxtend-rocksdb-ssd.html).
 - For storing data in RAM on the unmanaged heap use the [MemoryXtend MapDB add-on](./memoryxtend-ohr.html).
 
+<br>
+
+{{%align center%}}
+![memstorage](/attachment_files/blobstore/ssd-overview.png)
+{{%/align%}}
+
+<br>
+
 This page explains the general concepts and settings which apply to any MemoryXtend add-on. In addition, each MemoryXtend add-on has a specific page for it's additional settings and options.
 
 ## Supported XAP APIs

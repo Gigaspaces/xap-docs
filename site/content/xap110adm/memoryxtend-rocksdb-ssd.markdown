@@ -38,6 +38,8 @@ The MemoryXtend add-on is available for free during the evaluation period, but i
 ![image](/attachment_files/blobstore/rockdb4.png)
 {{%/align%}}
 
+<br>
+
 Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For example:
 
 {{%tabs%}}

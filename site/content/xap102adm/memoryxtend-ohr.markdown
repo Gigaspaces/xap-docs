@@ -22,7 +22,17 @@ The MemoryXtend add-on is available for free during the evaluation period, but i
 
 - Java 7 (or later)
 
+
+{{%align center%}}
+![image](/attachment_files/blobstore/ohr2.png)
+{{%/align%}}
+
+
 # Configuration
+
+{{%align center%}}
+![image](/attachment_files/blobstore/ohr1.png)
+{{%/align%}}
 
 Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For example:
 
