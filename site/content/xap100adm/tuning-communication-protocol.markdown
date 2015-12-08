@@ -82,7 +82,7 @@ When reading from a [NIO SocketChannel](http://download.oracle.com/javase/{{%ver
 
 Known solutions and problems they may have:
 
-1. TCP keep alive mechanism -- TCP has an option sending keep alive packets in order to detect such failures, but the keep alive interval can not be set for less than 2 hours, which is not very useful.
+1. TCP keep alive mechanism -- TCP has an option sending keep alive packets in order to detect such failures, but is a highly controversial solution that has complex arguments for both pros and cons.
 1. Read timeout -- the old Java IO package allowed to execute read operations with user defined timeout. This does not work with NIO. You can still set the timeout on `channel.socket()`, but this only applies to reading from socket `InputStream` and not channel reads.
 
 The watchdog network failure detection mechanism applies to the space proxy (client side) when interacting with a remote space and with space-space interaction (replication). The watchdog is efficient both in terms of memory and CPU consumption with minimal overhead.
