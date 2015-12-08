@@ -109,4 +109,18 @@ ProcessingUnitContainer container = provider.createContainer();
 container.close();
 ```
 
-The `StandaloneProcessingUnitContainerProvider` is constructed with a file-system path to the processing unit jar file. It constructs a new classloader and adds all the jar files in the processing unit's `lib` directory to it automatically.
+The `StandaloneProcessingUnitContainerProvider` is constructed with a file-system path to the processing unit jar file. It constructs a new class loader and adds all the jar files in the processing unit's `lib` directory to it automatically.
+
+# Disabling Embedded Lookup Service
+
+The StandaloneProcessingUnitContainer automatically starts an embedded Lookup service. If you intend to use a separate Lookup service you can disable the embedded Lookup service by passing the setting the `com.j_spaces.core.container.directory_services.jini_lus.enabled` system property to false. This property can also be set within the Space definition:
+
+```xml
+<os-core:embedded-space id="space" name="mySpace">
+    <os-core:properties>
+      <props>
+        <prop key="com.j_spaces.core.container.directory_services.jini_lus.start-embedded-lus">false</prop>
+      </props>
+    </os-core:properties>
+</os-core:embedded-space>
+```
