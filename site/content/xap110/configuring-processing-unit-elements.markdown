@@ -87,9 +87,9 @@ Here's a sample `pu.xml` configuration file. Note the comments in the file which
     <os-remoting:annotation-support />
 
     <!--
-        A bean representing a space. Here we configure an embedded space (note the url element which does
-        not contain any remote protocol prefix. Also note that we do not specify here the cluster topology
-        of the space. It is declared by the os-sla:sla element of this pu.xml file.
+        A bean representing a space. Here we configure an embedded space. Note
+        that we do not specify here the cluster topology of the space. It is
+        declared by the os-sla:sla element of this pu.xml file.
     -->
      <os-core:embedded-space id="space" name="mySpace"/>
 
