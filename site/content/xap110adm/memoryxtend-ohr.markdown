@@ -24,7 +24,7 @@ The MemoryXtend add-on is available for free during the evaluation period, but i
 
 
 {{%align center%}}
-![image](/attachment_files/blobstore/ohr2.png)
+![image](/attachment_files/blobstore/ohr3.png)
 {{%/align%}}
 
 
