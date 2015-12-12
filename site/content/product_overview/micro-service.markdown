@@ -26,10 +26,10 @@ As micro services , the PUs are fine-grained units of execution. They are design
 
 Logical separation of layers within a PU is fine, however, is not highly advised keeping all interaction of the business logic locally. A PU as a micro service should adhere being atomic business entity, which must implement everything to achieve the desired business functionality. For optimized cross micro services communication map-reduce approach should be used.
 
-# SBA and Cloud Deployment
-An application deployed on a cloud platform, when handling a cloud instance failure,  produces higher operational costs and system design complexities. This leads to a general lack of confidence in cloud platforms, and eventual disagreement among the technical team when considering the application for cloud deployment.
+# Cloud Deployment
+An application deployed on a cloud platform, when handling a cloud instance failure, produces higher operational costs and system design complexities. This leads to a general lack of confidence in cloud platforms, and eventual disagreement among the technical team when considering the application for cloud deployment. To deal with these symptoms, we need a more modular system that is loosely coupled, and can be changed or maintained in parts, to prevent downtime during failures. 
 
-To deal with these symptoms, we need a more modular system that is loosely coupled, and can be changed or maintained in parts, to prevent downtime during failures. Both Micro services and PU model addressing this challenge. XAP together with [Cloudify](http://getcloudify.org) delivers agile approach deploying PUs on any Cloud ensuring system consistency , durability , scalability with full automation of the PU lifecycle.
+Microservices deployment on a Cloud environment is very popular. As the Cloud is a very dynamic, sometimes unpredicted environment, deploying self-sufficient components as micro services becomes an important ingredient for a healthy system. XAP inherently delivering this functionality as each PU includes all the 3rd party components and resources it need to be self-sufficient. XAP, together with its [Cloudify](http://getcloudify.org) blueprint , can be deployed on any Cloud environment, leveraging the Cloud ability to provision compute resources on-demand. This allow XAP to deliver continuous-availability with zero-downtime for the deployed PU where Cloudify handles the full automation of the PU lifecycle. This provides the system true consistency, durability and scalability.
 
 # Communication
 Micro services communicate with each other through language and platform-agnostic application programming interfaces (APIs). With XAP , micro services may use the following options:
@@ -75,9 +75,6 @@ Micro services application , like any other application should have for every se
 The [IPUC]({{%latestjavaurl%}}/running-and-debugging-within-your-ide.html) for Java users has been designed allow users running their PU within their IDE and also to be used with Unit Tests. This allow users to simulate a complete PU (specific PU instance or a complete cluster) to be provisioned within the single JVM. When testing micro services based application this makes the Unit testing very simple.
 
 The [XAP Maven Plugin]({{%latestjavaurl%}}/maven-plugin.html) provides similar functionality as it allow users to build , deploy and run a PU.
-
-# Cloud Deployment
-Micro services deployment on a Cloud environment is very popular. As the Cloud is a very dynamic , sometimes unpredicted environment , deploying self-sufficient components as micro services becomes an important ingredient for a healthy system. XAP inherently delivering this functionality as each PU includes all the 3rd party components and resources it need to be self-sufficient. XAP , together with its Cloudify blueprint , can be deployed on any Cloud environment, leveraging the Cloud ability to provision compute resources on-demand. This allow XAP to deliver continuous-availability with zero-downtime for the deployed PU.
 
 # Gateway
 With micro services , [API gateway](http://microservices.io/patterns/apigateway.html) used to orchestrate the cross-functional micro services that may reduce round trips for web applications.
