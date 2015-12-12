@@ -29,6 +29,8 @@ XAP is a platform that scales out stateful applications in high-performance low-
 
 [Space Based Architecture](./space-based-architecture.html){{% wbr%}}
 
+[Space Based Micro Services](./micro-service.html){{% wbr%}}
+
 [J2EE verses XAP](./j2ee-vs-xap.html){{% wbr%}}
 
 [About Jini](./about-jini.html){{% wbr%}}
