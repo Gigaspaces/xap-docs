@@ -1,9 +1,9 @@
 ---
 type: post110
-title:  Eclipse setup
+title:  Setup
 categories: XAP110
-parent: installation.html
-weight: 600
+parent: installation-eclipse-overview.html
+weight: 100
 ---
 
 

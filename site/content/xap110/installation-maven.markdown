@@ -1,9 +1,9 @@
 ---
 type: post110
-title:  Maven Plugin
+title:  Setup
 categories: XAP110
-parent: installation.html
-weight: 500
+parent: installation-maven-overview.html
+weight: 100
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

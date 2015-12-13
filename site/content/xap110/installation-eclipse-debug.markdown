@@ -1,9 +1,9 @@
 ---
 type: post110
-title:  Running and Debugging Within Your IDE
+title:  Debugging
 categories: XAP110
-parent: installation.html
-weight: 700
+parent: installation-eclipse-overview.html
+weight: 200
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

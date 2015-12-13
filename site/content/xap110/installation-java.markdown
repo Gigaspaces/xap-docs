@@ -1,6 +1,6 @@
 ---
 type: post110
-title:  Overview
+title:  Setup
 categories: XAP110
 parent: installation-java-overview.html
 weight: 100

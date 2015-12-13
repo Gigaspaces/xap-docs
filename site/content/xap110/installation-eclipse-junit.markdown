@@ -2,8 +2,8 @@
 type: post110
 title:  JUnit Testing
 categories: XAP110
-parent: installation.html
-weight: 900
+parent: installation-eclipse-overview.html
+weight: 300
 ---
 
 {{% ssummary %}} {{% /ssummary %}}
@@ -158,3 +158,18 @@ public class ClusterTest {
 <br>
 
 You can verify that the 4 partitions exists by starting the [Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html)
+
+
+#  Lookup Service
+
+The StandaloneProcessingUnitContainer automatically starts an embedded Lookup service. If you intend to use a separate Lookup service you can disable the embedded Lookup service by passing the setting the `com.j_spaces.core.container.directory_services.jini_lus.enabled` system property to false. This property can also be set within the Space definition:
+
+```xml
+<os-core:embedded-space id="space" name="mySpace">
+    <os-core:properties>
+      <props>
+        <prop key="com.j_spaces.core.container.directory_services.jini_lus.start-embedded-lus">false</prop>
+      </props>
+    </os-core:properties>
+</os-core:embedded-space>
+```

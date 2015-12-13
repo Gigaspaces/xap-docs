@@ -2,12 +2,12 @@
 type: post110
 title:  Advanced Configuration
 categories: XAP110
-parent: maven-plugin.html
-weight: 100
+parent: installation-maven-overview.html
+weight: 200
 ---
 
 
-This page contains information beyond the basics. It was created for those who want to know a little bit more about how XAP and Maven integrate. Basically, the information given in [XAP Maven Plugin](./maven-plugin.html) should be sufficient for the common user.
+This page contains information beyond the basics. It was created for those who want to know a little bit more about how XAP and Maven integrate. Basically, the information given in [XAP Maven Plugin](./installation-maven.html) should be sufficient for the common user.
 
 # Processing Unit Assembly Definition
 
