@@ -2,8 +2,8 @@
 type: post110
 title:  Environment Variables
 categories: XAP110
-parent: installation-java.html
-weight: 100
+parent: installation-java-overview.html
+weight: 200
 ---
 
 

@@ -1,9 +1,9 @@
 ---
 type: post110
-title:  Setting JVM Location
+title:  JVM Location
 categories: XAP110
-parent: installation-java.html
-weight: 300
+parent: installation-java-overview.html
+weight: 400
 ---
 
 
