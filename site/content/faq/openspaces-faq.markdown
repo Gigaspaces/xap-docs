@@ -7,10 +7,8 @@ parent: none
 
 ---
 
+{{%fpanel%}}
 
-
-
-{{%panel%}}
 - [What is OpenSpaces?](#1)
 
 - [Who should use OpenSpaces?](#2)
@@ -19,22 +17,21 @@ parent: none
 
 - [What is the open source license for OpenSpaces?](#4)
 
-- [How is OpenSpaces related to JavaSpaces?](#5)
+- [How can I contribute code to OpenSpaces?](#5)
 
 - [What is a Processing Unit?](#6)
 
-- [How can I contribute code to OpenSpaces?](#7)
+- [How does OpenSpaces relate to Spring?](#7)
 
-- [How does OpenSpaces relate to Spring?](#8)
+- [How does OpenSpaces relate to the GigaSpaces Service Grid?](#8)
 
-- [How does OpenSpaces relate to the GigaSpaces Service Grid?](#9)
+- [How does OpenSpaces relate to EDA and SOA?](#9)
 
-- [How does OpenSpaces relate to EDA and SOA?](#10)
+- [How do I package my application with OpenSpaces?](#10)
 
-- [How do I package my application with OpenSpaces?](#11)
+- [How can I change a service within a Processing Unit without shutting down the Processing Unit?](#11)
 
-- [How can I change a service within a Processing Unit without shutting down the Processing Unit?](#12)
-{{%/panel%}}
+{{%/fpanel%}}
 
 {{%anchor 1%}}
 
@@ -58,37 +55,25 @@ OpenSpaces is useful for Spring users, Service-Oriented Architecture (SOA) and E
 
 ### Is OpenSpaces an open source project?
 
-Not exactly. OpenSpaces is an open community initiative built around GigaSpaces' core product -- the eXtreme Application Platform (XAP) -- and serves the following purposes:
+Not exactly. OpenSpaces is the top layer of XAP (eXtreme Application Platform) - a powerful, scalable In-Memory Data Grid. OpenSpaces is a package which wraps the core XAP functionality with a user-friendly Spring-based API, as well as additional patterns which have become common across many users and are now part of the library.
 
-- Create an open platform that will enable the GigaSpaces user community members to contribute features, influence the development direction of GigaSpaces, and develop their own framework around it, without being locked into the existing abstraction. For example, users can implement their own event handler, which can take data from other sources than the space. They can also extend the Processing Unit to meet their specific needs.
-- Create an environment that will help in a standardization effort around the next generation middleware stack, based on POJOs and dependency injection.
-- Reduce vendor lock-in risk. Users can easily use the OpenSpaces framework to plug-in different implementations as the underlying middleware stack.
+We've decided to mirror the OpenSpaces source code to a public GitHub repositoy -- [Gigaspaces/xap-openspaces](https://github.com/Gigaspaces/xap-openspaces) -- so users can fork and/or clone it in order to
 
-The OpenSpaces source code is mirrored to the [Gigaspaces/xap-openspaces](https://github.com/Gigaspaces/xap-openspaces) GitHub repository, so users can fork and/or clone it to review the code, debug it, or even extend it.
+- Review the code to better understand how certain features work under the hood.
+- Debug problems independently (in addition to posting a question on the [forum](http://ask.gigaspaces.org) or submitting a [support ticket](http://www.gigaspaces.com/support-center)).
+- Develop your own framework around it, without being locked into the existing abstraction. For example, users can implement their own event handler, which can take data from other sources than the space. They can also extend the Processing Unit to meet their specific needs.
 
 {{%anchor 4%}}
 
 ### What is the open source license for OpenSpaces?
 
-OpenSpaces is provided under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html). The distribution contains the source code of the OpenSpaces package. Note that the underlying GigaSpaces XAP implementation is provided only in its binary distribution format. A Development Source license for XAP will be provided to GigaSpaces customers.
+OpenSpaces is provided under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html). Note that the underlying GigaSpaces XAP implementation is provided only in its binary distribution format. A Development Source license for XAP will be provided to GigaSpaces customers.
 
 {{%anchor 5%}}
 
-### How is OpenSpaces related to JavaSpaces?
+### How can I contribute code to OpenSpaces?
 
-OpenSpaces introduces a JavaSpaces abstraction named [GigaSpace]({{%latestjavaurl%}}/the-gigaspace-interface.html).
-
-{{% info %}}
-We see this interface as a proposal for a new specification that will eventually be driven by the community, and not as a GigaSpaces specification per-se.
-{{%/info%}}
-
-The goal behind this abstraction is to provide a simpler interface that will fit into a POJO-driven architecture, such as Spring, with the following principles:
-
-- **POJO Entries** -- the data model in JavaSpaces is an Entry. An Entry has to inherit from a specific interface (Entry). Attributes are public, non-transient Java objects. This model is quite different from the model that was used before the POJO approach that became commonplace in JEE-related frameworks, such as JPA and Hibernate, which are now based on POJOs. A POJO data model is essentially a Java Bean representation with annotations that extend the model with meta-information, such as index definition, a persistence model, and more. The new GigaSpaces model uses POJO Entries and annotations for defining things such as indexes, persistence and replication semantics, and follows the same logic and semantics used today in JEE. This makes the integration of Space-Based Architecture with JEE a more natural fit. **Entries can still be used with the `GigaSpace` interface.**
-- **Declarative Transactions** -- the JavaSpaces API uses explicit transactional semantics in which a _transactions-handle_ is provided as an argument per method. While this model provides a finer level of granularity, it exposes more complexity to the developer. The transaction and locking semantics provided in the JavaSpaces specification support a limited set of transactional semantics. Spring (and therefore OpenSpaces) uses a declarative transaction model, which is essentially an implicit transaction. Developers can use annotations, or XML, to define specific transaction/locking semantics.
-- **Generics Support** -- developers can use generics to avoid unnecessary casting and make their interaction with the space more type-safe.
-- **Overloaded Methods** -- the `GigaSpace` interface uses overloaded methods that can use defaults to reduce the amount of arguments passed in read/take/write methods.
-
+The OpenSpaces source code is mirrored to the [Gigaspaces/xap-openspaces](https://github.com/Gigaspaces/xap-openspaces) GitHub repository, so you can fork and/or clone it to review the code, debug it, or even extend it. However, since this is a mirror repository, we cannot accept pull requests. If you have a suggestion, you're welcome to post it on the [forum](http://ask.gigaspaces.org) or email us at [contribute@openspaces.org](mailto:contribute@openspaces.org).
 
 {{%anchor 6%}}
 
@@ -97,14 +82,6 @@ The goal behind this abstraction is to provide a simpler interface that will fit
 A Processing Unit represents the unit of scalability and failover in Space-Based Architecture (SBA). The Processing Unit is designed to be a self-sufficient unit that contains the messaging, data and business logic within the same process. It is written just like any Spring application with the addition of the built-in [OpenSpaces Components](/product_overview/product-architecture.html#OpenSpaces-API-and-Components) for handling events, state and workflow.
 
 {{%anchor 7%}}
-
-### How can I contribute code to OpenSpaces?
-
-At this stage, you can submit code by sending an e-mail to [contribute@openspaces.org](mailto:contribute@openspaces.org).
-
-A full OpenSpaces source repository will be available soon.
-
-{{%anchor 8%}}
 
 ### How does OpenSpaces relate to Spring?
 
@@ -133,13 +110,13 @@ The GigaSpaces Spring Integration support:
 - Mule
 
 
-{{%anchor 9%}}
+{{%anchor 8%}}
 
 ### How does OpenSpaces relate to the GigaSpaces Service Grid?
 
 The GigaSpaces Service Grid is used as the SLA-driven container for the deployment of Spring-based Processing Units. OpenSpaces uses a Spring-based deployment descriptor. The Spring-based deployment-descriptor is a simplified version of the Service Grid deployment-descriptor, specialized for EDA and SOA use cases. It provides a generic form of defining SLAs for an entire Processing Unit. For example, it adds primary-backup semantics and a partitioning topology that maintains the partitioning of the spaces, as well as the services.
 
-{{%anchor 10%}}
+{{%anchor 9%}}
 
 ### How does OpenSpaces relate to EDA and SOA?
 
@@ -149,7 +126,7 @@ While the concept behind SOA/EDA is straightforward, most existing implementatio
 
 OpenSpaces was designed to support the SBA model out of the box in a simple and generic way, and therefore, make the development of high-performance SOA/EDA applications simple and scalable.
 
-{{%anchor 11%}}
+{{%anchor 10%}}
 
 ### How do I package my application with OpenSpaces?
 
@@ -157,13 +134,11 @@ One of the main goals of OpenSpaces is simplifying lifecycle management of an ap
 
 A Processing Unit is a simple directory structure. It includes a Spring XML configuration file (under `META-INF/spring/pu.xml`), the business logic class files, and third-party module `jar` files. A Processing Unit, under the mentioned structure, can then run within the IDE, locally, and deployed on the SLA-driven container without any changes.
 
-{{%anchor 12%}}
+{{%anchor 11%}}
 
-### How can I change a service within a Processing Unit without shutting down the Processing Unit?
+### Can I change a service within a Processing Unit without shutting down the Processing Unit?
 
-The current version of OpenSpaces enables dynamic reloading of **selected** service beans (business logic) without bringing down the processing unit. Read more [here]({{%latestjavaurl%}}/reloading-business-logic.html).
-
-
+Yes. OpenSpaces supports dynamic reloading of **selected** service beans (business logic) without bringing down the processing unit. Read more [here]({{%latestjavaurl%}}/reloading-business-logic.html).
 
 This mainly applies when wanting to change business logic of a Processing Unit that also starts a space, without shutting down the space. Any Processing Unit or other services that connect to the space remotely can be replaced easily with the current version.
 
