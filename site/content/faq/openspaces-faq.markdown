@@ -37,7 +37,8 @@ parent: none
 
 ### What is OpenSpaces?
 
-OpenSpaces is designed to enable scaling-out of stateful applications in a simple way using the [Spring Framework](http://www.springframework.org/). It is shipped as an open source initiative from GigaSpaces, and supports the GigaSpaces Space-Based Architecture model out-of-the-box.
+OpenSpaces is the top layer of **XAP** (e**X**treme **A**pplication **P**latform) - a powerful, scalable In-Memory Data Grid. OpenSpaces is a package which wraps the core XAP functionality with a user-friendly Spring-based API, as well as additional patterns which have become common across many users and are now part of the library. OpenSpaces is designed to enable scaling-out of stateful applications in a simple way using the [Spring Framework](http://www.springframework.org/). It supports the GigaSpaces [Space-Based Architecture](/product_overview/space-based-architecture.html) out-of-the-box.
+
 
 OpenSpaces is useful for Spring users, Service-Oriented Architecture (SOA) and Event-Driven Architecture (EDA) developers, transactional applications, real-time analytics, and Web 2.0 applications.
 
@@ -53,11 +54,9 @@ OpenSpaces is useful for Spring users, Service-Oriented Architecture (SOA) and E
 
 {{%anchor 3%}}
 
-### Is OpenSpaces an open source project?
+### Is OpenSpaces an Open Source project?
 
-Not exactly. OpenSpaces is the top layer of XAP (eXtreme Application Platform) - a powerful, scalable In-Memory Data Grid. OpenSpaces is a package which wraps the core XAP functionality with a user-friendly Spring-based API, as well as additional patterns which have become common across many users and are now part of the library.
-
-We've decided to mirror the OpenSpaces source code to a public GitHub repositoy -- [Gigaspaces/xap-openspaces](https://github.com/Gigaspaces/xap-openspaces) -- so users can fork and/or clone it in order to
+Not exactly. OpenSpaces is a package which wraps the core XAP functionality with a user-friendly Spring-based API, as well as additional patterns which have become common across many users and are now part of the library. We've decided to mirror the OpenSpaces source code to a public GitHub repositoy -- [Gigaspaces/xap-openspaces](https://github.com/Gigaspaces/xap-openspaces) -- so users can fork and/or clone it in order to
 
 - Review the code to better understand how certain features work under the hood.
 - Debug problems independently (in addition to posting a question on the [forum](http://ask.gigaspaces.org) or submitting a [support ticket](http://www.gigaspaces.com/support-center)).
