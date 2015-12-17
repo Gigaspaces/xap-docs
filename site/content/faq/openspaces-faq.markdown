@@ -64,6 +64,8 @@ Not exactly. OpenSpaces is an open community initiative built around GigaSpaces'
 - Create an environment that will help in a standardization effort around the next generation middleware stack, based on POJOs and dependency injection.
 - Reduce vendor lock-in risk. Users can easily use the OpenSpaces framework to plug-in different implementations as the underlying middleware stack.
 
+The OpenSpaces source code is mirrored to the [Gigaspaces/xap-openspaces](https://github.com/Gigaspaces/xap-openspaces) GitHub repository, so users can fork and/or clone it to review the code, debug it, or even extend it.
+
 {{%anchor 4%}}
 
 ### What is the open source license for OpenSpaces?
