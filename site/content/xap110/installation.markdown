@@ -35,7 +35,7 @@ Installing the XAP Maven plugin, creating and running a Processing Unit project.
 [Eclipse setup](./installation-eclipse-overview.html){{<wbr>}}
 Setting up your IDE to work with XAP.
 
-[XAP as Windows Service](./running-gigaspaces-as-a-windows-service.html){{<wbr>}}
+[XAP as Windows Service](./installation-windows-service.html){{<wbr>}}
 Configuring XAP as a Windows service.
 
 

@@ -9,14 +9,12 @@ weight: 400
 {{% ssummary  %}}{{%/ssummary%}}
 
 
-{{%section%}}
-{{%column width="80%" %}}
+{{%imagertext  "/attachment_files/data_event.jpg"%}}
+<br>
+<br>
 XAP provides a single interface for Space Data event listeners used by different event containers (Space data event generators) such as Polling Event and Notify Event containers. The benefit of doing so is the loose coupling between how the events are received (the different containers) and what to do with a received event (the listener).
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/data_event.jpg"%}}
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
+
 
 # Space Data Event Listener
 

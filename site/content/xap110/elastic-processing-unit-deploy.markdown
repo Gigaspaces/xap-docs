@@ -343,13 +343,11 @@ ProcessingUnit pu = gsm.deploy(
 
 {{%refer%}}
 An Elastic Processing Unit can also be deployed with the [Command Line Interface]({{%currentadmurl%}}/elastic-deploy-command-line-interface.html).
-
 {{%/refer%}}
 
 # Hot Deploy
 
 {{%refer%}}
 The [XAP Hot Deploy](/sbp/xap-hot-deploy.html) tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach , placing new PU code on the GSM PU deploy folder and later restart each PU instance.
-
 {{%/refer%}}
 

@@ -8,7 +8,7 @@ weight: 300
 
 {{% ssummary %}} {{% /ssummary %}}
 
-JUnit tests with XAP are very simple to setup.  When creating unit tests with XAP you will use an `Embedded Space` that is internally represented by the `IntegratedProcessingUnitContainer` class and a reference to this Space will be available through a class implementing the `GigaSpace` interface. This allows you to read / write objects to that Space just as you normally would in any XAP application.
+When creating unit tests with XAP you will use an `Embedded Space` that is internally represented by the `IntegratedProcessingUnitContainer` class and a reference to this Space will be available through a class implementing the `GigaSpace` interface. This allows you to read / write objects to that Space just as you normally would in any XAP application.
 
 
 

@@ -9,14 +9,10 @@ weight: 100
 {{% ssummary  %}}{{%/ssummary%}}
 
 
-{{% section %}}
-{{% column width="80%" %}}
+{{% imagertext  "/attachment_files/polling_container_basic.jpg"%}}
 The polling event container is an implementation of the [polling consumer pattern](http://enterpriseintegrationpatterns.com/PollingConsumer.html)  which uses the space to receive events. It performs polling receive operations against the space. If a receive operation succeeds (a value is returned from the receive operation), the [Data Event Listener](./data-event-listener.html) is invoked with the event. A polling event operation is mainly used when simulating Queue semantics or when using the master-worker design pattern.
-{{% /column %}}
-{{% column width="20%" %}}
-{{%popup   "/attachment_files/polling_container_basic.jpg"%}}
-{{% /column %}}
-{{% /section %}}
+{{%/imagertext%}}
+
 
 
 

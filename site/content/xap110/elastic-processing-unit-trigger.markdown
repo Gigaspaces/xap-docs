@@ -12,15 +12,18 @@ weight: 300
 
 
 
-# Capacity Scale Trigger
+# Manual Capacity Scale Trigger
 
 The system administrator may specify the memory and/or CPU core resources required for the processing unit in production. This should be specified during the deployment time, and could be specified also anytime after the deployment. The memory capacity trigger affects the number of provisioned containers. If there are not enough machines to host the provisioned containers the trigger also affects the number of provisioned machines. The number of CPUs affect directly the number of provisioned machines (even if it means that some of the machines have unused memory).
 
 When specifying both memory and cores capacity requirements as part of the deploy and scale routines, the EPU will **be deployed successfully** only when **both memory and cores** resources can be allocated (sufficient amount of memory and cores across the available machines). If you would like to the memory capacity requirements to take precedence on the cores capacity requirements, have lower values for the cores capacity requirements than the exact existing cores count.
 
+
+# Example
+
 Here is an example how you can scale a deployed EPU memory and CPU capacity.
 
-## Step 1:
+#### Step 1 - Deploy the PU:
 
 We deploy the PU having 512GB as the maximum total amount of memory utilized both for primary and backup instances where the entire system should consume maximum of 32 cores. At start only 128GB and 8 cores will be utilized.
 
@@ -42,7 +45,7 @@ ProcessingUnit pu = gsm.deploy(
 pu.waitForSpace().waitFor(pu.getTotalNumberOfInstances());
 ```
 
-## Step 2:
+#### Step 2 - Increase the memory capacity from 128GB to 256GB and number of cores from 8 to 16:
 
 
 ```java
@@ -55,7 +58,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
          .create());
 ```
 
-## Step 3:
+#### Step 3 - Increase the memory capacity from 256GB to 512GB and number of cores from 16 to 32:
 
 
 ```java
@@ -68,7 +71,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
          .create());
 ```
 
-## Step 4:
+#### Step 4 - Decrease the memory capacity and CPU capacity:
 
 
 ```java
@@ -130,8 +133,12 @@ ProcessingUnit pu2 = gsm.deploy(
 );
 ```
 
+<br>
+
+{{%info "Eager scale trigger verses Manual capacity trigger"%}}
 The differences between the Eager scale trigger and a Manual capacity trigger in terms of the maximum amount of memory and CPU are:
 
 - **Manual** capacity trigger expects the administrator to start enough available machines running the GigaSpaces agent to satisfy the specified capacity. Since it expects a new machine to be started, it does not balance the Processing Unit instances nor it does start new containers, until the machines are started. **Eager** trigger, on the other hand, redeploys as best as it can on the available machines, and scales out only when another machine is started or until the max capacity is reached.
 - The **Eager** trigger spreads out thin if enough machines are available (to gain as much CPU resources as possible). **Manual** trigger spreads out to new machines, before existing machines' memory is utilized, only when the `numberOfCpu` property is high enough.
 
+{{%/info%}}

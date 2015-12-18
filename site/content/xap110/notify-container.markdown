@@ -9,14 +9,10 @@ weight: 100
 {{% ssummary  %}}{{%/ssummary%}}
 
 
-{{% section %}}
-{{% column width="80%" %}}
+{{% imagertext   "/attachment_files/notify_container_basic.jpg"%}}
 The notify event container uses the space inherited support for notifications (continuous query) using a XAPs unified event session API. If a notification occurs, the [data event listener](./data-event-listener.html) is invoked with the event. A notify event operation is mainly used when simulating Topic semantics.
-{{% /column %}}
-{{% column width="20%" %}}
-{{%popup   "/attachment_files/notify_container_basic.jpg"%}}
-{{% /column %}}
-{{% /section %}}
+{{% /imagertext %}}
+
 
 
 ### Life Cycle Events
