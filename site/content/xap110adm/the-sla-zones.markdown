@@ -77,7 +77,9 @@ When using the host or zone requirements, note that more than one requirement ca
 
 # Using Zones
 
+{{%align center%}}
 ![zones.jpg](/attachment_files/zones.jpg)
+{{%/align%}}
 
 Defining zones allows you to configure logical tags for each GSC, according to which the processing unit instances will be provisioned to. You can use any alphanumeric combination for a zone name. The GSC can be started with a set of zones that are tagged to it, which match (or not) a given zone requirement in the processing unit's SLA (the zone name matching is case sensitive). The zones of a GSC are specified via the `com.gs.zones` system property. Typically this will be done by setting the GSC_JAVA_OPTIONS environment variable before running the GSC, as shown below (note that you can also edit the `setenv.sh/bat` script manually, but it is less recommended since it touches a core system script):
 

@@ -32,9 +32,9 @@ The Primary-Backup Zone Controller used with Deterministic Deployment should be 
 
 This example deploys a partitioned data grid with two partitions and a backup where `Zone A` hosting primary instances:
 
-*sla.xml*
 
-
+{{%tabs%}}
+{{% tab "sla.xml"%}}
 ```xml
 <os-sla:sla cluster-schema="partitioned-sync2backup"
             number-of-instances="2" number-of-backups="1" max-instances-per-zone="A/1,B/1"
@@ -47,11 +47,14 @@ This example deploys a partitioned data grid with two partitions and a backup wh
     
 </os-sla:sla>
 ```
+{{%/tab%}}
+{{%/tabs%}}
 
-*pu.xml*
 
 Add the following snippet to your PU.
 
+{{%tabs%}}
+{{% tab "pu.xml"%}}
 ```xml
 
 <bean id="primaryZoneController" class="org.openspaces.pu.sla.PrimaryZoneController" >
@@ -59,6 +62,9 @@ Add the following snippet to your PU.
 </bean>
 
 ```
+{{%/tab%}}
+{{%/tabs%}}
+
 
 #### Setup the zones
 

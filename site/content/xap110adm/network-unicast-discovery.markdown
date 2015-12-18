@@ -50,17 +50,14 @@ When the locators attribute is used in conjunction with the jini://* prefix and 
 
 If you want unicast only, you should disable multicast altogether.
 
-{{% tip %}}
-For **unicast discovery only**, you should disable multicast using **`-Dcom.gs.multicast.enabled=false`** system property, and use:
+{{% tip "Unicast discovery only"%}}
+For unicast discovery only, you should disable multicast using **`-Dcom.gs.multicast.enabled=false`** system property, and use:
 
 
 ```java
 jini://linux-lab1:4174,linux-lab2:4174/./mySpace?locators=linux-lab1:4174,linux-lab2:4174
 ```
 
-{{% /tip %}}
-
-{{% tip %}}
 For troubleshooting purposes you should verify that the services (spaces, GSC, GSM, processing units etc.) print correct settings for the locators while they initialize. You can turn on the relevant logging if required.
 {{%/tip%}}
 

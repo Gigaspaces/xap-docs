@@ -22,8 +22,9 @@ The notify event container uses the space inherited support for notifications (c
 ### Life Cycle Events
 The notify container life cycle events described below. You may implement each of of these to perform the desired activity.
 
+{{%align center%}}
 ![polling_container_basic.jpg](/attachment_files/notify_container_life_cycle.jpg)
-
+{{%/align%}}
 
 
 # Configuration
