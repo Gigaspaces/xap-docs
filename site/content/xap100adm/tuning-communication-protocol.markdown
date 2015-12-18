@@ -438,7 +438,7 @@ You may monitor the remote communication activity via the Administration and Mon
    	}
 ```
 
-   	Example output:
+Example output:
 
 ```bash
    	--------- GSC 6af9bdbf-0754-4410-b3b9-3f78fd939e1c running on Machine 10.10.10.108 Pid:10212 Start Time:Wed Oct 09 15:17:09 EDT 2013 ---------
