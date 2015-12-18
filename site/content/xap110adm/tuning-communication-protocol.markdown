@@ -7,38 +7,38 @@ weight: 600
 ---
 
 
-XAP provides a pluggable communication adaptor, LRMI (**Light Remote Method Invocation**), built on top of [NIO communication protocol](http://en.wikipedia.org/wiki/New_I/O).
+XAP provides a pluggable communication adaptor, LRMI (**Light Remote Method Invocation**), built on top of the [NIO communication protocol](http://en.wikipedia.org/wiki/New_I/O).
 
 {{% align center %}}
 ![lrmi.jpg](/attachment_files/lrmi.jpg)
 {{% /align %}}
 
-The LRMI uses a `GenericExporter` that implements the [net.jini.export.Exporter](http://www.gigaspaces.com/docs/JiniApi/net/jini/export/Exporter.html) interface.
+LRMI uses a `GenericExporter` that implements the [net.jini.export.Exporter](http://www.gigaspaces.com/docs/JiniApi/net/jini/export/Exporter.html) interface.
 
 All GigaSpaces components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.
 
-The GigaSpaces LRMI protocol has been designed to allow multiple services running within the same JVM to share their communication resources and to allow non-blocking IO communication with minimal serialization overhead. For example, it allows different space instances hosted within the same GSC to share the same LRMI resources without exhausting the JVM and machine resources.  The LRMI comes with default settings that may not be optimized for every scenario. You may need to change the defaults for the client or server side to have the maximum throughput and lowest latency your network and hardware may provide.
+The GigaSpaces LRMI protocol has been designed to allow multiple services running within the same JVM to share their communication resources and to allow non-blocking IO communication with minimal serialization overhead. For example, it allows different space instances hosted within the same GSC to share the same LRMI resources without exhausting the JVM and machine resources. LRMI comes with default settings that may not be optimized for every scenario. You may need to change the defaults for the client or server side to have the maximum throughput and lowest latency your network and hardware may provide.
 
 {{% align center %}}
 ![lrmi_archi2.jpg](/attachment_files/lrmi_archi2.jpg)
 {{% /align %}}
 
-The XAP LRMI using two independent resource pools working collaboratively allowing a client to communicate with a server in a scalable manner: A client connection pool configured via the `com.gs.transport_protocol.lrmi.max-conn-pool` at the client side and a server Connection thread pool configured via the `com.gs.transport_protocol.lrmi.max-threads` also at the server side. You may configure these two pools' sizes and their resource timeouts to provide maximum throughput and low latency when a client communicates with a server. The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
+XAP LRMI uses two independent resource pools working collaboratively to allow a client to communicate with a server in a scalable manner: A client connection pool configured via the `com.gs.transport_protocol.lrmi.max-conn-pool` at the client side and a server connection thread pool configured via the `com.gs.transport_protocol.lrmi.max-threads` at the server side. You may configure these two pools' sizes and their resource timeouts to provide maximum throughput and low latency when a client communicates with a server. The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
 
 
 ## Client LRMI Connection Pool
 
-The client LRMI connection pool maintained per server component - i.e. by each space partition. For each space partition a client maintains a dedicated connection pool shared between all client threads accessing a specific partition. When having multiple partitions (N) hosted within the same GSC, a client may open maximum of `N * com.gs.transport_protocol.lrmi.max-conn-pool` connections against the GSC JVM process.
+The client LRMI connection pool is maintained per server component - i.e. by each space partition. For each space partition a client maintains a dedicated connection pool shared between all client threads accessing a specific partition. When having multiple partitions (N) hosted within the same GSC, a client may open maximum of `N * com.gs.transport_protocol.lrmi.max-conn-pool` connections against the GSC JVM process.
 
 {{% vbar %}}
-You may need to change the `com.gs.transport_protocol.lrmi.max-conn-pool` value (1024) to have a smaller number. The default might be high for application with multiple partitions.
+You may need to change the `com.gs.transport_protocol.lrmi.max-conn-pool` value (default = 1024) to have a smaller number. The default may be high for applications with multiple partitions.
 
 
 ```bash
 Client total # of open connections = com.gs.transport_protocol.lrmi.max-conn-pool * # of partitions
 ```
 
-This may result very large amount of connections started at the client side resulting "Too many open files" error. You should increase the OS' max file descriptors amount by calling the following before running the client application (on UNIX):
+This may result in a very large amount of connections started at the client side resulting in a "Too many open files" error. You should increase the OS' max file descriptors amount by calling the following before running the client application (on UNIX):
 
 
 ```bash
@@ -53,20 +53,20 @@ or by lowering the `com.gs.transport_protocol.lrmi.max-conn-pool` value.
 The LRMI connection thread pool is a server side component. It is in charge of executing the incoming LRMI invocations. It is a single thread pool within the JVM that executes all the invocations, from all the clients and all the replication targets.
 
 {{% tip %}}
-In some cases you might need to increase the LRMI Connection thread pool maximum size. Without this tuning activity, the system might hang in case there would be large amount of concurrent access. Using a value as **1024** for the LRMI Connection Thread Pool should be sufficient for most large scale systems.
+In some cases you might need to increase the LRMI Connection thread pool maximum size. Without this tuning activity, the system might hang in the case of a large amount of concurrent access. Using a value as **1024** for the LRMI Connection Thread Pool should be sufficient for most large scale systems.
 {{% /tip %}}
 
 ## Selector Threads
 
-To increase the concurrency and scalability of the LRMI behavior, multiple NIO channel selectors are used for write and read network traffic activities configured via the `com.gs.transport_protocol.lrmi.selector.threads` property. The same property used to configure both the write and read selector thread pool size.
+To increase the concurrency and scalability of the LRMI behavior, multiple NIO channel selectors are used for write and read network traffic activities and is configured via the `com.gs.transport_protocol.lrmi.selector.threads` property. The same property is used to configure both the write and read selector thread pool size.
 
-Machines with Multi-Core CPUs can leverage this functionality in an optimal manner. A dedicated thread pool exists for socket write operations and another thread pool for socket read operations. The read selector threads (4 by default) listening for incoming client invocations. They receive the incoming traffic from the network, read the raw data bytes and transfer these to be processed by the LRMI connection thread pool. The write selector threads used when there is a need to send data back into the client side with asynchronous operations (blocking read/ blocking write/notifications).
+Machines with Multi-Core CPUs can leverage this functionality in an optimal manner. A dedicated thread pool exists for socket write operations and another thread pool for socket read operations. The read selector threads (4 by default) listens for incoming client invocations. They receive the incoming traffic from the network, read the raw data bytes and transfer these to be processed by the LRMI connection thread pool. The write selector threads is used when there is a need to send data back to the client side with asynchronous operations (blocking read/ blocking write/notifications).
 
 ## Min Latency and Max Throughput
 
-Both of the resource pools elements might have different life span. Usually, once a connection is established between a client and a server, it will be open as long as the client is still running. The connection will be terminated once a client will be terminated or when the client will not perform any network activity for some time and the connection will be identified as idle. See the watchdog description below how this behavior should be configured. The same goes for LRMI connection thread, it will be available as long as there are clients accessing the server. A connection thread will return into the pool and the pool will shrink itself once there would not be any remote activity for some time. This timeout is configured via the  `com.gs.transport_protocol.lrmi.threadpool.idle_timeout`. LRMI threads and connection are used also for server to server communication such as data replication.
+Both of the resource pools elements might have a different life span. Usually, once a connection is established between a client and a server, it will be open as long as the client is still running. The connection will be terminated once a client is terminated or when the client does not perform any network activity for some time and the connection will be identified as idle. See the watchdog description below for how this behavior should be configured. The same goes for LRMI connection threads, it will be available as long as there are clients accessing the server. A connection thread will return into the pool and the pool will shrink itself once there is any remote activity for some time. This timeout is configured via the `com.gs.transport_protocol.lrmi.threadpool.idle_timeout`. LRMI threads and connection are used also for server to server communication such as data replication.
 
-The size of the LRMI connection pool and LRMI thread pool will impact the latency response time for a remote request. Once any of these pools is fully exhausted a client request will be suspended until a free connection or thread will be available.
+The size of the LRMI connection pool and LRMI thread pool will impact the latency response time for a remote request. Once any of these pools is fully exhausted a client request will be suspended until a free connection or thread becomes available.
 
 The number of connections a client should open also depends on the size of the objects being sent across the wire. For a multi-threaded client writing or reading large objects, you may have the same amount of connections established for each client thread. This will ensure minimal latency request duration with maximum throughput.
 
@@ -79,7 +79,7 @@ When reading from a [NIO SocketChannel](http://download.oracle.com/javase/{{%ver
 Known solutions and problems they may have:
 
 1. TCP keep alive mechanism -- TCP has an option sending keep alive packets in order to detect such failures, but the keep alive interval can not be set for less than 2 hours, which is not very useful.
-1. Read timeout -- the old Java IO package allowed to execute read operations with user defined timeout. This does not work with NIO. You can still set the timeout on `channel.socket()`, but this only applies to reading from socket `InputStream` and not channel reads.
+1. Read timeout -- the old Java IO package allows the execution of read operations with a user defined timeout. This does not work with NIO. You can still set the timeout on `channel.socket()`, but this only applies to reading from socket `InputStream` and not channel reads.
 
 The watchdog network failure detection mechanism applies to the space proxy (client side) when interacting with a remote space and with space-space interaction (replication). The watchdog is efficient both in terms of memory and CPU consumption with minimal overhead.
 
@@ -89,9 +89,9 @@ The network failure detection mechanism is timeout-based -- each read operation 
     - Listening timeout handling -- timeout is perceived as a broken link and the server closes existing connection to the client. When the link between the server and the client is restored -- connection is reestablished.
     - Heartbeat mechanism -- used to avoid closing valid connections.
 - Request timeout -- occurs when the client sends a request to the space and doesn't get a reply for the defined timeout. Configured via the `com.gs.transport_protocol.lrmi.request_timeout` system property.
-    - Request timeout handling -- when timeout expires, the connection is first tested by establishing a new dummy connection to the server using the same port. If the connection is established successfully, timeout is ignored and connection timeout is reset. Otherwise, the connection is closed. The dummy request timeout controlled via the `com.gs.transport_protocol.lrmi.inspect_timeout` system property.
+    - Request timeout handling -- when a timeout expires, the connection is first tested by establishing a new dummy connection to the server using the same port. If the connection is established successfully, the timeout is ignored and connection timeout is reset. Otherwise, the connection is closed. The dummy request timeout is controlled via the `com.gs.transport_protocol.lrmi.inspect_timeout` system property.
 
-Failure detection uses a watchdog design pattern to monitor timeouts of NIO operations. Watchdog is a singleton thread that runs every predefined period of time, according to timeout resolution, checks all the threads that are currently registered and fires timeout event on the threads that exceeded their allowed timeout.
+Failure detection uses a watchdog design pattern to monitor timeouts of NIO operations. Watchdog is a singleton thread that runs every predefined period of time, according to timeout resolution, checks all the threads that are currently registered and fires a timeout event on the threads that exceeded their allowed timeout.
 
 
 
@@ -120,7 +120,7 @@ A server component may open a connection back to the client in the following cas
 - When a client performs blocking read/take operation (timeout > 0)
 - When a change has been done with the service topology (service terminated or added), the lookup service notifies the client (client lookup cache)
 
-To allow the above , the client must set the `java.rmi.server.hostname` property with the relevant IP. For a Multi-Homed machines this is critical setting, since without having this set, the server side might use the wrong IP Address to communicate back with the client.
+To allow the above, the client must set the `java.rmi.server.hostname` property with the relevant IP. For a Multi-Homed machines this is a critical setting, since without having this set, the server side might use the wrong IP Address to communicate back with the client.
 
 # LRMI Configuration
 
@@ -142,6 +142,7 @@ The `LRMI` configuration options set as system properties. They are listed below
 | com.gs.transport_protocol.lrmi.<br>connect_timeout | LRMI timeout to establish a socket connection | 5000| Server | millisec| No|
 | com.gs.transport_protocol.lrmi.<br>maxBufferSize | The NIO internal cache (a DirectByteBuffer) might cause an OutOfMemoryError due-to direct memory exhaustion. To avoid such a scenario, the LRMI layer breaks the outgoing buffer into a several chunks. By doing so, the NIO internal cache is kept small, and may not cause any error. The size of these chunks can be determined by this property| 65536 (64k)| Client & Server | Bytes | Yes |
 | com.gs.transport_protocol.lrmi.<br>selector.threads | LRMI selector threads. This should be configured with multi core machines. Usualy should be tuned for server side| 4 | Client & Server | Threads| No|
+| com.gs.transport_protocol.lrmi.use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
 | com.gs.transport_protocol.lrmi.<br>classloading | Enables LRMI dynamic class loading.| true | Server | boolean  | No|
 | com.gs.transport_protocol.lrmi.<br>classloading.import | Enables importing of classes using LRMI dynamic class loading.| true | Server | boolean  | No|
 | com.gs.transport_protocol.lrmi.<br>classloading.export | Enables exporting of classes using lrmi dynamic class loading.| true | Server | boolean  | No|
@@ -152,8 +153,6 @@ The `LRMI` configuration options set as system properties. They are listed below
 |com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 128 |  Server| Threads|No|
 |com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 128 | Server | Threads|No|
 |com.gs.transport_protocol.lrmi.<br>custom.threadpool.idle_timeout |  | 300000 millisec     |   | | |
-
-
 
 {{% refer %}}
 If you are using the **notification slow consumer** mechanism see the [Slow Consumer](./slow-consumer.html#Configuration -- Server Side) for additional LRMI parameters to configure.
