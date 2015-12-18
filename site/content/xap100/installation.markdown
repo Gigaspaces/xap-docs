@@ -37,6 +37,9 @@ Setting up your IDE to work with XAP.
 [Debugging with Eclipse](./running-and-debugging-within-your-ide.html){{<wbr>}}
 Explains how to run your processing unit inside your IDE or in unit tests.
 
+[JUnit Test](./installation-eclipse-junit.html){{<wbr>}}
+JUnit Testing XAP.
+
 [XAP as Windows Service](./running-gigaspaces-as-a-windows-service.html){{<wbr>}}
 Configuring XAP as a Windows service.
 {{%/fpanel%}}
