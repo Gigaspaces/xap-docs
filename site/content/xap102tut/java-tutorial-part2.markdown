@@ -148,13 +148,13 @@ You can start XAP's console and inspect the Data Grid components that have been 
 {{%tab "  Windows"%}}
 
 ```bash
-GS_HOME\bin\gs_webui.bat
+GS_HOME\bin\gs-webui.bat
 ```
 {{% /tab %}}
 {{%tab "  Unix"%}}
 
 ```bash
-GS_HOME/bin/gs_webui.sh
+GS_HOME/bin/gs-webui.sh
 ```
 {{% /tab %}}
 {{% /tabs %}}
