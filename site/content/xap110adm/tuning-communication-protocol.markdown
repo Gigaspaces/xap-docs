@@ -164,8 +164,7 @@ If you are using the **notification slow consumer** mechanism see the [Slow Cons
 
 You can define port range using the `com.gigaspaces.transport.bind-port` property, meaning that every JVM acquires a bind port from a defined port range. This functionality is useful when having multiple JVMs on the same machine (clients or servers), and simplifies firewall setup.
 
-Here is how you can set a listening port rage for GSA/GSC/GSM:
-
+Here is how you can set a listening port range for GSA/GSC/GSM:
 
 ```bash
 export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100
@@ -176,7 +175,9 @@ export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100
 ## Configuration with Multi-Homed Machines
 
 When working with a multi-homed machine (a computer with multiple network cards), use the following system property to bind the GigaSpaces Server on a specified network interface:
-    -Djava.rmi.server.hostname=<hostname or IP address>
+```bash
+-Djava.rmi.server.hostname=<hostname or IP address>
+```
 
 The value of this property represents the host name string that must be associated with the network interface. The default value of this property is the IP address of the local host, in "dotted-quad" format.
 
@@ -203,7 +204,7 @@ com.gigaspaces.lrmi.level = INFO
     - `ALL` -- all debug messages available for LRMI.
     - `FINE` -- configuration, watchdog, client connections (connect/disconnect).
     - `FINER` -- content and execution state of remote method invocation on remote object.
-    - `SEVER` -- caught exceptions by LRMI on server and client side.
+    - `SEVERE` -- caught exceptions by LRMI on server and client side.
 
 `Step 4:` Save and close the `gs_logging.properties` file.
 
@@ -248,11 +249,10 @@ When LRMI logging is turned on, the space displays the following when started:
 ![lrmi_log1.JPG](/attachment_files/lrmi_log1.JPG)
 {{% /align %}}
 
-To test LRMI logging, you can run the space `ping` utility using the following command:
-
+To test LRMI logging, you can run the `space ping` utility using the following command. See [space ping](./space-gigaspaces-cli.html#ping) for more information on this utility.:
 
 ```bash
-/bin/gs.bat/space ping mySpace_container mySpace -r -i 1
+<XAP Root>/bin/gs.bat space ping mySpace_container mySpace -r -i 1
 ```
 
 {{% align center %}}
@@ -301,7 +301,7 @@ If your client application loses its connection to the server, you can follow a 
 
 # Monitoring LRMI via the Administration API
 
-You may monitor the remote communication activity via the Administration and Monitoring API. You may receive information in real-time about every aspect of the communication and transport activity. Below example demonstrating the usage of the API consuming this information.
+You may monitor the remote communication activity via the Administration and Monitoring API. You may receive information in real-time about every aspect of the communication and transport activity. The example below demonstrates the usage of the API for consuming this information.
 
 
 ```java
