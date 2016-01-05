@@ -204,11 +204,11 @@ You can troubleshoot the space activity using LRMI logging. You can turn on LRMI
 com.gigaspaces.lrmi.level = INFO
 ```
 
-`Step 3:` Set debug logger granularity level:
-    - `ALL` -- all debug messages available for LRMI.
-    - `FINE` -- configuration, watchdog, client connections (connect/disconnect).
-    - `FINER` -- content and execution state of remote method invocation on remote object.
-    - `SEVER` -- caught exceptions by LRMI on server and client side.
+`Step 3:` Set debug logger granularity level:  <br>
+    - `ALL` -- all debug messages available for LRMI. <br>
+    - `FINE` -- configuration, watchdog, client connections (connect/disconnect). <br>
+    - `FINER` -- content and execution state of remote method invocation on remote object.<br>
+    - `SEVERE` -- caught exceptions by LRMI on server and client side.<br>
 
 `Step 4:` Save and close the `gs_logging.properties` file.
 
