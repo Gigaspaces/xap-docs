@@ -92,7 +92,7 @@ class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" /
 
 <os-core:mirror id="mirror" url="/./mirror-service"
 	space-sync-endpoint="spaceSynchronizationEndpoint" operation-grouping="group-by-replication-bulk">
-	<os-core:source-space name="qa-space" partitions="2"
+	<os-core:source-space name="dataSourceSpace" partitions="2"
 		backups="1" />
 </os-core:mirror>
 
@@ -151,7 +151,7 @@ IJSpace mirror = new UrlSpaceConfigurer("/./mirror-service")
 
 For more details about different configurations see [Space Persistency](./space-persistency.html).
 
-###Before you begin###
+### Before you begin
 
 Before deploying your Processing Unit, please do the following:
 

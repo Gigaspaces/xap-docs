@@ -80,7 +80,7 @@ An example of how the MongoDB Space Synchronization Endpoint can be configured w
 		
 		<os-core:mirror id="mirror" url="/./mirror-service"
 			space-sync-endpoint="spaceSynchronizationEndpoint" operation-grouping="group-by-replication-bulk">
-			<os-core:source-space name="qa-space" partitions="2"
+			<os-core:source-space name="dataSourceSpace" partitions="2"
 				backups="1" />
 		</os-core:mirror>
 		
