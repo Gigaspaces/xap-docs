@@ -83,7 +83,7 @@ spring
 	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" />
 
 	<os-core:embedded-space id="space" name="dataSourceSpace">
-		space-data-source="spaceDataSource" mirror="true" schema="persistent">
+		space-data-source="spaceDataSource" mirrored="true" schema="persistent">
 		<os-core:properties>
 		 <props>
 			<!-- Use ALL IN CACHE, put 0 for LRU -->

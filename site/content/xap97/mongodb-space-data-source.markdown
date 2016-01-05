@@ -95,7 +95,7 @@ http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%cu
 class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" /> 
 
 <os-core:space id="space" url="/./dataSourceSpace"
-	space-data-source="spaceDataSource" mirror="true" schema="persistent">
+	space-data-source="spaceDataSource" mirrored="true" schema="persistent">
 	<os-core:properties>
 		<props>
 			<!-- Use ALL IN CACHE, put 0 for LRU --> 
