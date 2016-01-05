@@ -126,3 +126,11 @@ Microservice architectures emphasize transaction-less coordination between servi
 # Conclusion
 Developing and deploying microservices with XAP should adhere to several straightforward concepts. Many of these are classic concepts that does not require special changes to the regular development and deployment cycle you may have. Sticking to these concepts will deliver top quality , great end-user experience , an agile , cost effective , robust , scalable and simple to maintain application.
 
+# References
+http://martinfowler.com/articles/microservices.html
+https://en.wikipedia.org/wiki/Microservices
+http://www.infoq.com/articles/seven-uservices-antipatterns
+http://thenewstack.io/microservices-four-essential-checklists-getting-started/
+http://microservices.io/patterns/microservices.html
+http://www.computerweekly.com/feature/Microservices-How-to-prepare-next-generation-cloud-applications
+	
