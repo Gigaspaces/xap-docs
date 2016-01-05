@@ -43,7 +43,7 @@ Include the following in your `pom.xml`
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>2.11.2</version>
+			<version>3.2.0</version>
 		</dependency>
 
 		<dependency> 
@@ -55,7 +55,7 @@ Include the following in your `pom.xml`
 		<dependency>
     		<groupId>com.gigaspaces</groupId>
 	    	<artifactId>mongo-datasource</artifactId>
-    		<version>10.0.0-SNAPSHOT</version>
+    		<version>{{%version "maven-version" %}}</version>
 		</dependency>
 		...
 	</dependencies>
