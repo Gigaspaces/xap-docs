@@ -31,7 +31,7 @@ Include the following in your `pom.xml`
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>{{%version mongo-java-driver%}}</version>
+			<version>3.2.0</version>
 		</dependency>
 
 		<dependency> 
@@ -43,7 +43,7 @@ Include the following in your `pom.xml`
 		<dependency>
     		<groupId>com.gigaspaces</groupId>
 	    	<artifactId>mongo-datasource</artifactId>
-    		<version>10.0.0-SNAPSHOT</version>
+    		<version>{{%version "maven-version" %}}</version>
     		<scope>provided</scope>
 		</dependency>
 		...
@@ -144,9 +144,7 @@ Before deploying your Processing Unit, please do the following:
 
 	- `antlr-runtime.jar` from [antlr's website](http://www.antlr.org/download.html) .
 
-	- `mongo-java-driver-2.11.2.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
-
-	- `guava-r08.jar` from [Guava-project's website](https://code.google.com/p/guava-libraries/wiki/Release08) . **NOTE:** you must download Guava's release 08, and extract the `guava-r08.jar` from within the `guava-r08.zip` that you have downloaded
+	- `mongo-java-driver-3.2.0.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
 
 ## `MongoSpaceSynchronizationEndpoint` Properties
 
