@@ -497,17 +497,17 @@ query.setParameter(1, "UK");
 query.setParameter(2, "U.S.A");
 
 // retrieve the maximum value stored in the field "age"
-Number maxAgeInSpace = max(space, personSQLQuery, "age");
+Number maxAgeInSpace = max(space, query, "age");
 /// retrieve the minimum value stored in the field "age"
-Number minAgeInSpace = min(space, personSQLQuery, "age");
+Number minAgeInSpace = min(space, query, "age");
 // Sum the "age" field on all space objects.
-Number combinedAgeInSpace = sum(space, personSQLQuery, "age");
+Number combinedAgeInSpace = sum(space, query, "age");
 // Sum's the "age" field on all space objects then divides by the number of space objects.
-Double averageAge = average(space, personSQLQuery, "age");
+Double averageAge = average(space, query, "age");
 // Retrieve the space object with the highest value for the field "age".
-Person oldestPersonInSpace = maxEntry(space, personSQLQuery, "age");
+Person oldestPersonInSpace = maxEntry(space, query, "age");
 /// Retrieve the space object with the lowest value for the field "age".
-Person youngestPersonInSpace = minEntry(space, personSQLQuery, "age");
+Person youngestPersonInSpace = minEntry(space, query, "age");
 ```
 
 XAP also supports, `Compound`, `Embedded Fields` and `Group` Aggregation.
