@@ -194,3 +194,25 @@ note: java types Short, Float, BigDecimal and BigInt supported only =,<> queries
 Unsupported queries:
 Unsupported queries:
 - Contains is unsupported
+
+### Mongo As a Service
+There are some Mongo DB hosting services that run on the cloud, and you can connect to them from your deployment environment for free. For example: [mongolab](https://mongolab.com)
+
+In order to configure the connection, you would need to connect using a URI that contains the username and password.
+{{%tab Spring%}}
+```xml
+<bean id="mongoClient"
+          class="com.gigaspaces.persistency.MongoClientConnectorBeanFactory">
+        <property name="db" value="xapdb" />
+        <property name="config">
+            <bean class="com.mongodb.MongoClient">
+               <constructor-arg>
+                 <bean class="com.mongodb.MongoClientURI">
+                   <constructor-arg value="mongodb://<DB_USERNAME>:<DB_PASSWORD>@ds027017.mongolab.com:27017/xapdb" type="java.lang.String"/>
+                 </bean>
+               </constructor-arg>
+            </bean>
+        </property>
+    </bean>​
+```
+{{% /tab %}}
