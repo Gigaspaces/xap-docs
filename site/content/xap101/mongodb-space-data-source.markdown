@@ -8,7 +8,7 @@ weight: 100
 
 A MongoDB based implementation of the [Space Data Source](./space-data-source-api.html). 
 
-### Library dependencies 
+# Library dependencies
 The MongoDB Space Data Source uses [MongoDB Driver](http://docs.mongodb.org/ecosystem/drivers/java/) For communicating with the MongoDB cluster.
  
 include the following in your `pom.xml`
@@ -31,21 +31,18 @@ include the following in your `pom.xml`
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-mongo-java-driver
 			<version>{{%version "mongo-java-driver"%}}</version>
 		</dependency>
 
 		<dependency> 
 			<groupId>org.antlr</groupId> 
-			<artifactId>antlr4-runtime</artifactId> 
-antlr4-runtime
+			<artifactId>antlr4-runtime</artifactId>
 			<version>{{%version "antlr4-runtime"%}}</version>
 		</dependency> 
 
 		<dependency>
     		<groupId>com.gigaspaces</groupId>
 	    	<artifactId>mongo-datasource</artifactId>
-mongo-datasource
     	    <version>{{%version "mongo-datasource"%}}</version>
 		</dependency>
 		...
@@ -53,7 +50,7 @@ mongo-datasource
 
 ```
 
-### Setup 
+# Setup
 
 An example of how the MongoDB Space Data Source can be configured for a space that loads data back from MongoDB once initialized and 
 also asynchronously persists the data using a mirror (see [MongoDB Space Synchronization Endpoint](./mongodb-space-synchronization-endpoint.html))). 
@@ -70,13 +67,10 @@ also asynchronously persists the data using a mirror (see [MongoDB Space Synchro
 	xmlns:os-events="http://www.openspaces.org/schema/events"
 	xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
 	xmlns:os-sla="http://www.openspaces.org/schema/sla" xmlns:tx="http://www.springframework.org/schema/tx"
-spring
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
-spring
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-{{%version "spring"%}}.xsd
 	http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
 	http://www.openspaces.org/schema/events http://www.openspaces.org/schema/{{%currentversion%}}/events/openspaces-events.xsd
-spring
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-{{%version "spring"%}}.xsd
     http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%currentversion%}}/remoting/openspaces-remoting.xsd">
 
@@ -112,14 +106,12 @@ spring
 	</bean>
 			
 </beans>
-
-
 ```
+
 {{% /tab %}}
 {{%tab "Code"%}}
 
 ```java
-
 	MongoClient config = new MongoClient(host, port);
 
     MongoClientConnector client = new MongoClientConnectorConfigurer()
@@ -138,15 +130,14 @@ spring
 	.addProperty("cluster-config.cache-loader.central-data-source", "true") 
 	.addProperty("cluster-config.mirror-service.supports-partial-update", "true") 
 	.spaceDataSource(spaceDataSource) 
-	.space()).gigaSpace(); 
-
+	.space()).gigaSpace();
 ```
 {{% /tab %}}
 {{% /tabs %}}
 
 For more details about different configurations see [Space Persistency](./space-persistency.html). 
 
-### Before you begin
+# Before you begin
 
 Before deploying your Processing Unit, please do the following:
 
@@ -157,7 +148,7 @@ Before deploying your Processing Unit, please do the following:
 
 	- `mongo-java-driver-2.11.2.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
 
-### `MongoSpaceDataSource` Properties
+# MongoSpaceDataSource Properties
 
 
 |Property|Description|Default|
@@ -166,10 +157,10 @@ Before deploying your Processing Unit, please do the following:
 
 ## Considerations 
 
-### General limitations 
+## General limitations
 - All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the JVM the Space is running on. 
 
-### Cache miss Query limitations 
+## Cache miss Query limitations
 Supported queries:
 
 - `id = 1234` 
@@ -196,8 +187,31 @@ Supported queries:
 
 - `name is NOT NULL`
 
-note: java types Short, Float, BigDecimal and BigInt supported only =,<> queries >,<,>=,<= is not supported.
+{{%note "Note:"%}}
+Java types Short, Float, BigDecimal and BigInt supported only =,<> queries >,<,>=,<= is not supported.
+{{%/note%}}
 
-Unsupported queries:
-Unsupported queries:
+# Unsupported queries:
 - Contains is unsupported
+
+
+# Mongo As a Service
+There are some Mongo DB hosting services that run on the cloud, and you can connect to them from your deployment environment for free. For example: [mongolab](https://mongolab.com)
+
+In order to configure the connection, you would need to connect using a URI that contains the username and password.
+
+```xml
+<bean id="mongoClient"
+          class="com.gigaspaces.persistency.MongoClientConnectorBeanFactory">
+        <property name="db" value="xapdb" />
+        <property name="config">
+            <bean class="com.mongodb.MongoClient">
+               <constructor-arg>
+                 <bean class="com.mongodb.MongoClientURI">
+                   <constructor-arg value="mongodb://<DB_USERNAME>:<DB_PASSWORD>@ds027017.mongolab.com:27017/xapdb" type="java.lang.String"/>
+                 </bean>
+               </constructor-arg>
+            </bean>
+        </property>
+    </bean>​
+```

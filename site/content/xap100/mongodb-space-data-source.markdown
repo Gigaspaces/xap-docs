@@ -31,21 +31,18 @@ include the following in your `pom.xml`
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-mongo-java-driver
 			<version>{{%version "mongo-java-driver"%}}</version>
 		</dependency>
 
 		<dependency> 
 			<groupId>org.antlr</groupId> 
-			<artifactId>antlr4-runtime</artifactId> 
-antlr4-runtime
+			<artifactId>antlr4-runtime</artifactId>
 			<version>{{%version "antlr4-runtime"%}}</version>
 		</dependency> 
 
 		<dependency>
     		<groupId>com.gigaspaces</groupId>
 	    	<artifactId>mongo-datasource</artifactId>
-mongo-datasource
     	    <version>{{%version "mongo-datasource"%}}</version>
 		</dependency>
 		...
@@ -200,5 +197,27 @@ Supported queries:
 note: java types Short, Float, BigDecimal and BigInt supported only =,<> queries >,<,>=,<= is not supported.
 
 Unsupported queries:
-Unsupported queries:
+
 - Contains is unsupported
+
+
+# Mongo As a Service
+There are some Mongo DB hosting services that run on the cloud, and you can connect to them from your deployment environment for free. For example: [mongolab](https://mongolab.com)
+
+In order to configure the connection, you would need to connect using a URI that contains the username and password.
+
+```xml
+<bean id="mongoClient"
+          class="com.gigaspaces.persistency.MongoClientConnectorBeanFactory">
+        <property name="db" value="xapdb" />
+        <property name="config">
+            <bean class="com.mongodb.MongoClient">
+               <constructor-arg>
+                 <bean class="com.mongodb.MongoClientURI">
+                   <constructor-arg value="mongodb://<DB_USERNAME>:<DB_PASSWORD>@ds027017.mongolab.com:27017/xapdb" type="java.lang.String"/>
+                 </bean>
+               </constructor-arg>
+            </bean>
+        </property>
+    </bean>​
+```
