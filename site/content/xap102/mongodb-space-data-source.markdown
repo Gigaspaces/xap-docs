@@ -139,7 +139,7 @@ also asynchronously persists the data using a mirror (see [MongoDB Space Synchro
 
 For more details about different configurations see [Space Persistency](./space-persistency.html). 
 
-###Before you begin###
+### Before you begin
 
 Before deploying your Processing Unit, please do the following:
 

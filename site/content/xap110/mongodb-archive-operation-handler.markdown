@@ -18,7 +18,7 @@ The [Archive Container](./archive-container.html) can be configured to work agai
 {{%/section%}}
 
 
-#### Library dependencies
+# Library dependencies
 
 The MongoDB Archive Operation Handler uses the [MongoDB driver](http://docs.mongodb.org/ecosystem/drivers/java/) for communicating with the MongoDB cluster.
 Include the following in your `pom.xml`
@@ -43,7 +43,7 @@ Include the following in your `pom.xml`
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>3.2.0</version>
+			<version>{{%version "mongo-java-driver"%}}</version>
 		</dependency>
 
 		<dependency> 
@@ -64,7 +64,7 @@ Include the following in your `pom.xml`
 
 
 
-#### Setup
+# Setup
 
 {{%tabs%}}
 
@@ -105,7 +105,7 @@ Include the following in your `pom.xml`
 {{% /tab %}}
 {{% /tabs %}}
 
-#### MongoArchiveOperationHandler Properties
+# MongoArchiveOperationHandler Properties
 
 
 |Property|Description|

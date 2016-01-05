@@ -162,7 +162,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new UrlSpaceConfigurer("/./space")
 
 For more details about different configurations see [Space Persistency](./space-persistency.html). 
 
-###Before you begin###
+### Before you begin
 
 Before deploying your Processing Unit, please do the following:
 

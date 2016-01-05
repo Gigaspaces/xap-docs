@@ -31,7 +31,7 @@ include the following in your `pom.xml`
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>3.2.0</version>
+			<version>{{%version "mongo-java-driver"%}}</version>
 		</dependency>
 
 		<dependency> 
@@ -139,16 +139,16 @@ also asynchronously persists the data using a mirror (see [MongoDB Space Synchro
 
 For more details about different configurations see [Space Persistency](./space-persistency.html). 
 
-###Before you begin###
+### Before you begin
 
 Before deploying your Processing Unit, please do the following:
 
 1. Copy the `mongo-datasource.jar` from `lib\optional\datasource\mongo` to `lib\optional\pu-common`.
 2. download the following jars and copy them to `lib\optional\pu-common`:
 
-	- `antlr-runtime.jar` from [antlr's website](http://www.antlr.org/download.html) .
+- `antlr-runtime.jar` from [antlr's website](http://www.antlr.org/download.html) .
 
-	- `mongo-java-driver-2.11.2.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
+- `mongo-java-driver-{{%version "mongo-java-driver"%}}.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
 
 ### `MongoSpaceDataSource` Properties
 

@@ -135,7 +135,7 @@ An example of how the MongoDB Space Synchronization Endpoint can be configured w
 
 For more details about different configurations see [Space Persistency](./space-persistency.html).
 
-###Before you begin###
+### Before you begin
 
 Before deploying your Processing Unit, please do the following:
 
