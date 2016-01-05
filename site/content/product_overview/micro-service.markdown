@@ -8,10 +8,11 @@ weight: 1220
 
 {{%  ssummary %}}{{%  /ssummary %}}
 
-# Introduction
+{{%imagertext "/attachment_files/micro-services.png"%}}
 The Microservices paper by [Martin Fowler & James Lewis](http://martinfowler.com/articles/microservices.html)  has been influencing many development team and projects around the world. This software architecture style has gained prominence among web-scale startups and enterprises.
 
 This paper describes how microservices related to SBA and XAP. We will review the different principles microservices lays out and describe how these fit into the SBA model.
+{{%/imagertext%}}
 
 # What is SBA?
 The Space based architecture is a software architecture pattern for achieving linear scalability of stateful, high-performance applications using the tuple space paradigm. It follows many of the principles of representational state transfer (REST), service-oriented architecture (SOA) and event-driven architecture (EDA), as well as elements of grid computing. With a space-based architecture, applications are built out of a set of self-sufficient units, known as processing-units (PU) or elastic processing-units (EPU). These units are independent of each other, so that the application can scale by adding more units (called also instances).
