@@ -38,6 +38,7 @@ This page list all the 3rd party libraries shipped with GigaSpaces XAP on a per 
 |[Hibernate](http://www.hibernate.org/orm/) | 3.6.1 | [LGPL](http://hibernate.org/community/license/)            | Persistency | [Hibernate Space Persistency](/xap101/hibernate-space-persistency.html) |
 |[Cassandra](http://cassandra.apache.org/)  | 1.1.6 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |Persistency | [Cassandra Integration](/xap101/cassandra.html) |
 |[MongoDB](http://www.mongodb.org/)         | 2.11.2 | [Creative Commons](http://creativecommons.org/licenses/by-nc-sa/3.0/) | Persistency | [MongoDB Integration](/xap101/mongodb.html) |
+|[InfluxDB](https://influxdata.com/) | 0.9 (As of 10.2.1, 0.8 for 10.2.0) | [MIT](https://influxdb.com/docs/v0.9/about/licenses.html) | Metrics | [InfluxDB](/xap102adm/metrics-influxdb-reporter.html) |
 |[Jetty](http://eclipse.org/jetty/)         | 8.1.8, 9.1.3 | [Apache2](http://www.eclipse.org/jetty/licenses.php) | Web Container | [Jetty Processing Unit Container](/xap101/web-jetty-processing-unit-container.html) |
 |[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](/xap101/messaging-support.html) |
 |[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](/xap100/mule-esb.html) |
