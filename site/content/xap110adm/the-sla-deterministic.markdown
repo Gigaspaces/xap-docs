@@ -56,7 +56,6 @@ Add the following snippet to your PU.
 {{%tabs%}}
 {{% tab "pu.xml"%}}
 ```xml
-
 <bean id="primaryZoneController" class="org.openspaces.pu.sla.PrimaryZoneController" >
 <property name="primaryZone" value="A" />
 </bean>
@@ -76,7 +75,7 @@ Define two zones (zone1,zone2) need to be defined:
 {{%tab "  Windows "%}}
 
 
-```xml
+```bash
 set GSC_JAVA_OPTIONS=-Dcom.gs.zones="A"
 gs-agent gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 ```
@@ -84,8 +83,7 @@ gs-agent gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 
 {{%tab "  Linux "%}}
 
-```xml
-
+```bash
 export GSC_JAVA_OPTIONS=-Dcom.gs.zones="A"
 ./gs-agent.sh gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 ```

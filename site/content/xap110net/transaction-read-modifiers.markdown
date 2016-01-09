@@ -82,7 +82,7 @@ If the read operation is under a transaction, there is no need to "enlist" the s
 ## Locking and Blocking Rules
 
 
-| Operation A/Operation B | Update under transaction Y | Take under transaction Y | Read under transaction Y | Update, null transaction | Take, null transaction | Read, null transaction | Exclusive Read Lock | Dirty Read Transaction Y or null | Read Committed Transaction Y or null |
+| Operation A/Operation B | Update <br>under<br> transaction<br> Y | Take<br> under<br> transaction <br>Y | Read<br> under<br> transaction<br> Y | Update<br> null<br> transaction | Take,<br> null<br> transaction | Read,<br> null<br> transaction | Exclusive<br> Read<br> Lock | Dirty<br> Read<br> Transaction<br> Y<br> or null | Read <br>Committed <br>Transaction <br>Y <br>or null |
 |:------------------------|:---------------------------|:-------------------------|:-------------------------|:-------------------------|:-----------------------|:-----------------------|:--------------------|:---------------------------------|:-------------------------------------|
 | Update under transaction X | Blocked | Blocked | Blocked | Blocked | Blocked | Blocked | Blocked | Allowed | Allowed|
 | Take under transaction X | Blocked | Blocked | Blocked | Blocked | Blocked | Blocked | Blocked | Allowed | Allowed |

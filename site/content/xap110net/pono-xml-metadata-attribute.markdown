@@ -157,7 +157,7 @@ Example:
 
 
 {{%refer%}}
-[Indexing Nested Properties]{./indexing-nested-properties.html)
+[Indexing Nested Properties](./indexing-nested-properties.html)
 {{%/refer%}}
 
 
@@ -222,7 +222,7 @@ Example:
 
 
 {{%refer%}}
-[FIFO Grouping]{./fifo-grouping.html)
+[FIFO Grouping](./fifo-grouping.html)
 {{%/refer%}}
 
 
@@ -436,7 +436,7 @@ Example:
 ```
 
 {{%refer%}}
-[FIFO Grouping]{./fifo-grouping.html)
+[FIFO Grouping](./fifo-grouping.html)
 {{%/refer%}}
 
 

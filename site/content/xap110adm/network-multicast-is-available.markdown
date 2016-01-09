@@ -44,11 +44,11 @@ To configure Jini in a multi network environment see the [Multi Network Card Con
 
 | Option | Description | Value Format |
 |:-------|:------------|:-------------|
-| `sender` / `receiver` | Specifies whether you are the sender or the receiver -- `-sender` is used by the source machine, and `-receiver` is used by each target machine. | |
-| `ba` | Binding address. Useful for multi homed hosts. | `localhost` |
-| `ma` | Multicast address. | |
-| `t` | Time to live for multicast packets. | |
-| `verbose` | Print out the received messages. | |
+| <nobr>sender / receiver<nobr> | Specifies whether you are the sender or the receiver -- `-sender` is used by the source machine, and `-receiver` is used by each target machine. | |
+| ba | Binding address. Useful for multi homed hosts. | `localhost` |
+| ma | Multicast address. | |
+| t | Time to live for multicast packets. | |
+| verbose | Print out the received messages. | |
 
 # Example
 

@@ -147,9 +147,9 @@ Logging is divided according to `Level` as follows:
 
 | Level | Description |
 |:------|:------------|
-| `INFO` | The default level for informative messages. |
-| `CONFIG` | Mirror Service-relevant configuration messages. |
-| `FINER` | Fairly detailed messages of:{{<wbr>}}- **Entering and exiting** interface methods (displaying the parameter's `toString()` method){{<wbr>}}- **Throwing of exceptions** between the space and the underlying implementation. |
+| INFO | The default level for informative messages. |
+| CONFIG | Mirror Service-relevant configuration messages. |
+| FINER | Fairly detailed messages of:{{<wbr>}}- **Entering and exiting** interface methods (displaying the parameter's `toString()` method){{<wbr>}}- **Throwing of exceptions** between the space and the underlying implementation. |
 
 
 

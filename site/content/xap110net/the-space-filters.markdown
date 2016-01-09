@@ -129,15 +129,15 @@ The `SpaceFilterConfig` is used to start a space integrated with a space filter.
 
 |Name|Description|
 |------|-------|
-| `Name` | The name of the space filter. |
-| `IsActiveWhenBackup` | States if this filter is active when the space is in backup mode. |
-| `IsSecurityFilter` | States if this filter is a security filter. |
-| `ShutdownSpaceOnInitFailure` | States if the space should shutdown on filter init failure. |
-| `Priority` | The filter's [priority](#priority). |
-| `FilterOperations` | The list of [operations](#priority) to be filtered. |
-| `CustomProperties` | List of properties to be passed to the filter on initialization. |
-| `Enabled` | Is this filter enabled. |
-| `Filter` | The filter itself (an instance implementing ISpaceFilter). |
+| Name | The name of the space filter. |
+| IsActiveWhenBackup | States if this filter is active when the space is in backup mode. |
+| IsSecurityFilter | States if this filter is a security filter. |
+| ShutdownSpaceOnInitFailure | States if the space should shutdown on filter init failure. |
+| Priority | The filter's [priority](#priority). |
+| FilterOperations | The list of [operations](#priority) to be filtered. |
+| CustomProperties | List of properties to be passed to the filter on initialization. |
+| Enabled | Is this filter enabled. |
+| Filter | The filter itself (an instance implementing ISpaceFilter). |
 
 A filter is integrated into a space upon creation of that space, and each space filter that integrates with a space needs a `SpaceFilterConfig` instance that defines it.
 

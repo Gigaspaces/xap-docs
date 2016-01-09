@@ -30,10 +30,10 @@ The different logging levels are detailed below:
 
 | Level | Description |
 |:------|:------------|
-| `CONFIG` | Displays default configurations and available configuration options for both `Monitor` and `Detector` threads. |
-| `FINE` | In addition to the `CONFIG` level, displays disconnections logged by the `Monitor` and reconnections logged by the `Detector`. |
-| `FINER` | In addition to the `FINE` level, displays disconnections logged by user operations and by the detector. |
-| `FINEST` | In addition to the `FINEST`, displays reconnections logged by user operations and by the detector. |
+| CONFIG | Displays default configurations and available configuration options for both `Monitor` and `Detector` threads. |
+| FINE | In addition to the `CONFIG` level, displays disconnections logged by the `Monitor` and reconnections logged by the `Detector`. |
+| FINER | In addition to the `FINE` level, displays disconnections logged by user operations and by the detector. |
+| FINEST | In addition to the `FINEST`, displays reconnections logged by user operations and by the detector. |
 
 Logging granularity and information assists in tracing the availability of cluster members when using load-balancing or failover policies.
 
@@ -62,8 +62,8 @@ URL: [jini://*/fooSpace_container1_1/foSpace?groups=foo-group&ignoreValidation=t
 
 | System Property | Description | Default Value |
 |:----------------|:------------|:--------------|
-| `-Dcom.gs.cluster.livenessMonitorFrequency` | Defines the frequency in which liveness of 'live' members in a cluster is monitored. (Checks if available members become unavailable). | 10000 ms |
-| `-Dcom.gs.cluster.livenessDetectorFrequency` | Defines the frequency in which liveness of members in a cluster is detected. (Detects if an unavailable member becomes available). | 5000 ms |
+| -Dcom.gs.cluster.livenessMonitorFrequency | Defines the frequency in which liveness of 'live' members in a cluster is monitored. (Checks if available members become unavailable). | 10000 ms |
+| -Dcom.gs.cluster.livenessDetectorFrequency | Defines the frequency in which liveness of members in a cluster is detected. (Detects if an unavailable member becomes available). | 5000 ms |
 
 In most cases, **`livenessDetectorFrequency`** is the property you need to alter, since it is responsible for detecting spaces that are unavailable.
 

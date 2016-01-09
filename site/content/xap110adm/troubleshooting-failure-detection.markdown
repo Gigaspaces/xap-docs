@@ -78,11 +78,11 @@ The following parameters in the cluster schema [active election](#active_electio
 
 |Parameter|Parameter Description|Default Value| Unit |
 |:--------|:--------------------|:------------|:-----|
-| cluster-config.groups.group.fail-over-policy.active-election.yield-time |This parameter allows you to configure the time it takes to yield to other participants between every election phase. | `1000` | millisec |
-| cluster-config.groups.group.fail-over-policy.active-election.fault-detector.invocation-delay |This parameter limits the amount of time the backup space waits between each ping to the primary space. | `1000`| millisec |
-| cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retry-count |Related to the `fault-detector.invocation-delay` parameter, defines the number of times the backup checks if the primary space has failed | `3`|   |
-| cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retry-timeout |Related to the `retry-count` parameter, defines the time between retries the backup checks if the primary space has failed | `100`| millisec |
-| cluster-config.groups.group.fail-over-policy.active-election.connection-retries | Defines the number of times the space instance will try to establish connection with the lookup service. The wait time in between retries is defined by the `yield-time` parameter | `60` | |
+| cluster-config.groups.group.fail-over-policy.active-election.yield-time |This parameter allows you to configure the time it takes to yield to other participants between every election phase. | 1000 | millisec |
+| cluster-config.groups.group.fail-over-policy.active-election.fault-detector.invocation-delay |This parameter limits the amount of time the backup space waits between each ping to the primary space. | 1000| millisec |
+| cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retry-count |Related to the `fault-detector.invocation-delay` parameter, defines the number of times the backup checks if the primary space has failed | 3|   |
+| cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retry-timeout |Related to the `retry-count` parameter, defines the time between retries the backup checks if the primary space has failed | 100| millisec |
+| cluster-config.groups.group.fail-over-policy.active-election.connection-retries | Defines the number of times the space instance will try to establish connection with the lookup service. The wait time in between retries is defined by the `yield-time` parameter | 60 | |
 
 
 
@@ -125,8 +125,8 @@ The `LeaseRenewalManager` in the `advanced-space.config` file is also related to
 
 |Parameter|Parameter Description|Default Value|
 |:--------|:--------------------|:------------|
-| maxLeaseDuration | The time the system waits between every lease renewal, for example: if the parameter value is `8000`, the system renews the space lease every 8000 `[milliseconds]`.{{<wbr>}}{{<infosign>}} As this value is reduced, renewal requests are performed more frequently while the service is up, and lease expiration occurs sooner when the service goes down. | `8000` |
-| roundTripTime | This parameter instructs the renewal process to begin a certain amount of time (by default, 100 `[milliseconds]`) before the actual renewal time, thus making sure that the renewal process is successful.{{<wbr>}}{{% exclamation %}} Significantly low values might result in failure to renew a lease. Durations of managed leases should exceed the `roundTripTime`. | `4000` |
+| maxLeaseDuration | The time the system waits between every lease renewal, for example: if the parameter value is `8000`, the system renews the space lease every 8000 `[milliseconds]`.{{<wbr>}}{{<infosign>}} As this value is reduced, renewal requests are performed more frequently while the service is up, and lease expiration occurs sooner when the service goes down. | 8000 |
+| roundTripTime | This parameter instructs the renewal process to begin a certain amount of time (by default, 100 `[milliseconds]`) before the actual renewal time, thus making sure that the renewal process is successful.{{<wbr>}}{{% exclamation %}} Significantly low values might result in failure to renew a lease. Durations of managed leases should exceed the `roundTripTime`. | 4000 |
 
 
 

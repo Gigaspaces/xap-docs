@@ -109,10 +109,10 @@ The Mirror settings includes the following options:
 
 | Property | Description | Default |
 |:---------|:------------|:--------|
-|`OperationGrouping`| Options:{{<wbr>}}group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).{{<wbr>}}group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).{{<wbr>}}See the [Mirror behavior with Distributed Transactions](./async-persistency-mirror-advanced.html#Mirror behavior with Distributed Transactions) for details| group-by-replication-bulk |
-|`SourceSpace Name`| The name of source space (cluster) this mirror serves | NONE, must be supplied |
-|`SourceSpace Partitions`| The number of partitions in source space (cluster) this mirror serves | NONE, must be supplied |
-|`SourceSpace Backups`| The number of backups per partition in source space (cluster) this mirror serves | NONE, must be supplied |
+|OperationGrouping| Options:{{<wbr>}}group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).{{<wbr>}}group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).{{<wbr>}}See the [Mirror behavior with Distributed Transactions](./async-persistency-mirror-advanced.html#Mirror behavior with Distributed Transactions) for details| group-by-replication-bulk |
+|SourceSpace Name| The name of source space (cluster) this mirror serves | NONE, must be supplied |
+|SourceSpace Partitions| The number of partitions in source space (cluster) this mirror serves | NONE, must be supplied |
+|SourceSpace Backups| The number of backups per partition in source space (cluster) this mirror serves | NONE, must be supplied |
 
 The following configuration shows how to configure a processing unit, to act as the Mirror Service:
 

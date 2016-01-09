@@ -125,10 +125,10 @@ This properties can be configured on the space side and they will affect all the
 
 | Property | Description | Default Value |
 |:---------|:------------|:--------------|
-| `cluster-config.groups.group.repl-policy.redo-log-local-view-capacity` | Specifies the total capacity of replication packets the redo log can hold for a local view replication target | 150000 |
-| `cluster-config.groups.group.repl-policy.redo-log-local-view-recovery-capacity` | Specifies the total capacity of replication packets the redo log can hold for a local view replication target while the local view is in recovery state (initial load process)| 1000000 |
-| `cluster-config.groups.group.repl-policy.local-view-max-disconnection-time` | Specifies the maximum amount of time (in milliseconds) the space will wait for the local view replication target before it is considered disconnected, after which the target will be dropped. | 300000 |
+| cluster-config.groups.group.repl-policy.redo-log-local-view-capacity | Specifies the total capacity of replication packets the redo log can hold for a local view replication target | 150000 |
+| cluster-config.groups.group.repl-policy.redo-log-local-view-recovery-capacity | Specifies the total capacity of replication packets the redo log can hold for a local view replication target while the local view is in recovery state (initial load process)| 1000000 |
+| cluster-config.groups.group.repl-policy.local-view-max-disconnection-time | Specifies the maximum amount of time (in milliseconds) the space will wait for the local view replication target before it is considered disconnected, after which the target will be dropped. | 300000 |
 
-{{% info %}}
+{{% note %}}
 When the synchronization is replication-based (default), the local view is resilient to failover, which means that if a primary space fails and a backup space replaces it within the maximum disconnection duration, the local view will remain intact during the failover process. When the synchronization is notification-based this is not guaranteed since notifications might be lost during the failover process.
-{{%/info%}}
+{{%/note%}}

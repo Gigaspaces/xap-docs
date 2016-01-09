@@ -400,7 +400,6 @@ Example:
 
 
 ```java
-
     @SpaceFifoGroupingIndex
     public State getProcessingState() {return processingState;}
     public void setProcessed (State processingState) {this.processingState = processingState;}
@@ -408,7 +407,6 @@ Example:
     @SpaceFifoGroupingIndex(path = "id")
     public Person getCustomer() {return customer;}
     public void setCustomer (Person customer) {this.customer = customer;}
-
 ```
 
 {{%learn "./fifo-grouping.html"%}}

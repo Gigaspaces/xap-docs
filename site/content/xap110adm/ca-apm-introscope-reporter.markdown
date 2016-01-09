@@ -173,7 +173,7 @@ However, XAP-apm-introscope uses only the most basic ones - `LongCounter` for nu
 Below is an example of metric data sent to Introscope:
 
 ```xml
-    <metric type="LongCounter" name="xap|groupA|myhost|lus|20237:lus_items" value="1" />
+<metric type="LongCounter" name="xap|groupA|myhost|lus|20237:lus_items" value="1" />
 <metric type="LongCounter" name="xap|groupA|myhost|lus|20237:lus_pending-events" value="0" />
 <metric type="LongCounter" name="xap|groupA|space|space_metricsSpace|0|primary:operations_lease-expired" value="100" />
 ```

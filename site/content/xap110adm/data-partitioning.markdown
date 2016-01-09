@@ -211,9 +211,9 @@ The following table specifies when the different batch operations executed in pa
 | **Operation** | **Transactional** | **Max values** | **Execution Mode** | Returns when.. |
 |:--------------|:------------------|:---------------|:-------------------|:---------------|
 | readMultiple | NO | n/a | Parallel | Returns when all spaces completed their operation |
-| readMultiple | YES | <Integer.MAX_VALUE | **Serial** | Returns when found enough matching space objects |
+| readMultiple | YES | Integer.MAX_VALUE | **Serial** | Returns when found enough matching space objects |
 | readMultiple | n/a | Integer. MAX_VALUE | Parallel | Returns when all spaces completed their operation |
-| takeMultiple | n/a | <Integer.MAX_VALUE | **Serial** | Returns when all spaces completed their operation |
+| takeMultiple | n/a | Integer.MAX_VALUE | **Serial** | Returns when all spaces completed their operation |
 | takeMultiple | n/a  | Integer.MAX_VALUE | Parallel | Returns when all spaces completed their operation |
 | writeMultiple | n/a | n/a | Parallel | Returns when all spaces completed their operation |
 | updateMultiple | n/a | n/a | Parallel | Returns when all spaces completed their operation |

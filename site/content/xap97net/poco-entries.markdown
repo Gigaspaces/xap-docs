@@ -149,9 +149,6 @@ Modify the `SpaceID` declaration from `true` to `false`:
 public String MessageID {...}
 ```
 
-{{% note %}}
-The rest of this page is still under construction.
-{{% /note %}}
 
 - Queries performed with the UID are much faster, since the query mechanism can reduce the result set efficiently.
 

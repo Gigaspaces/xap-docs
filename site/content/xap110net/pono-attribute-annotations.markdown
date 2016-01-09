@@ -177,7 +177,7 @@ public class Info : Serializable {
 ```
 
 {{%refer%}}
-[Indexing Nested Properties]{./indexing-nested-properties.html)
+[Indexing Nested Properties](./indexing-nested-properties.html)
 {{%/refer%}}
 
 
@@ -304,7 +304,7 @@ public class FlightReservation
 ```
 
 {{%refer%}}
-[FIFO Grouping]{./fifo-grouping.html)
+[FIFO Grouping](./fifo-grouping.html)
 {{%/refer%}}
 
 
@@ -320,7 +320,6 @@ Example:
 
 
 ```csharp
-
 [SpaceFifoGroupingIndex]
 public State ProcessingState { get; set; }
 [SpaceFifoGroupingIndex(Path = "Id")]
@@ -329,7 +328,7 @@ public Person Customer { get; set; }
 ```
 
 {{%refer%}}
-[FIFO Grouping]{./fifo-grouping.html)
+[FIFO Grouping](./fifo-grouping.html)
 {{%/refer%}}
 
 

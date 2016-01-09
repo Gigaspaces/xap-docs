@@ -28,7 +28,9 @@ There is no need for any service to be up and running. Just choose from the titl
 {{% color blue %}}`Security -> Manage Security`{{% /color %}}
 ** and the management dialog will open.
 
+{{%align center%}}
 ![manage-security.png](/attachment_files/manage-security.png)
+{{%/align  %}}
 
 - **`Use Default Configuration`** - The defaults of the underlying implementation.
 For example, the file-based implementation's defaults are to access/create a file located under **`<XAP root>/security/gs-directory.fsm`**.
@@ -48,7 +50,9 @@ This view is split into two tabs - `Users` and `Roles`. If you only have partial
 The `Users` tab, displays a summary of all the users, their assigned roles, and user-specific privileges.
 Double-click on the user to **Edit** it, or select a user and press one of the action buttons **Edit**, **Duplicate**, **Delete**.
 
+{{%align center%}}
 ![manage-user-tab.png](/attachment_files/manage-user-tab.png)
+{{%/align  %}}
 
 #### Creating a new user
 
@@ -59,7 +63,9 @@ A user can be associated with predefined roles and be granted with user-specific
 To associate a user with roles, choose the roles from the list of roles. Each associated **role** will appear in its own tab,
 and the **`Aggregated`** view will show the aggregation of all the privileges (user-specific and roles).
 
+{{%align center%}}
 ![create-new-user.png](/attachment_files/create-new-user.png)
+{{%/align  %}}
 
 ##### User-specific privileges
 
@@ -72,14 +78,18 @@ The following snapshot shows that the user has:
 1. **Read** privileges for all classes +except+ for class **eg.Stock**
 1. **Write** privileges +only+ for class **eg.Trade**
 
+{{%align center%}}
 ![user-specific.png](/attachment_files/user-specific.png)
+{{%/align  %}}
 
 ### Managing Roles
 
 The `Roles` tab, displays a summary of all the roles, its permissions and any assigned users to each role.
 Double-click on the role to **Edit** it, or select a role and press one of the action buttons **Edit**, **Duplicate**, **Delete**.
 
+{{%align center%}}
 ![manage-roles-tab.png](/attachment_files/manage-roles-tab.png)
+{{%/align  %}}
 
 #### Creating a new role
 
@@ -87,7 +97,9 @@ Creating a role is the same as creating a user with user-specific privileges. Ex
 
 The following role is set to have **`Monitor PU`**, **`Manage Grid`**, **`Provision PU`**, **`Manage PU`**, and a `Space Operation` rule allowing a **`Write`** of any class matching **`eg.Account`**.
 
+{{%align center%}}
 ![create-new-role.png](/attachment_files/create-new-role.png)
+{{%/align%}}
 
 # Login/Logout
 
@@ -106,7 +118,10 @@ gs-ui(.sh/.bat) -user user -password password
 To login from within the UI, choose from the title menu bar **
 {{% color blue %}}`Security -> Login`{{% /color %}}
 ** and the login dialog  will open.
+
+{{%align center%}}
 ![login-dialog.png](/attachment_files/login-dialog.png)
+{{%/align  %}}
 
 In distributed systems, the login credentials are authenticated with each service. Thus, the indication of success or failure is specific to each.
 The **`Authentication Monitor`*** dialog appears when you press the **OK** button, but can also be viewed when pressing the ![logged-in-as.png](/attachment_files/logged-in-as.png)
@@ -126,27 +141,32 @@ To logout, choose from the title menu bar **
 # Actions and Privilege restrictions
 
 If the user lacks sufficient privileges, the UI displays a similar message to the following:
+
+{{%align center%}}
 ![actions-privileges.png](/attachment_files/actions-privileges.png)
+{{%/align  %}}
 
 The following table represents some of the actions that the UI disables when there are insufficient privileges.
 
 
 | Privileges | Actions |
 |:-----------|:--------|
-| **`Provision PU`** | Deploy, Undeploy  |
-| **`Manage PU`** | Relocate, Restart PU, Add PU instance, Decrease PU Instance|
-| **`Manage Grid`** | Start/Restart/Terminate GSA agents, Open Administration UI for GSM/GSC|
-| **`Monitor PU`** | Viewing: Event Containers, Remote Services, Classes, Transactions, Statistics, Connections, PU details;{{<wbr>}}Space View: Statistics, Objects and Templates count; Objects count in Cluster Graph View;{{<wbr>}}Administration UI for PU Instance, Runtime Configuration Report|
-| **`Monitor JVM`** | Used memory in Spaces View, Launch JConsole|
-| **`Alter`** | Clean Space, Clean Cluster, Delete objects from Space|
-| **`Take`** | Clear objects from space |
-| `any Space privilege` | Query on space, Run benchmark|
+| Provision PU | Deploy, Undeploy  |
+| Manage PU | Relocate, Restart PU, Add PU instance, Decrease PU Instance|
+| Manage Grid | Start/Restart/Terminate GSA agents, Open Administration UI for GSM/GSC|
+| Monitor PU | Viewing: Event Containers, Remote Services, Classes, Transactions, Statistics, Connections, PU details;{{<wbr>}}Space View: Statistics, Objects and Templates count; Objects count in Cluster Graph View;{{<wbr>}}Administration UI for PU Instance, Runtime Configuration Report|
+| Monitor JVM | Used memory in Spaces View, Launch JConsole|
+| Alter | Clean Space, Clean Cluster, Delete objects from Space|
+| Take | Clear objects from space |
+| any Space privilege | Query on space, Run benchmark|
 
 # Deployment Wizard
 
 The Deployment Wizard allows the deployment of a data-grid or a processing unit. In both cases, a GSM needs to be selected from the available list of GSMs. If the GSM is locked, you will be requested to **Login**.
 
+{{%align center%}}
 ![select-gsm.png](/attachment_files/select-gsm.png)
+{{%/align%}}
 
 {{% info %}}
 It is important to understand the difference between the credentials supplied to the **login** dialog and the supplied credentials provided when deploying. The first, is used to authenticate the user against the services discovered by the UI, and allow actions to be performed. One of the actions is to **deploy**. When you are authorized to deploy, the credentials passed in the deployment dialog are propagated to the Processing Unit.
@@ -156,7 +176,9 @@ It is important to understand the difference between the credentials supplied to
 
 To deploy a secured data-grid, select the **`Secured Space`** checkbox. Supplying credentials is optional. If no credentials are supplied, a secured Space will be instantiated. If credentials are supplied, a secured Space will be instantiated, propagating the credentials to internal services (i.e. Space Filters).
 
+{{%align center%}}
 ![deployment-wizard.png](/attachment_files/deployment-wizard.png)
+{{%/align%}}
 
 ### Supplying custom properties
 
@@ -164,7 +186,9 @@ To deploy a secured data-grid, select the **`Secured Space`** checkbox. Supplyin
 [Security configuration properties](./security-configurations.html) can be supplied, during deployment of a Space, as custom properties; Either from a file or added through the dialog.
 The custom properties can hold both space configurations and security configurations.
 
+{{%align center%}}
 ![custom-properties.png](/attachment_files/custom-properties.png)
+{{%/align  %}}
 
 ## Deploying a Secured Processing Unit
 
@@ -172,7 +196,9 @@ To deploy a secured processing unit, select the **`Secured Space`** checkbox. As
 
 _For example, the `data-processor` has a polling container - when deployed, the credentials supplied need to meet the permissions required by the embedded processing units. In this case, a **Take** privilege. The `data-feeder` on the other hand, when deployed, needs **Write** privileges to write into the `data-processor` cluster._
 
+{{%align center%}}
 ![deployment-wizard-pu.png](/attachment_files/deployment-wizard-pu.png)
+{{%/align  %}}
 
 ### Supplying bean level properties
 

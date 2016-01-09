@@ -113,11 +113,11 @@ The Hibernate Space Persistency implementation includes the following properties
 
 |Property|Description|Default|
 |:-------|:----------|:------|
-|`EnumeratorLoadFetchSize`|Sets the fetch size that will be used when working with scrollable results. |10,000|
-|`InitialLoadChunkSize`|By default, the initial load process will chunk large tables and will iterate over the table (entity) per chunk (concurrently). This setting allows to control the chunk size to split the table by. Batching can be disabled by setting -1{{<wbr>}}The `InitialLoadChunkSize` property allows you to have multiple threads loading data from the same table into the space - each thread loading different rows from the same table. Having the `InitialLoadChunkSize` as 100,000 will break a 1 million rows table into ten chunks. All the chunks, from all the tables, are processes by the amount of `InitialLoadThreadPoolSize` configured.|100,000|
-|`InitialLoadThreadPoolSize`|The initial load operation uses the `ConcurrentMultiDataIterator`. This property allows to control the thread pool size of the concurrent multi data iterator.Note, this usually will map one to one to the number of open connections / cursors against the database.|10|
-|`PerformOrderById`|When performing initial load, this flag indicates if the generated query will order to results by the id. |false|
-|`UseMerge`| If set to true, will use Hibernate merge to perform the create/update, and will merge before calling delete.{{<wbr>}}This might be required for complex mappings (depends on Hibernate) at the expense of slower performance.|false|
+|EnumeratorLoadFetchSize|Sets the fetch size that will be used when working with scrollable results. |10,000|
+|InitialLoadChunkSize|By default, the initial load process will chunk large tables and will iterate over the table (entity) per chunk (concurrently). This setting allows to control the chunk size to split the table by. Batching can be disabled by setting -1{{<wbr>}}The `InitialLoadChunkSize` property allows you to have multiple threads loading data from the same table into the space - each thread loading different rows from the same table. Having the `InitialLoadChunkSize` as 100,000 will break a 1 million rows table into ten chunks. All the chunks, from all the tables, are processes by the amount of `InitialLoadThreadPoolSize` configured.|100,000|
+|InitialLoadThreadPoolSize|The initial load operation uses the `ConcurrentMultiDataIterator`. This property allows to control the thread pool size of the concurrent multi data iterator.Note, this usually will map one to one to the number of open connections / cursors against the database.|10|
+|PerformOrderById|When performing initial load, this flag indicates if the generated query will order to results by the id. |false|
+|UseMerge| If set to true, will use Hibernate merge to perform the create/update, and will merge before calling delete.{{<wbr>}}This might be required for complex mappings (depends on Hibernate) at the expense of slower performance.|false|
 
 {{% tip %}}
 Tuning the `EnumeratorLoadFetchSize`, `InitialLoadChunkSize`, `InitialLoadThreadPoolSize` and `PerformOrderById` will allow you to control the initial load time. 

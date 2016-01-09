@@ -29,10 +29,10 @@ ILocalCache localCache = new GigaSpacesFactory.CreateIdBasedLocalCache(spaceProx
 
 |Strategy Builder Name|Description|
 |:--------------------|:----------|
-|`LruSegmentEvictionStrategyBuilder` | Least recently used, used by default. |
-|`FifoSegmentEvictionStrategyBuilder` | First in first out, more concurrent because it doesn't need to update anything when Entries are touched inside the cache. |
-|`LfuSegmentEvictionStrategyBuilder` | Least frequently used. |
-|`TimeBasedEvictionStrategyBuilder` | Entries that weren't touched for a certain period of time are cleared. |
+|LruSegmentEvictionStrategyBuilder | Least recently used, used by default. |
+|FifoSegmentEvictionStrategyBuilder | First in first out, more concurrent because it doesn't need to update anything when Entries are touched inside the cache. |
+|LfuSegmentEvictionStrategyBuilder | Least frequently used. |
+|TimeBasedEvictionStrategyBuilder | Entries that weren't touched for a certain period of time are cleared. |
 
 Each of these strategies also contains a logic for periodic clearing; by default every 30 seconds the local cache is cleared. This behavior can be changed or turned off when constructing and configuring the specific eviction strategy builder, however it is not recommended to turn it off.
 
