@@ -9,15 +9,10 @@ weight: 100
 {{% ssummary %}} {{% /ssummary %}}
 
 
-{{%section%}}
-{{%column width="80%" %}}
+
 The Spring Framework provides a transaction manager abstraction using the `PlatformTransactionManager` interface with several different built-in implementations, such as JDBC Data Source and JTA. GigaSpaces provides several implementations for Spring's `PlatformTransactionManager`, allowing you to use the GigaSpaces local and Jini Distributed Transaction Managers.
 By implementing Spring's `PlatformTransactionManager`, the XAP API allows users to utilize Spring's rich support for [declarative transaction management](http://static.springframework.org/spring/docs/2.5.x/reference/transaction.html#transaction-declarative). The declarative transaction support can be easily utilized with the [GigaSpace Interface](./the-gigaspace-interface.html).
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/tx_manager.jpg"%}}
-{{%/column%}}
-{{%/section%}}
+
 
 
 Please note that when using Spring declarative transaction, a proxy is generated for the classes annotated with `@Transactional` methods. In such a case **only external method calls** coming in through the proxy will be intercepted. This means that 'self-invocation', i.e. a method within the target object calling some other method of the target object, won't lead to an actual transaction at runtime even if the invoked method is marked with `@Transactional`.

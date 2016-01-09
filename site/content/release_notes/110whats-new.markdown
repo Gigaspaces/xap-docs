@@ -39,3 +39,12 @@ Mule integration has been updated to support Mule 3.7.
 InfluxDB integration has been updated to support InfluxDB 0.9.
 
 {{<infosign>}} For more information see [InfluxDB Reporter](/xap110adm/metrics-influxdb-reporter.html)
+
+
+# Integrations
+
+## MongoDB 3.2.0
+
+MongoDB integration has been updated to support MongoDB 3.2.0.
+
+{{<infosign>}} For more information see [MongoDB Integration](/xap110/mongodb.html)
