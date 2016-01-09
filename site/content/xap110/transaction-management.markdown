@@ -55,7 +55,6 @@ Below is an example of how it can be defined in a Spring application context:
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager" />
@@ -68,7 +67,6 @@ Below is an example of how it can be defined in a Spring application context:
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space"  />
 </bean>
@@ -105,7 +103,6 @@ For example, to change the default timeout to 2 minutes, use the following confi
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager" default-timeout="120"/>
@@ -118,7 +115,6 @@ For example, to change the default timeout to 2 minutes, use the following confi
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property  name="name" value="space" />
 </bean>
@@ -134,7 +130,7 @@ For example, to change the default timeout to 2 minutes, use the following confi
 ```
 
 {{% /tab %}}
-{{%tab "  Code "%}}
+{{%tab "Code"%}}
 
 
 ```java
@@ -163,11 +159,10 @@ The Jini Transaction Manager Lookup allows you to use the Jini lookup mechanism 
 Below is an example of how it can be defined in a Spring application context:
 
 {{%tabs%}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:jini-tx-manager id="transactionManager" lookup-timeout="5000" />
@@ -176,11 +171,10 @@ Below is an example of how it can be defined in a Spring application context:
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -196,7 +190,7 @@ Below is an example of how it can be defined in a Spring application context:
 ```
 
 {{% /tab %}}
-{{%tab "  Code "%}}
+{{%tab "Code"%}}
 
 
 ```java
@@ -214,11 +208,10 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 The Jini lookup transaction manager allows to set the default timeout value for transactions. A timeout value is used when a transaction is not committed/rolled back (for example due to a JVM crash) to control when the transaction will be discarded. By default the timeout value is 60 Sec and is set in seconds. Controlling the timeout value can be done using:
 
 {{%tabs%}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:jini-tx-manager id="transactionManager" default-timeout="1000"/>
@@ -227,11 +220,10 @@ The Jini lookup transaction manager allows to set the default timeout value for 
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -247,7 +239,7 @@ The Jini lookup transaction manager allows to set the default timeout value for 
 ```
 
 {{% /tab %}}
-{{%tab "  Code "%}}
+{{%tab "Code"%}}
 
 
 ```java
@@ -278,11 +270,10 @@ Jini transactions allow you to configure automatic renewing of ongoing transacti
 Here is an example of how this can be configured:
 
 {{%tabs%}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager" >
@@ -293,11 +284,10 @@ Here is an example of how this can be configured:
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -319,7 +309,7 @@ Here is an example of how this can be configured:
 ```
 
 {{% /tab %}}
-{{%tab "  Code "%}}
+{{%tab "Code"%}}
 
 
 ```java
@@ -344,11 +334,10 @@ More information regarding Lease Renewal Manager can be found [here](./leases-au
 GigaSpaces can be used within an XA transaction using JTA. The OpenSpaces API allows you to work with Spring's `JTATransactionManager` and provides support for declarative transaction management. Here is an example of how OpenSpaces JTA support can be used (using JOTM):
 
 {{%tabs%}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean" />
@@ -361,11 +350,10 @@ GigaSpaces can be used within an XA transaction using JTA. The OpenSpaces API al
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -383,7 +371,7 @@ GigaSpaces can be used within an XA transaction using JTA. The OpenSpaces API al
 ```
 
 {{% /tab %}}
-{{%tab "  Code "%}}
+{{%tab "Code"%}}
 
 
 ```java
@@ -470,7 +458,7 @@ To enable the declarative transaction management:
 1. If you try to call an annotated method from within the same class for example (e.g. calling it on `this`), no transaction will be started since your code actually accesses direct reference and not a proxied bean.
 
 
-```java
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -502,7 +490,7 @@ To enable the declarative transaction management:
 
 Note that you can also annotate beans exposed via [space based remoting](./space-based-remoting.html). If you include the `<tx:annotation-driven>` element in your `pu.xml` file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.
 
-# Programmatic Transaction Management
+### Programmatic Transaction Management
 
 If you don't want to leverage [Spring's declarative transaction management](http://static.springframework.org/spring/docs/2.5.x/reference/transaction.html#transaction-declarative), or have an application that is not configured by Spring, you can start, commit and rollback transactions explicitly from within your code by using Spring's transaction API.
 

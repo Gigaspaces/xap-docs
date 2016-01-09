@@ -11,10 +11,10 @@ weight: 350
 
 The service reloading feature allows you to reload business logic (Spring beans) without shutting down the application or undeploying a Processing Unit. In order to do this, any reloadable business logic needs to be defined in a special Spring XML file. The Spring XML file is then referenced very similar to the [Space Mode Context Loader](./space-mode-context-loader.html) from inside the pu.xml.
 
-{{% info %}}
+{{% note %}}
 Service Reloading only works when downloading the processing unit to the GSC is disabled (pu.download deploy property should be set to false). For more information on how to do it, see [this page](./deploying-onto-the-service-grid.html#distributionToGSCs).
 For service reloading to work, common classes have to be copied to the <GigaSpacesRoot>/lib/platform/ext folder
-{{%/info%}}
+{{%/note%}}
 
 # Configuring Reloadable Business Logic
 
@@ -42,7 +42,6 @@ We then need to define it in a specific Spring XML file (lets assume it is named
 
 ```xml
 <beans ... >
-
     <os-core:giga-space-context />
 
     <bean id="refreshableBean" class="org.openspaces.example.data.processor.RefreshableBean"/>
@@ -58,8 +57,6 @@ To enable service reloading, in our processing unit `pu.xml` file, we reference 
 
 ```xml
 <beans ...>
-	...
-
 	<os-core:refreshable-context-loader id="refreshableExample" location="classpath:/META-INF/spring/refreshable-beans.xml"/>
 </beans>
 ```
@@ -73,9 +70,6 @@ Above configuration will let you refresh the code defined in the refreshable con
 
 ```xml
 <beans ...>
-
-        ...
-
 	<os-remoting:service-exporter id="remotingServiceExporter">
 	    <os-remoting:service ref="refreshableExample"/>
 	</os-remoting:service-exporter>

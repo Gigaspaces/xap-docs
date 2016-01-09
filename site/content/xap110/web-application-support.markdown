@@ -119,7 +119,6 @@ A typical usage pattern is connecting remotely to a Space. Here is an example (e
 
 
 ```xml
-
 <os-core:space-proxy id="space" name="mySpace" />
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
@@ -129,7 +128,6 @@ A typical usage pattern is connecting remotely to a Space. Here is an example (e
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -143,7 +141,6 @@ A typical usage pattern is connecting remotely to a Space. Here is an example (e
 
 
 ```java
-
 SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("mySpace");
 
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
@@ -168,7 +165,6 @@ Here is an example that starts an embedded Space as part of the web application 
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 <os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/>
@@ -179,7 +175,6 @@ Here is an example that starts an embedded Space as part of the web application 
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>

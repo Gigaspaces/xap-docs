@@ -24,9 +24,9 @@ TX denotes transaction, and it is assumed that operations A are called under a d
 {{% /tip %}}
 
 
-|Oper. A / Oper. B|Update under TX Y|Take  under TX Y|Read  under TX Y|Update, `null` TX|Take, `null` TX|Read, `null` TX|
+|Oper. A / Oper. B|Update <br>under <br>TX Y|Take <br> under<br> TX Y|Read <br> under <br>TX Y|Update<br> `null` <br>TX|Take<br> `null` <br>TX|Read<br> `null`<br> TX|
 |-----------------|-----------------|----------------|----------------|-----------------|---------------|---------------|
-|Update under TX X| Blocked|Blocked|Blocked|Blocked|Blocked|Blocked (unless in `dirty_read)` |
+|Update under TX X| Blocked|Blocked|Blocked|Blocked|Blocked|Blocked <br>(unless in `dirty_read)` |
 |Take under TX X|Blocked|Blocked|Blocked|Blocked|Blocked|Blocked|
 |Read under TX X|Blocked|Blocked|Allowed|Blocked|Blocked|Allowed|
 |Update, `null` TX|Allowed|Allowed|Allowed|Allowed|Allowed|Allowed|
@@ -62,11 +62,3 @@ A `clear` lock provides its guarantee by blocking all other requests for read, t
 In general, when a space operation is called with a `null` transaction object, its scope is limited to the entry or entries passed to the operation. Any other space operations, with or without a transaction, can be executed without any blocking.
 
 
-
-# More in this Section
-
-{{%refer%}}
-- [Pessimistic Locking](./transaction-pessimistic-locking.html) -- In the pessimistic locking approach, your program must explicitly obtain a lock using a transaction on one or more objects before making any changes
-- [Optimistic Locking](./transaction-optimistic-locking.html) -- The optimistic locking protocol provides better performance and scalability when having concurrent access to the same data. Optimistic locking offers higher concurrency and better performance than pessimistic locking. It also avoids deadlocks.
-- [Read Modifiers](./transaction-read-modifiers.html) -- GigaSpaces `EXCLUSIVE_READ_LOCK`, `READ_COMMITTED`, `DIRTY_READ`, and `REPEATABLE_READ` modifiers.
-{{%/refer%}}

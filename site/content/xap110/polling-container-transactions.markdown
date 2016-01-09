@@ -15,11 +15,10 @@ Both the receive operation and the actual event action can be configured to be p
 For example:
 
 {{%tabs%}}
-{{%tab "  Annotation "%}}
+{{%tab "Annotation"%}}
 
 
 ```xml
-
 <!-- Enable scan for OpenSpaces and Spring components -->
 <context:component-scan base-package="com.mycompany"/>
 
@@ -53,11 +52,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager" />
@@ -84,11 +82,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -122,11 +119,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Code "%}}
+{{%tab "Code"%}}
 
 
 ```java
-
 GigaSpace gigaSpace = ...//create a GigaSpace instance
 
 //creating a transaction manager. For more details please refer to the [Transaction Management] section
@@ -159,11 +155,10 @@ Note the timeout value is in seconds as per Spring spec for TransactionDefinitio
 Here is an example how timeout value (and transaction isolation) can be set with polling container:
 
 {{%tabs%}}
-{{%tab "  Annotation "%}}
+{{%tab "Annotation"%}}
 
 
 ```xml
-
 <!-- Enable scan for OpenSpaces and Spring components -->
 <context:component-scan base-package="com.mycompany"/>
 
@@ -197,11 +192,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
@@ -228,11 +222,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>

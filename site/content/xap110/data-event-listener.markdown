@@ -59,7 +59,6 @@ Here is how it can be configured:
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <os-events:x-container ...>
@@ -74,7 +73,6 @@ Here is how it can be configured:
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <bean id="eventContainer" class="...">
@@ -109,7 +107,6 @@ The `myEventHandler` is marked using the `SpaceDataEvent` annotation as a callba
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <os-events:x-container ...>
@@ -128,7 +125,6 @@ The `myEventHandler` is marked using the `SpaceDataEvent` annotation as a callba
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <bean id="eventContainer" class="...">
@@ -152,7 +148,6 @@ If we do not wish to use annotations, we can use the method adapter where method
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <os-events:x-container ...>
@@ -171,7 +166,6 @@ If we do not wish to use annotations, we can use the method adapter where method
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <bean id="eventContainer" class="...">
@@ -230,7 +224,6 @@ and the following is the configuration of such a listener using the annotation a
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <os-events:x-container ...>
@@ -249,7 +242,6 @@ and the following is the configuration of such a listener using the annotation a
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <bean id="eventContainer" class="...">
@@ -301,7 +293,6 @@ OpenSpaces comes with an event adapter that allows you to delegate the execution
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <os-events:x-container ...>
@@ -324,7 +315,6 @@ OpenSpaces comes with an event adapter that allows you to delegate the execution
 
 
 ```xml
-
 <bean id="simpleListener" class="SimpleListener" />
 
 <bean id="eventContainer" class="...">

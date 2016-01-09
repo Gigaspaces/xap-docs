@@ -45,7 +45,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <os-events:polling-container id="eventContainer" giga-space="gigaSpace"
                              concurrent-consumers="3" max-concurrent-consumers="5">
     <!-- ... -->
@@ -57,7 +56,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer">
     <property name="concurrentConsumers" value="3" />
     <property name="maxConcurrentConsumers" value="5" />
@@ -75,7 +73,6 @@ Sometimes, it is very convenient to have a listener instance per concurrent poll
 
 
 ```xml
-
 <bean id="listener" class="eg.SimpleListener" scope="prototype" />
 
 <os-events:annotation-adapter id="adapterListener" scope="prototype">
@@ -93,7 +90,6 @@ Sometimes, it is very convenient to have a listener instance per concurrent poll
 
 
 ```xml
-
 <bean id="listener" class="eg.SimpleListener" scope="prototype" />
 
 <bean id="adapterListener" class="org.openspaces.events.adapter.AnnotationEventListenerAdapter" scope="prototype">

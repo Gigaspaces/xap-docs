@@ -77,7 +77,6 @@ Here is how it can be configured:
 
 
 ```java
-
 @EventDriven @Polling
 public class SimpleListener {
 
@@ -106,7 +105,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <bean id="simpleExceptionHandler" class="SimpleEventExceptionHandler" />
 
 <os-events:x-container ...>
@@ -121,7 +119,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <bean id="simpleExceptionHandler" class="SimpleEventExceptionHandler" />
 
 <bean id="eventContainer" class="...">

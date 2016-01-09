@@ -17,10 +17,10 @@ Each machine requires a single running [GigaSpaces Agent](/product_overview/serv
 That means that potentially any machine could be a management machine:
 
 {{%tabs%}}
-{{%tab "  Windows "%}}
+{{%tab "Windows"%}}
 
 
-```java
+```bash
 rem Agent deployment that potentially can start management processes
 set LOOKUPGROUPS=myGroup
 set JSHOMEDIR=d:\gigaspaces
@@ -29,11 +29,10 @@ start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global
 
 {{% /tab %}}
 
-{{%tab "  Linux "%}}
+{{%tab "Linux"%}}
 
 
-```java
-
+```bash
 1. Agent deployment that potentially can start management processes
 export LOOKUPGROUPS=myGroup
 export JSHOMEDIR=~/gigaspaces
@@ -50,10 +49,10 @@ nohup ${JSHOMEDIR}/bin/gs-agent.sh gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 g
 In case you prefer having dedicated management machines, start GigaSpaces agents with the above settings on two machines, and start the rest of the GigaSpaces agents with the settings below. The command line parameters instruct the GigaSpaces agents not to start managers. It does not start any containers automatically. The EPU starts containers on demand:
 
 {{%tabs%}}
-{{%tab "  Windows "%}}
+{{%tab "Windows"%}}
 
 
-```java
+```bash
 rem Agent that does not start management processes
 set LOOKUPGROUPS=myGroup
 set JSHOMEDIR=d:\gigaspaces
@@ -62,11 +61,10 @@ start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 0 gsa.gsc 0 gsa.global
 
 {{% /tab %}}
 
-{{%tab "  Linux "%}}
+{{%tab "Linux"%}}
 
 
-```java
-
+```bash
 1. Agent that does not start management processes
 export LOOKUPGROUPS=myGroup
 export JSHOMEDIR=~/gigaspaces
@@ -83,7 +81,7 @@ Configure the EPU scale config to use `dedicatedManagementMachines`, and reduce 
 The EPU can be deployed into specific zone. This allows you to determine the specific locations of the EPU instances. You may have multiple EPU deployed, each into a difference zone. To specify the agent zone you should set the zone name before starting the agent - here is an example how to set the agent zone to **ZoneX**:
 
 
-```java
+```bash
 export GSA_JAVA_OPTIONS="-Dcom.gs.zones=zoneX ${GSA_JAVA_OPTIONS}"
 gs-agent.sh gsa.global.lus 1 gsa.lus 0 gsa.global.gsm 1 gsa.gsm 0 gsa.gsc 0 gsa.global.esm 1
 ```
@@ -163,16 +161,12 @@ GigaSpaces adjust the high-availability SLA dynamically to cope with the current
 numberOfPartitions X numberOfCpuCoresPerMachine
 ```
 
-.
-
 - The maximum amount of memory that can be used by the primary and backup instances is:
 
 
 ```java
 numberOfPartitions X ( 1 + numberOfBackupsPerPartition ) X memoryCapacityPerContainer
 ```
-
-.
 
 - During relocation of a specific instance, primary election takes place. For a few seconds, operations on that partition and operations on the whole cluster is denied. Internally, the client proxy retries the operation until the primary election takes place and masks the failure, but the delay exists.
 This delay can be reduced by modifying configuration settings as explained in [Failure Detection]({{%currentadmurl%}}/troubleshooting-failure-detection.html). Overriding the default value of these context properties is achieved with the [addContextProperty](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.html) deployment property. For example:

@@ -12,7 +12,7 @@ weight: 100
 The archive container is used to transfer historical data into Big-Data storage (for example Cassandra).
 
 The typical scenario is when streaming vast number of raw events through the Space, enriching them and then moving them to a Big-Data storage. Typically, there is no  intention of keeping them in the space nor querying them in the space.
-{{%/imagertext%}}
+
 
 
 The Archive Container:<br>
@@ -25,7 +25,7 @@ The Archive Container:<br>
 - [MongoDB Archive Operation Handler](./mongodb-archive-operation-handler.html) implementation is available out of the box.
 
 
-
+{{%/imagertext%}}
 
 
 ## Archive Container vs Space Persistency
@@ -92,7 +92,6 @@ public class ExpiredTweetsArchiveContainer {
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="space" />
 
 <os-core:distributed-tx-manager id="transactionManager" space="space"/>
@@ -102,8 +101,7 @@ public class ExpiredTweetsArchiveContainer {
 <os-archive:cassandra-archive-handler id="cassandraArchiveHandler"
   giga-space="gigaSpace"
   hosts="${cassandra.hosts}"
-  keyspace="${cassandra.keyspace}"
-/>
+  keyspace="${cassandra.keyspace}"/>
 
 <os-archive:archive-container
   id="archiveContainer"
@@ -139,7 +137,6 @@ public class ExpiredTweetsFilter implements DynamicEventTemplateProvider{
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -182,7 +179,6 @@ public class ExpiredTweetsFilter implements DynamicEventTemplateProvider{
 
 
 ```java
-
 TransactionManager txManager = new DistributedJiniTxManagerConfigurer().transactionManager();
 EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(txManager).create();
@@ -271,7 +267,6 @@ public class ProcessedTweetsFilter {
 
 
 ```xml
-
 <os-archive:archive-container
   id="archiveContainer"
   giga-space="gigaSpace"
@@ -282,7 +277,6 @@ public class ProcessedTweetsFilter {
   <os-core:sql-query where="processed = true" class-name="Tweet"/>
 
 </os-archive:archive-container>
-
 ```
 
 {{% /tab %}}
@@ -290,7 +284,6 @@ public class ProcessedTweetsFilter {
 
 
 ```xml
-
 <bean id="archiveContainer" class="org.openspaces.archive.ArchivePollingContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />
@@ -379,7 +372,6 @@ public class ExpiredTweetsFilter {
 
 
 ```xml
-
 <os-archive:archive-container id="archiveContainer" giga-space="gigaSpace" batch-size="100"
                              concurrent-consumers="3" max-concurrent-consumers="5" useFifoGrouping="true" >
     <!-- ... -->
@@ -391,7 +383,6 @@ public class ExpiredTweetsFilter {
 
 
 ```xml
-
 <bean id="archiveContainer" class="org.openspaces.archive.ArchivePollingContainer">
     <property name="batchSize" value="100" />
 	<property name="concurrentConsumers" value="3" />

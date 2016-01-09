@@ -16,7 +16,7 @@ The polling event container is an implementation of the [polling consumer patter
 
 
 
-## Life Cycle Events
+# Life Cycle Events
 
 The polling container life cycle events described below. You may implement each of of these to perform the desired activity.
 
@@ -24,16 +24,15 @@ The polling container life cycle events described below. You may implement each 
 ![dynamic_polling_container_life_cycle.jpg](/attachment_files/dynamic_polling_container_life_cycle.jpg)
 {{%/align%}}
 
-## Configuration
+# Configuration
 
 Here is a simple example of polling event container configuration:
 
 {{%tabs%}}
-{{%tab "  Annotation "%}}
+{{%tab "Annotation"%}}
 
 
 ```xml
-
 <!-- Enable scan for OpenSpaces and Spring components -->
 <context:component-scan base-package="com.mycompany"/>
 
@@ -65,11 +64,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 <bean id="simpleListener" class="SimpleListener" />
@@ -90,11 +88,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -124,11 +121,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Code "%}}
+{{%tab "Code"%}}
 
 
 ```java
-
 GigaSpace gigaSpace = // either create the GigaSpace or get it by injection
 
 SimplePollingEventListenerContainer pollingEventListenerContainer = new SimplePollingContainerConfigurer(gigaSpace)
@@ -177,7 +173,7 @@ The FIFO Grouping designed to allow efficient processing of events with partial 
 When performing receive operations, a template is defined, creating a virtualized subset of data within the space that matches it. GigaSpaces supports templates based on the actual domain model (with `null` values denoting wildcards), which are shown in the examples. GigaSpaces allows the use of [SQLQuery](./query-sql.html) in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:
 
 {{%tabs%}}
-{{%tab "  Annotation "%}}
+{{%tab "Annotation"%}}
 
 
 ```java
@@ -198,11 +194,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-events:polling-container id="eventContainer" giga-space="gigaSpace">
 
     <os-core:sql-query where="processed = true" class="org.openspaces.example.data.common.Data"/>
@@ -217,11 +212,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />
@@ -304,7 +298,7 @@ When performing polling receive operations, a dynamic template can be used. A me
 The event template object has the same syntax rules as with @EventTemplate.
 
 {{%tabs%}}
-{{%tab "  Annotation "%}}
+{{%tab "Annotation"%}}
 
 
 ```java
@@ -327,11 +321,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-events:polling-container id="eventContainer" giga-space="gigaSpace">
 
     <os-events:dynamic-template ref="dynamicTemplate" />
@@ -361,11 +354,10 @@ public class ExpiredDataTemplateProvider implements DynamicEventTemplateProvider
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />
@@ -446,7 +438,7 @@ When using the `ExclusiveReadReceiveOperationHandler` or even the `SingleReadRec
 Here is an example of how the receive operation handler can be configured with `MultiTakeReceiveOperationHandler`:
 
 {{%tabs%}}
-{{%tab "  Annotation "%}}
+{{%tab "Annotation"%}}
 
 
 ```java
@@ -475,11 +467,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
@@ -506,11 +497,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -572,7 +562,7 @@ Step 2  - Workers generating results which are consumed by the Master:
 Here is an example of how a Non-Blocking mode can be configured:
 
 {{%tabs%}}
-{{%tab "  Annotation "%}}
+{{%tab "Annotation"%}}
 
 
 ```java
@@ -602,11 +592,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
@@ -636,11 +625,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -739,7 +727,6 @@ return events;
 {{%tab "Plain XML"%}}
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -827,7 +814,7 @@ public interface TriggerOperationHandler {
 OpenSpaces comes with a built-in implementation of this interface, called `ReadTriggerOperationHandler`. It performs a single blocking read operation (using the provided receive timeout), thus "peeking" into the space for relevant event data. If the read operation returns a value, this means that there is higher probability that the receive operation will succeed, and the transaction won't be started without a purpose. Here is how it can be configured:
 
 {{%tabs%}}
-{{%tab "  Annotation "%}}
+{{%tab "Annotation"%}}
 
 
 ```java
@@ -855,11 +842,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
@@ -890,11 +876,10 @@ public class SimpleListener {
 ```
 
 {{% /tab %}}
-{{%tab "  Plain XML "%}}
+{{%tab "Plain XML"%}}
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>

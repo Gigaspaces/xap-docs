@@ -92,31 +92,31 @@ You may use the [GigaSpaces Management Center]({{%currentadmurl%}}/gigaspaces-ma
 Start the GS-UI , move into the Hosts tab and select the relevant option:
 Full environment dump:
 
-{{% indent %}}
+{{% align center %}}
 ![dump0.jpg](/attachment_files/dump0.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Specific machine dump:
 
-{{% indent %}}
+{{% align center %}}
 ![dump1.jpg](/attachment_files/dump1.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Specific GSC dump:
 
-{{% indent %}}
+{{% align center %}}
 ![dump3.jpg](/attachment_files/dump3.jpg)
-{{% /indent %}}
+{{% /align %}}
 
 Any of the above will display the following dialog. Place the location of the dump file , select the desired options and click the **Generate** button.
 
-{{% indent %}}
+{{% align center %}}
 ![dump2.jpg](/attachment_files/dump2.jpg)
-{{% /indent %}}
+{{% /align %}}
 
-{{% tip %}}
+{{% note %}}
 Make sure the user that started the GS-UI has write permissions to the location of the dump file.
-{{% /tip %}}
+{{% /note %}}
 
 # Dump File Structure
 

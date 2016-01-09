@@ -34,21 +34,21 @@ Much like a JEE web application or an OSGi bundle, The Processing Unit is packag
 
 The processing unit jar file is composed of several key elements:
 
-- **`META-INF/spring/pu.xml`** (mandatory): This is the processing unit's deployment descriptor, which is in fact a [Spring](http://www.springframework.org) context XML configuration with a number of GigaSpaces-specific namespace bindings. These bindings include GigaSpaces specific components (such as the space for example). The `pu.xml` file typically contains definitions of GigaSpaces components ([space](/product_overview/the-in-memory-data-grid.html), [event containers](./event-processing.html), [remote service exporters](./space-based-remoting.html)) and user defined beans which would typically interact with those components (e.g. an event handler to which the event containers delegate the events, or a service beans which is exposed to remote clients by a remote service exporter).
+- `META-INF/spring/pu.xml` (mandatory): This is the processing unit's deployment descriptor, which is in fact a [Spring](http://www.springframework.org) context XML configuration with a number of GigaSpaces-specific namespace bindings. These bindings include GigaSpaces specific components (such as the space for example). The `pu.xml` file typically contains definitions of GigaSpaces components ([space](/product_overview/the-in-memory-data-grid.html), [event containers](./event-processing.html), [remote service exporters](./space-based-remoting.html)) and user defined beans which would typically interact with those components (e.g. an event handler to which the event containers delegate the events, or a service beans which is exposed to remote clients by a remote service exporter).
 
-- **`META-INF/spring/sla.xml`** (not mandatory): This file contains SLA definitions for the processing unit (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an `<os:sla>` definition in the `pu.xml` file. If neither is present, the [default SLA]({{%currentadmurl%}}/the-sla-overview.html)  will be applied. Note, the `sla.xml` can also be placed at the root of the processing unit. SLA definitions can be also specified at the deploy time via the [deploy CLI]({{%currentadmurl%}}/deploy-command-line-interface.html) or [deploy API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/gsm/GridServiceManagers.html).
+- `META-INF/spring/sla.xml` (not mandatory): This file contains SLA definitions for the processing unit (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an `<os:sla>` definition in the `pu.xml` file. If neither is present, the [default SLA]({{%currentadmurl%}}/the-sla-overview.html)  will be applied. Note, the `sla.xml` can also be placed at the root of the processing unit. SLA definitions can be also specified at the deploy time via the [deploy CLI]({{%currentadmurl%}}/deploy-command-line-interface.html) or [deploy API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/gsm/GridServiceManagers.html).
 
 {{% note %}}
 SLA definitions are only enforced when deploying the processing unit to the GigaSpaces service grid, since this environment actively manages and controls the deployment using the [GSM](/product_overview/service-grid.html#gsm). When [running within your IDE](./running-and-debugging-within-your-ide.html) or in [standalone mode](./running-in-standalone-mode.html) these definitions are ignored.
 {{% /note %}}
 
-- **`META-INF/spring/pu.properties`** (not mandatory): Enables you to externalize properties included in the `pu.xml` file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see [this page](./web-application-support.html) for more details) or space properties (when defining a space inside your processing unit). Note, the `pu.properties` can also be placed at the root of the processing unit.
+- `META-INF/spring/pu.properties` (not mandatory): Enables you to externalize properties included in the `pu.xml` file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see [this page](./web-application-support.html) for more details) or space properties (when defining a space inside your processing unit). Note, the `pu.properties` can also be placed at the root of the processing unit.
 
 - **User class files**: Your processing unit's classes (here under the com.mycompany.myproject package)
 
-- **`lib`**: Other jars on which your processing unit depends, e.g. commons-math.jar or jars that contain common classes across many processing units.
+- `lib`: Other jars on which your processing unit depends, e.g. commons-math.jar or jars that contain common classes across many processing units.
 
-- **`META-INF/MANIFEST.MF`** (not mandatory): This file could be used for adding additional jars to the processing unit classpath, using the standard `MANIFEST.MF` `Class-Path` property. (see [Manifest Based Classpath](./the-processing-unit-structure-and-configuration.html#Manifest Based Classpath) for more details)
+- `META-INF/MANIFEST.MF` (not mandatory): This file could be used for adding additional jars to the processing unit classpath, using the standard `MANIFEST.MF` `Class-Path` property. (see [Manifest Based Classpath](./the-processing-unit-structure-and-configuration.html#Manifest Based Classpath) for more details)
 
 {{% tip %}}
 You may add your own jars into the runtime (GSC) classpath by using the `PRE_CLASSPATH` and `POST_CLASSPATH` variables. These should point to your application jars.
@@ -61,7 +61,7 @@ You may add your own jars into the runtime (GSC) classpath by using the `PRE_CLA
 In some cases, multiple Processing Units use the same JAR files. In such cases it makes sense to place these JAR files in a central location accessible by all the Processing Units rather than packaging them individually with each of the Processing Units. Note that this is also useful for decreasing the deployment time in case your Processing Units contain a lot of 3rd party jars files, since it saves a lot of the network overhead associated with downloading these JARs to each of the GSCs.
 There are three options to achieve this:
 
-## `lib/optional/pu-common directory`
+## lib/optional/pu-common directory
 JAR files placed in the `<XAP root>/lib/optional/pu-common` directory will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, [see the](#ClassLoaders) section below).
 
 This means they are not shared between Processing Units on the same JVM, which provides an isolation quality often required for JARs containing the application's proprietary business-logic. On the other hand this option consumes more PermGen memory (due to potentially multiple instances per JVM).
@@ -72,14 +72,14 @@ When a new JAR needs to be loaded, just place the new JAR in `pu-common` directo
 
 Note: if different Processing Units use different versions of the same JAR (under same JAR file name) then `pu-common` should not be used.
 
-## `META-INF/MANIFEST.MF` descriptor
+## META-INF/MANIFEST.MF descriptor
 JAR files specified in the Processing Unit's `META-INF/MANIFEST.MF` descriptor file will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, see the [Class Loaders](#classloaders) section below.
 
 This option achieves similar behavior to the `lib/optional/pu-common` option above, but allows a more fine-grained control by enabling to specify specific JAR files (each in its own location) rather than an entire folder (and only a single folder).
 
 For more information see [Manifest Based Classpath](#ManifestBasedClasspath) section below.
 
-## `lib/platform/ext` directory
+## lib/platform/ext directory
 JAR files placed in the `<XAP root>/lib/platform/ext` directory will be loaded once by the GSC-wide classloader and not separately by each Processing Unit instance (this classloader is called the Common Classloader, see the [Class Loaders](#classloaders) section below).
 
 This means they are shared between Processing Units on the same JVM and thereby offer no isolation. On the other hand this option consumes less PermGen memory (one instance per JVM).
