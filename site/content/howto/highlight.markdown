@@ -38,7 +38,7 @@ results = gigaSpace.readMultiple(new SQLQuery<MyClass>(MyClass.class, "num > 1 O
 
 # Csharp
 
-```c#
+```java
 namespace document
 {
 	public class Program
@@ -46,7 +46,7 @@ namespace document
 		public Program ()
 		{
 			// Create the Space
-			ISpaceProxy spaceProxy = new EmbeddedSpaceFactory ("mySpace").Create ();
+			                                           ISpaceProxy spaceProxy = new EmbeddedSpaceFactory ("mySpace").Create ();
 
 			registerDocument (spaceProxy);
 
@@ -84,10 +84,9 @@ namespace document
 }
 ```
 
-
 # Code XML Highlight
 
-```
+```xml
 <beans>
     <os-core:embedded-space id="space" name="mySpace">
         <os-core:properties>
@@ -126,6 +125,7 @@ RESOURCE_SEGMENT_1|...|RESOURCE_SEGMENT_N:METRIC_NAME
 ```
 
 # Sql
+
 ```sql
 SELECT * FROM PERSON;
 

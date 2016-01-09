@@ -341,7 +341,7 @@ public void testLocalDate() {
 
 {{%/accord%}}
 
-{{%accord title="LocalTime acc10"%}}
+{{%accord title="LocalTime"%}}
 
 {{%tabs%}}
 {{%tab " LocalTimePojo"%}}
@@ -399,7 +399,7 @@ public class LocalTimePojo {
 
 {{%/accord%}}
 
-{{%accord title="LocalDateTime acc10"%}}
+{{%accord title="LocalDateTime"%}}
 
 {{%tabs%}}
 {{%tab " LocalDateTimePojo"%}}

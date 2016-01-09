@@ -36,7 +36,7 @@ In order to minimize the potential database overhead above, the `LRU` cache poli
 
 Constructing read operations using `SQLQuery` with `Order by`, `Group by` is not recommended either, because in many cases it requires traversing the entire result data set on the client side. In such cases, the preferred option is to perform the query directly against the database and select only the IDs, and then retrieve the actual data from space using the `readById` or `readByIds` operations. When working with a partitioned space, it is recommended to store the routing value in a separate database column, and select it as so that the `readById` or `readByIds` operations will be more efficient.
 
-# The `MEMORY_ONLY_SEARCH` Modifier
+# The MEMORY_ONLY_SEARCH Modifier
 
 The `MEMORY_ONLY_SEARCH` modifier may be used to instruct the space to limit the query / template matching performed with read/take/clear/change operations to the data stored only in memory and not the space's backend persistence store (database). This give you the flexibility of minimizing the database load in cases where this modifier can be applied. 
 
@@ -79,13 +79,14 @@ Data result3[] = gigaspace.takeMultiple(query , 1000 , TakeModifiers.EVICT_ONLY.
 
 The `TakeModifiers.EVICT_ONLY` and `ClearModifiers.EVICT_ONLY` should be used as well with the `take` and `clear` operations to remove matching entries only from the memory and not from the persistent store.
 
-# How LRU Eviction Works
+# How it Works
 
 LRU eviction has 2 eviction strategies:
 
 1. **Based on the maximum amount of objects within the space** - provides VERY deterministic behavior of the garbage collection and memory used and space responsively. With a reasonable client request rate, this provides very constant behavior without client hiccups when memory is reclaimed by the JVM. This runs by default when you have an LRU cache policy. In order to turn it off, you should have a very large number for the cache size property. This strategy checks the amount of space objects, and evicts the relevant object. One object is evicted when the maximum amount of objects is reached. This eviction routine is called when:
 - Writing a new object into the space.
 - A transaction is committed or rolled-back.
+
 2. **Based on the amount of available memory the JVM hosting the space has** - when using this strategy, you should perform some tuning to provide deterministic behavior. This strategy is turned on when the `space-config.engine.memory_usage.enabled` value is `true`. This strategy is very complicated to use when you have multiple spaces running within the same JVM.
 
 ## The Eviction Flow
@@ -161,7 +162,10 @@ Available memory[%]85.46128254359517 evicted all entries.
 ```
 
 You may change the logging level of the `com.gigaspaces.core.memorymanager` while the space is running. Start JConsole (you may start it via the GigaSpaces Management Center) for the JVM hosting the space running and change the `com.gigaspaces.core.memorymanager` logging level to `FINE`. See below screenshot:
+
+{{%align center%}}
 ![memorymanager.jpg](/attachment_files/memorymanager.jpg)
+{{%/align%}}
 
 {{% tip %}}
 To change the `com.gigaspaces.core.memorymanager` logging level back to its default value set it back to `INFO`.
