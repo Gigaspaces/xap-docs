@@ -160,7 +160,42 @@ public class User {
 [Indexing  ](./indexing.html)
 {{%/refer%}}
 
+<br>
 
+# SpaceSpatialIndex
+
+| | |
+|----|----|
+|Syntax     |  SpaceSpatialIndex|
+|Description| Querying indexed fields speeds up read and take operations. The `@SpaceSpatialIndex` annotation should be used to specify an indexed field.|
+
+<br>
+
+Example:
+
+
+```java
+public class GasStation {
+    private Point location;
+
+    @SpaceSpatialIndex
+    public Point getLocation() {
+        return location;
+    }
+
+    public void setLocation(Point location) {
+        this.location = location;
+    }
+}
+```
+
+
+
+{{%refer%}}
+[SpaceSpatialIndex](./query-geospatial.html#indexing)
+{{%/refer%}}
+
+<br>
 
 # Unique Index
 
@@ -199,6 +234,8 @@ public class Person
 [Indexing  ](./indexing.html)
 {{%/refer%}}
 
+
+<br>
 
 # SpaceIndex Path
 
@@ -250,6 +287,8 @@ public static class Address implements Serializable {
 [Indexing Nested Properties](./indexing-nested-properties.html)
 {{%/refer%}}
 
+
+<br>
 # SpaceVersion
 
 
@@ -285,6 +324,8 @@ public class Employee {
 {{%/refer%}}
 
 
+<br>
+
 # SpacePersist
 
 | | |
@@ -312,7 +353,7 @@ public class Employee {
 }
 ```
 
-
+<br>
 
 # SpaceExclude
 
@@ -341,6 +382,7 @@ public class Employee {
 }
 ```
 
+<br>
 
 # SpaceLeaseExpiration
 
@@ -377,6 +419,8 @@ public class MyData {
 {{%/refer%}}
 
 
+<br>
+
 # SpaceStorageType
 
 | | |
@@ -408,6 +452,8 @@ public class Message {
 {{%refer%}}
 [Storage Types and Serialisation](./storage-types-controlling-serialization.html)
 {{%/refer%}}
+
+<br>
 
 # SpaceFifoGroupingProperty
 
@@ -442,7 +488,7 @@ public class FlightReservation
 {{%/refer%}}
 
 
-
+<br>
 
 # SpaceFifoGroupingIndex
 
@@ -475,7 +521,7 @@ Example:
 
 
 
-
+<br>
 
 # SpaceDynamicProperties
 
@@ -515,7 +561,7 @@ public class Person {
 {{%/refer%}}
 
 
-
+<br>
 
 # SpaceDocumentSupport
 
@@ -547,7 +593,7 @@ public class Person {
 [Document POJO Interoperability](./document-pojo-interoperability.html#deep-interoperability)
 {{%/refer%}}
 
-
+<br>
 
 # SpaceClassConstructor
 
@@ -576,6 +622,7 @@ public class Person {
 }
 ```
 
+<br>
 
 # Space sequence number
 

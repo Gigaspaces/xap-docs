@@ -26,6 +26,10 @@ This tutorial explains how to deploy and use a XAP [Data Grid](/product_overview
 [Interacting with the Space](./java-tutorial-part1.html)<br>
 In this part of the tutorial we will demonstrate how to create a Space and how you can interact with it. We will also demonstrate how you can improve your space search performance by using indexes and returning partial results.
 
+[Geospatial Queries](./java-tutorial-part11.html)<br>
+In this part of the tutorial we will demonstrate how to use XAP's Spatial features including queries, indexing and Geo-fencing.
+
+
 [Deploying a Space](./java-tutorial-part2.html)<br>
 In the previous section  you have learned about XAP's capabilities as a data store. In this part of the tutorial we will show you how you can deploy an In Memory Data Grid (IMDG) that provides scalability and failover.
 
