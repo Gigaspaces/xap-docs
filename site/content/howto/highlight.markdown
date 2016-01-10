@@ -46,7 +46,7 @@ namespace document
 		public Program ()
 		{
 			// Create the Space
-			                                           ISpaceProxy spaceProxy = new EmbeddedSpaceFactory ("mySpace").Create ();
+			ISpaceProxy spaceProxy = new EmbeddedSpaceFactory ("mySpace").Create ();
 
 			registerDocument (spaceProxy);
 
