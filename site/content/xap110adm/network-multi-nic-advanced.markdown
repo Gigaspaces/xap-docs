@@ -65,7 +65,7 @@ In the above example, `eth0` is the interface name and the `ip` indicates that t
 NIC_ADDR="#local:ip#"
 ```
 
-This is equivalent to `InteAddress.getLocalHost().getHostAddress()`.
+This is equivalent to `InetAddress.getLocalHost().getHostAddress()`.
 
 {{% anchor 2 %}}
 
