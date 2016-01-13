@@ -37,16 +37,18 @@ public class MenuTree {
 			System.exit(1);
 		}
 		int totalPages = 0;
-		// e.g. BASE_PATH = "/Users/chrisroffler/Documents/xap-docs";
+		// e.g. BASE_PATH = "/Users/xxxxx/Documents/xap-docs";
 		BASE_PATH = args[0];
 		System.out.println("Starting with base path " + BASE_PATH);			
 		long startTime = System.currentTimeMillis();
         // Read all pages
         for (String path : dirs) {
+            //System.out.println("Processing dir : " + path);
             Map<String, Page> pagesMap = new HashMap<String,Page>();
             File folder = new File(BASE_PATH + "/site/content/" + path);
             for (File file : folder.listFiles()) {
-                if (file.isFile()) {
+                // make sure we only process markdown files
+                if (file.isFile() && file.getName().contains(".markdown")) {
                     Page p = createPage(file);
                     pagesMap.put(file.getName().replace(".markdown", ".html"), p);
                 }
@@ -56,12 +58,17 @@ public class MenuTree {
             // now lets order them according to the weight
             TreeSet<Page> pagesTree = new TreeSet<Page>();
             for (Page p : pagesMap.values()) {
-                if (p.getParent() == null)
-					pagesTree.add(p);
-				else {
-                    Page parent = pagesMap.get(p.getParent());
-                    if (parent != null)
-                        parent.addChild(p);
+                if ( p.getWeight() != null){
+                    if (p.getParent() == null)
+					    pagesTree.add(p);
+				    else {
+                        Page parent = pagesMap.get(p.getParent());
+                        if (parent != null)
+                            parent.addChild(p);
+                    }
+                }
+                else{
+                   // System.out.println(p.getCategory() + "  " + p.getFileName() + "  has nul weight");
                 }
             }
 
@@ -139,6 +146,9 @@ public class MenuTree {
 		String parent = properties.getProperty("parent");
 		if (parent != null && !parent.equals("none"))
 			p.setParent(parent);
+        String category = properties.getProperty("categories");
+        if (category != null )
+            p.setCategory(category);
 
         return p;
     }
