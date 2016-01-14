@@ -40,27 +40,25 @@ Some users are not comfortable using the .Net version of the product and want to
 
 An example GSA windows service configuration created using [Java Service Wrapper](http://wrapper.tanukisoftware.org/) can be downloaded from [here](/download_files/myApp.zip). It was created using the [instructions](http://wrapper.tanukisoftware.com/doc/english/integrate-simple-win.html#allTogether) on Tanuki software website.
 
-- Modify the wrapper.config file per your environment.
+
+- Modify the wrapper.config file per your environment. For downloading wrapper.jar go to [Java Service Wrapper](http://wrapper.tanukisoftware.org/), download wrapper-windows-xxx-xx-x.x.xx-pro.zip which fits to your platform, unzip it and copy wrapper-windows-xxx-xx-x.x.xx-pro\lib\wrapper.jar to your myApp\lib dir (or to any dir on your file system and point to it in your classpath)
 - Set the values for all the environment variables (look for set.xxx) per your environment.
 - This example starts 2 GSC's, GSM and a LUS. Modify these settings as needed.
 - Also modify Additional Java parameters (look for wrapper.java.additional.xxx) defined in the wrapper.config file.
 - Install the service using the included `InstallGSAService-NT.bat` script.
 - After the install you should be able to see the service in the Windows Services applet.
-
-
+<br>
 
 {{%align center%}}
 ![ServicesView.jpg](/attachment_files/ServicesView.jpg)
-{{%/align%}}
+{{%/align  %}}
 
 - Service is installed with Startup Type of "Manual". Change it to "Automatic" to start the service automatically after every restart.
 
 <br>
 {{%align center%}}
 ![ServicesAutoStart.jpg](/attachment_files/ServicesAutoStart.jpg)
-{{%/align%}}
-
-<br>
+{{%/align  %}}
 
 - Use the `UninstallGSAService-NT.bat` script to uninstall the service.
 
