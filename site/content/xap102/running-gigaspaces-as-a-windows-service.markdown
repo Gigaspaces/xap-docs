@@ -41,7 +41,8 @@ Following are some popular software that can help:
 
 An example GSA windows service configuration created using [Java Service Wrapper](http://wrapper.tanukisoftware.org/) can be downloaded from [here](/download_files/myApp.zip). It was created using the [instructions](http://wrapper.tanukisoftware.com/doc/english/integrate-simple-win.html#allTogether) on Tanuki software website.
 
-- Modify the wrapper.config file per your environment.
+
+- Modify the wrapper.config file per your environment. For downloading wrapper.jar go to [Java Service Wrapper](http://wrapper.tanukisoftware.org/), download wrapper-windows-xxx-xx-x.x.xx-pro.zip which fits to your platform, unzip it and copy wrapper-windows-xxx-xx-x.x.xx-pro\lib\wrapper.jar to your myApp\lib dir (or to any dir on your file system and point to it in your classpath) 
 - Set the values for all the environment variables (look for set.xxx) per your environment.
 - This example starts 2 GSC's, GSM and a LUS. Modify these settings as needed.
 - Also modify Additional Java parameters (look for wrapper.java.additional.xxx) defined in the wrapper.config file.
