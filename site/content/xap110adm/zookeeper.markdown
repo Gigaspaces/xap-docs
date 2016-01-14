@@ -67,7 +67,7 @@ export ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
 {{% tab Windows %}}
 
 ```xml
-set ZK_JAVA_OPTIONS=-Xmx256m
+set ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
 
 call gs-agent.bat
 ```
