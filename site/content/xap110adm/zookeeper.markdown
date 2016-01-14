@@ -32,7 +32,7 @@ gs-agent gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2 gsa.zk 1
 
 For reliable ZooKeeper services, you should deploy ZooKeeper in a cluster known as an **Ensemble** . As long as a majority of the Ensembles are up, the service will be available. ZooKeeper requires a majority, it is best to use an odd number of machines.
 
-Since every machine that is part of the ZooKeeper ensemble should know about every other machine in the ensemble, ZooKeeper instances are using the `ZK_SERVERS` environment variable or the `-Dorg.openspaces.grid.zk.servers` system property. It accepts a comma separated list of `host:port:port`, the first port is used by followers to connect to the leader, and the second is for the leader election. By default it is configured with `hostname:2888:3888`.
+Since every machine that is part of the ZooKeeper ensemble should know about every other machine in the ensemble, ZooKeeper instances are using the `ZOOKEEPER_SERVERS` environment variable or the `-Dorg.openspaces.grid.zookeeper.servers` system property. It accepts a comma separated list of `host:port:port`, the first port is used by followers to connect to the leader, and the second is for the leader election. By default it is configured with `hostname:2888:3888`.
 
 Then start a ZooKeeper instances on an odd number of machines like the example below:
 
@@ -49,7 +49,7 @@ gs-agent gsa.gsc 2 gsa.global.gsm 0 gsa.global.lus 0 gsa.zk 1
 
 # Configuration
 
-Like other Grid Service Components you can use the component-specific configuration for specifying ZooKeeper settings. This is set using the environment variable: `ZK_JAVA_OPTIONS`.
+Like other Grid Service Components you can use the component-specific configuration for specifying ZooKeeper settings. This is set using the environment variable: `ZOOKEEPER_JAVA_OPTIONS`.
 
 For example:
 
@@ -57,7 +57,7 @@ For example:
 {{% tab linux %}}
 
 ```bash
-export ZK_JAVA_OPTIONS=-Xmx256m
+export ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
 
 ./gs-agent.sh
 ```
@@ -75,7 +75,7 @@ call gs-agent.bat
 {{% /tabs %}}
 
 
-The ZooKeeper configuration is provided by configuration file which is located by default at `<XAP Root>\config\zk\zoo.cfg`, you can change it location using `ZK_SERVER_CONFIG_FILE` environment variable or the `-Dorg.openspaces.grid.zk.config-file` system property.
+The ZooKeeper configuration is provided by configuration file which is located by default at `<XAP Root>\config\zookeeper\zoo.cfg`, you can change it location using `ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `-Dorg.openspaces.grid.zookeeper.config-file` system property.
 
 {{%refer%}}
 More information on how to configure ZooKeeper can be found [here](https://zookeeper.apache.org/doc/r3.4.2/zookeeperAdmin.html#sc_configuration).
