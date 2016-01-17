@@ -87,6 +87,8 @@ In addition to the general [MemoryXtend configuration options](./memoryxtend.htm
 | Property               | Description                                               | Default | Use |
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
 | <nobr>write-only-block-percentage</nobr> | Specifies a maximum threshold for off-heap memory use. If the space containers off-heap memory usage exceeds this threshold, a `BlobStoreMemoryShortageException` is thrown. | 80 | optional |
+| <nobr>compaction-interval</nobr> | Specifies the off-heap compaction interval in millis. | 30000 | optional |
+| <nobr>compaction-minimal-interval</nobr> | pecifies the off-heap compaction minimal interval in millis. | 10000 | optional |
 
 # JVM Configuration
 
