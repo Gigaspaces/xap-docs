@@ -403,6 +403,20 @@ The `task` command submits a task in the form of an Ant configuration file..
 | `list-of-machines` | A comma-separated list of hostnames or of IP addresses, or the name of a file containing such a list, saying where to submit the Ant configuration file. By default, if machines are available, you receive a list to choose from. If no machines are currently available, are prompted to start an HTTP server. |
 
 
+# Deployment States
+
+This is a list of possible deployment states and their meaning.
+
+|  State   |   Description |
+|:----|:--------------|
+|BROKEN        |Indicates the deployment is deployed and is broken, where all required services are not available. |
+|COMPROMISED   |Indicates the deployment is deployed and is compromised, where some specified services are not available. |
+|DEPLOYED      |Indicates the deployment is deployed. |
+|INTACT        |Indicates the deployment is deployed and is intact, where all specified services are available. |
+|SCHEDULED     |Indicates the deployment is scheduled for deployment.  |
+|UNDEPLOYED    |Indicates the deployment is not deployed.|
+
+
 # Hot Deploy
 
 {{%refer%}}

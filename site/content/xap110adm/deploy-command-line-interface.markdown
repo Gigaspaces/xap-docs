@@ -18,19 +18,19 @@ In order to interact with a secured grid you need to login first. See [(CLI) Sec
 
 # application
 
-#### Syntax
+## Syntax
 
 
 ```bash
 gs> deploy-application [-user xxx -password yyy] [-secured true/false] application_directory_or_zipfile
 ```
 
-#### Description
+## Description
 
 Deploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies), which deploys one or more processing units in dependency order onto the service grid.
 
 
-#### Options
+## Options
 
 
 |Option|Description|Value Format|
@@ -89,29 +89,29 @@ application.xml file describes the application dependencies:
 
 # undeploy application
 
-#### Syntax
+## Syntax
 
 
 ```bash
 gs> undeploy-application application_name
 ```
 
-#### Description
+## Description
 
 Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
 
 
 
-#### Options
+## Options
 
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 |  -timeout  | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to  **5000  milliseconds (5 seconds).| `-timeout [timeoutValue]`|
-| `-undeploy-timeout` | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |`-undeploy-timeout [timeoutValue]`|
-| `-h` / `-help`  | Prints help | |
-| `-secured` | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| `-user` `-password` | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -undeploy-timeout | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |`-undeploy-timeout [timeoutValue]`|
+| -h / -help  | Prints help | |
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{%accordion%}}
 {{%accord title="Example"%}}
@@ -125,7 +125,7 @@ The following undeploys the data-app example application (which includes a feede
 
 # deploy PU
 
-#### Syntax
+## Syntax
 
 
 ```bash
@@ -137,7 +137,7 @@ The `deploy` command replaces the `pudeploy` command and is identical to it in t
 `pudeploy` is still supported but is considered a deprecated command and will be removed in future versions
 {{% /note %}}
 
-#### Description
+## Description
 
 A Processing Unit can be easily deployed onto the Service Grid. In order to deploy a Processing Unit, the Processing Unit must follow the [processing unit directory structure]({{%currentjavaurl%}}/the-processing-unit-structure-and-configuration.html).
 Before deploying the processing unit you will need to jar it and then specify that jar file as the parameter to the `deploy` command. The deployment process will upload the jar file to all the GSMs it finds and unpack it under the `deploy` directory. It will then issue the deploy command.
@@ -146,7 +146,7 @@ Before deploying the processing unit you will need to jar it and then specify th
 You may use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to deploy complex multi processing unit applications.
 {{% /tip %}}
 
-#### Third Party jars Location and Property Files
+## Third Party jars Location and Property Files
 
 Third party jars should be placed within one of the following locations:
 
@@ -156,26 +156,26 @@ Third party jars should be placed within one of the following locations:
 
 Property files and other resources should be jared and placed within any of the above locations.
 
-#### Deploy Command Options
+## Deploy Command Options
 
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 | Processing Unit Location/Name -- **mandatory** | The location of the processing unit directory or jar file on your file system (see [this page]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html)).{{<wbr>}}If you are using a few options in the `deploy` command, pass this option as the **last parameter**.{{<wbr>}}For example: `gs> deploy hello-world.jar`{{<wbr>}}(`hello-world.jar` is the processing jar file). | |
-| `-cluster` |Allows you to control the clustering characteristics of the processing unit.{{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists).{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups{{<wbr>}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=`{{<wbr>}}`numberOfInstances[,numberOfBackups]` |
-| `-properties` | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
-| `-properties embed` | Direct property injection | -properties embed://user=admin|
-| `-sla` | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
-| `-zones` | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1 zoneName2 ... ]` |
-| `-timeout` | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
-| `-override-name` | Allows you to specify an override name for the deployed Processing Unit{{<wbr>}}(a different name than the directory name under `deploy`).{{<wbr>}}Mainly used when using a Processing Unit as a template.| `-override-name [processing unit name]` |
-| `-max-instances-per-vm` | Allows you to set the SLA number of instances per VM | |
-| `-max-instances-per-machine` | Allows you to set the SLA number of instances per machine | |
-| `-max-instances-per-zone` | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
-| `-requires-isolation` | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
-| `h` / `help`  | Prints help | |
-| `-secured` | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| `-user` `-password` | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -cluster |Allows you to control the clustering characteristics of the processing unit.{{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists).{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups{{<wbr>}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=`{{<wbr>}}`numberOfInstances[,numberOfBackups]` |
+| -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
+| -properties embed | Direct property injection | -properties embed://user=admin|
+| -sla | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
+| -zones | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1 zoneName2 ... ]` |
+| -timeout | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
+| -override-name | Allows you to specify an override name for the deployed Processing Unit{{<wbr>}}(a different name than the directory name under `deploy`).{{<wbr>}}Mainly used when using a Processing Unit as a template.| `-override-name [processing unit name]` |
+| -max-instances-per-vm | Allows you to set the SLA number of instances per VM | |
+| -max-instances-per-machine | Allows you to set the SLA number of instances per machine | |
+| -max-instances-per-zone | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
+| -requires-isolation | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
+| h / help  | Prints help | |
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{% tip %}}
 You may use the [Primary-Backup Zone Controller](/sbp/primary-backup-zone-controller.html) to deploy primary and backup on specific different zones.
@@ -247,29 +247,28 @@ Multiple deployment properties can be injected by having ; between each property
 
 # undeploy app
 
-#### Syntax
+## Syntax
 
 
 ```bash
 gs> undeploy-application application_name
 ```
 
-#### Description
+## Description
 
 Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
 
 
-#### Options
+## Options
 
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| `-timeout` | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.
-  Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
-| `-undeploy-timeout` | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |`-undeploy-timeout [timeoutValue]`|
-| `-h` / `-help`  | Prints help | |
-| `-secured` | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| `-user` `-password` | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -timeout | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
+| -undeploy-timeout | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |`-undeploy-timeout [timeoutValue]`|
+| -h / -help  | Prints help | |
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{%accordion%}}
 {{%accord title="Example"%}}
@@ -284,34 +283,34 @@ The following undeploys the data-app example application (which includes a feede
 
 # deploy memcached
 
-#### Syntax
+## Syntax
 
 
 ```bash
 gs> deploy-memcached [-sla ...] [-cluster ...] [-properties ...] [-user xxx -password yyy] [-secured true/false] space_url
 ```
 
-#### Description
+## Description
 
 
-#### Options
+## Options
 
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 | space_url | The url of the space, can be embedded, eg: `/./myMemcachedSpace`, or remote eg: `jini://*/*/myMemcachedSpace` | |
-| `-cluster` |Allows you to control the clustering characteristics of the processing unit. {{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists). {{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}} `total_members=numberOfInstances[,numberOfBackups]` |
-| `-properties` | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
-| `-sla` | Allows you to specify a link (defaults to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
-| `-zones` | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
-| `-timeout` | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
-| `-max-instances-per-vm` | Allows you to set the SLA number of instances per VM | |
-| `-max-instances-per-machine` | Allows you to set the SLA number of instances per machine | |
-| `-max-instances-per-zone` | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
-| `-requires-isolation` | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
-| `h` / `help`  | Prints help | |
-| `-secured` | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| `-user` `-password` | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -cluster |Allows you to control the clustering characteristics of the processing unit. {{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists). {{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}} `total_members=numberOfInstances[,numberOfBackups]` |
+| -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
+| -sla | Allows you to specify a link (defaults to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
+| -zones | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
+| -timeout | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
+| -max-instances-per-vm | Allows you to set the SLA number of instances per VM | |
+| -max-instances-per-machine | Allows you to set the SLA number of instances per machine | |
+| -max-instances-per-zone | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
+| -requires-isolation | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
+| h / help  | Prints help | |
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{% tip %}}
 You can use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to deploy complex multi processing unit applications.
@@ -333,33 +332,33 @@ The following deploys a memcached-enabled space called `mySpace` using an SLA el
 
 # deploy space
 
-#### Syntax
+## Syntax
 
 ```bash
 gs> deploy-space [space name]
 ```
 
-#### Description
+## Description
 
 A Space only Processing Unit can be easily deployed onto the Service Grid.
 
-#### Options
+## Options
 
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 | Space Name -- **mandatory** | The name of the space to be deployed.| |
-| `-cluster` |Allows you to control the clustering characteristics of the space.{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}  (number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=numberOfInstances[,numberOfBackups]` |
-| `-properties` | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
-| `-sla` | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
-| `-zones` | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
-| `-max-instances-per-vm` | Allows you to set the SLA number of instances per VM | |
-| `-max-instances-per-machine` | Allows you to set the SLA number of instances per machine | |
-| `-max-instances-per-zone` | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
-| `-requires-isolation` | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
-| `h` / `help`  | Prints help | |
-| `-secured` | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| `-user` `-password` | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -cluster |Allows you to control the clustering characteristics of the space.{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}  (number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=numberOfInstances[,numberOfBackups]` |
+| -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
+| -sla | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
+| -zones | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
+| -max-instances-per-vm | Allows you to set the SLA number of instances per VM | |
+| -max-instances-per-machine | Allows you to set the SLA number of instances per machine | |
+| -max-instances-per-zone | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
+| -requires-isolation | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
+| h / help  | Prints help | |
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{% tip %}}
 You may use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to deploy complex multi processing unit applications.
@@ -386,34 +385,37 @@ The following deploys a space called `mySpace` using an SLA element read from an
 
 # task
 
-#### Syntax
+## Syntax
 
 ```bash
 usage: task ant-file [target=target-name]
 ```
 
-#### Description
+## Description
 
 The `task` command submits a task in the form of an Ant configuration file..
 
-#### Options
+## Options
 
 
 | Option | Description |
 |:-------|:------------|
-| `ant-file` | The name of the Ant configuration file, an XML file representing the task. The file must reside in the current directory. |
-| `list-of-machines` | A comma-separated list of hostnames or of IP addresses, or the name of a file containing such a list, saying where to submit the Ant configuration file. By default, if machines are available, you receive a list to choose from. If no machines are currently available, are prompted to start an HTTP server. |
+| ant-file | The name of the Ant configuration file, an XML file representing the task. The file must reside in the current directory. |
+| list-of-machines | A comma-separated list of hostnames or of IP addresses, or the name of a file containing such a list, saying where to submit the Ant configuration file. By default, if machines are available, you receive a list to choose from. If no machines are currently available, are prompted to start an HTTP server. |
 
 
 # Deployment States
 
 This is a list of possible deployment states and their meaning.
- - **BROKEN** - Indicates the deployment is deployed and is broken, where all required services are not available.
- - **COMPROMISED** - Indicates the deployment is deployed and is compromised, where some specified services are not available.
- - **DEPLOYED** - Indicates the deployment is deployed.
- - **INTACT** - Indicates the deployment is deployed and is intact, where all specified services are available.
- - **SCHEDULED** - Indicates the deployment is scheduled for deployment.
- - **UNDEPLOYED** - Indicates the deployment is not deployed.
+
+|  State   |   Description |
+|:----|:--------------|
+|BROKEN        |Indicates the deployment is deployed and is broken, where all required services are not available. |
+|COMPROMISED   |Indicates the deployment is deployed and is compromised, where some specified services are not available. |
+|DEPLOYED      |Indicates the deployment is deployed. |
+|INTACT        |Indicates the deployment is deployed and is intact, where all specified services are available. |
+|SCHEDULED     |Indicates the deployment is scheduled for deployment.  |
+|UNDEPLOYED    |Indicates the deployment is not deployed.|
 
 # Hot Deploy
 
