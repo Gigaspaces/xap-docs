@@ -54,7 +54,8 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
        http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
 
-    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]"/>
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" 
+    			mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore"/>
@@ -75,6 +76,7 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
 
     <bean id="blobstoreid" class="com.gigaspaces.blobstore.rocksdb.RocksDBBlobStoreHandler">
         <property name="paths" value="[/mnt/db1,/mnt/db2]"/>
+        <property name="mappingDir" value="/tmp/mapping"/>
     </bean>
 
     <os-core:embedded-space id="space" name="mySpace">
@@ -89,7 +91,8 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
 
 ```java
 RocksDBBlobStoreConfigurer rocksDbConfigurer = new RocksDBBlobStoreConfigurer();
-rocksDbConfigurer.addPaths("[/mnt/db1,/mnt/db2]");
+rocksDbConfigurer.setPaths("[/mnt/db1,/mnt/db2]");
+rocksDbConfigurer.setMappingDir("/tmp/mapping");
 
 BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
 blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
