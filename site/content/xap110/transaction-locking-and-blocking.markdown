@@ -24,14 +24,14 @@ TX denotes transaction, and it is assumed that operations A are called under a d
 {{% /tip %}}
 
 
-|Oper. A / Oper. B|Update <br>under <br>TX Y|Take <br> under<br> TX Y|Read <br> under <br>TX Y|Update<br> `null` <br>TX|Take<br> `null` <br>TX|Read<br> `null`<br> TX|
+|Oper. A / Oper. B|Update <br>under <br>TX Y|Take <br> under<br> TX Y|Read <br> under <br>TX Y|Update<br> null <br>TX|Take<br> null <br>TX|Read<br> null<br> TX|
 |-----------------|-----------------|----------------|----------------|-----------------|---------------|---------------|
-|Update under TX X| Blocked|Blocked|Blocked|Blocked|Blocked|Blocked <br>(unless in `dirty_read)` |
+|Update under TX X| Blocked|Blocked|Blocked|Blocked|Blocked|Blocked <br>(unless in dirty_read) |
 |Take under TX X|Blocked|Blocked|Blocked|Blocked|Blocked|Blocked|
 |Read under TX X|Blocked|Blocked|Allowed|Blocked|Blocked|Allowed|
-|Update, `null` TX|Allowed|Allowed|Allowed|Allowed|Allowed|Allowed|
-|Take, `null` TX|Allowed|Allowed|Allowed|Allowed|Allowed|Allowed|
-|Read, `null` TX|Allowed|Allowed|Allowed|Allowed|Allowed|Allowed|
+|Update, null TX|Allowed|Allowed|Allowed|Allowed|Allowed|Allowed|
+|Take, null TX|Allowed|Allowed|Allowed|Allowed|Allowed|Allowed|
+|Read, null TX|Allowed|Allowed|Allowed|Allowed|Allowed|Allowed|
 
 # Read Operation
 
