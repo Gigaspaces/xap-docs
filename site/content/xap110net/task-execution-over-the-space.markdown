@@ -44,7 +44,7 @@ public class CountTask : ISpaceTask<int>
 
   public int Execute(ISpaceProxy spaceProxy, ITransaction tx)
   {
-    System.Console.WriteLine(message);
+    System.Console.WriteLine(_message);
     return spaceProxy.Count();
   }
 }
