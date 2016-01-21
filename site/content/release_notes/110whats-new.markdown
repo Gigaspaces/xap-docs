@@ -48,3 +48,9 @@ InfluxDB integration has been updated to support InfluxDB 0.9.
 MongoDB integration has been updated to support MongoDB 3.2.0.
 
 {{<infosign>}} For more information see [MongoDB Integration](/xap110/mongodb.html)
+
+## RocksDB 4.1.0
+
+The RocksDB based MemoryXtend add-on has been updated to use RocksDB 4.1.0
+
+{{<infosign>}} For more information see [SSD - RocksDB Add-On](/xap110adm/memoryxtend-rocksdb-ssd.html)
