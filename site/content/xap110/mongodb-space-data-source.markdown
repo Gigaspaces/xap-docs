@@ -142,7 +142,7 @@ Before deploying your Processing Unit, please do the following:
 1. Copy the `mongo-datasource.jar` from `lib\optional\datasource\mongo` to `lib\optional\pu-common`.
 2. download the following jars and copy them to `lib\optional\pu-common`:
 
-- `antlr4-runtime-4.5.1.jar` from [antlr's website](http://www.antlr.org/download.html) .
+- `antlr4-runtime-4.0.jar` from [antlr's website](http://www.antlr.org/download.html) .
 
 - `mongo-java-driver-{{%version "mongo-java-driver"%}}.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
 
