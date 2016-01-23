@@ -27,7 +27,7 @@ The following table summarizes when to use each of the runtime modes
 
 | You Would Like to... | Runtime Mode | Processing Unit Container Name |
 |:---------------------|:-------------|:-------------------------------|
-|  Unit test your processing unit within your IDE | [Embedded in IDE](./running-and-debugging-within-your-ide.html) | Integrated Processing Unit Container |
+|  Unit test your processing unit within your IDE | [Embedded in IDE](./installation-eclipse-debug.html) | Integrated Processing Unit Container |
 | Unit test your processing unit or run it in an unmanaged environment | [Standalone](./running-in-standalone-mode.html) | Standalone Processing Unit Container |
 | Run your processing unit in production or to conduct full-blown integration tests | [Managed by the Service Grid](./deploying-onto-the-service-grid.html) | Service Grid Processing Unit Container |
 

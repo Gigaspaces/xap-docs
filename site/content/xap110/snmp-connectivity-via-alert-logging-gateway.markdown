@@ -17,6 +17,7 @@ The main advantage with this approach is the ability to use an extensive set of 
 # Example
 
 The `AlertLoggingGateway` example project provided with the GigaSpaces distribution using an existing `Log4J` Appender (SnmpTrapAppender) to convert log messages into SNMP traps, resulting in the alerts propagated to a third party network management solution.
+
 ![SNMP_Appender.jpg](/attachment_files/SNMP_Appender.jpg)
 
 ## AlertsLoggingGatway components
@@ -101,7 +102,7 @@ public class SnmpTrapSender implements SnmpTrapSenderFacade {
 
 ```
 
-#### commons-logging.properties and log4j.properties
+# Logging
 
 The **Commons-logging.properties** file is a commons logging configuration file which re-directs its calls to a log4j logger. In our example this file contains redirection of commons-logging to log4j as the SNMP trapper we use is on top of log4j.
 **log4j.properties** is a log4j configuration file which delegates log writes to the SNMPTrapAppender, resulting in SNMP traps.
@@ -133,7 +134,7 @@ The example is located under `<XAP root>/tools/alert-integration`. To run it you
 1. If needed - perform XAP actions that will trigger one or more of the alerts the example is tuned to listen to. Creating a new GSCs is usually a good way for creating a multitude of different alerts.
 1. Start-up your SNMP server to intercept and view incoming traps. If you use MIB browser enter the Trap Receiver (Ctrl-I) and make sure it is configured to listen on the right IP and port.
 
-#. External Dependencies
+# External Dependencies
 
 1. log4j version >= 1.2.14
 1. snmpTrapAppender version >= 1.2.9
