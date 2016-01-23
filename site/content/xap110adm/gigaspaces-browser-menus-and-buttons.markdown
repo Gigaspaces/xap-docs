@@ -118,29 +118,7 @@ Selecting a Jini group defines which services (containers, spaces, GSCs, GSMs) a
 ![GMC_space_SettingsMenuOption_Discovery_LookupServiceDiscovTimes_Window_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_Discovery_LookupServiceDiscovTimes_Window_6.5.jpg)
 {{%/align%}}
 
-
-|Syntax|Description|
-|:-----|:----------|
-|Color Settings|opens the Preferences Panel, allowing you to choose change the default colors of the operations shown in the [Statistics View](./gigaspaces-browser-statistics-view.html).|
-|<nobr>Reset Perspective</nobr>|resets all main window tabs, returns docking windows to their initial size and location.|
-|System Properties|see the [following section](#Configured System Properties Window).
-
- {{% anchor cluster %}}
-
-- **Cluster Configuration**
-
-{{%align center%}}
-![GMC_space_SettingsMenuOption_ClusterConfig_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_ClusterConfig_6.5.jpg)
-{{%/align%}}
-
-|Syntax|Description|
-|:-----|:----------|
-|New|Create a new cluster - opens the GigaSpaces Cluster Wizard. |
-|New From|Create a new cluster from an existing cluster.|
-|Open|opens your `<XAP Root>\config` directory, allowing you to select an existing cluster schema file.|
-|Verify|allows you to verify a cluster definition.|
-|Viewer|opens your `<XAP Root>\config` directory, allowing you to select an existing cluster schema file to view. |
-
+ 
 
 ## Configured System Properties Window
 
