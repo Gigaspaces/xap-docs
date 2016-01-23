@@ -12,7 +12,7 @@ weight: 100
 
 A Cassandra based implementation of the [Space Data Source](./space-data-source-api.html).
 
-### Library dependencies
+# Library dependencies
 
 The Cassandra Space Data Source uses [Cassandra JDBC Driver](http://code.google.com/a/apache-extras.org/p/cassandra-jdbc/) and [Hector Library](http://hector-client.github.com/hector/build/html/index.html) when interacting with the Cassandra cluster.
 include the following in your `pom.xml`
@@ -51,7 +51,7 @@ include the following in your `pom.xml`
 </dependency>
 ```
 
-### Setup
+# Setup
 
 An example of how the Cassandra Space Data Source can be configured for a space that loads data back from Cassandra once initialized and
 also asynchronously persists the data using a mirror (see [Cassandra Space Synchronization Endpoint](./cassandra-space-synchronization-endpoint.html)).
@@ -163,13 +163,13 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 For more details about different configurations see [Space Persistency](./space-persistency.html).
 
-### Before you begin
+# Before you begin
 
 Before deploying your Processing Unit, please do the following:
 
 Copy the `xap-cassandra.jar` from `lib\optional\datasource\cassandra` to `lib\optional\pu-common`.
 
-### `CassandraSpaceDataSource` Properties
+# CassandraSpaceDataSource Properties
 
 
 |Property|Description|Default|
@@ -182,15 +182,15 @@ Copy the `xap-cassandra.jar` from `lib\optional\datasource\cassandra` to `lib\op
 |fixedPropertyValueSerializer|see [Property Value Serializer](./cassandra-space-synchronization-endpoint.html#Property Value Serializer).| |
 |dynamicPropertyValueSerializer|see [Property Value Serializer](./cassandra-space-synchronization-endpoint.html#Property Value Serializer).| |
 
-## Considerations
+# Considerations
 
-### General limitations
+## General limitations
 
 - Extended indexes are not supported. (If one is set on a property, it will be treated as Basic index).
 - All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the JVM the Space is running on.
 - Unindexed properties cannot be queried.
 
-### Cache miss Query limitations
+## Cache miss Query limitations
 
 Supported queries:
 

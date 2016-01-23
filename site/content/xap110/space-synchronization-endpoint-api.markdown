@@ -21,18 +21,19 @@ The following data is synchronized:
 
 The space synchronization endpoint can be called in synchronous or in asynchronous mode:
 
-{{% section %}}
 
-{{% column width="50%" %}}
-#### asynchronous mode
-{{%popup   "/attachment_files/SpacedataSourceAPI.jpg"%}}
-{{% /column %}}
+## asynchronous mode
 
-{{% column width="50%" %}}
-#### synchronous mode
-{{%popup   "/attachment_files/SpacedataSourceSyncAPI.jpg"%}}
-{{% /column %}}
-{{% /section %}}
+{{%align center%}}
+![image](/attachment_files/SpacedataSourceAPI.jpg)
+{{%/align%}}
+
+
+## synchronous mode
+
+{{%align center%}}
+![image](/attachment_files/SpacedataSourceSyncAPI.jpg)
+{{%/align%}}
 
 Dynamic index creation is essential since the space allows to create index dynamically during run time so this can be reflected to the storage solution.
 

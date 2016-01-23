@@ -46,7 +46,9 @@ However, since the protocol is simple and well-known, there have been many clien
 There are many memcached clients for Java; the one GigaSpaces' example applications have used is [xmemcached](http://code.google.com/p/xmemcached/).
 
 
-### If you use Maven, you can include spymemcached as a dependency, by adding a repository reference and a dependency:
+## Maven
+
+If you use Maven, you can include spymemcached as a dependency, by adding a repository reference and a dependency:
 
 
 ```xml
@@ -198,7 +200,9 @@ Most memcached clients allow to provide a list of memcached servers to connect t
 
 The results below compares native memcached with GigaSpaces memcached:
 
+{{%align center%}}
 ![native_memcachedvsGigaSpaces_memcached.jpg](/attachment_files/native_memcachedvsGigaSpaces_memcached.jpg)
+{{%/align%}}
 
 The command used to generate the results is:
 

@@ -7,15 +7,10 @@ weight: 200
 ---
 
 
-{{%section%}}
-{{%column width="80%" %}}
+{{%imagertext "/attachment_files/archive-container-mongodb.jpg"%}}
 The [Archive Container](./archive-container.html) can be configured to work against MongoDB (without writing any extra code). The [ArchiveOperationHandler interface](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/archive/ArchiveOperationHandler.html) abstracts the Big-Data storage from the [Archive Container](./archive-container.html). The MongoDB Archive Operation Handler implements this interface by serializing space objects into MongoDB.
-{{%/column%}}
-{{%column width="20%" %}}
+{{%/imagertext%}}
 
-{{%popup   "/attachment_files/archive-container-mongodb.jpg"%}}
-{{%/column%}}
-{{%/section%}}
 
 
 # Library dependencies
@@ -26,7 +21,6 @@ Include the following in your `pom.xml`
 
 
 ```xml
-
 	<!-- currently the MongoDB library is not the central maven repository --> 
 	<repositories>
 		<repository>
@@ -59,7 +53,6 @@ Include the following in your `pom.xml`
 		</dependency>
 		...
 	</dependencies>
-	
 ```
 
 
@@ -73,13 +66,11 @@ Include the following in your `pom.xml`
 
 
 ```xml
-
 	<bean id="mongoArchiveHandler" class="com.gigaspaces.persistency.archive.MongoArchiveOperationHandler">
 		<property name="gigaSpace" ref="gigaSpace" />
 		<property name="config" ref="config" />
 		<property name="db" value="${mongodb.db}" />
 	</bean>
-	
 ```
 
 {{% /tab %}}
@@ -87,7 +78,6 @@ Include the following in your `pom.xml`
 
 
 ```java
-
 	ArchiveOperationHandler mongoArchiveHandler =
 		new MongoArchiveOperationHandlerConfigurer()
 		 .gigaSpace(gigaSpace)
@@ -99,7 +89,6 @@ Include the following in your `pom.xml`
 	// A good life cycle event to place the destroy() call would be within the @PreDestroy or 	DisposableBean#destroy() method.
 
 	archiveContainer.destroy();
-
 ```
 
 {{% /tab %}}

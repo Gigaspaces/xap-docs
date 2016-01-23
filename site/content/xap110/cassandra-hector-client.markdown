@@ -12,13 +12,13 @@ A wrapper around the [Hector Library](http://hector-client.github.com/hector/bui
 
 This component is used by both the [Cassandra Space Synchronization Endpoint](./cassandra-space-synchronization-endpoint.html) and the [Cassandra Space Data Source](./cassandra-space-data-source.html). The main usage is related to metadata operations (such as creating column families, adding secondary indexes, reading column families metadata, etc...).
 
-# Configuration
 
-## Library Dependencies
+
+# Library Dependencies
 
 See [Hector library dependencies](./cassandra-space-synchronization-endpoint.html#Library dependencies) for required dependencies.
 
-## Setup
+# Setup
 
 {{%tabs%}}
 {{%tab "  Spring "%}}
@@ -55,7 +55,7 @@ HectorCassandraClient hectorClient = new HectorCassandraClientConfigurer()
 {{% /tab %}}
 {{% /tabs %}}
 
-## `HectorCassandraClient` Properties
+## HectorCassandraClient Properties
 
 
 |Property|Description|Default|

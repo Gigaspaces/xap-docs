@@ -39,7 +39,7 @@ A client communicating with a an embedded space performs all its operation via l
 Here is an example how to create an embedded space. The `EmbeddedSpaceConfigurer` is used to configure the space url:
 
 {{%tabs%}}
-{{%tab "  Code "%}}
+{{%tab "Code"%}}
 
 
 ```java
@@ -48,11 +48,10 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 {{% /tab %}}
 
-{{%tab "  Namespace "%}}
+{{%tab "Namespace"%}}
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
@@ -62,7 +61,6 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -99,7 +97,6 @@ Here is an example how a client application can create a proxy to interacting wi
 
 
 ```java
-
 GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("mySpace")).gigaSpace();
 ```
 
@@ -108,7 +105,6 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("mySpace"
 
 
 ```xml
-
 <os-core:space-proxy  id="space" name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
@@ -118,7 +114,6 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("mySpace"
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -146,7 +141,7 @@ When working with a **remote space**, the space may become unavailable (network 
 
 XAP supports a [Local Cache](./local-cache.html) (near cache) configuration. This provides a front-end client side cache that will be used with the `read` operations implicitly . The local cache will be loaded on demand or when you perform a `read` operation and will be updated implicitly by the space.
 
- {{%align center%}}
+{{%align center%}}
 ![local_cache.jpg](/attachment_files/local_cache.jpg)
 {{%/align%}}
 
@@ -292,7 +287,6 @@ Example:
 
 
 ```java
-
 SpaceProxyConfigurer urlConfigurer = new SpaceProxyConfigurer("space");
  //....
 urlConfigurer.destroy();
@@ -304,7 +298,6 @@ localCacheConfigurer.destroy();
 // Local view
 LocalViewSpaceConfigurer localViewConfigurer = new LocalViewSpaceConfigurer(urlConfigurer);
 localViewConfigurer.destroy();
-
 ```
 
 {{%note "Local View and Cache"%}}
@@ -324,13 +317,11 @@ Example:
 
 
 ```java
-
 SpaceProxyConfigurer urlConfigurer = new SpaceProxyConfigurer("space");
  //....
 urlConfigurer.destroy();
 
 LRMIManager.shutdown();
-
 ```
 
 
@@ -343,7 +334,6 @@ A secured space should be configured with a security context so that it can be a
 
 
 ```xml
-
 <os-core:space-proxy id="space" name="mySpace">
     <os-core:security username="sa" password="adaw@##$" />
 </os-core:space-proxy>
@@ -354,7 +344,6 @@ A secured space should be configured with a security context so that it can be a
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean">
     <property name="name" value="space" />
     <property name="securityConfig">
@@ -376,7 +365,6 @@ Here is an example of how to define security with an embedded space. In this cas
 
 
 ```xml
-
 <os-core:space-proxy  id="space" name="mySpace">
     <os-core:security username="sa" password="adaw@##$" />
 </os-core:space-proxy>
@@ -387,7 +375,6 @@ Here is an example of how to define security with an embedded space. In this cas
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
     <property name="securityConfig">
@@ -419,7 +406,6 @@ When constructing a space, it is possible to provide [Space Persistency](./space
 
 
 ```xml
-
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
     <property name="url" value="jdbc:hsqldb:hsql://localhost:9001"/>
@@ -457,7 +443,6 @@ When constructing a space, it is possible to provide [Space Persistency](./space
 
 
 ```xml
-
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
     <property name="url" value="jdbc:hsqldb:hsql://localhost:9001"/>

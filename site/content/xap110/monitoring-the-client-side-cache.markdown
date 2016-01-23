@@ -18,9 +18,9 @@ The Local View/Cache JMX Monitor monitors the number of objects stored within th
 
 To use the Local View/Cache JMX Monitor:
 
-1. {{%download "/download_files/GSClientCacheJMXMonitorXAP9.jar"%}} the monitor jar and add it into your application classpath.
-2. Add into your local view/cache configuration the `space-config.filters.Statistics.enabled` parameter as demonstrated below.
-3. Add into your application Spring file the `gsClientCacheMonitor` bean. The following example assumes you have an application using two master spaces, each has its own client local cache proxy. See how the `GigaSpacesClientCacheJMXMonitor` is configured to specify the different proxies used by the application:
+**Step 1.** {{%download "/download_files/GSClientCacheJMXMonitorXAP9.jar"%}} the monitor jar and add it into your application classpath.<br>
+**Step 2.** Add into your local view/cache configuration the `space-config.filters.Statistics.enabled` parameter as demonstrated below.<br>
+**Step 3.** Add into your application Spring file the `gsClientCacheMonitor` bean. The following example assumes you have an application using two master spaces, each has its own client local cache proxy. See how the `GigaSpacesClientCacheJMXMonitor` is configured to specify the different proxies used by the application:<br>
 
 
 ```xml
@@ -60,18 +60,15 @@ To use the Local View/Cache JMX Monitor:
 
 You can specify up to 5 local View/Cache `GigaSpace` beans as part of the `gigaSpaceList`.
 
-{{%section%}}
-{{%column width="80%" %}}
-4. Start JConsole for your application JVM, move into the MBean Tab and select the `GigaSpacesClientCacheJMXMonitor` under the `com.gigaspaces.clientcachemonitor`.
-5. Click the relevant statistics you would like to monitor, and Double click the cell on the right side panel. you may monitor the entire statistics by clicking on the Attributes tree icon and double clicking on each value at the left side panel.
-6. A graph (or multiple graphs) should be presented illustrating the value of the monitored statistic(s). The graph(s) will be updated periodically.
-See   example how you can monitor multiple local cache instances running within the same application:
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/clientCacheJMXMonitor.jpg"%}}
-{{%/column%}}
-{{%/section%}}
+**Step 4.** Start JConsole for your application JVM, move into the MBean Tab and select the `GigaSpacesClientCacheJMXMonitor` under the `com.gigaspaces.clientcachemonitor`.<br>
+**Step 5.** Click the relevant statistics you would like to monitor, and Double click the cell on the right side panel. you may monitor the entire statistics by clicking on the Attributes tree icon and double clicking on each value at the left side panel.<br>
+**Step 6.** A graph (or multiple graphs) should be presented illustrating the value of the monitored statistic(s). The graph(s) will be updated periodically.<br><br>
+See   example how you can monitor multiple local cache instances running within the same application:<br>
+<br>
 
+![image](/attachment_files/clientCacheJMXMonitor.jpg)
+
+<br>
 
 {{% note %}}
 This version of the local view/cache monitor does not reflect statistics for operations using the `readByID` operation from the local view/cache.

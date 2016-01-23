@@ -12,15 +12,17 @@ weight: 100
 
 The **Exit** option closes the XAP Management Center.
 
+{{%align center%}}
 ![GMC_space_FileMenuOption_6.5.jpg](/attachment_files/GMC_space_FileMenuOption_6.5.jpg)
-
+{{%/align%}}
 
 # Launch Menu
 
 The **Launch** menu allows you to perform operations in the Deployments tab:
 
-
+{{%align center%}}
 ![GMC_space_LaunchMenuOption_6.5.jpg](/attachment_files/GMC_space_LaunchMenuOption_6.5.jpg)
+{{%/align%}}
 
 |Syntax|Description|
 |:-----|:----------|
@@ -36,8 +38,9 @@ The **Launch** menu allows you to perform operations in the Deployments tab:
 
 The **Space** menu provides options relevant for a specific space.
 
+{{%align center%}}
 ![GMC_space_SpaceMenuOption_6.5.jpg](/attachment_files/GMC_space_SpaceMenuOption_6.5.jpg)
-
+{{%/align%}}
 
 The **Space** menu is enabled only when pressing a space node  in the tree on the left.
 
@@ -66,8 +69,9 @@ Clicking **Space** > **Display Persistent LRU Space Metrics** turns on the insta
 
 The **View** menu provides the following options:
 
+{{%align center%}}
 ![GMC_space_ViewMenuOption_6.5.jpg](/attachment_files/GMC_space_ViewMenuOption_6.5.jpg)
-
+{{%/align%}}
 
 |Syntax|Description|
 |:-----|:----------|
@@ -84,24 +88,35 @@ The **View** menu provides the following options:
 
 The **Settings** menu provides the following options:
 
-![GMC_space_SettingsMenuOption_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_6.5.jpg)
+{{%align center%}}
+![GMC_space_SettingsMenuOption_6.5.jpg](/attachment_files/admin_ui/GMC_space_SettingsMenuOption_11.0.png)
+{{%/align%}}
 
 - **Discovery**
 
-![GMC_space_SettingsMenuOption_Discovery_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_Discovery_6.5.jpg)
+{{%align center%}}
+![GMC_space_SettingsMenuOption_Discovery_6.5.jpg](/attachment_files/admin_ui/GMC_space_SettingsMenuOption_Discovery_11.0.png)
+{{%/align%}}
 
 - **Group Management** -- opens the Discovery Group Selection window, allowing you to manage different Jini groups:
 
+{{%align center%}}
 ![GMC_space_SettingsMenuOption_Discovery_DiscovGroupSelection_Window_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_Discovery_DiscovGroupSelection_Window_6.5.jpg)
+{{%/align%}}
 
 Selecting a Jini group defines which services (containers, spaces, GSCs, GSMs) are displayed in the GigaSpaces Management Center according to their Jini group. After updating, press **Apply** and then **OK**, or **Close** without saving.
+
 - **Locator Discovery** -- allows you to find new locators using a port number. Type a port number in the first text box, and click *Add*. The port is then added to the **managed set of locators** at the bottom.
 
+{{%align center%}}
 ![GMC_space_SettingsMenuOption_Discovery_LocatorDiscov_Window_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_Discovery_LocatorDiscov_Window_6.5.jpg)
+{{%/align%}}
 
 - **Discovery Stats** -- opens the Lookup Service Discovery Times window, which displays the locator IP address, its Jini group, and the time in \[ms\]:
 
+{{%align center%}}
 ![GMC_space_SettingsMenuOption_Discovery_LookupServiceDiscovTimes_Window_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_Discovery_LookupServiceDiscovTimes_Window_6.5.jpg)
+{{%/align%}}
 
 
 |Syntax|Description|
@@ -114,7 +129,9 @@ Selecting a Jini group defines which services (containers, spaces, GSCs, GSMs) a
 
 - **Cluster Configuration**
 
+{{%align center%}}
 ![GMC_space_SettingsMenuOption_ClusterConfig_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_ClusterConfig_6.5.jpg)
+{{%/align%}}
 
 |Syntax|Description|
 |:-----|:----------|
@@ -129,14 +146,19 @@ Selecting a Jini group defines which services (containers, spaces, GSCs, GSMs) a
 
 The **System Properties** option opens a window listing all configured [system properties](./runtime-configuration.html). The Configured System Properties window allows you to edit existing system properties, and add new properties.
 
+{{%align center%}}
 ![GMC_space_SettingsMenuOption_Settings_ConfiguredSystemProp_Window_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_Settings_ConfiguredSystemProp_Window_6.5.jpg)
-
+{{%/align%}}
 
 To edit an existing value, double click it, and type in your changes:
 
+{{%align center%}}
 ![GMC_space_SettingsMenuOption_Settings_ConfiguredSystemProp_Window_Editing_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_Settings_ConfiguredSystemProp_Window_Editing_6.5.jpg)
+{{%/align%}}
 
+{{%align center%}}
 |![IMG365.gif](/attachment_files/IMG365.gif)| To add a new value, click the + button, which adds a new row. Type the property on the left side, and its value on the right side.|
+{{%/align%}}
 
 Press **OK** to accept the changes and exit the window, or **Cancel** to exit without saving the changes.
 
@@ -144,7 +166,9 @@ Press **OK** to accept the changes and exit the window, or **Cancel** to exit wi
 
 The **Help** menu provides the following options
 
+{{%align center%}}
 ![GMC_space_HelpMenuOption_6.5.jpg](/attachment_files/GMC_space_HelpMenuOption_6.5.jpg)
+{{%/align%}}
 
 
 |Syntax|Description|

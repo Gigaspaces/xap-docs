@@ -81,7 +81,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 
 Transactional operations are **always** executed on the master space.
 
-#### Space Persistency
+# Space Persistency
 
 The local cache uses the entry's version to determine whether the local entry is up-to-date or stale when handling updates. Usually this mechanism is transparent to the user and does not require declaring a version property, since the master space and local cache maintain version information for each entry implicitly.
 
@@ -92,7 +92,7 @@ The exception is a master space with an [Space Persistency](./space-persistency.
 1. When writing new entries the space, it is recommended to use version 0 and let the space implicitly initialize to version 1.
 1. When using template matching to query the space, make sure that the template used has the version ID field set to ZERO to make sure the space will ignore it.
 
-#### Multiple Cache Instances within the Same Client
+## Multiple Cache Instances within the Same Client
 
 Running multiple local cache instances (for different master spaces) within the same client may cause problems unless you allocate reasonable headroom for the local cache to operate. Such issues will be manifested in `MemoryShortageException` being thrown sporadically.
 
@@ -108,7 +108,7 @@ Since there are only 100 objects to clear from LC2, not all of the 1000 objects 
 
 # Operations Flow
 
-#### Read Operations
+## Read Operations
 
 1. The local cache is checked. If the requested object is found in the local cache, it is returned back to the application.
 1. Otherwise, the master space is queried.
@@ -116,7 +116,7 @@ Since there are only 100 objects to clear from LC2, not all of the 1000 objects 
 
 - **Blocking Read** - read with timeout first checks the local cache (without blocking - i.e. timeout=0), and if requested object is not found, the master space is checked.
 
-#### ReadMultiple Operations
+## ReadMultiple Operations
 
 1. The local cache is checked. If all the requested objects are found within the local cache (based on the amount of the `maxObjects` parameter of the `readMultiple` call), they are returned back to the application.
 1. Otherwise, the master space is queried.
@@ -126,11 +126,11 @@ Since there are only 100 objects to clear from LC2, not all of the 1000 objects 
 To avoid a `readMultiple` call from the master space make sure you do not use `Integer.MAX_VALUE` as the `max_objects` value.
 {{%/info%}}
 
-#### Take/TakeMultiple Operations
+## Take/TakeMultiple Operations
 
 Take is always executed on both the local space and the master space. Blocking Take (take with timeout > 0) will block until an object is available on the master space, just like regular take.
 
-#### Write/Update Operations
+## Write/Update Operations
 
 Writes are always executed on the master space. Updates are executed both on the master space and the local cache, to make sure the cache is consistent if the object is cached.
 
@@ -140,31 +140,21 @@ Writes are always executed on the master space. Updates are executed both on the
 
 # Synchronization
 
-#### Update Policy
+## Update Policy
 
 Each change on the master space triggers a notification at the local cache. The change is processed according to one of the following update policies:
 
+{{%imagertext  "/attachment_files/local_cache_pull.jpg"%}}
 - `Pull` - When the local cache is notified about an update, it removes the stale object from the local cache (invalidation). The next time the client tries to read the object, it will be reloaded from the master space and stored in the local cache.
+{{%/imagertext%}}
 
+{{%imagertext  "/attachment_files/local_cache_push.jpg"%}}
 - `Push` - When the local cache is notified about an update, it loads the recent copy of the object from the master space and 'pushes' it into the local cache. The next time the client tries to read the object, it will be returned from the local cache without accessing the master space.
+{{%/imagertext%}}
 
 - `None` - Do not register for master space updates - If an object is changed in the master space, it will remain stale in the local cache until its lease expires.
 
-{{%section%}}
-{{%column width="25%" %}}
-{{%/column%}}
-{{%column width="25%" %}}
-**Pull Update Policy**
-{{%popup   "/attachment_files/local_cache_pull.jpg"%}}
-{{%/column%}}
 
-{{%column width="25%" %}}
-**Push Update Policy**
-{{%popup   "/attachment_files/local_cache_pull.jpg"%}}
-{{%/column%}}
-{{%column width="25%" %}}
-{{%/column%}}
-{{%/section%}}
 
 
 
@@ -182,7 +172,7 @@ The update policy can be configured using `LocalCacheSpaceFactoryBean` for Sprin
 <os-core:local-cache id="localCacheSpace" space="space" update-mode="PULL"/>
 ```
 
-#### Batch Synchronization
+## Batch Synchronization
 
 Changes in the server are grouped and sent to the client in batches. The following configuration settings control synchronization batching:
 
@@ -212,17 +202,17 @@ The maximum disconnection duration can be configured using `LocalCacheSpaceFacto
     space="space" max-disconnection-duration="60000"/>
 ```
 
-#### Advanced Notification
+## Advanced Notification
 
 The  round-trip-time setting can be configured using the `space-config.dist-cache.events.lease-renew.round-trip-time` custom property. For more information about this setting refer to [Session Based Messaging API](./session-based-messaging-api.html).
 
 # Memory Eviction
 
-#### Cache Policy
+## Cache Policy
 
 When using a local cache with `GigaSpace`, the cache policy is set to `LRU` and cannot be changed. When using the local cache with `GigaMap`, the default cache policy is `com.j_spaces.map.eviction.FIFOEvictionStrategy`, and other policies may be used by setting the `space-config.dist-cache.eviction-strategy` custom property. For more details refer to the [Map API](./map-api.html#GigaMap with a Local (Near) Cache).
 
-#### Memory Configuration Properties
+## Memory Configuration Properties
 
 In order to properly configure the local cache eviction mechanism, you should consider tuning the following configuration elements:
 
@@ -247,7 +237,7 @@ See the [Memory Management Facilities]({{%currentadmurl%}}/memory-management-fac
 Having the property `space-config.engine.memory_usage.explicit-gc` set to 'enabled' is recommended only in extreme cases when there is high load on the system, with large amount of concurrent users accessing the local cache and when the amount of CPUs/Cores is relatively small.
 {{%/tip%}}
 
-#### Handling Memory Shortage
+## Handling Memory Shortage
 
 There might be cases when the local cache would not be able to evict its data fast enough. This will result in an exception thrown on the client side. The reasons for this behavior might be very large objects stored within the local cache, large amount of concurrent access to the local cache or relatively small JVM heap. In such a case a `RemoteException` will be thrown.
 
@@ -269,7 +259,7 @@ while(true)
 }
 ```
 
-#### Monitoring the Client Local Cache Eviction
+## Monitoring the Client Local Cache Eviction
 
 The Client Local Cache eviction can be monitored by setting the client application `com.gigaspaces.core.memorymanager` logging entry level to `FINE`. Once changed, log entries will be displayed when objects are evicted from the local cache (starting, during, and when completing the eviction cycle), and when waiting for incoming activities.
 

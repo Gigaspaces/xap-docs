@@ -9,7 +9,7 @@ weight: 200
 
 A Cassandra based implementation of the [Space Synchronization Endpoint](./space-synchronization-endpoint-api.html).
 
-### Library dependencies
+# Library dependencies
 
 The Cassandra Space Synchronization Endpoint uses the [Hector Library](http://hector-client.github.com/hector/build/html/index.html) For communicating with the Cassandra cluster.
 Include the following in your `pom.xml`
@@ -82,7 +82,7 @@ Include the following in your `pom.xml`
 {{% /tab %}}
 {{% /tabs %}}
 
-### Setup
+# Setup
 
 An example of how the Cassandra Space Synchronization Endpoint can be configured within a mirror.
 
@@ -161,7 +161,7 @@ IJSpace mirror = new EmbeddedSpaceConfigurer("mirror-service")
 
 For more details about different configurations see [Space Persistency](./space-persistency.html).
 
-## `CassandraSpaceSynchronizationEndpoint` Properties
+## CassandraSpaceSynchronizationEndpoint Properties
 
 
 |Property|Description|
@@ -208,9 +208,9 @@ Overriding the property value serializers in the `Cassandra Space Synchronizatio
 
 {{%anchor Flattened-Properties-Filter %}}
 
-### Flattened Properties Filter
+## Flattened Properties Filter
 
-#### Introduction
+### Introduction
 
 When a type is introduced to the `Cassandra Space Synchronzation Endpoint`, the type's fixed properties will be introspected and the final result will be a mapping from this type's nested properties to column family columns.
 The default behavior of this mapping is explained in the following example.
@@ -269,7 +269,7 @@ This is how they will be written to Cassandra:
 |person.newName|newName (type: Bytes)|
 |person.newAddress|newAddress (type: Bytes)|
 
-### Customization
+## Customization
 
 It is possible to override the above behavior by providing a [FlattenedPropertiesFilter](http://www.gigaspaces.com/docs/cassandra-docs{{%currentversion%}}/apidocs/index.html?org/openspaces/persistency/cassandra/meta/mapping/filter/FlattenedPropertiesFilter.html) implementation.
 The implementations is used during type introspection when a type is first introduced to the synchronization endpoint and whenever an entry of that type is written which contains dynamic properties.
@@ -298,7 +298,7 @@ int getCurrentNestingLevel();
 
 {{%anchor Column-Family-Name-Converter %}}
 
-### Column Family Name Converter
+## Column Family Name Converter
 
 Due to implementation details of Cassandra regarding Column Families there are certain limitations when converting a type name (e.g: `com.example.data.Person`) to a column family name. Among these limitations is a 48 characters max length limitation and invalid characters in the name (such as '.').
 The behavior for converting a type name to a column family name when creating a column family is defined by the interface [ColumnFamilyNameConverter](http://www.gigaspaces.com/docs/cassandra-docs{{%currentversion%}}/apidocs/index.html?org/openspaces/persistency/cassandra/meta/conversion/ColumnFamilyNameConverter.html).
@@ -311,7 +311,7 @@ String toColumnFamilyName(String typeName);
 
 The default implementation is: [DefaultColumnFamilyNameConverter](http://www.gigaspaces.com/docs/cassandra-docs{{%currentversion%}}/apidocs/index.html?org/openspaces/persistency/cassandra/meta/conversion/DefaultColumnFamilyNameConverter.html).
 
-## Considerations
+# Considerations
 
 - Collections and Maps are not flattened and are serialized as blobs using java object serialization mechanism.
 - Writing entries that only have their id property set is not supported, these entries will not be written to Cassandra.

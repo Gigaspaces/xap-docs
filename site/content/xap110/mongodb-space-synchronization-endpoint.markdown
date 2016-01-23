@@ -8,13 +8,12 @@ weight: 200
 
 A MongoDB based implementation of the [Space Synchronization Endpoint](./space-synchronization-endpoint-api.html). 
 
-### Library dependencies 
+# Library dependencies
 The MongoDB Space Synchronization Endpoint uses the [MongoDB Driver](http://docs.mongodb.org/ecosystem/drivers/java/) For communicating with the MongoDB cluster. 
 Include the following in your `pom.xml` 
 
 
 ```xml
-
 	<!-- currently the MongoDB library is not the central maven repository --> 
 	<repositories>
 		<repository>
@@ -48,10 +47,9 @@ Include the following in your `pom.xml`
 		</dependency>
 		...
 	</dependencies>
-
 ```
 
-### Setup 
+# Setup
 
 An example of how the MongoDB Space Synchronization Endpoint can be configured within a mirror. 
 
@@ -60,7 +58,6 @@ An example of how the MongoDB Space Synchronization Endpoint can be configured w
 
 
 ```xml
-
 	<?xml version="1.0" encoding="utf-8"?> 
 	<beans xmlns="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" 
@@ -99,8 +96,7 @@ An example of how the MongoDB Space Synchronization Endpoint can be configured w
 			class="com.gigaspaces.persistency.MongoSpaceSynchronizationEndpointBeanFactory">
 			<property name="mongoClientConnector" ref="mongoClient" />
 		</bean> 
-	</beans> 
-
+	</beans>
 ```
 
 {{% /tab %}}
@@ -108,7 +104,6 @@ An example of how the MongoDB Space Synchronization Endpoint can be configured w
 
 
 ```java
-
 		MongoClient config = new MongoClient(host, port);
 		
 		MongoClientConnector client = new MongoClientConnectorConfigurer()
@@ -127,7 +122,6 @@ An example of how the MongoDB Space Synchronization Endpoint can be configured w
 		.addProperty("space-config.mirror-service.cluster.partitions", String.valueOf(numOfPartitiones)) 
 		.addProperty("space-config.mirror-service.cluster.backups-per-partition", String.valueOf(numOfBackups)) 
 		.create();
-
 ```
 
 {{% /tab %}}
@@ -135,7 +129,7 @@ An example of how the MongoDB Space Synchronization Endpoint can be configured w
 
 For more details about different configurations see [Space Persistency](./space-persistency.html).
 
-### Before you begin
+# Before you begin
 
 Before deploying your Processing Unit, please do the following:
 
@@ -146,12 +140,12 @@ Before deploying your Processing Unit, please do the following:
 
 - `mongo-java-driver-{{%version mongo-java-driver%}}.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
 
-## `MongoSpaceSynchronizationEndpoint` Properties
+## MongoSpaceSynchronizationEndpoint Properties
 
 
 |Property|Description|
 |:-------|:----------|
 |client|A configured com.gigaspaces.persistency.MongoClientConnector bean. Must be configured.| 
 
-## Considerations 
+# Considerations
 - Change API and Partial updates is supported

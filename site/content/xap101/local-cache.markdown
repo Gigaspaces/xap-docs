@@ -160,7 +160,7 @@ Each change on the master space triggers a notification at the local cache. The 
 {{%column width="50%" %}}
 #### Push Update Policy
 
-{{%popup   "/attachment_files/local_cache_pull.jpg"%}}
+{{%popup   "/attachment_files/local_cache_push.jpg"%}}
 {{%/column%}}
 {{%/section%}}
 
