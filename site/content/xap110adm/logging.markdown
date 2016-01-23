@@ -176,7 +176,7 @@ Application jars/classes are packaged in different folders and some of the class
 com.gigaspaces.core.engine.level = INFO
 com.gigaspaces.core.lease.level = INFO
 com.gigaspaces.core.types.level = INFO
-com.gigaspaces.core.memorymanager.level = INFO
+com.gigaspaces.memory-manager.level = INFO
 com.gigaspaces.kernel.level = CONFIG
 com.gigaspaces.core.common.level = INFO
 com.gigaspaces.core.config.level = CONFIG

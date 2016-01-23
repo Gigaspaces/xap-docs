@@ -143,31 +143,31 @@ Note that the **_DCache** prefix is part of the space name - it indicates that t
 
 # Monitoring the Space Memory Manager Activity
 
-You can monitor the memory manager activity for a space running in LRU mode by moving the `com.gigaspaces.core.memorymanager` logging entry to `FINE`.
+You can monitor the memory manager activity for a space running in LRU mode by moving the `com.gigaspaces.memory-manager` logging entry to `FINE`.
 It displays log entries when evicting objects (starting, during, and when completing the eviction cycle), and when waiting for incoming activities. See below example for log entries displayed once an eviction cycle is executed:
 
 
 ```bash
-22:42:44,915  FINE [com.gigaspaces.core.memorymanager] - SpaceName: mySpace Cache eviction started:
+22:42:44,915  FINE [com.gigaspaces.memory-manager] - SpaceName: mySpace Cache eviction started:
 Available memory[%]85.39833755194752
-22:42:44,917  FINE [com.gigaspaces.core.memorymanager] - Call evict on operation: true
-22:42:44,925  FINE [com.gigaspaces.core.memorymanager] - Batch evicted size=500
-22:42:44,926  FINE [com.gigaspaces.core.memorymanager] - Call evict on operation: true
-22:42:44,929  FINE [com.gigaspaces.core.memorymanager] - rate=85.46128254359517 free-memory=7305896
+22:42:44,917  FINE [com.gigaspaces.memory-manager] - Call evict on operation: true
+22:42:44,925  FINE [com.gigaspaces.memory-manager] - Batch evicted size=500
+22:42:44,926  FINE [com.gigaspaces.memory-manager] - Call evict on operation: true
+22:42:44,929  FINE [com.gigaspaces.memory-manager] - rate=85.46128254359517 free-memory=7305896
 max-memory=50266112
-22:42:44,932  FINE [com.gigaspaces.core.memorymanager] - Call evict on operation: true
-22:42:44,938  FINE [com.gigaspaces.core.memorymanager] - SpaceName: mySpace Cache eviction finished:
+22:42:44,932  FINE [com.gigaspaces.memory-manager] - Call evict on operation: true
+22:42:44,938  FINE [com.gigaspaces.memory-manager] - SpaceName: mySpace Cache eviction finished:
 Available memory[%]85.46128254359517 evicted all entries.
 ```
 
-You may change the logging level of the `com.gigaspaces.core.memorymanager` while the space is running. Start JConsole (you may start it via the GigaSpaces Management Center) for the JVM hosting the space running and change the `com.gigaspaces.core.memorymanager` logging level to `FINE`. See below screenshot:
+You may change the logging level of the `com.gigaspaces.memory-manager` while the space is running. Start JConsole (you may start it via the GigaSpaces Management Center) for the JVM hosting the space running and change the `com.gigaspaces.memory-manager` logging level to `FINE`. See below screenshot:
 
 {{%align center%}}
-![memorymanager.jpg](/attachment_files/memorymanager.jpg)
+![memorymanager.jpg](/attachment_files/admin_ui/memorymanager.png)
 {{%/align%}}
 
 {{% tip %}}
-To change the `com.gigaspaces.core.memorymanager` logging level back to its default value set it back to `INFO`.
+To change the `com.gigaspaces.memory-manager` logging level back to its default value set it back to `INFO`.
 {{% /tip %}}
 
 # Controlling the Eviction Behavior
