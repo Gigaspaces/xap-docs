@@ -47,7 +47,7 @@ public class CustomComponent implements ... ,QuiesceStateChangedListener {
 
 # Use Cases Implementation Samples
 
-### Safe undeploy a stateful processing unit
+## Safe undeploy a stateful processing unit
 
 ```java
 QuiesceRequest request = new QuiesceRequest("Jacob: performing safe shutdown in 11:33 AM");
@@ -69,7 +69,7 @@ else {
 
 ```
 
-### Rolling system upgrade on a live system
+## Rolling system upgrade on a live system
 
 
 ```java

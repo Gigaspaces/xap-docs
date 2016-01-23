@@ -50,17 +50,17 @@ The following deploys rest processing unit and starts a rest service on port 888
 
 |Syntax|Description|
 |:-----|:----------|
-| `-spacename [space name]` | **Required** - Name of the Space that the rest should connect to.|
-| `-port [number]` | **Required** - The port which the rest service will be available on. |
-| `-puname [processing unit name]` |  Specify the processing unit's name. Defaults to [spacename]-rest |
-| `-lookup-groups [comma separated list]` |  The lookup groups to be used when locating the specified space. |
-| `-lookup-locators [comma separated list of host:port]` | The lookup locators to be used when locating the specified space. |
-| `-instances [number]` |  Specify the amount of instances to be deployed. Default to 1 |
-| `-max-instances-per-vm [number]` |  Specify the number of instances per VM. |
-| `-max-instance-per-machine [number]` |  Specify the number of instances per machine. |
-| `-zones [comma separated list]` |  Specify the zones that the rest pu can be deployed on |
-| `-primary-zone [zone name]` |  Set the primary zone where the processing unit is allowed to be deployed on. |
-| `-timeout [time in seconds]` |  Set the timeout for deploying the rest processing unit. Default to 30 |
+| -spacename [space name] | **Required** - Name of the Space that the rest should connect to.|
+| -port [number] | **Required** - The port which the rest service will be available on. |
+| -puname [processing unit name] |  Specify the processing unit's name. Defaults to [spacename]-rest |
+| -lookup-groups [comma separated list] |  The lookup groups to be used when locating the specified space. |
+| -lookup-locators [comma separated list of host:port] | The lookup locators to be used when locating the specified space. |
+| -instances [number] |  Specify the amount of instances to be deployed. Default to 1 |
+| -max-instances-per-vm [number] |  Specify the number of instances per VM. |
+| -max-instance-per-machine [number] |  Specify the number of instances per machine. |
+| -zones [comma separated list] |  Specify the zones that the rest pu can be deployed on |
+| -primary-zone [zone name] |  Set the primary zone where the processing unit is allowed to be deployed on. |
+| -timeout [time in seconds] |  Set the timeout for deploying the rest processing unit. Default to 30 |
 {{%/accord%}}
 {{%/accordion%}}
 

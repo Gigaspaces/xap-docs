@@ -67,7 +67,7 @@ Here are the different modules , their logging names and their default logging l
 {{%tab "Client"%}}
 
 {{%panel%}}
-### Client General
+**Client General**
 
 
 ```bash
@@ -79,7 +79,7 @@ GigaSpaces Client can be another component or application that connects to a Gig
 Liveness check is a functionality that runs inside a GigaSpaces proxy (usually held by a client connecting to a space) to keep track of the cluster members.
 Additional info about GigaSpaces proxy can be found [here]({{%currentadmurl%}}/tuning-proxy-connectivity.html)
 
-### .Net API
+**.Net API**
 
 The logging configuration file includes declarations of the loggers available at the bridge between .NET and Java.
 
@@ -92,7 +92,7 @@ com.gigaspaces.bridge.pbsexecuter.level = INFO
 com.gigaspaces.dotnet.pu.level = INFO
 ```
 
-### C++ API
+**C++ API**
 
 The logging configuration file includes declarations of the C++ Java Proxy logger, which logs info such as exceptions and JVM creation.
 
@@ -101,7 +101,7 @@ The logging configuration file includes declarations of the C++ Java Proxy logge
 com.gigaspaces.cpp.proxy.level = INFO
 ```
 
-### OpenSpaces
+**OpenSpaces**
 
 
 ```bash
@@ -113,7 +113,7 @@ org.springframework.level = WARNING
 
 OpenSpaces wraps the GigaSpaces core product with Spring which enables Spring configuration and Spring life cycle to GigaSpaces applications. Some additional info about OpenSpaces is [here](/faq/openspaces-faq.html).
 
-### Spring
+**Spring**
 
 
 ```bash
@@ -122,7 +122,7 @@ com.gigaspaces.spring.level = INFO
 
 GigaSpaces Spring application logging
 
-### JMS API
+**JMS API**
 
 
 ```bash
@@ -169,7 +169,7 @@ Application jars/classes are packaged in different folders and some of the class
 {{% /tab %}}
 {{%tab "  Space "%}}
 {{%panel%}}
-### Space Core & Kernel
+**Space Core & Kernel**
 
 
 ```bash
@@ -185,7 +185,7 @@ com.gigaspaces.container.level = INFO
 
 Core runtime for the space component of GigaSpaces, above loggers relate to this component and some aspects of this engine including, lease, object types and Memory Manager.
 
-### Space Filters
+**Space Filters**
 
 
 ```bash
@@ -194,7 +194,7 @@ com.gigaspaces.filters.level = INFO
 
 Space filters are described here {{%currentjavanet "the-space-filters.html" %}}
 
-### Space Persistency
+**Space Persistency**
 
 
 ```bash
@@ -205,7 +205,7 @@ org.hibernate.level = WARNING
 
 GigaSpaces persistence options are explained here {{%currentjavanet "space-persistency.html"%}}. One of the packaged External Data Source implementations uses Hibernate and it is called Hibernate External Data Source which is described [here]({{%currentjavaurl%}}/hibernate-space-persistency.html).
 
-### Space Query
+**Space Query**
 
 
 ```bash
@@ -214,7 +214,7 @@ com.gigaspaces.query.level = INFO
 
 GigaSpaces supports SQL queries on the data in space and logger corresponds to this functionality {{%currentjavanet "query-sql.html"%}}.
 
-### Space LRU and Eviction
+**Space LRU and Eviction**
 
 
 ```bash
@@ -223,7 +223,7 @@ com.gigaspaces.cache.level = INFO
 
 More information about LRU policy and Eviction behavior is [here](./lru-cache-policy.html)
 
-### Space Notifications
+**Space Notifications**
 
 
 ```bash
@@ -233,7 +233,7 @@ com.gigaspaces.core.notify.level = INFO
 Notifications are a mechanism that can be used to identify events related to space data (write, update, take, etc). Notifications are typically used with a [Notify Container]({{%currentjavaurl%}}/notify-container.html).
 Another way notifications can be used is thru Session based messaging which is discussed [here]({{%currentjavaurl%}}/session-based-messaging-api.html).
 
-### Space FIFO
+**Space FIFO**
 
 
 ```bash
@@ -242,7 +242,7 @@ com.gigaspaces.core.fifo.level = INFO
 
 FIFO functionality is applicable for writes, reads and events (notifications) and discussed here {{%currentjavanet "fifo-support.html" %}}.
 
-### Space Replication
+**Space Replication**
 
 
 ```bash
@@ -254,7 +254,7 @@ com.gigaspaces.core.cluster.sync_replication.level = INFO
 When a cluster topology is replicated, replication functionality is enabled. More information about topologies is [here](/product_overview/space-topologies.html).
 Replication between spaces is one of the core features of GigaSpaces and is explained in detail [here](./replication.html).
 
-### Space Partitioning
+**Space Partitioning**
 
 
 ```bash
@@ -263,7 +263,7 @@ com.gigaspaces.core.cluster.partition.level = INFO
 
 When cluster uses partitioned topology, data is partitioned across multiple instances of spaces. More information about topologies is [here](/product_overview/space-topologies.html).
 
-### Space Active-Election
+**Space Active-Election**
 
 
 ```bash
@@ -272,7 +272,7 @@ com.gigaspaces.cluster.active_election.level = INFO
 
 When multiple instances (primary/backup(s)), Active Election process is used by cluster members to determine which member acts as a primary. Additional information regarding active election process is [here](./split-brain-and-primary-resolution.html).
 
-### POJO
+**POJO**
 
 
 ```bash
@@ -281,7 +281,7 @@ com.gigaspaces.pojo.level = INFO
 
 Logger corresponding to GigaSpaces POJO support, more info [here]({{%currentjavaurl%}}/pojo-support.html).
 
-### Space XA manager
+**Space XA manager**
 
 
 ```bash
@@ -290,7 +290,7 @@ com.gigaspaces.core.xa.level = INFO
 
 Logger corresponding to XA Transaction manager running in the space, more information here {{%currentjavanet "transaction-management.html" %}}.
 
-### Space Jini Dist. TX manager
+**Space Jini Dist. TX manager**
 
 
 ```bash
@@ -300,7 +300,7 @@ com.sun.jini.mahalo.destroy.level = INFO
 
 Logger for Jini Distributed Transaction manager, more information here {{%currentjavanet "transaction-management.html" %}}.
 
-### SpaceURL, SpaceValidator, SpaceURLParser
+**SpaceURL, SpaceValidator, SpaceURLParser**
 
 
 ```bash
@@ -313,7 +313,7 @@ com.gigaspaces.common.resourceloader.level = INFO
 SpaceURL and its constraints are explained here {{%currentjavanet "the-space-configuration.html" %}}.
 Other loggers are related to this and applicable when a client trying to create a space proxy using a URL.
 
-### Space Multicast Notifications
+**Space Multicast Notifications**
 
 
 ```bash
@@ -325,7 +325,7 @@ Space notifications support multicast mode and this logger corresponds to this [
 {{% /tab %}}
 {{%tab "  Runtime "%}}
 {{%panel%}}
-### Service Container - General
+**Service Container - General**
 
 
 ```bash
@@ -337,7 +337,7 @@ com.gigaspaces.grid.lookup.level = INFO
 com.gigaspaces.management.level = INFO
 ```
 
-### Lookup Service
+**Lookup Service**
 
 
 ```bash
@@ -354,7 +354,7 @@ com.sun.jini.thread.TaskManager.level = INFO
 
 Lookup Service is a runtime registry of GigaSpaces components. Each component registers itself to a LUS thereby providing visibility to other components. For e.g., a GSM discovers a GSC by looking at an entry in LUS and GSC discovers a GSM similarly. More information about LUS is [here](/product_overview/the-lookup-service.html).
 
-### GSM
+**GSM**
 
 
 ```bash
@@ -370,7 +370,7 @@ org.jini.rio.tools.webster.level = INFO
 
 GSM manages the applications and maintains the SLA's of deployments. More information about GSM is [here](/product_overview/service-grid.html#gsm).
 
-### GSC
+**GSC**
 
 
 ```bash
@@ -382,7 +382,7 @@ org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level = INFO
 
 GSC is the runtime environment for GigaSpaces applications. More information about GSC's is [here](/product_overview/service-grid.html#gsc).
 
-### ESM
+**ESM**
 
 
 ```bash
@@ -392,7 +392,7 @@ org.openspaces.grid.esm.level = INFO
 Elastic Service Manager (ESM) is an implementation of the Elastic Middleware Services. It is built on-top of the existing administrative API exposed by the GigaSpaces components. See [The Elastic Service Manager]({{%currentjavaurl%}}/elastic-processing-unit.html) page for more details.
 
 
-### GSA
+**GSA**
 
 
 ```bash

@@ -72,9 +72,9 @@ Quiesce command completed successfully [token=ee16f577-92df-430b-afc7-2dd9f2c169
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| `-description` | The quiesce request description | `-description [description]`|
-| `-timeout` | Timeout for quiesce operation |`-timeout [timeout in seconds]`|
-| `-help`  | Prints help | |
+| -description | The quiesce request description | `-description [description]`|
+| -timeout | Timeout for quiesce operation |`-timeout [timeout in seconds]`|
+| -help  | Prints help | |
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -135,8 +135,8 @@ Unquiesce command completed successfully
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| `-description` | The unquiesce request description | `-description [description]`|
-| `-timeout` | Timeout for unquiesce operation |`-timeout [timeout in seconds]`|
-| `-help`  | Prints help | |
+| -description | The unquiesce request description | `-description [description]`|
+| -timeout | Timeout for unquiesce operation |`-timeout [timeout in seconds]`|
+| -help  | Prints help | |
 {{%/accord%}}
 {{%/accordion%}}
