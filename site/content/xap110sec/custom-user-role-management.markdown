@@ -3,7 +3,7 @@ type: post110
 title:  User-Role Management
 categories: XAP110SEC
 parent: custom-security.html
-weight: 200
+weight: 300
 ---
 
 Customize user/role management to meet your application requirements
