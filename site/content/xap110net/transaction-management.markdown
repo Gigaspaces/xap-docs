@@ -10,12 +10,12 @@ weight: 100
 
 {{% ssummary %}}{{% /ssummary %}}
 
-This section presents the transaction management programming model and its main features.
 
-![tx_manager.jpg](/attachment_files/tx_manager.jpg)
+{{%imagertext "/attachment_files/tx_manager.jpg"%}}
 
 With the XAP .Net transaction model the developer is responsible for explicitly starting and managing the transaction. You obtain an object representing the underlying space transaction by calling `GigaSpacesFactory.CreateDistributedTransactionManager`.  This call returns an implementation of the `ITransactionManager` interface used to create the transaction using the `ITransactionManager.Create()` call. This return `ITransaction` object that should be used with every space operations that participant with the transaction. Once you would like to commit the transaction call the `ITransaction.Commit()`.
 If any error occurred, you need to abort the transaction by calling `ITransaction.Abort()`. To clean up the transaction resources call the `ITransaction.Dispose()`.
+{{%/imagertext%}}
 
 # Usage
 

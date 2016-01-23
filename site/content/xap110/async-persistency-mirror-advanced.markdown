@@ -403,45 +403,33 @@ Setting both `dist-tx-wait-timeout-millis` and `dist-tx-wait-for-opers` to unlim
 # Usage Scenarios
 
 
-### Writing Synchronously to the Mirror Data Source
 
-{{%section%}}
-{{%column width="80%" %}}
+
+{{%imagertext "/attachment_files/IMG101.gif"%}}
+#### Writing Synchronously to the Mirror Data Source
 The following is a schematic flow of a synchronous replicated cluster with three members, which are communicating with a Mirror Service:
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/IMG101.gif"%}}
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
 
-### Reading from the Data Source
 
-{{%section%}}
-{{%column width="80%" %}}
+
+{{%imagertext "/attachment_files/IMG103.gif"%}}
+#### Reading from the Data Source
 The Mirror Service space is used to asynchronously **persist** data into the data source. As noted elsewhere, the Mirror is **not** a regular space, and should **not** be interacted with directly. Thus, data can't be read from the data source using the Mirror Service space. Nonetheless, the data might be read by other spaces which are configured with a space data source.
 
 The data-grid pu.xml needs to be configured to use an **space data source** which, when dealing with a Mirror, is **central** to the cluster.
 
 Here is a schematic flow of how a Mirror Service asynchronously receives data, to persist into an data source, while the cluster is reading data directly from the data source.
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/IMG103.gif"%}}
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
 
 
-### Partitioning Over a Central Mirror Data Source
 
-{{%section%}}
-{{%column width="80%" %}}
+
+{{%imagertext "/attachment_files/IMG104.gif"%}}
+#### Partitioning Over a Central Mirror Data Source
 When partitioning data, each partition asynchronously replicates data into the Mirror Service. Each partition can read back data that belongs to it (according to the load-balancing policy defined).
 
 Here is a schematic flow of how two partitions (each a primary-backup pair) asynchronously interact with a data source:
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/IMG104.gif"%}}
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
 
 
 {{% anchor dist-txn-mirror %}}
@@ -478,9 +466,9 @@ Logging is divided according to `java.util.logging.Level` as follows:
 
 | Level | Description |
 |:------|:------------|
-| `INFO` | The default level for informative messages. |
-| `CONFIG` | Mirror Service-relevant configuration messages. |
-| `FINER` | Fairly detailed messages of:{{<wbr>}}- **Entering and exiting** interface methods (displaying the parameter's `toString()` method){{<wbr>}}- **Throwing of exceptions** between the space and the underlying implementation. |
+| INFO | The default level for informative messages. |
+| CONFIG | Mirror Service-relevant configuration messages. |
+| FINER | Fairly detailed messages of:{{<wbr>}}- **Entering and exiting** interface methods (displaying the parameter's `toString()` method){{<wbr>}}- **Throwing of exceptions** between the space and the underlying implementation. |
 
 
 

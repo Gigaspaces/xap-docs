@@ -72,46 +72,33 @@ See the [Mirror Monitor](/sbp/mirror-monitor.html) for a simple example how such
 # Usage Scenarios
 
 
+{{%imagertext "/attachment_files/IMG101.gif"%}}
 ### Writing Asynchronously to the Mirror Data Source
 
-{{%section%}}
-{{%column width="80%" %}}
 The following is a schematic flow of a synchronous replicated cluster with three members, which are communicating with a Mirror Service:
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/IMG101.gif"%}}
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
 
+
+{{%imagertext "/attachment_files/IMG103.gif"%}}
 ### Reading from the Data Source
 
-{{%section%}}
-{{%column width="80%" %}}
+
 The Mirror Service space is used to asynchronously **persist** data into the data source. As noted elsewhere, the Mirror is **not** a regular space, and should **not** be interacted with directly. Thus, data can't be read from the data source using the Mirror Service space. Nonetheless, the data might be read by other spaces which are configured with a space data source.
 
 The data-grid pu.xml needs to be configured to use an **space data source** which, when dealing with a Mirror, is **central** to the cluster.
 
 Here is a schematic flow of how a Mirror Service asynchronously receives data, to persist into an data source, while the cluster is reading data directly from the data source.
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/IMG103.gif"%}}
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
 
 
+{{%imagertext "/attachment_files/IMG104.gif"%}}
 ### Partitioning Over a Central Mirror Data Source
 
-{{%section%}}
-{{%column width="80%" %}}
+
 When partitioning data, each partition asynchronously replicates data into the Mirror Service. Each partition can read back data that belongs to it (according to the load-balancing policy defined).
 
 Here is a schematic flow of how two partitions (each a primary-backup pair) asynchronously interact with a data source:
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/IMG104.gif"%}}
-{{%/column%}}
-{{%/section%}}
-
+{{%/imagertext%}}
 
 {{% anchor dist-txn-mirror %}}
 

@@ -41,7 +41,9 @@ In some cases, you might want to monitor the activity of the JVM running as part
 
 4. This shows the status of the JVM running in your .NET application:
 
+{{%align center%}}
 ![jcon2.jpg](/attachment_files/dotnet/jcon21.jpg)
+{{%/align%}}
 
 {{% refer %}}For more details on JMX and `jconsole`, refer to:
 - [Sun - Monitoring and Management Using JMX](http://java.sun.com/j2se/1.5.0/docs/guide/management/agent.html)

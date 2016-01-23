@@ -28,7 +28,9 @@ Instead, GigaSpaces XAP.NET provides a supplementary tool called **GigaSpaces Se
 - Automatically creates a folder for new service instances, with an XML configuration and log files.
 - Create custom templates of different service grid configurations.
 
+{{%align center%}}
 ![ServicesManager.jpg](/attachment_files/dotnet/ServicesManager.jpg)
+{{%/align%}}
 
 {{% note %}}
 **Note:** Some operations require elevated permissions - make sure you run with appropriate permissions. If you're using Windows Vista or later and UAC is turned on, it is recommended to use 'Run As Administrator' (for more info see: [http://support.microsoft.com/kb/922708](http://support.microsoft.com/kb/922708))
