@@ -85,7 +85,18 @@ Polygon polygon = polygon(point(0,0), point(1,1), point(2,2));
 
 ## WKT Support
 
-The `ShapeFactory` also supports parsing [WKT](https://en.wikipedia.org/wiki/Well-known_text)  For example:
+The `ShapeFactory` also supports parsing [WKT](https://en.wikipedia.org/wiki/Well-known_text)
+
+|   Shape  | Description    |
+|:----|:-------|
+|Point       | POINT (0 0)|
+|Circle      | |
+|Rectangle   | LINESTRING(30 10, 40 10, 40 20, 30 20, 30 10) |
+|LineString  | LINESTRING (0 0, 1 1, 5 5)|
+|Polygon     | |
+
+
+For example:
 
 ```java
 Shape shape = ShapeFactory.parse("LINESTRING (0 0, 1 1, 5 5)", ShapeFormat.WKT);
