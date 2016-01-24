@@ -37,4 +37,9 @@ Performing operations on a space in the XAP Browser.
 
 [Pending Notifications](./pending-notify-templates-information.html){{<wbr>}}
 Information regarding pending notify templates
+
+
+[Security](./gigaspaces-management-center-ui-security.html){{<wbr>}}
+Security Administration using the GigaSpaces Management Center.
+
  {{%/fpanel%}}

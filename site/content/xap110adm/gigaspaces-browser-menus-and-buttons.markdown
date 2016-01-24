@@ -118,7 +118,7 @@ Selecting a Jini group defines which services (containers, spaces, GSCs, GSMs) a
 ![GMC_space_SettingsMenuOption_Discovery_LookupServiceDiscovTimes_Window_6.5.jpg](/attachment_files/GMC_space_SettingsMenuOption_Discovery_LookupServiceDiscovTimes_Window_6.5.jpg)
 {{%/align%}}
 
- 
+
 
 ## Configured System Properties Window
 

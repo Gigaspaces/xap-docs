@@ -1,9 +1,9 @@
 ---
 type: post110
-title:  Management Center
-categories: XAP110SEC
-parent: security-administration.html
-weight: 100
+title:  Security
+categories: XAP110ADM
+parent: gigaspaces-management-center.html
+weight: 800
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
@@ -28,9 +28,7 @@ There is no need for any service to be up and running. Just choose from the titl
 {{% color blue %}}`Security -> Manage Security`{{% /color %}}
 ** and the management dialog will open.
 
-{{%align center%}}
 ![manage-security.png](/attachment_files/manage-security.png)
-{{%/align  %}}
 
 - **`Use Default Configuration`** - The defaults of the underlying implementation.
 For example, the file-based implementation's defaults are to access/create a file located under **`<XAP root>/security/gs-directory.fsm`**.
@@ -52,7 +50,7 @@ Double-click on the user to **Edit** it, or select a user and press one of the a
 
 {{%align center%}}
 ![manage-user-tab.png](/attachment_files/manage-user-tab.png)
-{{%/align  %}}
+{{%/align%}}
 
 #### Creating a new user
 
@@ -65,7 +63,7 @@ and the **`Aggregated`** view will show the aggregation of all the privileges (u
 
 {{%align center%}}
 ![create-new-user.png](/attachment_files/create-new-user.png)
-{{%/align  %}}
+{{%/align%}}
 
 ##### User-specific privileges
 
@@ -80,7 +78,7 @@ The following snapshot shows that the user has:
 
 {{%align center%}}
 ![user-specific.png](/attachment_files/user-specific.png)
-{{%/align  %}}
+{{%/align%}}
 
 ### Managing Roles
 
@@ -89,7 +87,7 @@ Double-click on the role to **Edit** it, or select a role and press one of the a
 
 {{%align center%}}
 ![manage-roles-tab.png](/attachment_files/manage-roles-tab.png)
-{{%/align  %}}
+{{%/align%}}
 
 #### Creating a new role
 
@@ -121,7 +119,7 @@ To login from within the UI, choose from the title menu bar **
 
 {{%align center%}}
 ![login-dialog.png](/attachment_files/login-dialog.png)
-{{%/align  %}}
+{{%/align%}}
 
 In distributed systems, the login credentials are authenticated with each service. Thus, the indication of success or failure is specific to each.
 The **`Authentication Monitor`*** dialog appears when you press the **OK** button, but can also be viewed when pressing the ![logged-in-as.png](/attachment_files/logged-in-as.png)
@@ -144,7 +142,7 @@ If the user lacks sufficient privileges, the UI displays a similar message to th
 
 {{%align center%}}
 ![actions-privileges.png](/attachment_files/actions-privileges.png)
-{{%/align  %}}
+{{%/align%}
 
 The following table represents some of the actions that the UI disables when there are insufficient privileges.
 
@@ -188,7 +186,7 @@ The custom properties can hold both space configurations and security configurat
 
 {{%align center%}}
 ![custom-properties.png](/attachment_files/custom-properties.png)
-{{%/align  %}}
+{{%/align%}}
 
 ## Deploying a Secured Processing Unit
 
@@ -198,11 +196,13 @@ _For example, the `data-processor` has a polling container - when deployed, the 
 
 {{%align center%}}
 ![deployment-wizard-pu.png](/attachment_files/deployment-wizard-pu.png)
-{{%/align  %}}
+{{%/align%}}
 
 ### Supplying bean level properties
 
 
 [Security configuration](./security-configurations.html) properties can be supplied, during deployment of a ProcessingUnit, as context bean level properties; Either from a file or added through the dialog.
 
+{{%align center%}}
 ![bean-level-properties.png](/attachment_files/bean-level-properties.png)
+{{%/align%}}
