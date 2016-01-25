@@ -142,7 +142,7 @@ If the user lacks sufficient privileges, the UI displays a similar message to th
 
 {{%align center%}}
 ![actions-privileges.png](/attachment_files/actions-privileges.png)
-{{%/align%}
+{{%/align%}}
 
 The following table represents some of the actions that the UI disables when there are insufficient privileges.
 
