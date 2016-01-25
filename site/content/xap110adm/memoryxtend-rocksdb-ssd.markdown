@@ -118,10 +118,9 @@ In addition to the general [MemoryXtend configuration options](./memoryxtend.htm
 | <nobr>central-storage<nobr> | Enable in case you have a centralized storage. In this case each space is connected to a predefined RocksDB mounted location. | false | optional |
 | db-options | RocksDB db options <br/> See DB Options in the [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).| | optional |  
 | column-family-options | RocksDB column family options. <br/> See Column Family Options in the [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).| | optional |  
-| fsync |  This value is passed to the default XAPDBOptions. If `useFsync` is provided to the DBOptions then this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | false | optional |   
-| block-size | This value is passed to the default TableFormatConfig, should be in bytes. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | 16KB | optional |
-| use-cache | This value is passed to the default TableFormatConfig. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | true | optional |
-| cache-size | This value is passed to the default TableFormatConfig, should be in bytes. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | 100MB | optional |
+| fsync |  This value is passed to XAPDBOptions. If `useFsync` is provided to the XAPDBOptions then this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | false | optional |   
+| block-size-kb | This value is passed to the default TableFormatConfig, should be in KB. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | 16KB | optional |
+| cache-size-mb | This value is passed to the default TableFormatConfig, should be in MB. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).<br />Zero value means no caching.  | 100MB | optional |
 
 
 ## Allocation

@@ -40,7 +40,7 @@ Below are the values for the default class `com.com.gigaspaces.blobstore.rocksdb
 
 
 {{%tabs%}}
-{{%tab "Namespace with XAP defaults" %}}
+{{%tab "Namespace" %}}
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -57,14 +57,14 @@ Below are the values for the default class `com.com.gigaspaces.blobstore.rocksdb
         <property name="maxBackgroundFlushes" value="4" />
     </bean>
     
-    <bean id="columnFamilyOptions" class="com.gigaspaces.blobstore.rocksdb.config.XAPColumnFamilyOptions">
-        <property name="maxBytesForLevelMultiplier" value="20" />
+    <bean id="dataColumnFamilyOptions" class="com.gigaspaces.blobstore.rocksdb.config.XAPColumnFamilyOptions">
+        <property name="maxBytesForLevelMultiplier" value="20"/>
     </bean>
 
     <blob-store:rocksdb-blob-store id="rocksdb" fsync="false"
-            use-cache="true" cache-size="106905600" block-size="16384"
-            db-options="dbOptions" column-family-options="columnFamilyOptions"
-            paths="[/tmp/rocksdb,/tmp/rocksdb2]" mapping-dir="/tmp/mapping"/>
+        cache-size-mb="100" block-size-kb="16"
+        db-options="dbOptions" data-column-family-options="dataColumnFamilyOptions"
+        paths="[/tmp/rocksdb,/tmp/rocksdb2]" mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore"/>
@@ -74,88 +74,20 @@ Below are the values for the default class `com.com.gigaspaces.blobstore.rocksdb
 </beans>
 ```
 {{% /tab %}}
-{{%tab "Namespace with RocksDB defaults"%}}
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:os-core="http://www.openspaces.org/schema/core"
-       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
-       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
-       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
-
-    <bean id="dbOptions" class="org.rocksdb.DBOptions">
-        <property name="useFsync" value="false" />
-    </bean>
-    
-    <bean id="columnFamilyOptions" class="org.rocksdb.ColumnFamilyOptions">
-        <property name="mergeOperatorName" value="put"/>
-        <property name="tableFormatConfig">
-            <bean class="org.rocksdb.BlockBasedTableConfig">
-                <property name="noBlockCache" value="false"/>
-                <property name="blockCacheSize" value="106905600"/>
-                <property name="blockSize" value="16384"/>
-            </bean>
-        </property>
-    </bean>
-
-    <blob-store:rocksdb-blob-store id="rocksdb" db-options="dbOptions"
-                                   column-family-options="columnFamilyOptions"
-                                   paths="[/tmp/rocksdb,/tmp/rocksdb2]" mapping-dir="/tmp/mapping"/>
-
-	<os-core:embedded-space id="space" name="mySpace" >
-        <os-core:blob-store-data-policy blob-store-handler="myBlobStore"/>
-    </os-core:embedded-space>
-
-    <os-core:giga-space id="gigaSpace" space="space"/>
-</beans>
-```
-{{% /tab %}}
-{{%tab "Code with XAP defaults"%}}
+{{%tab "Code"%}}
 ```java
 RocksDBBlobStoreConfigurer configurer = new RocksDBBlobStoreConfigurer()
         .setPaths("[/tmp/rocksdb,/tmp/rocksdb2]")
         .setMappingDir("/tmp/mapping")
-        .setUseCache(true)
-        .setCacheSize(106905600)
-        .setBlockSize(16384)
+        .setCacheSizeMB(100)
+        .setBlockSizeKB(16)
         .setFsync(false);
 
 XAPDBOptions dbOptions = new XAPDBOptions();
 configurer.setDBOptions(dbOptions); // optional
 
-XAPColumnFamilyOptions columnFamilyOptions = new XAPColumnFamilyOptions();
-configurer.setColumnFamilyOptions(columnFamilyOptions); // optional
-
-RocksDBBlobStoreHandler rocksDBBlobStoreHandler = configurer.create();
-
-BlobStoreDataCachePolicy cachePolicy = new BlobStoreDataCachePolicy();
-cachePolicy.setBlobStoreHandler(rocksDBBlobStoreHandler);
-
-EmbeddedSpaceConfigurer embeddedSpaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
-embeddedSpaceConfigurer.cachePolicy(cachePolicy);
-
-gigaSpace = new GigaSpaceConfigurer(embeddedSpaceConfigurer.space()).gigaSpace();
-```
-{{% /tab %}}
-{{%tab "Code with RocksDB defaults"%}}
-```java
-RocksDBBlobStoreConfigurer configurer = new RocksDBBlobStoreConfigurer()
-        .setPaths("[/tmp/rocksdb,/tmp/rocksdb2]")
-        .setMappingDir("/tmp/mapping");
-
-DBOptions dbOptions = new DBOptions()
-    .setUseFsync(false);
-configurer.setDBOptions(dbOptions);
-
-ColumnFamilyOptions columnFamilyOptions = new ColumnFamilyOptions()
-    .setTableFormatConfig(
-        new BlockBasedTableConfig()
-            .setNoBlockCache(true)
-            .setBlockCacheSize(106905600)
-            .setBlockSize(16384));
-configurer.setColumnFamilyOptions(columnFamilyOptions);
+XAPColumnFamilyOptions dataColumnFamilyOptions = new XAPColumnFamilyOptions();
+configurer.setDataColumnFamilyOptions(dataColumnFamilyOptions); // optional
 
 RocksDBBlobStoreHandler rocksDBBlobStoreHandler = configurer.create();
 
