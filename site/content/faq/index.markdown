@@ -1,6 +1,6 @@
 ---
 
-type: post
+type: faq
 title:  Frequently Ask Questions
 categories: FAQ
 

@@ -1,5 +1,5 @@
 ---
-type: post
+type: faq
 title:  Multi Site Replication
 categories: FAQ
 parent: none
