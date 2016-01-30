@@ -6,10 +6,15 @@ parent: memoryxtend-rocksdb-ssd.html
 weight: 100
 ---
 
-The RocksDB based MemoryXtend add-on allow configuring the `DBOptions` and `ColumnFamilyOptions` that control the behavior of the database. 
+The RocksDB based MemoryXtend add-on allows configuring the `DBOptions` and `ColumnFamilyOptions` that control the behavior of the database.
 
 ## XAPDBOptions
-XAP uses the default DBOptions class `com.com.gigaspaces.blobstore.rocksdb.config.XAPDBOptions`, see full properties list in [org.rocksdb.DBOptionsInterface](https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/DBOptionsInterface.java) Java doc.
+XAP uses the default DBOptions class `com.com.gigaspaces.blobstore.rocksdb.config.XAPDBOptions`.
+
+{{%refer%}}
+A list of configuration properties can be found in  the [org.rocksdb.DBOptionsInterface](https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/DBOptionsInterface.java) Java docs.
+{{%/refer%}}
+
 
 | Property               | Description                                               | Value |
 |:-----------------------|:----------------------------------------------------------|:--------|
@@ -20,7 +25,11 @@ XAP uses the default DBOptions class `com.com.gigaspaces.blobstore.rocksdb.confi
 | tableFormatConfig | Set the config for table format. <br/> Default is BlockBasedTableConfig with <ul><li>noBlockCache = opposite of `useCache`</li><li>blockCacheSize = `cacheSize`</li><li>blockSize = `blockSize`</li><li> filter = BloomFilter(10,false)</li><li>formatVersion = 0</li></ul>The highlighted values are taken from the `rocksdb-blob-store` namespace / `RocksDBBlobStoreConfigurer` if provided, otherwise the following defaults will be used: <ul><li>useCache = true</li><li>cacheSize = 100MB</li><li>blockSize = 16KB</li></ul>If a custom tableFormatConfig is provided, the values from the namespace/configurer are ignored. |  |
 
 ## XAPColumnFamilyOptions
-Below are the values for the default class `com.com.gigaspaces.blobstore.rocksdb.config.XAPColumnFamilyOptions`, see full properties list in [org.rocksdb.ColumnFamilyOptionsInterface](https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/ColumnFamilyOptionsInterface.java) Java doc.
+Below are the values for the default class `com.com.gigaspaces.blobstore.rocksdb.config.XAPColumnFamilyOptions`.
+
+{{%refer%}}
+A list of configuration properties can be found in  the [org.rocksdb.ColumnFamilyOptionsInterface](https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/ColumnFamilyOptionsInterface.java) Java docs.
+{{%/refer%}}
 
 | Property               | Description                                               | Value |
 |:-----------------------|:----------------------------------------------------------|:--------|

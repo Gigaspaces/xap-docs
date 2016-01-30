@@ -107,7 +107,7 @@ In addition to the general [MemoryXtend configuration options](./memoryxtend.htm
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
 | paths | Comma separated available or new RocksDB folder locations.A path is a mounting point to a flash device.The list used as a search path from left to right.The first one exists will be used. |  | required |
 | mapping-dir | Point to a directory in a file system. This directory contains file which contains a mapping between space name and a RocksDB location. |  | required |
-| central-storage | Enable in case you have a centralized storage. in this case each space is connected to a predefined RocksDB mounted location. | false | optional |
+| <nobr>central-storage<nobr> | Enable in case you have a centralized storage. in this case each space is connected to a predefined RocksDB mounted location. | false | optional |
 | options | RocksDB configuration options | | optional |  
 | strategy-type |  Merge or Override given options with XAP default RocksDB options. | merge | optional | 
 | sync |  By default, each write returns after the data is pushed into the operating system. The transfer from operating system memory to the underlying persistent storage happens asynchronously. When configuring sync to true each write operation not return until the data being written has been pushed all the way to persistent storage. | false | optional |                                

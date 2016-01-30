@@ -10,20 +10,21 @@ weight: 200
 
 # What Is RocksDB?
 
-[RocksDB](http://rocksdb.org/) is an embeddable persistent key-value store for fast storage on flash devices. It was developed at Facebook and is now a popular [open source project](https://github.com/facebook/rocksdb). GigaSpaces XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on RocksDB, which is the recommended choice for hybrid RAM-SSD clusters. 
+[RocksDB](http://rocksdb.org/) is an embeddable persistent key-value store for fast storage on flash devices. It was developed at Facebook and is now a popular [open source project](https://github.com/facebook/rocksdb).   XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on RocksDB, which is the recommended choice for hybrid RAM-SSD clusters.
 
+{{%refer%}}
 If you're not familiar with MemoryXtend, make sure you read its [documentation](./memoryxtend.html) before proceeding. We also recommend reading the [RocksDB documentation](https://github.com/facebook/rocksdb/wiki).
+{{%/refer%}}
 
 {{% info "License"%}}
 The MemoryXtend add-on is available for free during the evaluation period, but is not included in the premium edition license. For information about purchasing this add-on please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services).
 {{% /info %}}
 
-{{% info "RocksDB version"%}}
-The MemoryXtend add-on uses RocksDB 4.1.0
-{{% /info %}}
+
 
 # Prerequisites
 
+- The MemoryXtend add-on uses RocksDB {{%version "rocksdb"%}}
 - Java 7 (or later)
 - Currently supports Linux only (Windows support will be available in the future)
 - Read/Write permissions to mounted devices/partitions
@@ -115,9 +116,9 @@ In addition to the general [MemoryXtend configuration options](./memoryxtend.htm
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
 | paths | Comma separated available or new RocksDB folder locations. A path is a mounting point to a flash device. The list used as a search path from left to right. The first one exists will be used. | | required |
 | mapping-dir | Point to a directory in a file system. This directory contains file which contains a mapping between space name and a RocksDB location. |  | required |
-| <nobr>central-storage<nobr> | Enable in case you have a centralized storage. In this case each space is connected to a predefined RocksDB mounted location. | false | optional |
+| central-storage | Enable in case you have a centralized storage. In this case each space is connected to a predefined RocksDB mounted location. | false | optional |
 | db-options | RocksDB db options <br/> See DB Options in the [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).| | optional |  
-| data-column-family-options | RocksDB column family options. <br/> See Column Family Options in the [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).| | optional |  
+| <nobr>data-column-family-options<nobr> | RocksDB column family options. <br/> See Column Family Options in the [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).| | optional |
 | fsync |  This value is passed to XAPDBOptions. If `useFsync` is provided to the XAPDBOptions then this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | false | optional |   
 | block-size-kb | This value is passed to the default TableFormatConfig, should be in KB. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | 16 | optional |
 | cache-size-mb | This value is passed to the default TableFormatConfig, should be in MB. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).<br />Zero value means no caching.  | 100 | optional |
