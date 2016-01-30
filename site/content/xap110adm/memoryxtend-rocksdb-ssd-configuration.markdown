@@ -3,7 +3,7 @@ type: post110
 title:  RocksDB Add-On Configuration
 categories: XAP110ADM
 parent: memoryxtend-rocksdb-ssd.html 
-weight: 200
+weight: 100
 ---
 
 The RocksDB based MemoryXtend add-on allow configuring the `DBOptions` and `ColumnFamilyOptions` that control the behavior of the database. 
