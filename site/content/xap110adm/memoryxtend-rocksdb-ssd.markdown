@@ -12,10 +12,14 @@ weight: 200
 
 [RocksDB](http://rocksdb.org/) is an embeddable persistent key-value store for fast storage on flash devices. It was developed at Facebook and is now a popular [open source project](https://github.com/facebook/rocksdb). GigaSpaces XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on RocksDB, which is the recommended choice for hybrid RAM-SSD clusters. 
 
-If you're not familiar with MemoryXtend, make sure you read its [documentation](./memoryxtend.html) before proceeding.
+If you're not familiar with MemoryXtend, make sure you read its [documentation](./memoryxtend.html) before proceeding. We also recommend reading the [RocksDB documentation](https://github.com/facebook/rocksdb/wiki).
 
 {{% info "License"%}}
 The MemoryXtend add-on is available for free during the evaluation period, but is not included in the premium edition license. For information about purchasing this add-on please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services).
+{{% /info %}}
+
+{{% info "RocksDB version"%}}
+The MemoryXtend add-on uses RocksDB 4.1.0
 {{% /info %}}
 
 # Prerequisites
@@ -54,7 +58,8 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
        http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
 
-    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]"/>
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" 
+    			mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore"/>
@@ -73,8 +78,9 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd">
 
-    <bean id="blobstoreid" class="com.gigaspaces.blobstore.rocksdb.RocksDBBlobStoreHandler">
+    <bean id="blobstoreid" class="com.gigaspaces.blobstore.rocksdb.config.RocksDBBlobStoreDataPolicyFactoryBean">
         <property name="paths" value="[/mnt/db1,/mnt/db2]"/>
+        <property name="mappingDir" value="/tmp/mapping"/>
     </bean>
 
     <os-core:embedded-space id="space" name="mySpace">
@@ -89,7 +95,8 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
 
 ```java
 RocksDBBlobStoreConfigurer rocksDbConfigurer = new RocksDBBlobStoreConfigurer();
-rocksDbConfigurer.addPaths("[/mnt/db1,/mnt/db2]");
+rocksDbConfigurer.setPaths("[/mnt/db1,/mnt/db2]");
+rocksDbConfigurer.setMappingDir("/tmp/mapping");
 
 BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
 blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
@@ -106,12 +113,15 @@ In addition to the general [MemoryXtend configuration options](./memoryxtend.htm
 
 | Property               | Description                                               | Default | Use |
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
-| paths | Comma separated available or new RocksDB folder locations.A path is a mounting point to a flash device.The list used as a search path from left to right.The first one exists will be used. |  | required |
+| paths | Comma separated available or new RocksDB folder locations. A path is a mounting point to a flash device. The list used as a search path from left to right. The first one exists will be used. | | required |
 | mapping-dir | Point to a directory in a file system. This directory contains file which contains a mapping between space name and a RocksDB location. |  | required |
-| <nobr>central-storage<nobr> | Enable in case you have a centralized storage. in this case each space is connected to a predefined RocksDB mounted location. | false | optional |
-| options | RocksDB configuration options | | optional |  
-| strategy-type |  Merge or Override given options with XAP default RocksDB options. | merge | optional | 
-| sync |  By default, each write returns after the data is pushed into the operating system. The transfer from operating system memory to the underlying persistent storage happens asynchronously. When configuring sync to true each write operation not return until the data being written has been pushed all the way to persistent storage. | false | optional |                                
+| <nobr>central-storage<nobr> | Enable in case you have a centralized storage. In this case each space is connected to a predefined RocksDB mounted location. | false | optional |
+| db-options | RocksDB db options <br/> See DB Options in the [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).| | optional |  
+| data-column-family-options | RocksDB column family options. <br/> See Column Family Options in the [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).| | optional |  
+| fsync |  This value is passed to XAPDBOptions. If `useFsync` is provided to the XAPDBOptions then this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | false | optional |   
+| block-size-kb | This value is passed to the default TableFormatConfig, should be in KB. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html). | 16 | optional |
+| cache-size-mb | This value is passed to the default TableFormatConfig, should be in MB. If a custom TableFormatConfig is provided, this value is ignored. <br/>See XAPDBOptions in [configuration page](./memoryxtend-rocksdb-ssd-configuration.html).<br />Zero value means no caching.  | 100 | optional |
+
 
 ## Allocation
 
