@@ -1,6 +1,6 @@
 ---
 type: faq
-title:  XAP Community
+title: Community
 categories: FAQ
 weight: 200
 parent: none
@@ -10,7 +10,7 @@ parent: none
 
 
 
-{{<wbr>}}
+
 
 {{%panel%}}
 - [What is GigaSpaces XAP-Community?](#1)

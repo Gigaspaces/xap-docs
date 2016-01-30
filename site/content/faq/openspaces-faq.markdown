@@ -1,6 +1,6 @@
 ---
 type: faq
-title:  OpenSpaces
+title:  Fundamentals
 categories: FAQ
 weight: 100
 parent: none
@@ -19,17 +19,13 @@ parent: none
 
 - [How can I contribute code to OpenSpaces?](#5)
 
-- [What is a Processing Unit?](#6)
-
 - [How does OpenSpaces relate to Spring?](#7)
 
 - [How does OpenSpaces relate to the GigaSpaces Service Grid?](#8)
 
 - [How does OpenSpaces relate to EDA and SOA?](#9)
 
-- [How do I package my application with OpenSpaces?](#10)
 
-- [How can I change a service within a Processing Unit without shutting down the Processing Unit?](#11)
 
 {{%/fpanel%}}
 
@@ -75,10 +71,6 @@ OpenSpaces is provided under the [Apache License, Version 2.0](http://www.apache
 The OpenSpaces source code is mirrored to the [Gigaspaces/xap-openspaces](https://github.com/Gigaspaces/xap-openspaces) GitHub repository, so you can fork and/or clone it to review the code, debug it, or even extend it. However, since this is a mirror repository, we cannot accept pull requests. If you have a suggestion, you're welcome to post it on the [forum](http://ask.gigaspaces.org) or email us at [contribute@openspaces.org](mailto:contribute@openspaces.org).
 
 {{%anchor 6%}}
-
-### What is a Processing Unit?
-
-A Processing Unit represents the unit of scalability and failover in Space-Based Architecture (SBA). The Processing Unit is designed to be a self-sufficient unit that contains the messaging, data and business logic within the same process. It is written just like any Spring application with the addition of the built-in [OpenSpaces Components](/product_overview/product-architecture.html#OpenSpaces-API-and-Components) for handling events, state and workflow.
 
 {{%anchor 7%}}
 
@@ -127,21 +119,3 @@ OpenSpaces was designed to support the SBA model out of the box in a simple and 
 
 {{%anchor 10%}}
 
-### How do I package my application with OpenSpaces?
-
-One of the main goals of OpenSpaces is simplifying lifecycle management of an application. A typical application starts within the developer IDE and then progresses to a test environment, pre-production and finally production. OpenSpaces allows to run and debug a Processing Unit within the IDE in a simple manner, package it and then simply provide different deployment scenarios.
-
-A Processing Unit is a simple directory structure. It includes a Spring XML configuration file (under `META-INF/spring/pu.xml`), the business logic class files, and third-party module `jar` files. A Processing Unit, under the mentioned structure, can then run within the IDE, locally, and deployed on the SLA-driven container without any changes.
-
-{{%anchor 11%}}
-
-### Can I change a service within a Processing Unit without shutting down the Processing Unit?
-
-Yes. OpenSpaces supports dynamic reloading of **selected** service beans (business logic) without bringing down the processing unit. Read more [here]({{%latestjavaurl%}}/reloading-business-logic.html).
-
-This mainly applies when wanting to change business logic of a Processing Unit that also starts a space, without shutting down the space. Any Processing Unit or other services that connect to the space remotely can be replaced easily with the current version.
-
-{{%info%}}
-
-Didn't find the answers you were looking for? Feel free to **[write to us](mailto:feedback60@gigaspaces.com?subject=OpenSpaces%20FAQ)** or visit our **[forums](http://ask.gigaspaces.org)**.
-{{%/info%}}

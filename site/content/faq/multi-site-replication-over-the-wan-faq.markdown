@@ -3,12 +3,12 @@ type: faq
 title:  Multi Site Replication
 categories: FAQ
 parent: none
-weight: 300
+weight: 900
 
 ---
 
 
-{{<wbr>}}
+
 
 {{%panel%}}
 
@@ -50,3 +50,9 @@ The information about the local lookup service comes from the GSC hosting the Ga
 
 ### Should the schema of Space classes across the sites be identical?
 Yes. If you have a dynamic data model you should use the `SpaceDocument`. This will allow you to have a flexible data model.
+
+
+{{%refer%}}
+[Multi Site LAN Replication]({{%latestjavaurl%}}/multi-space-replication-overview.html) <br>
+[Multi Site WAN Replication]({{%latestjavaurl%}}/multi-site-replication-overview.html)
+{{%/refer%}}

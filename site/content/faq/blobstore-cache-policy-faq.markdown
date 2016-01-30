@@ -1,13 +1,13 @@
 ---
 type: faq
-title:  Flash Drive Storage - MemoryXtend for SSD FAQ
+title:  Flash Drive Storage
 categories: FAQ
 parent: none
-weight: 400
+weight: 1000
 
 ---
 
-{{<wbr>}}
+
 
 
 {{%panel%}}
@@ -98,3 +98,9 @@ Yes. Any Cloud that support Images with SSD storage is supported. This includes 
 
 ### Can I use XAP MemoryXtend with Cloudify?
 Yes. XAP is fully supported with Cloudify allowing you to scale XAP over SSD dynamically with private cloud, public cloud, physical or virtualized environments.
+
+
+
+{{%refer%}}
+[MemoryXtend]({{%latestadmurl%}}/memoryxtend.html)
+{{%/refer%}}
