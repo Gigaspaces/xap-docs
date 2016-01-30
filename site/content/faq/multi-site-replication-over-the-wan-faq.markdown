@@ -27,13 +27,13 @@ weight: 300
 
 {{%anchor 1%}}
 
-### What's the Replication flow?
-Replications starts with the local site cluster. Updates in the form of replication redo log packets are sent to the local delegator in an async manner which in turn writes them to the appropriate Sink(s) in a sync manner. This sink will perform operations corresponding to these packets on its local cluster.
+### What is the Replication flow?
+Replication starts with the local site cluster. Updates in the form of replication redo log packets are sent to the local delegator in an async manner which in turn writes them to the appropriate Sink(s) in a sync manner. This sink will perform operations corresponding to these packets on its local cluster.
 
 {{%anchor 2%}}
 
-### What happens when Gateway fails or is restarted?
-Gateway component is stateless and does not save any state. When this PU is missing because of a failure (hardware, OS or process failure), GSM will restart the PU in a available container. Once it is active, it will start replicating the changes that where it left off.
+### What happens when the Gateway fails or is restarted?
+The Gateway component is stateless and does not save any state. When this PU is missing because of a failure (hardware, OS or process failure), GSM will restart the PU in a available container. Once it is active, it will start replicating the changes that where it left off.
 
 {{%anchor 3%}}
 
@@ -44,7 +44,7 @@ Data written to the same site by concurrent clients should be handled using tran
 
 ### How do you specify the local site cluster lookup service for the Gateway?
 The Gateway will use both the local site lookup service and also its own lookup service to allow gateways deployed in different locations to find it.
-The info about the local lookup service comes from the GSC hosting the Gateway where its `LOOKUPGROUP/LOOKUPLOCATORS` variable value injected into the deployed Gateway.
+The information about the local lookup service comes from the GSC hosting the Gateway where its `LOOKUPGROUP/LOOKUPLOCATORS` variable value injected into the deployed Gateway.
 
 {{%anchor 5%}}
 
