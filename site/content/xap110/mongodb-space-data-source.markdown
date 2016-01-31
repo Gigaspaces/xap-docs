@@ -138,11 +138,8 @@ For more details about different configurations see [Space Persistency](./space-
 
 Before deploying your Processing Unit, please do the following:
 
-1. Copy the `mongo-datasource.jar` from `lib\optional\datasource\mongo` to `lib\optional\pu-common`.
-2. download the following jars and copy them to `lib\optional\pu-common`:
-
-- `antlr4-runtime-{{%version "antlr4-runtime"%}}.jar` from [antlr's website](http://www.antlr.org/download.html) .
-
+1. Copy the `mongo-datasource.jar` and `antlr4-runtime-{{%version "antlr4-runtime"%}}.jar` from `lib\optional\datasource\mongo` to `lib\optional\pu-common`.
+2. download the following jar and copy it to `lib\optional\pu-common`:
 - `mongo-java-driver-{{%version "mongo-java-driver"%}}.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
 
 # MongoSpaceDataSource Properties
