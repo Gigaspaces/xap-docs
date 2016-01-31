@@ -43,7 +43,7 @@ A Processing Unit is a simple directory structure. It includes a Spring XML conf
 
 XAP supports dynamic reloading of selected service beans (business logic) without bringing down the processing unit.
 
-This mainly applies when wanting to change business logic of a Processing Unit that also starts a space, without shutting down the space. Any Processing Unit or other services that connect to the space remotely can be replaced easily with the current version.
+This mainly applies when wanting to change business logic of a Processing Unit that also starts a Space, without shutting down the Space. Any Processing Unit or other services that connect to the Space remotely can be replaced easily with the current version.
 
 {{%refer%}}
 [Reloading Business Logic]({{%latestjavaurl%}}/reloading-business-logic.html)
