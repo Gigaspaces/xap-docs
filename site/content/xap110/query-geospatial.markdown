@@ -124,7 +124,7 @@ Spatial queries can be used with any space operation which supports SQL queries 
 
 # Indexing
 
-Our current implementation is valid, but not very efficient - if the space contains lots of `GasStation` entries and our query is only relevant to a small subset of them, the space is likely to scan lots of entries before finding a match. In order to improve that, we can index the location property using the `@SpaceSpatialIndex` annotation:
+If the space contains lots of `GasStation` entries and our query is only relevant to a small subset of them, the space is likely to scan lots of entries before finding a match. In order to improve that, we can index the location property using the `@SpaceSpatialIndex` annotation:
 
 ```java
 public class GasStation {
