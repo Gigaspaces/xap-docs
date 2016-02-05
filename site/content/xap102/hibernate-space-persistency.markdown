@@ -74,7 +74,7 @@ See below example for `Hibernate Space Persistency` that is configured having a 
 </bean>
 
 <os-core:embedded-space id="space" name="space" schema="persistent" space-data-source="hibernateSpaceDataSource"
-              space-sync-endpoint="hibernateSpaceSynchronizationEndpoint" />
+              space-sync-endpoint="hibernateSpaceSpaceSynchronizationEndpoint" />
     <os-core:properties>
         <props>
             <prop key="cluster-config.cache-loader.external-data-source">true</prop>
@@ -126,7 +126,7 @@ See below example for `Hibernate Space Persistency` that is configured having a 
     <property name="name" value="space" />
     <property name="scheam" value="persistent" />
     <property name="spaceDataSource" ref="hibernateSpaceDataSource" />
-    <property name="spaceSynchronizationEndpoint" ref="hibernateSpaceSynchronizationEndpoint" />
+    <property name="spaceSynchronizationEndpoint" ref="hibernateSpaceSpaceSynchronizationEndpoint" />
     <property name="properties">
         <props>
             <prop key="cluster-config.cache-loader.external-data-source">true</prop>
