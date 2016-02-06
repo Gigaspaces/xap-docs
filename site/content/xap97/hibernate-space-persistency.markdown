@@ -21,11 +21,11 @@ There are two available implementations:
 
 ## Default Hibernate Space Persistency Implementation
 
-`DefaultHibernateSpaceDataSource` and `DefaultHibernateSpaceSynchronizationEndpoint` based on [Hibernate Session](http://docs.jboss.org/hibernate/orm/3.5/javadocs/org/hibernate/Session.html).
+`DefaultHibernateSpaceDataSource` and `Default` based on [Hibernate Session](http://docs.jboss.org/hibernate/orm/3.5/javadocs/org/hibernate/Session.html).
 
 ## Stateless Hibernate Space Persistency Implementation
 
-`StatelessHibernateSpaceDataSource` and `StatelessHibernateSpaceSynchronizationEndpoint` based on Hiberante [StatelessSession](http://docs.jboss.org/hibernate/orm/3.5/javadocs/org/hibernate/StatelessSession.html). This implementation is faster than the `Default Hibernate Space Persistency Implementation`, but it does not have first level cache, as well as does not perform any cascading operations (both in read operations as well as dirty operations).
+`StatelessHibernateSpaceDataSource` and `Stateless` based on Hibernate [StatelessSession](http://docs.jboss.org/hibernate/orm/3.5/javadocs/org/hibernate/StatelessSession.html). This implementation is faster than the `Default Hibernate Space Persistency Implementation`, but it does not have first level cache, as well as does not perform any cascading operations (both in read operations as well as dirty operations).
 
 The `Hibernate Space Persistency Implementation` is used both with the [Synchronous](./direct-persistency.html) and the [Asynchronous Persistency](./asynchronous-persistency-with-the-mirror.html) modes.
 
@@ -69,7 +69,7 @@ See below example for `Hibernate Space Persistency` that is configured having a 
     <property name="initialLoadChunkSize" value="2000"/>
 </bean>
 
-<bean id="hibernateSpaceSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpointFactoryBean">
+<bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultFactoryBean">
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
