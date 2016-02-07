@@ -144,12 +144,12 @@ public class Person
 	public Name getId() {return id;}
    	public void setId(Integer id) {this.id = id;}
 
-        @SpaceStorageType(storageType = StorageType.BINARY)
-    	public Name getName() {return name;}
+    @SpaceStorageType(storageType = StorageType.BINARY)
+    public Name getName() {return name;}
    	public void setName(Name firstName) {this.name = name;}
 
-        @SpaceStorageType(storageType = StorageType.COMPRESSED)
-    	public Address getAddress() {return address;}
+    @SpaceStorageType(storageType = StorageType.COMPRESSED)
+    public Address getAddress() {return address;}
    	public void setAddress (Address address) {this.address = address;}
 
         public File getBlog () {return blog;}

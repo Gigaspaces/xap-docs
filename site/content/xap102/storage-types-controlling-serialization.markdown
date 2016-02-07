@@ -49,9 +49,9 @@ When a certain class which serves as a space property is likely to change over t
 
 | Storage Type | Code | Description |
 |:-------------|:-----|:------------|
-| `OBJECT` | 0 | Non-primitive fields are serialized using Java's default serialization and stored in the space as object on the JVM heap. When using the `OBJECT` storage type, the space relies on the implementation of `hashCode()` and `equals()` methods when performing matching. You should make sure these are implemented correctly for non-primitive fields. This mode is optimal when accessing the space in embedded mode.{{<wbr>}}{{<wbr>}}When running in embedded mode, Space object fields **are passed by reference** to the client code. Extra caution should be taken with non-primitive mutable fields such as collections (e.g. `Maps` and `Lists`). Changes made to these fields outside the context of the space (without explicitly writing them to the space after they're changed) will impact the value of these fields in the space without the space being aware of that, which may result in unexpected behavior. For example, indexed lists can become stale because the space is unaware of the modified field values. For these fields it is highly recommended to pass a cloned value rather then the original reference itself. Passing a cloned value is important when several threads access the Object fields - for example application threads and replication threads.|
-| `BINARY` | 1 | Non-primitive fields are transferred to and stored on the space as marshaled objects `com.j_spaces.kernel.lrmi.MarshObject`. With this mode there is no need to implement `hashCode()` and `equals()` since this property cannot be part of a query's criteria. |
-| `COMPRESSED` | 3 | Non-primitive fields are compressed before transferred into the space and stored within the space in compressed mode. This option is useful when the object includes fields with a relatively large amount of data such as XML data. This mode speeds up the access to from a remote client and reduces the space memory footprint when dealing with large entries. The compression algorithm leverages the `java.util.zip` package. |
+| OBJECT | 0 | Non-primitive fields are serialized using Java's default serialization and stored in the space as object on the JVM heap. When using the `OBJECT` storage type, the space relies on the implementation of `hashCode()` and `equals()` methods when performing matching. You should make sure these are implemented correctly for non-primitive fields. This mode is optimal when accessing the space in embedded mode.{{<wbr>}}{{<wbr>}}When running in embedded mode, Space object fields **are passed by reference** to the client code. Extra caution should be taken with non-primitive mutable fields such as collections (e.g. `Maps` and `Lists`). Changes made to these fields outside the context of the space (without explicitly writing them to the space after they're changed) will impact the value of these fields in the space without the space being aware of that, which may result in unexpected behavior. For example, indexed lists can become stale because the space is unaware of the modified field values. For these fields it is highly recommended to pass a cloned value rather then the original reference itself. Passing a cloned value is important when several threads access the Object fields - for example application threads and replication threads.|
+| BINARY | 1 | Non-primitive fields are transferred to and stored on the space as marshaled objects `com.j_spaces.kernel.lrmi.MarshObject`. With this mode there is no need to implement `hashCode()` and `equals()` since this property cannot be part of a query's criteria. |
+| COMPRESSED | 3 | Non-primitive fields are compressed before transferred into the space and stored within the space in compressed mode. This option is useful when the object includes fields with a relatively large amount of data such as XML data. This mode speeds up the access to from a remote client and reduces the space memory footprint when dealing with large entries. The compression algorithm leverages the `java.util.zip` package. |
 
 
 ### Embedded Mode
@@ -87,7 +87,6 @@ Specifying space level storage type can be done using any of the following:
 
 
 ```xml
-
 <os-core:embedded-space id="space" name="mySpace">
     <os-core:properties>
         <props>
@@ -146,15 +145,16 @@ public class Person
 	public Name getId() {return id;}
    	public void setId(Integer id) {this.id = id;}
 
-        @SpaceStorageType(storageType = StorageType.BINARY)
-    	public Name getName() {return name;}
+    @SpaceStorageType(storageType = StorageType.BINARY)
+    public Name getName() {return name;}
+
    	public void setName(Name firstName) {this.name = name;}
 
-        @SpaceStorageType(storageType = StorageType.COMPRESSED)
-    	public Address getAddress() {return address;}
+    @SpaceStorageType(storageType = StorageType.COMPRESSED)
+    public Address getAddress() {return address;}
    	public void setAddress (Address address) {this.address = address;}
 
-        public File getBlog () {return blog;}
+    public File getBlog () {return blog;}
    	public void setBlog (File blog) {this.blog = blog;}
 }
 ```
