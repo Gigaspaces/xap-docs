@@ -143,7 +143,7 @@ When using annotations to decorate the Space Classes the `sessionFactory` would 
 
 
 ```xml
-<bean id="sessionFactory" class="org.springframework.orm.hibernate4.annotation.AnnotationSessionFactoryBean">
+<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>
     <property name="annotatedClasses">
         <list>
