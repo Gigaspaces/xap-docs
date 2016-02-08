@@ -31,7 +31,8 @@ Aggregators are executed by iterating the internal data grid structure that main
 
 # Supported Aggregators
 
-{{%imagertext "/attachment_files/aggregation1.png" "Supported Aggregators"%}}
+{{%imagertext "/attachment_files/aggregation1.png"%}}
+<br>
 XAP comes with several built-in Aggregators you may use. The aggregation process executed across all data grid partitions when using a partitioned data grid , or across the proxy master replica when using a replicated data grid. You may rout the aggregation into a specific partition. You may implement also a custom Aggregator that will perform a special aggregation logic on a given field (path) and a given entries set based on a query. Aggregators are specified via the [AggregationSet](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?com/gigaspaces/query/aggregators/AggregationSet.html) that may have one or more Aggregators listed.
 {{%/imagertext%}}
 
@@ -130,7 +131,8 @@ public class Person {
 
 # Compound Aggregation
 
-{{%imagertext "/attachment_files/aggregation2.png" "Compound Aggregation"%}}
+{{%imagertext "/attachment_files/aggregation2.png"%}}
+<br>
 Compound aggregation will execute multiple aggregation operations across the space returning all of the result sets at once. When multiple aggregates are needed the compound aggregation API is significantly faster than calling each individual aggregate.
 {{%/imagertext%}}
 
