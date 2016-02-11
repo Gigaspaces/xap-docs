@@ -30,9 +30,12 @@ The following message should be displayed:
 ```bash
 >mvn -version
 
-Apache Maven 3.0 (r1004208; 2010-10-04 13:50:56+0200)
-Java version: 1.6.0_23
-OS name: "windows 7" version: "6.1" arch: "x86" Family: "windows"
+Apache Maven 3.0.5 (r01de14724cdef164cd33c7c8c2fe155faf9602da; 2013-02-19 15:51:28+0200)
+Java version: 1.8.0_66, vendor: Oracle Corporation
+Java home: /usr/lib/jvm/java-8-oracle/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "3.13.0-76-generic", arch: "amd64", family: "unix"
+
 ```
 
 {{% note "Internet connection"%}}
@@ -104,7 +107,7 @@ You may view list of available project templates and their description using the
 
 
 ```bash
-mvn os:create
+mvn xap:create
 ```
 
 The result is a list of available template names and descriptions:
@@ -112,17 +115,14 @@ The result is a list of available template names and descriptions:
 
 |Template Name | Description|
 |:-------------|:-----------|
-|basic|Creates a basic SBA application with two processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.|
-|basic-async-persistency| Creates a basic SBA application with three processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.The Processor is connected to a Mirror and provides a reliable async replication and persistency to the Database using Hibernate. |
-|basic-xml| Creates a basic SBA application with two processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.|
-|<nobr>basic-async-persistency-xml</nobr>|Creates a basic SBA application with three processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit. The Processor is connected to a Mirror and provides a reliable asynchronous replication and persistency to the Database using Hibernate.|
-|mule|Creates a SBA application with two processing units that use mule as an ESB. The Feeder processing unit writes Data objects to the Space. The Processor processing unit uses the extended SEDA model to defines 3 services. A Verifier service that verifies unprocessed Data objects, an Approver service that approves verified Data objects and a Processor service that processes approved Data objects. The Space and the Processor are collocated in the same processing unit.|
+|event-processing|Creates a basic SBA application with two processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.|
+|persistent-event-processing| Creates a basic SBA application with three processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.The Processor is connected to a Mirror and provides a reliable async replication and persistency to the Database using Hibernate. |
 
 Use the `-Dtemplate=<template>` argument to specify a project template. Example:
 
 
 ```bash
-mvn os:create -Dtemplate=basic-async-persistency
+mvn xap:create -Dtemplate=persistent-event-processing
 ```
 
 # Creating Processing Unit Project
@@ -131,7 +131,7 @@ The XAP Maven plugin can create Processing Unit projects. It generates the resou
 
 
 ```bash
-mvn os:create
+mvn xap:create
     -DgroupId=<group-id>
     -DartifactId=<artifact-id>
     -Dtemplate=<project-template>
@@ -146,7 +146,7 @@ mvn os:create
 
 The project is generated in the current directory (`my-app` directory).
 
-{{% info %}} Executing `os:create` without specifying a template shows a list of available templates and their description.
+{{% info %}} Executing `xap:create` without specifying a template shows a list of available templates and their description.
 
 To start working with the project (compiling, packaging etc...) you should change directory to the directory of the project.
 {{%/info%}}
@@ -155,7 +155,7 @@ To start working with the project (compiling, packaging etc...) you should chang
 
 Basically, a Processing Unit project structure is what Maven users call a multi-module project. It consists of a main (top-level) project that contains sub-projects called modules. A Processing Unit is implemented as a module of the main project, thus a main project might consist of many Processing Units.
 
-The project, created by the `default` template, consists of a main project and three modules (sub-projects):
+The project, created by the `event-processing` template, consists of a main project and three modules (sub-projects):
 
 - **feeder** -- a Processing Unit that writes data into the space.
 - **processor** -- a Processing Unit that takes data from the space, processes it and writes the results back to the space.
@@ -188,7 +188,7 @@ To run Processing Unit modules, use the following command-line (found in the `ar
 
 
 ```bash
-mvn os:run
+mvn xap:run
     -Dcluster=<"cluster-properties">
     -Dgroups=<groups>
     -Dlocators=<locators>
@@ -209,7 +209,7 @@ mvn os:run
 
 
 ```bash
-mvn compile os:run -Dcluster="schema=partitioned total_members=1,1 id=1" -Dproperties="embed://prop1=value1" -Dmodule=feeder
+mvn compile xap:run -Dcluster="schema=partitioned total_members=1,1 id=1" -Dproperties="embed://prop1=value1" -Dmodule=feeder
 ```
 
 ## Determining Module Execution
@@ -279,7 +279,7 @@ To run Processing Units as standalone modules, use the following command-line:
 
 
 ```bash
-mvn os:run-standalone
+mvn xap:run-standalone
     -Dcluster=<"cluster-properties">
     -Dgroups=<groups>
     -Dlocators=<locators>
@@ -300,7 +300,7 @@ mvn os:run-standalone
 
 
 ```bash
-mvn os:run-standalone -Dcluster="schema=partitioned total_members=1,1
+mvn xap:run-standalone -Dcluster="schema=partitioned total_members=1,1
 id=1" -Dproperties="embed://prop1=value1" -Dmodule=feeder
 ```
 
@@ -327,7 +327,7 @@ Once your Processing Units are packaged, use the following command-line to deplo
 
 
 ```bash
-mvn os:deploy
+mvn xap:deploy
     -Dsla=<sla>
     -Dcluster=<cluster>
     -Dgroups=<groups>
@@ -366,7 +366,7 @@ The XAP Maven plugin makes it simple to undeploy Processing Units from the Servi
 
 
 ```bash
-mvn os:undeploy
+mvn xap:undeploy
     -Dgroups=<groups>
     -Dlocators=<locators>
     -Dtimeout=<timeout>
@@ -454,7 +454,7 @@ This generates a `.project` file under each module's base directory.
 
 ## 2. Import Generated Projects to Eclipse Environment
 
-1. Select **File** > **Import** > **Existing Projects into Workspace**.
+1. Select **File** > **Import** > **General** > **Existing Projects into Workspace**.
 1. In the **Import** dialog, keep the **Select root directory** option selected, and click **Browse**.
 1. Select the base directory of the project you want to import and click **Finish**.
 
@@ -477,9 +477,38 @@ Do the following for each project:
 1. Right click on the project.
 1. Select **Configure** > **Convert to Maven Project**.
 
+# Importing Processing Unit Projects to IntelliJ IDE
+
+It is possible to import a Processing Unit project into the IntelliJ environment. Imported projects have built-in launch targets, allowing you to run the processor and the feeder using IntelliJ run (or debug) targets.
+
+## 1. Import Generated Projects to IntelliJ Environment
+
+1. Select **File** > **New** > **Project from Existing Sources...**.
+1. Browse to the folder where you created the project and from the root directory choose the file `pom.xml`.
+1. Don't change the default settings of this page and click **Next**.
+1. Enable the IDE profile and disable the Default profile then click **Next**.
+1. Click **Next**.
+1. Select project SDK and click **Next**.
+1. Enter Project name and location then click **Finish**.
+
+This imports the modules to IntelliJ.
+
+## 2. Running the example
+
+1. Execute the following command from the project root directory:
+
+```bash
+mvn xap:intellij
+```
+1. If the example is using persistency, then first run Mirror processing unit from IntelliJ - select **Run** > **Edit Configurations...**
+ Under Application click on **Mirror** and then press **OK** then click on **Run** > **Run Mirror**.
+1. Run Processor and then Feeder procssing units in either way you are running with persistency or not - select **Run** > **Edit Configurations...**
+Under Application click on **Processor** and then press **OK** then click on **Run** > **Run Processor**.
+1. Select **Run** > **Edit Configurations...** Under Application click on **Feeder** and then press **OK** then click on **Run** > **Run Feeder**.
+
 # Viewing Persistent Data
 
-When running a Processing Unit that uses persistency, e.g when using the _basic-async-persistency_ template, one would like to view the persisted data. XAP Maven Plugin makes it easy to start the HSQLDB viewer to immediately view persisted data.
+When running a Processing Unit that uses persistency, e.g when using the _persistent-event-processing_ template, one would like to view the persisted data. XAP Maven Plugin makes it easy to start the HSQLDB viewer to immediately view persisted data.
 
 {{% note %}} The HSQLDB viewer is for monitoring HSQLDB databases only. {{%/note%}}
 
@@ -487,7 +516,7 @@ To start the HSQLDB viewer use the following command-line:
 
 
 ```bash
-mvn os:hsql-ui
+mvn xap:hsql-ui
     -Ddriver=<driver-class>
     -Durl=<url>
     -Duser=<user>
