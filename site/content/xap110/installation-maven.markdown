@@ -116,7 +116,7 @@ The result is a list of available template names and descriptions:
 |Template Name | Description|
 |:-------------|:-----------|
 |event-processing|Creates a basic SBA application with two processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.|
-|persistent-event-processing| Creates a basic SBA application with three processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.The Processor is connected to a Mirror and provides a reliable async replication and persistency to the Database using Hibernate. |
+|<nobr>persistent-event-processing<nobr>| Creates a basic SBA application with three processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.The Processor is connected to a Mirror and provides a reliable async replication and persistency to the Database using Hibernate. |
 
 Use the `-Dtemplate=<template>` argument to specify a project template. Example:
 
@@ -140,9 +140,9 @@ mvn xap:create
 
 | Argument | Description | Required | Default |
 |:---------|:------------|:---------|:--------|
-| `groupId` | The project package name | No | `com.mycompany.app` |
-| `artifactId` | The project name | No | `my-app` |
-| `template` | The project template | Yes | |
+| groupId | The project package name | No | `com.mycompany.app` |
+| artifactId | The project name | No | `my-app` |
+| template | The project template | Yes | |
 
 The project is generated in the current directory (`my-app` directory).
 
@@ -199,11 +199,11 @@ mvn xap:run
 
 | Argument | Description | Required | Properties | Example |
 |:---------|:------------|:---------|:-----------|:--------|
-| `cluster` | Cluster properties | No| * `schema` -- the cluster schema name{{<wbr>}}- `total_members` -- a list of the cluster members, separated by a comma{{<wbr>}}- `id` -- the cluster ID{{<wbr>}}- `backup_id` -- the backup ID | * `schema=partitioned`{{<wbr>}}- `total_members=1,1`{{<wbr>}}- `id=1`{{<wbr>}}- `backup_id=1` |
-| `groups` | Comma-delimited list of lookup group names | No | | group1,group2 |
-| `locators` | Comma-delimited list of Jini locators hosts | No | | jini://<hostname1>, jini://<hostname2> |
-| `properties` | Location of context-level properties | No | * `file` -- the properties file{{<wbr>}}- `embed` -- property definition | file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
-| `module` | The name of the Processing Unit module to run | No | | `feeder` |
+| cluster | Cluster properties | No| * `schema` -- the cluster schema name{{<wbr>}}- `total_members` -- a list of the cluster members, separated by a comma{{<wbr>}}- `id` -- the cluster ID{{<wbr>}}- `backup_id` -- the backup ID | * `schema=partitioned`{{<wbr>}}- `total_members=1,1`{{<wbr>}}- `id=1`{{<wbr>}}- `backup_id=1` |
+| groups | Comma-delimited list of lookup group names | No | | group1,group2 |
+| locators | Comma-delimited list of Jini locators hosts | No | | jini://<hostname1>, jini://<hostname2> |
+| properties | Location of context-level properties | No | * `file` -- the properties file{{<wbr>}}- `embed` -- property definition | file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
+| module | The name of the Processing Unit module to run | No | | `feeder` |
 
 **Example:**
 
@@ -256,8 +256,8 @@ To suppress the execution of unit tests, add one of the following arguments to t
 
 | Argument | Description |
 |:---------|:------------|
-| `skipTests` | Skips the unit test execution, but still performs unit test compilation |
-| `maven.test.skip` | Skips the unit testing phase entirely, including the test compilation |
+| skipTests | Skips the unit test execution, but still performs unit test compilation |
+| maven.test.skip | Skips the unit testing phase entirely, including the test compilation |
 
 For example:
 
@@ -290,11 +290,11 @@ mvn xap:run-standalone
 
 | Argument | Description | Required | Properties | Example |
 |:---------|:------------|:---------|:-----------|:--------|
-| `cluster` | Cluster properties | No| * `schema` -- the cluster schema name{{<wbr>}}- `total_members` -- a list of the cluster members, separated by a comma{{<wbr>}}- `id` -- the cluster ID{{<wbr>}}- `backup_id` -- the backup ID | * `schema=partitioned`{{<wbr>}}- `total_members=1,1`{{<wbr>}}- `id=1`{{<wbr>}}- `backup_id=1` |
-| `groups` | Comma-delimited list of lookup group names | No | | group1,group2 |
-| `locators` | Comma-delimited list of Jini locators hosts | No| | jini://<hostname1>, jini://<hostname2> |
-| `properties` | Context-level properties location | No| * `file` -- properties file{{<wbr>}}- `embed` -- properties definition | {{<wbr>}}    file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
-| `module` | The name of the Processing Unit module to run | No| | `feeder` |
+| cluster | Cluster properties | No| * `schema` -- the cluster schema name{{<wbr>}}- `total_members` -- a list of the cluster members, separated by a comma{{<wbr>}}- `id` -- the cluster ID{{<wbr>}}- `backup_id` -- the backup ID | * `schema=partitioned`{{<wbr>}}- `total_members=1,1`{{<wbr>}}- `id=1`{{<wbr>}}- `backup_id=1` |
+| groups | Comma-delimited list of lookup group names | No | | group1,group2 |
+| locators | Comma-delimited list of Jini locators hosts | No| | jini://<hostname1>, jini://<hostname2> |
+| properties | Context-level properties location | No| * `file` -- properties file{{<wbr>}}- `embed` -- properties definition | {{<wbr>}}    file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
+| module | The name of the Processing Unit module to run | No| | `feeder` |
 
 **Example:**
 
@@ -343,16 +343,16 @@ mvn xap:deploy
 
 | Argument | Description | Required | Default |
 |:---------|:------------|:---------|:--------|
-| `sla` | The SLA policy | No | |
-| `cluster` | The name of the cluster | No | |
-| `groups` | Comma-delimited list of lookup group names | No | gigaspaces-\<VERSION\> |
-| `locators` | Comma-delimited list of Jini locators hosts | No| |
-| `timeout` | Timeout | No | 10000 |
-| `properties` | The properties file name or key-value pairs | No | |
-| `override-name` | Override name | No | |
-| `max-instances-per-vm` | The maximum instances per virtual machine | No | |
-| `max-instances-per-machine` | The maximum instances per machine (host) | No | |
-| `module` | The name of the Processing Unit module to deploy | No | |
+| sla | The SLA policy | No | |
+| cluster | The name of the cluster | No | |
+| groups | Comma-delimited list of lookup group names | No | gigaspaces-\<VERSION\> |
+| locators | Comma-delimited list of Jini locators hosts | No| |
+| timeout | Timeout | No | 10000 |
+| properties | The properties file name or key-value pairs | No | |
+| override-name | Override name | No | |
+| max-instances-per-vm | The maximum instances per virtual machine | No | |
+| <nobr>max-instances-per-machine<nobr> | The maximum instances per machine (host) | No | |
+| module | The name of the Processing Unit module to deploy | No | |
 
 If the current directory is a Processing Unit module's base directory, only this processing unit is deployed.
 
@@ -376,10 +376,10 @@ mvn xap:undeploy
 
 | Argument | Description | Required | Default |
 |:---------|:------------|:---------|:--------|
-| `groups` | Comma-delimited list of lookup group names | No | gigaspaces-\<VERSION\> |
-| `locators` | Comma-delimited list of Jini locators hosts | No | |
-| `timeout` | Timeout | No | 10000 |
-| `module` | The name of the Processing Unit module to undeploy | No | |
+| groups | Comma-delimited list of lookup group names | No | gigaspaces-\<VERSION\> |
+| locators | Comma-delimited list of Jini locators hosts | No | |
+| timeout | Timeout | No | 10000 |
+| module | The name of the Processing Unit module to undeploy | No | |
 
 - If the current directory is a Processing Unit module's base directory, only this Processing Unit is undeployed.
 - If the current directory is the main project directory and the `pu-name` argument is not set, Maven undeploys the Processing Unit the order described [below](#order).
@@ -527,11 +527,11 @@ mvn xap:hsql-ui
 
 | Argument | Description | Required | Default |
 |:---------|:------------|:---------|:--------|
-| `driver` | JDBC driver class | No | org.hsqldb.jdbcDriver |
-| `url` | JDBC url | No | jdbc:hsqldb:hsql://localhost/testDB |
-| `user` | User name used for the connection | No | |
-| `password` | Password used for this user | No | |
-| `help` | Prints the usage options | No| |
+| driver | JDBC driver class | No | org.hsqldb.jdbcDriver |
+| url | JDBC url | No | jdbc:hsqldb:hsql://localhost/testDB |
+| user | User name used for the connection | No | |
+| password | Password used for this user | No | |
+| help | Prints the usage options | No| |
 
 {{% info %}} The default values are sufficient when using the data source values generated by the plugin. {{%/info%}}
 
