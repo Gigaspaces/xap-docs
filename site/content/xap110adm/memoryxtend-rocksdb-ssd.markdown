@@ -63,7 +63,7 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
     			mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" name="mySpace" >
-        <os-core:blob-store-data-policy blob-store-handler="myBlobStore"/>
+        <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
     </os-core:embedded-space>
 
     <os-core:giga-space id="gigaSpace" space="space"/>
