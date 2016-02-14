@@ -190,12 +190,7 @@ Lucene indexing is stored in a **Store Directory**. Lucene supports different St
 
 ### File System
 
-Lucene needs to store some files to maintain its indexes. The location of these files can be set using the `com.gs.foreignindex.lucene.work` system property (if not set, defaults to `user.home`).
-Within this directory, a sub directory is automatically created for each space (for example, `LuceneRoot/space_container1:space/entries/`
-
-{{%note%}}
- This default will be changed in one of the upcoming milestones - if the space is deployed in a processing unit, it will use its working directory instead, so data will be automatically deleted when the processing unit is undeployed.
-{{%/note%}}
+Lucene indexes are stored in the file system. When used within a processing unit deployed on the service grid, these files are stored within the processing unit working folder, and automatically deleted if/when the processing unit is undeployed. When there's no service grid involved, the files are stored in a unique folder under `user.home`. This location can be explicitly set using the `space-config.spatial.lucene.storage.location` space property.
 
 # Limitations
 
