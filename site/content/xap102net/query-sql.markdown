@@ -48,7 +48,7 @@ This time instead of specifying the values directly in the expression we've used
 - All basic logical operations to create conditions: `=, <>, <,>, >=, <=, like, NOT like, is null, is NOT null, IN`.
 - [Aggregate](./aggregators.html) functions: COUNT, MAX, MIN, SUM, AVG
 - `BETWEEN` (starting 8.0.1)
-- `ORDER BY (ASC | DESC)` for multiple PONO properties. Supported only by readMultiple. `ORDER BY` supports also nested object fields.
+- `ORDER BY (ASC | DESC)` for multiple PONO properties. Supported only by readMultiple. `ORDER BY` supports also nested object fields. `ORDER BY` supports `NULLS LAST` to control the order behavior of a field when its value is `null`.
 - `GROUP BY` - performs DISTINCT on the PONO properties. Supported only by readMultiple. `GROUP BY` supports also nested object fields.
 - `sysdate` - current system date and time.
 - `rownum` - limits the number of rows to select.
