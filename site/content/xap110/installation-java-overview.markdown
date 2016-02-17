@@ -21,7 +21,7 @@ GigaSpaces XAP Java edition is 100% pure Java based, and therefore can run on an
 [Installation overview](./installation-java.html)<br>
 Setting up your XAP environment.
 
-[Environment Variables](./installation-java-env.html)<br>
+[Environment Variables](./common-environment-variables.html)<br>
 Setting the environment variables.
 
 [Classpath](./installation-java-classpath.html)<br>
