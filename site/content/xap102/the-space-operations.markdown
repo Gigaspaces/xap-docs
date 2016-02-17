@@ -387,7 +387,7 @@ Examples:
    space.writeMultiple(emps);
 
    // Read multiple by template
-   Employee[] employees = space.readMultiple(Employee.class);
+   Employee[] employees = space.readMultiple(new Employee());
 
    // Read multiple by SQLQuery
    SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class,
