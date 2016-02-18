@@ -263,7 +263,7 @@ The Aggregators allow you to perform the entire aggregation activity at the Spac
 
 
 {{%refer%}}
-[Compound Indexing](./aggregators.html)
+[Aggregators](./aggregators.html)
 {{%/refer%}}
 
 
