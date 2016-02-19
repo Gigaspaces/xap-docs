@@ -30,14 +30,10 @@ Aggregators are executed by iterating the internal data grid structure that main
 # Supported Aggregators
 
 
-{{%section%}}
-{{%column width="80%" %}}
+{{%imagertext  "/attachment_files/aggregation1.png"%}}
 XAP comes with several built-in Aggregators you may use. The aggregation process executed across all data grid partitions when using a partitioned data grid , or across the proxy master replica when using a replicated data grid. You may rout the aggregation into a specific partition.
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/aggregation1.png"%}}
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
+
 
 <br>
 
@@ -103,17 +99,53 @@ public class Person
 {{% /tab%}}
 {{%/tabs%}}
 
+
+# Group Aggregation
+
+The following examples show how to group data in various ways:
+
+```c#
+using GigaSpaces.Core.Linq;
+
+...
+/* group by a single property with default select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by p.Gender into g
+                 select g;
+
+/* group by a single property with single select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by p.Gender into g
+                 select g.Sum(p => p.Age);
+
+/* group by single property with multi select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by p.Gender into g
+                 select new { Max = g.Max(p => p.Age), Gender = g.Key, Min = g.Min(p => p.Age) };
+
+/* group by multiple properties with default select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by new { p.Gender, p.Country } into g
+                 select g;
+
+/* group by multiple properties with single select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by new {p.Gender, p.Country} into g
+                 select g.Sum(p => p.Age);
+
+/* group by multiple properties with multiple select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by new { p.Gender, p.Country } into g
+                 select new { Max = g.Max(p => p.Age), TheKey = g.Key, Min = g.Min(p => p.Age) };
+```
+<br>
+
 # Compound Aggregation
 
-{{%section%}}
-{{%column width="80%" %}}
+{{%imagertext   "/attachment_files/aggregation2.png"%}}
 Compound aggregation will execute multiple aggregation operations across the space returning all of the result sets at once. When multiple aggregates are needed the compound aggregation API is significantly faster than calling each individual aggregate.
+{{%/imagertext%}}
 
-{{%/column%}}
-{{%column width="20%" %}}
-{{%popup   "/attachment_files/aggregation2.png"%}}
-{{%/column%}}
-{{%/section%}}
 
 <br>
 

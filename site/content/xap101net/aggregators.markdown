@@ -103,6 +103,47 @@ public class Person
 {{% /tab%}}
 {{%/tabs%}}
 
+
+# Group Aggregation
+
+The following examples show how to group data in various ways:
+
+```c#
+using GigaSpaces.Core.Linq;
+
+...
+/* group by a single property with default select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by p.Gender into g
+                 select g;
+
+/* group by a single property with single select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by p.Gender into g
+                 select g.Sum(p => p.Age);
+
+/* group by single property with multi select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by p.Gender into g
+                 select new { Max = g.Max(p => p.Age), Gender = g.Key, Min = g.Min(p => p.Age) };
+
+/* group by multiple properties with default select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by new { p.Gender, p.Country } into g
+                 select g;
+
+/* group by multiple properties with single select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by new {p.Gender, p.Country} into g
+                 select g.Sum(p => p.Age);
+
+/* group by multiple properties with multiple select */
+var query = from p in spaceProxy.Query<Person>()
+                 group p by new { p.Gender, p.Country } into g
+                 select new { Max = g.Max(p => p.Age), TheKey = g.Key, Min = g.Min(p => p.Age) };
+```
+<br>
+
 # Compound Aggregation
 
 {{%section%}}
