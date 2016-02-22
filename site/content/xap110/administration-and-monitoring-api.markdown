@@ -587,7 +587,9 @@ The Admin Domain Model has representation to all GigaSpaces level main actors. T
 |Main Operations |  Get all the current Transports.{{<wbr>}}- Get the aggregated Transports details.{{<wbr>}}- Get the aggregated Transports statistics.|
 |Runtime Events  |Register for aggregated Transports statistics change events (if monitoring).{{<wbr>}}- Register for Transport level statistics change events (across all Transports, if monitoring).|
 
-
+{{% note %}}
+The `Admin` functionality is designed for interacting with a service grid deployment. In the case of `StandaloneProcessingUnitContainer` and `IntegratedProcessingUnitContainer`, components such as `GridServiceAgent` or `GridServiceManager` are not started by default, therefore portions of the Admin functionality will not be available. 
+{{%/note%}}
 
 
 # Accessing the Domain Model
