@@ -13,11 +13,11 @@ XAP can be configured for a multiple network-card environment. For security reas
 
 The `java.rmi.server.hostname` system property is used to resolve the NIC address for all services, which bind to a specific network interface, e.g. Jini unicast discovery lookup host, Webster, etc. More specifically, multicast and unicast discovery both use this property to limit and set the desired network interface card.
 
-The **`NIC_ADDR`** environment variable is exposed as part of the `<XAP Root>\bin\setenv` script. By default, this value is configured to use the hostname of the machine.
+The **`XAP_NIC_ADDRESS`** environment variable is exposed as part of the `<XAP Root>\bin\setenv` script. By default, this value is configured to use the hostname of the machine.
 
-Since the `java.rmi.server.hostname` system property is set by default to the `NIC_ADDR` environment variable, and propagated across all product components/layers; in most cases, you don't need to edit the `setenv` file or any other configuration file.
+Since the `java.rmi.server.hostname` system property is set by default to the `XAP_NIC_ADDRESS` environment variable, and propagated across all product components/layers; in most cases, you don't need to edit the `setenv` file or any other configuration file.
 
-To apply this configuration easily, the `NIC_ADDR` variable can be passed at the **script level** of each node startup, before the call to `setenv`, thus overriding the default value set for this property in the `setenv` script.
+To apply this configuration easily, the `XAP_NIC_ADDRESS` variable can be passed at the **script level** of each node startup, before the call to `setenv`, thus overriding the default value set for this property in the `setenv` script.
 
 {{% note %}}
 

@@ -68,17 +68,17 @@ For example, in Windows:-
 
 Replace:
 
-    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" jini://localhost/*/mySpace?groups=%LOOKUPGROUPS%
+    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" jini://localhost/*/mySpace
 
 with:
 
-    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" java://localhost/./mySpace?groups=%LOOKUPGROUPS%
+    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" java://localhost/./mySpace
 
 Changing the space URL protocol to Java causes the application to launch a space collocated in the same process, instead of connecting to a remote one.
 
 Another way to activate the example with an embedded space is:
 
-    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" /./mySpace?groups=%LOOKUPGROUPS%
+    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" /./mySpace
 
 
 

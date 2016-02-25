@@ -81,7 +81,7 @@ persistency mode [memory]
     - `JAVA_HOME` environment variable - Make sure it points to a valid **JDK** folder.
     - Network setup - Make sure the machine has a valid network interface installed with a valid IP.
     - hosts file - Make sure it includes entry for `localhost` or other machines you are accessing.
-    - Multiple NICs - If your machine running multiple network interfaces, make sure you have the `NIC_ADDR` environment variable set to a valid IP of the machine. This should be done on every machine running GigaSpaces.
+    - Multiple NICs - If your machine running multiple network interfaces, make sure you have the `XAP_NIC_ADDRESS` environment variable set to a valid IP of the machine. This should be done on every machine running GigaSpaces.
     - User permissions - Make sure you run the `gsInstnce.sh` script with a linux user that has permissions to write into the `<XAP root>/logs` folder.
     - `CLASSPATH` environment variable - Make sure the `CLASSPATH` environment variable is not specified. You might have some libraries specified as part of the `CLASSPATH` that cause GigaSpaces to fail.
     - `JSHOMEDIR` - environment variable - Make sure the `JSHOMEDIR` environment variable is not specified or pointing to a different GigaSpaces release folder. It might be you have some other GigaSpaces release installed on the same machine with `JSHOMEDIR` variable pointing to this release folder.

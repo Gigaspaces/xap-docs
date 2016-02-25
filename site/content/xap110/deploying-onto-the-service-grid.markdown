@@ -115,7 +115,7 @@ You should have **one GigaSpaces agent** running the ESM. No GSCs should be star
 
 ```java
 rem Agent deployment that potentially can start management processes
-set LOOKUPGROUPS=myGroup
+set XAP_LOOKUP_GROUPS=myGroup
 set JSHOMEDIR=d:\gigaspaces
 start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2"
 ```
@@ -128,7 +128,7 @@ start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global
 ```java
 # Agent deployment that potentially can start management processes
 
-export LOOKUPGROUPS=myGroup
+export XAP_LOOKUP_GROUPS=myGroup
 export JSHOMEDIR=~/gigaspaces
 nohup ${JSHOMEDIR}/bin/gs-agent.sh gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2 > /dev/null 2>&1 &
 ```

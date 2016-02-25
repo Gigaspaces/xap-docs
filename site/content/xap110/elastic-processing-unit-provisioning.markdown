@@ -22,7 +22,7 @@ That means that potentially any machine could be a management machine:
 
 ```bash
 rem Agent deployment that potentially can start management processes
-set LOOKUPGROUPS=myGroup
+set XAP_LOOKUP_GROUPS=myGroup
 set JSHOMEDIR=d:\gigaspaces
 start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2"
 ```
@@ -34,7 +34,7 @@ start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global
 
 ```bash
 1. Agent deployment that potentially can start management processes
-export LOOKUPGROUPS=myGroup
+export XAP_LOOKUP_GROUPS=myGroup
 export JSHOMEDIR=~/gigaspaces
 nohup ${JSHOMEDIR}/bin/gs-agent.sh gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2 > /dev/null 2>&1 &
 ```
@@ -54,7 +54,7 @@ In case you prefer having dedicated management machines, start GigaSpaces agents
 
 ```bash
 rem Agent that does not start management processes
-set LOOKUPGROUPS=myGroup
+set XAP_LOOKUP_GROUPS=myGroup
 set JSHOMEDIR=d:\gigaspaces
 start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 gsa.global.lus 0"
 ```
@@ -66,7 +66,7 @@ start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 0 gsa.gsc 0 gsa.global
 
 ```bash
 1. Agent that does not start management processes
-export LOOKUPGROUPS=myGroup
+export XAP_LOOKUP_GROUPS=myGroup
 export JSHOMEDIR=~/gigaspaces
 nohup ${JSHOMEDIR}/bin/gs-agent.sh gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 gsa.global.lus 0 > /dev/null 2>&1 &
 ```

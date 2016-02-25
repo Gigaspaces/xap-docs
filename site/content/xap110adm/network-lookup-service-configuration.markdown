@@ -34,11 +34,11 @@ When using multicast please review the following section **[How to Determine Whe
 
 Each of the Jini Services (such as the Reggie lookup service or the Mahalo Transaction Manager) registers and advertises using a group name which is defined by the following system property (set in the `/bin/setenv.bat file`):
 
-    set LOOKUPGROUPS="gigaspaces-%USERNAME%"
-    set LOOKUP_GROUPS_PROP=-Dcom.gs.jini_lus.groups=%LOOKUPGROUPS%
+    set XAP_LOOKUP_GROUPS="gigaspaces-%USERNAME%"
+    set LOOKUP_GROUPS_PROP=-Dcom.gs.jini_lus.groups=%XAP_LOOKUP_GROUPS%
 
 While the `%USERNAME%` will be replaced after installation with the version number e.g.
-set `LOOKUPGROUPS="gigaspaces-7.0XAPga"`.
+set `XAP_LOOKUP_GROUPS="gigaspaces-7.0XAPga"`.
 
 The command that loads a space needs to have this system property set. Another way of doing it instead of setting the `com.gs.jini_lus.groups` system property, is to set the Space URL groups attribute, e.g.:
 

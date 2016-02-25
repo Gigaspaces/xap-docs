@@ -20,7 +20,7 @@ Please refer to the [Lookup Service Configuration](./network-lookup-service-conf
 
 # Configuring the lookup locators property
 
-Services will use the locators property to locate the Jini Lookup Service to lookup other services registered on it. The locators property is configured using the `LOOKUPLOCATORS` environment variable or the `-Dcom.gs.jini_lus.locators` system property. By default it is left blank. It accepts a comma separated list of `host:port`. This list should include the hosts (and ports) where the Jini Lookup Service (or GSM) is running. The default port is 4174.
+Services will use the locators property to locate the Jini Lookup Service to lookup other services registered on it. The locators property is configured using the `XAP_LOOKUP_LOCATORS` environment variable or the `-Dcom.gs.jini_lus.locators` system property. By default it is left blank. It accepts a comma separated list of `host:port`. This list should include the hosts (and ports) where the Jini Lookup Service (or GSM) is running. The default port is 4174.
 
 For example, considering the GSM(+LUS) is running on linux-lab1:4174 and linux-lab2:4174 machines:
 
@@ -29,7 +29,7 @@ For example, considering the GSM(+LUS) is running on linux-lab1:4174 and linux-l
 -Dcom.gs.jini_lus.locators=linux-lab1:4174,linux-lab2:4174
 ```
 
-This will influence the `LOOKUPLOCATORS` environment variable in `setenv` script, which you may also modify directly.
+This will influence the `XAP_LOOKUP_LOCATORS` environment variable in `setenv` script, which you may also modify directly.
 
 # Locating services using locators
 
@@ -65,7 +65,7 @@ For troubleshooting purposes you should verify that the services (spaces, GSC, G
 
 To change the lookup service listening port use the `com.sun.jini.reggie.initialUnicastDiscoveryPort` system property. The default value is the one assigned to the `com.gs.multicast.discoveryPort`.
 
-- Set the `LOOKUPLOCATORS` system property in `<XAP Root>\bin\setenv.bat/sh` to match the port number you defined (in this case, `host:1234`). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly.
+- Set the `XAP_LOOKUP_LOCATORS` system property in `<XAP Root>\bin\setenv.bat/sh` to match the port number you defined (in this case, `host:1234`). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly.
 
 {{%refer%}}
 For more information refer to [com.gs.multicast.discoveryPort system property](./network-lookup-service-configuration.html#Multicast Settings).

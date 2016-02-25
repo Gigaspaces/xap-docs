@@ -40,7 +40,7 @@ In case you want to **disable the Jini Lookup Service Multicast announcements** 
 
 Multicast is not a mandatory with XAP. It is used as a secondary mechanism for lookup service discovery. Unicast is the other mechanism. Both are turned on by default on the client side and on the service grid side (GSM,GSC,LUS).
 
-Multicast is not used with replication , notification , monitoring or any client activity against the space. Disabling multicast discovery means you are loosing dynamicy for the lookup service location. This means if the lookup service fails (very low probably to happen) you will be able to start it only on the machines listed on the `LOOKUPLOCATORS` list. Client `locators` should have the same list used.
+Multicast is not used with replication , notification , monitoring or any client activity against the space. Disabling multicast discovery means you are loosing dynamicy for the lookup service location. This means if the lookup service fails (very low probably to happen) you will be able to start it only on the machines listed on the `XAP_LOOKUP_LOCATORS` list. Client `locators` should have the same list used.
 
 When multicast is disabled global lookup service should not be use. You should use only local lookup service configuration with the agent with the machines running the lookup service:
 

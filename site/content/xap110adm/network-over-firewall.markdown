@@ -172,7 +172,7 @@ Lookup locators unicast discovery port should be the same as defined in `gs.sh`,
 
 
 ```bash
-LOOKUPLOCATORS=server111:7102; export LOOKUPLOCATORS
+XAP_LOOKUP_LOCATORS=server111:7102; export XAP_LOOKUP_LOCATORS
 ```
 
 ### LRMI Communication Protocol Port Range Setting Modifications

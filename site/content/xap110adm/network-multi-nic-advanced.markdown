@@ -36,24 +36,24 @@ For example, the following information describes 3 network cards: `(eth0/192.168
 
 For the purpose of this section, the default is set to `ipoib0/192.168.60.145` and the required configuration is to use the internal connection specified by `eth0/192.168.80.145`
 
-# NIC_ADDR
+# XAP_NIC_ADDRESS
 
-There is only one environment variable that needs to be configured when limiting the discovery to a specific Network Interface Card. The `NIC_ADDR` should specify the interface card IP address or name. `NIC_ADDR` is the value of `java.rmi.server.hostname` system property, which needs to be appended to `RMI_OPTIONS` in the `setenv.sh(bat)` script. By default, `RMI_OPTIONS` omits this variable -- the `java.rmi.server.hostname` system property is used to resolve the NIC address for all services, which bind to a specific network interface; for example, Jini unicast discovery lookup host, Webster, etc. More specifically, multicast and unicast discovery both use this property to limit and set the desired network interface card.
+There is only one environment variable that needs to be configured when limiting the discovery to a specific Network Interface Card. The `XAP_NIC_ADDRESS` should specify the interface card IP address or name. `XAP_NIC_ADDRESS` is the value of `java.rmi.server.hostname` system property, which needs to be appended to `RMI_OPTIONS` in the `setenv.sh(bat)` script. By default, `RMI_OPTIONS` omits this variable -- the `java.rmi.server.hostname` system property is used to resolve the NIC address for all services, which bind to a specific network interface; for example, Jini unicast discovery lookup host, Webster, etc. More specifically, multicast and unicast discovery both use this property to limit and set the desired network interface card.
 
-There are multiple ways to specify the `NIC_ADDR`:
+There are multiple ways to specify the `XAP_NIC_ADDRESS`:
 
 ### Specifying an explicit IP address. For example:
 
 
 ```bash
-NIC_ADDR=192.168.80.145
+XAP_NIC_ADDRESS=192.168.80.145
 ```
 
 ### Specifying a network interface name. For example:
 
 
 ```bash
-NIC_ADDR="#eth0:ip#"
+XAP_NIC_ADDRESS="#eth0:ip#"
 ```
 
 In the above example, `eth0` is the interface name and the `ip` indicates that the registered ip of the interface will be used. It is recommended to use the ip address, however, the host name can also be used by replacing the `ip` with `host`.
@@ -62,7 +62,7 @@ In the above example, `eth0` is the interface name and the `ip` indicates that t
 
 
 ```bash
-NIC_ADDR="#local:ip#"
+XAP_NIC_ADDRESS="#local:ip#"
 ```
 
 This is equivalent to `InetAddress.getLocalHost().getHostAddress()`.
@@ -74,15 +74,15 @@ This is equivalent to `InetAddress.getLocalHost().getHostAddress()`.
 
 ### Configuring Lookup Service
 
-The lookup service should be configured to run against a specific Network IP Address (for more details, see [Jini Lookup Discovery Service Interface](./network-lookup-service-configuration.html)). The `NIC_ADDR` is used to control it.
+The lookup service should be configured to run against a specific Network IP Address (for more details, see [Jini Lookup Discovery Service Interface](./network-lookup-service-configuration.html)). The `XAP_NIC_ADDRESS` is used to control it.
 
 ### Configuring Server Hostname
 
-The server hostname should be configured to use the `NIC_ADDR` variable. By default The `NIC_ADDR` environment variable (exposed as part of the `<GigaSpaces Installation>\bin\setenv` script) omits the system property `java.rmi.server.hostname`. **Append the property to the `RMI_OPTIONS`**:
+The server hostname should be configured to use the `XAP_NIC_ADDRESS` variable. By default The `XAP_NIC_ADDRESS` environment variable (exposed as part of the `<GigaSpaces Installation>\bin\setenv` script) omits the system property `java.rmi.server.hostname`. **Append the property to the `RMI_OPTIONS`**:
 
 
 ```bash
-RMI_OPTIONS="-Djava.rmi.server.hostname=${NIC_ADDR}
+RMI_OPTIONS="-Djava.rmi.server.hostname=${XAP_NIC_ADDRESS}
 -Djava.rmi.server.logCalls=false ..."
 ```
 
@@ -90,7 +90,7 @@ RMI_OPTIONS="-Djava.rmi.server.hostname=${NIC_ADDR}
 
 
 ```bash
-RMI_OPTIONS="-Djava.rmi.server.hostname=%NIC_ADDR%
+RMI_OPTIONS="-Djava.rmi.server.hostname=%XAP_NIC_ADDRESS%
 -Djava.rmi.server.logCalls=false ..."
 ```
 
@@ -125,7 +125,7 @@ multicastInterfaces=new
 java.net.NetworkInterface[]{java.net.NetworkInterface.getByName("eth0")};
 ```
 
-By default, this line is commented out with the network interface argument as the `java.rmi.server.hostname` property value. Uncomment this line to limit the multicast to the `NIC_ADDR` chosen.
+By default, this line is commented out with the network interface argument as the `java.rmi.server.hostname` property value. Uncomment this line to limit the multicast to the `XAP_NIC_ADDRESS` chosen.
 
 
 ```java
@@ -187,20 +187,20 @@ By default, unicast discovery is disabled, unless:
 - You are running an embedded lookup service, or
 - the `SpaceURL` locators attribute is used.
 
-The lookup host is overridden by merely setting the `NIC_ADDR` (steps 1 and 2)
+The lookup host is overridden by merely setting the `XAP_NIC_ADDRESS` (steps 1 and 2)
 Otherwise, to use **`eth0/192.169.80.145`** as the unicast discovery channel, set the two system properties accordingly.
 
 
 ```bash
 -Dcom.gs.jini_lus.unicast_discovery.enabled=true
--Dcom.gs.jini_lus.locators=${NIC_ADDR}
+-Dcom.gs.jini_lus.locators=${XAP_NIC_ADDRESS}
 ```
 
 Or, on Windows-based machines:
 
 
 ```bash
--Dcom.gs.jini_lus.locators=%NIC_ADDR%
+-Dcom.gs.jini_lus.locators=%XAP_NIC_ADDRESS%
 ```
 
 You might choose to hardcode the values in the XML configuration, but it is highly recommended to either pass system properties or use a properties file (`gs.properties` file) for overriding default values.
@@ -228,14 +228,14 @@ When loading a cluster using a cluster schema XSL configuration file, the cluste
 
 
 ```bash
--Dcom.gs.cluster.url-protocol-prefix=jini://${NIC_ADDR}
+-Dcom.gs.cluster.url-protocol-prefix=jini://${XAP_NIC_ADDRESS}
 ```
 
 Or, on a Windows-based machine:
 
 
 ```bash
--Dcom.gs.cluster.url-protocol-prefix=jini://%NIC_ADDR%/
+-Dcom.gs.cluster.url-protocol-prefix=jini://%XAP_NIC_ADDRESS%/
 ```
 
 {{% note %}}
@@ -249,27 +249,27 @@ You can set the `jini://` and/or `rmi://` protocols in the `com.gs.cluster.url-p
 
 The replicated example, located under `<XAP Root>\examples\Advanced\Data_Grid\replicated`, can be used to test the above configuration. The example interacts using the `setenv` and `gsInstance` scripts.
 
-The `NIC_ADDR` should be set corresponding at each machine's network interface card.
+The `XAP_NIC_ADDRESS` should be set corresponding at each machine's network interface card.
 
-For the purpose of the example, `node1` and `node2` are loaded at **`Lab16`**`.gigaspaces.com` and **`Lab17`**`.gigaspaces.com` respectively. Both have a network card configured for **`eth0`** (spanning IPs `192.168.80.145...147`). Both nodes should be configured with the corresponding `NIC_ADDR` property of their own network interface IP address for `eth0`.
+For the purpose of the example, `node1` and `node2` are loaded at **`Lab16`**`.gigaspaces.com` and **`Lab17`**`.gigaspaces.com` respectively. Both have a network card configured for **`eth0`** (spanning IPs `192.168.80.145...147`). Both nodes should be configured with the corresponding `XAP_NIC_ADDRESS` property of their own network interface IP address for `eth0`.
 
 ![IMG911.jpg](/attachment_files/IMG911.jpg)
 
-To apply this configuration easily, the `NIC_ADDR` can be passed at the **script level** of each node, before the call to `setenv`, thus overriding the default value set for this property in the `setenv` script.
+To apply this configuration easily, the `XAP_NIC_ADDRESS` can be passed at the **script level** of each node, before the call to `setenv`, thus overriding the default value set for this property in the `setenv` script.
 
 For example:
 
 
 ```bash
-bin/start-node1 script should set NIC_ADDR with 192.168.80.146
-bin/start-node2 script should set NIC_ADDR with 192.168.80.147
+bin/start-node1 script should set XAP_NIC_ADDRESS with 192.168.80.146
+bin/start-node2 script should set XAP_NIC_ADDRESS with 192.168.80.147
 ```
 
 On unix:
 
 
 ```bash
-NIC_ADDR=192.168.80.146; export NIC_ADDR
+XAP_NIC_ADDRESS=192.168.80.146; export XAP_NIC_ADDRESS
 . setExampleEnv.sh
 ```
 
@@ -277,7 +277,7 @@ On windows:
 
 
 ```bash
-@set NIC_ADDR=192.168.80.146
+@set XAP_NIC_ADDRESS=192.168.80.146
 @call setExampleEnv.bat
 ```
 
@@ -301,7 +301,7 @@ setenv:
 
 ```bash
 UNIX_ENABLED=-Dcom.gs.jini_lus.unicast_discovery.enabled=true
-URL_PREFIX=-Dcom.gs.cluster.url-protocol-prefix=jini://${NIC_ADDR}/
+URL_PREFIX=-Dcom.gs.cluster.url-protocol-prefix=jini://${XAP_NIC_ADDRESS}/
 ```
 
 gsInstance:
@@ -315,13 +315,13 @@ ${JAVACMD} ${UNIX_ENABLED} ${URL_PREFIX} ${RMI_OPTIONS} ${JAVA_OPTIONS %}}
 {JSHOMEDIR}${CPS}${JSHOMEDIR}/lib/JSpaces.jar" com.j_spaces.core.client.SpaceFinder "${SPACE_URL}"
 ```
 
-The `<XAP Root>\bin\start-node1` and the `<XAP Root>\bin\start-node2` scripts should set `NIC_ADDR` as mentioned above.
+The `<XAP Root>\bin\start-node1` and the `<XAP Root>\bin\start-node2` scripts should set `XAP_NIC_ADDRESS` as mentioned above.
 
-Remember that the `NIC_ADDR` variable is set prior to the call to `setExampleEnv`, thus overriding the `NIC_ADDR` set in the `setenv` script.
+Remember that the `XAP_NIC_ADDRESS` variable is set prior to the call to `setExampleEnv`, thus overriding the `XAP_NIC_ADDRESS` set in the `setenv` script.
 
 
 ```bash
-NIC_ADDR=192.168.80.146; export NIC_ADDR
+XAP_NIC_ADDRESS=192.168.80.146; export XAP_NIC_ADDRESS
 . setExampleEnv.sh
 ```
 
@@ -357,7 +357,7 @@ dirty(java.rmi.server.ObjID[], long, java.rmi.dgc.Lease)]
 
 ### Bind Exception
 
-A bind exception could be the cause of a machine trying to bind to a lookup service not on the correctly configured network interface. For example, if `node2` had its `$\{NIC_ADDR\`} configured to **`192.168.80.145`**, while its own network interface for `eth0` is **`192.168.80.147`**.
+A bind exception could be the cause of a machine trying to bind to a lookup service not on the correctly configured network interface. For example, if `node2` had its `$\{XAP_NIC_ADDRESS\`} configured to **`192.168.80.145`**, while its own network interface for `eth0` is **`192.168.80.147`**.
 
 
 ```bash
