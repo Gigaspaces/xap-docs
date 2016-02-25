@@ -46,9 +46,7 @@ The SLA definition, whether it comes in a separate file or embedded inside the `
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/{{%currentversion%}}/sla/openspaces-sla.xsd">
 
-    <os-sla:sla cluster-schema="partitioned-sync2backup"
-            number-of-instances="2" number-of-backups="1"
-            max-instances-per-vm="1">
+    <os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1" max-instances-per-vm="1">
     ...
     </os-sla:sla>
 </beans>
@@ -64,7 +62,7 @@ The SLA definition, whether it comes in a separate file or embedded inside the `
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd">
 
 	<bean id="SLA" class="org.openspaces.pu.sla.SLA">
-		<property name="clusterSchema" value="partitioned-sync2backup" />
+		<property name="clusterSchema" value="partitioned" />
 		<property name="numberOfInstances" value="2" />
 		<property name="numberOfBackups" value="1" />
 		<property name="maxInstancesPerVM" value="1" />
@@ -76,7 +74,7 @@ The SLA definition, whether it comes in a separate file or embedded inside the `
 {{% /tab %}}
 {{% /tabs %}}
 
-The SLA definition above creates 4 instances of a Processing Unit using the `partitioned-sync2backup` [space topology](/product_overview/space-topologies.html). It defines 2 partitions (`number-of-instances="2"`), each with one backup (`number-of-backups="1"`). In addition, it requires that a primary and a backup instance of the same partition will not be provisioned to the same GSC (`max-instances-per-vm="1"`).
+The SLA definition above creates 4 instances of a Processing Unit using the `partitioned` [space topology](/product_overview/space-topologies.html). It defines 2 partitions (`number-of-instances="2"`), each with one backup (`number-of-backups="1"`). In addition, it requires that a primary and a backup instance of the same partition will not be provisioned to the same GSC (`max-instances-per-vm="1"`).
 
 {{% tip %}}
 It is up to the deployer to configure the SLA correctly. Trying to deploy a Processing Unit with a cluster schema that requires backups without specifying `numberOfBackups` causes the deployment to fail.
@@ -104,13 +102,13 @@ There are numerous clustering topologies you can choose from:
 
 - **`async-replicated`** Multiple space instances. When written to one of the space instances, objects are **asynchronously** replicated to all space instances. The maximum capacity of this topology is the one of the smallest JVM in the cluster.
 
-- **`partitioned-sync2backup`** Multiple space instances. Objects are distributed across all of the space instances, such that each instance contains a separate subset of the data and forms a separate partition. The partitioning (distribution) of objects is based on their routing property. Optionally, when using this topology, you can designate one or more backup instances to each of the partitions, such that when an object is written to  a certain partition, it is synchronously replicated to the backup copy(ies) of that partition. The maximum capacity of this topology is the overall capacity of all of the JVMs in the cluster, divided by the number of backups+1.
+- **`partitioned`** Multiple space instances. Objects are distributed across all of the space instances, such that each instance contains a separate subset of the data and forms a separate partition. The partitioning (distribution) of objects is based on their routing property. Optionally, when using this topology, you can designate one or more backup instances to each of the partitions, such that when an object is written to  a certain partition, it is synchronously replicated to the backup copy(ies) of that partition. The maximum capacity of this topology is the overall capacity of all of the JVMs in the cluster, divided by the number of backups+1.
 
 From the client application's perspective (the one that connects to the space from another process), the clustering topology is transparent in most cases.
 
 {{% refer %}}
 Please refer to [this page](/product_overview/space-topologies.html) for more details about space clustering topologies and guidelines regarding when to use each of the topologies.
-The number-of-backups parameter should be used with the partitioned-sync2backup cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.
+The number-of-backups parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.
 {{% /refer %}}
 
 # SLA Based Distribution and Provisioning
@@ -146,7 +144,7 @@ If no SLA definition is provided either within the Processing Unit XML configura
 
 The SLA definition allows you to define the maximum number of instances for a certain processing unit, either per JVM (GSC) or physical machine (regardless of the number of JVMs/GSCs that are running on it).
 
-The max-instances parameter has different semantics when applied to processing units that contain a space with primary-backup semantics (i.e. that uses the  partitioned-sync2backup cluster schema and defines at least one backup) and when applied to a processing unit which contains no embedded space, or which contains a space with no primary-backup semantics.
+The max-instances parameter has different semantics when applied to processing units that contain a space with primary-backup semantics (i.e. that uses the  partitioned cluster schema and defines at least one backup) and when applied to a processing unit which contains no embedded space, or which contains a space with no primary-backup semantics.
 
 {{% note %}}
 When applied to a processing unit which contains no embedded space, or which contains a space with no primary-backup semantics, the max-instances parameter defines the **total** number of instances that can be deployed on a single JVM or on a single machine.

@@ -21,7 +21,7 @@ In some scenarios, one may want data modifying operations (write , update , chan
 |QUORUM|Ensure that at least N / 2 + 1 members are available, otherwise the modification is rejected and a `ConsistencyLevelViolationException` is thrown. In a primary backup topology one of the members is the primary, N includes the primary, in X,2 topology this means at least the primary and 1 backup is available (in X,1 it is equivalent to ALL).|
 |ALL|Ensure that all members are available, otherwise the modification is rejected and a `ConsistencyLevelViolationException` is thrown.|
 
-1. Currently this is supported only in partitioned-sync2backup topology.
+1. Currently this is supported only in partitioned topology.
 1. The consistency level is checked per partition, which means that operation which is routed to a partition which satisfy the consistency level will be accepted while other operation which is delegated to a partition that doesn't satisfy the consistency level will be rejected.
 1. A backup is considered available if it is connected to the primary space instance and the replication state between the two is operating in fully synchronous state.
 

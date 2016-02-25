@@ -256,7 +256,7 @@ Here is an example for a processing unit with a c++ worker deployed, using a clu
         <property name="gigaSpace" ref="gigaSpace" />
         <property name="workerName" value="CppService" />
     </bean>
-    <os-sla:sla cluster-schema="partitioned-sync2backup" number-of-instances="2" number-of-backups="1"
+    <os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1"
             max-instances-per-vm="1"/>
 </beans>
 ```

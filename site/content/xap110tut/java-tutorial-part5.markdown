@@ -167,7 +167,7 @@ A sample SLA definition is shown below:
 	   http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/{{% currentversion %}}/sla/openspaces-sla.xsd">
 
-      <os-sla:sla cluster-schema="partitioned-sync2backup"
+      <os-sla:sla cluster-schema="partitioned"
             number-of-instances="2" number-of-backups="1"
             max-instances-per-vm="1">
        </os-sla:sla>

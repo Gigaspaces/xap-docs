@@ -40,7 +40,7 @@ Here is an example for a space configuration that performs only initial load fro
 ```
 
 {{% info %}}
-The Initial Load is supported with the `partitioned-sync2backup` cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups you can use the `partitioned-sync2backup` and have ZERO as the amount of backups.
+The Initial Load is supported with the `partitioned` cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups set ZERO as the amount of backups.
 {{% /info %}}
 
 # Controlling the Initial Load

@@ -74,7 +74,7 @@ application.xml file describes the application dependencies:
             <os-admin:depends-on name="nonElasticSpace"/>
                 </os-admin:elastic-space>
 
-        <os-admin:space name="nonElasticSpace" cluster-schema="partitioned-sync2backup" number-of-instances="1" number-of-backups="0" zones="nonElasticSpaceZone">
+        <os-admin:space name="nonElasticSpace" cluster-schema="partitioned" number-of-instances="1" number-of-backups="0" zones="nonElasticSpaceZone">
         </os-admin:space>
 
         <os-admin:pu processing-unit="feeder.jar" zones="nonElasticPUZone">

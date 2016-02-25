@@ -98,7 +98,7 @@ The above example:
 - Configures the Data-Grid to use a data source that is **central** to the cluster. This means that both primary and backup IMDG instances will interact with the same data source.
 
 {{% refer %}}See the [Space Persistency Properties](./space-persistency-advanced-topics.html#Properties) and the [Hibernate Space Persistency](./hibernate-space-persistency.html) for full details about the EDS properties the you may configure.{{% /refer %}}
-You **must use a Data-Grid cluster schema that includes a backup** (i.e. `partitioned-sync2backup`) when running a Mirror Service. Without having backup, the Primary IMDG Spaces **will not** replicate their activities to the Mirror Service. For testing purposes, in case you don't want to start backup spaces, you can use the `partitioned-sync2backup` cluster schema and have 0 as the number of backups - this will still allow the primary spaces to replicate their operations to the Mirror.
+You **must use a Data-Grid cluster schema that includes a backup** (i.e. `partitioned`) when running a Mirror Service. Without having backup, the Primary IMDG Spaces **will not** replicate their activities to the Mirror Service. For testing purposes, in case you don't want to start backup spaces, you can use the `partitioned` cluster schema and have 0 as the number of backups - this will still allow the primary spaces to replicate their operations to the Mirror.
 
 If you wish to change the mirror service name please refer to [Async Persistency - Mirror - Advanced](./async-persistency-mirror-advanced.html).
 

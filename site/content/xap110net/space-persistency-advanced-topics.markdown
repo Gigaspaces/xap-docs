@@ -49,7 +49,7 @@ com.gigaspaces.persistent.level = FINER
 When the space is started, restarted, or cleaned, the system can initially fill the space with space objects that are likely to be required by the application. You can specify the data to loaded using the `ExternalDataSource.initialLoad` method that is called once the space is started. See the [Space Persistency Initial Load](./space-persistency-initial-load.html) for details. The space is not available for clients, until the data load process has been completed.
 
 {{% tip %}}
-The Initial Load is supported with the `partitioned-sync2backup` cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups you can use the `partitioned-sync2backup` and have ZERO as the amount of backups.
+The Initial Load is supported with the `partitioned` cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups you can use the `partitioned` and have ZERO as the amount of backups.
 {{% /tip %}}
 
 # Refreshing Space Object when using an external data source

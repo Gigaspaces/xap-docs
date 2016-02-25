@@ -89,13 +89,13 @@ Here we have specified a global bulk size of 1000 but have specifically overridd
 {{% refer %}}For more details about all the available configuration elements of the space gateway targets please refer to the [Configuring Space Gateway Targets](./configuring-space-gateway-targets.html) section.{{% /refer %}}
 
 {{% vbar %}}
-**Use the `partitioned-sync2backup` cluster schema**
-You should have the `partitioned-sync2backup` cluster schema used with the space to enable the replication to the Gateway.
+**Use the `partitioned` cluster schema**
+You should have the `partitioned` cluster schema used with the space to enable the replication to the Gateway.
 If you are not interested in having backups running but have the replication to the Gateway running, you should have ZERO as the number of backups. See below example of an sla.xml configuration you could use in such a case:
 
 
 ```xml
-<os-sla:sla cluster-schema="partitioned-sync2backup" number-of-instances="1" number-of-backups="0">
+<os-sla:sla cluster-schema="partitioned" number-of-instances="1" number-of-backups="0">
 </os-sla:sla>
 ```
 

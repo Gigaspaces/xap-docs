@@ -199,8 +199,7 @@ The following example shows the requires isolation configuration:
 ```xml
 <os-core:embedded-space id="space" name="${dataGridName}"/>
 
-<os-sla:sla cluster-schema="partitioned-sync2backup"
-           number-of-instances="2" number-of-backups="0" requires-isolation="true">
+<os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="0" requires-isolation="true">
 </os-sla:sla>
 ```
 {{% /tab %}}

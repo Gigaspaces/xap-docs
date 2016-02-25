@@ -73,7 +73,7 @@ We want to deploy a data grid that has two primary partitions and one backup for
 Here is the gs command that you would execute to achieve this:
 
 ```bash
-GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned-sync2backup total_members=2,1  xapTutorialSpace
+GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=2,1  xapTutorialSpace
 ```
 This command will start a space called xapTutorialSpace with two primary partitions and a backup for failover for each primary. 
 
@@ -109,7 +109,7 @@ Lets assume we have 4 machines available. On all machines we will start a GSA. T
 
 
 ```bash
-GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned-sync2backup total_members=4,1 
+GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=4,1 
        -max-instances-per-machine 1 xapTutorialSpace
 ```
 When the application write Payment objects into this space, XAP will use the routing information provided (@SpaceRouting) by the Payment class to route the object to the right partition. 

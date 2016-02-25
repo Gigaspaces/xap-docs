@@ -72,7 +72,7 @@ application.xml file describes the application dependencies:
 	<os-admin:application name="data-app">
 
 		<os-admin:pu processing-unit="processor.jar"
-			cluster-schema="partitioned-sync2backup"
+			cluster-schema="partitioned"
 			number-of-instances="2" number-of-backups="1"
 			max-instances-per-vm="1" max-instances-per-machine="0" />
 
@@ -162,7 +162,7 @@ Property files and other resources should be jared and placed within any of the 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 | Processing Unit Location/Name -- **mandatory** | The location of the processing unit directory or jar file on your file system (see [this page]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html)).{{<wbr>}}If you are using a few options in the `deploy` command, pass this option as the **last parameter**.{{<wbr>}}For example: `gs> deploy hello-world.jar`{{<wbr>}}(`hello-world.jar` is the processing jar file). | |
-| -cluster |Allows you to control the clustering characteristics of the processing unit.{{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists).{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups{{<wbr>}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=`{{<wbr>}}`numberOfInstances[,numberOfBackups]` |
+| -cluster |Allows you to control the clustering characteristics of the processing unit.{{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists).{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups{{<wbr>}}(number of backups is required only if the `partitioned` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=`{{<wbr>}}`numberOfInstances[,numberOfBackups]` |
 | -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | -properties embed | Direct property injection | -properties embed://user=admin|
 | -sla | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
@@ -223,11 +223,11 @@ The following deploys a processing unit archive called `data-processor.jar` usin
 gs> deploy -sla file://config/sla.xml data-processor.jar
 ```
 
-The following example deploys a `partitioned-sync2backup` space cluster with the name `mySpace` for both the processing unit and the Space it contains.
+The following example deploys a `partitioned` space cluster with the name `mySpace` for both the processing unit and the Space it contains.
 
 
 ```bash
-deploy -cluster schema=partitioned-sync2backup total_members=2,1 -override-name mySpace -properties embed://dataGridName=mySpace myPUFolder
+deploy -cluster schema=partitioned total_members=2,1 -override-name mySpace -properties embed://dataGridName=mySpace myPUFolder
 ```
 
 
@@ -237,7 +237,7 @@ Multiple deployment properties can be injected by having ; between each property
 
 
 ```bash
->gs deploy -cluster schema=partitioned-sync2backup total_members=10,1
+>gs deploy -cluster schema=partitioned total_members=10,1
 -properties "embed://dataGridName=myIMDG;space-config.proxy.router.active-server-lookup-timeout=5000;space-config.engine.max_threads=256;mypropA=aaa;mypropB=bbb" -override-name myPU /tmp/myPu.jar
 ```
 {{% /tip %}}
@@ -299,7 +299,7 @@ gs> deploy-memcached [-sla ...] [-cluster ...] [-properties ...] [-user xxx -pas
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 | space_url | The url of the space, can be embedded, eg: `/./myMemcachedSpace`, or remote eg: `jini://*/*/myMemcachedSpace` | |
-| -cluster |Allows you to control the clustering characteristics of the processing unit. {{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists). {{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}(number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}} `total_members=numberOfInstances[,numberOfBackups]` |
+| -cluster |Allows you to control the clustering characteristics of the processing unit. {{<wbr>}}The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists). {{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}(number of backups is required only if the `partitioned` schema is used). | `-cluster schema=[schema name]`{{<wbr>}} `total_members=numberOfInstances[,numberOfBackups]` |
 | -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | -sla | Allows you to specify a link (defaults to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
 | -zones | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
@@ -319,9 +319,9 @@ You can use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to
 {{%accordion%}}
 {{%accord title="Example"%}}
 
-The following deploys a memcached-enabled space named `mySpace` using the `partitioned-sync2backup` cluster schema with 2 primaries and 1 primary per backup.
+The following deploys a memcached-enabled space named `mySpace` using the `partitioned` cluster schema with 2 primaries and 1 primary per backup.
 
-    gs> deploy-memcached -cluster schema=partitioned-sync2backup total_members=2,1 mySpace
+    gs> deploy-memcached -cluster schema=partitioned total_members=2,1 mySpace
 
 The following deploys a memcached-enabled space called `mySpace` using an SLA element read from an external `sla.xml` file.
 
@@ -348,7 +348,7 @@ A Space only Processing Unit can be easily deployed onto the Service Grid.
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
 | Space Name -- **mandatory** | The name of the space to be deployed.| |
-| -cluster |Allows you to control the clustering characteristics of the space.{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}  (number of backups is required only if the `partitioned-sync2backup` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=numberOfInstances[,numberOfBackups]` |
+| -cluster |Allows you to control the clustering characteristics of the space.{{<wbr>}}The following options are available (used automatically by any embedded space included in the Processing Unit):{{<wbr>}}- `schema` -- the cluster schema used by the Processing Unit.{{<wbr>}}- `total_members` -- the number of instances, optionally followed by the number of backups {{<wbr>}}  (number of backups is required only if the `partitioned` schema is used). | `-cluster schema=[schema name]`{{<wbr>}}`total_members=numberOfInstances[,numberOfBackups]` |
 | -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | -sla | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
 | -zones | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
