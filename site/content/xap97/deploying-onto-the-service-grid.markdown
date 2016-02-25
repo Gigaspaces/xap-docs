@@ -36,7 +36,7 @@ However, GigaSpaces XAP also supports the deployment of exploded processing unit
 
 # Distribution of Processing Unit Binaries to the Running GSCs
 
-By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the `<GigaSpaces Root>/work/deployed-processing-units` directory (The location of this directory can be overridden via the `com.gs.work` system property).
+By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the `<GigaSpaces Root>/work/processing-units` directory (The location of this directory can be overridden via the `com.gs.work` system property).
 
 Downloading the processing unit archive to the GSC is the recommended option, but it can be disabled. In order to disable it, the `pu.download` [deployment property](./deployment-properties.html)  should be set to `false`. This will not download the entire archive to the GSC, but will force the GSC to load the processing unit classes one at a time from the GSM via a URLClassLoader.
 
