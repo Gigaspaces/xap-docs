@@ -90,10 +90,9 @@ The `ShapeFactory` also supports parsing [WKT](https://en.wikipedia.org/wiki/Wel
 |   Shape  | Description    |
 |:----|:-------|
 |Point       | POINT (0 0)|
-|Circle      | |
 |Rectangle   | LINESTRING(30 10, 40 10, 40 20, 30 20, 30 10) |
 |LineString  | LINESTRING (0 0, 1 1, 5 5)|
-|Polygon     | |
+
 
 
 For example:
@@ -106,9 +105,7 @@ Shape shape = ShapeFactory.parse("LINESTRING (0 0, 1 1, 5 5)", ShapeFormat.WKT);
 ## GeoJson Support
 The `ShapeFactory` also supports parsing  [GeoJson](http://geojson.org/) strings into shapes. For example:
 
-```java
 
-```
 
 # Queries
 
