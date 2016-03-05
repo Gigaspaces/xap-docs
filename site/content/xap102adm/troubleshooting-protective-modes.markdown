@@ -95,6 +95,10 @@ com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected 
 
 It is highly recommended that you modify them and set the right routing.
 
+{{% refer %}}
+The following [example](/sbp/storing-partition-information.html) demonstrates one way to handle writing entries to a partition with the wrong routing value.
+{{% /refer %}}          
+
 {{% note%}}
 If this is not feasible, and you know what you're doing, it can be disabled using the following system property: 
 
