@@ -204,6 +204,12 @@ Space metrics are reported with the following tags:
 | `space_operations_add` | Number of add operations |
 | `space_operations_replace`  | Number of replace operations |
 | `space_operations_get` | Number of get operations |
+| `space_operations_remove-tp` | remove per second  |
+| `space_operations_add-tp` | add per second  |
+| `space_operations_replace-tp`  | replace per second |
+| `space_operations_get-tp` | get operations per second |
+| `space_blobstore_cache_miss`  | blobstore cache miss |
+| `space_blobstore_cache_hit` | blobstore cache hit |
 
 ### Connections
 
