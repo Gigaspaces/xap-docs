@@ -57,7 +57,7 @@ For example:
 {{% tab linux %}}
 
 ```bash
-export ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
+export XAP_ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
 
 ./gs-agent.sh
 ```
@@ -67,7 +67,7 @@ export ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
 {{% tab Windows %}}
 
 ```xml
-set ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
+set XAP_ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
 
 call gs-agent.bat
 ```
@@ -75,7 +75,7 @@ call gs-agent.bat
 {{% /tabs %}}
 
 
-The ZooKeeper configuration is provided by configuration file which is located by default at `<XAP Root>\config\zookeeper\zoo.cfg`, you can change it location using `ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `-Dorg.openspaces.grid.zookeeper.config-file` system property.
+The ZooKeeper configuration is provided by configuration file which is located by default at `<XAP Root>\config\zookeeper\zoo.cfg`, you can change it location using `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `-Dorg.openspaces.grid.zookeeper.config-file` system property.
 
 {{%refer%}}
 More information on how to configure ZooKeeper can be found [here](https://zookeeper.apache.org/doc/r3.4.2/zookeeperAdmin.html#sc_configuration).
