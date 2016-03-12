@@ -258,6 +258,9 @@ event template for the superclass and a @SpaceDataEvent for each subclass.
 Here is an Example where HostInfo, MachineInfo and LdapInfo are subclasses of the MonitorInfo class:
 
 ```java
+@EventDriven @Polling
+public class SimpleListener {
+
 	@EventTemplate
 	public SQLQuery<MonitorInfo> dataTemplate() {
 		return new SQLQuery<MonitorInfo>(MonitorInfo.class, "");
@@ -467,12 +470,12 @@ XAP comes with several built-in receive operation-handler implementations:
 
 |Receive Operation Handler|Description|
 |:------------------------|:----------|
-|`SingleTakeReceiveOperationHandler`|Performs a single blocking take operation with the receive timeout.|
-|`SingleReadReceiveOperationHandler`|Performs a single blocking read operation with the receive timeout.|
-|`ExclusiveReadReceiveOperationHandler`|Performs a single read operation under an exclusive read lock (similar to "select for update" in databases) with the receive timeout. Exclusive read lock mimics the take operation without actually taking the Entry from the space. {{% exclamation %}} This receive operation handler must be used within a transaction.|
-|`MultiTakeReceiveOperationHandler`|First tries to perform takeMultiple (using a configured max Entries). If no values are returned, performs a blocking take operation with the receive timeout.|
-|`MultiReadReceiveOperationHandler`|First tries to perform readMultiple (using a configured max Entries). If no values are returned, performs a blocking read operation with the receive timeout.|
-|`MultiExclusiveReadReceiveOperationHandler`|First tries to perform readMultiple (using a configured max Entries). If no values are returned, performs a blocking read operation with the receive timeout. Both read operations are performed under an exclusive read lock (similar to "select for update" in databases) which mimics a take operation without actually taking the Entry from the space. Note, this receive operation handler must be used within a transaction. |
+|SingleTakeReceiveOperationHandler|Performs a single blocking take operation with the receive timeout.|
+|SingleReadReceiveOperationHandler|Performs a single blocking read operation with the receive timeout.|
+|ExclusiveReadReceiveOperationHandler|Performs a single read operation under an exclusive read lock (similar to "select for update" in databases) with the receive timeout. Exclusive read lock mimics the take operation without actually taking the Entry from the space. {{% exclamation %}} This receive operation handler must be used within a transaction.|
+|MultiTakeReceiveOperationHandler|First tries to perform takeMultiple (using a configured max Entries). If no values are returned, performs a blocking take operation with the receive timeout.|
+|MultiReadReceiveOperationHandler|First tries to perform readMultiple (using a configured max Entries). If no values are returned, performs a blocking read operation with the receive timeout.|
+|<nobr>MultiExclusiveReadReceiveOperationHandler<nobr>|First tries to perform readMultiple (using a configured max Entries). If no values are returned, performs a blocking read operation with the receive timeout. Both read operations are performed under an exclusive read lock (similar to "select for update" in databases) which mimics a take operation without actually taking the Entry from the space. Note, this receive operation handler must be used within a transaction. |
 
 {{% info %}}
 When using the `ExclusiveReadReceiveOperationHandler` or even the `SingleReadReceiveOperationHandler`, it is important to remember that the actual event still remains in the space. If the data event is not taken from the space, or one of its properties changes in order **not** to match the container template, the same data event is read again.

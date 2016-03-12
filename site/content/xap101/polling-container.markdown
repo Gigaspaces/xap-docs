@@ -258,6 +258,9 @@ event template for the superclass and a @SpaceDataEvent for each subclass.
 Here is an Example where HostInfo, MachineInfo and LdapInfo are subclasses of the MonitorInfo class:
 
 ```java
+@EventDriven @Polling
+public class SimpleListener {
+
 	@EventTemplate
 	public SQLQuery<MonitorInfo> dataTemplate() {
 		return new SQLQuery<MonitorInfo>(MonitorInfo.class, "");
