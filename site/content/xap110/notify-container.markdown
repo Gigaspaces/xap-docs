@@ -122,7 +122,6 @@ public class SimpleListener {
 
 
 ```java
-
 GigaSpace gigaSpace = // either create the GigaSpace or get it by injection
 
 SimpleNotifyEventListenerContainer notifyEventListenerContainer = new SimpleNotifyContainerConfigurer(gigaSpace)
@@ -192,9 +191,7 @@ public class SimpleListener {
 {{% /tab %}}
 {{%tab "  Namespace "%}}
 
-
 ```xml
-
 <os-events:notify-container id="eventContainer" giga-space="gigaSpace">
 
     <os-core:sql-query where="processed = true" class="org.openspaces.example.data.common.Data"/>
@@ -211,9 +208,7 @@ public class SimpleListener {
 {{% /tab %}}
 {{%tab "  Plain XML "%}}
 
-
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.notify.SimpleNotifyEventListenerContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />
@@ -239,6 +234,40 @@ public class SimpleListener {
 {{% tip %}}
 A polling container or notify container could have only one template. If you need multiple event handlers you will need to create another polling container or notify container or use the [Session Based Messaging API](./session-based-messaging-api.html#Registering Large Number of Listeners) that support multiple listeners with one Session. If you use multiple polling containers make sure the different templates does not overlap each other.
 {{% /tip %}}
+
+# Multiple Event Handlers
+
+It is possible to define multiple event handlers for a notify container. If you have a superclass that has subclasses, and you want to define event handlers for each subclass, you can define the
+event template for the superclass and a @SpaceDataEvent for each subclass.
+
+Here is an example where HostInfo, MachineInfo and LdapInfo are subclasses of the MonitorInfo class:
+
+```java
+@EventDriven @Notify
+public class SimpleListener {
+
+	@EventTemplate
+	public SQLQuery<MonitorInfo> dataTemplate() {
+		return new SQLQuery<MonitorInfo>(MonitorInfo.class, "");
+	}
+
+	@SpaceDataEvent
+    public MachineInfo eventListener(final MachineInfo event) {
+    //..........
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final HostInfo event) {
+    //..........
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final LdapInfo event) {
+    //..........
+    }
+}
+```
+
 
 # Multiple Values Template
 

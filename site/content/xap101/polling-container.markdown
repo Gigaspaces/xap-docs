@@ -268,20 +268,17 @@ public class SimpleListener {
 
 	@SpaceDataEvent
     public MachineInfo eventListener(final MachineInfo event) {
-
-       ..........
+    //..........
     }
 
     @SpaceDataEvent
     public MachineInfo eventListener(final HostInfo event) {
-
-    ..........
+    //..........
     }
 
     @SpaceDataEvent
     public MachineInfo eventListener(final LdapInfo event) {
-
-    ..........
+    //..........
     }
 }
 ```

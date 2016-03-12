@@ -261,26 +261,23 @@ Here is an Example where HostInfo, MachineInfo and LdapInfo are subclasses of th
 @EventDriven @Polling
 public class SimpleListener {
 
-	@EventTemplate
-	public SQLQuery<MonitorInfo> dataTemplate() {
-		return new SQLQuery<MonitorInfo>(MonitorInfo.class, "");
+    @EventTemplate
+    public SQLQuery<MonitorInfo> dataTemplate() {
+        return new SQLQuery<MonitorInfo>(MonitorInfo.class, "");
 	}
 
-	@SpaceDataEvent
+    @SpaceDataEvent
     public MachineInfo eventListener(final MachineInfo event) {
-
-       ..........
+    ..........
     }
 
     @SpaceDataEvent
     public MachineInfo eventListener(final HostInfo event) {
-
     ..........
     }
 
     @SpaceDataEvent
     public MachineInfo eventListener(final LdapInfo event) {
-
     ..........
     }
 }
