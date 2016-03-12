@@ -249,6 +249,40 @@ public class SimpleListener {
 A polling container or notify container could have only one template. If you need multiple event handlers you will need to create another polling container or notify container. If you use multiple polling containers make sure the different templates does not overlap each other.
 {{% /tip %}}
 
+
+# Multiple Event Handlers
+
+It is possible to define multiple event handlers for a polling container. If you have a superclass that has  subclasses, and you want to define event handlers for each subclass, you can define the
+event template for the superclass and a @SpaceDataEvent for each subclass.
+
+Here is an Example where HostInfo, MachineInfo and LdapInfo are subclasses of the MonitorInfo class:
+
+```java
+	@EventTemplate
+	public SQLQuery<MonitorInfo> dataTemplate() {
+		return new SQLQuery<MonitorInfo>(MonitorInfo.class, "");
+	}
+
+	@SpaceDataEvent
+    public MachineInfo eventListener(final MachineInfo event) {
+
+       ..........
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final HostInfo event) {
+
+    ..........
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final LdapInfo event) {
+
+    ..........
+    }
+}
+```
+
 # Multiple Values Template
 
 You may use a `SQLQuery` having `IN` operator with multiple values to register a Template with multiple values. This can be a simple alternative avoiding using multiple polling containers. See below example:

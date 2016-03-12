@@ -148,9 +148,9 @@ pollingEventListenerContainer.destroy();
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tip %}}
+{{% note %}}
  `@EventDriven` , `@Polling` , `@Notify` can't be placed on interface classes. You should place these on the implementation class.
-{{% /tip %}}
+{{% /note %}}
 
 The example above performs single take operations (see below) using the provided template (a `Data` object with its processed flag set to `false`). If the take operation succeeds (a value is returned), the `SimpleListener` is invoked. The operations are performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
 
@@ -164,7 +164,16 @@ This mostly applies when working with an embedded space directly with a cluster 
 
 # FIFO Grouping
 
-The FIFO Grouping designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, it lets you have a higher level of granularity by having FIFO queue maintained according to a specific value of a specific property. For more details see [FIFO grouping](./fifo-grouping.html).
+The FIFO Grouping is designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, it lets you have a higher level of granularity by having FIFO queue maintained according to a specific value of a specific property.
+
+{{%refer%}}
+For more details see [FIFO grouping](./fifo-grouping.html).
+{{%/refer%}}
+
+
+
+
+
 
 
 
@@ -242,10 +251,47 @@ public class SimpleListener {
 A polling container or notify container could have only one template. If you need multiple event handlers you will need to create another polling container or notify container. If you use multiple polling containers make sure the different templates does not overlap each other.
 {{% /tip %}}
 
+
+# Multiple Event Handlers
+
+It is possible to define multiple event handlers for a polling container. If you have a superclass that has   subclasses, and you want to define event handlers for each subclass, you can define the
+event template for the superclass and a @SpaceDataEvent for each subclass.
+
+Here is an Example where HostInfo, MachineInfo and LdapInfo are subclasses of the MonitorInfo class:
+
+```java
+	@EventTemplate
+	public SQLQuery<MonitorInfo> dataTemplate() {
+		return new SQLQuery<MonitorInfo>(MonitorInfo.class, "");
+	}
+
+	@SpaceDataEvent
+    public MachineInfo eventListener(final MachineInfo event) {
+
+       ..........
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final HostInfo event) {
+
+    ..........
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final LdapInfo event) {
+
+    ..........
+    }
+}
+```
+
+
 # Multiple Values Template
 
 You may use a `SQLQuery` having `IN` operator with multiple values to register a Template with multiple values. This can be a simple alternative avoiding using multiple polling containers. See below example:
 
+{{%tabs%}}
+{{%tab "Space Class"%}}
 
 ```java
 import com.gigaspaces.annotation.pojo.SpaceId;
@@ -276,10 +322,9 @@ public class MyData {
 	}
 }
 ```
+{{%/tab%}}
 
-The Template registration:
-
-
+{{%tab "Template registration:"%}}
 ```java
 SimplePollingEventListenerContainer pollingEventListenerContainer =
 	new SimplePollingContainerConfigurer(space)
@@ -291,6 +336,9 @@ SimplePollingEventListenerContainer pollingEventListenerContainer =
     }
 }).pollingContainer();
 ```
+{{%/tab%}}
+{{%/tabs%}}
+
 
 # Dynamic Template Definition
 
