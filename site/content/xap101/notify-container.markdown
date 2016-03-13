@@ -243,6 +243,44 @@ public class SimpleListener {
 A polling container or notify container could have only one template. If you need multiple event handlers you will need to create another polling container or notify container or use the [Session Based Messaging API](./session-based-messaging-api.html#Registering Large Number of Listeners) that support multiple listeners with one Session. If you use multiple polling containers make sure the different templates does not overlap each other.
 {{% /tip %}}
 
+
+# Multiple Event Handlers
+
+It is possible to define multiple event handlers for a notify container. If you have a superclass that has subclasses, and you want to define event handlers for each subclass, you can define the
+event template for the superclass and a @SpaceDataEvent for each subclass.
+
+Here is an example where HostInfo, MachineInfo and LdapInfo are subclasses of the MonitorInfo class:
+
+```java
+@EventDriven
+@Notify
+public class NotifyExample {
+
+	@EventTemplate
+	public SQLQuery<MonitorInfo> dataTemplate() {
+		return new SQLQuery<MonitorInfo>(MonitorInfo.class, "");
+	}
+
+	@SpaceDataEvent
+	public MachineInfo eventListener(final MachineInfo event) {
+		// ..........
+		return null;
+	}
+
+	@SpaceDataEvent
+	public MachineInfo eventListener(final HostInfo event) {
+		// ..........
+		return null;
+	}
+
+	@SpaceDataEvent
+	public MachineInfo eventListener(final LdapInfo event) {
+		// ..........
+		return null;
+	}
+}
+```
+
 # Multiple Values Template
 
 You may use a `SQLQuery` having `IN` operator with multiple values to register a Template with multiple values. This can be a simple alternative avoiding using multiple notify containers. See below example:
