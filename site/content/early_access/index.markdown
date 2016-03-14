@@ -14,6 +14,13 @@ If your're looking for the latest stable release, please refer to **10.2.1** - [
 
 <hr/>
 
+### 11.0 RC2 (Mar-14-2016)
+
+* Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/rc2/gigaspaces-xap-premium-11.0.0-rc2-b14714-with-license.zip) 
+* Download XAP for .NET \[[Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/rc2/GigaSpaces-XAP.NET-Premium-11.0.0.14714-RC2-x64.msi) | [Windows x86](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/rc2/GigaSpaces-XAP.NET-Premium-11.0.0.14714-RC2-x86.msi)\]
+* Download XAP for C++ \[[Linux x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/rc2/gigaspaces-cpp-11.0.0-rc2-linux-amd64-gcc-4.1.2.tar.gz) | [Windows x64](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/rc2/gigaspaces-cpp-11.0.0-rc2-win64-vs10.0.tar.gz)\]
+
+<hr/>
 ### 11.0 RC1 (Feb-25-2016)
 
 * Download [XAP for Java](http://www.gigaspaces.com/tempfiles/downloads/EarlyAccess/xap/11.0.0/rc1/gigaspaces-xap-premium-11.0.0-rc1-b14713-with-license.zip) 
