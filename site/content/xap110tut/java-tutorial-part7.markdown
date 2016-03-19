@@ -44,7 +44,7 @@ When running in direct persistency mode the IMDG interacts with the data source 
 {{%/align%}}
 
 The XAP Mirror Service provides reliable asynchronous persistency. This allows you to asynchronously delegate the operations conducted with the IMDG into a backend database, significantly reducing the performance overhead. The Mirror service ensures that data will not be lost in the event of a failure. This way, you can add persistency to your application just by running the Mirror Service, without touching the real-time portion of your application in either configuration or code. This service provides fine-grained control of which object needs to be persisted.
- 
+
 
 {{%refer%}}[Asynchronous Persistence with the Mirror]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html){{%/refer%}}
 
