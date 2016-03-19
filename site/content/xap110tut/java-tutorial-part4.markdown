@@ -218,20 +218,16 @@ In addition to the polling containers you can also use a JMS facade on top of th
 
 # Master Worker Pattern
 
-{{%section%}}
-{{%column width="85%" %}}
+{{%imagertext "/attachment_files/qsg/the_master_worker.jpg" "Master Worker Pattern"%}}
 The Master-Worker Pattern (sometimes called the Master-Slave or the Map-Reduce pattern) is used for parallel processing. It follows a simple approach that allows applications to perform simultaneous processing across multiple machines or processes via a `Master` and multiple `Workers`.
 In GigaSpaces XAP, you can implement the Master-Worker pattern using several methods:
 
 - [Task Executors](/sbp/map-reduce-pattern-executors-example.html) - best for a scenario where the processing activity is collocated with the data (the data is stored within the same space as the tasks being executed).
-- [Polling Containers]({{%currentjavaurl%}}/polling-container.html) - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time. It might also be relevant if the actual data required for the processing is not stored within the space, or the time it takes to retrieve the required data from the space is much shorter than the time it takes to complete the processing.
+- [Polling Containers]({{%currentjavaurl%}}/polling-container.html) - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time.
 
-{{%/column%}}
-{{%column width="15%" %}}
-{{%popup   "/attachment_files/qsg/the_master_worker.jpg" "Master Worker Pattern"%}}
+It might also be relevant if the actual data required for the processing is not stored within the space, or the time it takes to retrieve the required data from the space is much shorter than the time it takes to complete the processing.
 
-{{%/column%}}
-{{%/section%}}
+{{%/imagertext%}}
 
 
 {{%refer%}}
