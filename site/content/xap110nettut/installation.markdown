@@ -30,7 +30,7 @@ The basic concept of our application;
 
 <br>
 
-You can download all examples presented here from {{%git "https://github.com/Gigaspaces/xapnet-tutoria"%}}. Feel free to clone, fork and contribute to the tutorial code.
+You can download all examples presented here from {{%git "https://github.com/Gigaspaces/xapnet-tutorial"%}}. Feel free to clone, fork and contribute to the tutorial code.
 
 
 {{%vbar "Download and Install XAP"%}}

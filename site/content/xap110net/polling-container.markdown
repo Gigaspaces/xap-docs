@@ -170,7 +170,7 @@ pollingEventListenerContainer.Template = new SqlQuery<Data>("Processed = false")
 # Multiple Event Handlers
 
 It is possible to define multiple event handlers for a polling container. If you have a superclass that has   subclasses, and you want to define event handlers for each subclass, you can define the
-event template for the superclass and a [SpaceDataEvent] for each subclass.
+event template for the superclass and a [DataEventHandler] for each subclass.
 
 Here is an example where HostInfo, MachineInfo and LdapInfo are subclasses of the MonitorInfo class:
 
@@ -180,10 +180,7 @@ public class PollingExample {
 
 	[DynamicEventTemplate]
 	public SqlQuery<MonitorInfo> dataTemplate() {
-	  get
-	  {
 		return new SqlQuery<MonitorInfo>("");
-	  }
 	}
 
 	[DataEventHandler]
