@@ -177,7 +177,7 @@ Here is an example where HostInfo, MachineInfo and LdapInfo are subclasses of th
 [PollingEventDriven]
 public class PollingExample {
 
-	[DynamicEventTemplate]
+	[EventTemplate]
 	public SqlQuery<MonitorInfo> dataTemplate() {
 		return new SqlQuery<MonitorInfo>("");
 	}

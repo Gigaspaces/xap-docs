@@ -178,7 +178,7 @@ Here is an example where HostInfo, MachineInfo and LdapInfo are subclasses of th
 [PollingEventDriven]
 public class PollingExample {
 
-	[DynamicEventTemplate]
+	[EventTemplate]
 	public SqlQuery<MonitorInfo> dataTemplate() {
 		return new SqlQuery<MonitorInfo>("");
 	}
@@ -218,7 +218,6 @@ The event template object needs to be of IQuery<TData> type, which means if you 
 [PollingEventDriven]
 public class SimpleListener
 {
-
     [DynamicEventTemplate]
     public SqlQuery<Data> UnprocessedExpiredData()
     {
@@ -323,7 +322,7 @@ Here is an example of how the receive operation handler can be configured with `
 
 {{%tabs%}}
 
-{{%tab "  Using EventListenerContainerFactory "%}}
+{{%tab "Using EventListenerContainerFactory"%}}
 
 
 ```csharp
@@ -378,7 +377,7 @@ When working with a partitioned cluster, and configuring the polling container t
 
 {{%tabs%}}
 
-{{%tab "  Using EventListenerContainerFactory "%}}
+{{%tab "Using EventListenerContainerFactory"%}}
 
 
 ```csharp
