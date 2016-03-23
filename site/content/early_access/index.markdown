@@ -8,7 +8,7 @@ weight:
 
 {{%ssummary%}}Here you will find milestone release for XAP 11.0{{%/ssummary%}}
 
-{{%info "XAP 11.0 is scheduled for release in Q1 2016"%}}
+{{%info "XAP 11.0 is scheduled for release in April 2016"%}}
 If your're looking for the latest stable release, please refer to **10.2.1** - [Download](http://www.gigaspaces.com/xap-download) | [XAP docs](/xap102) | [XAP.NET docs](/xap102net)
 {{%/info%}}
 
