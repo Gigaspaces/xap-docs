@@ -20,6 +20,7 @@ GigaSpaces is being tested with the following operating systems (32bit and 64bit
 
 - Windows 2008 Server SP2
 - Linux RHEL 5.x/6.x
+- CentOS 7/7.1 
 - Solaris 10
 
 For information on VMWare support please refer to [VMWare guidelines](/release_notes/101vmware-guidelines.html).
