@@ -23,13 +23,18 @@ A XAP web processing unit can use [Jetty](http://www.eclipse.org/jetty/) as the 
 
 {{%panel%}}
 
-XAP 10.0 ships with Jetty 8.1.8.v20121106. However, it is possible to use Jetty 9.1.3.v20140225.
+XAP 11.0 ships with Jetty 8.1.8.v20121106. However, it is possible to use Jetty 9.3.7.v20160115.
 
-To install Jetty 9.1.3.v20140225 follow these steps:
+To install Jetty 9.3.7.v20160115 follow these steps:
 
 1. Rename the jar file in `<XAPHOME>/lib/platform/openspaces/gs-openspaces-jetty-9.jar` to `gs-openspaces-jetty.jar`
-2. Replace the files in the `<XAPHOME>/lib/platform/jetty` directory  with the Jetty 9.1.3.v20140225 distribution jar files.
-3. With version 9 the connector configuration has [changed](#jetty9).
+2. Replace the files in the `<XAPHOME>/lib/platform/jetty` directory with the Jetty 9.3.7.v20160115 jars from the following folders:
+   * `<Jetty>/lib/*.jar`
+   * `<Jetty>/lib/annotations/*.jar`
+   * `<Jetty>/lib/websocket/*.jar`
+   * `<Jetty>/lib/apache-jsp/*.jar`
+3. Also, Download cdi-api-2.0-EDR1.jar and place it at under the Jetty directory as well. The file could be downloaded from here: [http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar](http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar)
+4. With version 9 the connector configuration has [changed](#jetty9).
 
 {{%/panel%}}
 
@@ -614,7 +619,7 @@ With this version the connector configuration has changed. Here is a complete ex
                 <value>org.eclipse.jetty.plus.webapp.EnvConfiguration</value>
                 <value>org.eclipse.jetty.plus.webapp.PlusConfiguration</value>
                 <value>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</value>
-                <value>org.eclipse.jetty.webapp.TagLibConfiguration</value>
+                <value>org.eclipse.jetty.annotations.AnnotationConfiguration</value>
             </list>
         </property>
         <property name="sessionHandler" ref="secureSessionHandler"/>

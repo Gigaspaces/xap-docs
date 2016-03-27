@@ -149,7 +149,7 @@ After going through the previous tutorial [Step Two - Creating the Hello World A
 
 #### Starting the Service Grid Components
 
-1. Start **GigaSpaces Management Center (GS-UI)** by running `<XAP Root>/bin/gs-ui.bat(.sh)`.
+1. Start **GigaSpaces Management Center (GS-UI)** by running `<XAP Root>/bin/gs-ui.(sh/bat)`.
 1. Start a **GigaSpaces Agent (GSA)** by running `<XAP Root>/bin/gs-agent.(sh/bat)`.
 The GSA, by default, will start 2 local Grid Service Containers, and manage a global Grid Service Manager and a global Lookup Service.
 
@@ -178,7 +178,7 @@ The Service Grid now has 3 **Grid Service Containers**.
 
 {{% anchor Configure Scale 3 and Build %}} **Configuring the application to be partitioned over 3 instances**
 
-1. Edit the processor's  **pu.xml** configuration file located under `<XAP root>/examples/helloworld/processor/src/META-INF/spring` folder.
+1. Edit the processor's  **pu.xml** configuration file located under `<XAP root>/examples/helloworld/processor/src/main/resources/META-INF/spring` folder.
 1. Uncomment, or add the following SLA bean definition, which contains the deployment configuration, to the **pu.xml** file:
 
 
@@ -190,20 +190,24 @@ The Service Grid now has 3 **Grid Service Containers**.
 </os-sla:sla>
 ```
 
-1. Build the processor Processing Unit by running `<Example Root>/build.bat(.sh) dist`.
-This compiles the processor into a JAR file, ready for deployment located under `<Example Root>/Processor/PU/hello-processor.jar`.
+1. Build the processor Processing Unit by running `<Hello World Example Root>/build.(sh/bat) package`.
+This compiles the processor into a JAR file, ready for deployment located under `<Hello World Example Root>/processor/target/hello-processor.jar`.
 
 {{% anchor Deploy 3 %}}
 **Deploy the Hello World Processor as a partition of 3 instances**
 
+There are 2 ways to deploy the processing unit jar:
+1. Run the next command: `<Hello World Example Root>/build.(sh/bat) deploy-processor` and wait for the processing units to be deployed.
+
+Alternatively, you can deploy the jar using **GigaSpaces Management Center (GS-UI)**.
 1. Click the **Deploy Processing Unit Button** ![deploy_processing_unit_button.jpg](/attachment_files/deploy_processing_unit_button.jpg) to open the **Deployment Wizard** dialog.
 1. Click the **Processing Unit** field **...** button to browse for the processing unit JAR file.
-1. Browse to the **hello-processor.jar** JAR file, located at `<Example Root>/Processor/PU` folder and select it.
+1. Browse to the **hello-processor.jar** JAR file, located at `<Hello World Example Root>/processor/target` folder and select it.
 1. Click the **Deploy** button, to deploy and wait for the processing unit instances to be provisioned to the running Grid Service Containers.
 
 #### Running the Feeder
 
-1. Start the feeder by running `<Example root>/build.bat(.sh) run-feeder`
+1. Start the feeder by running `<Hello World Example Root>/build.(sh/bat) run-feeder`
 
   {{% anchor Output 3 %}}
 
@@ -232,7 +236,7 @@ Before deploying the application with a backup, we first undeploy the currently 
 {{% anchor Configure Scale 2backup and Build %}}
 **Configuring scaling to be partitioned over 2 instances, with 1 backup each**
 
-1. Edit the processor's  **pu.xml** configuration file located under `<XAP root>/examples/helloworld/processor/src/META-INF/spring` folder.
+1. Edit the processor's  **pu.xml** configuration file located under `<XAP root>/examples/helloworld/processor/src/main/resources/META-INF/spring` folder.
 1. Uncomment, or add the following SLA bean definition, which contains the deployment configuration, to the **pu.xml** file (the number-of-backups sets the number of backups per instance):
 
 
@@ -245,8 +249,8 @@ Before deploying the application with a backup, we first undeploy the currently 
 </os-sla:sla>
 ```
 
-1. Build the processor Processing Unit by running `<Example Root>/build.bat(.sh) dist`.
-This compiles the processor into a JAR file, ready for deployment located under `<Example Root>/Processor/PU/hello-processor.jar`.
+1. Build the processor Processing Unit by running `<Hello World Example Root>/build.(sh/bat) package`.
+This compiles the processor into a JAR file, ready for deployment located under `<Hello World Example Root>/processor/target/hello-processor.jar`.
 
 {{% anchor Deploy 2 with backup %}}
 **Deploy the Hello World Processor with 2 Primary and 2 Backup Instances**
@@ -254,12 +258,12 @@ This compiles the processor into a JAR file, ready for deployment located under 
 1. Start one more local **Grid Service Containers**, by right-clicking **gsa-1** in the **Hosts** tab and selecting **Start GSC**. The Service Grid should now have 4 Grid Service Containers.
 1. Click the **Deploy Processing Unit Button** ![deploy_processing_unit_button.jpg](/attachment_files/deploy_processing_unit_button.jpg) to open the **Deployment Wizard** dialog.
 1. Click the **Processing Unit** field **...** button to browse for the processing unit JAR file.
-1. Browse to the **hello-processor.jar** JAR file located at `<Example Root>/Processor/PU` folder and select it.
+1. Browse to the **hello-processor.jar** JAR file located at `<Hello World Example Root>/processor/target` folder and select it.
 1. Click the **Deploy** button, to deploy and wait for the processing unit instances to be provisioned to the running Grid Service Containers.
 
 #### Running the Feeder
 
-1. Start the feeder by running `<Example root>/build.bat(.sh) run-feeder`.
+1. Start the feeder by running `<Hello World Example Root>/build.(sh/bat) run-feeder`.
 
 #### Expected Output for the 2 Primary and 2 Backup Instances Deployment
 
