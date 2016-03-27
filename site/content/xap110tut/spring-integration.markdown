@@ -3,7 +3,7 @@ type: post110
 title:  Spring Integration
 categories:  XAP110TUT
 parent: none
-weight: 10000
+weight: 2000
 ---
 
 
