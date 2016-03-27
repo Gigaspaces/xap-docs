@@ -402,18 +402,199 @@ private IDataProcessor dataProcessor;
 {{% /tab %}}
 {{% /tabs %}}
 
+**Steps to run the application inside IntelliJ IDE:**
+
+{{% anchor JImporting Project to the IDE %}}
+
+**Importing the project into IntelliJ**
+
+1. Import the hello world project with 3 modules **common**, **pnrocessor**, and **feeder** located under the `<XAP Root>/examples/data` folder.
+
+{{%accordion%}}
+{{%accord title=" How do I do that..."%}}
+{{% panel %}}
+
+
+**Importing the sample projects into the IDE**
+
+* Select **File** > **New** > **Project from Existing Sources...**.
+* Browse to `<XAP Root>/examples/data` folder and choose the file `pom.xml` and click **OK**.
+
+
+
+![intellij-ide-data-1.png](/attachment_files/intellij-ide-data-1.png)
+
+
+
+* Don't change the default settings of this page and click **Next**.
+&nbsp;
+
+* Enable the **IDE** profile and disable the **Default** profile then click **Next**.
+
+
+
+![intellij-ide-2.png](/attachment_files/intellij-ide-2.png)
+
+
+* Click **Next**.
+&nbsp;
+
+* Select project SDK and click **Next**.
+&nbsp;
+
+* Enter Project name and location then click **Finish**.
+
+{{% /panel %}}
+{{%/accord%}}
+{{%/accordion%}}
+
+{{% anchor Create Run Configurations in IDE %}} **Create Run Configurations**
+&nbsp;
+
+1. Execute the following command from the project root directory `<XAP Root>/examples/helloworld`:
+
+```bash
+build.(sh/bat) intellij
+```
+{{% anchor Create Run Configurations in IDE %}}
+
+
+
+{{% anchor Run Processor in IDE %}} **Running the Processor**
+
+
+1. From the toolbar at the top of the screen, select **Run > Run... > Processor**.
+
+{{% anchor JRun Feeder in IDE %}}
+
+**Waiting for the Processor to instantiate**
+
+1. Before running the feeder, you should wait for the following output to appear in the **Run tab** at the bottom of the screen:
+    Processor instantiated, waiting for messages feed...
+This indicates the Processor is up and running.
+
+{{% anchor JRun Feeder in IDE2 %}}
+
+**Running the Feeder**
+
+
+1. From the toolbar at the top of the screen, select **Run > Run... > Feeder**.
+
+{{% anchor JView Output %}}
+
+You can use the Management Console to view the Object count and statistics for the different operations:
+
+![ide-gs-ui-stats.jpg](/attachment_files/ide-gs-ui-stats.jpg)
+
+#### Expected output
+
+Running the processor and the feeder results in the following output, which can be viewed in the **Run tab** at the bottom of the screen.
+Press on Processor or Feeder to switch between the output consoles.
+
+**Feeder expected output**
+	    
+The feeder starts, writes unprocessed data objects both by directly writing them to the space
+and by using OpenSpaces Remoting. The JMS feeder uses JMS API to feed unprocessed data objects. It
+does so by using a MessageConverter that converts JMS ObjectMessages to the data objects.
+
+```bash
+  --- STARTING FEEDER WITH CYCLE [1000]
+  --- STARTING FEEDER WITH CYCLE [1000]
+  --- STARTING REMOTING WITH CYCLE [1000]
+  --- REMOTING PARAMETER id[null] type[0] rawData[FEEDER 1459064046345] data[null] processed[false]
+  --- STARTING BROADCAST REMOTING COUNTER WITH CYCLE [1000]
+  --- STARTING VIEW COUNTER WITH CYCLE [1000]
+  2016-03-27 10:34:06,364  INFO [org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainer] - Processing unit(s) started successfully
+  --- REMOTING RESULT   id[null] type[0] rawData[FEEDER 1459064046345] data[PROCESSED : FEEDER 1459064046345] processed[true]
+  --- FEEDER WROTE id[2] type[1] rawData[FEEDER 1459064047265] data[null] processed[false]
+  --- JMS WROTE id[-2] type[1] rawData[JMS_FEEDER 1459064047307] data[null] processed[false]
+  --- REMOTING PARAMETER id[null] type[1] rawData[FEEDER 1459064047337] data[null] processed[false]
+  ---- VIEW COUNT IS [0]
+  **** BROADCAST REMOTING COUNT IS [0]
+    .
+    .
+    .
+  ---- VIEW COUNT IS [2]
+  --- REMOTING RESULT   id[null] type[2] rawData[FEEDER 1459064048338] data[PROCESSED : FEEDER 1459064048338] processed[true]
+  --- FEEDER WROTE id[4] type[3] rawData[FEEDER 1459064049265] data[null] processed[false]
+  --- JMS WROTE id[-4] type[3] rawData[JMS_FEEDER 1459064049307] data[null] processed[false]
+  --- REMOTING PARAMETER id[null] type[3] rawData[FEEDER 1459064049338] data[null] processed[false]
+  **** BROADCAST REMOTING COUNT IS [4]
+  ---- VIEW COUNT IS [4]
+  .
+  .
+  .
+```
+
+
+**Processor expected output**
+
+The processor prints the _id_, _type_, _rawData_ and _info_ attributes for each messages it takes for processing:
+
+
+```bash
+ ++++ SAYING : id[null] type[0] rawData[FEEDER 1459064046345] data[null] processed[false]
+ ------ PROCESSED : id[null] type[0] rawData[FEEDER 1459064046345] data[PROCESSED : FEEDER 1459064046345] processed[true]
+ ++++ SAYING : id[null] type[1] rawData[FEEDER 1459064047337] data[null] processed[false]
+ ------ PROCESSED : id[2] type[1] rawData[FEEDER 1459064047265] data[PROCESSED : FEEDER 1459064047265] processed[true]
+ ***** COUNT DATA PROCESSED CALLED : 0
+ ------ PROCESSED : id[null] type[1] rawData[FEEDER 1459064047337] data[PROCESSED : FEEDER 1459064047337] processed[true]
+ ------ PROCESSED : id[-2] type[1] rawData[JMS_FEEDER 1459064047307] data[PROCESSED : JMS_FEEDER 1459064047307] processed[true]
+ ++++ SAYING : id[null] type[2] rawData[FEEDER 1459064048338] data[null] processed[false]
+ ***** COUNT DATA PROCESSED CALLED : 2
+    .
+    .
+    .
+ ------ PROCESSED : id[3] type[2] rawData[FEEDER 1459064048265] data[PROCESSED : FEEDER 1459064048265] processed[true]
+ ------ PROCESSED : id[null] type[2] rawData[FEEDER 1459064048338] data[PROCESSED : FEEDER 1459064048338] processed[true]
+ ------ PROCESSED : id[-3] type[2] rawData[JMS_FEEDER 1459064048307] data[PROCESSED : JMS_FEEDER 1459064048307] processed[true]
+ ++++ SAYING : id[null] type[3] rawData[FEEDER 1459064049338] data[null] processed[false]
+ ***** COUNT DATA PROCESSED CALLED : 4
+    .
+    .
+    .
+```
+
+**Running the example from IntelliJ IDE with replicated space**
+
+A replicated topology consists of a master Space (primay) and a slave Space (backup). All entries are replicated from one to the other.
+In the case of failover, the backup Space resume the primary role.
+&nbsp;
+
+After importing the project to IntelliJ IDE and creating run configuration as explained before.
+&nbsp;
+
+Run the **Processor Primary** configurations - from the toolbar at the top of the screen, select **Run > Run... > Processor Primary**.
+&nbsp;
+
+Run the **Processor Backup** configurations - from the toolbar at the top of the screen, select **Run > Run... > Processor Backup**.
+&nbsp;
+
+Run the **Feeder** configurations - from the toolbar at the top of the screen, select **Run > Run... > Feeder**.
+&nbsp;
+
+Now all the data is processed only by the Processor Primary. (As is can be seen at the console's output). 
+&nbsp;
+
+Next, to simulate failover, stop the Processor Primary process by clicking the stop button as seen in the picture below.
+
+![intellij-ide-data-stop-processor.png](/attachment_files/intellij-ide-data-stop-processor.png)
+
+
+Then you will see the data is no longer processed by "Processor Primary" but it is processed by "Processor Backup" while the "Feeder" continues to write unprocessed data. 
+
 # Building and Packaging
 
-This example includes a `build.xml` `ant` file and with a `build.bat/sh` script to invoke `Ant` (there is no need to pre-install `Ant`, the `Ant` jars are already bundled in the `<XAP Root>/lib/platform` directory).
+This example includes a `build.(sh/bat)` script to invoke `Maven` (there is no need to pre-install `Maven`, if `Maven` is not installed on your machine, then the script will use `Maven` installation folder that located at `<XAP Root>/tools/maven/apache-maven-3.2.5`)
 
 From the `<Example Root>` directory (`<XAP Root>/examples/data`) call:
 
 
 ```bash
-build.bat/sh build
+build.bat/sh compile
 ```
 
-This compiles the code to a `pu` directory and copies the Processing Unit Deployment Descriptors, namely the `pu.xml` and `sla.xml`.
+This compiles the code to a `target` directory and copies the Processing Unit Deployment Descriptors, namely the `pu.xml` and `sla.xml`.
 
 {{% note %}}
 The Deployment Descriptor should always reside under the `META-INF\spring` directory of your application.
@@ -421,25 +602,30 @@ The Deployment Descriptor should always reside under the `META-INF\spring` direc
 
 # Deployment
 
-The example uses ant as its build tool and uses a standard `build.xml` file. It comes with a build script that runs Ant automatically. Running the build script with no parameters within the current directory will list all the relevant tasks that can be run with this example.
+The example uses maven as its build tool. It comes with a build script that runs Maven automatically. Running the build script with no parameters within the current directory will list all the relevant tasks that can be run with this example.
 
-Running `build.(sh/bat) build` will compile all the different modules. In case of the Processor and Feeder modules, it will compile the classes directly into their respective PU structure.
+Running `build.(sh/bat) compile` will compile all the different modules. In case of the Processor and Feeder modules, it will compile the classes directly into their respective PU structure.
 
-Running `build.(sh/bat) dist` will finalize the processing unit structure of both the Processor and the Feeder by copying the Common module jar file into the `lib` directory within the processing unit structure. In case of the processor module, it will copy the jar file to `processor/pu/data-processor/lib`, and will make `processor/pu/data-processor` a ready to use processing unit.
+Running `build.(sh/bat) package` will finalize the processing unit structure of both the Processor and the Feeder by copying the Common module jar file into the `lib` directory within the processing unit structure. In case of the processor module, it will copy the jar file to `processor/target/data-processor/lib`, and will make `processor/target/data-processor.jar` a ready to use processing unit.
+
+Running `build.(sh/bat) intellij` will create run configuration for IntelliJ IDE, allowing you to run the Processor and the Feeder using IntelliJ run (or degub) targets.
 
 In order to deploy the data example onto the Service Grid, simply run gs-agent which will start a GSM and **two** GSCs (note, we need two GSCs because of the SLA defined within the processor module). Next, `build.(sh/bat) deploy` will need to be executed. The task will deploy the `processor.jar` and the `feeder.jar` onto the running GSM.
 This will cause the feeder to be deployed into one of the GSC and start feeding unprocessed data into the two processing units.
 Run the GS-UI in order to see the 4 PU instances deployed (two partitions, each with one backup).
 
+Running 'build.(sh/bat) undeploy' will remove all of the processing units of this example from the service grid.
+
 Another option to deploy the example can be using the GS CLI using the deploy option. An interesting example of externally providing the SLA that applies to the deployed processing unit can be running:
 
 
 ```bash
-gs.(sh/bat) deploy -sla ../examples/data/partitioned-sla.xml ../examples/data/processor/dist/data-processor.jar
+'gs.(sh/bat) deploy -sla ../examples/data/partitioned-sla.xml ../examples/data/processor/target/data-processor.jar'.
 ```
 
 This allows to deploy the data-processor example using a partitioned space (and not a partitioned-sync2backup) which is defined in the `sla.xml`.
-In order to run the feeder using the GS CLI please execute `gs.(sh/bat) deploy data-feeder/dist/data-feeder.jar`.
+
+In order to run the feeder using the GS CLI please execute `gs.(sh/bat) deploy ../examples/data/feeder/target/data-feeder.jar`.
 
 Some ways to play with the examples:
 

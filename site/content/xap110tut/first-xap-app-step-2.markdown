@@ -233,6 +233,11 @@ public static void main(String [] args) {
     feeder.feed(1000);   // run the feeder (start feeding)
 
     feeder.readResults();   // read back results
+    
+    feeder.close();
+
+    System.exit(0);
+
 }
 ```
 
@@ -284,6 +289,16 @@ public void readResults(){
 }
 ```
 
+Before existing, the space proxy of the spaced needed to be closed.
+
+
+```java
+ private void close() throws Exception {
+ 
+        spaceProxyConfigurer.close();
+    }
+    
+```
 Next, we compile and run the sample application
 
 
@@ -398,7 +413,7 @@ Use the _Display Selected Console_ button ![display_selected_console_button_with
 **Feeder expected output**
 
 
-The feeder starts, writes 100 message objects to the space, reads and prints one of them at random, and finally prints the number of processed messages in the space:
+The feeder starts, writes 1000 message objects to the space, reads and prints one of them at random, and finally prints the number of processed messages in the space:
 
 ```bash
     Starting the Feeder (Will wait for the space to initialize first...)
@@ -430,19 +445,129 @@ The processor prints the _id_ and _info_ attributes for each messages it takes f
 ```
 
 
-#### The Launch Configurations in the IDE
 
-To view the Launch configurations do the following:
 
-1. From the toolbar at the top of the screen, select **Run > Run Dialog...** to open the **Run** dialog again
-2. Click the **+** left to **Java Application**, to unfold it
+**Steps to run the application inside IntelliJ IDE:**
 
-**Launch configuration to run the Processor inside the IDE**
-The launch is configured to use the **hello-feeder** project
-and to run the main class found in the class **org.openspaces.examples.feeder.Feeder**
+If you haven't already done so,[download GigaSpaces and set up your development environment]({{%latestjavaurl%}}/installation.html)
+- This is needed for running the tutorial sample application.
 
-The url the feeder is using to connect to the space is written in the
+{{% anchor JImporting Project to the IDE %}}
 
-**Launch configuration to run the Processor inside the IDE**
+**Importing the project into IntelliJ**
 
+1. Import the hello world project with 3 modules **common**, **processor** and **feeder** located under the `<XAP Root>/examples/helloworld` folder.
+
+{{%accordion%}}
+{{%accord title=" How do I do that..."%}}
+{{% panel %}}
+
+
+**Importing the sample projects into the IDE**
+
+* Select **File** > **New** > **Project from Existing Sources...**.
+* Browse to `<XAP Root>/examples/helloworld` folder and choose the file `pom.xml` and click **OK**.
+
+
+
+![intellij-ide-hello-world-1.png](/attachment_files/intellij-ide-hello-world-1.png)
+
+
+
+* Don't change the default settings of this page and click **Next**.
+&nbsp;
+
+* Enable the **IDE** profile and disable the **Default** profile then click **Next**.
+
+
+
+![intellij-ide-2.png](/attachment_files/intellij-ide-2.png)
+
+
+* Click **Next**.
+&nbsp;
+
+* Select project SDK and click **Next**.
+&nbsp;
+
+* Enter Project name and location then click **Finish**.
+
+{{% /panel %}}
+{{%/accord%}}
+{{%/accordion%}}
+
+{{% anchor Create Run Configurations in IDE %}} **Create Run Configurations**
+&nbsp;
+
+1. Execute the following command from the project root directory `<XAP Root>/examples/helloworld`:
+
+```bash
+build.(sh/bat) intellij
+```
+{{% anchor Create Run Configurations in IDE %}}
+
+{{% anchor Run Processor in IDE %}} **Running the Processor**
+
+
+1. From the toolbar at the top of the screen, select **Run > Run > Processor**.
+
+{{% anchor JRun Feeder in IDE %}}
+
+**Waiting for the Processor to instantiate**
+
+1. Before running the feeder, you should wait for the following output to appear in the **Run tab** at the bottom of the screen:
+    Processor instantiated, waiting for messages feed...
+This indicates the Processor is up and running.
+
+{{% anchor JRun Feeder in IDE2 %}}
+
+**Running the Feeder**
+
+
+1. From the toolbar at the top of the screen, select **Run > Run > Feeder**.
+
+{{% anchor JView Output %}}
+
+You can use the Management Console to view the Object count and statistics for the different operations:
+
+![ide-gs-ui-stats.jpg](/attachment_files/ide-gs-ui-stats.jpg)
+
+#### Expected output
+
+Running the processor and the feeder results in the following output, which can be viewed in the **Run tab** at the bottom of the screen.
+Press on Processor or Feeder to switch between the output consoles.
+
+**Feeder expected output**
+
+
+The feeder starts, writes 1000 message objects to the space, reads and prints one of them at random, and finally prints the number of processed messages in the space:
+
+```bash
+    Starting the Feeder (Will wait for the space to initialize first...)
+    FEEDER WROTE 1000 objects
+    Here is one of them printed out: id[47] info[Hello World !!]
+    There are 1000 Message objects in the space now
+  .
+```
+
+**Processor expected output**
+
+The processor prints the _id_ and _info_ attributes for each messages it takes for processing:
+
+
+```bash
+    Processor PROCESSING : id[445] info[Hello ]
+    Processor PROCESSING : id[904] info[Hello ]
+    Processor PROCESSING : id[896] info[Hello ]
+    Processor PROCESSING : id[446] info[Hello ]
+    Processor PROCESSING : id[889] info[Hello ]
+       .
+       .
+       .
+    Processor PROCESSING : id[893] info[Hello ]
+    Processor PROCESSING : id[905] info[Hello ]
+    Processor PROCESSING : id[897] info[Hello ]
+    Processor PROCESSING : id[875] info[Hello ]
+    Processor PROCESSING : id[900] info[Hello ]
+```
 

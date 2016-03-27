@@ -68,24 +68,24 @@ Once you extract the zip file, open a shell / command prompt window in the direc
 
 
 ```bash
-build.(sh/bat) dist
+build.(sh/bat) package
 ```
 
 You should see an output similar to the following:
 
 
 ```bash
-C:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\examples\web\plain>build dist
-Buildfile: build.xml
+C:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\examples\web\plain>build package
 
-build:
-    [mkdir] Created dir: C:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\examples\web\plain\WebContent\WEB-INF\classes
 
-dist:
-      [jar] Building jar: C:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\examples\web\plain\PlainWebAppExample.war
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.812s
+[INFO] Finished at: Mon Feb 29 10:04:45 IST 2016
+[INFO] Final Memory: 12M/303M
+[INFO] ------------------------------------------------------------------------
 
-BUILD SUCCESSFUL
-Total time: 1 second
 ```
 
 At the end of the process, the web application's war file will be created in the example's directory.
@@ -101,7 +101,7 @@ The deploy command can be issued in three ways:
 - By using the GigaSpaces GUI. You should call the (`<gs root>/bin/gs-ui.(sh/bat)` script to start the GigaSpaces management console. Next, you should choose the "Hosts" view and verify that you see your local machine and the Grid Service Manager and the Grid Service Container under it. You can also see the running GSC in the center of the screen. Once this was verified, you should do the following to deploy the .war file:
     1. Click the **Deploy Processing Unit Button** ![deploy_processing_unit_button.jpg](/attachment_files/deploy_processing_unit_button.jpg) to open the **Deployment Wizard** dialog.
     1. Click the **Select Processing Unit jar file button** **...**, to browse for the .war file.
-    1. Browse to the **PlainWebAppExample.war** .war file, located under `<gs root>/examples/web/plain`, and select it.
+    1. Browse to the **PlainWebAppExample.war** .war file, located under `<gs root>/examples/web/plain/target`, and select it.
     1. Click the **Deploy** button, to deploy and wait for the web application to be provisioned to the running Grid Service Container. Once provisioned, you will see a small jetty icon under the processing unit instance tree node in the "Deplyoed Processing Units" tab:
 
 ![after-deploy.jpg](/attachment_files/after-deploy.jpg)
@@ -290,32 +290,33 @@ Once deployed, you will see the two instances of the web application deployed wi
 ```bash
 Starting apache-lb-agent with line:
 "c:\Java\jdk1.6.0_11\bin\java"  -server -XX:+AggressiveOpts -showversion -Xmx512m
--Xbootclasspath/p:.;"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\xml\serializer.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\xml\xalan.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\xml\xercesImpl.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\xml\xml-apis.jar"
--Dlb.vmDir="c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\../tools/apache" -Dcom.gs.jini_lus.locators=
+-Xbootclasspath/p:.;"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\serializer.jar";
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xalan.jar";
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xercesImpl.jar";
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xml-apis.jar"
+-Dlb.vmDir="c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\../tools/apache" -Dcom.gs.jini_lus.locators=
 -Dcom.gs.jini_lus.groups=myGroup -Dsun.rmi.dgc.client.gcInterval=36000000 -Dsun.rmi.dgc.server.gcInterval=36000000
 -Djava.rmi.server.hostname=""HOST01"" -Djava.rmi.server.RMIClassLoaderSpi=default -Djava.rmi.server.logCalls=false
-"-Dcom.gs.home=c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\.."
--Djava.security.policy="c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\policy\policy.all"
--classpath ;.;"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..";.;
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\required\commons-logging.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\required\gs-openspaces.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\required\gs-runtime.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\required\spring.jar";.;.;
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\optional\spring\cglib-nodep-2.1_3.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\optional\spring\common-annotations.jar";.;
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\jdbc\h2.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\jdbc\hsqldb.jar";.;
-"c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\\..\lib\platform\velocity\velocity-dep-1.5.jar";
+"-Dcom.gs.home=c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\.."
+-Djava.security.policy="c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\policy\policy.all"
+-classpath ;.;"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..";.;
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\required\commons-logging.jar";
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\required\gs-openspaces.jar";
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\required\gs-runtime.jar";
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\required\spring.jar";.;.;
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\optional\spring\cglib-nodep-2.1_3.jar";
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\optional\spring\common-annotations.jar";.;
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\jdbc\h2.jar";
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\jdbc\hsqldb.jar";.;
+"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\velocity\velocity-dep-1.5.jar";
 org.openspaces.pu.container.jee.lb.apache.ApacheLoadBalancerAgent -apache c:\Apache2.2
 
-java version "1.6.0_11"
-Java(TM) SE Runtime Environment (build 1.6.0_11-b03)
-Java HotSpot(TM) Server VM (build 11.0-b16, mixed mode)
+java version "1.8.0_72"
+Java(TM) SE Runtime Environment (build 1.8.0_72-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 25.72-b15, mixed mode)
 
-Log file: c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\..\logs\2009-06-09~22.15-gigaspaces-service-host01-7764.log
+
+Log file: c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\..\logs\2016-02-29~9.15-gigaspaces-service-host01-7764.log
 Starting Apache Load Balancer Agent...
 
 groups [myGroup], locators [null]
@@ -336,7 +337,7 @@ Make sure Apache is configured with [Include c:\Apache2.2\conf\gigaspaces/*.conf
 [PlainWebAppExample]: Adding [0178396a-b610-4297-8f61-0539f80dcc85] [192.168.2.102:8081/PlainWebAppExample]
 [PlainWebAppExample]: Adding [1e95fe3d-c971-4f36-a44f-a3c09400cac5] [192.168.2.102:8082/PlainWebAppExample]
 [PlainWebAppExample]: Detected as dirty, updating config file...
-[PlainWebAppExample]: Using balancer template [c:\GS-Releases\gigaspaces-xap-premium-9.0.0-ga\bin\..\tools\apache\balancer-template.vm]
+[PlainWebAppExample]: Using balancer template [c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\..\tools\apache\balancer-template.vm]
 Jun 9, 2009 10:15:27 PM org.apache.velocity.runtime.log.JdkLogChute log
 INFO: FileResourceLoader : adding path '.'
 [PlainWebAppExample]: Updated config file
@@ -369,3 +370,22 @@ GSC INFO [com.gigaspaces.grid.gsc] - Instantiated PlainWebAppExample [1] in 3.03
 **Step 2:** Next, **terminate the process of the GSC you located**. Quickly switch to the GigaSpaces user interface - you will see that this GSC has disappeared. You will also see that the application instance which ran on the terminated GSC is re-instantiated on the empty GSC. So in effect, **the application self-healed itself** so that all components are still running!
 **Step 3:** The load balancer agent will pick up the change in runtime state, and will update the apache load balancer (this may take a few seconds). You can now refresh the application and load balancer summary screen and verify that **everything still works as before.**
 
+After you are done with the example, you can undeploy it by using the command line.
+
+```bash
+<gs root>/examples/web/plain/build.(sh/bat) undeploy
+```
+
+{{%accordion%}}
+{{%accord title=" **Click to show expected output...**"%}}
+
+
+```bash
+2016-02-29 10:16:31,300 CONFIG [com.gigaspaces.logger] Log file: c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\..\logs\2016-02-29~10.16-gigaspaces-service-host01-7764.log
+Found 1 GSMs
+Command successful
+
+
+```
+{{%/accord%}}
+{{%/accordion%}}
