@@ -1,7 +1,7 @@
 ---
-type: post
+type: post110
 title:   Scaling the Data Access Layer
-categories: SBP
+categories: XAP110TUT
 weight: 300
 parent: first-web-app.html
 ---
