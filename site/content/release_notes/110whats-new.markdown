@@ -10,6 +10,15 @@ This page lists the main new features in XAP 11.0 (Java and .NET editions).
 
 It's not an exhaustive list of all new features. For a full change log for 11.0 please refer to the [new features](./110new-features.html) and [fixed issues](./110fixed-issues.html) pages.
 
+
+# SQL Functions
+
+XAP supports built in and user defined SQL Functions.
+
+{{<infosign>}} For more information see [SQL Functions](/xap110/query-sql.html#sql-functions).
+
+
+
 {{%anchor geo%}}
 
 # GeoSpatial Queries
