@@ -150,7 +150,9 @@ export NIC_ADDR=10.10.10.100
 With the above approach, you can leverage multiple network cards within the same machine to provide a higher level of hardware resiliency, and utilize the network bandwidth in an optimal manner, by binding different JVM processes running on the same physical machine to different IP addresses. One example of this would be four GSCs running on the same machine, where two of the them are using IP_1 and the other two are using IP_2.
 {{% /tip %}}
 
-{{% exclamation %}} For more information, see [How to Configure an Environment With Multiple Network-Cards (Multi-NIC)](./network-multi-nic.html)
+{{% note %}}
+For more information, see [How to Configure an Environment With Multiple Network-Cards (Multi-NIC)](./network-multi-nic.html)
+{{%/note%}}
 
 # Ports
 GigaSpaces XAP uses TCP/IP for most of its remote operations. The following components within XAP require open ports:
@@ -180,10 +182,11 @@ A running GSC tries to use the first free port that is not used out of the port 
 When there are several GSCs running on the same machine, or several servers running on the same machine, it is recommended that you set a different LRMI port range for each JVM.  Having 100 as a port range for the GSCs supports a large number of clients (a few thousand).
 {{% /tip %}}
 
-# Client LRMI Connection Pool and Server LRMI Connection Thread Pool
+#### Client LRMI Connection Pool and Server LRMI Connection Thread Pool
 
-
-{{%popup "/attachment_files/sbp/lrmi_archi2.jpg"%}}
+{{%align "center"%}}
+![image](/attachment_files/sbp/lrmi_archi2.jpg)
+{{%/align%}}
 
 The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
 
@@ -454,14 +457,12 @@ The lookup service runs by default as a standalone JVM process started by the GS
 
 # Zones
 
-{{%section%}}
-{{%column width="70%" %}}
+
 The [XAP Zone](./the-sla-overview.html) allows you to "label" a running GSC(s) before starting it. The XAP **Zone** should be used to isolate applications and a Data-Grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs where all these **sharing the same set of LUSs and GSMs**.
-{{%/column%}}
-{{%column width="30%" %}}
-{{%popup   "/sbp/attachment_files/zones.jpg"%}}
-{{%/column%}}
-{{%/section%}}
+
+{{%align "center"%}}
+![image](/sbp/attachment_files/zones.jpg)
+{{%/align%}}
 
 The **Zone** property can be used for example to deploy your Data-Grid into a specific GSC(s) labeled with specific zone(s). The zone is specified prior to the GSC startup, and cannot be changed once the GSC has been started.
 
@@ -623,16 +624,14 @@ To avoid the need to load the same library into each PU instance classloader run
 
 # JVM Tuning
 
-{{%section%}}
-{{%column width="70%" %}}
+
 In most cases, the applications using XAP are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.
 
+{{%align "center"%}}
+![image](/sbp/attachment_files/jvm-vm-memory.jpg)
+{{%/align%}}
+
 Below represents the different XAP processes a virtual or a physical machine may run:
-{{%/column%}}
-{{%column width="30%" %}}
-{{%popup   "/sbp/attachment_files/jvm-vm-memory.jpg"%}}
-{{%/column%}}
-{{%/section%}}
 
 - GSA - Very lightweight process in terms of its memory and CPU usage. This process does not require any tuning. You should have one per machine or in some cases one per Zone.
 - GSC - The runtime environment. This is where the data grid and the deployed processing units are running. This process requires the relevant tuning to address the memory capacity required. Number of GSCs should not exceed: `Total # of cores / 4`. With virtual machine setup you should have one GSC per VM. 
@@ -719,9 +718,9 @@ For JDK 1.6 - CMS mode - good for low latency scenarios:
 -XX:+CMSClassUnloadingEnabled -XX:+CMSParallelRemarkEnabled
 ```
 
-### JDK 1.7/1.8
+### JDK 1.7 - 1.8
 
-For JDK 1.7/1.8 - g1 mode - good for low latency scenarios:
+For JDK 1.7 - 1.8 - g1 mode - good for low latency scenarios:
 
 ```bash
 -server -Xms8g -Xmx8g -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:InitiatingHeapOccupancyPercent=50 -XX:+UseCompressedOops
@@ -830,7 +829,9 @@ For applications that are using relatively large amount of third party libraries
 -XX:PermSize=512m -XX:MaxPermSize=512m
 ```
 
-{{% exclamation %}} GigaSpaces XAP is a Java-based product. .Net and C++ applications using XAP should also be aware the usage of the JVM libraries as part of the .Net and C++ client libraries.
+{{% note %}}
+GigaSpaces XAP is a Java-based product. .Net and C++ applications using XAP should also be aware the usage of the JVM libraries as part of the .Net and C++ client libraries.
+{{%/note%}}
 
 See the [Tuning Java Virtual Machines](./tuning-java-virtual-machines.html) section and the [Java SE 6 HotSpot Virtual Machine Garbage Collection Tuning](http://java.sun.com/javase/technologies/hotspot/gc/gc_tuning_6.html) for detailed JVM tuning recommendations.
 
@@ -926,18 +927,22 @@ With most production environments with static deployment configuration it is adv
 
 By using `com.gigaspaces.grid.gsc.serviceLimit=1` you may avoid a scenario where a new space or failed space instance would be provisioned into a GSC that already hosting a space instance. This may result **Memory Shortage Exception** or **Out of Memory Error** that may cause a provisioning failure.
 
-# Rebalancing - Dynamic Data Redistribution
+### Rebalancing - Dynamic Data Redistribution
 
-## Automatic Rebalancing
+#### Automatic Rebalancing
 XAP supports automatic discovery, rebalancing (aka Dynamic Redistribution of Data) and expansion/contraction of the IMDG **while the application is running**. When deploying an IMDG, the system partitions the data (and the collocated business logic) into logical partitions. You may choose the number of logical partitions or let XAP calculate this number.
 
 The logical partitions may initially run on certain containers, and later get relocated to other containers (started after the data grid has been deployed) on other machines, thus allowing the system to expand and increase its memory and CPU capacity while the application is still running. The number of logical partitions and replicas per partition should be determined at deployment time.  The number of containers hosting the IMDG instances may be changed at runtime.
 
+{{%align "center"%}}
 ![rebalance_util.jpg](/attachment_files/sbp/rebalance_util.jpg)
+{{%/align%}}
 
 The component that is responsible to scale the IMDG at runtime is called the Elastic Service Manager (ESM) and it is used with the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html):
 
+{{%align "center"%}}
 ![flow.gif](/attachment_files/sbp/flow.gif)
+{{%/align%}}
 
 {{% tip %}}
 When using the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html), instances will be continuously re balanced across all available machines.
@@ -978,20 +983,20 @@ You may control the Storage type at the space level, class level or field level.
 
 See the [Controlling Serialization]({{%currentjavaurl%}}/storage-types-controlling-serialization.html) for more details.
 
-# Runtime Files Location
+# Runtime File Location
 GigaSpaces XAP generates some files while the system is running. You should change the location of the generated files location using the following system properties. See below how:
 
 
 | System Property | Description | Default |
 |:----------------|:------------|:--------|
-|`com.gigaspaces.logger.RollingFileHandler.filename-pattern`|The location of log files and their file pattern.| `<gigaspaces-xap root>\logs`|
-|`com.gs.deploy`|The location of the deploy directory of the GSM. |`<gigaspaces-xap root>\deploy`|
-|`com.gs.work`|The location of the work directory of the GSM and GSC. Due to the fact that this directory is critical to the system proper function, it should be set to a local storage in order to avoid failure in case of network failure when a remote storage is used.|`<gigaspaces-xap root>\work`|
-|`user.home`|The location of system defaults config. Used by the GS-UI, and runtime system components.| |
-|`com.gigaspaces.lib.platform.ext` | PUs shared classloader libraries folder. PU jars located within this folder loaded once into the **JVM system classloader** and shared between all the PU instances classloaders within the GSC. In most cases this is a better option than the `com.gs.pu-common` for JDBC drivers and other 3rd party libraries. This is useful option when you  want multiple processing units to share the same 3rd party jar files and do not want to repackage the processing unit jar whenever one of these 3rd party jars changes.| `<gigaspaces-xap root>\lib\platform\ext`|
-|`com.gs.pu-common`|The location of common classes used across multiple processing units. The libraries located within this folder **loaded into each PU instance classloader** (and not into the system classloader as with the `com.gigaspaces.lib.platform.ext`. |`<gigaspaces-xap root>\lib\optional\pu-common`|
-|`com.gigaspaces.grid.gsa.config-directory`|The location of the GSA configuration files. [The GigaSpaces Agent](/product_overview/service-grid.html#gsa) (GSA) manages different process types. Each process type is defined within this folder in an xml file that identifies the process type by its name. |`<gigaspaces-xap root>\config\gsa`|
-|`java.util.logging.config.file`| It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces XAP Services. You may control this setting via the `GS_LOGGING_CONFIG_FILE_PROP` environment variable.| `<gigaspaces-xap root>\config\gs_logging.properties`|
+|com.gigaspaces.logger.RollingFileHandler.filename-pattern|The location of log files and their file pattern.| `<gigaspaces-xap root>\logs`|
+|com.gs.deploy|The location of the deploy directory of the GSM. |`<gigaspaces-xap root>\deploy`|
+|com.gs.work|The location of the work directory of the GSM and GSC. Due to the fact that this directory is critical to the system proper function, it should be set to a local storage in order to avoid failure in case of network failure when a remote storage is used.|`<gigaspaces-xap root>\work`|
+|user.home|The location of system defaults config. Used by the GS-UI, and runtime system components.| |
+|com.gigaspaces.lib.platform.ext | PUs shared classloader libraries folder. PU jars located within this folder loaded once into the **JVM system classloader** and shared between all the PU instances classloaders within the GSC. In most cases this is a better option than the `com.gs.pu-common` for JDBC drivers and other 3rd party libraries. This is useful option when you  want multiple processing units to share the same 3rd party jar files and do not want to repackage the processing unit jar whenever one of these 3rd party jars changes.| `<gigaspaces-xap root>\lib\platform\ext`|
+|com.gs.pu-common|The location of common classes used across multiple processing units. The libraries located within this folder **loaded into each PU instance classloader** (and not into the system classloader as with the `com.gigaspaces.lib.platform.ext`. |`<gigaspaces-xap root>\lib\optional\pu-common`|
+|com.gigaspaces.grid.gsa.config-directory|The location of the GSA configuration files. [The GigaSpaces Agent](/product_overview/service-grid.html#gsa) (GSA) manages different process types. Each process type is defined within this folder in an xml file that identifies the process type by its name. |`<gigaspaces-xap root>\config\gsa`|
+|java.util.logging.config.file| It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces XAP Services. You may control this setting via the `GS_LOGGING_CONFIG_FILE_PROP` environment variable.| `<gigaspaces-xap root>\config\gs_logging.properties`|
 
 {{% note %}}
 The `com.gigaspaces.lib.platform.ext` and the `com.gs.pu-common` are useful to decrease the deployment time in case your processing unit **contains a lot of 3rd party jars files**. In such case, each GSC will download the processing unit jar file (along with all the jars it depends on) to its local working directory from the GSM, and in case of large deployments spanning tens or hundreds of GSCs this can be quite time consuming. In such cases you should consider **placing the jars on which your processing unit depends on** in a shared location on your network, and then point the `com.gs.pu-common` or `com.gigaspaces.lib.platform.ext` directory to this location.

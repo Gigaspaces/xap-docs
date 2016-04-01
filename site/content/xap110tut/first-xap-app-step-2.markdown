@@ -17,28 +17,33 @@ Learn how to create and run a Processing Unit - a scalable unit of deployment, i
 
 There are two components in our scenario:
 
-{{% section %}}
-{{% column width="40%" %}}
-(1)[Processor Processing Unit](#Processor Processing Unit) - Processes Message objects as they are written to the data grid (Space)
+{{%imagertext "/attachment_files/helloworld_processor_processing_unit.gif" %}}
+
+**Processor Processing Unit**
+
+Processes Message objects as they are written to the data grid (Space)
 It contains 3 components: {{<wbr>}}
-a `Polling Container` component that listens to new Message objects written to the `Space`, and a `Processor Bean` that is delegated the actual processing work by the `Polling Container`.
+* `Polling Container` component that listens to new Message objects written to the `Space`<br>
+* `Processor Bean` that is delegated the actual processing work by the `Polling Container`.
+{{%/imagertext%}}
 
-{{% /column %}}
-{{% column width="10%" %}}
-![helloworld_processor_processing_unit.gif](/attachment_files/helloworld_processor_processing_unit.gif)
-{{% /column %}}
-{{% column width="40%" %}}
 
-(2) [Feeder](#Feeder) - an application that feeds unprocessed Message objects to the Space, and after a certain period of time, counts and reads one of them at random.
+{{%imagertext "/attachment_files/helloworld_feeder.gif" %}}
 
-(3) [Message Object](#Object) - a simple POJO with an id and info attributes.
-{{% /column %}}
-{{% column width="10%" %}}
-![helloworld_feeder.gif](/attachment_files/helloworld_feeder.gif)
+**Feeder**
 
-![Message.gif](/attachment_files/Message.gif)
-{{% /column %}}
-{{% /section %}}
+An application that feeds unprocessed Message objects to the Space, and after a certain period of time, counts and reads one of them at random.
+
+{{%/imagertext%}}
+
+{{%imagertext "/attachment_files/Message.gif" %}}
+
+**Message Object**
+
+A simple POJO with an id and info attributes.
+
+{{%/imagertext%}}
+
 
 
 The Processing Unit itself runs within a dedicated processing unit container in a host environment. (This can be your IDE, any Java process, or the GigaSpaces Grid Service Container - more on this in the next tutorial.)
@@ -49,8 +54,7 @@ The Processing Unit itself runs within a dedicated processing unit container in 
 
 # The Workflow
 
-{{% section %}}
-{{% column width="70%" %}}
+{{%imagertext "/attachment_files/Helloworld_workflow.jpg" %}}
 1. The _helloFeeder_ application writes 1000 Message objects (POJOs) to the _space_ and waits.
 
 1. Inside the Processing Unit, the _Polling Container_ continuously removes unprocessed objects from the data grid (one at a time) and hands them to its _Processor Bean_ for processing.
@@ -60,12 +64,7 @@ The Processing Unit itself runs within a dedicated processing unit container in 
 
 1. After waiting 100 milliseconds (to allow for all the objects to be processed), the feeder counts all the processed Message objects inside the _Processor Processing Unit_'s _Space_, and reads one of them at random.
 
-{{% /column %}}
-{{% column width="30%" %}}
-{{%popup   "/attachment_files/Helloworld_workflow.jpg"%}}
-{{% /column %}}
-{{% /section %}}
-
+{{%/imagertext%}}
 
 {{% anchor Jwalkthrough %}}
 
@@ -305,7 +304,7 @@ Next, we compile and run the sample application
 
 {{% anchor JRun All In IDE %}}
 
-# Compiling and Running the Application within your IDE
+### Compiling and Running the Application within your IDE
 
 
 
@@ -320,6 +319,7 @@ If you haven't already done so,[download GigaSpaces and set up your development 
 
 1. Import the **hello-common**, **hello-processor* and **hello-feeder** projects located under the `<XAP Root>/examples/helloworld` folder.
 (After importing, you'll see some errors since the GS_HOME path variable is not set yet)
+
 
 ![ide-2.jpg](/attachment_files/ide-2.jpg)
 
