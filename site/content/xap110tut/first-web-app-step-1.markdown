@@ -77,7 +77,6 @@ You should see an output similar to the following:
 ```bash
 C:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\examples\web\plain>build package
 
-
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -85,7 +84,6 @@ C:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\examples\web\plain>build package
 [INFO] Finished at: Mon Feb 29 10:04:45 IST 2016
 [INFO] Final Memory: 12M/303M
 [INFO] ------------------------------------------------------------------------
-
 ```
 
 At the end of the process, the web application's war file will be created in the example's directory.
@@ -290,7 +288,7 @@ Once deployed, you will see the two instances of the web application deployed wi
 ```bash
 Starting apache-lb-agent with line:
 "c:\Java\jdk1.6.0_11\bin\java"  -server -XX:+AggressiveOpts -showversion -Xmx512m
--Xbootclasspath/p:.;"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\serializer.jar";
+-Xbootclasspath/p:.;"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\xml\serializer.jar";
 "c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xalan.jar";
 "c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xercesImpl.jar";
 "c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xml-apis.jar"
