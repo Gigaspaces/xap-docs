@@ -51,6 +51,10 @@ Performance benchmarks with XAP's In-Memory Data Grid mainly involve testing lat
 
 [Troubleshooting](./troubleshooting.html){{<wbr>}}
 In this guide you will find useful information on how to troubleshoot your XAP application.
+
+[Moving into Production Checklist](./moving-into-production-checklist.html){{<wbr>}}
+The following list should provide you with the main activities to be done prior moving your system into production.
+
 {{%/fpanel%}}
 
 
