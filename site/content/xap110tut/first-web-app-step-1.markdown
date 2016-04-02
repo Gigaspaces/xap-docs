@@ -61,6 +61,7 @@ Here's the code snippet from `SessionContents.jsp` that displays the session att
 When opening this page in a web browser, it looks as follows:
 
 ![plain-welcome.jpg](/attachment_files/plain-welcome.jpg)
+
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -102,7 +103,9 @@ The deploy command can be issued in three ways:
     1. Browse to the **PlainWebAppExample.war** .war file, located under `<gs root>/examples/web/plain/target`, and select it.
     1. Click the **Deploy** button, to deploy and wait for the web application to be provisioned to the running Grid Service Container. Once provisioned, you will see a small jetty icon under the processing unit instance tree node in the "Deplyoed Processing Units" tab:
 
+{{%align center%}}
 ![after-deploy.jpg](/attachment_files/after-deploy.jpg)
+{{%/align%}}
 
 - By using the GigaSpaces command line tool. You should call the following command:
 `<gs root>/bin/gs.(sh/bat) deploy <.war file path>`. Once deployed, the web application deployment will appear in the user interface as described above.
@@ -134,7 +137,9 @@ web.threadPool.maxThreads=100
 
 - By using the GUI (when deploying using the GUI). In the deployment wizard, click **Next**, and then the "+" button in the next screen. You can then specify the deploy properties you want (these will override the values in the `pu.properties` file):
 
+{{%align center%}}
 ![deploy-props-2.jpg](/attachment_files/deploy-props-2.jpg)
+{{%/align%}}
 
 {{% anchor SLA %}}
 
@@ -182,7 +187,10 @@ By default, each application instance provisioned to the GSC will have its own J
 
 
 - By using the GUI (when deploying using the GUI). You can specify the total number of instances and the number of instances per JVM / machine in the dedicated text field in the Deployment wizard. These arguments will override the values in the `pu.properties` file:
+
+{{%align center%}}
 ![sla-props.jpg](/attachment_files/sla-props.jpg)
+{{%/align%}}
 
 {{% anchor LoadBalancing %}}
 
@@ -264,7 +272,7 @@ Finally, we will terminate one of the running containers and watch the failover 
 **Step 4:** Start another GSC by a right click on the gsa under Hosts tab and choosing Start GSC
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshot...**"%}}
+{{%accord title="Click to view screenshot..."%}}
 ![empty-gsui.jpg](/attachment_files/empty-gsui.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -272,7 +280,7 @@ Finally, we will terminate one of the running containers and watch the failover 
 **Step 5:** Deploy the application using the user interface, [as described earlier in this tutorial](#DeployDirections). In the "Number of Instances" text field, type 2, and in the "Maximum Instances --> Per VM" text field type 1.
 
 {{%accordion%}}
-{{%accord title=" **Click to view screenshot...**"%}}
+{{%accord title="Click to view screenshot..."%}}
 ![deploy-2pus.jpg](/attachment_files/deploy-2pus.jpg)
 {{%/accord%}}
 {{%/accordion%}}
@@ -283,30 +291,30 @@ Once deployed, you will see the two instances of the web application deployed wi
 **Step 7:** Start the load balancer agent by calling the script `<gs root>/tools/apache/apache-lb-agent.(sh/bat) -apache <Apache home>`. `Apache home` is the location of the Apache installation on your disk.
 
 {{%accordion%}}
-{{%accord title=" **Click to show expected output...**"%}}
+{{%accord title="Click to show expected output..."%}}
 
 ```bash
 Starting apache-lb-agent with line:
 "c:\Java\jdk1.6.0_11\bin\java"  -server -XX:+AggressiveOpts -showversion -Xmx512m
 -Xbootclasspath/p:.;"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\xml\serializer.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xalan.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xercesImpl.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\xml\xml-apis.jar"
--Dlb.vmDir="c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\../tools/apache" -Dcom.gs.jini_lus.locators=
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\xml\xalan.jar";
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\xml\xercesImpl.jar";
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\xml\xml-apis.jar"
+-Dlb.vmDir="c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\../tools/apache" -Dcom.gs.jini_lus.locators=
 -Dcom.gs.jini_lus.groups=myGroup -Dsun.rmi.dgc.client.gcInterval=36000000 -Dsun.rmi.dgc.server.gcInterval=36000000
 -Djava.rmi.server.hostname=""HOST01"" -Djava.rmi.server.RMIClassLoaderSpi=default -Djava.rmi.server.logCalls=false
 "-Dcom.gs.home=c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\.."
--Djava.security.policy="c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\policy\policy.all"
--classpath ;.;"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..";.;
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\required\commons-logging.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\required\gs-openspaces.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\required\gs-runtime.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\required\spring.jar";.;.;
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\optional\spring\cglib-nodep-2.1_3.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\optional\spring\common-annotations.jar";.;
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\jdbc\h2.jar";
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\jdbc\hsqldb.jar";.;
-"c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\\..\lib\platform\velocity\velocity-dep-1.5.jar";
+-Djava.security.policy="c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\policy\policy.all"
+-classpath ;.;"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..";.;
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\required\commons-logging.jar";
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\required\gs-openspaces.jar";
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\required\gs-runtime.jar";
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\required\spring.jar";.;.;
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\optional\spring\cglib-nodep-2.1_3.jar";
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\optional\spring\common-annotations.jar";.;
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\jdbc\h2.jar";
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\jdbc\hsqldb.jar";.;
+"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\velocity\velocity-dep-1.5.jar";
 org.openspaces.pu.container.jee.lb.apache.ApacheLoadBalancerAgent -apache c:\Apache2.2
 
 java version "1.8.0_72"
@@ -375,7 +383,7 @@ After you are done with the example, you can undeploy it by using the command li
 ```
 
 {{%accordion%}}
-{{%accord title=" **Click to show expected output...**"%}}
+{{%accord title="Click to show expected output..."%}}
 
 
 ```bash

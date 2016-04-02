@@ -15,49 +15,39 @@ In this tutorial you learn how to deploy the Hello World application onto the Gi
 
 # Application Components
 
-{{% section %}}
-{{% column width="70%" %}}
-The Processing Unit that we deploy onto the Service Grid is our Hello World Processor from the [previous step](./first-xap-app-step-2.html).
+{{% imagertext "/attachment_files/Application Components.jpg"%}}
+<br>The Processing Unit that we deploy onto the Service Grid is our Hello World Processor from the [previous step](./first-xap-app-step-2.html).
 Reminder - the Feeder application writes each Message object to the processor Processing Unit, which in turn processes them.
-{{% /column %}}
-{{% column width="30%" %}}
-{{%popup "/attachment_files/Application Components.jpg"%}}
-{{% /column %}}
-{{% /section %}}
+{{% /imagertext %}}
 
 
 
 # Infrastructure (Service Grid) Components
 
-{{%section%}}
-{{%column width="70%" %}}
+{{% imagertext "/attachment_files/Infra Components.jpg"%}}
 The _Service Grid_ is a set of containers (_Grid Service Containers_ - GSCs) managed by one or more managers (_Grid Service Managers_ - GSMs).
 Each Grid Service Container runs inside its own JVM. The containers themselves host _Processing Units_.
 The Grid Service Manager manages the deployment of processing units and their provisioning to the the Grid Service Containers. In production scenarios you may want to have more than one manager, so it does not become a single point of failure.
 The _GigaSpaces Management Center_ is the graphical user interface for administrating and monitoring the _Service Grid_ and the deployed applications.
-{{%/column%}}
-{{%column width="30%" %}}
-{{%popup "/attachment_files/Infra Components.jpg"%}}
-{{% /column %}}
-{{% /section %}}
+{{% /imagertext %}}
 
 # Deployment Overview
 
 In this tutorial we deploy the Hello World Processor onto the service Grid, first as a single instance (Figure 3), then with an additional backup instance to support failover (Figure 4).
 
 {{% section %}}
-{{% column width="40%" %}}
+{{% column width="50%" %}}
 
 
-![Application With Infra.jpg](/attachment_files/Application With Infra.jpg)
+![Application With Infra.jpg](/attachment_files/Application With Infra.jpg)<br>
 {{% sub %}}**Figure 3. The Hello World Processor deployed onto the Service Grid as a single instance**{{% /sub %}}
 
 
 {{% /column %}}
-{{% column width="40%" %}}
+{{% column width="50%" %}}
 
 
-![Sync2Backup With Infra.jpg](/attachment_files/Sync2Backup With Infra.jpg)
+![Sync2Backup With Infra.jpg](/attachment_files/Sync2Backup With Infra.jpg)<br>
 {{% sub %}}**Figure 4. The Hello World Processor deployed onto the Service Grid with one primary instance and one backup instance**{{% /sub %}}
 
 
@@ -101,10 +91,12 @@ Since the feeder interacts with (writes objects to) the space, using a space pro
 The only noticeable effect may be a slight delay in the space response time to the feeder calls.
 
 
-
+{{%align center%}}
 ![Feeder Proxy.jpg](/attachment_files/Feeder Proxy.jpg)
+
 {{% sub %}}**Figure 7. The Feeder is using a proxy that automatically connects to the primary Processing Unit**{{% /sub %}}
 
+{{%/align%}}
 
 
 

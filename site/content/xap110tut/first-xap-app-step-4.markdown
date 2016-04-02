@@ -13,31 +13,22 @@ Learn how to scale the Hello World Application.
 
 # Application Components
 
-{{% section %}}
-{{% column width="70%" %}}
+{{% imagertext "/attachment_files/Application Components.jpg"%}}
 
 The Processing Unit we deploy onto the Service Grid is our Hello World Processor application from the [previous steps](./first-xap-app.html). Reminder - a feeder application writes each Message object to the processor Processing Unit, which is in turn processed by the Processor class.
-{{% /column %}}
-{{% column width="30%" %}}
-{{%popup "/attachment_files/Application Components.jpg"%}}
-{{% /column %}}
-{{%/section%}}
+
+{{%/imagertext%}}
 
 
 
 # Infrastructure (Service Grid) Components
 
-{{% section %}}
-{{% column width="70%" %}}
+{{% imagertext "/attachment_files/Infra Components.jpg"%}}
 The _Service Grid_ is a set of containers (_Grid Service Containers_ - GSCs) managed by one or more a managers (_Grid Service Managers_ - GSMs).
 Each Grid Service Container runs inside its own JVM. The containers themselves host _Processing Units_.
 The Grid Service Manager manages the deployment of processing units and their provisioning to the the Grid Service Containers. In production scenarios you may want to have more than one manager, so it does not become a single point of failure.
 The _GigaSpaces Management Center_ is the graphical user interface for administrating and monitoring the _Service Grid_ and the deployed applications.
-{{% /column %}}
-{{% column width="30%" %}}
-{{%popup "/attachment_files/Infra Components.jpg"%}}
-{{% /column %}}
-{{% /section %}}
+{{%/imagertext%}}
 
 # Scaled-Out Deployment Layout
 
@@ -45,17 +36,19 @@ In this tutorial we scale the Hello World Processor we created in the the [previ
 First we scale it to 3 instances (Figure 3), and then into 4 instances, divided into two primary instances and two backup instances (Figure 4).
 
 {{% section %}}
-{{% column width="40%" %}}
+{{% column width="50%" %}}
 
 {{% align center %}}
 ![QSG4 Scaled 3.jpg](/attachment_files/QSG4 Scaled 3.jpg)
+
 {{% sub %}}**Figure 3. Scaling out to 3 instances**{{% /sub %}}{{% /align %}}
 
 {{% /column %}}
-{{% column width="40%" %}}
+{{% column width="50%" %}}
 
 {{% align center %}}
 ![QSG4 Scaled 2 backup.jpg](/attachment_files/QSG4 Scaled 2 backup.jpg)
+
 {{% sub %}}**Figure 4. Scaling out to 2 primaries and 2 backups**{{% /sub %}}{{% /align %}}
 
 {{% /column %}}
@@ -85,8 +78,10 @@ Jump ahead and [run the sample application](#Deploy and Run), in case you want t
 
 When your application is modeled as a Processing Unit, scaling it is as simple as adding more Processing Unit instances. Since processing units are self sufficient in the sense that they do not depend on any external component, this means that by increasing the number of Processing Unit instances that are used to by your application, you linearly (and of course predictably) increase its throughput. For example, if 2 Processing Unit instances can process 10K operations per second, 3 instances will process 15K, 4 instances 20K, and so on - see Figure 6.
 
-{{% align center %}}![Partition on machines.jpg](/attachment_files/Partition on machines.jpg)
-{{% sub %}}**Figure 6. N machines hosting N Grid Service Containers: each Container runs a Processing Unit.**{{% /sub %}}{{% /align %}}
+{{% align "center" %}}![Partition on machines.jpg](/attachment_files/Partition on machines.jpg)
+
+{{% sub %}}**Figure 6. N machines hosting N Grid Service Containers: each Container runs a Processing Unit.**{{% /sub %}}
+{{% /align %}}
 
 #### Partitioning and Routing
 
@@ -94,12 +89,16 @@ As mentioned earlier, scaling is done by making sure each Processing Unit instan
 This is achieved by dividing the application data into partitions (each partition resides on a separate Processing Unit instance, in the form of a space), and intelligently distributing the data to these partitions. The business logic services deployed on each instance, operate only on the partition local to them, i.e. the one collocated in the same Processing Unit instance. This ensures extremely low latency, because data is kept in memory. It also ensures linear scalability when increasing the number of Processing Unit instances - see Figure 7 below.
 
 {{% align center %}}![Partition.jpg](/attachment_files/Partition.jpg)
+
 {{% sub %}}**Figure 7. 3 Processing Unit instances: each holds a different subset of the data, marked with different colors.**{{% /sub %}}
-{{% sub %}}**A client connecting to this system, views the space partitions in all of these instances, as a single virtual resource.**{{% /sub %}}{{% /align %}}
+{{% sub %}}**A client connecting to this system, views the space partitions in all of these instances, as a single virtual resource.**{{% /sub %}}
+{{% /align %}}
 
 **Routing** - Partitioning is implemented using a hash-based data routing mechanism. Each Processing Unit is running a separate partition. When a client interacts with the space cluster (reads or writes data), it is routed transparently to the correct partition. The routing mechanism is applied transparently on the client side by the space proxy.
 
-{{% align center %}}![Routing Client.jpg](/attachment_files/Routing Client.jpg)
+{{% align center %}}
+![Routing Client.jpg](/attachment_files/Routing Client.jpg)
+
 {{% sub %}}**Figure 8. Partitioning is implemented using a hash-based routing mechanism. Each object is transparently routed to the correct partition by the client side proxy**.{{% /sub %}}
 {{% /align %}}
 

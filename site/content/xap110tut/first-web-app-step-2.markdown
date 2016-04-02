@@ -75,7 +75,7 @@ The recommended topology for your application depends on various application cha
 {{%column width="80%" %}}
 [A Partitioned with backup topology](/product_overview/terminology.html#Terminology-DataGridTopologies-PartitionedDataGrid) is the most recommended topology, and is especially good for situations where the cluster size is higher than 2 or 3 nodes, and when you expect that the overall size of the HTTP session store will exceed the capacity of a single machine (or simply cannot predict how big it's going to be). In a partitioned topology, the data written to the data grid (in our case the HTTP session attributes) is spread across multiple machines. In such case, it makes sense to deploy the space on separate JVMs, and even separate machines, than these of the web application.
 {{%/column%}}
-{{%column width="20%" %}}
+{{%column width="15%" %}}
 {{%popup   "/attachment_files/session_partitioned-localcache.jpg"%}}
 {{%/column%}}
 {{%/section%}}
@@ -89,7 +89,7 @@ High availability is achieved by the backup copies of each partition. You can ch
 [A Replicated topology](/product_overview/terminology.html) is only recommended if you have a very small cluster (2 or 3 instances) and know for certain that the overall size of the HTTP session store will not exceed the memory size of a single node. In a replicated topology, every piece of data is replicated to all cluster members, so every member has a full copy of all the data. This is why the capacity of this topology is limited to the capacity of the smallest JVM in the cluster.
 
 {{%/column%}}
-{{%column width="20%" %}}
+{{%column width="15%" %}}
 {{%popup   "/attachment_files/embedded-replicated.jpg"%}}
 {{%/column%}}
 {{%/section%}}
@@ -263,7 +263,7 @@ After you are done with the example, you can undeploy it by using the command li
 ```
 
 {{%accordion%}}
-{{%accord title=" **Click to show expected output...**"%}}
+{{%accord title="Click to show expected output..."%}}
 
 
 ```bash

@@ -144,7 +144,7 @@ The Processor Processing Unit contains two components: a space (cache), which ho
 A Processing Unit always has an XML file called pu.xml, that resides under the _META-INF\spring_ directory.
 In fact, this is a standard [Spring framework](http://www.springframework.org) XML configuration file, with a number of custom GigaSpaces specific tags. Let's take a look at this file. In our example there are 3 main components contained within the Processing Unit:
 
-1. The first component is a _space_ (cache) instance embedded inside the Processing Unit, named **processorSpace**. It has a URL property.
+Step 1. The first component is a _space_ (cache) instance embedded inside the Processing Unit, named **processorSpace**. It has a URL property.
 On the second line, we define a transaction manager, which is referencing this space, and manages its transactions.
 Finally a bean called _gigaSpace_ wraps the _space_, and provides a simple client API to interact with it, as we will see later in this tutorial.
 
@@ -155,7 +155,7 @@ Finally a bean called _gigaSpace_ wraps the _space_, and provides a simple clien
 <os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/>
 ```
 
-1. The second component is a **helloProcessor Bean**, which contains the method that does the actual processing. This bean is defined in the Processor.java source file, which is shown in the [next section](#Processor Bean).
+Step 2. The second component is a **helloProcessor Bean**, which contains the method that does the actual processing. This bean is defined in the Processor.java source file, which is shown in the [next section](#Processor Bean).
 
 
 ```xml
@@ -317,7 +317,7 @@ If you haven't already done so,[download GigaSpaces and set up your development 
 
 **Importing the project into Eclipse**
 
-1. Import the **hello-common**, **hello-processor* and **hello-feeder** projects located under the `<XAP Root>/examples/helloworld` folder.
+Step 1. Import the **hello-common**, **hello-processor* and **hello-feeder** projects located under the `<XAP Root>/examples/helloworld` folder.
 (After importing, you'll see some errors since the GS_HOME path variable is not set yet)
 
 
@@ -342,7 +342,7 @@ If you haven't already done so,[download GigaSpaces and set up your development 
 {{%/accord%}}
 {{%/accordion%}}
 
-1. Create a new Eclipse environment variable called **GS_HOME**, and point it to your GigaSpaces installation Root folder
+Step 2. Create a new Eclipse environment variable called **GS_HOME**, and point it to your GigaSpaces installation Root folder
 
 ![ide-3.jpg](/attachment_files/ide-3.jpg)
 

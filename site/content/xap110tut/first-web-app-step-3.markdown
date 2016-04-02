@@ -359,15 +359,13 @@ After you are done with the example, you can undeploy it by using the command li
 ```
 
 {{%accordion%}}
-{{%accord title=" **Click to show expected output...**"%}}
+{{%accord title="Click to show expected output..."%}}
 
 
 ```bash
 2016-02-29 10:16:31,300 CONFIG [com.gigaspaces.logger] Log file: c:\GS-Releases\gigaspaces-xap-premium-11.0.0-ga\bin\..\logs\2016-02-29~10.16-gigaspaces-service-host01-7764.log
 Found 1 GSMs
 Command successful
-
-
 ```
 {{%/accord%}}
 {{%/accordion%}}

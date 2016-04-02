@@ -18,13 +18,13 @@ The example is located under `<XAP Root>/examples/data`
 
 The purpose of this example is to show many of the capabilities of GigaSpaces XAP and its mainstream APi, namely OpenSpaces. The example uses the following features:
 
-- POJO Annotations
-- The `GigaSpace` class
-- Declarative transactions
-- Event containers (polling and notify containers)
-- OpenSpaces remoting
-- OpenSpaces clustering and SLA
-- Using the JMS [MessageConverter]({{%currentjavaurl%}}/jms-space-interoperability.html) feature that writes POJOs to the space using the JMS API
+* POJO Annotations
+* The `GigaSpace` class
+* Declarative transactions
+* Event containers (polling and notify containers)
+* OpenSpaces remoting
+* OpenSpaces clustering and SLA
+* Using the JMS [MessageConverter]({{%currentjavaurl%}}/jms-space-interoperability.html) feature that writes POJOs to the space using the JMS API
 
 This example shows a PU that contains several services that are independent of each other and serve different purposes within one application. Moreover, the example show how different processing units use the space to share data.
 
@@ -34,7 +34,9 @@ This example includes two modules that are deployed to the service grid, and a d
 
 The entire application looks like this:
 
+{{%align center%}}
 ![diag.jpg](/attachment_files/diag.jpg)
+{{%/align%}}
 
 ## Application Workflow
 
@@ -45,7 +47,9 @@ The entire application looks like this:
 1. The [DataProcessor](#dataprocessor) takes unprocessed `Data` objects, processes them and writes them back to the space.
 1. The [ProcessedDataCount](#processedata) receives notifications of processed `Data` objects that are written or updated in the space. Notifications are configured to arrive in batches of 10 objects or every 5 seconds.
 
-{{% exclamation %}} The services described above are independent of each other. They are merely explained here to show the various capabilities of GigaSpaces XAP and the OpenSpaces API.
+{{% note %}}
+The services described above are independent of each other. They are merely explained here to show the various capabilities of GigaSpaces XAP and the OpenSpaces API.
+{{%/note%}}
 
 # The POJO Domain Model
 
@@ -408,7 +412,7 @@ private IDataProcessor dataProcessor;
 
 **Importing the project into IntelliJ**
 
-1. Import the hello world project with 3 modules **common**, **pnrocessor**, and **feeder** located under the `<XAP Root>/examples/data` folder.
+Step 1. Import the hello world project with 3 modules **common**, **pnrocessor**, and **feeder** located under the `<XAP Root>/examples/data` folder.
 
 {{%accordion%}}
 {{%accord title=" How do I do that..."%}}
@@ -451,7 +455,7 @@ private IDataProcessor dataProcessor;
 {{% anchor Create Run Configurations in IDE %}} **Create Run Configurations**
 &nbsp;
 
-1. Execute the following command from the project root directory `<XAP Root>/examples/helloworld`:
+Step 2. Execute the following command from the project root directory `<XAP Root>/examples/helloworld`:
 
 ```bash
 build.(sh/bat) intellij
@@ -463,13 +467,13 @@ build.(sh/bat) intellij
 {{% anchor Run Processor in IDE %}} **Running the Processor**
 
 
-1. From the toolbar at the top of the screen, select **Run > Run... > Processor**.
+Step 3. From the toolbar at the top of the screen, select **Run > Run... > Processor**.
 
 {{% anchor JRun Feeder in IDE %}}
 
 **Waiting for the Processor to instantiate**
 
-1. Before running the feeder, you should wait for the following output to appear in the **Run tab** at the bottom of the screen:
+Step 4. Before running the feeder, you should wait for the following output to appear in the **Run tab** at the bottom of the screen:
     Processor instantiated, waiting for messages feed...
 This indicates the Processor is up and running.
 
@@ -478,7 +482,7 @@ This indicates the Processor is up and running.
 **Running the Feeder**
 
 
-1. From the toolbar at the top of the screen, select **Run > Run... > Feeder**.
+Step 5. From the toolbar at the top of the screen, select **Run > Run... > Feeder**.
 
 {{% anchor JView Output %}}
 
