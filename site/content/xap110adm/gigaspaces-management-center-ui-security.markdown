@@ -14,7 +14,7 @@ XAP Management Center (UI) allows to manage the Grid services and Processing Uni
 
 Administrators can use the UI to manage users and roles, and allow them to Login and operate based on their granted privileges.
 
-{{% refer %}}This section assumes familiarity with the [Security Basics](./security-concepts.html) section.{{% /refer %}}
+{{% refer %}}This section assumes familiarity with the [Security Basics]({{%currentsecurl%}}/security-concepts.html) section.{{% /refer %}}
 
 # Managing Users and Roles
 
@@ -181,7 +181,7 @@ To deploy a secured data-grid, select the **`Secured Space`** checkbox. Supplyin
 ### Supplying custom properties
 
 
-[Security configuration properties](./security-configurations.html) can be supplied, during deployment of a Space, as custom properties; Either from a file or added through the dialog.
+[Security configuration properties]({{%currentsecurl%}}/security-configurations.html) can be supplied, during deployment of a Space, as custom properties; Either from a file or added through the dialog.
 The custom properties can hold both space configurations and security configurations.
 
 {{%align center%}}
@@ -201,7 +201,7 @@ _For example, the `data-processor` has a polling container - when deployed, the 
 ### Supplying bean level properties
 
 
-[Security configuration](./security-configurations.html) properties can be supplied, during deployment of a ProcessingUnit, as context bean level properties; Either from a file or added through the dialog.
+[Security configuration]({{%currentsecurl%}}/security-configurations.html) properties can be supplied, during deployment of a ProcessingUnit, as context bean level properties; Either from a file or added through the dialog.
 
 {{%align center%}}
 ![bean-level-properties.png](/attachment_files/bean-level-properties.png)
