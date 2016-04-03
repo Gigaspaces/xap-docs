@@ -70,7 +70,7 @@ A list of configuration properties can be found in  the [org.rocksdb.ColumnFamil
         <property name="maxBytesForLevelMultiplier" value="20"/>
     </bean>
 
-    <blob-store:rocksdb-blob-store id="rocksdb" fsync="false"
+    <blob-store:rocksdb-blob-store id="myBlobStore" fsync="false"
         cache-size-mb="100" block-size-kb="16"
         db-options="dbOptions" data-column-family-options="dataColumnFamilyOptions"
         paths="[/tmp/rocksdb,/tmp/rocksdb2]" mapping-dir="/tmp/mapping"/>
