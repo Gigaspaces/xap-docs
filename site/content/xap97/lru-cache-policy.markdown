@@ -138,7 +138,7 @@ used memory: 1497 mb
 ```
 
 {{% note %}}
-Note that the **_DCache** prefix is part of the space name - it indicates that the exception is thrown from the client local cache. In such a case, you should increase the `space-config.engine.memory_usage.retry_count` to a larger number. See more details at the [Moving into Production Checklist ]({%currentadmurl%}}/moving-into-production-checklist.html#Local Cache) page.
+Note that the **_DCache** prefix is part of the space name - it indicates that the exception is thrown from the client local cache. In such a case, you should increase the `space-config.engine.memory_usage.retry_count` to a larger number. See more details at the [Moving into Production Checklist ]({{%currentadmurl%}}/moving-into-production-checklist.html#Local Cache) page.
 {{% /note %}}
 
 # Monitoring the Space Memory Manager Activity
