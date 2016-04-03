@@ -76,7 +76,7 @@ Before you begin working with GigaSpaces, it is recommended to review the [Perfo
 - [Tuning Infrastructure]({{%currentadmurl%}}/tuning-infrastructure.html)
 - [Tuning GigaSpaces Performance - Basics]({{%currentadmurl%}}/tuning-gigaspaces-performance.html)
 - [Tuning Java Virtual Machines]({{%currentadmurl%}}/tuning-java-virtual-machines.html)
-- [Benchmarking the platform](/sbp/moving-into-production-checklist.html)
+- [Benchmarking the platform]({%currentadmurl%}}/moving-into-production-checklist.html)
 {{% /info %}}
 
 

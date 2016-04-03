@@ -27,4 +27,4 @@ This section describes Thread pool tuning.
 
 #### Related Topics
 
-- [Moving your application into production](/sbp/moving-into-production-checklist.html)
+- [Moving your application into production](./moving-into-production-checklist.html)
