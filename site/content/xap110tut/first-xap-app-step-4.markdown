@@ -141,7 +141,7 @@ Next, we show you how to start the service grid components, by starting a grid s
 **Install GigaSpaces**
 
 {{% info%}}
-After going through the previous tutorial [Step Two - Creating the Hello World Application](./first-xap-app-step-2.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment]({{%currentjavaurl%}}/installation-guide.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
+After going through the previous tutorial [Step Two - Creating the Hello World Application](./first-xap-app-step-2.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment]({{%currentjavaurl%}}/installation.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
 {{%/info%}}
 
 {{% anchor Start Service Grid %}}

@@ -84,8 +84,8 @@ If you would like your properties to be configured in a dedicated file this can 
 
 - Including a `pu.properties` file in the processing unit. This file can be placed under the root of the processing unit or under the `META-INF/spring` directory (This is also described [here](./the-processing-unit-structure-and-configuration.html)). The values of this file will be loaded and injected automatically to the processing unit instances at deployment time.
 
-- External `.properties` file. The file can have any name, as long as it's accessible to the deployment tool (UI, CLI, etc.) or specified when [running the processing unit within your IDE](./running-and-debugging-within-your-ide.html) or in [standalone mode](./running-in-standalone-mode.html).
-When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html) or [running within the IDE](./running-and-debugging-within-your-ide.html), you specify the location of the file using `-properties <location>` as a command line argument with the CLI or a program argument within the IDE.
+- External `.properties` file. The file can have any name, as long as it's accessible to the deployment tool (UI, CLI, etc.) or specified when [running the processing unit within your IDE](./installation-eclipse-debug.html) or in [standalone mode](./running-in-standalone-mode.html).
+When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html) or [running within the IDE](./installation-eclipse-debug.html), you specify the location of the file using `-properties <location>` as a command line argument with the CLI or a program argument within the IDE.
 
 
 ```java
@@ -98,8 +98,8 @@ The following is an example of a `.properties` file that can be used with the sa
 
 When deploying via the UI, the file can be loaded into the deployment wizard by clicking "Next" in the first screen of the wizard and then "Load Properties", locating the properties file on your local disk. This will load all the property place holders that are in the file.
 
-- Direct property injection. This can also be done via one of the deployment tools (UI, CLI) or specified when [running the processing unit within your IDE](./running-and-debugging-within-your-ide.html).
-When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html) or [running within the IDE](./running-and-debugging-within-your-ide.html), you specify property values by using the following syntax:
+- Direct property injection. This can also be done via one of the deployment tools (UI, CLI) or specified when [running the processing unit within your IDE](./installation-eclipse-debug.html).
+When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html) or [running within the IDE](./installation-eclipse-debug.html), you specify property values by using the following syntax:
 
 
 ```java

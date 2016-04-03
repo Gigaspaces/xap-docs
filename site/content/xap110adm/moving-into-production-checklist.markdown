@@ -604,7 +604,7 @@ In order to estimate the amount of total RAM and CPU required for your applicati
 - Active Clients vs. Cores vs. Heap Size.
 - The number of space partitions and backups.
 
-The [Capacity Planning](./capacity-planning.html) section provides a detailed explanation how to estimate the resources required.
+The [Capacity Planning](/sbp/capacity-planning.html) section provides a detailed explanation how to estimate the resources required.
 
 # PU Packaging and CLASSPATH
 
