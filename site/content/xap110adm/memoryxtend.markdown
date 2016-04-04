@@ -240,3 +240,173 @@ XAP is bundled with a file-based implementation of an attribute store which can 
     <os-core:giga-space id="gigaSpace" space="space"/>
 </beans>
 ```
+<br/>
+<br/>
+
+# MemoryXtend and Asynchronous Persistency - Write Behind
+MemoryXtend can work together with [XAP Mirror Service]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html) which provides reliable asynchronous persistency that asynchronously delegate the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database.
+
+## Initial Load
+MemoryXtend space can load data from a database or attached storage directly into the Data-Grid instances, this feature called [Initial Load]({{%currentjavaurl%}}/space-persistency-initial-load.html).<br/>
+When configuring `persistent=true` each space instance will start the initial load from it's attached storage(flash device),  in case it is empty initial load will be performed from the database.
+When configuring `persistent=false` initial load will be performed from the database only.
+
+{{%tabs%}}
+{{%tab "Data-Grid Space settings"%}}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/{{%currentversion%}}/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%currentversion%}}/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
+
+    <!--
+        Spring property configurer which allows us to use system properties (such as user.name).
+    -->
+    <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <!--
+        Enables the usage of @GigaSpaceContext annotation based injection.
+    -->
+    <os-core:giga-space-context/>
+
+    <!--
+        A JDBC pooled data source that connects to the HSQL server the mirror starts.
+    -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        <property name="url" value="jdbc:hsqldb:hsql://localhost/testDB"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <!--
+        Hibernate SessionFactory bean. Uses the pooled data source to connect to the database.
+    -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.mycompany.app.common.Data</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+                <prop key="hibernate.cache.use_second_level_cache">false</prop>
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="initialLoadChunkSize" value="2000"/>
+    </bean>
+
+    <bean id="attributeStoreHandler" class="com.gigaspaces.attribute_store.PropertiesFileAttributeStore" >
+        <constructor-arg name="path" value="/home/xap/11.0.0/lastprimary/lastprimary.properties"/>
+    </bean>
+
+    <blob-store:rocksdb-blob-store id="rocksdb" paths="[/mnt/sdb1,/mnt/sdb2,/mnt/sdb3,/mnt/sdb4]" mapping-dir="/tmp/mapping"/>
+
+    
+    <os-core:space id="space" url="/./space" schema="persistent"
+                   mirror="true" space-data-source="hibernateSpaceDataSource">
+        <os-core:blob-store-data-policy  blob-store-handler="rocksdb" persistent="true"/>
+        <os-core:attribute-store store-handler="attributeStoreHandler"/>
+        <os-core:properties>
+            <props>
+                <prop key="space-config.external-data-source.usage">read-only</prop>
+                <prop key="cluster-config.cache-loader.external-data-source">true</prop>
+                <prop key="cluster-config.cache-loader.central-data-source">true</prop>
+            </props>
+        </os-core:properties>
+    </os-core:space>
+
+    <!--
+        OpenSpaces simplified space API built on top of IJSpace/JavaSpace.
+    -->
+    <os-core:giga-space id="gigaSpace" space="space"/>
+</beans>
+```
+{{% /tab %}}
+{{%tab "Mirror configuration"%}}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd">
+
+    <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    </bean>
+
+    <!--
+        A JDBC datasource pool that connects to HSQL.
+    -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        <property name="url" value="jdbc:hsqldb:hsql://localhost/testDB"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <!--
+        Hibernate SessionFactory bean. Uses the pooled data source to connect to the database.
+    -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.mycompany.app.common.Data</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+                <prop key="hibernate.cache.use_second_level_cache">false</prop>
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--
+        An external data source that will be responsible for persisting changes done on the cluster that
+        connects to this mirror using Hibernate.
+    -->
+    <bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpointFactoryBean">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--
+        The mirror space. Uses the Hibernate external data source. Persists changes done on the Space that
+        connects to this mirror space into the database using Hibernate.
+    -->
+    <os-core:mirror id="mirror" url="/./mirror-service" space-sync-endpoint="hibernateSpaceSynchronizationEndpoint" operation-grouping="group-by-space-transaction">
+        <os-core:source-space name="space" partitions="2" backups="1"/>
+    </os-core:mirror>
+
+</beans>
+```
+{{% /tab %}}
+{{% /tabs %}}
+
+# Limitation
+- MemoryXtend and [Direct Persistency]({{%currentjavaurl%}}/direct-persistency.html) configuration is not supported.
+- Supported only for `ALL_IN_CACHE` cache policy, not supported for `LRU` and other evictable cache policies.
+- All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the JVM the Space is running on.
+- MemoryXtend and `ESM` is not supported.
+
+
