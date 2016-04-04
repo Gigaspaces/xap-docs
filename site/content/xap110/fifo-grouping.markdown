@@ -169,7 +169,9 @@ to instruct the space that events should be sent to the client in FIFO order (gr
 
 -  **`ExclusiveReadReceiveOperationHandler` example:**
 
-{{%tabs%}} {{%tab " Annotation "%}}
+{{%tabs%}}
+{{%tab "Annotation"%}}
+
 ```java
 @EventDriven @Polling(concurrentConsumers = 3, maxConcurrentConsumers = 5)
 @TransactionalEvent
@@ -191,7 +193,10 @@ public class SimpleListener
 	}
 }
 ```
-{{% /tab %}} {{%tab " Namespace " %}}
+{{% /tab %}}
+
+{{%tab "Namespace" %}}
+
 ```xml
     <bean id="simpleListener" class="SimpleListener" />
 
@@ -222,7 +227,11 @@ public class SimpleListener
         </os-events:listener>    
     </os-events:polling-container>
 ```
-{{% /tab %}} {{%tab " Code "%}}
+
+{{% /tab %}}
+
+{{%tab "Code"%}}
+
 ```java
 AbstractFifoGroupingReceiveOperationHandler receiveOperationHandler = new ExclusiveReadReceiveOperationHandler();
 FlightReservationEventListener eventListener = new FlightReservationEventListener();
@@ -236,7 +245,9 @@ SimplePollingEventListenerContainer pollingEventListenerContainer =
 .create();
 pollingEventListenerContainer.start();
 ```
-{{% /tab %}} {{% /tabs %}}
+{{% /tab %}}
+
+{{% /tabs %}}
 
 
 # SpaceIndex
