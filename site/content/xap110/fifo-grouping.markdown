@@ -169,7 +169,60 @@ to instruct the space that events should be sent to the client in FIFO order (gr
 
 -  **`ExclusiveReadReceiveOperationHandler` example:**
 
+{{%tabs%}} {{%tab " Annotation "%}}
+```java
+@EventDriven @Polling(concurrentConsumers = 3, maxConcurrentConsumers = 5)
+@TransactionalEvent
+public class SimpleListener
+{
+	@EventTemplate
+	FlightReservation unprocessedData() {
+		 return new FlightReservation(null, State.NEW_RESERVATION);
+	}
+	@SpaceDataEvent
+	public FlightReservation eventListener(FlightReservation event) {
+	        //process reservation here
+	}
+	@ReceiveHandler
+	ReceiveOperationHandler receiveHandler() {
+		handler = new ExclusiveReadReceiveOperationHandler();
+		handler.setUseFifoGrouping(true);
+		return handler;
+	}
+}
+```
+{{% /tab %}} {{%tab " Namespace " %}}
+```xml
+    <bean id="simpleListener" class="SimpleListener" />
 
+    <os-events:polling-container id="eventContainer" giga-space="gigaSpace" concurrent-consumers="3" max-concurrent-consumers="5" >
+        <os-events:tx-support tx-manager="transactionManager"/>
+        <os-events:receive-operation-handler>
+            <bean class="org.openspaces.events.polling.receive.ExclusiveReadReceiveOperationHandler" >
+                <property name="useFifoGrouping" value="true" />
+            </bean>
+        </os-events:receive-operation-handler>
+        <os-core:template>
+            <bean class="FlightReservation">
+                <property name="processed" value="false"/>
+                <constructor-arg name="..."><null/></constructor-arg>
+                <constructor-arg name="state">
+                    <bean class="State" factory-method="valueOf">
+                        <constructor-arg>
+                            <value>NEW_RESERVATION</value>
+                        </constructor-arg>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </os-core:template>
+        <os-events:listener>
+            <os-events:method-adapter method-name="eventListener">
+                <os-events:delegate ref="simpleListener"/>
+            </os-events:method-adapter>
+        </os-events:listener>    
+    </os-events:polling-container>
+```
+{{% /tab %}} {{%tab " Code "%}}
 ```java
 AbstractFifoGroupingReceiveOperationHandler receiveOperationHandler = new ExclusiveReadReceiveOperationHandler();
 FlightReservationEventListener eventListener = new FlightReservationEventListener();
@@ -183,30 +236,8 @@ SimplePollingEventListenerContainer pollingEventListenerContainer =
 .create();
 pollingEventListenerContainer.start();
 ```
+{{% /tab %}} {{% /tabs %}}
 
--  **`ExclusiveReadReceiveOperationHandler` with annotations example:**
-
-
-```java
-@EventDriven @Polling(concurrentConsumers = 3, maxConcurrentConsumers = 5)
-@TransactionalEventpublic class SimpleListener
-{
-	@EventTemplate
-	Data unprocessedData() {
-		 return new FlightReservation(null, State.NEW_RESERVATION);
-	}
-	@SpaceDataEvent
-	public Data eventListener(Data event) {
-	        //process reservation here
-	}
-	@ReceiveHandler
-	ReceiveOperationHandler receiveHandler() {
-		handler = new ExclusiveReadReceiveOperationHandler();
-		handler.setUseFifoGrouping(true);
-		 return handler;
-	}
-}
-```
 
 # SpaceIndex
 
