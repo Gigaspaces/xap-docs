@@ -244,7 +244,14 @@ XAP is bundled with a file-based implementation of an attribute store which can 
 <br/>
 
 # MemoryXtend and Asynchronous Persistency - Write Behind
+{{%section%}}
+{{%column width="80%" %}}
 MemoryXtend can work together with [XAP Mirror Service]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html) which provides reliable asynchronous persistency that asynchronously delegate the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database.
+{{%/column%}}
+{{%column width="20%" %}}
+{{%popup   "/attachment_files/blobstore/ssd-rocksdb-mirror.png" "MemoryXtend and Asynchronous Persistency - Write Behind"%}}
+{{%/column%}}
+{{%/section%}}
 
 ## Initial Load
 MemoryXtend space can load data from a database or attached storage directly into the Data-Grid instances, this feature called [Initial Load]({{%currentjavaurl%}}/space-persistency-initial-load.html).<br/>
