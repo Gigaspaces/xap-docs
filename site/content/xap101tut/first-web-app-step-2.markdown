@@ -1,12 +1,12 @@
 ---
-type: post110
+type: post101
 title:   Enabling HTTP Session Failover
-categories: XAP110TUT
+categories: XAP101TUT
 weight: 200
 parent: first-web-app.html
 ---
 
-
+{{%ssummary%}}{{%/ssummary%}}
 
 
 The example application is a completely standard JEE web application. All steps in this tutorial can be applied to any standard JEE web application, but we'll use this one for the sake of simplicity.
@@ -75,7 +75,7 @@ The recommended topology for your application depends on various application cha
 {{%column width="80%" %}}
 [A Partitioned with backup topology](/product_overview/terminology.html#Terminology-DataGridTopologies-PartitionedDataGrid) is the most recommended topology, and is especially good for situations where the cluster size is higher than 2 or 3 nodes, and when you expect that the overall size of the HTTP session store will exceed the capacity of a single machine (or simply cannot predict how big it's going to be). In a partitioned topology, the data written to the data grid (in our case the HTTP session attributes) is spread across multiple machines. In such case, it makes sense to deploy the space on separate JVMs, and even separate machines, than these of the web application.
 {{%/column%}}
-{{%column width="15%" %}}
+{{%column width="20%" %}}
 {{%popup   "/attachment_files/session_partitioned-localcache.jpg"%}}
 {{%/column%}}
 {{%/section%}}
@@ -89,7 +89,7 @@ High availability is achieved by the backup copies of each partition. You can ch
 [A Replicated topology](/product_overview/terminology.html) is only recommended if you have a very small cluster (2 or 3 instances) and know for certain that the overall size of the HTTP session store will not exceed the memory size of a single node. In a replicated topology, every piece of data is replicated to all cluster members, so every member has a full copy of all the data. This is why the capacity of this topology is limited to the capacity of the smallest JVM in the cluster.
 
 {{%/column%}}
-{{%column width="15%" %}}
+{{%column width="20%" %}}
 {{%popup   "/attachment_files/embedded-replicated.jpg"%}}
 {{%/column%}}
 {{%/section%}}
@@ -143,9 +143,13 @@ Now that we've gone over all the details, let's see everything in action. In thi
 
 **Step 1:** Build the application [as described earlier in this tutorial](./first-web-app-step-1.html#BuildDirections)
 
-**Step 2:** Start one GSM and 4 GSCs by calling `<gs root>/bin/gs-agent.(sh/bat) gsa.gsc=4`
+**Step 2:** Unzip the advanced_scripts archive by calling `unzip <gs root>/bin/advanced_scripts.zip`
 
-**Step 3:** Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/bat)`. When the user interface is started, you should see the four GSCs presented in it.
+**Step 3:** Start one GSM by calling `<gs root>/bin/gsm.(sh/bat)`
+
+**Step 4:** Start four GSCs by calling `<gs root>/bin/gsc.(sh/bat)` four times
+
+**Step 5:** Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/bat)`. When the user interface is started, you should see the four GSCs presented in it.
 
 {{%accordion%}}
 {{%accord title="Click to view screenshot"%}}
@@ -153,7 +157,7 @@ Now that we've gone over all the details, let's see everything in action. In thi
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 4:** Deploy the application using the provided build script, by calling `build.(sh.bat) deploy`. This will start a partitioned space with 2 primaries and 2 backups, and then three instances of the web application with the HttpSession backed by the space. The web application will utilize the GigaSpaces local cache functionality to front the remote space and gain in-memory read speeds for the HttpSession attributes. Once deployment is successful, you should see in the UI the space's two primary and two backup partitions, and 3 instances of the web application.
+**Step 6:** Deploy the application using the provided build script, by calling `build.(sh.bat) deploy`. This will start a partitioned space with 2 primaries and 2 backups, and then three instances of the web application with the HttpSession backed by the space. The web application will utilize the GigaSpaces local cache functionality to front the remote space and gain in-memory read speeds for the HttpSession attributes. Once deployment is successful, you should see in the UI the space's two primary and two backup partitions, and 3 instances of the web application.
 
 {{%accordion%}}
 {{%accord title="Click to view screenshot"%}}
@@ -161,9 +165,9 @@ Now that we've gone over all the details, let's see everything in action. In thi
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 5:** If you haven't already done so, start the Apache HTTP server on port 80 (the default).
+**Step 7:** If you haven't already done so, start the Apache HTTP server on port 80 (the default).
 
-**Step 6:** Start the load balancer agent by calling the script `<gs root>/tools/apache/apache-lb-agent.(sh/bat) -apache <Apache home>`. `Apache home` is the location of the Apache installation on your disk.
+**Step 8:** Start the load balancer agent by calling the script `<gs root>/tools/apache/apache-lb-agent.(sh/bat) -apache <Apache home>`. `Apache home` is the location of the Apache installation on your disk.
 
 {{%accordion%}}
 {{%accord title="Click to show expected output..."%}}
@@ -171,7 +175,7 @@ Now that we've gone over all the details, let's see everything in action. In thi
 ```bash
 Starting apache-lb-agent with line:
 "c:\Java\jdk1.6.0_11\bin\java"  -server -XX:+AggressiveOpts -showversion -Xmx512m -Xbootclasspath/p:.;
-"c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\lib\platform\xml\serializer.jar";
+"c:\GS-Releases\{{%version "gshome-directory"%}}\..\lib\platform\xml\serializer.jar";
 "c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\lib\platform\xml\xalan.jar";
 "c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\lib\platform\xml\xercesImpl.jar";
 "c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\lib\platform\xml\xml-apis.jar"
@@ -191,12 +195,11 @@ Starting apache-lb-agent with line:
 "c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\lib\platform\jdbc\hsqldb.jar";.;
 "c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\lib\platform\velocity\velocity-dep-1.5.jar"; org.openspaces.pu.container.jee.lb.apache.ApacheLoadBalancerAgent -apache c:\Apache2.2
 
-java version "1.8.0_72"
-Java(TM) SE Runtime Environment (build 1.8.0_72-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.72-b15, mixed mode)
+java version "1.6.0_11"
+Java(TM) SE Runtime Environment (build 1.6.0_11-b03)
+Java HotSpot(TM) Server VM (build 11.0-b16, mixed mode)
 
-
-Log file: c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\logs\2016-02-29~8.13-gigaspaces-service-host01-9780.log
+Log file: c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\logs\2011-01-10~16.13-gigaspaces-service-host01-9780.log
 Starting Apache Load Balancer Agent...
 
 groups [mGroup], locators [null]
@@ -219,7 +222,7 @@ Make sure Apache is configured with [Include c:\Apache2.2\conf\gigaspaces/*.conf
 [HttpSession]: Adding [99561d6b-81a0-4d56-84ef-6fb446857fc6] [192.168.10.27:8082/HttpSession]
 [HttpSession]: Detected as dirty, updating config file...
 [HttpSession]: Using balancer template [c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\tools\apache\balancer-template.vm]
-Feb 29, 2016 8:13:44 AM org.apache.velocity.runtime.log.JdkLogChute log
+Jun 10, 2009 4:13:44 PM org.apache.velocity.runtime.log.JdkLogChute log
 INFO: FileResourceLoader : adding path '.'
 [HttpSession]: Updated config file
 Executing ["c:\Apache2.2/bin/httpd.exe" -k restart]...
@@ -229,7 +232,7 @@ Executed ["c:\Apache2.2/bin/httpd.exe" -k restart], exit code [0]
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 7:** Now let's verify that the application works as expected. Assuming Apache runs on your local machine on port 80, open you web browser and point it to `http://localhost/HttpSession/`. You should see the application's welcome page. Another way to verify this is point your web browser to `http://localhost/balancer`. You should see the summary screen of Apache's load balancing module. In this screen you should see listed the two running web containers.
+**Step 9:** Now let's verify that the application works as expected. Assuming Apache runs on your local machine on port 80, open you web browser and point it to `http://localhost/HttpSession/`. You should see the application's welcome page. Another way to verify this is point your web browser to `http://localhost/balancer`. You should see the summary screen of Apache's load balancing module. In this screen you should see listed the two running web containers.
 
 {{%accordion%}}
 {{%accord title="Click to view screenshots..."%}}
@@ -237,7 +240,7 @@ Executed ["c:\Apache2.2/bin/httpd.exe" -k restart], exit code [0]
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 8:** Type in one or two session attributes by filling out the "Field" and "Value" text boxes and clicking submit. You should see them above the text boxes. This means they were written to the http session.
+**Step 10:** Type in one or two session attributes by filling out the "Field" and "Value" text boxes and clicking submit. You should see them above the text boxes. This means they were written to the http session.
 
 ## Demonstrating Failover & Self Healing
 
@@ -256,26 +259,3 @@ Now let's deliberately terminate one of the GSCs on which the application is dep
 
 **Step 3:** The load balancer agent will pick up the change in runtime state, and will update the apache load balancer (this may take a few seconds). You can now refresh the page in your web browser and see the session attributes you entered before still appear on the screen, and **everything still works as before.**
 
-After you are done with the example, you can undeploy it by using the command line.
-
-```bash
-<gs root>/examples/web/session/build.(sh/bat) undeploy
-```
-
-{{%accordion%}}
-{{%accord title="Click to show expected output..."%}}
-
-
-```bash
-java version "1.8.0_72"
-Java(TM) SE Runtime Environment (build 1.8.0_72-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.72-b15, mixed mode)
-
-2016-02-29 10:16:31,300 CONFIG [com.gigaspaces.logger] Log file: c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\logs\2016-02-29~10.16-gigaspaces-service-host01-7764.log
-Found 1 GSMs
-Command successful
-
-
-```
-{{%/accord%}}
-{{%/accordion%}}

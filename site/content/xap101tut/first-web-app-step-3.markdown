@@ -1,12 +1,12 @@
 ---
-type: post110
+type: post101
 title:   Scaling the Data Access Layer
-categories: XAP110TUT
+categories: XAP101TUT
 weight: 300
 parent: first-web-app.html
 ---
 
-
+{{%ssummary%}}{{%/ssummary%}}
 
 
 
@@ -236,8 +236,9 @@ In some cases, you may want to access the space from an external web application
 Now that we've gone over all the details, let's see everything in action. In this section we will start a partitioned space with 2 primaries and 2 backups. We will deploy 3 web application instances to the GigaSpaces environment. We will then start Apache HTTP server and the Apache load balancer agent (see [Step 1](./first-web-app-step-1.html) of this tutorial for more details), and connect to the application from the load balancer. We will write some objects into the space and verify that they are indeed there. Finally, we will terminate one of the running containers (the one which handled our requests) and watch the failover and self-healing process in action, verifying that information stored in the space was not lost. Let's start:
 
 **Step 1:** Build the application [as described earlier in this tutorial](./first-web-app-step-1.html#BuildDirections)  <br>
-**Step 2:** Start one GSM and 4 GSCs by calling `<gs root>/bin/gs-agent.(sh/bat) gsa.gsc=4` <br>
-**Step 3:** Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/bat)`. When the user interface is started, you should see the four GSCs presented in it.
+**Step 2:** Start one GSM by calling `<gs root>/bin/gsm.(sh/bat)`  <br>
+**Step 3:** Start four GSCs by calling `<gs root>/bin/gsc.(sh/bat)` four times  <br>
+**Step 4:** Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/bat)`. When the user interface is started, you should see the four GSCs presented in it.
 
 {{%accordion%}}
 {{%accord title=" Click to view screenshot"%}}
@@ -245,7 +246,7 @@ Now that we've gone over all the details, let's see everything in action. In thi
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 4:** Deploy the application using the provided build script, by calling `build.(sh.bat) deploy`. This will start a partitioned Space with 2 primaries and 2 backups, and then three instances of the web application which will connect to the Space. Once deployment is successful, you should see in the UI the Space's two primary and two backup partitions, and 3 instances of the web application.
+**Step 5:** Deploy the application using the provided build script, by calling `build.(sh.bat) deploy`. This will start a partitioned Space with 2 primaries and 2 backups, and then three instances of the web application which will connect to the Space. Once deployment is successful, you should see in the UI the Space's two primary and two backup partitions, and 3 instances of the web application.
 
 {{%accordion%}}
 {{%accord title="Click to view screenshot"%}}
@@ -253,9 +254,9 @@ Now that we've gone over all the details, let's see everything in action. In thi
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 5:** If you haven't already done so, start the Apache HTTP server on port 80 (the default).
+**Step 6:** If you haven't already done so, start the Apache HTTP server on port 80 (the default).
 
-**Step 6:** Start the load balancer agent by calling the script `<gs root>/tools/apache/apache-lb-agent.(sh/bat) -apache <Apache home>`. `Apache home` is the location of the Apache installation on your disk.
+**Step 7:** Start the load balancer agent by calling the script `<gs root>/tools/apache/apache-lb-agent.(sh/bat) -apache <Apache home>`. `Apache home` is the location of the Apache installation on your disk.
 
 {{%accordion%}}
 {{%accord title="Click to show expected output"%}}
@@ -284,11 +285,11 @@ Starting apache-lb-agent with line:
 "c:\GS-Releases\{{%version "gshome-directory"%}}\bin\\..\lib\platform\velocity\velocity-dep-1.5.jar";
 org.openspaces.pu.container.jee.lb.apache.ApacheLoadBalancerAgent -apache c:\Apache2.2
 
-java version "1.8.0_72"
-Java(TM) SE Runtime Environment (build 1.8.0_72-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.72-b15, mixed mode)
+java version "1.6.0_11"
+Java(TM) SE Runtime Environment (build 1.6.0_11-b03)
+Java HotSpot(TM) Server VM (build 11.0-b16, mixed mode)
 
-Log file: c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\logs\2016-02-29~18.28-gigaspaces-service-host01-2860.log
+Log file: c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\logs\2009-06-10~18.28-gigaspaces-service-host01-2860.log
 Starting Apache Load Balancer Agent...
 
 groups [myGroup], locators [null]
@@ -311,7 +312,7 @@ Make sure Apache is configured with [Include c:\Apache2.2\conf\gigaspaces/*.conf
 [SpaceAccess]: Adding [fc3e580a-df90-4a1f-942b-676453603b6d] [192.168.10.67:8080/SpaceAccess]
 [SpaceAccess]: Detected as dirty, updating config file...
 [SpaceAccess]: Using balancer template [c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\tools\apache\balancer-template.vm]
-Feb 29, 2016 6:28:48 PM org.apache.velocity.runtime.log.JdkLogChute log
+Jun 10, 2009 6:28:48 PM org.apache.velocity.runtime.log.JdkLogChute log
 INFO: FileResourceLoader : adding path '.'
 [SpaceAccess]: Updated config file
 Executing ["c:\Apache2.2/bin/httpd.exe" -k restart]...
@@ -321,7 +322,7 @@ Executed ["c:\Apache2.2/bin/httpd.exe" -k restart], exit code [0]
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 7:** Now let's verify that the application works as expected. Assuming Apache runs on your local machine on port 80, open you web browser and point it to `http://localhost/SpaceAccess/`. You should see the application's welcome page. Another way to verify this is point your web browser to `http://localhost/balancer`. You should see the summary screen of Apache's load balancing module. In this screen you should see listed the two running web containers.
+**Step 8:** Now let's verify that the application works as expected. Assuming Apache runs on your local machine on port 80, open you web browser and point it to `http://localhost/SpaceAccess/`. You should see the application's welcome page. Another way to verify this is point your web browser to `http://localhost/balancer`. You should see the summary screen of Apache's load balancing module. In this screen you should see listed the two running web containers.
 
 {{%accordion%}}
 {{%accord title="Click to view screenshots"%}}
@@ -329,7 +330,7 @@ Executed ["c:\Apache2.2/bin/httpd.exe" -k restart], exit code [0]
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 8:** Type in values once or twice by filling the "Field" and "Value" text boxes and clicking submit. You should see them now above the text boxes, which means they were inserted to the space. You can also see that they are stored in the space using the GUI. Click the "Space Browser" tab on the left, and then expand and click the following node on the "Grid Tree" pane on the right: Clusters --> mySpace --> Operations --> Data Types. You will notice that the number of instances of type `UserData` is more than 0.
+**Step 9:** Type in values once or twice by filling the "Field" and "Value" text boxes and clicking submit. You should see them now above the text boxes, which means they were inserted to the space. You can also see that they are stored in the space using the GUI. Click the "Space Browser" tab on the left, and then expand and click the following node on the "Grid Tree" pane on the right: Clusters --> mySpace --> Operations --> Data Types. You will notice that the number of instances of type `UserData` is more than 0.
 
 {{%accordion%}}
 {{%accord title="Click to view screenshots"%}}
@@ -352,20 +353,3 @@ Now let's deliberately terminate one of the GSCs on which the application is dep
 
 **Step 3:** The load balancer agent will pick up the change in runtime state, and will update the apache load balancer (this may take a few seconds). You can now refresh the page in your web browser and see the space content you entered before still appears on the screen, and **everything still works as before.**
 
-After you are done with the example, you can undeploy it by using the command line.
-
-```bash
-<gs root>/examples/web/space-access/build.(sh/bat) undeploy
-```
-
-{{%accordion%}}
-{{%accord title="Click to show expected output..."%}}
-
-
-```bash
-2016-02-29 10:16:31,300 CONFIG [com.gigaspaces.logger] Log file: c:\GS-Releases\{{%version "gshome-directory"%}}\bin\..\logs\2016-02-29~10.16-gigaspaces-service-host01-7764.log
-Found 1 GSMs
-Command successful
-```
-{{%/accord%}}
-{{%/accordion%}}

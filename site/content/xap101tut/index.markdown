@@ -67,6 +67,8 @@ All XAP components can be wired and configured with the application using corres
 [Your first XAP Application](./first-xap-app.html)<br>
 This tutorial explains how to build your first XAP Application in 4 easy steps, from basic API usage to scaling your application and making it highly available.
 
+[Your first WEB Application](./first-web-app.html)<br>
+This tutorial explains how your existing web JEE web application can benefit from the XAP platform, showing you how to deploy a simple standard web application into the XAP environment.
 
 
 {{%/fpanel%}}

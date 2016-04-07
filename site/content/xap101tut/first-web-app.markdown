@@ -1,7 +1,7 @@
 ---
-type: post110
+type: post101
 title:  Your First Web Application
-categories: XAP110TUT
+categories: XAP101TUT
 weight: 4000
 parent: none
 ---

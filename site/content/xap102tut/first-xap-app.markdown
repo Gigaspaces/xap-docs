@@ -1,7 +1,7 @@
 ---
 type: post102
 title:  Your First XAP Application
-categories: SBP
+categories: XAP102TUT
 weight: 3000
 parent: none
 ---
