@@ -3,7 +3,7 @@ type: post101
 title:  Spring Integration
 categories:  XAP101TUT
 parent: none
-weight: 10000
+weight: 2000
 ---
 
 
