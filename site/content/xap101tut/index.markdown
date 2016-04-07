@@ -70,6 +70,9 @@ This tutorial explains how to build your first XAP Application in 4 easy steps, 
 [Your first WEB Application](./first-web-app.html)<br>
 This tutorial explains how your existing web JEE web application can benefit from the XAP platform, showing you how to deploy a simple standard web application into the XAP environment.
 
+[XAP Data Example](./the-openspaces-data-example.html)<br>
+This example gives an extensive overview of the XAP APIs, the Processing Unit concept and the configuration options in the sla.xml and pu.xml files.
+
 
 {{%/fpanel%}}
 
