@@ -1,7 +1,7 @@
 ---
-type: post110
+type: post102
 title:  Scaling the Hello World Application
-categories: XAP110TUT
+categories: XAP102TUT
 weight: 400
 parent: first-xap-app.html
 ---
@@ -14,20 +14,17 @@ Learn how to scale the Hello World Application.
 # Application Components
 
 {{% imagertext "/attachment_files/Application Components.jpg"%}}
-
 The Processing Unit we deploy onto the Service Grid is our Hello World Processor application from the [previous steps](./first-xap-app.html). Reminder - a feeder application writes each Message object to the processor Processing Unit, which is in turn processed by the Processor class.
-
 {{%/imagertext%}}
-
 
 
 # Infrastructure (Service Grid) Components
 
 {{% imagertext "/attachment_files/Infra Components.jpg"%}}
-* The _Service Grid_ is a set of containers (_Grid Service Containers_ - GSCs) managed by one or more a managers (_Grid Service Managers_ - GSMs).
-* Each Grid Service Container runs inside its own JVM. The containers themselves host _Processing Units_.
-* The Grid Service Manager manages the deployment of processing units and their provisioning to the the Grid Service Containers. In production scenarios you may want to have more than one manager, so it does not become a single point of failure.
-* The _GigaSpaces Management Center_ is the graphical user interface for administrating and monitoring the _Service Grid_ and the deployed applications.
+* The _Service Grid_ is a set of containers (_Grid Service Containers_ - GSCs) managed by one or more a managers (_Grid Service Managers_ - GSMs).<br>
+* Each Grid Service Container runs inside its own JVM. The containers themselves host _Processing Units_.<br>
+* The Grid Service Manager manages the deployment of processing units and their provisioning to the the Grid Service Containers. In production scenarios you may want to have more than one manager, so it does not become a single point of failure.<br>
+* The _GigaSpaces Management Center_ is the graphical user interface for administrating and monitoring the _Service Grid_ and the deployed applications.<br>
 {{%/imagertext%}}
 
 # Scaled-Out Deployment Layout
@@ -78,17 +75,17 @@ Jump ahead and [run the sample application](#Deploy and Run), in case you want t
 
 When your application is modeled as a Processing Unit, scaling it is as simple as adding more Processing Unit instances. Since processing units are self sufficient in the sense that they do not depend on any external component, this means that by increasing the number of Processing Unit instances that are used to by your application, you linearly (and of course predictably) increase its throughput. For example, if 2 Processing Unit instances can process 10K operations per second, 3 instances will process 15K, 4 instances 20K, and so on - see Figure 6.
 
-{{% align "center" %}}![Partition on machines.jpg](/attachment_files/Partition on machines.jpg)
+{{% align center %}}![Partition on machines.jpg](/attachment_files/Partition on machines.jpg)
 
-{{% sub %}}**Figure 6. N machines hosting N Grid Service Containers: each Container runs a Processing Unit.**{{% /sub %}}
-{{% /align %}}
+{{% sub %}}**Figure 6. N machines hosting N Grid Service Containers: each Container runs a Processing Unit.**{{% /sub %}}{{% /align %}}
 
 #### Partitioning and Routing
 
 As mentioned earlier, scaling is done by making sure each Processing Unit instance runs independently of the other instances (you may recall the car wash analogy from [step one of this tutorial](./first-xap-app-step-1.html). This is done by making sure that the data that is needed to perform a certain business operation, resides in the same Processing Unit instance that does the actual processing (this is called data affinity). This in turn guarantees two things - latency is kept at a fixed minimum, and is not related to the number of processing unit instances that are used by the application.
 This is achieved by dividing the application data into partitions (each partition resides on a separate Processing Unit instance, in the form of a space), and intelligently distributing the data to these partitions. The business logic services deployed on each instance, operate only on the partition local to them, i.e. the one collocated in the same Processing Unit instance. This ensures extremely low latency, because data is kept in memory. It also ensures linear scalability when increasing the number of Processing Unit instances - see Figure 7 below.
 
-{{% align center %}}![Partition.jpg](/attachment_files/Partition.jpg)
+{{% align center %}}
+![Partition.jpg](/attachment_files/Partition.jpg)
 
 {{% sub %}}**Figure 7. 3 Processing Unit instances: each holds a different subset of the data, marked with different colors.**{{% /sub %}}
 {{% sub %}}**A client connecting to this system, views the space partitions in all of these instances, as a single virtual resource.**{{% /sub %}}
@@ -100,6 +97,7 @@ This is achieved by dividing the application data into partitions (each partitio
 ![Routing Client.jpg](/attachment_files/Routing Client.jpg)
 
 {{% sub %}}**Figure 8. Partitioning is implemented using a hash-based routing mechanism. Each object is transparently routed to the correct partition by the client side proxy**.{{% /sub %}}
+
 {{% /align %}}
 
 **Routing Index** - When writing an object to a cluster of Processing Units which contains multiple partitions, the routing of that object to a specific partition, is calculated based on the value of one of the object's properties. This property is designated using the `@SpaceRouting` annotation, and is referred to as the **Routing Index**.
@@ -141,15 +139,15 @@ Next, we show you how to start the service grid components, by starting a grid s
 **Install GigaSpaces**
 
 {{% info%}}
-After going through the previous tutorial [Step Two - Creating the Hello World Application](./first-xap-app-step-2.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment]({{%currentjavaurl%}}/installation.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
+After going through the previous tutorial [Step Two - Creating the Hello World Application](./first-xap-app-step-2.html), you should have GigaSpaces installed and the Hello World sample application environment set. If not, please [download GigaSpaces and set up your development environment]({{%currentjavaurl%}}/installation-guide.html) to work with GigaSpaces - this is needed to run the tutorial sample application.
 {{%/info%}}
 
 {{% anchor Start Service Grid %}}
 
 #### Starting the Service Grid Components
 
-Step 1. Start **GigaSpaces Management Center (GS-UI)** by running `<XAP Root>/bin/gs-ui.(sh/bat)`.<br>
-Step 2. Start a **GigaSpaces Agent (GSA)** by running `<XAP Root>/bin/gs-agent.(sh/bat)`.<br>
+1. Start **GigaSpaces Management Center (GS-UI)** by running `<XAP Root>/bin/gs-ui.bat(.sh)`.
+1. Start a **GigaSpaces Agent (GSA)** by running `<XAP Root>/bin/gs-agent.(sh/bat)`.
 The GSA, by default, will start 2 local Grid Service Containers, and manage a global Grid Service Manager and a global Lookup Service.
 
 {{%accordion%}}
@@ -168,7 +166,7 @@ A new Grid Service Manager starts on your local machine, and its output can be v
 A new Grid Service Containers start on your local machine, and its output can be viewed by clicking their names **gsc-1**/**gsc-2** inside the **Hosts** tab.
 The Grid Service Manger automatically detects the Grid Service Containers. Now we have a Service Grid with one manager and two containers up and running!
 
-Step 3. Start one more local **Grid Service Container**, by right-clicking **gsa-1** in the **Hosts** tab and selecting **Start GSC**.<br>
+1. Start one more local **Grid Service Container**, by right-clicking **gsa-1** in the **Hosts** tab and selecting **Start GSC**.
 The Service Grid now has 3 **Grid Service Containers**.
 
 {{% sub %}}(The Service Grid Components started here are _local_ services, all running on your own machine. Naturally, in a production environment, you start them on separate machines, using the startup scripts that the product provides.){{% /sub %}}
@@ -177,8 +175,8 @@ The Service Grid now has 3 **Grid Service Containers**.
 
 {{% anchor Configure Scale 3 and Build %}} **Configuring the application to be partitioned over 3 instances**
 
-Step 1. Edit the processor's  **pu.xml** configuration file located under `<XAP root>/examples/helloworld/processor/src/main/resources/META-INF/spring` folder.<br>
-Step 2. Uncomment, or add the following SLA bean definition, which contains the deployment configuration, to the **pu.xml** file:
+Step 1. Edit the processor's  **pu.xml** configuration file located under `<XAP root>/examples/helloworld/processor/src/META-INF/spring` folder.<br>
+Step 2. Uncomment, or add the following SLA bean definition, which contains the deployment configuration, to the **pu.xml** file:<br>
 
 
 ```xml
@@ -189,24 +187,20 @@ Step 2. Uncomment, or add the following SLA bean definition, which contains the 
 </os-sla:sla>
 ```
 
-Step 3. Build the processor Processing Unit by running `<Hello World Example Root>/build.(sh/bat) package`.<br>
-This compiles the processor into a JAR file, ready for deployment located under `<Hello World Example Root>/processor/target/hello-processor.jar`.
+Step 3. Build the processor Processing Unit by running `<Example Root>/build.bat(.sh) dist`.<br>
+This compiles the processor into a JAR file, ready for deployment located under `<Example Root>/Processor/PU/hello-processor.jar`.
 
 {{% anchor Deploy 3 %}}
 **Deploy the Hello World Processor as a partition of 3 instances**
 
-There are 2 ways to deploy the processing unit jar:
-Step 8. Run the next command: `<Hello World Example Root>/build.(sh/bat) deploy-processor` and wait for the processing units to be deployed.
-
-Alternatively, you can deploy the jar using **GigaSpaces Management Center (GS-UI)**.
-1. Click the **Deploy Processing Unit Button** ![deploy_processing_unit_button.jpg](/attachment_files/deploy_processing_unit_button.jpg) to open the **Deployment Wizard** dialog.
-1. Click the **Processing Unit** field **...** button to browse for the processing unit JAR file.
-1. Browse to the **hello-processor.jar** JAR file, located at `<Hello World Example Root>/processor/target` folder and select it.
-1. Click the **Deploy** button, to deploy and wait for the processing unit instances to be provisioned to the running Grid Service Containers.
+Step 4. Click the **Deploy Processing Unit Button** ![deploy_processing_unit_button.jpg](/attachment_files/deploy_processing_unit_button.jpg) to open the **Deployment Wizard** dialog.<br>
+Step 5. Click the **Processing Unit** field **...** button to browse for the processing unit JAR file.<br>
+Step 6. Browse to the **hello-processor.jar** JAR file, located at `<Example Root>/Processor/PU` folder and select it.<br>
+Step 7. Click the **Deploy** button, to deploy and wait for the processing unit instances to be provisioned to the running Grid Service Containers.
 
 #### Running the Feeder
 
-Step 4. Start the feeder by running `<Hello World Example Root>/build.(sh/bat) run-feeder`
+Step 8. Start the feeder by running `<Example root>/build.bat(.sh) run-feeder`
 
   {{% anchor Output 3 %}}
 
@@ -225,8 +219,8 @@ Our Service Grid consists of 3 Grid Service Containers(GSCs). The brackets conta
 
 Before deploying the application with a backup, we first undeploy the currently running configuration:
 
-1. In the **Deployed Processing Unit**tab, under the **Processing Units** tree, right click the **hello-processor** deployment and click **Undeploy**.
-1. Click **Yes** to approve.
+Step 1. In the **Deployed Processing Unit**tab, under the **Processing Units** tree, right click the **hello-processor** deployment and click **Undeploy**.<br>
+Step 2. Click **Yes** to approve.
 
 
 
@@ -235,8 +229,8 @@ Before deploying the application with a backup, we first undeploy the currently 
 {{% anchor Configure Scale 2backup and Build %}}
 **Configuring scaling to be partitioned over 2 instances, with 1 backup each**
 
-Step 1. Edit the processor's  **pu.xml** configuration file located under `<XAP root>/examples/helloworld/processor/src/main/resources/META-INF/spring` folder.<br>
-Step 2. Uncomment, or add the following SLA bean definition, which contains the deployment configuration, to the **pu.xml** file (the number-of-backups sets the number of backups per instance):
+Step 1. Edit the processor's  **pu.xml** configuration file located under `<XAP root>/examples/helloworld/processor/src/META-INF/spring` folder.<br>
+Step 2. Uncomment, or add the following SLA bean definition, which contains the deployment configuration, to the **pu.xml** file (the number-of-backups sets the number of backups per instance):<br>
 
 
 ```xml
@@ -248,8 +242,8 @@ Step 2. Uncomment, or add the following SLA bean definition, which contains the 
 </os-sla:sla>
 ```
 
-Step 3. Build the processor Processing Unit by running `<Hello World Example Root>/build.(sh/bat) package`.<br>
-This compiles the processor into a JAR file, ready for deployment located under `<Hello World Example Root>/processor/target/hello-processor.jar`.
+Step 3. Build the processor Processing Unit by running `<Example Root>/build.bat(.sh) dist`.<br>
+This compiles the processor into a JAR file, ready for deployment located under `<Example Root>/Processor/PU/hello-processor.jar`.
 
 {{% anchor Deploy 2 with backup %}}
 **Deploy the Hello World Processor with 2 Primary and 2 Backup Instances**
@@ -257,12 +251,12 @@ This compiles the processor into a JAR file, ready for deployment located under 
 Step 4. Start one more local **Grid Service Containers**, by right-clicking **gsa-1** in the **Hosts** tab and selecting **Start GSC**. The Service Grid should now have 4 Grid Service Containers.<br>
 Step 5. Click the **Deploy Processing Unit Button** ![deploy_processing_unit_button.jpg](/attachment_files/deploy_processing_unit_button.jpg) to open the **Deployment Wizard** dialog.<br>
 Step 6. Click the **Processing Unit** field **...** button to browse for the processing unit JAR file.<br>
-Step 7. Browse to the **hello-processor.jar** JAR file located at `<Hello World Example Root>/processor/target` folder and select it.<br>
-Step 8. Click the **Deploy** button, to deploy and wait for the processing unit instances to be provisioned to the running Grid Service Containers.
+Step 7. Browse to the **hello-processor.jar** JAR file located at `<Example Root>/Processor/PU` folder and select it.<br>
+Step 8. Click the **Deploy** button, to deploy and wait for the processing unit instances to be provisioned to the running Grid Service Containers.<br>
 
 #### Running the Feeder
 
-Step 9. Start the feeder by running `<Hello World Example Root>/build.(sh/bat) run-feeder`.
+Step 9. Start the feeder by running `<Example root>/build.bat(.sh) run-feeder`.
 
 #### Expected Output for the 2 Primary and 2 Backup Instances Deployment
 

@@ -59,11 +59,13 @@ In this part of the tutorial we will introduce you to XAP security, where it fit
 In this part of the tutorial we will show you how you can globaly share HTTP sessions with XAP.
 
 [Flash drive IMDG Storage](./blobstore.html)<br>
-This guide describes the general architecture and functionality of this storage model that is leveraging both on-heap, off-heap and SSD implementation, called `MemoryXtend`.
+This guide describes the general architecture and functionality of this storage model that is leveraging both on-heap, off-heap and SSD implementation, called MemoryXtend.
 
 [Spring Integration](./spring-integration.html)<br>
 All XAP components can be wired and configured with the application using corresponding [Spring Beans](http://spring.io/).
 
+[Your first XAP Application](./first-xap-app.html)<br>
+This tutorial explains how to build your first XAP Application in 4 easy steps, from basic API usage to scaling your application and making it highly available.
 
 
 
