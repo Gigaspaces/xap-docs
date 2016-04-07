@@ -118,7 +118,7 @@ The "helloFeeder" user will be granted **`Write`** access for `HelloObject` and 
 - The `HelloObject` was replaced by a `Message` Object in the products example. Thus the actual class that should be granted privileges for is `org.openspaces.example.helloworld.common.Message`.
 {{%/note%}}
 
-Lets look at how easily it can be using the [GigaSpaces Management Center (UI) Security](./gigaspaces-management-center-ui-security.html)
+Lets look at how easily it can be using the [GigaSpaces Management Center (UI) Security]({{%currentadmurl%}}/gigaspaces-management-center-ui-security.html)
 
 ![helloWorldUsers.png](/attachment_files/helloWorldUsers.png)
 
