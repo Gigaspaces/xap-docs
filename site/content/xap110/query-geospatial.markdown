@@ -5,10 +5,7 @@ categories: XAP110
 parent: querying-the-space.html
 weight: 340
 ---
-
-{{%warning "Technical Preview"%}}
-This feature is new in 11.0 and is currently a technical preview, i.e. it is subject to breaking changes until 11.0 is released.
-{{%/warning%}}
+ 
 
 Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries. To take advantage of XAP's spatial capabilites, simply add the `xap-spatial` maven dependency to your project:
 
