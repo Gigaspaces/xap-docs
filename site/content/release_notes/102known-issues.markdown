@@ -14,7 +14,8 @@ Below is a list of known issues in GigaSpaces 10.2.X.
 
 | Key | Summary | SalesForce ID | Workaround | Platform/s |
 |:-------|:--------|:----------------|:------------------|:----------|
-| <nobr>GS-12607</nobr> | Update object lease will not update the lease manager, if update waited on a lock | 9949 | | Java |
+| <nobr>GS-12155</nobr> | Objects will stay locked under transaction if Mahalo is down between the prepare and commit | 9442, 9653 | | Java |
+| GS-12607 | Update object lease will not update the lease manager, if update waited on a lock | 9949 | | Java |
 | GS-12586 | Missing jar from "XAP as Windows Service" example | 10051 |  | Java |
 | GS-12570 | XAP.NET HttpSessionProvider sporadically causes 100% CPU | 10029 |  | .Net |
 | GS-12569 | .Net - Fail to add indexes on document properties |  |  | .Net |
