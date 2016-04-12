@@ -3,7 +3,7 @@ type: post110
 title:  Clustered vs Non-Clustered Proxies
 categories: XAP110ADM
 parent: data-grid-clustering.html
-weight: 70
+weight: 200
 ---
 
 {{%ssummary%}} {{%/ssummary%}}

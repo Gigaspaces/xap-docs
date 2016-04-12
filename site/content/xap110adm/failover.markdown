@@ -3,7 +3,7 @@ type: post110
 title:  Failover
 categories: XAP110ADM
 parent: data-grid-clustering.html
-weight: 300
+weight: 500
 ---
 
 

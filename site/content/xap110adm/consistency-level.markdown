@@ -3,7 +3,7 @@ type: post110
 title:  Consistency Level
 categories: XAP110ADM
 parent: data-grid-clustering.html
-weight: 100
+weight: 300
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

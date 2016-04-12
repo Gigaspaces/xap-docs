@@ -3,7 +3,7 @@ type: post110
 title:  Consistency Biased
 categories: XAP110ADM
 parent: leader-election.html
-weight: 100
+weight: 200
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

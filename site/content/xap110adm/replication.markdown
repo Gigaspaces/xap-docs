@@ -3,7 +3,7 @@ type: post110
 title:  Replication
 categories: XAP110ADM
 parent: data-grid-clustering.html
-weight: 400
+weight: 600
 ---
 
 

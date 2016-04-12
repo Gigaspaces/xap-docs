@@ -3,7 +3,7 @@ type: post110
 title:  Clustering
 categories: XAP110ADM
 parent: data-grid-clustering.html
-weight: 50
+weight: 100
 ---
 
 

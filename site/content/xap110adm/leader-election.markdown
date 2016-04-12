@@ -3,7 +3,7 @@ type: post110
 title:  Leader Election
 categories: XAP110ADM
 parent: data-grid-clustering.html
-weight: 401
+weight: 700
 ---
 
 
