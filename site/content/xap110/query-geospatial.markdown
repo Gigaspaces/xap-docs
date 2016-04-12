@@ -185,10 +185,3 @@ Lucene indexing is stored in a **Store Directory**. Lucene supports different St
 ### File System
 
 Lucene indexes are stored in the file system. When used within a processing unit deployed on the service grid, these files are stored within the processing unit working folder, and automatically deleted if/when the processing unit is undeployed. When there's no service grid involved, the files are stored in a unique folder under `user.home`. This location can be explicitly set using the `space-config.spatial.lucene.storage.location` space property.
-
-# Limitations
-
-The following limitations and open issues apply to 11.0.0 M9:
-
-* The property itself must be a `Shape` - nested properties, collections, dynamic properties and space documents are not supported.
-* There are some issues with inheritance which have not been isolated yet.
