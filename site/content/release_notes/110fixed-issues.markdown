@@ -15,6 +15,7 @@ Below is a list of issues that have been fixed in GigaSpaces 11.0.X.
 | Key | Summary | Fix Version/s | Sales Force ID | Platform/s |
 |:---------|:--------|:----------------|:---------------|:------------------|
 | <nobr>GS-12779</nobr> | Not expose context parameters values in the log for per-defined keys | 11.0.0 | | All |
+| GS-12155 | Objects will stay locked under transaction if Mahalo is down between the prepare and commit | 11.0.0 | | Java |
 | GS-12778 | org.openspaces.remoting.EventDrivenRemoteFuture is not thread-safe | 11.0.0 | | All |
 | GS-12761 | Deploying an invalid PU might corrupt the GSC | 11.0.0 | | All |
 | GS-12691 | Failure handling generic collection fields with Enum as key in .NET | 11.0.0 |	10208 | .Net |
