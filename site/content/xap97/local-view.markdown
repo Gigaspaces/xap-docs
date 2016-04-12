@@ -41,10 +41,8 @@ Creating a local view is similar to creating a [`GigaSpace`](./the-gigaspace-int
 <os-core:local-view id="localViewSpace" space="space">
     <os-core:properties>
  	 <props>
- 	 <prop key="space-config.engine.memory_usage.high_watermark_percentage">90</prop>
  	 <prop key="space-config.engine.memory_usage.write_only_block_percentage">88</prop>
  	 <prop key="space-config.engine.memory_usage.write_only_check_percentage">86</prop>
- 	 <prop key="space-config.engine.memory_usage.low_watermark_percentage">85</prop>
  	 </props>
  	</os-core:properties>
     <os-core:view-query class="com.example.Message1" where="processed = true"/>
@@ -95,8 +93,6 @@ LocalViewSpaceConfigurer localViewConfigurer = new LocalViewSpaceConfigurer(urlC
 	.addProperty("space-config.engine.memory_usage.high_watermark_percentage", "90")
 	.addProperty("space-config.engine.memory_usage.write_only_block_percentage", "88")
 	.addProperty("space-config.engine.memory_usage.write_only_check_percentage", "86")
-	.addProperty("space-config.engine.memory_usage.low_watermark_percentage", "85")
-	.addProperty("space-config.engine.memory_usage.eviction_batch_size", "1000")
 	.addProperty("space-config.engine.memory_usage.retry_count", "5")
 	.addProperty("space-config.engine.memory_usage.explicit", "false")
 	.addProperty("space-config.engine.memory_usage.retry_yield_time", "50")
