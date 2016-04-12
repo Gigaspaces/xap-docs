@@ -39,6 +39,9 @@ This section describes GigaSpaces IMDG Failover facilities.
 [Replication](replication.html){{<wbr>}}
 This section gives a detailed description of the Space's replication mechanism, and how to configure and optimize it.
 
+[Leader Election](leader-election.html){{<wbr>}}
+This section gives a detailed description of the Space's leader election mechanism, and how to configure and optimize it.
+
 [Split Brain](split-brain-and-primary-resolution.html){{<wbr>}}
 This section describes Data-Grid cluster split brain and primary resolution flow.
 {{%/fpanel%}}
