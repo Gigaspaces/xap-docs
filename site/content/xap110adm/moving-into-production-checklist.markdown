@@ -3,7 +3,7 @@ type: post110
 title:  Moving into Production Checklist
 categories: XAP110ADM
 parent: none
-weight: 1400
+weight: 1600
 ---
 
 
