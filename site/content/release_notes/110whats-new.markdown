@@ -35,6 +35,12 @@ A new MemoryXtend add-on based on [RocksDB](http://rocksdb.org/) is now availabl
 
 {{<infosign>}} For more information see [RocksDB](/xap110adm/memoryxtend-rocksdb-ssd.html)
 
+# XAP Cloud tool
+
+A new tool that simplifies installation and configuration of XAP on a set of machines, either on cloud or on-premises.
+
+{{<infosign>}} For more information see [XAP Cloud](/xap110adm/xap-cloud.html)
+
 # Third Party library updates
 
 ## Mule 3.7
