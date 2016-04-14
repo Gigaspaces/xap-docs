@@ -210,9 +210,14 @@ Make sure you provide the `sla.xml` location at the deploy time (`-sla` deploy c
 
 When a space instance starts as part of a primary-backup cluster, it goes through a process called **Active Election** to determine if it should be a primary or a backup instance. Generally speaking, the first instance which is loaded is primary, and the rest are backups. If a persistent system is restarted in an orderly manner (i.e. all data was flushed to both primary and backup before shutting down) it doesn't matter which instance becomes primary, since they are identical. However, if both primary and backup crashed unexpectedly for some reason and then restart, it is important to ensure that the last instance which was primary before the crash will be elected primary again, since it holds a more accurate version of the data.
 
-To overcome that problem, the space can be configured with an **Attribute Store** which will be updated whenever a new primary space is elected, so that when the system restarts, instead of electing the first available instance, the system will wait for the last primary space to become available and re-elect it. If the last primary space cannot be restarted, the user can manually remove the last primary entry from the attribute store, thus allowing the backup space become primary.
+To overcome that problem, the space can be configured with **Attribute Store** which will be updated whenever a new primary space is elected, so that when the system restarts, instead of electing the first available instance, the system will wait for the last primary space to become available and re-elect it. If the last primary space cannot be restarted, the user can manually remove the last primary entry from the attribute store, thus allowing the backup space to become the primary.
 
-XAP is bundled with 2 implementations: the first is a file-based implementation of an attribute store which can be used in conjunction with an NFS filesystem to maintain the last primary and the second is based on [Zookeeper](./zookeeper.html). The following examples demonstrates configuring a persistent SSD RocksDB add-on with such an attribute store:
+XAP is bundled with 2 implementations:
+
+* File-based implementation of an attribute store which can be used in conjunction with an NFS filesystem to maintain the last primary.
+* [Zookeeper](./zookeeper.html).
+
+The following examples demonstrate how to configure a persistent SSD RocksDB add-on with such an attribute store:
 
 {{%tabs%}}
 {{%tab "File based"%}}
@@ -277,9 +282,11 @@ XAP is bundled with 2 implementations: the first is a file-based implementation 
 
 # Asynchronous Persistency - Write Behind
 
-MemoryXtend can work together with [XAP Mirror Service]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html) which provides reliable asynchronous persistency that asynchronously delegate the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database.
+MemoryXtend can work together with the [XAP Mirror Service]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html) which provides reliable asynchronous persistency that asynchronously delegates the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database.
 
+{{%align center%}}
 ![image](/attachment_files/blobstore/ssd-rocksdb-mirror.png)
+{{%/align%}}
 
 
 ## Initial Load
