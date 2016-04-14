@@ -6,12 +6,9 @@ parent: none
 weight: 1400
 ---
 
+As the complexity of environments grows, the need for better, smarter automation is needed. **xap-cloud** simplifies the installation and configuration of XAP on a set of machines, either on a cloud or on-premises.
 
-# Introduction
-
-As environments complexity grows, the need for better, smarter automation grows as well. For that end we've created a new tool in XAP called 'xap-cloud', which simplifies installation and configuration of XAP on a set of machines, either on cloud or on-premises.
-
-<br />
+<br>
 
 # Requirements
 
@@ -28,17 +25,20 @@ Servers - hosts that will run XAP
 - CentOS or Ubuntu
 - A sudoer user that does not require password when running a command as superuser.
 
-<br />
+<br>
 
 # Configurations
 
-Using XAP Cloud tool requires setting two configurations: Hosts that XAP will be installed on and XAP configurations.
+Using the XAP Cloud tool requires two configurations: Hosts that XAP will be installed on and XAP configurations.
 
 ### Hosts configuration
 
 In the root directory of the tool you can find the `xap-hosts.yaml` file. This file contains the hosts that XAP will be installed on.
 
-There are two types of hosts: *management* and *container*. `management` hosts will have GSA, GSM and LUS while the `container` hosts will have GSA and GSCs.
+There are two types of hosts: **management** and **container**.
+
+* `management` hosts will host and manage GSA, GSM and LUS
+* `container` hosts will host and manage GSA and GSCs.
 
 Here is an example of the hosts file:
 
@@ -65,20 +65,20 @@ hosts:
     tags: [container]
 ```
 
-This file is consisted of hosts list in which each host has the following attributes:
+This file consists of a list of host machines on which each host has the following attributes:
 
 - host/ip_range - a single or range of IPs of the host. The host should be accessible from the client host via this IP.
 - port - authentication port
-- auth - authentication details: username and password. If you have a private key you can pass it via the key_filename attribute.
+- auth - authentication details: username and password. If you have a private key you can pass it via the **key_filename** attribute.
 - tags - defines the type of the host: *management* or *container* host. Note that only one tag can be provided to the same host.
 
-In case you have one or more properties that should be applied to all hosts, e.g. auth and port attributes, you can write them in the *default* section.
+In case you have one or more properties that should be applied to all hosts, e.g. auth and port attributes, you can write them in the **default** section.
 
-<br />
+<br>
 
 ### XAP configuration
 
-Next we need to configure the installation process as well as XAP. This is done via the `xap-cloud.yaml` file.
+Next, we need to configure the installation process as well as XAP. This is done via the `xap-cloud.yaml` file.
 
 Bellow is the configuration file with the default values set.
 
@@ -128,11 +128,13 @@ java_version: "8"
 #container_xap_ext_options: ""
 ```
 
-<br />
+<br>
 
 # Installing XAP
 
-{{%warning "Warning"%}}Running the install twice might lead to erros in the uninstall step therefore it is not recommended.{{%/warning%}}
+{{%warning "Warning"%}}
+Running the install twice might lead to errors in the uninstall step therefore it is not recommended.
+{{%/warning%}}
 
 Once the configuration step is completed, you can simply run the following command from within the tool directory:
 
@@ -151,7 +153,7 @@ Output sample:
 ![xap-cloud-install.png](/attachment_files/xap-cloud-install.png)
 
 
-<br />
+<br>
 
 # Uninstalling XAP
 
@@ -167,7 +169,7 @@ Output sample:
 
 ![xap-cloud-uninstall.png](/attachment_files/xap-cloud-uninstall.png)
 
-<br />
+<br>
 
 # Advanced
 
@@ -176,6 +178,8 @@ XAP Cloud tool provides the ability to make modifications to the hosts and to th
 - pre-install.sh - will run prior to the install step
 - pre-start.sh - will run prior to the start step
 
-For example, if you wish to configure the ulimit then you should use the *pre-install.sh* script.
+For example, if you wish to configure the `ulimit` then you should use the **pre-install.sh** script.
 
-{{%note "Note"%}}The tool comes with default scripts that are empty. If the files exist in the tool directory, they will replace the default ones. Therefore, deleting them afterwards will not return the defaults. In order to have the defaults back these files should be empty and placed in the tool's root folder.  {{%/note%}}
+{{%note "Note"%}}
+The tool comes with default scripts that are empty. If the files exist in the tool directory, they will replace the default ones. Therefore, deleting them afterwards will not return the defaults. In order to have the defaults back these files should be empty and placed in the tool's root folder.
+{{%/note%}}
