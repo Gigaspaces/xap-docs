@@ -212,8 +212,10 @@ When a space instance starts as part of a primary-backup cluster, it goes throug
 
 To overcome that problem, the space can be configured with an **Attribute Store** which will be updated whenever a new primary space is elected, so that when the system restarts, instead of electing the first available instance, the system will wait for the last primary space to become available and re-elect it. If the last primary space cannot be restarted, the user can manually remove the last primary entry from the attribute store, thus allowing the backup space become primary.
 
-XAP is bundled with a file-based implementation of an attribute store which can be used in conjunction with an NFS filesystem to maintain the last primary. The following example demonstrates configuring a persistent SSD RocksDB add-on with such an attribute store:
+XAP is bundled with 2 implementations: the first is a file-based implementation of an attribute store which can be used in conjunction with an NFS filesystem to maintain the last primary and the second is based on [Zookeeper](./zookeeper.html). The following examples demonstrates configuring a persistent SSD RocksDB add-on with such an attribute store:
 
+{{%tabs%}}
+{{%tab "File based"%}}
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -240,6 +242,36 @@ XAP is bundled with a file-based implementation of an attribute store which can 
     <os-core:giga-space id="gigaSpace" space="space"/>
 </beans>
 ```
+{{% /tab %}}
+{{%tab "Zookeeper based"%}}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
+
+    <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <bean id="attributeStoreHandler" class="org.openspaces.zookeeper.attribute_store.ZooKeeperAttributeStore" >
+          <constructor-arg name="name" value="blobstore_lastPrimary"/>
+      </bean>
+
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]"/>
+
+    <os-core:embedded-space id="space" name="mySpace" >
+        <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
+        <os-core:attribute-store store-handler="attributeStoreHandler"/>
+    </os-core:embedded-space>
+
+    <os-core:giga-space id="gigaSpace" space="space"/>
+</beans>
+```
+{{% /tab %}}
+{{% /tabs %}}
 <br/>
 <br/>
 
