@@ -23,7 +23,7 @@ XAP space and client components open different ports in various situations. The 
 
 - When starting a space and providing the port as part of the URL - i.e. `java://localhost:PORT/container/space` - the specified port will be used both for the RMI registry listener and also for the container to register into the RMI registry.
 - The Jini Lookup Service uses unicast and multicast announcements and requests.
-- The **multicast** discovery protocol uses ports 4170.
+- The **multicast** discovery protocol uses ports 4174.
 - You can **completely disable multicast announcement traffic**. Refer to the [Lookup Service Configuration](./network-lookup-service-configuration.html) or [Setting XAP Over Firewall](./network-over-firewall.html) sections for more details.
 - When running a clustered space using replication via multicast, additional ports are used.
 
