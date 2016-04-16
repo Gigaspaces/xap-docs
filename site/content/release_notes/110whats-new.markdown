@@ -15,7 +15,7 @@ It's not an exhaustive list of all new features. For a full change log for 11.0 
 
 XAP supports built in and user defined SQL Functions.
 
-{{<infosign>}} For more information see [SQL Functions](/xap110/query-sql.html#sql-functions).
+{{<infosign>}} For more information see [SQL Functions](/xap110/query-sql-function.html).
 
 
 
