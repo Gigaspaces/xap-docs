@@ -35,7 +35,7 @@ gs-agent.bat
 {{% /tabs %}}
 
 {{% tip "Optional - The Web Console "%}}
-XAP provides a web-based tool for monitoring and management. From the `bin` folder start the `gs-webui` script, then browse to `localhost:8099`. Click the 'Login' button and take a look at the *Dashboard* and *Hosts* tabs - you'll see the service grid components created on your machine.
+XAP provides a web-based tool for monitoring and management. From the `bin` folder start the `gs-webui` script, then browse to `localhost:8099`. Click the 'Login' button and take a look at the *Hosts* tab - you'll see the service grid components created on your machine.
 {{% /tip %}}
 
 # Deploying the Data Grid
@@ -188,7 +188,7 @@ public class Program {
         Person[] results = gigaSpace.readMultiple(new Person());
         System.out.println("Result: " + java.util.Arrays.toString(results));
 
-        configurer.destroy();
+        configurer.close();
     }
 }
 ```
