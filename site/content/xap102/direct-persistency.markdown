@@ -58,7 +58,7 @@ A Data-Grid running in Direct persistency mode using central database topology, 
 <bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSource">
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
-<bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpoint">
+<bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpointFactoryBean">
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
@@ -85,14 +85,14 @@ A Data-Grid running in Direct persistency mode using distributed databases topol
 
 
 ```xml
-<bean id="hibernateDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSource">
+<bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSource">
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
-<bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpoint">
+<bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpointFactoryBean">
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
-<os-core:embedded-space id="space" name="space" schema="persistent" space-data-source="hibernateSpaceDataSource">
+<os-core:embedded-space id="space" name="space" schema="persistent" space-data-source="hibernateSpaceDataSource"
          space-sync-endpoint="hibernateSpaceSynchronizationEndpoint">
     <os-core:properties>
         <props>
