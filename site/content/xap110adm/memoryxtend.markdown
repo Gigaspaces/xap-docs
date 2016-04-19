@@ -53,10 +53,10 @@ Creating a space with a MemoryXtend add-on can be done via `pu.xml` or code. The
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
        http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
 
-    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]"/>
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" name="mySpace" >
-        <os-core:blob-store-data-policy blob-store-handler="myBlobStore"/>
+        <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
     </os-core:embedded-space>
 
     <os-core:giga-space id="gigaSpace" space="space"/>
@@ -72,12 +72,13 @@ Creating a space with a MemoryXtend add-on can be done via `pu.xml` or code. The
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd">
 
-    <bean id="blobstoreid" class="com.gigaspaces.blobstore.rocksdb.RocksDBBlobStoreHandler">
+    <bean id="blobstoreid" class="com.gigaspaces.blobstore.rocksdb.config.RocksDBBlobStoreDataPolicyFactoryBean">
         <property name="paths" value="[/mnt/db1,/mnt/db2]"/>
+        <property name="mappingDir" value="/tmp/mapping"/>
     </bean>
 
     <os-core:embedded-space id="space" name="mySpace">
-        <os-core:blob-store-data-policy blob-store-handler="blobstoreid"/>
+        <os-core:blob-store-data-policy blob-store-handler="blobstoreid" persistent="true"/>
     </os-core:embedded-space>
 
     <os-core:giga-space id="gigaSpace" space="space"/>
@@ -88,10 +89,12 @@ Creating a space with a MemoryXtend add-on can be done via `pu.xml` or code. The
 
 ```java
 RocksDBBlobStoreConfigurer rocksDbConfigurer = new RocksDBBlobStoreConfigurer();
-rocksDbConfigurer.addPaths("[/mnt/db1,/mnt/db2]");
+rocksDbConfigurer.setPaths("[/mnt/db1,/mnt/db2]");
+rocksDbConfigurer.setMappingDir("/tmp/mapping");
 
 BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
 blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
+blobStorePolicy.setPersistent(true);
 
 EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
 spaceConfigurer.cachePolicy(blobStorePolicy);
@@ -232,7 +235,7 @@ XAP is bundled with 2 implementations: the first is a file-based implementation 
         <constructor-arg name="path" value="/your-shared-folder/lastprimary.properties"/>
     </bean>
 
-    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]"/>
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
@@ -260,7 +263,7 @@ XAP is bundled with 2 implementations: the first is a file-based implementation 
           <constructor-arg name="name" value="blobstore_lastPrimary"/>
       </bean>
 
-    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]"/>
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
