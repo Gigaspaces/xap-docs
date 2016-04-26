@@ -47,6 +47,10 @@ With the above scenario the Compound Index will improve the query execution dram
 ![compu_index_bench.jpg](/attachment_files/compu_index_bench.jpg)
 {{%/align%}}
 
+{{% note %}}
+If one of the query conditions is making use of the `IN` operator, then it's not recommended to create a compound index. Index separately since the compound index won't be used in the case of `IN`.
+{{% /note %}}
+
 # Using gs.xml
 
 A Compound Index can be defined within the gs.xml configuration file. Example: The following a `gs.xml` describing a POJO named Data having a compound index composed from two segments:
