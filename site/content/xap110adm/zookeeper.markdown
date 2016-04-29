@@ -8,9 +8,7 @@ weight: 500
 
 {{% ssummary %}}{{% /ssummary %}}
 
-{{%warning "Technical Preview"%}}
-This feature is new in 11.0 and is currently a technical preview, i.e. it is subject to breaking changes until 11.0 is released.
-{{%/warning%}}
+
 
 
 {{% anchor GSRuntimeEnv %}}
