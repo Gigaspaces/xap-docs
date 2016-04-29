@@ -32,8 +32,17 @@ gs-agent gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2 gsa.zk 1
 
 For reliable ZooKeeper services, you should deploy ZooKeeper in a cluster known as an **Ensemble** . As long as a majority of the Ensembles are up, the service will be available. ZooKeeper requires a majority, it is best to use an odd number of machines.
 
-Since every machine that is part of the ZooKeeper ensemble should know about every other machine in the ensemble, ZooKeeper instances are using the `ZOOKEEPER_SERVERS` environment variable or the `-Dorg.openspaces.grid.zookeeper.servers` system property. It accepts a comma separated list of `host:port:port`, the first port is used by followers to connect to the leader, and the second is for the leader election. By default it is configured with `hostname:2888:3888`.
+Since every machine that is part of the ZooKeeper ensemble should know about every other machine in the ensemble, ZooKeeper instances are using the `XAP_ZOOKEEPER_SERVERS` environment variable or the `-Dorg.openspaces.grid.zookeeper.servers` system property. It accepts a comma separated list of `host:port:port`, the first port is used by followers to connect to the leader, and the second is for the leader election. By default it is configured with `hostname:2888:3888`.
 
+For example:
+```command
+XAP_ZOOKEEPER_SERVERS=host1:2888:3888,host3:2888:3888,host3:2888:3888
+```
+<br>
+{{% note Note%}}
+The ip/hostname above should be the same as it configured in `XAP_NIC_ADDR` as it explained [here](./network-multi-nic.html).
+{{%/note%}}
+<br>
 Then start a ZooKeeper instances on an odd number of machines like the example below:
 
 ```xml
