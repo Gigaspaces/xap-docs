@@ -47,7 +47,10 @@ In previous versions environment variables names were inconsistent, which occesi
 |  LUS_JAVA_OPTIONS  |  XAP_LUS_OPTIONS  |
 |  ESM_JAVA_OPTIONS  |  XAP_ESM_OPTIONS  |
 
-*Tip*: If you'd rather postpone or avoid changing your scripts to the new names, you can use the new `setenv-overrides` script to map the relevant values. For example, suppose in the past you've needed to override the default lookup groups and the GSC options. If you've followed the best practices, you probably created a custom script to set those environment variables before calling the original script, something like:
+{{%tip%}}
+ If you'd rather postpone or avoid changing your scripts to the new names, you can use the new `setenv-overrides` script to map the relevant values. For example, suppose in the past you've needed to override the default lookup groups and the GSC options. If you've followed the best practices, you probably created a custom script to set those environment variables before calling the original script, something like:
+{{%/tip%}}
+
 
 {{%tabs%}}
 {{%tab " my-gs-agent.sh (Unix)"%}}
