@@ -37,6 +37,12 @@ With the above scenario the Compound Index will improve the query execution dram
 
 ![compu_index_bench.jpg](/attachment_files/compu_index_bench.jpg)
 
+
+{{% warning %}}
+If one of the query conditions makes use of the `IN` operator, compound indexes will be ignored. Separate indexes should be created.
+{{% /warning %}}
+
+
 # Creating a Compound Index using Annotation
 
 Compound indexes can be defined using annotations. The `CompoundSpaceIndex` annotation should be used. The annotation is a type-level annotation.
