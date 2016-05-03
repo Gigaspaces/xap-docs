@@ -9,11 +9,11 @@ weight: 320
 
 You can query the Space using **built in** functions and **user defined** functions.
 
-The user defined functions - UDF , should be implemented in Java and can be called from any data access API that support SQL Query. This means you can call them from a client using the Space API , JDBC API , .Net API , C++ API , Rest API , JPA API , Scala API , UI , CLI etc.   
+The user defined functions - UDF , should be implemented in Java and can be called from any data access API that supports SQL Queries. This means, you can call them from a client using the Space API , JDBC API , .Net API , C++ API , Rest API , JPA API , Scala API , UI , CLI etc.
 
-UDF allows you to access the relevant space object data without serializing or materializing it. This means the overall overhead of calling UDF is minimal. The `SqlFunctionExecutionContext` provides you direct access to the entry fields maintained within the space. You can override existing UDF such as `ABS` to perform customized functionality. Simply implement them as described below and register them using the `ABS` name.
+UDF allows you to access the relevant Space objects without serializing or materializing them. This means, the overall overhead of calling these functions is minimal. The `SqlFunctionExecutionContext` provides you direct access to the Space class properties. You can override existing functions such as `ABS` to perform customized functionality. Simply implement them as described below and register them using the `ABS` name.
 
-UDF support root level and nested fields (e.g. foo(person.address.street). With nested fields as part of a user-defined class , the UDF should handle the user-defined type (e.g. Address) as an argument.
+UDF supports root level and nested properties (e.g. foo(person.address.street). With nested properties as part of a user-defined class , the UDF will handle the user-defined type (e.g. Address) as an argument.
 
 ### Examples
 
@@ -49,7 +49,7 @@ For the full documentation of the class's methods and constructors, see [Javadoc
 
 ### User Defined function
 
-Here is an example of user defined functions:  `PLUSONE` and `PLUSTWO`. The `space-sql-function` bean include the `name` property. You should use it to register the UDF with the space. Once this is has been registered you can call it from your client application. 
+Here is an example of user defined functions:  `PLUSONE` and `PLUSTWO`. The `space-sql-function` bean includes the `name` property. You should use it to register the UDF with the Space. Once registered you can call it from your client application.
 
 {{%tabs%}}
 {{%tab "Configuration"%}}
@@ -110,10 +110,10 @@ public class SqlFunctionPlusTwo extends SqlFunction {
 
 
 
-{{%note "Limitations" %}}
-- `parameter` - The SQL function must get exactly one parameter that is a field of a POJO that is written to the Space and a number of unbound parameters that are not properties of a POJO.
+{{%warning "Limitations" %}}
+- `parameter` - The SQL function must get exactly one parameter that is a property of a POJO that is written to the Space and a number of unbound parameters that are not properties of a POJO.
 - `LRU` - SQL functions are not supported with the `LRU` space caching policy.
-{{%/note%}}
+{{%/warning%}}
 
 
 

@@ -6,7 +6,7 @@ parent: none
 weight: 1400
 ---
 
-As the complexity of deployment environments grows, smarter automation is needed. **xap-cloud** simplifies the installation and configuration of XAP on a set of machines, on a cloud or on-premises.
+As the complexity of runtime environments grows, automation for the deployment is needed. **xap-cloud** simplifies the installation and configuration of XAP on a set of machines, on a cloud or on-premises.
 
 <br>
 
@@ -170,7 +170,7 @@ To uninstall XAP run the following command:
 The command will stop all of the GS components as well as the WebUI and delete XAP directory (configured via *xap_root* property).
 
 Output sample:
- 
+
 ![xap-cloud-uninstall.png](/attachment_files/xap-cloud-uninstall.png)
 
 <br>
