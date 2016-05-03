@@ -6,20 +6,24 @@ parent: none
 weight: 1400
 ---
 
-As the complexity of environments grows, the need for better, smarter automation is needed. **xap-cloud** simplifies the installation and configuration of XAP on a set of machines, either on a cloud or on-premises.
+As the complexity of deployment environments grows, smarter automation is needed. **xap-cloud** simplifies the installation and configuration of XAP on a set of machines, on a cloud or on-premises.
 
 <br>
 
 # Requirements
 
-The requirement can be divided into two sections:
+The requirements can be divided into two sections:
 
-Client - the host that will run the tool
+#### Client
+
+The host that will run the tool:
 
 - CentOS 7
 - A sudoer user for installing the required libraries
 
-Servers - hosts that will run XAP
+#### Servers
+
+Hosts that will run XAP components:
 
 - Python 2.7 or higher
 - CentOS or Ubuntu
@@ -65,7 +69,7 @@ hosts:
     tags: [container]
 ```
 
-This file consists of a list of host machines on which each host has the following attributes:
+This file consists of a list of host machines where each host has the following attributes:
 
 - host/ip_range - a single or range of IPs of the host. The host should be accessible from the client host via this IP.
 - port - authentication port
@@ -80,7 +84,7 @@ In case you have one or more properties that should be applied to all hosts, e.g
 
 Next, we need to configure the installation process as well as XAP. This is done via the `xap-cloud.yaml` file.
 
-Bellow is the configuration file with the default values set.
+Bellow is the configuration file with the default values:
 
 ```bash
 # mandatory properties
@@ -133,7 +137,7 @@ java_version: "8"
 # Installing XAP
 
 {{%warning "Warning"%}}
-Running the install twice might lead to errors in the uninstall step therefore it is not recommended.
+Running the install twice might lead to errors in the uninstall step, therefore it is not recommended.
 {{%/warning%}}
 
 Once the configuration step is completed, you can simply run the following command from within the tool directory:
@@ -166,14 +170,14 @@ To uninstall XAP run the following command:
 The command will stop all of the GS components as well as the WebUI and delete XAP directory (configured via *xap_root* property).
 
 Output sample:
-
+ 
 ![xap-cloud-uninstall.png](/attachment_files/xap-cloud-uninstall.png)
 
 <br>
 
 # Advanced
 
-XAP Cloud tool provides the ability to make modifications to the hosts and to the XAP installation. In order to do so, you need create the relevant script file and put it in the tool root directory:
+XAP Cloud tool provides the ability to make modifications to the hosts and to the XAP installation. In order to do so, you need to create the relevant script file and put it in the tool root directory:
 
 - pre-install.sh - will run prior to the install step
 - pre-start.sh - will run prior to the start step
