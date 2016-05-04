@@ -142,7 +142,7 @@ Running the install twice might lead to errors in the uninstall step, therefore 
 
 Once the configuration step is completed, you can simply run the following command from within the tool directory:
 
-```bash
+```console
 ./xap-cloud-centos7.sh install
 ```
 
@@ -154,8 +154,39 @@ Next, it will start a WebUI on one of the *management* hosts and will print its 
 
 Output sample:
 
-![xap-cloud-install.png](/attachment_files/xap-cloud-install.png)
-
+```console
+[root@7fd97d6905f1 xap-cloud]# ./xap-cloud-centos7.sh install
+2016-04-17 09:18:56 INFO: Checking if Cloudify is installed
+2016-04-17 09:18:56 INFO: Downloading Cloudify installer (rpm)
+2016-04-17 09:19:08 INFO: Installing Cloudify CLI
+2016-04-17 09:19:22 INFO: Checking if blueprint is downloaded
+2016-04-17 09:19:22 INFO: Downloading and installing XAP blueprint
+2016-04-17 09:19:23 INFO: Activating virtual env
+2016-04-17,09:19:23 INFO: XAP will be installed as follows:
+2016-04-17,09:19:23 INFO: Management machines (2): 172.17.0.3, 172.17.0.4
+2016-04-17,09:19:23 INFO: Container machines (2): 172.17.0.5, 172.17.0.6
+2016-04-17 09:19:23 INFO: Initializing ...
+2016-04-17 09:19:29 INFO: Installing ...
+2016-04-17 09:19:34 [172.17.0.3] INFO: Installing XAP on bc8d756b9635 (172.17.0.3)
+2016-04-17 09:19:34 [172.17.0.5] INFO: Installing XAP on dc30c2afa22b (172.17.0.5)
+2016-04-17 09:19:34 [172.17.0.4] INFO: Installing XAP on ec6391fd9c92 (172.17.0.4)
+2016-04-17 09:19:34 [172.17.0.6] INFO: Installing XAP on dd7d1a1ab78f (172.17.0.6)
+2016-04-17 09:20:30 [172.17.0.4] INFO: XAP is installed on ec6391fd9c92 (172.17.0.4)
+2016-04-17 09:20:32 [172.17.0.6] INFO: XAP is installed on dd7d1a1ab78f (172.17.0.6)
+2016-04-17 09:20:33 [172.17.0.4] INFO: XAP is starting on ec6391fd9c92 (172.17.0.4)
+2016-04-17 09:20:34 [172.17.0.6] INFO: XAP is starting on dd7d1a1ab78f (172.17.0.6)
+2016-04-17 09:20:49 [172.17.0.6] INFO: XAP started on dd7d1a1ab78f (172.17.0.6)
+2016-04-17 09:20:51 [172.17.0.5] INFO: XAP is installed on dc30c2afa22b (172.17.0.5)
+2016-04-17 09:20:55 [172.17.0.3] INFO: XAP is installed on bc8d756b9635 (172.17.0.3)
+2016-04-17 09:20:56 [172.17.0.5] INFO: XAP is starting on dc30c2afa22b (172.17.0.5)
+2016-04-17 09:21:01 [172.17.0.3] INFO: XAP is starting on bc8d756b9635 (172.17.0.3)
+2016-04-17 09:21:08 [172.17.0.5] INFO: XAP started on dc30c2afa22b (172.17.0.5)
+2016-04-17 09:21:13 [172.17.0.3] INFO: XAP started on bc8d756b9635 (172.17.0.3)
+2016-04-17 09:21:15 [172.17.0.3] INFO: WebUI is starting on bc8d756b9635 (172.17.0.3)
+2016-04-17 09:21:16 [172.17.0.3] INFO: WebUI started on bc8d756b9635 (172.17.0.3)
+2016-04-17 09:21:16 INFO: XAP is installed successfully
+2016-04-17 09:21:17 INFO: WebUI is available at http://172.17.0.3:9099
+```
 
 <br>
 
@@ -163,7 +194,7 @@ Output sample:
 
 To uninstall XAP run the following command:
 
-```bash
+```console
 ./xap-cloud-centos7.sh uninstall
 ```
 
@@ -171,7 +202,22 @@ The command will stop all of the GS components as well as the WebUI and delete X
 
 Output sample:
 
-![xap-cloud-uninstall.png](/attachment_files/xap-cloud-uninstall.png)
+```console
+[root@7fd97d6905f1 xap-cloud]# ./xap-cloud-centos7.sh uninstall
+2016-04-17 13:42:23 INFO: Activating virtual env
+2016-04-17 13:42:23 INFO: Executing uninstall workflow
+2016-04-17 13:42:25 [172.17.0.6] INFO: Stoppping XAP
+2016-04-17 13:42:25 [172.17.0.5] INFO: Stoppping XAP
+2016-04-17 13:42:25 [172.17.0.3] INFO: Stoppping WebUI
+2016-04-17 13:42:25 [172.17.0.3] INFO: WebUI is stopped
+2016-04-17 13:42:27 [172.17.0.3] INFO: Stoppping XAP
+2016-04-17 13:42:27 [172.17.0.4] INFO: Stoppping XAP
+2016-04-17 13:42:40 [172.17.0.6] INFO: XAP is stopped
+2016-04-17 13:42:40 [172.17.0.5] INFO: XAP is stopped
+2016-04-17 13:42:44 [172.17.0.3] INFO: XAP is stopped
+2016-04-17 13:42:44 [172.17.0.4] INFO: XAP is stopped
+2016-04-17 13:42:48 INFO: XAP is uninstalled successfully
+```
 
 <br>
 
@@ -185,5 +231,7 @@ XAP Cloud tool provides the ability to make modifications to the hosts and to th
 For example, if you wish to configure the `ulimit` then you should use the **pre-install.sh** script.
 
 {{%note "Note"%}}
-The tool comes with default scripts that are empty. If the files exist in the tool directory, they will replace the default ones. Therefore, deleting them afterwards will not return the defaults. In order to have the defaults back these files should be empty and placed in the tool's root folder.
+The tool comes with default scripts that are empty. If *pre-install.sh* and/or *pre-start.sh* files exist in the tool's root directory, they will replace the default ones. Therefore, if you wish to use the defaults again you should place empty script files in the tool's directory.
 {{%/note%}}
+
+In addition, the tool allows installing XAP on several hosts in parallel. This can be configured by setting the `TASK_THREAD_POOL` environment variable before running the install command. The default value is four.
