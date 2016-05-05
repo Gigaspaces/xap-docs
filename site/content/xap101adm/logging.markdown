@@ -16,7 +16,7 @@ For more information on the JDK logging framework, please refer to the following
 
 # Configuration File
 
-The logging configuration is initialized using a logging configuration file that is read at startup. This logging configuration file is in the standard `java.util.Properties` format. It configures custom versions of both `java.util.logging.`**`Handler`** and `java.util.logging.`**`Formatter`**, and default levels for frequently used loggers (categories).
+The logging configuration is initialized using a logging configuration file that is read at startup. This logging configuration file is in the standard `java.util.Properties` format. It configures custom versions of both `java.util.logging.Handler` and `java.util.logging.Formatter`, and default levels for frequently used loggers (categories).
 
 The default configuration file is located under:
 
