@@ -7,7 +7,13 @@ weight: 340
 ---
 
 
-Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries. To take advantage of XAP's spatial capabilites, simply add the `xap-spatial` maven dependency to your project:
+Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries. 
+
+
+
+
+To take advantage of XAP's spatial capabilites, simply add the `xap-spatial` maven dependency to your project:
+
 
 ```xml
 <dependency>
@@ -23,43 +29,90 @@ If you're not using maven, add `XAP_HOME/lib/optional/spatial` to your classpath
 
 # Getting Started
 
-Suppose we want to write an application to locate nearby gas stations. 
+Suppose we want to write an application to locate nearby gas stations.  First, we create a `GasStation` class which includes the location and address of the gas station:
 
-First, we should create a `GasStation` class which includes the location of the gas station:
+
+{{%align center%}}
+![image](/attachment_files/geo/geo-coordinates.png)
+{{%/align%}}
+ 
+
+And here is the corresponding java class:
 
 ```java
 import org.openspaces.spatial.shapes.Point;
 
+import com.gigaspaces.annotation.pojo.SpaceClass;
+import com.gigaspaces.annotation.pojo.SpaceId;
+
+@SpaceClass
 public class GasStation {
+
+	private Long id;
+
 	private Point location;
-	
+
 	public Point getLocation() {
-	    return location;
+		return location;
 	}
-	
+
 	public void setLocation(Point location) {
 		this.location = location;
 	}
+	
+	@SpaceId
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
+
 ```
 
-Next, assuming we've written some gas station entries to the space, we can query for a gas station within a certain radius of our location:
+Let's write some gas stations into the Space:
 
 ```java
-public GasStation findNearbyGasStation(Point location, int radius) {
-	SQLQuery<GasStation> query = new SQLQuery(GasStation.class, "location spatial:within ?")
-		.setParameter(1, ShapeFactory.circle(location, radius));
-	return gigaSpace.read(query);
+    GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("geoSpace")).gigaSpace();
+
+    GasStation gs = new GasStation();
+    gs.setId(new Long(1));
+    gs.setLocation(ShapeFactory.point(10.0d, 10.0d));
+
+    gigaSpace.write(gs);		
+```
+
+Next, we can query for a gas station within a certain radius of our location:
+
+```java
+    Point p = ShapeFactory.point(7.5d, 7.5d);
+
+    SQLQuery<GasStation> query = new SQLQuery<GasStation>(GasStation.class, "location spatial:within ?")
+				.setParameter(1, ShapeFactory.circle(p, 4.5d));
+    GasStation station = gigaSpace.read(query);
+
+    if (station != null) {
+        System.out.println("Found a GasStation :" + station);
+    }
 }
 ```
 
 
 # Shapes
 
+XAP supports the following shapes:
+
+{{%align center%}}
+![image](/attachment_files/geo/geo-data-types.png)
+{{%/align%}}
+
+
 All shapes are located in the `org.openspaces.spatial.shapes` package. 
 
-|   Shape  | Description    |
-|:----|:-------|
+|   Shape    | Description    |
+|:-----------|:---------------|
 |Point       |A point, denoted by `X` and `Y` coordinates.|
 |Circle      |A circle, denoted by a point and a radius.|
 |Rectangle   |A rectangle aligned with the axis (for non-aligned rectangles use Polygon).|
@@ -80,28 +133,6 @@ import static org.openspaces.spatial.ShapeFactory.*;
 Polygon polygon = polygon(point(0,0), point(1,1), point(2,2));
 ```
 
-## WKT Support
-
-The `ShapeFactory` also supports parsing [WKT](https://en.wikipedia.org/wiki/Well-known_text)
-
-|   Shape  | Description    |
-|:----|:-------|
-|Point       | POINT (0 0)|
-|Rectangle   | LINESTRING(30 10, 40 10, 40 20, 30 20, 30 10) |
-|LineString  | LINESTRING (0 0, 1 1, 5 5)|
-
-
-
-For example:
-
-```java
-Shape shape = ShapeFactory.parse("LINESTRING (0 0, 1 1, 5 5)", ShapeFormat.WKT);
-```
-
-
-## GeoJson Support
-The `ShapeFactory` also supports parsing  [GeoJson](http://geojson.org/) strings into shapes. For example:
-
 
 
 # Queries
@@ -115,6 +146,39 @@ Spatial queries are available through the `spatial:` extension to the [SQL query
 |shape1 spatial:intersects shape2 | The intersection between shape1 and shape 2 is not empty (i.e. some or all of shape1 overlaps some or all of shape2).|
 
 Spatial queries can be used with any space operation which supports SQL queries (`read`, `readMultiple`, `take`, etc.)
+
+
+# Geofencing
+ 
+Geofencing allows automatic alerts to be generated based on the defined coordinates of a geographic area.  
+
+{{%align center%}}
+![image](/attachment_files/geo/geo-fencing.png)
+{{%/align%}}
+
+
+XAP uses Event Containers with Spatial queries to do just that. For example, we want to be notified when a new `GasStation` appears within a certain radius of my location.
+
+ 
+
+
+
+```java
+Point location = ShapeFactory.point(0, 0);
+double radius = 5.0d;
+SQLQuery<GasStation> query = new SQLQuery(GasStation.class, "location spatial:within ?")
+		.setParameter(1, ShapeFactory.circle(location, radius));
+   
+SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerConfigurer(gigaSpace)
+    .template(query)
+    .eventListenerAnnotation(new Object() {
+        @SpaceDataEvent
+        public void eventHappened(GasStation gasStation) {
+            System.out.println("Got " + gasStation);
+        }
+    }).notifyContainer();
+```
+
 
 # Indexing
 
@@ -152,25 +216,30 @@ public GasStation findNearbyGasStation(Point location, int radius, double maxPri
 If both `location` and `price` are indexed, the index which appears first in the query is the one that will be used. This may significantly effect the performance of your query, so it's recommended to estimate which index is most efficient for each query and put it first.
 {{%/note%}}
 
-# Geo-fencing
 
-Suppose we want something done when an event occurs within a certain area, for example - notify me when there's a new `GasStation` within a certain radius of my location. Event Containers can be used in conjunction with Spatial queries to do just that. For example:
+# WKT Support
+
+The `ShapeFactory` also supports parsing [WKT](https://en.wikipedia.org/wiki/Well-known_text)
+
+|   Shape  | Description    |
+|:----|:-------|
+|Point       | POINT (0 0)|
+|Rectangle   | LINESTRING(30 10, 40 10, 40 20, 30 20, 30 10) |
+|LineString  | LINESTRING (0 0, 1 1, 5 5)|
+
+
+
+For example:
 
 ```java
-Point location = ShapeFactory.point(0, 0);
-double radius = 5.0d;
-SQLQuery<GasStation> query = new SQLQuery(GasStation.class, "location spatial:within ?")
-		.setParameter(1, ShapeFactory.circle(location, radius));
-   
-SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerConfigurer(gigaSpace)
-    .template(query)
-    .eventListenerAnnotation(new Object() {
-        @SpaceDataEvent
-        public void eventHappened(GasStation gasStation) {
-            System.out.println("Got " + gasStation);
-        }
-    }).notifyContainer();
+Shape shape = ShapeFactory.parse("LINESTRING (0 0, 1 1, 5 5)", ShapeFormat.WKT);
 ```
+
+
+# GeoJson Support
+The `ShapeFactory` also supports parsing  [GeoJson](http://geojson.org/) strings into shapes. For example:
+
+
 
 # Configuration
 
