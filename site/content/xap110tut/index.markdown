@@ -16,10 +16,7 @@ This Tutorial provides a high-level overview of the GigaSpaces XAP platform. Han
 
 [Installation](./installation.html)<br>
 You will learn   how to download and install XAP.
-
-[Interactive API guide](./interactive-api-guide.html)<br>
-This tutorial lets you experience the XAP API in an interactive way. Three options are presented. The first two options demonstrate the various API calls you can use to interact with the Space. The third option provides an interactive shell that lets you exercise API calls.
-
+ 
 [XAP in 5 minutes](./xap-java-in-5-minutes.html)<br>
 This tutorial explains how to deploy and use a XAP [Data Grid](/product_overview/the-in-memory-data-grid.html) from a Java client application.
 
