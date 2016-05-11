@@ -15,10 +15,7 @@ A full Java tutorial is also provided that will introduce you to the basic capab
 
 [XAP in 5 Minutes](./your-first-data-grid-application.html){{<wbr>}}
 This tutorial explains how to deploy and use a XAP Data Grid from a Java client application.
-
-[Interactive Tutorial](./interactive-api-guide.html){{<wbr>}}
-This tutorial lets you experience the XAP API in an interactive way.
-
+ 
 [Full Tutorial](./java-home.html){{<wbr>}}
 This Tutorial provides a high-level overview of the GigaSpaces XAP platform. Hands on examples are provided to demonstrate the core concepts and API's.
 
