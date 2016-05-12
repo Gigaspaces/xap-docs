@@ -42,7 +42,7 @@ The MemoryXtend add-on is available for free during the evaluation period, but i
 {{%/align%}}
 
 
-Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For example:
+Creating a space with the MapDB add-on can be done via `pu.xml` or code. For example:
 
 {{%tabs%}}
 {{%tab "pu.xml"%}}
