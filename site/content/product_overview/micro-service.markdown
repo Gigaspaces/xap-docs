@@ -75,7 +75,7 @@ Microservices application , like any other application should have for every ser
 
 The [IPUC]({{%latestjavaurl%}}/running-and-debugging-within-your-ide.html) for Java users has been designed allow users running their PU within their IDE and also to be used with Unit Tests. This allow users to simulate a complete PU (specific PU instance or a complete cluster) to be provisioned within the single JVM. When testing microservices based application this makes the Unit testing very simple.
 
-The [XAP Maven Plugin]({{%latestjavaurl%}}/maven-plugin.html) provides similar functionality as it allow users to build , deploy and run a PU.
+The [XAP Maven Plugin]({{%latestjavaurl%}}/installation-maven-overview.html) provides similar functionality as it allow users to build , deploy and run a PU.
 
 # Gateway
 With microservices , [API gateway](http://microservices.io/patterns/apigateway.html) used to orchestrate the cross-functional microservices that may reduce round trips for web applications.

@@ -294,8 +294,4 @@ Following are some space/space container MBeans **Operations** settings you can 
     - **name** -- the name of the data.
     - **type** - the type or class name of the data.
 
-# Getting Space Statistics using the JMX API
-
-See [example of JMX API usage](/sbp/jmx-space-statistics.html).
-
 

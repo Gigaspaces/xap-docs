@@ -64,7 +64,7 @@ You can run the Integrated Processing Unit Container without actually specifying
 # Using IntegratedProcessingUnitContainer in the IDE
 
 The main usage of the `IntegratedProcessingUnitContainer` is to execute processing units in your IDE.
-The following screenshot displays the **Create, manage, and run configurations** Eclipse dialog for executing the processor processing unit of the [data example](/sbp/the-openspaces-data-example.html):
+The following screenshot displays the **Create, manage, and run configurations** Eclipse dialog for executing the processor processing unit of the [data example]({{%currentjavatuturl%}}/the-openspaces-data-example.html):
 
 {{% indent %}}
 ![IntegratedProcessingUnitContainer2.jpg](/attachment_files/IntegratedProcessingUnitContainer2.jpg)

@@ -54,4 +54,4 @@ You can see the _Space_ (the "car depot") in the center of the processing unit. 
 
 Next Page - [Step two - Creating the Hello World Application](./step-two-creating-the-hello-world-application.html). Shows how to create your first GigaSpaces application and run it on your local machine.
 
-Or return to the [Your First XTP Application](./your-first-xtp-application.html) page.
+Or return to the [Your First XAP Application]({{%currentjavatuturl%}}/first-xap-app.html) page.
