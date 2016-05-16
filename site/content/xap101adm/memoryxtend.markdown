@@ -24,7 +24,7 @@ MemoryXtend requires a separate license in addition to the GigaSpaces commercial
 The BlobStore Storage Model allows an external storage medium (one that does not reside on the JVM heap) to store the IMDG data.
 
 [Solid State Drive](./memoryxtend-ssd.html)<br>
-All Enterprise flash drives are supported. SanDisk, Fusion-IO, IntelÂ® SSD , etc are supported with the IMDG storage technology.
+All Enterprise flash drives are supported. SanDisk, Fusion-IO, Intel® SSD , etc are supported with the IMDG storage technology.
 
 [Off Heap RAM](./memoryxtend-ohr.html)<br>
 XAP is using [MapDB](http://www.mapdb.org/), an embedded database engine which provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory.

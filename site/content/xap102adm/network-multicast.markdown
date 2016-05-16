@@ -177,7 +177,7 @@ tcpdump -i eth0 ip multicast
 
 # Configuring Multicast on Windows
 
-To enable multicasting from a token ring on a WindowsÂ® 2000 workstation to any Windows 98/NT machine, set the `TrFunctionalMcastAddress` parameter to `0` in the Windows 2000 registry:
+To enable multicasting from a token ring on a Windows® 2000 workstation to any Windows 98/NT machine, set the `TrFunctionalMcastAddress` parameter to `0` in the Windows 2000 registry:
 
 1. Click **Start* > *Run** on the Windows 2000 taskbar.
 1. In the **Open** field, select or type **REGEDIT**.

@@ -547,11 +547,11 @@ When deploying your XAP based system in production you should consider the follo
 
 When using notifications (notify container, session messaging API) you should enable Guaranteed Notifications to address a primary space failure while sending notifications. This allows the backup once promoted into a primary, to continue the notification delivery. The Guaranteed Notifications managed on the client side. 
 
-When considering a notify container that is embedded with the space, please note the guaranteed notifications are not supported in this scenario â€“ This means that upon failure notifications that has been send might not be fully processed. In this case blocking read/asyc read should be considered as an alternative to notifications.
+When considering a notify container that is embedded with the space, please note the guaranteed notifications are not supported in this scenario - This means that upon failure notifications that has been send might not be fully processed. In this case blocking read/asyc read should be considered as an alternative to notifications.
 
 ## Balanced Primary-Backups Provisioning
 
-When having a failure of the data grid nodes or a machine running XAP you should consider having even distribution of the primary and backups instances across all existing machines running XAP. This ensure balanced CPU utilization across all XAP machines. The Elastic processing unit should be used to deploy the data grid â€“ it support even primary/backup distribution automatically when XAP machine fails and when a new one added to the grid. In this case spare GSCs on each XAP machine are not required. 
+When having a failure of the data grid nodes or a machine running XAP you should consider having even distribution of the primary and backups instances across all existing machines running XAP. This ensure balanced CPU utilization across all XAP machines. The Elastic processing unit should be used to deploy the data grid - it support even primary/backup distribution automatically when XAP machine fails and when a new one added to the grid. In this case spare GSCs on each XAP machine are not required. 
 
 ## CPU Utilization
 
@@ -589,7 +589,7 @@ XA Transactions involves the XA transaction manager, XAP data grid node(s) and s
 
 The Mirror Service like the WAN Gateway acting as a broker, responsible to persist activities conducted at the data grid into external data source such as a database.
 
-The Mirror Service does not hold state so its failure would not result any data lose, but its failure means data will not be stored into the external data source. You do not need to deploy the mirror in a clustered configuration (aka primary-backup). By default XAP will try to start the mirror service in case it failed. Since in many cases the Mirror service accessing a database, you might have the database accepting connection only from specific machine with specific ports. To address this, you should configure the database to allow connections from all machines that may run the mirror service â€“ by default all machines running XAP. 
+The Mirror Service does not hold state so its failure would not result any data lose, but its failure means data will not be stored into the external data source. You do not need to deploy the mirror in a clustered configuration (aka primary-backup). By default XAP will try to start the mirror service in case it failed. Since in many cases the Mirror service accessing a database, you might have the database accepting connection only from specific machine with specific ports. To address this, you should configure the database to allow connections from all machines that may run the mirror service - by default all machines running XAP. 
 
 ## WAN Gateway Failure
 
@@ -647,7 +647,7 @@ Guest OS Memory + JVM Memory for all GSCs + JVM Memory for GSM + JVM Memory for 
 
 ```bash
 JVM Memory for a GSC = 
-JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrentThreads * (-Xss) + â€œextra memoryâ€�
+JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrentThreads * (-Xss) + "extra memory"
 ```
 
 ## Space Object Footprint
@@ -663,7 +663,7 @@ In many cases you may need to calculate the Space Object Footprint. The object f
 The actual footprint depends on the amount of indexed fields and the data distribution. Each index consumes:
 
 ```bash
-120 BytesÂ  + index value size + (number of object instances  with this indexed value X 16)
+120 Bytes  + index value size + (number of object instances  with this indexed value X 16)
 ```
 
 ### Footprint Test
@@ -675,7 +675,7 @@ Step 2. Take a measurement of the free memory (use JConsole or jmap).<br>
 Step 3. Write a sample number of objects into the IMDG (have a decent number of objects written - 100,000 is a good number).<br>
 Step 4. Measure the free memory again.
 
-This test should give good understanding of the object footprint within the IMDG. Donâ€™t forget that if you have a backup instance running, the amount of memory you will need to accommodate for your objects, is double.
+This test should give good understanding of the object footprint within the IMDG. Don't forget that if you have a backup instance running, the amount of memory you will need to accommodate for your objects, is double.
 
 ### Compound Index reduce Index Footprint
 
@@ -696,7 +696,7 @@ The amount of redo log data depends on :
 
 - Amount of in flight activity
 - Backup performance
-- Primary backup connectivity â€“ long disconnection means plenty of redo log in memory.
+- Primary backup connectivity - long disconnection means plenty of redo log in memory.
 
 Since redo log swap in some point to the disk, have its location on SSD drive. Do not use HDD to store redolog data. Redo log footprint similar to actual raw data footprint without indexes.
 
@@ -1062,7 +1062,7 @@ VM memory for XAP VM = (2 X 30GB) + (2 X 0.5GB) + 2GB = 63GB
 Set the VM memory as the memory reservation. You can choose to set the memory reservation as 63GB , but over time you should monitor the active memory used by the virtual machine that hosts XAP processes and adjust the memory reservation to the actual active memory value, which could be less than 63GB. NUMA rules apply - make sure that each socket on the server has at least 64GB of RAM to host this virtual machine, along with relevant number of vCPUs needed.
 
 ## Plan for some Headroom
-If your application data consume 10GB per GSC , allow for 50% headroom for optimal performance. This implies the actual heap utilization for the GSC should not cross the 15GB. Set the memory reservation to 17GB. Setting a memory reservation enforce a reserved physical memory to be available by VMware ESXÂ® or ESXi to the virtual machine when it starts. Do not over commit memory. When sizing memory for XAP processes (GSC , GSA , GSM, LUS) on one virtual machine, the total reserved memory for the virtual machine should not exceed what is available within one NUMA node for optimal performance.
+If your application data consume 10GB per GSC , allow for 50% headroom for optimal performance. This implies the actual heap utilization for the GSC should not cross the 15GB. Set the memory reservation to 17GB. Setting a memory reservation enforce a reserved physical memory to be available by VMware ESX® or ESXi to the virtual machine when it starts. Do not over commit memory. When sizing memory for XAP processes (GSC , GSA , GSM, LUS) on one virtual machine, the total reserved memory for the virtual machine should not exceed what is available within one NUMA node for optimal performance.
 
 ## XAP GSC JVM and VM Ratio
 Have one XAP GSC JVM instance per virtual machine. Typically, this is not a requirement. However, because XAP GSC JVMs can be quite large (up to 100-200GB), it is advisable to adhere to this rule in this case.
@@ -1075,7 +1075,7 @@ You should have minimum of **four vCPU** virtual machine running with a VM runni
 You may deploy a data-grid to provision multiple copies of the same data on any virtual machine. It is possible to accidentally place two redundant data copies on the same ESX/ESXi host. This is not optimal if a host fails. To create a more robust configuration, use VM1-to-VM2 anti-affinity rules to indicate to vSphere that VM1 and VM2 can never be placed on the same host because they hold replicated instances. You may use XAP Zones to control each replicated data-grid instances location to provision these on specific GSCs/VMs.
 
 ## vMotion, DRS Cluster with XAP
-Once you install XAP, place Vmware Distributed Resource Scheduler (DRS) in manual mode to prevent an automatic VMware vSphereÂ® vMotionÂ® migration that can impact XAP response times. vMotion can complement XAP features during scheduled maintenance to help minimize downtime impact due-to hardware and software upgrades. To speed up vMotion migration process it is recommended to trigger vMotion migrations over a 10GbE network interface.
+Once you install XAP, place Vmware Distributed Resource Scheduler (DRS) in manual mode to prevent an automatic VMware vSphere® vMotion® migration that can impact XAP response times. vMotion can complement XAP features during scheduled maintenance to help minimize downtime impact due-to hardware and software upgrades. To speed up vMotion migration process it is recommended to trigger vMotion migrations over a 10GbE network interface.
 
 Avoid vMotion operations with a VM running the lookup service (LUS) as the latency introduced to this process can cause members of XAP cluster to falsely suspect that other members are unavailable.
 
