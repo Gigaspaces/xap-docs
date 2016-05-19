@@ -44,7 +44,7 @@ A secured embedded Space protects access (to data) which is granted only to user
 
 
 ```java
-SpaceProxyConfigurer urlSpaceConfigurer = new SpaceProxyConfigurer("space").userDetails("sa", "adaw@##$");
+SpaceProxyConfigurer urlSpaceConfigurer = new SpaceProxyConfigurer("space").credentials("sa", "adaw@##$");
 GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 ```
 
