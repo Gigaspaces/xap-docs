@@ -44,8 +44,8 @@ A secured embedded Space protects access (to data) which is granted only to user
 
 
 ```java
-SpaceProxyConfigurer urlSpaceConfigurer = new SpaceProxyConfigurer("space").userDetails("sa", "adaw@##$");
-GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
+SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("sa", "adaw@##$");
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 ```
 
 {{% /tab %}}
@@ -208,8 +208,8 @@ Security is enforced by the remote Space, and the proxy should be acquired by su
 
 
 ```java
-SpaceProxyConfigurer urlSpaceConfigurer = new SpaceProxyConfigurer("space").userDetails("user", "password");
-GigaSpace remoteSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
+SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
+GigaSpace remoteSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 
 LocalCacheSpaceConfigurer configurer = new LocalCacheSpaceConfigurer(remoteSpace.getSpace()).updateMode(UpdateMode.PULL);
 GigaSpace localCache = new GigaSpaceConfigurer(configurer.localCache()).gigaSpace();
@@ -245,8 +245,8 @@ GigaSpace localCache = new GigaSpaceConfigurer(configurer.localCache()).gigaSpac
 
 
 ```java
-SpaceProxyConfigurer urlSpaceConfigurer = new SpaceProxyConfigurer("space").userDetails("user", "password");
-GigaSpace remoteSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
+SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
+GigaSpace remoteSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 
 LocalViewSpaceConfigurer configurer = new LocalViewSpaceConfigurer(remoteSpace.getSpace())
  .addView(new View(Trade.class, "quantity = 20"))
