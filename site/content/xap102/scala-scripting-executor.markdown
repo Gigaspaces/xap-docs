@@ -77,6 +77,8 @@ Here is how you would configure a processing unit to run a scripting executor wi
 
 # Example
 
+Import org.openspaces.remoting.scripting.ScalaTypedStaticScript into scope to use the methods demonstrated below.
+
 
 ```scala
 val code = """
