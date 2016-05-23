@@ -15,14 +15,24 @@ A wrapper around the `XAP` API provides some sugaring on top of the `GigaSpace#e
 
 # Usage
 
-Import `org.openspaces.scala.core.ScalaGigaSpacesImplicits.ScalaEnhancedGigaSpaceWrapper` into scope to use the methods demonstrated below.
+Import the following into scope to use the methods demonstrated below.
+
+import com.gigaspaces.async.AsyncResult
+import org.openspaces.scala.core.ScalaGigaSpacesImplicits.ScalaEnhancedGigaSpaceWrapper 
+
 Some examples:
 
 
 ```scala
 /** Import GigaSpace implicits into scope */
+import com.gigaspaces.async.AsyncResult
 import org.openspaces.scala.core.ScalaGigaSpacesImplicits._
 
+...
+val gsm = admin.getGridServiceManagers.waitForAtLeastOne
+gsm.deploy(new org.openspaces.admin.space.SpaceDeployment("mySpace"))
+val Some(gigaSpace) = getGigaSpace("mySpace")
+case class Data @SpaceClassConstructor() ( @BeanProperty @SpaceId @SpaceProperty(nullValue = "-1") id: Long = -1, @BeanProperty @SpaceRouting @SpaceProperty(nullValue = "-1") routing: Long = -1, @BeanProperty data: String = null )
 ...
 
 gigaSpace write Data(id = 1, routing = 2, data = "some data")
