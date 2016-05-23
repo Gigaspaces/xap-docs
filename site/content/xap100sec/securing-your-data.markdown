@@ -44,8 +44,8 @@ A secured embedded Space protects access (to data) which is granted only to user
 
 
 ```java
-UrlSpaceConfigurer urlSpaceConfigurer = new UrlSpaceConfigurer("jini://*/*/space").userDetails("sa", "adaw@##$");
-GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
+SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
+GigaSpace remoteSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 ```
 
 {{% /tab %}}
@@ -86,8 +86,8 @@ These will be used to _implicitly_ create a **`secured`** Space, with security p
 
 
 ```java
-UrlSpaceConfigurer urlSpaceConfigurer = new UrlSpaceConfigurer("/./space").userDetails("user", "password");
-GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
+SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
+GigaSpace remoteSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 ```
 
 {{% /tab %}}
@@ -245,8 +245,9 @@ GigaSpace localCache = new GigaSpaceConfigurer(configurer.localCache()).gigaSpac
 
 
 ```java
-UrlSpaceConfigurer urlSpaceConfigurer = new UrlSpaceConfigurer("jini://*/*/space").userDetails("user", "password");
-GigaSpace remoteSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
+SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
+GigaSpace remoteSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
+
 
 LocalViewSpaceConfigurer configurer = new LocalViewSpaceConfigurer(remoteSpace.getSpace())
  .addView(new View(Trade.class, "quantity = 20"))
