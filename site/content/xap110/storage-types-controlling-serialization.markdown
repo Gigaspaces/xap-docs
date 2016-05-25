@@ -58,7 +58,7 @@ When a certain class which serves as a space property is likely to change over t
 
 - Native mode - non-primitive Space Object field types are not serialized - the space stores the references of the non-primitive fields. This mode provides the best performance. In multi-threaded environments, be careful when accessing the non-primitive fields after their parent Object has been stored into the space.
 
-- Light/Full Serialization mode - non-primitive Space Object field types are serialized - the space stores a clone of the fields object. This impacts the performance.
+- Full Serialization mode - non-primitive Space Object field types are serialized - the space stores a clone of the fields object. This impacts the performance.
 
 ### Reading and Changing Object in Embedded Mode without Writing it Back
 
@@ -72,7 +72,6 @@ If you read an object from the space and change it without writing it back, you 
 In remote mode, the Object's non-primitive fields are serialized where the serialization mode determine how it is done:
 
 - Native mode - non-primitive Object fields are serialized using Java Serialization. These are de-serialized at the space side before they are stored inside the space.
-- Light mode - when non-primitive fields are serialized, they are wrapped with GigaSpaces special Marshaled Object. When stored inside the space, these field are not de-serialized, but stored as in their serialized form. This provide better performance when writing and reading objects with large collections/maps. With the light serialization mode, you can't index and query fields within nested objects.
 - Full mode - supports the [JavaSpace specification](http://river.apache.org/doc/spec-index.html). When serialized, non-primitive fields are wrapped with a [MarshaledObject](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/rmi/MarshalledObject.html). The MarshalledObject is de-serialized at the space side before it is stored, allowing you to perform matching using these fields. This mode is slower compared other options.
 - Compressed mode - non-primitive fields are compressed before being sent to the space at the client side. These are stored in compressed form within the space.
 
