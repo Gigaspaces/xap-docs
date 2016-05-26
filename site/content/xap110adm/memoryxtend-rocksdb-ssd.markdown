@@ -101,11 +101,13 @@ rocksDbConfigurer.setMappingDir("/tmp/mapping");
 
 BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
 blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
+blobStorePolicy.setPersistent(true);
+
 
 EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
 spaceConfigurer.cachePolicy(blobStorePolicy);
 
-gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 ```
 {{% /tab %}}
 {{% /tabs %}}
