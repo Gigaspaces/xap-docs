@@ -58,7 +58,19 @@ To do that:
 If you plan to use XAP.NET with .NET 4.0, make sure that the **Visual C++ 2010 Redistributable Package** [x86](http://www.microsoft.com/download/en/details.aspx?id=5555)  [x64](http://www.microsoft.com/download/en/details.aspx?id=14632)) is installed on the target machine (this is required only for manual installation - if the msi is installed the C++ redistribution package is installed automatically if needed).
 {{%/note%}}
 
-**Step 4.** The final touch is to configure the location of XAP.NET. This can be achieved in one of the following ways:
+**Step 4.** The final touch is to configure the location of XAP.NET. 
+
+This can be achieved in one of the following ways:
+
+
+####  Environment variable
+ 
+Create an environment variable named `XapNet_<version>_SettingsPath` which points to the settings file path. For example, for that same 10.0 version we would use:
+
+
+```xml
+XapNet_10.0.0.11600_SettingsPath=C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v4.0\Config\Settings.xml
+```
 
 #### Windows Registry:
  
@@ -75,14 +87,7 @@ HKLM\SOFTWARE\GigaSpaces\XAP.NET\10.0.0.11600\CLR v4.0.30319\SettingsPath=C:\Gig
 HKCU is supported as well, and is searched before HKLM.
 {{%/info%}}
 
-#### Environment variable
  
-Create an environment variable named `XapNet_<version>_SettingsPath` which points to the settings file path. For example, for that same 10.0 version we would use:
-
-
-```xml
-XapNet_10.0.0.11600_SettingsPath=C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v4.0\Config\Settings.xml
-```
 
 #### Application configuration file: 
 
