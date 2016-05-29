@@ -47,19 +47,23 @@ XAP.NET installation is released as an `msi` file because simply copying the fil
 Sometimes, however, you may want to use XAP.NET without running setup (e.g. on a production server).
 To do that:
 
-Step 1. Install XAP.NET on another machine (e.g. a developer's machine).
+**Step 1.** Install XAP.NET on another machine (e.g. a developer's machine).
 
-Step 2. Package the installed files into a zip file (or any other compression tool you prefer).
+**Step 2.** Package the installed files into a zip file (or any other compression tool you prefer).
 
-Step 3. Unzip the package on the target machine(s) wherever you prefer.
+**Step 3.** Unzip the package on the target machine(s) wherever you prefer.
 
 {{% note %}}
 If you plan to use XAP.NET with .NET 4.0, make sure that the **Visual C++ 2010 Redistributable Package** [x86](http://www.microsoft.com/download/en/details.aspx?id=5555)  [x64](http://www.microsoft.com/download/en/details.aspx?id=14632)) is installed on the target machine (this is required only for manual installation - if the msi is installed the C++ redistribution package is installed automatically if needed).
 {{%/note%}}
 
-Step 4. The final touch is to configure the location of XAP.NET. This can be achieved in one of the following ways:
+**Step 4.** The final touch is to configure the location of XAP.NET. 
 
-Step 4.a **Windows Registry:** Create a registry key named `HKLM\SOFTWARE\GigaSpaces\XAP.NET\<version>\<clrversion>`, with a String value named `SettingsPath` which points to the location of the `Settings.xml` file.
+This can be achieved in one of the following ways:
+
+####  Windows Registry
+ 
+Create a registry key named `HKLM\SOFTWARE\GigaSpaces\XAP.NET\<version>\<clrversion>`, with a String value named `SettingsPath` which points to the location of the `Settings.xml` file.
 
 For example, the XAP.NET v10.0 x64 setup creates the following keys:
 
@@ -72,14 +76,18 @@ HKLM\SOFTWARE\GigaSpaces\XAP.NET\10.0.0.11600\CLR v4.0.30319\SettingsPath=C:\Gig
 HKCU is supported as well, and is searched before HKLM.
 {{%/info%}}
 
-Step 4.b **Environment variable:** Create an environment variable named `XapNet_<version>_SettingsPath` which points to the settings file path. For example, for that same 10.0 version we would use:
+####  Environment variable
+ 
+Create an environment variable named `XapNet_<version>_SettingsPath` which points to the settings file path. For example, for that same 10.0 version we would use:
 
 
 ```xml
 XapNet_10.0.0.11600_SettingsPath=C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v4.0\Config\Settings.xml
 ```
 
-Step 4.c **Application configuration file**: Use the `XapNetSettingsFile` element to configure the location of the settings file. For example:
+####  Application configuration file: 
+
+Use the `XapNetSettingsFile` element to configure the location of the settings file. For example:
 
 ```xml
 <configuration>
@@ -92,7 +100,9 @@ Step 4.c **Application configuration file**: Use the `XapNetSettingsFile` elemen
 </configuration>
 ```
 
-Step 4.d. **Code:** Use the following code to set the location of the settings file at runtime:
+#### Code:
+ 
+Use the following code to set the location of the settings file at runtime:
 
 ```csharp
     GigaSpacesFactory.Configuration.XapNetSettingsFile.Path = @"C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v4.0\Config\Settings.xml"
