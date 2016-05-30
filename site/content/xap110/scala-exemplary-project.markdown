@@ -34,7 +34,7 @@ Please note that Scala is not required to build the project, since requried libr
 2. From the project's main directory `$XAP_SCALA` run command `mvn clean install`
 3. From the project's main directory `$XAP_SCALA/example/gs-openspaces-scala-example` run command `mvn clean package` - necessary JAR files to deploy on a grid will be created.
 4. Start XAP Grid Service by running command: `$GS_HOME/bin/gs-agent.sh/bat`
-5. Run this command: `$GS_HOME/tools/mavem/installmavenrep.sh/bat`
+5. Run this command: `$GS_HOME/tools/maven/installmavenrep.sh/bat`
 6. Deploy the project on the grid (from `$XAP_SCALA/example/gs-openspaces-scala-example`): `mvn os:deploy -Dgroups=$XAP_LOOKUP_GROUPS`.
 
 #  XAP Scala features
