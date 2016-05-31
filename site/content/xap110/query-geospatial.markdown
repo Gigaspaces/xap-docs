@@ -105,7 +105,7 @@ Next, we can query for a gas station within a certain radius of our location:
 XAP supports the following shapes:
 
 {{%align center%}}
-![image](/attachment_files/geo/geo-data-types.png)
+![image](/attachment_files/geo/shapes.png)
 {{%/align%}}
 
 
@@ -114,23 +114,47 @@ All shapes are located in the `org.openspaces.spatial.shapes` package.
 |   Shape    | Description    |
 |:-----------|:---------------|
 |Point       |A point, denoted by `X` and `Y` coordinates.|
+|LineString  |A finite sequence of one or more consecutive line segments.|
 |Circle      |A circle, denoted by a point and a radius.|
 |Rectangle   |A rectangle aligned with the axis (for non-aligned rectangles use Polygon).|
-|LineString  |A finite sequence of one or more consecutive line segments.|
 |Polygon     | A finite sequence of consecutive line segments which denotes a bounded area.|
 
-To create a shape, use the `ShapeFactory` class. For example:
+To create a shape, use the `ShapeFactory` class. 
+
+Example:
 
 ```java
-Point point = ShapeFactory.point(1, 2);
+import static org.openspaces.spatial.ShapeFactory.circle;
+import static org.openspaces.spatial.ShapeFactory.lineString;
+import static org.openspaces.spatial.ShapeFactory.point;
+import static org.openspaces.spatial.ShapeFactory.rectangle;
+import static org.openspaces.spatial.ShapeFactory.polygon;
+
+  Point point = ShapeFactory.point(1, 2);
 ```
 
-It's recommended to use static import to simplify shape creation. For example:
+You can also use `static import` to simplify shape creation. 
+
+Example:
 
 ```java
-import static org.openspaces.spatial.ShapeFactory.*;
+import static org.openspaces.spatial.ShapeFactory.circle;
+import static org.openspaces.spatial.ShapeFactory.lineString;
+import static org.openspaces.spatial.ShapeFactory.point;
+import static org.openspaces.spatial.ShapeFactory.rectangle;
+import static org.openspaces.spatial.ShapeFactory.polygon;
+
+import org.openspaces.spatial.shapes.Circle;
+import org.openspaces.spatial.shapes.LineString;
+import org.openspaces.spatial.shapes.Point;
+import org.openspaces.spatial.shapes.Polygon;
+import org.openspaces.spatial.shapes.Rectangle;
 ...
-Polygon polygon = polygon(point(0,0), point(1,1), point(2,2));
+  Point point = point(10d, 10d);
+  LineString line = lineString(point(10, 20), point(22, 33));
+  Circle circle = circle(point(12.0d, 10.0d), 5.0d);
+  Rectangle rectangle = rectangle(-10d, -10d, 10d, 10d);
+  Polygon polygon = polygon(point(-10,10), point(0, 10), point(10,-10));
 ```
 
 
@@ -141,12 +165,229 @@ Spatial queries are available through the `spatial:` extension to the [SQL query
 
 |  Query   |  Description   |
 |:-----|:-------|
-|shape1 spatial:contains shape2   | shape1 contains shape2, boundaries inclusive.|
-|shape1 spatial:within shape2     | shape1 is within (contained in) shape2, boundaries inclusive.|
 |shape1 spatial:intersects shape2 | The intersection between shape1 and shape 2 is not empty (i.e. some or all of shape1 overlaps some or all of shape2).|
+|shape1 spatial:within shape2     | shape1 is within (contained in) shape2, boundaries inclusive.|
+|shape1 spatial:contains shape2   | shape1 contains shape2, boundaries inclusive.|
 
-Spatial queries can be used with any space operation which supports SQL queries (`read`, `readMultiple`, `take`, etc.)
 
+### Intersect
+
+The intersection between {{%color "blue"%}}shape1{{%/color%}} and shape2 is not empty, some or all of shape1 overlaps some or all of shape2.
+
+![image](/attachment_files/geo/intersect.png)
+
+In our example we write first a **CircleProperty** object into the Space. Then we create other shapes and see if theses shapes intersect with the stored **CircleProperty** in the Space.
+
+{{%tabs%}}
+{{%tab CircleProperty%}}
+```java
+import org.openspaces.spatial.shapes.Circle;
+
+import com.gigaspaces.annotation.pojo.SpaceClass;
+import com.gigaspaces.annotation.pojo.SpaceId;
+
+@SpaceClass
+public class CircleProperty {
+	private Long id;
+	private Circle boundery;
+
+	public Circle getBoundery() {
+		return boundery;
+	}
+	
+	public void setBoundery(Circle boundery) {
+		this.boundery = boundery;
+	}
+
+	@SpaceId
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab "Initial Load"%}}
+```java
+public void init() {
+	gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("geoSpace")).gigaSpace();
+
+	CircleProperty c1 = new CircleProperty();
+	c1.setId(1L);
+	c1.setBoundery(ShapeFactory.circle(point(0.0d, 0.0d), 10.0d));
+	gigaSpace.write(c1);
+}
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+
+#### Spatial queries 
+ 
+
+ 
+```java
+ public void testIntersect() {
+ 	LineString lineString = lineString(point(20, -10), point(20, 5),point(0,5),point(0,20) );
+ 	SQLQuery<CircleProperty> query = new SQLQuery<CircleProperty>(CircleProperty.class,
+ 				"boundery spatial:intersects ?").setParameter(1, lineString);
+ 	CircleProperty property = gigaSpace.read(query);
+ 
+ 	if (property != null) {
+ 		System.out.println("LineString intersetcs :" + property.getId());
+ 	}
+ 
+ 	Circle circle = circle(point(20.0d, 0.0d), 10.0d);
+ 	query = new SQLQuery<CircleProperty>(CircleProperty.class, "boundery spatial:intersects ?").setParameter(1,
+ 				circle);
+ 	property = gigaSpace.read(query);
+ 
+ 	if (property != null) {
+ 		System.out.println("Circle intersetcs :" + property.getId());
+ 	}
+ 		
+ 	Rectangle rectangle = rectangle(-10,-5, -10, 5);
+ 	query = new SQLQuery<CircleProperty>(CircleProperty.class, "boundery spatial:intersects ?").setParameter(1,
+ 				rectangle);
+ 	property = gigaSpace.read(query);
+ 
+ 	if (property != null) {
+ 		System.out.println("Rectangle intersetcs :" + property.getId());
+ 	}
+ 		
+ 	Collection<Point> points = new ArrayList<>();
+ 	points.add(point(10,10));
+ 	points.add(point(15,5));
+ 	points.add(point(15,-5));
+ 	points.add(point(10,-10));
+ 	points.add(point(5,-5));
+ 	points.add(point(5,5));
+ 		
+ 	Polygon polygon= polygon(points);
+ 	query = new SQLQuery<CircleProperty>(CircleProperty.class, "boundery spatial:intersects ?").setParameter(1,
+ 				polygon);
+ 	property = gigaSpace.read(query);
+ 
+ 	if (property != null) {
+ 		System.out.println("Polygon intersetcs :" + property.getId());
+ 	}
+ }
+```
+ 
+
+### Within
+
+{{%color "blue"%}}Shape1{{%/color%}} is contained within shape2 including its boundaries.
+
+![image](/attachment_files/geo/within.png)
+
+In our example we write first a **CircleProperty**  and a **LineProperty** object into the Space. Notice that both space classes are subclasses of **AbstractProperty**.
+ 
+
+{{%tabs%}}
+
+{{%tab "Abstract Property"%}}
+```java
+import org.openspaces.spatial.shapes.Shape;
+
+import com.gigaspaces.annotation.pojo.SpaceId;
+
+public abstract class AbstractProperty {
+	private Long id;
+	private Shape boundery;
+
+	public Shape getBoundery() {
+		return boundery;
+	}
+
+	public void setBoundery(Shape boundery) {
+		this.boundery = boundery;
+	}
+
+	@SpaceId
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab "Circle Property"%}}
+```java
+import com.gigaspaces.annotation.pojo.SpaceClass;
+
+@SpaceClass
+public class CircleProperty extends AbstractProperty{
+ 
+}
+```
+{{%/tab%}}
+
+{{%tab "Line Property"%}}
+```java
+import com.gigaspaces.annotation.pojo.SpaceClass;
+
+@SpaceClass
+public class LineProperty extends AbstractProperty {
+
+}
+```
+{{%/tab%}}
+
+{{%tab "Initial Load"%}}
+```java
+public void init() {
+    gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("geoSpace")).gigaSpace();
+
+	CircleProperty c1 = new CircleProperty();
+	c1.setId(1L);
+	c1.setBoundery(ShapeFactory.circle(point(0.0d, 0.0d), 10.0d));
+	gigaSpace.write(c1);
+
+	LineProperty l1 = new LineProperty();
+	l1.setId(2L);
+	l1.setBoundery(ShapeFactory.lineString(point(-5.0d, -5.0d), point(5d, 5d)));
+	gigaSpace.write(l1);
+}
+```
+{{%/tab%}}
+
+{{%/tabs%}}
+
+
+#### Spatial queries 
+ 
+Will use a spatial query to find the shapes stored in the Space that are within a circle:
+ 
+```java
+public void testWithin() {
+
+    Circle circle = circle(point(-0.0d, 0.0d), 15.0d);
+    SQLQuery<AbstractProperty> query = new SQLQuery<AbstractProperty>(AbstractProperty.class, "boundery spatial:within ?")
+				.setParameter(1, circle);
+    AbstractProperty[] property = gigaSpace.readMultiple(query);
+
+    if (property != null) {
+        for (int i = 0; i < property.length; i++) {
+            System.out.println("Property :" + property[i].getId()+ " within Circle");
+        }
+    }
+}
+```
+
+
+
+ {{%note%}}
+ Spatial queries can be used with any space operation which supports SQL queries (`read`, `readMultiple`, `take`, etc.)
+ {{%/note%}}
 
 # Geofencing
  
@@ -158,10 +399,6 @@ Geofencing allows automatic alerts to be generated based on the defined coordina
 
 
 XAP uses Event Containers with Spatial queries to do just that. For example, we want to be notified when a new `GasStation` appears within a certain radius of my location.
-
- 
-
-
 
 ```java
 Point location = ShapeFactory.point(0, 0);
