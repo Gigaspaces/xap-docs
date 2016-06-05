@@ -63,22 +63,22 @@ This can be achieved in one of the following ways:
 
 ####  Environment variable
  
-Create an environment variable named `XapNet_<version>_SettingsPath` which points to the settings file path. For example, for that same 10.0 version we would use:
+Create an environment variable named `XapNet_<version>_SettingsPath` which points to the settings file path. For example, for that same {{%version "xap-version"%}} version we would use:
 
 
 ```xml
-XapNet_10.0.0.11600_SettingsPath=C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v4.0\Config\Settings.xml
+XapNet_{{%version "xap-release"%}}.11600_SettingsPath=C:\GigaSpaces\XAP.NET {{%version "xap-release"%}} x64\NET v4.0\Config\Settings.xml
 ```
 
 ####  Windows Registry
  
 Create a registry key named `HKLM\SOFTWARE\GigaSpaces\XAP.NET\<version>\<clrversion>`, with a String value named `SettingsPath` which points to the location of the `Settings.xml` file.
 
-For example, the XAP.NET v10.0 x64 setup creates the following keys:
+For example, the XAP.NET v{{%version "xap-version"%}} x64 setup creates the following keys:
 
 ```xml
-HKLM\SOFTWARE\GigaSpaces\XAP.NET\10.0.0.11600\CLR v2.0.50727\SettingsPath=C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v3.5\Config\Settings.xml
-HKLM\SOFTWARE\GigaSpaces\XAP.NET\10.0.0.11600\CLR v4.0.30319\SettingsPath=C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v4.0\Config\Settings.xml
+HKLM\SOFTWARE\GigaSpaces\XAP.NET\{{%version "xap-release"%}}.11600\CLR v2.0.50727\SettingsPath=C:\GigaSpaces\XAP.NET {{%version "xap-release"%}} x64\NET v3.5\Config\Settings.xml
+HKLM\SOFTWARE\GigaSpaces\XAP.NET\{{%version "xap-release"%}}.11600\CLR v4.0.30319\SettingsPath=C:\GigaSpaces\XAP.NET {{%version "xap-release"%}} x64\NET v4.0\Config\Settings.xml
 ```
 
 {{% info %}}
@@ -97,7 +97,7 @@ Use the `XapNetSettingsFile` element to configure the location of the settings f
         <section name="GigaSpaces" type="GigaSpaces.Core.Configuration.GigaSpacesCoreConfiguration, GigaSpaces.Core"/>
     </configSections>
     <GigaSpaces>
-        <XapNetSettingsFile Path="C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v4.0\Config\Settings.xml"/>
+        <XapNetSettingsFile Path="C:\GigaSpaces\XAP.NET {{%version "xap-release"%}} x64\NET v4.0\Config\Settings.xml"/>
     </GigaSpaces>
 </configuration>
 ```
@@ -107,7 +107,7 @@ Use the `XapNetSettingsFile` element to configure the location of the settings f
 Use the following code to set the location of the settings file at runtime:
 
 ```csharp
-    GigaSpacesFactory.Configuration.XapNetSettingsFile.Path = @"C:\GigaSpaces\XAP.NET 10.0.0 x64\NET v4.0\Config\Settings.xml"
+    GigaSpacesFactory.Configuration.XapNetSettingsFile.Path = @"C:\GigaSpaces\XAP.NET {{%version "xap-release"%}} x64\NET v4.0\Config\Settings.xml"
 ```
 
 #### Q. I need to minimize the installation size. Can I use a shared folder on a server to store part of the installation?
