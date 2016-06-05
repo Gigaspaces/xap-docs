@@ -13,6 +13,7 @@ Below is a list of known issues in GigaSpaces 9.7.X.
 
 | Key | Summary | SalesForce ID | Since version | Workaround | Platform/s
 |:----|:--------|:----------------|:---------------|:------------------|:----------|
+| GS-12817 | When the Compound Index contain more than 2 properties, the order might affect the Write throughput | 10356 | 9.7.0 | Order the properties from the most rare to the most common | Java |
 | <nobr>GS-12155</nobr> | Objects will stay locked under transaction if Mahalo is down between the prepare and commit | 9442, 9653 | 9.7.0 || Java |
 | GS-12588 | Resource leak in Conversation class when remote host name could not be resolved | 10060 | 9.7.2 | | All |
 | GS-12607 | Update object lease will not update the lease manager,if update waited on a lock | 9949 | 9.7.2 |  | Java |
