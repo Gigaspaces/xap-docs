@@ -82,3 +82,4 @@ Below is a list of known issues in GigaSpaces 10.1.X.
 | GS-12337 | Pressing the filter combobox when it is open should close it | | | All |
 | GS-12338 | Web-UI 'About' dialogue is shown with a grey frame in internet explorer | | | All |
 | GS-12339 | Opening the filter combobox when it is empty doesn't look good | | | All |
+| GS-12817 | When the Compound Index contain more than 2 properties, the order might affect the Write throughput | 10356 |  | Order the properties from the most rare to the most common | Java |

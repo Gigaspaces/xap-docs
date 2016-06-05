@@ -32,3 +32,4 @@ Below is a list of known issues in GigaSpaces 10.2.X.
 | GS-12457 | Variable substitution does not work with os-core:security  |  |  | All |
 | GS-12441 | GS-UI Locator Management - Error message when trying to add a valid ipv6 address  | 9747 |  | All |
 | GS-12438 | Web-UI - Exception when a SpaceDocument contains Pojo as property and querying nested properties  | 9756  |  | All |
+| GS-12817 | When the Compound Index contain more than 2 properties, the order might affect the Write throughput | 10356 |  | Order the properties from the most rare to the most common | Java |

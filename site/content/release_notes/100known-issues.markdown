@@ -13,6 +13,7 @@ Below is a list of known issues in GigaSpaces 10.0.X.
 
 | Key | Summary | SalesForce ID | Since Version | Workaround | Platform/s |
 |:-------|:--------|:----------------|:---------------|:------------------|:----------|
+| GS-12817 | When the Compound Index contain more than 2 properties, the order might affect the Write throughput | 10356 | 9.7.0 | Order the properties from the most rare to the most common | Java |
 | <nobr>GS-12155</nobr> | Objects will stay locked under transaction if Mahalo is down between the prepare and commit | 9442, 9653 | 9.7.0 || Java |
 | GS-12588 | Resource leak in Conversation class when remote host name could not be resolved | 10060 | 9.7.2 | | All |
 | GS-12607 | Update object lease will not update the lease manager,if update waited on a lock | 9949 | 9.7.2 |  | Java |
@@ -56,6 +57,7 @@ Below is a list of known issues in GigaSpaces 10.0.X.
 | GS-11777 | Watchdog should stop monitoring once the server returned a result | 9031 | 10.0.0 | | All |
 | GS-11780 | Severe message in the log after killing GSA in some scenarios | 9056 | 10.0.0 | | All |
 | GS-11793 | jboss should have the dependency in test scope only | 9089 | 10.0.0 | | Java |
+| GS-12817 | When the Compound Index contain more than 2 properties, the order might affect the Write throughput | 10356 | 9.7.0 | Order the properties from the most rare to the most common | Java |
 | GS-11820 | Fix pom.xml & WIKI to work with 9.7 RELEASE instead of SNAPSHOT | 9094 | 10.0.0 | | Java |
 | GS-11822 | NPE in replicating change in rare condition | 9097 | 10.0.0 | | All |
 | GS-11824 | Fail to shutdown GSC due to recovery thread that hang on socket trying to load class | 9081 | 10.0.0 | | All |
@@ -72,4 +74,5 @@ Below is a list of known issues in GigaSpaces 10.0.X.
 | GS-11844 | Recreation of FDFManager on the same jvm occurs once recovery fails - blobstore |  | 10.0.0 | | Java |
 | GS-11845 | Deploying the Data example with the provided sla does not work properly |  | 10.0.0 | | Java |
 | GS-11936 | Backwards compatibility issue: NPE is thrown when the client version is less then 10.0 and the server version is 10.0 | 9182 | 10.0.0 | | All |
-| GS-10510 | Consistency issues with multisource replication when trinsiant entries are involved (distributed transaction consolidation) | | 9.7.0 | | All | 
+| GS-10510 | Consistency issues with multisource replication when transient entries are involved (distributed transaction consolidation) | | 9.7.0 | | All |
+| GS-12817 | When the Compound Index contain more than 2 properties, the order might affect the Write throughput | 10356 |  | Order the properties from the most rare to the most common | Java |
