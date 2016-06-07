@@ -34,4 +34,8 @@ A new release of Gigaspace's XAP platform has been released. Version 11.0 is a m
 - [Pre 9.7](http://wiki.gigaspaces.com/wiki/display/RN/GigaSpaces+Release+Notes)
 
 
+##  XAP Lifecycle and End-of-Life Policy
+
+
+- [XAP Lifecycle and End-of-Life Policy](./lifecycle.html)
 
