@@ -88,8 +88,8 @@ Upon request, GigaSpaces' [Consulting Services](mailto:ps@gigaspaces.com) expert
 |R9.6 b9500	|July 2013	     |R9.6.2 b9900 on Oct 2013	            |No Plans	|January 2016|
 |R9.7 b10496	|Jan 2014	 |R9.7.2 b11000 on Feb 2015	            |No Plans	|July 2016|
 |R10.0 	|July 2014           |R10.0.1 b11800 on Aug 2014            |R10.0.2	|March 2017 |
-|R10.1 b12600	|March 2015	 |R10.1.1 b12800 on April 2015	        |No Plans   |	 |
-|R10.2 b13800	|July 2015	 |R10.2.1 b14000 on November 2015	    |No Plans   | |	 
+|R10.1 b12600	|March 2015	 |R10.1.1 b12800 on April 2015	        |No Plans   |July 2017	 |
+|R10.2 b13800	|July 2015	 |R10.2.1 b14000 on November 2015	    |No Plans   |April 2018 |	 
 |R11.0 b14800	|April 2016	 | 	                                    |No Plans	| |     
         
         
