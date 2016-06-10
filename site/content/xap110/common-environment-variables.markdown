@@ -80,14 +80,14 @@ The `gs-agent` script calls the `setenv` script to setup the environment, which 
 {{%tabs%}}
 {{%tab " setenv-overrides.sh (Unix)"%}}
 ```bash
-export XAP_LOOKUP_GROUPS=LOOKUPGROUPS
-export XAP_GSC_OPTIONS=GSC_JAVA_OPTIONS
+export XAP_LOOKUP_GROUPS=$LOOKUPGROUPS
+export XAP_GSC_OPTIONS=$GSC_JAVA_OPTIONS
 ```
 {{%/tab%}}
 {{%tab " setenv-overrides.bat (Windows)"%}}
 ```bash
-set XAP_LOOKUP_GROUPS=LOOKUPGROUPS
-set XAP_GSC_OPTIONS=GSC_JAVA_OPTIONS
+set XAP_LOOKUP_GROUPS=%LOOKUPGROUPS%
+set XAP_GSC_OPTIONS=%GSC_JAVA_OPTIONS%
 ```
 {{%/tab%}}
 {{%/tabs%}}
