@@ -32,4 +32,9 @@ Compound indexes can be defined using multiple class properties.
 
 [Unique index](./indexing-unique.html){{<wbr>}}
 Unique constraints can be defined for a property or properties of a space class.
+
+[Geospatial index](./query-geospatial.html){{<wbr>}}
+GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
+
+
 {{%/fpanel%}}
