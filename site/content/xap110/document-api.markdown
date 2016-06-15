@@ -16,7 +16,6 @@ Before a certain Document instance is written to the space, its type should be i
 
 {{% tip %}}
 The Type controls **metadata** - so only the metadata is part of the type. A document can introduce new properties at will.
-The Type controls **metadata** - so only the metadata is part of the type. A document can introduce new properties at will.
 {{% /tip %}}
 
 Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties (although in most cases Document instances of the same type are likely to have identical or similar set of properties).
@@ -296,7 +295,7 @@ public SpaceDocument[] readProductByMultipleIds(GigaSpace gigaSpace) {
 
 # Nested Properties
 
-The `Document` properties values can be either scalars (integers, strings, enumuerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as `DocumentProperties`). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot ('.') notation to describe paths, as shown above.
+The `Document` properties values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as `DocumentProperties`). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot ('.') notation to describe paths, as shown above.
 
 {{% note %}} It's highly recommended to use `DocumentProperties` for nested documents since it contains performance and memory footprint optimizations which are tailored for GigaSpaces usage.
 
@@ -692,7 +691,7 @@ For more information about optimistic locking, see the [Optimistic Locking](./tr
 
 If you intend to use local cache or local view in a mixed POJO-Document environment, please refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
 
-# Persistency
+# Persistence
 
 External Data Source is supported for space documents.
 Example on how to implement an EDS that persists SpaceDocuments of type "Trade":
@@ -731,12 +730,12 @@ public class DocumentEDS
 
     public void init(Properties prop) throws DataSourceException
     {
-        // initialize persistency layer
+        // initialize persistence layer
     }
 
     public DataIterator<SpaceDocument> initialLoad() throws DataSourceException
     {
-        // load all the data from persistency
+        // load all the data from persistence
         // build and return an iterator of documents
     }
 
@@ -769,7 +768,7 @@ public class DocumentEDS
 
     public void shutdown() throws DataSourceException
     {
-        //cleanup resources and close the persistency
+        //cleanup resources and close the persistence
     }
 
 }
@@ -778,7 +777,7 @@ public class DocumentEDS
 {{% /tab %}}
 {{% /tabs %}}
 
-Different document database can be used to implement the document persistency - MongoDB, CouchDB and others.
+Different document database can be used to implement the document persistence - MongoDB, CouchDB and others.
 Pojos can be persisted via document EDS as well, in the same way.
 
 {{% note %}}
