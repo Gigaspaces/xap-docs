@@ -295,7 +295,7 @@ public SpaceDocument[] readProductByMultipleIds(GigaSpace gigaSpace) {
 
 # Nested Properties
 
-The `Document` properties values can be either scalars (integers, strings, enumuerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as `DocumentProperties`). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot ('.') notation to describe paths, as shown above.
+The `Document` properties values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as `DocumentProperties`). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot ('.') notation to describe paths, as shown above.
 
 {{% note %}} It's highly recommended to use `DocumentProperties` for nested documents since it contains performance and memory footprint optimizations which are tailored for GigaSpaces usage.
 

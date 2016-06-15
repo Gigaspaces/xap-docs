@@ -16,7 +16,6 @@ Before a certain Document instance is written to the space, its type should be i
 
 {{% tip %}}
 The Type controls **metadata** - so only the metadata is part of the type. A document can introduce new properties at will.
-The Type controls **metadata** - so only the metadata is part of the type. A document can introduce new properties at will.
 {{% /tip %}}
 
 Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties (although in most cases Document instances of the same type are likely to have identical or similar set of properties).
@@ -296,7 +295,7 @@ public SpaceDocument[] readProductByMultipleIds(GigaSpace gigaSpace) {
 
 # Nested Properties
 
-The `Document` properties values can be either scalars (integers, strings, enumuerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as `DocumentProperties`). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot ('.') notation to describe paths, as shown above.
+The `Document` properties values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as `DocumentProperties`). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot ('.') notation to describe paths, as shown above.
 
 {{% note %}} It's highly recommended to use `DocumentProperties` for nested documents since it contains performance and memory footprint optimizations which are tailored for GigaSpaces usage.
 
