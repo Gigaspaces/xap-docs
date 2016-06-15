@@ -69,7 +69,9 @@ public class Person {
     private int age;
 
     ...
-    public Person() {}
+    public Person() {
+     this.age = -1;
+    }
 
     @SpaceId(autoGenerate=false)
     @SpaceRouting
