@@ -3,7 +3,7 @@ type: post110
 title:  Unique Index
 categories: XAP110
 parent: indexing-overview.html
-weight: 400
+weight: 600
 ---
 
 

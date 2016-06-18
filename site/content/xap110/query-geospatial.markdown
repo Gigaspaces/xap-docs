@@ -417,41 +417,8 @@ SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerCon
 ```
 
 
-# Indexing
 
-If the space contains lots of `GasStation` entries and our query is only relevant to a small subset of them, the space is likely to scan lots of entries before finding a match. In order to improve that, we can index the location property using the `@SpaceSpatialIndex` annotation:
 
-```java
-public class GasStation {
-	private Point location;
-
-	@SpaceSpatialIndex
-	public Point getLocation() {
-	    return location;
-	}
-	
-	public void setLocation(Point location) {
-		this.location = location;
-	}
-}
-```
-
-# Combining Spatial and Standard Predicates
-
-Suppose our `GasStation` class contains a `price` property as well, and we want to enhance our query and find nearby gas stations whose price is lower than a certain threshold. We can simply add the relevant predicate to the query's criteria:
-
-```java
-public GasStation findNearbyGasStation(Point location, int radius, double maxPrice) {
-	SQLQuery<GasStation> query = new SQLQuery(GasStation.class, "location spatial:within ? AND price < ?")
-		.setParameter(1, ShapeFactory.circle(location, radius))
-		.setParameter(2, maxPrice);
-	return gigaSpace.read(query);
-}
-```
-
-{{%note "Choosing the optimal index"%}}
-If both `location` and `price` are indexed, the index which appears first in the query is the one that will be used. This may significantly effect the performance of your query, so it's recommended to estimate which index is most efficient for each query and put it first.
-{{%/note%}}
 
 
 # WKT Support
@@ -491,3 +458,10 @@ Lucene indexing is stored in a **Store Directory**. Lucene supports different St
 ### File System
 
 Lucene indexes are stored in the file system. When used within a processing unit deployed on the service grid, these files are stored within the processing unit working folder, and automatically deleted if/when the processing unit is undeployed. When there's no service grid involved, the files are stored in a unique folder under `user.home`. This location can be explicitly set using the `space-config.spatial.lucene.storage.location` space property.
+
+
+# Indexing
+
+{{%refer%}}
+The performance of Geospatial queries can be vastly improved by indexing shape properties. For detailded information see [Geospatial indexing](./indexing-geospatial.html)
+{{%/refer%}}

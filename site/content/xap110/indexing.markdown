@@ -3,7 +3,7 @@ type: post110
 title:  Basic Index
 categories: XAP110
 parent: indexing-overview.html
-weight: 50
+weight: 100
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

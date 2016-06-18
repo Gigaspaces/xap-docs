@@ -3,7 +3,7 @@ type: post110
 title:  Compound Index
 categories: XAP110
 parent: indexing-overview.html
-weight: 300
+weight: 400
 ---
 
 {{%ssummary%}}{{%/ssummary%}}
@@ -16,9 +16,7 @@ Example: Below a compound index with two segments using annotations. Both are pr
 
 
 ```java
-@CompoundSpaceIndexes(
-{ @CompoundSpaceIndex(paths = {"data1", "data2"}) }
-)
+@CompoundSpaceIndexes({ @CompoundSpaceIndex(paths = {"data1", "data2"})})
 @SpaceClass
 public class Data {
 	String id;

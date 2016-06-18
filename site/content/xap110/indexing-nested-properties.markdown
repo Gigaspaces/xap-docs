@@ -3,12 +3,11 @@ type: post110
 title:  Nested Property Index
 categories: XAP110
 parent: indexing-overview.html
-weight: 100
+weight: 200
 ---
 
 
 An index can be defined on a nested property to improve performance of nested queries - this is highly recommended.
-
 Nested properties indexing uses an additional `@SpaceIndex` attribute - **`path()`**.
 
 ## The SpaceIndex.path() Attribute
@@ -19,7 +18,6 @@ Below is an example of defining an index on a nested property:
 
 {{%tabs%}}
 {{%tab "  Single Index Annotation "%}}
-
 
 ```java
 @SpaceClass
