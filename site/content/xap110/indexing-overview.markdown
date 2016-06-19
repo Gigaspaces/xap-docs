@@ -31,7 +31,8 @@ An index can be defined on a Collection property (java.util.Collection implement
 Compound indexes can be defined using multiple class properties.
 
 [Geospatial index](./indexing-geospatial.html){{<wbr>}}
-GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
+Indexes can be created for geometry data types.
+ 
 
 [Unique index](./indexing-unique.html){{<wbr>}}
 Unique constraints can be defined for a property or properties of a space class.
