@@ -28,7 +28,8 @@ public class MenuTree {
 		"xap100", "xap100net", "xap100adm", "xap100sec", 
 		"xap101", "xap101net", "xap101adm", "xap101sec", "xap101tut", "xap101nettut", 
 		"xap102", "xap102net", "xap102adm", "xap102sec", "xap102tut", "xap102nettut", 
-		"xap110", "xap110net", "xap110adm", "xap110sec", "xap110tut", "xap110nettut"
+		"xap110", "xap110net", "xap110adm", "xap110sec", "xap110tut", "xap110nettut",
+            "xap120","xap120net", "xap120adm", "xap120sec", "xap120tut","xap120nettut"
 	};
 
     public static void main(String[] args) throws Exception {

@@ -1,0 +1,66 @@
+---
+type: post120
+title:  Metadata
+categories: XAP120
+parent: task-execution-overview.html
+weight: 400
+---
+
+{{%ssummary%}}{{%/ssummary%}}
+
+
+# Task Execution
+
+| | |
+|----|----|
+|Attribute Annotation|@TaskGigaSpace   |
+|Description         | This annotation injects a clustered proxy into the Task implementation. This is useful when the Task should access other partitions.   |
+
+Example:
+
+
+```java
+public class MyTask implements Task<Integer>  {
+
+    @TaskGigaSpace
+    private transient GigaSpace colocatedSpace;
+    private transient GigaSpace clusteredSpace;
+
+    public MyTask() {
+    }
+....
+}
+```
+
+{{%refer%}}
+[Task Execution over the Space](./task-execution-overview.html)
+{{%/refer%}}
+
+
+
+# Task Routing
+
+| | |
+|----|----|
+|Method Annotation|@SpaceRouting  |
+|Description         | This annotation selects the routing value. In case it is a POJO defined with a @SpaceRouting on one of its properties, the value of that property will be used as the routing information when passed as a parameter.   |
+
+
+Example:
+
+
+```java
+public class MyTask implements Task<Integer>  {
+
+    @SpaceRouting
+    public Integer routing() {
+       return this.value;
+    }
+....
+}
+```
+
+
+{{%refer%}}
+[Task Execution over the Space](./task-execution-overview.html)
+{{%/refer%}}

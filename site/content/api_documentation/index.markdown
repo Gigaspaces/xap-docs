@@ -6,6 +6,35 @@ categories: API_DOCUMENTATION
 
 This page provides links to the API documentation and related resources for each version of XAP.
 
+# XAP 12.0
+
+{{%tabs%}}
+{{%tab API%}}
+- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc12.0/index.html)
+- [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs12.0/)
+- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs12.0/annotated.html)
+- [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs12.0)
+- [REST API](/xap120/rest-service-api.html)
+- [Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs12.0/apidocs/)
+- [Cassandra-Datasource API Documentation](http://www.gigaspaces.com/docs/cassandra-docs12.0/apidocs/)
+{{%/tab%}}
+{{%tab Schemas%}}
+- [openspaces-core.xsd](http://www.openspaces.org/schema/12.0/core/openspaces-core.xsd)
+- [openspaces-admin.xsd](http://www.openspaces.org/schema/12.0/admin/openspaces-admin.xsd)
+- [openspaces-archive.xsd](http://www.openspaces.org/schema/12.0/archive/openspaces-archive.xsd)
+- [openspaces-events.xsd](http://www.openspaces.org/schema/12.0/events/openspaces-events.xsd)
+- [openspaces-gateway.xsd](http://www.openspaces.org/schema/12.0/core/gateway/openspaces-gateway.xsd)
+- [openspaces-jdbc.xsd](http://www.openspaces.org/schema/12.0/jdbc/openspaces-jdbc.xsd)
+- [openspaces-jms.xsd](http://www.openspaces.org/schema/12.0/jms/openspaces-jms.xsd)
+- [openspaces-remoting.xsd](http://www.openspaces.org/schema/12.0/remoting/openspaces-remoting.xsd)
+- [openspaces-sla.xsd](http://www.openspaces.org/schema/12.0/sla/openspaces-sla.xsd)
+- [mule-os-eventcontainer.xsd](http://www.openspaces.org/schema/12.0/mule/mule-os-eventcontainer.xsd)
+- [mule-os-queue.xsd](http://www.openspaces.org/schema/12.0/mule/mule-os-queue.xsd)
+- [mule-os-seda.xsd](http://www.openspaces.org/schema/12.0/mule/mule-os-seda.xsd)
+- [openspaces-mapdb-blobstore.xsd](http://www.openspaces.org/schema/12.0/mapdb-blob-store/openspaces-mapdb-blobstore.xsd)
+{{%/tab%}}
+{{%/tabs%}}
+
 # XAP 11.0
 
 {{%tabs%}}

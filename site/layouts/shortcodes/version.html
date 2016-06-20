@@ -2,4 +2,6 @@
 {{else if in .Page.Permalink "xap100"}}{{index .Page.Site.Params.xap100 (.Get 0)}}
 {{else if in .Page.Permalink "xap101"}}{{index .Page.Site.Params.xap101 (.Get 0)}}
 {{else if in .Page.Permalink "xap102"}}{{index .Page.Site.Params.xap102 (.Get 0)}}
-{{else}}{{index .Page.Site.Params.xap110 (.Get 0)}}{{end}}
+{{else if in .Page.Permalink "xap102"}}{{index .Page.Site.Params.xap102 (.Get 0)}}
+{{else if in .Page.Permalink "xap110"}}{{index .Page.Site.Params.xap110 (.Get 0)}}
+{{else}}{{index .Page.Site.Params.xap120 (.Get 0)}}{{end}}

@@ -12,11 +12,19 @@ weight: 1
 A new release of Gigaspace's XAP platform has been released. Version 11.0 is a major release. Below you will find all relevant information.
 
 
+## Early Access Release XAP 12.0
+
+- [What's new](./120whats-new.html)
+- [Fixed issues](./120fixed-issues.html)
+- [Known issues](./120known-issues.html)
+
+
+
 ## Current Release XAP 11.0
 
 - [What's new](./110whats-new.html)
 - [Fixed issues](./110fixed-issues.html)
-- [Known issues](./100known-issues.html)
+- [Known issues](./110known-issues.html)
 
 
 
