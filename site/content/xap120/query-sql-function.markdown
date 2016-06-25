@@ -127,7 +127,7 @@ Here is an example of a user defined function:
 ```java
  import com.gigaspaces.query.sql.functions.SqlFunctionExecutionContext;
  
- public abstract class AbstratcSqlFunction {
+ public abstract class AbstractSqlFunction {
  	// This is the method that should be implemented by the user
  	public abstract Object apply(SqlFunctionExecutionContext context);
  
@@ -147,7 +147,7 @@ Here is an example of a user defined function:
 ```java
 import com.gigaspaces.query.sql.functions.SqlFunctionExecutionContext;
 
-public class MyCustomSqlFunction extends AbstratcSqlFunction {
+public class MyCustomSqlFunction extends AbstractSqlFunction {
 	@Override
 	public Object apply(SqlFunctionExecutionContext context) {
 		// Increment by two before we return the value
