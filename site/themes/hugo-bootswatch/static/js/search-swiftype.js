@@ -182,6 +182,9 @@ $(document).ready(function () {
                     sectionPath = sectionPath.replace("sec","")
                     var version = sectionPath.slice(0, -1) +"."+sectionPath.slice(-1);
 
+                    if (endsWith(url,"xap120.html"))
+                      return {desc: "XAP " + version, version:"12.0", docSection:"XAP"};
+
                     if (endsWith(url,"xap110.html"))
                       return {desc: "XAP " + version, version:"11.0", docSection:"XAP"};
 

@@ -73,7 +73,7 @@ Person[] persons = space.readMultiple(query);
  
 ```
 
-###  Supported SQL Features
+###  Supported SQL Functions
 
 SQLQuery supports the following functions:
 
