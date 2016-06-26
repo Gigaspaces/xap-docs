@@ -121,33 +121,13 @@ UDF allows you to access the relevant Space objects without serializing or mater
 Here is an example of a user defined function: 
 
 
-{{%tabs%}}
-
-{{%tab "SQL function Abstract class"%}}
-```java
- import com.gigaspaces.query.sql.functions.SqlFunctionExecutionContext;
  
- public abstract class AbstractSqlFunction {
- 	// This is the method that should be implemented by the user
- 	public abstract Object apply(SqlFunctionExecutionContext context);
  
- 	// User can use this function to ensure the number of arguments the function
- 	// get
- 	protected void assertNumberOfArguments(int expected, SqlFunctionExecutionContext context) {
- 		if (context.getNumberOfArguments() != expected) {
- 			throw new RuntimeException("wrong number of arguments - expected: " + expected
- 					+ " ,but actual number of arguments is: " + context.getNumberOfArguments());
- 		}
- 	}
- }
-```
-{{% /tab %}}
-{{%tab "SQL function implementation"%}}
 
 ```java
 import com.gigaspaces.query.sql.functions.SqlFunctionExecutionContext;
 
-public class MyCustomSqlFunction extends AbstractSqlFunction {
+public class MyCustomSqlFunction extends SqlFunction {
 	@Override
 	public Object apply(SqlFunctionExecutionContext context) {
 		// Increment by two before we return the value
@@ -155,9 +135,7 @@ public class MyCustomSqlFunction extends AbstractSqlFunction {
 	}
 }
 ```
-{{% /tab %}}
-{{%/tabs%}}
-
+ 
 
 ### Space registration
 

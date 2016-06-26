@@ -37,12 +37,21 @@
 
             <div id="content" class="col-md-8">
                 <div id="page-content" class="page-content">
-                        <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default"
-                            style="float: right;border:0px;margin-top: 145px;"><i class="fa fa-pencil-square-o fa-lg"></i>
-                    </button>
-                    <h1 style="padding-top:135px;">{{ .Title }}</h1>
+                    <div style="float: right;border:0px;margin-top: 145px;">
+                        {{ if in .Params.categories "OS" }}
+                           <img src="/attachment_files/logos/open-source.png" alt="polaroid" style="margin-right:40px"/>
+                        {{ else if in .Params.categories "ES"}}
+                           <img src="/attachment_files/logos/java_icon.jpeg" style="margin-right:40px"/>
+                        {{ else if in .Params.categories "EX"}}
+                          <img src="/attachment_files/logos/dotnet.jpeg" style="margin-right:40px"/>
+                        {{ end}}
+                        <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default" style="border:0px;">
+                            <i class="fa fa-pencil-square-o fa-lg"></i>
+                        </button>
+                    </div>
+                    <h2 style="padding-top:135px;">{{ .Title }}</h2>
                     <hr>
-                
+
                     {{ .Content }}
                 </div>
             </div>
