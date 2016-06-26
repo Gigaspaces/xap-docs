@@ -156,6 +156,8 @@ public class MyCustomSqlFunction extends SqlFunction {
 			<os-core:sql-function ref="myCustomSqlFunction" />
 		</os-core:space-sql-function>
 	</os-core:embedded-space>
+	
+	<os-core:giga-space id="gigaSpace" space="space"/>
 </beans>
 ```
 And here is the the usage of the newly registered SQL function:
