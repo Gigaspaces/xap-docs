@@ -428,15 +428,21 @@ The `ShapeFactory` also supports parsing [WKT](https://en.wikipedia.org/wiki/Wel
 |   Shape  | Description    |
 |:----|:-------|
 |Point       | POINT (0 0)|
+|Envelope    | ENVELOPE (1.0, 2.0, 4.0, 3.0)|
 |Rectangle   | LINESTRING(30 10, 40 10, 40 20, 30 20, 30 10) |
-|LineString  | LINESTRING (0 0, 1 1, 5 5)|
+|Polygon     | POLYGON (0.0 0.0, 0.0 5.0, 2.5 2.5, 5.0 5.0, 5.0 0.0, 0.0 0.0)|
+|Buffer      | BUFFER  (POINT (0.0 0.0), 5.0)) |
 
 
 
 For example:
 
 ```java
-Shape shape = ShapeFactory.parse("LINESTRING (0 0, 1 1, 5 5)", ShapeFormat.WKT);
+Shape s2 = ShapeFactory.parse("POINT (1.0 2.0)",ShapeFormat.WKT);
+Shape s3 = ShapeFactory.parse("ENVELOPE (1.0, 2.0, 4.0, 3.0)",ShapeFormat.WKT);
+Shape s4 = ShapeFactory.parse("LINESTRING (1.0 11.0, 2.0 12.0, 3.0 13.0)",ShapeFormat.WKT);
+Shape s5 = ShapeFactory.parse("POLYGON ((0.0 0.0, 0.0 5.0, 2.5 2.5, 5.0 5.0, 5.0 0.0, 0.0 0.0))",ShapeFormat.WKT);
+Shape s6 = ShapeFactory.parse("BUFFER (POINT (0.0 0.0), 5.0)",ShapeFormat.WKT);
 ```
 
 
@@ -444,6 +450,20 @@ Shape shape = ShapeFactory.parse("LINESTRING (0 0, 1 1, 5 5)", ShapeFormat.WKT);
 The `ShapeFactory` also supports parsing  [GeoJson](http://geojson.org/) strings into shapes. For example:
 
 
+Examples:
+
+```java
+ShapeFactory.parse("{\"type\":\"Point\",\"coordinates\":[1.0,2.0]}", ShapeFormat.GEOJSON);
+ShapeFactory.parse("{\"type\":\"Polygon\",\"coordinates\": [[[1.0,3.0],[1.0,4.0],[2.0,4.0],[2.0,3.0],[1.0,3.0]]]}",
+				ShapeFormat.GEOJSON);
+ShapeFactory.parse("{\"type\":\"LineString\",\"coordinates\":[[1.0,11.0],[2.0,12.0],[3.0,13.0]]}",
+				ShapeFormat.GEOJSON);
+ShapeFactory.parse("{\"type\":\"Polygon\",\"coordinates\":[[[0.0,0.0],[0.0,5.0],[5.0,0.0],[0.0,0.0]]]}",
+				ShapeFormat.GEOJSON);
+ShapeFactory.parse("{\"type\":\"Polygon\",\"coordinates\":[[[0.0,0.0],[0.0,5.0],[2.5,2.5],[5.0,5.0],[5.0,0.0],[0.0,0.0]]]}",
+				ShapeFormat.GEOJSON);
+ShapeFactory.parse("{\"type\":\"Circle\",\"coordinates\":[0.0,0.0],\"radius\":5.0}", ShapeFormat.GEOJSON);
+```
 
 # Configuration
 
