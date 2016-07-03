@@ -7,7 +7,55 @@ parent: the-gigaspace-interface-overview.html
 ---
 
 
+XAP provides the ability to obtain class meta data information from the Space with the `GigaSpaceTypeManager`. 
 
+The actual class names are discovered with the **Admin interface**  through the `Space` interface.
+ 
+
+```java
+import org.openspaces.admin.AdminFactory;
+import org.openspaces.admin.space.Space;
+...
+
+Admin admin = new AdminFactory().discoverUnmanagedSpaces().addGroup("TEST").createAdmin();
+...
+Space space = admin.getSpaces().waitFor(spaceName  , 10 , TimeUnit.SECONDS);
+....
+String SpaceClassNames[] = space.getRuntimeDetails().getClassNames();
+...
+```
+
+{{%refer%}}
+For  detailed information on the `AdminFicatory` consult [AdminFactory](./administration-and-monitoring-api.html)
+{{%/refer%}}
+
+The `GigaSpaceTypeManager` is retrieved from the Space instance:
+
+
+```java
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer(spaceName).lookupGroups("TEST")).gigaSpace();
+....
+GigaSpaceTypeManager gigaSpaceTypeManager = gigaSpace.getTypeManager();
+```
+
+We can iterate over all classes that are present in the Space and obtain their meta data:
+
+```java
+for (int j = 0; j < SpaceClassNames.length; j++) {
+    String spaceClass = SpaceClassNames[j];
+
+    SpaceTypeDescriptor typeManager = gigaSPaceTypeManager.getTypeDescriptor(spaceClass);
+    System.out.println("Super Type Name:" + typeManager.getSuperTypeName());
+    System.out.println("Id Property Name:"+ typeManager.getIdPropertyName());	
+    .......
+}
+```
+
+
+#### Example
+
+Lets assume that we have an abstract super class **Entity** and two sub classes, **Bank** and **Supplier**.
+ 
 
 {{%tabs%}}
 {{%tab  Entity%}}
@@ -116,75 +164,75 @@ public enum ESupplierType {
 
 {{%/tabs%}}
 
-Run the program :
+Here is an example that uses the `GigaSpaceTypeManager` to explore the Space for meta data:
 
 ```java
-public class TestSpaceMetaData {
+@Test
+public void test() throws InterruptedException {
+	String spaceName = "mySpace";
 
-	@Test
-	public void test() throws InterruptedException {
-		String spaceName = "mySpace";
-
-		GigaSpace gigaSpaceEmb = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer(spaceName).lookupGroups("TEST"))
+	GigaSpace gigaSpaceEmb = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer(spaceName).lookupGroups("TEST"))
 				.gigaSpace();
 
-		System.out.println(
-				"This test will write 2 space objects into the space , each using different classes and will use the SpaceTypeDescriptor to retrieve the space class meta data back");
+	System.out.println(
+			"This test will write 2 space objects into the space , each using different classes and will use the SpaceTypeDescriptor to retrieve the space class meta data back");
 
-		Thread.sleep(1000);
-		Admin admin = new AdminFactory().discoverUnmanagedSpaces().addGroup("TEST").createAdmin();
+    // wait for the admin to synchronize
+    Thread.sleep(1000);
+    Admin admin = new AdminFactory().discoverUnmanagedSpaces().addGroup("TEST").createAdmin();
 
-		if (admin == null) {
-			System.out.println("Can't find space " + spaceName + " Exit!");
-			System.exit(0);
-		}
-
-		Space space = admin.getSpaces().waitFor(spaceName, 20, TimeUnit.SECONDS);
-
-		if (space == null) {
-			System.out.println("Can't find space " + spaceName + " Exit!");
-			System.exit(0);
-		}
-
-		GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer(spaceName).lookupGroups("TEST"))
-				.gigaSpace();
-
-		Bank b = new Bank();
-		b.setId(UUID.randomUUID());
-		gigaSpace.write(b);
-		Supplier s = new Supplier();
-		s.setId(UUID.randomUUID());
-		gigaSpace.write(s);
-
-		String SpaceClassNames[] = space.getRuntimeDetails().getClassNames();
-		GigaSpaceTypeManager gigaSPaceTypeManager = gigaSpace.getTypeManager();
-
-		for (int j = 0; j < SpaceClassNames.length; j++) {
-			String spaceClass = SpaceClassNames[j];
-			System.out.println();
-			System.out.println("Meta Data       :" + spaceClass);
-			SpaceTypeDescriptor typeManager = gigaSPaceTypeManager.getTypeDescriptor(spaceClass);
-			System.out.println("Super Type Name :" + typeManager.getSuperTypeName());
-			System.out.println("Id Property Name:" + typeManager.getIdPropertyName());
-			System.out.println("Indexes         :" + typeManager.getIndexes());
-			String[] typeNames = typeManager.getPropertiesNames();
-			System.out.println("Properties:");
-			for (int i = 0; i < typeNames.length; i++) {
-				String prop = typeNames[i];
-				SpacePropertyDescriptor propdesc = typeManager.getFixedProperty(prop);
-
-				System.out.println("  Name:" + propdesc.getName() + " Type:" + propdesc.getTypeName() + " Storage Type:"
-						+ propdesc.getStorageType());
-			}
-		}
-		admin.close();
-
+	if (admin == null) {
+		System.out.println("Can't find space " + spaceName + " Exit!");
 		System.exit(0);
 	}
+
+	Space space = admin.getSpaces().waitFor(spaceName, 20, TimeUnit.SECONDS);
+
+	if (space == null) {
+		System.out.println("Can't find space " + spaceName + " Exit!");
+		System.exit(0);
+	}
+
+	GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer(spaceName).lookupGroups("TEST"))
+				.gigaSpace();
+
+    // Create two new objects and write them to the Space
+    Bank b = new Bank();
+    b.setId(UUID.randomUUID());
+    gigaSpace.write(b);
+    Supplier s = new Supplier();
+    s.setId(UUID.randomUUID());
+    gigaSpace.write(s);
+
+    String SpaceClassNames[] = space.getRuntimeDetails().getClassNames();
+    GigaSpaceTypeManager gigaSpaceTypeManager = gigaSpace.getTypeManager();
+
+    // Explore the space classes
+    for (int j = 0; j < SpaceClassNames.length; j++) {
+        String spaceClass = SpaceClassNames[j];
+        System.out.println();
+        System.out.println("Meta Data       :" + spaceClass);
+        SpaceTypeDescriptor typeManager = gigaSpaceTypeManager.getTypeDescriptor(spaceClass);
+        System.out.println("Super Type Name :" + typeManager.getSuperTypeName());
+        System.out.println("Id Property Name:" + typeManager.getIdPropertyName());
+        System.out.println("Indexes         :" + typeManager.getIndexes());
+        String[] typeNames = typeManager.getPropertiesNames();
+        System.out.println("Properties:");
+        for (int i = 0; i < typeNames.length; i++) {
+		    String prop = typeNames[i];
+		    SpacePropertyDescriptor propdesc = typeManager.getFixedProperty(prop);
+
+		    System.out.println("  Name:" + propdesc.getName() + " Type:" + propdesc.getTypeName() + " Storage Type:"
+						+ propdesc.getStorageType());
+		}
+	}
+	admin.close();
+
+	System.exit(0);
 }
 ```
 
-will produce the following output:
+The above program will produce the following output when executed: 
 
 ```bash
 This test will write 2 space objects into the space , each using different classes and will use the SpaceTypeDescriptor to retrieve the space class meta data back
@@ -227,3 +275,5 @@ Properties:
   Name:category Type:xap.sandbox.type.ESupplierType Storage Type:OBJECT
   Name:number Type:java.lang.Integer Storage Type:OBJECT
 ```
+
+All information per class (super, sub and embedded class), properties, indexes, ID's etc is displayed. 

@@ -48,6 +48,9 @@ Allows you to load a Spring application context only when the Processing Unit or
 [Lease Time](./leases-automatic-expiration.html){{<wbr>}}
 Lease basics and explains how Leases can be managed.
 
+[Data Type Meta Data](./the-space-meta-data.html)<br>
+XAP provides the ability to obtain class meta data information from the Space. 
+
 {{%/fpanel%}}
 
 
