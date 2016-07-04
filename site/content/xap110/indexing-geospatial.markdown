@@ -6,7 +6,7 @@ parent: indexing-overview.html
 weight: 500
 ---
 
-Geospatial indexes can be defined by using the `@SpaceSpatialIndex` and `SpaceSpatialIndexs` annotations.  
+Geospatial indexes can be defined by using the `@SpaceSpatialIndex` and `@SpaceSpatialIndexes` annotations.
 
 Lets assume we have a class called `GasStation` that has a `Point` property that describes its location and we want to execute geospatial queries 
 against this property:
