@@ -7,7 +7,10 @@ parent: the-gigaspace-interface-overview.html
 ---
 
 
-XAP provides the ability to obtain class meta data information from the Space with the `GigaSpaceTypeManager`. 
+XAP provides the ability to obtain and modify class meta data of objects stored in the Space during runtime.
+
+
+# Meta data discovery
 
 The actual class names are discovered with the **Admin interface**  through the `Space` interface.
  
@@ -29,7 +32,7 @@ String SpaceClassNames[] = space.getRuntimeDetails().getClassNames();
 For  detailed information on the `AdminFicatory` consult [AdminFactory](./administration-and-monitoring-api.html)
 {{%/refer%}}
 
-The `GigaSpaceTypeManager` is retrieved from the Space instance:
+The `GigaSpaceTypeManager` is retrieved from the Space instance and will give us the detailed information for each class:
 
 
 ```java
@@ -50,6 +53,7 @@ for (int j = 0; j < SpaceClassNames.length; j++) {
     .......
 }
 ```
+
 
 
 #### Example
@@ -285,12 +289,16 @@ It is possible to modify existing classes in the Space. For example, we can add 
 
 Lets take our example **Bank**, we want to add an additional index for the columns **iban** :
 
+
+{{%tabs%}}
+{{%tab "Basic Index"%}}
 ```java
 AsyncFuture<AddTypeIndexesResult> asyncAddIndex = gigaSpace.getTypeManager().asyncAddIndex("xap.sandbox.type.Bank",
 				   SpaceIndexFactory.createPropertyIndex("iban", SpaceIndexType.BASIC));
 ```
+{{%/tab%}}
 
-The output of the above test program will then display the new index:
+{{%tab "Output"%}}
 
 ```bash
 Meta Data :xap.sandbox.type.Bank
@@ -305,16 +313,20 @@ Properties:
  Name:iban Type:java.lang.String Storage Type:OBJECT
  Name:swift Type:java.lang.String Storage Type:OBJECT
 ```
+{{%/tab%}}
+{{%/tabs%}}
 
-### Compound index
+It is also possible to add a **CompoundIndex**.  Lets take our **Supplier** class, we want to add a compound index for the columns **number** and **category** :
 
+{{%tabs%}}
+{{%tab "Compound Index"%}}
 ```java
 AsyncFuture<AddTypeIndexesResult> indexesResultAsyncFuture = gigaSpace.getTypeManager()
 			.asyncAddIndex("xap.sandbox.type.Supplier", new CompoundIndex(new String[] { "number", "category" }));
-
 ```
+{{%/tab%}}
 
-
+{{%tab "Output"%}}
 ```bash
 Meta Data :xap.sandbox.type.Supplier
 Super Type Name :xap.sandbox.type.Entity
@@ -327,3 +339,9 @@ Properties:
  Name:category Type:xap.sandbox.type.ESupplierType Storage Type:OBJECT
  Name:number Type:java.lang.Integer Storage Type:OBJECT
 ```
+{{%/tab%}}
+{{%/tabs%}}
+
+{{%note%}}
+Removing an index or changing an index type is currently not supported.
+{{%/note%}}
