@@ -276,4 +276,54 @@ Properties:
   Name:number Type:java.lang.Integer Storage Type:OBJECT
 ```
 
-All information per class (super, sub and embedded class), properties, indexes, ID's etc is displayed. 
+All information per class (super, sub and embedded class), properties, indexes, ID's etc is displayed.
+
+
+# Modifying existing classes
+
+It is possible to modify existing classes in the Space. For example, we can add indexes during runtime.
+
+Lets take our example **Bank**, we want to add an additional index for the columns **iban** :
+
+```java
+AsyncFuture<AddTypeIndexesResult> asyncAddIndex = gigaSpace.getTypeManager().asyncAddIndex("xap.sandbox.type.Bank",
+				   SpaceIndexFactory.createPropertyIndex("iban", SpaceIndexType.BASIC));
+```
+
+The output of the above test program will then display the new index:
+
+```bash
+Meta Data :xap.sandbox.type.Bank
+Super Type Name :xap.sandbox.type.Entity
+Id Property Name:id
+Indexes :{id=SpaceIndex[name=id, type=BASIC, unique=true], swift=SpaceIndex[name=swift, type=BASIC, unique=false], iban=SpaceIndex[name=iban, type=BASIC, unique=false]}
+Properties:
+ Name:contact Type:java.lang.String Storage Type:OBJECT
+ Name:emailAddress Type:java.lang.String Storage Type:OBJECT
+ Name:id Type:java.util.UUID Storage Type:OBJECT
+ Name:currencyRates Type:java.util.Collection Storage Type:OBJECT
+ Name:iban Type:java.lang.String Storage Type:OBJECT
+ Name:swift Type:java.lang.String Storage Type:OBJECT
+```
+
+### Compound index
+
+```java
+AsyncFuture<AddTypeIndexesResult> indexesResultAsyncFuture = gigaSpace.getTypeManager()
+			.asyncAddIndex("xap.sandbox.type.Supplier", new CompoundIndex(new String[] { "number", "category" }));
+
+```
+
+
+```bash
+Meta Data :xap.sandbox.type.Supplier
+Super Type Name :xap.sandbox.type.Entity
+Id Property Name:id
+Indexes :{number+category=SpaceIndex[name=number+category, type=BASIC, unique=false], id=SpaceIndex[name=id, type=BASIC, unique=true]}
+Properties:
+ Name:contact Type:java.lang.String Storage Type:OBJECT
+ Name:emailAddress Type:java.lang.String Storage Type:OBJECT
+ Name:id Type:java.util.UUID Storage Type:OBJECT
+ Name:category Type:xap.sandbox.type.ESupplierType Storage Type:OBJECT
+ Name:number Type:java.lang.Integer Storage Type:OBJECT
+```
