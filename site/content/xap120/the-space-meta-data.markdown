@@ -47,7 +47,7 @@ We can iterate over all classes that are present in the Space and obtain their m
 for (int j = 0; j < SpaceClassNames.length; j++) {
     String spaceClass = SpaceClassNames[j];
 
-    SpaceTypeDescriptor typeManager = gigaSPaceTypeManager.getTypeDescriptor(spaceClass);
+    SpaceTypeDescriptor typeManager = gigaSpaceTypeManager.getTypeDescriptor(spaceClass);
     System.out.println("Super Type Name:" + typeManager.getSuperTypeName());
     System.out.println("Id Property Name:"+ typeManager.getIdPropertyName());	
     .......
@@ -345,3 +345,46 @@ Properties:
 {{%note%}}
 Removing an index or changing an index type is currently not supported.
 {{%/note%}}
+
+
+
+# Adding Space Document
+
+New `SpaceDocuments` can be introduced during runtime:
+
+{{%tabs%}}
+{{%tab "Space Document"%}}
+```java
+// Create type descriptor:
+SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")
+		.addPropertyIndex("name", SpaceIndexType.BASIC)
+// ... Other type settings
+		.documentWrapperClass(Document.class).create();
+
+gigaSpace.getTypeManager().registerTypeDescriptor(typeDescriptor);
+```
+{{%/tab%}}
+
+{{%tab "Output"%}}
+```bash
+Meta Data :Product
+Super Type Name :java.lang.Object
+Id Property Name:_spaceId
+Indexes :{name=SpaceIndex[name=name, type=BASIC, unique=false]}
+Document Wrapper :class xap.sandbox.type.Document
+Properties:
+ Name:_spaceId Type:java.lang.Object Storage Type:OBJECT
+
+Meta Data :java.lang.Object
+Super Type Name :java.lang.Object
+Id Property Name:null
+Indexes :{}
+Document Wrapper :class com.gigaspaces.document.SpaceDocument
+Properties:
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+{{%refer%}}
+See [Space Document](./document-overview.html) for more information.
+{{%/refer%}}
