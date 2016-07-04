@@ -139,7 +139,7 @@ The `LRMI` configuration options set as system properties. They are listed below
 | com.gs.transport_protocol.lrmi.<br>request_timeout | Watchdog request timeout. | 30 sec| Client | Seconds |Yes|
 | com.gs.transport_protocol.lrmi.<br>inspect_timeout| Watchdog dummy packet connection timeout used when the watchdog suspects a request connection is blocked (com.gs.transport_protocol.lrmi.request_timeout elapsed). | 1000 millisec| Client | millisec|Yes|
 | com.gs.transport_protocol.lrmi.<br>threadpool.idle_timeout | LRMI thread pool idle timeout. Usually should be tuned for server side| 300000 milisec| Server | millisec| No|
-| com.gs.transport_protocol.lrmi.<br>connect_timeout | LRMI timeout to establish a socket connection | 5000| Server | millisec| No|
+| com.gs.transport_protocol.lrmi.<br>connect_timeout | LRMI timeout to establish a socket connection | 30 sec| Server | Seconds| No|
 | com.gs.transport_protocol.lrmi.<br>maxBufferSize | The NIO internal cache (a DirectByteBuffer) might cause an OutOfMemoryError due-to direct memory exhaustion. To avoid such a scenario, the LRMI layer breaks the outgoing buffer into a several chunks. By doing so, the NIO internal cache is kept small, and may not cause any error. The size of these chunks can be determined by this property| 65536 (64k)| Client & Server | Bytes | Yes |
 | com.gs.transport_protocol.lrmi.<br>selector.threads | LRMI selector threads. This should be configured with multi core machines. Usualy should be tuned for server side| 4 | Client & Server | Threads| No|
 | com.gs.transport_protocol.lrmi.<br>use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
@@ -151,8 +151,8 @@ The `LRMI` configuration options set as system properties. They are listed below
 | com.gs.transport_protocol.lrmi.<br>tcp-receive-buffer-size | Set the TCP receive Buffer size (SO_RCVBUF).| OS default | Client & Server| bytes |Yes|
 | com.gs.transport_protocol.lrmi.<br>tcp-keep-alive | Set the TCP keep alive mode (SO_KEEPALIVE).| true | Client & Server| Seconds|Yes|
 | com.gs.transport_protocol.lrmi.<br>timeout_resolution | Resolution in percents. Timeout resolution indicates the accuracy of the request timeout. | 10 | Client | Percent|Yes|
-|com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 128 |  Server| Threads|No|
-|com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 128 | Server | Threads|No|
+|com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 1 |  Server| Threads|No|
+|com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 8 | Server | Threads|No|
 |com.gs.transport_protocol.lrmi.<br>custom.threadpool.idle_timeout |  | 300000 millisec     |   | | |
 
 {{% refer %}}
