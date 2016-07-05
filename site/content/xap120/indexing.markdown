@@ -95,21 +95,14 @@ By default, a property's index is inherited in sub classes (i.e. if a property i
 
 # Indexing at Run-time
 
-Indexes can be added dynamically at run-time using the GigaSpaces Management Center GUI or via API using the `GigaSpaceTypeManager` interface in conjunction with `SpaceIndexFactory`. See example below:
 
-
-```java
-   gigaspace.getTypeManager().asyncAddIndex("MyDataType",
-   SpaceIndexFactory.createPropertyIndex("myProperty", SpaceIndexType.BASIC));
-```
-
-
+Indexes can be added dynamically with the `GigaSpaceTypeManager` interface.
+ 
 {{%refer%}}
-You can also create a [Compound Space Index dynamically](./indexing-compound.html#dynamic-creation).
+Refer to [Data Type Meta Data](./the-space-meta-data.html#modifying-existing-classes)
 {{%/refer%}}
 
-{{% note %}} Removing an index or changing an index type is currently not supported. {{%/note%}}
-
+ 
 
 # Performance Tips
 

@@ -13,6 +13,11 @@ weight: 100
 The [GigaSpaces API](./the-gigaspace-interface-overview.html) supports class level decorations with POJOs. These can be specified via annotations on the space class source itself  for all class instances.
 
 
+
+{{%refer%}}
+XAP provides the ability to obtain and modify class meta data of objects stored in the Space [during runtime](./the-space-meta-data.html).
+{{%/refer%}}
+
 {{<wbr>}}
 
 # Persistence

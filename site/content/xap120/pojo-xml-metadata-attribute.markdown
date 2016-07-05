@@ -12,6 +12,11 @@ weight: 200
 All the properties are written automatically into space. If the field is a reference to another object, it has to be Serializable and it will be written into space as well. Only the fields which need special space behavior need to be specified in the gs.xml file. Specify the fields which are id's, indexes or need exclusions, etc.
 
 
+
+{{%refer%}}
+XAP provides the ability to obtain and modify class meta data of objects stored in the Space [during runtime](./the-space-meta-data.html).
+{{%/refer%}}
+
 # Property
 
 | | |

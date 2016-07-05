@@ -9,6 +9,11 @@ weight: 100
 {{% ssummary %}}{{% /ssummary %}}
 
 
+
+{{%refer%}}
+XAP provides the ability to obtain and modify class meta data of objects stored in the Space [during runtime](./the-space-meta-data.html).
+{{%/refer%}}
+
 # Name
 
 | | |
