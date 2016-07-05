@@ -28,4 +28,9 @@ The optimistic locking protocol provides better performance and scalability when
 
 [Pessimistic Locking](./transaction-pessimistic-locking.html){{<wbr>}}
 In the pessimistic locking approach, your program must explicitly obtain a lock using a transaction on one or more objects before making any changes.
+
+[ManagementCenter]({{%currentadmurl%}}/gigaspaces-browser-transaction-view.html)<br>
+You can view and inspect ongoing Space transactions with the Management Center.
+
+
 {{%/fpanel%}}
