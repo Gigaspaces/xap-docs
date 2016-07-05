@@ -29,7 +29,7 @@ String SpaceClassNames[] = space.getRuntimeDetails().getClassNames();
 ```
 
 {{%refer%}}
-For  detailed information on the `AdminFicatory` consult [AdminFactory](./administration-and-monitoring-api.html)
+For  detailed information on the `AdminFactory` consult [AdminFactory](./administration-and-monitoring-api.html)
 {{%/refer%}}
 
 The `GigaSpaceTypeManager` is retrieved from the Space instance and will give us the detailed information for each class:
