@@ -571,7 +571,7 @@ The following table describes the mapping between the [Spring TransactionDefinit
 
 
 
-# Viewing transactions
+# Viewing Transactions
 
 {{%refer%}}
 You can view and inspect ongoing Space transactions with the [ManagementCenter]({{%currentadmurl%}}/gigaspaces-browser-transaction-view.html).

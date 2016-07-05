@@ -138,3 +138,11 @@ public void readWithTransaction()
 }
 ```
 
+
+# Viewing Transactions
+
+{{%refer%}}
+You can view and inspect ongoing Space transactions with the [ManagementCenter]({{%currentadmurl%}}/gigaspaces-browser-transaction-view.html).
+{{%/refer%}}
+
+

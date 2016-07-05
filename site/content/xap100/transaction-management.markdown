@@ -570,7 +570,7 @@ The following table describes the mapping between the [Spring TransactionDefinit
 |ISOLATION_SERIALIZABLE | Not Supported|
 
 
-# Viewing transactions
+# Viewing Transactions
 
 {{%refer%}}
 You can view and inspect ongoing Space transactions with the [ManagementCenter]({{%currentadmurl%}}/gigaspaces-browser-transaction-view.html).

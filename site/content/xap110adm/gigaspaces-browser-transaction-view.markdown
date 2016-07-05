@@ -27,7 +27,9 @@ The Transactions view allows you to view all of the transactions that are curren
 ![GMC_space_transactions_view_6.5.jpg](/attachment_files/GMC_space_transactions_view_6.5.jpg)
 {{% /align %}}
 
-{{% refer %}}For details on transactions, refer to the Transaction Management {{%currentjavanet "transaction-management.html" %}} section.{{% /refer %}}
+{{% refer %}}
+For details on transactions, refer to the [Transaction Management]({{%currentjavaurl%}}/transaction-management.html) section.
+{{% /refer %}}
 
 {{% anchor 2 %}}
 
