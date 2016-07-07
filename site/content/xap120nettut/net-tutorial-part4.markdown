@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Events and Messaging
+title:  Event-Driven Programming
 categories: XAP120NETTUT
 weight: 500
 parent: none

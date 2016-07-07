@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Space Transactions
+title:  Transactions and Concurrency
 categories: XAP120NETTUT
 weight: 700
 parent: none

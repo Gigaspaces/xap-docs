@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Web Deployment
+title:  Deploy a Web App
 categories: XAP120TUT
 weight: 1200
 parent: none

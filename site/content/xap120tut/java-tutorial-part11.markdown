@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Geospatial Queries
+title:  Query Geospatial Data
 categories: XAP120TUT
 parent: none
 weight: 550

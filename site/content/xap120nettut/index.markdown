@@ -30,20 +30,20 @@ In this part of the tutorial we will demonstrate how to create a Space and how y
 [Deploying a Space](./net-tutorial-part2.html)<br>
 In the previous section  you have learned about XAP's capabilities as a data store. In this part of the tutorial we will show you how you can deploy an In Memory Data Grid (IMDG) that provides scalability and failover.
 
-[Processing Services](./net-tutorial-part3.html)<br>
+[Distributed Processing](./net-tutorial-part3.html)<br>
 In this part of the tutorial we will introduce you to the different processing services you can run on top of the Space.
 
-[Events and Messaging](./net-tutorial-part4.html)<br>
+[Event-Driven Processing](./net-tutorial-part4.html)<br>
 The Spaces Messaging and Events support provides messaging handlers that simplify event driven programming.
 
-[The Processing Unit](./net-tutorial-part5.html)<br>
+[Creating a Processing Unit](./net-tutorial-part5.html)<br>
 The PU is the fundamental unit of deployment in XAP. The PU itself runs within a Processing Unit Container and is deployed onto the Service Grid. Once a PU is deployed, a PU instance is the actual runtime entity.
 
-[Space Transactions](./net-tutorial-part6.html)<br>
+[Transactions and Concurrency](./net-tutorial-part6.html)<br>
 In this part of the tutorial we will introduce you to the transaction processing capabilities of XAP.
 
 
-[Space Persistence](./net-tutorial-part7.html)<br>
+[Persist to Database](./net-tutorial-part7.html)<br>
 There are many situations where space data needs to be persisted to permanent storage and retrieved from it.
 
 

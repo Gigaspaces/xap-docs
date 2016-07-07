@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Processing Services
+title:  Distributed Processing
 categories: XAP120NETTUT
 weight: 400
 parent: none

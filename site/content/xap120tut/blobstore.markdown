@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Flash drive IMDG Storage
+title:  Multi-Tiered Data Storage (SSD)
 categories: XAP120TUT
 parent: none
 weight: 1600
