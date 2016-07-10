@@ -2,8 +2,8 @@
 type: post120
 title:  Archive Container
 categories: XAP120
-parent: big-data.html
-weight: 100
+parent: space-persistency-overview.html
+weight: 610
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

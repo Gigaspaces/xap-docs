@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Global HTTP Session Sharing
+title:  HTTP Session Sharing
 categories: XAP120
 parent: none
 weight: 2250

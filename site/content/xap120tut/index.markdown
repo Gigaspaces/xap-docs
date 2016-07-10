@@ -53,7 +53,7 @@ In this part of the tutorial we will show you how you can deploy a standard WAR 
 In this part of the tutorial we will introduce you to XAP security, where it fits in the XAP architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data and services.
 
 
-[HTTP Session Clustering](./http-session-sharing.html)<br>
+[HTTP Session Sharing](./http-session-sharing.html)<br>
 In this part of the tutorial we will show you how you can globally share HTTP sessions with XAP.
 
 [Multi-Tiered Data Storage (SSD)](./blobstore.html)<br>

@@ -2,8 +2,8 @@
 type: post120
 title:  Cassandra Integration
 categories: XAP120
-parent: big-data.html
-weight: 200
+parent: space-persistency-overview.html
+weight: 620
 ---
 
 

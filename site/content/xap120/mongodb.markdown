@@ -2,8 +2,8 @@
 type: post120
 title:  MongoDB Integration
 categories: XAP120
-parent: big-data.html
-weight: 300
+parent: space-persistency-overview.html
+weight: 630
 ---
 
 

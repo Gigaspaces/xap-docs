@@ -35,6 +35,15 @@ Space data source initial Load pre-loads the space with data before it is availa
 [Asynchronous Persistence](./asynchronous-persistency-with-the-mirror.html){{<wbr>}}
 Reliable Asynchronous Persistency (Mirror)
 
+[Archive Handler](./archive-container.html){{<wbr>}}
+Allows archiving of space objects to an external persistency service.
+
+[Cassandra](./cassandra.html){{<wbr>}}
+XAP Integration with Cassandra
+
+[MongoDB](./mongodb.html){{<wbr>}}
+XAP Integration with MongoDB
+
 [Transient Entries](./transient-entries.html){{<wbr>}}
 How to specify that some objects in a persistent space should not be saved to the persistent storage.
 

@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  HTTP Session Clustering
+title:  HTTP Session Sharing
 categories: XAP120TUT
 parent: none
 weight: 1500

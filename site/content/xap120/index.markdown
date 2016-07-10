@@ -62,10 +62,7 @@ Remoting allows you to use remote invocations of POJO services, with the space a
 
 [Mule ESB Integration](./mule-esb.html){{<wbr>}}
 XAP  support for Mule ESB.
-
-[Big Data Integration](./big-data.html){{<wbr>}}
-XAP integration with Cassandra and MongoDB NoSql data bases.
-
+ 
 [Administration API](./administration-and-monitoring-overview.html){{<wbr>}}
 The Admin API provides a way to administer and monitor all of XAP services and components using a simple API.
 
@@ -78,8 +75,8 @@ How to deploy and manage an Elastic Processing Unit (EPU).
 [Web Application Support](./web-application-overview.html){{<wbr>}}
 XAP's integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid.
 
-[Global HTTP Session Sharing](./global-http-session-sharing-overview.html){{<wbr>}}
-Global HTTP Session Sharing allows transparent session replication between remote sites and session sharing between different application servers in real-time. The solution uses the Shiro Session Manager library
+[HTTP Session Sharing](./global-http-session-sharing-overview.html){{<wbr>}}
+HTTP Session Sharing allows transparent session replication between remote sites and session sharing between different application servers in real-time. The solution uses the Shiro Session Manager library
 
 
 [Space Replication](./multi-space-replication-overview.html){{<wbr>}}
