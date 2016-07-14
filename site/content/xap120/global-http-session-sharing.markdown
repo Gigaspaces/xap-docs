@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Overview
-categories: XAP120
+categories: XAP120,ENT
 parent: global-http-session-sharing-overview.html
 weight: 100
 ---

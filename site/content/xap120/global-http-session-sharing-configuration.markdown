@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Configuration & Deployment
-categories: XAP120
+categories: XAP120,ENT
 parent: global-http-session-sharing-overview.html
 weight: 200
 ---

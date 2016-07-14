@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  HTTP Session Sharing
-categories: XAP120
+categories: XAP120,ENT
 parent: none
 weight: 2250
 ---

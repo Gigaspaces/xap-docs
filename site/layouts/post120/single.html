@@ -38,10 +38,12 @@
             <div id="content" class="col-md-8">
                 <div id="page-content" class="page-content">
                     <div style="float: right;border:0px;margin-top: 145px;">
-                        {{ if in .Params.categories "OS" }}
-                           <img src="/attachment_files/logos/open-source.png" alt="polaroid" style="margin-right:40px"/>
-                        {{ else if in .Params.categories "ES"}}
-                           <img src="/attachment_files/logos/java_icon.jpeg" style="margin-right:40px"/>
+                        {{ if in .Params.categories "PRM" }}
+                        <button type="button" style="margin-right:60px" class="btn btn-info">Premium</button>
+
+                        {{ else if in .Params.categories "ENT"}}
+                        <button type="button" style="margin-right:60px" class="btn btn-success">Enterprise</button>
+
                         {{ else if in .Params.categories "EX"}}
                           <img src="/attachment_files/logos/dotnet.jpeg" style="margin-right:40px"/>
                         {{ end}}

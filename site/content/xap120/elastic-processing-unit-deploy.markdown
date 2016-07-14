@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Deployment
-categories: XAP120
+categories: XAP120,PRM
 parent: elastic-processing-unit-overview.html
 weight: 200
 ---
