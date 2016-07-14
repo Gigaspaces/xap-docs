@@ -128,6 +128,7 @@ The example is located under `<XAP root>/tools/alert-integration`. To run it you
 1. Optionally edit file `notify-alerts.xml` to set your own alerts and alert conditions that will be listened to by this example.
 1. Optionally edit `log4j.properties` to set the IP and port used by your SNMP server software (if any).
 1. If you do not have an SNMP server software, you should download one for the sake of running and testing this example. iReasoning MIB browser for example ([http://ireasoning.com/mibbrowser.shtml](http://ireasoning.com/mibbrowser.shtml)) provides good basic SNMP trap viewing capabilities with a free personal edition. Make sure you configure log4j.properties to use the same IP and port used by the server.
+1. Install XAP's maven dependencies to the local maven repository by executing `<XAP root>/tools/maven/installmavenrep.sh(bat)`
 1. Build and pack the example project into a jar file. This can be done by executing the command "mvn" from the project's root directory or performing an equivalent action within your UI. A successful build should result in the creation of the example jar file in target/AlertLoggingGateway.jar.
 1. If needed start XAP with at least one running LUS, GSM and GSC belonging to the XAP group declared in item #2.
 1. Deploy the example JAR into the GSC.
