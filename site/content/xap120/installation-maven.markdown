@@ -19,7 +19,7 @@ The XAP Maven plugin has been tested with Maven 3.0. For further information abo
 {{%/refer%}}
 
 
-# Prior to Installation
+# Prior to Installation 
 
 In order to use the XAP Maven plugin, Maven needs to be installed on the machine. If a Maven installation already exists on the machine, it can be used. If not, XAP comes with a ready-to-use distribution of Maven 3.0, located under: `<XAP HOME>/tools/maven/apache-maven-3.2.5`.
 
@@ -271,49 +271,7 @@ For example:
 >mvn package -Dmaven.test.skip
 ```
 
-# Running Processing Units
 
-After packaging the Processing Units, you might want to test the validity of the assemblies. The XAP Maven plugin makes it possible to run the Processing Units as standalone modules. The Maven plugin includes all the assembly dependencies in the execution classpath, making sure that the Processing Unit finds all the required resources. Managing to run the Processing Unit as a module while failing to run it as a standalone module might imply that a problem exists with the assembly definitions.
-
-Make sure you are in the directory of the project.
-To run Processing Units as standalone modules, use the following command-line:
-
-
-```bash
-mvn xap:run-standalone
-    -Dcluster=<"cluster-properties">
-    -Dgroups=<groups>
-    -Dlocators=<locators>
-    -Dproperties=<"context-level-properties-location">
-    -Dmodule=<module-name>
-```
-
-
-| Argument | Description | Required | Properties | Example |
-|:---------|:------------|:---------|:-----------|:--------|
-| cluster | Cluster properties | No| * `schema` -- the cluster schema name{{<wbr>}}- `total_members` -- a list of the cluster members, separated by a comma{{<wbr>}}- `id` -- the cluster ID{{<wbr>}}- `backup_id` -- the backup ID | * `schema=partitioned`{{<wbr>}}- `total_members=1,1`{{<wbr>}}- `id=1`{{<wbr>}}- `backup_id=1` |
-| groups | Comma-delimited list of lookup group names | No | | group1,group2 |
-| locators | Comma-delimited list of Jini locators hosts | No| | jini://<hostname1>, jini://<hostname2> |
-| properties | Context-level properties location | No| * `file` -- properties file{{<wbr>}}- `embed` -- properties definition | {{<wbr>}}    file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
-| module | The name of the Processing Unit module to run | No| | `feeder` |
-
-**Example:**
-
-
-```bash
-mvn xap:run-standalone -Dcluster="schema=partitioned total_members=1,1 id=1" -Dproperties="embed://prop1=value1" -Dmodule=proccesor
-mvn xap:run-standalone -Dmodule=feeder
-```
-
-## Determining Processing Unit Execution
-
-- If the current directory is a Processing Unit module's base directory, only this Processing Unit is executed.
-- If the current directory is the main project directory and the `pu-name` argument is not set, all Processing Units are executed one by one.
-- If the current directory is the main project directory and the `pu-name` argument is set, only the specified Processing Unit is executed.
-
-## Overriding Space/Cluster Configuration
-
-Overriding the space and cluster configuration is explained in [Running Processing Unit Modules](#overriding).
 
 # Deploying Processing Units
 
