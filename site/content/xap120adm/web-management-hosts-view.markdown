@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Hosts
-categories: XAP120ADM
+categories: XAP120ADM,PRM
 parent: web-management-console.html
 weight: 500
 ---

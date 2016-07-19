@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Starting the Console
-categories: XAP120ADM
+categories: XAP120ADM,PRM
 parent: web-management-console.html
 weight: 200
 ---

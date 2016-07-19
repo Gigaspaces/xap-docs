@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Dashboard View
-categories: XAP120ADM
+categories: XAP120ADM,PRM
 parent: web-management-console.html
 weight: 300
 ---

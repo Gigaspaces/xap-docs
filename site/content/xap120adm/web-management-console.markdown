@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Web Management Console
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: none
 weight: 200
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Menu Bar
-categories: XAP120ADM
+categories: XAP120ADM,PRM
 parent: web-management-console.html
 weight: 510
 ---
