@@ -39,13 +39,10 @@
                 <div id="page-content" class="page-content">
                     <div style="float: right;border:0px;margin-top: 145px;">
                         {{ if in .Params.categories "PRM" }}
-                        <button type="button" style="margin-right:60px" class="btn btn-info btn-xs">Premium</button>
+                        <button id="premium-download" type="button" style="margin-right:60px"   class="btn btn-info btn-xs">Premium</button>
 
                         {{ else if in .Params.categories "ENT"}}
-                        <button type="button" style="margin-right:60px" class="btn btn-success btn-xs">Enterprise</button>
-
-                        {{ else if in .Params.categories "EX"}}
-                          <img src="/attachment_files/logos/dotnet.jpeg" style="margin-right:40px"/>
+                        <button id="enterprise-download" type="button" style="margin-right:60px"  class="btn btn-success btn-xs">Enterprise</button>
                         {{ end}}
                         <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default" style="border:0px;">
                             <i class="fa fa-pencil-square-o fa-lg"></i>
