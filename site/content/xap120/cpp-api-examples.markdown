@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  CPP Examples
-categories: XAP120
+categories: XAP120,PRM
 parent: xap-cpp.html
 weight: 800
 ---

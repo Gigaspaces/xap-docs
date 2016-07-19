@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Hello World
-categories: XAP120
+categories: XAP120,PRM
 parent: cpp-api-examples.html
 weight: 100
 ---
