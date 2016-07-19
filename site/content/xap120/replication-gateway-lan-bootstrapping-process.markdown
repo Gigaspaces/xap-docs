@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Gateway Bootstrapping
-categories: XAP120
+categories: XAP120, ENT
 parent: multi-space-replication-overview.html
 weight: 200
 ---

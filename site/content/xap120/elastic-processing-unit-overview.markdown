@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Elastic Processing Unit
-categories: XAP120, PRM
+categories: XAP120
 parent: none
 weight: 2100
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Scale Triggers
-categories: XAP120,PRM
+categories: XAP120
 parent: elastic-processing-unit-overview.html
 weight: 300
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Intercepting Replication Events
-categories: XAP120
+categories: XAP120, ENT
 parent: multi-site-replication-overview.html
 weight: 800
 ---
