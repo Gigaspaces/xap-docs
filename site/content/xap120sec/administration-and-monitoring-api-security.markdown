@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Security Admin API
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: security-administration.html
 weight: 300
 ---

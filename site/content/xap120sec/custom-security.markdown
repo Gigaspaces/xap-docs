@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Custom Security
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: none
 weight: 800
 ---

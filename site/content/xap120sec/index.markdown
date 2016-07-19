@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Security Guide
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 
 ---
 

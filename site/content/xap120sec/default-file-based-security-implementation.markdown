@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Default File-Based Security
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: none
 weight: 600
 ---

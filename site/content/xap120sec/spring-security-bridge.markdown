@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Spring Security Bridge
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: none
 weight: 900
 ---

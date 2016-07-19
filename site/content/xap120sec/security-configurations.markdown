@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Configuration
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: none
 weight: 400
 ---

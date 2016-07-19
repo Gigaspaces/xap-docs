@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Command Line Interface
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: security-administration.html
 weight: 200
 ---

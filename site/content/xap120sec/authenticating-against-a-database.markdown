@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Database Authentication
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: spring-security-bridge.html
 weight: 300
 ---

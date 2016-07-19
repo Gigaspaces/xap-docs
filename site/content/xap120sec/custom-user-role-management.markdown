@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  User-Role Management
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: custom-security.html
 weight: 300
 ---

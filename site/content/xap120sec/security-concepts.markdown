@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Concepts
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: none
 weight: 200
 ---

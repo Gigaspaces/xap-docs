@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Grid Services
-categories: XAP120SEC
+categories: XAP120SEC, PRM
 parent: securing-xap-components.html
 weight: 200
 ---
