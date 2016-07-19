@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Advanced
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: change-api-overview.html
 weight: 200
 ---

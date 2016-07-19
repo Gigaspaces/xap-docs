@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  .Net Developers Guide
-categories: XAP120NET
+categories: XAP120NET, PRM
 ---
 
 

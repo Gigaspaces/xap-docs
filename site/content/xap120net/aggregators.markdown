@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Aggregators
-categories: XAP120NET
+categories: XAP120NET, PRM
 weight: 550
 parent: the-gigaspace-interface-overview.html
 ---

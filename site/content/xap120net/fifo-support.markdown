@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  FIFO Support
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: fifo-overview.html
 weight: 100
 ---

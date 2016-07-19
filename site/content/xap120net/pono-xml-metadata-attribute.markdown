@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Properties Metadata
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: pono-xml-metadata-overview.html
 weight: 200
 ---

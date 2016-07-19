@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Change API
-categories: XAP120NET
+categories: XAP120NET, PRM
 weight: 400
 parent: the-gigaspace-interface-overview.html
 ---

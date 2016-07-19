@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Domain Service Host
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: space-based-remoting-overview.html
 weight: 100
 ---

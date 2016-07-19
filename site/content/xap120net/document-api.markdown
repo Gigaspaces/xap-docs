@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Document API
-categories: XAP120NET
+categories: XAP120NET, PRM
 weight: 100
 parent: document-overview.html
 ---

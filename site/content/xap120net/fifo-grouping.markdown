@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  FIFO Grouping
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: fifo-overview.html
 weight: 200
 ---

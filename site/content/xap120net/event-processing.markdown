@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Event Processing
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: none
 weight: 1200
 ---

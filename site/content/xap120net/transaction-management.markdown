@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Transaction Management
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: transaction-overview.html
 weight: 100
 ---

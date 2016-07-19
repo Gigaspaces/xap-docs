@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Nested Property Index
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: indexing-overview.html
 weight: 200
 ---

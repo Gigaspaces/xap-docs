@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Filters
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: the-gigaspace-interface-overview.html
 weight: 800
 ---

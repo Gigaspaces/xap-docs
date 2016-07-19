@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Interoperability
-categories: XAP120NET
+categories: XAP120NET, PRM
 weight: 300
 parent: document-overview.html
 ---

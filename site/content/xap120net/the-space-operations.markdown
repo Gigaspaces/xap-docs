@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Operations
-categories: XAP120NET
+categories: XAP120NET, PRM
 weight: 300
 parent: the-gigaspace-interface-overview.html
 ---

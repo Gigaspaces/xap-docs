@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Indexing
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: none
 weight: 700
 ---

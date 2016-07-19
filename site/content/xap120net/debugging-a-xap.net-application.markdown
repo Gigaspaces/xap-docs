@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Application Debugging
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: installation-overview.html
 weight: 600
 ---

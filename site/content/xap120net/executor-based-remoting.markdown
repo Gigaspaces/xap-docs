@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Executor Based Remoting
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: space-based-remoting-overview.html
 weight: 200
 ---

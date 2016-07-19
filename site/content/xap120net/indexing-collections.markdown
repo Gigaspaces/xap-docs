@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Collection Index
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: indexing-overview.html
 weight: 300
 ---

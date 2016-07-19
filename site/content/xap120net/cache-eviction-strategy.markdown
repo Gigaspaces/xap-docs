@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Cache Eviction Strategy
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: local-cache.html
 weight: 100
 ---

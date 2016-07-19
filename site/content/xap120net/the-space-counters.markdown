@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Counters
-categories: XAP120NET
+categories: XAP120NET, PRM
 weight: 500
 parent: the-gigaspace-interface-overview.html
 ---

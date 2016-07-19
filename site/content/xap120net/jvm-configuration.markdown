@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  JVM Configuration
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: administrators-guide.html
 weight: 500
 ---

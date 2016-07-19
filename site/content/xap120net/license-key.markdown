@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  License Key
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: installation-overview.html
 weight: 200
 ---

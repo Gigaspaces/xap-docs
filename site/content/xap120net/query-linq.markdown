@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  LINQ
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: querying-the-space.html
 weight: 800
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Optimistic Locking
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: transaction-overview.html
 weight: 400
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Querying the Space
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: none
 weight: 600
 ---

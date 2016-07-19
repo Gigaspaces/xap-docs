@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Deployment and Administration
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: none
 weight: 1600
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Routing In Partitioned Spaces
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: modeling-your-data.html
 weight: 600
 ---

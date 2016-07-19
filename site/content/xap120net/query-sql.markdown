@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  SqlQuery
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: querying-the-space.html
 weight: 500
 ---

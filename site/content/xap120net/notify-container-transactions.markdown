@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Transaction support
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: notify-container-overview.html
 weight: 200
 ---

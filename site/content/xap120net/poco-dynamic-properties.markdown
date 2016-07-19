@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Dynamic Properties
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: poco-overview.html
 weight: 200
 ---

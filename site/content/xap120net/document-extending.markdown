@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Extending
-categories: XAP120NET
+categories: XAP120NET, PRM
 weight: 200
 parent: document-overview.html
 ---

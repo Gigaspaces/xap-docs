@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Asynchronous Persistency - Write Behind
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: space-persistency-overview.html
 weight: 600
 ---

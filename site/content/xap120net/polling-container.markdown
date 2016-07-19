@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Overview
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: polling-container-overview.html
 weight: 100
 ---

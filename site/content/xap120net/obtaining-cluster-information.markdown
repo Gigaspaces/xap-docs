@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Cluster Information
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: the-processing-unit-overview.html
 weight: 300
 ---

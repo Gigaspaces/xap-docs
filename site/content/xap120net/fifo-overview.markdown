@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  FIFO Ordering
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: event-processing.html
 weight: 400
 ---

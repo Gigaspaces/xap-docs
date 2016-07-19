@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Administration API
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: admin-modules.html
 weight: 100
 ---

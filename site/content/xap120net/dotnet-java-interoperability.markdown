@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  .NET-Java Interoperability
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: interoperability.html
 weight: 100
 ---

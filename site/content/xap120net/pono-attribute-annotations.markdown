@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Property Annotations
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: pono-annotation-overview.html
 weight: 200
 ---

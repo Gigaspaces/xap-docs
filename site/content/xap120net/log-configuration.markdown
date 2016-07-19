@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Logging
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: administrators-guide.html
 weight: 600
 ---

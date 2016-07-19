@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Locking and Blocking
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: transaction-overview.html
 weight: 200
 ---

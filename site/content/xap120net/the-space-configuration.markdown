@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Configuration
-categories: XAP120NET
+categories: XAP120NET, PRM
 weight: 200
 parent: the-gigaspace-interface-overview.html
 ---

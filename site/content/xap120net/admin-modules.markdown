@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Admin Modules
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: none
 weight: 1400
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  User-Defined Objects
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: interoperability.html
 weight: 200
 ---

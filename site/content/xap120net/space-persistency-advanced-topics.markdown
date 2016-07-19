@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Advanced Topics
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: space-persistency-overview.html
 weight: 800
 ---

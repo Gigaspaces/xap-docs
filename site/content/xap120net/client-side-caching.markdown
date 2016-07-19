@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Client Side Caching
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: none
 weight: 1000
 ---

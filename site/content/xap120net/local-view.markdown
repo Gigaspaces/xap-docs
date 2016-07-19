@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Local View
-categories: XAP120NET
+categories: XAP120NET, PRM
 parent: client-side-caching.html
 weight: 200
 ---
