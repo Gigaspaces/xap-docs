@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  MemoryXtend
-categories: XAP120ADM
+categories: XAP120ADM, ENT
 parent: none
 weight: 430
 ---
@@ -9,13 +9,8 @@ weight: 430
 
 XAP 10 introduced a new storage model called BlobStore Storage Model (commonly reffered to as MemoryXtend), which allows an external storage medium (one that does not reside on the JVM heap) to store the IMDG data. This guide describes the general architecture and functionality of this storage model that and its off-heap RAM and SSD implementations.
 
-<br>
-
-{{% info "License"%}}
-The MemoryXtend add-on is available for free during the evaluation period, but is not included in the premium edition license. For information about purchasing this add-on please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services).
-{{% /info %}}
-
-<br>
+ 
+ <br>
 
 
 {{%fpanel%}}

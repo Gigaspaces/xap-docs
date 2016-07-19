@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Off Heap - MapDB Add-On
-categories: XAP120ADM
+categories: XAP120ADM, ENT
 parent: memoryxtend-overview.html
 weight: 300
 ---
@@ -17,9 +17,7 @@ weight: 300
 If you're not familiar with MemoryXtend, make sure you read its [documentation](./memoryxtend.html) before proceeding.
 {{%/refer%}}
 
-{{% info "License"%}}
-The MemoryXtend add-on is available for free during the evaluation period, but is not included in the premium edition license. For information about purchasing this add-on please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services).
-{{% /info %}}
+ 
 
 # Prerequisites
 
