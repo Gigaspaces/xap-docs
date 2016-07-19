@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Caching over the WAN
-categories: XAP120
+categories: XAP120,ENT
 parent: client-side-caching.html
 weight: 300
 ---
