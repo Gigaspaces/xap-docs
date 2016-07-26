@@ -301,8 +301,8 @@ mvn xap:run-standalone
 
 
 ```bash
-mvn xap:run-standalone -Dcluster="schema=partitioned total_members=1,1
-id=1" -Dproperties="embed://prop1=value1" -Dmodule=feeder
+mvn xap:run-standalone -Dcluster="schema=partitioned total_members=1,1 id=1" -Dproperties="embed://prop1=value1" -Dmodule=proccesor
+mvn xap:run-standalone -Dmodule=feeder
 ```
 
 ## Determining Processing Unit Execution
