@@ -260,6 +260,8 @@ public class NotifyExample {
 You may use a `SQLQuery` having `IN` operator with multiple values to register a Template with multiple values. This can be a simple alternative avoiding using multiple notify containers. See below example:
 
 
+{{%tabs%}}
+{{%tab "Data class"%}}
 ```java
 import com.gigaspaces.annotation.pojo.SpaceId;
 import com.gigaspaces.annotation.pojo.SpaceIndex;
@@ -289,10 +291,9 @@ public class MyData {
 	}
 }
 ```
+{{%/tab%}}
 
-The Template registration:
-
-
+{{%tab "The Template registration"%}}
 ```java
 SQLQuery<MyData> query = new SQLQuery<MyData> (
 		MyData.class , "key IN('A' , 'B' , 'C')");
@@ -314,6 +315,8 @@ SimpleNotifyEventListenerContainer notifyEventListenerContainer =
     })
     .notifyContainer();
 ```
+{{%/tab%}}
+{{%/tabs%}}
 
 # Free Notify Container Resources
 
@@ -462,9 +465,10 @@ Here is an example how you can configure the minimum and the maximum of the thre
 ```
 
 Note that you can always delegate the notification processing to a separate application defined thread pool, if you'd like to manage the processing thread pool yourself. This can be done by configuring a separate thread pool within your application, for example using [Spring's `TaskExecutor` abstraction](http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/scheduling.html).
-In your `pu.xml` file you can define a `ThreadPoolTaskExecutor` as follows:
+In your `pu.xml` file you can define a `ThreadPoolTaskExecutor` and an async listener:
 
-
+{{%tabs%}}
+{{%tab "pu.xml"%}}
 ```xml
 <os-core:embedded-space id="space" name="mySpace"/>
 
@@ -495,10 +499,9 @@ In your `pu.xml` file you can define a `ThreadPoolTaskExecutor` as follows:
   <property name="queueCapacity" value="25" />
 </bean>
 ```
+{{%/tab%}}
 
-You AsyncListener class would then look as follows:
-
-
+{{%tab "AsyncListener"%}}
 ```java
 public class AsyncListener {
     private TaskExecutor taskExecutor;
@@ -517,6 +520,8 @@ public class AsyncListener {
     }
 }
 ```
+{{%/tab%}}
+{{%/tabs%}}
 
 # Batch Events
 
