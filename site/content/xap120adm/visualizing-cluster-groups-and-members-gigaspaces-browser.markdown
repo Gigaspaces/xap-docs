@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Groups and Members
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: cluster-view-gigaspaces-browser.html
 weight: 400
 ---

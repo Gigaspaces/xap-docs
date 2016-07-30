@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Pending Notify Templates
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 700
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Load-Balancing Group
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 400
 ---

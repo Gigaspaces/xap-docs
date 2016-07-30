@@ -1,12 +1,12 @@
 ---
 type: post120
 title:  Space Inter-relations
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: cluster-view-gigaspaces-browser.html
 weight: 300
 ---
 
-{{% ssummary %}}Viewing spaces in different cluster policy groups and how they relate to each other.{{% /ssummary %}}
+ Viewing spaces in different cluster policy groups and how they relate to each other.
 
 
 
@@ -14,7 +14,10 @@ When you click a group (![Viewing Space Interrelations4.gif](/attachment_files/V
 
 # Visualizing Spaces within a Group
 
+{{%align center%}}
 ![Viewing Space Interrelations in Cluster1.gif](/attachment_files/Viewing Space Interrelations in Cluster1.gif)
+{{%/align%}}
+
 Each space is shown in the visual display as an oval or a rectangle, whose fill color denotes its current status. Green spaces are currently online; gray spaces are unreachable by the server you are working on, and are probably offline. The text beneath each shape is the space's name, displayed in full.
 The visual display is dynamic: You can move the spaces around, by clicking and dragging them, to get a clearer picture of the group. By default, spaces will bounce out of the way when you drag another space near them. If you want to prevent this, select **Freeze All Members* in the *Options** menu. Moving the spaces in the visual display has no effect on the cluster configuration.
 When you select a space, by double-clicking it or selecting its node in the tree, the visual display focuses on it, and the space's oval (or rectangle) is given a white outline.

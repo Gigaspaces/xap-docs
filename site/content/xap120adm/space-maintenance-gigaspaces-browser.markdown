@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Maintenance
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: working-with-spaces-gigaspaces-browser.html
 weight: 200
 ---
@@ -18,6 +18,8 @@ To view the Space Configuration screen for a specific space, select that space's
 {{%/column%}}
 {{%/section%}}
 
+{{%align center%}}
 ![Space Maintenance1.jpg](/attachment_files/Space Maintenance1.jpg)
+{{%/align%}}
 
 The Space Configuration screen has two modes: Standard and Advanced. Standard mode shows the most commonly used settings, while Advanced mode shows all the settings in the space configuration file, separated into tabs. You can switch between the two modes by clicking the toggle button **Advanced / Standard**.

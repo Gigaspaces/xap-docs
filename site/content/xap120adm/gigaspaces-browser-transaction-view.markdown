@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Transactions View
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 600
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Failover Group
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 300
 ---
@@ -18,4 +18,6 @@ A space cannot reside in different load-balancing and failover groups. In other 
 
 If an operation performed on a space fails because the space server fails, the clustered proxy tries to locate another space in the failover group and redirect the operation to it, subject to the failover policy defined. An exception is operations that are performed under a transaction; in this case, the clustered proxy aborts the transaction and throws an exception to the application. In this case, the application should start a new transaction, perform the operations again and re-commit.
 
+{{%refer%}}
 See the [Data-Partitioning](./data-partitioning.html) for details.
+{{%/refer%}}

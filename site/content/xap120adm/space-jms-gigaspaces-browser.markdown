@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Space JMS
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: working-with-spaces-gigaspaces-browser.html
 weight: 100
 ---
@@ -10,8 +10,9 @@ weight: 100
 Using the **JMS** tab of the advanced space configuration dialog.
 
 
-
+{{%align center%}}
 ![Space JMS - GigaSpaces Browser.jpg](/attachment_files/Space JMS - GigaSpaces Browser.jpg)
+{{%/align%}}
 
 The **JMS** tab in the **Advanced Space Configuration** window contains the following options:
 

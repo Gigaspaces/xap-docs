@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Space Containers
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 300
 ---

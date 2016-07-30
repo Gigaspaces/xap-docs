@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Data Types View
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 200
 ---

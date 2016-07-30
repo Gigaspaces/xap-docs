@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Management Center
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: none
 weight: 100
 ---

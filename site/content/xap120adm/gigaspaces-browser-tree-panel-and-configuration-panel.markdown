@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Grid Tree & Configuration
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 200
 ---

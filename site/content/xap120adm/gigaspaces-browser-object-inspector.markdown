@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Object Inspector
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 300
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Policy Settings
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: cluster-view-gigaspaces-browser.html
 weight: 200
 ---

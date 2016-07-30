@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Timeout, Filters and Lease Manager
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: working-with-spaces-gigaspaces-browser.html
 weight: 500
 ---
@@ -10,7 +10,9 @@ weight: 500
 
 The **General* tab contains settings related to client and server timeout, and the *Lease Manager**.
 
+{{%align center%}}
 ![Space TimeoutFiltersLease Manager - GigaSpaces Browser.jpg](/attachment_files/Space TimeoutFiltersLease Manager - GigaSpaces Browser.jpg)
+{{%/align%}}
 
 {{% tip %}}
 If your client application loses its connection to the server, you can follow a simple procedure to check whether the server erased any of your notify templates in the interim. For each notify template, write an Entry to the space that matches the template, and see if you receive a notification. If not, this means two things: First, while you were disconnected, new Entries matching the notify template entered the space. You can try to find them, and if you like depending on their lease time, they may still exist. Second, as a result, your notify template was erased.
