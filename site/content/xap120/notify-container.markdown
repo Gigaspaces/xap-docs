@@ -14,7 +14,6 @@ The notify event container uses the space inherited support for notifications (c
 {{% /imagertext %}}
 
 
-
 ### Life Cycle Events
 The notify container life cycle events described below. You may implement each of of these to perform the desired activity.
 
@@ -29,10 +28,7 @@ Here is a simple example of a notify event container configuration:
 
 {{%tabs%}}
 {{%tab "  Annotation "%}}
-
-
 ```xml
-
 <!-- Enable scan for OpenSpaces and Spring components -->
 <context:component-scan base-package="com.mycompany"/>
 
@@ -41,7 +37,6 @@ Here is a simple example of a notify event container configuration:
 <os-core:embedded-space  id="space" name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
-
 
 ```java
 @EventDriven @Notify
@@ -63,10 +58,7 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "  Namespace "%}}
-
-
 ```xml
-
 <os-core:embedded-space  id="space" name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 <bean id="simpleListener" class="SimpleListener" />
@@ -88,10 +80,7 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "  Plain XML "%}}
-
-
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -116,11 +105,8 @@ public class SimpleListener {
     </property>
 </bean>
 ```
-
 {{% /tab %}}
 {{%tab "  Code "%}}
-
-
 ```java
 GigaSpace gigaSpace = // either create the GigaSpace or get it by injection
 
@@ -141,13 +127,12 @@ notifyEventListenerContainer.start();
 // when needed dispose of the notification container
 notifyEventListenerContainer.destroy();
 ```
-
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tip %}}
- `@EventDriven` , `@Polling` , `@Notify` can't be placed on interface classes. You should place these on the implementation class.
-{{% /tip %}}
+{{% note "Restrictions"%}}
+**@EventDriven** , **@Polling** , **@Notify** can't be placed on interface classes. You should place these on the implementation class.
+{{% /note %}}
 
 The above example registers with the space for write notifications using the provided template (a `Data` object with its processed flag set to `false`). If a notification occurs, the `SimpleListener` is invoked. Registration for notifications is performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean. (In this case, if working in a clustered topology, the notification is performed directly on the cluster member.)
 
@@ -155,9 +140,9 @@ The above example registers with the space for write notifications using the pro
 
 By default, the notify event container registers for notifications only when the relevant space it is working against is in primary mode. When the space is in backup mode, no registration occurs. If the space moves from backup mode to primary mode, the container registers for notifications, and if it moved to backup mode, the registrations are canceled.
 
-{{% info %}}
+{{% note %}}
 This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.
-{{%/info%}}
+{{%/note%}}
 
 {{% note %}}
 Notifications for expired objects (NOTIFY_LEASE_EXPIRATION type) are sent both from the primary and the backup space. To avoid this, you should set the Notify Container `replicateNotifyTemplate` to `false` and run the notify container collocated with the space. This will start the Notify Container only with the primary and will avoid duplicated notifications.
@@ -169,8 +154,6 @@ When performing receive operations, a template is defined, creating a virtualize
 
 {{%tabs%}}
 {{%tab "  Annotation "%}}
-
-
 ```java
 @EventDriven @Notify
 public class SimpleListener {
@@ -190,7 +173,6 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "  Namespace "%}}
-
 ```xml
 <os-events:notify-container id="eventContainer" giga-space="gigaSpace">
 
@@ -231,9 +213,9 @@ public class SimpleListener {
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tip %}}
-A polling container or notify container could have only one template. If you need multiple event handlers you will need to create another polling container or notify container or use the [Session Based Messaging API](./session-based-messaging-api.html#Registering Large Number of Listeners) that support multiple listeners with one Session. If you use multiple polling containers make sure the different templates does not overlap each other.
-{{% /tip %}}
+{{% note %}}
+A polling container or notify container can have only one template. If you need multiple event handlers you will need to create another polling container or notify container or use the [Session Based Messaging API](./session-based-messaging-api.html#Registering Large Number of Listeners) that support multiple listeners with one Session. If you use multiple polling containers make sure the different templates does not overlap each other.
+{{% /note %}}
 
 # Multiple Event Handlers
 
@@ -382,7 +364,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <os-events:notify-container id="eventContainer" giga-space="gigaSpace">
 
     <os-events:notify write="true" update="true"/>
@@ -406,7 +387,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.notify.SimpleNotifyEventListenerContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />
@@ -546,9 +526,9 @@ Batching is very useful when working with a remote space, since it reduces the n
 
 Below is an example how batch notification should be configured. With this example the `eventListener` method will be called having one event passed as an argument each time (since the `pass-array-as-is` is not enabled) once there were 10 matching objects accumulated within the space or every 5000 millisecond since the last time a batch was sent to the client. In this case (notification delivery based on elapsed time), there might be less than 10 objects that will be sent to the client.
 
-{{% tip %}}
+{{% note %}}
 Make sure you set a reasonable batch size to avoid overloading the listener with a large burst of events to process. A value under 100 will be acceptable for most cases.
-{{% /tip %}}
+{{% /note %}}
 
 {{%tabs%}}
 {{%tab "  Annotation "%}}
@@ -578,7 +558,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <os-events:notify-container id="eventContainer" giga-space="gigaSpace">
 
     <os-events:batch size="10" time="5000"/>
@@ -602,7 +581,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.notify.SimpleNotifyEventListenerContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />
@@ -662,9 +640,9 @@ public class SimpleListener {
 
 By default the notify event container running on non-FIFO mode. This means the event listener will be called simultaneously by multiple threads in case there are concurrent notifications sent from the space. To have a sequential event listener calls, you should run the notify  event container in a FIFO mode.
 
-{{% info%}}
+{{% refer%}}
 For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the [Space FIFO support](./fifo-support.html) section.
-{{%/info%}}
+{{%/refer%}}
 
 Here is an example of how FIFO events can be configured with the notify container:
 
@@ -695,7 +673,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <os-events:notify-container id="eventContainer" giga-space="gigaSpace" fifo="true">
 
     <os-core:template>
@@ -717,7 +694,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.notify.SimpleNotifyEventListenerContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />
@@ -753,7 +729,6 @@ To get a notification about such disconnections, the *Auto Renew* feature needs 
 
 
 ```java
-
 public class NotifyHAMain {
 
     static GigaSpace space;
@@ -799,10 +774,7 @@ public class NotifyHAMain {
 {{% /tab %}}
 
 {{%tab "  The LeaseListener Implementation "%}}
-
-
 ```java
-
 public class MyLeaseListener implements LeaseListener {
 
 	GigaSpace space ;
@@ -828,9 +800,9 @@ public class MyLeaseListener implements LeaseListener {
 
 {{% /tabs %}}
 
-{{% tip %}}
+{{% note %}}
 To make sure the client application will manage to reconnect automatically to the space cluster once it was restarted you may want to change the default configuration. See the [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html) for details.
-{{% /tip %}}
+{{% /note %}}
 
 For more information see [Auto Renew](./session-based-messaging-api.html#disconnections).
 
@@ -905,7 +877,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <os-events:notify-container id="eventContainer" giga-space="gigaSpace" durable="true">
 
     <os-core:template>
@@ -927,7 +898,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.notify.SimpleNotifyEventListenerContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />
@@ -1003,7 +973,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <os-events:notify-container id="eventContainer" giga-space="gigaSpace"
                             perform-take-on-notify="true" ignore-event-on-null-take="true">
 
@@ -1026,7 +995,6 @@ public class SimpleListener {
 
 
 ```xml
-
 <bean id="eventContainer" class="org.openspaces.events.notify.SimpleNotifyEventListenerContainer">
 
     <property name="gigaSpace" ref="gigaSpace" />

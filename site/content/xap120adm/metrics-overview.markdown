@@ -17,12 +17,11 @@ XAP provides a framework for collecting and reporting metrics from the distribut
 [Configuration](./metrics-configuration.html){{<wbr>}}
 Introduction to the core metrics concepts and how to configure them
 
-[CA APM Introscope Reporter](./ca-apm-introscope-reporter.html){{<wbr>}}
-Configuring XAP to report metrics to CA APM Introscope
-
-
 [InfluxDB Reporter](./metrics-influxdb-reporter.html){{<wbr>}}
 Configuring XAP to report metrics to InfluxDB
+
+[CA APM Introscope Reporter](./ca-apm-introscope-reporter.html){{<wbr>}}
+Configuring XAP to report metrics to CA APM Introscope
 
 
 [Custom Reporter](./metrics-custom-reporter.html){{<wbr>}}
