@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  SNMP Alerts
-categories: XAP120
+categories: XAP120, PRM
 parent: administration-and-monitoring-overview.html
 weight: 400
 ---

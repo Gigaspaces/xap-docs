@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Admin API
-categories: XAP120
+categories: XAP120, PRM
 parent: none
 weight: 1900
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Administrative Alerts
-categories: XAP120
+categories: XAP120, PRM
 weight: 300
 parent: administration-and-monitoring-overview.html
 ---

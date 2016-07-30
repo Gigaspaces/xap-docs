@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  CA APM Introscope Reporter
-categories: XAP120ADM
+categories: XAP120ADM, ENT
 parent: metrics-overview.html
 weight: 250
 ---
