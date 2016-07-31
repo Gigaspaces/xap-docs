@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Command Line Interface
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: administration-tools.html
 weight: 100
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Elastic Deployment with Command Line
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: administration-tools.html
 weight: 250
 ---

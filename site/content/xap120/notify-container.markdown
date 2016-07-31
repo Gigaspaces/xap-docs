@@ -346,9 +346,7 @@ public class NotifyContainerLifeCycleMain {
 
 		gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpace")).gigaSpace();
 
-		// Write data to the space
-		gigaSpace.write(new Data());
-		say("wrote object to space");
+		
 		say("notifyContainer about to be created");
 
 		// create a polling listener
@@ -372,6 +370,11 @@ public class NotifyContainerLifeCycleMain {
 		say("notifyContainer started");
 		Thread.sleep(1000);
 
+
+        // Write data to the space
+		gigaSpace.write(new Data());
+		say("wrote object to space");
+		
 		say("notifyContainer about to be stopped");
 		notifyEventListenerContainer.stop();
 		say("notifyContainer stoped");

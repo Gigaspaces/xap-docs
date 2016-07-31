@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Deploy with Command Line
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: administration-tools.html
 weight: 200
 ---

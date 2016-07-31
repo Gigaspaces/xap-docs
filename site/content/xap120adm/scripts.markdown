@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Scripts
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: administration-tools.html
 weight: 50
 ---

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Administration Tools
-categories: XAP120ADM
+categories: XAP120ADM,PRM
 weight: 600
 parent: none
 ---
