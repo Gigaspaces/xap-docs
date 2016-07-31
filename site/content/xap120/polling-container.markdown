@@ -30,8 +30,6 @@ Here is a simple example of polling event container configuration:
 
 {{%tabs%}}
 {{%tab "Annotation"%}}
-
-
 ```xml
 <!-- Enable scan for OpenSpaces and Spring components -->
 <context:component-scan base-package="com.mycompany"/>
@@ -43,7 +41,6 @@ Here is a simple example of polling event container configuration:
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
-
 
 ```java
 @EventDriven @Polling
@@ -65,8 +62,6 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "Namespace"%}}
-
-
 ```xml
 <os-core:embedded-space id="space" name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
@@ -89,8 +84,6 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "Plain XML"%}}
-
-
 ```xml
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
@@ -119,7 +112,6 @@ public class SimpleListener {
     </property>
 </bean>
 ```
-
 {{% /tab %}}
 {{%tab "Code"%}}
 
@@ -138,9 +130,7 @@ SimplePollingEventListenerContainer pollingEventListenerContainer = new SimplePo
 
 // start the notification
 pollingEventListenerContainer.start();
-
 ......
-
 // when needed dispose of the notification container
 pollingEventListenerContainer.destroy();
 ```
@@ -148,8 +138,8 @@ pollingEventListenerContainer.destroy();
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% note %}}
- `@EventDriven` , `@Polling` , `@Notify` can't be placed on interface classes. You should place these on the implementation class.
+{{% note Restriction%}}
+ **EventDriven** , **@Polling** , **@Notify** cannot be placed on interface classes. You should place these on the implementation class.
 {{% /note %}}
 
 The example above performs single take operations (see below) using the provided template (a `Data` object with its processed flag set to `false`). If the take operation succeeds (a value is returned), the `SimpleListener` is invoked. The operations are performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
@@ -158,9 +148,9 @@ The example above performs single take operations (see below) using the provided
 
 The polling event container, by default, performs receive operations only when the relevant space it is working against is in primary mode. When the space is in backup mode, no receive operations are performed. If the space moves from backup mode to primary mode, the receive operations are started.
 
-{{% info %}}
+{{% note %}}
 This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.
-{{%/info%}}
+{{%/note%}}
 
 # FIFO Grouping
 
@@ -171,20 +161,12 @@ For more details see [FIFO grouping](./fifo-grouping.html).
 {{%/refer%}}
 
 
-
-
-
-
-
-
 # Static Template Definition
 
 When performing receive operations, a template is defined, creating a virtualized subset of data within the space that matches it. GigaSpaces supports templates based on the actual domain model (with `null` values denoting wildcards), which are shown in the examples. GigaSpaces allows the use of [SQLQuery](./query-sql.html) in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:
 
 {{%tabs%}}
 {{%tab "Annotation"%}}
-
-
 ```java
 @EventDriven @Polling
 public class SimpleListener {
@@ -247,9 +229,9 @@ public class SimpleListener {
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tip %}}
+{{% note  Restriction%}}
 A polling container or notify container could have only one template. If you need multiple event handlers you will need to create another polling container or notify container. If you use multiple polling containers make sure the different templates does not overlap each other.
-{{% /tip %}}
+{{% /note %}}
 
 
 # Multiple Event Handlers
@@ -350,8 +332,6 @@ The event template object has the same syntax rules as with @EventTemplate.
 
 {{%tabs%}}
 {{%tab "Annotation"%}}
-
-
 ```java
 @EventDriven @Polling
 public class SimpleListener {
@@ -406,8 +386,6 @@ public class ExpiredDataTemplateProvider implements DynamicEventTemplateProvider
 
 {{% /tab %}}
 {{%tab "Plain XML"%}}
-
-
 ```xml
 <bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer">
 
@@ -440,9 +418,9 @@ public class ExpiredDataTemplateProvider implements DynamicEventTemplateProvider
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tip %}}
+{{% note %}}
 Only polling containers support dynamic templates. Notify containers do not support dynamic templates.
-{{% /tip %}}
+{{% /note %}}
 
 # Receive Operation Handler
 
@@ -451,7 +429,6 @@ The polling receive container performs receive operations. The actual implementa
 
 ```java
 public interface ReceiveOperationHandler {
-
     /**
      * Performs the actual receive operation. Return values allowed are single object or an array of
      * objects.
@@ -482,16 +459,14 @@ XAP comes with several built-in receive operation-handler implementations:
 |MultiReadReceiveOperationHandler|First tries to perform readMultiple (using a configured max Entries). If no values are returned, performs a blocking read operation with the receive timeout.|
 |MultiExclusiveReadReceiveOperationHandler|First tries to perform readMultiple (using a configured max Entries). If no values are returned, performs a blocking read operation with the receive timeout. Both read operations are performed under an exclusive read lock (similar to "select for update" in databases) which mimics a take operation without actually taking the Entry from the space. Note, this receive operation handler must be used within a transaction. |
 
-{{% info %}}
+{{% note %}}
 When using the `ExclusiveReadReceiveOperationHandler` or even the `SingleReadReceiveOperationHandler`, it is important to remember that the actual event still remains in the space. If the data event is not taken from the space, or one of its properties changes in order **not** to match the container template, the same data event is read again.
-{{%/info%}}
+{{%/note%}}
 
 Here is an example of how the receive operation handler can be configured with `MultiTakeReceiveOperationHandler`:
 
 {{%tabs%}}
 {{%tab "Annotation"%}}
-
-
 ```java
 @EventDriven @Polling
 public class SimpleListener {
@@ -516,11 +491,8 @@ public class SimpleListener {
     }
 }
 ```
-
 {{% /tab %}}
 {{%tab "Namespace"%}}
-
-
 ```xml
 <os-core:embedded-space id="space" name="mySpace"/>
 
@@ -549,8 +521,6 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "Plain XML"%}}
-
-
 ```xml
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
@@ -583,7 +553,6 @@ public class SimpleListener {
     </property>
 </bean>
 ```
-
 {{% /tab %}}
 {{% /tabs %}}
 
@@ -614,8 +583,6 @@ Here is an example of how a Non-Blocking mode can be configured:
 
 {{%tabs%}}
 {{%tab "Annotation"%}}
-
-
 ```java
 @EventDriven @Polling (receiveTimeout=10000)
 public class SimpleListener {
@@ -644,8 +611,6 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "Namespace"%}}
-
-
 ```xml
 <os-core:embedded-space id="space" name="mySpace"/>
 
@@ -674,11 +639,8 @@ public class SimpleListener {
     </os-events:listener>
 </os-events:polling-container>
 ```
-
 {{% /tab %}}
 {{%tab "Plain XML"%}}
-
-
 ```xml
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
@@ -716,7 +678,6 @@ public class SimpleListener {
     </property>
 </bean>
 ```
-
 {{% /tab %}}
 {{% /tabs %}}
 
@@ -743,8 +704,6 @@ Here is an example for batch processing using the `passArrayAsIs` - with this ex
 
 {{%tabs%}}
 {{%tab "Annotation"%}}
-
-
 ```java
 @EventDriven
 @Polling(passArrayAsIs = true)
@@ -767,16 +726,15 @@ public class SimpleBatchListener {
     @SpaceDataEvent
     public Data[] eventListener(Data events[]) {
         //process Data within a loop
-	for (int i = 0; i < events.length; i++) {
-		events[i].setProcessed(true);
-	}
-return events;
+	    for (int i = 0; i < events.length; i++) {
+		   events[i].setProcessed(true);
+	    }
+        return events;
     }
 }
 ```
 {{% /tab %}}
 {{%tab "Plain XML"%}}
-
 ```xml
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
@@ -821,6 +779,128 @@ return events;
 To free the resources used by the polling container make sure you close it properly. A good life cycle event to place the `destroy()` call would be within the `@PreDestroy` or `DisposableBean.destroy()` method.
 
 
+
+# Polling Container Lifecycle
+
+{{%tabs%}}
+{{%tab PollingContainerLifeCycle%}}
+```java
+import java.util.Calendar;
+
+import org.openspaces.core.GigaSpace;
+import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.EmbeddedSpaceConfigurer;
+import org.openspaces.events.adapter.SpaceDataEvent;
+import org.openspaces.events.polling.SimplePollingContainerConfigurer;
+import org.openspaces.events.polling.SimplePollingEventListenerContainer;
+
+public class PollingContainerLifeCycleMain {
+	static SimplePollingEventListenerContainer pollingEventListenerContainer;
+	static GigaSpace gigaSpace;
+
+	public static void main(String[] args) throws Exception {
+
+		gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpace")).gigaSpace();
+
+		// Write data to the space
+		gigaSpace.write(new Data());
+		say("wrote object to space");
+		say("pollingContainer about to be created");
+
+		// create a polling listener
+		pollingEventListenerContainer = new SimplePollingContainerConfigurer(gigaSpace).template(new Data())
+				.autoStart(false).eventListenerAnnotation(new Object() {
+					@SpaceDataEvent
+					public void eventHappened() {
+						say("event consumed");
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}).pollingContainer();
+
+		say("pollingContainer created");
+		Thread.sleep(1000);
+		say("pollingContainer about to be started");
+		pollingEventListenerContainer.start();
+		say("pollingContainer started");
+		Thread.sleep(1000);
+
+		say("pollingContainer about to be stopped");
+		pollingEventListenerContainer.stop();
+		say("pollingContainer stoped");
+		Thread.sleep(1000);
+
+		say("pollingContainer about to be restarted");
+		pollingEventListenerContainer.start();
+		say("pollingContainer started");
+		Thread.sleep(1000);
+
+		say("pollingContainer about to be destroyed");
+		pollingEventListenerContainer.destroy();
+		say("pollingContainer destroyed");
+		System.exit(0);
+	}
+
+	static public void say(String mes) {
+		Calendar d = Calendar.getInstance();
+
+		int ms = Calendar.getInstance().get(Calendar.MILLISECOND);
+		String t = d.getTime() + ":" + ms;
+
+		if (pollingEventListenerContainer == null)
+			System.out.println(t + " - " + " isActive:" + "false" + " isRunning:" + "false" + " " + mes);
+		else
+			System.out.println(t + " - " + " isActive:" + pollingEventListenerContainer.isActive() + " isRunning:"
+					+ pollingEventListenerContainer.isRunning() + " " + mes);
+	}
+}
+```
+{{%/tab%}}
+{{%tab Data%}}
+```java
+import com.gigaspaces.annotation.pojo.SpaceId;
+
+public class Data {
+
+	private String id;
+
+	public Data() {
+	}
+
+	@SpaceId(autoGenerate = true)
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+}
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+When running the above example,the following output will be display:
+
+```bash
+Sun Jul 31 13:24:24 CAT 2016:466 -  isActive:false isRunning:false wrote object to space
+Sun Jul 31 13:24:24 CAT 2016:466 -  isActive:false isRunning:false pollingContainer about to be created
+Sun Jul 31 13:24:24 CAT 2016:484 -  isActive:true isRunning:false pollingContainer created
+Sun Jul 31 13:24:25 CAT 2016:484 -  isActive:true isRunning:false pollingContainer about to be started
+Sun Jul 31 13:24:25 CAT 2016:484 -  isActive:true isRunning:true pollingContainer started
+Sun Jul 31 13:24:25 CAT 2016:511 -  isActive:true isRunning:true event consumed
+Sun Jul 31 13:24:26 CAT 2016:486 -  isActive:true isRunning:true pollingContainer about to be stopped
+Sun Jul 31 13:24:26 CAT 2016:486 -  isActive:true isRunning:false pollingContainer stopped
+Sun Jul 31 13:24:27 CAT 2016:486 -  isActive:true isRunning:false pollingContainer about to be restarted
+Sun Jul 31 13:24:27 CAT 2016:486 -  isActive:true isRunning:true pollingContainer started
+Sun Jul 31 13:24:28 CAT 2016:487 -  isActive:true isRunning:true pollingContainer about to be destroyed
+Sun Jul 31 13:24:28 CAT 2016:489 -  isActive:false isRunning:false pollingContainer destroyed
+```
+
+
 # Trigger Receive Operation
 
 When configuring the polling event container to perform its receive operation and event actions under a transaction, a transaction is started and rolled back for each unsuccessful receive operation, which results in a higher load on the space. The polling event container allows pluggable logic to be used in order to decide if the actual receive operation should be performed or not. This logic, called the trigger receive operation, is performed outside the receive transaction boundaries. The following interface is provided for custom implementation of this logic:
@@ -828,7 +908,6 @@ When configuring the polling event container to perform its receive operation an
 
 ```java
 public interface TriggerOperationHandler {
-
     /**
      * Allows to perform a trigger receive operation which control if the active receive operation
      * will be performed in a polling event container. This feature is mainly used when having
@@ -866,8 +945,6 @@ OpenSpaces comes with a built-in implementation of this interface, called `ReadT
 
 {{%tabs%}}
 {{%tab "Annotation"%}}
-
-
 ```java
 @EventDriven @Polling @TransactionalEvent
 public class SimpleListener {
@@ -894,8 +971,6 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "Namespace"%}}
-
-
 ```xml
 <os-core:embedded-space id="space" name="mySpace"/>
 
@@ -928,8 +1003,6 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{%tab "Plain XML"%}}
-
-
 ```xml
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
@@ -965,7 +1038,6 @@ public class SimpleListener {
     </property>
 </bean>
 ```
-
 {{% /tab %}}
 {{% /tabs %}}
 

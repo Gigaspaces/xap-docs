@@ -150,7 +150,7 @@ Notifications for expired objects (NOTIFY_LEASE_EXPIRATION type) are sent both f
 
 # Template Definition
 
-When performing receive operations, a template is defined, creating a virtualized subset of data in the space, matching it. GigaSpaces supports templates based on the actual domain model (with `null` values denoting wildcards), which are shown in the examples. GigaSpaces allows the use of [SQLQuery](./query-sql.html) in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:
+When performing receive operations, a template is defined, creating a virtualized subset of data in the space, matching it. XAP supports templates based on the actual domain model (with `null` values denoting wildcards), which are shown in the examples. XAP allows the use of [SQLQuery](./query-sql.html) in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:
 
 {{%tabs%}}
 {{%tab "  Annotation "%}}
@@ -321,6 +321,118 @@ SimpleNotifyEventListenerContainer notifyEventListenerContainer =
 # Free Notify Container Resources
 
 To free the resources used by the notify container make sure you close it properly. A good life cycle event to place the `destroy()` call would be within the `@PreDestroy` or `DisposableBean.destroy()` method.
+
+
+
+# Notify Container Lifecycle
+
+{{%tabs%}}
+{{%tab NotifyContainerLifeCycle%}}
+```java
+import java.util.Calendar;
+
+import org.openspaces.core.GigaSpace;
+import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.EmbeddedSpaceConfigurer;
+import org.openspaces.events.adapter.SpaceDataEvent;
+import org.openspaces.events.notify.SimpleNotifyContainerConfigurer;
+import org.openspaces.events.notify.SimpleNotifyEventListenerContainer;
+
+public class NotifyContainerLifeCycleMain {
+	static SimpleNotifyEventListenerContainer notifyEventListenerContainer;
+	static GigaSpace gigaSpace;
+
+	public static void main(String[] args) throws Exception {
+
+		gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpace")).gigaSpace();
+
+		// Write data to the space
+		gigaSpace.write(new Data());
+		say("wrote object to space");
+		say("notifyContainer about to be created");
+
+		// create a polling listener
+		notifyEventListenerContainer = new SimpleNotifyContainerConfigurer(gigaSpace).template(new Data())
+				.autoStart(false).eventListenerAnnotation(new Object() {
+					@SpaceDataEvent
+					public void eventHappened() {
+						say("event consumed");
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}).notifyContainer();
+
+		say("notifyContainer created");
+		Thread.sleep(1000);
+		say("notifyContainer about to be started");
+		notifyEventListenerContainer.start();
+		say("notifyContainer started");
+		Thread.sleep(1000);
+
+		say("notifyContainer about to be stopped");
+		notifyEventListenerContainer.stop();
+		say("notifyContainer stoped");
+		Thread.sleep(1000);
+
+		say("notifyContainer about to be restarted");
+		notifyEventListenerContainer.start();
+		say("notifyContainer started");
+		Thread.sleep(1000);
+
+		say("notifyContainer about to be destroyed");
+		notifyEventListenerContainer.destroy();
+		say("notifyContainer destroyed");
+		System.exit(0);
+	}
+
+	static public void say(String mes) {
+		Calendar d = Calendar.getInstance();
+
+		int ms = Calendar.getInstance().get(Calendar.MILLISECOND);
+		String t = d.getTime() + ":" + ms;
+
+		if (notifyEventListenerContainer == null)
+			System.out.println(t + " - " + " isActive:" + "false" + " isRunning:" + "false" + " " + mes);
+		else
+			System.out.println(t + " - " + " isActive:" + notifyEventListenerContainer.isActive() + " isRunning:"
+					+ notifyEventListenerContainer.isRunning() + " " + mes);
+	}
+}
+```
+{{%/tab%}}
+{{%tab Data%}}
+```java
+import com.gigaspaces.annotation.pojo.SpaceId;
+
+public class Data {
+
+	private String id;
+
+	public Data() {
+	}
+
+	@SpaceId(autoGenerate = true)
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+}
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+When running the above example,the following output will be display:
+
+```bash
+
+```
+
 
 
 # Masking Notifications
@@ -645,9 +757,6 @@ public class SimpleListener {
 
 By default the notify event container running on non-FIFO mode. This means the event listener will be called simultaneously by multiple threads in case there are concurrent notifications sent from the space. To have a sequential event listener calls, you should run the notify  event container in a FIFO mode.
 
-{{% refer%}}
-For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the [Space FIFO support](./fifo-support.html) section.
-{{%/refer%}}
 
 Here is an example of how FIFO events can be configured with the notify container:
 
@@ -721,6 +830,12 @@ public class SimpleListener {
 
 {{% /tab %}}
 {{% /tabs %}}
+
+{{% refer%}}
+For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the [Space FIFO support](./fifo-support.html) section.
+{{%/refer%}}
+
+
 
 # Re-Register after complete space shutdown and restart
 
@@ -1037,7 +1152,7 @@ public interface RemoteEventListener extends java.rmi.Remote, java.util.EventLis
 }
 ```
 
-GigaSpaces extends this interface by providing the `EntryArrivedRemoteEvent`, which holds additional information regarding the event that occurred. The notify container, by default, uses the `EntryArrivedRemoteEvent` in order to extract the actual data event represented by the event, and passes it as the first parameter. If access to the `EntryArrivedRemoteEvent` is still needed, it is passed as the last parameter to the space data event listener. Here is an example of how it can be used:
+XAP extends this interface by providing the `EntryArrivedRemoteEvent`, which holds additional information regarding the event that occurred. The notify container, by default, uses the `EntryArrivedRemoteEvent` in order to extract the actual data event represented by the event, and passes it as the first parameter. If access to the `EntryArrivedRemoteEvent` is still needed, it is passed as the last parameter to the space data event listener. Here is an example of how it can be used:
 
 
 ```java
