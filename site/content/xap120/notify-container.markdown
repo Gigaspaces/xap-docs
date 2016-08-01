@@ -346,9 +346,7 @@ public class NotifyContainerLifeCycleMain {
 
 		gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpace")).gigaSpace();
 
-		
 		say("notifyContainer about to be created");
-
 		// create a polling listener
 		notifyEventListenerContainer = new SimpleNotifyContainerConfigurer(gigaSpace).template(new Data())
 				.autoStart(false).eventListenerAnnotation(new Object() {
@@ -369,7 +367,6 @@ public class NotifyContainerLifeCycleMain {
 		notifyEventListenerContainer.start();
 		say("notifyContainer started");
 		Thread.sleep(1000);
-
 
         // Write data to the space
 		gigaSpace.write(new Data());
@@ -433,7 +430,18 @@ public class Data {
 When running the above example,the following output will be display:
 
 ```bash
-
+Mon Aug 01 08:54:35 CAT 2016:919 -  isActive:false isRunning:false notifyContainer about to be created
+Mon Aug 01 08:54:35 CAT 2016:947 -  isActive:true isRunning:false notifyContainer created
+Mon Aug 01 08:54:36 CAT 2016:948 -  isActive:true isRunning:false notifyContainer about to be started
+Mon Aug 01 08:54:36 CAT 2016:988 -  isActive:true isRunning:true notifyContainer started
+Mon Aug 01 08:54:37 CAT 2016:4 -  isActive:true isRunning:true wrote object to space
+Mon Aug 01 08:54:37 CAT 2016:6 -  isActive:true isRunning:true event consumed
+Mon Aug 01 08:54:38 CAT 2016:4 -  isActive:true isRunning:true notifyContainer about to be stopped
+Mon Aug 01 08:54:38 CAT 2016:8 -  isActive:true isRunning:false notifyContainer stopped
+Mon Aug 01 08:54:39 CAT 2016:9 -  isActive:true isRunning:false notifyContainer about to be restarted
+Mon Aug 01 08:54:39 CAT 2016:10 -  isActive:true isRunning:true notifyContainer started
+Mon Aug 01 08:54:40 CAT 2016:10 -  isActive:true isRunning:true notifyContainer about to be destroyed
+Mon Aug 01 08:54:40 CAT 2016:10 -  isActive:false isRunning:false notifyContainer destroyed
 ```
 
 
