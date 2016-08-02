@@ -160,7 +160,7 @@ public class MyCustomSqlFunction extends SqlFunction {
 	<os-core:giga-space id="gigaSpace" space="space"/>
 </beans>
 ```
-And here is the the usage of the newly registered SQL function:
+And here is the usage of the newly registered SQL function:
 
 ```java
 // An SQL query with PLUSTWO function,
