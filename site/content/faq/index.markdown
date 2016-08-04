@@ -14,7 +14,6 @@ Here you will find answers to frequently asked questions about OpenSpaces and th
 {{%fpanel%}}
 - [Fundamentals](./openspaces-faq.html)
 
-- [XAP Community](./xap-community-faq.html)
 
 - [Space Objects](./space-objects.html)
 
