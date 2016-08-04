@@ -12,11 +12,8 @@ This page provides links to the API documentation and related resources for each
 {{%tab API%}}
 - [Javadoc](http://www.gigaspaces.com/docs/JavaDoc12.0/index.html)
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs12.0/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs12.0/annotated.html)
-- [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs12.0)
+- C+\+ API Documentation - Under Construction, coming soon
 - [REST API](/xap120/rest-service-api.html)
-- [Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs12.0/apidocs/)
-- [Cassandra-Datasource API Documentation](http://www.gigaspaces.com/docs/cassandra-docs12.0/apidocs/)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/12.0/core/openspaces-core.xsd)
