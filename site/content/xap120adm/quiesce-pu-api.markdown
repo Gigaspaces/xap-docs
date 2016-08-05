@@ -1,12 +1,12 @@
 ---
 type: post120
 title:  API and Usage
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: quiescemode.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 # Processing Unit API
 

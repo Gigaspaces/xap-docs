@@ -6,7 +6,7 @@ parent: administration-tools.html
 weight: 400
 ---
 
-{{%ssummary%}} {{%/ssummary%}}
+ 
 
 XAP allows putting a processing unit in quiesce mode (a.k.a maintenance mode). The quiesce mode can be invoked via the CLI. This page explains the usage of the CLI commands.
 

@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Limitations and Considerations
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: quiescemode.html
 weight: 300
 ---

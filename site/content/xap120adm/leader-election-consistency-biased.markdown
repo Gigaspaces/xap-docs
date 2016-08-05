@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Consistency Biased
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: leader-election.html
 weight: 200
 ---

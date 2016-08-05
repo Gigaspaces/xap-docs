@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Controlling the Replication Redo Log
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: replication.html
 weight: 600
 ---

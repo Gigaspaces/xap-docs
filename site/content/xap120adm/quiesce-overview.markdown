@@ -1,17 +1,18 @@
 ---
 type: post120
 title:  Overview
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: quiescemode.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 # Introduction
 
-The purpose of this feature is to add support for "Quiesce state" (a.k.a maintenance mode) for a processing unit.<br> If a space is **Quiesced**, it rejects all data-related operations with an exception, allowing the user to perform maintenance operations. <br>
-Regardless to the space, XAP [Polling Container]({{%currentjavaurl%}}/polling-container.html) and [Notify Container]({{%currentjavaurl%}}/notify-container.html) are also aware of quiesce state and will handle quiesce state changed events by implementing [QuiesceStateChangedListener](./quiesce-pu-api.html#quiesce-state-changed-listener). <br>
+The purpose of this feature is to add support for "Quiesce state" (a.k.a maintenance mode) for a processing unit. If a space is **Quiesced**, it rejects all data-related operations with an exception, allowing the user to perform maintenance operations. <br>
+
+Regardless to the Space, the XAP [Polling Container]({{%currentjavaurl%}}/polling-container.html) and [Notify Container]({{%currentjavaurl%}}/notify-container.html) are also aware of quiesce state and will handle quiesce state changed events by implementing [QuiesceStateChangedListener](./quiesce-pu-api.html#quiesce-state-changed-listener). <br>
 As well as XAP event containers mentioned above, a user defined bean can also handle quiesce state changed events by implementing [QuiesceStateChangedListener](./quiesce-pu-api.html#quiesce-state-changed-listener). <br>
 Quiesce is mostly triggered using ProcessingUnit API and propagated to all space instances and quiesce state changed listeners in the processing unit. <br>
 

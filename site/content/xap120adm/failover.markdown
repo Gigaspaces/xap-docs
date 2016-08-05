@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Failover
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: data-grid-clustering.html
 weight: 500
 ---

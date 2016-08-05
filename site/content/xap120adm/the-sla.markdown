@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Overview
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 parent: the-sla-overview.html
 weight: 100
 ---

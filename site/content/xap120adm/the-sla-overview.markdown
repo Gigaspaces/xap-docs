@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Service Level Agreement
-categories: XAP120ADM
+categories: XAP120ADM, PRM
 weight: 350
 parent: none
 ---
