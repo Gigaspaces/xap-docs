@@ -16,10 +16,7 @@ weight: 200
 If you're not familiar with MemoryXtend, make sure you read its [documentation](./memoryxtend.html) before proceeding. We also recommend reading the [RocksDB documentation](https://github.com/facebook/rocksdb/wiki).
 {{%/refer%}}
 
-{{% info "License"%}}
-The MemoryXtend add-on is available for free during the evaluation period, but is not included in the premium edition license. For information about purchasing this add-on please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services).
-{{% /info %}}
-
+ 
 
 
 # Prerequisites

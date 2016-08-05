@@ -95,9 +95,9 @@ The `redo-log-recovery-capacity` parameter is used only when a target space memb
 
 An additional configurable property of replication, is how a backup replication target behaves when there are missing replication packets, due to packets being dropped when configuring the `drop-oldest` behavior at its source. An active space (primary) has no choice but to accept the state when expected replication packets are missing, and keep running as usual - e.g. an active-active replicated cluster. However, a backup space can be configured either to ignore missing packets, or once it encounters such a scenario, change its state to inconsistent. This causes it to be automatically redeployed, which forces a full recovery, thus keeping its state synchronized with the primary. This property is configured in the cluster schema replication policy element, by setting `on-missing-packets` to `ignore` or `recover`. A backup space has this configured to `recover` by default.
 
-{{% info %}}
+{{% note %}}
 This property only affects spaces that are not in primary mode. Hence it has no affect on active-active topologies, and `on-missing-packets` is in `ignore` mode.
-{{% /info %}}
+{{% /note %}}
 
 # Recommendations
 
