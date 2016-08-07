@@ -50,7 +50,7 @@ This page lists the main new features in XAP 10.0 (Java and .Net editions). It's
 
 This is a tutorial that will setup a XAP Cluster on a real server on demand. The tutorial include an interactive shell that will allow you to execute the various XAP API for writing and reading data as well as open a groovy shell to write your own code and experience the full XAP API.
 
-{{%learn "/tutorials"%}}
+{{%learn "/xap100/tutorials.html"%}}
 
 {{%anchor 1%}}
 
