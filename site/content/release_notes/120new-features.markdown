@@ -8,7 +8,7 @@ weight: 200
 
 
 
-Below is a list of new features and improvements in GigaSpaces 12.0.X.
+Below is a list of new features and improvements in XAP 12.0.X.
 
 
 

@@ -6,7 +6,7 @@ parent: xap120.html
 weight: 900
 ---
 
-This page list all the 3rd party libraries shipped with GigaSpaces XAP on a per version basis, and their respective license agreements.
+This page list all the 3rd party libraries shipped with   XAP on a per version basis, and their respective license agreements.
 
 
 {{%tabs%}}
