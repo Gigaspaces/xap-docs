@@ -8,8 +8,6 @@ weight: 100
 
 {{% ssummary%}}{{% /ssummary %}}
 
-
-
 Maven is a tool used to automate and simplify the development cycle of any Java-based project. The XAP plugin for Maven utilizes Maven to simplify the development cycle of XAP-based applications. You can use this plugin to easily create, compile, package, run unit tests, execute and deploy Processing Units.
 
 You don't need to be an experienced Maven user to start working with this plugin. This section provides you with everything you need to know in order to start developing Processing Units with the Maven plugin. Experienced Maven users can use the Maven plugin to embed Processing Unit development with their existing development environment.
@@ -46,11 +44,33 @@ OS name: "linux", version: "3.13.0-76-generic", arch: "amd64", family: "unix"
 Maven uses repositories: a local repository where all required dependencies (artifacts) are stored for Maven's use, and remote repositories from which Maven downloads required dependencies that are missing in the local repository. If a dependency is missing from the local repository during execution, Maven automatically downloads the missing dependencies from the remote repositories. The download might take a few minutes (progress messages are printed to the console). When the download is finished, Maven returns to its original tasks.
 {{%/info%}}
 
+{{%anchor dependencies%}}
+
+# XAP Artifacts
+
+The main dependency required to use XAP is `xap-openspaces`
+```xml
+<dependency>
+  <groupId>org.gigaspaces</groupId>
+  <artifactId>xap-openspaces</artifactId>
+  <version>{{%version "maven-version" %}}</version>
+</dependency>
+```
+
+Since XAP artifacts are currently not published in Maven Central Repo, you'll also need to configure a repository:
+
+```xml
+<repository>
+   <id>org.openspaces</id>
+   <url>http://maven-repository.openspaces.org</url>
+</repository>
+```
+
 # Installation
 
 To install the XAP Maven plugin:
 
-Run the `installmavenrep` script from the `<XAP Home>\tools\maven` directory:
+Run the `installmavenrep` script from the `<XAP_HOME>/tools/maven` directory:
 
 
 ```bash
@@ -60,46 +80,6 @@ D:<XAP Home>\tools\maven>installmavenrep.bat
 This installs the XAP libraries and the XAP Maven plugin into the local Maven repository. Once the installation is finished, the Maven plugin is ready to be used.
 
 {{% info %}} The XAP Maven plugin is installed under: `<maven-repository-dir>\org\apache\maven\plugins\xap-maven-plugin`{{%/info%}}
-
-## Location of Libraries and Local Repository
-
-**Library Location**:
-
-- XAP libraries are installed under: `<maven-repository-dir>/com/gigaspaces`
-
-{{%anchor dependencies%}}
-
-### Dependencies
-
-
-```xml
-<dependency>
-  <artifactId>gs-runtime</artifactId>
-  <groupId>com.gigaspaces</groupId>
-  <version>{{%version "maven-version" %}}</version>
-</dependency>
-<dependency>
-  <artifactId>gs-openspaces</artifactId>
-  <groupId>com.gigaspaces</groupId>
-  <version>{{%version "maven-version" %}}</version>
-</dependency>
-```
-
-### Local Repository Location
-
-By default, Maven creates the local repository under the your home directory: `<USER_HOME>\.m2\repository`. For example, on Windows XP, the local repository is created in `C:\Documents and Settings\<username>\.m2\repository`. However, the location of the repository can be changed by editing the `settings.xml` file under `<Maven Root>\conf`.
-
-### public repository Location
-
-You can install the XAP artifacts using a public repository:
-
-
-```xml
-<repository>
-   <id>org.openspaces</id>
-   <url>http://maven-repository.openspaces.org</url>
-</repository>
-```
 
 # Using Available Project Templates
 
