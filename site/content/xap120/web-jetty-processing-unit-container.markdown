@@ -23,18 +23,19 @@ A XAP web processing unit can use [Jetty](http://www.eclipse.org/jetty/) as the 
 
 {{%panel%}}
 
-XAP 11.0 ships with Jetty 8.1.8.v20121106. However, it is possible to use Jetty 9.3.7.v20160115.
+XAP 12.0 ships with Jetty 8.1.8.v20121106. However, it is possible to use Jetty 9.3.7.v20160115.
 
 To install Jetty 9.3.7.v20160115 follow these steps:
 
-1. Rename the jar file in `<XAPHOME>/lib/platform/openspaces/gs-openspaces-jetty-9.jar` to `gs-openspaces-jetty.jar`
-2. Replace the files in the `<XAPHOME>/lib/platform/jetty` directory with the Jetty 9.3.7.v20160115 jars from the following folders:
+1. Rename `<XAPHOME>/lib/optional/jetty` to `<XAPHOME>/lib/optional/jetty-8`
+2. Rename `<XAPHOME>/lib/optional/jetty-9` to `<XAPHOME>/lib/optional/jetty`
+3. Copy the Jetty 9.3.7.v20160115 jars to `<XAPHOME>/lib/optional/jetty` directory from the following folders:
    * `<Jetty>/lib/*.jar`
    * `<Jetty>/lib/annotations/*.jar`
    * `<Jetty>/lib/websocket/*.jar`
    * `<Jetty>/lib/apache-jsp/*.jar`
-3. Also, Download cdi-api-2.0-EDR1.jar and place it at under the Jetty directory as well. The file could be downloaded from here: [http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar](http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar)
-4. With version 9 the connector configuration has [changed](#jetty9).
+4. Also, Download cdi-api-2.0-EDR1.jar and place it at under the Jetty directory as well. The file could be downloaded from here: [http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar](http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar)
+5. With version 9 the connector configuration has [changed](#jetty9).
 
 {{%/panel%}}
 
@@ -553,9 +554,9 @@ Above configuration file should be passed as a JVM system property, `java.securi
 
 To install Jetty 9.1.3.v20140225 follow these steps:
 
-1. Rename the jar file in `<XAPHOME>/lib/platform/openspaces/gs-openspaces-jetty-9.jar` to `gs-openspaces-jetty.jar`
-2. Replace the files in the `<XAPHOME>/lib/platform/jetty` directory  with the Jetty 9.1.3.v20140225 distribution jar files.
-
+1. Rename `<XAPHOME>/lib/optional/jetty` to `<XAPHOME>/lib/optional/jetty-8`
+2. Rename `<XAPHOME>/lib/optional/jetty-9` to `<XAPHOME>/lib/optional/jetty`
+3. Copy the Jetty 9.1.3.v20140225 distribution jar files to the `<XAPHOME>/lib/optional/jetty` directory.
 
 With this version the connector configuration has changed. Here is a complete example on how to configure `jetty.pu.xml` .
 
