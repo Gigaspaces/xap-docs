@@ -2,8 +2,8 @@
 type: post120
 title:  Environment Variables
 categories: XAP120
-parent: installation-java-overview.html
-weight: 200
+parent: installation.html
+weight: 120
 ---
 
 The XAP environment configuration is maintained by a configuration script file called `setenv`, located in the `XAP_HOME/bin` directory. It is recommended to use the `setenv` utility to derive the commonly used XAP libraries and setup environment. 
