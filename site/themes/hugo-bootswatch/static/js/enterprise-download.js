@@ -54,7 +54,7 @@ $(document).ready(function() {
                         sessionStorage.setItem('enterprisePopupPresented', 'true');
 
                         setTimeout(function() {
-                            $('#enterprise-donwload').popover('hide');
+                            $('#enterprise-download').popover('hide');
                             enablePopoverOnMouseover();
                         }, 5000);
                     }

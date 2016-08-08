@@ -54,7 +54,7 @@ $(document).ready(function() {
                         sessionStorage.setItem('premiumPopupPresented', 'true');
 
                         setTimeout(function() {
-                            $('#premium-donwload').popover('hide');
+                            $('#premium-download').popover('hide');
                             enablePopoverOnMouseover();
                         }, 5000);
                     }
