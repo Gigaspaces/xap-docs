@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Eclipse
+title:  Setting up your IDE
 categories: XAP120
 parent: installation.html
 weight: 600
