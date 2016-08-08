@@ -29,27 +29,18 @@ Use a JDK and not JRE - Have a JDK (Java Development Kit) installed and not a JR
 
 # Installing on Windows
 
-Unzip the ZIP file using your favorite unzip tool to the location of your choice (`c:\` or `d:\` recommended - `C:\Program Files` is NOT recommended as it include a space as part of the folder name). Unzipping the file creates a `<XAP_HOME>` directory (e.g. `{{%version "gshome-directory-oss"%}}`) with the following files and folders:
+Unzip the ZIP file using your favorite unzip tool to the location of your choice:
 
-**What's Next?**
-
-- To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment]({{%currentadmurl%}}/troubleshooting-testing-system-environment.html) section.
-- See the [Quick Start Guide](/xap110tut/) for your first steps with XAP.
-
-# Installing on Linux
-
-Step 1. Navigate into the directory where you want to install GigaSpaces XAP, e.g. `\opt` directory, and execute an `unzip` command using the path to the XAP zip file. For example:
-
-
-```java
+```bash
 unzip {{%version "build-filename-oss" %}}
 ```
 
-Step 2. Make sure all `sh` file(s) in the `/bin` and the `/examples` directory are in executable mode, meaning you can run them from your machine. To check this, use the `ls \-all` command for the relevant directory, and make sure that `x` is included in the file permissions.
+Unzipping the file creates a `<XAP_HOME>` directory (e.g. `{{%version "gshome-directory-oss"%}}`).
 
-Step 3. Make sure all the machines running XAP can ping each other and their hosts file include the machine IP.
+- We recommend avoiding paths with spaces (such as `C:\Program Files`) to avoid complications later on.
+- Linux users - Make sure all `sh` files in the `/bin` and the `/examples` directory are in executable mode, so you can run them from your machine. To check this, use the `ls \-all` command for the relevant directory, and make sure that `x` is included in the file permissions.
 
-**What's Next?**
+# What's Next?
 
 - To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment]({{%currentadmurl%}}/troubleshooting-testing-system-environment.html) section.
 - See the [Quick Start Guide](/xap110tut/) for your first steps with XAP.
