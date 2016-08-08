@@ -1,22 +1,22 @@
 ---
 type: post120
-title:  C++
-categories: XAP120
-parent: installation.html
-weight: 400
+title:  Installation
+categories: XAP120,PRM
+parent: xap-cpp.html
+weight: 150
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
 
 
 
-XAP's c++ API supported on Linux and Windows 32bit or 64bit machines.
+XAP's c++ API supported on Linux and Windows 64bit machines.
 The current supported platforms and compilers are:
 
 - Linux
     -  gcc.4.1.2
 - Windows
-    - 32/64bit -- VS 9.0/10.0 (Visual Studio 2008/2010)
+    - 64bit -- VS 10.0 (Visual Studio 2010)
 
 
 # Installation
