@@ -47,21 +47,7 @@ $(document).ready(function() {
         }
 
         var premiumPopupPresented = sessionStorage.getItem('premiumPopupPresented');
-        if (premiumPopupPresented == null) {
-                setTimeout(function() {
-                    if (isScrolledIntoView($("#premium-download"), 115)) {
-                        $('#premium-download').popover('show');
-                        sessionStorage.setItem('premiumPopupPresented', 'true');
-
-                        setTimeout(function() {
-                            $('#premium-download').popover('hide');
-                            enablePopoverOnMouseover();
-                        }, 5000);
-                    }
-                }, 500);
-        } else {
-            enablePopoverOnMouseover();
-        }
+        enablePopoverOnMouseover();
     }
 });
 

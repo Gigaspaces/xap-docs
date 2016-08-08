@@ -47,21 +47,8 @@ $(document).ready(function() {
         }
 
         var enterprisePopupPresented = sessionStorage.getItem('enterprisePopupPresented');
-        if (enterprisePopupPresented == null) {
-                setTimeout(function() {
-                    if (isScrolledIntoView($("#enterprise-download"), 115)) {
-                        $('#enterprise-download').popover('show');
-                        sessionStorage.setItem('enterprisePopupPresented', 'true');
+        enablePopoverOnMouseover();
 
-                        setTimeout(function() {
-                            $('#enterprise-download').popover('hide');
-                            enablePopoverOnMouseover();
-                        }, 5000);
-                    }
-                }, 500);
-        } else {
-            enablePopoverOnMouseover();
-        }
     }
 });
 

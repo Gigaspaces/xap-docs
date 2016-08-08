@@ -60,21 +60,7 @@ $(document).ready(function() {
         }
 
         var githubPopupPresented = sessionStorage.getItem('githubPopupPresented');
-        if (githubPopupPresented == null) {
-                setTimeout(function() {
-                    if (isScrolledIntoView($("#edit-on-github"), 115)) {
-                        $('#edit-on-github').popover('show');
-                        sessionStorage.setItem('githubPopupPresented', 'true');
-
-                        setTimeout(function() {
-                            $('#edit-on-github').popover('hide');
-                            enablePopoverOnMouseover();
-                        }, 5000);
-                    }
-                }, 500);
-        } else {
-            enablePopoverOnMouseover();
-        }
+        enablePopoverOnMouseover();
     }
 });
 
