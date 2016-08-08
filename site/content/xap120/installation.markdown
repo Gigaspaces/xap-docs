@@ -20,25 +20,23 @@ For a list of supported platforms please consult [the release notes](/release_no
 <br>
 
 {{%fpanel%}}
-[XAP License](./license-key.html){{<wbr>}}
-Getting the license key and defining it in the XAP license file.
-
-[XAP Java Installation](./installation-java-overview.html){{<wbr>}}
+[Setup](./installation-java.html){{<wbr>}}
 Requirements and how to install XAP for Java users with Windows, Linux or Unix.
 
-[XAP C++ Installation](./installing-cpp-api-package.html){{<wbr>}}
-Requirements and how to install XAP C++ API on Windows and Linux.
+[License Key](./license-key.html){{<wbr>}}
+Getting the license key and defining it in the XAP license file.
 
-[Maven Plugin](./installation-maven-overview.html){{<wbr>}}
+[Environment Variables](./common-environment-variables.html){{<wbr>}}
+Overview of common environment variables used by XAP.
+
+[Maven](./installation-maven-overview.html){{<wbr>}}
 Installing the XAP Maven plugin, creating and running a Processing Unit project.
 
-[Eclipse setup](./installation-eclipse-overview.html){{<wbr>}}
+[Setting up your IDE](./installation-eclipse-overview.html){{<wbr>}}
 Setting up your IDE to work with XAP.
 
 [XAP as Windows Service](./installation-windows-service.html){{<wbr>}}
 Configuring XAP as a Windows service.
-
-
 
 {{%/fpanel%}}
 
