@@ -2,18 +2,13 @@
 type: post120
 title:  Setup
 categories: XAP120
-parent: installation-java-overview.html
+parent: installation.html
 weight: 100
 ---
 
-
 {{% ssummary %}}{{% /ssummary %}}
 
-
-
 GigaSpaces XAP Java edition is 100% pure Java based, and therefore can run on any UNIX or Windows machine that supports Java.
-
-
 
 {{%anchor Prior-to-Installation%}}
 
@@ -22,7 +17,7 @@ GigaSpaces XAP Java edition is 100% pure Java based, and therefore can run on an
 **Prior to the XAP installation, make sure**:
 
 - Review the release notes for the [supported platforms](/release_notes).
-- [JDK](http://java.sun.com/javase/downloads/index.jsp) (6 or later) is installed (latest JDK 7 is recommended) 
+- [JDK](http://java.sun.com/javase/downloads/index.jsp) (6 or later) is installed
 - Set the `JAVA_HOME` environment variable to the JDK (not JRE) directory (for example, `D:\java\jdk1.7.0_70`).
 - Set the `PATH` environment variable to include `JAVA_HOME\bin` (for example, `%JAVA_HOME%\bin;%SystemRoot%\system32;%SystemRoot%`
 - Optional: The network and machines running GigaSpaces are configured to enable multicast (see the [Multicast Configuration]({{%currentadmurl%}}/network-multicast.html) for more information).
@@ -34,17 +29,12 @@ Use a JDK and not JRE - Have a JDK (Java Development Kit) installed and not a JR
 
 # Installing on Windows
 
-Unzip the ZIP file using your favorite unzip tool (e.g., WinZip) to the location of your choice (`c:\` or `d:\` recommended - `C:\Program Files` is NOT recommended as it include a space as part of the folder name). Unzipping the file creates a `<XAP Root>` directory (e.g. `{{%version "gshome-directory"%}}`) with the following files and folders:
-
-{{%align center%}}
-![win_dirtree_XAP95.jpg](/attachment_files/win_dirtree_XAP95.jpg)
-{{%/align%}}
+Unzip the ZIP file using your favorite unzip tool to the location of your choice (`c:\` or `d:\` recommended - `C:\Program Files` is NOT recommended as it include a space as part of the folder name). Unzipping the file creates a `<XAP_HOME>` directory (e.g. `{{%version "gshome-directory-oss"%}}`) with the following files and folders:
 
 **What's Next?**
 
 - To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment]({{%currentadmurl%}}/troubleshooting-testing-system-environment.html) section.
 - See the [Quick Start Guide](/xap110tut/) for your first steps with XAP.
-
 
 # Installing on Linux
 
@@ -52,7 +42,7 @@ Step 1. Navigate into the directory where you want to install GigaSpaces XAP, e.
 
 
 ```java
-unzip {{%version "build-filename" %}}
+unzip {{%version "build-filename-oss" %}}
 ```
 
 Step 2. Make sure all `sh` file(s) in the `/bin` and the `/examples` directory are in executable mode, meaning you can run them from your machine. To check this, use the `ls \-all` command for the relevant directory, and make sure that `x` is included in the file permissions.
