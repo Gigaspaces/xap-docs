@@ -2,8 +2,8 @@
 type: post120
 title:  Classpath
 categories: XAP120
-parent: installation-java-overview.html
-weight: 300
+parent: installation-eclipse-overview.html
+weight: 150
 ---
 
 XAP libraries are located under `XAP_HOME/lib`. There are three sub directories:
