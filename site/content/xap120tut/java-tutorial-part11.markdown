@@ -15,7 +15,7 @@ To take advantage of XAP's spatial capabilites, simply add the `xap-spatial` mav
 
 ```xml
 <dependency>
-    <groupId>com.gigaspaces</groupId>
+    <groupId>org.gigaspaces</groupId>
     <artifactId>xap-spatial</artifactId>
     <version>{{%version "spatial"%}}</version>
 </dependency>
