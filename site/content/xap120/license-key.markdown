@@ -3,7 +3,7 @@ type: post120
 title:  License Key
 categories: XAP120
 parent: installation.html
-weight: 100
+weight: 110
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
