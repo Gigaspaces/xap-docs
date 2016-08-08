@@ -1,22 +1,22 @@
 ---
 type: post120
 title:  License Key
-categories: XAP120
+categories: XAP120,PRM
 parent: installation.html
 weight: 110
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
 
-GigaSpaces XAP requires a valid license to start. This page explains how to setup the initial evaluation license and provides additional related information.
+GigaSpaces XAP Premium and Enterprise editions require a valid license to start. This page explains how to setup the initial evaluation license and provides additional related information.
 
 # Getting started
 
-When downloading XAP from the [XAP Download Center](http://www.gigaspaces.com/LatestProductVersion), you'll get an email with a license key for the evaluation period. To start your evaluation, simply edit the license file located in `<XAP Root>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
+When downloading XAP Premium or Enterprise from the [XAP Download Center](http://www.gigaspaces.com/LatestProductVersion), you'll get an email with a license key for the evaluation period. To start your evaluation, simply edit the license file located in `<XAP_HOME>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
 
 ```xml
 # License can also be set via the system property com.gs.licensekey
-Version=11;Type=EVALUATION;Customer=yourname@yourcompany.com;Expiration=2015-Dec-31;Hash=NP6SQOOdOZrPRcN9OTYQ
+Version=12;Type=EVALUATION;Customer=yourname@yourcompany.com;Expiration=2016-Dec-31;Hash=NP6SQOOdOZrPRcN9OTYQ
 ```
 
 {{% info %}}
@@ -31,7 +31,7 @@ When the system starts, it writes an information summary to the logs and console
 
 # License Validation
 
-XAP validates the license whenever the Service Grid is started, and whenever a space is deployed. If the license is invalid (e.g. expired), the system will report there's a license problem and terminate. If the license expires while the system is running, it is not terminated, but if one of the system's components fails and tries to restart, it will fail because the license has expired.
+XAP validates the license whenever the Service Grid is started. If the license is invalid (e.g. expired), the system will report there's a license problem and terminate. If the license expires while the system is running, it is not terminated, but if one of the system's components fails and tries to restart, it will fail because the license has expired.
 
 # License Lookup Order
 
