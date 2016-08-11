@@ -3,7 +3,7 @@ type: post120
 title:  Securing the Transport Layer
 categories: XAP120SEC, PRM
 parent: securing-xap-components.html
-weight: 300
+weight: 400
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
