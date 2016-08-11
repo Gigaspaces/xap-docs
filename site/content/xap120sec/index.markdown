@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Security Guide
-categories: XAP120SEC, PRM
+categories: XAP120SEC, OS
 
 ---
 
@@ -15,22 +15,29 @@ This section provides an understanding of GigaSpaces XAP Security, where it fits
 {{%fpanel%}}
 
 [Overview](./security.html){{<wbr>}}
-XAP Security provides comprehensive support for securing your data, services, or both. XAP provides a set of authorities granting privileged access to data, and for performing operations on services.
+Overview of main features
 
 [Concepts](./security-concepts.html){{<wbr>}}
-Authentication, Encryption, Authenticity Validation, and Managing users and roles
+Authentication and Encryption
 
-[Authorities](./security-authorities.html){{<wbr>}}
-System, Grid, Space and Monitor authorities
+[Authorities and Privileges](./security-authorities.html){{<wbr>}}
+Space authorities, Role authorities, and System authorities
+
+[Directory Management](./security-directory-manager.html){{<wbr>}}
+Directory Manager, User Manager and Role Manager interfaces 
 
 [Configuration](./security-configurations.html){{<wbr>}}
 Configurations and defaults
 
-[Directory Management](./programmatically-managing-the-security-directory.html){{<wbr>}}
-User and Role directory API
+[Reference Implementation](./security-ref-impl.html){{<wbr>}}
+An implementation of SecurityManager
 
-[Default File Based Security](./default-file-based-security-implementation.html){{<wbr>}}
-XAP provides a default security implementation. The implementation uses a local file to store the users and roles.
+
+### Extensions
+This section provides content related to the XAP **Premium** and **Enterprise** editions.
+
+[Administration Authorities](./security-authorities-ext.html){{<wbr>}}
+Additional authorities available for administration and monitoring
 
 [Securing Components](./securing-xap-components.html){{<wbr>}}
 GigaSpaces XAP has security built over the major server components-  GSA, GSM, GSC and also Processing Unit with Space data. This section explains how security relates to each component and the configurations needed to securing your application.
@@ -41,11 +48,11 @@ Customize security to meet your application requirements
 [Spring Security Bridge](./spring-security-bridge.html){{<wbr>}}
 Declarative Spring-based custom security bridge
 
-
 [Administration](./security-administration.html){{<wbr>}}
 This section explains the administration tools for managing XAP. The GUI provides a handy management tool for managing the users and roles, and comprehensive manageability of the secured components in the system.
 
-
+[Default File Based Security](./default-file-based-security-implementation.html){{<wbr>}}
+XAP provides a default security implementation. The implementation uses a local file to store the users and roles.
 
 [Hello World example](./securing-the-helloworld-example.html){{<wbr>}}
 Securing the hello world example.

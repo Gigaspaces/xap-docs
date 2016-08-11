@@ -1,33 +1,24 @@
 ---
 type: post120
 title:  Directory Management
-categories: XAP120SEC, PRM
+categories: XAP120SEC, OS
 parent: none
-weight: 500
+weight: 400
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
 
+The users `UserDetails` are to be stored in some kind of storage. Usually this storage provides tooling for managing the user data. The `SecurityManager.authenticate(UserDetails userDetails)` method tries to authenticate the user by accessing this storage, populating the `Authentication` result with the user authorities. This is specific to how the user's details and authority privileges are stored.
 
-The directory provides the means for managing users and roles. User and role information stored in a persistent storage need to be accessed for authentication purposes and for management (adding/modifying,associating, etc.).
+XAP provides an abstraction (`DirectoryManager`) which may be used to ease implementation. However, this is ***not mandatory** and is up to the implementor of the `SecurityManager` to decide.
 
-{{% align center%}}
-![security-seq5.PNG](/attachment_files/security-seq5.PNG)
-{{% /align%}}
+## Directory Manager interface
 
-The `SecurityManager` access the directory for authenticating the user. The authentication process retrieves the user credentials and permissions. On the other hand, you need some tool to access the directory for managing the users/roles. It can be as simple as SQL statements modifying records in a database.
+The users (`UserDetails`) and roles (`RoleDetails`) can be managed by acquiring a `DirectoryManager`, through which you may administer the users and roles. It is a simple API for creating, deleting, updating and mapping of users and roles.
 
-Our default _**file-based security implementation**_ uses a local file. Using the UI with the default security, you can add, modify, associate, remove users and roles which are saved to this local file. The UI calls upon the `DirectoryManager` implementation to perform these actions.
+We provide two distinct privileges for managing the directory when assigned with the `SystemAuthority` - one for user management `SystemPrivilege.MANAGE_USERS` and one for role management `SystemPrivilege.MANAGE_ROLES`.
 
-In general, if you are using the UI and the default file-based security than you probably don't need this API. If you need a command line tool to manage the users/roles you will probably need to write code either calling the default `DirectoryManager` implementation or write a custom implementation all together.
-
-# Accessing the directory
-
-The directory has clear distinction between user management and role management. For each there is an associated authority that can be granted to a user. For example, you may grant a user an authority to manage users but at the same time deny role management.
-
-The default user which can access the default file-based security implementation is **`admin/admin`**. Note that this is specific to the implementation. You can remove `admin` after first log-in to the directory, but make sure to declare a new user with **`MANAGE_USERS`** and/or **`MANAGE_ROLES`** authorities.
-
-# User Management
+## User Manager interface
 
 The [`DirectoryManager`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [`UserManager`](http://www.gigaspaces.com/docs/JavaDoc.6/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with **`MANAGE_USERS`** authority.
 
@@ -45,7 +36,7 @@ public interface UserManager {
 }
 ```
 
-# Role Management
+## Role Manager interface
 
 The [DirectoryManage](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing roles using the `RoleManager` API. Access should be granted only to users with **MANAGE_ROLES** authority.
 
@@ -63,9 +54,9 @@ public interface RoleManager {
 }
 ```
 
-# Using the API
+## Using the API
 
-The directory manager is accessible via the [SecurityManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/SecurityManager.html). In our default implementation, the user `admin/admin` has both `MANAGE_USERS` and `MANAGE_ROLES`. We will use this user to gain access to the directory manager. Also, we have two default implementations [`User`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/User.html) and [`Role`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/Role.html) implementing [`UserDetails`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserDetails.html) and [`RoleDetails`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/RoleDetails.html) respectively.
+The directory manager is accessible via the [SecurityManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/SecurityManager.html). In the example below, the user `admin/admin` has both `MANAGE_USERS` and `MANAGE_ROLES`. We will use this user to gain access to the directory manager. Also, we have two default implementations [`User`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/User.html) and [`Role`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/Role.html) implementing [`UserDetails`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserDetails.html) and [`RoleDetails`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/RoleDetails.html) respectively.
 
 
 ```java
@@ -118,4 +109,3 @@ userManager.createUser(new User("carol", "password",
 						"eg.Class*", true))
     ));
 ```
-

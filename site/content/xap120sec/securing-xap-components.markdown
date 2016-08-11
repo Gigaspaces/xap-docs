@@ -2,8 +2,8 @@
 type: post120
 title:  Securing Components
 categories: XAP120SEC, PRM
-parent: none
-weight: 700
+parent: security-ext.html
+weight: 500
 ---
 
 
@@ -14,6 +14,10 @@ GigaSpaces XAP has security built over the major "server" component - GSA, GSM, 
 <br>
 
 {{%fpanel%}}
+
+
+[Configuration](./security-configurations-ext.html){{<wbr>}}
+Configurations for Grid components
 
 [Securing Data](./securing-your-data.html){{<wbr>}}
 Secured Space, Processing Unit, Local Cache/View, Space Filters, Task Execution/Executors, Event Driven Remoting, JDBC.

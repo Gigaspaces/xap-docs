@@ -19,7 +19,7 @@ This section assumes that you are familiar with the [Security Basics](./security
 Before implementing custom security from scratch, consider the following alternatives:
 {{%/info%}}
 
-- Extending the [Default File-Based Security Implementation](./default-file-based-security-implementation.html) provided with the product (Supports replacing the encoding, referencing a security file on an HTTP server, and more).
+- Extending the [Default File-Based Security Implementation](./default-file-based-security-implementation-ext.html) provided with the product (Supports replacing the encoding, referencing a security file on an HTTP server, and more).
 - Using or extending the [Spring Security Bridge](./spring-security-bridge.html).
 
 # Packaging and Classpath
