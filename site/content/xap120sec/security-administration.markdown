@@ -2,8 +2,8 @@
 type: post120
 title:  Administration
 categories: XAP120SEC, PRM
-parent: none
-weight: 1000
+parent: security-ext.html
+weight: 800
 ---
 
 

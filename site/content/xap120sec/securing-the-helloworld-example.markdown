@@ -2,8 +2,8 @@
 type: post120
 title:  HelloWorld example
 categories: XAP120SEC, PRM
-parent: none
-weight: 1100
+parent: security-ext.html
+weight: 1000
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
