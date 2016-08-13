@@ -782,6 +782,14 @@ To free the resources used by the polling container make sure you close it prope
 
 # Polling Container Lifecycle
 
+The Polling Event Listener container supports several life cycle methods. 
+These allow you to create, start , stop and destroy the listener programmatically. 
+There is also the `setActiveWhenPrimary` lifecycle mode that will bind it to the Space mode when set to **TRUE**, starting it when the Space mode is PRIMARY and stopping otherwise.
+ 
+You can get the exact status of the Polling Event Listener container using the `isActive()`  and `isRunning()` method.
+Here is a simple example illustrating the different Polling Event Listener container life cycle methods:
+
+
 {{%tabs%}}
 {{%tab PollingContainerLifeCycle%}}
 ```java
