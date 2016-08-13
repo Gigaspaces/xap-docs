@@ -9,7 +9,7 @@ weight: 300
 {{% ssummary %}}{{% /ssummary %}}
 
 
-"**Authority**" refers to a grouping of privileges. A "**Privilege**" (permission) is a granted right to perform an operation/action on a resource. For example, a user may have a read privileges to access data.
+**Authority** refers to a grouping of privileges. A **Privilege** (permission) is a granted right to perform an operation/action on a resource. For example, a user may have a read privileges to access data.
 
 ```java
 public interface Authority {
