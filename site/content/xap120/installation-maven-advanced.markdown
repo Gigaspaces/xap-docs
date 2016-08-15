@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Advanced Configuration
-categories: XAP120
+categories: XAP120,PRM
 parent: installation-maven.html
 weight: 200
 ---
