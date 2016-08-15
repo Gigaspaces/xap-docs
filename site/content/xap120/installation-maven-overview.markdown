@@ -18,12 +18,11 @@ Maven is a tool used to automate and simplify the development cycle of any Java-
 
 {{%fpanel%}}
 
-[Maven Plugin Installation](./installation-maven.html)<br>
-Setting up the maven environment.
+[Maven Artifacts](./maven-artifacts.html)<br>
+Getting started with XAP using Maven
 
-[Advanced configuration](./installation-maven-advanced.html)<br>
-Processing Unit Assembly Definitions.
-
+[Maven Plugin](./installation-maven.html)<br>
+Installation and usage of the XAP plugin for maven.
 
 {{%/fpanel%}}
 
