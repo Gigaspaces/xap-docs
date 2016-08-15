@@ -2,7 +2,7 @@
 type: post120
 title:  Advanced Configuration
 categories: XAP120
-parent: installation-maven-overview.html
+parent: installation-maven.html
 weight: 200
 ---
 
