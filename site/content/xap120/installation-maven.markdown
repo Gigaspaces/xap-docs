@@ -1,7 +1,7 @@
 ---
 type: post120
 title:  Maven Plugin
-categories: XAP120
+categories: XAP120,PRM
 parent: installation-maven-overview.html
 weight: 100
 ---
