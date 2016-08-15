@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Setup
+title:  Maven Plugin
 categories: XAP120
 parent: installation-maven-overview.html
 weight: 100
@@ -43,28 +43,6 @@ OS name: "linux", version: "3.13.0-76-generic", arch: "amd64", family: "unix"
 {{% info "Dependency Download by Maven "%}}
 Maven uses repositories: a local repository where all required dependencies (artifacts) are stored for Maven's use, and remote repositories from which Maven downloads required dependencies that are missing in the local repository. If a dependency is missing from the local repository during execution, Maven automatically downloads the missing dependencies from the remote repositories. The download might take a few minutes (progress messages are printed to the console). When the download is finished, Maven returns to its original tasks.
 {{%/info%}}
-
-{{%anchor dependencies%}}
-
-# XAP Artifacts
-
-The main dependency required to use XAP is `xap-openspaces`
-```xml
-<dependency>
-  <groupId>org.gigaspaces</groupId>
-  <artifactId>xap-openspaces</artifactId>
-  <version>{{%version "maven-version" %}}</version>
-</dependency>
-```
-
-Since XAP artifacts are currently not published in Maven Central Repo, you'll also need to configure a repository:
-
-```xml
-<repository>
-   <id>org.openspaces</id>
-   <url>http://maven-repository.openspaces.org</url>
-</repository>
-```
 
 # Installation
 
