@@ -10,7 +10,7 @@ weight: 100
 
 
 
-There are many cases when you need to use a unicast-based services discovery. For example if you want to to use unicast with multicast (using Jini Groups), which is the default, or when **you do not have multicast enabled, or you prefer not to use multicast**.
+There are many cases when you need to use a unicast-based services discovery. For example if you want to use unicast with multicast (using Jini Groups), which is the default, or when **you do not have multicast enabled, or you prefer not to use multicast**.
 
 In such cases, the Jini lookup discovery enables the user to discover services (spaces, GSC, GSM, processing units etc.) using unicast protocol.
 

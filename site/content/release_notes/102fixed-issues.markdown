@@ -41,7 +41,7 @@ Below is a list of issues that have been fixed in GigaSpaces 10.2.X.
 | GS-12378 | Space partition split-brain alert in Admin API and web-ui | 10.2 |  | Java |
 | GS-12383 | Deploying an Elastic PU via CLI results in authentication error | 10.2 | 9708 | All |
 | GS-12242 | Multithreaded execution of tasks on a secured space occasionally fails on "No credentials were provided" | 10.2 | 9426 | Java |
-| GS-11937 | Force kill service by GSA in similar manner to to kill -9  | 10.2 | 9158,9338 | All |
+| GS-11937 | Force kill service by GSA in similar manner to kill -9  | 10.2 | 9158,9338 | All |
 | GS-12357 | Deployment of a PU containing an abstract bean fails | 10.2 | 9680 | All |
 | GS-12403 | Generate on the fly self signed certificate does not work with IBM JDK | 10.2 | 9712 | All |
 | GS-12353 | Service details of REST PU shows invalid URL on Windows | 10.2 |  | Java |

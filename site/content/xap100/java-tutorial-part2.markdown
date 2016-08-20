@@ -156,7 +156,7 @@ GS_HOME/bin/gs_webui.sh
 {{% /tab %}}
 {{% /tabs %}}
 
-After you execute the above command, open a browser and goto to `http://your_host:8099` and the login screen for the admin application will open up. The following screen shots will demonstrate some of the UI features: (no username and password needed)
+After you execute the above command, open a browser and goto  `http://your_host:8099` and the login screen for the admin application will open up. The following screen shots will demonstrate some of the UI features: (no username and password needed)
 
  
 {{%section%}}

@@ -143,7 +143,7 @@ You can start XAP's console and inspect the Data Grid components that have been 
 GS_HOME\bin\Gs-webui.exe
 ```
 
-After you execute the above command, open a browser and goto to `http://your_host:8099` and the login screen for the admin application will open up. The following screen shots will demonstrate some of the UI features: (no username and password needed)
+After you execute the above command, open a browser and go to  `http://your_host:8099` and the login screen for the admin application will open up. The following screen shots will demonstrate some of the UI features: (no username and password needed)
 
  
 {{%section%}}
