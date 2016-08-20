@@ -26,8 +26,8 @@ When the application reading data from the IMDG there are two operational modes 
 
 The Cache policy mode impacts also the initialization of the IMDG instance and the way it is reading data from the data source to bootstrap itself.
 
-- With **`ALL_IN_CACHE`** Cache policy - Each IMDG instance iterating through the database and loading all the relevant data.
-- With **`LRU`** Cache policy - Each IMDG instance iterating through the database and loading only partial amount of data (based on the Initial-load , memory-usage and Cache Size settings).
+- With `ALL_IN_CACHE` Cache policy - Each IMDG instance iterating through the database and loading all the relevant data.
+- With `LRU` Cache policy - Each IMDG instance iterating through the database and loading only partial amount of data (based on the Initial-load , memory-usage and Cache Size settings).
 
 {{% refer %}}See the [Space Persistency Initial Load](./space-persistency-initial-load.html) for details how you can change the default behavior of the IMDG bootstrapping process once started.{{% /refer %}}
 

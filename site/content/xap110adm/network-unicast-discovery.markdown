@@ -51,7 +51,7 @@ When the locators attribute is used in conjunction with the jini://* prefix and 
 If you want unicast only, you should disable multicast altogether.
 
 {{% tip "Unicast discovery only"%}}
-For unicast discovery only, you should disable multicast using **`-Dcom.gs.multicast.enabled=false`** system property, and use:
+For unicast discovery only, you should disable multicast using `-Dcom.gs.multicast.enabled=false` system property, and use:
 
 
 ```java

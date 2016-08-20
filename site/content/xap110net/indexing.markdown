@@ -29,11 +29,11 @@ Naturally the question arises of when to use indexing. Usually it is recommended
 
 The index type is determined by the **`SpaceIndexType`** enumeration. The index types are:
 
-**`NONE`** - No indexing is used.
+`NONE` - No indexing is used.
 
-**`BASIC`** - Basic index is used - this speeds up equality matches (equal to/not equal to).
+`BASIC` - Basic index is used - this speeds up equality matches (equal to/not equal to).
 
-**`EXTENDED`** - Extended index - this speeds up comparison matches (bigger than/less than).
+`EXTENDED` - Extended index - this speeds up comparison matches (bigger than/less than).
 
 
 # Indexing at Design-time

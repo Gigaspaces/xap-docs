@@ -61,7 +61,7 @@ A user can be associated with predefined roles and be granted with user-specific
 ##### Associating a role
 
 To associate a user with roles, choose the roles from the list of roles. Each associated **role** will appear in its own tab,
-and the **`Aggregated`** view will show the aggregation of all the privileges (user-specific and roles).
+and the `Aggregated` view will show the aggregation of all the privileges (user-specific and roles).
 
 {{%align center%}}
 ![create-new-user.png](/attachment_files/create-new-user.png)

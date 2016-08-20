@@ -8,7 +8,7 @@ weight: 400
 
 {{% ssummary %}}{{% /ssummary %}}
 
-The log file names, location and format are all properties of the Java log `Handler`. GigaSpaces uses a rolling file handler implemented by the class `com.gigaspaces.logger.`**`RollingFileHandler`**`, which is based on Java's `java.util.logging.FileHandler`, but with extended functionality. It provides two policies that can trigger a "rollover" to a new file, and a customizable extension point for backing up files.
+The log file names, location and format are all properties of the Java log `Handler`. GigaSpaces uses a rolling file handler implemented by the class `com.gigaspaces.logger.``RollingFileHandler``, which is based on Java's `java.util.logging.FileHandler`, but with extended functionality. It provides two policies that can trigger a "rollover" to a new file, and a customizable extension point for backing up files.
 
 # Rolling Over to a New File
 

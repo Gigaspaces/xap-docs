@@ -144,7 +144,7 @@ public class Person {
 |Syntax     | replicate |
 |Argument   | boolean          |
 |Default    | true|
-|Description| When running in a partial replication mode, a **`false`** value for this property will not replicates all objects from this class type to the replica space or backup space.} |
+|Description| When running in a partial replication mode, a `false` value for this property will not replicates all objects from this class type to the replica space or backup space.} |
 
 Example:
 

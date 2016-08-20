@@ -202,7 +202,7 @@ The URL above assumes the Apache Load Balancer is configured to use port 8888.
 
 With GigaSpaces HTTP Session Management, the session and its attributes are stored in the space. Once the webserver requests the session, it is retrieved from the space and thus will be available in each webserver. This allows using the **Non-Sticky** Session model.
 
-To use the Non-Sticky Session model, you only need to configure the Load Balancer. Note that the only change is to remove the **`stickysession=JSESSIONID`** as following:
+To use the Non-Sticky Session model, you only need to configure the Load Balancer. Note that the only change is to remove the `stickysession=JSESSIONID` as following:
 
 
 ```xml

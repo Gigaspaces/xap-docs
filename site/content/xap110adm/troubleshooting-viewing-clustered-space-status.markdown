@@ -65,7 +65,7 @@ URL: [jini://*/fooSpace_container1_1/foSpace?groups=foo-group&ignoreValidation=t
 | -Dcom.gs.cluster.livenessMonitorFrequency | Defines the frequency in which liveness of 'live' members in a cluster is monitored. (Checks if available members become unavailable). | 10000 ms |
 | -Dcom.gs.cluster.livenessDetectorFrequency | Defines the frequency in which liveness of members in a cluster is detected. (Detects if an unavailable member becomes available). | 5000 ms |
 
-In most cases, **`livenessDetectorFrequency`** is the property you need to alter, since it is responsible for detecting spaces that are unavailable.
+In most cases, `livenessDetectorFrequency` is the property you need to alter, since it is responsible for detecting spaces that are unavailable.
 
 The unavailability of cluster members is noticed when a direct operation is performed on them. The `livenessMonitorFrequency` property timely monitors all live cluster members. Usually, when you have backup-only spaces, this is most important. The only time an operation is performed on a _backup-only_ space is when it becomes active (i.e., primary), and thus you want it's availability status to be noticed beforehand.
 
@@ -73,5 +73,5 @@ The unavailability of cluster members is noticed when a direct operation is perf
 It is recommended to **increase the value of the `Monitor` thread to a maximum** if there are **many clients** or if a large cluster is used.
 {{%/note%}}
 
-Usually, when there is no **failover** or when there are no **`backup-only`** spaces, the `Monitor` thread can be safely set to its maximum value, since clients directly interact with the space members. If either is detected as unavailable, the `Detector` thread is responsible for detecting whether they become available again.
+Usually, when there is no **failover** or when there are no `backup-only` spaces, the `Monitor` thread can be safely set to its maximum value, since clients directly interact with the space members. If either is detected as unavailable, the `Detector` thread is responsible for detecting whether they become available again.
 
