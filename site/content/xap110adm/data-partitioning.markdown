@@ -199,9 +199,9 @@ Load-balancing can also be combined with failover, to achieve both scalability a
 
 There are three Broadcast options:
 
-- **`broadcast-if-null-values`** -- for `null` fields, for hash-based `null` index. Default for read, take and notify. Its meaning is: the template is a `null` template (actual `null` or all fields are `null` or no fields), or, if the load-balancing policy is hash-based, the first index (hash index) is `null` or no index is defined. This option is triggered in the following case: the LB policy is not hash-based and extended-matching (Using `SQLQuery`, for example) is used by the template, or the LB policy is hash-based and extended matching is used and the match-code for the specific field is not EQ (equal). The latter is designated in order to enable query processor and other extended-matching users to query over multiple spaces.
-- **`unconditional`** -- use broadcast mode anyway -- whatever the template field value is.
-- **`broadcast-disabled`** -- disable broadcast. Operations are routed based on a template's first indexed field. If template's first indexed field is `null`, an error occurs.
+- `broadcast-if-null-values` -- for `null` fields, for hash-based `null` index. Default for read, take and notify. Its meaning is: the template is a `null` template (actual `null` or all fields are `null` or no fields), or, if the load-balancing policy is hash-based, the first index (hash index) is `null` or no index is defined. This option is triggered in the following case: the LB policy is not hash-based and extended-matching (Using `SQLQuery`, for example) is used by the template, or the LB policy is hash-based and extended matching is used and the match-code for the specific field is not EQ (equal). The latter is designated in order to enable query processor and other extended-matching users to query over multiple spaces.
+- `unconditional` -- use broadcast mode anyway -- whatever the template field value is.
+- `broadcast-disabled` -- disable broadcast. Operations are routed based on a template's first indexed field. If template's first indexed field is `null`, an error occurs.
 
 # Batch Operation Execution Mode
 

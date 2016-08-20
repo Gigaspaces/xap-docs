@@ -144,7 +144,7 @@ Unicast discovery can be either used with or without multicast.
 
 ### Using Unicast to Register With a Lookup Service
 
-By default, the cluster member URLs are configured to use `jini://\*/container_name/space_name`, which performs lookup using the multicast protocol. To enable unicast in a clustered environment, specify the exact machine network interface card accessible for discovery.
+By default, the cluster member URLs are configured to use `jini://*/container_name/space_name`, which performs lookup using the multicast protocol. To enable unicast in a clustered environment, specify the exact machine network interface card accessible for discovery.
 
 When using unicast to register with a lookup service, the lookup host should be set to where the lookup service is running.
 

@@ -33,7 +33,7 @@ There is no need for any service to be up and running. Just choose from the titl
 {{%/align%}}
 
 - `Use Default Configuration` - The defaults of the underlying implementation.
-For example, the file-based implementation's defaults are to access/create a file located under **`<XAP root>/security/gs-directory.fsm`**.
+For example, the file-based implementation's defaults are to access/create a file located under `<XAP root>/security/gs-directory.fsm`.
 
 - `Security Properties File` - Choose your configuration properties file that will configure the underlying implementation.
 For example, to configure a different`file-path` for the file-based implementation.

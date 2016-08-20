@@ -355,7 +355,7 @@ The basic architecture consists of the following components:
 - **Space** -- runs in standalone mode or as part of a Processing Unit.
 - **Java worker wrapper** running in the space. This worker is injected with the space proxy.
 - **c++ worker wrapper** -- this worker might pass objects to the `ICppWorker` implementation.
-- **`ICppWorker` implementation** -- the c++ implementation can access the space directly, or receive data from the space via the Java worker wrapper and its c++ worker wrapper counterpart.
+- **ICppWorker** implementation** -- the c++ implementation can access the space directly, or receive data from the space via the Java worker wrapper and its c++ worker wrapper counterpart.
 
 {{% indent %}}
 ![cpp-arch-image012.jpg](/attachment_files/cpp-arch-image012.jpg)

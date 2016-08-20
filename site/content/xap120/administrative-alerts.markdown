@@ -64,7 +64,7 @@ The alert is configured with a high threshold of 80% and a low threshold of 60% 
 ...
 ```
 
-The **`class`** attribute above is the implementation class used to configure the settings of this alert. When configuring **`enabled="false"`** alerts of this type will not be triggered, until enabled again (at runtime).
+The `class` attribute above is the implementation class used to configure the settings of this alert. When configuring `enabled="false"` alerts of this type will not be triggered, until enabled again (at runtime).
 
 Note that some alert triggers define that an alert is raised each time a certain high threshold is crossed for example. This means that can be are multiple raised alerts at the same time, each indicating its own utilization reading at the time it was triggered. On the other hand, there can only be one resolving alert, which 'resolves' the already raised alert/s.
 

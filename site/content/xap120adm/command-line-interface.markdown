@@ -159,7 +159,7 @@ For more details on monitoring and management using JMX, refer to the [JMX Manag
 
 The `list` command lists information about active Service Grid services.
 
-The following values are allowed for **`type`**. Only one type can be specified.
+The following values are allowed for `type`. Only one type can be specified.
 
 
 | Type | Description |
