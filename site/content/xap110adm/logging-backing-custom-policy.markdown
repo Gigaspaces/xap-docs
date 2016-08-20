@@ -41,7 +41,7 @@ For example:
 
 # Customized Backup Policy
 
-The `com.gigaspaces.logger.`**`BackupPolicy`** is an interface for a pluggable backup policy. For example, you may wish to write an implementation to zip files if reached a certain threshold. The interface has a single method, which is used to **track** newly created log files. A file is either created upon rollover or at initialization time. Implementation can keep track of files and decide whether to trigger the backup policy.
+The `com.gigaspaces.logger.` `BackupPolicy` is an interface for a pluggable backup policy. For example, you may wish to write an implementation to zip files if reached a certain threshold. The interface has a single method, which is used to **track** newly created log files. A file is either created upon rollover or at initialization time. Implementation can keep track of files and decide whether to trigger the backup policy.
 
 
 ```bash

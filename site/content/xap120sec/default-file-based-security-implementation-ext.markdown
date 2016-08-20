@@ -19,10 +19,10 @@ One such custom security implementation is the [Spring Security Bridge](./spring
 
 The default security file-based directory is first created when you try to manage the security directory (either using the UI or API).
 
-The default file is created under **`<XAP root>/security/gs-directory.fsm`**.
+The default file is created under `<XAP root>/security/gs-directory.fsm`.
 The `.fsm` is an abbreviation of File Security Manager.
 
-When the file doesn't exist, we create a new file and an **`admin/admin`** user is added with both **Manage Users** and **Manage Roles** privileges. With this `admin` user you can start to manage the roles and users. The `admin` user has no privileges to perform any other operation. Of course, it can be deleted, and replaced with your own administrator.
+When the file doesn't exist, we create a new file and an `admin/admin` user is added with both **Manage Users** and **Manage Roles** privileges. With this `admin` user you can start to manage the roles and users. The `admin` user has no privileges to perform any other operation. Of course, it can be deleted, and replaced with your own administrator.
 
 The file can be changed while services are up and running. Changes to the file are monitored (see `FileService.lastModified()` API), which triggers a refresh for fetching the updated file contents. The refresh rate is platform dependent. Changes don't affect open sessions, only new established sessions will be aware of the change.
 
@@ -92,7 +92,7 @@ com.gs.security.fs.password-encoder.class = eg.MyPasswordEncoder
 The content encoder is used to encode/decode the user details, roles and authorities stored in the file-based directory.
 The default content encoding algorithm is AES 128-bit. This is a two-way function that requires a private key to encrypt and decrypt.
 
-An AES compliant private key (of type `javax.crypto.SecretKey`) named **`gs-private.key`** can be placed in the classpath to replace our default private key. Similar to a local keystore in SSL, to prevent clients the ability to connect if they only hold the password.
+An AES compliant private key (of type `javax.crypto.SecretKey`) named `gs-private.key` can be placed in the classpath to replace our default private key. Similar to a local keystore in SSL, to prevent clients the ability to connect if they only hold the password.
 
 The `ContentEncoder` interface exposes two methods:
 

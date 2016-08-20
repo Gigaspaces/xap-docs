@@ -27,7 +27,7 @@ Naturally the question arises of when to use indexing. Usually it is recommended
 
 # Index Types
 
-The index type is determined by the **`SpaceIndexType`** enumeration. The index types are:
+The index type is determined by the `SpaceIndexType` enumeration. The index types are:
 
 `NONE` - No indexing is used.
 

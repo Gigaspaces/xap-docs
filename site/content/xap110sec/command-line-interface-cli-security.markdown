@@ -15,7 +15,7 @@ The Command Line Interface can be used to manage and monitor a running system. I
 
 # Login/Logout
 
-The Command Line Interface (CLI) has two modes - an `interactive shell` mode and a `non-interactive` mode. The difference in terms of security is the **login** stage. When in `interactive` mode, you can call the **`login`** command, supply credentials, and perform operations using this session. But, when in a `non-interactive` mode, you can execute only one command line at a time - no session is being managed.
+The Command Line Interface (CLI) has two modes - an `interactive shell` mode and a `non-interactive` mode. The difference in terms of security is the **login** stage. When in `interactive` mode, you can call the `login` command, supply credentials, and perform operations using this session. But, when in a `non-interactive` mode, you can execute only one command line at a time - no session is being managed.
 
 {{% info %}}
 Note that the login is being performed against the GSM. If the Grid is not secured, you can deploy without logging in. For example, you can deploy a secured Processing Unit into a non-secured Grid.

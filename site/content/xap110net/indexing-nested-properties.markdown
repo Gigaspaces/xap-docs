@@ -11,11 +11,11 @@ weight: 200
 # Overview
 An index can be defined on a nested property to improve performance of nested queries - this is highly recommended.
 
-Nested properties indexing uses an additional `[SpaceIndex]` attribute - **`Path`**.
+Nested properties indexing uses an additional `[SpaceIndex]` attribute - `Path`.
 
 # The SpaceIndex.Path Attribute
 
-The **`Path`** attribute represents the path of the property within the nested object.
+The `Path` attribute represents the path of the property within the nested object.
 
 Below is an example of defining an index on a nested property:
 

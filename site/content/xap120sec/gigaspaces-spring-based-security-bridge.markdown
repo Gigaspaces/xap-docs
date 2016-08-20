@@ -14,7 +14,7 @@ weight: 200
 
 You may have noticed that Spring's Security `AuthenticationProvider` and `AuthenticationManager`, aren't much different from the GigaSpaces `com.gigaspaces.security.SecurityManager`. In Fact, they share a similar `authentication` method that handles authentication.
 
-The **`org.openspaces.security.spring.SpringSecurityManager`** is a the GigaSpaces Spring Security bridge (between Spring Security and GigaSpaces Security Manager). It relies on the Spring Security XML configuration file for its context definitions. The Spring Security configuration resides in a standalone XML file.
+The `org.openspaces.security.spring.SpringSecurityManager` is a the GigaSpaces Spring Security bridge (between Spring Security and GigaSpaces Security Manager). It relies on the Spring Security XML configuration file for its context definitions. The Spring Security configuration resides in a standalone XML file.
 
 {{% align center%}}
 ![SpringSecurityBridge.png](/attachment_files/SpringSecurityBridge.png)

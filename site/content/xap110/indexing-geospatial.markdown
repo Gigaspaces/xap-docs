@@ -40,7 +40,7 @@ See [Geospatial queries](./query-geospatial.html)  for more information on how g
 
 ### Nested Index
 
-An index can be defined on a nested property to improve performance of nested queries. Nested properties indexing uses an additional attribute - **`path()`**.
+An index can be defined on a nested property to improve performance of nested queries. Nested properties indexing uses an additional attribute - `path()`.
 This attribute represents the path of the property within the nested object.
 
 In the example below, the `Point` is a property of the class `Location`  which is a property of `GasStation`:

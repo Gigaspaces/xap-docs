@@ -35,7 +35,7 @@ Further correspondence are done via this authenticated session context. The serv
 
 # Encryption
 
-A two-way encryption is used to protect the credentials passed as part of the authentication process. The `UserDetails` object is encrypted before it is sent along the stream, and decrypted at the service. Of course, it is best to use **SSL** for transport layer security, but nevertheless we ensure these details are encrypted. The two-way encryption is done using a private key available to both client and server. A generated AES compliant key can be kept in a **`gs-keystore.key`** file located in the classpath. See `ContentEncoder` interface for more details.
+A two-way encryption is used to protect the credentials passed as part of the authentication process. The `UserDetails` object is encrypted before it is sent along the stream, and decrypted at the service. Of course, it is best to use **SSL** for transport layer security, but nevertheless we ensure these details are encrypted. The two-way encryption is done using a private key available to both client and server. A generated AES compliant key can be kept in a `gs-keystore.key` file located in the classpath. See `ContentEncoder` interface for more details.
 
 ```java
 interface ContentEncoder {

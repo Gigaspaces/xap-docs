@@ -497,7 +497,7 @@ When running on a partitioned space, it is important to understand how routing i
 
 If the routing property is part of the criteria expression with an equality operand and without ORs, its value is used for routing.
 
-For example, suppose the routing property of **`MyClass`** is **`num`**:
+For example, suppose the routing property of `MyClass` is `num`:
 
 
 ```java

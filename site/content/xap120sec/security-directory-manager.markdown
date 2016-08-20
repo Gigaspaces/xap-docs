@@ -20,7 +20,7 @@ We provide two distinct privileges for managing the directory when assigned with
 
 ## User Manager interface
 
-The [`DirectoryManager`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [`UserManager`](http://www.gigaspaces.com/docs/JavaDoc.6/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with **`MANAGE_USERS`** authority.
+The [`DirectoryManager`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [`UserManager`](http://www.gigaspaces.com/docs/JavaDoc.6/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with `MANAGE_USERS` authority.
 
 The [`UserManager`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserManager.html) interface has simple methods for declaring users:
 

@@ -93,7 +93,7 @@ Double-click on the role to **Edit** it, or select a role and press one of the a
 
 Creating a role is the same as creating a user with user-specific privileges. Except that these privileges can be associated by role-name to users.
 
-The following role is set to have `Monitor PU`, `Manage Grid`, `Provision PU`, `Manage PU`, and a `Space Operation` rule allowing a **`Write`** of any class matching **`eg.Account`**.
+The following role is set to have `Monitor PU`, `Manage Grid`, `Provision PU`, `Manage PU`, and a `Space Operation` rule allowing a `Write` of any class matching `eg.Account`.
 
 {{%align center%}}
 ![create-new-role.png](/attachment_files/create-new-role.png)
@@ -172,7 +172,7 @@ It is important to understand the difference between the credentials supplied to
 
 ## Deploying a Secured data-grid
 
-To deploy a secured data-grid, select the **`Secured Space`** checkbox. Supplying credentials is optional. If no credentials are supplied, a secured Space will be instantiated. If credentials are supplied, a secured Space will be instantiated, propagating the credentials to internal services (i.e. Space Filters).
+To deploy a secured data-grid, select the `Secured Space` checkbox. Supplying credentials is optional. If no credentials are supplied, a secured Space will be instantiated. If credentials are supplied, a secured Space will be instantiated, propagating the credentials to internal services (i.e. Space Filters).
 
 {{%align center%}}
 ![deployment-wizard.png](/attachment_files/deployment-wizard.png)
@@ -190,7 +190,7 @@ The custom properties can hold both space configurations and security configurat
 
 ## Deploying a Secured Processing Unit
 
-To deploy a secured processing unit, select the **`Secured Space`** checkbox. As with a secured data-grid, supplying credentials is optional. The supplied credentials will be passed to the processing unit, to be propagated to the beans relying on the Space proxy.
+To deploy a secured processing unit, select the `Secured Space` checkbox. As with a secured data-grid, supplying credentials is optional. The supplied credentials will be passed to the processing unit, to be propagated to the beans relying on the Space proxy.
 
 _For example, the `data-processor` has a polling container - when deployed, the credentials supplied need to meet the permissions required by the embedded processing units. In this case, a **Take** privilege. The `data-feeder` on the other hand, when deployed, needs **Write** privileges to write into the `data-processor` cluster._
 
