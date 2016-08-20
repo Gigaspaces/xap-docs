@@ -168,7 +168,7 @@ Note that when using a non-sticky load balancing policy with a web application t
 # Backing Your HTTP Session with the Space
 
 To save the application's HTTP session store on top of the space, you will have to use a number of deployment properties. If you're not familiar with the configuration of deployment properties, please make sure to review [Step 1](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html) of this tutorial which also includes [a detailed explanation](./step-1-deploying-your-web-application-to-the-gigaspaces-environment.html#Step1-DeployingYourWebApplicationtotheGigaSpacesEnvironment-DeployDirections) on how to configure these properties in the GigaSpaces XAP environment.
-The first property you have to specify is the `jetty.sessions.spaceUrl`, which specifies the URL of the space with which you want to back the HTTP session store. You can specify a plain space URL, e.g. `jini://\*/\*/sessionSpace?useLocalCache` or `/./sessionSpace?cluster_schema=replicated`. If you are using a `pu.xml` file to configure the Space (and other elements of your web application - since the `pu.xml` file is full fledged Spring configuration file), you can use it to back the HTTP session store. The sample application contains the following `pu.xml` file:
+The first property you have to specify is the `jetty.sessions.spaceUrl`, which specifies the URL of the space with which you want to back the HTTP session store. You can specify a plain space URL, e.g. `jini://*/sessionSpace?useLocalCache` or `/./sessionSpace?cluster_schema=replicated`. If you are using a `pu.xml` file to configure the Space (and other elements of your web application - since the `pu.xml` file is full fledged Spring configuration file), you can use it to back the HTTP session store. The sample application contains the following `pu.xml` file:
 
 
 ```xml
@@ -190,7 +190,7 @@ The following table summarizes the available deployment properties:
 
 |Property Name|Description|Example values|Mandatory?|
 |:------------|:----------|:-------------|:---------|
-|**`jetty.sessions.spaceUrl`**|specifies the URL of the space with the HTTP session store will be backed. Use the `bean://` notation to reference a space proxy defined within the `META-INF/spring/pu.xml` file.|`jini://\*/\*/sessionSpace?useLocalCache{{<wbr>}}   /./sessionSpace?cluster_schema=replicated{{<wbr>}}   bean://sessionSpace`| Yes |
+|**`jetty.sessions.spaceUrl`**|specifies the URL of the space with the HTTP session store will be backed. Use the `bean://` notation to reference a space proxy defined within the `META-INF/spring/pu.xml` file.|`jini://*/sessionSpace?useLocalCache{{<wbr>}}   /./sessionSpace?cluster_schema=replicated{{<wbr>}}   bean://sessionSpace`| Yes |
 |**`jetty.sessions.scavengePeriod`** | Determines how often the web container will check for expired sessions. Set in seconds and defaults to 300 seconds (5 minutes) | `300` | No |
 |**`jetty.sessions.savePeriod`** | How often an actual update of a **non dirty** session will be performed to the Space. Set in seconds and defaults to 60 seconds. This is useful for cases where a session attribute is not updated explicitly using the `HttpSession#setAttribute` method. More importantly, it makes sure to report the last time the user has accessed the application to the space so that the user session will not expire | `60` | No |
 |**`jetty.sessions.timeout`** | Determines the HTTP session timeout in minutes (similar to `session-timeout` element in `web.xml`. Defaults to 30 minutes | `15` | No |

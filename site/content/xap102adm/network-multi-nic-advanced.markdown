@@ -212,7 +212,7 @@ The comma-separated list of `IP:ports` pairs specify the exact machine network i
 
 ### Using Unicast to Locate Other Cluster Members
 
-By default the cluster member URLs are configured to use `jini://\*/container_name/space_name` which performs lookup using the multicast protocol.
+By default the cluster member URLs are configured to use `jini://*/container_name/space_name` which performs lookup using the multicast protocol.
 
 To use unicast, specify the exact machine network interface card by which the Jini lookup service performs discovery.
 
