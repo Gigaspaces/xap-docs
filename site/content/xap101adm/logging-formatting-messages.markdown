@@ -10,7 +10,7 @@ weight: 300
 
 The logged output of a logger can be customized to any format, such as an XML or a human readable format.
 
-Typically each logging `Handler` will have a `Formatter` associated with it. The `Formatter` takes a `LogRecord` and converts it to a string. The default `Formatter` assigned to the `Handlers` declared in the logging configuration file is `com.gigaspaces.logger.`**`GSSimpleFormatter`**. This formatter is based on the `java.util.logging.`**`SimpleFormatter`** class, which prints a brief summary of the `LogRecord` in a human readable format.
+Typically each logging `Handler` will have a `Formatter` associated with it. The `Formatter` takes a `LogRecord` and converts it to a string. The default `Formatter` assigned to the `Handlers` declared in the logging configuration file is `com.gigaspaces.logger.` `GSSimpleFormatter`. This formatter is based on the `java.util.logging.``SimpleFormatter` class, which prints a brief summary of the `LogRecord` in a human readable format.
 
 # The `format` Property
 

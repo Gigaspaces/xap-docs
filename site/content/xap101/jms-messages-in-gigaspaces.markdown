@@ -18,15 +18,15 @@ JMS messages implementation; supported and unsupported message types; message co
 
 The following message types are supported by GigaSpaces:
 
-- **`Message`** -- a simple message that doesn't contain any payload (body).
-- **`BytesMessage`** -- transports a stream of un interpreted bytes, typically used to duplicate the body of one of the other message types. `BytesMessages` are useful when reading raw data from a disk file, and transferring it 'as is' to another machine and/or location.
-- **`TextMessage`** -- contains a `java.lang.string` for transporting string objects, especially XML documents.
-- **`ObjectMessage`** -- transports any serializable Java object.
-- **`MapMessage`** -- transports a self-defining set of name-value pairs, where names equal strings and values equal Java primitive types.
+- `Message` -- a simple message that doesn't contain any payload (body).
+- `BytesMessage` -- transports a stream of un interpreted bytes, typically used to duplicate the body of one of the other message types. `BytesMessages` are useful when reading raw data from a disk file, and transferring it 'as is' to another machine and/or location.
+- `TextMessage` -- contains a `java.lang.string` for transporting string objects, especially XML documents.
+- `ObjectMessage` -- transports any serializable Java object.
+- `MapMessage` -- transports a self-defining set of name-value pairs, where names equal strings and values equal Java primitive types.
 
 ### Unsupported JMS Message Types
 
-**`StreamMessage`** is not supported. `StreamMessage` transports a stream of Java primitive values, to be filled and read sequentially. Unlike a `BytesMessage`, a `StreamMessage` is aware of the type of primitives that are stored in it, and throws an exception if an attempt is made to read bytes and convert them to the wrong primitive.
+`StreamMessage` is not supported. `StreamMessage` transports a stream of Java primitive values, to be filled and read sequentially. Unlike a `BytesMessage`, a `StreamMessage` is aware of the type of primitives that are stored in it, and throws an exception if an attempt is made to read bytes and convert them to the wrong primitive.
 
 ### Message Compression
 

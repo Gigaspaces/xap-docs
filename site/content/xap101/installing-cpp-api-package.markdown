@@ -51,10 +51,10 @@ There are several environment settings that are necessary to build and run the e
 
 The following environment variables need to be defined:
 
-- **`JSHOMEDIR`** -- the `<XAP Root>` directory.
-- **`PLATFORM`** -- the build platform, in this case win32 or win64.
-- **`COMPILER`** -- the compiler used for building, for example: VS9.0.
-- **`PATH`** -- This should include the compiler folder , GigaSpaces gsxml2cpp location and the jvm.dll location
+- `JSHOMEDIR` -- the `<XAP Root>` directory.
+- `PLATFORM` -- the build platform, in this case win32 or win64.
+- `COMPILER` -- the compiler used for building, for example: VS9.0.
+- `PATH` -- This should include the compiler folder , GigaSpaces gsxml2cpp location and the jvm.dll location
 
 For example:
 
@@ -66,13 +66,13 @@ set PLATFORM=win32
 set COMPILER=VS9.0
 ```
 
-In addition, for windows 32 bit the **`PATH`** variable should be updated to include:
+In addition, for windows 32 bit the `PATH` variable should be updated to include:
 
 ```bash
 %JSHOMEDIR%\cpp\lib\%PLATFORM%\%COMPILER%;%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\client
 ```
 
-For windows 64 bit the **`PATH`** variable should be updated to include:
+For windows 64 bit the `PATH` variable should be updated to include:
 
 
 ```bash
@@ -83,8 +83,8 @@ For windows 64 bit the **`PATH`** variable should be updated to include:
 
 If you don't want to set these variables globally (by defining System Variables) then the GigaSpaces C++ package includes the following script files that help set the environment:
 
-- **`<XAP Root>\cpp\env.cmd`** -- Running this file defines these variables to match your platform.
-- **`<XAP Root>\cpp\GigaVisualStudio.bat`** -- Running this file starts **Visual Studio** and automatically sets the environment.
+- `<XAP Root>\cpp\env.cmd` -- Running this file defines these variables to match your platform.
+- `<XAP Root>\cpp\GigaVisualStudio.bat` -- Running this file starts **Visual Studio** and automatically sets the environment.
 
 {{% tip %}} You might need to edit these files to include the correct values for the `PATH` , `JAVA_HOME` and `JSHOMEDIR` environment variables and the correct location of Visual Studio and the jvm.dll.{{%/tip%}}
 
@@ -95,9 +95,9 @@ If you don't want to set these variables globally (by defining System Variables)
 
 The following environment variables need to be defined:
 
-- **`JSHOMEDIR`** -- the `<XAP Root>` directory.
-- **`PLATFORM`** -- the build platform, in this case linux-amd64 or linux32.
-- **`COMPILER`** -- the compiler used for building, for example: gcc-4.1.2.
+- `JSHOMEDIR` -- the `<XAP Root>` directory.
+- `PLATFORM` -- the build platform, in this case linux-amd64 or linux32.
+- `COMPILER` -- the compiler used for building, for example: gcc-4.1.2.
 
 Example:
 
@@ -109,7 +109,7 @@ Example:
 
 If you don't want to set these variables globally the GigaSpaces C++ package includes the following script file that help set the environment:
 
-- **`<XAP Root>/cpp/setenv.sh`** -- Running this file defines these variables to match your platform.
+- `<XAP Root>/cpp/setenv.sh` -- Running this file defines these variables to match your platform.
 {{% /tab %}}
 {{% /tabs %}}
 

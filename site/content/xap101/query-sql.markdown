@@ -20,7 +20,7 @@ For the full documentation of the class's methods and constructors, see [Javadoc
 
 An `SQLQuery` is composed from the **type** of entry to query and an **expression** in a SQL syntax.
 
-For example, suppose we have a class called **`MyClass`** with an `Integer` property called **num** and a `String` property called **name**:
+For example, suppose we have a class called `MyClass` with an `Integer` property called **num** and a `String` property called **name**:
 
 
 ```java
@@ -477,7 +477,7 @@ When running on a partitioned space, it is important to understand how routing i
 
 If the routing property is part of the criteria expression with an equality operand and without ORs, its value is used for routing.
 
-For example, suppose the routing property of **`MyClass`** is **`num`**:
+For example, suppose the routing property of `MyClass` is `num`:
 
 
 ```java
