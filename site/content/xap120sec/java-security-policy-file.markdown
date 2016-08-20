@@ -22,7 +22,14 @@ grant {
 
 You can augment or replace the default JVM runtime permissions using the `java.security.policy` system property to specify the path to a policy file. This System property is unique in that it can use `=` or `==` to indicate whether the policy file specified should append to, or replace the default permissions. If you use the "=", the permissions in the specified policy file are appended to the default permissions. If you use the `==`, then the permissions in the specified policy file replace the default permissions.
 
-GigaSpaces includes default security permissions, based on the above settings. These are located in the `gs-runtime.jar` file, under `\policy\gigaspaces.policy`. If you do not need special security settings, you do not need to set up the `java.security.policy` property when accessing the space. The default setting is used. The same occurs when using the `SpaceFinder` to start a space (not using the `ServiceStarter`).
+The preferred way is to export the environment variable `XAP_SECURITY_POLICY` which is defined in the script `<XAP Root>\bin\setenv.(sh/bat)`, instead of the system property `java.security.policy` to specify the path to a policy file.
+Use the `setenv-overrides.(sh/bat)` script and define the security policy file path:
+
+```bash
+  export XAP_SECURITY_POLICY=/home/xap-user/my-policy.txt
+```
+
+GigaSpaces includes default security permissions, based on the above settings. These are located in the `xap-common.jar` file, under `\com\gigaspaces\start\gs.policy`. If you do not need special security settings, you do not need to set up the `java.security.policy` property when accessing the space. The default setting is used. The same occurs when using the `SpaceFinder` to start a space (not using the `ServiceStarter`).
 
 **Flat File Structure** -- the `policy.all` file can be moved under the `<XAP Root>` directory, if you want to maintain a flat file structure -- where configuration, jar, and security files can be organized under the `<XAP Root>` folder, or under their main folder without having sub-folders.
 
