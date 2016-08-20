@@ -8,11 +8,13 @@ weight: 300
 
 {{% ssummary %}}{{% /ssummary %}}
 
-Used to determine whether multicast is available.
+You can determine whether multicast is available with the following syntax:
 
 # Syntax
 
-    gs> admin multicastTest [variable[variable]]
+```bash
+gs> admin multicastTest [variable[variable]]
+```
 
 # Description
 
@@ -20,20 +22,22 @@ The admin `multicastTest` utility is used to determine whether multicast is avai
 
 It determines whether a multicast socket can be created and a request announcement can be sent.
 
-{{% tip %}}
+{{% note %}}
 It is still possible that multicast does not work outside the tested host.
 
 Make sure your network and machines running GigaSpaces are configured to have multicast enabled.
 See the [How to Configure Multicast](./network-multicast.html) section for details on how to enable multicast.
-{{% /tip %}}
+{{% /note %}}
 
 This multicast utility serves to check multicast communication between sender and receiver running on different machines. You should run this utility from two different shells, where one should run from the sender machine and the other from the receiver machine. The sender machine should display the round trip reply time from all receiver machines. If multicast is configured properly on your machine and network, you should see the following message in your sender machine:
 
-    Reply from 192.138.120.56:5558 bytes=100 time=1.539ms
+```bash
+Reply from 192.138.120.56:5558 bytes=100 time=1.539ms
+```
 
-{{% tip %}}
+{{% note %}}
 For multi-homed network card machine use `multicastTest -sender -ba [network card IP]`.
-{{% /tip %}}
+{{% /note %}}
 
 {{% refer %}}
 To configure Jini in a multi network environment see the [Multi Network Card Configuration Section](./network-multi-nic.html).

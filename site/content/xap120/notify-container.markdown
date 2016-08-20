@@ -136,15 +136,31 @@ notifyEventListenerContainer.destroy();
 
 The above example registers with the space for write notifications using the provided template (a `Data` object with its processed flag set to `false`). If a notification occurs, the `SimpleListener` is invoked. Registration for notifications is performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean. (In this case, if working in a clustered topology, the notification is performed directly on the cluster member.)
 
+
+# General Guidelines
+
+A notify listener configured in a [non-FIFO](#fifo-events) mode uses a thread that is maintained via a [thread pool](#scaling-notification-delivery).
+If the notify container [template/query](#template-definition) matches a large number of space objects in a short duration, you may consume the entire thread pool. 
+If the notify listener implementation performs a write/update/change/removal of an object from the same space, this may trigger additional notifications (cascading affect) that may consume the thread pool faster.
+
+ 
+This behavior should be avoided as it may throttle the activity or impose large concurrent replication activity (in case a backup / replica is running) that may consume large amount of CPU and network resources in a short duration. 
+This may be observed with garbage created very quickly that may result in long pauses due-to garbage collection activity.
+ 
+To avoid this behavior, the notify listener implementation should have [batching enabled](#batch-events) where minimal write/update/change/removal operations should be conducted, if any. 
+If the listener performs a large number of space operations, a [polling container](./polling-container.html#notify-verses-polling-container) should be considered as this is a more controlled event handler.
+
+
+
 # Primary/Backup
 
 By default, the notify event container registers for notifications only when the relevant space it is working against is in primary mode. When the space is in backup mode, no registration occurs. If the space moves from backup mode to primary mode, the container registers for notifications, and if it moved to backup mode, the registrations are canceled.
 
-{{% note %}}
+ 
 This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.
-{{%/note%}}
+ 
 
-{{% note %}}
+{{% note "NOTIFY_LEASE_EXPIRATION"%}}
 Notifications for expired objects (NOTIFY_LEASE_EXPIRATION type) are sent both from the primary and the backup space. To avoid this, you should set the Notify Container `replicateNotifyTemplate` to `false` and run the notify container collocated with the space. This will start the Notify Container only with the primary and will avoid duplicated notifications.
 {{%/note%}}
 

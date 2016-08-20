@@ -15,22 +15,22 @@ Multicast is the delivery of information to a group of destinations simultaneous
 The word "multicast" is typically used to refer to IP Multicast, the implementation of the multicast concept on the IP routing level, where routers create optimal spanning tree distribution paths for data grams sent to a multicast destination address in realtime. However, there are also other implementations of the multicast distribution strategy listed below.
 (Source - wikipedia: [http://en.wikipedia.org/wiki/Multicast](http://en.wikipedia.org/wiki/Multicast)).
 
-GigaSpaces uses multicast in the following cases:
+XAP uses multicast in the following cases:
 
-- [When deploying to the service grid]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html) GigaSpaces XAP uses multicast to discover the [Lookup Service](./network-lookup-service-configuration.html ), and register their proxies.
+- [When deploying to the service grid]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html) XAP uses multicast to discover the [Lookup Service](./network-lookup-service-configuration.html ), and register their proxies.
 - Clients use multicast to discover the [Lookup Service](./network-lookup-service-configuration.html ) and look up a matching service proxy (such as the space).
 
-{{% tip "What should I do in order to determine if multicast is enabled on my environment? "%}}
+**What should I do in order to determine if multicast is enabled on my environment?**<br>
 Refer to the [How to Determine Whether Multicast is Available](./network-multicast-is-available.html) section for more details.
-{{% /tip %}}
+ 
 
 To enable the important capabilities above, you should enable multicast on machines running clients, spaces or services.
 
-{{% tip "What should I do if I can't enable multicast? "%}}
+**What should I do if I can't enable multicast?**
 
 - If you cannot enable multicast in your environment, you can use unicast discovery to allow services and clients to locate the Lookup Service.
 - Space cluster replication uses unicast by default. You should use multicast replication when having more than 10 clients acting as replica spaces per target space.
-{{% /tip %}}
+ 
 
 {{% note %}}
 In case you want to **disable the Jini Lookup Service Multicast announcements** please refer to [this](./network-lookup-service-configuration.html#Multicast Settings) section in the Wiki.
@@ -58,7 +58,7 @@ The GSC count should be added to the commands above above as usual.
 
 If you can't have multicast enabled within your network you should disable it on the client side and on the service grid side. It will save some CPU activity performed continuously.
 
-# Configuring Multicast on Linux
+# Multicast on Linux
 
 In some cases, Linux distributions do not have multicast enabled by default and the `/etc/hosts` file does not include the IP address associated with the server's hostname. An error that is frequently met is: `hostname associated with the localhost` in `/etc/hosts`. The machine's hostname in `/etc/hosts` should be associated with the IP address set to the server's network interface, or to the external static NAT IP address of the server (the address clients should connect to).
 Make sure the `/etc/hosts` has the machine's IP, together with the IP: `127.0.0.1`.
@@ -69,11 +69,11 @@ Make sure the `/etc/hosts` has the machine's IP, together with the IP: `127.0.0.
 192.168.10.127   Mylinux
 ```
 
-{{% tip %}}
+{{% note %}}
 Make sure all network machines can ping each other. You might need to list all the network machines' IPs as part of each machine's `hosts` file, or have a DHCP server configured.
-{{% /tip %}}
+{{% /note %}}
 
-Before running GigaSpaces, make sure your network interface supports multicast, and the appropriate routes are properly configured.
+Before running XAP, make sure your network interface supports multicast, and the appropriate routes are properly configured.
 
 To check if your network interface supports multicast, run the following `ifconfig`:
 
@@ -147,10 +147,10 @@ To enable multicast routing, run the following `route` command as **root**:
 $ /sbin/route -n add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 ```
 
-{{% tip %}}
+{{% note %}}
 On Redhat systems you can configure this route statically via the network setup configuration tools -- see:
 [redhat - Chapter 6. Network Configuration](http://www.redhat.com/docs/manuals/linux/RHL-7.2-Manual/custom-guide/ch-network-config.html).
-{{% /tip %}}
+{{% /note %}}
 
 Alternatively, try executing the command above as part of a startup script in `/etc/rc.d/\*`.
 
@@ -161,25 +161,24 @@ For more details on Linux `ifconfig` and `route` commands, refer to:
 - [http://linux.about.com/od/commands/l/blcmdl8_route.htm](http://linux.about.com/od/commands/l/blcmdl8_route.htm)
 {{% /refer %}}
 
-{{% tip %}}
+ 
 [tcpdump](http://www.tcpdump.org/) is another useful command which dumps traffic on a network:
-
 
 ```bash
 tcpdump -i eth0 ip multicast
 ```
 
-{{% /tip %}}
+ 
 
-{{% tip %}}
+{{% note %}}
  By default multicast is not allowed between the virtual machines, so the unicast should be configured instead
-{{% /tip %}}
+{{% /note %}}
 
-# Configuring Multicast on Windows
+# Windows Configuration
 
 To enable multicasting from a token ring on a Windows® 2000 workstation to any Windows 98/NT machine, set the `TrFunctionalMcastAddress` parameter to `0` in the Windows 2000 registry:
 
-1. Click **Start* > *Run** on the Windows 2000 taskbar.
+1. Click **Start** > Run on the Windows 2000 taskbar.
 1. In the **Open** field, select or type **REGEDIT**.
 1. Click **OK**. The **Registry Editor** window opens.
 1. Click **HKEY_LOCAL_Machine** > **SYSTEM** > **CurrentControlSet** > **Services** > **Tcpip** > **Parameters**.
@@ -188,7 +187,7 @@ To enable multicasting from a token ring on a Windows® 2000 workstation to any 
 1. Click **OK** to save changes and exit.
 1. Close the **Registry Editor**.
 
-# Configuring Multicast Scope Time-To-Live (TTL) Value
+# Time-To-Live (TTL) Value
 
 The **[multicast Time-To-Live (TTL)](http://en.wikipedia.org/wiki/Time_to_live)** value specifies the number of routers (hops) that multicast traffic is permitted to pass through before expiring on the network. For each router (hop), the original specified TTL is decremented by one (1). When its TTL reaches a value of zero (0), each multicast datagram expires and is no longer forwarded through the network to other subnets.
 
@@ -198,8 +197,8 @@ The problem of multicasts/broadcasts not passing the router/switch is a well kno
 
 [Wireshark (formerly Ethereal)](http://www.wireshark.org/) - accumulates years of network analyzing experience and is far more mature and known than other tools. It is a cross-platform packet sniffer/network analyzer tool (used both in Windows and Unix/Linux). It allows you to examine data from a live network, or from a capture file on disk. You can interactively browse the capture data, viewing summary and detail information for each packet. It has several powerful features, including a rich display filter language and the ability to view the reconstructed stream of a TCP session.
 
-{{% info %}}
-**To find TTL**, you should monitor some traffic (start-stop on the proper interface), in the monitoring log. Choose the packet you are interested in, and look at its IP layer - TTL (and other parameters) are shown.
+{{% note "TTL"%}}
+To find TTL, you should monitor some traffic (start-stop on the proper interface), in the monitoring log. Choose the packet you are interested in, and look at its IP layer - TTL (and other parameters) are shown.
 
 The **default TTL value is 3** (was 15). See [Multicast Settings](./network-lookup-service-configuration.html#LookupServiceConfiguration-MulticastSettings) section for details of how to modify that value.
-{{%/info%}}
+{{%/note%}}

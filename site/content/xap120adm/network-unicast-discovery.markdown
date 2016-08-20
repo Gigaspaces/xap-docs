@@ -18,9 +18,38 @@ In such cases, the Jini lookup discovery enables the user to discover services (
 Please refer to the [Lookup Service Configuration](./network-lookup-service-configuration.html) or the [Networking How Tos](./network.html) section for more details.
 {{%/refer%}}
 
+
+# Discovery Order
+
+When using the unicast lookup service discovery option, you may specify multiple locators. This means, a client that is looking to bootstrap its space proxy, may search for the proxy location within one or more lookup services that may be running on specific hosts.
+
+
+When multiple locators are specified, a parallel search will be conducted across all the given host names (or IPs) for a matching space name. Once found, the proxy and its cluster information (primaries , backups) will be populated. 
+This means, the search may not have a pre-defined deterministic order, as a different lookup service may be used every time. When having a large number of clients using multiple locators (large compute grid environment with many workers, a large web application with many instances), the space proxy bootstrap will be distributed across all discovered lookup services. 
+This allows the system to load-balance the overall lookup activity across all running lookup services. 
+
+{{%note%}}
+You will have to make sure the XAP agent (GSA) and its managed processes, specifically the GCSs , have the same locators configuration (XAP_LOOKUP_LOCATORS environment variable) as the client, to allow these to register themselves within all running lookup services.
+{{%/note%}}
+
+If the first lookup service discovered dose not have a matching lookup entry that matches the desired space name, the next discovered lookup is used.
+
+For example – with the following code examples the XAP proxy or the Admin that may hold many XAP proxies , a parallel lookup discovery will be conducted across Host1 and Host2 specified as the locators settings. The `mySpace` space will be bootstrapped using one of the lookup services running on Host1 and Host2:
+
+
+```java
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("mySpace").lookupLocators("Host1, Host2")).gigaSpace();
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new UrlSpaceConfigurer("jini://*/*/mySpace?locators=Host1,Host2")).gigaSpace();
+
+Admin admin = new AdminFactory().addLocators(“Host1”, “Host2”).createAdmin();
+```
+
+
 # Configuring the lookup locators property
 
-Services will use the locators property to locate the Jini Lookup Service to lookup other services registered on it. The locators property is configured using the `XAP_LOOKUP_LOCATORS` environment variable or the `-Dcom.gs.jini_lus.locators` system property. By default it is left blank. It accepts a comma separated list of `host:port`. This list should include the hosts (and ports) where the Jini Lookup Service (or GSM) is running. The default port is 4174.
+Services will use the locators property to locate the Jini Lookup Service to lookup other services registered on it. The locators property is configured using the `XAP_LOOKUP_LOCATORS` environment variable or the `-Dcom.gs.jini_lus.locators` system property. 
+By default it is left blank. It accepts a comma separated list of `host:port`. This list should include the hosts (and ports) where the Jini Lookup Service (or GSM) is running. The default port is 4174.
 
 For example, considering the GSM(+LUS) is running on linux-lab1:4174 and linux-lab2:4174 machines:
 
@@ -48,10 +77,10 @@ jini://*/./mySpace?locators=linux-lab1:4174,linux-lab2:4174&groups=gigaspaces-{{
 When the locators attribute is used in conjunction with the jini://* prefix and groups attribute, the discovery will be unicast AND multicast.
 {{%/warning%}}
 
-If you want unicast only, you should disable multicast altogether.
 
-{{% tip "Unicast discovery only"%}}
-For unicast discovery only, you should disable multicast using `-Dcom.gs.multicast.enabled=false` system property, and use:
+#  Unicast discovery only
+
+If you want unicast only, you should disable multicast altogether. For unicast discovery only, you should disable multicast using `-Dcom.gs.multicast.enabled=false` system property, and use:
 
 
 ```java
@@ -59,19 +88,19 @@ jini://linux-lab1:4174,linux-lab2:4174/./mySpace?locators=linux-lab1:4174,linux-
 ```
 
 For troubleshooting purposes you should verify that the services (spaces, GSC, GSM, processing units etc.) print correct settings for the locators while they initialize. You can turn on the relevant logging if required.
-{{%/tip%}}
+ 
 
-# Configuring Jini Lookup Service Unicast Port
+# Unicast Port
 
 To change the lookup service listening port use the `com.sun.jini.reggie.initialUnicastDiscoveryPort` system property. The default value is the one assigned to the `com.gs.multicast.discoveryPort`.
 
-- Set the `XAP_LOOKUP_LOCATORS` system property in `<XAP Root>\bin\setenv.bat/sh` to match the port number you defined (in this case, `host:1234`). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly.
+Set the `XAP_LOOKUP_LOCATORS` system property in `<XAP Root>\bin\setenv.bat/sh` to match the port number you defined (in this case, `host:1234`). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly.
 
 {{%refer%}}
 For more information refer to [com.gs.multicast.discoveryPort system property](./network-lookup-service-configuration.html#Multicast Settings).
 {{%/refer%}}
 
-# Configuring lookup discovery intervals
+# Discovery Intervals
 
 When a lookup service fails and is brought back online, a client (such as a GSC, space or a client with a space proxy) needs to re-discover and federate again. In order to make that happen, Jini unicast discovery must retry connections to the remote lookup service. The default unicast retry protocol provides a graduating approach, increasing the amount of time to wait before the next discovery attempts are made - upon each invocation, eventually reaching a maximum time interval over which discovery is re-tried. In this way, the network is not flooded with unicast discovery requests referencing a lookup service that may not be available for quite some time (if ever). The default time to wait between unicast retry attempts are:
 
@@ -105,3 +134,37 @@ Will cause the LookupLocatorDiscovery utility to wait 5 seconds between retries
 Will cause the LookupLocatorDiscovery utility to first wait 5 seconds, then 10 seconds between retries. This declaration provides a graduating approach (similar in approach to the default settings).
 
 You will need to set this property to take affect for GSM and GSC startup. You should see a similar log message to "Set unicast interval to 5000".
+
+
+#  Tuning
+
+When having a large space cluster with many partitions, you may need to tune the lookup service concurrency behavior to use extra resources. 
+In this case, the client side may also need to increase its resources to handle the space proxy bootstrap interaction with the discovered lookup services(s).
+
+The following is part of the `services.config` that should be located under `XAP_ROOT\config\services`. The `THREAD_COUNT` parameter should be configured.
+To control the lookup service handling of events/notifications the following should be configured:
+
+ 
+```bash
+com.sun.jini.reggie {
+...
+eventTaskManagerPool = 5;
+eventTaskManager = new com.sun.jini.thread.TaskManager(THREAD_COUNT, 15000, 2.0F, "Reggie Event Task", 10);
+}
+```
+
+`eventTaskManagerPool` is the number of TaskManager buckets. Each bucket gets a set of listeners, and all events to that listener are handled by the TaskManager's threads. 8 threads is the default value for the `THREAD_COUNT` setting.
+
+To control the number of threads managing the lookup service on the client side, the following should be configured:
+
+```bash
+net.jini.discovery.LookupLocatorDiscovery {
+taskManager = new com.sun.jini.thread.TaskManager(THREAD_COUNT, 30000, 3.0F, "LookupLocatorDiscovery Task", 10);
+}
+```
+
+{{%note%}}
+15 threads is the default value for the `THREAD_COUNT` setting.
+{{%/note%}}
+ 
+
