@@ -310,13 +310,13 @@ custom-security.server-address = myServer
 
 # CLI and Custom Credentials
 
-Use the **`-user-details-provider`** and **`-user-details-properties`** arguments to use a custom credentials provider with the CLI.
+Use the `-user-details-provider` and `-user-details-properties` arguments to use a custom credentials provider with the CLI.
 
 {{% note %}}
 For a full list of command usage, please refer to: [Command Line Interface (CLI) Security](./command-line-interface-cli-security.html)
 {{%/note%}}
 
-Run the `gs` script, and then use the **`login`** command:
+Run the `gs` script, and then use the  `login` command:
 
 
 ```java

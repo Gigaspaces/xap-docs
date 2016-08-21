@@ -168,7 +168,7 @@ If class FlightReservation isn't declared with a FG property, an exception will 
 When registering for polling events use the `AbstractFifoGroupingReceiveOperationHandler.setUseFifoGrouping(true)`
 to instruct the space that events should be sent to the client in FIFO order (grouping by the fifoGroupingProperty that should have been declared for the space class).
 
--  **`ExclusiveReadReceiveOperationHandler` example:**
+-  `ExclusiveReadReceiveOperationHandler` example:
 
 
 ```java
@@ -185,7 +185,7 @@ SimplePollingEventListenerContainer pollingEventListenerContainer =
 pollingEventListenerContainer.start();
 ```
 
--  **`ExclusiveReadReceiveOperationHandler` with annotations example:**
+-  `ExclusiveReadReceiveOperationHandler` with annotations example:
 
 
 ```java

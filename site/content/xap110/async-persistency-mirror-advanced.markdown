@@ -212,7 +212,7 @@ By default this property is set to `group-by-replication-bulk` and `executeBulk(
 
 Setting this property will cause a `SpaceSynchronizationEndpoint.onTransactionSynchronization` invocation for each transaction separately.
 
-##### Getting the Transaction Metadata
+# Getting the Transaction Metadata
 
 The following demonstrates how the transaction metadata can be retrieved:
 
@@ -333,7 +333,7 @@ In order to take advantage of this feature, mirror operation grouping should be 
 </os-core:embedded-space>
 ```
 
-##### Distributed Transaction Consolidation Example:
+# Distributed Transaction Consolidation Example:
 
 
 ```java
@@ -406,14 +406,14 @@ Setting both `dist-tx-wait-timeout-millis` and `dist-tx-wait-for-opers` to unlim
 
 
 {{%imagertext "/attachment_files/IMG101.gif"%}}
-#### Writing Synchronously to the Mirror Data Source
+### Writing Synchronously to the Mirror Data Source
 The following is a schematic flow of a synchronous replicated cluster with three members, which are communicating with a Mirror Service:
 {{%/imagertext%}}
 
 
 
 {{%imagertext "/attachment_files/IMG103.gif"%}}
-#### Reading from the Data Source
+### Reading from the Data Source
 The Mirror Service space is used to asynchronously **persist** data into the data source. As noted elsewhere, the Mirror is **not** a regular space, and should **not** be interacted with directly. Thus, data can't be read from the data source using the Mirror Service space. Nonetheless, the data might be read by other spaces which are configured with a space data source.
 
 The data-grid pu.xml needs to be configured to use an **space data source** which, when dealing with a Mirror, is **central** to the cluster.

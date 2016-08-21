@@ -51,7 +51,7 @@ gs(.sh/.bat) -user uuu -password ppp [command]
 {{% /tab %}}
 {{% /tabs %}}
 
-To **logout* *`quit`** the interactive shell.
+To **logout* `quit` the interactive shell.
 
 # Deploy Command
 

@@ -45,7 +45,7 @@ For first time usage of the file-based implementation, use `admin/admin` - This 
 
 This view is split into two tabs - `Users` and `Roles`. If you only have partial management roles, then only read-only actions are allowed.
 
-### Managing Users
+## Managing Users
 
 The `Users` tab, displays a summary of all the users, their assigned roles, and user-specific privileges.
 Double-click on the user to **Edit** it, or select a user and press one of the action buttons **Edit**, **Duplicate**, **Delete**.
@@ -54,11 +54,11 @@ Double-click on the user to **Edit** it, or select a user and press one of the a
 ![manage-user-tab.png](/attachment_files/manage-user-tab.png)
 {{%/align%}}
 
-#### Creating a new user
+## Creating a new user
 
 A user can be associated with predefined roles and be granted with user-specific privileges.
 
-##### Associating a role
+## Associating a role
 
 To associate a user with roles, choose the roles from the list of roles. Each associated **role** will appear in its own tab,
 and the `Aggregated` view will show the aggregation of all the privileges (user-specific and roles).
@@ -67,7 +67,7 @@ and the `Aggregated` view will show the aggregation of all the privileges (user-
 ![create-new-user.png](/attachment_files/create-new-user.png)
 {{%/align%}}
 
-##### User-specific privileges
+## User-specific privileges
 
 To assign a `Monitor Privilege`, `System Privilege`, or `Grid Privilege` select the privilege check-box.
 
@@ -82,7 +82,7 @@ The following snapshot shows that the user has:
 ![user-specific.png](/attachment_files/user-specific.png)
 {{%/align%}}
 
-### Managing Roles
+## Managing Roles
 
 The `Roles` tab, displays a summary of all the roles, its permissions and any assigned users to each role.
 Double-click on the role to **Edit** it, or select a role and press one of the action buttons **Edit**, **Duplicate**, **Delete**.
@@ -91,7 +91,7 @@ Double-click on the role to **Edit** it, or select a role and press one of the a
 ![manage-roles-tab.png](/attachment_files/manage-roles-tab.png)
 {{%/align%}}
 
-#### Creating a new role
+## Creating a new role
 
 Creating a role is the same as creating a user with user-specific privileges. Except that these privileges can be associated by role-name to users.
 

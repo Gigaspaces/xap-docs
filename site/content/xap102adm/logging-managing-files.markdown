@@ -42,7 +42,7 @@ To determine the place holder's value, we first look for an overriding system pr
 -Dcom.gigaspaces.logger.RollingFileHandler.filename-pattern.date=yyyy-MM-dd
 ```
 
-##### Customization Examples
+## Customization Examples
 
 **1.** One possible customization that might be of interest is to separate the log files into folders named after the host names.
 To achieve this, the pattern would need to have the \{host\} placeholder as one of the directory paths - as follows:

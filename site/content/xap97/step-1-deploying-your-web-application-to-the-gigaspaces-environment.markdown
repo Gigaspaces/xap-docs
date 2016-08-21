@@ -21,7 +21,7 @@ parent: your-first-web-application.html
 
 {{<infosign>}} The Sample application for this step is located under `<GigaSpaces Root>/examples/web/plain`.
 
-#####Features Introduced
+### Features Introduced
 {{<oksign>}} Deploying a standard JEE web application on to the GigaSpaces environment
 {{<oksign>}} Defining SLA (Service Level Agreement) attributes for your web application
 {{<oksign>}} Using the GigaSpaces load balancing agent for Apache 2 to automatically configure the load balancer at runtime

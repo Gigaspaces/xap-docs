@@ -127,16 +127,16 @@ Total and average Space operation metrics are available for selection as well.
 
 # Mirror metrics:
 
-###### OS metrics
+### OS metrics
 - Memory
 - CPU
 
-###### JVM metrics
+### JVM metrics
 - Memory
 - CPU
 - GC
 
-###### Mirror
+### Mirror
 - Failed operations count
 - Mirror Write per sec.
 - Mirror Update per sec.

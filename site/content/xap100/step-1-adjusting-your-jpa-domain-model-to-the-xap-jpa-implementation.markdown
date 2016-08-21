@@ -22,15 +22,15 @@ JPA stands for Java Persistence API. This API was created in order to standardiz
 If you are not familiar with JPA, it highly recommended making yourself acquainted with it [(This would be a good place to start)  ](http://download.oracle.com/javaee/5/tutorial/doc/bnbpz.html).
 GigaSpaces' JPA support is built on top of is actually an adapter layer between the JPA and JPQL APIs and the OpenSpaces API and XAP services.
 
-#GigaSpaces XAP JPA
+# GigaSpaces XAP JPA
 While GigaSpaces JPA supports a large portion of the JPA standard, there are limitations and differences that are caused by the nature of XAP's distributed implementation.
 
-### Embedded Relationships Only
+# Embedded Relationships Only
 
 GigaSpaces XAP only manages embedded relationships between entities. That means that the JPA API layer will not manage automatically any relationships based on keys. The application code will have to take care of maintaining such relationships. While JPA `@OneToMany` and `@OneToOne` annotations will be interpreted by XAP as owned (embedded) relationships, the `@ManyToMany` cannot be mapped into an embedded model and therefore is not supported (it will simply be ignored).
 Another important point to note is using JOIN queries; Since JOINs are actually done on embedded objects and obviously in the same memory partition, JOIN has no special toll on performance as long as you define the right indexes.
 
-### Other Limitations
+# Other Limitations
 
 There are some other limitations to GigaSpaces JPA, most notably:
 
@@ -39,7 +39,7 @@ There are some other limitations to GigaSpaces JPA, most notably:
 - Lazy loading - the JPA layer can only read the entire object graph in full. It cannot read parts of the object graph. We will see how the PetClinic application deals with it by running the JPA code in the same JVM as the space using [Space Based Remoting](./space-based-remoting.html)
 - JPQL outer joins are also not supported. For the complete list of limitation please [refer to this page](./jpa-api.html#JPASupport-GigaSpacesJPALimitations)
 
-#The Application Modules
+# The Application Modules
 The original Pet Clinic application is packaged as a single WAR file and deployed on a single JVM. The Spring MVC front end of the application is using a DAO object (Clinic) to access the data. The DAO hides the usage of JPA from the web layer.
 With XAP we want to make the application scalable at all layers, therefore we will split the application into 3 modules:
 
@@ -49,7 +49,9 @@ With XAP we want to make the application scalable at all layers, therefore we wi
 
 Another way to look at the above modules is to compare them to a database client calling stored procedures on the database. However, with XAP, the entire scenario is written in java, using JPA, and is deployed on to a single, unified platform.
 In order for the web application to access the remote interface, we need to add a configuration file, exposing the Clinic DAO instances across the data grid cluster as a remote service to the web application. You can learn more about XAP Remoting services [here](./executor-based-remoting.html)
-#####The Application Data Model
+
+# The Application Data Model
+
 Now let's review the considerations and changes in the application data model when accommodating it for partitioned deployment.
 The application domain model class diagram is depicted in the following diagram:
 
@@ -74,7 +76,8 @@ Since in this example the `PetType` and vet's `Specialty` are final by nature, w
 Had we needed to support an open set of PetTypes or vet Specialties, we would have needed to duplicate this information across all partitions for the sake of performance and scalability
 As for the Pet and Visit entities - since each of them is only reference by a single entity type: Visit by Pet and Pet by Owner, we can use embedded relationships.
 
-#Preparing the Entities for XAP
+# Preparing the Entities for XAP
+
 In order to use these entities with XAP we need to introduce the following changes to them:
 
 - JPA annotations should be placed on getters and not on attributes

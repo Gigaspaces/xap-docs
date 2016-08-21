@@ -51,7 +51,7 @@ When the locators attribute is used in conjunction with the jini://* prefix and 
 If you want unicast only, you should disable multicast altogether.
 
 {{% tip %}}
-For **unicast discovery only**, you should disable multicast using **`-Dcom.gs.multicast.enabled=false`** system property, and use:
+For **unicast discovery only**, you should disable multicast using `-Dcom.gs.multicast.enabled=false` system property, and use:
 
 
 ```java
@@ -66,7 +66,7 @@ For troubleshooting purposes you should verify that the services (spaces, GSC, G
 
 # Configuring Jini Lookup Service Unicast Port
 
-To change the lookup service port when using the Service Grid, you can use the **`com.sun.jini.reggie.initialUnicastDiscoveryPort`** system property. The default value is the one assigned to the `com.gs.multicast.discoveryPort` system property, that is 4174 with XAP 7.x.
+To change the lookup service port when using the Service Grid, you can use the `com.sun.jini.reggie.initialUnicastDiscoveryPort` system property. The default value is the one assigned to the `com.gs.multicast.discoveryPort` system property, that is 4174 with XAP 7.x.
 
 - Set the `LOOKUPLOCATORS` system property in `<GigaSpaces Root>\bin\setenv.bat/sh` to match the port number you defined (in this case, `host:1234`). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly (see [**com.gs.multicast.discoveryPort system property**](./network-lookup-service-configuration.html#Multicast Settings)).
 

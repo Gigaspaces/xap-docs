@@ -24,7 +24,7 @@ parent: your-first-web-application.html
 The Sample application for this step is located under `<XAP Root>/examples/web/plain`.
 {{%/note%}}
 
-#####Features Introduced
+## Features Introduced
 - Deploying a standard JEE web application on to the GigaSpaces environment
 
 - Defining SLA (Service Level Agreement) attributes for your web application
@@ -37,7 +37,7 @@ The Sample application for this step is located under `<XAP Root>/examples/web/p
 
 {{% section %}}
 
-#### Before you begin
+## Before you begin
 
 We recommend that you go through the following steps before you begin this tutorial:
 
@@ -48,12 +48,12 @@ We recommend that you go through the following steps before you begin this tutor
 
 {{% section %}}
 
-#### Goals
+## Goals
 
 Deploy an existing standard web application on to the GigaSpaces environment, define SLA for the application and configure dynamic load balancing for Apache 2
 
 
-#### Contents
+## Contents
 
 1. [Example Application Overview](#ExampleOverview)
 1. [Building the Example](#BuildDirections)

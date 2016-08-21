@@ -25,8 +25,8 @@ In the Hello World example, we presented a way to declare the users using the UI
 Using the API we would like to declare the following:
 
 {{% note %}}
-The "helloProcessor" user will be granted **`Take`** access for `HelloObject` and **`Write`** access for `ProcessedHelloObject`.
-The "helloFeeder" user will be granted **`Write`** access for `HelloObject` and **`Read`** access for `ProcessedHelloObject`.
+The "helloProcessor" user will be granted `Take` access for `HelloObject` and `Write` access for `ProcessedHelloObject`.
+The "helloFeeder" user will be granted `Write` access for `HelloObject` and `Read` access for `ProcessedHelloObject`.
 {{% /note %}}
 
 The GigaSpaces `User` is the default implementation of `UserDetails`. It accepts an array or a sequence of `Authority`-ies (`varargs`). Here we added the `ClassFilter` to restrict access to this specific class.

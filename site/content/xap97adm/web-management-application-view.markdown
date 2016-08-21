@@ -127,16 +127,16 @@ Total and average Space operation metrics are available for selection as well.
 
 # Mirror metrics:
 
-###### OS metrics
+### OS metrics
 - Memory
 - CPU
 
-###### JVM metrics
+### JVM metrics
 - Memory
 - CPU
 - GC
 
-###### Mirror
+### Mirror
 - Failed operations count
 - Mirror Write per sec.
 - Mirror Update per sec.
@@ -147,15 +147,15 @@ Total and average Space operation metrics are available for selection as well.
 The infrastructure view allow the user to verify the application's topology. It maps the processing unit instances to hosts, providing some basic information about each host.
 ![infra_explained.png](/attachment_files/infra_explained.png)
 
-### The Services view
+## The Services view
 
 The services view allow the user to get information at the processing unit instance level and to correlate performance of several selected instances.
 
-### Comparing Instances
+## Comparing Instances
 
 ![services_explained.png](/attachment_files/services_explained.png)
 
-### Service Instance Details
+## Service Instance Details
 
 ![details_explained.png](/attachment_files/details_explained.png)
 

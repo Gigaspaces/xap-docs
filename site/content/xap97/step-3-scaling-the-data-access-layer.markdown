@@ -19,7 +19,7 @@ parent: your-first-web-application.html
 
 {{<infosign>}} The Sample application for this step is located under `<GigaSpaces Root>/examples/web/space-access`.
 
-##### Features Introduced
+### Features Introduced
 
 {{<oksign>}} Connecting to the space from within your web application
 {{<oksign>}} Reading from and writing to the Space
@@ -29,7 +29,7 @@ parent: your-first-web-application.html
 
 {{% section %}}
 
-#### Before you begin
+### Before you begin
 
 We recommend that you go through the following steps before you begin this tutorial:
 
@@ -42,12 +42,12 @@ We recommend that you go through the following steps before you begin this tutor
 
 {{% section %}}
 
-#### Goals
+ Goals
 
 Solve the database bottle neck by accessing the in-memory data grid from within your web application.
 
 
-#### Contents
+### Contents
 
 1. [Example Application Overview](#ExampleOverview)
 1. [Building the Example](#BuildDirections)

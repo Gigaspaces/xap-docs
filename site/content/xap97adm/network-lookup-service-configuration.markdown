@@ -59,11 +59,11 @@ To support co-existence of different GigaSpaces versions, the defaults below may
 
 Adjusting the lookup services multicast settings can be done using the following system properties:
 
-- **`com.gs.multicast.announcement`** - the multicast address that controls the lookup service announcement. The lookup service uses this address to periodically announce its existence. Defaults to `224.0.1.188`.
-- **`com.gs.multicast.request`** - the multicast address that controls the request of clients (when started) to available lookup services. Defaults to `224.0.1.187`.
-- **`com.gs.multicast.discoveryPort`** - the port used during discovery for multicast requests. Defaults to `4174`. Note that in case the property `com.sun.jini.reggie.initialUnicastDiscoveryPort` system property is not defined it is also used as the default post for unicast requests.
-- **`com.gs.multicast.ttl`** - The multicast packet time to live. Defaults to 3.
-- **`com.gs.multicast.enabled`** - a global property allowing you to completely enable or disable multicast in the system.
+- `com.gs.multicast.announcement` - the multicast address that controls the lookup service announcement. The lookup service uses this address to periodically announce its existence. Defaults to `224.0.1.188`.
+- `com.gs.multicast.request` - the multicast address that controls the request of clients (when started) to available lookup services. Defaults to `224.0.1.187`.
+- `com.gs.multicast.discoveryPort` - the port used during discovery for multicast requests. Defaults to `4174`. Note that in case the property `com.sun.jini.reggie.initialUnicastDiscoveryPort` system property is not defined it is also used as the default post for unicast requests.
+- `com.gs.multicast.ttl` - The multicast packet time to live. Defaults to 3.
+- `com.gs.multicast.enabled` - a global property allowing you to completely enable or disable multicast in the system.
 
 {{% info %}}
 The two multicast addresses allow you to completely separate two different GigaSpaces installations, so lookup services won't communicate with each other (even on the wire level, which is different than the groups, which communicate on the content level).

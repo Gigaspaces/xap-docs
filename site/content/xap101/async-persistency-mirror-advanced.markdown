@@ -212,7 +212,7 @@ By default this property is set to `group-by-replication-bulk` and `executeBulk(
 
 Setting this property will cause a `SpaceSynchronizationEndpoint.onTransactionSynchronization` invocation for each transaction separately.
 
-##### Getting the Transaction Metadata
+# Getting the Transaction Metadata
 
 The following demonstrates how the transaction metadata can be retrieved:
 
@@ -333,7 +333,7 @@ In order to take advantage of this feature, mirror operation grouping should be 
 </os-core:embedded-space>
 ```
 
-##### Distributed Transaction Consolidation Example:
+# Distributed Transaction Consolidation Example:
 
 
 ```java

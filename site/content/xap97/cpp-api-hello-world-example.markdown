@@ -203,9 +203,9 @@ The above scripts and the Visual Studio solution define several environment sett
 
 The following environment variables need to be defined:
 
-- **`JSHOMEDIR`** -- the `<GigaSpaces Root>` directory.
-- **`PLATFORM`** -- the build platform, in this case win32 or win64.
-- **`COMPILER`** -- the compiler used for building, for example: VS9.0.
+- `JSHOMEDIR` -- the `<GigaSpaces Root>` directory.
+- `PLATFORM` -- the build platform, in this case win32 or win64.
+- `COMPILER` -- the compiler used for building, for example: VS9.0.
 
 For example:
 
@@ -213,7 +213,7 @@ For example:
     set PLATFORM=win32
     set COMPILER=VS9.0
 
-In addition, the variable **`PATH`** should be updated to include:
+In addition, the variable  `PATH` should be updated to include:
 
     %JSHOMEDIR%\cpp\lib\%PLATFORM%\%COMPILER%;%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\client
 
@@ -243,9 +243,9 @@ You can also run the `<GigaSpaces Root>\cpp\env.cmd` file to define these variab
 
 The following environment variables need to be defined:
 
-- **`JSHOMEDIR`** -- the `<GigaSpaces Root>` directory.
-- **`PLATFORM`** -- the build platform, in this case linux-amd64 or linux32.
-- **`COMPILER`** -- the compiler used for building, for example: gcc-4.1.2.
+- `JSHOMEDIR` -- the `<GigaSpaces Root>` directory.
+- `PLATFORM` -- the build platform, in this case linux-amd64 or linux32.
+- `COMPILER` -- the compiler used for building, for example: gcc-4.1.2.
 
 Example:
 

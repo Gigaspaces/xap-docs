@@ -175,7 +175,7 @@ public class MyObject {
 }
 ```
 
-##### Usage example:
+# Usage example:
 
 
 ```java
@@ -198,11 +198,11 @@ em.close();
 
 # Limitations
 
-##### `@GeneratedValue`
+## `@GeneratedValue`
 
 Only `GenerationType.IDENTITY` is supported for the `GeneratedValue.strategy()` attribute.
 
-##### Multi Value Ids
+## Multi Value Ids
 
 Setting an `@Id/@EmbeddedId` annotation for more than one property is not supported hence the `@IdClass` annotation is not supported.
 

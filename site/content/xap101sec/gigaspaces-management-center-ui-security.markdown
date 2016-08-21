@@ -39,29 +39,29 @@ For example, to configure a different `file-path` for the file-based implementat
 - `Administrator username and password` - A user with **Manage Roles** or **Manage Users** privileges.
 For first time usage of the file-based implementation, use  `admin/admin` - This will create a new file with the `admin` user which only has directory management privileges.
 
-## Managing Users/Roles
+# Managing Users/Roles
 
 This view is split into two tabs - `Users` and `Roles`. If you only have partial management roles, then only read-only actions are allowed.
 
-### Managing Users
+## Managing Users
 
 The `Users` tab, displays a summary of all the users, their assigned roles, and user-specific privileges.
 Double-click on the user to **Edit** it, or select a user and press one of the action buttons **Edit**, **Duplicate**, **Delete**.
 
 ![manage-user-tab.png](/attachment_files/manage-user-tab.png)
 
-#### Creating a new user
+## Creating a new user
 
 A user can be associated with predefined roles and be granted with user-specific privileges.
 
-##### Associating a role
+## Associating a role
 
 To associate a user with roles, choose the roles from the list of roles. Each associated **role** will appear in its own tab,
 and the  `Aggregated` view will show the aggregation of all the privileges (user-specific and roles).
 
 ![create-new-user.png](/attachment_files/create-new-user.png)
 
-##### User-specific privileges
+## User-specific privileges
 
 To assign a `Monitor Privilege`, `System Privilege`, or `Grid Privilege` select the privilege check-box.
 
@@ -74,14 +74,14 @@ The following snapshot shows that the user has:
 
 ![user-specific.png](/attachment_files/user-specific.png)
 
-### Managing Roles
+## Managing Roles
 
 The `Roles` tab, displays a summary of all the roles, its permissions and any assigned users to each role.
 Double-click on the role to **Edit** it, or select a role and press one of the action buttons **Edit**, **Duplicate**, **Delete**.
 
 ![manage-roles-tab.png](/attachment_files/manage-roles-tab.png)
 
-#### Creating a new role
+## Creating a new role
 
 Creating a role is the same as creating a user with user-specific privileges. Except that these privileges can be associated by role-name to users.
 
@@ -158,7 +158,7 @@ To deploy a secured data-grid, select the `Secured Space` checkbox. Supplying cr
 
 ![deployment-wizard.png](/attachment_files/deployment-wizard.png)
 
-### Supplying custom properties
+## Supplying custom properties
 
 
 [Security configuration properties](./security-configurations.html) can be supplied, during deployment of a Space, as custom properties; Either from a file or added through the dialog.
@@ -174,7 +174,7 @@ _For example, the `data-processor` has a polling container - when deployed, the 
 
 ![deployment-wizard-pu.png](/attachment_files/deployment-wizard-pu.png)
 
-### Supplying bean level properties
+## Supplying bean level properties
 
 
 [Security configuration](./security-configurations.html) properties can be supplied, during deployment of a ProcessingUnit, as context bean level properties; Either from a file or added through the dialog.

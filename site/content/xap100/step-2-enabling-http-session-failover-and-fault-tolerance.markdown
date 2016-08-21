@@ -21,7 +21,7 @@ parent: your-first-web-application.html
 {{% info %}} The Sample application for this step is located under `<XAP Root>/examples/web/session`.
 {{%/info%}}
 
-#####Features Introduced
+## Features Introduced
 - Enabling HTTP session failover and high availability using the Space
 
 - Recommended space topologies for backing your HTTP session
@@ -31,7 +31,7 @@ parent: your-first-web-application.html
 
 {{% section %}}
 
-#### Before you begin
+## Before you begin
 
 We recommend that you go through the following steps before you begin this tutorial:
 
@@ -43,12 +43,12 @@ We recommend that you go through the following steps before you begin this tutor
 
 {{% section %}}
 
-#### Goals
+## Goals
 
 Enable HTTP session failover and high availability for your standard JEE web application and learn what are the recommended Space topologies to back the HTTP session store
 
 
-#### Contents
+##  Contents
 
 1. [Example Application Overview](#ExampleOverview)
 1. [Building the Example](#BuildDirections)

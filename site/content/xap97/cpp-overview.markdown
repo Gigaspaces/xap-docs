@@ -48,7 +48,7 @@ GigaSpaces c++ API offers a very straightforward API that directly accepts the d
 - **Space administration API support (count, clean, start, stop)**.
 - **Space c++ Worker/bean support** -- allows a c++ developer to embed c++ business logic, so it can run in the same memory address as the SLA container and the space. This allows c++ business logic to have in and out of process scalability capabilities.
 - **Collection API** (`stl::vector`).
-- **`gs.xml` support and `gsxml2cpp` code generator** -- generate C++ IEntry, POJO, PONO using one XML file enabling fast Interoperability process.
+- **gs.xml support and gsxml2cpp code generator** -- generate C++ IEntry, POJO, PONO using one XML file enabling fast Interoperability process.
 - **Dynamic casting** -- no need to cast returned objects to relevant types.
 - **Optimized and efficient JNI calls**.
 - **Out of the box examples**.
@@ -73,7 +73,7 @@ In order to allow interoperability of POCO objects with both POJO (Java) and PON
 
 # Architecture
 
-#### Standalone c++ Application
+## Standalone c++ Application
 
 {{%section %}}
 {{%column width="80%" %}}
@@ -84,7 +84,7 @@ When the c++ application is running as a standalone application, the c++ busines
 {{%/column%}}
 {{%/section%}}
 
-#### c++ Worker
+## c++ Worker
 {{%section %}}
 {{%column width="80%" %}}
 When the c++ business logic runs as a worker, collocated with the space; no remote calls are involved when interacting with the space. Interactions with the space are done using c++ objects, similar to the standalone c++ application configuration.

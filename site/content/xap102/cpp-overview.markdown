@@ -73,7 +73,7 @@ In order to allow interoperability of POCO objects with both POJO (Java) and PON
 
 # Architecture
 
-#### Standalone c++ Application
+## Standalone c++ Application
 
 {{%section %}}
 {{%column width="80%" %}}
@@ -84,7 +84,7 @@ When the c++ application is running as a standalone application, the c++ busines
 {{%/column%}}
 {{%/section%}}
 
-#### c++ Worker
+## c++ Worker
 {{%section %}}
 {{%column width="80%" %}}
 When the c++ business logic runs as a worker, collocated with the space; no remote calls are involved when interacting with the space. Interactions with the space are done using c++ objects, similar to the standalone c++ application configuration.

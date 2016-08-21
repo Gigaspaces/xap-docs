@@ -13,7 +13,7 @@ weight: 100
 
 Spring Security, historically also known as `Acegi` Security, provides a comprehensive security solution for handling authentication and authorization. Spring Security namespace provides directives for most common operations, allowing complete security configuration in just a few lines of XML.
 
-Spring Security comes with authentication providers for many occasions. Most common are the **`DaoAuthenticationProvider`** for retrieving user information from a database; **`LdapAuthenticationProvider`** for authentication against a Lightweight Directory Access Protocol (LDAP) server; **`JaasAuthenticationProvider`** for retrieving user information from a JAAS login configuration; etc.
+Spring Security comes with authentication providers for many occasions. Most common are the `DaoAuthenticationProvider` for retrieving user information from a database; `LdapAuthenticationProvider` for authentication against a Lightweight Directory Access Protocol (LDAP) server; `JaasAuthenticationProvider` for retrieving user information from a JAAS login configuration; etc.
 
 For more information, please refer to the [Spring Security website](http://static.springsource.org/spring-security/site/index.html).
 
