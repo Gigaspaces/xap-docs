@@ -150,11 +150,11 @@ The static alert configurations are parsed using the `XmlAlertConfigurationParse
 
 Alert configuration settings can be changed (at runtime) for a pre-configured/pre-defined alert type.
 
-#### Enabling and Disabling of an alert
+## Enabling and Disabling of an alert
 
 A pre-configured but **disabled** alert can be easily enabled, but an already **enabled** alert type will need to be **disabled** prior to setting a new configuration.
 
-#### Enable a Disabled Predefined Alert
+## Enable a Disabled Predefined Alert
 
 For a predefined but disabled alert, enable it by specifying the alert Class type. The configuration settings that were predefined will be used.
 
@@ -163,7 +163,7 @@ For a predefined but disabled alert, enable it by specifying the alert Class typ
 alertManager.enableAlert(CpuUtilizationAlertConfiguration.class);
 ```
 
-#### Disable a Predefined Enabled Alert
+## Disable a Predefined Enabled Alert
 
 Too disable an existing alert (yet keep its configuration), use the following code:
 
@@ -172,7 +172,7 @@ Too disable an existing alert (yet keep its configuration), use the following co
 alertManager.disableAlert(CpuUtilizationAlertConfiguration.class);
 ```
 
-#### Re-configure a predefined alert
+## Re-configure a predefined alert
 
 For a predefined alert, obtain the current configuration, change the settings and re-configure the `AlertManager`.
 In the background, the enabled alert will be disabled, set and re-enabled with the new configuration.
@@ -184,7 +184,7 @@ config.setHighThresholdPerc(85);
 alertManager.configure(config);
 ```
 
-#### Configure and enable a predefined disabled alert
+## Configure and enable a predefined disabled alert
 
 If predefined settings need to be changed, get the configuration, change the settings, enable and re-configure.
 
@@ -196,7 +196,7 @@ config.setEnabled(true); //don't forget
 alertManager.configure(config);
 ```
 
-#### Configure an Undefined Alert
+## Configure an Undefined Alert
 
 For an alert which wasn't defined in the original set of alerts, create a new configuration with required settings and call configure.
 
@@ -210,7 +210,7 @@ config.setEnabled(true);
 alertManager.configure(config);
 ```
 
-#### Using the `AlertConfigurer`
+## Using the `AlertConfigurer`
 
 For a more fluent API, `AlertConfigurer` implementations provide chaining methods.
 
