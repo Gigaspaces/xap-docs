@@ -20,7 +20,7 @@ Administrators can use the UI to manage users and roles, and allow them to Login
 
 Managing the directory can be done directly through the `DirectoryManager` API. GigaSpaces Management Center utilizes this API and exposes a convenient administration interface for managing the users and roles supported by the backed directory implementation.
 
-Our default file-based implementation allows the directory to be administered only if the user has **Manage Users** or **Manage Roles** privileges. When the directory is first created (i.e. directory file doesn't exist), only an **`admin/admin`** user may be allowed to access and administer the directory. By default, the `admin` holds both privileges which allows declaring of new roles, adding users and assigning of roles. The `admin` user can be deleted, as long as you provide another user with management capabilities.
+Our default file-based implementation allows the directory to be administered only if the user has **Manage Users** or **Manage Roles** privileges. When the directory is first created (i.e. directory file doesn't exist), only an `admin/admin` user may be allowed to access and administer the directory. By default, the `admin` holds both privileges which allows declaring of new roles, adding users and assigning of roles. The `admin` user can be deleted, as long as you provide another user with management capabilities.
 
 ## Security Management dialog
 
@@ -30,14 +30,14 @@ There is no need for any service to be up and running. Just choose from the titl
 
 ![manage-security.png](/attachment_files/manage-security.png)
 
-- **`Use Default Configuration`** - The defaults of the underlying implementation.
-For example, the file-based implementation's defaults are to access/create a file located under **`<XAP root>/security/gs-directory.fsm`**.
+- `Use Default Configuration` - The defaults of the underlying implementation.
+For example, the file-based implementation's defaults are to access/create a file located under `<XAP root>/security/gs-directory.fsm`.
 
-- **`Security Properties File`** - Choose your configuration properties file that will configure the underlying implementation.
-For example, to configure a different **`file-path`** for the file-based implementation.
+- `Security Properties File` - Choose your configuration properties file that will configure the underlying implementation.
+For example, to configure a different `file-path` for the file-based implementation.
 
-- **`Administrator username and password`** - A user with **Manage Roles** or **Manage Users** privileges.
-For first time usage of the file-based implementation, use **`admin/admin`** - This will create a new file with the `admin` user which only has directory management privileges.
+- `Administrator username and password` - A user with **Manage Roles** or **Manage Users** privileges.
+For first time usage of the file-based implementation, use `admin/admin` - This will create a new file with the `admin` user which only has directory management privileges.
 
 ## Managing Users/Roles
 
@@ -57,15 +57,15 @@ A user can be associated with predefined roles and be granted with user-specific
 ##### Associating a role
 
 To associate a user with roles, choose the roles from the list of roles. Each associated **role** will appear in its own tab,
-and the **`Aggregated`** view will show the aggregation of all the privileges (user-specific and roles).
+and the `Aggregated` view will show the aggregation of all the privileges (user-specific and roles).
 
 ![create-new-user.png](/attachment_files/create-new-user.png)
 
 ##### User-specific privileges
 
-To assign a **`Monitor Privilege`**, **`System Privilege`**, or **`Grid Privilege`** select the privilege check-box.
+To assign a `Monitor Privilege`, `System Privilege`, or `Grid Privilege` select the privilege check-box.
 
-To assign **`Space Privilege`** rules, use the **`+`** button to add a row to the `Space Operations` table. This grants the user the privilege to perform a space operation on the specified Class/Package name. The `Space Operation` can be one of **`Write`**, **`Read`**, **`Take`**, **`Alter`**, or **`Execute`** which can be chosen from the drop-down. To restrict the operation to a certain class, specify a **Class/Package name** (wild-card) filter and choose *Allow* or **Deny**.
+To assign `Space Privilege` rules, use the `+` button to add a row to the `Space Operations` table. This grants the user the privilege to perform a space operation on the specified Class/Package name. The `Space Operation` can be one of **`Write`**, **`Read`**, **`Take`**, **`Alter`**, or **`Execute`** which can be chosen from the drop-down. To restrict the operation to a certain class, specify a **Class/Package name** (wild-card) filter and choose *Allow* or **Deny**.
 
 The following snapshot shows that the user has:
 

@@ -31,7 +31,7 @@ In the example above, the `OpenSpacesMuleContextLoader` loads a Mule application
 Packaging of the Processing Unit should follow the [Processing Unit structure](./the-processing-unit-structure-and-configuration.html).
 
 {{% note %}}
-When deploying a Processing Unit into the [SLA-driven container](./deploying-onto-the-service-grid.html), Mule JAR files should be "installed" into the XAP installation (on each node). The following minimum set of JARs need to be copied into **`<XAP Root>\lib\platform\mule`** (if the Mule directory does not exists, create it).
+When deploying a Processing Unit into the [SLA-driven container](./deploying-onto-the-service-grid.html), Mule JAR files should be "installed" into the XAP installation (on each node). The following minimum set of JARs need to be copied into `<XAP Root>\lib\platform\mule` (if the Mule directory does not exists, create it).
 {{%/note%}}
 
 - Copy the following JAR files from `<Mule Root>\lib\mule` to `<XAP Root>\lib\platform\mule`:

@@ -63,7 +63,7 @@ The alert is configured with a high threshold of 80% and a low threshold of 60% 
 ...
 ```
 
-The **`class`** attribute above is the implementation class used to configure the settings of this alert. When configuring **`enabled="false"`** alerts of this type will not be triggered, until enabled again (at runtime).
+The `class` attribute above is the implementation class used to configure the settings of this alert. When configuring `enabled="false"` alerts of this type will not be triggered, until enabled again (at runtime).
 
 Note that some alert triggers define that an alert is raised each time a certain high threshold is crossed for example. This means that can be are multiple raised alerts at the same time, each indicating its own utilization reading at the time it was triggered. On the other hand, there can only be one resolving alert, which 'resolves' the already raised alert/s.
 
@@ -122,8 +122,8 @@ The `org.openspaces.admin.alert.Alert` instance includes the following set of pr
 |:-----|:------------|:------|
 | Description | The readable description of the alert | e.g. CPU Utilization crossed a threshold of 80% |
 | Timestamp | The date and time of the alert occurred | `System.currentTimeMillis()` |
-| Severity | The alert severity | `SEVERE, WARNING, INFO` |
-| Status | The alert status | `ESCALATED,` **`RAISED`** `, SUPPRESSED,` **`RESOLVED`** `, NA` |
+| Severity | The alert severity | `SEVERE`, `WARNING`, `INFO` |
+| Status | The alert status | `ESCALATED`, `RAISED`, `SUPPRESSED`, `RESOLVED`, `NA` |
 | UID | A unique identifier for this alert | component hash code with an incrementing number |
 | Component UID | The grid component UID that the alert has been triggered for | e.g. "service-id: 15f4b0b4-3a78-413f-bd3a-429a50dcdf05" |
 | Group UID | A unique identifier for a set of alerts triggered for the same component,{{<wbr>}}e.g. two different machines will have a different group UID if their CPU utilization {{<wbr>}}raised an alert.But for each machine, the raised alerts and resolved{{<wbr>}}alert for CPU utilization will have the same group UID | e.g. "aafb1222-826c3cbb-73c6-4903-bdc1-d858f1324e12" |

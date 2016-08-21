@@ -63,7 +63,7 @@ Spring Security also includes `JdbcDaoImpl`, a `UserDetailsService` that can obt
 </bean>
 ```
 
-There are some basic assumptions on how user information is stored in the database. Specifically, it assumes a Users table and an Authorities table. By default, `JdbcDaoImpl` loads the authorities for a single user with the assumption that the authorities are mapped directly to users. An alternative approach is to partition the authorities into groups (roles) and assign groups to the user. For more information, refer to the **`JdbcDaoImpl` Javadoc** and the **Security Database Schema Appendix**.
+There are some basic assumptions on how user information is stored in the database. Specifically, it assumes a Users table and an Authorities table. By default, `JdbcDaoImpl` loads the authorities for a single user with the assumption that the authorities are mapped directly to users. An alternative approach is to partition the authorities into groups (roles) and assign groups to the user. For more information, refer to the `JdbcDaoImpl` Javadoc and the **Security Database Schema Appendix**.
 
 Here is a snippet:
 

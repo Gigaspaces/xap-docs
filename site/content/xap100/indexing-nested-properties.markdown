@@ -9,11 +9,11 @@ weight: 100
 
 An index can be defined on a nested property to improve performance of nested queries - this is highly recommended.
 
-Nested properties indexing uses an additional `@SpaceIndex` attribute - **`path()`**.
+Nested properties indexing uses an additional `@SpaceIndex` attribute - `path()`.
 
 ## The SpaceIndex.path() Attribute
 
-The **`path()`** attribute represents the path of the property within the nested object.
+The `path()` attribute represents the path of the property within the nested object.
 
 Below is an example of defining an index on a nested property:
 
