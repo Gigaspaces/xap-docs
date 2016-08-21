@@ -83,7 +83,7 @@ An embedded Space may be configured with internal services (Space filters, Notif
 {{% /tab %}}
 {{%tab "  Code "%}}
 The security credentials can be either be supplied as an `UserDetails` object or in its simpler form of two Strings (username and password).
-These will be used to _implicitly_ create a **`secured`** Space, with security privileges being propagated to internal services.
+These will be used to _implicitly_ create a `secured` Space, with security privileges being propagated to internal services.
 
 
 ```java
@@ -119,7 +119,7 @@ An embedded Space with no internal services, can be simply configured as secured
 
 {{% /tab %}}
 {{%tab "  Code "%}}
-The **`secured`** Space URL property indicates that the Space being created should be secured.
+The `secured` Space URL property indicates that the Space being created should be secured.
 
 
 ```java
@@ -127,7 +127,7 @@ EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("space?
 GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 ```
 
-The **`secured`** URL property is also exposed as a convenient `.secured(true)` method call.
+The  `secured` URL property is also exposed as a convenient `.secured(true)` method call.
 
 
 ```java
@@ -154,7 +154,7 @@ A processing unit (for example a feeder application) may access a secured Space 
 </os-core:space-proxy>
 ```
 
-The `username` and `password` can also be supplied using a `pu.properties` file supplied during deployment. If these are supplied, they will be used to _implicitly_ connect to a **`secured`** Space, returning an authenticated proxy for this user.
+The `username` and `password` can also be supplied using a `pu.properties` file supplied during deployment. If these are supplied, they will be used to _implicitly_ connect to a `secured` Space, returning an authenticated proxy for this user.
 
 
 ```java
@@ -287,7 +287,7 @@ GigaSpace localView = new GigaSpaceConfigurer(configurer.localView()).gigaSpace(
 
 Space Filters {{%currentjavanet "the-space-filters.html"%}} are interceptors inside the XAP Space which allow implementation of user-defined logic based on Space events. Some filters need to perform operations on the embedded Space. If secured, the filter needs to have sufficient privileges for its operations.
 
-The username and password supplied when creating a Space, will be used to _implicitly_ create a **`secured`** Space. The security privileges of the specified user will be propagated to the Filter. If the user has **Read** privileges, then the filter will be able to perform a `space.read(..)` on its embedded Space.
+The username and password supplied when creating a Space, will be used to _implicitly_ create a `secured` Space. The security privileges of the specified user will be propagated to the Filter. If the user has **Read** privileges, then the filter will be able to perform a `space.read(..)` on its embedded Space.
 
 #### Before Authentication operation
 
@@ -366,7 +366,7 @@ Note the `before-authentication` method adapter.
 {{% /tab %}}
 {{%tab "   Embedded-space operations "%}}
 
-_Implicitly_ create a **`secured`** Space, with security privileges being propagated to the filter.
+_Implicitly_ create a `secured` Space, with security privileges being propagated to the filter.
 These privileges need to be sufficient for operations being perform by the filter on the embedded Space.
 
 

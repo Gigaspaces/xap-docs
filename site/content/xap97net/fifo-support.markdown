@@ -38,10 +38,10 @@ or when using gs.xml via the `fifo-support` attribute on the `class` element:
 
 The `FifoSupport` modes are:
 
-1. **`Off`** - This class does not support FIFO. Attempting to execute FIFO operations will throw an exception.
-2. **`Operation`** - FIFO support is enabled. An operation's FIFO behavior is determined by its modifiers or settings.
-3. **`All`** - FIFO support is enabled. Any operation will be FIFO, overriding its other modifier or settings.
-4. **`Default`** - FIFO support will be derived from the base class recursively.
+1. `Off` - This class does not support FIFO. Attempting to execute FIFO operations will throw an exception.
+2. `Operation` - FIFO support is enabled. An operation's FIFO behavior is determined by its modifiers or settings.
+3. `All` - FIFO support is enabled. Any operation will be FIFO, overriding its other modifier or settings.
+4. `Default` - FIFO support will be derived from the base class recursively.
 
 # Space Operations
 

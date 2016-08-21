@@ -145,8 +145,8 @@ You should use the above settings with large heap size (above 10GB).
 # Basic Container Initialization Events
 
 The container exposes some events that can be used to be notified at the different stages of the container initialization.
-**`ContainerInitializing`** - Triggered when the container it initializing.
-**`ContainerInitialized`** - Triggered once the container finished its initialization process.
+`ContainerInitializing` - Triggered when the container it initializing.
+`ContainerInitialized` - Triggered once the container finished its initialization process.
 
 Here's a simple example of using this events in a `BasicProcessingUnitComponent` which acts as a feeder
 

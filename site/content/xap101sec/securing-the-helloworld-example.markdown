@@ -24,11 +24,11 @@ We have a processor bean that will process `HelloObjects` - it works with a poll
 
 # What needs to be secured?
 
-Obviously we want to protect the Space data (containing both `HelloObject` and `ProcessedHelloObject`). We need to first define the Space as secured. The processor beans' polling container needs to be granted **`Take`** access for `HelloObject` and **`Write`** access for `ProcessedHelloObject`. Secondly, the `Feeder` which gains a remote proxy to the Space, needs to be granted **`Write`** access for `HelloObject` and **`Read`** access for `ProcessedHelloObject`.
+Obviously we want to protect the Space data (containing both `HelloObject` and `ProcessedHelloObject`). We need to first define the Space as secured. The processor beans' polling container needs to be granted `Take` access for `HelloObject` and `Write` access for `ProcessedHelloObject`. Secondly, the `Feeder` which gains a remote proxy to the Space, needs to be granted `Write` access for `HelloObject` and  `Read` access for `ProcessedHelloObject`.
 
 # Securing the Space
 
-Lets define a secured space in `hello-processor/META-INF/spring/pu.xml` by adding the **`secured`** namespace property. This can also be accomplished by adding the `secured` Space URL property.
+Lets define a secured space in `hello-processor/META-INF/spring/pu.xml` by adding the `secured` namespace property. This can also be accomplished by adding the `secured` Space URL property.
 
 
 ```java
@@ -107,8 +107,8 @@ Using the CLI deploy command embed the username and password matching the placeh
 Managing the users and their authorities can either be done using the UI or API.
 
 We have two users to declare - "helloProcessor" and the other "helloFeeder".
-The "helloProcessor" user will be granted **`Take`** access for `HelloObject` and **`Write`** access for `ProcessedHelloObject`.
-The "helloFeeder" user will be granted **`Write`** access for `HelloObject` and **`Read`** access for `ProcessedHelloObject`
+The "helloProcessor" user will be granted `Take` access for `HelloObject` and `Write` access for `ProcessedHelloObject`.
+The "helloFeeder" user will be granted `Write` access for `HelloObject` and `Read` access for `ProcessedHelloObject`
 
 {{% note "Some implementation notes: "%}}
 
@@ -138,7 +138,7 @@ To simplify this example we will assume that the Service Grid components are **n
 
 To complete this example, we will give a brief overview of what needs to be done to deploy into a secured Service Grid.
 
-In a secured Service Grid, the GSM and GSC are secured. This means that in order to deploy, you must have **`Provision PU`** privileges. Declare another principal with **`Provision PU`**, that will be used for deploying.
+In a secured Service Grid, the GSM and GSC are secured. This means that in order to deploy, you must have  `Provision PU` privileges. Declare another principal with `Provision PU`, that will be used for deploying.
 
 Using the UI, _Login_ with this principals' credentials, and open the deployment wizard to deploy the `processor`.
 Now, all that is left is to run the feeder as an external application.
