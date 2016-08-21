@@ -23,6 +23,7 @@ Please refer to the [Lookup Service Configuration](./network-lookup-service-conf
 
 When using the unicast lookup service discovery option, you may specify multiple locators. This means, a client that is looking to bootstrap its space proxy, may search for the proxy location within one or more lookup services that may be running on specific hosts.
 
+![locators](/attachment_files/smart-proxy.png)
 
 When multiple locators are specified, a parallel search will be conducted across all the given host names (or IPs) for a matching space name. Once found, the proxy and its cluster information (primaries , backups) will be populated. 
 This means, the search may not have a pre-defined deterministic order, as a different lookup service may be used every time. When having a large number of clients using multiple locators (large compute grid environment with many workers, a large web application with many instances), the space proxy bootstrap will be distributed across all discovered lookup services. 

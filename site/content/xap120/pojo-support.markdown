@@ -31,9 +31,9 @@ Here is an overview of the most commonly used POJO annotations:
 
 - `@SpaceRouting`: The routing property for the POJO. In a partitioned space, this controls how instances of a certain class are distributed across the partitions. When two instances (even of different classes), have the same value for their routing property, they end up in the same partition.
 
-{{% info %}}
+ 
  You can define space classes metadata by class and field level decorations. These can be defined via annotations or XML configurations files (**gs.xml file**).
-{{% /info %}}
+ 
 
 
 
@@ -48,14 +48,14 @@ Here is an overview of the most commonly used POJO annotations:
 When using  annotations and the gs.xml file to define metadata, the metadata in the gs.xml will be used and the annotations will be ignored. **It is not recommended to use the two metadata definitions for a space class at the same time**.
 {{%/warning%}}
 
-{{% vbar "Primitives or Wrapper Classes for POJO Properties? "%}}
+##  Primitives or Wrapper Classes for POJO Properties?  
 XAP supports both primitives (`int`, `long`, `double`, `float`, etc.), and primitive wrappers (`java.lang.Integer`, `java.lang.Double`, etc.). In general, it is recommended that you use the primitive wrapper. This enables you to use the `null` values as a wildcard when using template matching.
 
 If you use primitives make sure you define the following for your POJO class:
 
 - The `null` value for the property - since primitive types are not nullable, you have to indicate to the space a value that is treated as `null`. This is important for template matching (see below), where null values are considered as wildcards, and do not restrict the search.
 - It is recommended that the initial value (assigned in the constructor) for this field matches the null value. This enables you to quickly create new instances, and use them as templates for template matching, without changing any property except the ones you want to use for matching.
-{{% /vbar %}}
+ 
 
 Here is a sample POJO class:
 
@@ -147,9 +147,9 @@ For example, index lists aren't maintained because the space is unaware of the m
 
 Non-Indexed fields that are not used for queries should be placed within a user defined class (payload object) and have their getter and setter placed within the payload class. This improves the read/write performance since these fields would not be introduced to the space class model.
 
-{{% tip %}}
+{{% note "Indexing"%}}
 [Indexing](./indexing-overview.html) is **critical** for good performance over large spaces. Don't forget to index properly with the @SpaceIndex(type=SpaceIndexType.BASIC) or @SpaceIndex(type=SpaceIndexType.EXTENDED) annotation or use the gs.xml equivalent.
-{{% /tip %}}
+{{% /note %}}
 
 
 

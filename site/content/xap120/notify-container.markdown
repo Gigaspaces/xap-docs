@@ -14,7 +14,7 @@ The notify event container uses the space inherited support for notifications (c
 {{% /imagertext %}}
 
 
-### Life Cycle Events
+# Life Cycle Events
 The notify container life cycle events described below. You may implement each of of these to perform the desired activity.
 
 {{%align center%}}
