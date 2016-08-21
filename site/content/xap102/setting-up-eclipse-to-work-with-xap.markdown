@@ -22,7 +22,7 @@ Follow these steps to prepare your development environment:
 To check your installed Java version:
 
 1. Open a command line window.
-1. Run **`set JAVA_HOME`**
+1. Run `set JAVA_HOME`
 1. A response similar to this suggests you have a JDK installed:
 
 

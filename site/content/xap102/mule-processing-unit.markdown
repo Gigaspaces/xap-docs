@@ -31,7 +31,7 @@ In the example above, the `OpenSpacesMuleContextLoader` loads a Mule application
 Packaging of the Processing Unit should follow the [Processing Unit structure](./the-processing-unit-structure-and-configuration.html).
 
 {{% note %}}
-When deploying a Processing Unit into the [SLA-driven container](./deploying-onto-the-service-grid.html), Mule JAR files should be "installed" into the XAP installation (on each node). The following minimum set of JARs need to be copied into **`<XAP Root>\lib\platform\mule`** (if the Mule directory does not exists, create it).
+When deploying a Processing Unit into the [SLA-driven container](./deploying-onto-the-service-grid.html), Mule JAR files should be "installed" into the XAP installation (on each node). The following minimum set of JARs need to be copied into `<XAP Root>\lib\platform\mule` (if the Mule directory does not exists, create it).
 {{%/note%}}
 
 - Download Mule 3.5 distribution from [mule's website](https://www.mulesoft.org/download-mule-esb-community-edition) and extract the file.
@@ -50,7 +50,7 @@ Since version 7.0, the required mule jar files can also be placed within the pro
 {{%/note%}}
 
 {{% note %}}
-Since version 10.1 XAP is using spring 4.1.1 jars and Mule does not support spring 4 it is required to replace **`<XAP Root>\lib\required\spring-*4.1.1*.jar`** and **`<XAP Root>\lib\optional\spring-*4.1.1*.jar`** files to spring 3.2.4 version jars.
+Since version 10.1 XAP is using spring 4.1.1 jars and Mule does not support spring 4 it is required to replace `<XAP Root>\lib\required\spring-*4.1.1*.jar` and `<XAP Root>\lib\optional\spring-*4.1.1*.jar` files to spring 3.2.4 version jars.
 {{%/note%}}
 
 #### Packaging for Mule example

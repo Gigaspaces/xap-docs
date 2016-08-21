@@ -98,13 +98,13 @@ The reason for defining the space's clustering topology within the SLA definitio
 
 There are numerous clustering topologies you can choose from:
 
-- **`default`**: Single space instance, no replication or partitioning
+- `default`: Single space instance, no replication or partitioning
 
-- **`sync-replicated`**: Multiple space instances. When written to one of the space instances, objects are **synchronously** replicated to all space instances. The maximum capacity of this topology is the one of the smallest JVM in the cluster.
+- `sync-replicated`: Multiple space instances. When written to one of the space instances, objects are **synchronously** replicated to all space instances. The maximum capacity of this topology is the one of the smallest JVM in the cluster.
 
-- **`async-replicated`** Multiple space instances. When written to one of the space instances, objects are **asynchronously** replicated to all space instances. The maximum capacity of this topology is the one of the smallest JVM in the cluster.
+- `async-replicated` Multiple space instances. When written to one of the space instances, objects are **asynchronously** replicated to all space instances. The maximum capacity of this topology is the one of the smallest JVM in the cluster.
 
-- **`partitioned-sync2backup`** Multiple space instances. Objects are distributed across all of the space instances, such that each instance contains a separate subset of the data and forms a separate partition. The partitioning (distribution) of objects is based on their routing property. Optionally, when using this topology, you can designate one or more backup instances to each of the partitions, such that when an object is written to  a certain partition, it is synchronously replicated to the backup copy(ies) of that partition. The maximum capacity of this topology is the overall capacity of all of the JVMs in the cluster, divided by the number of backups+1.
+- `partitioned-sync2backup` Multiple space instances. Objects are distributed across all of the space instances, such that each instance contains a separate subset of the data and forms a separate partition. The partitioning (distribution) of objects is based on their routing property. Optionally, when using this topology, you can designate one or more backup instances to each of the partitions, such that when an object is written to  a certain partition, it is synchronously replicated to the backup copy(ies) of that partition. The maximum capacity of this topology is the overall capacity of all of the JVMs in the cluster, divided by the number of backups+1.
 
 From the client application's perspective (the one that connects to the space from another process), the clustering topology is transparent in most cases.
 

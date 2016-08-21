@@ -15,7 +15,7 @@ The Command Line Interface can be used to manage and monitor a running system. I
 
 # Login/Logout
 
-The Command Line Interface (CLI) has two modes - an `interactive shell` mode and a `non-interactive` mode. The difference in terms of security is the **login** stage. When in `interactive` mode, you can call the **`login`** command, supply credentials, and perform operations using this session. But, when in a `non-interactive` mode, you can execute only one command line at a time - no session is being managed.
+The Command Line Interface (CLI) has two modes - an `interactive shell` mode and a `non-interactive` mode. The difference in terms of security is the **login** stage. When in `interactive` mode, you can call the `login` command, supply credentials, and perform operations using this session. But, when in a `non-interactive` mode, you can execute only one command line at a time - no session is being managed.
 
 {{% info %}}
 Note that the login is being performed against the GSM. If the Grid is not secured, you can deploy without logging in. For example, you can deploy a secured Processing Unit into a non-secured Grid.
@@ -23,14 +23,14 @@ Note that the login is being performed against the GSM. If the Grid is not secur
 
 {{%tabs%}}
 {{%tab "   Interactive "%}}
-Run the `gs` script and use the command line arguments **`-user`** and **`-password`** with the user credentials.
+Run the `gs` script and use the command line arguments `-user` and `-password` with the user credentials.
 
 
 ```bash
 gs(.sh/bat) -user uuu -password ppp
 ```
 
-or, run the `gs` script, and then use the **`login`** command
+or, run the `gs` script, and then use the `login` command
 
 
 ```bash
@@ -41,7 +41,7 @@ gs> ...
 
 {{% /tab %}}
 {{%tab "   Non-Interactive "%}}
-Run the `gs` script, and prefix **any** command with the command line arguments **`-user`** and **`-password`**.
+Run the `gs` script, and prefix **any** command with the command line arguments `-user` and `-password`.
 
 
 ```bash
@@ -51,15 +51,15 @@ gs(.sh/.bat) -user uuu -password ppp [command]
 {{% /tab %}}
 {{% /tabs %}}
 
-To **logout** **`quit`** the interactive shell.
+To **logout** `quit` the interactive shell.
 
 # Deploy Command
 
-The CLI **`deploy`** command accepts a **`-secured true/false`** used to deploy a secured Processing Unit with a secured Space. Common when deploying a data-grid.
-In order to pass the user credentials, use **`-user`** and **`-password`** arguments. This will implicitly deploy a secured Processing Unit, and the credentials will be propagated to the Processing Unit and its internal services.
+The CLI `deploy` command accepts a `-secured true/false` used to deploy a secured Processing Unit with a secured Space. Common when deploying a data-grid.
+In order to pass the user credentials, use `-user` and `-password` arguments. This will implicitly deploy a secured Processing Unit, and the credentials will be propagated to the Processing Unit and its internal services.
 
 {{% info %}}
-Same syntax applies for **`deploy-space`** and **`pudeploy`** commands.
+Same syntax applies for  `deploy-space` and `pudeploy` commands.
 {{%/info%}}
 
 Here are some examples and how they are accomplished in both CLI modes:
@@ -96,7 +96,7 @@ gs -user uuu -password ppp deploy -user xxx -password yyy processor
 
 # Undeploy Command
 
-The CLI **`undeploy`** command of a processing unit is done on its managing GSM. If the GSM is not secured, then no credentials are needed.
+The CLI `undeploy` command of a processing unit is done on its managing GSM. If the GSM is not secured, then no credentials are needed.
 
 {{%tabs%}}
 {{%tab "   Interactive "%}}
@@ -121,13 +121,13 @@ gs -user uuu -password ppp undeploy processor
 
 # Space Command
 
-The CLI **`space`** commands are basically all the same. They require that the user has sufficient privileges to perform operations on the data.
+The CLI `space` commands are basically all the same. They require that the user has sufficient privileges to perform operations on the data.
 
 {{% info %}}
 Note that the login is being performed against the Space; It doesn't matter if the GSM or GSC are secured. The login credentials should reflect the operations being performed on the service.
 {{%/info%}}
 
-For example, for the **`space clean`** command, the user _(uuu/ppp)_ needs **`Alter`** privileges.
+For example, for the `space clean` command, the user _(uuu/ppp)_ needs  `Alter` privileges.
 
 {{%tabs%}}
 {{%tab "   Interactive "%}}
@@ -150,7 +150,7 @@ gs -user uuu -password ppp space clean -url jini://*/*/space
 {{% /tab %}}
 {{% /tabs %}}
 
-For the **`space copy`** command, the user needs **`Read`** privileges on the source space (copied from) and **`Write`** privileges on the target space (copied to).
+For the `space copy` command, the user needs `Read` privileges on the source space (copied from) and  `Write` privileges on the target space (copied to).
 
 {{%tabs%}}
 {{%tab "   Interactive "%}}

@@ -321,11 +321,11 @@ Change will be delivered as a regular update notification, with the state of the
 
 The following modifiers can be used with the change operation
 
-1. **`ChangeModifiers.RETURN_DETAILED_RESULTS`** - Provide details change result containing more information about the objects that were changed, requires more network traffic.
-1. **`ChangeModifiers.ONE_WAY`** - Change is executed in one way mode, which means the operation will not wait for the change operation to reach the server, the result will always be null and
+1. `ChangeModifiers.RETURN_DETAILED_RESULTS` - Provide details change result containing more information about the objects that were changed, requires more network traffic.
+1. `ChangeModifiers.ONE_WAY` - Change is executed in one way mode, which means the operation will not wait for the change operation to reach the server, the result will always be null and
 there is no guarantee whether the operation succeeded or not as this mode does not guarantee any exceptions upon failure. The only guarantee is that the operation was successfully written to the local network buffer.
 
-1. **`ChangeModifiers.MEMORY_ONLY_SEARCH`** - Search for matching entries in cache memory only (do not use the underlying external data source). However, any changes done on the matches entries
+1. `ChangeModifiers.MEMORY_ONLY_SEARCH` - Search for matching entries in cache memory only (do not use the underlying external data source). However, any changes done on the matches entries
 will propagate to the underlying external data source.
 
 {{%anchor asynchronousChange%}}

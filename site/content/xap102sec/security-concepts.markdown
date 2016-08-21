@@ -23,7 +23,7 @@ Further correspondence are done via this authenticated session context. The serv
 
 # Encryption
 
-A two-way encryption is used to protect the credentials passed as part of the authentication process. The `UserDetails` object is encrypted before it is sent along the stream, and decrypted at the service. Of course, it is best to use **SSL** for transport layer security, but nevertheless we ensure these details are encrypted. The two-way encryption is done using a private key available to both client and server. A generated AES compliant key can be kept in a **`gs-keystore.key`** file located in the classpath.
+A two-way encryption is used to protect the credentials passed as part of the authentication process. The `UserDetails` object is encrypted before it is sent along the stream, and decrypted at the service. Of course, it is best to use **SSL** for transport layer security, but nevertheless we ensure these details are encrypted. The two-way encryption is done using a private key available to both client and server. A generated AES compliant key can be kept in a `gs-keystore.key` file located in the classpath.
 
 {{% info %}}
 Note that a password is usually encrypted using a one-way hash function, e.g. an `MD5` algorithm. This one-way encryption is an implementation detail of the `SecurityManager`. This should not be confused with the two-way encryption done at the transport layer of an authentication call.
@@ -45,7 +45,7 @@ The users (`UserDetails`) and roles (`RoleDetails`) are usually stored in some k
 
 We provide two distinct privileges for managing the directory - one for user management and one for role management.
 
-Our default `DirectoryManager` implementation utilizes the GUI (GigaSpaces Management Center) for easy administration. When our default directory is first created, only an **`admin/admin`** user may be allowed to access and administer the directory. After which, this user can be deleted - but don't forget to provide another user with management capabilities.
+Our default `DirectoryManager` implementation utilizes the GUI (GigaSpaces Management Center) for easy administration. When our default directory is first created, only an `admin/admin` user may be allowed to access and administer the directory. After which, this user can be deleted - but don't forget to provide another user with management capabilities.
 
 You may manage the directory directly using the `DirectoryManager` API. It has a clear distinction between a `UserManager` and a `RoleManager`.
 

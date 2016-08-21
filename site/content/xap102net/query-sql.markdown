@@ -8,7 +8,7 @@ weight: 500
 
 {{%ssummary%}}{{%/ssummary%}}
 
-The **`SqlQuery`** class is used to query the space using SQL-like syntax. This query can be passed as a template to the Read, Take, ReadMultiple, TakeMultiple, Count and Clear operations, as well as a template when registering for notification.
+The `SqlQuery` class is used to query the space using SQL-like syntax. This query can be passed as a template to the Read, Take, ReadMultiple, TakeMultiple, Count and Clear operations, as well as a template when registering for notification.
 
 
 # Usage
@@ -80,7 +80,7 @@ When running on a partitioned space, it is important to understand how routing i
 
 If the routing property is part of the criteria expression with an equality operand and without ORs, its value is used for routing.
 
-For example, suppose the routing property of **`MyClass`** is **`Num`**:
+For example, suppose the routing property of `MyClass` is `Num`:
 
 
 ```csharp

@@ -14,7 +14,7 @@ The [Administration and Monitoring API]({{%currentjavaurl%}}/administration-and-
 
 # Constructing the Admin instance
 
-When using a secured Service Grid, the `Admin` instance needs to be constructed with a _principal_ which is granted sufficient privileges based on the operations being performed using the administration API. For example, grant **`Manage Grid`** to start a Grid Service Manager (GSM) and grant ***`Provision PU`** to deploy a processing unit.
+When using a secured Service Grid, the `Admin` instance needs to be constructed with a _principal_ which is granted sufficient privileges based on the operations being performed using the administration API. For example, grant `Manage Grid` to start a Grid Service Manager (GSM) and grant `Provision PU` to deploy a processing unit.
 
 The following creates an `Admin` instance with the user "user/password".
 

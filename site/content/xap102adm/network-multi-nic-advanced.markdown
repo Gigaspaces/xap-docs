@@ -117,7 +117,7 @@ If no value is specified for this Entry, then all network interfaces of the host
 
 To limit the network interface to a specific set of network cards, the `multicastInterfaces` value should be an array of `NetworkInterface` instances.
 
-The following modification sets the network interface to **`eth0`**.
+The following modification sets the network interface to `eth0`.
 
 
 ```java
@@ -188,7 +188,7 @@ By default, unicast discovery is disabled, unless:
 - the `SpaceURL` locators attribute is used.
 
 The lookup host is overridden by merely setting the `NIC_ADDR` (steps 1 and 2)
-Otherwise, to use **`eth0/192.169.80.145`** as the unicast discovery channel, set the two system properties accordingly.
+Otherwise, to use `eth0/192.169.80.145` as the unicast discovery channel, set the two system properties accordingly.
 
 
 ```bash
@@ -251,7 +251,7 @@ The replicated example, located under `<XAP Root>\examples\Advanced\Data_Grid\re
 
 The `NIC_ADDR` should be set corresponding at each machine's network interface card.
 
-For the purpose of the example, `node1` and `node2` are loaded at **`Lab16`**`.gigaspaces.com` and **`Lab17`**`.gigaspaces.com` respectively. Both have a network card configured for **`eth0`** (spanning IPs `192.168.80.145...147`). Both nodes should be configured with the corresponding `NIC_ADDR` property of their own network interface IP address for `eth0`.
+For the purpose of the example, `node1` and `node2` are loaded at `Lab16``.gigaspaces.com` and  `Lab17``.gigaspaces.com` respectively. Both have a network card configured for `eth0` (spanning IPs `192.168.80.145...147`). Both nodes should be configured with the corresponding `NIC_ADDR` property of their own network interface IP address for `eth0`.
 
 ![IMG911.jpg](/attachment_files/IMG911.jpg)
 
@@ -357,7 +357,7 @@ dirty(java.rmi.server.ObjID[], long, java.rmi.dgc.Lease)]
 
 ### Bind Exception
 
-A bind exception could be the cause of a machine trying to bind to a lookup service not on the correctly configured network interface. For example, if `node2` had its `$\{NIC_ADDR\`} configured to **`192.168.80.145`**, while its own network interface for `eth0` is **`192.168.80.147`**.
+A bind exception could be the cause of a machine trying to bind to a lookup service not on the correctly configured network interface. For example, if `node2` had its `$\{NIC_ADDR\`} configured to `192.168.80.145`, while its own network interface for `eth0` is `192.168.80.147`.
 
 
 ```bash

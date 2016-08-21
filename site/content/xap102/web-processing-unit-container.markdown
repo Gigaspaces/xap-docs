@@ -48,9 +48,9 @@ Deploying an exploded WAR is similar to deploying a packaged WAR. Here are the s
 1. The appropriate web container is configured to run the web application using the local file system location.
 
 {{% info %}}
-The directory where the web applications are extracted (up to the `work` directory) on the GSC side can be controlled using the **`com.gs.work`** system property.
+The directory where the web applications are extracted (up to the `work` directory) on the GSC side can be controlled using the `com.gs.work` system property.
 
-The deploy directory location (up to the `deploy` directory) used on the GSM side can be controlled using the **`com.gs.deploy`** system property.
+The deploy directory location (up to the `deploy` directory) used on the GSM side can be controlled using the `com.gs.deploy` system property.
 {{%/info%}}
 
 # Web Application Structure

@@ -20,7 +20,7 @@ Administrators can use the UI to manage users and roles, and allow them to Login
 
 Managing the directory can be done directly through the `DirectoryManager` API. GigaSpaces Management Center utilizes this API and exposes a convenient administration interface for managing the users and roles supported by the backed directory implementation.
 
-Our default file-based implementation allows the directory to be administered only if the user has **Manage Users** or **Manage Roles** privileges. When the directory is first created (i.e. directory file doesn't exist), only an **`admin/admin`** user may be allowed to access and administer the directory. By default, the `admin` holds both privileges which allows declaring of new roles, adding users and assigning of roles. The `admin` user can be deleted, as long as you provide another user with management capabilities.
+Our default file-based implementation allows the directory to be administered only if the user has **Manage Users** or **Manage Roles** privileges. When the directory is first created (i.e. directory file doesn't exist), only an `admin/admin` user may be allowed to access and administer the directory. By default, the `admin` holds both privileges which allows declaring of new roles, adding users and assigning of roles. The `admin` user can be deleted, as long as you provide another user with management capabilities.
 
 ## Security Management dialog
 
@@ -30,14 +30,14 @@ There is no need for any service to be up and running. Just choose from the titl
 
 ![manage-security.png](/attachment_files/manage-security.png)
 
-- **`Use Default Configuration`** - The defaults of the underlying implementation.
-For example, the file-based implementation's defaults are to access/create a file located under **`<XAP root>/security/gs-directory.fsm`**.
+- `Use Default Configuration` - The defaults of the underlying implementation.
+For example, the file-based implementation's defaults are to access/create a file located under  `<XAP root>/security/gs-directory.fsm`.
 
-- **`Security Properties File`** - Choose your configuration properties file that will configure the underlying implementation.
-For example, to configure a different **`file-path`** for the file-based implementation.
+- `Security Properties File` - Choose your configuration properties file that will configure the underlying implementation.
+For example, to configure a different `file-path` for the file-based implementation.
 
-- **`Administrator username and password`** - A user with **Manage Roles** or **Manage Users** privileges.
-For first time usage of the file-based implementation, use **`admin/admin`** - This will create a new file with the `admin` user which only has directory management privileges.
+- `Administrator username and password` - A user with **Manage Roles** or **Manage Users** privileges.
+For first time usage of the file-based implementation, use  `admin/admin` - This will create a new file with the `admin` user which only has directory management privileges.
 
 ## Managing Users/Roles
 
@@ -57,15 +57,15 @@ A user can be associated with predefined roles and be granted with user-specific
 ##### Associating a role
 
 To associate a user with roles, choose the roles from the list of roles. Each associated **role** will appear in its own tab,
-and the **`Aggregated`** view will show the aggregation of all the privileges (user-specific and roles).
+and the `Aggregated` view will show the aggregation of all the privileges (user-specific and roles).
 
 ![create-new-user.png](/attachment_files/create-new-user.png)
 
 ##### User-specific privileges
 
-To assign a **`Monitor Privilege`**, **`System Privilege`**, or **`Grid Privilege`** select the privilege check-box.
+To assign a  `Monitor Privilege`, `System Privilege`, or `Grid Privilege` select the privilege check-box.
 
-To assign **`Space Privilege`** rules, use the **`+`** button to add a row to the `Space Operations` table. This grants the user the privilege to perform a space operation on the specified Class/Package name. The `Space Operation` can be one of **`Write`**, **`Read`**, **`Take`**, **`Alter`**, or **`Execute`** which can be chosen from the drop-down. To restrict the operation to a certain class, specify a **Class/Package name** (wild-card) filter and choose *Allow* or **Deny**.
+To assign  `Space Privilege` rules, use the `+` button to add a row to the `Space Operations` table. This grants the user the privilege to perform a space operation on the specified Class/Package name. The `Space Operation` can be one of `Write`, `Read`, `Take`, `Alter`, or `Execute` which can be chosen from the drop-down. To restrict the operation to a certain class, specify a **Class/Package name** (wild-card) filter and choose *Allow* or **Deny**.
 
 The following snapshot shows that the user has:
 
@@ -85,7 +85,7 @@ Double-click on the role to **Edit** it, or select a role and press one of the a
 
 Creating a role is the same as creating a user with user-specific privileges. Except that these privileges can be associated by role-name to users.
 
-The following role is set to have **`Monitor PU`**, **`Manage Grid`**, **`Provision PU`**, **`Manage PU`**, and a `Space Operation` rule allowing a **`Write`** of any class matching **`eg.Account`**.
+The following role is set to have `Monitor PU`, `Manage Grid`, `Provision PU`, `Manage PU`, and a `Space Operation` rule allowing a  `Write` of any class matching `eg.Account`.
 
 ![create-new-role.png](/attachment_files/create-new-role.png)
 
@@ -93,7 +93,7 @@ The following role is set to have **`Monitor PU`**, **`Manage Grid`**, **`Provis
 
 There are two options to perform UI login - directly from the command line or from within the UI.
 
-You may find the command line option convenient when using pre-defined scripts. Use the command line arguments **`-user`* and *`-password`** with the user credentials.
+You may find the command line option convenient when using pre-defined scripts. Use the command line arguments `-user` and `-password` with the user credentials.
 Usage:
 
 
@@ -109,7 +109,7 @@ To login from within the UI, choose from the title menu bar **
 ![login-dialog.png](/attachment_files/login-dialog.png)
 
 In distributed systems, the login credentials are authenticated with each service. Thus, the indication of success or failure is specific to each.
-The **`Authentication Monitor`*** dialog appears when you press the **OK** button, but can also be viewed when pressing the ![logged-in-as.png](/attachment_files/logged-in-as.png)
+The `Authentication Monitor` dialog appears when you press the **OK** button, but can also be viewed when pressing the ![logged-in-as.png](/attachment_files/logged-in-as.png)
 
 icon in the bottom-right corner of the screen (appears after Login). ![authentication-monitor.png](/attachment_files/authentication-monitor.png)
 
@@ -133,13 +133,13 @@ The following table represents some of the actions that the UI disables when the
 
 | Privileges | Actions |
 |:-----------|:--------|
-| **`Provision PU`** | Deploy, Undeploy  |
-| **`Manage PU`** | Relocate, Restart PU, Add PU instance, Decrease PU Instance|
-| **`Manage Grid`** | Start/Restart/Terminate GSA agents, Open Administration UI for GSM/GSC|
-| **`Monitor PU`** | Viewing: Event Containers, Remote Services, Classes, Transactions, Statistics, Connections, PU details;{{<wbr>}}Space View: Statistics, Objects and Templates count; Objects count in Cluster Graph View;{{<wbr>}}Administration UI for PU Instance, Runtime Configuration Report|
-| **`Monitor JVM`** | Used memory in Spaces View, Launch JConsole|
-| **`Alter`** | Clean Space, Clean Cluster, Delete objects from Space|
-| **`Take`** | Clear objects from space |
+| `Provision PU`| Deploy, Undeploy  |
+| `Manage PU` | Relocate, Restart PU, Add PU instance, Decrease PU Instance|
+| `Manage Grid` | Start/Restart/Terminate GSA agents, Open Administration UI for GSM/GSC|
+| `Monitor PU` | Viewing: Event Containers, Remote Services, Classes, Transactions, Statistics, Connections, PU details;{{<wbr>}}Space View: Statistics, Objects and Templates count; Objects count in Cluster Graph View;{{<wbr>}}Administration UI for PU Instance, Runtime Configuration Report|
+| `Monitor JVM` | Used memory in Spaces View, Launch JConsole|
+| `Alter` | Clean Space, Clean Cluster, Delete objects from Space|
+| `Take` | Clear objects from space |
 | `any Space privilege` | Query on space, Run benchmark|
 
 # Deployment Wizard
@@ -154,7 +154,7 @@ It is important to understand the difference between the credentials supplied to
 
 ## Deploying a Secured data-grid
 
-To deploy a secured data-grid, select the **`Secured Space`** checkbox. Supplying credentials is optional. If no credentials are supplied, a secured Space will be instantiated. If credentials are supplied, a secured Space will be instantiated, propagating the credentials to internal services (i.e. Space Filters).
+To deploy a secured data-grid, select the `Secured Space` checkbox. Supplying credentials is optional. If no credentials are supplied, a secured Space will be instantiated. If credentials are supplied, a secured Space will be instantiated, propagating the credentials to internal services (i.e. Space Filters).
 
 ![deployment-wizard.png](/attachment_files/deployment-wizard.png)
 
@@ -168,7 +168,7 @@ The custom properties can hold both space configurations and security configurat
 
 ## Deploying a Secured Processing Unit
 
-To deploy a secured processing unit, select the **`Secured Space`** checkbox. As with a secured data-grid, supplying credentials is optional. The supplied credentials will be passed to the processing unit, to be propagated to the beans relying on the Space proxy.
+To deploy a secured processing unit, select the `Secured Space` checkbox. As with a secured data-grid, supplying credentials is optional. The supplied credentials will be passed to the processing unit, to be propagated to the beans relying on the Space proxy.
 
 _For example, the `data-processor` has a polling container - when deployed, the credentials supplied need to meet the permissions required by the embedded processing units. In this case, a **Take** privilege. The `data-feeder` on the other hand, when deployed, needs **Write** privileges to write into the `data-processor` cluster._
 
