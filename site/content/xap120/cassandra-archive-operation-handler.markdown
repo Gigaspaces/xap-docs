@@ -157,7 +157,7 @@ archiveContainer.destroy();
 |columnFamilyNameConverter| see [Column Family Name Converter](./cassandra-space-synchronization-endpoint.html#Column Family Name Converter).|
 
 
-#### Property Value Serializer
+## Property Value Serializer
 
 By default when serializing object/document properties to column values, the following serialization logic is applied:
 
