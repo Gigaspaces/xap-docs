@@ -21,7 +21,7 @@ During the local view initialization, data is loaded into the client's memory ba
 {{% /align %}}
 
 
-#### Where the Local View Can be Used?
+## Where the Local View Can be Used?
 
 The Local view can be used with financial applications (e.g. trading , market data , portfolio management) where each client (e.g. trader , broker) might need to access specific products / securities / equities data in real time. In this case, the application instance can generate a client side cache customized for the user needs.
 
@@ -138,7 +138,7 @@ Starting with XAP 8.0.6, the local view uses [replication]({{%currentadmurl%}}/r
 
 In those cases, the local view will automatically revert to notification-based synchronization.
 
-#### Synchronization Batch
+## Synchronization Batch
 
 Changes in the server are grouped and sent to the client in batches. The following configuration settings controls synchronization batching:
 
@@ -156,7 +156,7 @@ Batch settings can be configured using `LocalViewSpaceFactoryBean` for Spring, o
 </os-core:local-view>
 ```
 
-#### Recovering From Disconnection
+# Recovering From Disconnection
 
 When the connection between a local view and remote master space is disrupted, the local view starts trying to reconnect with the remote space.
 
@@ -181,25 +181,25 @@ When the synchronization is replication-based (default), the local view is resil
 
 This section is intended to summarize the changes in 8.0.5 for users upgrading from previous versions.
 
-#### Maximum Disconnection Duration
+## Maximum Disconnection Duration
 
 In previous versions the max disconnection duration was configured by setting the `space-config.dist-cache.events.lease` and/or `space-config.dist-cache.events.lease-renew.duration` custom properties. Configuring the max disconnection duration using these custom properties is still supported, but starting 8.0.5 it is deprecated.
 
 In addition, since the reconnect mechanism has been improved in 8.0.5, the custom properties `space-config.dist-cache.retry-connections` and `space-config.dist-cache.delay-between-retries` are no longer required and will be ignored.
 
-#### Batch Size & Timeout
+## Batch Size & Timeout
 
 In previous versions the batch size and timeout were configured by setting the `space-config.dist-cache.events.batch.size` and `space-config.dist-cache.events.batch.timeout` custom properties, respectively. Configuring the batch size and timeout using these custom properties is still supported, but starting with 8.0.5 it is deprecated.
 
-#### Notification
+## Notification
 
 If local view synchronization is done using notifications, the round-trip-time can be configured using the `space-config.dist-cache.events.lease-renew.round-trip-time` custom property. For more information about this setting refer to [Session Based Messaging API](./session-based-messaging-api.html).
 
-#### Configuring from Space URL
+## Configuring from Space URL
 
 Creating a Local View directly from the space url is deprecated - use `LocalViewSpaceFactoryBean` or `LocalViewSpaceConfigurer` instead.
 
-#### Server side local view properties
+## Server side local view properties
 
 This properties can be configured on the space side and they will affect all the local views which are created on top of that space.
 

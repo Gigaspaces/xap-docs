@@ -77,7 +77,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 {{% /tab %}}
 {{% /tabs %}}
 
-#### Transactional Operations
+# Transactional Operations
 
 Transactional operations are **always** executed on the master space.
 

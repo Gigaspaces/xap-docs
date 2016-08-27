@@ -103,13 +103,13 @@ Allow from 127.0.0.1
 
 |Command Line parameter|Description|Default Value|
 |:---------------------|:----------|:------------|
-|-apache `location`|The installation location of apache (`apache root folder`).|windows/unix common locations|
-|-conf-dir `location`|The directory where the [load balancer config](#Load Balancer Configuration) files will be created. |`apache root folder`/conf/gigaspaces|
-|-update-interval `value`|The update interval command. The interval (in milliseconds) when the load balancer conf files will be updated). The agent updates the configuration files and sends the restart command periodically. All changes happening to the deployment are accumulated and then flushed. | 10000 (10 seconds)|
-|-restart-command `value`|The full apache restart command.| windows: httpd -k restart{{<wbr>}}unix: apachectl graceful|
-|-apachectl `location`|Controls the The `apachectl`/`httpd` executable name and full path location. This overrides the `-apache` parameter. If this argument is not specified the agent looking for the apachectl(on unix) or httpd.exe(on windows) executable under `apache root folder/bin/` folder.| |
-|-groups `value`|Lookup group name (or coma separated group names) to locate the lookup service via multicast discovery protocol. This option is relevant only when the load-balancer machine has multicast connectivity with the GSM machine.|The XAP default group name specified via the `XAP_LOOKUP_GROUPS` variable.|
-|-locators `value`|Host machine name(or coma separated host names) or IP(s) running the lookup service.| The XAP default locators specified via the `XAP_LOOKUP_LOCATORS` variable.|
+|-apache location|The installation location of apache (`apache root folder`).|windows/unix common locations|
+|-conf-dir location|The directory where the [load balancer config](#Load Balancer Configuration) files will be created. |`apache root folder`/conf/gigaspaces|
+|<nobr>-update-interval value<nobr>|The update interval command. The interval (in milliseconds) when the load balancer conf files will be updated). The agent updates the configuration files and sends the restart command periodically. All changes happening to the deployment are accumulated and then flushed. | 10000 (10 seconds)|
+|<nobr>-restart-command value<nobr>|The full apache restart command.| windows: httpd -k restart{{<wbr>}}unix: apachectl graceful|
+|-apachectl location|Controls the The `apachectl`/`httpd` executable name and full path location. This overrides the `-apache` parameter. If this argument is not specified the agent looking for the apachectl(on unix) or httpd.exe(on windows) executable under `apache root folder/bin/` folder.| |
+|-groups value|Lookup group name (or coma separated group names) to locate the lookup service via multicast discovery protocol. This option is relevant only when the load-balancer machine has multicast connectivity with the GSM machine.|The XAP default group name specified via the `XAP_LOOKUP_GROUPS` variable.|
+|-locators value|Host machine name(or coma separated host names) or IP(s) running the lookup service.| The XAP default locators specified via the `XAP_LOOKUP_LOCATORS` variable.|
 
 The agent listens for changes happening in the web application deployment topology running within the Service Grid. If custom lookup groups or lookup locators are used, the agent scripts use the built-in options within the product to change them (for example, in setenv.(bat/sh)).
 

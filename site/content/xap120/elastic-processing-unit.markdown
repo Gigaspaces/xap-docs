@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  EPU Overview
+title:  Overview
 categories: XAP120,PRM
 parent: elastic-processing-unit-overview.html
 weight: 100

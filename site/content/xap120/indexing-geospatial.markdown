@@ -38,7 +38,7 @@ See [Geospatial queries](./query-geospatial.html)  for more information on how g
 {{%/refer%}}
 
 
-### Nested Index
+# Nested Index
 
 An index can be defined on a nested property to improve performance of nested queries. Nested properties indexing uses an additional attribute - `path()`.
 This attribute represents the path of the property within the nested object.
@@ -122,7 +122,7 @@ SQLQuery<GasStation> query = new SQLQuery<GasStation>(GasStation.class, "locatio
 
 
 
-### Combining Spatial and Standard Predicates
+# Combining Spatial and Standard Predicates
 
 Suppose our `GasStation` class contains a `price` property as well, and we want to enhance our query and find nearby gas stations whose price is lower than a certain threshold. We can simply add the relevant predicate to the query's criteria:
 

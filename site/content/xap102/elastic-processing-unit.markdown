@@ -1,6 +1,6 @@
 ---
 type: post102
-title:  EPU Overview
+title:  Overview
 categories: XAP102
 parent: elastic-processing-unit-overview.html
 weight: 100

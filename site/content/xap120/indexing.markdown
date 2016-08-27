@@ -29,11 +29,11 @@ Naturally the question arises of when to use indexing. Usually it is recommended
 
 The index type is determined by the `SpaceIndexType` enumeration. The index types are:
 
-`NONE` - No indexing is used.
+**NONE** - No indexing is used.
 
-`BASIC` - Basic index is used - this speeds up equality matches (equal to/not equal to).
+**BASIC** - Basic index is used - this speeds up equality matches (equal to/not equal to).
 
-`EXTENDED` - Extended index - this speeds up comparison matches (bigger than/less than).
+**EXTENDED** - Extended index - this speeds up comparison matches (bigger than/less than).
 
 # Indexing at Design-time
 
@@ -124,6 +124,8 @@ When multiple class fields are indexed, the space looks for the field value inde
 
 The smallest set of space objects is the list of objects to perform the matching against (matching candidates). Once the candidates space object list has been constructed, it is scanned to locate space objects that fully match the given template - i.e. all non-null template fields match the corresponding space object fields.
 
-{{% info%}} Class fields that are not indexed are not used to construct the candidates list. {{%/info%}}
+{{% note%}} 
+Class fields that are not indexed are not used to construct the candidates list. 
+{{%/note%}}
 
 

@@ -53,18 +53,18 @@ results = gigaSpace.readMultiple(new SQLQuery<MyClass>(MyClass.class, "num > 1 O
 
 The following operations fully support GigaSpaces `SQLQuery`:
 
-- `count`
-- `clear`
-- `read`, `readIfExists`, `readMultiple`
-- `take`, `takeIfExists`, `takeMultiple`
+- count
+- clear
+- read, readIfExists, readMultiple
+- take, takeIfExists, takeMultiple
 
 
 
 The following operations support`SQLQuery` only with Simple Queries:
 
-- `snapshot`
-- `EventSession`
-- `GSIterator`
+- snapshot
+- EventSession
+- GSIterator
 
 
 
@@ -91,15 +91,15 @@ The following operations support`SQLQuery` only with Simple Queries:
 #### SQLQuery does not support the following:
 
 - Multiple tables select - This is supported with the [JDBC API](./jdbc-driver.html).
-- `DISTINCT` - This is supported with the [JDBC API](./jdbc-driver.html).
+- DISTINCT - This is supported with the [JDBC API](./jdbc-driver.html).
 - The SQL statements: VIEW, TRIGGERS, EXISTS, NOT, CREATE USER, GRANT, REVOKE, SET PASSWORD, CONNECT USER, ON.
 - Constraints: NOT NULL, IDENTITY, UNIQUE, PRIMARY KEY, Foreign Key/REFERENCES, NO ACTION, CASCADE, SET NULL, SET DEFAULT, CHECK.
 - Set operations: Union, Minus, Union All.
 - Advanced Aggregate Functions: STDEV, STDEVP, VAR, VARP, FIRST, LAST. These may be implemented via [Custom Aggregation](./aggregators.html#custom-aggregation).
 - Using a non constant right-hand side comparison operator. This can be implemented via [Custom Aggregation](./aggregators.html#custom-aggregation).
-- `LEFT OUTER JOIN`
-- `RIGHT OUTER JOIN`
-- `INNER JOIN`
+- LEFT OUTER JOIN
+- RIGHT OUTER JOIN
+- INNER JOIN
 
 
 
@@ -249,7 +249,7 @@ These space properties should be configured with a valid Java format pattern as 
 Date properties are often used for comparison (greater/less than). Consider using [extended indexing](./indexing.html) to boost performance.
 {{%/info%}}
 
-### sysdate
+## sysdate
 
 The `sysdate` value is evaluated differently when using the JDBC API vs when using it with `SQLQuery` API. When used with JDBC API it is evaluated using the space clock. When used with `SQLQuery` API it is evaluated using the client clock. If you have a partitioned space across multiple different machines and the clock across these machines is not synchronized you might not get the desired results. If you use JDBC API you should consider setting the date value as part of the SQL within the client side (since you  might write objects using the GigaSpace API). In this case , you should synchronize all the client machine time. In short - all the machines (client and server) clocks should be synchronized.
 

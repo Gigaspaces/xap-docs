@@ -112,7 +112,7 @@ public class Information {
 }
 ```
 
-{{% info %}}
+{{% note %}}
 Both @SpaceIndex(type=SpaceIndexType.BASIC) and @SpaceIndex(type=SpaceIndexType.EXTENDED) are supported.
-{{% /info %}}
+{{% /note %}}
 
