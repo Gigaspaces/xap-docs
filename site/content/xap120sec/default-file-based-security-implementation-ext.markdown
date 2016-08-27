@@ -2,8 +2,8 @@
 type: post120
 title:  Default File-Based Security
 categories: XAP120SEC, PRM
-parent: security-ext.html
-weight: 900
+parent: none
+weight: 650
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

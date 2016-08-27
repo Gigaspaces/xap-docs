@@ -32,9 +32,9 @@ Configurations and defaults
 [Reference Implementation](./security-ref-impl.html){{<wbr>}}
 An implementation of SecurityManager
 
+[Default File Based Security](./default-file-based-security-implementation-ext.html){{<wbr>}}
+XAP provides a default security implementation. The implementation uses a local file to store the users and roles.
 
-### Extensions
-This section provides content related to the XAP **Premium** and **Enterprise** editions.
 
 [Administration Authorities](./security-authorities-ext.html){{<wbr>}}
 Additional authorities available for administration and monitoring
@@ -51,8 +51,6 @@ Declarative Spring-based custom security bridge
 [Administration](./security-administration.html){{<wbr>}}
 This section explains the administration tools for managing XAP. The GUI provides a handy management tool for managing the users and roles, and comprehensive manageability of the secured components in the system.
 
-[Default File Based Security](./default-file-based-security-implementation.html){{<wbr>}}
-XAP provides a default security implementation. The implementation uses a local file to store the users and roles.
 
 [Hello World example](./securing-the-helloworld-example.html){{<wbr>}}
 Securing the hello world example.

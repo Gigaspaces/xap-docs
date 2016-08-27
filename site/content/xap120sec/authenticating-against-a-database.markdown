@@ -42,9 +42,9 @@ Spring Security comes with an implementation of UserDetailsService that draws it
 
 Consider Edward, a Box-Office Employee, which has privileges to list all movies and their available seats, and to reserve a seat. Edward is granted `READ` privileges for class `eg.cinema.Movie` and for class `eg.cinema.Seat`, and `WRITE` privileges to update a `eg.cinema.Seat` as reserved. Of course, this can get quite cumbersome for production use.
 
-{{% info %}}
+{{% note %}}
 This Spring Security configuration file can be found under `<XAP root>/config/security/in-memory-security-config.xml`
-{{% /info %}}
+{{% /note %}}
 
 # Declaring a JDBC DAO
 
@@ -147,9 +147,9 @@ You may have noticed that we omitted the 'enabled' column in our example Users t
 </bean>
 ```
 
-{{% info %}}
+{{% note %}}
 This Spring Security configuration file can be found under `<XAP root>/config/security/jdbc-security-config.xml`
-{{% /info %}}
+{{% /note %}}
 
 # Working with encrypted passwords
 

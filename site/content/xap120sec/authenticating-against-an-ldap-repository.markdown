@@ -79,9 +79,9 @@ Spring Security supports authentication against LDAP through `LdapAuthentication
 </bean>
 ```
 
-{{% info %}}
+{{% note %}}
 An LDAP Spring Security configuration file can be found under <XAP root>/config/security/ldap-security-config.xml
-{{% /info %}}
+{{% /note %}}
 
 ## Authenticating with LDAP binding
 
@@ -165,9 +165,9 @@ Once the user identity is confirmed, `LdapAuthenticationProvider` must retrieve 
 
 The `groupRoleAttribute` property specifies the name of the attribute that will contain role information which effectively translate into a user's granted authorities. It defaults to `cn`, but for our example, we've set it to `ou`.
 
-{{% info%}}
+{{% note%}}
 Notice that the `convertToUpperCase` and `rolePrefix` are different than the defaults. The granted authorities should be returned as-is, without any conversion. For example, the authority `SpacePrivilege READ ClassFilter eg.cinema.Movie` **should not** be converted to upper case, nor should it be prefixed with a role prefix "ROLE_".
-{{% /info %}}
+{{% /note %}}
 
 Configured this way, the `DefaultLdapAuthoritiesPopulator` will retrieve all groups (roles) that the user is a member of - that is, all groups that have a `member` attribute with the user's DN.
 

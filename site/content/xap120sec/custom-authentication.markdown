@@ -44,9 +44,9 @@ public class CustomUserDetails extends com.gigaspaces.security.directory.User {
 
 Note that since `User` is `Serializable`, the `customPayload` field is automatically serialized along with the default credentials.
 
-{{% info%}}
+{{% note%}}
 When a proxy sends a `UserDetails` instance to the server over the wire, it is implicitly encrypted before serialization and decrypted post de-serialization. This encryption is internal to GigaSpaces and is intended only to secure the transport layer. In addition, a custom security implementation may choose to encrypt some/all of the data in the **UserDetails** instance (For example, the default file-based security implementation hashes the user password and encrypts the file contents when persisting data to the disk).
-{{%/info%}}
+{{%/note%}}
 
 # The Client side
 
@@ -92,9 +92,9 @@ public class CustomCredentialsProvider extends CredentialsProvider {
 }
 ```
 
-{{% info %}}
+{{% note %}}
 Note that when using the custom credentials provider from the UI or CLI, it is instantiated via the default constructor and initialized via the `initialize(properties)` method.
-{{%/info%}}
+{{%/note%}}
 
 ## Usage
 
@@ -337,9 +337,9 @@ The implementation class can be placed in a JAR under `Gigaspaces\lib\platform\e
 
 ![customlogin-properties-new.png](/attachment_files/customlogin-properties-new.png)
 
-{{% tip %}}
+{{% note %}}
 If you only have one provider, it might be convenient to set it prior to launching the UI. This will automatically set it as the "user details provider class".
-{{%/tip%}}
+{{%/note%}}
 
 
 ```java

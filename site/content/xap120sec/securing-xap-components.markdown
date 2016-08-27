@@ -2,8 +2,8 @@
 type: post120
 title:  Securing Components
 categories: XAP120SEC, PRM
-parent: security-ext.html
-weight: 500
+parent: none
+weight: 800
 ---
 
 

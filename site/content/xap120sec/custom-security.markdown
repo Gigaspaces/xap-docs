@@ -2,8 +2,8 @@
 type: post120
 title:  Custom Security
 categories: XAP120SEC, PRM
-parent: security-ext.html
-weight: 600
+parent: none
+weight: 850
 ---
 
 

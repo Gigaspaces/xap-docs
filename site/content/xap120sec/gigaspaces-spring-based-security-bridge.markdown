@@ -92,9 +92,9 @@ public class Main {
 }
 ```
 
-{{% info %}}
+{{% note %}}
  When running a standalone test, you will need to include the following jars in your classpath: <XAP root>/lib/optional/security/spring-security-core-\*.jar , <XAP root>/lib/optional/spring/\*.jar , <XAP root>/lib/required/\*.jar
-{{% /info %}}
+{{% /note %}}
 
 # GigaSpaces Security Authorities
 
