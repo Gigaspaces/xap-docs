@@ -75,7 +75,7 @@ This command deploys a Data Grid (aka space) called **myGrid** with 2 partitions
 If you're using the web console mentioned above to see what's going on, you'll see the data grid has been deployed.
  
 {{%info%}}
-Note that the Lite edition is limited to a single partition - if you're using it type `total_members=1,1` instead.
+Note that the Lite edition is limited to a single partition - if you're using it, type `total_members=1,1` instead.
 {{%/info%}}
 
 # Interacting with the Data Grid

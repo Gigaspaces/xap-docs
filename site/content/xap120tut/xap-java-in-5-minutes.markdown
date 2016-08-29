@@ -64,13 +64,13 @@ This command deploys a Data Grid (aka space) called **myGrid** with 2 partitions
 If you're using the web console mentioned above to see what's going on, you'll see the data grid has been deployed.
  
 {{%info%}}
-Note that the Lite edition is limited to a single partition - if you're using it type `total_members=1,1` instead.
+Note that the Open Source edition is limited to a single partition - if you're using it, type `total_members=1,1` instead.
 {{%/info%}}
 
 # Interacting with the Data Grid
 
 
-### Connecting to the Grid
+## Connecting to the Grid
 
 Since the Data grid is not located in our client process, we need some sort of address to find it. Data grids are searched using a `SpaceProxyConfigurer("spaceName")`. This roughly translates to: find a remote Space called `spaceName`.
 
@@ -91,7 +91,7 @@ For more information on the `SpaceProxyConfigurer` and `GigaSpaceConfigurer` see
 {{%/refer%}}
 
 
-### Implementing a POJO
+## Implementing a POJO
 
 We now have a `GigaSpace` instance connected to our grid, which we can use to store and retrieve entries. But what shall we write? Actually, any POJO can be stored in the space, so long as it has a default constructor and an ID property. For this tutorial let's define a `Person` class with the following properties:
 
@@ -126,7 +126,7 @@ Note that we've annotated the `ssn` property's getter with a custom XAP annotati
 The full source code of `Person` is available [at the end](#source) of this tutorial.
 {{%/info%}}
 
-### Interacting with the grid
+## Interacting with the grid
 
 Now that we have a `GigaSpace` instance connected to our grid and a POJO which can be stored, we can store entries in the grid using the `write()` method and read them using various `read()` methods:
 
@@ -150,7 +150,7 @@ If you're using the web console mentioned above to see what's going on, you'll s
 
 {{% anchor source %}}
 
-### Full Source Code
+## Full Source Code
 
 {{%tabs%}}
 {{%tab " Program.java   "%}}
