@@ -1,6 +1,6 @@
 ---
 type: post102
-title:  Browser View
+title:  Benchmark View
 categories: XAP102ADM
 parent: benchmarking.html
 weight: 300
