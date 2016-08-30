@@ -6,9 +6,6 @@ parent: fifo-overview.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
-
-
 The default space behavior is non-FIFO. The reason is that FIFO support comes at a cost: the space needs to organize and maintain the entries internally in a more complex fashion to support FIFO queries, thus slowing down concurrent write operations. To enable FIFO operations users need to turn on FIFO support for classes which will participate in such operations. If a FIFO operation is performed on an entry whose class does not support FIFO, an exception will be thrown.
 
 Setting FIFO support for a class can be done via the `fifoSupport` attribute on the `@SpaceClass` annotation:
@@ -41,7 +38,7 @@ The `FifoSupport` modes are:
 
 # Space Operations
 
-#### Query Operations with FIFO
+## Query Operations with FIFO
 
 To execute read/take operations with FIFO, use the `ReadModifiers.FIFO` modifier. For example:
 
@@ -52,21 +49,21 @@ Person result = space.take(new Person(), timeout, ReadModifiers.FIFO);
 
 If class `Person` is not set to support FIFO, an exception will be thrown.
 
-#### Read with FIFO
+## Read operation
 
 Reading without FIFO looks for a matching entry in the space and returns the first one found (if any), but not necessarily the one that was written first. Reading with FIFO guarantees that if there is more than one matching entry, the one that was written first will be returned (the write time is determined based on internal sequencing that ensures that a client receives Entries in FIFO order). Executing read with FIFO again with the same template will return the same result, assuming the entry hasn't been changed or deleted.
 
-#### Take with FIFO
+## Take operation
 
 Similar to read, executing take with FIFO guarantees that if there is more than one matching entry, the one that was written first will be taken. Executing take with FIFO again with the same template will return the next matching entry by order, and so on.
 
 A take operation using FIFO might be critical when building a Point-to-Point (P2P) messaging system which needs to have message senders and receivers, where the receivers must get the sent messages in the exact order these have been sent by the senders.
 
-#### Batch operations with FIFO
+## Batch operations  
 
 When using the `readMultiple` or `takeMultiple` with FIFO, the returned array will be ordered according to the order the entries were written to the space.
 
-#### Transactions and FIFO
+# Transactions  
 
 FIFO Space operations can be performed using transactions. When transaction is rolled back, data is written back to the top of the FIFO queue and will be made available for next operation.
 
@@ -88,9 +85,9 @@ DataEventSession session = sessionFactory.newDataEventSession(sessionConfig, nul
 session.addListener(new Person(), listener);
 ```
 
-{{% info %}}
+{{% note %}}
 When using FIFO the client will use a single thread to invoke the listener callback method, so the events are both received and processed in FIFO order (i.e. if the client receives an event but the callback method haven't finished processing the previous event, the new event will be blocked until the previous one finishes). This is contrary to non-FIFO events, which are forwarded to the callback method as soon as they arrive, and thus might invoke the callback methods in parallel via multiple threads.
-{{%/info%}}
+{{%/note%}}
 
 # Grouping
 
@@ -110,15 +107,18 @@ result set is not guaranteed to be in FIFO order (however, each subset of a spec
 
 - Space class using old GigaSpaces releases migrating to XAP 8 using the following:
 
-
 ```java
 @SpaceClass(fifo = false)
 ```
 
 Should use the following instead:
 
-
 ```java
 @SpaceClass(fifoSupport=FifoSupport.ALL)
 ```
 
+- Polling Container should run only one consumer to support FIFO.
+
+```java
+concurrentConsumers=1
+``` 
