@@ -93,7 +93,7 @@ Checking the **Return Lease** check box might decrease performance.
 - **Use Clustered Proxy** -- **relevant only when working with clustered spaces**. This option defines that all operations in the cluster are performed on a clustered proxy, which is responsible for routing the operation to the relevant member/members. If a clustered proxy is not used, operations are performed directly on the selected cluster member, and not on the whole cluster.
 
 - **Clean Space** - if checked, the target space is cleaned (all objects and templates are removed) prior to the start of the benchmark.
-- **Display Thread TP** -- this check box instructs the [**Graph** tab](#Graph Tab) to display the throughput of each thread separately. Different threads are represented by different colors.
+- **Display Thread TP** -- this check box instructs the [**Graph** tab](#graph-tab) to display the throughput of each thread separately. Different threads are represented by different colors.
 
 ## Operations
 

@@ -104,7 +104,7 @@ public Data ProcessData(IEventListenerContainer<Data> sender, DataEventArgs<Data
 
 {{% /tabs %}}
 
-The example above performs single take operations (see [below](#Receive Operation Handler)), using the provided template, which can be any .NET object (in this case a `Data` object with its processed flag set to `false`). If the take operation succeeds (a value is returned), the `SimpleListener.ProcessData` method is invoked. The operations are performed on the supplied space proxy.
+The example above performs single take operations (see [below](#receive-operation-handler)), using the provided template, which can be any .NET object (in this case a `Data` object with its processed flag set to `false`). If the take operation succeeds (a value is returned), the `SimpleListener.ProcessData` method is invoked. The operations are performed on the supplied space proxy.
 
 # Primary/Backup
 
@@ -550,7 +550,7 @@ pollingEventListenerContainer.ReceiveOperationHandler = receiveHandler;
 
 ## Non-Blocking Trigger Handler
 
-The `ReadTriggerOperationHandler` can be set to be non-blocking, in the same way as described in [Non-Blocking Receive Handler](#Non-Blocking Receive Handler).
+The `ReadTriggerOperationHandler` can be set to be non-blocking, in the same way as described in [Non-Blocking Receive Handler](#non-blocking-receive-handler).
 
 # Handling Exceptions
 

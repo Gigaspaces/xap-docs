@@ -83,7 +83,7 @@ All possible operations  are - write, take, extend_lease, update, discard, lease
 An empty value means no operations to be replicated.
 {{%/note%}}
 
-- **Instance level granularity** - [replication filters](#Replication Filters) can be used to control which objects are replicate and which are not, per object instance.
+- **Instance level granularity** - [replication filters](#replication-filters) can be used to control which objects are replicate and which are not, per object instance.
 
 ## Transactions
 

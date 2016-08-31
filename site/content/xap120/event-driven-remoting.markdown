@@ -768,7 +768,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 {{% /tab %}}
 {{% /tabs %}}
 
-The way to access the meta arguments on the server side is to configure a [server side execution aspect](#serverExecutionApect) by implementing the `ServiceExecutionAspect` and wiring it on the server side as shown [above](#serverExecutionApect). To access the meta arguments, you should call `SpaceRemotingInvocation.getMetaArguments()` on the `invocation` argument provided to the server side aspect.
+The way to access the meta arguments on the server side is to configure a server side execution aspect by implementing the `ServiceExecutionAspect` and wiring it on the server side as shown [above](#the-server-invocation-aspect). To access the meta arguments, you should call `SpaceRemotingInvocation.getMetaArguments()` on the `invocation` argument provided to the server side aspect.
 
 # Asynchronous Execution
 
