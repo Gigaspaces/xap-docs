@@ -67,7 +67,7 @@ The following should be located under **main** section.
 |:-------|:----------|:-------|:--------------|
 |listener|Fully qualified class name implementing `com.gigaspaces.httpsession.policies.{{<wbr>}}GigaspacesNotifyListener`|No|`com.gigaspaces.httpsession.policies.TraceListener`|
 |storeMode|Provide functionality of how to save changes to the space. there is tow sessions store mode full and delta.|Yes| use on of two options:<br> 1.`com.gigaspaces.httpsession.sessions.FullStoreMode` 2.`com.gigaspaces.httpsession.sessions.DeltaStoreMode`|
-|storeMode.<br>connector| Space connector to be used{{<wbr>}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
+|storeMode.<br>connector| Space connector to be used{{<wbr>}}See [Space Connector Section](#connector-manages-connections-with-the-space)|Yes|$connector|
 |storeMode.<br>listener|Provides changes notification functionality. it must extends `com.gigaspaces.httpsession.policies.{{<wbr>}}GigaspacesNotifyListener`|No| $listener |
 
 ## Session Manager - XAP Session Manager Implementation
@@ -78,7 +78,7 @@ The following should be located under **main** section.
 |sessionDAO|Provides a transparent caching layer between the components that use it and the underlying EIS (Enterprise Information System) session backing store |Yes|org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO|
 |sessionManager|XAP Session Manager Implementation|Yes|com.gigaspaces.httpsession.GigaSpacesWebSessionManager|
 |sessionManager.sessionDAO||Yes|$sessionDAO|
-|sessionManager.storeMode|Configure how changes are saved to the space. See [Store Mode Section](#store-mode---configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
+|sessionManager.storeMode|Configure how changes are saved to the space. See [Store Mode Section](#store-mode-configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
 |securityManager.sessionManager|Ensure the securityManager uses our native SessionManager|Yes|$sessionManager|
 
 ## Session Policy - Authentication settings
@@ -87,8 +87,8 @@ The following should be located under **main** section.
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
 |policy|Provides functionality of session policy to apply e.g. with and without authentication. |Yes| Options:<br>1.`com.gigaspaces.httpsession.policies.SessionPolicyWithLogin` <br>2.`com.gigaspaces.httpsession.policies.SessionPolicyWithoutLogin` |
-|policy.connector|Instance of space connector implementation{{<wbr>}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
-|policy.storeMode|Instance of space storeMode implementation{{<wbr>}}See [Store Mode Section](#store-mode---configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
+|policy.connector|Instance of space connector implementation{{<wbr>}}See [Space Connector Section](#connector-manages-connections-with-the-space)|Yes|$connector|
+|policy.storeMode|Instance of space storeMode implementation{{<wbr>}}See [Store Mode Section](#store-mode-configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
 
 ## Serializer
 
@@ -111,8 +111,8 @@ The following should be located under **main** section.
 |cacheManager.<br>concurrencyLevel|Specifies the estimated number of concurrently updating threads|No|16|
 |cacheManager.<br>compressor|Set the compressor instance to be used. {{<wbr>}}Default to `com.gigaspaces.httpsession.{{<wbr>}}serialize.NonCompressCompressor`|No|$compressor|
 |cacheManager.<br>serializer|Instance of the serializer implementation{{<wbr>}}See [Serializer Section](#serializer)|Yes|$serializer|
-|cacheManager.<br>policy|Instance of session policy implementation{{<wbr>}}See [Session Policy Section](#session-policy---authentication-settings)|Yes|$policy|
-|cacheManager.<br>connector|Instance of space connector implementation{{<wbr>}}See [Space Connector Section](#connector---manages-connections-with-the-space)|Yes|$connector|
+|cacheManager.<br>policy|Instance of session policy implementation{{<wbr>}}See [Session Policy Section](#session-policy-authentication-settings)|Yes|$policy|
+|cacheManager.<br>connector|Instance of space connector implementation{{<wbr>}}See [Space Connector Section](#connector-manages-connections-with-the-space)|Yes|$connector|
 
 
 The `shiro.ini` file should to be placed within the `WEB-INF` folder. See below examples for the `shiro.ini` file:

@@ -179,8 +179,8 @@ Copy the `xap-cassandra.jar` from `lib\optional\datasource\cassandra` to `lib\op
 |minimumNumberOfConnections|The minimum number of jdbc connections to hold in the pool.|5|
 |maximumNumberOfConnections|The maximum number of jdbc connections to hold in the pool. If a connection is required and the pool is full, a new connection will be opened which will be closed shortly after its usage is completed.|30|
 |batchLimit|The underlying cassandra-jdbc implementation brings the entire result set in one batch. If paging is required, this parameter will control the maximum number of entries to fetch in each batch. (this parameter controls both initial data load and general cache miss queries) |10000|
-|fixedPropertyValueSerializer|see [Property Value Serializer](./cassandra-space-synchronization-endpoint.html#Property Value Serializer).| |
-|dynamicPropertyValueSerializer|see [Property Value Serializer](./cassandra-space-synchronization-endpoint.html#Property Value Serializer).| |
+|fixedPropertyValueSerializer|see [Property Value Serializer](./cassandra-space-synchronization-endpoint.html#property-value-serializer).| |
+|dynamicPropertyValueSerializer|see [Property Value Serializer](./cassandra-space-synchronization-endpoint.html#property-value-serializer).| |
 
 # Considerations
 

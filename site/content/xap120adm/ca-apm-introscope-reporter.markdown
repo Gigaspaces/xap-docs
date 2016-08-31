@@ -222,10 +222,10 @@ Important task of `IntroscopeReporter` is to convert received metrics to Introsc
 
 Inserting hierarchy into metric name depends on an initial metric name and available additional data retrieved from `MetricTagsSnapshot`. XAP comes with predefined metrics and hierarchy related conversions are performed for such metrics, while custom metrics names are almost untouched.
 
-#### Operating system metrics
+### Operating system metrics
 OS metrics name starts with `os_`. `IntroscopeReporter` performs different conversion on network related and non-network related statistics.
 
-#### OS metrics / network metrics
+### OS metrics / network metrics
 Metric name starts with `os_network_`.
 
 Format: `xap|$TOP_LEVEL|$HOST|os|network|$NIC:METRIC_NAME_WITHOUT_PREFIX`
@@ -235,7 +235,7 @@ Format: `xap|$TOP_LEVEL|$HOST|os|network|$NIC:METRIC_NAME_WITHOUT_PREFIX`
 |:-----|---------|
 | os_network_rx-bytes | ``` xap|groupA|myhost|os|network|eth0:rx-bytes ``` |
 
-#### OS metrics / non-network metrics
+### OS metrics / non-network metrics
 Metric name starts with `os_` and not with `os_network_`.
 
 Format: `xap|$TOP_LEVEL|$HOST|os|others:METRIC_NAME`
@@ -258,7 +258,7 @@ Format: `xap|$TOP_LEVEL|pu|$PU_NAME|$PU_INSTANCE_ID:METRIC_NAME`
 |:-----|---------|
 | jvm_threads_count | `xap|groupA|pu|my_pu|2_2:jvm_threads_count` |
 
-#### Process|JVM|LRMI metrics / process-wide
+### Process|JVM|LRMI metrics / process-wide
 Metric tags do not contain `pu_name` key.
 
 Format: `xap|$TOP_LEVEL|$HOST|$PROCESS_NAME_$PID:METRIC_NAME`

@@ -32,10 +32,10 @@ Here are the parameters you may configure to tune the redo log behavior. You may
 |cluster-config.groups.group.repl-policy.redo-log-capacity | Specifies the total capacity of replication packets the redo log can hold for a standard replication target.| 150000 | -1/unlimited |
 |cluster-config.groups.group.repl-policy.redo-log-memory-capacity | Specifies the maximum number of replication packets the redo log keeps in memory.| 150000 | -1/unlimited |
 |cluster-config.groups.group.repl-policy.redo-log-recovery-capacity | Specifies the total capacity of replication packets the redo log can hold for a standard replication target while it is undergoing a recovery process.| 5000000 | -1/unlimited |
-|cluster-config.groups.group.repl-policy.on-redo-log-capacity-exceeded| See the [Handling an Increasing Redo Log](#Handling an Increasing Redo Log) for details. | drop-oldest | block-operations |
-|cluster-config.groups.group.repl-policy.on-missing-packets| Options: ignore , recover. See the [Handling Dropped Replication Packets](#Handling Dropped Replication Packets) for details. | recover | ignore |
+|cluster-config.groups.group.repl-policy.on-redo-log-capacity-exceeded| See the [Handling an Increasing Redo Log](#handling-an-increasing-redo-log) for details. | drop-oldest | block-operations |
+|cluster-config.groups.group.repl-policy.on-missing-packets| Options: ignore , recover. See the [Handling Dropped Replication Packets](#handling-dropped-replication-packets) for details. | recover | ignore |
 |cluster-config.mirror-service.redo-log-capacity | Specifies the total capacity of replication packets the redo log can hold for a mirror service replication target.|1000000| irrelevant |
-|cluster-config.mirror-service.on-redo-log-capacity-exceeded| See the [Handling an Increasing Redo Log](#Handling an Increasing Redo Log) for details. | block-operations | irrelevant |
+|cluster-config.mirror-service.on-redo-log-capacity-exceeded| See the [Handling an Increasing Redo Log](#handling-an-increasing-redo-log) for details. | block-operations | irrelevant |
 
 The following parameters are low level configuration that relates to the swap redo log mechanism:
 
@@ -90,6 +90,7 @@ Since a mirror can never recover missing packets, it should probably be configur
 A backup space can always fall back to full recovery, so it is reasonable to configure replication to it in `drop-oldest` mode, instead of `block-operation` mode. Also one can have a smaller redo log capacity, for it to avoid writing packets to disk when a long disconnection occurs and forcing a full recovery by the backup. If the redo log size is very large, it can even take more time just to replicate cluster changes, instead of just performing full recovery of the data.
 
 The `redo-log-recovery-capacity` parameter is used only when a target space member is currently recovering from a source space member (both target and source can never be a mirror space), when this happens, the redo log size of the source can increase since it holds the replication back log accumulated during the recovery process, and we would like it to be larger than the regular capacity. This is done by setting the `redo-log-recovery-capacity`, if this capacity is reached during a recovery process, new replicated operation will be blocked (With the same exception as above) until the size reduces.
+
 
 # Handling Dropped Replication Packets
 

@@ -167,8 +167,8 @@ For more details about different configurations see [Space Persistency](./space-
 |Property|Description|
 |:-------|:----------|
 |hectorClient|A configured [HectorCassandraClient](http://www.gigaspaces.com/docs/cassandra-docs{{%currentversion%}}/apidocs/index.html?org/openspaces/persistency/cassandra/HectorCassandraClient.html) bean. see [Hector Cassandra Client](./cassandra-hector-client.html).|
-|fixedPropertyValueSerializer|see [Property Value Serializer]( #Property-Value-Serializer).|
-|dynamicPropertyValueSerializer|see [Property Value Serializer](#Property-Value-Serializer).|
+|fixedPropertyValueSerializer|see [Property Value Serializer]( #property-value-serializer).|
+|dynamicPropertyValueSerializer|see [Property Value Serializer](#property-Value-Serializer).|
 |flattenedPropertiesFilter| see [Flattened Properties Filter](#Flattened-Properties-Filter).|
 |columnFamilyNameConverter| see [Column Family Name Converter](#Column-Family-Name-Converter).|
 
@@ -259,7 +259,7 @@ Now suppose that a `Person` is written to the space as a `SpaceDocument` which a
 - `String newName`
 - `Address newAddress`
 
-By default, dynamic properties are not flattened and are written as is to Cassandra. Moreover, their static type is not updated in the `Column Family` metadata and they are serialized using a custom serializer. (see [Property Value Serializer](./cassandra-space-synchronization-endpoint.html#Property Value Serializer)).
+By default, dynamic properties are not flattened and are written as is to Cassandra. Moreover, their static type is not updated in the `Column Family` metadata and they are serialized using a custom serializer. (see [Property Value Serializer](./cassandra-space-synchronization-endpoint.html#property-value-serializer)).
 
 This is how they will be written to Cassandra:
 

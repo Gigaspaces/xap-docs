@@ -11,7 +11,7 @@ weight: 200
 
 {{%imagertext "/attachment_files/archive-container-cassandra.jpg"%}}
 
-The [Archive Container](./archive-container.html) can be configured to work against Cassandra (without writing any extra code). The [ArchiveOperationHandler interface](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/archive/ArchiveOperationHandler.html) abstracts the Big-Data storage from the [Archive Container](./archive-container.html). The Cassandra Archive Operation Handler implements this interface by [serializing](#Property Value Serializer) space objects into Cassandra.
+The [Archive Container](./archive-container.html) can be configured to work against Cassandra (without writing any extra code). The [ArchiveOperationHandler interface](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/archive/ArchiveOperationHandler.html) abstracts the Big-Data storage from the [Archive Container](./archive-container.html). The Cassandra Archive Operation Handler implements this interface by [serializing](#property-value-serializer) space objects into Cassandra.
 {{%/imagertext%}}
 
 
@@ -148,13 +148,13 @@ archiveContainer.destroy();
 
 |Property|Description|
 |:-------|:----------|
-|gigaSpace| GigaSpace reference used for type descriptors. see [Archive Container#Configuration](./archive-container.html#Configuration)|
+|gigaSpace| GigaSpace reference used for type descriptors. see [Archive Container](./archive-container.html#configuration)|
 |hosts | Comma separated list of Cassandra host names or ip addresses|
 |port | Cassandra port. By default uses 9160|
 |keyspace | Cassandra keyspace|
-|propertyValueSerializer|see [Property Value Serializer](#Property Value Serializer).|
-|flattenedPropertiesFilter| see [Flattened Properties Filter](./cassandra-space-synchronization-endpoint.html#Flattened Properties Filter).|
-|columnFamilyNameConverter| see [Column Family Name Converter](./cassandra-space-synchronization-endpoint.html#Column Family Name Converter).|
+|propertyValueSerializer|see [Property Value Serializer](#property-value-serializer).|
+|flattenedPropertiesFilter| see [Flattened Properties Filter](./cassandra-space-synchronization-endpoint.html#flattened-properties-filter).|
+|columnFamilyNameConverter| see [Column Family Name Converter](./cassandra-space-synchronization-endpoint.html#column-family-name-converter).|
 
 
 ## Property Value Serializer

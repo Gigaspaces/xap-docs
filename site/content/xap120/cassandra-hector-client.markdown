@@ -16,7 +16,7 @@ This component is used by both the [Cassandra Space Synchronization Endpoint](./
 
 # Library Dependencies
 
-See [Hector library dependencies](./cassandra-space-synchronization-endpoint.html#Library dependencies) for required dependencies.
+See [Hector library dependencies](./cassandra-space-synchronization-endpoint.html#library-dependencies) for required dependencies.
 
 # Setup
 

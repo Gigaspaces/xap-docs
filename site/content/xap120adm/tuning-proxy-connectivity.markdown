@@ -95,8 +95,8 @@ When the space resides in the same process as the client (a.k.a. embedded space)
 **Single Space**: A single remote space is treated as a clustered space with a single member.
 {{%/info%}}
 
-{{% note %}}
-**Optimizing Failure Detection**: When searching for an active server the default interval between samples is 100 milliseconds. If your system demands shorter failure detection, the sampling interval can be configured using the `space-config.proxy.router.active-server-lookup-sampling-interval` property (see [Configuration](#Configuration)). **Note**: This settings does not affect the failover duration (i.e. how long it takes for a backup space to become primary), it only affects how long it takes for a space proxy to discover the new primary space. For more information refer to [Failure Detection](./troubleshooting-failure-detection.html).
+{{% note "Optimizing Failure Detection"%}}
+When searching for an active server the default interval between samples is 100 milliseconds. If your system demands shorter failure detection, the sampling interval can be configured using the `space-config.proxy.router.active-server-lookup-sampling-interval` property (see [Configuration](#configuration)). **Note**: This settings does not affect the failover duration (i.e. how long it takes for a backup space to become primary), it only affects how long it takes for a space proxy to discover the new primary space. For more information refer to [Failure Detection](./troubleshooting-failure-detection.html).
 {{%/note%}}
 
 ## Partitioned Space
