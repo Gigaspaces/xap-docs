@@ -87,7 +87,7 @@ SqlQuery<Person> query = new SqlQuery<Person>(
 ```
 
 {{%refer%}}
-[SQL Query netsed Objects](./query-sql.html#Nested Object Query)
+[SQL Query netsed Objects](./query-sql.html#nested-object-query)
 {{%/refer%}}
 
 # Nested Objects

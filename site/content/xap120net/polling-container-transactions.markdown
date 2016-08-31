@@ -118,5 +118,5 @@ pollingEventListenerContainer.DataEventArrived += new DelegateDataEventArrivedAd
 
 {{% /tabs %}}
 
-{{% refer %}}The order of parameters of the event handling method is strict, please refer to [Dynamic Data Event Handler Adapter](./event-listener-container.html#eventhandleradapter) for more information about it.{{% /refer %}}
+{{% refer %}}The order of parameters of the event handling method is strict, please refer to [Dynamic Data Event Handler Adapter](./event-listener-container.html#eventhandler-adapter) for more information about it.{{% /refer %}}
 

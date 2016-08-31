@@ -10,7 +10,7 @@ weight: 400
 
 #### Q. Can I configure XAP.NET to work with a different java version or location?
 
-Yes. See [Jvm Configuration](./jvm-configuration.html#JvmLocation) for more information.
+Yes. See [Jvm Configuration](./jvm-configuration.html#jvm-location) for more information.
 
 # Customizing XAP
 

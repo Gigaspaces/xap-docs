@@ -85,7 +85,7 @@ In many scenarios, the event triggers a processing operation and its result shou
 
 ## DynamicMethod DataEventArrived Adapter
 
-The `DynamicMethodDataEventArrivedAdapter<TData>` is an internal class that is used by the `EventListenerContainerFactory`. This class dynamically creates a wrapper method over user methods that are marked with the [DataEventHandler attribute](#DataEventHandlerAttribute). If the user method has a return value which is not null, the wrapper is automatically written to the space, with configurable parameters (see  [DataEventHandler attribute](#DataEventHandlerAttribute)). This adapter gives you the ability to write the event listening method receiving only the parameters that you need.
+The `DynamicMethodDataEventArrivedAdapter<TData>` is an internal class that is used by the `EventListenerContainerFactory`. This class dynamically creates a wrapper method over user methods that are marked with the [DataEventHandler attribute](#dataeventhandler-attribute). If the user method has a return value which is not null, the wrapper is automatically written to the space, with configurable parameters (see  [DataEventHandler attribute](#dataeventhandler-attribute)). This adapter gives you the ability to write the event listening method receiving only the parameters that you need.
 
 Here are a few examples:
 
@@ -126,7 +126,7 @@ The user methods can receive different parameters and be either a void method, o
 - The first parameter is the event data.
 - The second parameter is the space proxy the event arrived from.
 - The third parameter is a transaction if the event is executed within a transaction context.
-- The fourth parameter is the custom event args that each container creates (for example, see [Notify Container SpaceDataEventArgs](./notify-container.html#SpaceDataEventArgs)).
+- The fourth parameter is the custom event args that each container creates (for example, see [Notify Container SpaceDataEventArgs](./notify-container.html#space-data-event-args)).
 - The fifth parameter is the `IEventListenerContainer` that triggered this event.
 
 The return parameter, if not void, is the result that is written back to the space (when the result is not null).
@@ -142,7 +142,7 @@ public EnrichedData ProcessData(Data event, ISpaceProxy proxy, ITransaction tx, 
 
 ## Delegate DataEventArrived Adapter
 
-The `DelegateDataEventArrivedAdapter<TData, TResult>` receives a delegate to a method that receives similar event args as the `DataEventHandler`, but also returns a result of type `TResult`. If the result is not null, it is automatically written to the space, with configurable parameters (see [DataEventHandler attribute](#DataEventHandlerAttribute)). After the adapter is created, its `WriteBackDataEventHandler` method adapts the supplied method, while adding the write back logic, and it can be used as the delegate when subscribing to the [DataEventArrived event](#DataEventArrived).
+The `DelegateDataEventArrivedAdapter<TData, TResult>` receives a delegate to a method that receives similar event args as the `DataEventHandler`, but also returns a result of type `TResult`. If the result is not null, it is automatically written to the space, with configurable parameters (see [DataEventHandler attribute](#dataeventhandler-attribute)). After the adapter is created, its `WriteBackDataEventHandler` method adapts the supplied method, while adding the write back logic, and it can be used as the delegate when subscribing to the [DataEventArrived event](#DataEventArrived).
 
 Here is a simple example:
 

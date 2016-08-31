@@ -90,7 +90,7 @@ The above example:
 - Configures the Space to only read data from the data source. This means that all destructive operations will be delegated into the database via the Mirror service.
 - Configures the Data-Grid to use a data source that is **central** to the cluster. This means that both primary and backup IMDG instances will interact with the same data source.
 
-{{% refer %}}See the [Space Persistency Properties](./space-persistency-advanced-topics.html#Properties) and the [NHibernate Space Persistency](./hibernate-space-persistency.html) for full details about the EDS properties the you may configure.{{% /refer %}}
+{{% refer %}}See the [Space Persistency Properties](./space-persistency-advanced-topics.html#properties) and the [NHibernate Space Persistency](./hibernate-space-persistency.html) for full details about the EDS properties the you may configure.{{% /refer %}}
 
 You **must use a Data-Grid cluster schema that includes a backup** (i.e. `partitioned`) when running a Mirror Service. Without having backup, the Primary IMDG Spaces **will not** replicate their activities to the Mirror Service. For testing purposes, in case you don't want to start backup spaces, you can use the `partitioned` cluster schema and have 0 as the number of backups - this will still allow the primary spaces to replicate their operations to the Mirror.
 
@@ -109,7 +109,7 @@ The Mirror settings includes the following options:
 
 | Property | Description | Default |
 |:---------|:------------|:--------|
-|OperationGrouping| Options:{{<wbr>}}group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).{{<wbr>}}group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).{{<wbr>}}See the [Mirror behavior with Distributed Transactions](./async-persistency-mirror-advanced.html#Mirror behavior with Distributed Transactions) for details| group-by-replication-bulk |
+|OperationGrouping| Options:{{<wbr>}}group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).{{<wbr>}}group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).{{<wbr>}}See the [Mirror behavior with Distributed Transactions](./async-persistency-mirror-advanced.html#mirror-behavior-with-distributed-transactions) for details| group-by-replication-bulk |
 |SourceSpace Name| The name of source space (cluster) this mirror serves | NONE, must be supplied |
 |SourceSpace Partitions| The number of partitions in source space (cluster) this mirror serves | NONE, must be supplied |
 |SourceSpace Backups| The number of backups per partition in source space (cluster) this mirror serves | NONE, must be supplied |
@@ -169,7 +169,7 @@ With the above configuration the primary partition will replicate its redo log a
 - Optimize the database transaction support.
 - Implement a Mirror Service that will write the incoming data into a CSV file. This should be faster than writing data into the database. Later import the data into the database. (normally very fast operation)
 - Increase the database maximum connections.
-- Optimize Hibernate mapping and configuration. Using a proper [Hibernate ID generator](./space-persistency-advanced-topics.html#HibernateIDGeneration) is crucial for getting optimum performance.
+- Optimize Hibernate mapping and configuration. Using a proper [Hibernate ID generator](./space-persistency-advanced-topics.html#hibernate-id-generation) is crucial for getting optimum performance.
 - Use PARTIAL_UPDATE (see [Partial Update](./the-space-operations.html)). Updates to an object that are performed using the PARTIAL_UPDATE modifier can be executed on the mirror as partial update as well. This can increase the performance in case a lot of updates are performed on a large object.
 To use this optimization you need to set the following space property:
 
@@ -180,7 +180,7 @@ To use this optimization you need to set the following space property:
 
 # Mirror Monitoring
 
-The activity of the mirror service can be monitored using the [Administration and monitoring API](./administration-and-monitoring-api.html#AdministrationandMonitoringAPI-MonitoringtheMirrorService). This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.
+The activity of the mirror service can be monitored using the [Administration and monitoring API](./administration-and-monitoring-api.html#administrationand-monitoring-api-nonitoring-the-mirror-service). This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.
 
 You may view Mirror and its replication statistics via the [GigaSpaces Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html). Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.
 

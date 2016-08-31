@@ -100,7 +100,9 @@ proxyBuilder.LookupName = "MyServiceName";
 IDataProcessor dataProcessorProxy = proxyBuilder.CreateProxy();
 ```
 
-{{% refer %}}Learn how to host a service under specific lookup names in [Domain Service Host](./domain-service-host.html#Service Lookup Name){{% /refer %}}
+{{% refer %}}
+Learn how to host a service under specific lookup names in [Domain Service Host](./domain-service-host.html#service-lookup-name)
+{{% /refer %}}
 
 ## Remote Routing Handler
 

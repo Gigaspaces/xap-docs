@@ -32,7 +32,7 @@ FIFO-Grouping ('FG') enables reading/taking certain space entries in FIFO order 
 
 {{% note %}}
 **Exclusivity**
-The selected group is locked until the operation is terminated- the operation transaction is committed/ aborted.  See the [Exclusivity](./fifo-grouping.html#Exclusivity) section for more elaborations.
+The selected group is locked until the operation is terminated- the operation transaction is committed/ aborted.  See the [Exclusivity](./fifo-grouping.html#exclusivity) section for more elaborations.
 {{% /note %}}
 
 # Method Of Operation
@@ -42,7 +42,7 @@ The selected group is locked until the operation is terminated- the operation tr
 This property must be indexed and will be automatically indexed by the system if an index definition does not exist for it.  An additional data structure is kept for this property in order to assist in traversing the different groups.
 
 - In the selecting template a null value will generally be rendered for this property which stands for bring any available group.
-An available group is any FG that matches the selection template and is not currently locked by another FG thread (see [Exclusivity](./fifo-grouping.html#Exclusivity) section).
+An available group is any FG that matches the selection template and is not currently locked by another FG thread (see [Exclusivity](./fifo-grouping.html#exclusivity) section).
 
 - If the selecting template (Pojo) has a value for a property other than the FG designated property - this property can be indexed (like for any regular read/take operation) and in addition a `SpaceFifoGroupingIndex` attribute can be added  to it  in order to assist in efficient traversal.
 In this case the system will create a compound index that contains this property and the FG designated property.
