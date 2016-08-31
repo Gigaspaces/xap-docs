@@ -104,7 +104,7 @@ Allow from 127.0.0.1
 |Command Line parameter|Description|Default Value|
 |:---------------------|:----------|:------------|
 |-apache `location`|The installation location of apache (`apache root folder`).|windows/unix common locations|
-|-conf-dir `location`|The directory where the [load balancer config](#Load Balancer Configuration) files will be created. |`apache root folder`/conf/gigaspaces|
+|-conf-dir `location`|The directory where the [load balancer config](#load-balancer-configuration) files will be created. |`apache root folder`/conf/gigaspaces|
 |-update-interval `value`|The update interval command. The interval (in milliseconds) when the load balancer conf files will be updated). The agent updates the configuration files and sends the restart command periodically. All changes happening to the deployment are accumulated and then flushed. | 10000 (10 seconds)|
 |-restart-command `value`|The full apache restart command.| windows: httpd -k restart{{<wbr>}}unix: apachectl graceful|
 |-apachectl `location`|Controls the The `apachectl`/`httpd` executable name and full path location. This overrides the `-apache` parameter. If this argument is not specified the agent looking for the apachectl(on unix) or httpd.exe(on windows) executable under `apache root folder/bin/` folder.| |

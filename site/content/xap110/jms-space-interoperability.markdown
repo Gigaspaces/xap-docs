@@ -15,7 +15,7 @@ XAP introduced the ability for JMS applications to write messages to the space b
 
 Furthermore, since XAP, an application using the space API can write JMS messages of any type to the space, using the space API (without knowing JMS). Therefore, it is possible to handle JMS messages the same way as any other Entry type.
 
-With XAP, it is possible for the JMS application to control and decide exactly which type of object is written to the space, as long as the written object is valid for the receiving/reading application. This is done using the new [MessageConverter](#Writing POJOs/Entries to Space using JMS API -- Message Converter) feature. A common use-case is writing a JMS message to the space, where the message is "stripped" on the space side, leaving only the message body, usually a POJO. The space application can then read the POJO using a template that includes only the POJO type.
+With XAP, it is possible for the JMS application to control and decide exactly which type of object is written to the space, as long as the written object is valid for the receiving/reading application. This is done using the new [MessageConverter](#writing-pojos-entries-to-space-using-jms-api-message-converter) feature. A common use-case is writing a JMS message to the space, where the message is "stripped" on the space side, leaving only the message body, usually a POJO. The space application can then read the POJO using a template that includes only the POJO type.
 
 To summarize, the table below shows which operations are supported, allowing interoperability between the JMS and space API.
 

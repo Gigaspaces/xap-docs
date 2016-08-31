@@ -19,7 +19,7 @@ An alternative way of querying the space using SQL syntax is the [SQLQuery](./qu
 
 JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the space, beyond the template matching provided by the [The GigaSpace Interface](./the-gigaspace-interface.html).
 
-GigaSpaces is not a full-fledged relational database and it does not support the full SQL92 standard (see [JDBC Supported Features](#Supported Features)). However, the existing SQL support is extremely useful for applications that need to execute queries on a space for real-time queries.
+GigaSpaces is not a full-fledged relational database and it does not support the full SQL92 standard (see [JDBC Supported Features](#supported-features)). However, the existing SQL support is extremely useful for applications that need to execute queries on a space for real-time queries.
 
 {{% tip %}}
 You can use the [SQL Command Line]({{%currentadmurl%}}/space-gigaspaces-cli.html) to query and fetch data from the IMDG. The SQL Command Line using the GigaSpaces JDBC Driver when accessing the IMDG.
