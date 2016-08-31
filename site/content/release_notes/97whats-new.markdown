@@ -36,7 +36,7 @@ For more details please refer to the [LINQ reference page](/xap97net/query-linq.
 
 # Unique Indexes 
 
-You can now add a uniqueness constraint for indexes fields, making sure that values stay unique for that fields in the boundaries of a single space partition. This available for both [Java](/xap97/indexing.html#unique index) and [.Net](/xap97net/indexing-unique.html). Here's an example for how it's defined:
+You can now add a uniqueness constraint for indexes fields, making sure that values stay unique for that fields in the boundaries of a single space partition. This available for both [Java](/xap97/indexing.html#unique-index) and [.Net](/xap97net/indexing-unique.html). Here's an example for how it's defined:
 
 {{%tabs%}}
 

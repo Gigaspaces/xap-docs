@@ -20,7 +20,7 @@ GigaSpaces IMDG supports three kinds of caching mechanisms:In-line Cache, Side C
 - Less load on the database layer - Since the cache will isolate the database from the application somewhat, you will have less contention generated at the database layer.
 - Continuous High-Availability - Zero downtime of your data access layer with the ability to survive system failures without any data loss.
 
-Both the In-line cache and the Side cache support the common deployment topologies: [replicated](./terminology.html#Primary Backup Data Grid), [partitioned](./terminology.html#Partitioned Data Grid) and [primary-backup partitioned](./terminology.html#Primary Backup Partitioned Data Grid).
+Both the In-line cache and the Side cache support the common deployment topologies: [replicated](./terminology.html#primary-backup-data-grid), [partitioned](./terminology.html#partitioned-data-grid) and [primary-backup partitioned](./terminology.html#primary-backup-partitioned-data-grid).
 
 # In-line Cache
 
@@ -147,7 +147,7 @@ Here are few options you may use to refresh the cache:
 - Programmatic expiration - You may expire the object using:
     - `net.jini.core.lease.Lease.cancel()` - You can get the Lease object as a result of a write operation for a new object.
     - `GigaSpace.write` operation for an existing object (update) using a short lease time. See the [GigaSpace](http://www.gigaspaces.com/docs/JavaDoc{{%  currentversion %}}/org/openspaces/core/GigaSpace.html) interface write operation for details.
-    - Take operation with [TakeModifiers.EVICT_ONLY mode]({{% latestadmurl%}}/lru-cache-policy.html#Explicit Eviction of Objects from the Space). See the [GigaSpace](http://www.gigaspaces.com/docs/JavaDoc{{%  currentversion %}}/org/openspaces/core/GigaSpace.html) interface take operation for details.
+    - Take operation with [TakeModifiers.EVICT_ONLY mode]({{% latestadmurl%}}/lru-cache-policy.html#explicit-eviction-of-objects-from-the-space). See the [GigaSpace](http://www.gigaspaces.com/docs/JavaDoc{{%  currentversion %}}/org/openspaces/core/GigaSpace.html) interface take operation for details.
 
 ## Refresh data using LRU and Timer
 

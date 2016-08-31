@@ -27,13 +27,13 @@ In technical details, a Processing Unit is a collection of classes and a configu
 - [**Java** Processing Unit]({{% latestjavaurl%}}/the-processing-unit-overview.html) - has code components in Java, and may contain a space component.
 - [**.NET** Processing Unit]({{% latestneturl%}}/the-processing-unit-overview.html) -  has its code components in .NET, and may contain a space component.
 - [**Web** Processing Unit]({{% latestjavaurl%}}/web-application-support.html) - contains web applications. This Processing Unit can be packaged as a standard JEE WAR (Web Archive) file, and may contain a space component.
-- [**EDG** Processing Unit]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html#dataOnlyPUs) - contains space component(s) only.
+- [**EDG** Processing Unit]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html#data-only-pus) - contains space component(s) only.
 
 A Processing Unit package structure is defined, based on the technology:
 
 - A [**Java** Processing Unit]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html) is packaged usually as a JAR file, modeled after the Spring DI structure. The package can also be within a file structure based on the same structure.
 - A **.NET** Processing Unit is packaged as a directory structure. For more information, please refer to the [XAP.NET Programmer's Guide]({{% latestneturl%}}/the-processing-unit-overview.html).
-- A [**Web** Processing Unit]({{% latestjavaurl%}}/web-application-support.html#Deployment) is packaged as a standard JEE WAR file.
+- A [**Web** Processing Unit]({{% latestjavaurl%}}/web-application-support.html#deployment) is packaged as a standard JEE WAR file.
 
 # Data-Only Processing Unit (EDG)
 

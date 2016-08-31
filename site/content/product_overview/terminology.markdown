@@ -60,7 +60,7 @@ An application component that interacts with the space (using the read, write, t
 ![term_empty_pu.gif](/attachment_files/term_empty_pu.gif)
 {{%  /column %}}
 {{%  column width="70%" %}}
-A combination of service beans and/or an embedded space instance. This is the fundamental unit of deployment in GigaSpaces XAP. The Processing Unit itself runs within a [Processing Unit Container](#Processing Unit Container), and is typically deployed onto the [Service Grid](#Service Grid). Once a Processing Unit is deployed, a **Processing Unit instance** is the actual runtime entity.
+A combination of service beans and/or an embedded space instance. This is the fundamental unit of deployment in GigaSpaces XAP. The Processing Unit itself runs within a [Processing Unit Container](#processing-unit-container), and is typically deployed onto the [Service Grid](#service-grid). Once a Processing Unit is deployed, a **Processing Unit instance** is the actual runtime entity.
 {{%  /column %}}
 {{%  /section %}}
 
@@ -228,7 +228,7 @@ A container that runs the Processing Unit inside an IDE (e.g. IntelliJ IDEA, Ecl
 {{%  /column %}}
 {{%  column width="70%" %}}
 A Processing Unit Container which runs within a [Grid Service Container](#GSC).
-It enables running the processing unit within a [service grid](#Service Grid), which provides self-healing and SLA capabilities to components deployed on it.
+It enables running the processing unit within a [service grid](#service-grid), which provides self-healing and SLA capabilities to components deployed on it.
 {{% /column%}}
 {{%  /section %}}
 
@@ -259,7 +259,7 @@ Each container can be run on a separate physical machine.
 ![term_gsc.jpg](/attachment_files/term_gsc.jpg)
 {{%  /column %}}
 {{%  column width="70%" %}}
-A [Service Grid](#Service Grid) component which hosts [Processing Unit](#Processing Unit) instances.
+A [Service Grid](#service-grid) component which hosts [Processing Unit](#processing-unit) instances.
 A machine can run one or more [GSC](#gsc) processes. Each GSC communicates with a manager component [GSM](#gsm). The GSC receives requests to start/stop a processing unit instance, and sends information about the machine which runs it (OS, processor architecture, current memory and CPU stats), the software installed on it and the status of processing unit instances currently running on it.
 {{% /column%}}
 {{%  /section %}}
@@ -275,7 +275,7 @@ A machine can run one or more [GSC](#gsc) processes. Each GSC communicates with 
 ![term_gsm.gif](/attachment_files/term_gsm.gif)
 {{%  /column %}}
 {{%  column width="70%" %}}
-The [GSM](#gsm) is a [Service Grid](#Service Grid) component which manages a set of [GigaSpaces Containers (GSC)](#gsc).
+The [GSM](#gsm) is a [Service Grid](#service-grid) component which manages a set of [GigaSpaces Containers (GSC)](#gsc).
 A GSM has an API for deploying/un deploying processing units. When a GSM is instructed to deploy a Processing Unit, it finds an appropriate, available GSC and tells that GSC to run an instance of that processing unit. It then continuously monitors that processing unit instance to verify that it's alive, and that the SLA is not breached.
 {{%  /column %}}
 {{%  /section %}}

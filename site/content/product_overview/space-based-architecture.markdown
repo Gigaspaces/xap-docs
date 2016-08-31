@@ -16,7 +16,7 @@ menu: product
 
 **A Space-Based Architecture (SBA) implementation** is a set of Processing Units, with the following properties:
 
-- Each processing unit instances holds a [partitioned](./terminology.html#Partitioned Data Grid) space instance and one or more services that are registered on events on that specific partition. Together they form an application cluster. If the cluster is required to be highly available, each primary partition has one or more backup partitions, which run in their own processing unit instances. These instances are inactive, and become active only when their primary partition fails.
+- Each processing unit instances holds a [partitioned](./terminology.html#partitioned-data-grid) space instance and one or more services that are registered on events on that specific partition. Together they form an application cluster. If the cluster is required to be highly available, each primary partition has one or more backup partitions, which run in their own processing unit instances. These instances are inactive, and become active only when their primary partition fails.
 
 - Each Processing Unit instance handles only the data sent to the space partition it runs.
 
@@ -24,9 +24,9 @@ menu: product
 
 - The system can be scaled by simply increasing the number of space partitions and their corresponding processing unit instances.
 
-- When deployed onto the [Service Grid](./terminology.html#Service Grid), self-healing and SLA capabilities are added.
+- When deployed onto the [Service Grid](./terminology.html#service-grid), self-healing and SLA capabilities are added.
 
-- Full monitoring and management during runtime are available through the [Management UI](./terminology.html#Management UI).
+- Full monitoring and management during runtime are available through the [Management UI](./terminology.html#management-ui).
 
 
 {{% align center%}}

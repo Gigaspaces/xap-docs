@@ -129,7 +129,7 @@ The three main cluster topologies are:
 
 - [Replication](#Replication)
 - [Partitioned](#1)
-- [Resilient Partitioning](#Resilient Partitioning): a combination of Replication and Partitioned.
+- [Resilient Partitioning](#resilient-partitioning): a combination of Replication and Partitioned.
 
 {{% anchor  Replication %}}
 
@@ -167,7 +167,7 @@ For example, when writing one million orders into a space, the orders are (and s
 For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{% latestjavaurl%}}/elastic-processing-unit.html) section.
 {{%  /refer %}}
 
-{{% anchor  Resilient Partitioning %}}
+ 
 
 ## Resilient Partitioning
 

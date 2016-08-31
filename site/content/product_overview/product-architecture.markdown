@@ -138,7 +138,7 @@ Data access, messaging, parallel processing services, speeding up your applicati
 - High Availability: Built-in hot backup and self-healing capabilities for zero downtime
 - Consistency: Maintain data integrity with 100% transactional data handling
 
-As an application platform, GigaSpaces XAP provides integrated, memory-based runtime capabilities. The core of these capabilities is backed by the space technology - for more information, please refer to [Space - Concepts and Capabilities](./concepts.html#Space - Concepts and Capabilities).
+As an application platform, GigaSpaces XAP provides integrated, memory-based runtime capabilities. The core of these capabilities is backed by the space technology - for more information, please refer to [Space - Concepts and Capabilities](./concepts.html#space-concepts-and-capabilities).
 
 The core middleware capabilities are:
 
@@ -241,7 +241,7 @@ Production-grade control and visibility
 
 The role of clustering in GigaSpaces XAP is to provide scaling, load-balancing and high-availability. The main difference between GigaSpaces XAP and other clustering alternatives, is the use of a single clustering model for all middleware core capabilities. This means that the data and the services colocated with it are equally available. An example of how useful this is is that when a primary node fails, and another node acts as its backup, both application components (i.e. data and messaging) become active at the same time.
 
-The ability to support a unified clustering model is a direct result of the underlying space-based clustering model. For more information on the concept of space, please refer to [Space - Concepts and Capabilities](./concepts.html#Space - Concepts and Capabilities).
+The ability to support a unified clustering model is a direct result of the underlying space-based clustering model. For more information on the concept of space, please refer to [Space - Concepts and Capabilities](./concepts.html#space-concepts-and-capabilities).
 
 ## Scaling
 
