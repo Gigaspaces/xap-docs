@@ -312,7 +312,7 @@ public class ProcessedTweetsFilter {
 
 When removing objects from the space a dynamic template can be used. A method providing a dynamic template is called before each take operation, and can return a different object in each call.
 The event template object has the same syntax rules as with @EventTemplate.
-See [Configuration](#Configuration) for a complete example
+See [Configuration](#configuration) for a complete example
 
 # Batch Operations
 
@@ -332,7 +332,7 @@ Both the space take operation and the archive action should be configured to be 
 
 When using transactions with archive container a special care should be taken with timeout values. Transactions started by the archive container can have a timeout value associated with them (if not set will default to the default timeout value of the transaction manager, which is 60 Sec). If setting a specific timeout value, make sure the timeout value is higher than receive-timeout and the `ArchiveOperationHandler#archive()` time together.
 
-Adding transaction support is done by injecting a transaction manager into the archive-container and giga-space beans. See the example at the [Configuration](#Configuration) section.
+Adding transaction support is done by injecting a transaction manager into the archive-container and giga-space beans. See the example at the [Configuration](#configuration) section.
 
 {{% note %}}
 Note the timeout value is in seconds as per Spring spec for TransactionDefinition.

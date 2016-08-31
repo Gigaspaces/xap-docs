@@ -12,7 +12,7 @@ weight: 200
 {{%section%}}
 {{%column width="80%" %}}
 
-The [Archive Container](./archive-container.html) can be configured to work against Cassandra (without writing any extra code). The [ArchiveOperationHandler interface](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/archive/ArchiveOperationHandler.html) abstracts the Big-Data storage from the [Archive Container](./archive-container.html). The Cassandra Archive Operation Handler implements this interface by [serializing](#Property Value Serializer) space objects into Cassandra.
+The [Archive Container](./archive-container.html) can be configured to work against Cassandra (without writing any extra code). The [ArchiveOperationHandler interface](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/archive/ArchiveOperationHandler.html) abstracts the Big-Data storage from the [Archive Container](./archive-container.html). The Cassandra Archive Operation Handler implements this interface by [serializing](#property-value-serializer) space objects into Cassandra.
 
 {{%/column%}}
 {{%column width="20%" %}}
@@ -160,7 +160,7 @@ archiveContainer.destroy();
 |hosts | Comma separated list of Cassandra host names or ip addresses|
 |port | Cassandra port. By default uses 9160|
 |keyspace | Cassandra keyspace|
-|propertyValueSerializer|see [Property Value Serializer](#Property Value Serializer).|
+|propertyValueSerializer|see [Property Value Serializer](#property-value-serializer).|
 |flattenedPropertiesFilter| see [Flattened Properties Filter](./cassandra-space-synchronization-endpoint.html#Flattened Properties Filter).|
 |columnFamilyNameConverter| see [Column Family Name Converter](./cassandra-space-synchronization-endpoint.html#Column Family Name Converter).|
 

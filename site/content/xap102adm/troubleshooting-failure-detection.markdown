@@ -72,7 +72,7 @@ For additional tuning options please contact the [GigaSpaces Support Team](http:
 
 ### Active Election Parameters
 
-The following parameters in the cluster schema [active election](#Active Election and Avoiding Split-Brain Scenarios) block regard failure detection and recovery:
+The following parameters in the cluster schema active election block regard failure detection and recovery:
 
 
 |Parameter|Parameter Description|Default Value| Unit |

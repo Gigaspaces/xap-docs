@@ -43,9 +43,9 @@ Here are the different command arguments that the c++ benchmark program accepts:
 5. \<iterations\> -- Total amount of entries in the space
 6. \<payload\> -- Payload size for each entry (for Payload object type)
 7. \<batch size\> -- Size for batch operations
-8. \<Space Class Type\> -- Entry class/type. See [Supported Space Class Types](#Supported Space Class Types) for details.
+8. \<Space Class Type\> -- Entry class/type. See [Supported Space Class Types](#supported-space-class-types) for details.
 9. \<use transactions\> -- Whether to use transactions and their type. Options are: true\|false\|jini (true -- use Local Transactions, jini - use Jini Transactions).
-10. \<Test Name\> (Optional) -- Can have any of the operations listed in [Benchmark Operations](#Benchmark Operations).
+10. \<Test Name\> (Optional) -- Can have any of the operations listed in [Benchmark Operations](#benchmark-operations).
 
 
 # Supported Space Class Types
