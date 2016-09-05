@@ -271,7 +271,7 @@ In the next section you will learn how to start the load balancing agent and tie
 Now that we've gone over all the details, let's see everything in action. In this section we will start multiple GSCs and deploy 3 application instances on them. We will then start Apache HTTP server and the Apache load balancer agent, and connect to the application from the load balancer. We will also verify that the load balancer is aware of all the running instances.
 Finally, we will terminate one of the running containers and watch the failover and self-healing process in action. Note that we will not use the GigaSpaces Agent this time, simply because the following steps are better illustrated without it. Let's get started:
 
-**Step 1:** Build the application [as described earlier in this tutorial](#BuildDirections)<br>
+**Step 1:** Build the application [as described earlier in this tutorial](#build-directions)<br>
 **Step 2:** Start the GigaSpaces agent by calling `<gs root>/bin/gs-agent.(sh/bat)`.<br>
 **Step 3:** Start the GigaSpaces user interface by calling `<gs root>/bin/gs-ui.(sh/bat)`. When the user interface is started, you should see the two GSCs presented in it.<br>
 **Step 4:** Start another GSC by a right click on the gsa under Hosts tab and choosing Start GSC<br>
@@ -282,7 +282,7 @@ Finally, we will terminate one of the running containers and watch the failover 
 {{%/accord%}}
 {{%/accordion%}}
 
-**Step 5:** Deploy the application using the user interface, [as described earlier in this tutorial](#DeployDirections). In the "Number of Instances" text field, type 2, and in the "Maximum Instances --> Per VM" text field type 1.
+**Step 5:** Deploy the application using the user interface, [as described earlier in this tutorial](#deploy-directions). In the "Number of Instances" text field, type 2, and in the "Maximum Instances --> Per VM" text field type 1.
 
 {{%accordion%}}
 {{%accord title=" **Click to view screenshot...**"%}}
