@@ -6,7 +6,12 @@ parent: indexing-overview.html
 weight: 400
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+
+XAP supports compound indexing, where a single index structure holds references to multiple fields within objects stored within the Space.
+A compound index should be used to speed up queries that match on multiple fields with **AND** conditions between them. 
+
+Maintaining a compound index involves usually additional overhead compared to a regular index in terms of time to update the index and its footprint but it may improve query processing time substantially.
+
 
 Compound indexes can be defined using annotations. The `CompoundSpaceIndex` and `CompoundSpaceIndexes` annotations should be used. The annotations are a type-level annotations.
 
