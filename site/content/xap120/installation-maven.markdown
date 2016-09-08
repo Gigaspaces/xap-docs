@@ -167,7 +167,9 @@ mvn xap:run
 
 
 ```bash
-mvn compile xap:run -Dcluster="schema=partitioned total_members=1,1 id=1" -Dproperties="embed://prop1=value1" -Dmodule=feeder
+mvn compile xap:run -Dcluster="schema=partitioned total_members=1,1 id=1" -Dproperties="embed://prop1=value1" -Dmodule=processor
+mvn compile xap:run -Dmodule=feeder
+
 ```
 
 ## Determining Module Execution
