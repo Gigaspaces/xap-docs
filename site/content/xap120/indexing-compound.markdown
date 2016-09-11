@@ -15,7 +15,7 @@ Maintaining a compound index involves usually additional overhead compared to a 
 
 Compound indexes can be defined using annotations. The `CompoundSpaceIndex` and `CompoundSpaceIndexes` annotations should be used. The annotations are a type-level annotations.
 
-# Creating the   Index
+ 
 
 Example: Below a compound index with two segments using annotations. Both are properties at the root level of the space class:
 
@@ -51,9 +51,7 @@ With the above scenario the Compound Index will improve the query execution dram
 {{%/align%}}
 
 
-{{% warning %}}
-If one of the query conditions makes use of the `IN` operator, compound indexes will be ignored. Separate indexes should be created.
-{{% /warning %}}
+
 
 # Using gs.xml
 
@@ -139,3 +137,8 @@ As the `CompoundIndex` is a subclass of the `SpaceIndex`, the `asyncAddIndex` me
 1. All compound index segments must have an `Object` `StorageType`.
 
 
+# Limitations
+
+{{% warning %}}
+If one of the query conditions makes use of the `IN` operator, compound indexes will be ignored. Separate indexes should be created.
+{{% /warning %}}

@@ -6,11 +6,15 @@ parent: indexing-overview.html
 weight: 300
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+XAP supports compound indexing, where a single index structure holds references to multiple fields within objects stored within the Space.
+A compound index should be used to speed up queries that match on multiple fields with **AND** conditions between them. 
+
+Maintaining a compound index involves usually additional overhead compared to a regular index in terms of time to update the index and its footprint but it may improve query processing time substantially.
+
 
 Compound indexes can be defined using annotations. The `CompoundSpaceIndex` and `CompoundSpaceIndexes` annotations should be used. The annotations are a type-level annotations.
 
-# Creating the   Index
+ 
 
 Example: Below a compound index with two segments using annotations. Both are properties at the root level of the space class:
 
@@ -45,10 +49,7 @@ With the above scenario the Compound Index will improve the query execution dram
 
 ![compu_index_bench.jpg](/attachment_files/compu_index_bench.jpg)
 
-
-{{% warning %}}
-If one of the query conditions makes use of the `IN` operator, compound indexes will be ignored. Separate indexes should be created.
-{{% /warning %}}
+ 
 
 # Using gs.xml
 
@@ -130,3 +131,8 @@ As the `CompoundIndex` is a subclass of the `SpaceIndex`, the `asyncAddIndex` me
 1. An index segment cannot be a collection or a path within collection.
 1. All compound index segments must have an `Object` `StorageType`.
 
+# Limitations
+
+{{% warning %}}
+If one of the query conditions makes use of the `IN` operator, compound indexes will be ignored. Separate indexes should be created.
+{{% /warning %}}
