@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  MemoryXtend Overview
+title:  Overview  
 categories: XAP120ADM, ENT
 parent: memoryxtend-overview.html
 weight: 100

@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  SSD - RocksDB Add-On
+title:  SSD - RocksDB
 categories: XAP120ADM, ENT
 parent: memoryxtend-overview.html
 weight: 200

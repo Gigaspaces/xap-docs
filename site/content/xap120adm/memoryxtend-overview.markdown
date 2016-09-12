@@ -21,10 +21,7 @@ The BlobStore Storage Model allows an external storage medium (one that does not
 [RocksDB Add-On](./memoryxtend-rocksdb-ssd.html)<br>
 XAP provides a MemoryXtend add-on based on RocksDB, which is the recommended choice for hybrid RAM-SSD clusters.
 
-
-[Off Heap RAM](./memoryxtend-ohr.html)<br>
-XAP is using [MapDB](http://www.mapdb.org/), an embedded database engine which provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory.
-
+ 
 {{%/fpanel%}}
 
 <br>

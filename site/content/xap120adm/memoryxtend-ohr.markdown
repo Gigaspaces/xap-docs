@@ -1,12 +1,11 @@
 ---
 type: post120
-title:  Off Heap - MapDB Add-On
+title:  Off Heap - MapDB
 categories: XAP120ADM, ENT
-parent: memoryxtend-overview.html
-weight: 300
+parent: memory-management-overview.html
+weight: 400
 ---
 
-{{% ssummary %}}  {{% /ssummary %}}
 
 # What is MapDB?
 
