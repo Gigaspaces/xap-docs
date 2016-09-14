@@ -17,7 +17,7 @@ The [GigaSpaces API](./the-gigaspace-interface-overview.html) supports class lev
 
 # Alias name
 
-|-----------|                     |
+|     |                     |
 |-----------|---------------------|
 |Syntax     | AliasName |
 |Argument   | String          |
@@ -59,7 +59,7 @@ public class Person {
 
 # Include Properties
 
-|-----------|                     |
+|       |                     |
 |-----------|---------------------|
 |Syntax     | IncludeFields, IncludeProperties |
 |Argument   | [IncludeMembers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_IncludeMembers.htm)      |
@@ -89,7 +89,7 @@ Read-only properties (getter without setter) are stored in the space, but when t
 
 # FIFO Support
 
-|-----------|                     |
+|      |                     |
 |-----------|---------------------|
 |Syntax     | FifoSupport |
 |Argument   | [FifoSupport](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_FifoSupport.htm)|
@@ -111,7 +111,7 @@ public class Person {
 
 # Inherit Index
 
-|-----------|                     |
+|          |                     |
 |-----------|---------------------|
 |Syntax     | InheritIndexes |
 |Argument   | boolean          |
@@ -133,7 +133,7 @@ public class Person {
 
 # Replication
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | Replicate |
 |Argument   | boolean          |
@@ -157,7 +157,7 @@ public class Person {
 
 # Compound Index
 
-|-----------|                     |
+|          |                     |
 |-----------|---------------------|
 |Syntax     | CompoundSpaceIndex Paths  |
 |Argument(s)| string          |

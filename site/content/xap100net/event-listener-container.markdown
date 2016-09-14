@@ -85,7 +85,7 @@ In many scenarios, the event triggers a processing operation and its result shou
 
 ## DynamicMethod DataEventArrived Adapter
 
-The `DynamicMethodDataEventArrivedAdapter<TData>` is an internal class that is used by the `EventListenerContainerFactory`. This class dynamically creates a wrapper method over user methods that are marked with the [DataEventHandler attribute](#DataEventHandlerAttribute). If the user method has a return value which is not null, the wrapper is automatically written to the space, with configurable parameters (see  [DataEventHandler attribute](#DataEventHandlerAttribute)). This adapter gives you the ability to write the event listening method receiving only the parameters that you need.
+The `DynamicMethodDataEventArrivedAdapter<TData>` is an internal class that is used by the `EventListenerContainerFactory`. This class dynamically creates a wrapper method over user methods that are marked with the [DataEventHandler attribute](#dataeventhandler-attribute). If the user method has a return value which is not null, the wrapper is automatically written to the space, with configurable parameters (see  [DataEventHandler attribute](#dataeventhandler-attribute)). This adapter gives you the ability to write the event listening method receiving only the parameters that you need.
 
 Here are a few examples:
 
@@ -142,7 +142,7 @@ public EnrichedData ProcessData(Data event, ISpaceProxy proxy, ITransaction tx, 
 
 ## Delegate DataEventArrived Adapter
 
-The `DelegateDataEventArrivedAdapter<TData, TResult>` receives a delegate to a method that receives similar event args as the `DataEventHandler`, but also returns a result of type `TResult`. If the result is not null, it is automatically written to the space, with configurable parameters (see [DataEventHandler attribute](#DataEventHandlerAttribute)). After the adapter is created, its `WriteBackDataEventHandler` method adapts the supplied method, while adding the write back logic, and it can be used as the delegate when subscribing to the [DataEventArrived event](#DataEventArrived).
+The `DelegateDataEventArrivedAdapter<TData, TResult>` receives a delegate to a method that receives similar event args as the `DataEventHandler`, but also returns a result of type `TResult`. If the result is not null, it is automatically written to the space, with configurable parameters (see [DataEventHandler attribute](#dataeventhandler-attribute)). After the adapter is created, its `WriteBackDataEventHandler` method adapts the supplied method, while adding the write back logic, and it can be used as the delegate when subscribing to the [DataEventArrived event](#DataEventArrived).
 
 Here is a simple example:
 
@@ -169,7 +169,7 @@ The result can also be an array, and the appropriate multiple operation is execu
 
 ## DataEventHandler attribute
 
-The DataEventHandler attribute has two roles. The first is to mark a method to be subscribed to the [DataEventArrived event](#DataEventArrived), when using the [EventListenerContainerFactory](#EventListenerContainerFactory). The second role is to determine the write back behavior of the marked method result. This behavior has three configurable parameters:
+The DataEventHandler attribute has two roles. The first is to mark a method to be subscribed to the [DataEventArrived event](#DataEventArrived), when using the [EventListenerContainerFactory](#event-listener-container-factory). The second role is to determine the write back behavior of the marked method result. This behavior has three configurable parameters:
 
 - WriteOrUpdate -- states whether to write or update the result back to the space, or only to write, which means if there's a matching object in the space to the result object, an `EntryAlreadyInSpaceException` is thrown (the default is true).
 - WriteLease -- the lease of the result object that is being written to the space (the default is lease forever).

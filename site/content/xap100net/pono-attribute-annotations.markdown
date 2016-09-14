@@ -20,7 +20,7 @@ The [GigaSpaces API](./the-gigaspace-interface-overview.html) supports  field-le
 
 # SpaceId
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | SpaceId AutoGenerate|
 |Argument   | boolean          |
@@ -45,7 +45,7 @@ public class Person {
 
 # SpaceRouting
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | SpaceRouting|
 |Description| The `[SpaceRouting]` annotation specifies a get method for the field to be used to calculate the target space for the space operation (Read , Write...). The `[SpaceRouting]` field value hash code is used to calculate the target space when the space is running in **partitioned mode**.{{<wbr>}}The field value hash code is used to calculate the target space when the space is running in **partitioned mode**. |
@@ -69,7 +69,7 @@ public class Employee {
 
 # SpaceProperty
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | SpaceProperty NullValue  |
 |Argument   |  nullValue          |
@@ -92,7 +92,7 @@ public class Employee {
 
 # SpaceIndex
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     |  SpaceIndex Type|
 |Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)  |
@@ -117,7 +117,7 @@ public class User {
 
 # Unique Index
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     |  SpaceIndex Type, Unique|
 |Argument   | [SpaceIndexType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)  |
@@ -142,7 +142,7 @@ public class Person
 
 # SpaceIndex Path
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     |  SpaceIndex Path ,Type|
 |Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)|
@@ -174,7 +174,7 @@ public class Info : Serializable {
 
 
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | SpaceVersion|
 |Description| This annotation is used for object versioning used for optimistic locking. |
@@ -198,7 +198,7 @@ public class Employee {
 
 # SpacePersist
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | SpacePersist|
 |Description| This specifies a getter method for holding the persistency mode of the object overriding the class level persist declaration. This field should be of the boolean data type.{{<wbr>}}If the persist class level annotation is true, all objects of this class type will be persisted into the underlying data store (Mirror, ExternalDataSource, Storage Adapter).|
@@ -220,7 +220,7 @@ public class Employee {
 
 # SpaceExclude
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     |  SpaceExclude|
 |Description| When this annotation is specified the attribute is not written into the space.|
@@ -241,7 +241,7 @@ public class Employee {
 
 # SpaceStorageType
 
-|-----------|                     |
+|            |                     |
 |-----------|---------------------|
 |Syntax     | SpaceStorageType StorageType |
 |Argument   | [StorageType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_StorageType.htm)          |
@@ -266,7 +266,7 @@ public class Message {
 
 # SpaceFifoGroupingProperty
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | SpaceFifoGroupingProperty Path|
 |Argument   | path          |
@@ -291,7 +291,7 @@ public class FlightReservation
 
 # SpaceFifoGroupingIndex
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | SpaceFifoGroupingIndex Path|
 |Description| This annotation is used to define a space FIFO grouping Index. |
@@ -316,7 +316,7 @@ public Person Customer { get; set; }
 
 # SpaceDynamicProperties
 
-|-----------|                     |
+|           |                     |
 |-----------|---------------------|
 |Syntax     | SpaceDynamicProperties|
 |Description| Allows adding properties freely to a class without worrying about the schema.|
@@ -341,7 +341,7 @@ public class Person {
 
 # Alias Name
 
-|-----------|                     |
+|          |                     |
 |-----------|---------------------|
 |Syntax     | AliasName|
 |Description| In some cases, usually in interoperability scenarios, you may need to map your C# properties to different names in the Space. You can do that using the AliasName property on [SpaceProperty].  |

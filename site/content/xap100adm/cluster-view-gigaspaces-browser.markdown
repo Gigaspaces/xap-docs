@@ -24,7 +24,7 @@ The Cluster View is divided into four main areas:
 - **Cluster tree** -- at the top of the tree is the cluster node (![spaceTreeIcon.gif](/attachment_files/spaceTreeIcon.gif)), each representing a space listed in the cluster configuration file.
 
 {{% note %}}
-Each cluster node (![GMC_space_OperationsClusterNode_icon_6.5.jpg](/attachment_files/GMC_space_OperationsClusterNode_icon_6.5.jpg)), which allows you to view all cluster information in one node (for more details, see [below](#Viewing Information for Entire Cluster)).
+Each cluster node (![GMC_space_OperationsClusterNode_icon_6.5.jpg](/attachment_files/GMC_space_OperationsClusterNode_icon_6.5.jpg)), which allows you to view all cluster information in one node (for more details, see [below](#viewing-information-for-entire-cluster)).
 {{%/note%}}
 
 - **Visual display** -- this area changes according to your selection in the tree. When you select the cluster node, the visual display shows the groups in the cluster.
