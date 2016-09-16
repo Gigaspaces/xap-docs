@@ -62,7 +62,7 @@ In some cases, multiple Processing Units use the same JAR files. In such cases i
 There are three options to achieve this:
 
 ## `lib/optional/pu-common directory`
-JAR files placed in the `<GigaSpaces root>/lib/optional/pu-common` directory will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, [see the](#ClassLoaders) section below).
+JAR files placed in the `<GigaSpaces root>/lib/optional/pu-common` directory will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, [see the](#class-loaders) section below).
 
 This means they are not shared between Processing Units on the same JVM, which provides an isolation quality often required for JARs containing the application's proprietary business-logic. On the other hand this option consumes more PermGen memory (due to potentially multiple instances per JVM).
 

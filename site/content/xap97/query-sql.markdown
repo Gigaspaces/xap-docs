@@ -230,7 +230,7 @@ GigaSpaces using internally the **TimeStamp** data type to store dates. This mea
 
 Blocking operations (i.e. `read` or `take` with `timeout` greater than `0`) are supported with the following restrictions:
 
-- Blocking operations on a partitioned space require a routing value (broadcast is not supported). For more information see [Routing](#Routing).
+- Blocking operations on a partitioned space require a routing value (broadcast is not supported). For more information see [Routing](#routing).
 - Blocking operations on complex queries are not supported. For more information see [Simple Queries](#SimpleQueries) definition.
 
 

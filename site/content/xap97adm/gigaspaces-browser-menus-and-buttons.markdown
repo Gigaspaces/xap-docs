@@ -82,7 +82,7 @@ The **View** menu provides the following options:
 |**Options** |the options below are related to the shapes representing the cluster members in the Cluster view. These options can be useful when wanting to reduce CPU usage.|
 |**Freeze all Members** |stops updating all cluster member shapes.|
 |**Backward Replication** |relevant for replicated cluster members, shows the direction of replication -- an arrow is drawn from the replicating space to the replicated space.|
-|**Show Objects Count** |stops showing the number of objects in each cluster member. If this options is used and one of the members is a persistent space in LRU mode, the [Display Persistent LRU Space Metrics](#Display Persistent LRU Space Metrics) will not take affect.|
+|**Show Objects Count** |stops showing the number of objects in each cluster member. If this options is used and one of the members is a persistent space in LRU mode, the [Display Persistent LRU Space Metrics](#display-persistent-lru-space-metrics) will not take affect.|
 
 # Settings Menu
 
@@ -112,7 +112,7 @@ Selecting a Jini group defines which services (containers, spaces, GSCs, GSMs) a
 |-------------------|------|
 |Color Settings|opens the Preferences Panel, allowing you to choose change the default colors of the operations shown in the [Statistics View](./gigaspaces-browser-statistics-view.html).|
 |Reset Perspective|resets all main window tabs, returns docking windows to their initial size and location.|
-|System Properties|see the [following section](#Configured System Properties Window).
+|System Properties|see the [following section](#configured-system-properties-window).
 
  {{% anchor cluster %}}
 
@@ -165,7 +165,7 @@ The button toolbar allows you to perform maintenance operations on containers an
 | ![ping.gif](/attachment_files/ping.gif) | Pings the selected space |
 | ![clean_space.gif](/attachment_files/clean_space.gif) | Cleans the selected space |
 | ![destroy_space.gif](/attachment_files/destroy_space.gif) | Destroys the selected space |
-| ![GMC_space_groupManagementToolbarIcon_6.5.jpg](/attachment_files/GMC_space_groupManagementToolbarIcon_6.5.jpg) | Opens the [Discovery Group Selection](#Settings Menu) window |
+| ![GMC_space_groupManagementToolbarIcon_6.5.jpg](/attachment_files/GMC_space_groupManagementToolbarIcon_6.5.jpg) | Opens the [Discovery Group Selection](#settings-menu) window |
 | ![GMC_space_ResetPerspectiveToolbarIcon_6.5.jpg](/attachment_files/GMC_space_ResetPerspectiveToolbarIcon_6.5.jpg) | Resets all main window tabs, returns docking windows to their initial size and location. |
 | ![help.gif](/attachment_files/help.gif) | Opens the [GigaSpaces Online Help homepage]({{% currentjavaurl %}}) |
 

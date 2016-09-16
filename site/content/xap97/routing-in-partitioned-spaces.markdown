@@ -55,7 +55,7 @@ See [Writing New Objects from a Collocated Business Logic](./clustered-vs-non-cl
 
 # Writing To a Partitioned Space
 
-As explained above, in [Defining a Routing Property](#Defining a Routing Property), when a proxy is asked to write an entry it extracts the routing property value to determine the relevant partition id and forwards the entry to that partition. If the routing property value is null, an exception will be thrown indicating the proxy cannot write the entry because it does not know the target partition.
+As explained above, in [Defining a Routing Property](#defining-a-routing-property), when a proxy is asked to write an entry it extracts the routing property value to determine the relevant partition id and forwards the entry to that partition. If the routing property value is null, an exception will be thrown indicating the proxy cannot write the entry because it does not know the target partition.
 
 When an entry is being updated, the proxy uses the routing property to route the update request to the relevant partition.
 

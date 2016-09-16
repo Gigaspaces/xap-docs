@@ -14,7 +14,7 @@ weight: 100
 
 The .NET Processing Unit Container is based on the [OpenSpaces Processing Unit](./processing-units.html), and allows you to write a .NET component that can be managed by the service grid.
 
-The Processing Unit Container is aware of the [cluster info](#ClusterInfo). This allows you to write your code decoupled from cluster topologies considerations.
+The Processing Unit Container is aware of the [cluster info](#clusterinfo). This allows you to write your code decoupled from cluster topologies considerations.
 
 
 {{% tip %}}
