@@ -33,7 +33,7 @@ The following parameters can be defined:
 | Port | The Jini lookup port. If no port is specified the default port (10098) will be used |
 | Space Container Name | The name of the space container that holds the space. May be \* when Jini is used as a protocol. In this case the container name will be ignored when performing lookup and the space will be searched regardless of the container that holds it. |
 | Space Name | The space name to search. The same name defined when space has been created via the Space browser or the `createSpace` utility. |
-| [Properties String](#url properties) | (Optional) named value list of special properties. |
+| [Properties String](#url-properties) | (Optional) named value list of special properties. |
 
 {{% refer %}}
 Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html) section for details on how to enable multicast.

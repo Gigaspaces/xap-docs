@@ -270,7 +270,7 @@ When using Jini based transactions, a timeout value can be set for both the comm
 # Local Jini Transaction Manager - Deprecated
 
 {{% info %}}
-Local Jini Transaction Manager was deprecated in 8.0. Use [Distributed Jini Transaction Manager](#Distributed Jini Transaction Manager) instead.
+Local Jini Transaction Manager was deprecated in 8.0. Use [Distributed Jini Transaction Manager](#distributed-jini-transaction-manager) instead.
 {{% /info %}}
 
 # Renewing Transactions
