@@ -127,7 +127,7 @@ The space as defined previously, is a logical concept - a memory space which can
 
 The three main cluster topologies are:
 
-- [Replication](#Replication)
+- [Replication](#replication)
 - [Partitioned](#1)
 - [Resilient Partitioning](#resilient-partitioning): a combination of Replication and Partitioned.
 

@@ -10,7 +10,7 @@ weight: 700
 
 XAP space and client components open different ports in various situations. The following list describes the different ports used by XAP and how these can be modified:
 
-{{% refer %}}Learn how to **[set XAP over a firewall](./network-over-firewall.html)**.{{% /refer %}}
+{{% refer %}}Learn how to [set XAP over a firewall](./network-over-firewall.html).{{% /refer %}}
 
 
 | Service | Description | Configuration Property| Default value |

@@ -14,7 +14,7 @@ weight: 500
 # Windows Debugging Tools
 
 1. **userdump** - (correct version should be chosen - 32 or 64-bit according to the application) to get a dump
-1. **[Debugging Tools for Windows](http://www.microsoft.com/whdc/DevTools/Debugging/default.mspx)** - to navigate in the dump. While userdump is by default non-intrusive and should not kill the application, it causes the application freeze which could be for a few seconds and it, eventually, could crash the application. So, it is NOT 100% safe.
+1. [Debugging Tools for Windows](http://www.microsoft.com/whdc/DevTools/Debugging/default.mspx) - to navigate in the dump. While userdump is by default non-intrusive and should not kill the application, it causes the application freeze which could be for a few seconds and it, eventually, could crash the application. So, it is NOT 100% safe.
 Debugging Tools for Windows is GUI wrapper for debugging tools that could be used to simplify process identification, debugging, dump reading, it shows stack per each thread, etc.
 Both tools are well tested and common in Windows environment.
 
@@ -53,4 +53,4 @@ Usage:
 
 In many scenarios, mainly in production or large deployments, you many times face issues occurred in the same time over several components and cross several distributed machines. In order to track down what was the root cause of the event and which were just symptoms you need to review many log files and correlate what happened in that specific time.
 
-In order to correlate events from different log files and visualize it you have to create a Log Correlation which is where the **[Eclipse Log and Trace Analyzer component \(TPTP LTA\)](/presentation_files/Eclipse%20TPTP%20-%20Log%20And%20Trace%20Analyzer.doc)** shines. This component is an extensive and extendable framework that includes built in probes mechanism.
+In order to correlate events from different log files and visualize it you have to create a Log Correlation which is where the [Eclipse Log and Trace Analyzer component \(TPTP LTA\)](/presentation_files/Eclipse%20TPTP%20-%20Log%20And%20Trace%20Analyzer.doc) shines. This component is an extensive and extendable framework that includes built in probes mechanism.

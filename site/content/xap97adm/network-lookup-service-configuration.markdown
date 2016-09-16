@@ -27,7 +27,7 @@ Defining group names and unicast Locators for Jini Services; searching for avail
 In such a case, make sure you have a different lookup group for each space, where each space is configured to use a specific lookup. A good practice is to have different space/service names.
 
 {{% info %}}
-When using multicast please review the following section **[How to Determine Whether Multicast is Available](./network-multicast-is-available.html)** and [How to Configure Multicast](./network-multicast.html).
+When using multicast please review the following section [How to Determine Whether Multicast is Available](./network-multicast-is-available.html) and [How to Configure Multicast](./network-multicast.html).
 {{%/info%}}
 
 # Setting up the Lookup Service For Multicast Discovery (Using Lookup Group)

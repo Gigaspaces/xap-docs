@@ -34,7 +34,7 @@ As shown above, a JMS application **cannot read POJOs/Entries** from the space, 
 
 The following sections will show you how to use the `MessageConverter` to write objects to the space using the JMS API; and how to write JMS messages and read/take those messages using the space API.
 
-{{% refer %}}To see how the `MessageConverter` is used with OpenSpaces, refer to the **[The OpenSpaces Data Example]({{%currentjavatuturl%}}/the-openspaces-data-example.html)**.{{% /refer %}}
+{{% refer %}}To see how the `MessageConverter` is used with OpenSpaces, refer to the [The OpenSpaces Data Example]({{%currentjavatuturl%}}/the-openspaces-data-example.html).{{% /refer %}}
 
 # Writing POJOs/Entries to Space using JMS API -- MessageConverter
 

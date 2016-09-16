@@ -108,13 +108,13 @@ JConsole includes a [new tab](http://blog.luminis.nl/luminis/entry/top_threads_p
 
 **To view this tab in your JConsole**:
 
-- Install **[JDK 1.6](http://java.sun.com/javase/downloads/index.jsp)** -- download **JDK 6 Update 2** as seen below:
+- Install [JDK 1.6](http://java.sun.com/javase/downloads/index.jsp) -- download **JDK 6 Update 2** as seen below:
 
 {{% indent %}}
 ![space_JMX_7_JDK6.jpg](/attachment_files/space_JMX_7_JDK6.jpg)
 {{% /indent %}}
 
-- **[Download the topthreads.jar file](http://blog.luminis.nl/luminis/resource/peter/topthreads.jar)** and add it to your `<GigaSpaces Root>\lib\ui` folder.
+- [Download the topthreads.jar file](http://blog.luminis.nl/luminis/resource/peter/topthreads.jar) and add it to your `<GigaSpaces Root>\lib\ui` folder.
 
 {{% info %}}
 `topthreads.jar` is used by default. If `topthreads.jar` isn't found, the `JTop.jar` file (which is part of the JDK) is used instead.

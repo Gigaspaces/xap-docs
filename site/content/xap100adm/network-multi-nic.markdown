@@ -41,4 +41,4 @@ Make sure your network and machines running XAP are configured to have multicast
 1. [Testing your configuration](./network-multi-nic-advanced.html#5)
 1. [Troubleshooting your configuration](./network-multi-nic-advanced.html#6), if you experience problems
 
-{{% refer %}}For more details, refer to the **[Advanced Multi-NIC Configuration](./network-multi-nic-advanced.html)** section.{{% /refer %}}
+{{% refer %}}For more details, refer to the [Advanced Multi-NIC Configuration](./network-multi-nic-advanced.html) section.{{% /refer %}}

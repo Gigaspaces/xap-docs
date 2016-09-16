@@ -189,7 +189,7 @@ To enable multicasting from a token ring on a Windows® 2000 workstation to any 
 
 # Time-To-Live (TTL) Value
 
-The **[multicast Time-To-Live (TTL)](http://en.wikipedia.org/wiki/Time_to_live)** value specifies the number of routers (hops) that multicast traffic is permitted to pass through before expiring on the network. For each router (hop), the original specified TTL is decremented by one (1). When its TTL reaches a value of zero (0), each multicast datagram expires and is no longer forwarded through the network to other subnets.
+The [multicast Time-To-Live (TTL)](http://en.wikipedia.org/wiki/Time_to_live) value specifies the number of routers (hops) that multicast traffic is permitted to pass through before expiring on the network. For each router (hop), the original specified TTL is decremented by one (1). When its TTL reaches a value of zero (0), each multicast datagram expires and is no longer forwarded through the network to other subnets.
 
 The problem of multicasts/broadcasts not passing the router/switch is a well known issue - most routers (Cisco, 3Com, etc) have multicast forwarding disabled by default - otherwise the networks will be flooded with packets coming from very distant locations. To get it delivered all over the globe takes below 30 hops, so TTL 20 means delivery to more than half of it. It is very common that network experts in large networks hate the flooding problem caused by multicasts/broadcasts sent with the large TTL, and block it.
 

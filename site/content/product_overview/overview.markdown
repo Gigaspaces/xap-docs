@@ -17,10 +17,10 @@ Applications running on XAP can be scaled out linearly, because XAP uses the [Sp
 
 **This overview introduces XAP from several different perspectives:**
 
-- **[A components perspective](#components)** - explains key capabilities of GigaSpaces XAP -- the Open Spaces framework; the space-based core middleware and the middleware facilities it provides; and the SLA-Driven Container.
-- **[A runtime perspective](#runtime)** - shows how GigaSpaces components execute and interact in runtime on multiple physical machines.
-- **[An SOA/EDA perspective](#soa)** - shows how GigaSpaces XAP and the Space-Based Architecture are actually a special case of SOA/EDA, and can be used to implement a Service Oriented Architecture which supports high-performance, stateful services.
-- **[A remote client perspective](#client)** - illustrates how GigaSpaces XAP is viewed and accessed by remote clients, whether they are running inside XAP Processing Units or as independent POJO services.
+- [A components perspective](#components) - explains key capabilities of GigaSpaces XAP -- the Open Spaces framework; the space-based core middleware and the middleware facilities it provides; and the SLA-Driven Container.
+- [A runtime perspective](#runtime) - shows how GigaSpaces components execute and interact in runtime on multiple physical machines.
+- [An SOA/EDA perspective](#soa) - shows how GigaSpaces XAP and the Space-Based Architecture are actually a special case of SOA/EDA, and can be used to implement a Service Oriented Architecture which supports high-performance, stateful services.
+- [A remote client perspective](#client) - illustrates how GigaSpaces XAP is viewed and accessed by remote clients, whether they are running inside XAP Processing Units or as independent POJO services.
 
 {{%  refer %}} For a GigaSpaces XAP product architecture overview, see the [Product Architecture section](./product-architecture.html).{{%  /refer %}}
 
@@ -40,12 +40,12 @@ Open Spaces is the primary framework for developing applications in GigaSpaces. 
 
 To achieve these goals, Open Spaces adds the following components to the Spring development environment:
 
-- **[Processing Unit]({{%latestjavaurl%}}/the-processing-unit-overview.html)** -- the core unit of work. Encapsulates the middleware together with the business logic in a single unit of scaling and failover.
-- **[SLA-Driven Container](./service-grid.html#gsc)** -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
+- [Processing Unit]({{%latestjavaurl%}}/the-processing-unit-overview.html) -- the core unit of work. Encapsulates the middleware together with the business logic in a single unit of scaling and failover.
+- [SLA-Driven Container](./service-grid.html#gsc) -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
 - [In-Memory Data Grid](./the-in-memory-data-grid.html) -- provides in-memory distributed data storage.
-- **[Declarative Event Containers]({{% latestjavaurl%}}/messaging-support.html)** -- for triggering events from the space into POJOs in pull or push mode.
-- **[Remoting]({{% latestjavaurl%}}/space-based-remoting.html)** -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
-- **[Declarative transaction support]({{% latestjavaurl%}}/transaction-management.html)** for GigaSpaces In-Memory Data Grid.
+- [Declarative Event Containers]({{% latestjavaurl%}}/messaging-support.html) -- for triggering events from the space into POJOs in pull or push mode.
+- [Remoting]({{% latestjavaurl%}}/space-based-remoting.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
+- [Declarative transaction support]({{% latestjavaurl%}}/transaction-management.html) for GigaSpaces In-Memory Data Grid.
 
 {{%  refer %}} For a list of frequently-asked questions, including licensing model and positioning questions, see the [OpenSpaces FAQ](/faq/openspaces-faq.html).{{%  /refer %}}
 
@@ -68,7 +68,7 @@ XAP relies on the JavaSpaces (space-based) model as its core middleware, and pro
 | Real-time event notification -- application instances can selectively subscribe to specific events. | Provides capabilities usually offered by messaging systems, including slow-consumer support, FIFO, batching, pub/sub, content-based routing. |
 
 - **Messaging Grid** -- enables services to communicate and share information across the distributed In-Memory Data Grid. Supports a variety of messaging scenarios using the JavaSpaces or JMS API.
-- **[*Parallel Processing*](/sbp/xap-order-management-tutorial.html)** -- enables parallel execution of low latency, high-throughput business transactions, using the Master-Worker pattern.
+- [Parallel Processing](/sbp/xap-order-management-tutorial.html) -- enables parallel execution of low latency, high-throughput business transactions, using the Master-Worker pattern.
 
 ## SLA-Driven Container
 
@@ -177,7 +177,7 @@ From a runtime perspective, there are several ways remote clients can interact w
 - **Remote client running in a Processing Unit on an SLA-Driven Container** -- a client can be deployed in its own Processing Unit, like the server instances, except that the client references services residing in remote Processing Units. In this mode the client is deployed and runs in an SLA-Driven Container, just like the server instances.
 - **Remote client running in a standalone processing unit** -- the client still runs in a processing unit, but outside the container. This allows it to leverage Processing Unit facilities to simplify its logic -- facilities such as the space abstraction and transactions -- without being dependent on the container. This mode can be useful for rich clients running as Swing applications, as web containers, and so on.
 - **Plain Java clients, J2EE** -- this can be either a regular POJO client that interacts with the space, or a Session Bean that obtains a reference to the space through the GigaSpaces SpaceFinder method, and uses that reference to interact with the space directly.
-- **[.NET]({{% latestjavaurl%}}/index.html)**, **[C++]({{% latestjavaurl%}}/xap-cpp.html)** -- GigaSpaces provides .NET and C++ libraries that enable direct interaction with services via the space, just like a POJO client.
+- [.NET]({{% latestjavaurl%}}/index.html), [C++]({{% latestjavaurl%}}/xap-cpp.html)** -- GigaSpaces provides .NET and C++ libraries that enable direct interaction with services via the space, just like a POJO client.
 
 {{% align center%}}
 ![Remote Clients.jpg](/attachment_files/Remote Clients.jpg)

@@ -685,7 +685,7 @@ for (Space space : admin.getSpaces()) {
 ```
 
 {{%refer%}}
-For more information please refer to the API documentation: **[MirrorStatistics](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/cluster/replication/async/mirror/MirrorStatistics.html)**
+For more information please refer to the API documentation: [MirrorStatistics](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/cluster/replication/async/mirror/MirrorStatistics.html)
 {{%/refer%}}
 
 # Monitoring the Remote Transport Activity

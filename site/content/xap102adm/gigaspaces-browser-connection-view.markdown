@@ -10,7 +10,7 @@ weight: 100
 The Connections view exposes information regarding all connected and disconnected space proxies.
 
 {{% note %}}
-It is also possible to retrieve space connections using the **[space connections](./space-gigaspaces-cli.html)** command
+It is also possible to retrieve space connections using the [space connections](./space-gigaspaces-cli.html) command
 {{%/note%}}
 
 The following properties are exposed:
