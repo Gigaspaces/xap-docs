@@ -46,6 +46,11 @@ The following should be specified as system properties:
 -Dcom.gs.jini.config.maxLeaseDuration=2000
 ```
 
+Notice that low (1-2sec) TCP KeepAlive time settings should be specified to achieve failure detection times of less than 15 sec.
+
+- Linux: ```echo 2 > /proc/sys/net/ipv4/tcp_keepalive_time ``` (2sec)
+- Windows: Registry setting [KeepAliveTime] (https://technet.microsoft.com/en-us/library/cc957549.aspx)
+
 By default, the maximum time it takes for a backup space to switch into a primary mode takes ~6-8 seconds.
 If you would like to reduce the failover time , you should use the following formula:
 
