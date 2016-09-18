@@ -94,27 +94,27 @@ For administration purposes use the [GigaSpaces Management Center]({{%currentadm
 
 Start the WEB-UI, under the Generate Dump tab select the relevant option:
 {{% align center %}}
-![dump0.jpg](/attachment_files/WEB_UI1.png)
+![WEB-UI1.png](/attachment_files/WEB-UI1.png)
 {{% /align %}}
 
 This can be done for all hosts, all hosts but only information on GSCs, or just an overview.
 For a specific host, you can click the tool-box icon.
 
 {{% align center %}}
-![dump1.jpg](/attachment_files/WEB-UI3.png)
+![WEB-UI3.png](/attachment_files/WEB-UI3.png)
 {{% /align %}}
 
 Specific GSC dump:
 
 {{% align center %}}
-![dump3.jpg](/attachment_files/WEB-UI4.png)
+![WEB-UI4.png](/attachment_files/WEB-UI4.png)
 {{% /align %}}
 
 Any of the above will display the following dialog. Select the desired options and click the  **Generate**  button.
 Selecting the "JVM Heap Dump" option will also generate a heap file for the JVMs. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.
 
 {{% align center %}}
-![dump2.jpg](/attachment_files/WEB-UI2.png)
+![WEB-UI2.png](/attachment_files/WEB-UI2.png)
 {{% /align %}}
 
 ## Generate Overview
@@ -125,7 +125,7 @@ This information is useful to quickly gather the system settings in production, 
 When clicking on the Generate Overview option:
 
 {{% align center %}}
-![dump2.jpg](/attachment_files/WEB-UI5.png)
+![WEB-UI5.png](/attachment_files/WEB-UI5.png)
 {{% /align %}}
 
 This will download a zip file containig an overview.txt file directly to the downloads folder.
