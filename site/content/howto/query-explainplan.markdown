@@ -11,16 +11,9 @@ This a preview feature .......
 {{%/warning%}}
 
 
-Discovering Query performance issues in Prod is common
-SQL is a declarative language
-Focus on “What I want”, but not “How to get it”
-Developers tend to test correctness but not performance
-Dev/Test environments tend to contain less data than Production environment
-Customers/Field want info on *how* query is executed
-How many entries were scanned to get the result?
-Which index was used? Why?
-Similar to Explain Plan in traditional RDBMS, hence the name
+# Intro 
 
+ 
 
 # Usage 
 
@@ -31,8 +24,7 @@ Use .getExplainPlan() to get the result, and print it
 
 
 ```java
-SQLQuery query = new SQLQuery(MyPojo.class, "price > 1000")
-    .withExplainPlan();
+SQLQuery query = new SQLQuery(MyPojo.class, "price > 1000").withExplainPlan();
 Object result = gigaSpace.read(query);
 System.out.println(query.getExplainPlan());
 ```
