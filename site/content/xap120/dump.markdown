@@ -86,6 +86,73 @@ DumpResult dumpResult = admin.generateDump("test", context, "summary", "log");
 
 The above code will generate a dump, including the just the last 200 log entries which the log dump processor will process.
 
+# Dump WEB-UI
+
+{{% note %}}since 12.0.1{{% /note %}}
+
+For administration purposes use the [GigaSpaces Management Center]({{%currentadmurl%}}/web-management-console.html) to generate a dump file that includes information about the runtime GigaSpaces environment for a specific host or across the entire environment.
+
+Start the WEB-UI, under the Generate Dump tab select the relevant option:
+{{% align center %}}
+![dump0.jpg](/attachment_files/WEB_UI1.jpg)
+{{% /align %}}
+
+This can be done for all hosts, all hosts but only information on GSCs, or just an overview.
+For a specific host, you can click the tool-box icon.
+
+{{% align center %}}
+![dump1.jpg](/attachment_files/WEB-UI3.jpg)
+{{% /align %}}
+
+Specific GSC dump:
+
+{{% align center %}}
+![dump3.jpg](/attachment_files/WEB-UI4.jpg)
+{{% /align %}}
+
+Any of the above will display the following dialog. Select the desired options and click the  **Generate**  button.
+Selecting the "JVM Heap Dump" option will also generate a heap file for the JVMs. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.
+
+{{% align center %}}
+![dump2.jpg](/attachment_files/WEB-UI2.jpg)
+{{% /align %}}
+
+## Generate Overview
+
+The "Generate Overview" will provide general information on the system deployment.
+This information is useful to quickly gather the system settings in production, for example when reporting a support case.
+
+When clicking on the Generate Overview option:
+
+{{% align center %}}
+![dump2.jpg](/attachment_files/WEB-UI5.jpg)
+{{% /align %}}
+
+This will download a zip file containig an overview.txt file directly to the downloads folder.
+The dump overview structure will look like this:
+
+```bash
+Overview
+	Time			          2016-09-18 14:05:16.101
+	XAP version		      ENTERPRISE
+	Client License		  Version=12;Type=type;Customer=customer;Expiration=never;Hash=hash
+	Number of Machines	1
+  Grid Components			GSA(1), LUS(1), GSM(1), GSC(2), ESM(0)
+
+Processing Units      (none)
+
+Hosts
+	192.168.33.159[192.168.33.159] Cores [4]
+		JVM Version	Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 1.8.0_71
+		Utilization	cpu[7.5%] memory[11GB (66%)] 
+		GSA(1), LUS(1), GSM(1), GSC(2), ESM(0)
+		GSCs
+			GSC[54416] Heap: Init[512MB], Max[491MB], Used[82MB], Committed[491MB]
+			GSC[54419] Heap: Init[512MB], Max[491MB], Used[98MB], Committed[491MB]
+...
+
+```
+
 # Dump UI
 
 You may use the [GigaSpaces Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html) to generate a dump file that includes information about the runtime GigaSpaces environment for a specific GSC or across the entire environment.
