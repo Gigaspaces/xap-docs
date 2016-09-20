@@ -159,7 +159,7 @@ If you are using the **notification slow consumer** mechanism see the [Slow Cons
 
 ## Defining Socket Port Range per JVM
 
-You can define port range using the `com.gigaspaces.transport.bind-port` property, meaning that every JVM acquires a bind port from a defined port range. This functionality is useful when having multiple JVMs on the same machine (clients or servers), and simplifies firewall setup.
+You can define port range using the `com.gs.transport_protocol.lrmi.bind-port` property, meaning that every JVM acquires a bind port from a defined port range. This functionality is useful when having multiple JVMs on the same machine (clients or servers), and simplifies firewall setup.
 
 Here is how you can set a listening port rage for GSA/GSC/GSM:
 
