@@ -212,13 +212,13 @@ Step 4:
 Save and close the `gs_logging.properties` file.
 
 Step 5:
-Start a space by deploying a data-grid PU or a custom PU with a space. You may also start a space via `<XAP Root>/bin/gsInstance`.
+Start a space by deploying a data-grid PU or a custom PU with a space. You may also start a space via `<XAP Root>/bin/space-instance`.
 
 LRMI communication transport protocol debug messages are displayed.
 
 ## During Runtime -- using JMX
 
-Step 1: Start `gsInstance` using the following Java system properties:
+Step 1: Start `space-instance` using the following Java system properties:
 
 
 ```bash

@@ -17,7 +17,7 @@ Defining group names and unicast Locators for Jini Services; searching for avail
 
 
 
-**Do not have more than two Jini Lookup Services across one site** - having the `gsInstance` running a Jini Lookup Service embedded by default can cause problems. As a result of not have more than two Jini Lookup Services across one site, spaces do not have to deal with registering themselves into too many Jini Lookup Services, and the Space Browser's freezing behavior is reduced.
+**Do not have more than two Jini Lookup Services across one site** - having the `space-instance` running a Jini Lookup Service embedded by default can cause problems. As a result of not have more than two Jini Lookup Services across one site, spaces do not have to deal with registering themselves into too many Jini Lookup Services, and the Space Browser's freezing behavior is reduced.
 
 
 
