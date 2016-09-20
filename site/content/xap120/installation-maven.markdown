@@ -167,8 +167,9 @@ mvn xap:run
 
 
 ```bash
-mvn compile xap:run -Dcluster="schema=partitioned total_members=1,1 id=1" -Dproperties="embed://prop1=value1" -Dmodule=processor
-mvn compile xap:run -Dmodule=feeder
+mvn compile xap:run -Dproperties="embed://prop1=value1" -Dmodule=mirror
+mvn compile xap:run -Dcluster="schema=partitioned total_members=1,1" -Dproperties="embed://prop1=value1" -Dmodule=processor
+mvn compile xap:run -Dproperties="embed://prop1=value1" -Dmodule=feeder
 
 ```
 
@@ -261,8 +262,9 @@ mvn xap:run-standalone
 
 
 ```bash
-mvn xap:run-standalone -Dcluster="schema=partitioned total_members=1,1 id=1" -Dproperties="embed://prop1=value1" -Dmodule=proccesor
-mvn xap:run-standalone -Dmodule=feeder
+mvn xap:run-standalone -Dproperties="embed://prop1=value1" -Dmodule=mirror
+mvn xap:run-standalone -Dcluster="schema=partitioned total_members=1,1" -Dproperties="embed://prop1=value1" -Dmodule=processor
+mvn xap:run-standalone -Dproperties="embed://prop1=value1" -Dmodule=feeder
 ```
 
 ## Determining Processing Unit Execution
