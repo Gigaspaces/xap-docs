@@ -13,6 +13,7 @@ XAP is Maven-friendly - it is built using maven and designed to be easily used b
 # XAP Artifacts
 
 The main dependency required to use XAP is `xap-openspaces`
+
 ```xml
 <dependency>
   <groupId>org.gigaspaces</groupId>
