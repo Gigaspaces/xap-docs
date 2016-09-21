@@ -42,8 +42,8 @@ GigaSpaces recognizes that end-of-life milestones often have a broad impact on G
 
 #### Upgrade Path and Assistance
 
-- Upgrading will ensure that you are leveraging all of the bug fixes and improvements of the most current version, and will ensure our ability to properly support you should you encounter any issues. Furthermore, GigaSpaces has made tremendous improvements in scalability, stability, performance, user experience, and functionality in version 12.x. Upgrading your application to the latest 12.x version and migrating to our latest best practices will ensure you leverage the XAP technology to its fullest potential, minimizing deployment risks, while shortening project cycle times. GigaPro are modular consultancy and professional services designed to ensure smooth and effective deployment of GigaSpaces solutions.
-- The recommended upgrade path is to the latest GigaSpaces XAP 12.x series of editions. Please refer to this Upgrade Guide for more details.
+- Upgrading will ensure that you are leveraging all of the bug fixes and improvements of the most current version, and will ensure our ability to properly support you should you encounter any issues. Furthermore, GigaSpaces has made tremendous improvements in scalability, stability, performance, user experience, and functionality in version {{%latestxaprelease%}}. Upgrading your application to the latest {{%latestxaprelease%}} version and migrating to our latest best practices will ensure you leverage the XAP technology to its fullest potential, minimizing deployment risks, while shortening project cycle times. GigaPro are modular consultancy and professional services designed to ensure smooth and effective deployment of GigaSpaces solutions.
+- The recommended upgrade path is to the latest GigaSpaces XAP {{%latestxaprelease%}} series of editions. Please refer to this Upgrade Guide for more details.
 - Customers on annual subscription can upgrade to latest release as well.
 
 
@@ -106,7 +106,7 @@ Upon request, GigaSpaces' [Consulting Services](mailto:ps@gigaspaces.com) expert
 - Java SE 1.4 EOL – based on information made publicly available by Sun Microsystems, as of October 30th 2008, Java SE 1.4 SDK has reached its End of Service Life (EOSL).
 - Java SE 1.5 EOL – based on information made publicly available by Sun Microsystems, as of October 30th 2009, Java SE 1.5 SDK has reached its End of Service Life (EOSL).
 - Sun also ceased to support the J2SE 1.4 and 1.5 JVMs. In addition, the two other major JVM vendors, namely IBM and Oracle, announced their limited ability to support these JVMs in light of Sun's announcement. This in turn will limit GigaSpaces’ ability to provide support for applications running on these JVMs. However, we will continue to support GigaSpaces XAP editions up to 6.6 (for Java 1.4) and up to version 7.1 (for java 1.5) in these environments on a best-effort basis. Customers concerned about this EOL announcement are encouraged to contact their JDK vendor to explore the extended support entitlements beyond the stated EOL period.
-- GigaSpaces recommends that customers upgrade to a fully-supported environment, such as the latest GigaSpaces XAP 10.0.x and the latest Java 1.7 SDK.
+- GigaSpaces recommends that customers upgrade to a fully-supported environment, such as the latest GigaSpaces XAP {{%latestxaprelease%}} and the latest Java 1.7 SDK.
 - Please note that from version 7.0 onwards, GigaSpaces XAP will no longer support the Java 1.4 SDK, and will require the use of Java 1.5 SDK or higher.
 - Please note that from version 8.0 onwards, GigaSpaces XAP will no longer support the Java 1.5 SDK, and will require the use of Java 1.6 SDK or higher. For details about Java 1.4 & 1.5 SDK EOL, please refer to the following page:http://java.sun.com/products/archive/eol.policy.html
 - For more details please refer to the page which discusses the third-party products shipped with GigaSpaces.
