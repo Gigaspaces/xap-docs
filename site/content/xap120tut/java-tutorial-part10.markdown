@@ -132,7 +132,7 @@ Display Roles
 
 You may have noticed that you can assign fine grained access control for space operations (read/write/etc) per space class(slide 4).
 
-{{%refer%}}[Web Management Console]({{%currentsecurl%}}/gigaspaces-management-center-ui-security.html){{%/refer%}}
+{{%refer%}}[Web Management Console]({{%currentsecurl%}}/../xap120adm/gigaspaces-management-center-ui-security.html){{%/refer%}}
 
 
 # Managing Users
@@ -199,7 +199,7 @@ private Role createRole() {
 {{% /tab  %}}
 {{% /tabs %}}
 
-{{%refer%}}[Web Management Console]({{%currentsecurl%}}/gigaspaces-management-center-ui-security.html){{%/refer%}}
+{{%refer%}}[Web Management Console]({{%currentsecurl%}}/../xap120adm/gigaspaces-management-center-ui-security.html){{%/refer%}}
 
 
 # Securing XAP Components
