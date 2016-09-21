@@ -89,7 +89,7 @@ Bellow is the configuration file with the default values:
 ```bash
 # mandatory properties
 ## URL or local location of the zip file
-xap_location: "/root/demo/gigaspaces-xap-premium-11.0.0-ga-b14800.zip"
+xap_location: "/root/demo/gigaspaces-xap-premium-12.0.1-ga-b16600.zip"
 ## OpenJDK Java version to install. Options are: 6, 7 and 8. 
 ## If you already have Java installed you need to set JAVA_HOME and leave this property empty.
 java_version: "8"
