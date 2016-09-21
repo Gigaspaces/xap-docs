@@ -1,9 +1,9 @@
 ---
-
-type: post
-title: Explain Plan
-
-weight: 1400
+type: post120
+title:  Explain Plan
+categories: XAP120
+parent: querying-the-space.html
+weight: 900
 ---
 
 {{%warning%}}

@@ -46,6 +46,13 @@ Reading large number of objects using multiple queries in one call in a continuo
 
 [Partial results - Projection](./query-partial-results.html){{<wbr>}}
 Obtaining partial results when querying the space to improve application performance and reduce memory footprint.
+
+[Explain Plan](./query-explainplan.html){{<wbr>}}
+Explain Plan can be used to obtain a description of the strategy or plan that XAP uses to implement a specific SQLQuery. 
+
+
+ 
+
 {{%/fpanel%}}
 
 <br>

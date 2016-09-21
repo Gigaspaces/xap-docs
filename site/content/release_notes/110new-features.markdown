@@ -14,7 +14,7 @@ Below is a list of new features and improvements in GigaSpaces 11.0.X.
 
 | Key | Summary | Fix Version/s | Sales<br>Force ID | Platform/s|
 |:-------|:------|:------------|:------------|:----------|
-| GS-12764 | New blobstore statistics - cache miss/hit and get/put/replace/remove tp | 11.0.0 | | All |
+| <nobr>GS-12764<nobr> | New blobstore statistics - cache miss/hit and get/put/replace/remove tp | 11.0.0 | | All |
 | GS-12745 | Add setenv-overrides script to simplify overriding setenv settings | 11.0.0 | | Java |
 | GS-12731 | Alias partitioned-sync2backup as partitioned | 11.0.0 | | All |
 | GS-12503 | Support common functions within SQL where clause | 11.0.0 | | All |

@@ -88,7 +88,7 @@ The above code will generate a dump, including the just the last 200 log entries
 
 # Dump WEB-UI
 
-{{% note %}}since 12.0.1{{% /note %}}
+ 
 
 For administration purposes use the [GigaSpaces Management Center]({{%currentadmurl%}}/web-management-console.html) to generate a dump file that includes information about the runtime GigaSpaces environment for a specific host or across the entire environment.
 
