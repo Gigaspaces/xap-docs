@@ -42,8 +42,8 @@ GigaSpaces recognizes that end-of-life milestones often have a broad impact on G
 
 #### Upgrade Path and Assistance
 
-- Upgrading will ensure that you are leveraging all of the bug fixes and improvements of the most current version, and will ensure our ability to properly support you should you encounter any issues. Furthermore, GigaSpaces has made tremendous improvements in scalability, stability, performance, user experience, and functionality in version 10.x. Upgrading your application to the latest 9.x version and migrating to our latest best practices will ensure you leverage the XAP technology to its fullest potential, minimizing deployment risks, while shortening project cycle times. GigaPro are modular consultancy and professional services designed to ensure smooth and effective deployment of GigaSpaces solutions.
-- The recommended upgrade path is to the latest GigaSpaces XAP 10.0.x series of editions. Please refer to this Upgrade Guide for more details.
+- Upgrading will ensure that you are leveraging all of the bug fixes and improvements of the most current version, and will ensure our ability to properly support you should you encounter any issues. Furthermore, GigaSpaces has made tremendous improvements in scalability, stability, performance, user experience, and functionality in version 12.x. Upgrading your application to the latest 12.x version and migrating to our latest best practices will ensure you leverage the XAP technology to its fullest potential, minimizing deployment risks, while shortening project cycle times. GigaPro are modular consultancy and professional services designed to ensure smooth and effective deployment of GigaSpaces solutions.
+- The recommended upgrade path is to the latest GigaSpaces XAP 12.x series of editions. Please refer to this Upgrade Guide for more details.
 - Customers on annual subscription can upgrade to latest release as well.
 
 
