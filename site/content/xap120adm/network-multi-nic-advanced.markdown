@@ -247,7 +247,7 @@ You can set the `jini://` and/or `rmi://` protocols in the `com.gs.cluster.url-p
 
 # Testing Your Configuration
 
-The replicated example, located under `<XAP Root>\examples\Advanced\Data_Grid\replicated`, can be used to test the above configuration. The example interacts using the `setenv` and `gsInstance` scripts.
+The replicated example, located under `<XAP Root>\examples\Advanced\Data_Grid\replicated`, can be used to test the above configuration. The example interacts using the `setenv` and `space-instance` scripts.
 
 The `XAP_NIC_ADDRESS` should be set corresponding at each machine's network interface card.
 
@@ -292,7 +292,7 @@ Replicator: Connection established with target space
 
 ### Discovery by Unicast
 
-The configuration for unicast can be added to the `setenv` script, and should be appended to the `gsInstance` script loading an instance of each node.
+The configuration for unicast can be added to the `setenv` script, and should be appended to the `space-instance` script loading an instance of each node.
 
 Additionally, you can set the `SpaceURL` `locators` attribute.
 
@@ -304,7 +304,7 @@ UNIX_ENABLED=-Dcom.gs.jini_lus.unicast_discovery.enabled=true
 URL_PREFIX=-Dcom.gs.cluster.url-protocol-prefix=jini://${XAP_NIC_ADDRESS}/
 ```
 
-gsInstance:
+space-instance:
 
 
 ```bash

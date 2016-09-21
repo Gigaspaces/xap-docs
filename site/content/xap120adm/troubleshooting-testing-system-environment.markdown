@@ -9,7 +9,7 @@ weight: 200
 {{% ssummary%}}{{% /ssummary %}}
 
 
-To perform a simple system testing you should use the `gsInstance.bat` script on windows or `gsInstance.sh` script on linux.
+To perform a simple system testing you should use the `space-instance.bat` script on windows or `space-instance.sh` script on linux.
 
 {{% refer %}}
 To setup a production environment see the [Moving into Production Checklist](./moving-into-production-checklist.html).
@@ -17,11 +17,11 @@ To setup a production environment see the [Moving into Production Checklist](./m
 
 # Verifying Local Installation
 
-1. Run a single GigaSpaces space instance by moving to the `<XAP Root>\bin` directory and running the `gsInstance.bat/sh` command. You should see such an output:
+1. Run a single GigaSpaces space instance by moving to the `<XAP Root>\bin` directory and running the `space-instance.bat/sh` command. You should see such an output:
 
 
 ```bash
-D:\gigaspaces-xap-premium-8.0.1-ga\bin>gsInstance.bat
+D:\gigaspaces-xap-premium-8.0.1-ga\bin>space-instance.bat
 Starting a Space Instance
 Setting space url to "/./mySpace?schema=default&properties=gs&groups="gigaspaces-8.0.1-XAPPremium-ga""
 java version "1.6.0_24"
