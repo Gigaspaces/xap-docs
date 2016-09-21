@@ -51,7 +51,7 @@ public class Person {
 |           |                 |
 |-----------|-----------------|
 |Syntax     | SpaceRouting|
-|Description| The `[SpaceRouting]` annotation specifies a get method for the field to be used to calculate the target space for the space operation (Read , Write...). The `[SpaceRouting]` field value hash code is used to calculate the target space when the space is running in **partitioned mode**.{{<wbr>}}The field value hash code is used to calculate the target space when the space is running in **partitioned mode**. |
+|Description| The `[SpaceRouting]` annotation specifies a get method for the field to be used to calculate the target space for the space operation (Read , Write...). The `[SpaceRouting]` field value hash code is used to calculate the target space when the space is running in **partitioned mode**.
 
 Example:
 

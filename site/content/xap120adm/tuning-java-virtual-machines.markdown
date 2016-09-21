@@ -76,7 +76,7 @@ The [sun rmi dgc gcInterval](http://docs.oracle.com/javase/{{%version "java-vers
 In some cases this might cause the JVM process to slow down every 60 seconds. To reduce the performance impact of redundant GC cycles, increase the interval to be an hour (3600000 milliseconds) both for the space JVM and the client JVM.
 
 {{% tip %}}
-When starting the space in embedded mode or running it in remote mode using the `gsInstance` or `gsc` commands make sure you have the following system properties:
+When starting the space in embedded mode or running it in remote mode using the `space-instance` or `gsc` commands make sure you have the following system properties:
 
 - `-Dsun.rmi.dgc.client.gcInterval=36000000`
 - `-Dsun.rmi.dgc.server.gcInterval=36000000`

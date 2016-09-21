@@ -33,18 +33,18 @@ The `StandaloneProcessingUnitContainer` class provides an executable `main()` me
 |-properties [property file location] | Allows you to [inject properties](./deployment-properties.html) to the processing unit at deployment time. |
 |-properties embed://[property1 name]=[property1 value]; {{<wbr>}} [property2 name]=[property2 value] | Allows you to [directly inject properties](./deployment-properties.html) to the processing unit at startup time. |
 
-# Starting the Standalone Processing Unit Container via the puInstance Shell Script
+# Starting the Standalone Processing Unit Container via the pu-instance Shell Script
 
-GigaSpaces comes with the `puInstance` shell script, which uses the `StandaloneProcessingUnitContainer` in order to run a processing unit directly from the command line.
+GigaSpaces comes with the `pu-instance` shell script, which uses the `StandaloneProcessingUnitContainer` in order to run a processing unit directly from the command line.
 
-Here are some examples of using the `puInstance` script in order to run a processing unit:
+Here are some examples of using the `pu-instance` script in order to run a processing unit:
 
 {{%tabs%}}
 {{%tab "  Unix "%}}
 
 
 ```java
-puInstance.sh -cluster schema=partitioned total_members=2 id=1 data-processor.jar
+pu-instance.sh -cluster schema=partitioned total_members=2 id=1 data-processor.jar
 ```
 
 {{% /tab %}}
@@ -52,20 +52,20 @@ puInstance.sh -cluster schema=partitioned total_members=2 id=1 data-processor.ja
 
 
 ```java
-puInstance.bat -cluster schema=partitioned total_members=2 id=1 data-processor.jar
+pu-instance.bat -cluster schema=partitioned total_members=2 id=1 data-processor.jar
 ```
 
 {{% /tab %}}
 {{% /tabs %}}
 
-The above example starts a processing unit (which includes an embedded space) in a partitioned cluster schema, with two members and `id=1`. In order to run the full cluster, another `puInstance` has to be started with `id=2`.
+The above example starts a processing unit (which includes an embedded space) in a partitioned cluster schema, with two members and `id=1`. In order to run the full cluster, another `pu-instance` has to be started with `id=2`.
 
 {{%tabs%}}
 {{%tab "  Unix "%}}
 
 
 ```java
-puInstance.sh -cluster schema=partitioned total_members=1,1 id=1 backup_id=1
+pu-instance.sh -cluster schema=partitioned total_members=1,1 id=1 backup_id=1
 -properties runtime.properties data-processor.jar
 ```
 
@@ -74,7 +74,7 @@ puInstance.sh -cluster schema=partitioned total_members=1,1 id=1 backup_id=1
 
 
 ```java
-puInstance.bat -cluster schema=partitioned total_members=1,1 id=1 backup_id=1
+pu-instance.bat -cluster schema=partitioned total_members=1,1 id=1 backup_id=1
 -properties runtime.properties data-processor.jar
 ```
 
