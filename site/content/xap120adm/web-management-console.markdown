@@ -40,6 +40,11 @@ The Data Grid view provides Space and Space instance navigation, for querying da
 [Monitoring](./web-management-monitoring.html){{<wbr>}}
 This view displays monitoring information about the deployed topology and its components. You can configure your own templates.
 
+
+[Dump](./web-management-dump.html){{<wbr>}}
+The dump feature of the Admin API allows to easily generate dump information out of GigaSpaces runtime environment.
+
+
 {{%/fpanel%}}
 
 <br>

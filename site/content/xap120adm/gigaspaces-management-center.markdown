@@ -42,4 +42,7 @@ Information regarding pending notify templates
 [Security](./gigaspaces-management-center-ui-security.html){{<wbr>}}
 Security Administration using the GigaSpaces Management Center.
 
+[Dump](./gigaspaces-dump.html){{<wbr>}}
+The dump feature of the Admin API allows to easily generate dump information out of GigaSpaces runtime environment.
+
  {{%/fpanel%}}
