@@ -9,21 +9,6 @@ weight: 550
 Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
 
 
-# Installation
-
-To take advantage of XAP's spatial capabilites, simply add the `xap-spatial` maven dependency to your project:
-
-```xml
-<dependency>
-    <groupId>org.gigaspaces</groupId>
-    <artifactId>xap-spatial</artifactId>
-    <version>{{%version "spatial"%}}</version>
-</dependency>
-```
-
-If you're not using maven, add `XAP_HOME/lib/optional/spatial` to your classpath.
-
-
 
 # Example
 
