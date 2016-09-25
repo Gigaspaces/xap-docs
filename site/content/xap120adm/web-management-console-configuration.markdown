@@ -71,10 +71,10 @@ bin\gs-webui.bat
 
 ### Update the existing configuration file
 
-* Open the *gs-webui.war* archive (found under `[XAP_HOME]/tools/gs-webui`) for exploring and navigate to */WEB-INF/lib*.
-Open the *gs-webui-[version-build].jar* archive for exploring.
+* Open the *xap-webui-[version-build].war* archive (found under `[XAP_HOME]/tools/gs-webui`) for exploring and navigate to */WEB-INF/lib*.
 
-* Edit *xap-webui-context.xml* to add the `localeConf` bean with the desired locale string (`zh_CN` for Chinese and
+
+* Edit *web-context.xml* to add the `localeConf` bean with the desired locale string (`zh_CN` for Chinese and
 `en` for English):
 
 

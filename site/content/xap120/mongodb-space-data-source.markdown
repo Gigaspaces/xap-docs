@@ -138,7 +138,7 @@ For more details about different configurations see [Space Persistency](./space-
 
 Before deploying your Processing Unit, please do the following:
 
-1. Copy the `mongo-datasource.jar` and `antlr4-runtime-{{%version "antlr4-runtime"%}}.jar` from `lib\optional\datasource\mongo` to `lib\optional\pu-common`.
+1. Copy the `xap-mongodb.jar` and `antlr4-runtime-{{%version "antlr4-runtime"%}}.jar` from `lib\optional\mongodb` to `lib\optional\pu-common`.
 2. download the following jar and copy it to `lib\optional\pu-common`:
 - `mongo-java-driver-{{%version "mongo-java-driver"%}}.jar` from [mongoDB's website](http://docs.mongodb.org/ecosystem/drivers/java/) .
 

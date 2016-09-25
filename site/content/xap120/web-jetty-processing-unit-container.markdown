@@ -210,8 +210,8 @@ For example:
 
 ```xml
 <dependency>
-	<groupId>com.gigaspaces</groupId>
-	<artifactId>gs-openspaces</artifactId>
+	<groupId>org.gigaspaces</groupId>
+	<artifactId>xap-openspaces</artifactId>
 	<version>{{%version "maven-version" %}}</version>
 	<exclusions>
 		<exclusion>
