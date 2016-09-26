@@ -119,6 +119,7 @@ The following are optional property string values:
 |id | The id attribute is used to distinguish between cache instances in this cluster. | |
 |properties | if properties property is used as part of the URL space, space and container schema will be loaded and the properties listed as part of the properties file (`[prop-file-name].properties`) which contains the values to override the schema space/container/cluster configuration values that are defined in the schema files.{{<wbr>}}Another benefit of using the ?properties option is when we want to load system properties while VM starts or set SpaceURL attributes. See /config/gs.properties file as a reference. | |
 |mirror | When setting this URL property it will allow the space to connect to the Mirror service to push its data and operations for asynchronous persistency.{{<wbr>}}Example:{{<wbr>}}`/./mySpace?cluster_schema=sync_replicated&mirror`{{<wbr>}} Default: no mirror connection | |
+|timeout | Initial lookup discovery timeout duration. The default is 5000ms | |
 
 Example for space URL using options:
 
