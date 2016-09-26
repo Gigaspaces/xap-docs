@@ -47,9 +47,11 @@ Step 4. You can browse the various MBeans.{{<wbr>}}
 Step 5. Make sure you have a deployed space.   {{<wbr>}}
 Step 6. Open a console and type the following command: `jconsole`{{<wbr>}}
 
-{{% info %}}
-By default, operations in the MBeans **Operations** tab which have GigaSpaces classes as their type are disabled. To enable these, type `jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\required\xap-datagrid.jar`in your console. Instead of `GS_HOME`, type the directory in which GigaSpaces is installed on your computer.
-{{%/info%}}
+{{% note %}}
+By default, operations in the MBeans **Operations** tab which have XAP classes as their type are disabled. To enable these, type in your console:<br> 
+`jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\required\xap-datagrid.jar` <br>
+Instead of `GS_HOME`, type the directory in which GigaSpaces is installed on your computer.
+{{%/note%}}
 
 Step 7. Connect to the MBean server (choose one of the following options):
 
@@ -129,7 +131,7 @@ JConsole includes a [new tab](http://blog.luminis.nl/luminis/entry/top_threads_p
 - [Download the topthreads.jar file](http://blog.luminis.nl/luminis/resource/peter/topthreads.jar) and add it to your `<XAP Root>\lib\platform\ui` folder.
 
 {{% info %}}
-`topthreads-1.0.0.jar` is used by default. If `topthreads-1.0.0.jar` isn't found, the `JTop.jar` file (which is part of the JDK) is used instead.
+`topthreads-{{%version "topthreads"%}}.jar` is used by default. If `topthreads-{{%version "topthreads"%}}.jar` isn't found, the `JTop.jar` file (which is part of the JDK) is used instead.
 {{%/info%}}
 
 Below are some example screenshots:

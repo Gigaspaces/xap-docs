@@ -194,7 +194,7 @@ Class-Path: /home/user1/java/libs/user-lib.jar
 In the previous example, the `Class-Path` property contains 4 different entries:
 
 1. `/home/user1/java/libs/user-lib.jar` - This entry uses an absolute path and will be resolved as such.
-1. `lib/optional/jdbc/hsqldb-2.3.2.jar` - This entry uses a relative path and as such its path is resolved in relative to the gigaspaces home directory.
+1. `lib/optional/jdbc/hsqldb-{{%version "hsql"%}}.jar` - This entry uses a relative path and as such its path is resolved in relative to the gigaspaces home directory.
 1. `${MY_LIBS_DIRECTORY}/user-lib2.jar` - In this entry the `${MY_LIBS_DIRECTORY}` will be resolved if an environment variable named `MY_LIBS_DIRECTORY` exists, and will be expanded appropriately.
 1. `file:/home/user2/libs/lib.jar` - This entry uses URL syntax
 
