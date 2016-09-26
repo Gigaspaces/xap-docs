@@ -65,11 +65,11 @@ Then add to your pu.xml the following leader-selector configuration:
 
 | Property               | Description                                               | Default | Use |
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
-| connection-timeout | curator connection timeout. | 15000 millisecond | optional |
+| <nobr>connection-timeout <nobr>| curator connection timeout. | 15000 millisecond | optional |
 | session-timeout | curator session timeout | 10000 millisecond | optional |
 | session-timeout | curator session timeout | 10000 millisecond | optional |
 | retries | curator number of retries. Operations on a ZooKeeper cluster can fail. Best practices dictate that these operations should be retried. Curator has a Retry Loop mechanism. | 10 | optional |
-| sleep-between-retries | curator sleep between retrie | 1000 millisecond | optional |
+| <nobr>sleep-between-retries<nobr> | curator sleep between retrie | 1000 millisecond | optional |
 
 # Partition Split-Brain
 Zookeeper leader selector avoids split-brain instances, through quorum, If the primary is not in the majority, that primary is frozen(or Quiesce) until the network is connected and the frozen primary is terminated automatically.

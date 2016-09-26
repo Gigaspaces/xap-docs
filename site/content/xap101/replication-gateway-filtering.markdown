@@ -48,7 +48,7 @@ spring
           <os-core:space-replication-filter>
             <os-core:output-filter ref="londonFilter"/>
           </os-core:space-replication-filter>
-        </os-core:space>
+        </os-core:embedded-space>
 
         <os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK">
           <os-gateway:target name="LONDON"/>

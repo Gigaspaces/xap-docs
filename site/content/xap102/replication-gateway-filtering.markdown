@@ -47,7 +47,7 @@ With the example below a replication filter is used with the source space (outpu
           <os-core:space-replication-filter>
             <os-core:output-filter ref="londonFilter"/>
           </os-core:space-replication-filter>
-        </os-core:space>
+        </os-core:embedded-space>
 
         <os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK">
           <os-gateway:target name="LONDON"/>
