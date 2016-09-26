@@ -126,10 +126,10 @@ JConsole includes a [new tab](http://blog.luminis.nl/luminis/entry/top_threads_p
 ![space_JMX_7_JDK6.jpg](/attachment_files/space_JMX_7_JDK6.jpg)
 {{% /align %}}
 
-- [Download the topthreads.jar file](http://blog.luminis.nl/luminis/resource/peter/topthreads.jar) and add it to your `<XAP Root>\lib\ui` folder.
+- [Download the topthreads.jar file](http://blog.luminis.nl/luminis/resource/peter/topthreads.jar) and add it to your `<XAP Root>\lib\platform\ui` folder.
 
 {{% info %}}
-`topthreads.jar` is used by default. If `topthreads.jar` isn't found, the `JTop.jar` file (which is part of the JDK) is used instead.
+`topthreads-1.0.0.jar` is used by default. If `topthreads-1.0.0.jar` isn't found, the `JTop.jar` file (which is part of the JDK) is used instead.
 {{%/info%}}
 
 Below are some example screenshots:
