@@ -28,7 +28,7 @@ As a result, when messages are redelivered, even if a message with higher priori
 For example, you may bind a JMS Queue by setting the property _`space-config.jms.administrated-destinations.queues.queue-names=`_**_`gs.Queue1`_**. You should expect to find it in the RMI registry as _`GigaSpaces;ContainerName;spaceName;jms;destinations;`_**_`gs.Queue1`_**, but it will be missing.
 Workaround:
 
-1. Extract the file: DefaultConfig_ClusteredJMS.xml from JSpaces.jar\config to the JS_HOME\config.
+1. Extract the file: DefaultConfig_ClusteredJMS.xml from xap-datagrid.jar\config to the JS_HOME\config.
 1. Edit DefaultConfig_ClusteredJMS.xml to contain the required Queue:
 
 

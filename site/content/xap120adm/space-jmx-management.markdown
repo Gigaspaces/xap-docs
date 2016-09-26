@@ -48,7 +48,7 @@ Step 5. Make sure you have a deployed space.   {{<wbr>}}
 Step 6. Open a console and type the following command: `jconsole`{{<wbr>}}
 
 {{% info %}}
-By default, operations in the MBeans **Operations** tab which have GigaSpaces classes as their type are disabled. To enable these, type `jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\JSpaces.jar`in your console. Instead of `GS_HOME`, type the directory in which GigaSpaces is installed on your computer.
+By default, operations in the MBeans **Operations** tab which have GigaSpaces classes as their type are disabled. To enable these, type `jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\required\xap-datagrid.jar`in your console. Instead of `GS_HOME`, type the directory in which GigaSpaces is installed on your computer.
 {{%/info%}}
 
 Step 7. Connect to the MBean server (choose one of the following options):
@@ -148,7 +148,7 @@ Below are some example screenshots:
 
 # MBeans View
 
-The jconsole utility (part of Sun J2SE 5.0 JDK and above) includes a **MBeans** view, which allows you to perform space administration operations, and to view and control space attributes. These operations are defined in the [JavaSpaceMBeanDescriptors.xml](http://www.gigaspaces.com/wiki/download/attachments/15078/JavaSpaceMBeanDescriptors.xml) file, which exists in the `JSpaces.jar` file. If you do not want a certain operation or attribute to be exposed in the JMX **MBeans** tab, simply comment or remove the operation from the XML file.
+The jconsole utility (part of Sun J2SE 5.0 JDK and above) includes a **MBeans** view, which allows you to perform space administration operations, and to view and control space attributes. These operations are defined in the [JavaSpaceMBeanDescriptors.xml](http://www.gigaspaces.com/wiki/download/attachments/15078/JavaSpaceMBeanDescriptors.xml) file, which exists in the `xap-datagrid.jar` file. If you do not want a certain operation or attribute to be exposed in the JMX **MBeans** tab, simply comment or remove the operation from the XML file.
 
 ## Space Container MBean
 
@@ -277,7 +277,7 @@ There is an option to restrict the access to space and space container operation
 This way, you can view, restrict or modify most of the space and space container **configuration** (as set in the space/container schema files), or the basic **admin operations**, which were discussed in the above sections.
 {{%/info%}}
 
-To do this, modify the following space and space container **MBean Descriptors**, which are located inside the `<XAP Root>\lib\JSpaces.jar` file:
+To do this, modify the following space and space container **MBean Descriptors**, which are located inside the `<XAP Root>\lib\required\xap-datagrid.jar` file:
 
 - `ContainerMBeanDescriptors.xml`
 - `JavaSpaceExtMBeanDescriptors.xml`
