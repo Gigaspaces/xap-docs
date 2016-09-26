@@ -349,11 +349,11 @@ In addition, you need to add the following in your web.xml file:
 
 The web application should include the following libraries within its `\WEB-INF\lib` folder:
  
-* gs-session-manager-xxx.jar - located within the `XAP ROOT\lib\optional\httpsession` folder.
-* gs-runtime.jar  - located within the `XAP ROOT\lib\required` folder.
+* gs-session-manager.jar - located within the `XAP ROOT\lib\optional\httpsession` folder.
+* xap-datagrid.jar  - located within the `XAP ROOT\lib\required` folder.
 
 {{% note %}}
-The `gs-runtime.jar` should be replaced with the relevant XAP `gs-runtime.jar` matching your XAP data grid release.
+The `xap-datagrid.jar` should be replaced with the relevant XAP `xap-datagrid.jar` matching your XAP data grid release.
 {{% /note %}}
 
 Another option is to use Maven:
@@ -379,8 +379,8 @@ Another option is to use Maven:
 </repositories>
 <dependencies>
 	<dependency>
-		<groupId>com.gigaspaces.httpsession</groupId>
-		<artifactId>gs-runtime</artifactId>
+		<groupId>org.gigaspaces</groupId>
+		<artifactId>xap-datagrid</artifactId>
 		<version>{{%version "maven-version" %}}</version>
 	</dependency>
 
@@ -412,7 +412,7 @@ The XAP IMDG should be deployed using one of the [topologies](/product_overview/
 {{% /refer %}}
 
 ### Classpath
-The `gs-session-manager-xxx.jar` located within the `\gigaspaces-xap-root\lib\optional\httpsession` folder should be copied into the `\gigaspaces-xap-root\lib\platform\ext` folder. 
+The `gs-session-manager.jar` located within the `\gigaspaces-xap-root\lib\optional\httpsession` folder should be copied into the `\gigaspaces-xap-root\lib\platform\ext` folder. 
 
 ### Securing the XAP IMDG
 

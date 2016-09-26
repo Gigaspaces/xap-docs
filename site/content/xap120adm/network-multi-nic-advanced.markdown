@@ -312,7 +312,7 @@ ${JAVACMD} ${UNIX_ENABLED} ${URL_PREFIX} ${RMI_OPTIONS} ${JAVA_OPTIONS %}}
 
  -Dcom.gs.home=${JSHOMEDIR}
 -classpath "${APPEND_TO_CLASSPATH_ARG}${CPS}$
-{JSHOMEDIR}${CPS}${JSHOMEDIR}/lib/JSpaces.jar" com.j_spaces.core.client.SpaceFinder "${SPACE_URL}"
+{JSHOMEDIR}${CPS}${JSHOMEDIR}/lib/required/xap-datagrid.jar" com.j_spaces.core.client.SpaceFinder "${SPACE_URL}"
 ```
 
 The `<XAP Root>\bin\start-node1` and the `<XAP Root>\bin\start-node2` scripts should set `XAP_NIC_ADDRESS` as mentioned above.

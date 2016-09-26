@@ -133,7 +133,7 @@ For more details about different configurations see [Space Persistency](./space-
 
 Before deploying your Processing Unit, please do the following:
 
-1. Copy the `mongo-datasource.jar` from `lib\optional\datasource\mongo` to `lib\optional\pu-common`.
+1. Copy the `xap-mongodb.jar` from `lib\optional\mongodb` to `lib\optional\pu-common`.
 2. download the following jars and copy them to `lib\optional\pu-common`:
 
 - `antlr-runtime.jar` from [antlr's website](http://www.antlr.org/download.html) .

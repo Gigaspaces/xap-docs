@@ -167,7 +167,7 @@ For more details about different configurations see [Space Persistency](./space-
 
 Before deploying your Processing Unit, please do the following:
 
-Copy the `xap-cassandra.jar` from `lib\optional\datasource\cassandra` to `lib\optional\pu-common`.
+Copy the `xap-cassandra.jar` from `lib\optional\cassandra` to `lib\optional\pu-common`.
 
 # CassandraSpaceDataSource Properties
 

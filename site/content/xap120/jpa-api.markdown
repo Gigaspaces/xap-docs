@@ -19,7 +19,7 @@ It is also recommended that you take the [XAP PetClinic JPA Tutorial](/sbp/first
 
 ### OpenJPA
 
-OpenJPA's jar file is included with the XAP distribution (provided under `<XAP root>/lib/platform/jpa`), and the XAP-specific JPA implementation classes are part of the OpenSpaces jar (located under `<XAP root>/lib/required/gs-openspaces.jar`).
+OpenJPA's jar file is included with the XAP distribution (provided under `<XAP root>/lib/optional/jpa`), and the XAP-specific JPA implementation classes are part of the OpenSpaces jar (located under `<XAP root>/lib/required/xap-openspaces.jar`).
 Maven users should define the following dependency in their `pom.xml` file:
 
 

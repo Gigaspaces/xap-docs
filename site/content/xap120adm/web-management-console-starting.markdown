@@ -144,7 +144,7 @@ It is also possible to deploy the web application to a 3rd party servlet contain
 
 {{% note%}}
 
-When deploying to a 3rd party web container like Tomcat, you will need to repackage the `gs-webui.war` file and add all the following `.jar` files to `WEB-INF/lib` directory of the `gs-webui.war` file:
+When deploying to a 3rd party web container like Tomcat, you will need to repackage the `xap-webui-[version-build].war` file and add all the following `.jar` files to `WEB-INF/lib` directory of the `xap-webui-[version-build].war` file:
 
 1. `.jar` files located under `<XAP root>/lib/required` <br>
 2. `<XAP root>/lib/required/optional/spring/spring-web-x.x.x.RELEASE.jar`<br>

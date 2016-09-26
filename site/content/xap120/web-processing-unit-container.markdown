@@ -79,13 +79,13 @@ The following table shows which user controlled locations end up in which class 
 
 |Class Loader|User Locations|Built in Jar Files|
 |:-----------|:-------------|:-----------------|
-|Common|\[GSRoot\]/lib/platform/ext/*.jar|gs-runtime.jar|
-|JEE Container|JEE container specific jars|\[GSRoot\]/lib/platform/jetty/*.jar|
-|Webapp|\[PU\]/WEB-INF/classes, \[PU\]/WEB-INF/lib/*.jar|gs-openspaces.jar, spring/*.jar|
+|Common|\[GSRoot\]/lib/platform/ext/*.jar|xap-datagrid.jar|
+|JEE Container|JEE container specific jars|\[GSRoot\]/lib/optional/jetty/*.jar|
+|Webapp|\[PU\]/WEB-INF/classes, \[PU\]/WEB-INF/lib/*.jar|xap-openspaces.jar, spring/*.jar|
 
 The idea behind the class loaders is to create a completely self sufficient web application. All relevant jar files or classes should exists within the web application (as if running it standalone) and then deploying it into the Service Grid will be a seamless experience.
 
-A special case happen with `gs-runtime.jar` which is automatically removed from `WEB-INF/lib` if it exists there since it has already been defined in the common class loader.
+A special case happen with `xap-datagrid.jar` which is automatically removed from `WEB-INF/lib` if it exists there since it has already been defined in the common class loader.
 
 In terms of class loader delegation model, the web application class loader uses a parent last delegation mode. This means that the web application will first try and load classes from its own class loader, and only if they are not found, will delegate up to the parent class loader. This is the recommended way to work with this class loader model.
 
