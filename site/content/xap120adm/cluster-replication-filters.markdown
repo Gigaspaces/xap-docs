@@ -39,7 +39,125 @@ The replication filter can be used to monitor or alter the data passed through t
 - When using asynchronous replication and an error occurs at the replication filter implementation, the space replication channel will be disabled, and an error will be logged into the space log file and displayed at the space console. The client application continues to function against its source space but there will not be any replication to the target space. In order to enable the replication, you should use the `IRemoteJSpaceAdmin.changeReplicationState()`.
 - All replication packets are sent according to their replication policy. When either the Interval Milliseconds or the Interval Operations times out, a replication event is executed. `ReplicationOperationType.DISCARD` packets are sent when a sequence of operations performed on one space does not need to be performed again on the replicated members. For example, when using asynchronous replication mode, a sequence of write and take on the same object does not need to replicated. Therefore, a `ReplicationOperationType.DISCARD` packet is sent. In contrast, the take operation is always replicated to ensure data consistency.
 
-# Example - Replication Filter
+# Example - Replication Filter Statistics 
+
+The following Replication Filter displays replication activity statistics for outgoing activity (output filter). For each replication target (i.e. mirror , WAN gateway , backup instance), it generates an output (every 5 seconds) that includes info about each replication target , operation , space class , TP , Total operations and Delta since the last sampling. 
+
+The output generated looks like this:
+```
+[gsc][2/6984]   ----> Fri Sep 30 11:52:27 EDT 2016 - wanSpaceUS_container1:wanSpaceUS:
+[gsc][2/6984]   OUTPUT - gateway:GB-TAKE-com.test.Data TP[Obj/sec]:2800.0 Total:875000 - Delta:14000
+[gsc][2/6984]   OUTPUT - gateway:GB-UPDATE-com.test.Data TP[Obj/sec]:3000.0 Total:328000 - Delta:15000
+[gsc][2/6984]   OUTPUT - gateway:GB-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
+[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-LEASE_EXPIRATION-com.test.Data TP[Obj/sec]:0.0 Total:1000 - Delta:0
+[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-TAKE-com.test.Data TP[Obj/sec]:2800.0 Total:875000 - Delta:14000
+[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-UPDATE-com.test.Data TP[Obj/sec]:3000.0 Total:328000 - Delta:15000
+[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
+```
+
+The replication filter:
+```java
+package com.test;
+
+import java.util.concurrent.atomic.AtomicLong;
+
+import com.j_spaces.core.IJSpace;
+import com.j_spaces.core.cluster.IReplicationFilter;
+import com.j_spaces.core.cluster.IReplicationFilterEntry;
+import com.j_spaces.core.cluster.ReplicationPolicy;
+
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class StatsReplicationFilter implements IReplicationFilter {
+
+	Map<String, AtomicLong> outputCounterMap = new HashMap<String, AtomicLong>();
+	Map<String, Long> outputLastCounterMap = new HashMap<String, Long>();
+	int samplingPeriodInSec = 5;
+	ReportTP reporter;
+	IJSpace space;
+
+	@Override
+	public void close() {
+		System.out.println(this + " - MyReplicationFilter close");
+		reporter.timer.cancel();
+	}
+
+	@Override
+	public void init(IJSpace space, String arg1, ReplicationPolicy replicationPolicy) {
+		System.out.println(this + " - MyReplicationFilter init " + space + " - replicationPolicy :" + replicationPolicy);
+		reporter = new ReportTP();
+		this.space = space;
+	}
+
+	@Override
+	public void process(int direction, IReplicationFilterEntry filterEntry, String remoteSpaceMemberName) {
+		switch (direction) {
+		case IReplicationFilter.FILTER_DIRECTION_INPUT: {
+			break;
+		}
+		case IReplicationFilter.FILTER_DIRECTION_OUTPUT: {
+			AtomicLong tempCounter;
+			StringBuffer _keyBuffer = new StringBuffer("OUTPUT - ").append(remoteSpaceMemberName).append("-").append(filterEntry.getOperationType().toString()).append("-").append(filterEntry.getClassName());
+			String key = _keyBuffer.toString();
+			if (outputCounterMap.containsKey(key)) {
+				tempCounter = outputCounterMap.get(key);
+			} else {
+				tempCounter = new AtomicLong();
+				outputCounterMap.put(key, tempCounter);
+			}
+			tempCounter.incrementAndGet();
+			break;
+		}
+		}
+	}
+
+	public class ReportTP {
+		Toolkit toolkit;
+		Timer timer;
+
+		public ReportTP() {
+			toolkit = Toolkit.getDefaultToolkit();
+			timer = new Timer(true);
+			timer.schedule(new ReportTPTask(), 10, samplingPeriodInSec * 1000);
+		}
+
+		class ReportTPTask extends TimerTask {
+			public void run() {
+				List<String> stats = new ArrayList<String>();
+				Iterator<String> iter = outputCounterMap.keySet().iterator();
+				while (iter.hasNext()) {
+					String _key = iter.next();
+					AtomicLong tempCounter = outputCounterMap.get(_key);
+					long recent = outputLastCounterMap.getOrDefault(_key, 0l);
+					long delta = tempCounter.get() - recent;
+					double TP = (double) (delta) / (double) samplingPeriodInSec;
+					StringBuffer _out = new StringBuffer();
+					_out.append(_key).append(" TP[Obj/sec]:").append(TP).append(" Total:").append(tempCounter.get()).append(" - Delta:").append(delta);
+					stats.add(_out.toString());
+					outputLastCounterMap.put(_key, tempCounter.get());
+				}
+				Collections.sort(stats);
+				StringBuffer out = new StringBuffer ("----> ").append(new Date(System.currentTimeMillis())).append(" - ").append(space.toString()).append(":\n");
+				for(String temp: stats){
+					out.append(temp).append("\n");
+				}
+				System.out.println(out.toString());
+			}
+		}
+	}
+}
+```
+
+# Example - Replication Filter Blocking replication
 
 The following example will start two spaces replicating data to each other. The replication filter will display the replicated data that is passed through the replication channel. The example displays all objects sent via the output filter. When an object with the data **Block me** is passed, it is blocking by setting the replication Operation Type to `ReplicationOperationType.DISCARD`.
 
