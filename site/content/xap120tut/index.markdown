@@ -17,21 +17,14 @@ This Tutorial provides a high-level overview of the GigaSpaces XAP platform. Han
 [Installation](./installation.html)<br>
 You will learn   how to download and install XAP.
  
-[Hello World](./java-tutorial-hello-world.html) (open-source edition) <br>
-In this part of the tutorial we will show you how to write and read an object from the Space.
- 
-[Hola Mundo](./java-tutorial-hola-mundo.html) (open-source edition) <br>
-In this part of the tutorial we will present and explain Processing Unit and event-processing concepts.
+  
   
 [XAP in 5 minutes](./xap-java-in-5-minutes.html)<br>
 This tutorial explains how to deploy and use a XAP [Data Grid](/product_overview/the-in-memory-data-grid.html) from a Java client application.
 
 [Interacting with the Space](./java-tutorial-part1.html)<br>
 In this part of the tutorial we will demonstrate how to create a Space and how you can interact with it. We will also demonstrate how you can improve your space search performance by using indexes and returning partial results.
-
-[Query Geospatial Data](./java-tutorial-part11.html)<br>
-In this part of the tutorial we will demonstrate how to use XAP's Spatial features including queries, indexing and Geo-fencing.
-
+ 
 
 [Deploying a Space](./java-tutorial-part2.html)<br>
 In the previous section  you have learned about XAP's capabilities as a data store. In this part of the tutorial we will show you how you can deploy an In Memory Data Grid (IMDG) that provides scalability and failover.

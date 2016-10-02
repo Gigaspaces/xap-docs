@@ -34,7 +34,7 @@ gs-agent.bat
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tip "Optional - The Web Console "%}}
+{{% tip "The Web Console "%}}
 XAP provides a web-based tool for monitoring and management. From the `bin` folder start the `gs-webui` script, then browse to `localhost:8099`. Click the 'Login' button and take a look at the *Hosts* tab - you'll see the service grid components created on your machine.
 {{% /tip %}}
 
@@ -120,10 +120,7 @@ public class Person {
 
 Note that we've annotated the `ssn` property's getter with a custom XAP annotation `@SpaceId` to mark it as the entry's ID.
 
-{{%info%}}
-The full source code of `Person` is available [at the end](#source) of this tutorial.
-{{%/info%}}
-
+ 
 ## Interacting with the grid
 
 Now that we have a `GigaSpace` instance connected to our grid and a POJO which can be stored, we can store entries in the grid using the `write()` method and read them using various `read()` methods:
