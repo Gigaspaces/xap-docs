@@ -35,27 +35,18 @@ The replication filter can be used to monitor or alter the data passed through t
 - Don't overwrite the `m_Key` (serial number) field of the packet.
 - Object field values (`m_FieldsValues` array) may be changed, but notice that if the serialization type of the space is not 0 (that is, fields are serialized inside the space) -- then each non-native field (i.e. not from the Java.lang package) is stored in the array in a serialized format.
 - For outgoing replication packets (output replication Filter), if you want to change  the values of some fields, deep-cloning of the `m_FieldsValues` array is needed, since the `m_FieldsValues` is a reference to the array stored in the space internal data structures.
-- When using synchronous replication and an error has been occurs at the replication filter implementation, `ReplicationFilterException` is thrown back into the relevant thread at the client application. The `ReplicationFilterException` can be originated at the source or target space. The `ReplicationFilterException` will include the relevant information to identify the origin and the underlying exception that caused the problem.
+- When using synchronous replication and an error has been occurs at the replication filter implementation, `ReplicationFilterException` is thrown back into the relevant thread at the client application. The ReplicationFilterException can originate at the source or target space. The ReplicationFilterException will include the relevant information to identify the origin and the underlying exception that caused the problem.
 - When using asynchronous replication and an error occurs at the replication filter implementation, the space replication channel will be disabled, and an error will be logged into the space log file and displayed at the space console. The client application continues to function against its source space but there will not be any replication to the target space. In order to enable the replication, you should use the `IRemoteJSpaceAdmin.changeReplicationState()`.
 - All replication packets are sent according to their replication policy. When either the Interval Milliseconds or the Interval Operations times out, a replication event is executed. `ReplicationOperationType.DISCARD` packets are sent when a sequence of operations performed on one space does not need to be performed again on the replicated members. For example, when using asynchronous replication mode, a sequence of write and take on the same object does not need to replicated. Therefore, a `ReplicationOperationType.DISCARD` packet is sent. In contrast, the take operation is always replicated to ensure data consistency.
 
-# Example - Replication Filter Statistics 
+# Statistics Example
 
 The following Replication Filter displays replication activity statistics for outgoing activity (output filter). For each replication target (i.e. mirror , WAN gateway , backup instance), it generates an output (every 5 seconds) that includes info about each replication target , operation , space class , TP , Total operations and Delta since the last sampling. 
 
-The output generated looks like this:
-```
-[gsc][2/6984]   ----> Fri Sep 30 11:52:27 EDT 2016 - wanSpaceUS_container1:wanSpaceUS:
-[gsc][2/6984]   OUTPUT - gateway:GB-TAKE-com.test.Data TP[Obj/sec]:2800.0 Total:875000 - Delta:14000
-[gsc][2/6984]   OUTPUT - gateway:GB-UPDATE-com.test.Data TP[Obj/sec]:3000.0 Total:328000 - Delta:15000
-[gsc][2/6984]   OUTPUT - gateway:GB-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
-[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-LEASE_EXPIRATION-com.test.Data TP[Obj/sec]:0.0 Total:1000 - Delta:0
-[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-TAKE-com.test.Data TP[Obj/sec]:2800.0 Total:875000 - Delta:14000
-[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-UPDATE-com.test.Data TP[Obj/sec]:3000.0 Total:328000 - Delta:15000
-[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
-```
+
 
 The replication filter:
+
 ```java
 package com.test;
 
@@ -157,7 +148,20 @@ public class StatsReplicationFilter implements IReplicationFilter {
 }
 ```
 
-# Example - Replication Filter Blocking replication
+The output generated looks like this:
+
+```
+[gsc][2/6984]   ----> Fri Sep 30 11:52:27 EDT 2016 - wanSpaceUS_container1:wanSpaceUS:
+[gsc][2/6984]   OUTPUT - gateway:GB-TAKE-com.test.Data TP[Obj/sec]:2800.0 Total:875000 - Delta:14000
+[gsc][2/6984]   OUTPUT - gateway:GB-UPDATE-com.test.Data TP[Obj/sec]:3000.0 Total:328000 - Delta:15000
+[gsc][2/6984]   OUTPUT - gateway:GB-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
+[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-LEASE_EXPIRATION-com.test.Data TP[Obj/sec]:0.0 Total:1000 - Delta:0
+[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-TAKE-com.test.Data TP[Obj/sec]:2800.0 Total:875000 - Delta:14000
+[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-UPDATE-com.test.Data TP[Obj/sec]:3000.0 Total:328000 - Delta:15000
+[gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
+```
+
+# Blocking Replication  Example
 
 The following example will start two spaces replicating data to each other. The replication filter will display the replicated data that is passed through the replication channel. The example displays all objects sent via the output filter. When an object with the data **Block me** is passed, it is blocking by setting the replication Operation Type to `ReplicationOperationType.DISCARD`.
 

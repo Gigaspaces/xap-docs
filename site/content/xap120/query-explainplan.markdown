@@ -16,6 +16,12 @@ Explain Plan reports on the way in which the query uses indices and how many ent
 
 
 
+
+{{%refer%}}
+For detailed information how to assign index consult [indexing](./indexing.html#index-types)
+{{%/refer%}}
+
+
 ##  Index Information
 
  - Indices that the space considered using and the selected index at each stage of the query.
@@ -28,6 +34,13 @@ Explain Plan reports on the way in which the query uses indices and how many ent
  - Each cluster node may produce a different result.
  - Information breakdown is by Pojo  type.
 
+
+# Index Types
+The index type is determined by the SpaceIndexType enumeration. The index types are:
+
+**NONE** - No indexing is used.<br>
+**BASIC** - Basic index is used - this speeds up equality matches (equal to/not equal to).<br>
+**EXTENDED** - Extended index - this speeds up comparison matches (bigger than/less than).
 
 
 # Usage 
