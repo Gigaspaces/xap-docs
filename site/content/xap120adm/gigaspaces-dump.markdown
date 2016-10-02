@@ -8,7 +8,7 @@ weight: 900
 
  
 
-You may use the [GigaSpaces Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html) to generate a dump file that includes information about the runtime GigaSpaces environment for a specific GSC or across the entire environment.
+You can generate a dump file that includes information about the runtime XAP environment for a specific GSC or across the entire environment.
 Start the GS-UI , move into the Hosts tab and select the relevant option:
 Full environment dump:
 

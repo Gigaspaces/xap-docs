@@ -12,7 +12,7 @@ weight: 600
 
  
  
-For administration purposes use the [GigaSpaces Management Center]({{%currentadmurl%}}/web-management-console.html) to generate a dump file that includes information about the runtime GigaSpaces environment for a specific host or across the entire environment.
+You can generate a dump file that includes information about the runtime GigaSpaces environment for a specific host or across the entire environment.
 
 Start the WEB-UI, under the Generate Dump tab select the relevant option:
 {{% align center %}}
