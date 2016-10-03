@@ -52,33 +52,33 @@ The following should be located under **main** section.
 
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
-|connector| wrap SpaceProxy and perform operation against space|Yes|`com.gigaspaces.httpsession.SpaceConnector`|
-|connector.<br>url| Space url including groups and locators |Yes|`jini://*/*/<space_name>?groups=myGroup`|
-|connector.<br>username| Space username|No|`<space username>`|
-|connector.<br>password| Space password|No|`<space password>`|
-|connector.<br>sessionLease|Lease timeout in milliseconds {{<wbr>}}Default to Lease.FOREVER so that the session won't be removed from the space |No|Any positive integer. Millisecond time unit|
-|connector.<br>readTimeout|Read timeout in milliseconds {{<wbr>}}Default to 300000|No|Any positive interger. Millisecond time unit|
-|connector.<br>sessionBaseName| Fully qualified type name that holds the session attributes in space.{{<wbr>}}Default is `com.gigaspaces.httpsession.models.DefaultSpaceSessionStore`|Yes|
+|connector| wrap SpaceProxy and perform operation against space|Yes|com.gigaspaces.httpsession.SpaceConnector|
+|connector.<br>url| Space url including groups and locators |Yes|jini://*/*/<space_name>?groups=myGroup|
+|connector.<br>username| Space username|No|<space username>|
+|connector.<br>password| Space password|No|<space password>|
+|connector.<br>sessionLease|Lease timeout in milliseconds <br>Default to Lease.FOREVER so that the session won't be removed from the space |No|Any positive integer. Millisecond time unit|
+|connector.<br>readTimeout|Read timeout in milliseconds <br>Default to 300000|No|Any positive interger. Millisecond time unit|
+|connector.<br>sessionBaseName| Fully qualified type name that holds the session attributes in space.<br>Default is com.gigaspaces.httpsession.models.<br>DefaultSpaceSessionStore|Yes|
 
 ## Store Mode - Configure how changes are saved to the space
 
 
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
-|listener|Fully qualified class name implementing `com.gigaspaces.httpsession.policies.{{<wbr>}}GigaspacesNotifyListener`|No|`com.gigaspaces.httpsession.policies.TraceListener`|
-|storeMode|Provide functionality of how to save changes to the space. there is tow sessions store mode full and delta.|Yes| use on of two options:<br> 1.`com.gigaspaces.httpsession.sessions.FullStoreMode` 2.`com.gigaspaces.httpsession.sessions.DeltaStoreMode`|
-|storeMode.<br>connector| Space connector to be used{{<wbr>}}See [Space Connector Section](#connector-manages-connections-with-the-space)|Yes|$connector|
-|storeMode.<br>listener|Provides changes notification functionality. it must extends `com.gigaspaces.httpsession.policies.{{<wbr>}}GigaspacesNotifyListener`|No| $listener |
+|listener|Fully qualified class name implementing com.gigaspaces.httpsession.policies.<br>GigaspacesNotifyListener|No|com.gigaspaces.httpsession.policies.TraceListener|
+|storeMode|Provide functionality of how to save changes to the space. there is tow sessions store mode full and delta.|Yes| use on of two options:<br> 1.com.gigaspaces.httpsession.sessions.FullStoreMode <br>2.com.gigaspaces.httpsession.sessions.DeltaStoreMode|
+|storeMode.<br>connector| Space connector to be used<br>See [Space Connector Section](#connector-manages-connections-with-the-space)|Yes|$connector|
+|storeMode.<br>listener|Provides changes notification functionality. it must extends com.gigaspaces.httpsession.policies.<br>GigaspacesNotifyListener|No| $listener |
 
 ## Session Manager - XAP Session Manager Implementation
 
 
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
-|sessionDAO|Provides a transparent caching layer between the components that use it and the underlying EIS (Enterprise Information System) session backing store |Yes|org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO|
-|sessionManager|XAP Session Manager Implementation|Yes|com.gigaspaces.httpsession.GigaSpacesWebSessionManager|
-|sessionManager.sessionDAO||Yes|$sessionDAO|
-|sessionManager.storeMode|Configure how changes are saved to the space. See [Store Mode Section](#store-mode-configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
+|sessionDAO                    |Provides a transparent caching layer between the components that use it and the underlying EIS (Enterprise Information System) session backing store |Yes|org.apache.shiro.session.<br>mgt.eis.EnterpriseCacheSessionDAO|
+|sessionManager                |XAP Session Manager Implementation|Yes|com.gigaspaces.httpsession.<br>GigaSpacesWebSessionManager|
+|sessionManager.sessionDAO     ||Yes|$sessionDAO|
+|sessionManager.storeMode      |Configure how changes are saved to the space. See [Store Mode Section](#store-mode-configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
 |securityManager.sessionManager|Ensure the securityManager uses our native SessionManager|Yes|$sessionManager|
 
 ## Session Policy - Authentication settings
@@ -86,7 +86,7 @@ The following should be located under **main** section.
 
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
-|policy|Provides functionality of session policy to apply e.g. with and without authentication. |Yes| Options:<br>1.`com.gigaspaces.httpsession.policies.SessionPolicyWithLogin` <br>2.`com.gigaspaces.httpsession.policies.SessionPolicyWithoutLogin` |
+|policy|Provides functionality of session policy to apply e.g. with and without authentication. |Yes| Options:<br>1.com.gigaspaces.httpsession.policies.SessionPolicyWithLogin <br>2.com.gigaspaces.httpsession.policies.SessionPolicyWithoutLogin |
 |policy.connector|Instance of space connector implementation{{<wbr>}}See [Space Connector Section](#connector-manages-connections-with-the-space)|Yes|$connector|
 |policy.storeMode|Instance of space storeMode implementation{{<wbr>}}See [Store Mode Section](#store-mode-configure-how-changes-are-saved-to-the-space)|Yes|$storeMode|
 
@@ -104,8 +104,8 @@ The following should be located under **main** section.
 
 |Property|Description|Required|Optional Values|
 |:-------|:----------|:-------|:--------------|
-|compressor|Provides compress functionality|No| Provides your own `com.gigaspaces.httpsession.serialize.Compressor` implementation or use one of the out of the box option:<br> 1.`com.gigaspaces.httpsession.serialize.CompressorImpl`<br>2.`com.gigaspaces.httpsession.serialize.NonCompressCompressor`|
-|cacheManager|XAP extension of org.apache.shiro.cache.CacheManager Provides and maintains the lifecycles of `com.gigaspaces.httpsession.{{<wbr>}}sessions.GigaSpacesCache` instances|Yes|com.gigaspaces.httpsession.sessions.GigaSpacesCacheManager|
+|compressor|Provides compress functionality|No| Provides your own com.gigaspaces.httpsession.serialize.Compressor <br>implementation or use one of the out of the box option:<br> 1.com.gigaspaces.httpsession.serialize.<br>CompressorImpl<br>2.com.gigaspaces.httpsession.<br>serialize.NonCompressCompressor|
+|cacheManager|XAP extension of org.apache.shiro.cache.CacheManager Provides and maintains the lifecycles of `com.gigaspaces.httpsession.{{<wbr>}}sessions.GigaSpacesCache` instances|Yes|com.gigaspaces.httpsession.<br>sessions.GigaSpacesCacheManager|
 |cacheManager.<br>initialCapacity|Specifies the initial capacity of the LRU used for caching session in memory.|No|1000|
 |cacheManager.<br>maximumCapacity|Maximum capacity of the LRU used for caching session in memory.|No|10000|
 |cacheManager.<br>concurrencyLevel|Specifies the estimated number of concurrently updating threads|No|16|
