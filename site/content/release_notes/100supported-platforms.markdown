@@ -66,8 +66,8 @@ GigaSpaces recommends that customers upgrade to a fully-supported environment, s
 # Product Integrations
 
 
-| Product | Product Page | Version | Component | Documentation | 
-|:--------|:-------------|:--------|:---------|:---------------|
+| Product | Product Page | Version | Component | Documentation
+|-------|--------|--------|-------|----------|
 | Cassandra | [http://cassandra.apache.org/](http://cassandra.apache.org/) | 1.1.6 | Cassandra archiver and Cassandra EDS | [Cassandra Integration](/xap100/cassandra.html) |
 | Hibernate | [http://www.hibernate.org/](http://www.hibernate.org/) | 3.6.1 | Persistency | [Hibernate Space Persistency](/xap100/hibernate-space-persistency.html) |
 | log4j | [http://logging.apache.org/log4j/1.2/](http://logging.apache.org/log4j/1.2/) | 1.2.17 | Hibernate |  | 
