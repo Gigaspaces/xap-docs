@@ -785,15 +785,31 @@ Pojos can be persisted via document EDS as well, in the same way.
 - Document persistence is currently not provided by default - If needed, the External Data Source should be implemented to fit the required solution.
 {{%/note%}}
 
+
+## Transient Document
+
+
+When using a persistent space, there are situations where not all SpaceDocuments need to be persisted. You can specify the document to be transient by invoking the `setTransient()` method.
+
+```java
+   SpaceDocument doc = new SpaceDocument("Entity");
+   ......		
+   doc.setTransient(true);
+```
+
+
 # Space Filters
 
 Space Filter are supported for space documents.
 
+{{%refer%}}
 If you intend to use space filters in a mixed POJO-Document environment, please refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
+{{%/refer%}}
 
 # Space Replication Filters
 
 Space Replication Filter are supported for space documents.
 
-If you intend to use space filters in a mixed POJO-Document environment, please refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
-
+{{%refer%}}
+If you intend to use space replication filters in a mixed POJO-Document environment, please refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
+{{%/refer%}}

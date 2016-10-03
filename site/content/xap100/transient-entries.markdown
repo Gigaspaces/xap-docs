@@ -15,6 +15,9 @@ Transient Space objects are treated the same as persistent objects, but when you
 When using the [Space Persistency](./space-persistency.html) feature, you might not want all space objects to be persistent or to be delivered to some data source. The Space Persistency feature makes sure transient space objects are not persisted or delivered to the data source.
 {{% /tip %}}
 
+
+# POJO 
+
 The following example marks an entire class transient (i.e. non-persistent):
 
 ```java
@@ -41,3 +44,12 @@ public class MyData {
 - Transient Space objects can be constructed using the `@SpacePersist` on the relevant getter method. See the [POJO Metadata](./modeling-your-data.html) for details.
 - Transient objects will be evicted from the space only by explicit take/clear operation.
 - Having a space Class using the `persist=true` and memory (transient) based spaces, will not generate any errors or exceptions, but will not write these into any persistent store. The Entries will be transient.
+
+
+# Space Document
+
+```java
+   SpaceDocument doc = new SpaceDocument("Entity");
+   ......		
+   doc.setTransient(true);
+```

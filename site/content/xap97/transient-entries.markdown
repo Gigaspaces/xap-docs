@@ -16,9 +16,11 @@ When using the [Space Persistency](./space-persistency.html) feature, you might 
 {{% /tip %}}
 
 
+# POJO
+
 ```java
 @SpaceClass (persist=false)
-public class MyData {
+public class MyData { 
 	...
 }
 ```
@@ -39,3 +41,12 @@ public class MyData {
 - Transient Space objects can be constructed using the `@SpacePersist` on the relevant getter method. See the [POJO Metadata](./modeling-your-data.html) for details.
 - Transient objects will be evicted from the space only by explicit take/clear operation.
 - Having a space Class using the `persist=true` and memory (transient) based spaces, will not generate any errors or exceptions, but will not write these into any persistent store. The Entries will be transient.
+
+
+# Space Document
+ 
+```java
+   SpaceDocument doc = new SpaceDocument("Entity");
+   ......		
+   doc.setTransient(true);
+```
