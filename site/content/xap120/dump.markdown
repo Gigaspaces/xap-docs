@@ -68,12 +68,14 @@ dumpResult.download(new File("target/compound.zip", null);
 
 The dump process occurs in stages within the runtime component. Each stage is called a processor and the following is a list of all the different processors:
 
-- **summary**: General summary information of the process.
-- **network**: Information on the network layer of the process and the OS network stats.
-- **thread**: Thread dump of the process.
-- **heap**: Heap dump of the process. **Note, this is a heavy operation and can produce very large dump files**.
-- **log**: Adds all the log files of the process to the dump file.
-- **processingUnits**: Dump of all the processing units (applicable only for GSCs) information.
+| Type    | Description    |
+|-----|-----|
+|summary | General summary information of the process.|
+|network | Information on the network layer of the process and the OS network stats.|
+|thread | Thread dump of the process.|
+|heap | Heap dump of the process. **Note, this is a heavy operation and can produce very large dump files**.|
+|log |Adds all the log files of the process to the dump file.|
+|processingUnits|Dump of all the processing units (applicable only for GSCs) information.|
 
 The **log** process is the only processor that takes into account the context (Map<String, Object>) that can be passed as part of the dump command. It tries to find under the `logEntryMatcher` key a `LogEntryMatcher` that will be used to filter out just relevant parts of the log files to be returned. If no matcher is provided, all the log files will be returned. Here is an example of specifying a log entry matcher:
 
@@ -85,9 +87,72 @@ DumpResult dumpResult = admin.generateDump("test", context, "summary", "log");
 ```
 
 {{%note%}}
-The above code will generate a dump, including the just the last 200 log entries which the log dump processor will process.
+The above code will generate a dump, including the last 200 log entries which the log dump processor will process.
 {{%/note%}}
 
+
+# Dump File Structure
+
+The dump file structure would look like this:
+
+
+```bash
+dump_file.zip
+
+    gsa-10.10.10.249-23610--1284928573201
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-gsa-10.10.10.249-23610.log
+
+    gsc-10.10.10.249-23739--1284928573169
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-gsc_1-10.10.10.249-23739.log
+        processing-units
+            space
+                1
+                    pu.xml
+                    spaces
+                        space
+                            summary.txt
+
+    gsc-10.10.10.249-23766--1284928573079
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-gsc_2-10.10.10.249-23766.log
+        processing-units
+            mirror
+                1
+                    pu.xml
+                    spaces
+                        mirror
+                            summary.txt
+            space
+                1_1
+                    pu.xml
+                    spaces
+                        space
+                            summary.txt
+
+    gsm-10.10.10.249-24112--1284928573193
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-gsm_3-10.10.10.249-24112.log
+    lus-10.10.10.249-24127--1284928573201
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-lus_4-10.10.10.249-24127.log
+```
 
 # Web Management Console
 

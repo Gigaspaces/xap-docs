@@ -84,7 +84,7 @@ context.put("logEntryMatcher", lastN(200));
 DumpResult dumpResult = admin.generateDump("test", context, "summary", "log");
 ```
 
-The above code will generate a dump, including the just the last 200 log entries which the log dump processor will process.
+The above code will generate a dump, including the last 200 log entries which the log dump processor will process.
 
 # Dump UI
 
