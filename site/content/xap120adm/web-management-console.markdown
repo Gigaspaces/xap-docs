@@ -47,10 +47,4 @@ The dump feature of the Admin API allows to easily generate dump information out
 
 {{%/fpanel%}}
 
-<br>
-
-#### Additional Resources
-{{%youtube "9nFkfj2o5hk"  "Web Management Console"%}}
-
-
-
+ 

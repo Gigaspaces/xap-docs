@@ -42,10 +42,5 @@ This view displays monitoring information about the deployed topology and its co
 
 {{%/fpanel%}}
 
-<br>
-
-#### Additional Resources
-{{%youtube "9nFkfj2o5hk"  "Web Management Console"%}}
-
-
+ 
 
