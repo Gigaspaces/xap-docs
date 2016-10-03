@@ -18,7 +18,7 @@ Download the latest XAP release {{%download "http://www.gigaspaces.com/xap-downl
 
 #  Examples
 
-There are two examples provided with the Open Source distribution. You can find them under the `<XAP root>/examples` directory. The examples are also available on githb(see links below).
+There are two examples provided with the Open Source distribution. You can find them under the `<XAP root>/examples` directory. The examples are also available on github(see links below).
 
 
 [Hello World](https://github.com/xap/xap/tree/master/xap-examples/hello-world)<br>
