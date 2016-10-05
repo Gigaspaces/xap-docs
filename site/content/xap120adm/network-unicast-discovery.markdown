@@ -137,35 +137,4 @@ Will cause the LookupLocatorDiscovery utility to first wait 5 seconds, then 10 s
 You will need to set this property to take affect for GSM and GSC startup. You should see a similar log message to "Set unicast interval to 5000".
 
 
-#  Tuning
-
-When having a large space cluster with many partitions, you may need to tune the lookup service concurrency behavior to use extra resources. 
-In this case, the client side may also need to increase its resources to handle the space proxy bootstrap interaction with the discovered lookup services(s).
-
-The following is part of the `services.config` that should be located under `XAP_ROOT\config\services`. The `THREAD_COUNT` parameter should be configured.
-To control the lookup service handling of events/notifications the following should be configured:
-
  
-```bash
-com.sun.jini.reggie {
-...
-eventTaskManagerPool = 5;
-eventTaskManager = new com.sun.jini.thread.TaskManager(THREAD_COUNT, 15000, 2.0F, "Reggie Event Task", 10);
-}
-```
-
-`eventTaskManagerPool` is the number of TaskManager buckets. Each bucket gets a set of listeners, and all events to that listener are handled by the TaskManager's threads. 8 threads is the default value for the `THREAD_COUNT` setting.
-
-To control the number of threads managing the lookup service on the client side, the following should be configured:
-
-```bash
-net.jini.discovery.LookupLocatorDiscovery {
-taskManager = new com.sun.jini.thread.TaskManager(THREAD_COUNT, 30000, 3.0F, "LookupLocatorDiscovery Task", 10);
-}
-```
-
-{{%note%}}
-15 threads is the default value for the `THREAD_COUNT` setting.
-{{%/note%}}
- 
-

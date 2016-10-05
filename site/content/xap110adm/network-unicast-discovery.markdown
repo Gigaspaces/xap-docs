@@ -18,6 +18,32 @@ In such cases, the Jini lookup discovery enables the user to discover services (
 Please refer to the [Lookup Service Configuration](./network-lookup-service-configuration.html) or the [Networking How Tos](./network.html) section for more details.
 {{%/refer%}}
 
+# Discovery Order
+
+When using the unicast lookup service discovery option, you may specify multiple locators. This means, a client that is looking to bootstrap its space proxy, may search for the proxy location within one or more lookup services that may be running on specific hosts.
+
+![locators](/attachment_files/smart-proxy.png)
+
+When multiple locators are specified, a parallel search will be conducted across all the given host names (or IPs) for a matching space name. Once found, the proxy and its cluster information (primaries , backups) will be populated. 
+This means, the search may not have a pre-defined deterministic order, as a different lookup service may be used every time. When having a large number of clients using multiple locators (large compute grid environment with many workers, a large web application with many instances), the space proxy bootstrap will be distributed across all discovered lookup services. 
+This allows the system to load-balance the overall lookup activity across all running lookup services. 
+
+{{%note%}}
+You will have to make sure the XAP agent (GSA) and its managed processes, specifically the GCSs , have the same locators configuration (XAP_LOOKUP_LOCATORS environment variable) as the client, to allow these to register themselves within all running lookup services.
+{{%/note%}}
+
+If the first lookup service discovered dose not have a matching lookup entry that matches the desired space name, the next discovered lookup is used.
+
+For example – with the following code examples the XAP proxy or the Admin that may hold many XAP proxies , a parallel lookup discovery will be conducted across Host1 and Host2 specified as the locators settings. The `mySpace` space will be bootstrapped using one of the lookup services running on Host1 and Host2:
+
+
+```java
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("mySpace").lookupLocators("Host1, Host2")).gigaSpace();
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new UrlSpaceConfigurer("jini://*/*/mySpace?locators=Host1,Host2")).gigaSpace();
+
+Admin admin = new AdminFactory().addLocators(“Host1”, “Host2”).createAdmin();
+
 # Configuring the lookup locators property
 
 Services will use the locators property to locate the Jini Lookup Service to lookup other services registered on it. The locators property is configured using the `XAP_LOOKUP_LOCATORS` environment variable or the `-Dcom.gs.jini_lus.locators` system property. By default it is left blank. It accepts a comma separated list of `host:port`. This list should include the hosts (and ports) where the Jini Lookup Service (or GSM) is running. The default port is 4174.
