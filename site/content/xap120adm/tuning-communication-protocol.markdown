@@ -132,7 +132,7 @@ The `LRMI` configuration options set as system properties. They are listed below
 | Property name | Description | Default   | Server Client  | Unit | Can be <br>over<br>ridden <br>at the client side|
 |:----------------|:------------|:--------------|:----------------------|:-----|:------------------------------------|
 | com.gs.transport_protocol<br>.lrmi.max-conn-pool | The maximum amount of connections to the space server remote services that can work simultaneously in a client connection pool. Starts with 1 connection. Defined per each remote service (by default, each remote service has 1024 maximum connections). | 1024 | Server | Connection| No|
-| com.gs.transport_protocol<br>.lrmi.max-threads     | XAP maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool. | 128 | Server | Threads | No |
+| com.gs.transport_protocol<br>.lrmi.max-threads     | XAP maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool. [see note below](#1)| 128 | Server | Threads | No |
 | com.gs.transport_protocol<br>.lrmi.min-threads     | XAP maintains a thread pool on the server side that manages incoming remote requests. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool. | 1 | Server | Threads | No|
 | com.gs.transport_protocol<br>.lrmi.bind-port | Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever XAP is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports  | 0 | Server| | No|
 | java.rmi.server.hostname                  | Binds the XAP Server on a specified network interface. If java.rmi.server.hostname is null the system sets the localhost IP address. | hostname | Client & Server | | No|
@@ -155,6 +155,21 @@ The `LRMI` configuration options set as system properties. They are listed below
 | com.gs.transport_protocol<br>.lrmi.system-priority.<br>threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 1 |  Server| Threads|No|
 | com.gs.transport_protocol<br>.lrmi.system-priority.threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 8 | Server | Threads|No|
 | com.gs.transport_protocol<br>.lrmi.custom.threadpool.<br>idle_timeout |  | 300000 millisec     |   | | |
+
+{{% anchor 1%}}
+
+**com.gs.transport_protocol.lrmi.max-threads**<br>
+With a system that may have high concurrency level as a result of a large number of remote clients performing:<br>
+- space operations<br>
+- remote service executions<br>
+- single client with large number of threads<br> 
+- notify listener (container) accessing the space<br>
+    
+This property value must be tuned to have a larger value. By default this pool can grow up to 128 threads. This means there can be a maximum of 128 threads (across all clients and grid members) total accessing the space instance running in a given GSC process simultaneously. 
+
+With a system that may trigger a notify listener (that performs remote space access) or a remote service or a task 128 times, very quickly this would consume the entire LRMI thread pool causing new remote requests (by the listener or any other remote activities) to wait until there would be available LRMI threads to handle incoming requests. This may slow down the application performance dramatically causing existing connections to drop.
+ 
+
 
 {{% refer %}}
 If you are using the **notification slow consumer** mechanism see the [Slow Consumer](./slow-consumer.html#Configuration -- Server Side) for additional LRMI parameters to configure.
