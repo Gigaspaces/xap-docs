@@ -63,30 +63,31 @@ weight: 400
 
 {{% include "/COM/xap101/config-lrmi-transport.markdown" %}}
 
-| Property name | Description | Default   | Server Client  | Unit | Can be overridden at the client side|
+| Property name | Description | Default   | Server Client  | Unit | Can <br>be <br>over<br>ridden at the client side|
 |:----------------|:------------|:--------------|:----------------------|:-----|:------------------------------------|
-| com.gs.transport_protocol.lrmi.<br>max-conn-pool | The maximum amount of connections to the space server remote services that can work simultaneously in a client connection pool. Starts with 1 connection. Defined per each remote service (by default, each remote service has 1024 maximum connections). | 1024 | Server | Connection| No|
-| com.gs.transport_protocol.lrmi.<br>min-threads | GigaSpaces maintains a thread pool in the client and server side, that manages incoming remote requests. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool. | 1 | Server | Threads | No|
-| com.gs.transport_protocol.lrmi.<br>bind-port | Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever XAP is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports  | 0 | Server| | No|
+| com.gs.transport_protocol<br>.lrmi.max-conn-pool | The maximum amount of connections to the space server remote services that can work simultaneously in a client connection pool. Starts with 1 connection. Defined per each remote service (by default, each remote service has 1024 maximum connections). | 1024 | Server | Connection| No|
+| com.gs.transport_protocol<br>.lrmi.max-threads     | XAP maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool. | 128 | Server | Threads | No |
+| com.gs.transport_protocol.<br>lrmi.min-threads | GigaSpaces maintains a thread pool in the client and server side, that manages incoming remote requests. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool. | 1 | Server | Threads | No|
+| com.gs.transport_protocol.<br>lrmi.bind-port | Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever XAP is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports  | 0 | Server| | No|
 | java.rmi.server.hostname | Binds the XAP Server on a specified network interface. If java.rmi.server.hostname is null the system sets the localhost IP address. | hostname | Client & Server | | No|
-| com.gs.transport_protocol.lrmi.<br>idle_connection_timeout | Watchdog idle connection timeout. | 900 sec| Client| Seconds |Yes|
-| com.gs.transport_protocol.lrmi.<br>request_timeout | Watchdog request timeout. | 30 sec| Client | Seconds |Yes|
-| com.gs.transport_protocol.lrmi.<br>inspect_timeout| Watchdog dummy packet connection timeout used when the watchdog suspects a request connection is blocked (com.gs.transport_protocol.lrmi.request_timeout elapsed). | 1000 millisec| Client | millisec|Yes|
-| com.gs.transport_protocol.lrmi.<br>threadpool.idle_timeout | LRMI thread pool idle timeout. Usually should be tuned for server side| 300000 milisec| Server | millisec| No|
-| com.gs.transport_protocol.lrmi.<br>connect_timeout | LRMI timeout to establish a socket connection | 5000| Server | millisec| No|
-| com.gs.transport_protocol.lrmi.<br>maxBufferSize | The NIO internal cache (a DirectByteBuffer) might cause an OutOfMemoryError due-to direct memory exhaustion. To avoid such a scenario, the LRMI layer breaks the outgoing buffer into a several chunks. By doing so, the NIO internal cache is kept small, and may not cause any error. The size of these chunks can be determined by this property| 65536 (64k)| Client & Server | Bytes | Yes |
-| com.gs.transport_protocol.lrmi.<br>selector.threads | LRMI selector threads. This should be configured with multi core machines. Usualy should be tuned for server side| 4 | Client & Server | Threads| No|
-| com.gs.transport_protocol.lrmi.<br>use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>classloading | Enables LRMI dynamic class loading.| true | Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>classloading.import | Enables importing of classes using LRMI dynamic class loading.| true | Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>classloading.export | Enables exporting of classes using lrmi dynamic class loading.| true | Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>tcp-send-buffer-size | Set the TCP Send Buffer size (SO_SNDBUF).| OS default | Client & Server| bytes |Yes|
-| com.gs.transport_protocol.lrmi.<br>tcp-receive-buffer-size | Set the TCP receive Buffer size (SO_RCVBUF).| OS default | Client & Server| bytes |Yes|
-| com.gs.transport_protocol.lrmi.<br>tcp-keep-alive | Set the TCP keep alive mode (SO_KEEPALIVE).| true | Client & Server| Seconds|Yes|
-| com.gs.transport_protocol.lrmi.<br>timeout_resolution | Resolution in percents. Timeout resolution indicates the accuracy of the request timeout. | 10 | Client | Percent|Yes|
-|com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 128 |  Server| Threads|No|
-|com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 128 | Server | Threads|No|
-|com.gs.transport_protocol.lrmi.<br>custom.threadpool.idle_timeout |  | 300000 millisec     |   | | |
+| com.gs.transport_protocol.<br>lrmi.idle_connection_timeout | Watchdog idle connection timeout. | 900 sec| Client| Seconds |Yes|
+| com.gs.transport_protocol.<br>lrmi.request_timeout | Watchdog request timeout. | 30 sec| Client | Seconds |Yes|
+| com.gs.transport_protocol.<br>lrmi.inspect_timeout| Watchdog dummy packet connection timeout used when the watchdog suspects a request connection is blocked (com.gs.transport_protocol.lrmi.request_timeout elapsed). | 1000 millisec| Client | millisec|Yes|
+| com.gs.transport_protocol.<br>lrmi.threadpool.idle_timeout | LRMI thread pool idle timeout. Usually should be tuned for server side| 300000 milisec| Server | millisec| No|
+| com.gs.transport_protocol.<br>lrmi.connect_timeout | LRMI timeout to establish a socket connection | 5000| Server | millisec| No|
+| com.gs.transport_protocol.<br>lrmi.maxBufferSize | The NIO internal cache (a DirectByteBuffer) might cause an OutOfMemoryError due-to direct memory exhaustion. To avoid such a scenario, the LRMI layer breaks the outgoing buffer into a several chunks. By doing so, the NIO internal cache is kept small, and may not cause any error. The size of these chunks can be determined by this property| 65536 (64k)| Client & Server | Bytes | Yes |
+| com.gs.transport_protocol.<br>lrmi.selector.threads | LRMI selector threads. This should be configured with multi core machines. Usualy should be tuned for server side| 4 | Client & Server | Threads| No|
+| com.gs.transport_protocol.<br>lrmi.use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
+| com.gs.transport_protocol.<br>lrmi.classloading | Enables LRMI dynamic class loading.| true | Server | boolean  | No|
+| com.gs.transport_protocol.<br>lrmi.classloading.import | Enables importing of classes using LRMI dynamic class loading.| true | Server | boolean  | No|
+| com.gs.transport_protocol.<br>lrmi.classloading.export | Enables exporting of classes using lrmi dynamic class loading.| true | Server | boolean  | No|
+| com.gs.transport_protocol.<br>lrmi.tcp-send-buffer-size | Set the TCP Send Buffer size (SO_SNDBUF).| OS default | Client & Server| bytes |Yes|
+| com.gs.transport_protocol.<br>lrmi.tcp-receive-buffer-size | Set the TCP receive Buffer size (SO_RCVBUF).| OS default | Client & Server| bytes |Yes|
+| com.gs.transport_protocol.<br>lrmi.tcp-keep-alive | Set the TCP keep alive mode (SO_KEEPALIVE).| true | Client & Server| Seconds|Yes|
+| com.gs.transport_protocol.<br>lrmi.timeout_resolution | Resolution in percents. Timeout resolution indicates the accuracy of the request timeout. | 10 | Client | Percent|Yes|
+| com.gs.transport_protocol.<br>lrmi.system-priority.<br>threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 128 |  Server| Threads|No|
+| com.gs.transport_protocol.<br>lrmi.system-priority.<br>threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 128 | Server | Threads|No|
+| com.gs.transport_protocol.<br>lrmi.custom.threadpool.<br>idle_timeout |  | 300000 millisec     |   | | |
 
 
 {{%refer%}}
@@ -136,9 +137,20 @@ Refer to [Messaging support]({{%currentjavaurl%}}/messaging-support.html)
 |com.gs.jmx.createJmxConnetor|Enable / disable the JMXConnector to connect remotely to the JMXServer with the supported protocol  (such as RMI, HTTP and so). |  false|
 |com.j_spaces.core.container.directory{{%wbr%}}_services.jndi.url |The network url and port for the JMXConnector| service:jmx:rmi:///jndi/{{%wbr%}}rmi://127.0.1.1:10098/jmxrmi|
 
+{{%refer%}}
+Refer to [JMX Management](./space-jmx-management.html)
+{{%/refer%}}
 
+# Dump
+
+| Property name | Description | Default   |
+|-----|------|------|
+| com.gs.memory.create-heap-dump-on-memory-shortage   | false | 
+| com.gs.memory.max-heaps-on-memory-shortage          | 1     |
+| com.gs.memory.heaps-on-memory-shortage-quiet-period | 24h |
 
 {{%refer%}}
+These values can be modified using the JConsole using the `HeapDumpMBean` with ObjectName `org.xap:type=HeapDumpMBean`
 Refer to [JMX Management](./space-jmx-management.html)
 {{%/refer%}}
 

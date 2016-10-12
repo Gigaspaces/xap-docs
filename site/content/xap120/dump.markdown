@@ -154,14 +154,33 @@ dump_file.zip
             2010-09-19~08.22-gigaspaces-lus_4-10.10.10.249-24127.log
 ```
 
-# Web Management Console
+
+# Dump configuration
+
+You can configure XAP to generate a heap dump when memory shortage occurs.
+
+| Property name | Description | Default   |
+|-----|------|------|
+| com.gs.memory.create-heap-dump-on-memory-shortage   | |false | 
+| com.gs.memory.max-heaps-on-memory-shortage          | |1     |
+| com.gs.memory.heaps-on-memory-shortage-quiet-period | |24h |
+
+{{%refer%}}
+These values can be modified using the JConsole using the `HeapDumpMBean` with ObjectName `org.xap:type=HeapDumpMBean`
+Refer to [JMX Management](./space-jmx-management.html)
+{{%/refer%}}
+
+
+
+
+# Management Console
 
 {{%refer%}}
 The dump can be created via the [Management Center]({{%currentadmurl%}}/gigaspaces-dump.html)
 {{%/refer%}}
 
  
-# Web Management Center
+# Web Management Console
 
 {{%refer%}}
 The dump can be created via the [Web Management Console]({{%currentadmurl%}}/web-management-dump.html)
