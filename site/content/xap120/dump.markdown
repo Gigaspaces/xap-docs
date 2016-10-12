@@ -167,7 +167,7 @@ You can configure XAP to generate a heap dump when memory shortage occurs.
 
 {{%refer%}}
 These values can be modified using the JConsole using the `HeapDumpMBean` with ObjectName `org.xap:type=HeapDumpMBean`
-Refer to [JMX Management](./space-jmx-management.html)
+Refer to [JMX Management]({{%currentadmurl%}}/space-jmx-management.html)
 {{%/refer%}}
 
 
