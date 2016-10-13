@@ -161,9 +161,9 @@ You can configure XAP to generate a heap dump when memory shortage occurs.
 
 | Property name | Description | Default   |
 |-----|------|------|
-| com.gs.memory.create-heap-dump-on-memory-shortage   | |false | 
-| com.gs.memory.max-heaps-on-memory-shortage          | |1     |
-| com.gs.memory.heaps-on-memory-shortage-quiet-period | |24h |
+| com.gs.memory.create-heap-dump-on-memory-shortage   | Turn on and off heap dump |false |
+| com.gs.memory.max-heaps-on-memory-shortage          | Turn off the heap dump after n times |1     |
+| com.gs.memory.heaps-on-memory-shortage-quiet-period | How much time to wait between heap dumps | 24h |
 
 {{%refer%}}
 These values can be modified using the JConsole using the `HeapDumpMBean` with ObjectName `org.xap:type=HeapDumpMBean`
