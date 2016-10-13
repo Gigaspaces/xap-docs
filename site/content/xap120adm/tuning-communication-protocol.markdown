@@ -15,22 +15,26 @@ XAP provides a pluggable communication adaptor, LRMI (**Light Remote Method Invo
 
 LRMI uses a `GenericExporter` that implements the [net.jini.export.Exporter](http://www.gigaspaces.com/docs/JiniApi/net/jini/export/Exporter.html) interface.
 
-All GigaSpaces components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.
+All XAP components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.
 
-The GigaSpaces LRMI protocol has been designed to allow multiple services running within the same JVM to share their communication resources and to allow non-blocking IO communication with minimal serialization overhead. For example, it allows different space instances hosted within the same GSC to share the same LRMI resources without exhausting the JVM and machine resources. LRMI comes with default settings that may not be optimized for every scenario. You may need to change the defaults for the client or server side to have the maximum throughput and lowest latency your network and hardware may provide.
+{{%section%}}
+{{%column width="75%" %}}
+The LRMI protocol was designed to allow multiple services running within the same JVM to share their communication resources and to allow non-blocking IO communication with minimal serialization overhead. For example, it allows different space instances hosted within the same GSC to share the same LRMI resources without exhausting the JVM and machine resources. LRMI comes with default settings that may not be optimized for every scenario. You may need to change the defaults for the client or server side to have the maximum throughput and lowest latency your network and hardware may provide.
+{{%/column%}}
 
-{{% align center %}}
-![lrmi_archi2.jpg](/attachment_files/lrmi_archi2.jpg)
-{{% /align %}}
+{{%column width="20%" %}}
+{{%popup "/attachment_files/lrmi-new.png"%}}
+{{%/column%}}
+{{%/section%}}
 
-XAP LRMI uses two independent resource pools working collaboratively to allow a client to communicate with a server in a scalable manner: A client connection pool configured via the `com.gs.transport_protocol.lrmi.max-conn-pool` at the client side and a server connection thread pool configured via the `com.gs.transport_protocol.lrmi.max-threads` at the server side. You may configure these two pools' sizes and their resource timeouts to provide maximum throughput and low latency when a client communicates with a server. The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
+LRMI uses two independent resource pools working collaboratively to allow a client to communicate with a server in a scalable manner: A client connection pool configured via the `com.gs.transport_protocol.lrmi.max-conn-pool` at the client side and a server connection thread pool configured via the `com.gs.transport_protocol.lrmi.max-threads` at the server side. You may configure these two pools' sizes and their resource timeouts to provide maximum throughput and low latency when a client communicates with a server. The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
 
 
 ## Client LRMI Connection Pool
 
 The client LRMI connection pool is maintained per server component - i.e. by each space partition. For each space partition a client maintains a dedicated connection pool shared between all client threads accessing a specific partition. When having multiple partitions (N) hosted within the same GSC, a client may open maximum of `N * com.gs.transport_protocol.lrmi.max-conn-pool` connections against the GSC JVM process.
 
-{{% vbar %}}
+ 
 You may need to change the `com.gs.transport_protocol.lrmi.max-conn-pool` value (default = 1024) to have a smaller number. The default may be high for applications with multiple partitions.
 
 
@@ -46,15 +50,15 @@ ulimit -n 32000
 ```
 
 or by lowering the `com.gs.transport_protocol.lrmi.max-conn-pool` value.
-{{% /vbar %}}
+ 
 
 ## Server LRMI Connection Thread Pool
 
 The LRMI connection thread pool is a server side component. It is in charge of executing the incoming LRMI invocations. It is a single thread pool within the JVM that executes all the invocations, from all the clients and all the replication targets.
 
-{{% tip %}}
+{{% note %}}
 In some cases you might need to increase the LRMI Connection thread pool maximum size. Without this tuning activity, the system might hang in the case of a large amount of concurrent access. Using a value as **1024** for the LRMI Connection Thread Pool should be sufficient for most large scale systems.
-{{% /tip %}}
+{{% /note %}}
 
 ## Selector Threads
 
