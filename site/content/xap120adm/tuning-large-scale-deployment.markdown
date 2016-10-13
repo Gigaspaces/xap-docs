@@ -2,8 +2,8 @@
 type: post120
 title:  Large Scale Deployment
 categories: XAP120ADM
-parent:  tuning-gigaspaces-performance-overview.html
-weight: 300
+parent:  tuning.html
+weight: 400
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

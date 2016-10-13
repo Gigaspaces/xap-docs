@@ -2,8 +2,8 @@
 type: post120
 title:  Handling Large Objects
 categories: XAP120ADM
-parent:  tuning-gigaspaces-performance-overview.html
-weight: 500
+parent:  tuning.html
+weight: 600
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

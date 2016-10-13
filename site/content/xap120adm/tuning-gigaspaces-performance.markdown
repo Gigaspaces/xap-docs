@@ -1,9 +1,9 @@
 ---
 type: post120
-title:  Tuning XAP
+title:  Application
 categories: XAP120ADM
-parent:  tuning-gigaspaces-performance-overview.html
-weight: 100
+parent:  tuning.html
+weight: 200
 ---
 
 

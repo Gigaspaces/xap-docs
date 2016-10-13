@@ -3,7 +3,7 @@ type: post120
 title:  Java Virtual Machines
 categories: XAP120ADM
 parent: tuning.html
-weight: 300
+weight: 800
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}
