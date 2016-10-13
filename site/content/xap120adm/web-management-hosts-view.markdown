@@ -56,27 +56,7 @@ For each component you can view the log information. It is possible to filter th
 ![hosts1.jpg](/attachment_files/web-console/host-view-logging.jpg)
 {{% /align%}}
 
-# SSH Terminal
-
-There is an option to open an SSH terminal for a specific machine.
-
-<br>
-
-{{% align center%}}
-![options_to_open_ssh_9_6.png](/attachment_files/web-console/ssh1.jpg)
-{{% /align%}}
-<br>
-{{% align center%}}
-![options_to_open_ssh_9_6.png](/attachment_files/web-console/ssh2.jpg)
-{{% /align%}}
-<br>
-{{% align center%}}
-![options_to_open_ssh_9_6.png](/attachment_files/web-console/ssh3.jpg)
-{{% /align%}}
-<br>
-{{% align center%}}
-![options_to_open_ssh_9_6.png](/attachment_files/web-console/ssh4.jpg)
-{{% /align%}}
+ 
 
 
 
