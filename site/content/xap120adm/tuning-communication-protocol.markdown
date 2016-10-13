@@ -18,9 +18,15 @@ LRMI uses a `GenericExporter` that implements the [net.jini.export.Exporter](htt
 All XAP components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.
 
  
+{{%section%}}
+{{%column width="75%" %}}
 The LRMI protocol was designed to allow multiple services running within the same JVM to share their communication resources and to allow non-blocking IO communication with minimal serialization overhead. For example, it allows different space instances hosted within the same GSC to share the same LRMI resources without exhausting the JVM and machine resources. LRMI comes with default settings that may not be optimized for every scenario. You may need to change the defaults for the client or server side to have the maximum throughput and lowest latency your network and hardware may provide.
- 
-![lrmi](/attachment_files/lrmi-new.png)
+{{%/column%}}
+
+{{%column width="20%" %}}
+{{%popup "/attachment_files/lrmi-new.png"%}}
+{{%/column%}}
+{{%/section%}}
  
 
 LRMI uses two independent resource pools working collaboratively to allow a client to communicate with a server in a scalable manner: A client connection pool configured via the `com.gs.transport_protocol.lrmi.max-conn-pool` at the client side and a server connection thread pool configured via the `com.gs.transport_protocol.lrmi.max-threads` at the server side. You may configure these two pools' sizes and their resource timeouts to provide maximum throughput and low latency when a client communicates with a server. The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
