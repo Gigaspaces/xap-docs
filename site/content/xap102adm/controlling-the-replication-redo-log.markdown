@@ -148,8 +148,116 @@ while(true)
 		long redologSize = partition.getPrimary().getStatistics().getReplicationStatistics().
 		 getOutgoingReplication().getRedoLogSize();
 		System.out.println("redo log size for partition " + partition.getPartitionId() + " is:" +redologSize );
-		}
-		Thread.sleep(1000);
 	}
+	Thread.sleep(1000);
 }
+```
+
+
+
+
+
+# API Example
+
+The RedoLogTest {{%download "/download_files/redologDemo.zip" %}} starts a cluster with a single partition (primary + backup) with mirror enabled and WAN GW enabled. The mirror and WAN GW are not running. 
+It is writing a few entries to the space and later removes them. A replication filter is active, allowing you to track the activity where space classes that include `replicate=false` are not replicated. 
+
+![redo](/attachment_files/redo-log.png)
+
+
+You will see the redo log status for each replication target: 
+
+- Sync replica to backup <br>
+- ASync replica to mirror<br> 
+- ASync replica to WAN GW<br> 
+
+
+
+```bash
+created backup partition 0 
+space got 0 Data objects 
+com.test.MyReplicationFilter@2c07545f - process OUTPUT com.test.Data WRITE mySpace_container1_1:mySpace 
+com.test.MyReplicationFilter@4c550889 - process INPUT com.test.Data WRITE mySpace_container1:mySpace 
+partition clusterInfo RunningNumber:0 wrote 1 objects 
+done writing all objects 
+partition clusterInfo RunningNumber:0 wrote 1 objects 
+done writing all objects 
+space got 2 Data objects 
+com.test.MyReplicationFilter@2c07545f - process OUTPUT com.test.Data TAKE mySpace_container1_1:mySpace 
+com.test.MyReplicationFilter@4c550889 - process INPUT com.test.Data TAKE mySpace_container1:mySpace 
+space got 0 Data objects 
+redo log size for partition 0 is:4 
+------------- Primary space instance replication targets ----------- 
+
+     OutgoingChannel 
+      ( 
+        getTargetMemberName()=mySpace_container1_1:mySpace, 
+        getTargetUuid()=8a44fa4b-93bb-4e0e-81cd-b2ea64b284b7, 
+        getTargetHostname()=Shay-PC, 
+        getTargetDetails()=ConnectionEndpointDetails[hostName=10.10.10.118,hostAddress=10.10.10.118,pid=23004,version=11.0.0.14800-0], 
+        getDelegatorDetails()=null, 
+        getReplicationMode()=BACKUP_SPACE, 
+        getState()=CONNECTED, 
+        getChannelState()=ACTIVE, 
+        getOperatingMode()=SYNC, 
+        getLastKeyToReplicate()=3, 
+        getLastConfirmedKeyFromTarget()=3, 
+        getRedologRetainedSize()=0, 
+        getSendPacketsPerSecond()=0, 
+        getSentBytes()=7298 Bytes, 
+        getReceivedBytes()=917 Bytes, 
+        getSendBytesPerSecond()=1406 Bytes, 
+        getReceiveBytesPerSecond()=284 Bytes, 
+        getSendBytesPerPacket()=0 Bytes, 
+        isInconsistent()=false, 
+        getInconsistencyReason()=NONE 
+      ) 
+
+     OutgoingChannel 
+      ( 
+        getTargetMemberName()=mirror-service_container:mirror-service, 
+        getTargetUuid()=null, 
+        getTargetHostname()=null, 
+        getTargetDetails()=null, 
+        getDelegatorDetails()=null, 
+        getReplicationMode()=MIRROR, 
+        getState()=DISCONNECTED, 
+        getChannelState()=DISCONNECTED, 
+        getOperatingMode()=RELIABLE_ASYNC, 
+        getLastKeyToReplicate()=3, 
+        getLastConfirmedKeyFromTarget()=-1, 
+        getRedologRetainedSize()=4, 
+        getSendPacketsPerSecond()=0, 
+        getSentBytes()=0 Bytes, 
+        getReceivedBytes()=0 Bytes, 
+        getSendBytesPerSecond()=0 Bytes, 
+        getReceiveBytesPerSecond()=0 Bytes, 
+        getSendBytesPerPacket()=0 Bytes, 
+        isInconsistent()=false, 
+        getInconsistencyReason()=NONE 
+      ) 
+
+     OutgoingChannel 
+      ( 
+        getTargetMemberName()=gateway:target, 
+        getTargetUuid()=null, 
+        getTargetHostname()=null, 
+        getTargetDetails()=null, 
+        getDelegatorDetails()=null, 
+        getReplicationMode()=GATEWAY, 
+        getState()=DISCONNECTED, 
+        getChannelState()=DISCONNECTED, 
+        getOperatingMode()=RELIABLE_ASYNC, 
+        getLastKeyToReplicate()=3, 
+        getLastConfirmedKeyFromTarget()=-1, 
+        getRedologRetainedSize()=4, 
+        getSendPacketsPerSecond()=0, 
+        getSentBytes()=0 Bytes, 
+        getReceivedBytes()=0 Bytes, 
+        getSendBytesPerSecond()=0 Bytes, 
+        getReceiveBytesPerSecond()=0 Bytes, 
+        getSendBytesPerPacket()=0 Bytes, 
+        isInconsistent()=false, 
+        getInconsistencyReason()=NONE 
+      ) 
 ```
