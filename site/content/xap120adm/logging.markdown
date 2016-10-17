@@ -7,11 +7,7 @@ weight: 100
 ---
 
 
-{{% ssummary %}}{{% /ssummary %}}
-
-
-
-XAP makes logging calls by use of the Java <sup>TM</sup> platform's core logging facilities.
+XAP makes logging calls by use of the Java  platform's core logging facilities.
 For more information on the JDK logging framework, please refer to the following online documentation: [Java Logging Overview](http://java.sun.com/j2se/1.5.0/docs/guide/logging/overview.html).
 
 # Configuration File
@@ -22,16 +18,16 @@ The default configuration file is located under:
 
 
 ```bash
-<XAP>/config/gs_logging.properties
+<XAP-HOME>/config/log/xap_logging.properties
 ```
 
 # Logging Level
 
 The [logging level](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/util/logging/Level.html) class defines a set of standard logging levels that can be used to control logging output. The logging level are ordered and are specified by ordered integers/constants.
 
-{{% tip %}}
+{{% note %}}
 Enabling logging at a given level also enables logging at all higher levels.
-{{% /tip %}}
+{{% /note %}}
 
 The supported logging levels in descending order are:
 
@@ -475,23 +471,23 @@ com.gigaspaces.persistent.shared_iterator.level = INFO
 
 # Overriding the Default Configuration
 
-The configuration defined in the `gs_logging.properties` file may be overridden by either using system properties or by providing an external configuration file with overrides. This external configuration file should be located in the classpath under:
+The configuration defined in the `xap_logging.properties` file may be overridden by either using system properties or by providing an external configuration file with overrides. This external configuration file should be located in the classpath under:
 
 
 ```bash
 /config/gs_ext_logging.properties
 ```
 
-Any configuration that you wish to override in `gs_logging.properties` file, should appear in `gs_ext_logging.properties` with its new value. The same applies for system properties, e.g.
+Any configuration that you wish to override in `xap_logging.properties` file, should appear in `gs_ext_logging.properties` with its new value. The same applies for system properties, e.g.
 
 
 ```bash
 -Dcom.gigaspaces.exceptions.level=WARNING
 ```
 
-{{% info "Defining System Properties when Starting GSCs, GSMs and other runtime components "%}}
+{{% note "Defining System Properties when Starting GSCs, GSMs and other runtime components "%}}
 The recommended way to define system properties when starting service grid components is to wrap the original script, e.g. `gsc.sh(bat)` with a wrapper script which include the EXT_JAVA_OPTIONS variable. The `setenv.sh(bat)` script which is used by these components will pick these options automatically and use them as JVM arguments.
-{{% /info %}}
+{{% /note %}}
 
 # Overriding the Configuration File
 
@@ -572,9 +568,9 @@ To change the logging level in JConsole do the following:
 
 {{% include "/COM/jconsolejmapwarning.markdown" %}}
 
-{{% info %}}
-Note, you will need to use the logging level without the .level string e.g.: "com.gigaspaces.core.cluster.replication" and set value "FINE"
-{{%/info%}}
+{{% note %}}
+Note, you will need to use the logging level without the .level string e.g.: `com.gigaspaces.core.cluster.replication` and set value `FINE`
+{{%/note%}}
 
 The LoggingMXBean enables you to:
 
