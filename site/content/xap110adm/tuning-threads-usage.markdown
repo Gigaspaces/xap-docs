@@ -16,19 +16,21 @@ XAP using Thread resources in an extensive manner to scale the different activit
 - Indicates the thread name includes a running number.
 - SPACE_NAME - Indicates the thread name includes the associated space name using this thread.
 
-{{% tip %}}
+{{% note %}}
 All GigaSpaces threads running within the JVM, using the **GS-** prefix as part of their name.
-{{% /tip %}}
-
+{{% /note %}}
 
 | Thread Name | Description | Configuration Parameters | Client{{<wbr>}}Server|
 |:------------|:------------|:-------------------------|:-------------|
 |LRMI Selector Accept |Responsible for accepting incoming socket connections. |Single Thread|Server|
-|LRMI async Selector#|Client side, handles async invocation, i.e executors, asyncRead/take. |4 Threads|Server|
-|Pending Answers-pool#| Responsible for sending a callback to template based waiting  operations (read/take). |space-config.engine.min_threads, space-config.engine.max_threads|Server|
-|Notifier-pool#| Responsible to dispatch notification to client side. Used with the `Notify Container`{{%currentjavanet "notify-container.html"%}} and [Session Based Messaging API]({{%currentjavaurl%}}/session-based-messaging-api.html). See the [Scaling Notification Delivery]({{%currentjavaurl%}}/notify-container.html#Scaling Notification Delivery) for details.| space-config.engine.notify_min_threads , space-config.engine.notify_max_threads| Server|
-|Processor-pool#|Pool for space operations post processing that can be done asynchronously to user operation. Transaction cleanup, notifications etc.  |space-config.engine.min_threads , space-config.engine.max_threads |Server|
-|SG LeaseReaper  | Used by the Service Grid | Single Thread |Server|
+|LRMI async Selector  |Client side, handles async invocation, i.e executors, asyncRead/take. |4 Threads|Server|
+|Pending Answers-pool |Responsible for sending a callback to template based waiting  operations (read/take). |space-config.engine.min_threads<br>space-config.engine.max_threads|Server|
+|Notifier-pool        |Responsible to dispatch notification to client side. Used with the `Notify Container`{{%currentjavanet "notify-container.html"%}} and [Session Based Messaging API]({{%currentjavaurl%}}/session-based-messaging-api.html). See the [Scaling Notification Delivery]({{%currentjavaurl%}}/notify-container.html#Scaling Notification Delivery) for details.| space-config.engine.notify_min_threads<br>space-config.engine.notify_max_threads| Server|
+|Processor-pool       |Pool for space operations post processing that can be done asynchronously to user operation. Transaction cleanup, notifications etc.  |space-config.engine.min_threads<br>space-config.engine.max_threads |Server|
+|Connection-pool      |Pool for regualr space operations execution.  |com.gs.transport_protocol.lrmi.max-threads <br> com.gs.transport_protocol.lrmi.min-threads |Server|
+|Custom pool          |Pool for notify and task execution  |com.gs.transport_protocol.lrmi.custom.<br>threadpool.min-threads<br>com.gs.transport_protocol.lrmi.custom.<br>threadpool.max-threads |Server|
+|System pool          |Pool for admin operations           |com.gs.transport_protocol.lrmi.system-priority.threadpool.min-threads<br>com.gs.transport_protocol.lrmi.system-priority.threadpool.max-threads |Server|
+|SG LeaseReaper       | Used by the Service Grid | Single Thread |Server|
 |Template Expiration Manager Timer | The main thread of expiration manager. Wakes up on each expiration period to find the expired templates. | Single Thread per space | Server|
 |TemplateExpirationManager-pool#|Responsible for sending response to waiting client when their template expires.| 16 threads max per space |Server|
 |SyncReplicationChannel SPACE_NAME|Runs per sync replication channel |Dynamically adjusted|Server|
@@ -36,7 +38,7 @@ All GigaSpaces threads running within the JVM, using the **GS-** prefix as part 
 |ClassLoaderCache-{{<wbr>}}SelfCleaningTable |Used to clean up resources of class loaders once terminated (undeploy of processing unit) |Single Thread|Server|
 |TransactionTableHolder-SelfCleaningTable | Responsible for cleaning zombie local transactions that were abandoned by the user application without committing. Single thread per GSC |Single Thread per space |Server|
 |SLA Monitor Disk|Used by the Service Grid. SLA free disk space monitor|Single Thread|Server|
-|Memory:writer|Used by the Service Grid. SLA Memory monitor|Single Thread|Server|
+|Memory:writer|Used by the Service Grid. SLA Memory monitor|Single Thread|Server| 
 |CPU:writer|Used by the Service Grid. SLA CPU monitor |Single Thread|Server|
 |pollingEventContainer#|Used with the [Polling Container]({{%currentjavaurl%}}/polling-container.html) | See the [Concurrent Consumers]({{%currentjavaurl%}}/polling-container.html#Concurrent Consumers)|Client|
 |LeaseRenewalManager Task| Respisible to review resource lease.|One per resource|Client|
