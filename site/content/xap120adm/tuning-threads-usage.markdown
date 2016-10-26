@@ -28,6 +28,10 @@ All GigaSpaces threads running within the JVM, using the **GS-** prefix as part 
 |Pending Answers-pool#| Responsible for sending a callback to template based waiting  operations (read/take). |space-config.engine.min_threads, space-config.engine.max_threads|Server|
 |Notifier-pool#| Responsible to dispatch notification to client side. Used with the `Notify Container`{{%currentjavanet "notify-container.html"%}} and [Session Based Messaging API]({{%currentjavaurl%}}/session-based-messaging-api.html). See the [Scaling Notification Delivery]({{%currentjavaurl%}}/notify-container.html#Scaling Notification Delivery) for details.| space-config.engine.notify_min_threads , space-config.engine.notify_max_threads| Server|
 |Processor-pool#|Pool for space operations post processing that can be done asynchronously to user operation. Transaction cleanup, notifications etc.  |space-config.engine.min_threads , space-config.engine.max_threads |Server|
+|Connection-pool#|Pool for regualr space operations execution.  |com.gs.transport_protocol.lrmi.max-threads , com.gs.transport_protocol.lrmi.min-threads |Server|
+|Custom pool#|Pool for notify and task execution  |com.gs.transport_protocol.lrmi.custom.threadpool.min-threads
+com.gs.transport_protocol.lrmi.custom.threadpool.max-threads |Server|
+|System pool#|Pool for admin operations  |com.gs.transport_protocol.lrmi.system-priority.threadpool.min-threads, com.gs.transport_protocol.lrmi.system-priority.threadpool.max-threads |Server|
 |SG LeaseReaper  | Used by the Service Grid | Single Thread |Server|
 |Template Expiration Manager Timer | The main thread of expiration manager. Wakes up on each expiration period to find the expired templates. | Single Thread per space | Server|
 |TemplateExpirationManager-pool#|Responsible for sending response to waiting client when their template expires.| 16 threads max per space |Server|
