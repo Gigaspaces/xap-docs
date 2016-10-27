@@ -24,5 +24,5 @@ Early Access builds are provided as-is and should not be used in production. If 
 
 ID        | Type    | Description
 ----------|---------|-----------
-XAP-12988 | Feature | Enhance dump to optionally collect non-live processes as well
-XAP-13003 | Bug     | EXT_JAVA_OPTIONS is ignored in gs-webui scripts
+XAP-12988 | Feature | Enhance dump to optionally collect non-live processes as well|
+XAP-13003 | Bug     | EXT_JAVA_OPTIONS is ignored in gs-webui scripts |
