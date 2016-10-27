@@ -20,20 +20,19 @@ Early Access builds are provided as-is and should not be used in production. If 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m2/gigaspaces-xap-open-12.1.0-m2-b16702.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m2/gigaspaces-xap-premium-12.1.0-m2-b16702.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m2/gigaspaces-xap-enterprise-12.1.0-m2-b16702.zip)\] 
 * Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m2/GigaSpaces-XAP.NET-Premium-12.1.0.16702-M2-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m2/GigaSpaces-XAP.NET-Premium-12.1.0.16702-M2-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m2/GigaSpaces-XAP.NET-Enterprise-12.1.0.16702-M2-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m2/GigaSpaces-XAP.NET-Enterprise-12.1.0.16702-M2-x86.msi)\]
 
-### Milestone Release Notes
+#### Milestone Release Notes
 
 ID        | Type    | Description
 ----------|---------|-----------
 XAP-13017 | Bug     | Space failover might take an extended period of time (above 60 sec) |
-XAP-13008 | Bug     | "java.lang.LinkageError: loader constraint violation" when deploying hola-mundo in commercial edition	
- |
+XAP-13008 | Bug     | "java.lang.LinkageError: loader constraint violation" when deploying hola-mundo in commercial edition |
 
 ## 12.1 M1 (Oct-20-2016)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m1/gigaspaces-xap-open-12.1.0-m1-b16701.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m1/gigaspaces-xap-premium-12.1.0-m1-b16701.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m1/gigaspaces-xap-enterprise-12.1.0-m1-b16701.zip)\] 
 * Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m1/GigaSpaces-XAP.NET-Premium-12.1.0.16701-M1-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m1/GigaSpaces-XAP.NET-Premium-12.1.0.16701-M1-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m1/GigaSpaces-XAP.NET-Enterprise-12.1.0.16701-M1-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m1/GigaSpaces-XAP.NET-Enterprise-12.1.0.16701-M1-x86.msi)\]
 
-### Milestone Release Notes
+#### Milestone Release Notes
 
 ID        | Type    | Description
 ----------|---------|-----------
