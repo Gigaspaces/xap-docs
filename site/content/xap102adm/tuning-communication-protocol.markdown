@@ -136,33 +136,53 @@ The `LRMI` configuration options set as system properties. They are listed below
 
 {{% include "/COM/xap100/config-lrmi-transport.markdown" %}}
 
-| Property name | Description | Default   | Server Client  | Unit | Can be overridden at the client side|
-|:----------------|:------------|:--------------|:----------------------|:-----|:------------------------------------|
-| com.gs.transport_protocol.lrmi.<br>max-conn-pool | The maximum amount of connections to the space server remote services that can work simultaneously in a client connection pool. Starts with 1 connection. Defined per each remote service (by default, each remote service has 1024 maximum connections). | 1024 | Server | Connection| No|
-| com.gs.transport_protocol<br>.lrmi.max-threads     | XAP maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool. | 128 | Server | Threads | No |
-| com.gs.transport_protocol.lrmi.<br>min-threads     | XAP maintains a thread pool in the server side, that manages incoming remote requests. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool. | 1 | Server | Threads | No|
-| com.gs.transport_protocol.lrmi.<br>bind-port | Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever XAP is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports  | 0 | Server| | No|
-| java.rmi.server.hostname | Binds the XAP Server on a specified network interface. If java.rmi.server.hostname is null the system sets the localhost IP address. | hostname | Client & Server | | No|
-| com.gs.transport_protocol.lrmi.<br>idle_connection_timeout | Watchdog idle connection timeout. | 900 sec| Client| Seconds |Yes|
-| com.gs.transport_protocol.lrmi.<br>request_timeout | Watchdog request timeout. | 30 sec| Client | Seconds |Yes|
-| com.gs.transport_protocol.lrmi.<br>inspect_timeout| Watchdog dummy packet connection timeout used when the watchdog suspects a request connection is blocked (com.gs.transport_protocol.lrmi.request_timeout elapsed). | 1000 millisec| Client | millisec|Yes|
-| com.gs.transport_protocol.lrmi.<br>threadpool.idle_timeout | LRMI thread pool idle timeout. Usually should be tuned for server side| 300000 milisec| Server | millisec| No|
-| com.gs.transport_protocol.lrmi.<br>connect_timeout | LRMI timeout to establish a socket connection | 5000| Server | millisec| No|
-| com.gs.transport_protocol.lrmi.<br>maxBufferSize | The NIO internal cache (a DirectByteBuffer) might cause an OutOfMemoryError due-to direct memory exhaustion. To avoid such a scenario, the LRMI layer breaks the outgoing buffer into a several chunks. By doing so, the NIO internal cache is kept small, and may not cause any error. The size of these chunks can be determined by this property| 65536 (64k)| Client & Server | Bytes | Yes |
-| com.gs.transport_protocol.lrmi.<br>selector.threads | LRMI selector threads. This should be configured with multi core machines. Usualy should be tuned for server side| 4 | Client & Server | Threads| No|
-| com.gs.transport_protocol.lrmi.<br>use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>classloading | Enables LRMI dynamic class loading.| true | Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>classloading.import | Enables importing of classes using LRMI dynamic class loading.| true | Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>classloading.export | Enables exporting of classes using lrmi dynamic class loading.| true | Server | boolean  | No|
-| com.gs.transport_protocol.lrmi.<br>tcp-send-buffer-size | Set the TCP Send Buffer size (SO_SNDBUF).| OS default | Client & Server| bytes |Yes|
-| com.gs.transport_protocol.lrmi.<br>tcp-receive-buffer-size | Set the TCP receive Buffer size (SO_RCVBUF).| OS default | Client & Server| bytes |Yes|
-| com.gs.transport_protocol.lrmi.<br>tcp-keep-alive | Set the TCP keep alive mode (SO_KEEPALIVE).| true | Client & Server| Seconds|Yes|
-| com.gs.transport_protocol.lrmi.<br>timeout_resolution | Resolution in percents. Timeout resolution indicates the accuracy of the request timeout. | 10 | Client | Percent|Yes|
-|com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 128 |  Server| Threads|No|
-|com.gs.transport_protocol.lrmi.<br>system-priority.threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 128 | Server | Threads|No|
-|com.gs.transport_protocol.lrmi.<br>custom.threadpool.idle_timeout |  | 300000 millisec     |   | | |
+| Property name | Description | Default   | Server Client  | Unit | Can be <br>over<br>ridden <br>at the client side|
+|----------------|------------|--------------|----------------------|-----|------------------------------------|
+| com.gs.transport_protocol<br>.lrmi.max-conn-pool | The maximum amount of connections to the space server remote services that can work simultaneously in a client connection pool. Starts with 1 connection. Defined per each remote service (by default, each remote service has 1024 maximum connections). | 1024 | Server | Conne<br>ction| No|
+| com.gs.transport_protocol<br>.lrmi.max-threads     | XAP maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool. [see note below](#1)| 128 | Server | Threads | No |
+| com.gs.transport_protocol<br>.lrmi.min-threads     | XAP maintains a thread pool on the server side that manages incoming remote requests. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool. | 1 | Server | Threads | No|
+| com.gs.transport_protocol.<br>lrmi.custom.threadpool.max-threads| XAP maintains a thread pool on the server side that manages incoming remote requests for Task and Notification invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool. | 128 | Server | Threads | No|
+| com.gs.transport_protocol.<br>lrmi.custom.threadpool.min-threads| XAP maintains a thread pool on the server side that manages incoming remote requests for Task and Notification invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool. | 1 | Server | Threads | No|
+| com.gs.transport_protocol.<br>lrmi.system-priority.<br>threadpool.max-threads| XAP maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool. | 8 | Server |
+| com.gs.transport_protocol.<br>lrmi.system-priority.<br>threadpool.min-threads| XAP maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool. | 1 | Server |
+| com.gs.transport_protocol<br>.lrmi.bind-port | Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever XAP is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports  | 0 | Server| | No|
+| java.rmi.server.hostname                  | Binds the XAP Server on a specified network interface. If java.rmi.server.hostname is null the system sets the localhost IP address. | host<br>name | Client & Server | | No|
+| com.gs.transport_protocol<br>.lrmi.idle_conn<br>ection_timeout | Watchdog idle connection timeout. | 900 sec| Client| Seconds |Yes|
+| com.gs.transport_protocol<br>.lrmi.request_timeout | Watchdog request timeout. | 30 sec| Client | Seconds |Yes|
+| com.gs.transport_protocol<br>.lrmi.inspect_timeout| Watchdog dummy packet connection timeout used when the watchdog suspects a request connection is blocked (com.gs.transport_protocol.lrmi.request_timeout elapsed). | 1000 millisec| Client | millisec|Yes|
+| com.gs.transport_protocol<br>.lrmi.threadpool.idle_timeout | LRMI thread pool idle timeout. Usually should be tuned for server side| 300000 milisec| Server | millisec| No|
+| com.gs.transport_protocol<br>.lrmi.connect_timeout | LRMI timeout to establish a socket connection | 30 sec| Server | Seconds| No|
+| com.gs.transport_protocol<br>.lrmi.maxBufferSize | The NIO internal cache (a DirectByteBuffer) might cause an OutOfMemoryError due-to direct memory exhaustion. To avoid such a scenario, the LRMI layer breaks the outgoing buffer into a several chunks. By doing so, the NIO internal cache is kept small, and may not cause any error. The size of these chunks can be determined by this property| 65536 (64k)| Client & Server | Bytes | Yes |
+| com.gs.transport_protocol<br>.lrmi.selector.threads | LRMI selector threads. This should be configured with multi core machines. Usualy should be tuned for server side| 4 | Client & Server | Threads| No|
+| com.gs.transport_protocol<br>.lrmi.use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
+| com.gs.transport_protocol<br>.lrmi.use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
+| com.gs.transport_protocol<br>.lrmi.classloading | Enables LRMI dynamic class loading.| true | Server | boolean  | No|
+| com.gs.transport_protocol<br>.lrmi.classloading.import | Enables importing of classes using LRMI dynamic class loading.| true | Server | boolean  | No|
+| com.gs.transport_protocol<br>.lrmi.classloading.export | Enables exporting of classes using lrmi dynamic class loading.| true | Server | boolean  | No|
+| com.gs.transport_protocol<br>.lrmi.tcp-send-buffer-size | Set the TCP Send Buffer size (SO_SNDBUF).| OS default | Client & Server| bytes |Yes|
+| com.gs.transport_protocol<br>.lrmi.tcp-receive-buffer-size | Set the TCP receive Buffer size (SO_RCVBUF).| OS default | Client & Server| bytes |Yes|
+| com.gs.transport_protocol<br>.lrmi.tcp-keep-alive | Set the TCP keep alive mode (SO_KEEPALIVE).| true | Client & Server| Seconds|Yes|
+| com.gs.transport_protocol<br>.lrmi.timeout_resolution | Resolution in percents. Timeout resolution indicates the accuracy of the request timeout. | 10 | Client | Percent|Yes|
+| com.gs.transport_protocol<br>.lrmi.system-priority.<br>threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 1 |  Server| Threads|No|
+| com.gs.transport_protocol<br>.lrmi.system-priority.threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 8 | Server | Threads|No|
+| com.gs.transport_protocol<br>.lrmi.custom.threadpool.<br>idle_timeout | Idle timeout | 300000 millisec     |   | Invo<br>cation | No |
+| com.gs.transport_protocol<br>.lrmi.threadpool.<br>queue-size | Regualr operations thread pool queue size |  | {{% fontsize 10 %}}2147483647 {{%/fontsize%}}  |   | Invo<br>cation | No | 
+| com.gs.transport_protocol<br>.lrmi.custom.threadpool.<br>queue-size | Custom operations thread pool queue size  |  | {{% fontsize 10 %}}2147483647{{% /fontsize%}}    |   | Invo<br>cation | No |
+| com.gs.transport_protocol<br>.lrmi.system-priority.<br>threadpool.queue-size | System operations thread pool queue size |  |  | {{% fontsize 10 %}}2147483647 {{%/fontsize %}}     |   | Invo<br>cation | No |
 
+{{% anchor 1%}}
+
+**com.gs.transport_protocol.lrmi.max-threads**<br>
+With a system that may have high concurrency level as a result of a large number of remote clients performing:<br>
+- space operations<br>
+- remote service executions<br>
+- single client with large number of threads<br> 
+- notify listener (container) accessing the space<br>
+    
+This property value must be tuned to have a larger value. By default this pool can grow up to 128 threads. This means there can be a maximum of 128 threads (across all clients and grid members) total accessing the space instance running in a given GSC process simultaneously. 
+
+With a system that may trigger a notify listener (that performs remote space access) or a remote service or a task 128 times, very quickly this would consume the entire LRMI thread pool causing new remote requests (by the listener or any other remote activities) to wait until there would be available LRMI threads to handle incoming requests. This may slow down the application performance dramatically causing existing connections to drop.
+ 
 
 
 {{% refer %}}
