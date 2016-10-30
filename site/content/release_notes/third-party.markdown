@@ -1,10 +1,12 @@
-----
-type: nil
-----
+---
+
+---
+ 
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="refresh" content="0;url=/release_notes/101third-party.html"/>
+    <meta http-equiv="refresh" content="0;url=/release_notes/120third-party.html"/>
   </head>
 </html>

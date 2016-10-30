@@ -4,4 +4,5 @@
 {{else if in .Page.Permalink "xap102"}}{{index .Page.Site.Params.xap102 (.Get 0)}}
 {{else if in .Page.Permalink "xap102"}}{{index .Page.Site.Params.xap102 (.Get 0)}}
 {{else if in .Page.Permalink "xap110"}}{{index .Page.Site.Params.xap110 (.Get 0)}}
-{{else}}{{index .Page.Site.Params.xap120 (.Get 0)}}{{end}}
+{{else if in .Page.Permalink "xap120"}}{{index .Page.Site.Params.xap120 (.Get 0)}}
+{{else}}{{index .Page.Site.Params.xap121 (.Get 0)}}{{end}}

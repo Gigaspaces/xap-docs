@@ -23,13 +23,14 @@ public class MenuTree {
 	private static String BASE_PATH;
 	
 	private static final String[] dirs = new String[] {
-		"product_overview", "faq", "api_documentation", "release_notes", "howto", "videos", "sbp",
-		"xap97",  "xap97net",  "xap97adm", 
-		"xap100", "xap100net", "xap100adm", "xap100sec", 
-		"xap101", "xap101net", "xap101adm", "xap101sec", "xap101tut", "xap101nettut", 
-		"xap102", "xap102net", "xap102adm", "xap102sec", "xap102tut", "xap102nettut", 
-		"xap110", "xap110net", "xap110adm", "xap110sec", "xap110tut", "xap110nettut",
-            "xap120","xap120net", "xap120adm", "xap120sec", "xap120tut","xap120nettut"
+		    "product_overview", "faq", "api_documentation", "release_notes", "howto", "videos", "sbp",
+		    "xap97",  "xap97net",  "xap97adm",
+		    "xap100", "xap100net", "xap100adm", "xap100sec",
+            "xap101", "xap101net", "xap101adm", "xap101sec", "xap101tut", "xap101nettut",
+		    "xap102", "xap102net", "xap102adm", "xap102sec", "xap102tut", "xap102nettut",
+		    "xap110", "xap110net", "xap110adm", "xap110sec", "xap110tut", "xap110nettut",
+            "xap120", "xap120net", "xap120adm", "xap120sec", "xap120tut", "xap120nettut",
+            "xap121", "xap121net", "xap121adm", "xap121sec", "xap121tut", "xap121nettut"
 	};
 
     public static void main(String[] args) throws Exception {
