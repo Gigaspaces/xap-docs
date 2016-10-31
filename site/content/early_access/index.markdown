@@ -22,10 +22,10 @@ Early Access builds are provided as-is and should not be used in production. If 
 
 #### Milestone Release Notes
 
-ID        | Type    | Description
-----------|---------|-----------
-XAP-13017 | Bug     | Space failover might take an extended period of time (above 60 sec) |
-XAP-13008 | Bug     | "java.lang.LinkageError: loader constraint violation" when deploying hola-mundo in commercial edition |
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|XAP-13017 | Bug     | Space failover might take an extended period of time (above 60 sec) |
+|XAP-13008 | Bug     | "java.lang.LinkageError: loader constraint violation" when deploying hola-mundo in commercial edition |
 
 ## 12.1 M1 (Oct-20-2016)
 
@@ -34,7 +34,7 @@ XAP-13008 | Bug     | "java.lang.LinkageError: loader constraint violation" when
 
 #### Milestone Release Notes
 
-ID        | Type    | Description
-----------|---------|-----------
-XAP-12988 | Feature | Enhance dump to optionally collect non-live processes as well|
-XAP-13003 | Bug     | EXT_JAVA_OPTIONS is ignored in gs-webui scripts |
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|XAP-12988 | Feature | Enhance dump to optionally collect non-live processes as well|
+|XAP-13003 | Bug     | EXT_JAVA_OPTIONS is ignored in gs-webui scripts |
