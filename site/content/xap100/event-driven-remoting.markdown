@@ -836,3 +836,12 @@ In case of a Primary Backup clusters and Partitioned Sync2Backup clusters, when 
 Event Driven Remoting proxy is aware of each partition in the cluster and connection with the failed primary partition will get interrupted/disconnected in case of a failure. Proxy recognizes failure and redirects the request to the backup partition. When the backup becomes ready (any warmup code that needs to run and is ready to accept operations), it will accept this request and process the request. All of this failover behavior is done within the GigaSpaces proxy code and client does not need any extra logic. For more information refer to [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html).
 
 If the backup space does not become ready to accept requests within the configured number of retries, execute request will fail with an Exception.
+
+
+# Considerations
+
+If the remote method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as `Externalizable` for the returned value object or use libraries such as [kryo](https://github.com/EsotericSoftware/kryo).
+
+{{% refer %}}
+For more information see [Custom Serialization](./custom-serialization.html).
+{{% /refer %}}

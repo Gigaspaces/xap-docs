@@ -1032,6 +1032,15 @@ public class DataProcessorServiceReducer implements RemoteResultReducer<Integer,
 }
 ```
 
+# Considerations
+
+If the remote method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as `Externalizable` for the returned value object or use libraries such as [kryo](https://github.com/EsotericSoftware/kryo).
+
+{{% refer %}}
+For more information see [Custom Serialization](./custom-serialization.html).
+{{% /refer %}}
+
+
 # Working Examples
 
 {{%refer%}}
