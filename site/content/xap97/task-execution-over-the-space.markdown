@@ -538,7 +538,7 @@ When executing distributed tasks or tasks that executed on more than one node wi
 
 {{% anchor ExecutorService %}}
 
-# j.u.c ExecutorService
+# ExecutorService
 
 OpenSpaces executors support allows to easily implement java.util.concurrent.ExecutorService which allows to support the `ExecutorService` API and executed `Callable` and `Runnable` as tasks within the Space. Here is an example of how to get an `ExecutorService` implementation based on OpenSpaces executors and use it:
 
@@ -559,3 +559,12 @@ Task<Integer> task1 = TaskExecutors.task(new MyCallable());
 DistributedTask<Integer> task2 = TaskExecutors.task(new MyCallable(),
                                       new SumReducer<Integer, Integer>(Integer.class));
 ```
+
+
+# Considerations
+
+If the Task `execute` method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as `Externalizable` for the returned value object or use libraries such as [kryo](https://github.com/EsotericSoftware/kryo).
+
+{{% refer %}}
+For more information see [Custom Serialization](./custom-serialization.html).
+{{% /refer %}}
