@@ -54,21 +54,12 @@ config.setBatch(5000, 10, 100);
 
 # Disconnection Notifications
 
-In order to receive a notification upon disconnection, use one of the following:
+In order to receive a notification upon disconnection, use the following:
 
 
 ```java
 setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener)
-setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener, long renewExpiration, long renewDuration, long renewRTT)
 ```
-
- 
-|Property|Description|Default|Unit|
-|:-------|:----------|:------|:---|
-|renew|Must be set to `true` in order to receive disconnection notifications.|false| |
-|renewExpiration|Could be used to set a lease that will be applied to registering listeners. (`renew` must be set to `true`)|Lease.FOREVER|ms|
-|renewDuration|The period of time a disconnected space should be considered as down and a disconnection notification should be sent. (`renew` must be set to `true`)|20000|ms|
-|renewRTT|Ignored| | |
 
 An example of a LeaseListener implementation:
 
