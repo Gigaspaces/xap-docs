@@ -3,7 +3,7 @@ type: post121
 title:  Enhanced Scala REPL
 categories: XAP121
 parent: scala.html
-weight: 200
+weight: 500
 ---
 
 

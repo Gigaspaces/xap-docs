@@ -1,14 +1,10 @@
 ---
 type: post121
-title:  Scala Task Execution
+title:  Task Execution
 categories: XAP121
 parent: scala.html
-weight: 500
+weight: 200
 ---
-
-
-
-
 
 
 A wrapper around the `XAP` API provides some sugaring on top of the `GigaSpace#execute` methods.

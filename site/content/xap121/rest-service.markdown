@@ -19,19 +19,17 @@ The REST service is not supported with embedded space thus we recommend using it
 
 # Deploment Options
 
-<br/>
-
-### Deploy via CLI
+## Deploy via CLI
 {{%refer%}} See full instructions [here]({{%currentadmurl%}}/rest-deploy-command-line-interface.html) {{%/refer%}}
 
-<br/>
+ 
 
-### Deploy using a template
+## Deploy using a template
 A pre-configured processing unit template is provided and can be found at `{XAP_HOME}/deploy/templates/rest`
 
-<br/>
+ 
 
-### Deploy REST Service as part of a custom Processing Unit
+## Deploy REST Service as part of a custom Processing Unit
 A REST Service can be started as part of a custom processing unit by specifying the `<os-core:rest >` annotation as following:
 
 
