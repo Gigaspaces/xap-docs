@@ -97,9 +97,7 @@ An event listener that is registered for an event might be disconnected for the 
 
 In order to detect and handle listener disconnection, the **auto renewal** mechanism can be used.
 
-When adding a new listener, one of the parameters is the leaseTime. A leaseTime is a concept that appears in many places in the API. The idea behind it, is that it allows you to specify how long to keep the object alive in the space. In a listener context, it means how long the event registration should remain active (in milliseconds). By default, the lease time is forever (Long.MaxValue).
-
-The auto renewal idea is that the listener is added with a limited lease, for example 10 seconds, and the proxy automatically renews the lease before it expires. The client can register to the `EventSessionConfig.AutoRenewalFailed` event, and be notified if the auto renewal failed. This approach solves the following issues:
+The auto renewal idea is that the listener is added with a limited lease, for example 20 seconds, and the proxy automatically renews the lease before it expires. The client can register to the `EventSessionConfig.AutoRenewalFailed` event, and be notified if the auto renewal failed. This approach solves the following issues:
 
 - The client process terminated unexpectedly, and didn't un register its listener. After the lease expires, the notify template is removed from the space, instead of staying alive forever.
 - If the space is no longer available, then the client is notified that it couldn't renew the listener lease.
@@ -114,17 +112,17 @@ EventSessionConfig eventSessionConfig = new EventSessionConfig();
 eventSessionConfig.AutoRenew = true;
 ```
 
-The auto renewal process uses a few parameters that dictate the timing of its behavior. These values have proper defaults, but can be altered, for example:
-
+{{%warning%}} Prior to XAP 9.7, certain parameters could be used to dictate the timing and behavior of the auto renewal process. These have been deprecated. Please use the method described above for auto renewal behavior.
 
 ```csharp
 //Auto renewal is active for 1 minute
-eventSessionConfig.AutoRenewTotalDuration = 60000;
-//Each time renew the lease for 10 seconds
-eventSessionConfig.AutoRenewLeaseDuration = 10000;
+eventSessionConfig.AutoRenewTotalDuration = 60000;  // deprecated
+//Each time renew the lease for 10 seconds 
+eventSessionConfig.AutoRenewLeaseDuration = 10000;  // deprecated
 //The network latency can reach 5 seconds, send renewal request 5 seconds before the lease expires.
-eventSessionConfig.AutoRenewRTT = 5000;
+eventSessionConfig.AutoRenewRTT = 5000;  // deprecated
 ```
+{{%/warning%}}
 
 ## Managing High Notifications Throughput
 
