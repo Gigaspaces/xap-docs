@@ -129,6 +129,8 @@ public class Person {
 {{% /tab%}}
 {{%/tabs%}}
 
+<br>
+
 # Compound Aggregation
 
 {{%imagertext "/attachment_files/aggregation2.png"%}}

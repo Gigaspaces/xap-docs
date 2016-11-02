@@ -182,14 +182,18 @@ A running GSC tries to use the first free port that is not used out of the port 
 When there are several GSCs running on the same machine, or several servers running on the same machine, it is recommended that you set a different LRMI port range for each JVM.  Having 100 as a port range for the GSCs supports a large number of clients (a few thousand).
 {{% /tip %}}
 
-#### Client LRMI Connection Pool and Server LRMI Connection Thread Pool
+#  LRMI Connection Thread Pool
 
-{{%align "center"%}}
-![image](/attachment_files/sbp/lrmi_archi2.jpg)
-{{%/align%}}
-
+{{%section%}}
+{{%column width="75%" %}}
 The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
+ 
+{{%/column%}}
 
+{{%column width="20%" %}}
+{{%popup "/attachment_files/lrmi-new.png"%}}
+{{%/column%}}
+{{%/section%}}
 
 ## Client LRMI Connection Pool
 The client LRMI connection pool is maintained per server component - i.e. by each space partition. For each space partition a client maintains a dedicated connection pool shared between all client threads accessing a specific partition. When having multiple partitions (N) hosted within the same GSC, a client may open maximum of `N * com.gs.transport_protocol.lrmi.max-conn-pool` connections against the GSC JVM process.

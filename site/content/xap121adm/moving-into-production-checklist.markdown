@@ -182,14 +182,18 @@ A running GSC tries to use the first free port that is not used out of the port 
 When there are several GSCs running on the same machine, or several servers running on the same machine, it is recommended that you set a different LRMI port range for each JVM.  Having 100 as a port range for the GSCs supports a large number of clients (a few thousand).
 {{% /tip %}}
 
-#### Client LRMI Connection Pool and Server LRMI Connection Thread Pool
+#  LRMI Connection Thread Pool
 
-{{%align "center"%}}
-![image](/attachment_files/sbp/lrmi_archi2.jpg)
-{{%/align%}}
-
+{{%section%}}
+{{%column width="75%" %}}
 The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.
+ 
+{{%/column%}}
 
+{{%column width="20%" %}}
+{{%popup "/attachment_files/lrmi-new.png"%}}
+{{%/column%}}
+{{%/section%}}
 
 ## Client LRMI Connection Pool
 The client LRMI connection pool is maintained per server component - i.e. by each space partition. For each space partition a client maintains a dedicated connection pool shared between all client threads accessing a specific partition. When having multiple partitions (N) hosted within the same GSC, a client may open maximum of `N * com.gs.transport_protocol.lrmi.max-conn-pool` connections against the GSC JVM process.
@@ -244,7 +248,7 @@ export XAP_LOOKUP_GROUPS=Group1,Group2
 When running multiple systems on the same network infrastructure, you should isolate these by having a dedicated set of lookup services (and  GSC/GSM) for each system. Each should have different locators/groups settings.
 
 
-## Space URL Examples
+# Space URL Examples
 See below for examples of [Space URL]({{%currentjavaurl%}}/the-space-configuration.html) you should be familiar with:
 
 - `jini://localhost/*/space` - this space URL means that the client is trying to discover the lookup service on the localhost, together with discovering it on the network via multicast (enabled by default).
@@ -258,7 +262,7 @@ See below for examples of [Space URL]({{%currentjavaurl%}}/the-space-configurati
 - `/./space?groups=A,B` - this space URL means that the started space registers itself with group A and B. To access such a space via a remote client, it needs to use the following space URL: `jini://*/*/space?groups=A` or `jini://*/*/space?groups=B`.
 
 
-## Space Configuration with Unit Tests
+# Space Configuration with Unit Tests
 
 When running unit tests, you might want these set up so that no remote client can access the space they are running. This includes regular clients or the GS-UI.
 
@@ -284,6 +288,7 @@ Here is a simple configuration you should place within your pu.xml to disable th
 ```
 
 # The Runtime Environment - GSA, LUS, GSM and GSCs
+
 In a dynamic environment where you want to start [GSCs](/product_overview/service-grid.html#gsc) and [GSM](/product_overview/service-grid.html#gsm) remotely, manually or dynamically, the [GSA](/product_overview/service-grid.html#gsa) is the only component you should have running on the machine that is hosting the [XAP runtime environment](./the-runtime-environment.html). This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.
 
 You should plan the initial number of GSCs and GSMs based on the application memory footprint, and the amount of processing you might need. The most basic deployment should include 2 GSMs (running on different machines), 2 Lookup services (running on different machines), and 2 GSCs (running on each machine). These host your Data-Grid or any other application components (services, web servers, Mirror) that you deploy.
