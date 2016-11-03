@@ -12,11 +12,6 @@ weight: 200
 
 [RocksDB](http://rocksdb.org/) is an embeddable persistent key-value store for fast storage on flash devices. It was developed at Facebook and is now a popular [open source project](https://github.com/facebook/rocksdb).   XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on RocksDB, which is the recommended choice for hybrid RAM-SSD clusters.
 
-{{%refer%}}
-If you're not familiar with MemoryXtend, make sure you read its [documentation](./memoryxtend.html) before proceeding. We also recommend reading the [RocksDB documentation](https://github.com/facebook/rocksdb/wiki).
-{{%/refer%}}
-
- 
 
 
 # Prerequisites
@@ -26,12 +21,14 @@ If you're not familiar with MemoryXtend, make sure you read its [documentation](
 - Currently supports Linux only (Windows support will be available in the future)
 - Read/Write permissions to mounted devices/partitions
 - The number of mounted devices/partitions should match the number of space instances that will be deployed on the machine.
-  - For creating partitions you can use `fdisk` like explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
+
+{{%refer%}}
+For creating partitions you can use `fdisk` explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
+{{%/refer%}}
 
 
 
-
-<br>
+ 
 
 # Configuration
 

@@ -11,11 +11,7 @@ weight: 400
 
 [MapDB](http://www.mapdb.org/) is an embedded database engine which provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory. GigaSpaces XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on MapDB, which can be used for reducing the JVM heap size and garbage collection, since the entries are stored off-heap.
 
-
-{{%refer%}}
-If you're not familiar with MemoryXtend, make sure you read its [documentation](./memoryxtend.html) before proceeding.
-{{%/refer%}}
-
+ 
  
 
 # Prerequisites
