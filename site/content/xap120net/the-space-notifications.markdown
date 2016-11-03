@@ -112,7 +112,8 @@ EventSessionConfig eventSessionConfig = new EventSessionConfig();
 eventSessionConfig.AutoRenew = true;
 ```
 
-{{%warning%}} Prior to XAP 9.7, certain parameters could be used to dictate the timing and behavior of the auto renewal process. These have been deprecated. Please use the method described above for auto renewal behavior.
+{{%warning "Deprecated since 9.7" %}}
+Certain parameters could be used to dictate the timing and behavior of the auto renewal process. These have been deprecated. Please use the method described above for auto renewal behavior.
 
 ```csharp
 //Auto renewal is active for 1 minute

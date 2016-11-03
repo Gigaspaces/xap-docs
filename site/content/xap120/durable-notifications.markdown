@@ -61,8 +61,7 @@ In order to receive a notification upon disconnection, use the following:
 setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener)
 ```
 
-{{%warning%}}
-The following has been deprecated since XAP 9.7. 
+{{%warning "Deprecated since XAP 9.7"%}}
 ```java
 setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener, long renewExpiration, long renewDuration, long renewRTT)
 ```
