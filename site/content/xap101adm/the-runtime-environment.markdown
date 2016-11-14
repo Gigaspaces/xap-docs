@@ -14,7 +14,7 @@ A processing unit is deployed onto the XAP runtime environment, which is called 
 
 # Starting a Service Grid
 
-To start a Service Grid on a machine, launch the `gs-agent` utility located in the `<GSHOME>/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, `gsa.[process type] n` will start `n` instances of the specified `process type`. Use the `global` keyword (e.g. `gsa.global.[process type] n`) to specify that the agent should coordinate with other running agents the hosting and management of that service. For example, to start two GSCs, two global GSMs and two global LUSs, use the following command:
+To start a Service Grid on a machine, launch the `gs-agent` utility located in the `<XAPHOME>/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, `gsa.[process type] n` will start `n` instances of the specified `process type`. Use the `global` keyword (e.g. `gsa.global.[process type] n`) to specify that the agent should coordinate with other running agents the hosting and management of that service. For example, to start two GSCs, two global GSMs and two global LUSs, use the following command:
 
 
 ```xml
@@ -90,7 +90,7 @@ call gs-agent.bat
 
 # Customizing GSA Components
 
-GSA manages different process types. Each process type is defined within the `<GSHOME>\config\gsa` directory in an xml file that identifies the process type by its name.
+GSA manages different process types. Each process type is defined within the `<XAPHOME>\config\gsa` directory in an xml file that identifies the process type by its name.
 
 {{% tip %}}You can change the default location of the GSA configuration files using the `com.gigaspaces.grid.gsa.config-directory` system property.
 {{% /tip %}}
@@ -143,7 +143,7 @@ In addition, within the `script` tag, you can add the following tags:
 
 In some scenarios you'll need to have several 'flavours' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.
 
-For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a zone called *Small*, and 1 'large' GSC (1024MB) in a zone called *Large*. To achieve this, we'll duplicate the default `gsc.xml` (which resides in `<GSHOME>/config/gsa`) into `gsc_small.xml` and `gsc_large.xml`, and modify them to include an `environment` tag which sets `GSC_JAVA_OPTIONS` to the required settings:
+For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a zone called *Small*, and 1 'large' GSC (1024MB) in a zone called *Large*. To achieve this, we'll duplicate the default `gsc.xml` (which resides in `<XAPHOME>/config/gsa`) into `gsc_small.xml` and `gsc_large.xml`, and modify them to include an `environment` tag which sets `GSC_JAVA_OPTIONS` to the required settings:
 
 {{%tabs%}}
 {{%tab "  gsc_small.xml "%}}

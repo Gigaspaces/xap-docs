@@ -13,8 +13,8 @@ weight: 400
 |:--------------|:------------|:--------------|
 | `com.gs.home` | GigaSpaces home directory. {{<wbr>}}Not required, if not set explicitly, it is resolved | `JSHOMEDIR` |
 | `com.gs.grid.secured` | Security property indicating whether the GSM and GSC should be loaded in a secured mode.  | false (non-secured) |
-| `com.gs.deploy` | The location of the deploy directory of the GSM. | `GSHOME/deploy` |
-| `com.gs.work` | The location of the work directory of the GSM and GSC. | `GSHOME/work` |
+| `com.gs.deploy` | The location of the deploy directory of the GSM. | `XAPHOME/deploy` |
+| `com.gs.work` | The location of the work directory of the GSM and GSC. | `XAPHOME/work` |
 | `com.gs.active_election.timeout` | Defines the sleep timeout between iterations in the Active election algorithm | 1000 msec |
 | `com.gs.replication.disable-duplicate-filtering` | Disables the duplication filtering mechanism used to avoid double processing of packets after recovery. | false |
 | `com.gs.cluster.cache-loader.external-data-source` | Boolean property. Must be set to `true` when working with external data source | `false` |

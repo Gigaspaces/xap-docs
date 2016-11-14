@@ -15,7 +15,7 @@ A processing unit is deployed onto the XAP runtime environment, which is called 
 
 # Starting a Service Grid
 
-In order to start the GSA, the `<GSHOME>/bin/gs-agent.(sh/bat)` can be used.
+In order to start the GSA, the `<XAPHOME>/bin/gs-agent.(sh/bat)` can be used.
 
 The preferable (and easiest) way to start a Service Grid is the [Grid Service Agent](/product_overview/service-grid.html#gsa). However, each of the components can be started manually.
 
@@ -71,7 +71,7 @@ You can use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to
 
 # Customizing GSA Components
 
-GSA manages different process types. Each process type is defined within the `<GSHOME>\config\gsa` directory in an xml file that identifies the process type by its name.
+GSA manages different process types. Each process type is defined within the `<XAPHOME>\config\gsa` directory in an xml file that identifies the process type by its name.
 
 {{% tip %}}You can change the default location of the GSA configuration files using the `com.gigaspaces.grid.gsa.config-directory` system property.
 {{% /tip %}}

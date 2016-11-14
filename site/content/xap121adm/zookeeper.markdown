@@ -19,7 +19,7 @@ XAP uses [ZooKeeper](http://zookeeper.apache.org/) for storing the id of the pri
 
 # Single instance
 
-To start a ZooKeeper instance on a machine, launch the `gs-agent` script located in the `<GSHOME>/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible for starting and managing the other Service Grid components (GSC, GSM, etc.). For example, to start two GSCs, two global GSMs and two global LUSs and a ZooKeeper, use the following command:
+To start a ZooKeeper instance on a machine, launch the `gs-agent` script located in the `<XAPHOME>/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible for starting and managing the other Service Grid components (GSC, GSM, etc.). For example, to start two GSCs, two global GSMs and two global LUSs and a ZooKeeper, use the following command:
 
 
 ```xml

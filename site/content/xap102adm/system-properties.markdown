@@ -28,11 +28,11 @@ weight: 400
 
 | Property name | Description | Default   |
 |-----|------|------|
-| com.gs.home | XAP home directory. Not required, if not set explicitly, it is resolved | GSHOME |
-| com.gs.deploy | The location of the deploy directory of the GSM. | GSHOME/deploy |
-| com.gs.work | The location of the work directory of the GSM and GSC. | GSHOME/work |
-|com.gs.pu-common|The location of common classes used across multiple processing units. The libraries located within this folder loaded into each PU instance classloader (and not into the system classloader as with the `com.gigaspaces.lib.platform.ext`.|GSHOME\lib\optional\pu-common  |
-|com.gigaspaces.lib.platform.ext|PUs shared classloader libraries folder. PU jars located within this folder loaded once into the JVM system classloader and shared between all the PU instances classloaders within the GSC. In most cases this is a better option than the com.gs.pu-common for JDBC drivers and other 3rd party libraries. This is useful option when you want multiple processing units to share the same 3rd party jar files and do not want to repackage the processing unit jar whenever one of these 3rd party jars changes.|GSHOME\lib\platform\ext|
+| com.gs.home | XAP home directory. Not required, if not set explicitly, it is resolved | XAPHOME |
+| com.gs.deploy | The location of the deploy directory of the GSM. | XAPHOME/deploy |
+| com.gs.work | The location of the work directory of the GSM and GSC. | XAPHOME/work |
+|com.gs.pu-common|The location of common classes used across multiple processing units. The libraries located within this folder loaded into each PU instance classloader (and not into the system classloader as with the `com.gigaspaces.lib.platform.ext`.|XAPHOME\lib\optional\pu-common  |
+|com.gigaspaces.lib.platform.ext|PUs shared classloader libraries folder. PU jars located within this folder loaded once into the JVM system classloader and shared between all the PU instances classloaders within the GSC. In most cases this is a better option than the com.gs.pu-common for JDBC drivers and other 3rd party libraries. This is useful option when you want multiple processing units to share the same 3rd party jar files and do not want to repackage the processing unit jar whenever one of these 3rd party jars changes.|XAPHOME\lib\platform\ext|
 
 
 
@@ -205,7 +205,7 @@ Refer to [Space Filters]({{%currentjavaurl%}}/the-space-filters.html)
 | com.gs.logging.disabled | If **true**, the default **gs_logging.properties** file will not be loaded and none of the GS log handlers will be set to the **LogManager**. | **false** |
 | com.gs.logging.debug | To troubleshoot and detect which logging properties file was loaded and from which location, set the following system property to **true**. This property already exists in the scripts (for convenience) and by default is set to false.|**false**|
 | line.separator | The GS logging formatter Line separator string.&nbsp; This is the value of the **line.separator** property at the moment that the **SimpleFormatter** was created. | |
-|java.util.logging.config.file | It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces Services. You may control this setting via the GS_LOGGING_CONFIG_FILE_PROP environment variable.| GSHOME\config\gs_logging.properties|
+|java.util.logging.config.file | It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces Services. You may control this setting via the GS_LOGGING_CONFIG_FILE_PROP environment variable.| XAPHOME\config\gs_logging.properties|
 | Logging Categories | Refer to [Logging Categories](./logging.html#logging-categories) | |
 
 
