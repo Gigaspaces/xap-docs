@@ -47,7 +47,7 @@ In addition, there is a level **OFF** that can be used to turn off logging, and 
 
 # Logging Categories
 
-The GigaSpaces logging divided into the following categories:
+The following categories are available:
 
 - Client
 - Communication Protocol
@@ -111,7 +111,7 @@ org.openspaces.pu.container.jee.context.ProcessingUnitWebApplicationContext.leve
 org.springframework.level = WARNING
 ```
 
-OpenSpaces wraps the GigaSpaces core product with Spring which enables Spring configuration and Spring life cycle to GigaSpaces applications. Some additional info about OpenSpaces is [here](/faq/openspaces-faq.html).
+OpenSpaces wraps the   core product with Spring which enables Spring configuration and Spring life cycle to XAP applications.  
 
 ### Spring
 

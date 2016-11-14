@@ -217,7 +217,7 @@ com.gigaspaces.cpp.proxy.level = INFO
 org.openspaces.level = INFO
 ```
 
-OpenSpaces wraps the GigaSpaces core product with Spring which enables Spring configuration and Spring life cycle to GigaSpaces applications. Some additional info about OpenSpaces is [here](/faq/openspaces-faq.html).
+OpenSpaces wraps the   core product with Spring which enables Spring configuration and Spring life cycle to XAP applications.  
 
 
 ## PU
