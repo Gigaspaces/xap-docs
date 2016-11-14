@@ -26,6 +26,7 @@ Early Access builds are provided as-is and should not be used in production. If 
 |----------|---------|-----------|
 |[XAP-13013](https://xap-issues.atlassian.net/browse/XAP-13013) | Bug     | Duplicated class 'SpaceCacheConfig' in 12.0 |
 |[XAP-12279](https://xap-issues.atlassian.net/browse/XAP-12979) | Bug     | Can't override pu.properties with external file while deploying war when specifying ContextLoaderListener in web.xml |
+
 ## 12.1 M2 (Oct-27-2016)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m2/gigaspaces-xap-open-12.1.0-m2-b16702.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m2/gigaspaces-xap-premium-12.1.0-m2-b16702.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m2/gigaspaces-xap-enterprise-12.1.0-m2-b16702.zip)\] 
