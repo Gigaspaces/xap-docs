@@ -452,7 +452,7 @@ Here is a schematic flow of how two partitions (each a primary-backup pair) asyn
 
 ## Log Messages
 
-The space persistency logging level can be modified as part of the `<XAP Root>\config\gs_logging.properties` file. By default, it is set to `java.util.logging.Level.INFO`:
+The space persistency logging level can be modified as part of the `<XAP Root>\config\log\xap_logging.properties` file. By default, it is set to `java.util.logging.Level.INFO`:
 
 
 ```java

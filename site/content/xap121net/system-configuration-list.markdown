@@ -42,7 +42,7 @@ Below common platform configuration properties you should set when you setup you
 |XapNet.Config.Path| Location of Configuration folder| $(XapNet.Path)\Config|
 |XapNet.Runtime.Path| XAP Runtime files Location | $(XapNet.Install.Path)\Runtime|
 |XapNet.Runtime.JavaHome| JDK home folder|$(XapNet.Runtime.Path)\Java|
-|XapNet.Logs.ConfigurationFile| logging config folder|$(XapNet.Config.Path)\Logs\gs_logging.properties|
+|XapNet.Logs.ConfigurationFile| logging config folder|$(XapNet.Config.Path)\Logs\xap_logging.properties|
 |XapNet.Logs.Path| log files folder|$(XapNet.Path)\Logs|
 |XapNet.Logs.FileName| logging file name. This include log file format| {date,yyyy-MM-dd~HH.mm}-gigaspaces-{service}-{host}-{pid}.log|
 |XapNet.HostName| Machine Name or IP| %COMPUTERNAME%|

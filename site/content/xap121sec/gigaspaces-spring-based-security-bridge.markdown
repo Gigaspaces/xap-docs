@@ -55,7 +55,7 @@ This is all the configuration required to enable the use of the Spring-based sec
 
 # Logging
 
-Any configurations that are applied can be seen by setting the logging level to CONFIG (see gs_logging.properties):
+Any configurations that are applied can be seen by setting the logging level to CONFIG (see xap_logging.properties):
 
 
 ```java

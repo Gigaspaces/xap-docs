@@ -42,7 +42,7 @@ Which translates to: **Date and time* printed down to the millisecond, **context
 
 #### Customized format
 
-If you wish to customize the format, change the default setting the in the logging configuration file (`<GigaSpaces>/config/gs_logging.properties`).
+If you wish to customize the format, change the default setting the in the logging configuration file (`<GigaSpaces>/config/log/xap_logging.properties`).
 For example,
 
 

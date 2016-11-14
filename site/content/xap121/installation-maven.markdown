@@ -186,7 +186,7 @@ mvn compile xap:run -Dproperties="embed://prop1=value1" -Dmodule=feeder
 If you need to override the configuration of the space or cluster when running the processing units through the XAP plugin and you want to do it by replacing the original configuration files, you can do it by placing the required file in the project's root directory.
 
 Examples:
-To change the logging configuration place the new _gs_logging.properties_ file in the _config_ directory (you may need to create this directory) under the project's root directory.
+To change the logging configuration place the new _xap_logging.properties_ file in the _config/log_ directory (you may need to create this directory) under the project's root directory.
 
 To change the security permissions place the new _policy.all_ file in the _policy_ directory (you may need to create this directory) under the project's root directory.
 

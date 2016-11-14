@@ -120,7 +120,7 @@ Here is a schematic flow of how two partitions (each a primary-backup pair) asyn
 
 ## Log Messages
 
-The space persistency logging level can be modified as part of the `<GigaSpaces Root>\config\gs_logging.properties` file. By default, it is set to `INFO`:
+The space persistency logging level can be modified as part of the `<XAP-Root>\Net vX.x\Config\Log\xap_logging.properties` file. By default, it is set to `INFO`:
 
 
 ```java

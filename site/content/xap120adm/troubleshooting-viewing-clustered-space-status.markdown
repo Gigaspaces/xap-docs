@@ -18,7 +18,7 @@ The `Monitor` monitors the status of live spaces and reports disconnections, whi
 See the [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html) for details how to tune the Monitor and Detector behavior.
 {{%/note%}}
 
-The `com.gigaspaces.client.cluster.liveness` logger is set by default (in `gs_logging.properties`) to `INFO`:
+The `com.gigaspaces.client.cluster.liveness` logger is set by default (in `xap_logging.properties`) to `INFO`:
 
 
 ```bash

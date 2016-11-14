@@ -30,7 +30,7 @@ When a secured component is started, it looks for the security configuration pro
 
 # Configuration
 
-Any configurations that are applied can be seen by setting the logging level to CONFIG (see `gs_logging.properties`):
+Any configurations that are applied can be seen by setting the logging level to CONFIG (see `xap_logging.properties`):
 
 
 ```java

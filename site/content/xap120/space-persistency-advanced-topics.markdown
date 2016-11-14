@@ -30,7 +30,7 @@ Here are the Space Persistency Properties:
 
 # Troubleshooting
 
-To enable Space Persistency logging, edit the `<XAP Root>\config\gs_logging.properties` file, and set the persistent level to `CONFIG` or `FINER`.
+To enable Space Persistency logging, edit the `<XAP Root>\config\log\xap_logging.properties` file, and set the persistent level to `CONFIG` or `FINER`.
 
 - `CONFIG` messages are intended to provide a variety of static configuration information, and to assist in debugging problems that may be associated with particular configurations.
 

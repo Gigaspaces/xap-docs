@@ -16,11 +16,11 @@ Currently auditing of operations is limited to Space operations.
 
 # Configuration
 
-The configurations should be placed in the logging configuration file `<XAP root>/config/gs_logging.properties`.
+The configurations should be placed in the logging configuration file `<XAP root>/config/log/xap_logging.properties`.
 
 
 ```bash
-# gs_logging.properties
+# xap_logging.properties
 
 com.gigaspaces.security.audit.enabled = true
 com.gigaspaces.security.audit.level = SEVERE
@@ -46,7 +46,7 @@ The `AuditHandler` is a declarable extension to the default GigaSpaces logging `
 
 
 ```bash
-# gs_logging.properties
+# xap_logging.properties
 
 ...
 com.gigaspaces.security.audit.handler = com.gigaspaces.security.audit.AuditHandler

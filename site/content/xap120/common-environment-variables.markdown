@@ -19,7 +19,7 @@ The following list describes commonly used variables which are defined in this s
 |  XAP_LOOKUP_LOCATORS  | Lookup Service Locators used for unicast discovery   ||
 |  XAP_NIC_ADDRESS      | The network interface card which will be used by XAP | Automatically set to the host name |
 |  XAP_SECURITY_POLICY  | The default policy file.|XAP_HOME/policy/policy.all  |
-|  XAP_LOGS_CONFIG_FILE | The location of XAP logging configuration            | XAP_HOME/config/gs_logging.properties |
+|  XAP_LOGS_CONFIG_FILE | The location of XAP logging configuration            | XAP_HOME/config/log/xap_logging.properties |
 |  XAP_GSC_OPTIONS      | Java options for the Grid Service Container (GSC)    ||
 |  XAP_GSM_OPTIONS      | Java options for the Grid Service Manager (GSM)      ||
 |  XAP_GSA_OPTIONS      | Java options for the Grid Service Agent (GSA)        ||

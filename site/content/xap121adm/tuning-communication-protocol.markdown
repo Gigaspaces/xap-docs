@@ -219,9 +219,9 @@ You can monitor network and usage activity during runtime to track which client 
 
 You can troubleshoot the space activity using LRMI logging. You can turn on LRMI logging in the following ways:
 
-## Offline mode -- via gs_logging.properties
+## Offline mode -- via xap_logging.properties
 
-Step 1: Open `<XAP Root>/config/gs_logging.properties`
+Step 1: Open `<XAP Root>/config/log/xap_logging.properties`
 
 Step 2: Locate the following line:
 
@@ -238,7 +238,7 @@ Set debug logger granularity level:<br>
 - `SEVERE` -- caught exceptions by LRMI on server and client side.
 
 Step 4:
-Save and close the `gs_logging.properties` file.
+Save and close the `xap_logging.properties` file.
 
 Step 5:
 Start a space by deploying a data-grid PU or a custom PU with a space. You may also start a space via `<XAP Root>/bin/space-instance`.

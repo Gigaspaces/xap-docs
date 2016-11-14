@@ -280,7 +280,7 @@ When a processing unit instance is determined as unavailable, the GSM which mana
 
 #### Troubleshooting the Liveness Detection Mechanism
 
-For troubleshooting purposes, you can lower the logging threshold of the relevant log category by modifying the log configuration file located under `<XAP root>/config/gs_logging.properties` on the GSM. The default definition is as follows:
+For troubleshooting purposes, you can lower the logging threshold of the relevant log category by modifying the log configuration file located under `<XAP root>/config/log/xap_logging.properties` on the GSM. The default definition is as follows:
 
 `org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level` = INFO
 You can change it to one of the below thresholds for more information:
