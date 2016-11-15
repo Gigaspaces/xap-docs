@@ -305,6 +305,7 @@ In general, the total amount of GSCs you are running across the machines that ho
 A good number for the amount of GSCs a machine should host would be **half of the amount** of total CPU cores, each having no more than a 10G maximum heap size.
 {{% /tip %}}
 
+
 ## Configuring the Runtime Environment
 
 JVM parameters (system properties, heap settings etc.) that are shared between all components are best set using the `EXT_JAVA_OPTIONS` environment variable. However, starting from 7.1.1, specific GSA JVM parameters can be easily passed using `XAP_GSA_OPTIONS` that will be appended to `EXT_JAVA_OPTIONS`. If `XAP_GSA_OPTIONS` is not defined, the system will behave as in 7.1.0. As a good practice, one can add all components' environment variables ( `XAP_GSA_OPTIONS`, `XAP_GSM_OPTIONS`, `XAP_GSC_OPTIONS`, `XAP_LUS_OPTIONS`) within the GSA script, or in a wrapper script and the values will be passed to corresponding components.
@@ -340,10 +341,13 @@ export XAP_LUS_OPTIONS='-Xmx1024m'
 @rem call gs-agent.bat
 call gs-agent.bat
 ```
-
 {{% /tab %}}
-
 {{% /tabs %}}
+
+{{%note "LUS Configuration"%}}
+The above LUS configuration will serve up to 50 partitions running on 100 GSCs.With larger environments increasing the heap size and GC tuning is required.
+{{%/note%}}
+
 
 {{%anchor RunningMultipleGroups %}}
 

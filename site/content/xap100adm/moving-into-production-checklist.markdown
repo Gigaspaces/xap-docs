@@ -342,6 +342,12 @@ call gs-agent.bat
 
 {{% /tabs %}}
 
+
+{{%note "LUS Configuration"%}}
+The above LUS configuration will serve up to 50 partitions running on 100 GSCs.With larger environments increasing the heap size and GC tuning is required.
+{{%/note%}}
+
+
 {{%anchor RunningMultipleGroups %}}
 
 ## Running Multiple Groups

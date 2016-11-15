@@ -17,30 +17,30 @@ A processing unit is deployed onto the XAP runtime environment, which is called 
 To start a Service Grid on a machine, launch the `gs-agent` utility located in the `<XAPHOME>/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, `gsa.[process type] n` will start `n` instances of the specified `process type`. Use the `global` keyword (e.g. `gsa.global.[process type] n`) to specify that the agent should coordinate with other running agents the hosting and management of that service. For example, to start two GSCs, two global GSMs and two global LUSs, use the following command:
 
 
-```xml
+```bash
 gs-agent gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2
 ```
 
 In fact, since this configuration is widely used, it is also default configuration - running `gs-agent` without any arguments would produce the same effect. If you simply want more GSCs (say, 3 instead of 2) and keep the other defaults, simply run:
 
 
-```xml
+```bash
 gs-agent gsa.gsc 3
 ```
 
-### Lookup Service Considerations
+# Lookup Service Considerations
 
-When starting a [Lookup Service](/product_overview/service-grid.html#lus) and other services in unicast mode (not multicast), it means that specific machines will be the ones that will run the [Lookup Service](/product_overview/service-grid.html#lus). This means that on the machines running the LUS, the following command will be used (assuming other defaults are used for GSM and GSC):
+When starting a [Lookup Service](/product_overview/service-grid.html#lus) and other services in unicast mode (not multicast), it means that specific machines will be the ones that will run the Lookup Service. This means that on the machines running the LUS, the following command will be used (assuming other defaults are used for GSM and GSC):
 
 
-```xml
+```bash
 gs-agent gsa.global.lus 0 gsa.lus 1
 ```
 
 And on machines that will not run the LUS, the following command should be used:
 
 
-```xml
+```bash
 gs-agent gsa.global.lus 0
 ```
 
@@ -56,14 +56,16 @@ The system-wide configuration specifies settings which all components share, e.g
 
 The component-specific configuration specifies settings per component type, e.g. the GSC memory limit is greater than the GSM and LUS. These are set using one or more of the environment variables: `GSA_JAVA_OPTIONS`, `GSC_JAVA_OPTIONS`, `GSM_JAVA_OPTIONS`, `LUS_JAVA_OPTIONS`.
 
-{{%info%}}The component-specific configuration override the system-wide configuration. {{%/info%}}
+{{%note%}}
+The component-specific configuration override the system-wide configuration. 
+{{%/note%}}
 
 For example:
 
 {{% section %}}
 {{% column width="50%" %}}
 
-```xml
+```bash
 Linux
 export GSA_JAVA_OPTIONS=-Xmx256m
 export GSC_JAVA_OPTIONS=-Xmx2048m
@@ -76,7 +78,7 @@ export LUS_JAVA_OPTIONS=-Xmx1024m
 
 {{% column width="45%" %}}
 
-```xml
+```bash
 Windows
 set GSA_JAVA_OPTIONS=-Xmx256m
 set GSC_JAVA_OPTIONS=-Xmx2048m
@@ -92,8 +94,9 @@ call gs-agent.bat
 
 GSA manages different process types. Each process type is defined within the `<XAPHOME>\config\gsa` directory in an xml file that identifies the process type by its name.
 
-{{% tip %}}You can change the default location of the GSA configuration files using the `com.gigaspaces.grid.gsa.config-directory` system property.
-{{% /tip %}}
+{{% note %}}
+You can change the default location of the GSA configuration files using the `com.gigaspaces.grid.gsa.config-directory` system property.
+{{% /note %}}
 
 The following are the process types that come out of the box:
 
@@ -191,8 +194,10 @@ Now, to start the agent, we'll use the following command:
 gs-agent gsa.gsc 0 gsa.gsc_small 2 gsa.gsc_large 1
 ```
 
-{{%info%}}
+{{%note%}}
 Note that we're setting `gsa.gsc 0` to avoid loading the default `gsc` component.
-{{%/info%}}
+{{%/note%}}
+
+ 
 
 

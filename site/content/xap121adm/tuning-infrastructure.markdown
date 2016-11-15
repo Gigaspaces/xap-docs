@@ -32,13 +32,13 @@ To improve performance and stability, you must set the limit of processes for th
 ulimit -u 32000
 ```
 
-{{% note %}}
+{{% info %}}
 Before deciding about the proper values of the file descriptors, a further testing and monitoring is required on the actual environment. 8K,16K or 32K is used just an example.
-{{%/note%}}
+{{%/info%}}
 
-{{% note %}}
+{{% info %}}
 Verify that you set the ulimit using the -n option e.g. ulimit -n 8192, rather than ulimit 8192. ulimit defaults to ulimit -f. If **no parameter** is set, it sets the maximum file size in 512k blocks, which might cause a fatal process crash
-{{% /note %}}
+{{% /info %}}
 
 ### How do I configure the File Descriptors on Linux?
 
@@ -61,9 +61,9 @@ It should report 8192.
 
 To change the default value, modify the `/etc/security/limits.conf` file.
 
-{{% note %}}
+{{% info %}}
 Modify the `ulimit` value when having many concurrent users accessing the space.
-{{% /note %}}
+{{% /info %}}
 
 ## Windows
 
@@ -94,10 +94,10 @@ Should be changed in order to secure fast fail-over in case of network failure (
 echo 1  > /proc/sys/net/ipv4/tcp_keepalive_time
 ```
 
-{{% note %}}
+{{% info %}}
 Default value: 7200 seconds (2 hours){{<wbr>}}
 Recommended value: 1 seconds
-{{%/note%}}
+{{%/info%}}
 
 ### TCP_KEEPALIVE_INTERVAL
 
@@ -109,10 +109,10 @@ Recommended value: 1 seconds
 echo 1 > /proc/sys/net/ipv4/tcp_keepalive_intvl
 ```
 
-{{% note %}}
+{{% info %}}
 Default value: 75 seconds{{<wbr>}}
 Recommended value: 1 seconds
-{{%/note%}}
+{{%/info%}}
 
 ### TCP_KEEPALIVE_PROBES
 
@@ -140,10 +140,10 @@ tcp_keepalive_interval is Solaris equivalent to the Linux TCP_KEEPALIVE_TIME set
 echo 3000 > /proc/sys/net/core/netdev_max_backlog
 ```
 
-{{% note %}}
+{{% info %}}
 Default value: 300{{<wbr>}}
 Recommended value: 3000
-{{%/note%}}
+{{%/info%}}
 
 **Description**: Determines the maximum number of pending connection.
 Should be changed when a high rate of incoming connection requests result in connection failures.
@@ -154,11 +154,11 @@ Should be changed when a high rate of incoming connection requests result in con
 echo 3000 > /proc/sys/net/core/somaxconn
 ```
 
-{{% note %}}
+{{% info %}}
 Default value: 128 {{<wbr>}}
 Recommended value: 3000{{<wbr>}}
 See also: [http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html](http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html)
-{{% /note %}}
+{{% /info %}}
 
 ## Windows
 
