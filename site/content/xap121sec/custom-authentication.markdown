@@ -301,7 +301,7 @@ Additional custom properties can be added to facilitate custom configuration for
 For example:
 
 
-```java
+```bash
 com.gs.security.security-manager.class = com.demo.CustomSecurityManager
 custom-security.server-address = myServer
 ```
@@ -320,9 +320,9 @@ For a full list of command usage, please refer to: [Command Line Interface (CLI)
 Run the `gs` script, and then use the `login` command:
 
 
-```java
+```bash
 gs(.sh/bat)
-gs> login -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties -user-details-properties username=user1;password=123456;custom-security.server-address=myServer
+gs> login -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties  username=user1;password=123456;custom-security.server-address=myServer
 gs> ...
 ```
 
@@ -330,18 +330,22 @@ gs> ...
 
 The "Custom Login" option can be accessed using the drop-down menu of the "Security" menu.
 
+{{%align center%}}
 ![customlogin-option.png](/attachment_files/customlogin-option.png)
+{{%/align%}}
 
 The "Custom Login" dialog allows to input the class name of the `CredentialsProvider` implementation and the required properties.
 The implementation class can be placed in a JAR under `Gigaspaces\lib\platform\ext` or anywhere in the classpath of the UI.
 
+{{%align center%}}
 ![customlogin-properties-new.png](/attachment_files/customlogin-properties-new.png)
+{{%/align%}}
 
 {{% note %}}
 If you only have one provider, it might be convenient to set it prior to launching the UI. This will automatically set it as the "user details provider class".
 {{%/note%}}
 
 
-```java
+```bash
 gs-ui(.sh/.bat) -user-details-provider com.demo.CustomCredentialsProvider
 ```

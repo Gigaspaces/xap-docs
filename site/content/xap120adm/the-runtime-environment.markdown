@@ -56,7 +56,9 @@ The system-wide configuration specifies settings which all components share, e.g
 
 The component-specific configuration specifies settings per component type, e.g. the GSC memory limit is greater than the GSM and LUS. These are set using one or more of the environment variables: `GSA_JAVA_OPTIONS`, `GSC_JAVA_OPTIONS`, `GSM_JAVA_OPTIONS`, `LUS_JAVA_OPTIONS`.
 
-{{%info%}}The component-specific configuration override the system-wide configuration. {{%/info%}}
+{{%note%}}
+The component-specific configuration override the system-wide configuration. 
+{{%/note%}}
 
 For example:
 
@@ -92,8 +94,9 @@ call gs-agent.bat
 
 GSA manages different process types. Each process type is defined within the `<XAPHOME>\config\gsa` directory in an xml file that identifies the process type by its name.
 
-{{% tip %}}You can change the default location of the GSA configuration files using the `com.gigaspaces.grid.gsa.config-directory` system property.
-{{% /tip %}}
+{{% note %}}
+You can change the default location of the GSA configuration files using the `com.gigaspaces.grid.gsa.config-directory` system property.
+{{% /note %}}
 
 The following are the process types that come out of the box:
 
@@ -146,7 +149,7 @@ In some scenarios you'll need to have several 'flavours' of components (e.g. mul
 For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a zone called *Small*, and 1 'large' GSC (1024MB) in a zone called *Large*. To achieve this, we'll duplicate the default `gsc.xml` (which resides in `<XAPHOME>/config/gsa`) into `gsc_small.xml` and `gsc_large.xml`, and modify them to include an `environment` tag which sets `GSC_JAVA_OPTIONS` to the required settings:
 
 {{%tabs%}}
-{{%tab "  gsc_small.xml "%}}
+{{%tab "gsc_small.xml"%}}
 
 ```xml
 <process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always">
@@ -164,7 +167,7 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
 </process>
 ```
 {{% /tab %}}
-{{%tab "  gsc_large.xml "%}}
+{{%tab "gsc_large.xml"%}}
 
 ```xml
 <process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always">
@@ -191,8 +194,11 @@ Now, to start the agent, we'll use the following command:
 gs-agent gsa.gsc 0 gsa.gsc_small 2 gsa.gsc_large 1
 ```
 
-{{%info%}}
+{{%note%}}
 Note that we're setting `gsa.gsc 0` to avoid loading the default `gsc` component.
-{{%/info%}}
+{{%/note%}}
+
+
+# Garbage Collection
 
 

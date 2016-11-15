@@ -321,7 +321,7 @@ Run the `gs` script, and then use the  `login` command:
 
 ```java
 gs(.sh/bat)
-gs> login -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties -user-details-properties username=user1;password=123456;custom-security.server-address=myServer
+gs> login -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties username=user1;password=123456;custom-security.server-address=myServer
 gs> ...
 ```
 
