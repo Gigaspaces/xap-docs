@@ -82,11 +82,13 @@ The `TakeModifiers.EVICT_ONLY` and `ClearModifiers.EVICT_ONLY` should be used as
 # How LRU Eviction Works
 
 LRU eviction has 2 eviction strategies:
+**Based on the maximum amount of objects within the space** <br>
+Provides VERY deterministic behavior of the garbage collection and memory used and space responsively. With a reasonable client request rate, this provides very constant behavior without client hiccups when memory is reclaimed by the JVM. This runs by default when you have an LRU cache policy. In order to turn it off, you should have a very large number for the cache size property. This strategy checks the amount of space objects, and evicts the relevant object. One object is evicted when the maximum amount of objects is reached. This eviction routine is called when:<br>
+- Writing a new object into the space.<br>
+- A transaction is committed or rolled-back.<br>
 
-1. **Based on the maximum amount of objects within the space** - provides VERY deterministic behavior of the garbage collection and memory used and space responsively. With a reasonable client request rate, this provides very constant behavior without client hiccups when memory is reclaimed by the JVM. This runs by default when you have an LRU cache policy. In order to turn it off, you should have a very large number for the cache size property. This strategy checks the amount of space objects, and evicts the relevant object. One object is evicted when the maximum amount of objects is reached. This eviction routine is called when:
-- Writing a new object into the space.
-- A transaction is committed or rolled-back.
-2. **Based on the amount of available memory the JVM hosting the space has** - when using this strategy, you should perform some tuning to provide deterministic behavior. This strategy is turned on when the `space-config.engine.memory_usage.enabled` value is `true`. This strategy is very complicated to use when you have multiple spaces running within the same JVM.
+**Based on the amount of available memory the JVM hosting the space has** <br>
+When using this strategy, you should perform some tuning to provide deterministic behavior. This strategy is turned on when the `space-config.engine.memory_usage.enabled` value is `true`. Setting it to `primary-only` means it's enabled on the primary instance and disabled on the backup. If the backup becomes the primary it's automatically enabled. This strategy is very complicated to use when you have multiple spaces running within the same JVM.
 
 ## The Eviction Flow
 
