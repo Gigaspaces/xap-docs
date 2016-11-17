@@ -348,6 +348,17 @@ Refer to [Replication](./replication.html)
 |  com.gs.embeddedQP.enabled  | Boolean value. Used at JDBC driver. If **true**, running query processor embedded within the application. | **False** |
 |  com.gs.embeddedQP.properties  | Used at JDBC driver. Properties file location. | |
 
+
+# Garbage Collection
+
+| Property name | Description | Default   |
+|---------------|-------------|-----------|
+|  gs.start.scheduledSystemBootTime |  Time between 2 successive gc statistics check | 10000 ms|
+|  gs.rmi.loaderHandlerCleaner | if true, the loaderHandlerCleaner.clean() method is called each gs.start.scheduledSystemBootTime time   | True |
+|  gs.gc.collectionTimeThresholdWarning | When the gc takes more then this time, a warning is shown: logger.warning("Long GC collection occurred, took [" + collectionTime + "ms], breached threshold [" + gcCollectionWarning + "]");  | 60000 ms|
+
+
+
 # Misc
 
 
