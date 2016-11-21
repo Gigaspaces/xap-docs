@@ -15,6 +15,17 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M5 (Nov-21-2016)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m5/gigaspaces-xap-open-12.1.0-m5-b16705.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m5/gigaspaces-xap-premium-12.1.0-m5-b16705.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m5/gigaspaces-xap-enterprise-12.1.0-m5-b16705.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m5/GigaSpaces-XAP.NET-Premium-12.1.0.16705-M5-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m5/GigaSpaces-XAP.NET-Premium-12.1.0.16705-M5-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m5/GigaSpaces-XAP.NET-Enterprise-12.1.0.16705-M5-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m5/GigaSpaces-XAP.NET-Enterprise-12.1.0.16705-M5-x86.msi)\]
+
+#### Milestone Release Notes
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|[XAP-13045](https://xap-issues.atlassian.net/browse/XAP-13045) | Bug     | Manage weight by target - consider optimizing or naively calculate weight for range of packets |
+
 ## 12.1 M4 (Nov-13-2016)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m4/gigaspaces-xap-open-12.1.0-m4-b16704.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m4/gigaspaces-xap-premium-12.1.0-m4-b16704.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m4/gigaspaces-xap-enterprise-12.1.0-m4-b16704.zip)\] 
