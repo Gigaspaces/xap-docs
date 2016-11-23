@@ -325,6 +325,15 @@ gs(.sh/bat)
 gs> login -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties  username=user1;password=123456;custom-security.server-address=myServer
 gs> ...
 ```
+# Web Management Console and Custom Credentials
+
+Use the `-user-details-provider` and `-user-details-properties` arguments to use a custom credentials provider with the Web Management Console. `-user-details-properties` parameter is optional.
+
+Run the `gs-webui` script with these parameters:
+
+```bash
+gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address==myServer
+```
 
 # UI and Custom Credentials
 
