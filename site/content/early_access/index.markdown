@@ -15,6 +15,18 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M7 (Dec-4-2016)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m7/gigaspaces-xap-open-12.1.0-m7-b16707.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m7/gigaspaces-xap-premium-12.1.0-m7-b16707.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m7/gigaspaces-xap-enterprise-12.1.0-m7-b16707.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m7/GigaSpaces-XAP.NET-Premium-12.1.0.16707-M7-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m7/GigaSpaces-XAP.NET-Premium-12.1.0.16707-M7-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m7/GigaSpaces-XAP.NET-Enterprise-12.1.0.16707-M7-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m7/GigaSpaces-XAP.NET-Enterprise-12.1.0.16707-M7-x86.msi)\]
+
+#### Milestone Release Notes
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|[XAP-12789](https://xap-issues.atlassian.net/browse/XAP-12789) | Bug     | Instance is not deployed due to pending for termination of previous instance |
+|[XAP-13033](https://xap-issues.atlassian.net/browse/XAP-12352) | New Feature     |Support reloading space tasks code without restarting the space |
+
 ## 12.1 M6 (Nov-26-2016)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m6/gigaspaces-xap-open-12.1.0-m6-b16706.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m6/gigaspaces-xap-premium-12.1.0-m6-b16706.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m6/gigaspaces-xap-enterprise-12.1.0-m6-b16706.zip)\] 
@@ -26,6 +38,8 @@ Early Access builds are provided as-is and should not be used in production. If 
 |----------|---------|-----------|
 |[XAP-13032](https://xap-issues.atlassian.net/browse/XAP-13032) | Sub-task     | Fix circular ref error |
 |[XAP-13033](https://xap-issues.atlassian.net/browse/XAP-13033) | Sub-task     | MAdd weight notion to replication |
+
+
 
 
 ## 12.1 M5 (Nov-21-2016)
