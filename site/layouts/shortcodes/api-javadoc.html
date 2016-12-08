@@ -1,0 +1,8 @@
+{{ if in .Page.Permalink "xap97"}}{{"http://docs.gigaspaces.com/api/JavaDoc9.7"}}
+{{ else if in .Page.Permalink "xap100"}}{{"http://docs.gigaspaces.com/api/JavaDoc10.0"}}
+{{ else if in .Page.Permalink "xap101"}}{{"http://docs.gigaspaces.com/api/JavaDoc10.1"}}
+{{ else if in .Page.Permalink "xap102"}}{{"http://docs.gigaspaces.com/api/JavaDoc10.2"}}
+{{ else if in .Page.Permalink "xap110"}}{{"http://docs.gigaspaces.com/api/JavaDoc11.0"}}
+{{ else if in .Page.Permalink "xap120"}}{{"http://docs.gigaspaces.com/api/JavaDoc12.0"}}
+{{else}}{{"http://docs.gigaspaces.com/api/JavaDoc12.1"}}
+{{end}}

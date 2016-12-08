@@ -10,7 +10,7 @@ parent: the-gigaspace-interface-overview.html
 {{% ssummary %}}{{%/ssummary%}}
 
 
-XAP provides a simple space API using the [ISpaceProxy](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_ISpaceProxy.htm) interface for interacting with the space.
+XAP provides a simple space API using the [ISpaceProxy]({{%api-dotnetdoc%}}/html/T_GigaSpaces_Core_ISpaceProxy.htm) interface for interacting with the space.
 
 
 The interface includes the following main operations:
