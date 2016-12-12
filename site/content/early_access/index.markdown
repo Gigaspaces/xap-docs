@@ -15,6 +15,18 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M8 (Dec-11-2016)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m8/gigaspaces-xap-open-12.1.0-m8-b16708.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m8/gigaspaces-xap-premium-12.1.0-m8-b16708.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m8/gigaspaces-xap-enterprise-12.1.0-m8-b16708.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m8/GigaSpaces-XAP.NET-Premium-12.1.0.16708-M8-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m8/GigaSpaces-XAP.NET-Premium-12.1.0.16708-M8-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m8/GigaSpaces-XAP.NET-Enterprise-12.1.0.16708-M8-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m8/GigaSpaces-XAP.NET-Enterprise-12.1.0.16708-M8-x86.msi)\]
+
+#### Milestone Release Notes
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|[XAP-13095](https://xap-issues.atlassian.net/browse/XAP-13095) | Bug     | Pending provision requests are not always dispatched according to their natural ordering |
+|[XAP-13098](https://xap-issues.atlassian.net/browse/XAP-13098) | New Feature     |Support code change for custom change |
+
 ## 12.1 M7 (Dec-4-2016)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m7/gigaspaces-xap-open-12.1.0-m7-b16707.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m7/gigaspaces-xap-premium-12.1.0-m7-b16707.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m7/gigaspaces-xap-enterprise-12.1.0-m7-b16707.zip)\] 
