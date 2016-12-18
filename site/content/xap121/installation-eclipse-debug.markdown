@@ -12,9 +12,9 @@ weight: 200
 
 As part of your development process, you may want to run/debug your processing unit within your IDE, or create unit tests (with JUnit for example) to tests in isolation certain aspects of it.
 
-The Integrated processing unit container allows you to run a processing unit within such "embedded" environment. It's implementation class is [`org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainer`](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
+The Integrated processing unit container allows you to run a processing unit within such "embedded" environment. It's implementation class is [IntegratedProcessingUnitContainer](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
 
-The Integrated Processing Unit Container is built around Spring's `ApplicationContext` with several extensions relevant to GigaSpaces, such as [`ClusterInfo`](./obtaining-cluster-information.html).
+The Integrated Processing Unit Container is built around Spring's `ApplicationContext` with several extensions relevant to GigaSpaces, such as [ClusterInfo](./obtaining-cluster-information.html).
 
 The Integrated Processing Unit Container runs directly in your IDE using its `main()` method, or can be started by another class in your code by using the `ProcessingUnitContainerProvider` abstraction.
 

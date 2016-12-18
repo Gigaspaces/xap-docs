@@ -95,15 +95,15 @@ To implement our solution, we use Cassandra (or a local file) as the historical 
 {{% /column %}}
 {{% /section %}}
 
-- The [`processor`](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/processor) module is a XAP [processing unit](./the-processing-unit-structure-and-configuration.html) that contains the Space and performs the real-time workflow of processing the incoming tweets. The processing of data objects is performed using event containers.
+- The [processor](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/processor) module is a XAP [processing unit](./the-processing-unit-structure-and-configuration.html) that contains the Space and performs the real-time workflow of processing the incoming tweets. The processing of data objects is performed using event containers.
 
-- The [`feeder`](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/feeder) module is implemented as a processing unit thereby enabling the dynamic deployment of multiple instances of the feeder across multiple nodes, increasing the load it can manage, and thus the ability handle larger tweet streams. The processing unit contains the following feeder strategies:
-    - The [`TwitterHomeTimelineFeederTask`](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/feeder/src/main/java/org/openspaces/bigdata/feeder/TwitterHomeTimelineFeederTask.java) class, which feeds in tweets from Twitter's public timeline using [Spring Social](http://www.springsource.org/spring-social), converting them to a canonical [Space Document](./document-api.html) representation, and writes them to the Space ,which in turn invokes the relevant event processors of the processor module.
-    - The [`ListBasedFeederTask`](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/feeder/src/main/java/org/openspaces/bigdata/feeder/ListBasedFeederTask.java) class is a simulation feeder for testing purposes, which simulates tweets locally, avoiding the need to connect to the Twitter API over the Internet.
+- The [feeder](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/feeder) module is implemented as a processing unit thereby enabling the dynamic deployment of multiple instances of the feeder across multiple nodes, increasing the load it can manage, and thus the ability handle larger tweet streams. The processing unit contains the following feeder strategies:
+- The [TwitterHomeTimelineFeederTask](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/feeder/src/main/java/org/openspaces/bigdata/feeder/TwitterHomeTimelineFeederTask.java) class, which feeds in tweets from Twitter's public timeline using [Spring Social](http://www.springsource.org/spring-social), converting them to a canonical [Space Document](./document-api.html) representation, and writes them to the Space ,which in turn invokes the relevant event processors of the processor module.
+- The [ListBasedFeederTask](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/feeder/src/main/java/org/openspaces/bigdata/feeder/ListBasedFeederTask.java) class is a simulation feeder for testing purposes, which simulates tweets locally, avoiding the need to connect to the Twitter API over the Internet.
 
-- Optionally, the [`common`](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/common) module for including items that are shared between the feeder and the processor modules (e.g. common interfaces, shared data model, etc.).
+- Optionally, the [common](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/common) module for including items that are shared between the feeder and the processor modules (e.g. common interfaces, shared data model, etc.).
 
-- The [`bigDataApp`](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/bigDataApp) directory contains the recipes and other scripts required to automatically deploy, monitor and manage the entire application together with the [Cassandra](http://cassandra.apache.org/) back-end using [Cloudify](http://getcloudify.org).
+- The [bigDataApp](https://github.com/CloudifySource/cloudify-recipes/tree/master/apps/streaming-bigdata/bigDataApp) directory contains the recipes and other scripts required to automatically deploy, monitor and manage the entire application together with the [Cassandra](http://cassandra.apache.org/) back-end using [Cloudify](http://getcloudify.org).
 
 
 
@@ -224,7 +224,7 @@ Since the application is a Maven project, you can load it using your Java IDE an
 
 Once the project is loaded in your IDE, you can run the application, as follows:
 
-- In **Eclipse**, create two run configurations. One for the **feeder** and one for the **processor**. For both, the main class must be [`org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainer`](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
+- In **Eclipse**, create two run configurations. One for the **feeder** and one for the **processor**. For both, the main class must be [IntegratedProcessingUnitContainer](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
 Configure the GigaSpaces home folder using the **com.gs.home** system property:
 gshome-directory
 `-Dcom.gs.home="c:\{{%version "gshome-directory"%}}"`
@@ -259,7 +259,7 @@ rt-feeder project run configuration:
 {{%/column%}}
 {{%/section%}}
 
-- In IntelliJ, create two run configurations, with [`org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainer`](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html) as the main class, and make sure that the feeder configuration uses the classpath of the `feeder` module, and that the processor configuration uses that of the `processor` module.
+- In IntelliJ, create two run configurations, with [IntegratedProcessingUnitContainer](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html) as the main class, and make sure that the feeder configuration uses the classpath of the `feeder` module, and that the processor configuration uses that of the `processor` module.
 
 For more information about the `IntegratedProcessingUnitContainer` class (runs the processing units within your IDE), see [Running and Debugging Within Your IDE](./running-and-debugging-within-your-ide.html).
 

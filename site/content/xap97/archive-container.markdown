@@ -24,7 +24,7 @@ The typical scenario is when streaming vast number of raw events through the Spa
 - configures the set of objects to be archived.
 - supports Space fail-over, and Big-Data storage unavailability.
 - The persisted objects, can then be read by 3rd party tools directly from the Big-Data storage.
-- Big-Data storage is abstracted with the [`ArchiveOperationHandler`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/archive/ArchiveOperationHandler.html) interface. [Cassandra Archive Operation Handler](./cassandra-archive-operation-handler.html) implementation is available out of the box.
+- Big-Data storage is abstracted with the [ArchiveOperationHandler](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/archive/ArchiveOperationHandler.html) interface. [Cassandra Archive Operation Handler](./cassandra-archive-operation-handler.html) implementation is available out of the box.
 {{%/vbar%}}
 
 # Archive Container vs Space Persistency
@@ -341,7 +341,7 @@ Note the timeout value is in seconds as per Spring spec for TransactionDefinitio
 
 # Default Values of Archive Container Configuration Parameters
 
-The default values for all of the polling container configuration parameters such as `concurrent-consumers, batch-size, receive-timeout` and others can be found in the JavaDoc (and sources) of the class [`ArchivePollingContainer`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/archive/ArchivePollingContainer.html) and its super class, namely [`SimplePollingEventListenerContainer`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/events/polling/SimplePollingEventListenerContainer.html) and  [`AbstractPollingEventListenerContainer`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/events/polling/AbstractPollingEventListenerContainer.html).
+The default values for all of the polling container configuration parameters such as `concurrent-consumers, batch-size, receive-timeout` and others can be found in the JavaDoc (and sources) of the class [ArchivePollingContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/archive/ArchivePollingContainer.html) and its super class, namely [SimplePollingEventListenerContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/events/polling/SimplePollingEventListenerContainer.html) and  [AbstractPollingEventListenerContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/events/polling/AbstractPollingEventListenerContainer.html).
 For example, `concurrent-consumers` default value is documented in the method `SimplePollingEventListenerContainer.setConcurrentConsumers(int)`
 
 # FIFO Grouping

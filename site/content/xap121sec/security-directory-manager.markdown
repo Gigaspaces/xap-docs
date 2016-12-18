@@ -20,9 +20,9 @@ We provide two distinct privileges for managing the directory when assigned with
 
 ## User Manager interface
 
-The [`DirectoryManager`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [`UserManager`](http://www.gigaspaces.com/docs/JavaDoc.6/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with `MANAGE_USERS` authority.
+The [DirectoryManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [UserManager](http://www.gigaspaces.com/docs/JavaDoc.6/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with `MANAGE_USERS` authority.
 
-The [`UserManager`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserManager.html) interface has simple methods for declaring users:
+The [UserManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserManager.html) interface has simple methods for declaring users:
 
 
 ```java
@@ -56,7 +56,7 @@ public interface RoleManager {
 
 ## Using the API
 
-The directory manager is accessible via the [SecurityManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/SecurityManager.html). In the example below, the user `admin/admin` has both `MANAGE_USERS` and `MANAGE_ROLES`. We will use this user to gain access to the directory manager. Also, we have two default implementations [`User`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/User.html) and [`Role`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/Role.html) implementing [`UserDetails`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserDetails.html) and [`RoleDetails`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/RoleDetails.html) respectively.
+The directory manager is accessible via the [SecurityManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/SecurityManager.html). In the example below, the user `admin/admin` has both `MANAGE_USERS` and `MANAGE_ROLES`. We will use this user to gain access to the directory manager. Also, we have two default implementations [User](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/User.html) and [Role](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/Role.html) implementing [UserDetails](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserDetails.html) and [RoleDetails](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/RoleDetails.html) respectively.
 
 
 ```java

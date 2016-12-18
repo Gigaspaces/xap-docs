@@ -143,7 +143,7 @@ Since each Space instance is using a local storage device, its survivability is 
 
 # Central Storage
 
-The RocksDB Add-on supports [`storage area network (SAN)`](http://en.wikipedia.org/wiki/Storage_area_network) which means the disk drive devices are installed in a remote machine but behave as if they're attached the the local machine. Most storage networks use the iSCSI or Fibre Channel protocol for communication between servers and disk drive devices.
+The RocksDB Add-on supports [storage area network (SAN)](http://en.wikipedia.org/wiki/Storage_area_network) which means the disk drive devices are installed in a remote machine but behave as if they're attached the the local machine. Most storage networks use the iSCSI or Fibre Channel protocol for communication between servers and disk drive devices.
 
 In central storage mode each space is attached to a pre-defined device as explained on these examples:
 

@@ -27,7 +27,7 @@ The Local view can be used with financial applications (e.g. trading , market da
 
 # Usage
 
-Creating a local view is similar to creating a [`GigaSpace`](./the-gigaspace-interface.html) instance, except the space should be wrapped with a local view before exposing it as a `GigaSpace`. The local view can be configured via Spring using `LocalViewSpaceFactoryBean` or the `<os-core:local-view>` Spring tag, or in code using `LocalViewSpaceConfigurer`. For example:
+Creating a local view is similar to creating a [GigaSpace](./the-gigaspace-interface.html) instance, except the space should be wrapped with a local view before exposing it as a `GigaSpace`. The local view can be configured via Spring using `LocalViewSpaceFactoryBean` or the `<os-core:local-view>` Spring tag, or in code using `LocalViewSpaceConfigurer`. For example:
 
 {{%tabs%}}
 {{%tab "    Namespace   "%}}

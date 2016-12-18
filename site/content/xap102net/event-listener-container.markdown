@@ -10,7 +10,7 @@ weight: 100
 
 {{%section%}}
 {{%column width="70%" %}}
-The `IEventListenerContainer` interface is an abstraction that allows subscribing to, and receiving events from the space, where in most cases, the business logic doesn't need to be aware of the actual container implementation. The benefit of doing this, is the loose coupling between how the events are received (the different containers), and what to do with a received event (the listener). This interface has two out-of-the-box implementers: [PollingEventListenerContainer](./polling-container.html) and [`NotifyEventListenerContainer`](./notify-container.html).
+The `IEventListenerContainer` interface is an abstraction that allows subscribing to, and receiving events from the space, where in most cases, the business logic doesn't need to be aware of the actual container implementation. The benefit of doing this, is the loose coupling between how the events are received (the different containers), and what to do with a received event (the listener). This interface has two out-of-the-box implementers: [PollingEventListenerContainer](./polling-container.html) and [NotifyEventListenerContainer](./notify-container.html).
 {{%/column%}}
 {{%column width="30%" %}}
 ![Net_polling_notify_cont.jpg](/attachment_files/dotnet/Net_polling_notify_cont.jpg)
