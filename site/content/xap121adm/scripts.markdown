@@ -41,7 +41,7 @@ If you need to start the [Service Grid](/product_overview/service-grid.html) com
 
 
 
-This section explains how to start a light version of the GigaSpaces server, which loads a container and one space, using the `space-instance` script. The `space-instance` (which calls [SpaceFinder](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/j_spaces/core/client/SpaceFinder.html)) starts by default embedded Reggie and Webster services.
+This section explains how to start a light version of the GigaSpaces server, which loads a container and one space, using the `space-instance` script. The `space-instance` (which calls [SpaceFinder]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SpaceFinder.html)) starts by default embedded Reggie and Webster services.
 
 # Starting Embedded Mahalo
 
