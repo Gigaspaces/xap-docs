@@ -228,11 +228,11 @@ The space **Operations** tab allows you to perform different space operations:
 
 
 {{% refer %}}
-For more details, see [Javadoc](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/j_spaces/core/admin/SpaceRuntimeInfo.html).
+For more details, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/admin/SpaceRuntimeInfo.html).
 
-[Javadoc](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/j_spaces/core/filters/FilterOperationCodes.html) and the [statistics filter operation codes list](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/constant-values.html#com.j_spaces.core.filters.FilterOperationCodes.AFTER_ALL_NOTIFY_TRIGGER).
+[Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/filters/FilterOperationCodes.html) and the [statistics filter operation codes list]({{% api-javadoc %}}/constant-values.html#com.j_spaces.core.filters.FilterOperationCodes.AFTER_ALL_NOTIFY_TRIGGER).
 
-[StatisticsAdmin](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/j_spaces/core/admin/StatisticsAdmin.html) or [StatisticsContext](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?com/j_spaces/core/filters/StatisticsContext.html).
+[StatisticsAdmin]({{% api-javadoc %}}/index.html?com/j_spaces/core/admin/StatisticsAdmin.html) or [StatisticsContext]({{% api-javadoc %}}/index.html?com/j_spaces/core/filters/StatisticsContext.html).
 {{% /refer %}}
 
 

@@ -104,7 +104,7 @@ Since LRU eviction can be costly, it is done in asynchronously by the memory man
 
 # Explicit Eviction of Objects from the Space
 
-Objects can be evicted explicitly from the space by calling the `takeMultiple` or `clear` operations on [the GigaSpace interface]({{%currentjavaurl%}}/the-gigaspace-interface.html) combined with the [`TakeModifiers.EVICT_ONLY`](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/j_spaces/core/client/TakeModifiers.html) modifier. The `clear` operation only returns the number of objects actually evicted from the space. The `takeMultiple` operation returns the actual objects that were evicted. Here's usage example:
+Objects can be evicted explicitly from the space by calling the `takeMultiple` or `clear` operations on [the GigaSpace interface]({{%currentjavaurl%}}/the-gigaspace-interface.html) combined with the [`TakeModifiers.EVICT_ONLY`]({{% api-javadoc %}}/com/j_spaces/core/client/TakeModifiers.html) modifier. The `clear` operation only returns the number of objects actually evicted from the space. The `takeMultiple` operation returns the actual objects that were evicted. Here's usage example:
 
 {{%tabs%}}
 {{%tab "  Using clear "%}}

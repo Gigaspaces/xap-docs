@@ -56,7 +56,7 @@ Controlling the session Management done via the following properties:
 |`jetty.sessions.scavengePeriod`| Determines how often the web container will check for expired sessions. Set in seconds.| 300 seconds (5 minutes) | No |
 |`jetty.sessions.savePeriod`| How often an actual update of a **non dirty** session will be performed to the Space. Set in seconds|60 seconds. This is useful for cases where a session attribute is not updated explicitly using the `HttpSession#setAttribute` method. More importantly, it makes sure to report the last time the user has accessed the application to the space so that the user session will not expire |No |
 |`jetty.sessions.timeout`| Determines the HTTP session timeout in minutes (similar to `session-timeout` element in `web.xml`|30 minutes| No |
-|`jetty.sessions.lease`| The lease of the [SessionData](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/jee/sessions/jetty/SessionData.html) that is written to the Space |Long.MAX_VALUE | No |
+|`jetty.sessions.lease`| The lease of the [SessionData]({{% api-javadoc %}}/org/openspaces/jee/sessions/jetty/SessionData.html) that is written to the Space |Long.MAX_VALUE | No |
 
 {{% info %}}
 XAP integration implements Jetty `SessionManager` and `SessionIdManager` in `GigaSesssionManager` and `GigaSessionIdManager`. When setting the `jetty.sessions.spaceUrl` they get automatically set as the session manager and session id manager of the web app.

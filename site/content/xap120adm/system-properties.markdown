@@ -447,5 +447,5 @@ Refer to [Replication](./replication.html)
 
 
 
-{{% refer %}}Refer to the [SystemProperties](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/j_spaces/kernel/SystemProperties.html) class for more details.{{% /refer %}}
+{{% refer %}}Refer to the [SystemProperties]({{% api-javadoc %}}/com/j_spaces/kernel/SystemProperties.html) class for more details.{{% /refer %}}
 

@@ -106,7 +106,7 @@ Product[] products = gigaSpace.readMultiple(query);
 
 
 {{% refer %}}
-For the full documentation of the class's methods and constructors, see [Javadoc](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?com/j_spaces/core/client/SQLQuery.html).
+For the full documentation of the class's methods and constructors, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SQLQuery.html).
 {{% /refer %}}
 
 
