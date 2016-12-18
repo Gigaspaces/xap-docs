@@ -157,7 +157,7 @@ It is important to note that the IMDG, although a memory-based service, is fully
 
 The IMDG uses the unified clustering layer, to provide a highly available and reliable service.
 
-The main API to access the IMDG service, is the [`GigaSpace` interface]({{% latestjavaurl%}}/the-gigaspace-interface.html). In addition, one can use the Map API (using the [GigaMap interface]({{% latestjavaurl%}}/map-api.html)) to access the IMDG. Please refer to the [Programmer's Guide]({{% latestjavaurl%}}) for usage examples.
+The main API to access the IMDG service, is the [GigaSpace interface]({{% latestjavaurl%}}/the-gigaspace-interface.html). In addition, one can use the Map API (using the [GigaMap interface]({{% latestjavaurl%}}/map-api.html)) to access the IMDG. Please refer to the [Programmer's Guide]({{% latestjavaurl%}}) for usage examples.
 
 ## Messaging Grid
 

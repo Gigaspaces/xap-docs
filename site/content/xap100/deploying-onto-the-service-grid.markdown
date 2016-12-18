@@ -62,7 +62,7 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
 {{%tab "  Ant "%}}
 Deploying with Ant is based on the `org.openspaces.pu.container.servicegrid.deploy.Deploy` class (in fact, all of the deployment tools use this class although it is not exposed directly to the end user).
 
-In the below example we create an Ant macro using this class and use it to deploy our processing unit. The deploy class is executable via its `main()` method, and can accept various parameters to control the deployment process. These parameters are identical to these of the `deploy` CLI command, for a complete list of the available parameters please consult the [`deploy` CLI reference documentation.]({{%currentadmurl%}}/deploy-command-line-interface.html).
+In the below example we create an Ant macro using this class and use it to deploy our processing unit. The deploy class is executable via its `main()` method, and can accept various parameters to control the deployment process. These parameters are identical to these of the `deploy` CLI command, for a complete list of the available parameters please consult the [deploy CLI reference documentation.]({{%currentadmurl%}}/deploy-command-line-interface.html).
 
 
 ```xml
@@ -85,7 +85,7 @@ In the below example we create an Ant macro using this class and use it to deplo
 
 {{% /tab %}}
 {{%tab "  GigaSpaces CLI "%}}
-Deploying via the CLI is based on the `deploy` command. This command accepts various parameters to control the deployment process. These parameters are documented in full in the [`deploy` CLI reference documentation.]({{%currentadmurl%}}/deploy-command-line-interface.html).
+Deploying via the CLI is based on the `deploy` command. This command accepts various parameters to control the deployment process. These parameters are documented in full in the [deploy CLI reference documentation.]({{%currentadmurl%}}/deploy-command-line-interface.html).
 
 
 ```java

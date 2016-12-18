@@ -334,7 +334,7 @@ The device allocation per a machine is managed via the `/tmp/blobstore/devices/d
 
 # Central Storage Support
 
-BlobStore supports [`storage area network (SAN)`](http://en.wikipedia.org/wiki/Storage_area_network) which means the disk drive devices are in another machine but appear like locally attached.
+BlobStore supports [storage area network (SAN)](http://en.wikipedia.org/wiki/Storage_area_network) which means the disk drive devices are in another machine but appear like locally attached.
 Most storage networks use the iSCSI or Fibre Channel protocol for communication between servers and disk drive devices.
 
 

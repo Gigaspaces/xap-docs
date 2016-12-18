@@ -40,11 +40,11 @@ For example, to use an SSL communication filter, run XAP with:
 
 
 
-Since some types of communication filters are not symmetric regarding the client and server, the class [`SSLFilterFactory`](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html) has 2 methods: one to create the communication filter for the client side, and the other for the server side.
+Since some types of communication filters are not symmetric regarding the client and server, the class [SSLFilterFactory](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html) has 2 methods: one to create the communication filter for the client side, and the other for the server side.
 
-- public IOFilter [`createClientFilter()`](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createClientFilter) throws Exception;
+- public IOFilter [createClientFilter()](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createClientFilter) throws Exception;
 
-- public IOFilter [`createServerFilter()`](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createServerFilter) throws Exception;
+- public IOFilter [createServerFilter()](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createServerFilter) throws Exception;
 
 If the communication filter needs its own parameters, it can acquire them by directly reading system properties. For example, the supplied SSLFilter needs to get the keystore file, and the password to this file.
 

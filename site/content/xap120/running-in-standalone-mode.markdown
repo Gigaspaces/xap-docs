@@ -12,9 +12,9 @@ weight: 200
 
 
 The standalone processing unit container allows you to run a processing unit in standalone mode, which means that the processing unit constructs its own dedicated classloader, and automatically includes it its classpath all of the jar files located under the processing unit's `lib` directory.
-It's implementation class is [`org.openspaces.pu.container.standalone.StandaloneProcessingUnitContainer`]({{% api-javadoc %}}/org/openspaces/pu/container/standalone/StandaloneProcessingUnitContainer.html).
+It's implementation class is [StandaloneProcessingUnitContainer]({{% api-javadoc %}}/org/openspaces/pu/container/standalone/StandaloneProcessingUnitContainer.html).
 
-The standalone processing unit container is built around Spring's `ApplicationContext` with several extensions relevant to GigaSpaces, such as [`ClusterInfo`](./obtaining-cluster-information.html).
+The standalone processing unit container is built around Spring's `ApplicationContext` with several extensions relevant to GigaSpaces, such as [ClusterInfo](./obtaining-cluster-information.html).
 It contains a `main()` method and can be started from an external script or programmatically by using the `ProcessingUnitContainerProvider` abstraction.
 
 It should be used when you would like to run your processing unit in a non-managed environment (outside of the service grid) or from within your own code, and still benefit from the automatic classpath creation as with the managed mode.
