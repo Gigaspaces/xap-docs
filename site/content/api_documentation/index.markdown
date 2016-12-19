@@ -12,7 +12,7 @@ This page provides links to the API documentation and related resources for each
 {{%tabs%}}
 {{%tab API%}}
 - [Javadoc](http://docs.gigaspaces.com/api/xap/12.1.0/java/index.html)
-- [.Net API Documentation](http://docs.gigaspaces.com/api/xap/12.1.0/dotnet/html)
+- [.Net API Documentation](http://docs.gigaspaces.com/api/xap/12.1.0/dotnet/Index.html)
 - C+\+ API Documentation - Under Construction, coming soon
 - [REST API](/xap121/rest-service-api.html)
 {{%/tab%}}
