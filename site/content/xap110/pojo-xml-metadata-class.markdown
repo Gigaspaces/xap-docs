@@ -89,7 +89,7 @@ Example:
 | | |
 |----|----|
 |Syntax     | fifo-support  |
-|Argument   | [FifoSupport](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/annotation/pojo/FifoSupport.html) |
+|Argument   | [FifoSupport]({{% api-javadoc %}}/com/gigaspaces/annotation/pojo/FifoSupport.html) |
 |Default    | not_set|
 |Description| Enabling  FIFO operations.     |
 
@@ -116,7 +116,7 @@ Example:
 | | |
 |----|----|
 |Syntax     | storage-type |
-|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType.html) |
+|Argument   | [StorageType]({{% api-javadoc %}}/com/gigaspaces/metadata/StorageType.html) |
 |Default    | object |
 |Description| To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.|
 
@@ -144,7 +144,7 @@ Example:
 | | |
 |----|----|
 |Syntax     | include-properties |
-|Argument   | [IncludeProperties](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/annotation/pojo/SpaceClass.IncludeProperties.html)      |
+|Argument   | [IncludeProperties]({{% api-javadoc %}}/com/gigaspaces/annotation/pojo/SpaceClass.IncludeProperties.html)      |
 |Default    | implicit|
 |Description| `implicit` takes into account all POJO fields -- even if a `get` method is not declared   as a `SpaceProperty`, it is taken into account as a space field.`explicit` takes into account only the `get` methods which are declared in the mapping file. |
 

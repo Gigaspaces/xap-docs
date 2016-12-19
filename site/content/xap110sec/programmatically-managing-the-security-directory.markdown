@@ -29,9 +29,9 @@ The default user which can access the default file-based security implementation
 
 # User Management
 
-The [DirectoryManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [UserManager](http://www.gigaspaces.com/docs/JavaDoc.6/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with `MANAGE_USERS` authority.
+The [DirectoryManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [UserManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with `MANAGE_USERS` authority.
 
-The [UserManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserManager.html) interface has simple methods for declaring users:
+The [UserManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/UserManager.html) interface has simple methods for declaring users:
 
 
 ```java
@@ -47,9 +47,9 @@ public interface UserManager {
 
 # Role Management
 
-The [DirectoryManage](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing roles using the `RoleManager` API. Access should be granted only to users with **MANAGE_ROLES** authority.
+The [DirectoryManage]({{% api-javadoc %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing roles using the `RoleManager` API. Access should be granted only to users with **MANAGE_ROLES** authority.
 
-The [RoleManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/RoleManager.html) interface has simple methods for declaring roles:
+The [RoleManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/RoleManager.html) interface has simple methods for declaring roles:
 
 
 ```java
@@ -65,7 +65,7 @@ public interface RoleManager {
 
 # Using the API
 
-The directory manager is accessible via the [SecurityManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/SecurityManager.html). In our default implementation, the user `admin/admin` has both `MANAGE_USERS` and `MANAGE_ROLES`. We will use this user to gain access to the directory manager. Also, we have two default implementations [User](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/User.html) and [Role](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/Role.html) implementing [UserDetails](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserDetails.html) and [RoleDetails](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/RoleDetails.html) respectively.
+The directory manager is accessible via the [SecurityManager]({{% api-javadoc %}}/com/gigaspaces/security/SecurityManager.html). In our default implementation, the user `admin/admin` has both `MANAGE_USERS` and `MANAGE_ROLES`. We will use this user to gain access to the directory manager. Also, we have two default implementations [User]({{% api-javadoc %}}/com/gigaspaces/security/directory/User.html) and [Role]({{% api-javadoc %}}/com/gigaspaces/security/directory/Role.html) implementing [UserDetails]({{% api-javadoc %}}/com/gigaspaces/security/directory/UserDetails.html) and [RoleDetails]({{% api-javadoc %}}/com/gigaspaces/security/directory/RoleDetails.html) respectively.
 
 
 ```java
@@ -75,7 +75,7 @@ SecurityManager securityManager = SecurityFactory.createSecurityManager(security
 DirectoryManager directoryManager = securityManager.createDirectoryManager(new User("admin", "admin"));
 ```
 
-We can now add a new user using the [UserManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/UserManager.html) API. "Alice" will be added with `READ` authority for class "eg.ClassA".
+We can now add a new user using the [UserManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/UserManager.html) API. "Alice" will be added with `READ` authority for class "eg.ClassA".
 
 
 ```java
@@ -86,7 +86,7 @@ userManager.createUser(new User("alice", "password",
     ));
 ```
 
-A role can be declared using the [RoleManager](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/security/directory/RoleManager.html) API. The "author" role will be added with `READ, WRITE, TAKE` authorities for class "eg.ClassA".
+A role can be declared using the [RoleManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/RoleManager.html) API. The "author" role will be added with `READ, WRITE, TAKE` authorities for class "eg.ClassA".
 
 
 ```java

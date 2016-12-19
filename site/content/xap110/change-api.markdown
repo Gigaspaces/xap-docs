@@ -9,7 +9,7 @@ parent: change-api-overview.html
 {{% ssummary %}} {{% /ssummary %}}
 
 {{%imagertext "/attachment_files/change-api.jpg"  "Change API"%}}
-The [GigaSpace.change](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/client/ChangeSet.html) allows updating existing objects in space, by specifying only the required change instead of passing the entire updated object.
+The [GigaSpace.change]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet]({{% api-javadoc %}}/index.html?com/gigaspaces/client/ChangeSet.html) allows updating existing objects in space, by specifying only the required change instead of passing the entire updated object.
 Thus reducing required network traffic between the client and the space, and the network traffic generated from replicating the changes between the space instances (e.g between the primary space instance and its backup).
 {{%/imagertext%}}
 
@@ -38,8 +38,8 @@ The change operation may receive any [query template](./querying-the-space.html)
 
 # Change Set
 
-The change operation requires a [ChangeSet](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/client/ChangeSet.html) which described the changes that needs to be done once locating the object specified by the query template.
-The [ChangeSet](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/client/ChangeSet.html) contains a predefined set of operations that can be invoked to alter the object, the set may contain one or more changes that will be applied sequentially to the object.
+The change operation requires a [ChangeSet]({{% api-javadoc %}}/index.html?com/gigaspaces/client/ChangeSet.html) which described the changes that needs to be done once locating the object specified by the query template.
+The [ChangeSet]({{% api-javadoc %}}/index.html?com/gigaspaces/client/ChangeSet.html) contains a predefined set of operations that can be invoked to alter the object, the set may contain one or more changes that will be applied sequentially to the object.
 Each specified change may operate on any level of properties of the specified object, this is defined by specifying the path to the property that needs to be changed where '.' in the path specifies
 that this change is done on a nested property. For instance:
 
@@ -129,7 +129,7 @@ With the [embedded model](/sbp/modeling-your-data.html#Embedded vs. Non-Embedded
 
 # Change Result
 
-The change operations returns a [ChangeResult](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/client/ChangeResult.html) object that provides information regarding the change operation affect.
+The change operations returns a [ChangeResult]({{% api-javadoc %}}/index.html?com/gigaspaces/client/ChangeResult.html) object that provides information regarding the change operation affect.
 
 
 ```java

@@ -69,11 +69,11 @@ Here is how you would configure a processing unit to run a scripting executor wi
 
 # Usage
 
-3 new [Script](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/remoting/scripting/Script.html) implementations have been added to support compilation and caching of compiled scala scripts. These provide the ability to explicitly set the static type for script parameters which is required when the runtime type is not public. In most cases, there is no need to define these as they can be deduced to use the parameter runtime type.
+3 new [Script]({{% api-javadoc %}}/index.html?org/openspaces/remoting/scripting/Script.html) implementations have been added to support compilation and caching of compiled scala scripts. These provide the ability to explicitly set the static type for script parameters which is required when the runtime type is not public. In most cases, there is no need to define these as they can be deduced to use the parameter runtime type.
 
-- `org.openspaces.remoting.scripting.ScalaTypedStaticScript` which extends [StaticScript](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/remoting/scripting/StaticScript.html).
-- `org.openspaces.remoting.scripting.ScalaTypedStaticResourceScript` which extends [StaticResourceScript](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/remoting/scripting/StaticResourceScript.html).
-- `org.openspaces.remoting.scripting.ScalaTypedResourceLazyLoadingScript` which extends [ResourceLazyLoadingScript](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/remoting/scripting/ResourceLazyLoadingScript.html).
+- `org.openspaces.remoting.scripting.ScalaTypedStaticScript` which extends [StaticScript]({{% api-javadoc %}}/index.html?org/openspaces/remoting/scripting/StaticScript.html).
+- `org.openspaces.remoting.scripting.ScalaTypedStaticResourceScript` which extends [StaticResourceScript]({{% api-javadoc %}}/index.html?org/openspaces/remoting/scripting/StaticResourceScript.html).
+- `org.openspaces.remoting.scripting.ScalaTypedResourceLazyLoadingScript` which extends [ResourceLazyLoadingScript]({{% api-javadoc %}}/index.html?org/openspaces/remoting/scripting/ResourceLazyLoadingScript.html).
 
 # Example
 
