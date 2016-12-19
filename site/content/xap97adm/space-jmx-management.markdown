@@ -196,7 +196,7 @@ The space **Operations** tab allows you to perform different space operations:
 - **getSpace** -- returns the space proxy that this manageable bean governs.
 - **getStatistics** -- returns a `StatisticsContext` according to the operation code you type in the **operationCode** text box -- each operation has a constant representing it.
 
-{{% refer %}}For a list of operation codes, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/filters/FilterOperationCodes.html) and the [statistics filter operation codes list](http://www.gigaspaces.com/docs/JavaDoc/constant-values.html#com.j_spaces.core.filters.FilterOperationCodes.AFTER_ALL_NOTIFY_TRIGGER).{{% /refer %}}
+{{% refer %}}For a list of operation codes, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/filters/FilterOperationCodes.html) and the [statistics filter operation codes list]({{% api-javadoc %}}/constant-values.html#com.j_spaces.core.filters.FilterOperationCodes.AFTER_ALL_NOTIFY_TRIGGER).{{% /refer %}}
 
 {{% refer %}}For more details, see [com.j_spaces.core.admin.StatisticsAdmin]({{% api-javadoc %}}/index.html?com/j_spaces/core/admin/StatisticsAdmin.html) or [com.j_spaces.core.filters.StatisticsContext]({{% api-javadoc %}}/index.html?com/j_spaces/core/filters/StatisticsContext.html).{{% /refer %}}
 

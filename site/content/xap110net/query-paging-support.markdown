@@ -10,7 +10,7 @@ weight: 100
 
 
 
-In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the [readMultiple](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readMultiple-T-) overloads in `GigaSpace`. However, if there are lots of matching entries, you may encounter several problems:
+In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the [readMultiple]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readMultiple-T-) overloads in `GigaSpace`. However, if there are lots of matching entries, you may encounter several problems:
 
 * Memory usage - Both the server and client need to allocate enough memory for the entire result set.
 * Latency - Since all the results are returned in one bulk, the client must wait until the final result arrives before it can process the first one.

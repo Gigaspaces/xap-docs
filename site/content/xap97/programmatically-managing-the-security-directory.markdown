@@ -27,7 +27,7 @@ The default user which can access the default file-based security implementation
 
 # User Management
 
-The [DirectoryManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [UserManager](http://www.gigaspaces.com/docs/JavaDoc.6/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with `MANAGE_USERS` authority.
+The [DirectoryManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/DirectoryManager.html) interface provides a means to managing users using the [UserManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/UserManager.html) API. Access should be granted only to users with `MANAGE_USERS` authority.
 
 The [UserManager]({{% api-javadoc %}}/com/gigaspaces/security/directory/UserManager.html) interface has simple methods for declaring users:
 
