@@ -20,6 +20,12 @@ s3_reduced_redundancy: true
 ignore_on_server:
   - api
 
+routing_rules:
+  - condition:
+      key_prefix_equals: xap100net/
+    redirect:
+      replace_key_prefix_with: xap/10.0/dev/dotnet/
+      http_redirect_code: 301
 # cloudfront_distribution_id: your-dist-id
 
 # cloudfront_distribution_config:
