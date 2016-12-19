@@ -13,17 +13,17 @@ A Processing Unit can implement the `ServiceDetailsProvider` and `ServiceMonitor
 
 # Service Details
 
-A [ServiceDetails](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/pu/service/ServiceDetails.html) describes **static** information the processing unit would like to expose. This is fetched only once in the life-cycle of the processing unit, usually when it starts up.
+A [ServiceDetails]({{% api-javadoc %}}/org/openspaces/pu/service/ServiceDetails.html) describes **static** information the processing unit would like to expose. This is fetched only once in the life-cycle of the processing unit, usually when it starts up.
 
-One implementation class a processing unit can extend is the [PlainServiceDetails](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/pu/service/PlainServiceDetails.html) class. This is a simple straight forward implementation of the `ServiceDetails` interface, which takes care of fast serialization using Externalizable, provides a handy toString, etc.
+One implementation class a processing unit can extend is the [PlainServiceDetails]({{% api-javadoc %}}/org/openspaces/pu/service/PlainServiceDetails.html) class. This is a simple straight forward implementation of the `ServiceDetails` interface, which takes care of fast serialization using Externalizable, provides a handy toString, etc.
 
 The `ServiceDetails` are used to describe the service being monitored.
 
 # Service Monitors
 
-A [ServiceMonitors](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/pu/service/ServiceMonitors.html) describes **runtime** information the processing unit would like to expose. This is fetched periodically using the [Administration and Monitoring API](./administration-and-monitoring-api.html).
+A [ServiceMonitors]({{% api-javadoc %}}/org/openspaces/pu/service/ServiceMonitors.html) describes **runtime** information the processing unit would like to expose. This is fetched periodically using the [Administration and Monitoring API](./administration-and-monitoring-api.html).
 
-One implementation class a processing unit can extend is the [PlainServiceMonitors](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/pu/service/PlainServiceMonitors.html) class. This is a simple straight forward implementation of the `ServiceMonitors` interface, which takes care of fast serialization using Externalizable, provides a handy toString, etc.
+One implementation class a processing unit can extend is the [PlainServiceMonitors]({{% api-javadoc %}}/org/openspaces/pu/service/PlainServiceMonitors.html) class. This is a simple straight forward implementation of the `ServiceMonitors` interface, which takes care of fast serialization using Externalizable, provides a handy toString, etc.
 
 
 ```java

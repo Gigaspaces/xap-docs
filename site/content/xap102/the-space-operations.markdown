@@ -10,7 +10,7 @@ parent: the-gigaspace-interface-overview.html
 {{% ssummary %}}{{%/ssummary%}}
 
 
-XAP provides a simple space API using the [GigaSpace](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html) interface for interacting with the space.
+XAP provides a simple space API using the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface for interacting with the space.
 
 
 The interface includes the following main operations:
@@ -206,8 +206,8 @@ When writing a batch of objects into the space, these should be placed into an a
 -  you should verify that duplicated entries (with the same ID) do not appear as part of the passed array, since the identity of the object is determined based on its `ID` and not based on its reference. This is extremely important with an embedded space, since `writeMultiple` injects the ID value into the object after the write operation (when autogenerate=false).
 
 - Exception handling - the operation many throw the following Exceptions.
-    - [WriteMultiplePartialFailureException](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/WriteMultiplePartialFailureException.html)
-    - [WriteMultipleException](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/WriteMultipleException.html)
+    - [WriteMultiplePartialFailureException]({{% api-javadoc %}}/org/openspaces/core/WriteMultiplePartialFailureException.html)
+    - [WriteMultipleException]({{% api-javadoc %}}/org/openspaces/core/WriteMultipleException.html)
 
 {{%/note%}}
 
@@ -247,7 +247,7 @@ Asynchronous `write` operation can be implemented using a [Task](./task-executio
 ## Modifiers
 
 {{%refer%}}
-For further details on each of the available modifiers see: [WriteModifiers](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/client/WriteModifiers.html)
+For further details on each of the available modifiers see: [WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)
 {{%/refer%}}
 
 {{%note%}}
@@ -257,7 +257,7 @@ Writing an object into a space might generate [notifications](./notify-container
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Writes a new object to the space, returning its LeaseContext.[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#write(T))
+Writes a new object to the space, returning its LeaseContext.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#write(T))
 
 
 ```java
@@ -267,7 +267,7 @@ Writes a new object to the space, returning its LeaseContext.[Java API](http://w
 
 ```
 
-Writes new objects to the space, returning its LeaseContexts.[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#writeMultiple(T[]))
+Writes new objects to the space, returning its LeaseContexts.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#writeMultiple(T[]))
 
 ```java
 <T> LeaseContext<T>[] writeMultiple(T[] entries) throws DataAccessException
@@ -281,8 +281,8 @@ Writes new objects to the space, returning its LeaseContexts.[Java API](http://w
 |T          | POJO, SpaceDocument||
 |lease       |Time to live | Lease.FOREVER|milliseconds|
 |timeout     | The timeout of an update operation, in milliseconds. If the entry is locked by another transaction wait for the specified number of milliseconds for it to be released. | 0  |
-|[WriteModifiers](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/client/WriteModifiers.html)|Provides modifiers to customize the behavior of write operations | UPDATE_OR_WRITE  |
-|[LeaseContext](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/j_spaces/core/LeaseContext.html) |LeaseContext is a return-value encapsulation of a write operation.| |
+|[WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)|Provides modifiers to customize the behavior of write operations | UPDATE_OR_WRITE  |
+|[LeaseContext]({{% api-javadoc %}}/com/j_spaces/core/LeaseContext.html) |LeaseContext is a return-value encapsulation of a write operation.| |
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -292,7 +292,7 @@ Writes new objects to the space, returning its LeaseContexts.[Java API](http://w
 
 # The Change Operation
 
-The [GigaSpace.change](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/client/ChangeSet.html) allows updating existing objects in space, by specifying only the required change instead of passing the entire updated object.
+The [GigaSpace.change]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet]({{% api-javadoc %}}/index.html?com/gigaspaces/client/ChangeSet.html) allows updating existing objects in space, by specifying only the required change instead of passing the entire updated object.
 Thus reducing required network traffic between the client and the space, and the network traffic generated from replicating the changes between the space instances (e.g between the primary space instance and its backup).
 
 
@@ -410,7 +410,7 @@ Examples:
 - boosts the performance, since it perform multiple operations using one call. These methods returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, these batch operations can be up to 10 times faster than multiple single based operations.
 - should be handled with care, since they can return a large data set (potentially all the space data). This might cause an out of memory error in the space and client process. You should use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
 - **dos not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
-- Exception handling - operation many throw the following Exceptions. [ReadMultipleException](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/ReadMultipleException.html)
+- Exception handling - operation many throw the following Exceptions. [ReadMultipleException]({{% api-javadoc %}}/org/openspaces/core/ReadMultipleException.html)
 {{%/note%}}
 
 {{%anchor readIfExists%}}
@@ -439,7 +439,7 @@ Example:
 
 The GigaSpace interface supports asynchronous (non-blocking) read operations through the GigaSpace interface. It returns a [Future\<T\>](http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) object, where T is the type of the object the request returns. Future<T>.get() can be used to query the object to see if a result has been returned or not.
 
-Alternatively, asyncRead also accept an implementation of [AsyncFutureListener](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/async/AsyncFutureListener.html), which will have its `AsyncFutureListener.onResult` method called when the result has been populated. This does not affect the return type of the `Future<T>`, but provides an additional mechanism for handling the asynchronous response.
+Alternatively, asyncRead also accept an implementation of [AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html), which will have its `AsyncFutureListener.onResult` method called when the result has been populated. This does not affect the return type of the `Future<T>`, but provides an additional mechanism for handling the asynchronous response.
 
 
 Example:
@@ -507,13 +507,13 @@ Examples:
 
 
 {{%refer%}}
-For further details on each of the available modifiers see: [ReadModifiers](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/client/ReadModifiers.html)
+For further details on each of the available modifiers see: [ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)
 {{%/refer%}}
 
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Read by template:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#read(T))
+Read by template:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#read(T))
 
 ```java
 <T> T read(T template) throws DataAccessException
@@ -521,7 +521,7 @@ Read by template:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentver
 .....
 ```
 
-Read by Id:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readById(java.lang.Class,%20java.lang.Object))
+Read by Id:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readById(java.lang.Class,%20java.lang.Object))
 
 ```java
 <T> T readById(Class<T> clazz, Object id) throws DataAccessException
@@ -529,7 +529,7 @@ Read by Id:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %
 .....
 ```
 
-Read by ISpaceQuery:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#read(com.gigaspaces.query.ISpaceQuery))
+Read by ISpaceQuery:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#read(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T read(ISpaceQuery<T> query, Object id)throws DataAccessException
@@ -537,7 +537,7 @@ Read by ISpaceQuery:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% current
 ....
 ```
 
-Read multiple:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readMultiple(com.gigaspaces.query.ISpaceQuery))
+Read multiple:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readMultiple(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T[] readMultiple(ISpaceQuery<T> query) throws DataAccessException
@@ -548,7 +548,7 @@ Read multiple:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversio
 ...
 ```
 
-Asynchronous Read:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#asyncRead(com.gigaspaces.query.ISpaceQuery))
+Asynchronous Read:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#asyncRead(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> AsyncFuture<T> asyncRead(T template) throws DataAccessException
@@ -558,7 +558,7 @@ Asynchronous Read:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentve
 .....
 ```
 
-Read if exists:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readIfExists(com.gigaspaces.query.ISpaceQuery))
+Read if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readIfExists(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T readIfExists(T template)throws DataAccessException
@@ -575,9 +575,9 @@ Read if exists:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversi
 |:-----|:------------|:--------|:----|
 | T          | POJO, SpaceDocument|| |
 |timeout     | Time to wait for the response| 0  |  milliseconds |
-|query| [ISpaceQuery](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
-|[AsyncFutureListener](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
-|[ReadModifiers](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations | NONE  |  |
+|query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
+|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
+|[ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations | NONE  |  |
 
 {{%/accord%}}
 {{%/accordion%}}
@@ -723,7 +723,7 @@ Example:
 
 The GigaSpace interface supports asynchronous (non-blocking) take operations through the GigaSpace interface. It returns a [Future\<T\>](http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) object, where T is the type of the object the request returns. Future<T>.get() can be used to query the object to see if a result has been returned or not.
 
-Alternatively, asyncTake also accept an implementation of [AsyncFutureListener](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/async/AsyncFutureListener.html), which will have its `AsyncFutureListener.onResult` method called when the result has been populated. This does not affect the return type of the `Future<T>`, but provides an additional mechanism for handling the asynchronous response.
+Alternatively, asyncTake also accept an implementation of [AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html), which will have its `AsyncFutureListener.onResult` method called when the result has been populated. This does not affect the return type of the `Future<T>`, but provides an additional mechanism for handling the asynchronous response.
 
 
 Example:
@@ -789,13 +789,13 @@ Examples:
 
 
 {{%refer%}}
-For further details on each of the available modifiers see: [TakeModifiers](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/client/TakeModifiers.html)
+For further details on each of the available modifiers see: [TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)
 {{%/refer%}}
 
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Take by template:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#take(T))
+Take by template:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#take(T))
 
 ```java
 <T> T take(T template) throws DataAccessException
@@ -803,7 +803,7 @@ Take by template:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentver
 .....
 ```
 
-Take by Id:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeById(java.lang.Class,%20java.lang.Object))
+Take by Id:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#takeById(java.lang.Class,%20java.lang.Object))
 
 ```java
 <T> T takeById(Class<T> clazz, Object id) throws DataAccessException
@@ -811,7 +811,7 @@ Take by Id:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %
 .....
 ```
 
-Take by ISpaceQuery:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#take(com.gigaspaces.query.ISpaceQuery))
+Take by ISpaceQuery:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#take(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T take(ISpaceQuery<T> query, Object id)throws DataAccessException
@@ -819,7 +819,7 @@ Take by ISpaceQuery:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% current
 ....
 ```
 
-Take multiple:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeMultiple(com.gigaspaces.query.ISpaceQuery))
+Take multiple:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#takeMultiple(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T[] takeMultiple(ISpaceQuery<T> query) throws DataAccessException
@@ -830,7 +830,7 @@ Take multiple:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversio
 ...
 ```
 
-Asynchronous take:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#asyncTake(com.gigaspaces.query.ISpaceQuery))
+Asynchronous take:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#asyncTake(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> AsyncFuture<T> asyncTake(T template) throws DataAccessException
@@ -840,7 +840,7 @@ Asynchronous take:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentve
 .....
 ```
 
-Take if exists:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#takeIfExists(com.gigaspaces.query.ISpaceQuery))
+Take if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#takeIfExists(com.gigaspaces.query.ISpaceQuery))
 
 ```java
 <T> T takeIfExists(T template)throws DataAccessException
@@ -857,9 +857,9 @@ Take if exists:[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversi
 |:-----|:------------|:--------|:----|
 | T          | POJO, SpaceDocument|| |
 |timeout     | Time to wait for the response| 0  |  milliseconds |
-|query| [ISpaceQuery](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
-|[AsyncFutureListener](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
-|[TakeModifiers](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations | NONE  |  |
+|query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
+|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
+|[TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations | NONE  |  |
 
 {{%/accord%}}
 {{%/accordion%}}
@@ -905,7 +905,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Clears objects from space.[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#clear(java.lang.Object))
+Clears objects from space.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#clear(java.lang.Object))
 
 
 ```java
@@ -921,7 +921,7 @@ void clear(ISpaceQuery<T> query) throws DataAccessException
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |query         | SQLQuery, IdQuery||
-|[ClearModifiers](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/client/ClearModifiers.html)|Provides modifiers to customize the behavior of the clear operations | NONE  |
+|[ClearModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ClearModifiers.html)|Provides modifiers to customize the behavior of the clear operations | NONE  |
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -966,7 +966,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Count objects in space.[Java API](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#count(java.lang.Object))
+Count objects in space.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#count(java.lang.Object))
 
 
 ```java
@@ -982,7 +982,7 @@ int count(ISpaceQuery<T> query) throws DataAccessException
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |query         | SQLQuery, IdQuery||
-|[CountModifiers](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/client/CountModifiers.html)|Provides modifiers to customize the behavior of the count operations | NONE  |
+|[CountModifiers]({{% api-javadoc %}}/com/gigaspaces/client/CountModifiers.html)|Provides modifiers to customize the behavior of the count operations | NONE  |
 {{%/accord%}}
 {{%/accordion%}}
 

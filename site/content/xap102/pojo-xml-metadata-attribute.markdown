@@ -81,7 +81,7 @@ Example:
 | | |
 |----|----|
 |Syntax     | storage-type|
-|Argument   | [StorageType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/StorageType.html) |
+|Argument   | [StorageType]({{% api-javadoc %}}/com/gigaspaces/metadata/StorageType.html) |
 |Default    | object |
 |Description| This tag is used to specify how the property is stored in the space. |
 
@@ -104,7 +104,7 @@ Example:
 | | |
 |----|----|
 |Syntax     |  index type|
-|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType.html) |
+|Argument   |  [SpaceIndexType]({{% api-javadoc %}}/com/gigaspaces/metadata/index/SpaceIndexType.html) |
 |Description| Querying indexed fields speeds up read and take operations. The `index` tag should be used to specify an indexed field.|
 
 Example:
@@ -134,7 +134,7 @@ Example:
 | | |
 |----|----|
 |Syntax     |  path type|
-|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType.html)|
+|Argument   |  [SpaceIndexType]({{% api-javadoc %}}/com/gigaspaces/metadata/index/SpaceIndexType.html)|
 |Description| The `path` attribute represents the path of the indexed property within a nested object. |
 
 Example:
@@ -159,7 +159,7 @@ Example:
 | | |
 |----|----|
 |Syntax     |  index type unique|
-|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/metadata/index/SpaceIndexType.html) |
+|Argument   |  [SpaceIndexType]({{% api-javadoc %}}/com/gigaspaces/metadata/index/SpaceIndexType.html) |
 |Description| Unique constraints can be defined for an attribute or attributes of a space class. |
 |Note |   The uniqueness is enforced per partition and not over the whole cluster. |
 

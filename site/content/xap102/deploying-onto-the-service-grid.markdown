@@ -249,7 +249,7 @@ To restart a running PU (all instances) via the GS-UI you should:
 
 ## Restart a running PU via the Admin API
 
-The [ProcessingUnitInstance](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/ProcessingUnitInstance.html) includes few `restart` methods you may use to restart a PU instance:
+The [ProcessingUnitInstance]({{% api-javadoc %}}/org/openspaces/admin/pu/ProcessingUnitInstance.html) includes few `restart` methods you may use to restart a PU instance:
 
 
 ```java
