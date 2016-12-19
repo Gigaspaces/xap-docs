@@ -166,7 +166,7 @@ For more details about different configurations see [Space Persistency](./space-
 
 |Property|Description|
 |:-------|:----------|
-|hectorClient|A configured [HectorCassandraClient](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?org/openspaces/persistency/cassandra/HectorCassandraClient.html) bean. see [Hector Cassandra Client](./cassandra-hector-client.html).|
+|hectorClient|A configured [HectorCassandraClient]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/HectorCassandraClient.html) bean. see [Hector Cassandra Client](./cassandra-hector-client.html).|
 |fixedPropertyValueSerializer|see [Property Value Serializer]( #property-value-serializer).|
 |dynamicPropertyValueSerializer|see [Property Value Serializer](#property-value-Serializer).|
 |flattenedPropertiesFilter| see [Flattened Properties Filter](#flattened-properties-filter).|
@@ -186,9 +186,9 @@ For fixed properties:
 
 For dynamic properties:
 
-- All values will be serialized using the default dynamic property value serializer implementation: [DynamicPropertyValueSerializer](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?org/openspaces/persistency/cassandra/meta/types/dynamic/DynamicPropertyValueSerializer.html)
+- All values will be serialized using the default dynamic property value serializer implementation: [DynamicPropertyValueSerializer]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/meta/types/dynamic/DynamicPropertyValueSerializer.html)
 
-It is possible to override this default behavior by providing a custom implementation of [PropertyValueSerializer](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?org/openspaces/persistency/cassandra/meta/types/dynamic/PropertyValueSerializer.html).
+It is possible to override this default behavior by providing a custom implementation of [PropertyValueSerializer]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/meta/types/dynamic/PropertyValueSerializer.html).
 This interface is defined by these 2 methods:
 
 
@@ -271,7 +271,7 @@ This is how they will be written to Cassandra:
 
 ## Customization
 
-It is possible to override the above behavior by providing a [FlattenedPropertiesFilter](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?org/openspaces/persistency/cassandra/meta/mapping/filter/FlattenedPropertiesFilter.html) implementation.
+It is possible to override the above behavior by providing a [FlattenedPropertiesFilter]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/meta/mapping/filter/FlattenedPropertiesFilter.html) implementation.
 The implementations is used during type introspection when a type is first introduced to the synchronization endpoint and whenever an entry of that type is written which contains dynamic properties.
 
 The interface is defined by a single method:
@@ -283,9 +283,9 @@ boolean shouldFlatten(PropertyContext propertyContext);
 ```
 
 The return value indicates whether the current introspected property should be serialized as is or should its nested properties be introspected as well.
-As for the above example, the default implementation [DefaultFlattenedPropertiesFilter](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?org/openspaces/persistency/cassandra/meta/mapping/filter/DefaultFlattenedPropertiesFilter.html) returns `true` if and only if the property is fixed and the current introspection nesting level does not exceed 10.
+As for the above example, the default implementation [DefaultFlattenedPropertiesFilter]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/meta/mapping/filter/DefaultFlattenedPropertiesFilter.html) returns `true` if and only if the property is fixed and the current introspection nesting level does not exceed 10.
 
-The [PropertyContext](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?org/openspaces/persistency/cassandra/meta/mapping/filter/PropertyContext.html) contains the following details about the current introspected property:
+The [PropertyContext]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/meta/mapping/filter/PropertyContext.html) contains the following details about the current introspected property:
 
 
 ```java
@@ -301,7 +301,7 @@ int getCurrentNestingLevel();
 ## Column Family Name Converter
 
 Due to implementation details of Cassandra regarding Column Families there are certain limitations when converting a type name (e.g: `com.example.data.Person`) to a column family name. Among these limitations is a 48 characters max length limitation and invalid characters in the name (such as '.').
-The behavior for converting a type name to a column family name when creating a column family is defined by the interface [ColumnFamilyNameConverter](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?org/openspaces/persistency/cassandra/meta/conversion/ColumnFamilyNameConverter.html).
+The behavior for converting a type name to a column family name when creating a column family is defined by the interface [ColumnFamilyNameConverter]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/meta/conversion/ColumnFamilyNameConverter.html).
 This interface is defined by 1 method:
 
 
@@ -309,7 +309,7 @@ This interface is defined by 1 method:
 String toColumnFamilyName(String typeName);
 ```
 
-The default implementation is: [DefaultColumnFamilyNameConverter](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/index.html?org/openspaces/persistency/cassandra/meta/conversion/DefaultColumnFamilyNameConverter.html).
+The default implementation is: [DefaultColumnFamilyNameConverter]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/meta/conversion/DefaultColumnFamilyNameConverter.html).
 
 # Considerations
 

@@ -64,6 +64,6 @@ HectorCassandraClient hectorClient = new HectorCassandraClientConfigurer()
 |port|The rpc port for Cassandra client communication|9160|
 |keyspaceName|The name of the keyspace to work with| |
 |clusterName|If there is need to connect to more than one Cassandra cluster within the same JVM, each cluster should be references by a different name.|cluster|
-|readConsistencyLevel|The [CassandraConsistencyLevel](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/persistency/cassandra/CassandraConsistencyLevel.html) in which read operations should be performed|QUORUM|
-|writeConsistencyLevel|The [CassandraConsistencyLevel](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/persistency/cassandra/CassandraConsistencyLevel.html) in which write operations should be performed|QUORUM|
+|readConsistencyLevel|The [CassandraConsistencyLevel]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/CassandraConsistencyLevel.html) in which read operations should be performed|QUORUM|
+|writeConsistencyLevel|The [CassandraConsistencyLevel]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/CassandraConsistencyLevel.html) in which write operations should be performed|QUORUM|
 |columnFamilyGcGraceSeconds|See [Distributed deletes](http://wiki.apache.org/cassandra/DistributedDeletes) |10 Days (Derived from Cassandra's default value)|

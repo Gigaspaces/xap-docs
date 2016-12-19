@@ -20,7 +20,7 @@ The Archive Container:<br>
 - configures the set of objects to be archived.<br>
 - supports Space fail-over, and Big-Data storage unavailability.<br>
 - The persisted objects, can then be read by 3rd party tools directly from the Big-Data storage.<br>
-- Big-Data storage is abstracted with the [ArchiveOperationHandler](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/archive/ArchiveOperationHandler.html) interface.<br>
+- Big-Data storage is abstracted with the [ArchiveOperationHandler]({{% api-javadoc %}}/index.html?org/openspaces/archive/ArchiveOperationHandler.html) interface.<br>
 - [Cassandra Archive Operation Handler](./cassandra-archive-operation-handler.html) implementation is available out of the box.<br>
 - [MongoDB Archive Operation Handler](./mongodb-archive-operation-handler.html) implementation is available out of the box.
 
@@ -334,7 +334,7 @@ Note the timeout value is in seconds as per Spring spec for TransactionDefinitio
 
 # Default Values of Archive Container Configuration Parameters
 
-The default values for all of the polling container configuration parameters such as `concurrent-consumers, batch-size, receive-timeout` and others can be found in the JavaDoc (and sources) of the class [ArchivePollingContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/archive/ArchivePollingContainer.html) and its super class, namely [SimplePollingEventListenerContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/events/polling/SimplePollingEventListenerContainer.html) and  [AbstractPollingEventListenerContainer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/events/polling/AbstractPollingEventListenerContainer.html).
+The default values for all of the polling container configuration parameters such as `concurrent-consumers, batch-size, receive-timeout` and others can be found in the JavaDoc (and sources) of the class [ArchivePollingContainer]({{% api-javadoc %}}/index.html?org/openspaces/archive/ArchivePollingContainer.html) and its super class, namely [SimplePollingEventListenerContainer]({{% api-javadoc %}}/index.html?org/openspaces/events/polling/SimplePollingEventListenerContainer.html) and  [AbstractPollingEventListenerContainer]({{% api-javadoc %}}/index.html?org/openspaces/events/polling/AbstractPollingEventListenerContainer.html).
 For example, `concurrent-consumers` default value is documented in the method `SimplePollingEventListenerContainer.setConcurrentConsumers(int)`
 
 # FIFO Grouping

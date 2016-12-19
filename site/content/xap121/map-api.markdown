@@ -8,7 +8,7 @@ weight: 300
 
 
 
-XAP allows applications to interact with the space and cache data using the Map API (JCache) or a [HashTable API](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/util/Hashtable.html). Accessing the space via the Map API can be done using the [GigaMap](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaMap.html) interfaces. It includes enhanced options such as declarative transactions support, coherent runtime exception hierarchy, timeout operations , TTL, locking and versioning.
+XAP allows applications to interact with the space and cache data using the Map API (JCache) or a [HashTable API](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/util/Hashtable.html). Accessing the space via the Map API can be done using the [GigaMap]({{% api-javadoc %}}/org/openspaces/core/GigaMap.html) interfaces. It includes enhanced options such as declarative transactions support, coherent runtime exception hierarchy, timeout operations , TTL, locking and versioning.
 
 
 
@@ -227,7 +227,7 @@ You mat have several `GigaMap` used with your application, each with different c
 
 # GigaMap Operations
 
-The [GigaMap](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaMap.html) provides the exact semantic as the [java.util.Map](http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html) interface: clear, containsKey, put, putAll, get and remove methods. In addition it includes the lock , putAndUnlock , and the unlock methods.
+The [GigaMap]({{% api-javadoc %}}/org/openspaces/core/GigaMap.html) provides the exact semantic as the [java.util.Map](http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html) interface: clear, containsKey, put, putAll, get and remove methods. In addition it includes the lock , putAndUnlock , and the unlock methods.
 
 
 ```java
