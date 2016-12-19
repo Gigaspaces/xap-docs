@@ -174,7 +174,7 @@ For more details about different configurations see [Space Persistency](./space-
 |Property|Description|Default|
 |:-------|:----------|:------|
 |cassandraDataSource|A configured `org.apache.cassandra.cql.jdbc.CassandraDataSource` bean. Must be configured to use CQL 2.0.0.| |
-|hectorClient|A configured [HectorCassandraClient](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/persistency/cassandra/HectorCassandraClient.html) bean. see [Hector Cassandra Client](./cassandra-hector-client.html).| |
+|hectorClient|A configured [HectorCassandraClient]({{% api-javadoc %}}/org/openspaces/persistency/cassandra/HectorCassandraClient.html) bean. see [Hector Cassandra Client](./cassandra-hector-client.html).| |
 |minimumNumberOfConnections|The minimum number of jdbc connections to hold in the pool.|5|
 |maximumNumberOfConnections|The maximum number of jdbc connections to hold in the pool. If a connection is required and the pool is full, a new connection will be opened which will be closed shortly after its usage is completed.|30|
 |batchLimit|The underlying cassandra-jdbc implementation brings the entire result set in one batch. If paging is required, this parameter will control the maximum number of entries to fetch in each batch. (this parameter controls both initial data load and general cache miss queries) |10000|

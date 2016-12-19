@@ -9,7 +9,7 @@ weight: 700
 {{% ssummary %}}{{% /ssummary %}}
 
 
-The [IteratorBuilder](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/IteratorBuilder.html) with the [GSIterator](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/j_spaces/core/client/GSIterator.html)  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.
+The [IteratorBuilder]({{% api-javadoc %}}/org/openspaces/core/IteratorBuilder.html) with the [GSIterator]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/GSIterator.html)  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.
 
 There are scenarios where the conventional read operation that returns a single space object does not fit and there is a need to return a collection of entries from the space. Generally, an iterator should be used in cases where returning all the entries in one result with the `readMultiple` operation will consume too much memory on the client or introduce too much latency before the first space object could be processed.
 
@@ -49,7 +49,7 @@ for (;;)
 
 # The IteratorBuilder
 
-The [IteratorBuilder](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/IteratorBuilder.html) is a utility builder class for the GSIterator. It allows to use method chaining for simple configuration of an iterator and then call iterate() to get the actual iterator.
+The [IteratorBuilder]({{% api-javadoc %}}/org/openspaces/core/IteratorBuilder.html) is a utility builder class for the GSIterator. It allows to use method chaining for simple configuration of an iterator and then call iterate() to get the actual iterator.
 
 By default, when no template is added (using `addTemplate`), a `null` template will be used to iterate over all the content of the Space.
 
@@ -65,7 +65,7 @@ The maximum number of objects to pull from the space can be controlled using `bu
 
 # The IteratorScope
 
-The [IteratorScope](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/client/iterator/IteratorScope.html) determines the scope of a GSIterator. Here are the supported options:
+The [IteratorScope]({{% api-javadoc %}}/index.html?com/gigaspaces/client/iterator/IteratorScope.html) determines the scope of a GSIterator. Here are the supported options:
 
 - `CURRENT` - Indicates that the iterator will process entries currently in the space, and ignores future changes.
 - `CURRENT_AND_FUTURE` - Indicates that the iterator will process both entries currently in the space and future changes.
@@ -73,7 +73,7 @@ The [IteratorScope](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}
 
 # The GSIterator
 
-The [GSIterator](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/j_spaces/core/client/GSIterator.html) will initially contain some population of objects. These objects can be retrieved by calling `next` method. A successful call to `next` method will remove the returned object from the iteration result set. An iterator can end up in one of two terminal states, `invalidated` or `exhausted`.
+The [GSIterator]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/GSIterator.html) will initially contain some population of objects. These objects can be retrieved by calling `next` method. A successful call to `next` method will remove the returned object from the iteration result set. An iterator can end up in one of two terminal states, `invalidated` or `exhausted`.
 
 A leased iterator which expires is considered as invalidated. A canceled iterator is an exhausted iterator and will have no more entities added to it. Calling next on an iterator with either state always returns null or it may throw one of the allowed exceptions. In particular next(timeout) may throw NoSuchObjectException to indicate that no object has been found during the allowed timeout. There is no guarantee that once next(timeout) throws a NoSuchObjectException, or next returns null, all future calls on that instance will do the same.
 

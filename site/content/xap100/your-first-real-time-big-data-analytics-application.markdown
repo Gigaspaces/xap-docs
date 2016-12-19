@@ -224,7 +224,7 @@ Since the application is a Maven project, you can load it using your Java IDE an
 
 Once the project is loaded in your IDE, you can run the application, as follows:
 
-- In **Eclipse**, create two run configurations. One for the **feeder** and one for the **processor**. For both, the main class must be [IntegratedProcessingUnitContainer](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
+- In **Eclipse**, create two run configurations. One for the **feeder** and one for the **processor**. For both, the main class must be [IntegratedProcessingUnitContainer]({{% api-javadoc %}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
 Configure the GigaSpaces home folder using the **com.gs.home** system property:
 gshome-directory
 `-Dcom.gs.home="c:\{{%version "gshome-directory"%}}"`
@@ -259,7 +259,7 @@ rt-feeder project run configuration:
 {{%/column%}}
 {{%/section%}}
 
-- In IntelliJ, create two run configurations, with [IntegratedProcessingUnitContainer](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html) as the main class, and make sure that the feeder configuration uses the classpath of the `feeder` module, and that the processor configuration uses that of the `processor` module.
+- In IntelliJ, create two run configurations, with [IntegratedProcessingUnitContainer]({{% api-javadoc %}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html) as the main class, and make sure that the feeder configuration uses the classpath of the `feeder` module, and that the processor configuration uses that of the `processor` module.
 
 For more information about the `IntegratedProcessingUnitContainer` class (runs the processing units within your IDE), see [Running and Debugging Within Your IDE](./running-and-debugging-within-your-ide.html).
 
