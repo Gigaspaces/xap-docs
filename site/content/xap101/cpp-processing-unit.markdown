@@ -1,6 +1,6 @@
 ---
 type: post101
-title:  Processing Unit
+title:  CPP Processing Unit
 categories: XAP101
 parent: xap-cpp.html
 weight: 500

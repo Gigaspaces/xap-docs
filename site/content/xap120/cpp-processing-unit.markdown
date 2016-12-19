@@ -1,6 +1,6 @@
 ---
 type: post120
-title:  Processing Unit
+title:  CPP Processing Unit
 categories: XAP120,PRM
 parent: xap-cpp.html
 weight: 500
