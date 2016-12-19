@@ -40,11 +40,11 @@ For example, to use an SSL communication filter, run GigaSpaces with:
 
 {{% refer %}}[GigaSpaces Java API Documentation](/api_documentation/index.html){{% /refer %}}
 
-Since some types of communication filters are not symmetric regarding the client and server, the class [SSLFilterFactory](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html) has 2 methods: one to create the communication filter for the client side, and the other for the server side.
+Since some types of communication filters are not symmetric regarding the client and server, the class [SSLFilterFactory]({{% api-javadoc %}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html) has 2 methods: one to create the communication filter for the client side, and the other for the server side.
 
-- public IOFilter [createClientFilter()](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createClientFilter) throws Exception;
+- public IOFilter [createClientFilter()]({{% api-javadoc %}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createClientFilter) throws Exception;
 
-- public IOFilter [createServerFilter()](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createServerFilter) throws Exception;
+- public IOFilter [createServerFilter()]({{% api-javadoc %}}/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createServerFilter) throws Exception;
 
 If the communication filter needs its own parameters, it can acquire them by directly reading system properties. For example, the supplied SSLFilter needs to get the keystore file, and the password to this file.
 
@@ -63,9 +63,9 @@ The provided SSLFilter uses keystore type JKS, with key management method SunX50
 {{% info %}}
 Please refer to the JavaDocs for more details about the reference classes:
 
-- [com.gigaspaces.lrmi.nio.filters.IOSSLFilter](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/IOSSLFilter.html)
+- [com.gigaspaces.lrmi.nio.filters.IOSSLFilter]({{% api-javadoc %}}/com/gigaspaces/lrmi/nio/filters/IOSSLFilter.html)
 
-- [com.gigaspaces.lrmi.nio.filters.IOStreamCompressionFilter](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/lrmi/nio/filters/IOStreamCompressionFilter.html)
+- [com.gigaspaces.lrmi.nio.filters.IOStreamCompressionFilter]({{% api-javadoc %}}/com/gigaspaces/lrmi/nio/filters/IOStreamCompressionFilter.html)
 
 {{%/info%}}
 

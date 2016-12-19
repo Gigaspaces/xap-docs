@@ -17,7 +17,7 @@ Configuring an LRU cache means you should be able to estimat certain characteris
 
 # Implementing a Custom Space Eviction Policy
 
-The [SpaceEvictionStrategy](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/server/eviction/SpaceEvictionStrategy.html) is an abstract class you can extend and decide which methods to override in order to implement the required behavior. You don't need to override all the methods if they are not required for your eviction policy.
+The [SpaceEvictionStrategy]({{% api-javadoc %}}/com/gigaspaces/server/eviction/SpaceEvictionStrategy.html) is an abstract class you can extend and decide which methods to override in order to implement the required behavior. You don't need to override all the methods if they are not required for your eviction policy.
 
 
 ```java

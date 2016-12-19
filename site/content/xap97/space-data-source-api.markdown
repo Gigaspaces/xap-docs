@@ -11,7 +11,7 @@ weight: 300
 
 
 
-The [SpaceDataSource](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/datasource/SpaceDataSource.html) is used by the Space for interacting with the persistency layer in two cases:
+The [SpaceDataSource]({{% api-javadoc %}}/index.html?com/gigaspaces/datasource/SpaceDataSource.html) is used by the Space for interacting with the persistency layer in two cases:
 
 1. Initial data & meta data loading from a data source (i.e. a database).
 1. In LRU mode, when the space needs to read data from the data source (cache miss as a result of read,write,update,take,change).
@@ -67,7 +67,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new UrlSpaceConfigurer("/./space")
 
 # The SpaceDataSource API
 
-The [SpaceDataSource](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/datasource/SpaceDataSource.html) abstract class should be extended in order to provide a custom behavior where needed.
+The [SpaceDataSource]({{% api-javadoc %}}/index.html?com/gigaspaces/datasource/SpaceDataSource.html) abstract class should be extended in order to provide a custom behavior where needed.
 
 # Initial Metadata Load
 

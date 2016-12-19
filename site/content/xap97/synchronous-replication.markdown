@@ -55,7 +55,7 @@ When a replication target space instance is unavailable (disconnection) or some 
 
 {{% info %}}
 The current operating mode of a replication channel can be retrieved via the [Administration and Monitoring API](./administration-and-monitoring-api.html) by getting the
-[Space Instance](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/space/SpaceInstance.html) [Replication Statistics](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/j_spaces/core/filters/ReplicationStatistics.html) of the specific replication channel and calling the following getter [OutgoingChannel.getOperatingMode()](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/j_spaces/core/filters/ReplicationStatistics.OutgoingChannel.html#getOperatingMode())
+[Space Instance]({{% api-javadoc %}}/org/openspaces/admin/space/SpaceInstance.html) [Replication Statistics]({{% api-javadoc %}}/com/j_spaces/core/filters/ReplicationStatistics.html) of the specific replication channel and calling the following getter [OutgoingChannel.getOperatingMode()]({{% api-javadoc %}}/com/j_spaces/core/filters/ReplicationStatistics.OutgoingChannel.html#getOperatingMode())
 {{% /info %}}
 
 # Behavior During Recovery

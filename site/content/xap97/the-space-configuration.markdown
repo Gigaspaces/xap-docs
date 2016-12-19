@@ -9,7 +9,7 @@ parent: the-gigaspace-interface-overview.html
 {{% ssummary %}}{{%/ssummary%}}
 
 When a client connects to a space, a proxy is created that holds a connection to the space. All client interaction is performed through this proxy.
-The proxy provides a simpler space API using the [GigaSpace](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html) interface.
+The proxy provides a simpler space API using the [GigaSpace]({{% api-javadoc %}}/index.html) interface.
 It is created with a Space URL and optional parameters.
 
 
@@ -527,12 +527,12 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 
 For further details on each of the available modifiers see:
 
-- [ReadModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/ReadModifiers.html)|
-- [WriteModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/WriteModifiers.html)|
-- [TakeModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/TakeModifiers.html)|
-- [CountModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/CountModifiers.html)|
-- [ClearModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/ClearModifiers.html)|
-- [ChangeModifiers](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/com/gigaspaces/client/ChangeModifiers.html)|
+- [ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|
+- [WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)|
+- [TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|
+- [CountModifiers]({{% api-javadoc %}}/com/gigaspaces/client/CountModifiers.html)|
+- [ClearModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ClearModifiers.html)|
+- [ChangeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ChangeModifiers.html)|
 
 # Exception Hierarchy
 
@@ -554,11 +554,11 @@ A default implementation of the exception translator is automatically used, whic
 
 Batch operations many throw the following Exceptions. Make sure you catch these and act appropriately:
 
-- [WriteMultiplePartialFailureException](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/core/WriteMultiplePartialFailureException.html)
-- [WriteMultipleException](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/core/WriteMultipleException.html)
-- [ReadMultipleException](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/core/ReadMultipleException.html)
-- [TakeMultipleException](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/core/TakeMultipleException.html)
-- [ClearException](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/core/ClearException.html)
+- [WriteMultiplePartialFailureException]({{% api-javadoc %}}/index.html?org/openspaces/core/WriteMultiplePartialFailureException.html)
+- [WriteMultipleException]({{% api-javadoc %}}/index.html?org/openspaces/core/WriteMultipleException.html)
+- [ReadMultipleException]({{% api-javadoc %}}/index.html?org/openspaces/core/ReadMultipleException.html)
+- [TakeMultipleException]({{% api-javadoc %}}/index.html?org/openspaces/core/TakeMultipleException.html)
+- [ClearException]({{% api-javadoc %}}/index.html?org/openspaces/core/ClearException.html)
 
 
 # Basic Guidelines

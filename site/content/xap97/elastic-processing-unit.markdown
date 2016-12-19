@@ -509,7 +509,7 @@ nohup ${JSHOMEDIR}/bin/gs-agent.sh gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 g
 {{% /tab %}}
 {{% /tabs %}}
 
-Configure the EPU scale config to use `dedicatedManagementMachines`, and reduce the `reservedMemoryCapacityPerMachine`. For more information consult the [discovered machine provisioning configuration JavaDoc](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/DiscoveredMachineProvisioningConfigurer.html).
+Configure the EPU scale config to use `dedicatedManagementMachines`, and reduce the `reservedMemoryCapacityPerMachine`. For more information consult the [discovered machine provisioning configuration JavaDoc]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/DiscoveredMachineProvisioningConfigurer.html).
 
 ## Zone Based Machine Provisioning
 
@@ -544,7 +544,7 @@ With the above the `mySpace` EPU will be deployed only into agents associated wi
 ## Automatic Machine Provisioning
 
 
-When deploying an EPU pass an instance of [ElasticMachineProvisioningConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/ElasticMachineProvisioningConfig.html) as the [machineProvisioning](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.html) deployment property.
+When deploying an EPU pass an instance of [ElasticMachineProvisioningConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/ElasticMachineProvisioningConfig.html) as the [machineProvisioning]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.html) deployment property.
 
 
 ```java
@@ -558,7 +558,7 @@ ProcessingUnit pu = gsm.deploy(
 );
 ```
 
-When deploying Gigaspaces XAP on the management machine(s) place the plug-in JAR file under `/gigaspaces-xap/lib/platform/esm` folder. The ESM then loads classes specified by the `machineProvisioning` configuration. These classes need to implement either [ElasticMachineProvisioning](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/grid/gsm/machines/plugins/ElasticMachineProvisioning.html) or [NonBlockingElasticMachineProvisioning](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/grid/gsm/machines/plugins/NonBlockingElasticMachineProvisioning.html). That class must also implement [Bean](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/bean/Bean.html) which has resemblance to the Spring Bean.
+When deploying Gigaspaces XAP on the management machine(s) place the plug-in JAR file under `/gigaspaces-xap/lib/platform/esm` folder. The ESM then loads classes specified by the `machineProvisioning` configuration. These classes need to implement either [ElasticMachineProvisioning]({{% api-javadoc %}}/org/openspaces/grid/gsm/machines/plugins/ElasticMachineProvisioning.html) or [NonBlockingElasticMachineProvisioning]({{% api-javadoc %}}/org/openspaces/grid/gsm/machines/plugins/NonBlockingElasticMachineProvisioning.html). That class must also implement [Bean]({{% api-javadoc %}}/org/openspaces/core/bean/Bean.html) which has resemblance to the Spring Bean.
 
 ## Automatic Rebalancing
 
@@ -606,7 +606,7 @@ numberOfPartitions X ( 1 + numberOfBackupsPerPartition ) X memoryCapacityPerCont
 .
 
 - During relocation of a specific instance, primary election takes place. For a few seconds, operations on that partition and operations on the whole cluster is denied. Internally, the client proxy retries the operation until the primary election takes place and masks the failure, but the delay exists.
-This delay can be reduced by modifying configuration settings as explained in [Failure Detection]({{%currentadmurl%}}/troubleshooting-failure-detection.html). Overriding the default value of these context properties is achieved with the [addContextProperty](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.html) deployment property. For example:
+This delay can be reduced by modifying configuration settings as explained in [Failure Detection]({{%currentadmurl%}}/troubleshooting-failure-detection.html). Overriding the default value of these context properties is achieved with the [addContextProperty]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.html) deployment property. For example:
 
 
 ```java
@@ -663,7 +663,7 @@ ProcessingUnit puB = gsm.deploy(
 
 ## Elastic Deployment Topology Configuration
 
-Here are the main configuration properties you may use with the [ElasticSpaceDeployment](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/space/ElasticSpaceDeployment.html) and the [ElasticStatefulProcessingUnitDeployment](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/ElasticStatefulProcessingUnitDeployment.html):
+Here are the main configuration properties you may use with the [ElasticSpaceDeployment]({{% api-javadoc %}}/org/openspaces/admin/space/ElasticSpaceDeployment.html) and the [ElasticStatefulProcessingUnitDeployment]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/ElasticStatefulProcessingUnitDeployment.html):
 
 
 |Property| Type | Description| Default | Mandatory |
@@ -678,12 +678,12 @@ Here are the main configuration properties you may use with the [ElasticSpaceDep
 |secured|boolean | deploy a secured processing unit.| false|No|
 |singleMachineDeployment | | Allows deployment of the processing unit on a single machine, by lifting the limitation for primary and backup processing unit instances from the same partition to be deployed on different machines.| false|No|
 |userDetails| UserDetails | Advanced: Sets the security user details for authentication and authorization of the processing unit.| |No|
-|scale| [EagerScaleConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html) or [ManualCapacityScaleConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html) |Enables the specified scale strategy, and disables all other scale strategies.| |No|
+|scale| [EagerScaleConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html) or [ManualCapacityScaleConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html) |Enables the specified scale strategy, and disables all other scale strategies.| |No|
 |useScriptToStartContainer| | Allow the GridServiceContainer to be started using a script and not a pure Java process.| |No|
 
 ## Scale Strategy Configuration
 
-Here are the main configuration properties you may use with the [EagerScaleConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html) and the [ManualCapacityScaleConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html):
+Here are the main configuration properties you may use with the [EagerScaleConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html) and the [ManualCapacityScaleConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html):
 
 
 |Property| Type | Description| Default |Mandatory |

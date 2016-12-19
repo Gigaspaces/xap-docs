@@ -12,7 +12,7 @@ The pessimistic locking protocol provides data consistency in a multi user trans
 
 This scenario is different from the optimistic locking protocol since we assume with the pessimistic locking protocol, that every object that is read and retrieved from the space will eventually be updated where the transaction duration is relatively very short.
 
-To enforce a sole reader and sole updater for the object we explicitly lock the object via a transaction using the [ReadModifiers.EXCLUSIVE_READ_LOCK](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/j_spaces/core/client/ReadModifiers.html).
+To enforce a sole reader and sole updater for the object we explicitly lock the object via a transaction using the [ReadModifiers.EXCLUSIVE_READ_LOCK]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/ReadModifiers.html).
 
 
 {{%note%}}
