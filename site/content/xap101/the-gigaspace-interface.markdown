@@ -304,7 +304,7 @@ When using LocalCache and LocalView you need to call the `destroy()` method on t
 All communication related resources in XAP are shared between all the XAP components
 at the Java classloader level. If you're using the [GigasSpaces service grid]({{%currentadmurl%}}/the-runtime-environment.html) to run your XAP application you do not need to handle communication resources cleanup explicitly.
 If your application runs in a standalone environment or another hosted environment (e.g. a JEE application server) you will need to explicitly clean up those resources.
-You need to shutdown these resources explicitly when your application no longer uses the XAP components (e.g. when it's un deployed from the application server). This is done by calling the static [shutdown()](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/com/gigaspaces/lrmi/LRMIManager.html) method on the LRMIManager.
+You need to shutdown these resources explicitly when your application no longer uses the XAP components (e.g. when it's un deployed from the application server). This is done by calling the static [shutdown()]({{% api-javadoc %}}/com/gigaspaces/lrmi/LRMIManager.html) method on the LRMIManager.
 Note that if the JVM process is shut down anyway, you do not need to do explicitly shut down the communication resources.
 
 

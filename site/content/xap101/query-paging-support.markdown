@@ -8,7 +8,7 @@ weight: 700
 
 {{% ssummary %}}{{% /ssummary %}}
 
-In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the [readMultiple](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html#readMultiple-T-) overloads in `GigaSpace`. However, if there are lots of matching entries, you may encounter several problems:
+In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the [readMultiple]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readMultiple-T-) overloads in `GigaSpace`. However, if there are lots of matching entries, you may encounter several problems:
 
 * Memory usage - Both the server and client need to allocate enough memory for the entire result set.
 * Latency - Since all the results are returned in one bulk, the client must wait until the final result arrives before it can process the first one.
@@ -20,7 +20,7 @@ This page describes the new space iterator which is intended to replace the old 
 
 # Usage
 
-Use the [GigaSpace](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html) `iterator(template)` method to create an iterator of all the objects in the space which match the template (either [SQLQuery](./query-sql.html) or [template](./query-template-matching.html)). This results in a `SpaceIterator<T>` which implements both `Iterator<T>` and `Iterable<T>`, so a simple [for-each loop](https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html) can be used to iterate the results. For example:
+Use the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) `iterator(template)` method to create an iterator of all the objects in the space which match the template (either [SQLQuery](./query-sql.html) or [template](./query-template-matching.html)). This results in a `SpaceIterator<T>` which implements both `Iterator<T>` and `Iterable<T>`, so a simple [for-each loop](https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html) can be used to iterate the results. For example:
 
 
 ```java

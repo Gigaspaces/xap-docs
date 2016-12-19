@@ -13,7 +13,7 @@ weight: 500
 
 # Elastic Deployment Topology Configuration
 
-Here are the main configuration properties you may use with the [ElasticSpaceDeployment](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/space/ElasticSpaceDeployment.html) and the [ElasticStatefulProcessingUnitDeployment](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/ElasticStatefulProcessingUnitDeployment.html):
+Here are the main configuration properties you may use with the [ElasticSpaceDeployment]({{% api-javadoc %}}/org/openspaces/admin/space/ElasticSpaceDeployment.html) and the [ElasticStatefulProcessingUnitDeployment]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/ElasticStatefulProcessingUnitDeployment.html):
 
 
 |Property| Type | Description| Default | Mandatory |
@@ -28,12 +28,12 @@ Here are the main configuration properties you may use with the [ElasticSpaceDep
 |secured|boolean | deploy a secured processing unit.| false|No|
 |singleMachineDeployment | | Allows deployment of the processing unit on a single machine, by lifting the limitation for primary and backup processing unit instances from the same partition to be deployed on different machines.| false|No|
 |userDetails| UserDetails | Advanced: Sets the security user details for authentication and authorization of the processing unit.| |No|
-|scale| [EagerScaleConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html) or [ManualCapacityScaleConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html) |Enables the specified scale strategy, and disables all other scale strategies.| |No|
+|scale| [EagerScaleConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html) or [ManualCapacityScaleConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html) |Enables the specified scale strategy, and disables all other scale strategies.| |No|
 |useScriptToStartContainer| | Allow the GridServiceContainer to be started using a script and not a pure Java process.| |No|
 
 # Scale Strategy Configuration
 
-Here are the main configuration properties you may use with the [EagerScaleConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html) and the [ManualCapacityScaleConfig](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html):
+Here are the main configuration properties you may use with the [EagerScaleConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html) and the [ManualCapacityScaleConfig]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html):
 
 
 |Property| Type | Description| Default |Mandatory |
@@ -45,7 +45,7 @@ Here are the main configuration properties you may use with the [EagerScaleConfi
 
 # Machine Provisioning Configuration
 
-Here are the main configuration properties you may use with the [DiscoveredMachineProvisioningConfigurer](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/admin/pu/elastic/config/DiscoveredMachineProvisioningConfigurer.html) that is passed to the `dedicatedMachineProvisioning` and `sharedMachineProvisioning` methods:
+Here are the main configuration properties you may use with the [DiscoveredMachineProvisioningConfigurer]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/config/DiscoveredMachineProvisioningConfigurer.html) that is passed to the `dedicatedMachineProvisioning` and `sharedMachineProvisioning` methods:
 
  
 |Property| Type | Description| Default |Mandatory |

@@ -6,7 +6,7 @@ weight: 400
 parent: the-gigaspace-interface-overview.html
 ---
 
-The [GigaSpace.change](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/client/ChangeSet.html) allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object.
+The [GigaSpace.change]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet]({{% api-javadoc %}}/index.html?com/gigaspaces/client/ChangeSet.html) allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object.
 
 
 

@@ -11,7 +11,7 @@ weight: 400
 
 
 
-The [SpaceSynchronizationEndpoint](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?com/gigaspaces/sync/SpaceSynchronizationEndpoint.html) is used for persisting data from the space to an external storage.
+The [SpaceSynchronizationEndpoint]({{% api-javadoc %}}/index.html?com/gigaspaces/sync/SpaceSynchronizationEndpoint.html) is used for persisting data from the space to an external storage.
 The following data is synchronized:
 
 1. Batched write/update/remove operations.
@@ -214,7 +214,7 @@ public class MySpaceSynchronizationEndpoint extends SpaceSynchronizationEndpoint
 ```
 
 {{% refer %}}
-For implementation reference see our built in Hibernate and Cassandra implementations: [DefaultHibernateSpaceSynchronizationEndpoint](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/persistency/hibernate/DefaultHibernateSpaceSynchronizationEndpoint.html) and [CassandraSpaceSynchronizationEndpoint](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/persistency/cassandra/CassandraSpaceSynchronizationEndpoint.html) classes.
+For implementation reference see our built in Hibernate and Cassandra implementations: [DefaultHibernateSpaceSynchronizationEndpoint]({{% api-javadoc %}}/index.html?org/openspaces/persistency/hibernate/DefaultHibernateSpaceSynchronizationEndpoint.html) and [CassandraSpaceSynchronizationEndpoint]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/CassandraSpaceSynchronizationEndpoint.html) classes.
 {{% /refer %}}
 
 # Example with Failure events
