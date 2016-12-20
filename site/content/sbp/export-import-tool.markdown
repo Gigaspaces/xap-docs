@@ -58,7 +58,7 @@ File Content Structure (Uncompressed):
     Obj: Space Class Instance (x Row Count)
 
 {{%align center%}}
-![How Exporting Data Works](/sbp/attachment_files/export-import/export.png)
+![How Exporting Data Works](/attachment_files/export-import/export.png)
 {{%/align%}}
 
 <br />
@@ -297,7 +297,7 @@ All files destine for the new partition will then be queued and processed from t
 files that will be processed in parallel for each partition is configurable and based on the size of the export/import thread pool.
 
 {{%align center%}}
-![How Exporting Data Works](/sbp/attachment_files/export-import/import.png)
+![How Exporting Data Works](/attachment_files/export-import/import.png)
 {{%/align%}}
 ## *Usage*
 Due to the number of configuration options available we are unable to show all permutations of the tool, but the simplest and most

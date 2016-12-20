@@ -108,7 +108,7 @@ Or, with XML configuration:
 #### Distributed collocation mode
 
 {{%align center%}}
-![Distributed collocation mode](/sbp/attachment_files/collections/distributed.png)
+![Distributed collocation mode](/attachment_files/collections/distributed.png)
 {{%/align%}}
 
 In this mode collection items are spread over the whole cluster. It is preferred mode for collections of huge sizes, since memory consumption is balanced across the grid. User items are wrapped into meta classes and stored in space one by one.
@@ -116,7 +116,7 @@ In this mode collection items are spread over the whole cluster. It is preferred
 #### Local collocation mode
 
 {{%align center%}}
-![Local collocation mode](/sbp/attachment_files/collections/local.png)
+![Local collocation mode](/attachment_files/collections/local.png)
 {{%/align%}}
 
 In `local` collocation mode items are stored within the same partition as the metadata object. This mode should be chosen when application interacts with multiple small collections stored in the grid. It is scalable by collection count and not by the number of items in one collection. User items are wrapped into meta classes and stored in space one by one.
@@ -124,7 +124,7 @@ In `local` collocation mode items are stored within the same partition as the me
 #### Embedded collocation mode
 
 {{%align center%}}
-![Embedded collocation mode](/sbp/attachment_files/collections/embedded.png)
+![Embedded collocation mode](/attachment_files/collections/embedded.png)
 {{%/align%}}
 
 This mode suggests that user items are stored inside single collection container object. Thus items do not have their own space identity and are stored together. This mode is similar to `local` mode but groups up items for performance needs.
@@ -132,7 +132,7 @@ This mode suggests that user items are stored inside single collection container
 #### Multi-client usage
 
 {{%align center%}}
-![Multi-client usage](/sbp/attachment_files/collections/multi-client.png)
+![Multi-client usage](/attachment_files/collections/multi-client.png)
 {{%/align%}}
 
 `GigaQueue` can have multiple clients operating over one collection. Several processes may declare a queue with one name: this will create only one queue structure in space and will allow clients to offer and poll with a single source. For example, queue may be filled with tasks by the producer process and emptied by the consumers.
