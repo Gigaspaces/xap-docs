@@ -59,9 +59,10 @@ To connect to a space:
 ```java
         <protocol>://<host name>:<port>/<container name>/<space name>?<properties>
 ```
-    {{% align center %}}
-    ![Connect1.jpg](/attachment_files/sbp/Connect1.jpg)
-    {{% /align %}}
+
+{{% align center %}}
+![Connect1.jpg](/attachment_files/sbp/Connect1.jpg)
+{{% /align %}}
 
 - The **Customize the Selection** button opens the [Customize the Selection](#customize-the-selection) window.
 
@@ -72,11 +73,14 @@ To create a new view:
 2. Make sure you are connected to a space.
 3. Use the arrow buttons ( ![arrowExcel.jpg](/attachment_files/sbp/arrowExcel.jpg)) to move columns from the **Available Columns** area to the **Selected Columns** area.
 4. If you want to narrow your view to more specific results (by querying your class fields), click the **Customize the Selection** button (see [**Customize the Selection**](#customize-the-selection)).
+
 {{<infosign>}} This step is optional. If you want to generate the view with all the existing entries of the selected type in the space, proceed to the next step.
     1. On the left side of the Customize the Selection window, click the class field you want to query. (For example, the **Age** field is selected below.)
-    {{% align center %}}
-    ![CustomizeTheSelection1.jpg](/attachment_files/sbp/CustomizeTheSelection1.jpg)
-    {{% /align %}}
+
+{{% align center %}}
+![CustomizeTheSelection1.jpg](/attachment_files/sbp/CustomizeTheSelection1.jpg)
+{{% /align %}}
+
     2. The selected field appears on the right, under **WHERE**. You can now select the desired expression and value, and choose to sort your results in an ascending or descending manner.
     3. When you've finished selecting, press **Save**.
     4. Your query syntax is shown in the **SQL** area. Under the **SQL** box, the number of instances (the query's result) is displayed.
