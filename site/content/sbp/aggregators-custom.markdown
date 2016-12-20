@@ -16,23 +16,23 @@ Aggregators provided by the core XAP platform are extensible, allowing developer
 
 # SpaceEntriesAggregator
 
-The [SpaceEntriesAggregator](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html) is an abstract class that serves as the base class for all aggregators, including the ones provided by the core platform.  Extending this class will provide several methods to allow the user to easily implement a custom aggregator.  The methods are as follows:
+The [SpaceEntriesAggregator]({{%api-javadoc%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html) is an abstract class that serves as the base class for all aggregators, including the ones provided by the core platform.  Extending this class will provide several methods to allow the user to easily implement a custom aggregator.  The methods are as follows:
 
-### [aggregate](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#aggregate-com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext-)
+### [aggregate]({{%api-javadoc%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#aggregate-com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext-)
 The aggregate method is executed for each space entity matching the SQLQuery in a space partition.  The function receives a SpaceEntriesAggregatorContext, which is a wrapper that allows the user to access members of the user entity. The members of each space entity can be accessed by the getPathValue method of SpaceEntriesAggregatorContext.
 
 Long departmentId = (Long) context.getPathValue("departmentId");
 
-### [getIntermediateResult](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getIntermediateResult--)
+### [getIntermediateResult]({{%api-javadoc%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getIntermediateResult--)
 Executed after all aggregate method calls have completed, this method represents the aggregation result of one partition. The returned value will be passed back to the client where it will trigger the aggregateIntermediateResult method.
 
-### [aggregateIntermediateResult](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#aggregateIntermediateResult-T-)
+### [aggregateIntermediateResult]({{%api-javadoc%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#aggregateIntermediateResult-T-)
 Assembles the responses from each partition on the client side to represent a response from the entire cluster.  The input to this method is the returned value of the getIntermediateResult method.
 
-### [getFinalResult](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getFinalResult--) (optional)
+### [getFinalResult]({{%api-javadoc%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getFinalResult--) (optional)
 Once all partitions have returned their results, the proxy invokes the getFinalResult method to retrieve the final aggregation result. Its default implementation will invoke the getIntermediateResult method, which yields the correct value in most aggregation implementations. Implement getFinalResult when there needs to be additional logic performed on the entire aggregatedResult.
 
-### [getDefaultAlias](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getDefaultAlias--)
+### [getDefaultAlias]({{%api-javadoc%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getDefaultAlias--)
 An aggregation result can contain the results from multiple aggregations. An alias provides a way to distinguish one aggregation result from another.
 
 ![aggregators.jpg](/attachment_files/aggregators-custom.png)

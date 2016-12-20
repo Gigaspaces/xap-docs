@@ -85,7 +85,7 @@ The application in all instances is configured to use a custom session state mod
 A single web application persisting and reading from XAP.NET to provide resilient session state.
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/sbp/pics/iis-pic1.png"%}}
+{{%popup   "/attachment_files/iis/iis-pic1.png"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -95,7 +95,7 @@ A single web application persisting and reading from XAP.NET to provide resilien
 Multiple instances of the same application distributed across a cluster of load balanced or distributed servers.
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/sbp/pics/iis-pic2.png"%}}
+{{%popup   "/attachment_files/iis/iis-pic2.png"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -105,7 +105,7 @@ Multiple instances of the same application distributed across a cluster of load 
 Multiple applications persisting and consuming session data from the same IMDG, in either a single server or clustered topology.
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/sbp/pics/iis-pic3.png"%}}
+{{%popup   "/attachment_files/iis/iis-pic3.png"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -117,14 +117,14 @@ The difference in configuration for applications in this scenario depends on the
 The application would be configured to communicate with the local/near local active space instance.
 {{%/column%}}
 {{%column width="20%" %}}
-{{%popup   "/sbp/pics/iis-pic4.png"%}}
+{{%popup   "/attachment_files/iis/iis-pic4.png"%}}
 {{%/column%}}
 {{%/section%}}
 
 # Prerequisites
 The following instructions assume that you have downloaded/installed the prerequisites:
 
-- [Download the sample ASP.NET web application](/sbp/download_files/GigaSpacesSessionStateProvider.zip)
+- [Download the sample ASP.NET web application](/download_files/sbp/GigaSpacesSessionStateProvider.zip)
 
 - [Download XAP.NET latest version](http://www.gigaspaces.com/xap-download)
 

@@ -44,7 +44,7 @@ The example includes two additional Processing Unit folders:
 # Building the Example
 
 Step 1:
-[Download the example](/sbp/download_files/Datagrid-MongoDb.zip) and extract it into the `<GigaSpaces XAP .Net Root>\Examples` (i.e. `C:\GigaSpaces\XAP.NET 9.7.0 x64\NET v4.0.30319\Examples`) folder. A new folder called `Datagrid-MongoDb` will be created.
+[Download the example](/download_files/sbp/Datagrid-MongoDb.zip) and extract it into the `<GigaSpaces XAP .Net Root>\Examples` (i.e. `C:\GigaSpaces\XAP.NET 9.7.0 x64\NET v4.0.30319\Examples`) folder. A new folder called `Datagrid-MongoDb` will be created.
 
 Step 2: 
 Browse to the `Datagrid-MongoDb` folder

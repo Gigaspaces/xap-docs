@@ -120,7 +120,7 @@ With the following example we have the **Author** and the **Book** entities. Her
 
 ## Example Code
 
-You can [download](/sbp/download_files/Space-Data-Model-Example.zip) the code used with the example below. See `MainEmbeddedOne2Many` , `MainEmbeddedOne2One` , `MainNonEmbeddedOne2Many` , `MainNonEmbeddedOne2One` and `MainJDBC` demonstrating each scenario 	described below.
+You can [download](/download_files//sbp/Space-Data-Model-Example.zip) the code used with the example below. See `MainEmbeddedOne2Many` , `MainEmbeddedOne2One` , `MainNonEmbeddedOne2Many` , `MainNonEmbeddedOne2One` and `MainJDBC` demonstrating each scenario 	described below.
 
 ## Remote vs. Collocated Client
 

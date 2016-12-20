@@ -199,10 +199,10 @@ Edit your `hibernate.cfg.xml` file. **Add or modify** the following properties u
 {{% note %}}
 The Hibernate second level Cache implementation provided listed below:
 
-- [org.openspaces.hibernate.cache.SimpleGigaMapCacheProvider](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/hibernate/cache/SimpleGigaMapCacheProvider.html)
-- [org.openspaces.hibernate.cache.SimpleMapCacheProvider](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/hibernate/cache/SimpleMapCacheProvider.html)
-- [org.openspaces.hibernate.cache.TransactionalGigaMapCacheProvider](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/hibernate/cache/TransactionalGigaMapCacheProvider.html)
-- [org.openspaces.hibernate.cache.TransactionalMapCacheProvider](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/hibernate/cache/TransactionalMapCacheProvider.html)
+- [org.openspaces.hibernate.cache.SimpleGigaMapCacheProvider]({{% api-javadoc %}}/index.html?org/openspaces/hibernate/cache/SimpleGigaMapCacheProvider.html)
+- [org.openspaces.hibernate.cache.SimpleMapCacheProvider]({{% api-javadoc %}}/index.html?org/openspaces/hibernate/cache/SimpleMapCacheProvider.html)
+- [org.openspaces.hibernate.cache.TransactionalGigaMapCacheProvider]({{% api-javadoc %}}/index.html?org/openspaces/hibernate/cache/TransactionalGigaMapCacheProvider.html)
+- [org.openspaces.hibernate.cache.TransactionalMapCacheProvider]({{% api-javadoc %}}/index.html?org/openspaces/hibernate/cache/TransactionalMapCacheProvider.html)
 {{% /note %}}
 
 4. Set or add the cache usage (the cache concurrency strategy) in your mapping resource file (`*.hbm.xml` files) to `read-only`, `read-write` or `nonstrict-read-write`:
@@ -392,7 +392,7 @@ When using Hibernate Second Level Cache you can configure also GigaSpaces local 
 
 # Custom Hibernate Second Level Cache Implementation
 
-You may implement your own custom Hibernate Second Level Cache by extending the [AbstractMapCacheProvider](http://www.gigaspaces.com/docs/JavaDoc{{% currentversion %}}/index.html?org/openspaces/hibernate/cache/AbstractMapCacheProvider.html) and implementing the `buildCache` method. The implemented class name should be set as the `hibernate.cache.provider_class` value. See below example how you may create a custom Hibernate Second Level Cache implementation that will have a different TTL for each cache region:
+You may implement your own custom Hibernate Second Level Cache by extending the [AbstractMapCacheProvider]({{% api-javadoc %}}/index.html?org/openspaces/hibernate/cache/AbstractMapCacheProvider.html) and implementing the `buildCache` method. The implemented class name should be set as the `hibernate.cache.provider_class` value. See below example how you may create a custom Hibernate Second Level Cache implementation that will have a different TTL for each cache region:
 
 
 ```java

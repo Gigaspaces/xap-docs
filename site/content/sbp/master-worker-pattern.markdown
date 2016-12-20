@@ -595,7 +595,7 @@ Deploying the Workers PU:
 
 # .Net Implementation
 
-Here is an example of the Master Worker Pattern for .NET {{%download "/sbp/download_files/MasterWorkerForDotNet.zip"%}}
+Here is an example of the Master Worker Pattern for .NET {{%download "/download_files/sbp/MasterWorkerForDotNet.zip"%}}
 
 
 

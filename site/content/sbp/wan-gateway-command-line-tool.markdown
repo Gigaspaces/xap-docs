@@ -24,7 +24,7 @@ This tool can be used with master-slave, master-master or any other topology.
 
 ### Download the WAN Gateway CLI
 
-You can download the example project  from [here](/sbp/download_files/WAN_GW_CLI_Example.zip) and unzip it into an empty folder.
+You can download the example project  from [here](/download_files/sbp/WAN_GW_CLI_Example.zip) and unzip it into an empty folder.
 
 ### Build and Running the Tool
 

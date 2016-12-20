@@ -45,7 +45,7 @@ GigaSpace’s XAP features increase the capabilities of WebSphere’s DynaCache 
 If you are currently using DynaCache, you can simply use the administrative console or wsadmin commands to replace WebSphere’s default cache provider with GigaSpace’s XAP. You do not have to make any changes to the code interacting with the default dynamic cache or caching data model. In the Demo: Step-By-Step Walkthrough section we will show how to switch to GigaSpace’s XAP IMDG in just a few configuration changes.
 
 {{%refer%}}
-Please read the GigaSpaces XAP Integration with [IBM Dynamic Cache](/sbp/download_files/DynamicCache.pdf) document for a detailed walk through and additional introduction information.
+Please read the GigaSpaces XAP Integration with [IBM Dynamic Cache](/download_files/sbp/DynamicCache.pdf) document for a detailed walk through and additional introduction information.
 {{%/refer%}}
 
 
@@ -68,8 +68,8 @@ An Application Server from the WebSphere Family <br>
 
 #### GigaSpaces Software <br>
 •	{{%download "http://www.gigaspaces.com/xap-download" %}}GigaSpaces XAP Premium Edition 9+ <br>
-•	{{%download "/sbp/download_files/GigaSpacesDynaCacheIntegration.jar"%}}GigaSpacesDynaCacheIntegration.jar <br>
-•	{{%download "/sbp/download_files/GigaDynaCacheTestWeb.war"%}} GigaDynaCacheTestWeb.war
+•	{{%download "/download_files/sbp/GigaSpacesDynaCacheIntegration.jar"%}}GigaSpacesDynaCacheIntegration.jar <br>
+•	{{%download "/download_files/sbp/GigaDynaCacheTestWeb.war"%}} GigaDynaCacheTestWeb.war
 
 
 # Run Demo with Dynamic Cache as WebSphere Caching Provider
