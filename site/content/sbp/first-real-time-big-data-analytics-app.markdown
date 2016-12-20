@@ -183,7 +183,7 @@ Since the application is a Maven project, you can load it using your Java IDE an
 
 Once the project is loaded in your IDE, you can run the application, as follows:
 
-In **Eclipse**, create two run configurations. One for the **feeder** and one for the **processor**. For both, the main class must be [`org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainer`](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
+In **Eclipse**, create two run configurations. One for the **feeder** and one for the **processor**. For both, the main class must be [IntegratedProcessingUnitContainer](http://www.gigaspaces.com/docs/JavaDoc{{%currentversion%}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
 
 
 rt-processor project run configuration:

@@ -107,7 +107,7 @@ See [increase-open-files-limit](https://rtcamp.com/tutorials/linux/increase-open
 ## Monitoring Utilized File Descriptors
 You can monitor the MaxFileDescriptorCount and OpenFileDescriptorCount with the JConsole:
 
-![jmx-file-descriptors.png](/sbp/attachment_files/jmx-file-descriptors.png)
+![jmx-file-descriptors.png](/attachment_files/jmx-file-descriptors.png)
 
 
 # Sharing Grid Management Services Infrastructure
@@ -470,7 +470,7 @@ The lookup service runs by default as a standalone JVM process started by the GS
 The [XAP Zone](./the-sla-overview.html) allows you to "label" a running GSC(s) before starting it. The XAP **Zone** should be used to isolate applications and a Data-Grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs where all these **sharing the same set of LUSs and GSMs**.
 
 {{%align "center"%}}
-![image](/sbp/attachment_files/zones.jpg)
+![image](/attachment_files/zones.jpg)
 {{%/align%}}
 
 The **Zone** property can be used for example to deploy your Data-Grid into a specific GSC(s) labeled with specific zone(s). The zone is specified prior to the GSC startup, and cannot be changed once the GSC has been started.
@@ -637,7 +637,7 @@ To avoid the need to load the same library into each PU instance classloader run
 In most cases, the applications using XAP are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.
 
 {{%align "center"%}}
-![image](/sbp/attachment_files/jvm-vm-memory.jpg)
+![image](/attachment_files/jvm-vm-memory.jpg)
 {{%/align%}}
 
 Below represents the different XAP processes a virtual or a physical machine may run:

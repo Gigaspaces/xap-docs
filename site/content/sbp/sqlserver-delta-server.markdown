@@ -94,7 +94,7 @@ select name, is_cdc_enabled from sys.databases
 ```
   
 
-![](/sbp/attachment_files/sqlserver-pic3.png)
+![image](/attachment_files/sqlserver/sqlserver-pic3.png)
 
   
 **(notice that datagrid has is_cdc_enabled column = 1)**

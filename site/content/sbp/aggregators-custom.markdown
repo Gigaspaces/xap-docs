@@ -35,7 +35,7 @@ Once all partitions have returned their results, the proxy invokes the getFinalR
 ### [getDefaultAlias](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getDefaultAlias--)
 An aggregation result can contain the results from multiple aggregations. An alias provides a way to distinguish one aggregation result from another.
 
-![aggregators.jpg](/sbp/attachment_files/aggregators-custom.png)
+![aggregators.jpg](/attachment_files/aggregators-custom.png)
 
 
 # Simple Aggregator

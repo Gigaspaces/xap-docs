@@ -280,11 +280,11 @@ Map-Reduce is a programming model for processing large data sets with a parallel
 {{%section%}}
 {{%column width="45%" %}}
 Phase 1 - Sending the Space tasks to be executed:
-![DistributedTaskExecution_phase1.jpg](/sbp/attachment_files/DistributedTaskExecution_phase1.jpg)
+![DistributedTaskExecution_phase1.jpg](/attachment_files/task/DistributedTaskExecution_phase1.jpg)
 {{%/column%}}
 {{%column width="45%" %}}
 Phase 2 - Getting the results back to be reduced:
-![DistributedTaskExecution_phase2.jpg](/sbp/attachment_files/DistributedTaskExecution_phase2.jpg)
+![DistributedTaskExecution_phase2.jpg](/attachment_files/task/DistributedTaskExecution_phase2.jpg)
 {{%/column%}}
 {{%/section%}}
 

@@ -19,7 +19,7 @@ The MongoDB Data-Grid example demonstrates a common Data Grid / Caching architec
 - A Client application that perform write and read operations against a remote clustered IMDG.
 - A Clustered IMDG with write-behind (Mirror service) with pre-fetch (initial load) enabled. The Data grid using MongoDB database.
 
-![image.jpeg](/sbp/attachment_files/mongodatagrid002.jpg)
+![image.jpeg](/attachment_files/mongodatagrid/mongodatagrid002.jpg)
 
 This best practice will demonstrate show to implement this with XAP.NET. 
 
@@ -60,7 +60,7 @@ Run Gigaspaces Agent by running the StartAgent.bat script. This will start 3 con
 Step 2:
 Deploy the data grid and the Mirror service by running `DeployDataGrid.bat`. You should see this after running the `Gs-ui.exe`:
 
-[<img src="/sbp/attachment_files/mongodatagrid004.jpg" width="400" height="300">](/sbp/attachment_files/mongodatagrid004.jpg)
+![image](/attachment_files/mongodatagrid/mongodatagrid004.jpg)
 
 # Running the Client Application
 
@@ -80,11 +80,15 @@ The client application has several options:
 
 Run GigaSpaces UI: Go to `<GigaSpaces Root>\Bin` and run `Gs-ui.exe`. This will allow you to view the content of the data grid.
 
-[<img src="/sbp/attachment_files/mongodatagrid006.jpg" width="400" height="300">](/sbp/attachment_files/mongodatagrid006.jpg)
+![image](/attachment_files/mongodatagrid/mongodatagrid006.jpg)
+<br>
 
-[<img src="/sbp/attachment_files/mongodatagrid008.jpg" width="400" height="300">](/sbp/attachment_files/mongodatagrid008.jpg)
+![image](/attachment_files/mongodatagrid/mongodatagrid008.jpg)
 
-[<img src="/sbp/attachment_files/mongodatagrid010.jpg" width="400" height="300">](/sbp/attachment_files/mongodatagrid010.jpg)
+<br>
+
+![image](/attachment_files/mongodatagrid/mongodatagrid010.jpg)
+<br>
 
 # Viewing data Persist into MongoDB
 

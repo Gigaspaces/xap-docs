@@ -23,7 +23,7 @@ Since version 3.1, the `Spring Framework` provides support for transparently add
 
 |**Distributed cache**|**Distributed cache + local cache** |
 |------|-----|
-|![scaling_agent.jpg](/sbp/attachment_files/spring-cache1.png)|![scaling_agent.jpg](/sbp/attachment_files/spring-cache2.png)|
+|![scaling_agent.jpg](/attachment_files/springcache/spring-cache1.png)|![scaling_agent.jpg](/attachment_files/springcache/spring-cache2.png)|
 
 
 

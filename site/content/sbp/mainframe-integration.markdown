@@ -99,7 +99,7 @@ The GigaSpaces XAP External Data Source allows the XAP IMDG to pull data from Ma
 
 The following architecture leverage [VSAM JDBC API](http://www-03.ibm.com/systems/z/os/zvse/solutions/vsamaccess.html) to allow XAP IMDG to pre-load data from VSAM once the data grid is started and persist changes conducted within the IMDG items back to VSAM.
 
-![](/sbp/attachment_files/xap-vsam.jpg)
+![](/attachment_files/xap-vsam.jpg)
 
 References:
 
