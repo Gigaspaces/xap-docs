@@ -80,11 +80,11 @@ An Application Server from the WebSphere Family <br>
 
 Step 1: Enter the name and JNDI specified below
 
-![drools1](/sbp/attachment_files/dynacache/cache3.png)
+![drools1](/attachment_files/dynacache/cache3.png)
 
 Step 2: Add new property “com.ibm.ws.cache.CacheConfig.showObjectContents=true”
 
-![drools1](/sbp/attachment_files/dynacache/cache4.png)
+![drools1](/attachment_files/dynacache/cache4.png)
 {{%/accord%}}
 
 
@@ -94,25 +94,25 @@ Step 2: Add new property “com.ibm.ws.cache.CacheConfig.showObjectContents=true
 Step 1: Expand “Applications” -> “Application Types” and Click on “Websphere enterprise applications”.
 On the “Enterprise Applications” screen, click the “Install” button
 
-![drools1](/sbp/attachment_files/dynacache/cache5.png)
+![drools1](/attachment_files/dynacache/cache5.png)
 
 Step 2: Browse into your Websphere installation /AppServer/installableApps, Click on CacheMonitor.ear
 
-![drools1](/sbp/attachment_files/dynacache/cache6.png)
+![drools1](/attachment_files/dynacache/cache6.png)
 
 Step 3: Download IBM Extended Cache Monitor from IBM’s offical site.
 Extract the contents of cachemonitor7_package into any temp directory or onto your desktop
 
-![drools1](/sbp/attachment_files/dynacache/cache7.png)
+![drools1](/attachment_files/dynacache/cache7.png)
 
 Step 4: In your admin console, click the checkbox near “Dynamic Cache Monitor” and Click “Update”
 
-![drools1](/sbp/attachment_files/dynacache/cache8.png)
+![drools1](/attachment_files/dynacache/cache8.png)
 
 
 Step 5: Choose “Replace, add, or delete multiple files” and browse for “cachemonitor7_update.zip”
 
-![drools1](/sbp/attachment_files/dynacache/cache9.png)
+![drools1](/attachment_files/dynacache/cache9.png)
 
 {{%/accord%}}
 
@@ -122,19 +122,19 @@ Step 5: Choose “Replace, add, or delete multiple files” and browse for “ca
 
 Step 1: In the “Enterprise Applications” screen, click on the link named “Dynamic Cache Monitor”. Click Search. Find your User ID in the Available List, click on it and then click on the Right arrow
 
-![drools1](/sbp/attachment_files/dynacache/cache10.png)
+![drools1](/attachment_files/dynacache/cache10.png)
 
 
 Step 2: Open an Internet Browser and go to http://localhost:9082/cachemonitor
 Enter your User ID and Password then Click OK.
 
-![drools1](/sbp/attachment_files/dynacache/cache11.png)
+![drools1](/attachment_files/dynacache/cache11.png)
 
 
 
 Step 3: Find the Object Cache you created earlier “cache/demo” and Click OK.
 
-![drools1](/sbp/attachment_files/dynacache/cache12.png)
+![drools1](/attachment_files/dynacache/cache12.png)
 
 {{%/accord%}}
 
@@ -143,14 +143,14 @@ Step 3: Find the Object Cache you created earlier “cache/demo” and Click OK.
 Step 1: Expand “Applications” -> “Application Types” and Click on “Websphere enterprise applications”.
 On the “Enterprise Applications” screen, click the “Install” button
 
-![drools1](/sbp/attachment_files/dynacache/cache13.png)
+![drools1](/attachment_files/dynacache/cache13.png)
 
 
 
 Step 2: Browse for the “GigaDynaCacheTestWeb.war” in your local directory and Click “Next”.
 Continue to Click “Next” until the summary page. Then click “Finish” and “Save”
 
-![drools1](/sbp/attachment_files/dynacache/cache14.png)
+![drools1](/attachment_files/dynacache/cache14.png)
 
 {{%/accord%}}
 
@@ -160,11 +160,11 @@ Continue to Click “Next” until the summary page. Then click “Finish” and
 
 Step 1: Open an Internet Browser and go to http://localhost:9082/GigaDynaCacheTestWeb/DynaCacheTestServlet
 
-![drools1](/sbp/attachment_files/dynacache/cache15.png)
+![drools1](/attachment_files/dynacache/cache15.png)
 
 
 Step 2: Go back to the Cache Monitor Page and click “Refresh Statistics”
-![drools1](/sbp/attachment_files/dynacache/cache16.png)
+![drools1](/attachment_files/dynacache/cache16.png)
 
 {{%/accord%}}
 
@@ -178,17 +178,17 @@ Step 2: Go back to the Cache Monitor Page and click “Refresh Statistics”
 Step 1: Scroll down to find the Server Infrastructure Section. Expand “Java and Process Management”.
 Then click on “Process definition”
 
-![drools1](/sbp/attachment_files/dynacache/cache17.png)
+![drools1](/attachment_files/dynacache/cache17.png)
 
 
 
 Step 2: Click on “Java Virtual Machine”
-![drools1](/sbp/attachment_files/dynacache/cache18.png)
+![drools1](/attachment_files/dynacache/cache18.png)
 
 
 Step 3: Add a new custom properties pointing to the directory with the XAP jars  “ws.ext.dirs= C:\Gigaspaces\gigaspaces-xap-premium-9.7.0-ga\lib\required;C:\temp\custom\GigaSpacesDynaCacheIntegration.jar”
 
-![drools1](/sbp/attachment_files/dynacache/cache19.png)
+![drools1](/attachment_files/dynacache/cache19.png)
 
 {{%/accord%}}
 
@@ -197,14 +197,14 @@ Step 3: Add a new custom properties pointing to the directory with the XAP jars 
 
 Step 1: Choose “GigaSpaces XAP” from the dropdown choices of “Cache provider”. Click “OK” and “Save”
 
-![drools1](/sbp/attachment_files/dynacache/cache20.png)
+![drools1](/attachment_files/dynacache/cache20.png)
 
 Step 2: Click on custom properties and add the following:<br>
 •	com.ibm.ws.cache.CacheConfig.cacheProviderName=com.ibm.ws.objectgrid.dynacache.CacheProviderImpl  <br>
 •	xap.space.url=jini://*/*/mySpace?groups=myGroup
 
 
-![drools1](/sbp/attachment_files/dynacache/cache21.png)
+![drools1](/attachment_files/dynacache/cache21.png)
 
 {{%/accord%}}
 
@@ -212,21 +212,21 @@ Step 2: Click on custom properties and add the following:<br>
 
 Step 1: Run gs-agent from your XAP bin directory
 
-![drools1](/sbp/attachment_files/dynacache/cache22.png)
+![drools1](/attachment_files/dynacache/cache22.png)
 
 Step 2: Run gs-ui from the same directory
 
-![drools1](/sbp/attachment_files/dynacache/cache23.png)
+![drools1](/attachment_files/dynacache/cache23.png)
 
 
 
 Step 3: Deploy a new Data Grid called “mySpace” with any SLA
 
-![drools1](/sbp/attachment_files/dynacache/cache24.png)
+![drools1](/attachment_files/dynacache/cache24.png)
 
 Step 4: Confirm that there are no entries in the cache using the “Space Browser” tab
 
-![drools1](/sbp/attachment_files/dynacache/cache25.png)
+![drools1](/attachment_files/dynacache/cache25.png)
 
 {{%/accord%}}
 
@@ -234,11 +234,11 @@ Step 4: Confirm that there are no entries in the cache using the “Space Browse
 
 Step 1: Open an Internet Browser and go to http://localhost:9082/GigaDynaCacheTestWeb/DynaCacheTestServlet
 
-![drools1](/sbp/attachment_files/dynacache/cache26.png)
+![drools1](/attachment_files/dynacache/cache26.png)
 
 Step 2: Check the gs-ui to confirm that a new entry is in the Space
 
-![drools1](/sbp/attachment_files/dynacache/cache27.png)
+![drools1](/attachment_files/dynacache/cache27.png)
 
 {{%/accord%}}
 

@@ -34,7 +34,7 @@ The Drools Rule Engine matches Facts (POJO) against Rules to infer conclusions w
 
 Drools stores its rules in Production Memory and facts in Working Memory. The Agenda manages the execution order of these rules using a Conflict Resolution strategy.
 
-![drools1](/sbp/attachment_files/drools/drools1.png)
+![drools1](/attachment_files/drools/drools1.png)
 
 Drools has a "native" rule language. A rule file typically has a .drl extension. In a DRL file you can have multiple rules, queries and functions, as well as some resource declarations like imports, globals and attributes.
 A package is a collection of rules and other related constructs, such as imports and globals. The package members are typically related to each other - perhaps HR rules, for instance.
@@ -60,7 +60,7 @@ As stated earlier, Drools stores all rules and data types in-memory to reduce th
 
 Let's discuss these gaps within the context of a stateless application hosted in clustered environment and explain how an integration with XAP would benefit its use of Drools.
 
-![drools1](/sbp/attachment_files/drools/drools2.png)
+![drools1](/attachment_files/drools/drools2.png)
 
 ### Distribution
 
@@ -113,7 +113,7 @@ The remaining POJOs are meant to be informative tools for management and governa
 
 This module implements classes encapsulating stand-alone functional processes to load, analyze, execute and remove Rules and Facts. These processes can be simply instantiated by running their main methods and will interact with the space via the Space Proxy. If you are using an Eclipse IDE you can just click on the class and choose Run As Configurations to start the process.
 
-![drools1](/sbp/attachment_files/drools/drools3.png)
+![drools1](/attachment_files/drools/drools3.png)
 
 {{%note%}}
 Some main methods allow for you to pass arguments
@@ -409,19 +409,19 @@ public interface IRulesExecutionService {
 
 This module will create a deployable artifact (WAR) which will instantiate Stateless processing unit(s) hosting JSON Restful Web Services on top XAP's [Jetty Processing Unit Container]({{%currentjavaurl%}}/web-jetty-processing-unit-container.html).
 
-![drools1](/sbp/attachment_files/drools/drools4.png)
+![drools1](/attachment_files/drools/drools4.png)
 
 Interaction with these services is very simple since they only implement the GET REST method. A client only needs an Internet Browser to initiate a HTTP Servlet transaction on the listening Spring Controllers. There are two types of services that are deployed as part of this integration pattern - Decision Services and Generic Data Retrieval Services.
 
 Decision services will create or lookup facts from the Space and pass them to the Remoting Service which will add them to the KnowledgeBase's working memory and pattern match them against all compiled rules. To initiate a decision service enter a URL into the Browser and in response you will receive a JSON payload printed to the screen.
 
-![drools1](/sbp/attachment_files/drools/drools5.png)
+![drools1](/attachment_files/drools/drools5.png)
 
 Generic REST Data Retrieval Services come in two flavors - Read-By-ID and Read-By-Type. Read-By-ID will require the client to pass an ID along with the type of Object they are requesting. The Read-By-Type will only require the type returning multiple objects.
 
-![drools1](/sbp/attachment_files/drools/drools6.png)
+![drools1](/attachment_files/drools/drools6.png)
 
-![drools1](/sbp/attachment_files/drools/drools7.png)
+![drools1](/attachment_files/drools/drools7.png)
 
 # Running the Demo
 
@@ -430,49 +430,49 @@ Generic REST Data Retrieval Services come in two flavors - Read-By-ID and Read-B
 {{%accord  title="Step 1: Java Installation "%}}
 Confirm Java is installed by running the java -version in your command line
 
-![drools1](/sbp/attachment_files/drools/drools8.png)
+![drools1](/attachment_files/drools/drools8.png)
 
 If Java is not installed, download Java {{%download "https://java.com/en/download/index.jsp"%}} and add JAVA_HOME to your system variables
-![drools1](/sbp/attachment_files/drools/drools9.png)
+![drools1](/attachment_files/drools/drools9.png)
 
 
 Add %JAVA_HOME%/bin to your PATH system variable
 
-![drools1](/sbp/attachment_files/drools/drools10.png)
+![drools1](/attachment_files/drools/drools10.png)
 {{%/accord%}}
 
 {{%accord title="Step 2: Maven Installation"%}}
 
 Confirm Maven is installed by running the mvn version in your command line
 
-![drools1](/sbp/attachment_files/drools/drools11.png)
+![drools1](/attachment_files/drools/drools11.png)
 
 If Maven is not installed, download Maven {{%download "http://maven.apache.org/download.cgi"%}} and add M2_HOME to your system variables
 
-![drools1](/sbp/attachment_files/drools/drools12.png)
+![drools1](/attachment_files/drools/drools12.png)
 
 Add %M2_HOME%/bin to your PATH system variable
 
-![drools1](/sbp/attachment_files/drools/drools13.png)
+![drools1](/attachment_files/drools/drools13.png)
 
 {{%/accord%}}
 
 {{%accord  title="Step 3: XAP Installation"%}}
 If XAP is not installed {{%download "http://www.gigaspaces.com/xap-download"%}} and add JSHOMEDIR to your system variables
 
-![drools1](/sbp/attachment_files/drools/drools14.png)
+![drools1](/attachment_files/drools/drools14.png)
 
 
 Add %JSHOMEDIR%/bin to your PATH system variable
 
-![drools1](/sbp/attachment_files/drools/drools15.png)
+![drools1](/attachment_files/drools/drools15.png)
 {{%/accord%}}
 
 {{%accord title="Step 4: Download Example"%}}
 
 Download the example {{%git "https://github.com/Gigaspaces/xap-drools-integration" %}} and extract.
 
-![drools1](/sbp/attachment_files/drools/drools16.png)
+![drools1](/attachment_files/drools/drools16.png)
 {{%/accord%}}
 
 
@@ -480,7 +480,7 @@ Download the example {{%git "https://github.com/Gigaspaces/xap-drools-integratio
 
 Navigate to the project root and execute the mvn package command
 
-![drools1](/sbp/attachment_files/drools/drools17.png)
+![drools1](/attachment_files/drools/drools17.png)
 {{%/accord%}}
 
 
@@ -488,7 +488,7 @@ Navigate to the project root and execute the mvn package command
 
 Navigate to the XAP bin directory and double-click gs-agent.bat
 
-![drools1](/sbp/attachment_files/drools/drools18.png)
+![drools1](/attachment_files/drools/drools18.png)
 {{%/accord%}}
 
 
@@ -496,69 +496,69 @@ Navigate to the XAP bin directory and double-click gs-agent.bat
 Start and login to the Web Management Console by double-clicking gs-webui.bat
 and then entering http://localhost:8099 into an Internet Browser (Firefox or Google Chrome is recommended)
 
-![drools1](/sbp/attachment_files/drools/drools19.png)
+![drools1](/attachment_files/drools/drools19.png)
 
-![drools1](/sbp/attachment_files/drools/drools20.png)
+![drools1](/attachment_files/drools/drools20.png)
 
-![drools1](/sbp/attachment_files/drools/drools21.png)
+![drools1](/attachment_files/drools/drools21.png)
 {{%/accord%}}
 
 {{%accord title="Step 8: Deploy the PU"%}}
 Click on the Hosts Tab and find the Deploy drop-down. Choose Processing Unit¦
 
-![drools1](/sbp/attachment_files/drools/drools22.png)
+![drools1](/attachment_files/drools/drools22.png)
 {{%/accord%}}
 
 {{%accord title="Step 9: Upload file"%}}
 Click on Upload File and navigate to the space/target directory inside the Distributed Drools project. Double-click the space.jar and click Deploy
 
-![drools1](/sbp/attachment_files/drools/drools23.png)
+![drools1](/attachment_files/drools/drools23.png)
 
-![drools1](/sbp/attachment_files/drools/drools24.png)
+![drools1](/attachment_files/drools/drools24.png)
 {{%/accord%}}
 
 
 {{%accord title="Step 10: View Data Grid"%}}
 Confirm that the `Space` was created by clicking on the `Data Grid` tab.
 
-![drools1](/sbp/attachment_files/drools/drools25.png)
+![drools1](/attachment_files/drools/drools25.png)
 
 {{%/accord%}}
 
 {{%accord title="Step 11: Open Eclipse"%}}
 Open the workspace in an Eclipse IDE
 
-![drools1](/sbp/attachment_files/drools/drools26.png)
+![drools1](/attachment_files/drools/drools26.png)
 {{%/accord%}}
 
 {{%accord title="Step 12: Import the project"%}}
 Import the existing Maven Project named `xap-drools-integration`
 
-![drools1](/sbp/attachment_files/drools/drools27.png)
+![drools1](/attachment_files/drools/drools27.png)
 {{%/accord%}}
 
 {{%accord title="Step 13: Loading the rules"%}}
 Run DroolsRuleLoader.java and FactLoader.java as a Java Application
 
-![drools1](/sbp/attachment_files/drools/drools28.png)
+![drools1](/attachment_files/drools/drools28.png)
 {{%/accord%}}
 
 {{%accord title="Step 14: Confirm rules are loaded"%}}
 Confirm that the KnowledgeBasesWrappers and Applicant Facts were loaded into the Space
 
-![drools1](/sbp/attachment_files/drools/drools29.png)
+![drools1](/attachment_files/drools/drools29.png)
 {{%/accord%}}
 
 {{%accord title="Step 15: Deploy web service"%}}
 Click back onto the Hosts Tab and deploy the web-services.war
 
-![drools1](/sbp/attachment_files/drools/drools30.png)
+![drools1](/attachment_files/drools/drools30.png)
 {{%/accord%}}
 
 {{%accord title="Step 16: Confirm the Web Services URL and PORT"%}}
 Click on the Applications Tab and confirm the Web Services URL and PORT
 
-![drools1](/sbp/attachment_files/drools/drools31.png)
+![drools1](/attachment_files/drools/drools31.png)
 {{%/accord%}}
 
 {{%accord title="Step 17: Test the rules"%}}
