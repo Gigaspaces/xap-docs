@@ -39,7 +39,7 @@ Storm is a real time, open source data streaming framework that functions entire
 Storm is designed to be run on several machines to provide parallelism.  Storm topologies are deployed in a manner somewhat similar to a webapp or a XAP processing unit; a jar file is presented to a deployer which distributes it around the cluster where it is loaded and executed.  A topology runs until it is terminated.
 
 {{%align center%}}
-![alt tag](/sbp/attachment_files/storm/storm-nutshell.png)
+![alt tag](/attachment_files/storm/storm-nutshell.png)
 {{%/align%}}
 
 Beside Storm, there is a **Trident** - a high-level abstraction for doing realtime computing on top of Storm. Trident adds primitives like groupBy, filter, merge, aggregation to simplify common computation routines. Trident has consistent, exactly-once semantics, so it is easy to reason about Trident topologies.
@@ -51,7 +51,7 @@ Capability to guarantee exactly-once semantics comes with additional cost. To gu
 Basically, Spouts provide the source of tuples for Storm processing.  For spouts to be maximally performant and reliable, they need to provide tuples in batches, and be able to replay failed batches when necessary.  Of course, in order to have batches, you need storage, and to be able to replay batches, you need reliable storage.  XAP is about the highest performing, reliable source of data out there, so a spout that serves tuples from XAP is a natural combination.
 
 {{%align center%}}
-![alt tag](/sbp/attachment_files/storm/xap-general-spout.png)
+![alt tag](/attachment_files/storm/xap-general-spout.png)
 {{%/align%}}
 
 Depending on domain model and level of guarantees you want to provide, you choose either pure Storm or Trident. We provide Spout implementations for both - `XAPSimpleSpout` and `XAPTranscationalTridentSpout` respectively.
@@ -61,7 +61,7 @@ Depending on domain model and level of guarantees you want to provide, you choos
 `XAPSimpleSpout` is a spout implementation for pure Storm that reads data in batches from XAP. On XAP side we introduce conception of stream. Please find `SimpleStream` - a stream implementation that supports writing data in single and batch modes and reading in batch mode. `SimpleStream` leverages XAP's FIFO(First In, First Out) capabilities.
 
 {{%align center%}}
-![alt tag](/sbp/attachment_files/storm/simple-spout.png)
+![alt tag](/attachment_files/storm/simple-spout.png)
 {{%/align%}}
 
 `SimpleStream` works with arbitrary space class that has `FifoSupport.OPERATION` annotation and implements `Serializable`.
@@ -145,7 +145,7 @@ There are several spout APIs available that we could potentially use for our XAP
 
 For our implementation we choose `ITridentSpout` API.
 
-![alt tag](/sbp/attachment_files/storm/trident-spout.png)
+![alt tag](/attachment_files/storm/trident-spout.png)
 
 There is one to one mapping between XAP partitions and emitters.
 
@@ -154,7 +154,7 @@ Storm framework guarantees that topology is high available, if some component fa
 When emitter is created, it calls remote service `ConsumerRegistryService` to register itself. `ConsumerRegistryService` knows the number of XAP partitions and keeps track of the last allocated partition.  This information is reliably stored in the space, see `ConsumerRegistry.java`.
 
 {{%align center %}}
-![alt tag](/sbp/attachment_files/storm/consumer-registry.png)
+![alt tag](/attachment_files/storm/consumer-registry.png)
 {{%/align%}}
 
 Remember that parallelism hint for `XAPTranscationalTridentSpout` should equal to the number of XAP partitions.
@@ -167,7 +167,7 @@ The property of being transactional is defined in Trident as following:
 `XAPTranscationalTridentSpout` works with `PartitionedStream` that wraps stream elements into Item class and keeps items ordered by 'offset' property. There is one `PartitionStream` instance per XAP partition.
 
 {{%align center%}}
-![alt tag](/sbp/attachment_files/storm/partitioned-stream.png)
+![alt tag](/attachment_files/storm/partitioned-stream.png)
 {{%/align%}}
 
 Stream's `WriterHead` holds the last offset in the stream.  Any time batch of elements (or single element) written to stream, `WriterHead` incremented by the number of elements. Allocated numbers used to populate offset property of Items. `WriterHead` object is kept in heap, there is no need to keep it in space. If primary partition fails, `WriterHead` is reinitialized to be the max offset value for given stream.

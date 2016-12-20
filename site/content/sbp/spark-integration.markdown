@@ -29,7 +29,7 @@ Spark Streaming has many use cases: user activity analytics on web, recommendati
 
 Data can be ingested to Spark cluster from many sources like HDS, Kafka, Flume, etc and can be processed using complex algorithms expressed with high-level functions like `map`, `reduce`, `join` and `window`. Finally, processed data can be pushed out to filesystems or databases.
 
-![alt tag](/sbp/attachment_files/spark/spark-streaming.jpg)
+![alt tag](/attachment_files/spark/spark-streaming.jpg)
 
 # Challenge
 
@@ -39,7 +39,7 @@ Spark cluster keeps intermediate chunks of data (RDD) in memory and, if required
 
 In this pattern we address performance challenge by integrating Spark Streaming with XAP. XAP is used as a stream data source and a scalable, fast, reliable persistent storage.
 
-![alt tag](/sbp/attachment_files/spark/high-level.jpg)
+![alt tag](/attachment_files/spark/high-level.jpg)
 
 1.	Producer writes the data to XAP stream
 2.	Spark worker reads the data from XAP stream and propagates it further for computation
@@ -155,13 +155,13 @@ In this example a XAP connection is created and data is written from Spark drive
 
 As a part of this integration pattern, we demonstrate how to build an application that consumes live stream of text and displays top 10 five-letter words over a sliding window in real-time. The user interface consists of a simple single page web application displaying a table of top 10 words and a word cloud. The data on UI is updated every second.
 
-![alt tag](/sbp/attachment_files/spark/spark-word-counter.jpg)
+![alt tag](/attachment_files/spark/spark-word-counter.jpg)
 
 ### High-level design
 
 The high-level design diagram of the Word Counter Demo is below:
 
-![alt tag](/sbp/attachment_files/spark/example.jpg)
+![alt tag](/attachment_files/spark/example.jpg)
 
 1. Feeder is a standalone scala application that reads book from text file in a cycle and writes lines to XAP Stream.
 2. Stream is consumed by the Spark cluster which performs all necessary computing.
