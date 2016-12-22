@@ -88,12 +88,13 @@ gs-webui.bat
 {{% /tab %}}
 {{% /tabs %}}
 
-In order to run web-ui server with SSL ( using https protocol instead of http ) following parameters must be provided as an arguments to the `gs-webui` script: 
--ssl.keyManagerPassword - the password (if any) for the specific key within the key store
--ssl.keyStorePassword - the password for the key store
--ssl.keyStorePath - the file or URL of the SSL Key store 
--ssl.trustStorePath - the file name or URL of the trust store location 
--ssl.trustStorePassword - the password for the truststore   
+In order to run the web-ui server with SSL ( using https protocol instead of http ) the following parameters must be provided as arguments to the `gs-webui` script:<br>
+
+- ssl.keyManagerPassword - the password (if any) for the specific key within the key store<br>
+- ssl.keyStorePassword - the password for the key store<br>
+- ssl.keyStorePath - the file or URL of the SSL Key store<br>
+- ssl.trustStorePath - the file name or URL of the trust store location<br>
+- ssl.trustStorePassword - the password for the truststore
 
 {{%tabs%}}
 {{%tab "  Linux "%}}
