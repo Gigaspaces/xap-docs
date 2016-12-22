@@ -13,7 +13,7 @@ The pessimistic locking protocol provides data consistency in a multi user trans
 
 This scenario is different from the optimistic locking protocol since we assume with the pessimistic locking protocol, that every object that is read and retrieved from the space will eventually be updated where the transaction duration is relatively very short.
 
-To enforce a sole reader and sole updater for the object we explicitly lock the object via a transaction using the [ReadModifiers.ExclusiveReadLock](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_ReadModifiers.htm)
+To enforce a sole reader and sole updater for the object we explicitly lock the object via a transaction using the [ReadModifiers.ExclusiveReadLock]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ReadModifiers.htm)
 
 When performing read operations without locking the object via a transaction, users can immediately perform an update operation, without having to wait for other users to complete their transaction (since there is none). However, there is no guarantee that the update operation will be performed on the latest version of the object.
 

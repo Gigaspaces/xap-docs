@@ -30,7 +30,7 @@ Few other ways Lease can be managed include,
 
 # Space Object Lease
 
-Leases can be used for objects written to an XAP cluster. All the write operations in [ISpaceProxy](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_ISpaceProxy.htm) interface support Lease. Lease duration is an argument that is passed to the write operations and they return a Lease Context which can be used to manage the Leases.
+Leases can be used for objects written to an XAP cluster. All the write operations in [ISpaceProxy]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceProxy.htm) interface support Lease. Lease duration is an argument that is passed to the write operations and they return a Lease Context which can be used to manage the Leases.
 
 
 ```csharp

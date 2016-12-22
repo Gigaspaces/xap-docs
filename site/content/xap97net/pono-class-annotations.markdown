@@ -62,7 +62,7 @@ public class Person {
 |           |                         |
 |-----------|-------------------------|
 |Syntax     | IncludeFields=, IncludeProperties= |
-|Argument   | [IncludeMembers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_IncludeMembers.htm)      |
+|Argument   | [IncludeMembers]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_IncludeMembers.htm)      |
 |Default    | IncludeFields=IncludeMembers.All, IncludeProperties=IncludeMembers.All)|
 |Description|  By default, all public members (fields and properties) in a class are stored in the space, whereas non-public members are ignored. Since classes are usually designed with private/protected fields and public properties wrapping them, in most cases the default behavior is also the desired one.|
 
@@ -92,7 +92,7 @@ Read-only properties (getter without setter) are stored in the space, but when t
 |           |                         |
 |-----------|-------------------------|
 |Syntax     | FifoSupport= |
-|Argument   | [FifoSupport](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_FifoSupport.htm)|
+|Argument   | [FifoSupport]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_FifoSupport.htm)|
 |Default    | FifoSupport.Off|
 |Description| To enable FIFO operations, set this attribute to `FifoSupport.Operation`|
 

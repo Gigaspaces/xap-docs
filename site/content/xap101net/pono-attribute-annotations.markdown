@@ -95,7 +95,7 @@ public class Employee {
 |                |             |
 |----------------|-------------|
 |Syntax     |  SpaceIndex Type|
-|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)  |
+|Argument   |  [SpaceIndexType]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)  |
 |Description| Querying indexed fields speeds up read and take operations. The `[SpaceIndex]` annotation should be used to specify an indexed field.|
 
 Example:
@@ -120,7 +120,7 @@ public class User {
 |                |             |
 |----------------|-------------|
 |Syntax     |  SpaceIndex Type, Unique|
-|Argument   | [SpaceIndexType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)  |
+|Argument   | [SpaceIndexType]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)  |
 |Description| Unique constraints can be defined for an attribute or attributes of a space class. |
 |Note |   The uniqueness is enforced per partition and not over the whole cluster. |
 
@@ -145,7 +145,7 @@ public class Person
 |                |             |
 |----------------|-------------|
 |Syntax     |  SpaceIndex Path ,Type|
-|Argument   |  [SpaceIndexType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)|
+|Argument   |  [SpaceIndexType]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm)|
 |Description| The `path()` attribute represents the path of the indexed property within a nested object. |
 
 Example:
@@ -244,7 +244,7 @@ public class Employee {
 |                |             |
 |----------------|-------------|
 |Syntax     | SpaceStorageType StorageType |
-|Argument   | [StorageType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_StorageType.htm)          |
+|Argument   | [StorageType]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_StorageType.htm)          |
 |Default    | StorageType.Object |
 |Description| This annotation is used to specify how the attribute is stored in the space. |
 

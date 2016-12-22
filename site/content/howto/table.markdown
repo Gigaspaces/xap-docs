@@ -28,4 +28,14 @@ relationships | no       | relationships | Used for specifying the [relationship
 |interfaces    | no       | interfaces    | Used for mapping plugins to [interfaces](dsl-spec-interfaces.html) operation or for specifying inputs for already mapped node type operations.
 |relationships | no       | relationships | Used for specifying the [relationships](dsl-spec-relationships.html) this node template has with other node templates.
 
+ 
 
+| Modifier and Type | Description | Default | Unit|
+|:---------------|:------------|:--------|:----|
+| T              | POJO, SpaceDocument|| |
+|timeout         | Time to wait for the response| 0  |  milliseconds |
+|query           | [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html) |      | |
+| [AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) | Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
+| [ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)| Provides modifiers to customize the behavior of read operations | NONE  |  |
+
+ 

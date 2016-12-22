@@ -94,7 +94,7 @@ Example:
 |           |                         |
 |-----------|-------------------------|
 |Syntax     | fifo=""  |
-|Argument   | [FifoSupport](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_FifoSupport.htm)|
+|Argument   | [FifoSupport]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_FifoSupport.htm)|
 |Default    | off|
 |Description| Enabling  FIFO operations.     |
 
@@ -116,7 +116,7 @@ Example:
 |           |                         |
 |-----------|-------------------------|
 |Syntax     | storage-type="" |
-|Argument   | [StorageType](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Metadata_StorageType.htm)|
+|Argument   | [StorageType]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_StorageType.htm)|
 |Default    | object |
 |Description| To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.|
 

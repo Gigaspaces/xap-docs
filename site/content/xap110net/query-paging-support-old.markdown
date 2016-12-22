@@ -8,7 +8,7 @@ weight: 600
 
 {{% ssummary %}}{{% /ssummary %}}
 
-The [ISpaceIterator](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_ISpaceIterator_1.htm) with the [SpaceIteratorConfig](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_SpaceIteratorConfig.htm)  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.
+The [ISpaceIterator]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceIterator_1.htm) with the [SpaceIteratorConfig]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_SpaceIteratorConfig.htm)  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.
 
 
 
@@ -52,7 +52,7 @@ The maximum number of objects to pull from the space can be controlled using `Bu
 
 # The IteratorScope
 
-The [IteratorScope](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_IteratorScope.htm) determines the scope of a ISpaceIterator. Here are the supported options:
+The [IteratorScope]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IteratorScope.htm) determines the scope of a ISpaceIterator. Here are the supported options:
 
 - `ExistingEntries` - Indicates that the iterator will process entries currently in the space, and ignores future changes.
 - `ExistingAndFutureEntries` - Indicates that the iterator will process both entries currently in the space and future changes.

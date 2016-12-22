@@ -558,20 +558,17 @@ Read if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html
 ....
 ```
 
-
-
-
-| Modifier and Type | Description | Default | Unit|
-|:-----|:------------|:--------|:----|
-| T          | POJO, SpaceDocument|| |
-|timeout     | Time to wait for the response| 0  |  milliseconds |
-|query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
-|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
-|[ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations | NONE  |  |
-
 {{%/accord%}}
 {{%/accordion%}}
 
+
+| Modifier and Type | Description | Default | Unit|
+|:---------------|:------------|:--------|:----|
+| T              | POJO, SpaceDocument|| |
+|timeout         | Time to wait for the response| 0  |  milliseconds |
+|query           | [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html) |      | |
+| [AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) | Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
+| [ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)| Provides modifiers to customize the behavior of read operations | NONE  |  |
 
 
 

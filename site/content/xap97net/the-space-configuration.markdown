@@ -9,7 +9,7 @@ parent: the-gigaspace-interface-overview.html
 {{% ssummary %}}{{%/ssummary%}}
 
 When a client connects to a space, a proxy is created that holds a connection to the space. All client interaction is performed through this proxy.
-The proxy provides a simpler space API using the [ISpaceProxy](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_ISpaceProxy.htm) interface.
+The proxy provides a simpler space API using the [ISpaceProxy]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceProxy.htm) interface.
 It is created with a Space URL and optional parameters.
 
 
@@ -131,7 +131,7 @@ jini://*/*/mySpace?useLocalCache&versioned=false
 ```
 
 
-The [SpaceConfig](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_SpaceConfig.htm) class allows you to set different URL properties using a `Dictionary` object.
+The [SpaceConfig]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_SpaceConfig.htm) class allows you to set different URL properties using a `Dictionary` object.
 
 Here is an example of a space working in FIFO mode, using specific lookup groups:
 

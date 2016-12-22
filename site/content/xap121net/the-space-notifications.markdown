@@ -76,7 +76,7 @@ Every time an event occurs in a space, which matches the given template and even
 
 # Customizing DataEventSession Behavior
 
-In order to customize the behavior of an [IDataEventSession](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Events_IDataEventSession.htm), a new one needs to be created, using a specific [DataEventConfig](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_Events_EventSessionConfig.htm) that configures the behavior. This section describes different scenarios, and how to address them, by customizing the data event session
+In order to customize the behavior of an [IDataEventSession]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Events_IDataEventSession.htm), a new one needs to be created, using a specific [DataEventConfig]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Events_EventSessionConfig.htm) that configures the behavior. This section describes different scenarios, and how to address them, by customizing the data event session
 
 
 ```csharp

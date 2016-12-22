@@ -189,7 +189,7 @@ for (int i = 0; i < leaseContexts.Length; i++) {
 -  you should verify that duplicated entries (with the same ID) do not appear as part of the passed array, since the identity of the object is determined based on its `ID` and not based on its reference. This is extremely important with an embedded space, since `WriteMultiple` injects the ID value into the object after the write operation (when autogenerate=false).
 
 - Exception handling - the operation many throw the following Exceptions.
-    - [WriteMultipleException](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_Exceptions_WriteMultipleException__ctor.htm)
+    - [WriteMultipleException]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_Exceptions_WriteMultipleException__ctor.htm)
 
 {{%/note%}}
 
@@ -228,7 +228,7 @@ spaceProxy.Write(employee,WriteModifiers.OneWay);
 
 ## Modifiers
 
-For further details on each of the available modifiers see: [WriteModifiers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/P_GigaSpaces_Core_ISpaceProxy_WriteModifiers.htm)
+For further details on each of the available modifiers see: [WriteModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_ISpaceProxy_WriteModifiers.htm)
 
 {{%note%}}
 Writing an object into a space might generate [notifications](./notify-container.html) to registered objects.
@@ -330,7 +330,7 @@ Employee[] employees2 = result.ResultsArray;
 - boosts the performance, since it perform multiple operations using one call. These methods returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, these batch operations can be up to 10 times faster than multiple single based operations.
 - should be handled with care, since they can return a large data set (potentially all the space data). This might cause an out of memory error in the space and client process. You should use the [GSIterator](#Space Iterator) to return the result in batches (paging) in such cases.
 - **dos not support timeout** operations. The simple way to achieve this is by calling the `Read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
-- Exception handling - operation many throw the following Exceptions. [ReadMultipleException](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_Exceptions_ReadMultipleException__ctor.htm)
+- Exception handling - operation many throw the following Exceptions. [ReadMultipleException]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_Exceptions_ReadMultipleException__ctor.htm)
 {{%/note%}}
 
 {{%anchor readIfExists%}}
@@ -397,13 +397,13 @@ Employee e1 = spaceProxy.Read<Employee>(template, null, 0, ReadModifiers.DirtyRe
 ```
 
 
-For further details on each of the available modifiers see: [ReadModifiers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)
+For further details on each of the available modifiers see: [ReadModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)
 
 
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Read by template:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
+Read by template:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
 
 ```csharp
 T Read(T template);
@@ -411,7 +411,7 @@ T Read(T template, long timeout, ReadModifiers modifiers);
 .....
 ```
 
-Read by Id:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadById.htm)
+Read by Id:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadById.htm)
 
 ```csharp
 T ReadById<T>(Object id);
@@ -419,7 +419,7 @@ T ReadById<T>(Object id,Object routing,ITransaction tx,long timeout);
 .....
 ```
 
-Read by ISpaceQuery:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
+Read by ISpaceQuery:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
 
 ```csharp
 T Read(ISpaceQuery<T> query, Object id);
@@ -427,7 +427,7 @@ T Read(ISpaceQuery<T> query, Object routing, long timeout, ReadModifiers modifie
 ....
 ```
 
-Read multiple:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadMultiple.htm)
+Read multiple:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadMultiple.htm)
 
 ```csharp
 T[] ReadMultiple<T>(T template);
@@ -437,7 +437,7 @@ T[] ReadMultiple<T>(IQuery<T> query,ITransaction tx,int maxItems,ReadModifiers m
 ```
 
 
-Asynchronous Read:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_BeginRead.htm)
+Asynchronous Read:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_BeginRead.htm)
 
 ```csharp
 IAsyncResult<T> BeginRead<T>(T template,AsyncCallback<T> userCallback, Object stateObject);
@@ -446,7 +446,7 @@ IAsyncResult<T> BeginRead<T>(T template,long timeout,AsyncCallback<T> userCallba
 ```
 
 
-Read if exists:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadIfExists.htm)
+Read if exists:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadIfExists.htm)
 
 ```csharp
 T ReadIfExists<T>(T template);
@@ -463,8 +463,8 @@ T ReadIfExists<T>(IQuery<T> query,ITransaction tx,long timeout);
 |:-----|:------------|:--------|:----|
 | T          | PONO, SpaceDocument|| |
 |timeout     | Time to wait for the response| 0  |  milliseconds |
-|query| [IQuery](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_IQuery_1.htm)|      | |
-|[ReadModifiers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)|Provides modifiers to customize the behavior of read operations | NONE  |  |
+|query| [IQuery]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|      | |
+|[ReadModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)|Provides modifiers to customize the behavior of read operations | NONE  |  |
 
 {{%/accord%}}
 {{%/accordion%}}
@@ -639,13 +639,13 @@ Employee e1 = spaceProxy.Take<Employee>(template, null, 0, TakeModifiers.FifoGro
 ```
 
 
-For further details on each of the available modifiers see: [TakeModifiers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/P_GigaSpaces_Core_ISpaceProxy_TakeModifiers.htm)
+For further details on each of the available modifiers see: [TakeModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_ISpaceProxy_TakeModifiers.htm)
 
 
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Take by template:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_ISpaceProxy_Take.htm)
+Take by template:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_Take.htm)
 
 ```csharp
 T take<T>(T template);
@@ -653,7 +653,7 @@ T take<T>(T template, long timeout, TakeModifiers modifiers);
 .....
 ```
 
-Take by Id:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_ISpaceProxy_TakeById.htm)
+Take by Id:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeById.htm)
 
 ```csharp
 T TakeById<T>(Object id);
@@ -661,7 +661,7 @@ T TakeById<T>(Object id, Object routing, long timeout, TakeModifiers modifiers);
 .....
 ```
 
-Take by Id's:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_ISpaceProxy_TakeByIds.htm)
+Take by Id's:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeByIds.htm)
 
 ```csharp
 ITakeByIdsResult<T> TakeByIds<T>(IdsQuery<T> idsQuery,ITransaction tx);
@@ -670,7 +670,7 @@ ITakeByIdsResult<T> TakeByIds<T>(Object[] ids,Object routingKey,ITransaction tx,
 ```
 
 
-Take multiple:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_ISpaceProxy_TakeMultiple.htm)
+Take multiple:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeMultiple.htm)
 
 ```csharp
 T[] TakeMultiple<T>(T template);
@@ -680,7 +680,7 @@ T[] TakeMultiple<T>(T template,int maxItems);
 ```
 
 
-Asynchronous take:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_ISpaceProxy_BeginTake.htm)
+Asynchronous take:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_BeginTake.htm)
 
 ```csharp
 IAsyncResult<T> BeginTake<T>(IQuery<T> query,AsyncCallback<T> userCallback,Object stateObject);
@@ -690,7 +690,7 @@ IAsyncResult<T> BeginTake<T>(T template,long timeout,AsyncCallback<T> userCallba
 ```
 
 
-Take if exists:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_ISpaceProxy_TakeIfExists.htm)
+Take if exists:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeIfExists.htm)
 
 ```csharp
 T TakeIfExists<T>(T template);
@@ -699,7 +699,7 @@ T TakeIfExists<T>(IQuery<T> query,ITransaction tx,long timeout,TakeModifiers mod
 
 ```
 
-Take by id if exists:[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_ISpaceProxy_TakeIfExistsById.htm)
+Take by id if exists:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeIfExistsById.htm)
 
 ```csharp
 Object TakeIfExistsById(Type type,Object id);
@@ -712,9 +712,9 @@ T TakeIfExistsById<T>(IdQuery<T> idQuery,ITransaction tx,long timeout,TakeModifi
 |:-----|:------------|:--------|:----|
 | T          | PONO, SpaceDocument|| |
 |timeout     | Time to wait for the response| 0  |  milliseconds |
-|query| [IQuery](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_IQuery_1.htm)|      | |
-|[TakeModifiers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/P_GigaSpaces_Core_ISpaceProxy_TakeModifiers.htm)|Provides modifiers to customize the behavior of take operations | NONE  |  |
-|[ITakeByIdsResult](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_IQuery_1.htm)|ResultSet||
+|query| [IQuery]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|      | |
+|[TakeModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_ISpaceProxy_TakeModifiers.htm)|Provides modifiers to customize the behavior of take operations | NONE  |  |
+|[ITakeByIdsResult]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|ResultSet||
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -755,7 +755,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Count objects in space.[.NetAPI]http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Count.htm)
+Count objects in space.[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Count.htm)
 
 
 ```java
@@ -771,7 +771,7 @@ int Count(ISpaceQuery<T> query);
 |:-----|:------------|:-------- |
 |T          | PONO, SpaceDocument||
 |query         | SqlQuery, IdQuery||
-|[ReadModifiers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)|Provides modifiers to customize the behavior of the count operations | NONE  |
+|[ReadModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)|Provides modifiers to customize the behavior of the count operations | NONE  |
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -815,7 +815,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Clears objects from space.[.NetAPI](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_ISpaceProxy.htm)
+Clears objects from space.[.NetAPI]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceProxy.htm)
 
 
 
@@ -832,7 +832,7 @@ void Clear(ISpaceQuery<T> query)
 |:-----|:------------|:-------- |
 |T          | PONO, SpaceDocument||
 |query         | SqlQuery, IdQuery||
-|[TakeModifiers](http://www.gigaspaces.com/docs/dotnetdocs{{%currentversion%}}/html/T_GigaSpaces_Core_TakeModifiers.htm)|Provides modifiers to customize the behavior of the clear operations | NONE  |
+|[TakeModifiers]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_TakeModifiers.htm)|Provides modifiers to customize the behavior of the clear operations | NONE  |
 {{%/accord%}}
 {{%/accordion%}}
 
