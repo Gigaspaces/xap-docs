@@ -88,6 +88,35 @@ gs-webui.bat
 {{% /tab %}}
 {{% /tabs %}}
 
+In order to run web-ui server with SSL ( using https protocol instead of http ) following parameters must be provided as an arguments to the `gs-webui` script: 
+-ssl.keyManagerPassword - the password (if any) for the specific key within the key store
+-ssl.keyStorePassword - the password for the key store
+-ssl.keyStorePath - the file or URL of the SSL Key store 
+-ssl.trustStorePath - the file name or URL of the trust store location 
+-ssl.trustStorePassword - the password for the truststore   
+
+{{%tabs%}}
+{{%tab "  Linux "%}}
+
+
+```bash
+#Specify SSL via a command line argument
+./gs-webui.sh -ssl.keyManagerPassword <passw> -ssl.keyStorePassword <passw> -ssl.keyStorePath <key-store-path> -ssl.trustStorePath <trust-store-path> -ssl.trustStorePassword <passw>
+
+```
+
+{{% /tab %}}
+{{%tab "  Windows "%}}
+
+
+```bash
+#Specify SSL via a command line argument
+gs-webui.bat  -ssl.keyManagerPassword <passw> -ssl.keyStorePassword <passw> -ssl.keyStorePath <key-store-path> -ssl.trustStorePath <trust-store-path> -ssl.trustStorePassword <passw>
+
+```
+
+{{% /tab %}}
+{{% /tabs %}}
 
 Note that you can also use the `WEBUI_JAVA_OPTIONS` environment variable to set any JVM parameter, such as heap size (defaults to `-Xmx512m`) and other JVM settings.
 
