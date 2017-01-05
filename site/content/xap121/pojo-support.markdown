@@ -80,7 +80,7 @@ public class Person {
     @SpaceProperty(index=BASIC)
     public Long getLastName() { return lastName; }
 
-    public void setLastName(String type) { this.lastName = lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     @SpaceProperty(nullValue="-1")
     public int getAge(){ return age; }
