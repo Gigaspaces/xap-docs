@@ -3,7 +3,7 @@ type: post
 title:  SSL and Self Signed Certificates
 categories: SBP
 parent: production.html
-weight: 900
+weight: 2300
 ---
 
 
@@ -14,28 +14,28 @@ weight: 900
 
 
 
-This page will describe the steps needed to secure the transport layer using SSL and self signed certificates.
+This page describes the steps needed to secure the transport layer using SSL and self signed certificates.
 
 
 # Scenario
 
-On my local computer, I am running XAP. On a remote computer, I have a client that will connect to the XAP server and write an object to the space. In order to protect the communication with SSL, we will enable the ```SSLFilterFactory``` and supply the keystore. We will then deploy a space and run a client. This example builds upon the documentation found at: ({{%latestsecurl%}}/securing-the-transport-layer-using-ssl.html)
+On my local computer, I am running XAP. On a remote computer, I have a client that will connect to the XAP server and writes an object to the space. In order to protect the communication with SSL, we will enable the `SSLFilterFactory` and supply the `keystore`. We will then deploy a space and run a client. This example builds upon the [documentation]({{%latestsecurl%}}/securing-the-transport-layer-using-ssl.html)
  
-|| XAP Server (local computer, running Windows)|
-|---|---|
+|    | XAP Server (local computer, running Windows)|
+|------|------|
 |Name: |my-pc.gspaces.com|
 |IP address: |10.10.10.131|
 
-|| Client (remote linux host)|
-|---|---|
+|    | Client (remote linux host)|
+|---|------|
 |Name: |blob.gspaces.com|
 |IP address: |10.10.10.21|
 
-# Create the private key and generate the certificate
+# Private key and certificate
 
-### Generate the private key and certificates on my-pc:
+## Generate the private key and certificates on my-pc:
 
-```java
+```bash
 cd <XAP_root>\bin
 
 # generate the private key
@@ -45,9 +45,9 @@ keytool -genkeypair -alias server -keyalg RSA -keypass changeit -storepass chang
 keytool  -export  -alias server -storepass changeit -file server.cer -keystore keystore.jks  -ext SAN=dns:my-pc.gspaces.com,ip:10.10.10.131
 ```
 
-### Generate the private key and certificates on blob:
+## Generate the private key and certificates on blob:
 
-```java
+```bash
 cd <XAP_root>/bin
 
 # generate the private key
@@ -57,31 +57,33 @@ keytool -genkeypair -alias client -keyalg RSA -keypass changeit -storepass chang
 keytool -export  -alias client -storepass changeit -file client.cer -keystore client_keystore.jks -ext SAN=dns:blob.gspaces.com,ip:10.10.10.21
 ```
 
-### Upload and exchange the certs.
+## Upload and exchange the certs.
 Place the server.cer in ```blob:<XAP_root>/bin```
 
 
 Place the client.cer in ```my-pc:<XAP_root>/bin```
 
 
-### Import the cert into the keystore.
+## Import the cert into the keystore.
 On many web sites, the recommendation is to put the certificate in the truststore. But here we import directly into the keystore.
 
 
 On ```my-pc:<XAP_root>/bin```, run 
-```java
+
+```bash
 keytool  -import -v -trustcacerts -alias client -file client.cer -keystore keystore.jks -keypass changeit -storepass changeit -ext SAN=dns:blob.gspaces.com,ip:10.10.10.21
 ```
 
 On ```blob:<XAP_root>/bin```, run
-```java
+
+```bash
 keytool -import -v -trustcacerts -alias server -file server.cer -keystore client_keystore.jks -keypass changeit -storepass changeit -ext SAN=dns:my-pc.gspaces.com,ip:10.10.10.131
 ```
 
 # XAP server setup
 Below are the contents of the setenv-overrides.bat
 
-```java
+```bash
 set XAP_LOOKUP_LOCATORS=my-pc.gspaces.com:4174
 set XAP_NIC_ADDRESS=10.10.10.131
 
@@ -94,11 +96,11 @@ Create a partitioned 2,1 space named SSLSpace. You may use the gs-ui or web-ui t
 
 # Client setup
 
-Compile the example SSLClient.java program provided in the documentation at ({{%latestsecurl%}}/securing-the-transport-layer-using-ssl.html). You may need to change the Groups and Locators values as needed.
+Compile the example SSLClient.java program provided in the [documentation]({{%latestsecurl%}}/securing-the-transport-layer-using-ssl.html). You may need to change the Groups and Locators values as needed.
 
 Below is the bash script I used to run the client:
 
-```java
+```bash
 #!/bin/bash
 
 export JAVA_HOME=/opt/jdk/jdk8u66
@@ -126,11 +128,11 @@ SSLClient
 
 # Verification
 
-The SSLSpace will have one object. By setting ```-Djavax.net.debug=ssl``` you will see the ssl handshake methods. If this is not enabled, you may get an error: **'General SSLEngine problem'**, but it will be missing details.
+The SSLSpace will have one object. By setting `-Djavax.net.debug=ssl` you will see the ssl handshake methods. If this is not enabled, you may get an error: **General SSLEngine problem**, but it will be missing details.
 
-After enabling you should see lines like below in your logs:
+After enabling the debug option, you should see the following output in the logs:
 
-```java
+```bash
 2016-12-15 14:19:35,661  INFO [com.gigaspaces.lrmi.filters] - Created LRMI filter factory: com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 adding as trusted cert:
 adding as trusted cert:
@@ -157,9 +159,9 @@ adding as trusted cert:
  Valid from Wed Dec 14 16:57:53 EST 2016 until Tue Mar 14 17:57:53 EDT 2017
 ```
 
-If the certificate of the other computer is not listed, you will get an error like:
+If the certificate of the other computer is not listed, you will get an error:
 
-```java
+```bash
 ***
 main, fatal error: 46: General SSLEngine problem
 sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target

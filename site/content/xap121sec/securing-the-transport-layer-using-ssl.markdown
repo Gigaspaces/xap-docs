@@ -124,6 +124,11 @@ However, when you wish to run this code with SSL encryption, you should run it w
 -Dcom.gs.lrmi.filter.security.password=password
 ```
 
+
+{{%refer%}}
+You can find an example of using `SSLFilterFactory` with self signed certs [here](/sbp/ssl-self-signed-cert-example.html).
+{{%/refer%}}
+
 Alternatively if you do not need authentication and just wish to encrypt the data you can omit the keystore and the password and the server will generate the ssl keys on the fly.
 
 ```bash
