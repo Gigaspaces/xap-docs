@@ -77,8 +77,8 @@ public class Person {
 
     public void setId(Integer id) {  this.id = id; }
 
-    @SpaceProperty(index=BASIC)
-    public Long getLastName() { return lastName; }
+    @SpaceIndex(type = BASIC)
+    public String getLastName() { return lastName; }
 
     public void setLastName(String lastName) { this.lastName = lastName; }
 
