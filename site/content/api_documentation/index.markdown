@@ -7,7 +7,7 @@ categories: API_DOCUMENTATION
 This page provides links to the API documentation and related resources for each version of XAP.
 
 
-# XAP 12.1
+# XAP 12.1 Early Access
 
 {{%tabs%}}
 {{%tab API%}}
