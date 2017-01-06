@@ -110,6 +110,12 @@ The patterns below are presented as is. While most of them are used in real life
 
 
 
+# Security
+
+
+| Pattern | Level | Description |
+|:--------------|:------|:------------|
+|[Securing the Transport Layer Using SSL and Self-Signed Certificates Example](./ssl-self-signed-cert-example.html)| Beginner | This article presents how to secure communications using SSL and self-signed certificates.|
 
 
 
