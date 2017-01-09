@@ -47,8 +47,8 @@ Include the following in your `pom.xml`
 		</dependency> 
 
 		<dependency>
-    		<groupId>com.gigaspaces</groupId>
-	    	<artifactId>mongo-datasource</artifactId>
+    		<groupId>org.gigaspaces</groupId>
+	    	<artifactId>xap-mongodb</artifactId>
     		<version>{{%version "maven-version" %}}</version>
 		</dependency>
 		...
