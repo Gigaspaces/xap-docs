@@ -39,10 +39,10 @@ On my local computer, I am running XAP. On a remote computer, I have a client th
 cd <XAP_root>\bin
 
 # generate the private key
-keytool -genkeypair -alias server -keyalg RSA -keypass changeit -storepass changeit -keystore keystore.jks -ext SAN=dns:my-pc.gspaces.com,ip:10.10.10.131
+keytool -genkeypair -alias server -keyalg RSA -keypass changeit -storepass changeit -keystore keystore.jks 
 
 # export the certificate
-keytool  -export  -alias server -storepass changeit -file server.cer -keystore keystore.jks  -ext SAN=dns:my-pc.gspaces.com,ip:10.10.10.131
+keytool -exportcert -alias server -storepass changeit -file server.cer -keystore keystore.jks 
 ```
 
 ## Generate the private key and certificates on blob:
@@ -51,10 +51,10 @@ keytool  -export  -alias server -storepass changeit -file server.cer -keystore k
 cd <XAP_root>/bin
 
 # generate the private key
-keytool -genkeypair -alias client -keyalg RSA -keypass changeit -storepass changeit -keystore client_keystore.jks -ext SAN=dns:blob.gspaces.com,ip:10.10.10.21
+keytool -genkeypair -alias client -keyalg RSA -keypass changeit -storepass changeit -keystore client_keystore.jks 
 
 # export the certificate
-keytool -export  -alias client -storepass changeit -file client.cer -keystore client_keystore.jks -ext SAN=dns:blob.gspaces.com,ip:10.10.10.21
+keytool -exportcert -alias client -storepass changeit -file client.cer -keystore client_keystore.jks 
 ```
 
 ## Upload and exchange the certs.
@@ -71,13 +71,13 @@ On many web sites, the recommendation is to put the certificate in the truststor
 On ```my-pc:<XAP_root>/bin```, run 
 
 ```bash
-keytool  -import -v -trustcacerts -alias client -file client.cer -keystore keystore.jks -keypass changeit -storepass changeit -ext SAN=dns:blob.gspaces.com,ip:10.10.10.21
+keytool -importcert -v -trustcacerts -alias client -file client.cer -keystore keystore.jks -keypass changeit -storepass changeit 
 ```
 
 On ```blob:<XAP_root>/bin```, run
 
 ```bash
-keytool -import -v -trustcacerts -alias server -file server.cer -keystore client_keystore.jks -keypass changeit -storepass changeit -ext SAN=dns:my-pc.gspaces.com,ip:10.10.10.131
+keytool -importcert -v -trustcacerts -alias server -file server.cer -keystore client_keystore.jks -keypass changeit -storepass changeit 
 ```
 
 # XAP server setup
