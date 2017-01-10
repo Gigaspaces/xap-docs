@@ -293,10 +293,11 @@ MemoryXtend can work together with the [XAP Mirror Service]({{%currentjavaurl%}}
 {{%/align%}}
 
 
-## Initial Load
+# Initial Load
 MemoryXtend can load data from a database or attached storage directly into the Data-Grid instances. This feature is called [Initial Load]({{%currentjavaurl%}}/space-persistency-initial-load.html).<br/>
-When configuring `persistent=true` each space instance will start the initial load from it's attached storage(flash device),  in case it is the empty initial load will be performed from the database.
-When configuring `persistent=false` initial load will be performed from the database only.
+
+- When configuring `persistent=true` each space instance will start the initial load from it's attached storage(flash device),  in case it is the empty initial load will be performed from the database.
+- When configuring `persistent=false` initial load will be performed from the database only.
 
 {{%tabs%}}
 {{%tab "Data-Grid Space settings"%}}
@@ -449,6 +450,66 @@ When configuring `persistent=false` initial load will be performed from the data
 ```
 {{% /tab %}}
 {{% /tabs %}}
+
+# User-defined query for initial Load
+
+MemoryXtend saves only indexes in RAM and the rest of the objects on disk. If you want to store objects and indexes in RAM, you can use queries to accomplish this.
+
+In the example below we are loading `Stock` instances where the name=a1000 and `Trade` instances with id > 10000.
+
+{{%tabs%}}
+{{%tab "Namespace"%}}
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/{{%currentversion%}}/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%currentversion%}}/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
+
+    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/tmp/rocksdb]" mapping-dir="/tmp/mapping"/>
+
+    <os-core:embedded-space id="space" name="mySpace">
+        <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
+            <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="name = a1000"/>
+            <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="id > 10000"/>
+        </os-core:blob-store-data-policy>
+    </os-core:embedded-space>
+
+    <os-core:giga-space id="gigaSpace" space="space"/>
+```
+{{%/tab%}}
+
+{{%tab "Code"%}}
+
+```java
+BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
+blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
+blobStorePolicy.setPersistent(true);
+blobStorePolicy.addCacheQuery(new SQLQuery(Stock.class, "name = a1000"));
+blobStorePolicy.addCacheQuery(new SQLQuery(Trade.class, "id > 10000"));
+
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
+spaceConfigurer.cachePolicy(blobStorePolicy);
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer.space()).gigaSpace();
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+When the logging `com.gigaspaces.cache` is turned on the following output is generated:
+
+```bash
+2016-12-26 07:57:56,378  INFO [com.gigaspaces.cache] - BlobStore internal cache recovery:
+   blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE name = 'a1000', SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock.Trade WHERE id > 10000].
+   Entries inserted to blobstore cache: 80.
+```
 
 # Limitation
 - MemoryXtend and [Direct Persistency]({{%currentjavaurl%}}/direct-persistency.html) configuration is not supported.
