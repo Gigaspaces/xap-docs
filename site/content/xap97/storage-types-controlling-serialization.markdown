@@ -14,7 +14,7 @@ weight: 200
 Each non-primitive space object property can be assigned a storage type decoration which determines how it is serialized and stored in the space. There are 3 storage types that are available:
 
 - `OBJECT`, which means that the property will be stored as a regular Java object in the space.
-- `BINARY`, which means that the property will be stored in it's serialized form in the space.
+- `BINARY`, which means that the property will be stored in its serialized form in the space.
 - `COMPRESSED`, which means that the property will be stored in a compressed serialized form in the space.
 
 {{%tabs%}}
