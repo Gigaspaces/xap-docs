@@ -14,6 +14,25 @@ This page contains early access information for XAP 12.1, which is scheduled for
 Early Access builds are provided as-is and should not be used in production. If your're looking for the latest stable release, please refer to **12.0.1** - [Download](http://www.gigaspaces.com/xap-download) | [XAP docs](/xap120) | [XAP.NET docs](/xap120net)
 {{%/info%}}
 <hr/>
+
+## 12.1 M12 (Jan-9-2016)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m12/gigaspaces-xap-open-12.1.0-m12-b16712.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/gigaspaces-xap-premium-12.1.0-m12-b16712.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/gigaspaces-xap-enterprise-12.1.0-m12-b16712.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/GigaSpaces-XAP.NET-Premium-12.1.0.16712-M12-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/GigaSpaces-XAP.NET-Premium-12.1.0.16712-M12-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/GigaSpaces-XAP.NET-Enterprise-12.1.0.16712-M12-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/GigaSpaces-XAP.NET-Enterprise-12.1.0.16712-M12-x86.msi)\]
+
+## 12.1 M11 (Jan-2-2016)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m11/gigaspaces-xap-open-12.1.0-m11-b16711.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/gigaspaces-xap-premium-12.1.0-m11-b16711.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/gigaspaces-xap-enterprise-12.1.0-m11-b16711.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/GigaSpaces-XAP.NET-Premium-12.1.0.16711-M11-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/GigaSpaces-XAP.NET-Premium-12.1.0.16711-M11-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/GigaSpaces-XAP.NET-Enterprise-12.1.0.16711-M11-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/GigaSpaces-XAP.NET-Enterprise-12.1.0.16711-M11-x86.msi)\]
+
+#### Milestone Release Notes
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|[XAP-13111](https://xap-issues.atlassian.net/browse/XAP-13111) | New Feature     |Add --zero-defaults or -z flag to gs-agent |
+
+
+
 ## 12.1 M10 (Dec-26-2016)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m10/gigaspaces-xap-open-12.1.0-m10-b16710.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m10/gigaspaces-xap-premium-12.1.0-m10-b16710.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m10/gigaspaces-xap-enterprise-12.1.0-m10-b16710.zip)\] 
