@@ -33,16 +33,17 @@ When a POJO class with embedded properties uses the Space API, you may implement
 
 <br>
 
-{{%info%}}
-
+{{%note%}}
 - When implementing the `Externalizable` interface, the storage type of the nested property needs to be of type [OBJECT](./storage-types-controlling-serialization.html).
 - Implementing `Externalizable` for the Space class itself is not recommended.
-
-{{%/info%}}
+{{%/note%}}
 
 <br>
 
-Here is an example; the Person class has an Address property that is being externalized.
+
+# Example
+
+Here is an example; the `Person` class has an `Address` property that is being externalized.
 
 
 {{%tabs%}}
@@ -131,9 +132,7 @@ public class Address implements Externalizable {
 	}
 
 	@Override
-	public void readExternal(ObjectInput in) throws IOException,
-			ClassNotFoundException {
-
+	public void readExternal(ObjectInput in) throws IOException,ClassNotFoundException {
 		street = (String) in.readObject();
 		city = (String) in.readObject();
 		country = (String) in.readObject();
@@ -141,7 +140,6 @@ public class Address implements Externalizable {
 
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
-
 		out.writeObject(street);
 		out.writeObject(city);
 		out.writeObject(country);
@@ -151,3 +149,155 @@ public class Address implements Externalizable {
 {{%/tab%}}
 {{%/tabs%}}
 
+
+# Kryo Serialization
+
+[Kryo](https://github.com/EsotericSoftware/kryo) is a fast and efficient object graph serialization framework for Java. You can use this framework to serialize your objects with XAP.
+Using the same example from above, the `writeExternal`  and `readExternal` methods of the `Address` class make use of the `KryoSerializers`.
+
+{{%tabs%}}
+
+{{%tab "Address"%}}
+```java
+package xap.kryo;
+
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
+
+public class Address implements Externalizable {
+
+	private String street;
+
+	private String city;
+
+	private String country;
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(final String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(final String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(final String country) {
+		this.country = country;
+	}
+
+	@Override
+	public void writeExternal(final ObjectOutput stream) throws IOException {
+		KryoSerializers.serialize(stream, this::write);
+	}
+
+	@Override
+	public void readExternal(final ObjectInput stream) throws IOException, ClassNotFoundException {
+		KryoSerializers.deserialize(stream, this::read);
+	}
+
+	protected void write(final Kryo kryo, final Output output) {
+		output.writeString(street);
+		output.writeString(city);
+		output.writeString(country);
+	}
+
+	protected void read(final Kryo kryo, final Input input) {
+		street = input.readString();
+		city = input.readString();
+		country = input.readString();
+	}
+}
+
+```
+{{%/tab%}}
+
+{{%tab "KryoSerializers"%}}
+```java
+package xap.kryo;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.util.function.BiConsumer;
+
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
+
+public class KryoSerializers {
+
+	private static final ThreadLocal<Kryo> kryos = new ThreadLocal<Kryo>() {
+		protected Kryo initialValue() {
+			Kryo kryo = new Kryo();
+			kryo.register(Address.class);
+			return kryo;
+		};
+	};
+
+	public static void serialize(final ObjectOutput out, final BiConsumer<Kryo, Output> serialize) throws IOException {
+
+		Output output = null;
+
+		try {
+			Kryo kryo = kryos.get();
+			ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+			output = new Output(byteOutStream);
+			serialize.accept(kryo, output);
+
+			byte[] bytesToWrite = byteOutStream.toByteArray();
+			// write number of bytes that got written by kryo
+			out.writeInt(bytesToWrite.length);
+			out.write(bytesToWrite);
+		} finally {
+			if (output != null) {
+				output.close();
+			}
+		}
+	}
+
+	public static void deserialize(final ObjectInput in, final BiConsumer<Kryo, Input> deserialize) throws IOException {
+
+		Input input = null;
+
+		try {
+			Kryo kryo = kryos.get();
+			// see how many bytes were written and allocate according buffer
+			int bytesToRead = in.readInt();
+			byte[] buffer = new byte[bytesToRead];
+			in.read(buffer);
+			input = new Input(buffer);
+			deserialize.accept(kryo, input);
+		} finally {
+			if (input != null) {
+				input.close();
+			}
+		}
+	}
+
+}
+
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+{{%refer%}}
+For detailed information on Kryo please consult the [project website](https://github.com/EsotericSoftware/kryo).
+{{%/refer%}}
