@@ -152,7 +152,7 @@ public class Address implements Externalizable {
 
 # Kryo Serialization
 
-[Kryo](https://github.com/EsotericSoftware/kryo) is a fast and efficient object graph serialization framework for Java. You can use this framework to serialize your objects with XAP.
+{{%exurl "Kryo" "https://github.com/EsotericSoftware/kryo" %}} is a fast and efficient object graph serialization framework for Java. You can use this framework to serialize your objects with XAP.
 Using the same example from above, the `writeExternal`  and `readExternal` methods of the `Address` class make use of the `KryoSerializers`.
 
 {{%tabs%}}
