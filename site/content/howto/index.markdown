@@ -8,7 +8,7 @@ parent:  none
 
  Cheat sheet for GigaSpaces Documentation
 
-Testing external link {{%exurl "Mule Site" "http://www.mulesoft.org/" %}} to see how this works.
+
 
 
 
@@ -303,3 +303,16 @@ Change API overview.
 
 {{%/* /fpanel */%}}
 ```
+
+
+# Links
+
+Testing docs link [Event Processing](http://www.mulesoft.org) to see how this works.<br>
+
+Testing external link {{%exurl "Mule Site" "http://www.mulesoft.org/" %}} to see how this works.<br>
+
+Testing sbp link {{%sbpurl "Master Worker Pattern" "http://www.mulesoft.org/" %}} to see how this works. <br>
+
+Testing github link {{%giturl "GigaSpaces" "http://www.mulesoft.org/" %}} to see how this works.
+
+Testing javadoc link {{%apiurl "GigaSpaces" "http://www.mulesoft.org/" %}} to see how this works.
