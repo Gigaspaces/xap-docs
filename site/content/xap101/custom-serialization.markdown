@@ -31,12 +31,12 @@ When a POJO class with embedded properties uses the Space API, you may implement
 
 <br>
 
-{{%info%}}
+{{%note%}}
 
 - When implementing the `Externalizable` interface, the storage type of the nested property needs to be of type [OBJECT](./storage-types-controlling-serialization.html).
 - Implementing `Externalizable` for the Space class itself is not recommended.
 
-{{%/info%}}
+{{%/note%}}
 
 <br>
 
