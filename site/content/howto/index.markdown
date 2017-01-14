@@ -8,6 +8,10 @@ parent:  none
 
  Cheat sheet for GigaSpaces Documentation
 
+Testing external link {{%exurl "Mule Site" "http://www.mulesoft.org/" %}} to see how this works.
+
+
+
 # Text
 
 

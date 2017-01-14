@@ -28,6 +28,6 @@ The XAP queue provider is used for internal space-based communication between se
 <br>
 
 #### Additional Resources
-- Mule Site [{{%externalurl%}}](http://www.mulesoft.org/)
+{{%exurl "Mule Site" "http://www.mulesoft.org"%}}
 
-- [Distributed Multi Mule service example](/sbp/mule-esb-example.html)
+[Distributed Multi Mule service example](/sbp/mule-esb-example.html)
