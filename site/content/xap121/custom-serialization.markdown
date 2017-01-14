@@ -299,5 +299,5 @@ public class KryoSerializers {
 {{%/tabs%}}
 
 {{%refer%}}
-For detailed information on Kryo please consult the [project website](https://github.com/EsotericSoftware/kryo).
+You can find a complete example [here](https://github.com/GigaSpaces-ProfessionalServices/kryo-serialization-example).
 {{%/refer%}}
