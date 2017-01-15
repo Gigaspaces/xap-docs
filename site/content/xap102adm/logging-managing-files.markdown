@@ -148,7 +148,10 @@ This can also be overridden by a system property.
 # System property overrides
 
 Any of the logger properties can be configured by a system property override, specified as follows:
-`-Dcom.gigaspaces.logger.RollingFileHandler.\[property-name\]=\[property-value\]`
+
+```bash
+-Dcom.gigaspaces.logger.RollingFileHandler.[property-name]=[property-value]
+```
 
 For example:
 

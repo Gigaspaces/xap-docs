@@ -148,12 +148,32 @@ This can also be overridden by a system property.
 # System property overrides
 
 Any of the logger properties can be configured by a system property override, specified as follows:
-`-Dcom.gigaspaces.logger.RollingFileHandler.\[property-name\]=\[property-value\]`
+
+```bash
+-Dcom.gigaspaces.logger.RollingFileHandler.[property-name]=[property-value]
+```
+
 
 For example:
 
 
 ```bash
 -Dcom.gigaspaces.logger.RollingFileHandler.debug-level=OFF
+```
+
+# GS-UI
+
+The [gs-ui](./gigaspaces-management-center.html) is not part of the services and its configuration should be done separately in `gs-ui.sh` or `gs-ui.bat` files.
+
+For example: write to a separate file, you need to add this system property:
+
+```bash
+-Dcom.gigaspaces.logger.RollingFileHandler.filename-pattern=D:/Logs/GigaSpaces/gs-ui-{pid}.log
+```
+
+Appending the log message to the same log as other services, you need to add this system  property:
+
+```bash
+-Dcom.gigaspaces.logger.RollingFileHandler.append=true
 ```
 
