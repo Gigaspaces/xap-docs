@@ -18,7 +18,7 @@ Current adm url : {{<currentadmurl>}}
 
 Current version : {{<currentversion>}}of XAP
 
-Version : {{<version>}}of spring
+ 
 
 # Icons
 
