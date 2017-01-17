@@ -69,7 +69,7 @@ The Web Management Console (web-ui) now supports custom security, same as the gs
 
 The Web Management Console (web-ui) can now be configured to use SSL.
 
-{{<infosign>}} Documentation is under construction - more information coming soon.
+{{<infosign>}} For more information see [SSL Connection](/xap121adm/web-management-console-starting.html#ssl-connection).
 
 # Troubleshooting
 
