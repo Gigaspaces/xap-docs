@@ -42,11 +42,11 @@ The group Id for the these artifacts is `org.gigaspaces`
 
 | Artifact Id	   | Location in product |
 |------------------|---------------------|
-| `xap-openspaces` | `${XAP_HOME}/lib/required/xap-openspaces.jar`	|
-| `xap-datagrid`   | `${XAP_HOME}/lib/required/xap-datagrid.jar`	|
-| `xap-common`	   | `${XAP_HOME}/lib/required/xap-common.jar`		|
-| `xap-trove`	   | `${XAP_HOME}/lib/required/xap-trove.jar`		|
-| `xap-asm`		   | `${XAP_HOME}/lib/required/xap-asm.jar`			|
+| xap-openspaces | ${XAP_HOME}/lib/required/xap-openspaces.jar	|
+| xap-datagrid   | ${XAP_HOME}/lib/required/xap-datagrid.jar	|
+| xap-common	   | ${XAP_HOME}/lib/required/xap-common.jar		|
+| xap-trove	   | ${XAP_HOME}/lib/required/xap-trove.jar		|
+| xap-asm		   | ${XAP_HOME}/lib/required/xap-asm.jar			|
 
 ## Extension artifacts
 
@@ -54,14 +54,14 @@ This section lists extension artifacts. The group Id for the these artifacts is 
 
 | Artifact Id	   | Location in product | Required For |
 |------------------|---------------------|---|
-| `xap-map `			| `${XAP_HOME}/lib/optional/map/xap-map.jar` | [Map API](./map-api.html) |
-| `xap-map-spring`		| `${XAP_HOME}/lib/optional/map/xap-map-spring.jar` | [Map API](./map-api.html) |
-| `xap-jms`				| `${XAP_HOME}/lib/optional/jms/xap-jms.jar` | [JMS](./messaging-support.html) |
-| `xap-jetty-8`			| `${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty-8.jar` | [Jetty PU Container](./web-jetty-processing-unit-container.html) |
-| `xap-jetty-9`			| `${XAP_HOME}/lib/optional/jetty-9/xap-jetty/xap-jetty-9.jar` | [Jetty PU Container](./web-jetty-processing-unit-container.html) |
-| `xap-mongodb`			| `${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar` | [MongoDB integration](./mongodb.html) |
-| `xap-spatial`			| `${XAP_HOME}/lib/optional/spatial/xap-spatial.jar` | [Geospatial Queries](./query-geospatial.html) |
-| `xap-full-text-search`| `${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar` | Full Text Search |
+| xap-map 			| ${XAP_HOME}/lib/optional/map/xap-map.jar | [Map API](./map-api.html) |
+| xap-map-spring		| ${XAP_HOME}/lib/optional/map/xap-map-spring.jar | [Map API](./map-api.html) |
+| xap-jms				| ${XAP_HOME}/lib/optional/jms/xap-jms.jar | [JMS](./messaging-support.html) |
+| xap-jetty-8			| ${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty-8.jar | [Jetty PU Container](./web-jetty-processing-unit-container.html) |
+| xap-jetty-9			| ${XAP_HOME}/lib/optional/jetty-9/xap-jetty/xap-jetty-9.jar | [Jetty PU Container](./web-jetty-processing-unit-container.html) |
+| xap-mongodb			| ${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar | [MongoDB integration](./mongodb.html) |
+| xap-spatial			| ${XAP_HOME}/lib/optional/spatial/xap-spatial.jar | [Geospatial Queries](./query-geospatial.html) |
+| xap-full-text-search| ${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar | Full Text Search |
 
 ## Premium Extensions
 
@@ -69,11 +69,11 @@ This section lists premium artifacts. The group Id for the these artifacts is `c
 
 | Artifact Id	   | Location in product | Required For |
 |------------------|---------------------|---|
-| `xap-near-cache-spring` | `${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar` | [Client Side Caching](./client-side-caching.html) |
-| `xap-near-cache` 		  | `${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar` | [Client Side Caching](./client-side-caching.html) |
-| `xap-wan-gateway-spring`| `${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar` | [WAN Replication](./multi-site-replication-overview.html) |
-| `xap-wan-gateway`		  | `${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar` | [WAN Replication](./multi-site-replication-overview.html) |
-| `xap-security`		  | `${XAP_HOME}/lib/optional/security/xap-security.jar` | [Security]({{%currentsecurl%}}/security.html) |
-| `xap-zookeeper`		  | `${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar` | [Consistency-biased leader election]({{%currentadmurl%}}/leader-election-consistency-biased.html) |
-| `xap-admin` 			  | `${XAP_HOME}/lib/platform/service-grid/xap-admin.jar` | [Admin API](./administration-and-monitoring-overview.html)|
+| xap-near-cache-spring | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar | [Client Side Caching](./client-side-caching.html) |
+| xap-near-cache 		  | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar | [Client Side Caching](./client-side-caching.html) |
+| xap-wan-gateway-spring| ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar | [WAN Replication](./multi-site-replication-overview.html) |
+| xap-wan-gateway		  | ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar | [WAN Replication](./multi-site-replication-overview.html) |
+| xap-security		  | ${XAP_HOME}/lib/optional/security/xap-security.jar | [Security]({{%currentsecurl%}}/security.html) |
+| xap-zookeeper		  | ${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar | [Consistency-biased leader election]({{%currentadmurl%}}/leader-election-consistency-biased.html) |
+| xap-admin 			  | ${XAP_HOME}/lib/platform/service-grid/xap-admin.jar | [Admin API](./administration-and-monitoring-overview.html)|
 

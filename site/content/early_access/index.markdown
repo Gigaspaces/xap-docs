@@ -17,6 +17,18 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M13 (Jan-16-2016)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m13/gigaspaces-xap-open-12.1.0-m13-b16713.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/gigaspaces-xap-premium-12.1.0-m13-b16713.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/gigaspaces-xap-enterprise-12.1.0-m13-b16713.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/GigaSpaces-XAP.NET-Premium-12.1.0.16713-M13-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/GigaSpaces-XAP.NET-Premium-12.1.0.16713-M13-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/GigaSpaces-XAP.NET-Enterprise-12.1.0.16713-M13-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/GigaSpaces-XAP.NET-Enterprise-12.1.0.16713-M13-x86.msi)\]
+
+#### Milestone Release Notes
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|[XAP-13023](https://xap-issues.atlassian.net/browse/XAP-13023) | New Feature     |User-defined query for initial Load in MemoryXtend |
+
+
 ## 12.1 M12 (Jan-9-2016)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m12/gigaspaces-xap-open-12.1.0-m12-b16712.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/gigaspaces-xap-premium-12.1.0-m12-b16712.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/gigaspaces-xap-enterprise-12.1.0-m12-b16712.zip)\] 
