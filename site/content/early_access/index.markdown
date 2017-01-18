@@ -10,6 +10,8 @@ weight:
 
 This page contains early access information for XAP 12.1, which is scheduled for release in Q1 2017. Early access builds are intended for those who wish to get involved in the development process to try out new stuff early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
 
+{{%plus%}} If you're just getting started with 12.1, we recommend reading [What's New](/release_notes/121whats-new.html) page.
+
 {{%info "Disclaimer"%}}
 Early Access builds are provided as-is and should not be used in production. If your're looking for the latest stable release, please refer to **12.0.1** - [Download](http://www.gigaspaces.com/xap-download) | [XAP docs](/xap120) | [XAP.NET docs](/xap120net)
 {{%/info%}}
