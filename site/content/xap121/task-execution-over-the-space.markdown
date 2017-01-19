@@ -527,6 +527,64 @@ In the above case, `SumTask` is a distributed task that wraps a simple `Task`. I
 
 See the [Aggregators](./aggregators.html) section for more details.
 
+
+# Change code without restarts
+
+When executing a task over the space, the code is loaded from the remote client and cached for future executions.
+Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify the code.
+
+Starting with 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed.
+The space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.
+ 
+ 
+For example, start with annotating your task with @SupportCodeChange(id="1"), and when the code changes, set the annotation to @SupportCodeChange(id="2"), and the space will load the new task.
+
+
+{{%tabs%}}
+{{%tab "Task version 1"%}}
+
+```java
+import org.openspaces.core.executor.Task;
+
+import com.gigaspaces.annotation.SupportCodeChange;
+
+@SupportCodeChange(id="1")
+public class DynamicTask implements Task<Integer> {
+
+	@Override
+	public Integer execute() throws Exception {
+		return new Integer(1);
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab "Task version 2"%}}
+
+```java
+import org.openspaces.core.executor.Task;
+
+import com.gigaspaces.annotation.SupportCodeChange;
+
+@SupportCodeChange(id="2")
+public class DynamicTask implements Task<Integer> {
+
+	@Override
+	public Integer execute() throws Exception {
+		return new Integer(2);
+	}
+}
+```
+{{%/tab%}}
+{{%/tabs%}}
+ 
+
+{{%refer%}}
+[Change code without restarts](./the-space-no-restart.html)
+{{%/refer%}}
+
+
+
 # Transactions
 
 Executors fully support transactions similar to other `GigaSpace` API. Once an `execute` operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on and added declaratively to it. This means that **any** `GigaSpace` operation performed within the task `execute` operation will automatically join the transaction started on the **client** side.

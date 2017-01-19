@@ -33,7 +33,7 @@ For example, start with annotating your task with @SupportCodeChange(id="1"), an
 
 {{%tabs%}}
 {{%tab "Task version 1"%}}
-Define a Task with version 1
+ 
 
 ```java
 import org.openspaces.core.executor.Task;
@@ -82,11 +82,37 @@ public class DynamicTask implements Task<Integer> {
 
 {{%/tabs%}}
 
+
+{{%refer%}}
+For detailed information on task execution see [Task Execution over the space](./task-execution-overview.html)
+{{%/refer%}}
+
+
+
+{{%note%}}
+`@SupportCodeChange` without id or with “” are not cached.
+{{%/note%}}
+
 <br>
-# Custom Change
 
 
-# Custom Aggregation
+# Number of caches
+
+The default limit of class loaders (caches) is set to 3, when breached, the oldest cache is evicted in favor of the new one.
+This can be modified via space properties:
+
+```bash
+# Maximum
+space-config.remote-code.max-class-loaders=10
+
+# disable
+space-config.remote-code.support.code.change=true
+```
+
 
 
 # Limitations
+
+- When using `@SupportCodeChange` no new types, can be introduced to the space.
+- Anonymous classes and lambdas do not support the annotation.
+ 

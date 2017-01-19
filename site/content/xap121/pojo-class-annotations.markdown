@@ -222,3 +222,29 @@ public class Person {
 {{%/refer%}}
 
 
+# Change code without restarts
+
+| | |
+|----|----|
+|Syntax     | SupportCodeChange id=  |
+|Argument | string          |
+|Default | "" |
+|Description|  Changing execution code without restarting the data grid  |
+
+
+Example:
+
+```java
+@SupportCodeChange(id="1")
+public class DynamicTask implements Task<Integer> {
+
+    @Override
+    public Integer execute() throws Exception {
+        return new Integer(1);
+    }
+}
+```
+
+{{%refer%}}
+[Change code without restarts](./the-space-no-restart.html)
+{{%/refer%}}
