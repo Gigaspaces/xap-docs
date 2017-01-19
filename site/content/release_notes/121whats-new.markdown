@@ -16,11 +16,11 @@ It's not an exhaustive list of all new features. For a full change log for 12.1 
 
 When executing user code on the space (e.g. space tasks), the space automatically loads the code from the remote client and caches it for future executions. Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify their code. 
 
-Starting 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed. For example, start with annotaing your task with `@SupportCodeChange("1")`, and when the code changes, set the annotation to `@SupportCodeChange("2")`, and the space will load the new task.
+Starting 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed. For example, start with annotating your task with `@SupportCodeChange(id="1")`, and when the code changes, set the annotation to `@SupportCodeChange(id="2")`, and the space will load the new task.
 
 The space can store multiple versions of the same task side-by-side (ideal for supporting clients using different versions). This feature also applies for other features which execute user-defined code at the space, namely custom change and custom aggregate.
 
-{{<infosign>}} Documentation is under construction - more information coming soon.
+{{<infosign>}} For more information see [Change code without restarts](/xap121/task-change.html)
 
 ## Customize MemoryXtend cache warmup
 
