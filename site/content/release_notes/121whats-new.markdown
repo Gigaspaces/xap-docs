@@ -20,7 +20,7 @@ Starting 12.1, you can use the `@SupportCodeChange` annotation to tell the space
 
 The space can store multiple versions of the same task side-by-side (ideal for supporting clients using different versions). This feature also applies for other features which execute user-defined code at the space, namely custom change and custom aggregate.
 
-{{<infosign>}} For more information see [Change code without restarts](/xap121/task-change.html)
+{{<infosign>}} For more information see [Change code without restarts](/xap121/the-space-no-restart.html)
 
 ## Customize MemoryXtend cache warmup
 

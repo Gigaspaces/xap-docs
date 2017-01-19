@@ -2,8 +2,8 @@
 type: post121
 title:  Change code without restarts
 categories: XAP121
-parent: task-execution-overview.html
-weight: 200
+weight: 650
+parent: the-gigaspace-interface-overview.html
 ---
 
 
@@ -12,12 +12,21 @@ This page is under construction !
 {{%/warning%}}
 
 
-When executing a Task, the space automatically loads the code from the remote client and caches it for future executions.
+When executing user code on the space (e.g. space tasks), the space automatically loads the code from the remote client and caches it for future executions.
 Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify the code.
 
 Starting with 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed.
 The space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.
 
+
+This feature can be used for:
+
+- [Task Execution](./task-execution-overview.html)<br>
+- [Custom Change](./change-api-custom-operation.html)<br>
+- [Custom Aggregator](./aggregators.html#custom-aggregation)
+
+
+# Task execution
 
 For example, start with annotating your task with @SupportCodeChange(id="1"), and when the code changes, set the annotation to @SupportCodeChange(id="2"), and the space will load the new task.
 
@@ -73,3 +82,11 @@ public class DynamicTask implements Task<Integer> {
 
 {{%/tabs%}}
 
+<br>
+# Custom Change
+
+
+# Custom Aggregation
+
+
+# Limitations
