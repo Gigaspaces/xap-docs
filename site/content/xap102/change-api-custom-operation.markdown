@@ -18,7 +18,7 @@ See below an example of a change operation which multiplies an integer property 
 
 
 ```java
-public static class MultiplyIntegerChangeOperation extends CustomChangeOperation {
+public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
   private static final long serialVersionUID = 1L;
   private final String path;
   private final int multiplier;
