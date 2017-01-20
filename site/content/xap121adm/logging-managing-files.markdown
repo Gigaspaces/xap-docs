@@ -160,9 +160,9 @@ For example:
 -Dcom.gigaspaces.logger.RollingFileHandler.debug-level=OFF
 ```
 
-# GS-UI
+# UI - Logging
 
-The [gs-ui](./gigaspaces-management-center.html) is not part of the services and its configuration should be done separately in `gs-ui.sh` or `gs-ui.bat` files.
+The [gs-ui](./gigaspaces-management-center.html) and the [gs-webui](./web-management-console.html) is not part of the services and its configuration should be done separately in `gs-ui.sh` , `gs-webui.sh` or `gs-ui.bat`, `gs-webui.bat` files.
 
 For example: write to a separate file, you need to add this system property:
 
@@ -175,4 +175,4 @@ Appending the log message to the same log as other services, you need to add thi
 ```bash
 -Dcom.gigaspaces.logger.RollingFileHandler.append=true
 ```
-
+ 
