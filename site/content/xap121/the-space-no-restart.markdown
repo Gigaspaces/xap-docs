@@ -6,11 +6,7 @@ weight: 650
 parent: the-gigaspace-interface-overview.html
 ---
 
-
-{{%warning%}}
-This page is under construction !
-{{%/warning%}}
-
+ 
 
 When executing user code on the space (e.g. space tasks), the space automatically loads the code from the remote client and caches it for future executions.
 Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify the code.
@@ -183,6 +179,115 @@ public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
 For detailed information on Custom Change see [Custom Change](./change-api-custom-operation.html)
 {{%/refer%}}
 
+# Custom Aggregation
+
+The annotation can be used for custom aggregation operations.
+
+{{%tabs%}}
+{{%tab "Aggregation Version 1"%}}
+```java
+@SupportCodeChange(id ="1")
+public class ConcatAggregator extends SpaceEntriesAggregator<String> {
+
+    private final String path;
+    private transient StringBuilder sb;
+
+    public ConcatAggregator(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public String getDefaultAlias() {
+        return "concat(" + path + ")";
+    }
+
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        String value = (String) context.getPathValue(path);
+        if (value != null)
+            concat(value);
+    }
+
+    @Override
+    public String getIntermediateResult() {
+        return sb == null ? null : sb.toString();
+    }
+
+    @Override
+    public void aggregateIntermediateResult(String partitionResult) {
+        concat(partitionResult);
+    }
+
+    private void concat(String s) {
+        if (sb == null) {
+            sb = new StringBuilder(s);
+        } else {
+            sb.append(',').append(s);
+        }
+    }
+}
+```
+{{%/tab%}}
+
+{{%tab "Aggregation version 2"%}}
+```java
+@SupportCodeChange(id ="2")
+public class ConcatAggregator extends SpaceEntriesAggregator<String> {
+
+    private final String path;
+    private transient StringBuilder sb;
+
+    public ConcatAggregator(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public String getDefaultAlias() {
+        return "concat(" + path + ")";
+    }
+
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        String value = (String) context.getPathValue(path);
+        if (value != null)
+            concat(value);
+    }
+
+    @Override
+    public String getIntermediateResult() {
+        return sb == null ? null : sb.toString();
+    }
+
+    @Override
+    public void aggregateIntermediateResult(String partitionResult) {
+        concat(partitionResult);
+    }
+
+    private void concat(String s) {
+        if (sb == null) {
+            sb = new StringBuilder(s);
+        } else {
+            sb.append(':').append(s);
+        }
+    }
+}
+```
+{{%/tab%}}
+
+{{%tab "Program"%}}
+```java
+	GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("xapSpace")).gigaSpace();
+ 	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50");
+	AggregationResult result = gigaSpace.aggregate(query, new AggregationSet().add(new ConcatAggregator("name")));
+	String concatResult = result.getString("concat(name)");
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+
+{{%refer%}}
+For detailed information on Custom Aggregator see [Aggregators](./aggregators.html)
+{{%/refer%}}
 
 
 # Number of caches

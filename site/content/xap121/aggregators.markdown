@@ -434,7 +434,6 @@ public class ConcatAggregator extends SpaceEntriesAggregator<String> {
         }
     }
 }
-
 ```
 
 Detailed Flow:
@@ -444,11 +443,123 @@ The `aggregate(SpaceEntriesAggregatorContext context)` is called within each par
 The proxy holds a different instance of the `ConcatAggregator` custom aggregator, whenever it receives an intermediate result from each partition it calls `aggregateIntermediateResult(String partitionResult)`. Once all partitions have returned their results, the proxy invokes the `getFinalResult` method to retrieve the final aggregation result. This method is not shown in the example above since it's default implementation is to call `getIntermediateResult` method, which yields the correct value in most aggregation implementations. There might be some special cases where you will need to implement the `getFinalResult` method.
 
 
+
 {{% refer%}}
 For more examples see the Services & Best Practices [Custom Aggregator](/sbp/aggregators-custom.html)
 {{%/refer%}}
 
-## Considerations
+
+## Change code without restarts
+
+When executing a aggregation over the space, the code is loaded from the remote client and cached for future executions.
+Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify the code.
+
+Starting with 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed.
+The space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.
+
+
+For example, start with annotating your task with @SupportCodeChange(id="1"), and when the code changes, set the annotation to @SupportCodeChange(id="2"), and the space will load the new task.
+
+{{%tabs%}}
+{{%tab "Aggregation Version 1"%}}
+```java
+@SupportCodeChange(id ="1")
+public class ConcatAggregator extends SpaceEntriesAggregator<String> {
+
+    private final String path;
+    private transient StringBuilder sb;
+
+    public ConcatAggregator(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public String getDefaultAlias() {
+        return "concat(" + path + ")";
+    }
+
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        String value = (String) context.getPathValue(path);
+        if (value != null)
+            concat(value);
+    }
+
+    @Override
+    public String getIntermediateResult() {
+        return sb == null ? null : sb.toString();
+    }
+
+    @Override
+    public void aggregateIntermediateResult(String partitionResult) {
+        concat(partitionResult);
+    }
+
+    private void concat(String s) {
+        if (sb == null) {
+            sb = new StringBuilder(s);
+        } else {
+            sb.append(',').append(s);
+        }
+    }
+}
+```
+{{%/tab%}}
+
+{{%tab "Aggregation version 2"%}}
+```java
+@SupportCodeChange(id ="2")
+public class ConcatAggregator extends SpaceEntriesAggregator<String> {
+
+    private final String path;
+    private transient StringBuilder sb;
+
+    public ConcatAggregator(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public String getDefaultAlias() {
+        return "concat(" + path + ")";
+    }
+
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        String value = (String) context.getPathValue(path);
+        if (value != null)
+            concat(value);
+    }
+
+    @Override
+    public String getIntermediateResult() {
+        return sb == null ? null : sb.toString();
+    }
+
+    @Override
+    public void aggregateIntermediateResult(String partitionResult) {
+        concat(partitionResult);
+    }
+
+    private void concat(String s) {
+        if (sb == null) {
+            sb = new StringBuilder(s);
+        } else {
+            sb.append(':').append(s);
+        }
+    }
+}
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+{{%refer%}}
+[Change code without restarts](./the-space-no-restart.html)
+{{%/refer%}}
+
+
+
+
+# Considerations
 
 If the Aggregator method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as `Externalizable` for the returned value object or use libraries such as [kryo](https://github.com/EsotericSoftware/kryo).
 
