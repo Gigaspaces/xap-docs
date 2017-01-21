@@ -18,13 +18,8 @@ Task executors allow you to easily execute grid-wide tasks on the space using th
 [Overview](./task-execution-over-the-space.html)<br>
 Task executor overview.
 
-
-[Change code without restarts](./task-change.html)<br>
-Support  for code changes without restarting the server. 
-
 [Dynamic language tasks](./task-dynamic-language.html)<br>
 XAP supports the execution of tasks using scripting languages like JavaScipt and Groovy. These can be defined dynamically using the JDK 1.6 dynamic languages support. The dynamic language support is based on the ordinary task executors and OpenSpaces remoting support.
-
 
 [Metadata](./task-metadata.html)<br>
 This section explains the different Task metadata.

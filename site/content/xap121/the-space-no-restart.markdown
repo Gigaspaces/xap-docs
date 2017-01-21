@@ -19,7 +19,7 @@ Starting with 12.1, you can use the `@SupportCodeChange` annotation to tell the 
 The space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.
 
 
-This feature can be used for:
+This annotation can be used with:
 
 - [Task Execution](./task-execution-overview.html)<br>
 - [Custom Change](./change-api-custom-operation.html)<br>
@@ -33,8 +33,6 @@ For example, start with annotating your task with @SupportCodeChange(id="1"), an
 
 {{%tabs%}}
 {{%tab "Task version 1"%}}
- 
-
 ```java
 import org.openspaces.core.executor.Task;
 
@@ -89,11 +87,102 @@ For detailed information on task execution see [Task Execution over the space](.
 
 
 
-{{%note%}}
-`@SupportCodeChange` without id or with “” are not cached.
-{{%/note%}}
 
-<br>
+
+# Custom Change
+
+The annotation can be used for custom change operations.
+
+{{%tabs%}}
+{{%tab "Change Version 1"%}}
+```java
+import com.gigaspaces.annotation.SupportCodeChange;
+import com.gigaspaces.client.CustomChangeOperation;
+import com.gigaspaces.server.MutableServerEntry;
+
+@SupportCodeChange(id="1")
+public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
+	private static final long serialVersionUID = 1L;
+	private final String path;
+	private final int multiplier;
+
+	public MultiplyIntegerChangeOperation(String path) {
+		this.path = path;
+	}
+
+	@Override
+	public String getName() {
+		return "multiplyInt";
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	@Override
+	public Object change(MutableServerEntry entry) {
+		int oldValue = (Integer) entry.getPathValue(path);
+		int newValue = oldValue + 10;
+		entry.setPathValue(path, newValue);
+		return newValue;
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab "Change version 2"%}}
+```java
+import com.gigaspaces.annotation.SupportCodeChange;
+import com.gigaspaces.client.CustomChangeOperation;
+import com.gigaspaces.server.MutableServerEntry;
+
+@SupportCodeChange(id="2")
+public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
+	private static final long serialVersionUID = 1L;
+	private final String path;
+
+	public MultiplyIntegerChangeOperation(String path) {
+		this.path = path;
+	}
+
+	@Override
+	public String getName() {
+		return "multiplyInt";
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	@Override
+	public Object change(MutableServerEntry entry) {
+		int oldValue = (Integer) entry.getPathValue(path);
+		int newValue = oldValue + 20;
+		entry.setPathValue(path, newValue);
+		return newValue;
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab "Program"%}}
+```java
+
+	GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("xapSpace")).gigaSpace();
+
+	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50");
+	ChangeResult<Employee> result = gigaSpace.change(query,
+			new ChangeSet().custom(new MultiplyIntegerChangeOperation("salary")),
+			ChangeModifiers.RETURN_DETAILED_RESULTS);
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+
+{{%refer%}}
+For detailed information on Custom Change see [Custom Change](./change-api-custom-operation.html)
+{{%/refer%}}
+
 
 
 # Number of caches
@@ -109,6 +198,9 @@ space-config.remote-code.max-class-loaders=10
 space-config.remote-code.support.code.change=true
 ```
 
+{{%note%}}
+`@SupportCodeChange` without id or with id="" are not cached.
+{{%/note%}}
 
 
 # Limitations

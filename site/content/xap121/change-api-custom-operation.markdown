@@ -136,3 +136,106 @@ for(ChangeOperation operation : operations) {
 }
 ```
 
+# Change code without restarts
+
+When executing a change over the space, the code is loaded from the remote client and cached for future executions.
+Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify the code.
+
+Starting with 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed.
+The space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.
+
+
+For example, start with annotating your task with @SupportCodeChange(id="1"), and when the code changes, set the annotation to @SupportCodeChange(id="2"), and the space will load the new task.
+
+{{%tabs%}}
+{{%tab "Change Version 1"%}}
+```java
+import com.gigaspaces.annotation.SupportCodeChange;
+import com.gigaspaces.client.CustomChangeOperation;
+import com.gigaspaces.server.MutableServerEntry;
+
+@SupportCodeChange(id="1")
+public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
+	private static final long serialVersionUID = 1L;
+	private final String path;
+
+	public MultiplyIntegerChangeOperation(String path) {
+		this.path = path;
+	}
+
+	@Override
+	public String getName() {
+		return "multiplyInt";
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	@Override
+	public Object change(MutableServerEntry entry) {
+		int oldValue = (Integer) entry.getPathValue(path);
+		int newValue = oldValue + 10;
+		entry.setPathValue(path, newValue);
+		return newValue;
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab "Change version 2"%}}
+```java
+import com.gigaspaces.annotation.SupportCodeChange;
+import com.gigaspaces.client.CustomChangeOperation;
+import com.gigaspaces.server.MutableServerEntry;
+
+@SupportCodeChange(id="2")
+public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
+	private static final long serialVersionUID = 1L;
+	private final String path;
+
+	public MultiplyIntegerChangeOperation(String path) {
+		this.path = path;
+	}
+
+	@Override
+	public String getName() {
+		return "multiplyInt";
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	@Override
+	public Object change(MutableServerEntry entry) {
+		int oldValue = (Integer) entry.getPathValue(path);
+		int newValue = oldValue * 20;
+		entry.setPathValue(path, newValue);
+		return newValue;
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab "Program"%}}
+```java
+
+	GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("xapSpace")).gigaSpace();
+
+	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50");
+	ChangeResult<Employee> result = gigaSpace.change(query,
+			new ChangeSet().custom(new MultiplyIntegerChangeOperation("salary")),
+			ChangeModifiers.RETURN_DETAILED_RESULTS);
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+
+
+{{%refer%}}
+[Change code without restarts](./the-space-no-restart.html)
+{{%/refer%}}
+
+
+
