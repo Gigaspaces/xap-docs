@@ -122,7 +122,7 @@ public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
 	@Override
 	public Object change(MutableServerEntry entry) {
 		int oldValue = (Integer) entry.getPathValue(path);
-		int newValue = oldValue + 10;
+		int newValue = oldValue * 10;
 		entry.setPathValue(path, newValue);
 		return newValue;
 	}
@@ -157,7 +157,7 @@ public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
 	@Override
 	public Object change(MutableServerEntry entry) {
 		int oldValue = (Integer) entry.getPathValue(path);
-		int newValue = oldValue + 20;
+		int newValue = oldValue * 20;
 		entry.setPathValue(path, newValue);
 		return newValue;
 	}
