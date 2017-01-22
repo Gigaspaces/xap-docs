@@ -295,14 +295,14 @@ For detailed information on Custom Aggregator see [Aggregators](./aggregators.ht
 The default limit of class loaders (caches) is set to 3, when breached, the oldest cache is evicted in favor of the new one.
 This can be modified via space properties:
 
-```bash
-# Maximum
-space-config.remote-code.max-class-loaders=10
 
-# disable
-space-config.remote-code.support.code.change=true
-```
+| Property name | Description | Default   |
+|-----|----|------|
+|space-config.remote-code.max-class-loaders | Limit number of class loaders (caches)  |   3 |
+|space-config.remote-code.support.code.change | Enable / Disable code change   |  true |
+ 
 
+ 
 {{%note%}}
 `@SupportCodeChange` without id or with id="" are not cached.
 {{%/note%}}

@@ -47,6 +47,19 @@ weight: 400
 |com.gs.security.disable-commit-abort-authentication| Disable transaction authentication| false |
 
 
+# Change code without restarts
+
+| Property name | Description | Default   |
+|-----|----|------|
+|space-config.remote-code.max-class-loaders | Limit number of class loaders (caches)  |   3 |
+|space-config.remote-code.support.code.change | Enable / Disable code change   |  true |
+ 
+ 
+{{%refer%}}
+Refer to [Change code without restarts]({{%currentjavaurl%}}/the-space-no-restart.html)
+{{%/refer%}}
+ 
+
 # PU
 
 {{% include "/COM/xap101/config-pu.markdown" %}}

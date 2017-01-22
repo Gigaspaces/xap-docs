@@ -1,7 +1,7 @@
 ---
 type: post121
-title:  Menus and Buttons, PRM
-categories: XAP121ADM
+title:  Menus and Buttons
+categories: XAP121ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 100
 ---
