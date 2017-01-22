@@ -17,6 +17,17 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M14 (Jan-22-2016)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m14/gigaspaces-xap-open-12.1.0-m14-b16714.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/gigaspaces-xap-premium-12.1.0-m14-b16714.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/gigaspaces-xap-enterprise-12.1.0-m14-b16714.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/GigaSpaces-XAP.NET-Premium-12.1.0.16714-M14-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/GigaSpaces-XAP.NET-Premium-12.1.0.16714-M14-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/GigaSpaces-XAP.NET-Enterprise-12.1.0.16714-M14-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/GigaSpaces-XAP.NET-Enterprise-12.1.0.16714-M14-x86.msi)\]
+
+#### Milestone Release Notes
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|[XAP-13132](https://xap-issues.atlassian.net/browse/XAP-13132) | New Feature     |Verbose System Report|
+
 ## 12.1 M13 (Jan-16-2016)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m13/gigaspaces-xap-open-12.1.0-m13-b16713.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/gigaspaces-xap-premium-12.1.0-m13-b16713.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/gigaspaces-xap-enterprise-12.1.0-m13-b16713.zip)\] 
