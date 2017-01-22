@@ -13,7 +13,7 @@ Maven is a tool used to automate and simplify the development cycle of any Java-
 You don't need to be an experienced Maven user to start working with this plugin. This section provides you with everything you need to know in order to start developing Processing Units with the Maven plugin. Experienced Maven users can use the Maven plugin to embed Processing Unit development with their existing development environment.
 
 {{% refer %}}
-The XAP Maven plugin has been tested with Maven 3.0. For further information about maven see: [apache.org; What is Maven?](http://maven.apache.org/what-is-maven.html)
+The XAP Maven plugin has been tested with Maven 3.0. For further information about maven see: {{%exurl "apache.org; What is Maven?" "http://maven.apache.org/what-is-maven.html"%}}
 {{%/refer%}}
 
 

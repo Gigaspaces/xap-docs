@@ -46,11 +46,11 @@ The main dependency required to use XAP is `xap-openspaces`
 There are two examples provided with the Open Source distribution. You can find them under the `<XAP root>/examples` directory. The examples are also available on github(see links below).
 
 
-[Hello World](https://github.com/xap/xap/tree/master/xap-examples/hello-world)<br>
+{{%giturl "Hello World" "https://github.com/xap/xap/tree/master/xap-examples/hello-world"%}}<br>
 The Hello World example demonstrates how to perform basic Space operations - e.g. writing and reading an Object from the data-grid.
 This example also covers different deployment modes: embedded, remote and partitioned.  
 
-[Hola Mundo](https://github.com/xap/xap/tree/master/xap-examples/hola-mundo)   <br>
+{{%giturl "Hola Mundo" "https://github.com/xap/xap/tree/master/xap-examples/hola-mundo"%}}   <br>
 This example builds on the previous example, introducing the concepts of event-processing using a Processing Unit.
 This example also demonstrates how to run with the IDE.  
  

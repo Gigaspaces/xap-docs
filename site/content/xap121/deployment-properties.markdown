@@ -10,7 +10,7 @@ weight: 400
 
 
 
-When a processing unit is deployed and provisioned, you can inject property values to it only known at deployment time, or in order to further configure the processing unit elements. Injected properties can be either properties that have been explicitly externalized from the [processing unit configuration file](./configuring-processing-unit-elements.html) or properties related to one the platform components (e.g. a space) that can be configured at deployment time. This mechanism is built on top of Spring's support for an externalized properties configuration called [PropertyPlaceholderConfigurer](http://static.springframework.org/spring/docs/2.5.x/reference/beans.html#beans-factory-placeholderconfigurer). This mechanism has been enhanced to provide a powerful yet simple property injection.
+When a processing unit is deployed and provisioned, you can inject property values to it only known at deployment time, or in order to further configure the processing unit elements. Injected properties can be either properties that have been explicitly externalized from the [processing unit configuration file](./configuring-processing-unit-elements.html) or properties related to one the platform components (e.g. a space) that can be configured at deployment time. This mechanism is built on top of Spring's support for an externalized properties configuration called {{%exurl "PropertyPlaceholderConfigurer" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html#beans-factory-placeholderconfigurer"%}}. This mechanism has been enhanced to provide a powerful yet simple property injection.
 
 {{% info %}}
 One of the core values of GigaSpaces XAP processing unit model is the fact that a processing unit need not be changed at all in the transition from the development environment (namely your IDE) to the production environment. This feature, along with others, is one of the enablers of this behavior.
@@ -92,7 +92,7 @@ When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html
 gs deploy -properties file://myConfigFolder/pu.properties data-processor.jar
 ```
 
-By default, the location is a file-system-based location of a properties file (follows Spring [Resource Loader](http://static.springframework.org/spring/docs/2.5.x/reference/resources.html#resources-resourceloader) syntax).
+By default, the location is a file-system-based location of a properties file (follows Spring {{%exurl "Resource Loader" "http://static.springframework.org/spring/docs/2.5.x/reference/resources.html#resources-resourceloader"%}} syntax).
 
 The following is an example of a `.properties` file that can be used with the sample `pu.xml` configuration shown above. In this case, the values within the `.properties` file are injected to the processing unit instances (overriding values in `pu.properties` if it exists).
 
@@ -121,7 +121,7 @@ Also note that the parsing of the SLA element happens on the deploy tool side, s
 
 When a [Space](./the-space-configuration.html) is created, two major groups of configuration elements determine its runtime configuration: the space schema and the cluster schema. The cluster schema controls the space clustering topology (partitioned or replicated), whether the replication to its replicas is synchronous or asynchronous, and various other aspects that control its clustering behavior. The space schema on the other hand, controls other elements which are not related to the space clustering topology, such as the eviction strategy (LRU, ALL_IN_CACHE), whether or not its persistent, etc.
 
-The basis for these two configuration groups are XML files located inside the GigaSpaces libraries. In order to override the values in these XML files, one can simply specify the [XPath](http://en.wikipedia.org/wiki/XPath) expression that corresponds to the element to be overridden.
+The basis for these two configuration groups are XML files located inside the GigaSpaces libraries. In order to override the values in these XML files, one can simply specify the {{%exurl "XPath" "http://en.wikipedia.org/wiki/XPath"%}} expression that corresponds to the element to be overridden.
 
 These expression can also be included in all of the above mentioned property injection mechanisms (with the exception that you do not have to explicitly specify property placeholders for them).
 

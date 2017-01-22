@@ -12,7 +12,7 @@ The RocksDB based MemoryXtend add-on allows configuring the `DBOptions` and `Col
 XAP uses the default DBOptions class `com.com.gigaspaces.blobstore.rocksdb.config.XAPDBOptions`.
 
 {{%refer%}}
-A list of configuration properties can be found in  the [org.rocksdb.DBOptionsInterface](https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/DBOptionsInterface.java) Java docs.
+A list of configuration properties can be found in  the {{%exurl "org.rocksdb.DBOptionsInterface" "https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/DBOptionsInterface.java"%}} Java docs.
 {{%/refer%}}
 
 

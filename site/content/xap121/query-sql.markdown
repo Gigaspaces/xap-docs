@@ -243,7 +243,7 @@ For example:
 </beans>
 ```
 
-These space properties should be configured with a valid Java format pattern as defined in the [official Java language documentation](http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.html).
+These space properties should be configured with a valid Java format pattern as defined in the {{%exurl "official Java language documentation" "http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.html"%}}.
 
 {{% info%}} The `space-config.QueryProcessor.date_format` property used when your query include a String representing the date
 Date properties are often used for comparison (greater/less than). Consider using [extended indexing](./indexing.html) to boost performance.
@@ -253,8 +253,8 @@ Date properties are often used for comparison (greater/less than). Consider usin
 
 The `sysdate` value is evaluated differently when using the JDBC API vs when using it with `SQLQuery` API. When used with JDBC API it is evaluated using the space clock. When used with `SQLQuery` API it is evaluated using the client clock. If you have a partitioned space across multiple different machines and the clock across these machines is not synchronized you might not get the desired results. If you use JDBC API you should consider setting the date value as part of the SQL within the client side (since you  might write objects using the GigaSpace API). In this case , you should synchronize all the client machine time. In short - all the machines (client and server) clocks should be synchronized.
 
-- On windows there is a [windows service](http://technet.microsoft.com/en-us/library/cc773061%28WS.10%29.aspx) that deals with clock synchronization.
-- On Linux there is a [daemon service](http://www.brennan.id.au/09-Network_Time_Protocol.html#starting) that deals with clock synchronization.
+- On windows there is a {{%exurl "windows service" "http://technet.microsoft.com/en-us/library/cc773061%28WS.10%29.aspx"%}} that deals with clock synchronization.
+- On Linux there is a {{%exurl "daemon service" "http://www.brennan.id.au/09-Network_Time_Protocol.html#starting"%}} that deals with clock synchronization.
 
 {{% tip %}}
 Internally dates are stored as a **TimeStamp**. This means that both time (hour/min/sec) and date (year/month/day) information are available for date range queries.

@@ -8,7 +8,7 @@ weight: 100
 
 
 XAP makes logging calls by use of the Java  platform's core logging facilities.
-For more information on the JDK logging framework, please refer to the following online documentation: [Java Logging Overview](https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html).
+For more information on the JDK logging framework, please refer to the following online documentation: {{%exurl "Java Logging Overview" "https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html"%}}.
 
 # Configuration
 

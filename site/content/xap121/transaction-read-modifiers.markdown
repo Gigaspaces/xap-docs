@@ -34,7 +34,7 @@ These modifiers can be set either at the proxy level - `IJSpace.setReadModifiers
 
 # Spring - XAP ReadModifiers
 
-The following table describes the mapping between the [Spring TransactionDefinition](http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.html) Mapping to GigaSpaces ReadModifiers:
+The following table describes the mapping between the {{%exurl "Spring TransactionDefinition" "http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.html"%}} Mapping to XAP ReadModifiers:
 
 
 |Spring TransactionDefinition| XAP ReadModifiers |

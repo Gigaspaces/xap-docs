@@ -11,7 +11,7 @@ weight: 200
 
 
 
-A XAP web processing unit can use [Jetty](http://www.eclipse.org/jetty/) as the web container that will actually run the WAR file deployed into the Service Grid. Jetty itself comes built in with the GigaSpaces installation. The integration itself allows you to run both a pure WAR file (pure in a sense that it does not use a Space), as well as simplifying the introduction of Space (both embedded and remote) in a non Spring and Spring environment.
+A XAP web processing unit can use {{%exurl "Jetty" "http://www.eclipse.org/jetty/"%}} as the web container that will actually run the WAR file deployed into the Service Grid. Jetty itself comes built in with the GigaSpaces installation. The integration itself allows you to run both a pure WAR file (pure in a sense that it does not use a Space), as well as simplifying the introduction of Space (both embedded and remote) in a non Spring and Spring environment.
 
 {{% align center%}}
 ![web_app_archi.jpg](/attachment_files/web_app_archi.jpg)

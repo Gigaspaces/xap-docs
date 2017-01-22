@@ -10,7 +10,7 @@ weight: 200
 
 # What Is RocksDB?
 
-[RocksDB](http://rocksdb.org/) is an embeddable persistent key-value store for fast storage on flash devices. It was developed at Facebook and is now a popular [open source project](https://github.com/facebook/rocksdb).   XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on RocksDB, which is the recommended choice for hybrid RAM-SSD clusters.
+{{%exurl "RocksDB" "http://rocksdb.org/"%}} is an embeddable persistent key-value store for fast storage on flash devices. It was developed at Facebook and is now a popular {{%giturl "open source project" "https://github.com/facebook/rocksdb"%}}.   XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on RocksDB, which is the recommended choice for hybrid RAM-SSD clusters.
 
 
 
@@ -23,7 +23,7 @@ weight: 200
 - The number of mounted devices/partitions should match the number of space instances that will be deployed on the machine.
 
 {{%refer%}}
-For creating partitions you can use `fdisk` explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
+For creating partitions you can use `fdisk` explained {{%exurl "here" "http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/"%}}.
 {{%/refer%}}
 
 
@@ -143,7 +143,7 @@ Since each Space instance is using a local storage device, its survivability is 
 
 # Central Storage
 
-The RocksDB Add-on supports [storage area network (SAN)](http://en.wikipedia.org/wiki/Storage_area_network) which means the disk drive devices are installed in a remote machine but behave as if they're attached the the local machine. Most storage networks use the iSCSI or Fibre Channel protocol for communication between servers and disk drive devices.
+The RocksDB Add-on supports {{%exurl "storage area network (SAN)" "http://en.wikipedia.org/wiki/Storage_area_network"%}} which means the disk drive devices are installed in a remote machine but behave as if they're attached the the local machine. Most storage networks use the iSCSI or Fibre Channel protocol for communication between servers and disk drive devices.
 
 In central storage mode each space is attached to a pre-defined device as explained on these examples:
 

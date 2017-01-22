@@ -22,7 +22,7 @@ The integration allows you to make use of the following Service Grid features:
 
 The web application itself is a pure, JEE based, web application. The application can be the most generic web application, and automatically make use of the Service Grid features. The web application can define a Space (either embedded or remote) very easily (either using Spring or not).
 
-The web container used behind the scenes is [Jetty](http://www.eclipse.org/jetty/) (with other containers coming in the near future). This page will list the common usage and configuration of web containers. Jetty specific configuration and usage can be found [here](./web-jetty-processing-unit-container.html).
+The web container used behind the scenes is {{%exurl "Jetty" "http://www.eclipse.org/jetty/"%}} (with other containers coming in the near future). This page will list the common usage and configuration of web containers. Jetty specific configuration and usage can be found [here](./web-jetty-processing-unit-container.html).
 
 # Deployment
 

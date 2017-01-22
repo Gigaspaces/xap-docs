@@ -39,7 +39,7 @@ A processing unit is essentially a .NET class library with a deployment descript
 1. In Visual Studio, Create a new `Class Library` project.
 2. Add a reference to `GigaSpaces.Core.dll` from the product's `bin` folder.
 3. Add an xml file called `pu.config` to the project.
-4. Right-click `pu.config`, select **Properties**, and modify the [Copy to Output Directory](http://msdn.microsoft.com/en-us/library/0c6xyb66%28v=vs.100%29.aspx) to **Copy Always** (or **Copy If Newer**).
+4. Right-click `pu.config`, select **Properties**, and modify the {{%exurl "Copy to Output Directory" "http://msdn.microsoft.com/en-us/library/0c6xyb66%28v=vs.100%29.aspx"%}} to **Copy Always** (or **Copy If Newer**).
 5. Copy the following configuration into `pu.config`:
 
 

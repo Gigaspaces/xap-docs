@@ -7,13 +7,13 @@ weight: 700
 ---
 
 
-XAP provides a pluggable communication adaptor, LRMI (**Light Remote Method Invocation**), built on top of the [NIO communication protocol](http://en.wikipedia.org/wiki/New_I/O).
+XAP provides a pluggable communication adaptor, LRMI (**Light Remote Method Invocation**), built on top of the {{%exurl "NIO communication protocol" "http://en.wikipedia.org/wiki/New_I/O"%}}.
 
 {{% align center %}}
 ![lrmi.jpg](/attachment_files/lrmi.jpg)
 {{% /align %}}
 
-LRMI uses a `GenericExporter` that implements the [net.jini.export.Exporter](http://www.gigaspaces.com/docs/JiniApi/net/jini/export/Exporter.html) interface.
+LRMI uses a `GenericExporter` that implements the {{%exurl "net.jini.export.Exporter" "http://www.gigaspaces.com/docs/JiniApi/net/jini/export/Exporter.html"%}} interface.
 
 All XAP components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.
 
@@ -80,7 +80,7 @@ The number of connections a client should open also depends on the size of the o
 
 ## Watchdog
 
-When reading from a [NIO SocketChannel](http://download.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/nio/channels/SocketChannel.html) and the connection between the client and server fails abnormally, no notification is generated. The most common example for such failure is disconnecting the network cable while performing the read operation. In this case the read operation is blocked for a long time, without ever knowing that the connection is closed. This can cause several problems such as exceeding the number of open sockets on the server or causing client read requests to hang.
+When reading from a {{%exurl "NIO SocketChannel" "http://download.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/nio/channels/SocketChannel.html"%}} and the connection between the client and server fails abnormally, no notification is generated. The most common example for such failure is disconnecting the network cable while performing the read operation. In this case the read operation is blocked for a long time, without ever knowing that the connection is closed. This can cause several problems such as exceeding the number of open sockets on the server or causing client read requests to hang.
 
 Known solutions and problems they may have:
 
@@ -256,7 +256,7 @@ Step 1: Start `space-instance` using the following Java system properties:
 -Dcom.sun.management.jmxremote.authenticate=false
 ```
 
-Step 2: Start [jconsole](http://java.sun.com/developer/technicalArticles/J2SE/jconsole.html) -- copy the JMX URL to the JConsole.
+Step 2: Start {{%exurl "jconsole" "http://java.sun.com/developer/technicalArticles/J2SE/jconsole.html"%}} -- copy the JMX URL to the JConsole.
 
 Step 3: Click **Connect**.
 
@@ -322,7 +322,7 @@ at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:67
 at java.lang.Thread.run(Thread.java:595)
 ```
 
-This is a JVM bug resolved with JDJ 1.6u18. For more details, see [http://bugs.sun.com](http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6524172).
+This is a JVM bug resolved with JDJ 1.6u18. For more details, see {{%exurl "http://bugs.sun.com" "http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6524172"%}}.
 
 {{% note %}}
 If your client application loses its connection to the server, you can follow a simple procedure to check if the server erased any of your notify templates in the interim. For each notify template, write an Entry to the space that matches the template and see if you receive a notification. If you do not receive a notification, this means that while you were disconnected, new Entries matching the notify template entered the space (you can try to find them -- depending on their lease time, they may still exist). As a result, your notify template was erased.

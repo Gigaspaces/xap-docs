@@ -59,23 +59,19 @@ In this scenario the session is shared via its **ID**. Where there is a web serv
 
 {{<wbr>}}
 
-### Configuring The Load Balancer
+## Configuring The Load Balancer
+Here is an example configuration of the {{%exurl "apache httpd" "http://httpd.apache.org"%}}  to load-balance  web requests between the different web servers.
 
-Here is an example configuration of the [apache httpd](http://httpd.apache.org)  to load-balance  web requests between the different web servers.
+ 
+**Step 1:**
+Install {{%exurl "apache httpd" "http://httpd.apache.org"%}}.
 
-{{%accordion%}}
-{{%accord   title="Step 1:"%}}
-Install [apache httpd](http://httpd.apache.org).
-{{%/accord%}}
 
-{{%accord  title="Step 2:"%}}
+**Step 2:** 
 Create a file named `HttpSession.conf` located at <Apache HTTPD 2.2 root>\conf\gigaspaces
-{{%/accord%}}
-
-
-
-{{%accord   title="Step 3:"%}}
- Configure the `<Apache2.2 HTTPD root>\conf\httpd.conf` to have the following:
+ 
+**Step 3**
+Configure the `<Apache2.2 HTTPD root>\conf\httpd.conf` to have the following:
 
 
 ```xml
@@ -99,15 +95,14 @@ ProxyPass /balancer !
 ```
 
 {{% note %}}The `/tools/Apache2.2` folder name should be replaced with your correct Apache httpd location. {{<wbr>}} The `127.0.0.1` IP should be replaced with appropriate IP addresses of the machine that is running apache.{{% /note %}}
-{{%/accord%}}
-{{%/accordion%}}
+ 
 
-{{<wbr>}}
+ 
 
-### Demo Flow
+# Demo Flow
 With this demo we will simulate session sharing between different tomcat instances by starting tomcat , running the application, terminating tomcat and later restarting tomcat without losing application HTTP Session data.
 
-### a. Running Apache Load Balancer with Sticky Session configuration
+## a. Running Apache Load Balancer with Sticky Session configuration
 For the first demo we will use Apache Load Balancer with **Sticky** Session Configuration.
 
 Place the following within the `HttpSession.conf` file. The `BalancerMember` should be mapped to different URLs of your web servers instances. With the example below we have two Tomcat instances using ports 8080 and 9090. Note the *`stickysession=JSESSIONID`*:
@@ -182,7 +177,7 @@ The URL above assumes the Apache Load Balancer is configured to use port 8888.
 
 {{<wbr>}}
 
-### Webserver Failover
+## Webserver Failover
 
 -	Terminate Tomcat by terminating its process
 -	Refresh the page (press the `F5` key) - you should get an error. There is no web server to serve the HTTP request.

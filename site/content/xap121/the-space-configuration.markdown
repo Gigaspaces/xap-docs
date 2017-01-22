@@ -534,7 +534,7 @@ For further details on each of the available modifiers see:
 
 # Exception Hierarchy
 
-OpenSpaces is built on top of the Spring [consistent exception hierarchy](http://static.springframework.org/spring/docs/2.0.x/reference/dao.html#dao-exceptions) by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the `org.openspaces.core` package.
+OpenSpaces is built on top of the Spring {{%exurl "consistent exception hierarchy" "http://static.springframework.org/spring/docs/2.0.x/reference/dao.html#dao-exceptions"%}} by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the `org.openspaces.core` package.
 
 OpenSpaces provides a pluggable exception translator using the following interface:
 

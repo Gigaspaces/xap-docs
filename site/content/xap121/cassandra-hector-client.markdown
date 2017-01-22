@@ -8,7 +8,7 @@ weight: 300
 
 
 
-A wrapper around the [Hector Library](http://hector-client.github.com/hector/build/html/index.html) used for communicating with Cassandra.
+A wrapper around the {{%exurl "Hector Library" "http://hector-client.github.com/hector/build/html/index.html"%}} used for communicating with Cassandra.
 
 This component is used by both the [Cassandra Space Synchronization Endpoint](./cassandra-space-synchronization-endpoint.html) and the [Cassandra Space Data Source](./cassandra-space-data-source.html). The main usage is related to metadata operations (such as creating column families, adding secondary indexes, reading column families metadata, etc...).
 
@@ -66,4 +66,4 @@ HectorCassandraClient hectorClient = new HectorCassandraClientConfigurer()
 |clusterName|If there is need to connect to more than one Cassandra cluster within the same JVM, each cluster should be references by a different name.|cluster|
 |readConsistencyLevel|The [CassandraConsistencyLevel]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/CassandraConsistencyLevel.html) in which read operations should be performed|QUORUM|
 |writeConsistencyLevel|The [CassandraConsistencyLevel]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/CassandraConsistencyLevel.html) in which write operations should be performed|QUORUM|
-|columnFamilyGcGraceSeconds|See [Distributed deletes](http://wiki.apache.org/cassandra/DistributedDeletes) |10 Days (Derived from Cassandra's default value)|
+|columnFamilyGcGraceSeconds|See {{%exurl "Distributed deletes" "http://wiki.apache.org/cassandra/DistributedDeletes"%}} |10 Days (Derived from Cassandra's default value)|

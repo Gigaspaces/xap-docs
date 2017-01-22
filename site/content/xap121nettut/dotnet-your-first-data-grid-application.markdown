@@ -15,7 +15,7 @@ This tutorial explains how to deploy and use an XAP [Data Grid](/product_overvie
 
 
 {{%vbar "Download and Install XAP"%}}
-GigaSpaces XAP.NET is packaged as a standard Windows Installer package (.msi file). After you have downloaded the latest version of XAP from the [downloads page](http://www.gigaspaces.com/xap-download), start the installation by double-click the msi file, and the installation wizard will pop up and guide you through the installation process.
+GigaSpaces XAP.NET is packaged as a standard Windows Installer package (.msi file). After you have downloaded the latest version of XAP from the {{%exurl "downloads page" "http://www.gigaspaces.com/xap-download"%}}, start the installation by double-click the msi file, and the installation wizard will pop up and guide you through the installation process.
 
 Once you accept the licence agreement, you will be asked to choose a setup type. Select 'Complete' to install all the features in the default path (C:\GigaSpaces\XAP.NET X.x.x). Selecting 'Custom' will allow you to customize the installation path, which features will be installed, and more.
 {{%/vbar%}}
@@ -66,7 +66,7 @@ Launch Visual Studio, create a new C# *Console Application* and add a reference 
 {{%/accord%}}
 {{%/accordion%}}
 
-{{%warning%}} If you're using XAP.NET x64, note that the [default platform for Console Applications is x86](http://connect.microsoft.com/VisualStudio/feedback/details/455103/new-c-console-application-targets-x86-by-default), and you must [change it to x64](http://msdn.microsoft.com/en-us/library/ms185328.aspx).{{%/warning%}}
+{{%warning%}} If you're using XAP.NET x64, note that the {{%exurl "default platform for Console Applications is x86" "http://connect.microsoft.com/VisualStudio/feedback/details/455103/new-c-console-application-targets-x86-by-default"%}}, and you must {{%exurl "change it to x64" "http://msdn.microsoft.com/en-us/library/ms185328.aspx"%}}.{{%/warning%}}
 
 ### Implementing a PONO
 

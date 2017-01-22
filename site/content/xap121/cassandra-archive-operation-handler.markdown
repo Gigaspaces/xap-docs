@@ -17,7 +17,7 @@ The [Archive Container](./archive-container.html) can be configured to work agai
 
 # Library dependencies
 
-The Cassandra Archive Operation Handler uses the [Hector Library](http://hector-client.github.com/hector/build/html/index.html) for communicating with the Cassandra cluster.
+The Cassandra Archive Operation Handler uses the {{%exurl "Hector Library" "http://hector-client.github.com/hector/build/html/index.html"%}} for communicating with the Cassandra cluster.
 Include the following in your `pom.xml`
 
 {{%tabs%}}

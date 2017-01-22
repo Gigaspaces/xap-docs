@@ -122,7 +122,7 @@ Below are the most common causes for Split-Brain scenarios and ways to detect th
     - Using JMX or other monitoring tools you can monitor the JVM Garbage Collection activity. Once it gets into a full GC of longer than 30 seconds you should be alerted. You can use the Admin API and fetch the full GC events. If the GC takes more than 10 seconds, it will be logged as a warning in the GSM/GSC/GSA log file.
 
 - **High (>90%) CPU utilization** - As discussed, that can cause to various components (also external to GigaSpaces) to strive for CPU clock resources, such as keep alive mechanisms (which can miss events and therefore trigger initialization of redundant services or false alarms), IO/network lack of available sockets, OS fails to release resources etc. One should avoid getting into scenarios of constant (more than a minute) utilization of over 90% CPU.
-    - You can use the out-of-the-box CPU monitoring component (which uses [SIGAR](http://www.hyperic.com/products/sigar)) for measuring the OS and JVM resources. It is easily accessible through the GigaSpaces Admin API.
+    - You can use the out-of-the-box CPU monitoring component (which uses {{%exurl "SIGAR" "http://www.hyperic.com/products/sigar"%}}) for measuring the OS and JVM resources. It is easily accessible through the GigaSpaces Admin API.
 
 - **Network outages/disconnections** - As discussed, disconnections between the GSMs or GSMs and GSCs can cause any of the GSMs to get into what is called "islands".
     - You should be using a network monitoring tool to monitor network outages/disconnections and re connections on machines which run the GSMs and GSCs. Such tool should report and alert on exact datetime of the event.

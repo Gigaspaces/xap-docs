@@ -17,7 +17,7 @@ GigaSpaces XAP Java edition is 100% pure Java based, and therefore can run on an
 **Prior to the XAP installation, make sure**:
 
 - Review the release notes for the [supported platforms](/release_notes).
-- [JDK](http://java.sun.com/javase/downloads/index.jsp) (6 or later) is installed
+- {{%exurl "JDK" "http://java.sun.com/javase/downloads/index.jsp"%}} (6 or later) is installed
 - Set the `JAVA_HOME` environment variable to the JDK (not JRE) directory (for example, `D:\java\jdk1.7.0_70`).
 - Set the `PATH` environment variable to include `JAVA_HOME\bin` (for example, `%JAVA_HOME%\bin;%SystemRoot%\system32;%SystemRoot%`
 - Optional: The network and machines running GigaSpaces are configured to enable multicast (see the [Multicast Configuration]({{%currentadmurl%}}/network-multicast.html) for more information).

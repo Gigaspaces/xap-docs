@@ -21,7 +21,7 @@ One more dimension is the grid size (the topology). This measures how the system
 
 # Results
 
-The different benchmarks results can be found on the [benchmarks page](http://www.gigaspaces.com/benchmarks). We  update these from time to time and post new benchmarks results on [our benchmark blog](http://blog.gigaspaces.com/category/benchmarks).
+The different benchmarks results can be found on the {{%exurl "benchmarks page" "http://www.gigaspaces.com/benchmarks"%}}. We  update these from time to time and post new benchmarks results on {{%exurl "our benchmark blog" "http://blog.gigaspaces.com/category/benchmarks"%}}.
 
 # Tools
 
@@ -34,5 +34,5 @@ The different benchmarks results can be found on the [benchmarks page](http://ww
 
 Note that once you are running large scale benchmarks with a large number of concurrent accesses, or a large number of data grid partitions, you should consider our involvement to help tune the configuration of the environment and JVM, and in some cases we should help with the code, too, as some of the default behaviors for the basic API have special modifiers that may boost the performance.
 
-Many times developers sometime miss or misunderstand these advanced options, due to the vast amount of features the products offers.  Please do not hesitate to [approach our support team](http://www.gigaspaces.com/content/customer-support-services) for advanced benchmarking and testing options. The information about tuning the product for such environments is not fully publicly available, since many larger systems have specialized requirements for which configurations are available but for which generalized solutions are not entirely appropriate.
+Many times developers sometime miss or misunderstand these advanced options, due to the vast amount of features the products offers.  Please do not hesitate to {{%exurl "approach our support team" "http://www.gigaspaces.com/content/customer-support-services"%}} for advanced benchmarking and testing options. The information about tuning the product for such environments is not fully publicly available, since many larger systems have specialized requirements for which configurations are available but for which generalized solutions are not entirely appropriate.
 

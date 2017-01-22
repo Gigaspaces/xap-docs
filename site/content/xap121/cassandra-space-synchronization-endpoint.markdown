@@ -11,7 +11,7 @@ A Cassandra based implementation of the [Space Synchronization Endpoint](./space
 
 # Library dependencies
 
-The Cassandra Space Synchronization Endpoint uses the [Hector Library](http://hector-client.github.com/hector/build/html/index.html) For communicating with the Cassandra cluster.
+The Cassandra Space Synchronization Endpoint uses the {{%exurl "Hector Library" "http://hector-client.github.com/hector/build/html/index.html"%}} For communicating with the Cassandra cluster.
 Include the following in your `pom.xml`
 
 {{%tabs%}}

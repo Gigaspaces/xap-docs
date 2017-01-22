@@ -14,7 +14,7 @@ A Cassandra based implementation of the [Space Data Source](./space-data-source-
 
 # Library dependencies
 
-The Cassandra Space Data Source uses [Cassandra JDBC Driver](http://code.google.com/a/apache-extras.org/p/cassandra-jdbc/) and [Hector Library](http://hector-client.github.com/hector/build/html/index.html) when interacting with the Cassandra cluster.
+The Cassandra Space Data Source uses {{%exurl "Cassandra JDBC Driver" "http://code.google.com/a/apache-extras.org/p/cassandra-jdbc/"%}} and {{%exurl "Hector Library" "http://hector-client.github.com/hector/build/html/index.html"%}} when interacting with the Cassandra cluster.
 include the following in your `pom.xml`
 
 

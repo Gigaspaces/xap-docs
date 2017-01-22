@@ -44,11 +44,14 @@ GigaSpaces Data-Grid clustering Scalability and High-Availability are based on t
 
 # References
 
-[NoCAP](http://natishalom.typepad.com/nati_shaloms_blog/2010/10/nocap.html)
+{{%exurl "NoCAP" "http://natishalom.typepad.com/nati_shaloms_blog/2010/10/nocap.html" %}}<br>
 
-[NoCAP - Part II Availability and Partition tolerance](http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-ii-availability-and-partition-tolerance.html)
+{{%exurl "NoCAP - Part II Availability and Partition tolerance" "http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-ii-availability-and-partition-tolerance.html" %}}<br>
 
-[NoCAP - Part III - GigaSpaces clustering explained](http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-iii-gigaspaces-clustering-explained.html)
+{{%exurl "NoCAP - Part III - GigaSpaces clustering explained" "http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-iii-gigaspaces-clustering-explained.html" %}}<br>
+
+{{%exurl "Data Grid Clustering" "http://www.slideboom.com/presentations/615477/GigaSpaces_HA" %}}
+
 
 # GigaSpaces Clustering
 

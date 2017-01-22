@@ -140,4 +140,4 @@ The example is located under `<XAP root>/tools/alert-integration`. To run it you
 1. log4j version >= 1.2.14
 1. snmpTrapAppender version >= 1.2.9
 1. snmp4j version >= 1.11.2
-1. For the example build process you should have [Apache Maven](http://maven.apache.org) installed. You may find it already part of the GigaSpaces folders under `\gigaspaces-xap\tools\maven`.
+1. For the example build process you should have {{%exurl "Apache Maven" "http://maven.apache.org"%}} installed. You may find it already part of the GigaSpaces folders under `\gigaspaces-xap\tools\maven`.

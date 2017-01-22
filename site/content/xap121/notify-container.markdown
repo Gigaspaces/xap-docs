@@ -610,7 +610,7 @@ Here is an example how you can configure the minimum and the maximum of the thre
 </os-events:notify-container>
 ```
 
-Note that you can always delegate the notification processing to a separate application defined thread pool, if you'd like to manage the processing thread pool yourself. This can be done by configuring a separate thread pool within your application, for example using [Spring's `TaskExecutor` abstraction](http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/scheduling.html).
+Note that you can always delegate the notification processing to a separate application defined thread pool, if you'd like to manage the processing thread pool yourself. This can be done by configuring a separate thread pool within your application, for example using {{%exurl "Spring's TaskExecutor abstraction" "http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/scheduling.html"%}}.
 In your `pu.xml` file you can define a `ThreadPoolTaskExecutor` and an async listener:
 
 {{%tabs%}}

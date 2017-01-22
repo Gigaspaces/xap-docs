@@ -38,7 +38,9 @@ XAP's Mule SEDA model allows you to define services that are aware of the space 
 
 <br>
 
-#### Additional Resources
-- Mule Site [{{%externalurl%}}](http://www.mulesoft.org/)
+## Additional Resources
 
-- [Distributed Multi Mule service example](/sbp/mule-esb-example.html)
+{{%exurl "Mule Site" "http://www.mulesoft.org"%}}
+
+[Distributed Multi Mule service example](/sbp/mule-esb-example.html)
+

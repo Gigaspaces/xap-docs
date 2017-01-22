@@ -33,9 +33,9 @@ The basic concept of our application;
 You can download all examples presented here from {{%git "https://github.com/Gigaspaces/xapnet-tutorial"%}}. Feel free to clone, fork and contribute to the tutorial code.
 
 
-{{%vbar "Download and Install XAP"%}}
-XAP.NET is packaged as a standard Windows Installer package (.msi file). You can download {{%download "http://www.gigaspaces.com/xap-download"%}} the latest version.
-{{%/vbar%}}
+# Download and Install XAP
+XAP.NET is packaged as a standard Windows Installer package (.msi file). You can download {{%giturl "the latest version" "http://www.gigaspaces.com/xap-download"%}}.
+
 
 Once you have downloaded the distribution, start the installation by double-clicking the msi file and the installation wizard will appear and guide you through the installation process.
 

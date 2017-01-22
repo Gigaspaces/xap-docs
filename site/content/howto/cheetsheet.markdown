@@ -36,7 +36,6 @@ Current version : {{<currentversion>}}of XAP
 
 # Downloads
 
-{{%externurl  "http://docs.gigaspaces.com"%}}<br>
 {{%download  "http://docs.gigaspaces.com"%}}<br>
 {{%pdf  "http://docs.gigaspaces.com"%}} download pdf<br>
 {{%git  "http://docs.gigaspaces.com"%}}<br>

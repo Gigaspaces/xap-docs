@@ -6,7 +6,7 @@ parent: network.html
 weight: 450
 ---
 
-Some scenarios may include usage of XAP components where each component is  in a different private network, and the connection between the components needs to be on  a different public IP (i.e., via [network address translation](http://en.wikipedia.org/wiki/Network_address_translation).)
+Some scenarios may include usage of XAP components where each component is  in a different private network, and the connection between the components needs to be on  a different public IP (i.e., via {{%exurl "network address translation" "http://en.wikipedia.org/wiki/Network_address_translation"%}}.)
 
 XAP components expose themselves via the built in remoting mechanism ([LRMI](./tuning-communication-protocol.html)) that contains the IP of the source component as part of its connection url. In the above case, the private IP has no meaning to a remote component/client that needs to connect to this component.
 

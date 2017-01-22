@@ -45,14 +45,16 @@ This section describes Data-Grid cluster split brain and primary resolution flow
 #### Additional Resources
 
 
+## Additional Resources
 
-NoCAP [{{%externalurl%}}](http://natishalom.typepad.com/nati_shaloms_blog/2010/10/nocap.html)
 
-NoCAP - Part II Availability and Partition tolerance [{{%externalurl%}}](http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-ii-availability-and-partition-tolerance.html)
 
-NoCAP - Part III - GigaSpaces clustering explained [{{%externalurl%}}](http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-iii-gigaspaces-clustering-explained.html)
+{{%exurl "NoCAP" "http://natishalom.typepad.com/nati_shaloms_blog/2010/10/nocap.html" %}}<br>
 
-Data Grid Clustering [{{%externalurl%}}](http://www.slideboom.com/presentations/615477/GigaSpaces_HA)
+{{%exurl "NoCAP - Part II Availability and Partition tolerance" "http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-ii-availability-and-partition-tolerance.html" %}}<br>
 
+{{%exurl "NoCAP - Part III - GigaSpaces clustering explained" "http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-iii-gigaspaces-clustering-explained.html" %}}<br>
+
+{{%exurl "Data Grid Clustering" "http://www.slideboom.com/presentations/615477/GigaSpaces_HA" %}}
 
 
