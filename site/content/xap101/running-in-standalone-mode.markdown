@@ -85,7 +85,7 @@ The above example starts a processing unit instance (with an embedded space) in 
 
 # Starting a StandaloneProcessingUnitContainer Programmatically
 
-Here is an example of using a `ProcessingUnitContainerProvider` in order to create a standalone processing unit container programmatically:
+Here is an example of using a `ProcessingUnitContainerProvider` in order to create a standalone processing unit container programmatically with two partitions:
 
 
 ```java
