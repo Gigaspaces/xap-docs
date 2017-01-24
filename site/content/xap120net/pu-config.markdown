@@ -132,7 +132,7 @@ An event listener container needs a space proxy that will listen for events. If 
 <ProcessingUnit>
   <EmbeddedSpaces>
     <add Name="Foo"/>
-  /EmbeddedSpaces>
+  </EmbeddedSpaces>
   <SpaceProxies>
     <add Name="Bar"/>
   </SpaceProxies>
@@ -141,6 +141,27 @@ An event listener container needs a space proxy that will listen for events. If 
   </EventContainers>
 </ProcessingUnit>
 ```
+
+# Security
+
+To access a secured space the `Credentials` tag is used:  
+
+```xml
+<ProcessingUnit>
+    <EmbeddedSpaces>
+        <add Name="EmbeddedSpace">
+           <Credentials Username="user" Password="pwd"/> 
+        </add>
+    </EmbeddedSpaces> 
+
+    <SpacesProxy>
+        <add Name="RemoteSpace">
+            <Credentials Username="user2" Password="pwd2"/> 
+        </add>
+    </SpacesProxy>     
+</ProcessingUnit>
+```
+
 
 # Assembly Scanning
 
