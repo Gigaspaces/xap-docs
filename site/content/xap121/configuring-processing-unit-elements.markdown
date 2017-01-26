@@ -20,7 +20,7 @@ Each file is used to configure separate aspects of the processing unit. The `pu.
 This file is a {{%exurl "Spring framework" "http://www.springframework.org"%}} XML configuration file. It leverages the Spring framework {{%exurl "IoC container" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html"%}} and extends it by using the Spring {{%exurl "custom namespace mechanism" "http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.html"%}}.
 
 {{% refer %}}
-It is recommended (although not mandatory) that you familiarize yourself with the Spring XML configuration basics. A good place to start is {{%"here" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html"%}}
+It is recommended (although not mandatory) that you familiarize yourself with the Spring XML configuration basics. A good place to start is {{%exurl "here" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html"%}}
 {{% /refer %}}
 
 # pu.xml Contents
