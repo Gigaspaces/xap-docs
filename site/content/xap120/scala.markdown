@@ -33,7 +33,7 @@ Example project that shows how XAP Scala can be used in a real project and how S
 <br>
 
 {{% info %}}
-The Scala version required in order to use the Scala XAP extension is 2.11.x - up to 2.11.6.
+The Scala version required in order to use the Scala XAP extension is 2.11.6.
 {{% /info %}}
 
 Assuming there is a scala installation under `$SCALA_HOME`, the jars under `$SCALA_HOME/lib` should be copied to `$GS_HOME/lib/optional/scala/lib`.
