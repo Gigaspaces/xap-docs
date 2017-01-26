@@ -17,10 +17,10 @@ Each file is used to configure separate aspects of the processing unit. The `pu.
 
 # The pu.xml file
 
-This file is a [Spring framework](http://www.springframework.org) XML configuration file. It leverages the Spring framework [IoC container](http://static.springframework.org/spring/docs/2.5.x/reference/beans.html) and extends it by using the Spring [custom namespace mechanism](http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.html).
+This file is a {{%exurl "Spring framework" "http://www.springframework.org"%}} XML configuration file. It leverages the Spring framework {{%exurl "IoC container" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html"%}} and extends it by using the Spring {{%exurl "custom namespace mechanism" "http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.html"%}}.
 
 {{% refer %}}
-It is recommended (although not mandatory) that you familiarize yourself with the Spring XML configuration basics. A good place to start is [here](http://static.springframework.org/spring/docs/2.5.x/reference/beans.html)
+It is recommended (although not mandatory) that you familiarize yourself with the Spring XML configuration basics. A good place to start is {{%"here" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html"%}}
 {{% /refer %}}
 
 # pu.xml Contents
@@ -41,9 +41,9 @@ This section focuses on the overall structure of the `pu.xml` file. The various 
 
 In recent versions (2.0 and 2.5), the Spring framework has introduced two additional ways to configure your Spring application.
 
-- Extensive support for [configuration through Java 5 annotations](http://static.springframework.org/spring/docs/2.5.x/reference/beans.html#beans-annotation-config) to simplify many of the configuration tasks a bring the configuration closer to the code
+- Extensive support for {{%exurl "configuration through Java 5 annotations" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html#beans-annotation-config"%}} to simplify many of the configuration tasks a bring the configuration closer to the code
 
-- [Extensible XML schema](http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.html) through the use of custom namespaces and namespace handlers. This allows for products like GigaSpaces (or even Spring itself) to create their own XML elements for simplifying the configuration of their specific components instead of using the plain Spring XML syntax
+- {{%exurl "Extensible XML schema" "http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.html"%}} through the use of custom namespaces and namespace handlers. This allows for products like GigaSpaces (or even Spring itself) to create their own XML elements for simplifying the configuration of their specific components instead of using the plain Spring XML syntax
 Naturally, GigaSpaces XAP also leverages the extensibility of the above two mechanisms and enables users to configure the processing unit through GigaSpaces-specific XML elements and Java 5 annotations.
 
 Throughout this guide, every configuration example will be provided in all of the supported forms (plain Spring, custom namespace element and annotations). See below for an example pu.xml configuration file.

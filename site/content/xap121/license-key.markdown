@@ -12,7 +12,7 @@ GigaSpaces XAP Premium and Enterprise editions require a valid license to start.
 
 # Getting started
 
-When downloading XAP Premium or Enterprise from the [XAP Download Center](http://www.gigaspaces.com/LatestProductVersion), you'll get an email with a license key for the evaluation period. To start your evaluation, simply edit the license file located in `<XAP_HOME>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
+When downloading XAP Premium or Enterprise from the {{%exurl "XAP Download Center" "http://www.gigaspaces.com/LatestProductVersion"%}}, you'll get an email with a license key for the evaluation period. To start your evaluation, simply edit the license file located in `<XAP_HOME>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
 
 ```xml
 # License can also be set via the system property com.gs.licensekey

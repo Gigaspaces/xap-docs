@@ -271,7 +271,7 @@ The logging level of `com.gigaspaces.core.memorymanager` can be changed while th
 
 # Local Cache Performance
 
-Below is the result of a simple benchmark comparing [Ehcache](http://ehcache.org)'s `get()` operation with the local cache using the `GigaSpace.readById()` operation. With this benchmark the local cache/ehcache size can accommodate the entire data set for the application.
+Below is the result of a simple benchmark comparing {{%exurl "Ehcache" "http://ehcache.org"%}}'s `get()` operation with the local cache using the `GigaSpace.readById()` operation. With this benchmark the local cache/ehcache size can accommodate the entire data set for the application.
 
 ![ehcache_vs_localcache.jpg](/attachment_files/ehcache_vs_localcache.jpg)
 

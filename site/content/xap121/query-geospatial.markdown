@@ -153,7 +153,7 @@ Spatial queries are available through the `spatial:` extension to the [SQL query
 |shape1 spatial:contains shape2   | shape1 contains shape2, boundaries inclusive.|
 
 
-### Intersect
+# Intersect
 
 The intersection between {{%color "blue"%}}shape1{{%/color%}} and shape2 is not empty, some or all of shape1 overlaps some or all of shape2.
 
@@ -209,7 +209,7 @@ public void init() {
 {{%/tabs%}}
 
 
-#### Spatial queries 
+## Spatial queries 
  
 
  
@@ -262,7 +262,7 @@ public void init() {
 ```
  
 
-### Within
+## Within
 
 {{%color "blue"%}}Shape1{{%/color%}} is contained within shape2 including its boundaries.
 
@@ -346,7 +346,7 @@ public void init() {
 {{%/tabs%}}
 
 
-#### Spatial queries 
+## Spatial queries 
  
 Will use a spatial query to find the shapes stored in the Space that are within a circle:
  
@@ -403,7 +403,7 @@ SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerCon
  
 # WKT Support
 
-The `ShapeFactory` also supports parsing [WKT](https://en.wikipedia.org/wiki/Well-known_text)
+The `ShapeFactory` also supports parsing {{%exurl "WKT" "https://en.wikipedia.org/wiki/Well-known_text"%}}
 
 |   Shape  | Description    |
 |:----|:-------|
@@ -427,7 +427,7 @@ Shape s6 = ShapeFactory.parse("BUFFER (POINT (0.0 0.0), 5.0)",ShapeFormat.WKT);
 
 
 # GeoJson Support
-The `ShapeFactory` also supports parsing  [GeoJson](http://geojson.org/) strings into shapes. For example:
+The `ShapeFactory` also supports parsing  {{%exurl "GeoJson" "http://geojson.org/"%}} strings into shapes. For example:
 
 
 Examples:
@@ -449,11 +449,11 @@ ShapeFactory.parse("{\"type\":\"Circle\",\"coordinates\":[0.0,0.0],\"radius\":5.
 
 ## Lucene 
 
-XAP uses [Lucene](https://lucene.apache.org/) to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Spatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.
+XAP uses {{%exurl "Lucene" "https://lucene.apache.org/"%}} to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Spatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.
 
 ### Store Directory
 
-Lucene indexing is stored in a **Store Directory**. Lucene supports different Store Directory implementations, but recommends using the [MMapDirectory](https://lucene.apache.org/core/5_3_0/core/org/apache/lucene/store/MMapDirectory.html), which is what XAP uses by default.
+Lucene indexing is stored in a **Store Directory**. Lucene supports different Store Directory implementations, but recommends using the {{%exurl "MMapDirectory" "https://lucene.apache.org/core/5_3_0/core/org/apache/lucene/store/MMapDirectory.html"%}}, which is what XAP uses by default.
 
 ### File System
 

@@ -8,7 +8,7 @@ weight: 200
 
 
 
-The Java Persistency API (JPA) is a Java programming language framework managing relational data in applications using Java Platform. XAP's JPA allows you to use JPA's functionality, annotations and execute JPQL queries on Space. XAP's JPA implementation is based on [OpenJPA](http://openjpa.apache.org/).
+The Java Persistency API (JPA) is a Java programming language framework managing relational data in applications using Java Platform. XAP's JPA allows you to use JPA's functionality, annotations and execute JPQL queries on Space. XAP's JPA implementation is based on {{%exurl "OpenJPA" "http://openjpa.apache.org/"%}}.
 
 
 <br>

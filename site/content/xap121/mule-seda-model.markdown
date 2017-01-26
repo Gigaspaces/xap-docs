@@ -11,7 +11,7 @@ weight: 400
 
 
 
-A [Mule model](http://www.mulesoft.org/documentation-3.2/display/MULE3USER/Models#Models) manages the runtime behavior of the service components that a Mule instance hosts. The manner in which these components are invoked and treated is all encapsulated inside the Mule model.
+A {{%exurl "Mule model" "http://www.mulesoft.org/documentation-3.2/display/MULE3USER/Models#Models"%}} manages the runtime behavior of the service components that a Mule instance hosts. The manner in which these components are invoked and treated is all encapsulated inside the Mule model.
 
 XAP's Mule model integration comes with two main features. The first is the ability to define services that are aware of the "direct" Space mode they are working with (the direct cluster member) and only start when working against a primary cluster member (in an SBA topology). The second feature is the ability to store SEDA queues in a virtualized space queue instead of Mule's default VM queues.
 
