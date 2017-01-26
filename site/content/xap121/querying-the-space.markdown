@@ -32,8 +32,14 @@ You can query the Space using built in functions and user defined functions.
 [Geospatial Queries](./query-geospatial.html){{<wbr>}}
 GeoSpatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.
 
+
 [Free text search](./query-free-text-search.html){{<wbr>}}
 Search for records that include one or more words within a free text field.
+
+
+[Full text search](./query-full-text-search.html){{<wbr>}}
+Search for records that include one or more words within a text field.
+
 
 [Nested property queries](./query-nested-properties.html){{<wbr>}}
 Query nested properties, maps and collections using SQL queries

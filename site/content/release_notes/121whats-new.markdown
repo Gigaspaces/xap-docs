@@ -32,9 +32,9 @@ MemoryXtend includes a cache to store recently used entries in memory. You can n
 
 Querying text properties made a great step forward, with full text search capabilities. For example, to find `Email` entries which contain a word similar to `salary` in the title property, use `new SQLQuery(Email.class, "title text:match ?", "salary~1")`.
 
-Full text search is using [Lucene](https://lucene.apache.org/) under the hood, so you're getting all the power of lucene within your XAP application.
+Full text search is using {{%exurl "Lucene" "https://lucene.apache.org/"%}} under the hood, so you're getting all the power of lucene within your XAP application.
 
-{{<infosign>}} Documentation is under construction - more information coming soon.
+{{<infosign>}} For more information see [Full text search](/xap121/query-full-text-search.html)
 
 ## Get Jetty port within your application
 
