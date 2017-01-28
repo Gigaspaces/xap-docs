@@ -525,17 +525,17 @@ MyClass[] result = gigaspace.readMultiple(query);
 
 # Best Practice
 
-#### Compound Index
+## Compound Index
 
 When having an **AND** query or a template that use two or more fields for matching a [Compound Index](./indexing.html#Compound Indexing) may boost the query execution time. The Compound Index should be defined on multiple properties for a specific space class and will be used implicitly when a SQL Query or a [Template](./query-template-matching.html) will be using these properties.
 
-#### Re-using SQLQuery
+## Re-using SQLQuery
 
 Constructing an `SQLQuery` instance is a relatively expensive operation. When possible, prefer using `SQLQuery.setParameters` and `SQLQuery.setParameter` to modify an existing query instead of creating a new one. However, remember that `SQLQuery` is not thread-safe.
 XAP reuses `SQLQuery` objects by using a bounded cache mechanism - when using `SQLQuery.setParameter` as descbired above,  the queries will be fetched from the cache without the penalty of recreation `SQLQuery` objects.
 The cache size can be modified by setting `com.gs.queryCache.cacheSize` system property to the desirable value (the default value is 1,000).
 
-#### Minimize OR usage
+## Minimize OR usage
 
 When using the `OR` logical operator together with `AND` logical operator as part of your query you can speed up the query execution by minimizing the number of `OR` conditions in the query. For example:
 
@@ -553,7 +553,7 @@ OR
 (A = 'Y' AND B > '2000-10-1' AND B < '2003-11-1')
 ```
 
-# Projecting Partial Results
+## Projecting Partial Results
 
 You can specify that the `SQLQuery` should contain only partial results which means that the returned object should only be populated with the projected properties.
 
@@ -567,20 +567,17 @@ You can specify that the `SQLQuery` should contain only partial results which me
 # Simple vs. Complex Queries
 
 Most space operations and features support any SQL query, but some support only **simple** queries and not **complex** ones.
-
-{{%vbar%}}
-A query is considered complex if it contains one or more of the following:
-- `GROUP BY`
-- `ORDER BY`
+A query is considered complex if it contains one or more of the following:<br>
+- `GROUP BY`<br>
+- `ORDER BY`<br>
 - Sub queries
 
-The following features support only simple SQL queries
-
-- Snapshot
-- Blocking operations
-- [Notifications](./session-based-messaging-api.html)
+The following features support only simple SQL queries:<br>
+- Snapshot<br>
+- Blocking operations<br>
+- [Notifications](./session-based-messaging-api.html)<br>
 - [GSIterator](./query-paging-support.html)
-{{%/vbar%}}
+ 
 
 # Interface Classes
 
@@ -588,19 +585,18 @@ The following features support only simple SQL queries
 
 # Reserved Words
 
-The following are reserved keywords in the GigaSpaces SQL syntax:
+The following are reserved keywords in the XAP SQL syntax:
 
-{{%vbar "Reserved words "%}}
-alter add all and asc avg between by create call drop desc bit tinyint
- 	 end from group in is like rlike max min not null or distinct
- 	 order select substr sum sysdate upper where count delete varchar2 char
- 	 exception rownum index insert into set table to_char to_number smallint
- 	 update union values commit rollback uid using as date datetime time
- 	 float real double number decimal numeric boolean integer
- 	 varchar bigint long clob blob lob true false int timestamp longvarchar
-{{% /vbar %}}
+- alter add all and asc avg between by create call drop desc bit tinyint
+- end from group in is like rlike max min not null or distinct
+- order select substr sum sysdate upper where count delete varchar2 char
+- exception rownum index insert into set table to_char to_number smallint
+- update union values commit rollback uid using as date datetime time
+- float real double number decimal numeric boolean integer
+- varchar bigint long clob blob lob true false int timestamp longvarchar
+ 
 
-If a reserved word needs to be used as a property name it needs to be escaped using ``.
+If a reserved word needs to be used as a property name it needs to be escaped using ``.<br>
 For example: if you need to query a property by the name of count, which is a reserved word, it can be done as following:
 
 
@@ -608,8 +604,8 @@ For example: if you need to query a property by the name of count, which is a re
 new SQLQuery<MyData>(MyData.class, "`count` = 5")
 ```
 
-{{%vbar "Reserved Separators and Operators:"%}}
+# Reserved Separators and Operators:
 := || ; . ROWTYPE ~ < <= >  >= => != <> \(+\) ( ) \* / + - ? \{ \}
-{{% /vbar %}}
+ 
 
 

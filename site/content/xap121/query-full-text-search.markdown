@@ -32,7 +32,7 @@ Full text search queries can be used with any space operation which supports SQL
  
 Text search queries are available through the `text:` extension to the [SQL query syntax](./query-sql.html).  
 
-For example, suppose we have a class called `NewsArticle` with a `String` property called `content` and a `String` property called `type`:
+For example, suppose we have a class called `NewsArticle` with a String property called `content` and a String property called `type`:
  
 ```java
 // Matching 
@@ -62,7 +62,7 @@ query.setParameter(1, "space");
 query.setParameter(1, "blog");
 ``` 
 
-<br> 
+
 # Supported Search Operations
  
 XAP supports the {{%exurl "Lucene Query Parser Syntax" "http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description"%}} except `Fields`.
@@ -81,7 +81,8 @@ public class NewsArticle {
 	private UUID id;
 	private String content;
 	private Person author;
-	private Long number;
+	private Long articleNumber;
+    private String type;
 
 	public String getContent() {
 		return content;
@@ -128,10 +129,10 @@ query.setParameter(1, "Friedrich");
 query.setParameter(2, "Durrenmatt");
 ```
 
-<br>
+ 
 
 
-#  Boolean Operators
+# Boolean Operators
 
 
 # Grouping 
@@ -139,18 +140,16 @@ query.setParameter(2, "Durrenmatt");
 
 # Combining Text and Standard Predicates
 
-Suppose our `NewsArticle` class contains a number property as well, and we want to enhance our query and find the NewsArticle with a number. We can simply add the relevant predicate to the query’s criteria:
+Suppose our `NewsArticle` class contains a articleNumber property as well, and we want to enhance our query and find the NewsArticle with a number. We can simply add the relevant predicate to the query’s criteria:
 
 ```java
-SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ? AND number < ?");
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ? AND articleNumber < ?");
 query.setParameter(1, "deployment");
 query.setParameter(2, new Long(1000));	
 ```
 
 
 # Indexing
-
-
 
 {{%refer%}}
 The performance of text search queries can be vastly improved by indexing the relevant  properties. For detailed information see See [Indexing](./indexing-text-search.html) for more information.
