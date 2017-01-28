@@ -463,5 +463,5 @@ Lucene indexes are stored in the file system. When used within a processing unit
 # Indexing
 
 {{%refer%}}
-The performance of Geospatial queries can be vastly improved by indexing shape properties. For detailded information see [Geospatial indexing](./indexing-geospatial.html)
+The performance of Geospatial queries can be vastly improved by indexing shape properties. For detailed information see [Geospatial indexing](./indexing-geospatial.html)
 {{%/refer%}}

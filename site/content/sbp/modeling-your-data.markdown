@@ -512,7 +512,7 @@ To query for a specific **Author** with a specific **Book** title the query code
 
 ```java
 String authoridsForTitle = "";
-SQLQuery<Book> bookQuery = new SQLQuery <Book>(Book.class , "title="?");"%}}
+SQLQuery<Book> bookQuery = new SQLQuery <Book>(Book.class , "title="?");
 bookQuery.setParameter(1, "BookX");
 Book booksFounds [] = space.readMultiple(bookQuery);
 for (int j = 0; j < booksFounds.length; j++) {
@@ -733,7 +733,7 @@ To query for an **Author** with a specific **Book** title the query would look l
 {{%tab "  Java "%}}
 
 ```java
-SQLQuery<Author> query = new SQLQuery <Author>(Author.class , "lastName=? and books[*].title="?");"%}}
+SQLQuery<Author> query = new SQLQuery <Author>(Author.class , "lastName=? and books[*].title="?");
 query.setParameter(1, "AuthorX");
 query.setParameter(2, "BookY");
 Author authorFounds [] = space.readMultiple(query);
@@ -935,7 +935,7 @@ To query for a specific **Author** with a specific **Book** title the query woul
 {{%tab "  Java "%}}
 
 ```java
-SQLQuery<Book> bookQuery = new SQLQuery <Book>(Book.class , "title="?");"%}}
+SQLQuery<Book> bookQuery = new SQLQuery <Book>(Book.class , "title="?");
 bookQuery.setParameter(1, "BookX");
 Book booksFounds [] = space.readMultiple(bookQuery);
 String authoridsForTitle="";

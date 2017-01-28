@@ -3,7 +3,7 @@ type: post121
 title:  Unique Index
 categories: XAP121
 parent: indexing-overview.html
-weight: 600
+weight: 700
 ---
 
 

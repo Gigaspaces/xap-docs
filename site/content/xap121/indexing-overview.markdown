@@ -33,6 +33,8 @@ Compound indexes can be defined using multiple class properties.
 [Geospatial index](./indexing-geospatial.html){{<wbr>}}
 Indexes can be created for geometry data types.
  
+[Text search index](./indexing-text-search.html){{<wbr>}}
+Indexing text for fast search.
 
 [Unique index](./indexing-unique.html){{<wbr>}}
 Unique constraints can be defined for a property or properties of a space class.

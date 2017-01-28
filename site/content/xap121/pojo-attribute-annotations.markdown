@@ -167,6 +167,47 @@ public class User {
 
 <br>
 
+# SpaceTextIndex
+
+| | |
+|----|----|
+|Syntax     |  SpaceTextIndex|
+|Description| Querying indexed fields speeds up free text search operations. The `@SpaceTextIndex` annotation should be used to specify an indexed field.|
+
+<br>
+
+Example:
+
+
+```java
+@SpaceClass
+public class NewsArticle {
+
+	private UUID id;
+
+	private String content;
+
+	@SpaceId
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	@SpaceTextIndex
+	public String getContent() {
+		return content;
+	}
+```
+
+
+
+{{%refer%}}
+[TextSearch](./query-full-text-search.html#indexing)
+{{%/refer%}}
+
 # SpaceSpatialIndex
 
 | | |
@@ -199,6 +240,7 @@ public class GasStation {
 {{%refer%}}
 [SpaceSpatialIndex](./query-geospatial.html#indexing)
 {{%/refer%}}
+
 
 <br>
 
