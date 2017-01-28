@@ -30,25 +30,25 @@ Full text search queries can be used with any space operation which supports SQL
  
 ```java
 // Matching 
-    SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
-    query.setParameter(1, "deployment"); 
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
+query.setParameter(1, "deployment"); 
     
 // Wildcard search
 // To perform a single character wildcard search use the "?" symbol. 
-    SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
-	query.setParameter(1, "GigaSpac?s");
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
+query.setParameter(1, "GigaSpac?s");
 		
 // To perform a multiple character wildcard search use the "*" symbol.
-    SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
-	query.setParameter(1, "clou*y");
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
+query.setParameter(1, "clou*y");
 	
 //Regular Expression search
-    SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
-    query.setParameter(1, "/[tp]es/");
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
+query.setParameter(1, "/[tp]es/");
 
 // Fuzzy Search
-    SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
-	query.setParameter(1, "space~");
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
+query.setParameter(1, "space~");
 ``` 
 
 <br> 
@@ -73,7 +73,6 @@ public class NewsArticle {
 	private Person author;
 	private Long number;
 
-	@SpaceTextIndex
 	public String getContent() {
 		return content;
 	}
@@ -114,21 +113,28 @@ public class Person {
 And here is an example how you can query for nested properties:
 
 ```java
-    SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "author.firstName text:match ? AND  author.lastName text:match ?");
-	query.setParameter(1, "Friedrich");
-	query.setParameter(2, "Durrenmatt");
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "author.firstName text:match ? AND  author.lastName text:match ?");
+query.setParameter(1, "Friedrich");
+query.setParameter(2, "Durrenmatt");
 ```
 
 <br>
+
+
+#  Boolean Operators
+
+
+# Grouping 
+
 
 # Combining Text and Standard Predicates
 
 Suppose our `NewsArticle` class contains a number property as well, and we want to enhance our query and find the NewsArticle with a number. We can simply add the relevant predicate to the query’s criteria:
 
 ```java
-    SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ? AND number < ?");
-    query.setParameter(1, "deployment");
-    query.setParameter(2, new Long(1000));	
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ? AND number < ?");
+query.setParameter(1, "deployment");
+query.setParameter(2, new Long(1000));	
 ```
 
 

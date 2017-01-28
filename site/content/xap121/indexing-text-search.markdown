@@ -19,9 +19,7 @@ import com.gigaspaces.annotation.pojo.SpaceId;
 
 @SpaceClass
 public class NewsArticle {
-
 	private UUID id;
-
 	private String content;
 
 	@SpaceId
@@ -47,8 +45,8 @@ public class NewsArticle {
 Here is a query that will trigger the usage of this index:
 
 ```java
-   SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
-   query.setParameter(1, "deployment"); 
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
+query.setParameter(1, "deployment"); 
 ```
 
 # Nested Index
@@ -70,13 +68,9 @@ import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;
 
 @SpaceClass
-
 public class NewsArticle {
-
 	private UUID id;
-
 	private String content;
-
 	private Person author;
 
 	@SpaceTextIndex
@@ -111,9 +105,9 @@ public class NewsArticle {
 The following is an example of a query that triggers this index:
 
 ```java
-	SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "author.firstName text:match ? AND  author.lastName text:match ?");
-	query.setParameter(1, "Friedrich");
-    query.setParameter(2, "Durrenmatt");
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "author.firstName text:match ? AND  author.lastName text:match ?");
+query.setParameter(1, "Friedrich");
+query.setParameter(2, "Durrenmatt");
 ```
 
 {{%refer%}}
