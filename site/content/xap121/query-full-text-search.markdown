@@ -11,15 +11,16 @@ This page is under construction.
 {{%/warning%}}
 
 
-XAP 12.1 introduces text search leveraging the {{%exurl "Lucene" "http://lucene.apache.org"%}} search engine library. 
+XAP 12.1 introduces full text search capability leveraging the {{%exurl "Lucene" "http://lucene.apache.org"%}} search engine library. 
 
-- Keyword matching
-- Search for phrase 
-- Wildcard matching
-- Proximity matching  
-- Range searching
-- Boosting a term.
-- Regular expression queries
+The following features are supported:<br>
+- Keyword matching<br>
+- Search for phrase<br> 
+- Wildcard matching<br>
+- Proximity matching<br>
+- Range searching<br>
+- Boosting a term<br>
+- Regular expressions<br>
 - Fuzzy search
     
 {{%note%}}
@@ -27,6 +28,11 @@ Full text search queries can be used with any space operation which supports SQL
 {{%/note%}}
 
 # Examples
+ 
+ 
+Text search queries are available through the `text:` extension to the [SQL query syntax](./query-sql.html).  
+
+For example, suppose we have a class called `NewsArticle` with a `String` property called `content` and a `String` property called `type`:
  
 ```java
 // Matching 
@@ -49,6 +55,11 @@ query.setParameter(1, "/[tp]es/");
 // Fuzzy Search
 SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ?");
 query.setParameter(1, "space~");
+
+// Boolean operator
+SQLQuery<NewsArticle> query = new SQLQuery<NewsArticle>(NewsArticle.class, "content text:match ? AND type text:match ?");
+query.setParameter(1, "space");
+query.setParameter(1, "blog");
 ``` 
 
 <br> 
@@ -67,7 +78,6 @@ In the example below, the `author` is a property of type `Person`  which is a pr
 ```java
 @SpaceClass
 public class NewsArticle {
-
 	private UUID id;
 	private String content;
 	private Person author;
