@@ -22,7 +22,9 @@ XAP 12.1 introduces text search leveraging the {{%exurl "Lucene" "http://lucene.
 - Regular expression queries
 - Fuzzy search
     
-**Full text search queries can be used with any space operation which supports SQL queries (read, readMultiple, take, etc.)**
+{{%note%}}
+Full text search queries can be used with any space operation which supports SQL queries (read, readMultiple, take, etc.)
+{{%/note%}}
 
 # Examples
  

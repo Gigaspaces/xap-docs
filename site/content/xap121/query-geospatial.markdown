@@ -10,6 +10,11 @@ weight: 340
 Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries. 
 
 
+{{%note%}}
+Spatial queries can be used with any space operation which supports SQL queries (read, readMultiple, take, etc.)
+{{%/note%}}
+ 
+
 # Getting Started
 
 Suppose we want to write an application to locate nearby gas stations.  First, we create a `GasStation` class which includes the location and address of the gas station:
@@ -366,11 +371,7 @@ public void testWithin() {
 }
 ```
 
-
-
- {{%note%}}
- Spatial queries can be used with any space operation which supports SQL queries (`read`, `readMultiple`, `take`, etc.)
- {{%/note%}}
+ 
 
 # Geofencing
  
