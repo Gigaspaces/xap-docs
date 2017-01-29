@@ -9,7 +9,7 @@ weight: 100
 {{% ssummary%}}{{% /ssummary %}}
 
 
-The XAP JDBC interface allows database-driven applications to interact with spaces via SQL queries and commands. A query processor transparently translates SQL queries into legal space operations. No integration is required - all you need to do is point the application to the GigaSpaces JDBC driver like any other JDBC driver.
+The XAP JDBC interface allows database-driven applications to interact with spaces via SQL queries and commands. A query processor transparently translates SQL queries into legal space operations. No integration is required - all you need to do is point the application to the XAP JDBC driver like any other JDBC driver.
 
 Applications can access the XAP Data Grid using the JDBC API; data written to the IMDG using the JDBC API can also be accessed using other APIs.
 
@@ -19,11 +19,11 @@ An alternative way of querying the space using SQL syntax is the [SQLQuery](./qu
 
 JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the space, beyond the template matching provided by the [The GigaSpace Interface](./the-gigaspace-interface.html).
 
-GigaSpaces is not a full-fledged relational database and it does not support the full SQL92 standard (see [JDBC Supported Features](#supported-features)). However, the existing SQL support is extremely useful for applications that need to execute queries on a space for real-time queries.
+XAP is not a full-fledged relational database and it does not support the full SQL92 standard (see [JDBC Supported Features](#supported-features)). However, the existing SQL support is extremely useful for applications that need to execute queries on a space for real-time queries.
 
-{{% tip %}}
-You can use the [SQL Command Line]({{%currentadmurl%}}/space-gigaspaces-cli.html) to query and fetch data from the IMDG. The SQL Command Line using the GigaSpaces JDBC Driver when accessing the IMDG.
-{{% /tip %}}
+{{% note %}}
+You can use the [SQL Command Line]({{%currentadmurl%}}/space-gigaspaces-cli.html) to query and fetch data from the IMDG. The SQL Command Line using the XAP JDBC Driver when accessing the IMDG.
+{{% /note %}}
 
 ## Using Existing SQL Code and Porting to External Systems
 
@@ -31,9 +31,9 @@ The JDBC interface is mostly used to enable access to the space through standard
 
 Porting existing JDBC code to the space is certainly doable (but would require some level of adaptation depending on the specifics of the case and the complexity of the SQL queries. For legacy applications, it may still be easier than porting existing code to leverage the space technology directly. Since the SQL support is limited, this path should be taken with caution.
 
-# Getting the GigaSpaces JDBC connection
+# Getting the XAP JDBC connection
 
-In order to get the XAP JDBC connection you should use the following JDBC Driver classname:
+In order to get the JDBC connection you should use the following JDBC Driver classname:
 
 
 ```java
@@ -44,13 +44,12 @@ The connection URL should include :`jdbc:gigaspaces:url:<Space URL>` -- e.g.:
 
 
 ```java
-
 Connection con = DriverManager.getConnection("jdbc:gigaspaces:url:jini://*/*/mySpace");
 ```
 
-{{% tip %}}
-You may use the GigaSpaces JDBC driver with remote or embedded space
-{{% /tip %}}
+{{% note %}}
+You may use the XAP JDBC driver with remote or embedded space
+{{% /note %}}
 
 {{% refer %}}For more details on the Space URL, refer to the [Space URL](./the-space-configuration.html) section.{{% /refer %}}
 
@@ -77,9 +76,9 @@ while (rs.next()) {
 }
 ```
 
-{{% tip %}}
-There is no need to deal with JDBC connection polling when using GigaSpaces JDBC driver.
-{{% /tip %}}
+{{% note %}}
+There is no need to deal with JDBC connection polling when using XAP JDBC driver.
+{{% /note %}}
 
 ### Embedding the Query Processor within the application
 
@@ -95,13 +94,13 @@ properties.put("com.gs.embeddedQP.enabled", "true");
 conn = DriverManager.getConnection(url, properties);
 ```
 
-{{% tip %}}
+{{% note %}}
 It is also possible to set the "com.gs.embeddedQP.enabled" connection property as a System property (connection property overrides the system property).
-{{% /tip %}}
+{{% /note %}}
 
 # Transaction Support
 
-GigaSpaces JDBC Driver supports the following transaction managers:
+XAP JDBC Driver supports the following transaction managers:
 
 - Local Transaction Manager
 - Distributed embedded Jini Transaction Manager (default)
@@ -130,7 +129,7 @@ Connection conn = DriverManager.getConnection("jdbc:gigaspaces:url:jini://*/*/my
 
 # Getting JDBC connection from a Space Proxy
 
-You can get a GigaSpaces JDBC connection from a space proxy using the `com.j_spaces.jdbc.driver.GConnection`. See below example:
+You can get an XAP JDBC connection from a space proxy using the `com.j_spaces.jdbc.driver.GConnection`. See below example:
 
 
 ```java
@@ -258,7 +257,7 @@ System.out.println("The Result:" + Arrays.asList(result_str));
 
 # SQL to Java Type Mapping
 
-The GigaSpaces JDBC Driver translates in runtime a Space object into a relational table representation.
+The XAP JDBC Driver translates in runtime a Space object into a relational table representation.
 
 - All Java class attributes are translated into their corresponding SQL types.
 - Class names are translated into table names.
@@ -367,7 +366,7 @@ Field incrementing is only supported for `Integer` fields using a '+' operator.
 
 # Regular Expression
 
-GigaSpaces XAP support query using regular expression. You may use `like` or `rlike` expressions with your JDBC queries.
+XAP support query using regular expression. You may use `like` or `rlike` expressions with your JDBC queries.
 
 {{% note %}}
 It is important you index `String` type fields used with regular expression queries. Not indexing such fields may result slow query execution and garbage creation.
@@ -387,6 +386,26 @@ PreparedStatement st = con.prepareStatement("select id,text,text2 from MyData WH
 st.setString(1, "today\u0027s.*");
 ResultSet rs = st.executeQuery();
 ```
+
+# Text Search
+
+XAP 12.1 introduces full text search capability leveraging the {{%exurl "Lucene" "http://lucene.apache.org"%}} search engine library and supports the {{%exurl "Lucene Query Parser Syntax" "http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description"%}} except `Fields`.
+ 
+Text search queries are available through the `text:` extension:
+ 
+```java
+	Connection connection = GConnection.getInstance(gigaSpace.getSpace());
+
+	// search 'java'
+	String sql = "SELECT * from NewsArticle where title text:match ?";
+	PreparedStatement pst = connection.prepareStatement(sql);
+	pst.setObject(1, "java");
+        
+	ResultSet executeQuery = pst.executeQuery();
+        
+/....        
+```        
+
 
 # Indexing
 
@@ -501,7 +520,7 @@ while (rs.next()) {
 
 # Unsupported Features
 
-GigaSpaces JDBC Driver does not support the following:
+ XAP Driver does not support the following:
 
 - The SQL statements: `HAVING`, `VIEW`, `TRIGGERS`, `EXISTS`, `BETWEEN` in collections, `NOT`, `CREATE USER`, `GRANT`, `REVOKE`, `SET PASSWORD`,  `CONNECT USER`, `ON`.
 - `CREATE` Database.
@@ -520,10 +539,10 @@ GigaSpaces JDBC Driver does not support the following:
 - `[INNER] JOIN`
 - Statement::setFetchSize()
 
-{{% tip %}}
+{{% note %}}
 When having `SELECT count (*) FROM myClass` JDBC query -- `myClass` sub classes object count are not taken into consideration when processing the query result. The `SELECT count (*) FROM myClass WHERE X=Y` and `SELECT (*) from myClass` do take into consideration `myClass` sub classes objects when processing the result. Future versions will resolve this inconsistency.
 As a workaround, construct a JDBC query that includes a relevant `WHERE` part.
-{{% /tip %}}
+{{% /note %}}
 
 # JDBC Reserved Words
 
@@ -531,8 +550,7 @@ Here is a list of JDBC reserved keywords, data types, separators and operators:
 
 ## Keywords
 
-
-```java
+```bash
 ALTER ADD AND ASC BETWEEN BY CREATE CALL DROP DEFAULT_NULL DESC DISTINCT
 END FROM GROUP IN IS LIKE RLIKE MAX MIN NOT NULL OR ORDER SELECT SUBSTR SUM SYSDATE
 UPPER WHERE COUNT DELETE EXCEPTION ROWNUM INDEX INSERT INTO SET TABLE TO_CHAR
@@ -542,7 +560,7 @@ TO_NUMBER FOR_UPDATE UPDATE UNION VALUES COMMIT ROLLBACK PRIMARY_KEY UID USING
 ## Data Types
 
 
-```java
+```bash
 date datetime  time float double number decimal boolean integer varchar varchar2
 char timestamp long clob blob empty_clob() empty_blob() lob true false
 ```
@@ -550,7 +568,7 @@ char timestamp long clob blob empty_clob() empty_blob() lob true false
 ## Separators and operators
 
 
-```java
+```bash
 :=  || ; . ROWTYPE ~ < <= >  >= => != <> \(+\) ( ) \* / + - ? \{ \}
 ```
 
