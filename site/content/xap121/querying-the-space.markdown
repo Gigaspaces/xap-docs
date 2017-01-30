@@ -38,7 +38,7 @@ Search for records that include one or more words within a free text field.
 
 
 [Full text search](./query-full-text-search.html){{<wbr>}}
-Search for records that include one or more words within a text field.
+Full text search capability leveraging the Lucene  search engine library.
 
 
 [Nested property queries](./query-nested-properties.html){{<wbr>}}
@@ -56,13 +56,10 @@ Obtaining partial results when querying the space to improve application perform
 [Explain Plan](./query-explainplan.html){{<wbr>}}
 Explain Plan can be used to obtain a description of the strategy or plan that XAP uses to implement a specific SQLQuery. 
 
-
- 
-
 {{%/fpanel%}}
 
-<br>
 
-#### Additional Resources
+
+## Additional Resources
 
 {{%youtube "jC57mId3SMg"  "XAP Query APIS"%}}

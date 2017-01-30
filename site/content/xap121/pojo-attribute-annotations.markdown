@@ -26,7 +26,6 @@ XAP provides the ability to obtain and modify class meta data of objects stored 
 |Default    | false |
 |Description| Defines whether this field value is used when generating the Object ID. The field value should be unique -- i.e., no multiple objects with the same value should be written into the space (each object should have a different field value). When writing an object into the space with an existing `id` field value, an `EntryAlreadyInSpaceException` is thrown. The Object ID is created, based on the `id` field value.{{<wbr>}}Specifies if the object ID is generated automatically by the space when written into the space. If `false`, the field is indexed automatically, and if `true`, the field isn't indexed. If `autoGenerate` is declared as `false`, the field is indexed automatically. If `autoGenerate` is declared as `true`, the field isn't indexed. If `autoGenerate` is `true`, the field must be of the type `java.lang.String`. |
 
-<br>
 Example:
 
 
@@ -57,7 +56,6 @@ public class Person {
 |Syntax     | SpaceRouting|
 |Description| The `@SpaceRouting` annotation specifies a get method for the field to be used to calculate the target space for the space operation (read , write...). The `@SpaceRouting` field value hash code is used to calculate the target space when the space is running in **partitioned mode**.{{<wbr>}}The field value hash code is used to calculate the target space when the space is running in **partitioned mode**. |
 
-<br>
 
 Example:
 
@@ -81,9 +79,6 @@ public class Employee {
 [Data Partitioning]({{%currentadmurl%}}/data-partitioning.html)
 {{%/refer%}}
 
-
-
-<br>
 
 # SpaceProperty
 
@@ -121,7 +116,6 @@ public class Employee {
 |Argument   |  [SpaceIndexType]({{% api-javadoc %}}/com/gigaspaces/metadata/index/SpaceIndexType.html) |
 |Description| Querying indexed fields speeds up read and take operations. The `@SpaceIndex` annotation should be used to specify an indexed field.|
 
-<br>
 
 Example:
 
@@ -165,7 +159,6 @@ public class User {
 [Indexing  ](./indexing.html)
 {{%/refer%}}
 
-<br>
 
 # SpaceTextIndex
 
@@ -174,7 +167,6 @@ public class User {
 |Syntax     |  SpaceTextIndex|
 |Description| Querying indexed fields speeds up free text search operations. The `@SpaceTextIndex` annotation should be used to specify an indexed field.|
 
-<br>
 
 Example:
 
@@ -208,14 +200,53 @@ public class NewsArticle {
 [TextSearch](./query-full-text-search.html#indexing)
 {{%/refer%}}
 
+# Analyzer
+
+| | |
+|----|----|
+|Syntax     |  SpaceTextAnalyzer|
+|Description| An {{%exurl "Analyzer" "http://lucene.apache.org/core/5_3_0/core/org/apache/lucene/analysis/package-summary.html#package_description"%}} is responsible for supplying a TokenStream which can be consumed by the indexing and searching processes in Lucene. There are several different {{%exurl "Analyzers" "https://lucene.apache.org/core/3_0_3/api/core/org/apache/lucene/analysis/Analyzer.html"%}} available.
+              
+Example:
+
+
+```java
+public class NewsArticle {
+	private UUID id;
+	private String content;
+	private Person author;
+	private Long articleNumber;
+	private String type;
+	
+	@SpaceTextAnalyzer(analyzer = StandardAnalyzer.class)
+	public String getContent() {
+		return content;
+	}
+
+	@SpaceTextAnalyzer(analyzer = KeywordAnalyzer.class)
+	public String getType() {
+		return type;
+	}
+  // ....
+}
+```
+
+
+
+{{%refer%}}
+[TextSearch](./query-full-text-search.html#analyzer)
+{{%/refer%}}
+
+
+
+
+
 # SpaceSpatialIndex
 
 | | |
 |----|----|
 |Syntax     |  SpaceSpatialIndex|
 |Description| Querying indexed fields speeds up read and take operations. The `@SpaceSpatialIndex` annotation should be used to specify an indexed field.|
-
-<br>
 
 Example:
 
@@ -242,7 +273,6 @@ public class GasStation {
 {{%/refer%}}
 
 
-<br>
 
 # Unique Index
 
@@ -253,7 +283,6 @@ public class GasStation {
 |Description| Unique constraints can be defined for an attribute or attributes of a space class. |
 |Note |   The uniqueness is enforced per partition and not over the whole cluster. |
 
-<br>
 
 Example:
 
@@ -282,8 +311,6 @@ public class Person
 {{%/refer%}}
 
 
-<br>
-
 # SpaceIndex Path
 
 | | |
@@ -291,8 +318,6 @@ public class Person
 |Syntax     |  SpaceIndex path  ,type  |
 |Argument   |  [SpaceIndexType]({{% api-javadoc %}}/com/gigaspaces/metadata/index/SpaceIndexType.html)|
 |Description| The `path()` attribute represents the path of the indexed property within a nested object. |
-
-<br>
 
 Example:
 
@@ -335,7 +360,6 @@ public static class Address implements Serializable {
 {{%/refer%}}
 
 
-<br>
 # SpaceVersion
 
 
@@ -346,7 +370,6 @@ public static class Address implements Serializable {
 |Description| This annotation is used for object versioning used for optimistic locking. |
 |Note       | The attribute must be an `int` data type. |
 
-<br>
 
 Example:
 
@@ -371,8 +394,6 @@ public class Employee {
 {{%/refer%}}
 
 
-<br>
-
 # SpacePersist
 
 | | |
@@ -381,7 +402,6 @@ public class Employee {
 |Description| This specifies a getter method for holding the persistency mode of the object overriding the class level persist declaration. This field should be of the boolean data type.{{<wbr>}}If the persist class level annotation is true, all objects of this class type will be persisted into the underlying data store (Mirror, ExternalDataSource, Storage Adapter).|
 |Note       | When using this option, you must have the space class level `persist` decoration specified.|
 
-<br>
 
 Example:
 
@@ -400,8 +420,6 @@ public class Employee {
 }
 ```
 
-<br>
-
 # SpaceExclude
 
 | | |
@@ -410,7 +428,6 @@ public class Employee {
 |Description| When this annotation is specified the attribute is not written into the space.|
 |Note | - When `IncludeProperties` is defined as `IMPLICIT`, `@SpaceExclude` should usually be used. This is because `IMPLICIT` instructs the system to take all POJO fields into account.{{<wbr>}}- When `IncludeProperties` is defined as `EXPLICIT`, there is no need to use `@SpaceExclude`.{{<wbr>}}- `@SpaceExclude` can still be used, even if `IncludeProperties` is not defined.  |
 
-<br>
 
 Example:
 
@@ -429,8 +446,6 @@ public class Employee {
 }
 ```
 
-<br>
-
 # SpaceLeaseExpiration
 
 | | |
@@ -438,7 +453,7 @@ public class Employee {
 |Syntax     |  @SpaceLeaseExpiration|
 |Description|This annotation specifies the attribute for holding the timestamp of when the instance's lease expires (this is a standard Java timestamp based on the 1/1/1970 epoch). This property should not be populated by the user code. The space will populate this property automatically based on the lease time given by the user when writing the object. When using an external data source, you can choose to persist this value to the database. Subsequently, when data is reloaded from the external data source (at startup time for example), the space will filter out instances whose lease expiration timestamp has already passed. This field should be a `long` data type.|
 
-<br>
+
 
 Example:
 
@@ -466,8 +481,6 @@ public class MyData {
 {{%/refer%}}
 
 
-<br>
-
 # SpaceStorageType
 
 | | |
@@ -477,7 +490,6 @@ public class MyData {
 |Default    | StorageType.OBJECT |
 |Description| This annotation is used to specify how the attribute is stored in the space. |
 
-<br>
 
 Example:
 
@@ -500,7 +512,7 @@ public class Message {
 [Storage Types and Serialisation](./storage-types-controlling-serialization.html)
 {{%/refer%}}
 
-<br>
+
 
 # SpaceFifoGroupingProperty
 
@@ -511,7 +523,6 @@ public class Message {
 |Description| This annotation is used to define a space FIFO grouping property. |
 |Note | If defined, the `TakeModifiers.FIFO_GROUPING_POLL` or `ReadModifiers.FIFO_GROUPING_POLL` modifiers can be used to return all space entries that match the selection template in FIFO order. Different values of the FG property define groups of space entries that match each value. FIFO ordering exists within each group and not between different groups. |
 
-<br>
 
 Example:
 
@@ -535,7 +546,6 @@ public class FlightReservation
 {{%/refer%}}
 
 
-<br>
 
 # SpaceFifoGroupingIndex
 
@@ -545,7 +555,6 @@ public class FlightReservation
 |Description| This annotation is used to define a space FIFO grouping Index. |
 |Note |This annotation can be declared on several properties in a class in order to assist in efficient traversal.{{<wbr>}}If defined, there must be a property in the class, marked with the `@SpaceFifoGroupingProperty` annotation.{{<wbr>}}A compound index that contains this FIFO grouping index and the FIFO grouping property will be created.   |
 
-<br>
 Example:
 
 
@@ -566,10 +575,6 @@ Example:
 {{%/refer%}}
 
 
-
-
-<br>
-
 # SpaceDynamicProperties
 
 | | |
@@ -578,7 +583,6 @@ Example:
 |Description| Allows adding properties freely to a class without worrying about the schema.|
 |Note|**Only one property per class can be annotated with `@SpaceDynamicProperties`.**|
 
-<br>
 Example:
 
 
@@ -608,8 +612,6 @@ public class Person {
 {{%/refer%}}
 
 
-<br>
-
 # SpaceDocumentSupport
 
 | | |
@@ -619,7 +621,7 @@ public class Person {
 |Default    | SpaceDocumentSupport.DEFAULT|
 |Description| If the POJO contains properties which are POJO themselves, the space will implicitly convert these properties to space documents as needed.This works the other way around as well - if a Space document is created with a nested space document property, it will be converted to a POJO with a nested POJO property when read as a POJO. You can disable this implicit conversion and preserve the nested POJO instance within document entries by setting it to `COPY`|
 
-<br>
+
 Example:
 
 
@@ -640,7 +642,6 @@ public class Person {
 [Document POJO Interoperability](./document-pojo-interoperability.html#deep-interoperability)
 {{%/refer%}}
 
-<br>
 
 # SpaceClassConstructor
 
@@ -649,7 +650,6 @@ public class Person {
 |Syntax     | SpaceClassConstructor|
 |Description| This annotation can be placed on a POJO constructor to denote that this constructor should be used during object instantiation.{{<wbr>}}Using this annotations, it is possible for the POJO to have immutable properties (i.e. `final` fields).{{<wbr>}}As opposed to a standard POJO, a POJO annotated with this annotation may omit setters for its properties.{{<wbr>}}Except for the case where the id property is auto generated, only properties defined in this constructor will be considered space properties.The annotations can be placed on at most one constructor.|
 
-<br>
 
 Example:
 
@@ -669,7 +669,6 @@ public class Person {
 }
 ```
 
-<br>
 
 # Space sequence number
 
@@ -678,7 +677,6 @@ public class Person {
 |Syntax     | SpaceSequenceNumber|
 |Description| A sequence number (like a data-base sequence-number/autoincrement column) is a property that is given a unique incrementing value when the entry is written to the Space. It's a means for assigning a unique monotony -incremented value that can be used as a per-space (unique) key.The sequence-number is unique per-partition.  The annotated field is of type Long.    |
 
-<br>
 Example:
 
 
