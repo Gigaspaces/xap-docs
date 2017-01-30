@@ -5,10 +5,7 @@ categories: XAP121
 parent: querying-the-space.html
 weight: 360
 ---
-
-{{%warning "This page is under construction" %}}
-{{%/warning%}}
-
+ 
 
 XAP 12.1 introduces full text search capability leveraging the {{%exurl "Lucene" "http://lucene.apache.org"%}} search engine library. 
 

@@ -5,11 +5,7 @@ categories: XAP121
 parent: indexing-overview.html
 weight: 600
 ---
-
-{{%warning "This page is under construction" %}}
-
-{{%/warning%}}
-
+ 
 Text Search indexes can be defined by using the `@SpaceTextIndex` and `@SpaceTextIndexs` annotations.
 
 Lets assume we have a class called `NewsArticle` that has a `content` property that describes text we want to execute the text search queries 
