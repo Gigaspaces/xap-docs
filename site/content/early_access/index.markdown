@@ -17,7 +17,16 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
-## 12.1 M14 (Jan-22-2016)
+## 12.1 M15 (Jan-29-2017)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m15/gigaspaces-xap-open-12.1.0-m15-b16715.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m15/gigaspaces-xap-premium-12.1.0-m15-b16715.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m15/gigaspaces-xap-enterprise-12.1.0-m15-b16715.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m15/GigaSpaces-XAP.NET-Premium-12.1.0.16715-M15-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m15/GigaSpaces-XAP.NET-Premium-12.1.0.16715-M15-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m15/GigaSpaces-XAP.NET-Enterprise-12.1.0.16715-M15-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m15/GigaSpaces-XAP.NET-Enterprise-12.1.0.16715-M15-x86.msi)\]
+
+#### Milestone Release Notes
+
+Early access REST administration API
+
+## 12.1 M14 (Jan-22-2017)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m14/gigaspaces-xap-open-12.1.0-m14-b16714.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/gigaspaces-xap-premium-12.1.0-m14-b16714.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/gigaspaces-xap-enterprise-12.1.0-m14-b16714.zip)\] 
 * Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/GigaSpaces-XAP.NET-Premium-12.1.0.16714-M14-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/GigaSpaces-XAP.NET-Premium-12.1.0.16714-M14-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/GigaSpaces-XAP.NET-Enterprise-12.1.0.16714-M14-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m14/GigaSpaces-XAP.NET-Enterprise-12.1.0.16714-M14-x86.msi)\]
@@ -28,7 +37,7 @@ Early Access builds are provided as-is and should not be used in production. If 
 |----------|---------|-----------|
 |[XAP-13132](https://xap-issues.atlassian.net/browse/XAP-13132) | New Feature     |Verbose System Report|
 
-## 12.1 M13 (Jan-16-2016)
+## 12.1 M13 (Jan-16-2017)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m13/gigaspaces-xap-open-12.1.0-m13-b16713.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/gigaspaces-xap-premium-12.1.0-m13-b16713.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/gigaspaces-xap-enterprise-12.1.0-m13-b16713.zip)\] 
 * Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/GigaSpaces-XAP.NET-Premium-12.1.0.16713-M13-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/GigaSpaces-XAP.NET-Premium-12.1.0.16713-M13-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/GigaSpaces-XAP.NET-Enterprise-12.1.0.16713-M13-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m13/GigaSpaces-XAP.NET-Enterprise-12.1.0.16713-M13-x86.msi)\]
@@ -40,12 +49,12 @@ Early Access builds are provided as-is and should not be used in production. If 
 |[XAP-13023](https://xap-issues.atlassian.net/browse/XAP-13023) | New Feature     |User-defined query for initial Load in MemoryXtend |
 
 
-## 12.1 M12 (Jan-9-2016)
+## 12.1 M12 (Jan-9-2017)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m12/gigaspaces-xap-open-12.1.0-m12-b16712.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/gigaspaces-xap-premium-12.1.0-m12-b16712.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/gigaspaces-xap-enterprise-12.1.0-m12-b16712.zip)\] 
 * Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/GigaSpaces-XAP.NET-Premium-12.1.0.16712-M12-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/GigaSpaces-XAP.NET-Premium-12.1.0.16712-M12-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/GigaSpaces-XAP.NET-Enterprise-12.1.0.16712-M12-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m12/GigaSpaces-XAP.NET-Enterprise-12.1.0.16712-M12-x86.msi)\]
 
-## 12.1 M11 (Jan-2-2016)
+## 12.1 M11 (Jan-2-2017)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m11/gigaspaces-xap-open-12.1.0-m11-b16711.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/gigaspaces-xap-premium-12.1.0-m11-b16711.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/gigaspaces-xap-enterprise-12.1.0-m11-b16711.zip)\] 
 * Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/GigaSpaces-XAP.NET-Premium-12.1.0.16711-M11-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/GigaSpaces-XAP.NET-Premium-12.1.0.16711-M11-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/GigaSpaces-XAP.NET-Enterprise-12.1.0.16711-M11-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m11/GigaSpaces-XAP.NET-Enterprise-12.1.0.16711-M11-x86.msi)\]
