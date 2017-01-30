@@ -389,7 +389,7 @@ ResultSet rs = st.executeQuery();
 
 # Text Search
 
-XAP 12.1 introduces full text search capability leveraging the {{%exurl "Lucene" "http://lucene.apache.org"%}} search engine library and supports the {{%exurl "Lucene Query Parser Syntax" "http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description"%}} except `Fields`.
+XAP 12.1 introduces full text search capability leveraging the {{%exurl "Lucene" "http://lucene.apache.org"%}} search engine library supporting the {{%exurl "Lucene Query Parser Syntax" "http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description"%}} except `Fields`.
  
 Text search queries are available through the `text:` extension:
  
