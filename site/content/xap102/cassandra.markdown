@@ -15,8 +15,7 @@ The [Apache Cassandra Project ](http://cassandra.apache.org) is a scalable multi
 Cassandra is in use at Digg, Facebook, Twitter, Reddit, Rackspace, Cloudkick, Cisco, SimpleGeo, Ooyala, OpenX, and more companies that have large, active data sets. The largest production cluster has over 100 TB of data in over 150 machines. Data is automatically replicated to multiple nodes for fault-tolerance. Replication across multiple data centers is supported. Failed nodes can be replaced with no downtime. Every node in the cluster is identical. There are no network bottlenecks. There are no single points of failure.
 
 {{%info%}}
-The current version of XAP supports `Cassandra 1.1.6`. If you need to integrate XAP with other versions of Cassandra please refer to [The Archive Container](./archive-container.html).
-This will explain how to implement your own custom Archive Container.
+The current version of XAP supports `Cassandra 1.1.6`. 
 {{%/info%}}
 
 

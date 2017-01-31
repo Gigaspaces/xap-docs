@@ -13,8 +13,7 @@ Cassandra is in use at Digg, Facebook, Twitter, Reddit, Rackspace, Cloudkick, Ci
 
 
 {{%info%}}
-The current version of XAP supports `Cassandra 1.1.6`. If you need to integrate XAP with other versions of Cassandra please refer to [The Archive Container](./archive-container.html).
-This will explain how to implement your own custom Archive Container.
+The current version of XAP supports `Cassandra 1.1.6`. 
 {{%/info%}}
 
 
