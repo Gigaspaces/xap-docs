@@ -23,8 +23,8 @@ Bootstrapping a space from another space via the gateway.
 
 {{%/fpanel%}}
 
-<br>
 
-#### Additional Resources
+
+## Additional Resources
 
 [Multi Site Replication](./multi-site-replication-overview.html)
