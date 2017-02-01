@@ -57,7 +57,9 @@ GS-Agent has received the following enhancements:
 
 Replication configuration is affected by the size of the redolog, measured in replication packets, and various thresholds and policies which dictate system behavior. Since transactions are replicated in a single packet (to ensure atomicity), redolog size was not granular enough, as transactions can include few or many sub-operations. Starting 12.1, replication packets have weight, where simple operations weigh 1 and transactions weigh as the sum of their sub-operations, which makes it easier to configure replication.
 
-{{<infosign>}} Documentation is under construction - more information coming soon.
+{{<infosign>}} For more information see [Weight Policy](/xap121adm/controlling-the-replication-redo-log.html#weight-policy).
+
+
 
 ## Custom Security Support for Web Management Console
 

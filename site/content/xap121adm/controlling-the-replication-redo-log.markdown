@@ -18,14 +18,49 @@ On replicated clusters, each member, which is a source that sends replication ev
 
 A replication packet is either a single non-transactional "destructive" (write/take/update) operation, or a group of such operations that are done under the same transaction. The redo log contains a single list that is kept for all the targets, and for each target a different state is maintained, which represents its position in the redo log. When the cluster is at a normal state, this redo log should remain at some low constant size. However, in certain common scenarios, such as a momentary network disconnection, or a burst of high load, the redo log keeps all the pending events that need to be replicated until the source member manages to re-establish connection with the target, or until the replication target manages to catch up with the temporary load. As a result the redo log size starts to increase, and it can become quite large, depending on the different cluster usage, which affects the rate of replicated events creation.
 
+
 # Redo Log Capacity Configuration
 
 {{% note %}}
-The below configuration parameters have a significant effect on the behavior of the replication mechanism and the overall and performance of the space cluster. You should carefully evaluate every change you make to their default values, and consult the GigaSpaces support team if needed
+The configuration parameters below have a significant effect on the behavior of the replication mechanism and the overall and performance of the space cluster. You should carefully evaluate every change you make to their default values, and consult the GigaSpaces support team if needed
 {{% /note %}}
 
-Here are the parameters you may configure to tune the redo log behavior. You may configure the redo log behavior between replicated spaces and between the spaces and the Mirror:
 
+# Weight policy
+
+Replication configuration is affected by the size of the redolog, measured in replication packets, and various thresholds and policies which dictates system behavior. Since transactions are replicated in a single packet (to ensure atomicity), the redolog size was not granular enough, as transactions can include few or many sub-operations. Starting with XAP 12.1, replication packets have weight, where simple operations weigh 1 and transactions weigh as the sum of their sub-operations, which makes it easier to configure replication.
+
+Two policies are available:
+
+- **fixed**<br>
+All packets weight are 1.
+
+- **accumulated** <br>
+A single write/take/update operation is translated to a packet with weight of 1<br>
+Multiple operations are combined into a single operation with packet weight of 1.<br>
+A transaction is translated to a packet with the accumulated weight of all the single operations within the transaction.
+
+Here is an example of a transaction with weight 10 if the policy is set to `accumulated`:
+
+```java
+for (int i = 0; i < 10; ++i) {
+   Person person = new Person();
+   person.setId(i);
+   gigaSpace.write(person)
+}
+```
+
+You can use the `cluster-config.groups.group.repl-policy.backlog-weight-policy` property to configure the weight policy:
+
+|  Space Cluster Property  | Description   |   Default  |
+|----|----|----|
+|cluster-config.groups.group.repl-policy.backlog-weight-policy | Weight policy. `fixed` or `accumulated` | accumulated  |
+
+
+
+
+
+Here are the parameters you may configure to tune the redo log behavior. You may configure the redo log behavior between replicated spaces and between the spaces and the Mirror:
 
 | Space Cluster Property | Description | Default Value for partitioned | Default Value for replicated clusters |
 |:-----------------------|:------------|:------------------------------------------|:--------------------------------------|
