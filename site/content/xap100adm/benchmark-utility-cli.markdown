@@ -190,42 +190,69 @@ Other possible values are:
 
 # More Examples
 
+The following example arguments should be passed to the runTest script after loading a remote Space using startAll script.
+e.g. ./runTest.sh -read -i 1000
+
+
 The following example uses the JavaSpaces API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
 
-
 ```bash
-run -read -objecttype entry -i 1000 -s 1024
+-read -objecttype entry -i 1000 -s 1024
 ```
 
 The following example uses the JavaSpaces API, writes 1,000 POJOs into the space, 1K each, and takes them from the space. A remote cache is accessed.
 
+
+```bash
+-take -objecttype pojo -i 1000 -s 1024
 ```
 
 The following example uses the JavaSpaces API, writes 1,000 Entries into the space in FIFO mode {{%currentjavanet "fifo-support.html" %}}, 1K each, and reads them back into the client three times.
 
+
+```bash
+-read -objecttype fifo -i 1000 -s 1024 -rt 3
 ```
 
 The following example uses the Map API, puts 1,000 Entries into the space, 1K each, and gets them back into the client.
 
+
+```bash
+-map -read -i 1000 -s 1024
 ```
 
 The following example uses the Map API, puts 1,000 Entries into the space, 1K each, and removes them from the space. A remote space is accessed.
 
+
+```bash
+-map -take -i 1000 -s 1024
 ```
 
 The following example uses the Map API, puts 1,000 Entries into the space, 1K each, and gets them back into the client three times.
 
+
+```bash
+-map -read -i 1000 -s 1024 -rt 3
 ```
 
 The following example uses the Map API, puts 100,000 Entries into the space, gets them back, and removes them from the space. Throughput is displayed every 10,000 operations.
 
+
+```bash
+-map -all -i 100000 -showrate 10000
 ```
 
 The following example uses the JMS API, sends 10,000 JMS messages into the space (_MessageProducer.send()_), and receives them asynchronously (_MessageListener.onMessage()_) with notifications.
 
+
+```bash
+-i 100000 -notify -objecttype jms
 ```
 
 The following example uses the JMS API, sends 100,000 JMS messages into the space (_MessageProducer.send()_), and receives them synchronously (_MessageConsumer.receive()_). Throughput is displayed every 10,000 operations.
 
+
+```bash
+-i 100000 -take -objecttype jms -showrate 10000
 ```
 
