@@ -6,28 +6,28 @@ parent: administration-tools.html
 weight: 400
 ---
 
- 
+ {{%refer%}}
+ For more information please refer to the [Quiesce documentation](./quiesce-overview.html)
+ {{%/refer%}}
 
 XAP allows putting a processing unit in quiesce mode (a.k.a maintenance mode). The quiesce mode can be invoked via the CLI. This page explains the usage of the CLI commands.
 
-{{%refer%}}
-For more information please refer to the [Quiesce documentation](./quiesce-overview.html)
-{{%/refer%}}
 
-{{%info "Interacting with a Secured Grid"%}}
+
+{{%note "Interacting with a Secured Grid"%}}
 In order to interact with a secured grid you need to login first. See [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html).
- {{%/info%}}
+ {{%/note%}}
 
 # Quiesce A Processing Unit
 
-### Syntax
+## Syntax
 
 
 ```bash
 gs> quiesce [options] PU_NAME
 ```
 
-### Description
+## Description
 
 Sends a quiesce request to the GSM for the provided processing unit's name.
 
@@ -83,14 +83,14 @@ Quiesce command completed successfully [token=ee16f577-92df-430b-afc7-2dd9f2c169
 
 # Unquiesce A Processing Unit
 
-### Syntax
+## Syntax
 
 
 ```bash
 gs> unquiesce [options] PU_NAME
 ```
 
-### Description
+## Description
 
 Sends an unquiesce request to the GSM for the provided processing unit's name.
 
@@ -140,3 +140,5 @@ Unquiesce command completed successfully
 | -help  | Prints help | |
 {{%/accord%}}
 {{%/accordion%}}
+
+

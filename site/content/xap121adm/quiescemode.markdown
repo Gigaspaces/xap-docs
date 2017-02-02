@@ -20,8 +20,6 @@ Overview of quiesce mode in XAP
 
 [API and Usage](./quiesce-pu-api.html){{<wbr>}}
 Quiesce mode API and usage examples
-
-[Limitations](./quiesce-limitations.html){{<wbr>}}
-Limitations and considerations
+ 
 
 {{%/fpanel%}}

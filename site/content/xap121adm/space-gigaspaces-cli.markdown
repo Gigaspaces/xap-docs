@@ -8,9 +8,9 @@ weight: 300
 
 {{%ssummary%}}{{%/ssummary%}}
 
-{{%info "Interacting with a Secured Grid"%}}
+{{%refer "Interacting with a Secured Grid"%}}
 In order to interact with a secured grid you need to login first. See [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html).
-{{%/info%}}
+{{%/refer%}}
 
 # clean
 
@@ -24,17 +24,17 @@ Removes all Entries and templates from the space.
 
 The `space clean` command is relevant only for spaces in a started state.
 
-{{% tip %}}
+{{% note %}}
 When using a persistent space, the clean operation might take some time because it needs to erase data and close database connections. It should not be called when other clients are using the space.
-{{% /tip %}}
+{{% /note %}}
 
 Specifying a container URL prints a numbered list of all the spaces in the container. You can then choose which space to clear, or `all` (clears all spaces).
 
 Specifying a URL of a clustered space prints a list of all spaces in the cluster, and you can choose a space to clear by its number, or `all` (lists all spaces).
 
-{{% tip %}}
+{{% note %}}
 Using `-c` (or `-cluster`) with a URL of a clustered space clears **all** cluster members.
-{{% /tip %}}
+{{% /note %}}
 
 ## Options
 
@@ -72,17 +72,17 @@ Removes all Entries and templates from the space.
 
 The `space clear` command is relevant only for spaces in a started state.
 
-{{% tip %}}
+{{% note %}}
 When using a persistent space, the clear operation might take some time because it needs to erase data and close database connections. It should not be called when other clients are using the space.
-{{% /tip %}}
+{{% /note %}}
 
 Specifying a container URL prints a numbered list of all the spaces in the container. You can then choose which space to clear, or `all` (clears all spaces).
 
 Specifying a URL of a clustered space prints a list of all spaces in the cluster, and you can choose a space to clear by its number, or `all` (lists all spaces).
 
-{{% tip %}}
+{{% note %}}
 Using `-c` (or `-cluster`) with a URL of a clustered space clears **all** cluster members.
-{{% /tip %}}
+{{% /note %}}
 
 ## Options
 
@@ -157,9 +157,9 @@ You can view the configuration details of spaces in a specific container (see th
 
 Specifying a URL of a clustered space prints a list of all spaces in the cluster, and you can choose a space to view by its number, or `all` (view all spaces).
 
-{{% tip %}}
+{{% note %}}
 Using `-c` (or `-cluster`) with a URL of a clustered space displays configuration details of **all** cluster members.
-{{% /tip %}}
+{{% /note %}}
 
 ## Options
 
@@ -196,9 +196,9 @@ You can view the connections of spaces in a specific container (see the options 
 
 Specifying a URL of a clustered space prints a list of all spaces in the cluster, and you can choose a space to view by its number, or `all` (displays all spaces).
 
-{{% info %}}
+{{% note %}}
 Using `-c` (or `-cluster`) with a URL of a clustered space displays live connections of **all** cluster members.
-{{%/info%}}
+{{%/note%}}
 
 ## Options
 
@@ -262,9 +262,9 @@ You can list spaces in a specific container (see the options below) -- specifyin
 
 Specifying a URL of a clustered space prints a list of all spaces in the cluster, and you can choose a space to see by its number, or `all` (lists all spaces).
 
-{{% tip %}}
+{{% note %}}
 Using `\-c` (or `\-cluster`) with a URL of a clustered space lists **all** cluster members.
-{{%/tip%}}
+{{%/note%}}
 
 ## Options
 
@@ -315,9 +315,9 @@ You can ping spaces in a specific container (see the options below) -- specifyin
 
 Specifying a URL of a clustered space prints a list of all spaces in the cluster, and you can choose a space to ping by its number, or `all` (pings all spaces).
 
-{{% tip %}}
+{{% note %}}
 Using `-c` (or `-cluster`) with a URL of a clustered space pings **all** cluster members.
-{{% /tip %}}
+{{% /note %}}
 
 ## Options
 

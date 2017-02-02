@@ -8,20 +8,20 @@ weight: 250
 
 {{%ssummary%}} {{%/ssummary%}}
 
-{{%info "Interacting with a Secured Grid"%}}
+{{%refer "Interacting with a Secured Grid"%}}
 In order to interact with a secured grid you need to login first. See [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html).
-{{%/info%}}
+{{%/refer%}}
 
 # application
 
-### Syntax
+## Syntax
 
 
 ```bash
 gs> deploy-application [-user xxx -password yyy] [-secured true/false] application_directory_or_zipfile
 ```
 
-### Description
+## Description
 
 Deploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies), which deploys one or more processing units in dependency order onto the service grid.
 
@@ -132,14 +132,14 @@ You can also use the [shared machine provisioning]({{%currentjavaurl%}}/elastic-
 
 # undeploy application
 
-### Syntax
+## Syntax
 
 
 ```bash
 gs> undeploy-application application_name
 ```
 
-### Description
+## Description
 
 Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
 
@@ -172,13 +172,13 @@ The following undeploys the data-app example application (which includes a feede
 
 # deploy elastic space
 
-### Syntax
+## Syntax
 
 ```bash
 gs> deploy-elastic-space [options] [space name]
 ```
 
-### Description
+## Description
 
 An Elastic Space only Processing Unit can be easily deployed onto the Service Grid.
 
@@ -241,13 +241,13 @@ The following specifies command line arguments.
 
 # deploy elastic pu
 
-### Syntax
+## Syntax
 
 ```bash
 gs> deploy-elastic-pu [options] [-puname ...] [-file ...] [space name]
 ```
 
-### Description
+## Description
 
 An Elastic PU only Processing Unit can be easily deployed onto the Service Grid.
 
@@ -317,7 +317,7 @@ The following options are supported with a `stateful` elastic PU only
 
 # dedicated machine provisioning properties
 
-### Description
+## Description
 
 The following provisioning properties may be used with the `-dedicated-machine-provisioning [provisioning properties]` option in `deploy-elastic-space` and `deploy-elastic-pu` commands.
 
@@ -346,7 +346,7 @@ The following deploys an elastic space named mySpace with zones [zone1,zone2] wh
 
 # shared machine provisioning properties
 
-### Description
+## Description
 
 The following provisioning properties may be used with the `-shared-machine-provisioning [provisioning properties]` option in `deploy-elastic-space` and `deploy-elastic-pu` commands.
 
@@ -377,7 +377,7 @@ The following deploys an elastic space named mySpace with zones [zone1,zone2] wh
 
 # scale properties
 
-### Description
+## Description
 
 The following scale properties may be used with the `-scale [scale properties]` option in `deploy-elastic-space` and `deploy-elastic-pu` commands.
 
@@ -420,13 +420,13 @@ The following options are supported with `manual` strategy only
 
 # scale elastic processing unit
 
-### Syntax
+## Syntax
 
 ```bash
 gs> scale [options] -name [processing unit name]
 ```
 
-### Description
+## Description
 
 Easily scale an already deployed elastic processing unit.
 
@@ -456,14 +456,14 @@ Easily scale an already deployed elastic processing unit.
 
 # undeploy PU
 
-### Syntax
+## Syntax
 
 
 ```bash
 gs> undeploy-pu pu_name
 ```
 
-### Description
+## Description
 
 Undeploys a processing unit from the service grid, while respecting pu dependency order.
 
