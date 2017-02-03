@@ -95,7 +95,6 @@ Refer to [Change code without restarts]({{%currentjavaurl%}}/the-space-no-restar
 | com.gs.transport_protocol<br>.lrmi.maxBufferSize | The NIO internal cache (a DirectByteBuffer) might cause an OutOfMemoryError due-to direct memory exhaustion. To avoid such a scenario, the LRMI layer breaks the outgoing buffer into a several chunks. By doing so, the NIO internal cache is kept small, and may not cause any error. The size of these chunks can be determined by this property| 65536 (64k)| Client & Server | Bytes | Yes |
 | com.gs.transport_protocol<br>.lrmi.selector.threads | LRMI selector threads. This should be configured with multi core machines. Usualy should be tuned for server side| 4 | Client & Server | Threads| No|
 | com.gs.transport_protocol<br>.lrmi.use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
-| com.gs.transport_protocol<br>.lrmi.use_async_connect | Use asynchronous IO to connect. The default of true should work for most systems. | true | Client & Server | boolean  | No|
 | com.gs.transport_protocol<br>.lrmi.classloading | Enables LRMI dynamic class loading.| true | Server | boolean  | No|
 | com.gs.transport_protocol<br>.lrmi.classloading.import | Enables importing of classes using LRMI dynamic class loading.| true | Server | boolean  | No|
 | com.gs.transport_protocol<br>.lrmi.classloading.export | Enables exporting of classes using lrmi dynamic class loading.| true | Server | boolean  | No|
