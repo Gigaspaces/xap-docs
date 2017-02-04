@@ -18,7 +18,7 @@ Task executor overview.
 - [Aggregators](./aggregators.html){{<wbr>}}
 Aggregating Data with XAP In-Memory Data-Grid using built-in aggregators.
 
-- [Dynamic language tasks](./dynamic-language-tasks.html){{<wbr>}}
+- [Dynamic language tasks](./task-dynamic-language.html){{<wbr>}}
 XAP supports the execution of tasks using scripting languages like JavaScipt and Groovy. These can be defined dynamically using the JDK 1.6 dynamic languages support. The dynamic language support is based on the ordinary task executors and OpenSpaces remoting support.
 
 

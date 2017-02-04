@@ -11,11 +11,11 @@ weight: 400
 
 
 
-[Dynamic Language Tasks](./dynamic-language-tasks.html) has been extended and now supports Scala based script execution.
+[Dynamic Language Tasks](./task-dynamic-language.html) has been extended and now supports Scala based script execution.
 
 # Configuration
 
-Here is how you would configure a processing unit to run a scripting executor with scala support and use it from a client proxy. For detailed information on the `Scripting Executor` framework, see [Dynamic Language Tasks](./dynamic-language-tasks.html).
+Here is how you would configure a processing unit to run a scripting executor with scala support and use it from a client proxy. For detailed information on the `Scripting Executor` framework, see [Dynamic Language Tasks](./task-dynamic-language.html).
 
 ## Processing Unit Configuration
 

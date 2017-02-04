@@ -585,7 +585,7 @@ GigaSpaces JPA native query execution is a powerful feature used for executing:
 {{%refer%}}
 - SQLQuery syntax-like queries ([SQLQuery](./query-sql.html)).
 - GigaSpaces Tasks ([Task Execution over the Space](./task-execution-over-the-space.html)).
-- GigaSpaces Dynamic Scripts ([Dynamic Language Tasks](./dynamic-language-tasks.html)).
+- GigaSpaces Dynamic Scripts ([Dynamic Language Tasks](./task-dynamic-language.html)).
 {{%/refer%}}
 
 ### SQLQuery Execution
@@ -707,7 +707,7 @@ Integer result = (Integer) query.getSingleResult();  // Script execution always 
 ```
 
 {{%refer%}}
-For more information about dynamic script execution refer to [Dynamic Language Tasks](./dynamic-language-tasks.html).
+For more information about dynamic script execution refer to [Dynamic Language Tasks](./task-dynamic-language.html).
 {{%/refer%}}
 
 # XAP JPA Limitations
