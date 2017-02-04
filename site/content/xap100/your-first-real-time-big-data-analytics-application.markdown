@@ -458,7 +458,7 @@ Finished deploying [1] processing unit instances
 
 Once the application is running, you can use the XAP UI tools to view your application , access the data and the counters and manage the application:
 
-- For the Web Based UI run gs-webui.bat/sh and point your browser to localhost:8099 http://localhost:8099
+- For the Web Based UI run gs-webui.bat/sh and point your browser to `localhost:8099`
 - For the Rich Based UI run gs-ui.bat/sh
 
 {{% info "More Deployment Options "%}}
@@ -638,7 +638,7 @@ install-application <XapInstallationRoot>/recipes/apps/streaming-bigdata/bigData
 ```
 
 {{% info "Tracking installation progress "%}}
-You can track the progress on the shell and on the web management console (localhost:8099).
+You can track the progress on the shell and on the web management console (`localhost:8099`).
 {{% /info %}}
 
 For more information, see [Deploying Applications](http://getcloudify.org/guide/2.6/deploying/deploying_apps.html) page.

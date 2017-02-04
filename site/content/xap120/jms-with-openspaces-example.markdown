@@ -6,12 +6,7 @@ parent: messaging-support.html
 weight: 400
 ---
 
-
-
-{{%folderopen%}} Example Root `<XAP Root>\examples\data`
-
-The [OpenSpaces Data Example]({{%currentjavatuturl%}}/the-openspaces-data-example.html) demonstrates how to use a JMS feeder to send POJOs to the space. In order to make it happen we use two main features: Spring [JmsTemplate](http://static.springframework.org/spring/docs/2.0.x/api/org/springframework/jms/core/JmsTemplate.html) and JMS [MessageConverter](./jms-space-interoperability.html). This section describes how those features are used in the example.
-
+ 
 # Architecture
 
 A processing unit runs the `JMSDataFeeder` that writes `Data` objects with raw data into the remote space. The `JMSDataFeeder` uses Spring's [JmsTemplate](http://static.springframework.org/spring/docs/2.0.x/api/org/springframework/jms/core/JmsTemplate.html) over GigaSpaces JMS, to write non-processed `Data` objects into the space every second. The `JMSDataFeeder` uses an `ObjectMessage2ObjectConverter` to convert the JMS ObjectMessages to `Data` objects before they are written to the space. Every `Data` object is written to the space with the processed value set to false, which is later set to true by the `DataProcessor`.

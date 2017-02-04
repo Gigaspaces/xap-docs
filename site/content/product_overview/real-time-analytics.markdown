@@ -78,7 +78,6 @@ Related Topics
 - Query API {{%latestjavanet "querying-the-space.html" %}}
 - Processing API {{%latestjavanet "event-processing.html"%}}
 - BlobStore Storage Model [MemoryXtend]({{%latestadmurl%}}/memoryxtend.html)
-- [Big Data Integration]({{%latestjavaurl%}}/big-data.html)
 - [Time Series](/sbp/time-series.html)
 - [Storm Integration](/sbp/storm-integration.html)
 - [Kafka Integration](/sbp/kafka-integration.html)

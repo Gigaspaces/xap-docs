@@ -69,7 +69,7 @@ c.   Run
 ```bash
 C:\GigaSpaces\XAP.NET 9.7.0 x86\NET v4.0.30319\Bin\Gs-webui.exe
 ```
- and once successful, login to view the UI (e.g at http://localhost:8099/). You can login with the default group XAP-9.7.0-ga-NET-4.0.30319-x86
+ and once successful, login to view the UI (e.g at `http://localhost:8099/`). You can login with the default group XAP-9.7.0-ga-NET-4.0.30319-x86
 
 Keep this grid name (mydatagrid) handy as you will be using it later on.
 

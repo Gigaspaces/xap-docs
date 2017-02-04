@@ -494,7 +494,7 @@ Navigate to the XAP bin directory and double-click gs-agent.bat
 
 {{%accord title="Step 7: Start Web management Console"%}}
 Start and login to the Web Management Console by double-clicking gs-webui.bat
-and then entering http://localhost:8099 into an Internet Browser (Firefox or Google Chrome is recommended)
+and then entering `http://localhost:8099` into an Internet Browser (Firefox or Google Chrome is recommended)
 
 ![drools1](/attachment_files/drools/drools19.png)
 

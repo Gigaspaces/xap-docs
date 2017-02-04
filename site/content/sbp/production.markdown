@@ -18,11 +18,8 @@ weight: 300
 
 [Hyperic integration](./hyperic-integration.html)
 
-[JMX Space Statistics](./jmx-space-statistics.html)
 
 [Mirror Monitor](./mirror-monitor.html)
-
-[Moving into Production Checklist](./moving-into-production-checklist.html)
 
 [Primary-Backup Zone Controller](./primary-backup-zone-controller.html)
 

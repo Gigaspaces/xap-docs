@@ -116,7 +116,7 @@ ISpaceProxy spaceProxy = new SpaceProxyFactory("xapTutorialSpace").Create();
 
 # WEB Admin UI  
  
-You can start XAP's console and inspect the Data Grid components that have been started. Double-click `gs-webui.exe` from the product's `bin` folder, then open a web browser and navigate to http://localhost:8099 and the login screen for the admin application will open up. The following screen shots will demonstrate some of the UI features: (no username and password needed)
+You can start XAP's console and inspect the Data Grid components that have been started. Double-click `gs-webui.exe` from the product's `bin` folder, then open a web browser and navigate to `http://localhost:8099` and the login screen for the admin application will open up. The following screen shots will demonstrate some of the UI features: (no username and password needed)
 
  
 {{%section%}}

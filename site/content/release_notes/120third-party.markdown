@@ -42,7 +42,7 @@ This page list all the 3rd party libraries shipped with   XAP on a per version b
 |[Jetty](http://eclipse.org/jetty/)         | 8.1.8, 9.1.3 | [Apache2](http://www.eclipse.org/jetty/licenses.php) | Web Container | [Jetty Processing Unit Container](/xap120/web-jetty-processing-unit-container.html) |
 |[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](/xap120/messaging-support.html) |
 |[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](/xap120/mule-esb.html) |
-|[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](http://svn.codehaus.org/groovy/trunk/groovy/groovy-core/LICENSE.txt) | Dynamic Scripting | [Dynamic Scripting Support](/xap120/dynamic-language-tasks.html)|
+|[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](http://svn.codehaus.org/groovy/trunk/groovy/groovy-core/LICENSE.txt) | Dynamic Scripting | [Dynamic Scripting Support](/xap120/task-dynamic-language.html)|
 |[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](/xap120/scala.html) |
 |[MapDB](http://www.mapdb.org/)             | 1.0.7 | [Apache2](https://github.com/jankotek/MapDB/blob/master/license.txt) | Off Heap | [Off Heap RAM](/xap120adm/memoryxtend-ohr.html) |
 |[snmp4j](http://www.snmp4j.org/)           | 1.11.2 | [Apache2](http://www.snmp4j.org/LICENSE-2_0.txt) | SNMP | [SNMP Connectivity via Alert Logging Gateway](/xap120/snmp-connectivity-via-alert-logging-gateway.html) |

@@ -152,7 +152,7 @@ connector.url=jini://localhost/*/sessionSpace
 ```
 
 -	Deploy the `demo-app.war` into Tomcat by placing it into \apache-tomcat-7.0.23\webapps
--	Start your web browser and access the web application via the following URL: [http://localhost:8888/demo-app](http://localhost:8888/demo-app)
+-	Start your web browser and access the web application via the following URL: `http://localhost:8888/demo-app`
 
 The URL above assumes the Apache Load Balancer is configured to use port 8888.
 

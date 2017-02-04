@@ -36,7 +36,7 @@ Task execution comes in two flavors:
 
 - Java Tasks{{% latestjavanet "task-execution-over-the-space.html"%}} - In this mode you can pass Java code from the client to the cluster to be executed on the data grid nodes. The code is dynamically introduced to the server nodes classpath.
 
-- [Dynamic language tasks]({{% latestjavaurl%}}/dynamic-language-tasks.html) - Tasks can be defined using one of the dynamic languages supported by the JVM (JSR-223) and be compiled and executed on the fly.
+- [Dynamic language tasks]({{% latestjavaurl%}}/task-dynamic-language.html) - Tasks can be defined using one of the dynamic languages supported by the JVM (JSR-223) and be compiled and executed on the fly.
 
 Java Tasks can be more efficient in terms of performance and tend to be more type-safe then dynamic tasks. Dynamic tasks on the other hand can be changed more frequently without causing class version conflicts.
 

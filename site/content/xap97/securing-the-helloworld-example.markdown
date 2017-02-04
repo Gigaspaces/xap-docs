@@ -10,7 +10,7 @@ weight: 600
 
 
 
-If you are new to the **Hello World** example, we suggest to first review the [Your First XAP Application]({{%currentjavatuturl%}}/first-xap-application.html) tutorial and its [Hello World screen cast](http://www.youtube.com/watch?v=I2s8jg_Gufs&feature=relmfu). With this page we provide a short overview of the example, and get you started with applying security aspects to it.
+If you are new to the **Hello World** example, we suggest to first review the [Your First XAP Application](./your-first-xtp-application.html) tutorial and its [Hello World screen cast](http://www.youtube.com/watch?v=I2s8jg_Gufs&feature=relmfu). With this page we provide a short overview of the example, and get you started with applying security aspects to it.
 
 {{% info %}}
 The example distribution can be found under `<XAP root>/examples/helloworld`.

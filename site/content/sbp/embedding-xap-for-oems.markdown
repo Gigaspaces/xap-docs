@@ -70,7 +70,7 @@ The simplest way to start a node with GigaSpaces is just to invoke the GSA in th
 
 It's actually fairly easy to write some code that can connect to an existing datagrid, and deploy a new one if the datagrid doesn't exist.
 
-First, make sure the [classpath]({{%latestjavaurl%}}/setting-classpath.html) includes the GigaSpaces runtime. Then, connect to the datagrid. The following snippets shows how to create and deploy an Elastic Data Grid and how to find an existing data Data Grid service.
+First, make sure the [classpath]({{%latestjavaurl%}}/installation.html) includes the GigaSpaces runtime. Then, connect to the datagrid. The following snippets shows how to create and deploy an Elastic Data Grid and how to find an existing data Data Grid service.
 
 Creating and deploying an Elastic Data Grid
 

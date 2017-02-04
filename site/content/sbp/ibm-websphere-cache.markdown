@@ -125,7 +125,7 @@ Step 1: In the “Enterprise Applications” screen, click on the link named “
 ![drools1](/attachment_files/dynacache/cache10.png)
 
 
-Step 2: Open an Internet Browser and go to http://localhost:9082/cachemonitor
+Step 2: Open an Internet Browser and go to `http://localhost:9082/cachemonitor`
 Enter your User ID and Password then Click OK.
 
 ![drools1](/attachment_files/dynacache/cache11.png)
@@ -158,7 +158,7 @@ Continue to Click “Next” until the summary page. Then click “Finish” and
 {{%accord title="Test Demo Application using Dynamic Cache"%}}
 
 
-Step 1: Open an Internet Browser and go to http://localhost:9082/GigaDynaCacheTestWeb/DynaCacheTestServlet
+Step 1: Open an Internet Browser and go to `http://localhost:9082/GigaDynaCacheTestWeb/DynaCacheTestServlet`
 
 ![drools1](/attachment_files/dynacache/cache15.png)
 
@@ -232,7 +232,7 @@ Step 4: Confirm that there are no entries in the cache using the “Space Browse
 
 {{%accord title="Test Demo using XAP as Caching Provider"%}}
 
-Step 1: Open an Internet Browser and go to http://localhost:9082/GigaDynaCacheTestWeb/DynaCacheTestServlet
+Step 1: Open an Internet Browser and go to `http://localhost:9082/GigaDynaCacheTestWeb/DynaCacheTestServlet`
 
 ![drools1](/attachment_files/dynacache/cache26.png)
 

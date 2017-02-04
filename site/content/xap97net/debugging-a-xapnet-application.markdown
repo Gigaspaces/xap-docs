@@ -33,7 +33,7 @@ Have the following settings as part of your `app.config` file:
 </configuration>
 ```
 
-See [.NET JVM Configuration]({./jvm-configuration.html) for more details.
+See [.NET JVM Configuration](./jvm-configuration.html) for more details.
 
 # Viewing in JConsole
 1. Start `jconsole` -- jconsole is located under the bin directory of the Java home, by default it is under `<Installation dir>\Runtime\java\bin`
