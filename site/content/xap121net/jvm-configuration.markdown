@@ -19,17 +19,17 @@ GigaSpaces XAP.NET is bundled with [Oracle JDK 7 update 17](http://www.oracle.co
 1. Edit the `Settings.xml` file (located in `<XapNet>\config\Settings.xml`).
 2. Locate the `<XapNet.Runtime.JavaHome>` node and change its value to the location of the JVM you wish to use.
 
-{{% tip "Using JAVA_HOME "%}}
+{{% note "Using JAVA_HOME "%}}
 Many systems define an environment variable called `JAVA_HOME` which points to the JVM installation, since most java applications and libraries (including GigaSpaces XAP) use `JAVA_HOME` to locate java. Since the `Settings.xml` file supports environment variable expansion, it is possible to set <XapNet.Runtime.JavaHome> to `%JAVA_HOME%`, so you can later on change the jvm location without editing the xml file.
-{{% /tip %}}
+{{% /note %}}
 
 {{% anchor JvmSettings %}}
 
 # Jvm Settings
 
-Unlike .NET applications, which are compiled to executable files, java applications are compiled to `.class` or `.jar` files which are executed using the [Java Application Launcher](http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html) (`java.exe`) tool. This tool supports various options which control the way the application is executed, such as memory allocation, garbage collection and more.
+Unlike .NET applications, which are compiled to executable files, java applications are compiled to `.class` or `.jar` files which are executed using the {{%exurl "Java Application Launcher""http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html"%}} (`java.exe`) tool. This tool supports various options which control the way the application is executed, such as memory allocation, garbage collection and more.
 
-GigaSpaces XAP.NET tools and applications use [Java Native Interface (JNI)](http://java.sun.com/javase/6/docs/technotes/guides/jni/index.html) instead of `java.exe` to launch the JVM and execute java code, and use the Application Configuration File to load JVM settings.
+XAP.NET tools and applications use {{%exurl "Java Native Interface (JNI)""http://java.sun.com/javase/6/docs/technotes/guides/jni/index.html"%}} instead of `java.exe` to launch the JVM and execute java code, and use the Application Configuration File to load JVM settings.
 
 To configure JVM settings, add a `GigaSpaces` section to the application configuration file:
 

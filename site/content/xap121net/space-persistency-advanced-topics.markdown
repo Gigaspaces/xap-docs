@@ -48,9 +48,9 @@ com.gigaspaces.persistent.level = FINER
 
 When the space is started, restarted, or cleaned, the system can initially fill the space with space objects that are likely to be required by the application. You can specify the data to loaded using the `ExternalDataSource.initialLoad` method that is called once the space is started. See the [Space Persistency Initial Load](./space-persistency-initial-load.html) for details. The space is not available for clients, until the data load process has been completed.
 
-{{% tip %}}
+{{% note %}}
 The Initial Load is supported with the `partitioned` cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups you can use the `partitioned` and have ZERO as the amount of backups.
-{{% /tip %}}
+{{% /note %}}
 
 # Refreshing Space Object when using an external data source
 
@@ -87,17 +87,17 @@ If you write an object into the space, or load an object that has a ID that alre
 
 # Hibernate ID Generation
 
-Hibernate supports multiple ID generators as detailed in [Hibernate documentation](http://docs.jboss.org/hibernate/core/3.3/reference/en/html/mapping.html#mapping-declaration-id). Your hibernate mapping file should use algorithm that is appropriate for your use case.
+Hibernate supports multiple ID generators as detailed in {{%exurl "Hibernate documentation""http://docs.jboss.org/hibernate/core/3.3/reference/en/html/mapping.html#mapping-declaration-id"%}}. Your hibernate mapping file should use algorithm that is appropriate for your use case.
 
-Some generators increase the number of database operations and result into overall adverse performance. You need to watch out for generators + database combinations that automatically disable the batch insert mode transparently as mentioned [here](http://docs.jboss.org/hibernate/core/3.3/reference/en/html/batch.html).
+Some generators increase the number of database operations and result into overall adverse performance. You need to watch out for generators + database combinations that automatically disable the batch insert mode transparently as mentioned {{%exurl "here""http://docs.jboss.org/hibernate/core/3.3/reference/en/html/batch.html"%}}.
 
 _"Hibernate disables insert batching at the JDBC level transparently if you use an identity identifier generator."_
 
-{{% tip %}}
+{{% note %}}
 Using a sequence number increases the database reads on some databases, because Hibernate reads the next sequence number before each new `INSERT` in the batch. This also disables batch persistence used by GigaSpaces HibernateExternalDataSource.
 
 A better strategy would be to use a dummy generator like "increment" in hibernate mapping file, on the database side define a INSERT trigger on this table to generate a new id using a sequence. You will see orders of magnitude performance improvement in the database operations making this simple change.
-{{% /tip %}}
+{{% /note %}}
 
 {{% anchor limits %}}
 
@@ -106,7 +106,7 @@ A better strategy would be to use a dummy generator like "increment" in hibernat
 - When a space is configured to be persistent, and a `PONO` is used as the Space Domain class, it must use the `SpaceId(autogenerate=false)` decoration.
 - When running in LRU Cache policy the `ISpaceProxy.Count()` operation using the data within the space only and does not access the space data source (database) to return the object count.
 - The `ExternalDataSource.InitialLoad()` loads data into partitioned spaces, by reading all the data into the space and filtering it at the space side. To tune this behavior, you should execute the relevant query from the database on the partition ID, to fetch the relevant result set to load into the space. See the [Space Persistency Initial Load](./space-persistency-initial-load.html) for more details.
-- [Hibernate Lazy load](http://www.hibernate.org/162.html) is not supported when using the `HibernateExternalDataSource` implementation. See [Space Object Modeling](/sbp/space-object-modeling.html) for more details.
+- {{%exurl "Hibernate Lazy load""http://www.hibernate.org/162.html"%}} is not supported when using the `HibernateExternalDataSource` implementation. See [Space Object Modeling](/sbp/space-object-modeling.html) for more details.
 - When running in `ALL_IN_CACHE` cache policy mode, optimistic locking is supported - i.e. updates in optimistic locking mode will be rejected, in case the client performs an update with the non-latest version of the entry. The loaded object from the database should include the latest version or the value 1.
 - When running a local cache, the client cache will be updated using an optimistic locking mode - i.e. updates will include the correct version of the entry.
 - Optimistic locking is not supported when running in `LRU` cache policy mode, in case the loaded object does not include data within the `SpaceVersion` field.

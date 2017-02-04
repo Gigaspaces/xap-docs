@@ -55,7 +55,7 @@ It is highly recommended to use indexes on relevant properties to increase perfo
 
 # Supported LINQ operators 
 
-{{%panel "The following LINQ operators are supported:"%}}
+The following LINQ operators are supported:
 
 - [Any](http://msdn.microsoft.com/en-us/library/system.linq.queryable.any) - Returns true if there are any entries matching the query in the space, false otherwise.
 - [Count](http://msdn.microsoft.com/en-us/library/system.linq.queryable.count) - Returns `int` `Count` of entries.
@@ -65,7 +65,7 @@ It is highly recommended to use indexes on relevant properties to increase perfo
 - [OrderBy](http://msdn.microsoft.com/en-us/library/system.linq.queryable.orderby)/[OrderByDescending](http://msdn.microsoft.com/en-us/library/system.linq.queryable.orderbydescending)/[ThenBy](http://msdn.microsoft.com/en-us/library/system.linq.queryable.thenby)/[ThenByDescending](http://msdn.microsoft.com/en-us/library/system.linq.queryable.thenbydescending) - Specifies the order of the results.
 - [Select](http://msdn.microsoft.com/en-us/library/system.linq.queryable.select) - Specifies if the entire entry is returned or a subset of its properties (see [Projection](#projection)).
 - [Where](http://msdn.microsoft.com/en-us/library/system.linq.queryable.where) - Specifies the criteria used for querying the space (see [predicates](#predicates))
-{{%/panel%}}
+ 
 
 # Predicates 
 
@@ -151,7 +151,9 @@ By default user-defined types are stored in the space in a binary format, which 
 
 ## Sub-strings 
 
-The [System.String](http://msdn.microsoft.com/en-us/library/System.String) methods [Contains(String)](http://msdn.microsoft.com/en-us/library/dy85x1sa), [StartsWith(String)](http://msdn.microsoft.com/en-us/library/baketfxw) and [EndsWith(String)](http://msdn.microsoft.com/en-us/library/2333wewz) can be used to match sub-strings of a member. For example, to query for entries whose *Name* ends with *"Smith"*: 
+The {{%exurl "System.String""http://msdn.microsoft.com/en-us/library/System.String"%}} methods {{%exurl "Contains(String)""http://msdn.microsoft.com/en-us/library/dy85x1sa"%}}, 
+{{%exurl "StartsWith(String)""http://msdn.microsoft.com/en-us/library/baketfxw"%}} and 
+{{%exurl "EndsWith(String)""http://msdn.microsoft.com/en-us/library/2333wewz"%}} can be used to match sub-strings of a member. For example, to query for entries whose *Name* ends with *"Smith"*: 
 
 ```csharp
 var query = from p in spaceProxy.Query<Person>() 
@@ -165,7 +167,7 @@ The `StartsWith` and `EndsWith` methods have multiple overloads, but only the si
 
 ## Collection Membership 
 
-The [Enumerable.Contains(T value)](http://msdn.microsoft.com/en-us/library/bb352880) extension method can be used to check if any of the collection match a specific value. For example, to query for entries whose *Aliases* contains *"Smith"*: 
+The {{%exurl "Enumerable.Contains(T value)""http://msdn.microsoft.com/en-us/library/bb352880"%}} extension method can be used to check if any of the collection match a specific value. For example, to query for entries whose *Aliases* contains *"Smith"*: 
 
 ```csharp
 var query = from p in spaceProxy.Query<Person>() 
@@ -173,7 +175,7 @@ var query = from p in spaceProxy.Query<Person>()
             select p; 
 ```
 
-In addition, the [Enumerable.Any(Func(T, bool))](http://msdn.microsoft.com/en-us/library/bb534972) extension method can be used to check if any of the collection items match a specific predicate. For example, to query for entries whose *Cars* contains a red honda: 
+In addition, the {{%exurl "Enumerable.Any(Func(T, bool))""http://msdn.microsoft.com/en-us/library/bb534972"%}} extension method can be used to check if any of the collection items match a specific predicate. For example, to query for entries whose *Cars* contains a red honda: 
 
 ```csharp
 var query = from p in spaceProxy.Query<Person>() 

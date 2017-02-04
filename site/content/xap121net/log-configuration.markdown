@@ -34,23 +34,26 @@ If the Windows Event Log does not contain the specified source, it is automatica
 
 Here are some features/scenarios which might be useful:
 
-- You can use any of the built-in trace listeners offered by `System.Diagnostics`:
-    - `ConsoleTraceListener`
-    - `TextWriterTraceListener`
-    - `XmlWriterTraceListener`
-    - `DelimitedListTraceListener`
-    - `EventLogTraceListener`
+You can use any of the built-in trace listeners offered by `System.Diagnostics`:<br>
+- ConsoleTraceListener<br>
+- TextWriterTraceListener<br>
+- XmlWriterTraceListener<br>
+- DelimitedListTraceListener<br>
+- EventLogTraceListener<br>
 
-{{% refer %}}For more details, see: [http://msdn2.microsoft.com/en-us/library/4y5y10s7.aspx](http://msdn2.microsoft.com/en-us/library/4y5y10s7.aspx).{{% /refer %}}
+{{% refer%}}
+For more details see {{%exurl "Trace Listener""http://msdn2.microsoft.com/en-us/library/4y5y10s7.aspx"%}}.
+{{% /refer %}}
 
-- You can configure a trace listener with a filter to handle specific events.
+You can configure a trace listener with a filter to handle specific events.
 
-{{% refer %}}For more details, see: [http://msdn2.microsoft.com/en-us/library/system.diagnostics.eventtypefilter.aspx](http://msdn2.microsoft.com/en-us/library/system.diagnostics.eventtypefilter.aspx).{{% /refer %}}
+{{% refer %}}For more details see: {{%exurl "EventTypeFilter Class""http://msdn2.microsoft.com/en-us/library/system.diagnostics.eventtypefilter.aspx"%}}.{{% /refer %}}
 
-- You can implement a custom trace listener to handle traced events in a desired manner (e-mail, SMS, custom log, etc.). If you are planning to do this, we recommend that you examine the implementation of custom trace listeners provided in Microsoft's Logging Application Block as a reference.
+You can implement a custom trace listener to handle traced events in a desired manner (e-mail, SMS, custom log, etc.). If you are planning to do this, we recommend that you examine the implementation of custom trace listeners provided in Microsoft's Logging Application Block as a reference.
 
-{{% refer %}}For more details, see:
-
-- [http://msdn2.microsoft.com/EN-US/library/aa480464.aspx](http://msdn2.microsoft.com/EN-US/library/aa480464.aspx)
-- [http://msdn2.microsoft.com/en-us/library/ms228989.aspx](http://msdn2.microsoft.com/en-us/library/ms228989.aspx){{% /refer %}}
+{{% refer %}}
+For more details, see:<br>
+- {{%exurl "Logging Application Block""http://msdn2.microsoft.com/EN-US/library/aa480464.aspx"%}}<br>
+- {{%exurl "Trace Sources""http://msdn2.microsoft.com/en-us/library/ms228989.aspx"%}}
+{{% /refer %}}
 
