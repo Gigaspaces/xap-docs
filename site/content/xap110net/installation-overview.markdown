@@ -38,7 +38,7 @@ XAP .NET basic artifacts.
 [XAP as a Windows Service](./gigaspaces-services-manager.html){{<wbr>}}
 Setting up XAP as a Windows Service.
 
-[Debugging and monitoring](./debugging-a-xap.net-application.html){{<wbr>}}
+[Debugging and monitoring](./debugging-a-xapnet-application.html){{<wbr>}}
 Debugging and monitoring a .NET application.
 
 
