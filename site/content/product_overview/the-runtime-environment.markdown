@@ -20,7 +20,7 @@ Once packaged, a processing unit is deployed onto the GigaSpaces runtime environ
 
 
 {{%  info %}}
-When developing your processing unit, you can [run and debug the processing unit within your IDE]({{% latestjavaurl%}}/running-and-debugging-within-your-ide.html). You will typically deploy it to the GigaSpaces runtime environment when it's ready for production or when you want to run it in the real-life runtime environment
+When developing your processing unit, you can [run and debug the processing unit within your IDE]({{% latestjavaurl%}}/installation-eclipse-debug.html). You will typically deploy it to the GigaSpaces runtime environment when it's ready for production or when you want to run it in the real-life runtime environment
 {{%  /info %}}
 
 # Architecture

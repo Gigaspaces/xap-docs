@@ -215,7 +215,7 @@ rt-feeder project run configuration:
 {{%/section%}}
 
 
-For more information about the `IntegratedProcessingUnitContainer` class (runs the processing units within your IDE), see [Running and Debugging Within Your IDE]({{%latestjavaurl%}}/running-and-debugging-within-your-ide.html).
+For more information about the `IntegratedProcessingUnitContainer` class (runs the processing units within your IDE), see [Running and Debugging Within Your IDE]({{%latestjavaurl%}}/installation-eclipse-debug.html).
 
 {{% tip %}}
 Make sure you have updated **gslicense.xml** located under the GigaSpaces XAP root folder with the license key provided as part of the email sent to you after downloading GigaSpaces XAP.
