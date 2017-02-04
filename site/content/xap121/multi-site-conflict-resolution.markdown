@@ -9,27 +9,22 @@ weight: 500
 
 Multiple site conflict resolution is the ability to resolve conflicts caused when a Sink component attempts to perform operations on a local cluster and faces one of the following conflicts:
 
-**Data Conflicts**
-
-- Entry is already in space conflict - occurs when the sink attempts to write an entry which already exists in the local cluster.
-- Entry is not in space conflict - occurs when the sink attempts to update an entry which doesn't exist in the local cluster.
-- Entry version conflict - occurs when the sink attempts to update an entry with a newer/older version than the one which is in the local cluster.
+**Data Conflicts**<br>
+- Entry is already in space conflict - occurs when the sink attempts to write an entry which already exists in the local cluster.<br>
+- Entry is not in space conflict - occurs when the sink attempts to update an entry which doesn't exist in the local cluster.<br>
+- Entry version conflict - occurs when the sink attempts to update an entry with a newer/older version than the one which is in the local cluster.<br>
 - Entry is locked under transaction conflict - occurs when the sink attempts to update an entry in the local cluster which is locked under transaction.
 
-**Register Type Descriptor Conflict**
-
+**Register Type Descriptor Conflict**<br>
 Occurs when an attempt to register a type descriptor over gateway replication in the local cluster configured in the sink component fails.
 
-**Add Indexes Conflict**
-
+**Add Indexes Conflict**<br>
 Occurs when an attempt to add indexes over gateway replication to the local cluster configured in the sink component fails.
 
-**How Conflict Resolution Works**
-
+**How Conflict Resolution Works**<br>
 By default, operations that failed due-to transaction locks (EntryLockedUnderTransactionConflict) will be automatically retried a configurable amount of times. You may configure the time interval in-between retries. For other conflicts or when the number of retries exceeds, the conflict resolver is invoked. The conflict resolver gives the user the ability to abort or override conflicting operations.
 
-**Default Behavior**
-
+**Default Behavior**<br>
 The default behavior states that an operation which failed due-to a transaction lock will be retried 5 times with a time interval of 100ms in-between each retry. If no conflict resolver was specified, the default action for all conflicting operations is 'abort' so all conflicting operations will automatically be aborted (if an operation which is a part of a transaction fails, the entire transaction scope will be aborted).
 
 # Configuration
@@ -278,8 +273,8 @@ which will take the following actions:
         
 - Process all DataConflict objects. Iterate over all `DataConflictOperation` for a DataConflict.
 - It will fetch conflicting data objects from the target space using the space proxy.
-- It will either abort or override data at the target space based on class name exist in the abortClasses list or not.
-- The objects(from source and target) can be added to log-file for audit purpose or can be used for other purposes such as sending alerts.
+- It will either abort or override data at the target space based on the existents of the class name in the abortClasses list or not.
+- The objects(from source and target) can be added to a log-file for audit purpose or can be used for other purposes such as sending alerts.
         
 {{%tabs%}}
 {{%tab "pu.xml"%}}
@@ -442,8 +437,8 @@ public class MyConflictResolver extends ConflictResolver {
 {{%/tabs%}}
 
 {{%note%}}
-The space classes don't have to be part of the deployed WAN GW PU jar. You can leveraging the [Space Document API](./document-api.html) 
-as a totally generic resolver to access incoming replicated object payload and also the target copy (sink local space) allowing value comparison.
+The space classes don't have to be part of the deployed WAN GW PU jar. You can leverage the [Space Document API](./document-api.html) 
+as a generic resolver to access incoming replicated objects and also the target copy (sink local space) allowing value comparison.
 
 This will work also with any Java / .Net / C++ / Rest API / JDBC API implementations. 
 {{%/note%}}
