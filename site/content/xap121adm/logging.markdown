@@ -86,7 +86,7 @@ XAP out of the box configures logging with two log Handlers,
 - `java.util.logging.ConsoleHandler`: A simple handler for writing formatted output to System.err (level is set to ALL)
 - `com.gigaspaces.logger.RollingFileHandler`: A handler that writes formatted output to a file that rolls over if a certain policy is triggered. see [Managing Log Files](./logging-managing-files.html)
 
-Java util logging supports other handlers. MemoryHandler, SocketHandler or any other handler can be used instead of the above. More information about handlers is [here](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/technotes/guides/logging/). You can also use one of the [open source logging frameworks](http://java-source.net/open-source/logging) that support java.util.logging.
+Java util logging supports other handlers. MemoryHandler, SocketHandler or any other handler can be used instead of the above. More information about handlers is [here](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/technotes/guides/logging/). You can also use one of the {{%exurl "open source logging frameworks""http://java-source.net/open-source/logging"%}} that support java.util.logging.
 
 # Formatters
 

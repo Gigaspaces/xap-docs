@@ -6,14 +6,11 @@ parent: logging-overview.html
 weight: 350
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
-
-
+ 
 As part of the Administration API is an extensive logging extraction and filtering from different runtime components of XAP. Here is a very simple example:
 
 
 ```java
-
 import static com.gigaspaces.log.LogEntryMatchers.*;
 
 Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();

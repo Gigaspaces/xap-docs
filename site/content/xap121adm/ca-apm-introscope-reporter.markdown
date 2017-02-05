@@ -23,11 +23,11 @@ XAP-apm-introscope requires a separate license in addition to the XAP commercial
 
 The major components of CA Introscope are the Enterprise Manager, CA Introscope agents, Workstation, WebView, SmartStor, and APM database as shown in the graphic above. Many smaller components are explained in the CA Introscope product documentation.
 
-### Enterprise Manager
+## Enterprise Manager
 The Enterprise Manager acts as the repository of CA Introscope performance metrics. The Enterprise Manager receives performance metrics from one or more CA Introscope agents, allowing users to collect metrics centrally from many applications, application servers, and supporting systems. You can deploy the Enterprise Managers in different ways depending on the size and complexity of the enterprise system. The role of a specific Enterprise Manager depends on how it is deployed in a standalone or in a clustered CA APM environment.
 
 
-### Agents
+## Agents
 CA Introscope agents collect and report several types of application and environmental performance metrics. One agent is deployed per process (Java Virtual Machine [JVM] or .NET CLR instance). The total number of agents depends on the size of the CA Introscope deployment, for example:
 A small pilot network uses as few as half a dozen agents to monitor a few test applications.
 A large extended enterprise production environment uses hundreds or thousands of agents to monitor applications across the enterprise.
@@ -119,7 +119,7 @@ Below config to be included within the `metrics.xml` file:
 
 
 ```xml
-     <reporters>
+    <reporters>
         <reporter name="introscopeReporter" factory-class="com.gigaspaces.metrics.IntroscopeReporterFactory">
             <property name="host" value="127.0.0.1"/>
             <property name="port" value="8000"/>
@@ -189,7 +189,7 @@ XAP reports tens of different predefined metrics per machine that belongs to a g
 
 
 ```yaml
-     RESOURCE_SEGMENT_1|...|RESOURCE_SEGMENT_N:METRIC_NAME
+RESOURCE_SEGMENT_1|...|RESOURCE_SEGMENT_N:METRIC_NAME
 ```
 
 Resource segments are optional. They are separated from name by `:` and are separated from each other by `|`. Multiple resource segments create hierarchy, e.g. metrics `xap|groupA|myhost|lus|21950:lus_items` and `xap|groupA|myhost|lus|21950:lus_listeners` can be seen as:
@@ -207,7 +207,7 @@ xap
         --- lus_listeners
 ```
 {{%/column%}}
-{{%column width="50%"%}}
+{{%column width="40%"%}}
 {{%popup   "/attachment_files/introscope.png"%}}
 {{%/column%}}
 {{%/section%}}

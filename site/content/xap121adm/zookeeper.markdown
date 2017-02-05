@@ -6,16 +6,10 @@ parent: runtime-configuration.html
 weight: 500
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
-
-
-
-
-{{% anchor GSRuntimeEnv %}}
 
 # Overview
 
-XAP uses [ZooKeeper](http://zookeeper.apache.org/) for storing the id of the primary Space for each partition, this is used for MemoryXtend grid only.When a partition is started, the primary election mechanism will elect a primary Space randomly (or on basis of first-ready) but will wait for the last primary to take the role of primary the Space.
+XAP uses {{%exurl "ZooKeeper""http://zookeeper.apache.org/"%}} for storing the id of the primary Space for each partition, this is used for MemoryXtend grid only.When a partition is started, the primary election mechanism will elect a primary Space randomly (or on basis of first-ready) but will wait for the last primary to take the role of primary the Space.
 
 # Single instance
 
@@ -36,7 +30,7 @@ For example:
 ```command
 XAP_ZOOKEEPER_SERVERS=host1:2888:3888,host3:2888:3888,host3:2888:3888
 ```
-<br>
+
 {{% note Note%}}
 The ip/hostname above should be the same as it configured in `XAP_NIC_ADDR` as it explained [here](./network-multi-nic.html).
 {{%/note%}}
@@ -59,23 +53,18 @@ gs-agent gsa.gsc 2 gsa.global.gsm 0 gsa.global.lus 0 gsa.zk 1
 Like other Grid Service Components you can use the component-specific configuration for specifying ZooKeeper settings. This is set using the environment variable: `ZOOKEEPER_JAVA_OPTIONS`.
 
 For example:
-
 {{% tabs %}}
 {{% tab linux %}}
 
 ```bash
 export XAP_ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
-
 ./gs-agent.sh
 ```
 
 {{% /tab %}}
-
 {{% tab Windows %}}
-
 ```xml
 set XAP_ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
-
 call gs-agent.bat
 ```
 {{% /tab %}}
@@ -85,5 +74,5 @@ call gs-agent.bat
 The ZooKeeper configuration is provided by configuration file which is located by default at `<XAP Root>\config\zookeeper\zoo.cfg`, you can change it location using `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `-Dorg.openspaces.grid.zookeeper.config-file` system property.
 
 {{%refer%}}
-More information on how to configure ZooKeeper can be found [here](https://zookeeper.apache.org/doc/r3.4.2/zookeeperAdmin.html#sc_configuration).
+More information on how to configure ZooKeeper can be found {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.2/zookeeperAdmin.html#sc_configuration"%}}.
 {{%/refer%}}

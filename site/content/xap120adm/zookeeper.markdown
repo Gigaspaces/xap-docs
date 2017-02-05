@@ -5,17 +5,11 @@ categories: XAP120ADM
 parent: runtime-configuration.html
 weight: 500
 ---
-
-{{% ssummary %}}{{% /ssummary %}}
-
-
-
-
-{{% anchor GSRuntimeEnv %}}
+ 
 
 # Overview
 
-XAP uses [ZooKeeper](http://zookeeper.apache.org/) for storing the id of the primary Space for each partition, this is used for MemoryXtend grid only.When a partition is started, the primary election mechanism will elect a primary Space randomly (or on basis of first-ready) but will wait for the last primary to take the role of primary the Space.
+XAP uses {{%exurl "ZooKeeper""http://zookeeper.apache.org/"%}} for storing the id of the primary Space for each partition, this is used for MemoryXtend grid only.When a partition is started, the primary election mechanism will elect a primary Space randomly (or on basis of first-ready) but will wait for the last primary to take the role of primary the Space.
 
 # Single instance
 
@@ -83,7 +77,7 @@ call gs-agent.bat
 
 
 The ZooKeeper configuration is provided by configuration file which is located by default at `<XAP Root>\config\zookeeper\zoo.cfg`, you can change it location using `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `-Dorg.openspaces.grid.zookeeper.config-file` system property.
-
+ 
 {{%refer%}}
-More information on how to configure ZooKeeper can be found [here](https://zookeeper.apache.org/doc/r3.4.2/zookeeperAdmin.html#sc_configuration).
+More information on how to configure ZooKeeper can be found {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.2/zookeeperAdmin.html#sc_configuration"%}}.
 {{%/refer%}}
