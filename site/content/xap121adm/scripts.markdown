@@ -6,7 +6,6 @@ parent: administration-tools.html
 weight: 50
 ---
 
-{{% ssummary page%}}{{% /ssummary %}}
 
 The `<XAP root>/bin` folder includes scripts to manage and monitor [GigaSpaces Runtime](./the-runtime-environment.html) Components and Applications:
 
@@ -69,9 +68,9 @@ You can enable this option in one of the following ways:
 
     com.j_spaces.core.container.embedded-services.mahalo.start-embedded-mahalo=true
 
-{{% tip %}}
-GigaSpaces supports space monitoring and management using JMX - The Java Management Extensions. For more details, refer to the [JMX Management](./space-jmx-management.html) section.
-{{% /tip %}}
+{{% note %}}
+XAP supports space monitoring and management using JMX - The Java Management Extensions. For more details, refer to the [JMX Management](./space-jmx-management.html) section.
+{{% /note %}}
 
 {{% note %}}
 When running `gs-instance`, the Jini Lookup Service runs implicitly. When having many Jini Lookup Services running across the network, the spaces and clients might be overloaded since they publish themselves into the Lookup Service, or are trying to get updates about newly registered services.
@@ -99,7 +98,7 @@ You can use three arguments. All arguments must be enclosed by quotes (`" "`). I
 
 | Argument | Description |
 |:---------|:------------|
-| Argument 1 | Defines a space URL. The value is set into the `SPACE_URL` variable. If no value is passed for this argument, the space URL defined in the `space-instance` script is used. |
+| <nobr>Argument 1 <nobr>| Defines a space URL. The value is set into the `SPACE_URL` variable. If no value is passed for this argument, the space URL defined in the `space-instance` script is used. |
 | Argument 2 | Defines a path which will be appended to the beginning of the used classpath. The value you define is set into the `APPEND_TO_CLASSPATH_ARG` variable. If no value is passed, the classpath defined in the `space-instance` script is used. |
 | Argument 3 | Defines additional command line arguments such as system properties. The value is set into the `APPEND_ADDITIONAL_ARG` variable. |
 

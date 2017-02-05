@@ -6,7 +6,7 @@ parent: runtime-configuration.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 {{% anchor GSRuntimeEnv %}}
 
@@ -199,5 +199,83 @@ Note that we're setting `gsa.gsc 0` to avoid loading the default `gsc` component
 {{%/note%}}
 
  
+# GS Agent options
 
 
+## Help
+You can run the gs-agent utility with the help argument to see all available options:
+
+```bash
+gs-agent --help
+# or
+gs-agent -h
+```
+
+This will produce the following output:
+
+```bash
+java version "1.8.0_45"
+Java(TM) SE Runtime Environment (build 1.8.0_45-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
+
+2017-02-05 12:55:35,456 CONFIG [com.gigaspaces.logger] - Log file: C:\GigaSpaces\12.1\gigaspaces-xap-enterprise-12.1.0-m14-b16714\logs\2017-02-05~12.55-gigaspaces-gsa-admin-17696.log
+2017-02-05 12:55:35,425  INFO [com.gigaspaces.start] - Starting ServiceGrid [user=hp, command="services=GSA --help"]
+2017-02-05 12:55:35,716  INFO [com.gigaspaces.start] - Exported JMX Platform MBeanServer with RMI Connector [duration=0.075s, url=service:jmx:rmi:///jndi/rmi://admin:10098/jmxrmi]
+
+Usage: gs-agent [gsa.{name} {count}] [gsa.global.{name} {count}] [options]
+Options:
+--------
+  -h, --help
+     Prints this help screen
+  -z, --zero-defaults
+     Zero defaults (if not specified, default is "gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2")
+  gsa.{name} {count}
+     Start {count} number of local {name} processes
+  gsa.global.{name} {count}
+     Start {count} number of global {name} processes across all agents with the same
+     lookup group / locators
+  --manager
+     Starts a Deployment Manager (short for "gsa.manager 1")
+  gsa.processMonitorInterval {time}
+     The interval (in seconds) to monitor if the managed processes are alive (default=1)
+  gsa.initialGlobalMonitorInterval {time}
+     The randomized time window (in seconds) before global instance monitor is started
+  gsa.globalMonitorInterval {time}
+     The interval (in seconds) to check if global instances contract is breached
+
+Built-in services:
+------------------
+  manager - Deployment Manager (contains gsm and lus, as well as REST and ZooKeeper)
+  gsc     - Grid Service Container
+  gsm     - Grid Service Manager
+  lus     - LookUp Service
+  esm     - Elastic Service Manager
+
+Examples:
+---------
+gs-agent
+    Starts the default gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2
+gs-agent gsa.gsc 3
+    Starts 3 gsc (instead of the default 2), and the remaining default (2 global gsm and lus)
+gs-agent gsa.gsm 1 gsa.global.gsm 0
+    Starts a local gsm and disable the default 2 global gsm, and the remaining default (2 gsc and 2 global lus)
+gs-agent -z --manager
+    Starts a Deployment Manager
+gs-agent -z
+    Starts an empty agent with no services (services can be started remotely via admin api)
+```
+
+## Zero Defaults
+
+You van run the gs-agent with --zero-defaults or -z to disable the default services. 
+
+```bash
+#disable all
+gs-agent --zero-defaults 
+#or 
+gs-agent -z
+
+# starts a single container, without explicitly disabling the global lus and gsm.
+gs-agent -z gsa.gsc 1 
+
+```

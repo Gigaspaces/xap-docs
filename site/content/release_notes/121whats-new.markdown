@@ -51,7 +51,7 @@ GS-Agent has received the following enhancements:
 * Help screen: run gs-agent with `--help` or `-h` to get a help screen explaining how to use it.
 * Zero Defaults: run gs-agent with `--zero-defaults` or `-z` to disable the default services. e.g. `gs-agent -z gsa.gsc 1' starts a single container, without explicitly disabling the global lus and gsm.
 
-{{<infosign>}} Documentation is under construction - more information coming soon.
+{{<infosign>}} For more information see [gs-agent options](/xap121adm/the-runtime-environment.html#gs-agent-options).
 
 ## Simplified Replication Configuration for Transactions
 
