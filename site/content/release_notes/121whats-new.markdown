@@ -38,7 +38,7 @@ Full text search is using {{%exurl "Lucene" "https://lucene.apache.org/"%}} unde
 
 ## Get Jetty port within your application
 
-Web applications which need to know which port their running on can now get it directly from the context properties.
+Web applications which need to know which port they're running on can now get it directly from the context properties.
 
 {{<infosign>}} More information coming soon.
 
