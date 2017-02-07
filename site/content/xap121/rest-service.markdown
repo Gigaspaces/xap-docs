@@ -6,7 +6,7 @@ parent: rest-service-overview.html
 weight: 300
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 The REST service is a Processing Unit that once it is deployed it starts an embedded jetty server along with a REST service allowing interactions with the Space via the [REST API](./rest-service-api.html).
 
@@ -16,11 +16,12 @@ The Space's name and a port number must be specified. In case of multiple instan
 The REST service is not supported with embedded space thus we recommend using it as a separate processing unit.
 {{%/note%}}
 
-
 # Deploment Options
 
 ## Deploy via CLI
-{{%refer%}} See full instructions [here]({{%currentadmurl%}}/rest-deploy-command-line-interface.html) {{%/refer%}}
+{{%refer%}} 
+See full instructions [here]({{%currentadmurl%}}/rest-deploy-command-line-interface.html) 
+{{%/refer%}}
 
  
 

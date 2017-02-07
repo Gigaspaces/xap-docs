@@ -476,7 +476,7 @@ When constructing a space, it is possible to provide [Space Persistency](./space
 
 <bean id="space" class="org.openspaces.core.space.UrlSpaceFactoryBean">
     <property name="url" value="/./space" />
-    <property name="scheam" value="persistent" />
+    <property name="schema" value="persistent" />
     <property name="spaceDataSource" ref="hibernateSpaceDataSource" />
 </bean>
 ```

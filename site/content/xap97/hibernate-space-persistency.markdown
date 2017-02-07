@@ -124,7 +124,7 @@ See below example for `Hibernate Space Persistency` that is configured having a 
 
 <bean id="space" class="org.openspaces.core.space.UrlSpaceFactoryBean">
     <property name="url" value="/./space" />
-    <property name="scheam" value="persistent" />
+    <property name="schema" value="persistent" />
     <property name="spaceDataSource" ref="hibernateSpaceDataSource" />
     <property name="spaceSynchronizationEndpoint" ref="hibernateSpaceSynchronizationEndpoint" />
     <property name="properties">
