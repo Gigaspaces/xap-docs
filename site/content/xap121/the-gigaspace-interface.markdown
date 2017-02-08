@@ -435,7 +435,7 @@ When constructing a space, it is possible to provide [Space Persistency](./space
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
-<os-core:space-proxy  id="space" name="mySpace" schema="persistent" space-data-source="hibernateSpaceDataSource" />
+<os-core:embedded-space id="space" name="mySpace" schema="persistent" space-data-source="hibernateSpaceDataSource" />
 ```
 
 {{% /tab %}}
