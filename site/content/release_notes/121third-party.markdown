@@ -37,7 +37,7 @@ This page list all the 3rd party libraries shipped with   XAP on a per version b
 |[OpenJPA](http://openjpa.apache.org/)      | 2.0.1 | [Apache2](http://openjpa.apache.org/license.html)          | Persistency | [JPA](/xap121/jpa-api-overview.html) |
 |[Hibernate](http://www.hibernate.org/orm/) | 4.1.9 | [LGPL](http://hibernate.org/community/license/)            | Persistency | [Hibernate Space Persistency](/xap121/hibernate-space-persistency.html) |
 |[Cassandra](http://cassandra.apache.org/)  | 1.1.6 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |Persistency | [Cassandra Integration](/xap121/cassandra.html) |
-|[MongoDB](http://www.mongodb.org/)         | 2.11.2 | [Creative Commons](http://creativecommons.org/licenses/by-nc-sa/3.0/) | Persistency | [MongoDB Integration](/xap121/mongodb.html) |
+|[MongoDB](http://www.mongodb.org/)         | 3.2.0 | [Creative Commons](http://creativecommons.org/licenses/by-nc-sa/3.0/) | Persistency | [MongoDB Integration](/xap121/mongodb.html) |
 |[InfluxDB](https://influxdata.com/) | 0.9 (As of 10.2.1, 0.8 for 10.2.0) | [MIT](https://influxdb.com/docs/v0.9/about/licenses.html) | Metrics | [InfluxDB](/xap121adm/metrics-influxdb-reporter.html) |
 |[Jetty](http://eclipse.org/jetty/)         | 8.1.8, 9.1.3 | [Apache2](http://www.eclipse.org/jetty/licenses.php) | Web Container | [Jetty Processing Unit Container](/xap121/web-jetty-processing-unit-container.html) |
 |[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](/xap121/messaging-support.html) |
