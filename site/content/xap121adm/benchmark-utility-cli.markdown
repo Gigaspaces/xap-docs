@@ -1,10 +1,15 @@
 ---
 type: post121
-title:  Benchmark Utility
+title:  Utility
 categories: XAP121ADM
 parent: benchmarking.html
 weight: 200
 ---
+
+
+
+
+
 
 The benchmark example provides a good tool for running performance benchmarks on the cache in various scenarios. This program performs a loop of `write/put` and `read/get` or `take/remove` operations from a space according to a different set of parameters. The result is the average time it took to perform the operations. You can define a sampling rate to allow you to track the intermediate performance while the benchmark example is running. You may also dump the results into a file to be converted into graphs and analyzed using a spreadsheet and analysis tools.
 
@@ -12,7 +17,7 @@ You can find the benchmark in the `<XAP Root>\tools\benchmark` directory.
 
 Typing `run.bat -h` in the console displays:
 
-A detailed list of options for:
+**A detailed list of options for:**
 
 - Setup
 - Performing operations
@@ -20,7 +25,8 @@ A detailed list of options for:
 - Setting cluster topologies
 - Viewing statistics
 
- A set of examples.
+
+# Examples.
 
 This print-out is displayed below:
 
@@ -30,7 +36,7 @@ Option arguments in square brackets [] are required;{{<wbr>}}
 Option arguments in triangular brackets <> are optional.
 
 
-# Setup:
+## Setup:
 
 
 -objecttype Defines the object type that will be written to the space.
@@ -59,7 +65,7 @@ Other possible values are:
 |-exit | Benchmark will hang once finished. When used with embedded space, space will still be alive.|
 
 
-# Operations:
+### Operations:
 
 
 
@@ -74,7 +80,7 @@ Other possible values are:
 |bench | perform first-*second-second-third operation with uid|
 
 
-# Options:
+### Options:
 
 
 |Option | Description|
@@ -102,7 +108,7 @@ Other possible values are:
 
 
 
-# Transactions:
+### Transactions:
 
 
 |Option | Description|
@@ -111,7 +117,7 @@ Other possible values are:
 |dtx 1000| Perform operation under distributed transaction, commit every 1000 operations.|
 
 
-# Topologies:
+### Topologies:
 
 
 |Option | Description|
@@ -123,7 +129,7 @@ Other possible values are:
 |-hashtable |use java.util.Hashtable API- first/second/third operations as: put,get, remove |
 
 
-# Statistics:
+### Statistics:
 
 
 |Option | Description|
@@ -133,7 +139,7 @@ Other possible values are:
 |-stress \[repeat times\] |runs the entire benchmark as many as 'repeat times' as stated |
 
 
-# Examples:
+#### Examples:
 
 
 
@@ -173,37 +179,45 @@ Other possible values are:
 |-stress |-map -all -stress 10     {{<wbr>}}will run 10 cycles of map api put/get/remove |
 
 
-{{%tip%}} The benchmark results are printed to an Excel file (using the `FileName` parameter), which allows you to easily sort your results. To do this, open your printed Excel file, and select *Filter* > *AutoFilter* from the *Data* menu at the top.
-{{%/tip%}}
 
-{{%info%}} 
+
+
+{{%anchor 61%}}
+
+{{%note%}} 
+The benchmark results are printed to an Excel file (using the `FileName` parameter), which allows you to easily sort your results. To do this, open your printed Excel file, and select *Filter* > *AutoFilter* from the *Data* menu at the top.
+{{%/note%}}
+
+{{%note%}} 
 The `rangefirst` and `rangesecond` parameters are supported *only with single operations* (and not with multiple/batch operations).
-{{%/info%}}
+{{%/note%}}
 
 # More Examples
 
 The following example arguments should be passed to the runTest script after loading a remote Space using startAll script.
-e.g. ./runTest.sh -read -i 1000
+e.g. 
+[unix] ./run.sh jini://*/*/benchmarkSpace -read -i 1000
+[ win]  run.bat jini://*/*/benchmarkSpace -read -i 1000
 
 
-The following example uses the JavaSpaces API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
+The following example uses the XAP API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
 
 ```bash
 -read -objecttype entry -i 1000 -s 1024
 ```
 
-The following example uses the JavaSpaces API, writes 1,000 POJOs into the space, 1K each, and takes them from the space. A remote cache is accessed.
+The following example uses the XAP API, writes 1,000 POJOs into the space, 1K each, and takes them from the space. A remote cache is accessed.
 
 
 ```bash
 -take -objecttype pojo -i 1000 -s 1024
 ```
 
-The following example uses the JavaSpaces API, writes 1,000 Entries into the space in FIFO mode {{%currentjavanet "fifo-support.html" %}}, 1K each, and reads them back into the client three times.
+The following example uses the XAP API, writes 1,000 Entries into the space in FIFO mode {{%currentjavanet "fifo-support.html" %}}, 1K each, and reads them back into the client three times.
 
 
 ```bash
--read -objecttype fifo -i 1000 -s 1024 -rt 3
+-read -objecttype fifo -i 1000 -s 1024 -repeatsecond 3
 ```
 
 The following example uses the Map API, puts 1,000 Entries into the space, 1K each, and gets them back into the client.
@@ -224,7 +238,7 @@ The following example uses the Map API, puts 1,000 Entries into the space, 1K ea
 
 
 ```bash
--map -read -i 1000 -s 1024 -rt 3
+-map -read -i 1000 -s 1024 -repeatsecond 3
 ```
 
 The following example uses the Map API, puts 100,000 Entries into the space, gets them back, and removes them from the space. Throughput is displayed every 10,000 operations.

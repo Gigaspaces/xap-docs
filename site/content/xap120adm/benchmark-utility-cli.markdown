@@ -196,20 +196,20 @@ e.g.
 [ win]  run.bat jini://*/*/benchmarkSpace -read -i 1000
 
 
-The following example uses the JavaSpaces API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
+The following example uses the XAP API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
 
 ```bash
 -read -objecttype entry -i 1000 -s 1024
 ```
 
-The following example uses the JavaSpaces API, writes 1,000 POJOs into the space, 1K each, and takes them from the space. A remote cache is accessed.
+The following example uses the XAP API, writes 1,000 POJOs into the space, 1K each, and takes them from the space. A remote cache is accessed.
 
 
 ```bash
 -take -objecttype pojo -i 1000 -s 1024
 ```
 
-The following example uses the JavaSpaces API, writes 1,000 Entries into the space in FIFO mode {{%currentjavanet "fifo-support.html" %}}, 1K each, and reads them back into the client three times.
+The following example uses the XAP API, writes 1,000 Entries into the space in FIFO mode {{%currentjavanet "fifo-support.html" %}}, 1K each, and reads them back into the client three times.
 
 
 ```bash
