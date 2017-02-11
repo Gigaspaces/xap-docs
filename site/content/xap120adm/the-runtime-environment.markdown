@@ -199,6 +199,6 @@ Note that we're setting `gsa.gsc 0` to avoid loading the default `gsc` component
 {{%/note%}}
 
 
-# Garbage Collection
+
 
 
