@@ -211,3 +211,8 @@ This properties can be configured on the space side and they will affect all the
 | cluster-config.groups.group.repl-policy.local-view-max-disconnection-time | Specifies the maximum amount of time (in milliseconds) the space will wait for the local view replication target before it is considered disconnected, after which the target will be dropped. | 300000 |
 
 
+
+# Considerations
+
+When a Local View contains complex objects (nested structure), it is recommended to perform a deep clone once these have been read to allow incoming updates to refresh the state of the cached objects (copy on read).
+The client application should use the cloned object as the original object returned back from the read operation holds a reference used by the local view.

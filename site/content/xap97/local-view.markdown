@@ -226,3 +226,10 @@ The following table summarizes the configuration changes made in 8.0.5
 | `space-config.dist-cache.events.batch.size` | `batch-size` | `batchSize()` |
 | `space-config.dist-cache.events.batch.timeout` | `batch-timeout` | `batchTimeout()` |
 | `space-config.dist-cache.events.lease-renew.round-trip-time` | Ignored in replication sync{{<wbr>}}Same in notification sync | Ignored in replication sync{{<wbr>}}Same in notification sync |
+
+
+
+# Considerations
+
+When a Local View contains complex objects (nested structure), it is recommended to perform a deep clone once these have been read to allow incoming updates to refresh the state of the cached objects (copy on read).
+The client application should use the cloned object as the original object returned back from the read operation holds a reference used by the local view.

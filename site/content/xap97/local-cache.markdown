@@ -345,3 +345,8 @@ The following table summarizes the configuration changes made in 8.0.5:
 {{% /tab %}}
 {{% /tabs %}}
 
+
+# Considerations
+
+When a Local Cache contains complex objects (nested structure), it is recommended to perform a deep clone once these have been read to allow incoming updates to refresh the state of the cached objects (copy on read).
+The client application should use the cloned object as the original object returned back from the read operation holds a reference used by the local cache.
