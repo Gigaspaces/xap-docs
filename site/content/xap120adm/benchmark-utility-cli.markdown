@@ -191,7 +191,9 @@ Other possible values are:
 # More Examples
 
 The following example arguments should be passed to the runTest script after loading a remote Space using startAll script.
-e.g. ./runTest.sh -read -i 1000
+e.g. 
+[unix] ./run.sh jini://*/*/benchmarkSpace -read -i 1000
+[ win]  run.bat jini://*/*/benchmarkSpace -read -i 1000
 
 
 The following example uses the JavaSpaces API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
@@ -211,7 +213,7 @@ The following example uses the JavaSpaces API, writes 1,000 Entries into the spa
 
 
 ```bash
--read -objecttype fifo -i 1000 -s 1024 -rt 3
+-read -objecttype fifo -i 1000 -s 1024 -repeatsecond 3
 ```
 
 The following example uses the Map API, puts 1,000 Entries into the space, 1K each, and gets them back into the client.
@@ -232,7 +234,7 @@ The following example uses the Map API, puts 1,000 Entries into the space, 1K ea
 
 
 ```bash
--map -read -i 1000 -s 1024 -rt 3
+-map -read -i 1000 -s 1024 -repeatsecond 3
 ```
 
 The following example uses the Map API, puts 100,000 Entries into the space, gets them back, and removes them from the space. Throughput is displayed every 10,000 operations.
