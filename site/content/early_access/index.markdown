@@ -27,7 +27,7 @@ Early Access builds are provided as-is and should not be used in production. If 
 |ID        | Type    | Description|
 |----------|---------|-----------|
 |XAP-13144 | New Feature     | Enhanced gs-agent to support '--' syntax prefix in addition to old 'gsa.' prefix |
-|XAP-13155 | Known Issue     | NPE is thrown if number of backups is not specified in space-instance.sh |
+|XAP-13155 | Known Issue     | NPE is thrown if number of backups is not specified in space-instance.(sh/bat) |
 
 
 ## 12.1 M16 (Feb-02-2017)
