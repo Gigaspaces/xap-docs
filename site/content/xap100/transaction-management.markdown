@@ -47,7 +47,7 @@ The section below lists the different types of transaction managers supported by
 
 # Constructing XAP Transaction Manager
 
-The distributed [Jini Transaction Manager](http://river.apache.org/doc/specs/html/txn-spec.html) starts an embedded distributed (Mahalo) **Jini Transaction Manager**, which is then wrapped with an implementation of the Spring `PlatformTransactionManager`. This transaction manager is used in order to perform distributed transactions spanning multiple space instances.
+The distributed {{%exurl "Jini Transaction Manager""https://river.apache.org/release-doc/current/specs/html/txn-spec.html"%}} starts an embedded distributed (Mahalo) **Jini Transaction Manager**, which is then wrapped with an implementation of the Spring `PlatformTransactionManager`. This transaction manager is used in order to perform distributed transactions spanning multiple space instances.
 
 Below is an example of how it can be defined in a Spring application context:
 
@@ -211,55 +211,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 {{% /tabs %}}
 
-## Timeout Values
-
-The Jini lookup transaction manager allows to set the default timeout value for transactions. A timeout value is used when a transaction is not committed/rolled back (for example due to a JVM crash) to control when the transaction will be discarded. By default the timeout value is 60 Sec and is set in seconds. Controlling the timeout value can be done using:
-
-{{%tabs%}}
-{{%tab "  Namespace "%}}
-
-
-```xml
-
-<os-core:embedded-space id="space" name="mySpace"/>
-
-<os-core:jini-tx-manager id="transactionManager" default-timeout="1000"/>
-
-<os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/>
-```
-
-{{% /tab %}}
-{{%tab "  Plain XML "%}}
-
-
-```xml
-
-<bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
-    <property name="name" value="space" />
-</bean>
-
-<bean id="transactionManager" class="org.openspaces.core.transaction.manager.LookupJiniTransactionManager">
-	<property name="defaultTimeout" value="1000" />
-</bean>
-
-<bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean">
-    <property name="space" ref="space" />
-	<property name="transactionManager" ref="transactionManager" />
-</bean>
-```
-
-{{% /tab %}}
-{{%tab "  Code "%}}
-
-
-```java
-UrlSpaceConfigurer configurer = new UrlSpaceConfigurer("/./mySpace");
-PlatformTransactionManager ptm = new LookupJiniTxManagerConfigurer().defaultTimeout(1000).transactionManager();
-GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm).gigaSpace();
-```
-
-{{% /tab %}}
-{{% /tabs %}}
+ 
 
 {{% info %}}
 When using Spring declarative transaction management, a transaction timeout can be set on the transaction scope. For more details, see [below](#spring-transactiondefinition-mapping-to-gigaspaces-readmodifiers).

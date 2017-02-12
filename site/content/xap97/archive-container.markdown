@@ -331,7 +331,7 @@ Both the space take operation and the archive action should be configured to be 
 - `ArchiveOperationHandler.supportsBatchArchiving()` returns true, and `ArchiveOperationHandler.archive()` is idempotent (meaning that writing the same objects the second time has no effect).
 - `ArchiveOperationHandler.supportsBatchArchiving()` returns false (meaning `ArchiveOperationHandler.archive()` is served with one object at a time). Even when returning false, there is a possibility of the same object being archived twice in case of a space primary/backup fail-over. So it has to be able to handle this scenario.
 
-When using transactions with archive container a special care should be taken with timeout values. Transactions started by the archive container can have a timeout value associated with them (if not set will default to the default timeout value of the transaction manager, which is 60 Sec). If setting a specific timeout value, make sure the timeout value is higher than receive-timeout and the `ArchiveOperationHandler#archive()` time together.
+When using transactions with archive container a special care should be taken with timeout values. Transactions started by the archive container can have a timeout value associated with them (if not set will default to the default timeout value of the transaction manager, which is 90 Sec). If setting a specific timeout value, make sure the timeout value is higher than receive-timeout and the `ArchiveOperationHandler#archive()` time together.
 
 Adding transaction support is done by injecting a transaction manager into the archive-container and giga-space beans. See the example at the [Configuration](#configuration) section.
 

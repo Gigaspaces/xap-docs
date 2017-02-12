@@ -144,7 +144,7 @@ SimplePollingEventListenerContainer pollingContainer configurer = new SimplePoll
 
 # Isolation & Timeout
 
-When using transactions with polling container a special care should be taken with timeout values. Transactions started by the polling container can have a timeout value associated with them (if not set will default to the default timeout value of the transaction manager, which is 60 Sec). If setting a specific timeout value, make sure the timeout value is higher than the timeout value for blocking operations and includes the expected execution time of the associated listener.
+When using transactions with polling container a special care should be taken with timeout values. Transactions started by the polling container can have a timeout value associated with them (if not set will default to the default timeout value of the transaction manager, which is 90 Sec). If setting a specific timeout value, make sure the timeout value is higher than the timeout value for blocking operations and includes the expected execution time of the associated listener.
 
 {{% note %}}
 Note the timeout value is in seconds as per Spring spec for TransactionDefinition.
