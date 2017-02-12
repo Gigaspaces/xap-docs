@@ -17,6 +17,24 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M17 (Feb-09-2017)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m17/gigaspaces-xap-open-12.1.0-m17-b16717.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m17/gigaspaces-xap-premium-12.1.0-m17-b16717.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m17/gigaspaces-xap-enterprise-12.1.0-m17-b16717.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m17/GigaSpaces-XAP.NET-Premium-12.1.0.16717-M17-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m17/GigaSpaces-XAP.NET-Premium-12.1.0.16717-M17-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m17/GigaSpaces-XAP.NET-Enterprise-12.1.0.16717-M17-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m17/GigaSpaces-XAP.NET-Enterprise-12.1.0.16717-M17-x86.msi)\]
+
+#### Milestone Release Notes
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|XAP-13144 | New Feature     | Enhanced gs-agent to support '--' syntax prefix in addition to old 'gsa.' prefix |
+|XAP-13155 | Known Issue     | NPE is thrown if number of backups is not specified in space-instance.(sh/bat) |
+
+
+## 12.1 M16 (Feb-02-2017)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m16/gigaspaces-xap-open-12.1.0-m16-b16716.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m16/gigaspaces-xap-premium-12.1.0-m16-b16716.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m16/gigaspaces-xap-enterprise-12.1.0-m16-b16716.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m16/GigaSpaces-XAP.NET-Premium-12.1.0.16716-M16-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m16/GigaSpaces-XAP.NET-Premium-12.1.0.16716-M16-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m16/GigaSpaces-XAP.NET-Enterprise-12.1.0.16716-M16-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m16/GigaSpaces-XAP.NET-Enterprise-12.1.0.16716-M16-x86.msi)\]
+
 ## 12.1 M15 (Jan-29-2017)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m15/gigaspaces-xap-open-12.1.0-m15-b16715.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m15/gigaspaces-xap-premium-12.1.0-m15-b16715.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m15/gigaspaces-xap-enterprise-12.1.0-m15-b16715.zip)\] 
