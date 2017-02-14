@@ -9,7 +9,60 @@ weight: 1400
 
 When a client connects to a space, a proxy is created that holds a connection to the space. All client interaction is performed through this proxy.
 The proxy provides a simpler space API using the [GigaSpace]({{% api-javadoc %}}/index.html) interface.
-It is created with a Space URL and optional parameters.
+It is created with a Space Bean and optional parameters.
+
+
+
+# Space Bean
+
+
+## Embedded Space
+
+
+|   Name | Description |
+|--------|-------------|
+| id         |             |
+| space-name |             |
+| schema |             |
+| lookup-groups |             |
+| lookup-locators |             |
+| lookup-timeout |             |
+| versioned |             |
+| schema |             |
+| mirrored |             |          
+| space-name |             |
+|register-for-space-mode-notifications| |
+|external-data-source      ||
+|space-data-source ||
+|space-sync-endpoint ||
+|enable-member-alive-indicator | |
+|gateway-targets | |
+|security | |
+
+
+## Sub Options
+
+|   Name | Description |
+|--------|-------------|
+|all-in-cache-policy | |
+|lru-cache-policy ||
+|custom-cache-policy||
+|blob-store-data-policy||
+|attribute-store||
+|leader-selection||
+|properties||
+|space-filter||
+|space-sql-function||
+|annotation-adapter-filter||
+|method-adapter-filter||
+|filter-provider||
+|query-extension-provider||
+|replication-filter-provider||
+|space-replication-filter||
+|space-type||
+
+
+
 
 
 # The Space URL
