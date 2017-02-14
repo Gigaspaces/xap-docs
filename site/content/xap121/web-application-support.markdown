@@ -119,7 +119,7 @@ A typical usage pattern is connecting remotely to a Space. Here is an example (e
 
 
 ```xml
-<os-core:space-proxy id="space" name="mySpace" />
+<os-core:space-proxy id="space" space-name="mySpace" />
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
 
@@ -165,7 +165,7 @@ Here is an example that starts an embedded Space as part of the web application 
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 <os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/>
 ```

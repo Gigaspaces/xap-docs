@@ -84,7 +84,7 @@ The following example shows how to configure a space with a Hibernate `SpaceData
     <property name="sessionFactory" ref="sessionFactory"/>
     <property name="initialLoadChunkSize" value="2000"/>
 </bean>
-<os-core:embedded-space  id="space" name="space" schema="persistent"
+<os-core:embedded-space  id="space" space-name="space" schema="persistent"
     mirror="true" space-data-source="hibernateSpaceDataSource">
     <os-core:properties>
         <props>

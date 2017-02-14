@@ -35,7 +35,7 @@ A REST Service can be started as part of a custom processing unit by specifying 
 
 
 ```xml
-<os-core:space-proxy id="theSpace" name="theGigaSpace">
+<os-core:space-proxy id="theSpace" space-name="theGigaSpace">
 <os-core:rest id="mySpaceRestService" giga-space="theGigaSpace" port="8081" />
 ```
 

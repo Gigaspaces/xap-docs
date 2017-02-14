@@ -71,7 +71,7 @@ The Data-Grid Space settings would look like this:
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
-<os-core:embedded-space  id="space" name="mySpace" schema="persistent"
+<os-core:embedded-space  id="space" space-name="mySpace" schema="persistent"
     mirrored="true" space-data-source="hibernateSpaceDataSource">
     <os-core:properties>
         <props>
@@ -139,7 +139,7 @@ The OpenSpaces mirror name space is a syntactic sugar and it is equivalent to th
 
 
 ```xml
-<os-core:embedded-space id="space" name="mirror-service" schema="mirror" space-sync-endpoint="hibernateSpaceSynchronizationEndpoint">
+<os-core:embedded-space id="space" space-name="mirror-service" schema="mirror" space-sync-endpoint="hibernateSpaceSynchronizationEndpoint">
     <os-core:properties>
 	<props>
              <prop key="space-config.mirror-service.cluster.name">mySpace</prop>

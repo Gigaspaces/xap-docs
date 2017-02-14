@@ -454,7 +454,7 @@ where the pu.xml should have:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/>
 ```
 

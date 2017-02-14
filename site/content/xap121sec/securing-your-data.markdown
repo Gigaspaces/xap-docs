@@ -18,7 +18,7 @@ A secured embedded Space protects access (to data) which is granted only to user
 
 
 ```xml
-<os-core:space-proxy id="space" name="space">
+<os-core:space-proxy id="space" space-name="space">
     <os-core:security username="sa" password="adaw@##$" />
 </os-core:space-proxy>
 ```
@@ -58,7 +58,7 @@ An embedded Space may be configured with internal services (Space filters, Notif
 
 
 ```xml
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
     <os-core:security username="sa" password="adaw@##$" />
 </os-core:embedded-space>
 ```
@@ -100,7 +100,7 @@ An embedded Space with no internal services, can be simply configured as secured
 
 
 ```xml
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
     <os-core:security secured="true" />
 </os-core:embedded-space>
 ```
@@ -148,7 +148,7 @@ A processing unit (for example a feeder application) may access a secured Space 
 
 
 ```xml
-<os-core:space-proxy id="mySpace" name="mySpace">
+<os-core:space-proxy id="mySpace" space-name="mySpace">
     <os-core:security username="sa" password="adaw@##$" />
 </os-core:space-proxy>
 ```
@@ -220,7 +220,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(configurer.localCache()).gigaSpac
 
 
 ```xml
-<os-core:space-proxy id="remoteSpace" name="space" >
+<os-core:space-proxy id="remoteSpace" space-name="space" >
     <os-core:security username="user" password="password"/>
 </os-core:space-proxy>
 
@@ -260,7 +260,7 @@ GigaSpace localView = new GigaSpaceConfigurer(configurer.localView()).gigaSpace(
 
 
 ```xml
-<os-core:space-proxy id="remoteSpace" name="space" >
+<os-core:space-proxy id="remoteSpace" space-name="space" >
    <os-core:security username="user" password="password"/>
 </os-core:space-proxy>
 
@@ -298,7 +298,7 @@ The following Spring configuration registers this filter for `before-authenticat
 ```xml
 <bean id="simpleISpaceFilter" class="eg.SimpleISpaceFilter" />
 
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
     <os-core:security secured="true"/>
     <os-core:space-filter>
         <os-core:filter ref="simpleISpaceFilter" />
@@ -316,7 +316,7 @@ An example of a simple POJO filter using annotations:
 ```xml
 <bean id="simpleFilter" class="eg.SimpleFilter" />
 
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
 	<os-core:security secured="true"/>
 	<os-core:annotation-adapter-filter priority="1">
 		<os-core:filter ref="simpleFilter" />
@@ -352,7 +352,7 @@ Note the `before-authentication` method adapter.
 ```xml
 <bean id="simpleFilter" class="eg.SimpleFilter" />
 
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
     <os-core:security secured="true"/>
     <os-core:method-adapter-filter before-authentication="beforeAuthenticationMethod">
         <os-core:filter ref="simpleFilter"/>
@@ -371,7 +371,7 @@ These privileges need to be sufficient for operations being perform by the filte
 <!-- pu.xml -->
 <bean id="simpleFilter" class="eg.SimpleFilter" />
 
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
    <os-core:security username="user" password="password"/>
    <os-core:method-adapter-filter filter-init="init"
                                   before-write="beforeWrite">
@@ -418,7 +418,7 @@ The filter can be declared just like any other filter, but note that the `priori
 ```xml
 <bean id="customAccessControlFilter" class="example.CustomAccessControlFilter" />
 
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
 	<os-core:security secured="true"/>
 	<os-core:annotation-adapter-filter priority="0">
 		<os-core:filter ref="customAccessControlFilter" />

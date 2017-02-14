@@ -25,7 +25,7 @@ For example:
 <!-- Enable support for @Polling annotation -->
 <os-events:annotation-support />
 
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager" />
 
@@ -56,7 +56,7 @@ public class SimpleListener {
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager" />
 
@@ -165,7 +165,7 @@ Here is an example how timeout value (and transaction isolation) can be set with
 <!-- Enable support for @Polling annotation -->
 <os-events:annotation-support />
 
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager"/>
 
@@ -196,7 +196,7 @@ public class SimpleListener {
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 

@@ -48,7 +48,7 @@ Below is an example of how it can be defined in a Spring application context:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:distributed-tx-manager id="transactionManager" />
 <os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" />
 ```
@@ -94,7 +94,7 @@ For example, to change the default timeout to 2 minutes, use the following confi
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:distributed-tx-manager id="transactionManager" default-timeout="120"/>
 <os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/>
 ```
@@ -151,7 +151,7 @@ Below is an example of how it can be defined in a Spring application context:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:jini-tx-manager id="transactionManager" lookup-timeout="5000" />
 <os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" />
 ```
@@ -214,7 +214,7 @@ Here is an example of how this can be configured:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:distributed-tx-manager id="transactionManager" >
     <os-core:renew pool-size="2" duration="1000" round-trip-time="500" />
 </os-core:distributed-tx-manager>
@@ -276,7 +276,7 @@ XAP can be used within an XA transaction using JTA. The OpenSpaces API allows yo
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean" />
 <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
     <property name="userTransaction" ref="jotm" />
@@ -408,7 +408,7 @@ To enable the declarative transaction management:
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-{{%version "spring"%}}.xsd
        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%currentversion%}}/remoting/openspaces-remoting.xsd">
 
-	<os-core:embedded-space id="space" name="mySpace"/>
+	<os-core:embedded-space id="space" space-name="mySpace"/>
 
 	<os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/>
 

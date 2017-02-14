@@ -67,7 +67,7 @@ For example:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
              <prop key="cluster-config.groups.group.repl-policy.permitted-operations">write, extend_lease, lease_expiration, notify</prop>

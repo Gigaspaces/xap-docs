@@ -109,7 +109,7 @@ A Compound Space Index of a [space Document](./document-api.html) can be describ
 
 
 ```xml
-<os-core:embedded-space id="space" name="space" >
+<os-core:embedded-space id="space" space-name="space" >
 	<os-core:space-type type-name="Data">
 		<os-core:compound-index paths="data1,data2"/>
 	</os-core:space-type>

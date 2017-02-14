@@ -29,7 +29,7 @@ The first step in using scripting is exposing the built in scripting service ove
      <os-remoting:service ref="scriptingExecutor"/>
 </os-remoting:service-exporter>
 
-<os-core:embedded-space id="space" name="mySpace"
+<os-core:embedded-space id="space" space-name="mySpace"
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -104,7 +104,7 @@ On the client side Spring XML configuration, the following needs to be defined (
 
 ```xml
 
-<os-core:space-proxy id="space" name="mySpace"/>
+<os-core:space-proxy id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 

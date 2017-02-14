@@ -40,7 +40,7 @@ The OpenSpaces queue connector is used to define the Space this queue transport 
 
 ```xml
 <spring:beans>
-    <os-core:embedded-space id="space" name="mySpace"/>
+    <os-core:embedded-space id="space" space-name="mySpace"/>
 
     <os-core:giga-space id="gigaSpace" space="space" />
 </spring:beans>
@@ -124,7 +124,7 @@ Here is an example of how to configure working with queues using the Distributed
 
 ```xml
 <spring:beans>
-    <os-core:embedded-space id="space" name="mySpace"/>
+    <os-core:embedded-space id="space" space-name="mySpace"/>
 
     <os-core:distributed-tx-manager id="transactionManager" />
 
@@ -177,7 +177,7 @@ The example below will uses two components: `Appender1` and `Appender2`. The 2 s
        http://www.openspaces.org/schema/mule/os-queue http://www.openspaces.org/schema/{{%currentversion%}}/mule/3.1/mule-os-queue.xsd">
 
     <spring:beans>
-        <os-core:embedded-space id="space" name="mySpace"  lookup-groups="${user.name}"/>
+        <os-core:embedded-space id="space" space-name="mySpace"  lookup-groups="${user.name}"/>
 
         <os-core:giga-space id="gigaSpace" space="space" />
     </spring:beans>

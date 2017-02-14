@@ -62,7 +62,7 @@ Once you have an implementation that supports some or all of the change operatio
 
 
 ```xml
- <os-core:embedded-space id="space" name="mySpace" mirror="true">
+ <os-core:embedded-space id="space" space-name="mySpace" mirror="true">
     <os-core:properties>
         <props>
             <prop key="cluster-config.mirror-service.change-support">

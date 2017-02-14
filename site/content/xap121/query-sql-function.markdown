@@ -151,7 +151,7 @@ public class MyCustomSqlFunction extends SqlFunction {
 
 	<bean id="myCustomSqlFunction" class="sandbox.sqlcustomfunction.MyCustomSqlFunction" />
  
-	<os-core:embedded-space id="space" name="mySpace">
+	<os-core:embedded-space id="space" space-name="mySpace">
 		<os-core:space-sql-function name="PLUSTWO">
 			<os-core:sql-function ref="myCustomSqlFunction" />
 		</os-core:space-sql-function>

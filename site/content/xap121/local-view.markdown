@@ -34,7 +34,7 @@ Creating a local view is similar to creating a [GigaSpace](./the-gigaspace-inter
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 
 <os-core:local-view id="localViewSpace" space="space">
     <os-core:properties>

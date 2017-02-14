@@ -140,7 +140,7 @@ Space mode registration can be overridden and explicitly set within the space fa
 
 ```xml
 
-<os-core:embedded-space id="space" name="space" register-for-space-mode-notifications="false" />
+<os-core:embedded-space id="space" space-name="space" register-for-space-mode-notifications="false" />
 ```
 
 {{% /tab %}}

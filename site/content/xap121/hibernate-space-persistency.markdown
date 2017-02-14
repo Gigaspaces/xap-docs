@@ -74,7 +74,7 @@ See below example for `Hibernate Space Persistency` that is configured having a 
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
-<os-core:embedded-space id="space" name="space" schema="persistent" space-data-source="hibernateSpaceDataSource"
+<os-core:embedded-space id="space" space-name="space" schema="persistent" space-data-source="hibernateSpaceDataSource"
               space-sync-endpoint="hibernateSpaceSynchronizationEndpoint" />
     <os-core:properties>
         <props>

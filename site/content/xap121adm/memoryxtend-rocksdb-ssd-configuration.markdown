@@ -75,7 +75,7 @@ A list of configuration properties can be found in  the [org.rocksdb.ColumnFamil
         db-options="dbOptions" data-column-family-options="dataColumnFamilyOptions"
         paths="[/tmp/rocksdb,/tmp/rocksdb2]" mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" name="mySpace" >
+    <os-core:embedded-space id="space" space-name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore"/>
     </os-core:embedded-space>
 

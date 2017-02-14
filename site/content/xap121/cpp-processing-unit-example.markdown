@@ -172,7 +172,7 @@ The Processing Unit configuration file (`<XAP Root>\cpp\examples\CppServiceOpenS
     <!--
         A bean representing a space (an IJSpace implementation).
     -->
-         <os-core:embedded-space id="space" name="space" />
+         <os-core:embedded-space id="space" space-name="space" />
 
     <!--
         OpenSpaces simplified space API built on top of IJSpace/JavaSpace.

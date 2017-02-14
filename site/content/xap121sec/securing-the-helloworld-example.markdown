@@ -35,7 +35,7 @@ Lets define a secured space in `hello-processor/META-INF/spring/pu.xml` by addin
 
 ```java
 <!-- pu.xml -->
-<os-core:embedded-space id="space" name="processorSpace">
+<os-core:embedded-space id="space" space-name="processorSpace">
    <os-core:security secured="true"/>
 </os-core:embedded-space>
 ```
@@ -49,7 +49,7 @@ There are two options for providing the principal credentials. The first, is by 
 
 
 ```xml
-<os-core:embedded-space id="space" name="processorSpace?secured">
+<os-core:embedded-space id="space" space-name="processorSpace?secured">
     <os-core:security username="helloProcessor" password="helloWorld"/>
 </os-core:embedded-space>
 ```
@@ -84,7 +84,7 @@ With production environment the user/password used by the application (for datab
 
 ```xml
 
-<os-core:embedded-space id="space" name="processorSpace">
+<os-core:embedded-space id="space" space-name="processorSpace">
 </os-core:embedded-space>
 
 Using the CLI deploy command supply username and password using the -user and -password.
@@ -95,7 +95,7 @@ Another option, is to set the security username/password as variables at the pu.
 
 
 ```xml
-<os-core:embedded-space id="space" name="processorSpace">
+<os-core:embedded-space id="space" space-name="processorSpace">
     <os-core:security username="${myusername}" password="${mypassword}"/>
 </os-core:embedded-space>
 

@@ -86,7 +86,7 @@ Here is an example how you should use the above:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace" mirror="true">
+<os-core:embedded-space id="space" space-name="mySpace" mirror="true">
     <os-core:properties>
 	<props>
 	    <prop key="cluster-config.groups.group.repl-policy.redo-log-capacity">100000</prop>

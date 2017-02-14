@@ -21,7 +21,7 @@ Here is how you would configure a processing unit to run a scripting executor wi
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -49,7 +49,7 @@ Here is how you would configure a processing unit to run a scripting executor wi
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 

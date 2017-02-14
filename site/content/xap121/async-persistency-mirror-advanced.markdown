@@ -25,7 +25,7 @@ As an example, let's say we would like to call my mirror service `mymirror-servi
 
 
 ```xml
-<os-core:embedded-space id="space" name="myMirror-service" schema="mirror"
+<os-core:embedded-space id="space" space-name="myMirror-service" schema="mirror"
     space-sync-endpoint="mirrorSynchronizationEndpoint" />
 ```
 
@@ -33,7 +33,7 @@ Here is how the space should be started:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace" schema="persistent"
+<os-core:embedded-space id="space" space-name="mySpace" schema="persistent"
     mirror="true" space-data-source="spaceDataSource">
     <os-core:properties>
         <props>
@@ -106,7 +106,7 @@ And here is how this can be configured within the mirror configuration:
     <property name="parameter" value="some value"/>
 </bean>
 
-<os-core:embedded-space id="space" name="mirror-service" schema="mirror"
+<os-core:embedded-space id="space" space-name="mirror-service" schema="mirror"
     space-sync-endpoint="mirrorSpaceSynchronizationEndpoint" />
 ```
 
@@ -172,7 +172,7 @@ To override and extend this behavior, you can implement an exception handler tha
     <constructor-arg ref="exceptionHandler"/>
 </bean>
 
-<os-core:embedded-space id="space" name="mirror-service" schema="mirror"
+<os-core:embedded-space id="space" space-name="mirror-service" schema="mirror"
     space-sync-endpoint="exceptionHandlingSpaceSynchronizationEndpoint"/>
 ```
 
@@ -197,7 +197,7 @@ This can be achieved by :
 
 
 ```xml
-<os-core:embedded-space id="space" name="mirror-service" schema="mirror" space-sync-endpoint="spaceSynchronizationEndpoint">
+<os-core:embedded-space id="space" space-name="mirror-service" schema="mirror" space-sync-endpoint="spaceSynchronizationEndpoint">
     <os-core:properties>
 	<props>
 	     <prop key="space-config.mirror-service.operation-grouping">
@@ -299,7 +299,7 @@ Since 9.1.0 - Distributed transaction consolidation is enabled by default.
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
   <os-core:properties>
     <props>
       <prop key="cluster-config.groups.group.repl-policy.processing-type">
@@ -321,7 +321,7 @@ In order to take advantage of this feature, mirror operation grouping should be 
 
 
 ```xml
-<os-core:embedded-space id="space" name="mirror-service"
+<os-core:embedded-space id="space" space-name="mirror-service"
   schema="mirror" space-sync-endpoint="spaceSynchronizationEndpoint">
   <os-core:properties>
     <props>
@@ -371,7 +371,7 @@ The following example demonstrates how to set the timeout for waiting for distri
 
 
 ```xml
-<os-core:embedded-space id="space" name="mirror-service"  schema="mirror" space-sync-endpoint="spaceSynchronizationEndpoint">
+<os-core:embedded-space id="space" space-name="mirror-service"  schema="mirror" space-sync-endpoint="spaceSynchronizationEndpoint">
   <os-core:properties>
     <props>
       <prop key="space-config.mirror-service.operation-grouping">

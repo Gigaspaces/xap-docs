@@ -24,7 +24,7 @@ To use the Local View/Cache JMX Monitor:
 
 
 ```xml
-<os-core:space-proxy id="space" name="mySpace" />
+<os-core:space-proxy id="space" space-name="mySpace" />
 
 <os-core:local-cache id="localCacheSpace" space="space">
     <os-core:properties>
@@ -36,7 +36,7 @@ To use the Local View/Cache JMX Monitor:
 
 <os-core:giga-space id="gigaSpace1" space="localCacheSpace"/>
 
-<os-core:space-proxy id="space" name="mySpace2" />
+<os-core:space-proxy id="space" space-name="mySpace2" />
 
 <os-core:local-cache id="localCacheSpace2" space="space2">
     <os-core:properties>

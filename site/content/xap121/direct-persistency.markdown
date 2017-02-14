@@ -62,7 +62,7 @@ A Data-Grid running in Direct persistency mode using central database topology, 
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
- <os-core:embedded-space id="space" name="space" schema="persistent" space-data-source="hibernateSpaceDataSource"
+ <os-core:embedded-space id="space" space-name="space" schema="persistent" space-data-source="hibernateSpaceDataSource"
          space-sync-endpoint="hibernateSpaceSynchronizationEndpoint">
     <os-core:properties>
         <props>
@@ -92,7 +92,7 @@ A Data-Grid running in Direct persistency mode using distributed databases topol
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
-<os-core:embedded-space id="space" name="space" schema="persistent" space-data-source="hibernateSpaceDataSource">
+<os-core:embedded-space id="space" space-name="space" schema="persistent" space-data-source="hibernateSpaceDataSource">
          space-sync-endpoint="hibernateSpaceSynchronizationEndpoint">
     <os-core:properties>
         <props>

@@ -144,7 +144,7 @@ Here is an example of a space working in FIFO mode, using specific lookup groups
 
 
 ```xml
-<os-core:embedded-space id="space" name="space" lookup-groups="test" lookup-timeout="10000"  lookup-locators="myHost" versioned="true" />
+<os-core:embedded-space id="space" space-name="space" lookup-groups="test" lookup-timeout="10000"  lookup-locators="myHost" versioned="true" />
 ```
 
 {{% /tab %}}
@@ -202,7 +202,7 @@ The general properties are used to override various components such as the space
 
 ```xml
 
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
     <os-core:properties>
         <props>
             <prop key="space-config.engine.cache_policy">0</prop>
@@ -266,7 +266,7 @@ Here is an example on how to create the proxy:
 
 
 ```xml
-<os-core:embedded-space id="space" name="space" />
+<os-core:embedded-space id="space" space-name="space" />
   </os-core:giga-space id="mySpace" space="space" />
 ```
 
@@ -275,7 +275,7 @@ Here is an example on how to create the proxy:
 
 
 ```xml
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
 <bean id="mySpace" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -394,7 +394,7 @@ Declaring a remote space with a transaction manager:
 ```xml
 <tx:annotation-driven transaction-manager="transactionManager"/>
 
-<os-core:space-proxy id="space" name="space" />
+<os-core:space-proxy id="space" space-name="space" />
 <os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/>
 ```
 
@@ -403,7 +403,7 @@ Declaring a remote space with a transaction manager and creating an embedded spa
 
 
 ```xml
-<os-core:space-proxy id="spaceRemote" name="space" />
+<os-core:space-proxy id="spaceRemote" space-name="space" />
 <os-core:giga-space id="gigaSpaceRemote" space=" spaceRemote"  tx-manager="transactionManager1"/>
 
 <os-core:space id="spaceEmbed" name="space" />
@@ -414,7 +414,7 @@ Declaring a remote space creating a local view:
 
 
 ```xml
-<os-core:space-proxy id="spaceRemote" name="space" />
+<os-core:space-proxy id="spaceRemote" space-name="space" />
 <os-core:local-view id="localViewSpace" space="spaceRemote">
 	<os-core:view-query class="com.example.Message1" where="processed = true"/>
 </os-core:local-view>
@@ -425,7 +425,7 @@ Declaring a remote space with a local view , a regular remote space (without a v
 
 
 ```xml
-<os-core:space-proxy id="spaceRemote" name="space" />
+<os-core:space-proxy id="spaceRemote" space-name="space" />
 	<os-core:local-view id="localViewSpace" space="spaceRemote">
 	<os-core:view-query class="com.example.Message1" where="processed = true"/>
 </os-core:local-view>
@@ -453,7 +453,7 @@ You may configure default modifiers for the different operations in the `GigaSpa
 
 ```xml
 
-<os-core:embedded-space id="space" name="space" />
+<os-core:embedded-space id="space" space-name="space" />
 <os-core:giga-space id="gigaSpace" space="space">
   <os-core:read-modifier value="FIFO"/>
   <os-core:change-modifier value="RETURN_DETAILED_RESULTS"/>

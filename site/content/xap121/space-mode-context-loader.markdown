@@ -71,7 +71,7 @@ with the following Processing Unit definition:
 
 ```xml
 
-<os-core:embedded-space id="space" name="space" />
+<os-core:embedded-space id="space" space-name="space" />
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 

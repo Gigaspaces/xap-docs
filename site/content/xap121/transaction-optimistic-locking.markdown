@@ -46,7 +46,7 @@ or
 
 
 ```java
-<os-core:space-proxy  id="space" name="mySpace"  versioned="true" />
+<os-core:space-proxy  id="space" space-name="mySpace"  versioned="true" />
 ```
 
 ## Step 2 -- Enable the Space Class to Support Optimistic Locking

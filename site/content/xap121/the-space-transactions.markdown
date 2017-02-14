@@ -20,7 +20,7 @@ For example (using the distributed transaction manager):
 
 
 ```xml
-<os-core:embedded-space id="space" name="space" />
+<os-core:embedded-space id="space" space-name="space" />
 <os-core:distributed-tx-manager id="transactionManager"/>
 <os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/>
 ```
@@ -79,7 +79,7 @@ XAP supports three isolation levels: `READ_UNCOMMITTED`, `READ_COMMITTED` and `R
 
 
 ```xml
-<os-core:embedded-space id="space" name="space" />
+<os-core:embedded-space id="space" space-name="space" />
 
 <os-core:giga-space id="gigaSpace" space="space" default-isolation="READ_COMMITTED"/>
 ```

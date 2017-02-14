@@ -150,7 +150,7 @@ Next, we setup the Spring configuration for Hibernate:
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
-<os-core:embedded-space id="space" name="xapTutorialSpace" schema="persistent"
+<os-core:embedded-space id="space" space-name="xapTutorialSpace" schema="persistent"
      space-data-source="hibernateSpaceDataSource" 
      space-sync-endpoint="hibernateSpaceSynchronizationEndpoint"/>
     <os-core:properties>

@@ -62,7 +62,7 @@ The following snippet shows how to configure a space that resides in New York to
 
 
 ```xml
-<os-core:embedded-space id="space" name="myNYSpace" gateway-targets="gatewayTargets"/>
+<os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/>
 
 <os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK">
   <os-gateway:target name="LONDON"/>
@@ -74,7 +74,7 @@ Each of replication channel to the gateways can be configured with more paramete
 
 
 ```xml
-<os-core:embedded-space id="space" name="myNYSpace" gateway-targets="gatewayTargets"/>
+<os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/>
 
 <os-gateway:targets id="gatewayTargets"
   local-gateway-name="NEWYORK" bulk-size="1000"
@@ -134,7 +134,7 @@ By default the gateway will preserve distributed transactions atomicity (distrib
 
 
 ```xml
-<os-core:embedded-space id="space" name="localSpace" gateway-targets="gatewayTargets">
+<os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets">
   <os-core:properties>
     <props>
       <prop key="cluster-config.groups.group.repl-policy.processing-type">
@@ -224,7 +224,7 @@ Like all GigaSpaces Processing Units, the configuration details of each of the a
     http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/{{% currentversion %}}/sla/openspaces-sla.xsd
     http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/{{% currentversion %}}/core/gateway/openspaces-gateway.xsd">
 
-  <os-core:embedded-space id="space" name="myNYSpace" gateway-targets="gatewayTargets"/>
+  <os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/>
 
   <os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK">
     <os-gateway:target name="LONDON"/>
@@ -254,7 +254,7 @@ Like all GigaSpaces Processing Units, the configuration details of each of the a
     http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/{{% currentversion %}}/sla/openspaces-sla.xsd
     http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/{{% currentversion %}}/core/gateway/openspaces-gateway.xsd">
 
-  <os-core:embedded-space  id="space" name="myLondonSpace"/>
+  <os-core:embedded-space  id="space" space-name="myLondonSpace"/>
     <!-- No gateway targets needed as this space
          is not replicating to any gateway-->
 </beans>
@@ -314,7 +314,7 @@ Like all GigaSpaces Processing Units, the configuration details of each of the a
     http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/{{% currentversion %}}/sla/openspaces-sla.xsd
     http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/{{% currentversion %}}/core/gateway/openspaces-gateway.xsd">
 
-  <os-core:embedded-space  id="space" name="myHKSpace"/>
+  <os-core:embedded-space  id="space" space-name="myHKSpace"/>
     <!-- No gateway targets needed as this space
          is not replicating to any gateway-->
 </beans>
@@ -394,7 +394,7 @@ Here are the contents of the files for each of the components:
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/{{% currentversion %}}/sla/openspaces-sla.xsd
        http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/{{% currentversion %}}/core/gateway/openspaces-gateway.xsd">
 
-        <os-core:embedded-space  id="space" name="myNYSpace" gateway-targets="gatewayTargets"/>
+        <os-core:embedded-space  id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/>
 
         <os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK">
           <os-gateway:target name="LONDON"/>
@@ -455,7 +455,7 @@ Here are the contents of the files for each of the components:
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/{{% currentversion %}}/sla/openspaces-sla.xsd
        http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/{{% currentversion %}}/core/gateway/openspaces-gateway.xsd">
 
-        <os-core:embedded-space  id="space" name="myLondonSpace"
+        <os-core:embedded-space  id="space" space-name="myLondonSpace"
           gateway-targets="gatewayTargets"/>
 
         <os-gateway:targets id="gatewayTargets" local-gateway-name="LONDON">

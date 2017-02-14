@@ -122,7 +122,7 @@ The following Spring xml configuration file declares a space, an `EntityManagerF
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-{{%version "spring"%}}.xsd">
 
 	<!-- space definition -->
-    <os-core:embedded-space  id="space" name="jpaSpace" lookup-groups="test"/>
+    <os-core:embedded-space  id="space" space-name="jpaSpace" lookup-groups="test"/>
 
     <!-- gigaspace definition -->
     <os-core:giga-space id="gigaSpace" space="space"/>

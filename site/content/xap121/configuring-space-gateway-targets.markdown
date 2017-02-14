@@ -16,7 +16,7 @@ Here is an example of how this configuration should look:
 
 
 ```xml
- <os-core:embedded-space id="space" name="myNYSpace" gateway-targets="gatewayTargets"/>
+ <os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/>
 
 <os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"
   idle-time-threshold="3000" bulk-size="1000" max-redo-log-capacity="1000000">

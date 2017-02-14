@@ -105,7 +105,7 @@ also asynchronously persists the data using a mirror (see [Cassandra Space Synch
 
     </bean>
 
-   <os-core:embedded-space id="space" name="dataSourceSpace"
+   <os-core:embedded-space id="space" space-name="dataSourceSpace"
         space-data-source="cassandraSpaceDataSource"
         schema="persistent"
         mirror="true">

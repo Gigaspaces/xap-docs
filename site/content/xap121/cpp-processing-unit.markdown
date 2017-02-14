@@ -208,7 +208,7 @@ See below an example:
 
 ```xml
 <beans>
-     <os-core:embedded-space id="space" name="space" />
+     <os-core:embedded-space id="space" space-name="space" />
     <os-core:giga-space id="gigaSpace" space="space" />
     <bean id="cpp" class="com.gigaspaces.javacpp.openspaces.CXXBean">
         <property name="gigaSpace" ref="gigaSpace" />
@@ -249,7 +249,7 @@ Here is an example for a processing unit with a c++ worker deployed, using a clu
 
     <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
 
-    <os-core:embedded-space id="space" name="space" />
+    <os-core:embedded-space id="space" space-name="space" />
 
     <os-core:giga-space id="gigaSpace" space="space" />
     <bean id="cpp" class="com.gigaspaces.javacpp.openspaces.CXXBean">

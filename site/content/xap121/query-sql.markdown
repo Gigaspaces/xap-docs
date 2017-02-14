@@ -232,7 +232,7 @@ For example:
 
 ```xml
 <beans>
-    <os-core:embedded-space id="space" name="mySpace">
+    <os-core:embedded-space id="space" space-name="mySpace">
         <os-core:properties>
             <props>
                 <prop key="space-config.QueryProcessor.date_format">yyyy-MM-dd HH:mm:ss</prop>
@@ -267,7 +267,7 @@ XAP supports the `LocalDate`, `LocalTime` and `LocalDateTime` classes. The follo
 
 
 ```xml
-	<os-core:embedded-space id="space" name="sandboxSpace">
+	<os-core:embedded-space id="space" space-name="sandboxSpace">
 		<os-core:properties>
 			<props>
 				<prop key="space-config.QueryProcessor.date_format">yyyy-MM-dd HH:mm:ss</prop>

@@ -52,7 +52,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
 
@@ -105,7 +105,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("mySpace"
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
 
@@ -166,7 +166,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 <os-core:local-cache id="localCacheSpace" space="space"/>
 <os-core:giga-space id="localCache" space="localCacheSpace"/>
 ```
@@ -230,7 +230,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 
 
 ```xml
-<os-core:space-proxy id="space" name="mySpace" />
+<os-core:space-proxy id="space" space-name="mySpace" />
 
 <os-core:local-view id="localViewSpace" space="space">
     <os-core:view-query class="Message" where="processed = true"/>
@@ -334,7 +334,7 @@ A secured space should be configured with a security context so that it can be a
 
 
 ```xml
-<os-core:space-proxy id="space" name="mySpace">
+<os-core:space-proxy id="space" space-name="mySpace">
     <os-core:security username="sa" password="adaw@##$" />
 </os-core:space-proxy>
 ```
@@ -365,7 +365,7 @@ Here is an example of how to define security with an embedded space. In this cas
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace">
+<os-core:space-proxy  id="space" space-name="mySpace">
     <os-core:security username="sa" password="adaw@##$" />
 </os-core:space-proxy>
 ```
@@ -435,7 +435,7 @@ When constructing a space, it is possible to provide [Space Persistency](./space
     <property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 
-<os-core:embedded-space id="space" name="mySpace" schema="persistent" space-data-source="hibernateSpaceDataSource" />
+<os-core:embedded-space id="space" space-name="mySpace" schema="persistent" space-data-source="hibernateSpaceDataSource" />
 ```
 
 {{% /tab %}}

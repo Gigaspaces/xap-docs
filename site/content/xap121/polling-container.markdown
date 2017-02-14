@@ -37,7 +37,7 @@ Here is a simple example of polling event container configuration:
 <!-- Enable support for @Polling annotation -->
 <os-events:annotation-support />
 
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
@@ -63,7 +63,7 @@ public class SimpleListener {
 {{% /tab %}}
 {{%tab "Namespace"%}}
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 <bean id="simpleListener" class="SimpleListener" />
 <os-events:polling-container id="eventContainer" giga-space="gigaSpace">
@@ -494,7 +494,7 @@ public class SimpleListener {
 {{% /tab %}}
 {{%tab "Namespace"%}}
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -612,7 +612,7 @@ public class SimpleListener {
 {{% /tab %}}
 {{%tab "Namespace"%}}
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -980,7 +980,7 @@ public class SimpleListener {
 {{% /tab %}}
 {{%tab "Namespace"%}}
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 

@@ -35,7 +35,7 @@ This is easily achieved using OpenSpaces extensions to the Mule SEDA model. Here
 
 ```xml
 <spring:beans>
-	<os-core:embedded-space id="space" name="mySpace"/>
+	<os-core:embedded-space id="space" space-name="mySpace"/>
 	<os-core:giga-space id="gigaSpace" space="space" />
 	<os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true" />
 </spring:beans>
@@ -74,7 +74,7 @@ Here is an example of how it can be configured:
 
 ```xml
 <spring:beans>
-	<os-core:embedded-space id="space" name="mySpace" lookup-groups="${user.name}"/>
+	<os-core:embedded-space id="space" space-name="mySpace" lookup-groups="${user.name}"/>
 	<os-core:giga-space id="gigaSpace" space="space" />
 </spring:beans>
 
@@ -126,7 +126,7 @@ Here is an example of how working with `os-seda` using the Space Local Transacti
 
 ```xml
 <spring:beans>
-   <os-core:embedded-space id="space" name="mySpace"/>
+   <os-core:embedded-space id="space" space-name="mySpace"/>
 
     <os-core:distributed-tx-manager id="transactionManager" />
 

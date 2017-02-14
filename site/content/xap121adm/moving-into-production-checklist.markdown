@@ -275,7 +275,7 @@ Here is a simple configuration you should place within your pu.xml to disable th
 
 
 ```xml
-<os-core:embedded-space id="space" name="myspace">
+<os-core:embedded-space id="space" space-name="myspace">
     <os-core:properties>
         <props>
             <prop key="com.j_spaces.core.container.directory_services.jini_lus.start-embedded-lus">false</prop>
@@ -859,7 +859,7 @@ When running with `ALL_IN_CACHE`, you should make sure the default memory manage
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace" >
+<os-core:embedded-space id="space" space-name="mySpace" >
     <os-core:properties>
         <props>
             <prop key="space-config.engine.memory_usage.high_watermark_percentage">95</prop>
@@ -876,7 +876,7 @@ The [local cache]({{%currentjavaurl%}}/local-cache.html) is used as a client sid
 
 
 ```xml
-<os-core:space-proxy id="space" name="mySpace" />
+<os-core:space-proxy id="space" space-name="mySpace" />
 
 <os-core:local-cache id="localCacheSpace" space="space" update-mode="PULL" >
     <os-core:properties>

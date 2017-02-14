@@ -55,7 +55,7 @@ Creating a space with a MemoryXtend add-on can be done via `pu.xml` or code. The
 
     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" name="mySpace" >
+    <os-core:embedded-space id="space" space-name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
     </os-core:embedded-space>
 
@@ -77,7 +77,7 @@ Creating a space with a MemoryXtend add-on can be done via `pu.xml` or code. The
         <property name="mappingDir" value="/tmp/mapping"/>
     </bean>
 
-    <os-core:embedded-space id="space" name="mySpace">
+    <os-core:embedded-space id="space" space-name="mySpace">
         <os-core:blob-store-data-policy blob-store-handler="blobstoreid" persistent="true"/>
     </os-core:embedded-space>
 
@@ -150,7 +150,7 @@ However, when using a MemoryXtend add-on which is based on non-volatile technolo
 Persistency is off by default, and needs to be explicitly enabled. For example:
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace" >
+<os-core:embedded-space id="space" space-name="mySpace" >
     <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
 </os-core:embedded-space>
 ```
@@ -243,7 +243,7 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 
     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" name="mySpace" >
+    <os-core:embedded-space id="space" space-name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
         <os-core:attribute-store store-handler="attributeStoreHandler"/>
     </os-core:embedded-space>
@@ -271,7 +271,7 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 
     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" name="mySpace" >
+    <os-core:embedded-space id="space" space-name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
         <os-core:attribute-store store-handler="attributeStoreHandler"/>
     </os-core:embedded-space>
@@ -476,7 +476,7 @@ In the example below we are loading `Stock` instances where the name=a1000 and `
 
     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/tmp/rocksdb]" mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" name="mySpace">
+    <os-core:embedded-space id="space" space-name="mySpace">
         <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="name = a1000"/>
             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="id > 10000"/>

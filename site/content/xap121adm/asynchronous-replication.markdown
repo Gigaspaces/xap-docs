@@ -18,7 +18,7 @@ In general you should have the `cluster-config.groups.group.repl-policy.replicat
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="cluster-config.groups.group.repl-policy.replication-mode">async</prop>
@@ -86,7 +86,7 @@ To change the default replication settings you should modify the space propertie
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="cluster-config.groups.group.async-replication.repl-chunk-size">1000</prop>

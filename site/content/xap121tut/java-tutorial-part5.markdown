@@ -141,7 +141,7 @@ Here is an example of a pu.xml file:
         not contain any remote protocol prefix. Also note that we do not specify here the cluster topology
         of the space. It is declared by the os-sla:sla element of this pu.xml file.
     -->
-    <os-core:embedded-space id="space" name="eventSpace" />
+    <os-core:embedded-space id="space" space-name="eventSpace" />
 
     <!-- Define the GigaSpace instance that the application will use to access the space  -->
     <os-core:giga-space id="eventSpace" space="space"/>
@@ -253,7 +253,7 @@ In this step will create the configuration file for the PU deployment
 	<os-remoting:annotation-support />
 
 	<!-- A bean representing a space (an IJSpace implementation) -->
-	<os-core:embedded-space id="space" name="eventSpace" />
+	<os-core:embedded-space id="space" space-name="eventSpace" />
 
 	<!-- Define the GigaSpace instance that the application will use to access the space -->
 	<os-core:giga-space id="eventSpace" space="space"/>

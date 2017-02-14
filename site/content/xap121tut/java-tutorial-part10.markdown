@@ -229,7 +229,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
 {{%tab "  Spring "%}}
 
 ```xml
-<os-core:embedded-space id="space" name="xapTutorialSpace">
+<os-core:embedded-space id="space" space-name="xapTutorialSpace">
     <os-core:security secured="true" />
 </os-core:space>
 ```
@@ -253,7 +253,7 @@ public void setupSpace()
 {{%tab "  Spring "%}}
 
 ```xml
-<os-core:space-proxy id="space" name="xapTutorialSpace">
+<os-core:space-proxy id="space" space-name="xapTutorialSpace">
     <os-core:security username="student" password="student123" />
 </os-core:space-proxy>
 ```

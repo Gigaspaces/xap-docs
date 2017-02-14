@@ -55,7 +55,7 @@ Here is a simple example of an archive container configuration:
 <!-- Enable support for @Archive annotation -->
 <os-archive:annotation-support />
 
-<os-core:embedded-space id="space" name="space" />
+<os-core:embedded-space id="space" space-name="space" />
 
 <os-core:distributed-tx-manager id="transactionManager" space="space"/>
 
@@ -92,7 +92,7 @@ public class ExpiredTweetsArchiveContainer {
 
 
 ```xml
-<os-core:embedded-space id="space" name="space" />
+<os-core:embedded-space id="space" space-name="space" />
 
 <os-core:distributed-tx-manager id="transactionManager" space="space"/>
 

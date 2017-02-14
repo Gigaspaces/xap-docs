@@ -86,7 +86,7 @@ Specifying space level storage type can be done using any of the following:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="space-config.serialization-type">1</prop>

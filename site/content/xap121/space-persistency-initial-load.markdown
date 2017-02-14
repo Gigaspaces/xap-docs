@@ -23,7 +23,7 @@ Here is an example for a space configuration that performs only initial load fro
 
 
 ```xml
-<os-core:embedded-space id="space" name="space" schema="persistent" space-data-source="hibernateSpaceDataSource">
+<os-core:embedded-space id="space" space-name="space" schema="persistent" space-data-source="hibernateSpaceDataSource">
     <os-core:properties>
         <props>
             <!-- Use ALL IN CACHE -->

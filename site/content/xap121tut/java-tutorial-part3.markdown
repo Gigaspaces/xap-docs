@@ -260,7 +260,7 @@ The service is exported to the server with the Spring configuration. Here is an 
 <os-remoting:annotation-support />
 
 <!-- A bean representing a space (an IJSpace implementation) -->
-<os-core:embedded-space id="space" name="xapTutorialSpace" />
+<os-core:embedded-space id="space" space-name="xapTutorialSpace" />
 
 <!-- Define the GigaSpace instance that the application will use to access the space -->
 <os-core:giga-space id="xapTutorialSpace" space="space"/>

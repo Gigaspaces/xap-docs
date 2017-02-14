@@ -24,7 +24,7 @@ Creating a local cache is similar to creating a GigaSpace, except that we wrap t
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 <os-core:local-cache id="localCacheSpace" space="space">
     <os-core:properties>
 	<props>

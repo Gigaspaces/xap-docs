@@ -52,7 +52,7 @@ The following is an example of how to introduce a new document type:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"  >
+<os-core:embedded-space id="space" space-name="mySpace"  >
       <os-core:space-type type-name="Product" >
 		<os-core:id property="CatalogNumber"/>
 		<os-core:routing property="Category"/>
@@ -415,7 +415,7 @@ Here is a simple example of a polling event container configuration using a `Doc
 <!-- Enable support for @Polling annotation -->
 <os-events:annotation-support />
 
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
       <os-core:space-type type-name="Product" >
 		<os-core:id property="CatalogNumber"/>
 		<os-core:routing property="Category"/>
@@ -451,7 +451,7 @@ public class SimpleListener {
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
   <os-core:space-type type-name="Product" >
 		<os-core:id property="CatalogNumber"/>
 		<os-core:routing property="Category"/>
@@ -560,7 +560,7 @@ pollingEventListenerContainer.destroy();
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:space-type type-name="Product" fifo-support="OPERATION" >
 		<!-- other properties definition -->
     </os-core:space-type>
@@ -628,7 +628,7 @@ Optimistic locking is disabled by default with `Document` entries (same as with 
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
       <os-core:space-type type-name="Product" optimistic-lock="true" >
 		<!-- other properties definition -->
       </os-core:space-type>
@@ -703,7 +703,7 @@ Example on how to implement an EDS that persists SpaceDocuments of type "Trade":
 ```xml
 <bean id="documentDataSource" class="com.test.DocumentEDS"/>
 
-<os-core:embedded-space id="space" name="mySpace" schema="persistent" external-data-source="documentDataSource">
+<os-core:embedded-space id="space" space-name="mySpace" schema="persistent" external-data-source="documentDataSource">
     <os-core:space-type type-name="Trade" >
 	   <os-core:id property="uid" auto-generate="true"/>
 	   <os-core:routing property="symbolLabel"/>

@@ -197,7 +197,7 @@ The following example shows the requires isolation configuration:
 {{%tab "  Namespace "%}}
 
 ```xml
-<os-core:embedded-space id="space" name="${dataGridName}"/>
+<os-core:embedded-space id="space" space-name="${dataGridName}"/>
 
 <os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="0" requires-isolation="true">
 </os-sla:sla>

@@ -63,7 +63,7 @@ Space synchronization endpoint configuration can be done using a Spring bean or 
 
     <bean id="spaceSynchronizationEndpoint" class="com.gigaspaces.test.SpaceSynchronizationEndpointImpl" />
 
-    <os-core:embedded-space id="space" name="dataSourceSpace" space-sync-endpoint="spaceSynchronizationEndpoint" />
+    <os-core:embedded-space id="space" space-name="dataSourceSpace" space-sync-endpoint="spaceSynchronizationEndpoint" />
 
     <os-core:giga-space id="gigaSpace" space="space" />
 

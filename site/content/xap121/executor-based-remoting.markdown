@@ -137,7 +137,7 @@ The next step is exporting the service over the space. Exporting the service is 
 <!-- Support the @RemotingService annotation on a service-->
 <os-remoting:annotation-support />
 
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -149,7 +149,7 @@ The next step is exporting the service over the space. Exporting the service is 
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -217,7 +217,7 @@ Configuring the `IDataProcessor` proxy can done in the following manner:
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -348,7 +348,7 @@ Finally, the wiring is done in the following manner:
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -553,7 +553,7 @@ Client pu.xml
 
 ```xml
 <context:component-scan base-package="com.demo"/>
-<os-core:space-proxy id="space" name="mySpace"/>
+<os-core:space-proxy id="space" space-name="mySpace"/>
 
 <os-core:distributed-tx-manager id="myTransactionManager" />
 <os-core:giga-space id="gigaspace" space="space"  tx-manager="myTransactionManager"/>
@@ -606,7 +606,7 @@ Service pu.xml
 ```xml
 <context:component-scan base-package="com.demo"/>
 <os-remoting:annotation-support />
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 <os-remoting:service-exporter id="serviceExporter" />
 ```
@@ -660,7 +660,7 @@ An implementation of such an aspect can be configured as follows:
 
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -756,7 +756,7 @@ An implementation of such an aspect can be configured as follows:
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -829,7 +829,7 @@ The following snippets show how to plug a custom meta arguments handler to the c
 
 ```xml
 
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -918,7 +918,7 @@ The configuration of enabling broadcasting is done on the client level, by setti
 
 
 ```xml
-<os-core:space-proxy id="space" name="mySpace"/>
+<os-core:space-proxy id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 

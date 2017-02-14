@@ -595,7 +595,7 @@ Example:
 
 
 ```xml
-<os-core:embedded-space  id="space" name="space" >
+<os-core:embedded-space  id="space" space-name="space" >
     <os-core:properties>
         <props>
             <prop key="space-config.QueryProcessor.transaction_timeout">50000</prop>

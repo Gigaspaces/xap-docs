@@ -46,7 +46,7 @@ The `space` and `giga-space` are declared just like any other typical OpenSpaces
         <!--
             A bean representing a space (an IJSpace implementation).
         -->
-        <os-core:embedded-space id="space" name="mySpace"  lookup-groups="${user.name}"/>
+        <os-core:embedded-space id="space" space-name="mySpace"  lookup-groups="${user.name}"/>
 
         <!--
             OpenSpaces simplified space API built on top of IJSpace/JavaSpace.
@@ -146,7 +146,7 @@ This means that any outbound component operating within a Spring managed transac
 
 ```xml
 <spring:beans>
-   <os-core:embedded-space id="space" name="mySpace"/>
+   <os-core:embedded-space id="space" space-name="mySpace"/>
 
     <os-core:distributed-tx-manager id="transactionManager" />
 
@@ -213,7 +213,7 @@ In this example, POJO messages are received (`SimpleMessage`) from the Space, wi
     <description>Tests mule connector, receive and process single object at a time.</description>
 
     <spring:beans>
-        <os-core:embedded-space id="space" name="space" lookup-groups="${user.name}"/>
+        <os-core:embedded-space id="space" space-name="space" lookup-groups="${user.name}"/>
 
         <os-core:giga-space id="gigaSpace" space="space"/>
 

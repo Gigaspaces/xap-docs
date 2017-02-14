@@ -117,7 +117,7 @@ The `StandaloneProcessingUnitContainerProvider` is constructed with a file-syste
 The StandaloneProcessingUnitContainer automatically starts an embedded Lookup service. If you intend to use a separate Lookup service you can disable the embedded Lookup service by passing the setting the `com.j_spaces.core.container.directory_services.jini_lus.enabled` system property to false. This property can also be set within the Space definition:
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
       <props>
         <prop key="com.j_spaces.core.container.directory_services.jini_lus.start-embedded-lus">false</prop>

@@ -49,7 +49,7 @@ Example : To increase the lookup duration timeout to 5 minutes you should have t
 {{%tab "  Namespace "%}}
 
 ```xml
-<os-core:space-proxy  id="space" name="mySpace">
+<os-core:space-proxy  id="space" space-name="mySpace">
     <os-core:properties>
  	    <props>
  	        <prop key="space-config.proxy.router.active-server-lookup-timeout">300000</prop>

@@ -44,7 +44,7 @@ Space data source configuration can be done using a Spring bean or via code as s
 
     <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
     <bean id="spaceDataSource" class="com.gigaspaces.test.SpaceDataSourceImpl" />
-    <os-core:embedded-space id="space" name="dataSourceSpace"  space-data-source="spaceDataSource"  />
+    <os-core:embedded-space id="space" space-name="dataSourceSpace"  space-data-source="spaceDataSource"  />
     <os-core:giga-space id="gigaSpace" space="space" />
 </beans>
 ```

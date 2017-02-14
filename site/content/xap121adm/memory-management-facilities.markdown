@@ -30,7 +30,7 @@ The space supports two cache eviction policies: [LRU-Cache Policy](./lru-cache-p
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="space-config.engine.cache_policy">0</prop>
@@ -63,7 +63,7 @@ When configuring the JVM to use large heap sizes (over 10GB), it is recommended 
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="space-config.engine.memory_usage.high_watermark_percentage">97</prop>

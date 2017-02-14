@@ -18,7 +18,7 @@ In general you should have the `cluster-config.groups.group.repl-policy.replicat
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="cluster-config.groups.group.repl-policy.replication-mode">sync</prop>
@@ -85,7 +85,7 @@ To change the default replication settings you should modify the space propertie
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="cluster-config.groups.group.repl-policy.sync-replication.throttle-when-inactive">false</prop>
@@ -116,7 +116,7 @@ Splitting large batches into chunks is defined using the `cluster-config.groups.
 {{%accord title="Java ... pu.xml"%}}
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="cluster-config.groups.group.repl-policy.sync-replication.multiple-opers-chunk-size">5000</prop>

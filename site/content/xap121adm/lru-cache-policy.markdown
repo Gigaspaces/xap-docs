@@ -187,7 +187,7 @@ See below example how you can configure the LRU eviction settings:
 
 
 ```java
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
   <os-core:properties>
 	<props>
 	    <prop key="space-config.engine.memory_usage.enabled">true</prop>
@@ -223,7 +223,7 @@ The combination of large `space-config.engine.initial_load` and a large `space-c
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace" schema="persistent" external-data-source="hibernateDataSource">
+<os-core:embedded-space id="space" space-name="mySpace" schema="persistent" external-data-source="hibernateDataSource">
     <os-core:properties>
         <props>
 	    <prop key="space-config.engine.memory_usage.enabled">true</prop>
@@ -258,7 +258,7 @@ Here are good settings for a JVM with a **2G heap size** and a 5K object size. W
 
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace" schema="persistent" external-data-source="hibernateDataSource">
+<os-core:embedded-space id="space" space-name="mySpace" schema="persistent" external-data-source="hibernateDataSource">
     <os-core:properties>
         <props>
 	    <prop key="space-config.engine.cache_policy">0</prop>

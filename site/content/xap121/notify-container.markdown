@@ -34,7 +34,7 @@ Here is a simple example of a notify event container configuration:
 
 <!-- Enable support for @Notify annotation -->
 <os-events:annotation-support />
-<os-core:embedded-space  id="space" name="mySpace"/>
+<os-core:embedded-space  id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
 
@@ -59,7 +59,7 @@ public class SimpleListener {
 {{% /tab %}}
 {{%tab "  Namespace "%}}
 ```xml
-<os-core:embedded-space  id="space" name="mySpace"/>
+<os-core:embedded-space  id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 <bean id="simpleListener" class="SimpleListener" />
 <os-events:notify-container id="eventContainer" giga-space="gigaSpace">
@@ -581,7 +581,7 @@ Here is an example how you can configure the minimum and the maximum of the thre
 
 
 ```xml
-<os-core:embedded-space  id="space" name="mySpace">
+<os-core:embedded-space  id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="space-config.engine.notify_min_threads">128</prop>
@@ -616,7 +616,7 @@ In your `pu.xml` file you can define a `ThreadPoolTaskExecutor` and an async lis
 {{%tabs%}}
 {{%tab "pu.xml"%}}
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 
@@ -966,7 +966,7 @@ When a network failure occurs and the space can't communicate with the client, t
 
 
 ```java
-<os-core:embedded-space id="space" name="mySpace">
+<os-core:embedded-space id="space" space-name="mySpace">
     <os-core:properties>
         <props>
             <prop key="space-config.notifier-retries">10</prop>

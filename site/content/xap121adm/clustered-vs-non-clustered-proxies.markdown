@@ -40,7 +40,7 @@ You may use Spring based configuration or API to create a Clustered Proxy.
 When using a Spring based `pu.xml` to construct the [GigaSpace]({{%currentjavaurl%}}/the-gigaspace-interface.html) bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered `GigaSpace` bean:
 
 ```xml
-<os-core:embedded-space id="space" name="mySpace"/>
+<os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:giga-space id="nonClusteredGigaSpace" space="space"/>
 <os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/>
 ```
@@ -151,7 +151,7 @@ With this example the `pu.xml` includes the following:
 
 
 ```xml
-<os-core:embedded-space id="spaceEmbed" name="mySpace" />
+<os-core:embedded-space id="spaceEmbed" space-name="mySpace" />
 <os-core:giga-space id="gigaSpaceEmbedNonClustered" space="spaceEmbed" />
 <os-core:annotation-support />
 <os-core:giga-space-context/>
@@ -269,7 +269,7 @@ Our `DistributedTask` implements [ClusterInfoAware]({{%currentjavaurl%}}/obtaini
 The `pu.xml` includes the following:
 
 ```xml
-<os-core:embedded-space id="spaceEmbed" name="mySpace" />
+<os-core:embedded-space id="spaceEmbed" space-name="mySpace" />
 <os-core:giga-space id="gigaSpaceEmbedNonClustered" space="spaceEmbed" />
 ```
 
@@ -358,7 +358,7 @@ From Task Execute - partition 2 gigaSpaceRemote - total visible objects:2
 With this example the `pu.xml` includes the following:
 
 ```xml
-<os-core:embedded-space id="spaceEmbed" name="mySpace" />
+<os-core:embedded-space id="spaceEmbed" space-name="mySpace" />
 <os-core:giga-space id="gigaSpaceEmbedNonClustered" space="spaceEmbed" />
 <os-events:annotation-support />
 <os-core:annotation-support />

@@ -22,7 +22,7 @@ Here is an example how you define a distributed transaction manager via the Spri
 
 ```xml
 <!-- A bean representing a space (an IJSpace implementation) -->
-<os-core:embedded-space id="space" name="xapTutorialSpace" />
+<os-core:embedded-space id="space" space-name="xapTutorialSpace" />
 
 <!-- Defines a distributed transaction manager. -->
 <os-core:distributed-tx-manager id="transactionManager" />
@@ -145,7 +145,7 @@ GigaSpace space = new GigaSpaceConfigurer( new SpaceProxyConfigurer("xapTutorial
 {{%tab "  Spring "%}}
 
 ```xml
-    <os-core:space-proxy id="space" name="xapTutorialSpace"  versioned="true" />
+<os-core:space-proxy id="space" space-name="xapTutorialSpace"  versioned="true" />
 ```
 {{% /tab %}}
 {{% /tabs %}}

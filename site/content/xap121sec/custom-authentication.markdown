@@ -112,12 +112,12 @@ Custom `CredentialsProvider` can be provided in several ways, as follows:
     <constructor-arg><value>myServer</value></constructor-arg>
 </bean>
 <!-- Creating an embedded secured Space -->
-<os-core:embedded-space id="embeddedSpace" name="mySpace">
+<os-core:embedded-space id="embeddedSpace" space-name="mySpace">
     <os-core:security credentials-provider="myCredentialsProvider" />
 </os-core:embedded-space>
 
 <!-- Looking up a secured Space -->
-<os-core:space-proxy id="space" name="mySpace">
+<os-core:space-proxy id="space" space-name="mySpace">
     <os-core:security credentials-provider="myCredentialsProvider" />
 </os-core:space-proxy>
 ```
@@ -260,7 +260,7 @@ Custom `SecurityManager` can be provided in several ways, as follows:
 
 ```xml
 <!-- Configuring a secured space using custom properties -->
-<os-core:embedded-space id="space" name="space">
+<os-core:embedded-space id="space" space-name="space">
     <os-core:security secured="true"/>
     <os-core:properties>
         <props>

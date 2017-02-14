@@ -28,7 +28,7 @@ Transaction support can be configured as follows:
 <!-- Enable support for @Polling annotation -->
 <os-events:annotation-support />
 
-<os-core:embedded-space  id="space" name="mySpace"/>
+<os-core:embedded-space  id="space" space-name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager" />
 
@@ -60,7 +60,7 @@ public class SimpleListener {
 
 ```xml
 
-<os-core:embedded-space  id="space" name="mySpace"/>
+<os-core:embedded-space  id="space" space-name="mySpace"/>
 
 <os-core:distributed-tx-manager id="transactionManager" />
 

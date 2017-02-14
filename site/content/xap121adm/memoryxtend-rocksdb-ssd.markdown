@@ -53,7 +53,7 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" 
     			mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" name="mySpace" >
+    <os-core:embedded-space id="space" space-name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
     </os-core:embedded-space>
 
@@ -75,7 +75,7 @@ Creating a space with the RocksDB add-on can be done via `pu.xml` or code. For e
         <property name="mappingDir" value="/tmp/mapping"/>
     </bean>
 
-    <os-core:embedded-space id="space" name="mySpace">
+    <os-core:embedded-space id="space" space-name="mySpace">
         <os-core:blob-store-data-policy blob-store-handler="blobstoreid" persistent="true"/>
     </os-core:embedded-space>
 

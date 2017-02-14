@@ -100,7 +100,7 @@ Pu.xml contains a standard description of gigaSpace:
 ...
 <os-core:giga-space-context/>
 
-<os-core:space-proxy  id="space" name="mySpace"/>
+<os-core:space-proxy  id="space" space-name="mySpace"/>
 
 <os-core:giga-space id="gigaSpace" space="space"/>
 ...

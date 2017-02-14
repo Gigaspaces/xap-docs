@@ -52,7 +52,7 @@ Then add to your pu.xml the following leader-selector configuration:
 
    <leader-selector:zookeeper id="zookeeper"/>
 
-    <os-core:embedded-space id="space" name="mySpace">
+    <os-core:embedded-space id="space" space-name="mySpace">
         <os-core:leader-selector ref="zookeeper"/>
     </os-core:embedded-space>
 

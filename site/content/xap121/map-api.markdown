@@ -33,7 +33,7 @@ Here is a very simple example how a client application can create a `GigaMap` in
 
 
 ```xml
-<os-core:space-proxy id="space" name="mySpace"/>
+<os-core:space-proxy id="space" space-name="mySpace"/>
 <os-core:map id="map" space="space"/>
 <os-core:giga-map id="gigaMap" map="map" />
 ```
@@ -83,7 +83,7 @@ To create a `GigaMap` for a co-located (embedded) space the space URL should use
 
 
 ```xml
-<os-core:embedded-space  id="space" name="mySpace"/>
+<os-core:embedded-space  id="space" space-name="mySpace"/>
 <os-core:map id="map" space="space"/>
 <os-core:giga-map id="gigaMap" map="map" />
 ```
@@ -144,7 +144,7 @@ Here is an example for a `GigaMap` construct with a local cache:
 
 ```xml
 
-<os-core:space-proxy id="space" name="mySpace"/>
+<os-core:space-proxy id="space" space-name="mySpace"/>
 
 <bean id="evictionStrategy" class="com.j_spaces.map.eviction.FIFOEvictionStrategy">
     <property name="batchSize" value="1000"/>
@@ -288,7 +288,7 @@ GigaSpaces supports three isolation levels: `READ_UNCOMMITTED`, `READ_COMMITTED`
 
 
 ```xml
-<os-core:space-proxy id="space" name="mySpace"/>
+<os-core:space-proxy id="space" space-name="mySpace"/>
 <os-core:map id="map" space="space"/>
 <os-core:giga-map id="gigaMap" map="map" default-isolation-level="READ_COMMITTED"/>
 ```
@@ -452,7 +452,7 @@ The decision of working directly with a cluster member or against the whole clus
 
 ```xml
 
-<os-core:embedded-space  id="space" name="mySpace"/>
+<os-core:embedded-space  id="space" space-name="mySpace"/>
 
 <!-- By default, since we are starting in embedded mode, clustered=false -->
 <os-core:map id="directMap" space="space"/>

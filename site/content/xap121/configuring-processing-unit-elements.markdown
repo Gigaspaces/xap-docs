@@ -91,7 +91,7 @@ Here's a sample `pu.xml` configuration file. Note the comments in the file which
         that we do not specify here the cluster topology of the Space. It is
         declared by the os-sla:sla element of this pu.xml file.
     -->
-     <os-core:embedded-space id="space" name="mySpace"/>
+     <os-core:embedded-space id="space" space-name="mySpace"/>
 
     <!-- Defines a distributed transaction manager.-->
     <os-core:distributed-tx-manager id="transactionManager" />
