@@ -8,10 +8,13 @@ weight: 300
 
 {{% ssummary %}}  {{% /ssummary %}}
 
-# What is MapDB?
+# XAP Off-Heap Storage
 
-[MapDB](http://www.mapdb.org/) is an embedded database engine which provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory. GigaSpaces XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on MapDB, which can be used for reducing the JVM heap size and garbage collection, since the entries are stored off-heap.
+XAP off-heap Storage mode store space objects off-heap. This mode can be used to reduce the space hosting JVM (GSC) heap utilization. This reduce garbage collection actvity delivering determentic behavior with lower chance having stop-the world pauses.
+ 
 
+
+ 
 
 {{%refer%}}
 If you're not familiar with MemoryXtend, make sure you read its [documentation](./memoryxtend.html) before proceeding.
@@ -21,10 +24,10 @@ If you're not familiar with MemoryXtend, make sure you read its [documentation](
 The MemoryXtend add-on is available for free during the evaluation period, but is not included in the premium edition license. For information about purchasing this add-on please contact [GigaSpaces Customer Support](http://www.gigaspaces.com/content/customer-support-services).
 {{% /info %}}
 
-# Prerequisites
+ 
+XAP off-heap using {{%exurl "MapDB""http://www.mapdb.org/"%}} that is an embedded database engine provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory. XAP off-heap is part of the [MemoryXtend](./memoryxtend.html) add-on. XAP off-heap support Java 7 (or later)
 
-- Java 7 (or later)
-
+<br>
 
 {{%align center%}}
 ![image](/attachment_files/blobstore/ohr3.png)
