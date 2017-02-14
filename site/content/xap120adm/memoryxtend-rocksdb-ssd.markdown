@@ -8,17 +8,13 @@ weight: 200
 
 {{% ssummary %}}  {{% /ssummary %}}
 
-# What Is RocksDB?
+# Native Persistence
 
-[RocksDB](http://rocksdb.org/) is an embeddable persistent key-value store for fast storage on flash devices. It was developed at Facebook and is now a popular [open source project](https://github.com/facebook/rocksdb).   XAP provides a [MemoryXtend](./memoryxtend.html) add-on based on RocksDB, which is the recommended choice for hybrid RAM-SSD clusters.
-
- 
- 
+XAP Native Persistece delivers built-in high speed persistence using HDD or SSD. It delivers low latency write and read performance & fast data recovery.  XAP Native Persistece is based on [RocksDB](http://rocksdb.org/) that is an embeddable persistent key-value store for fast storage on regualr drives and flash devices. It was developed at Facebook and is now a popular [open source project](https://github.com/facebook/rocksdb).  XAP Native Persistece is part of [MemoryXtend](./memoryxtend.html) add-on. 
 
 
 # Prerequisites
 
-- The MemoryXtend add-on uses RocksDB {{%version "rocksdb"%}}
 - Java 7 (or later)
 - Currently supports Linux only (Windows support will be available in the future)
 - Read/Write permissions to mounted devices/partitions
@@ -27,7 +23,6 @@ weight: 200
 {{%refer%}}
 For creating partitions you can use `fdisk` explained [here](http://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/).
 {{%/refer%}}
-
 
  
 
