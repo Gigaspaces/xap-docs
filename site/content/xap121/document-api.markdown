@@ -229,7 +229,7 @@ public SpaceDocument readProductByTemplate(GigaSpace gigaSpace) {
 
 ## SQL Query
 
-You can use the [SQLQuery](././query-sql.html) to search for matching `SpaceDocument` entries.
+You can use the [SQLQuery](./query-sql.html) to search for matching `SpaceDocument` entries.
 For example: Read a document of type **Product** whose **Price** is greater than 15:
 
 

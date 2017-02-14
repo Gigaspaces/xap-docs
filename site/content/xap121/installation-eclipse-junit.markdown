@@ -64,7 +64,7 @@ public class SpaceData {
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-{{%version spring%}}.xsd
     http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%currentversion%}}/remoting/openspaces-remoting.xsd">
 
-	<os-core:space id="aSpace" url="/./processingSpace" />
+	<os-core:embedded-space id="aSpace" space-name="processingSpace" />
 
 	<os-core:giga-space id="processingSpace" space="aSpace" />
 

@@ -128,7 +128,7 @@ You can choose which Space events (Take, Lease Expiration etc) are replicated. I
     <!-- Bean to filter the take operations -->
     <bean id="XPIFilter" class="com.gigaspaces.demo.XPIReplicationFilter"/>
 
-    <os-core:space id="space" url="/./wanSpaceAgency" gateway-targets="gatewayTargets">    
+    <os-core:embedded-space id="space" space-name="wanSpaceAgency" gateway-targets="gatewayTargets">    
         <os-core:space-replication-filter>
             <os-core:output-filter ref="XPIFilter"/>
         </os-core:space-replication-filter>

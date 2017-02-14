@@ -984,7 +984,7 @@ By default notifications are replicated to backup instances but are not triggere
 
 
 ```xml
-<os-core:space id="space" url="/./space" >	
+<os-core:embedded-space id="space" space-name="space" >	
 	<os-core:properties>
 		<props>
 			<prop key="cluster-config.groups.group.repl-policy.trigger-notify-templates">true</prop>
