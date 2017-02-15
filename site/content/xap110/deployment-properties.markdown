@@ -42,7 +42,7 @@ Note that for property place holders we use the `${placeholder name}` notation.
     </props></property>
 </bean>
 
- <os-core:embedded-spaceid="space" name="mySpace" schema="${spaceSchema}" />
+<os-core:embedded-spaceid="space" name="mySpace" schema="${spaceSchema}" />
 
 <bean id="connBean" class="MyConnection">
     <property name="timeout" value="${connectionTimeout}" />

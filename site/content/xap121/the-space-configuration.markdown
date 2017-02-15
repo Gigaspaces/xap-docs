@@ -1,6 +1,6 @@
 ---
 type: post121
-title:  Configuration
+title:  The Space URL  
 categories: XAP121
 weight: 200
 parent: the-gigaspace-interface-overview.html

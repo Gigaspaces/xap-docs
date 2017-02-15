@@ -6,7 +6,6 @@ weight: 800
 parent: the-gigaspace-interface-overview.html
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
 
 Space Filters are interceptors inside the XAP Space engine that enable integration with external systems and/or implementation of user-defined logic based once space operations are executed.
 
@@ -59,7 +58,6 @@ The following Spring configuration registers this filter for before write (`0`),
 
 
 ```xml
-
 <bean id="simpleFilter" class="eg.SimpleFilter" />
 
 <os-core:embedded-space id="space" space-name="mySpace">
@@ -77,7 +75,6 @@ The following Spring configuration registers this filter for before write (`0`),
 
 
 ```xml
-
 <bean id="simpleFilter" class="eg.SimpleFilter" />
 
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
@@ -175,7 +172,6 @@ The delegate filter shown above, can be configured in Spring using the following
 
 
 ```xml
-
 <bean id="simpleFilter" class="test.SimpleFilter" />
 
 <os-core:embedded-space id="space" space-name="mySpace">
@@ -191,7 +187,6 @@ The delegate filter shown above, can be configured in Spring using the following
 
 
 ```xml
-
 <bean id="simpleFilter" class="test.SimpleFilter" />
 
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
@@ -215,7 +210,6 @@ The following Spring configuration XML shows how the filter can be configured, u
 
 
 ```xml
-
 <bean id="simpleFilter" class="test.SimpleFilter" />
 
 <os-core:embedded-space id="space" space-name="spaceAdapterSimpleFilterMethod">
@@ -233,7 +227,6 @@ The following Spring configuration XML shows how the filter can be configured, u
 
 
 ```xml
-
 <bean id="simpleFilter" class="test.SimpleFilter" />
 
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
@@ -295,7 +288,6 @@ The following configuration shows how it can be injected:
 
 
 ```xml
-
 <bean id="simpleReplicationFilter" class="eg.SimpleReplicationFilter" />
 
 <os-core:embedded-space id="space" space-name="mySpace">
@@ -311,7 +303,6 @@ The following configuration shows how it can be injected:
 
 
 ```xml
-
 <bean id="simpleReplicationFilter" class="eg.SimpleReplicationFilter" />
 
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
