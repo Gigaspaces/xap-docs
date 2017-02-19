@@ -17,6 +17,18 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M18 (Feb-19-2017)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m18/gigaspaces-xap-open-12.1.0-m18-b16718.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m18/gigaspaces-xap-premium-12.1.0-m18-b16718.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m18/gigaspaces-xap-enterprise-12.1.0-m18-b16718.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m18/GigaSpaces-XAP.NET-Premium-12.1.0.16718-M18-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m18/GigaSpaces-XAP.NET-Premium-12.1.0.16718-M18-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m18/GigaSpaces-XAP.NET-Enterprise-12.1.0.16718-M18-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m18/GigaSpaces-XAP.NET-Enterprise-12.1.0.16718-M18-x86.msi)\]
+
+#### Milestone Release Notes
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|XAP-13122 | Bug Fix | Backwards compatibility issue in deployment of elastic space |
+
+
 ## 12.1 M17 (Feb-09-2017)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m17/gigaspaces-xap-open-12.1.0-m17-b16717.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m17/gigaspaces-xap-premium-12.1.0-m17-b16717.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m17/gigaspaces-xap-enterprise-12.1.0-m17-b16717.zip)\] 
