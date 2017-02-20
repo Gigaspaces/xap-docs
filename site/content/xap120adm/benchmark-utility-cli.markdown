@@ -192,8 +192,8 @@ Other possible values are:
 
 The following example arguments should be passed to the runTest script after loading a remote Space using startAll script.
 e.g. 
-[unix] ./run.sh jini://*/*/benchmarkSpace -read -i 1000
-[ win]  run.bat jini://*/*/benchmarkSpace -read -i 1000
+[unix] ./run.sh jini://\*/\*/benchmarkSpace -read -i 1000
+[ win]  run.bat jini://\*/\*/benchmarkSpace -read -i 1000
 
 
 The following example uses the XAP API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
