@@ -28,7 +28,9 @@ The configuration parameters below have a significant effect on the behavior of 
 
 # Weight policy
 
-Replication configuration is affected by the size of the redolog, measured in replication packets, and various thresholds and policies which dictates system behavior. Since transactions are replicated in a single packet (to ensure atomicity), the redolog size was not granular enough, as transactions can include few or many sub-operations. Starting with XAP 12.1, replication packets have weight, where simple operations weigh 1 and transactions weigh as the sum of their sub-operations, which makes it easier to configure replication.
+Replication configuration is affected by the size of the redolog, measured in replication packets, and various thresholds and policies which dictates system behavior. Since transactions are replicated in a single packet (to ensure atomicity), the redolog size was not granular enough, as transactions can include few or many sub-operations. Starting with XAP 12.1, replication packets have weight, where simple operations weigh 1 and transactions weigh as the sum of their sub-operations, which makes it easier to configure replication and increases the predictability of the replication. 
+ 
+
 
 Two policies are available:
 
@@ -57,7 +59,10 @@ You can use the `cluster-config.groups.group.repl-policy.backlog-weight-policy` 
 |cluster-config.groups.group.repl-policy.backlog-weight-policy | Weight policy. `fixed` or `accumulated` | accumulated  |
 
 
-
+{{%note%}}
+Users upgrading from previous versions, who *modified the default replication settings*, should make sure they understand this change and test it before they upgrade the production environment. 
+If it affects them, we recommend they re-calibrate the replication settings to the new behaviour.
+{{%/note%}}
 
 
 Here are the parameters you may configure to tune the redo log behavior. You may configure the redo log behavior between replicated spaces and between the spaces and the Mirror:
