@@ -138,7 +138,7 @@ Once you restart this instance, you will see that the existing primaries and bac
 
 # Restart XAP 4
 
-Again, you will see that the existing primaries and backup instances are rebalanced over all for servers:
+Again, you will see that the existing primaries and backup instances are rebalanced over all four servers:
 
 ![image](/attachment_files/epu/example10.png)
 
