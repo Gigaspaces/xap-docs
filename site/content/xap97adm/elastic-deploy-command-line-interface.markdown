@@ -1,7 +1,7 @@
 ---
-type: post110
+type: post97
 title:  Elastic Deployment with Command Line
-categories: XAP110ADM, PRM
+categories: XAP97ADM, PRM
 parent: administration-tools.html
 weight: 250
 ---
