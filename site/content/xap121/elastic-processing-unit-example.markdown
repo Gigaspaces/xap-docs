@@ -6,18 +6,18 @@ parent: elastic-processing-unit-overview.html
 weight: 600
 ---
 
-This example deploys a partitioned data grid across several machines. It demonstrates the Elastic PU elasticity, continuous high-availability and even data distribution across all existing resources available for the grid. 
-As long as there is enough memory resources across available machines, the PU primary and backup instances will be provisioned , ensuring no data loss while spreading the instances evenly.
+This example deploys a partitioned data grid across several machines. It demonstrates the Elastic PU elasticity, continuous high-availability and even data (primary) distribution across all existing resources available for the grid. 
+As long as there is enough memory resources across the available machines, the data grid primary and backup instances will be provisioned , ensuring no data loss while spreading the instances evenly.
 
 # Setup
 
 {{%section%}}
 {{%column width="60%"%}}
-XAP {{<currentversion>}}
+- XAP 12<br>
 - 4 VMs - XAP-1 , XAP-2 , XAP-3 , XAP-4<br>
 - 8 GM RAM , 4 cores each
 
-The Data-Grid cluster<br>
+The Data-Grid cluster:<br>
 - 8 partitions with backup<br>
 - Offheap storage<br>
 - GSC size 500 MB heap
@@ -33,16 +33,16 @@ The Data-Grid cluster<br>
 {{%section%}}
 {{%column width="60%"%}}
 1. Start 4 VMs
-2. Start agent on each machine
-3. Deploy Elastic PU
-4. Shutdown one VM (XAP-4)
-5. IMDG Cluster rebalance automatically across 3 existing VMS
-6. Shutdown another VM (XAP-3)
-7. IMDG Cluster rebalance automatically across 2 existing VMS
+2. Start an agent on each machine. One machine acting as management machine running as well LUS and GSM.
+3. Deploy an Elastic PU. With our example we will deploy data grid using offheap storage mode.
+4. Shutdown one VM (XAP-4) to illustrate a full machine failure. 
+5. IMDG Cluster rebalance automatically across 3 existing VMs. As 3 VMs can accommodate entire data set , no data loss. All primary and backup instances still running.
+6. Shutdown another VM (XAP-3).  In this point half of the original grid failed. 
+7. IMDG Cluster rebalance automatically across 2 existing VMs. As 2 VMs can accommodate entire data set , no data loss. All primary and backup instances still running.
 8. Start VM (XAP-3)
-9. IMDG Cluster rebalance automatically across 3 existing VMS
+9. IMDG Cluster rebalance automatically across 3 existing VMs. System increased its CPU capacity.
 10. Start another VM (XAP-4)
-11. IMDG Cluster rebalance automatically across 4 existing VMS
+11. IMDG Cluster rebalance automatically across 4 existing VMs. System increased its CPU capacity to the original size.
 {{%/column%}}
 {{%column width="30%"%}}
 ![image](/attachment_files/epu/example2.png)
@@ -147,7 +147,5 @@ Again, you will see that the existing primaries and backup instances are rebalan
 {{%align center%}}
 ![image](/attachment_files/epu/example11.png)
 {{%/align%}}
-
-
 
 
