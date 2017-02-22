@@ -7,7 +7,7 @@ parent: the-gigaspace-interface-overview.html
 ---
 
 {{%warning%}}
-[sdsd](/attachement_files/under-construction.jpeg) This page is under construction
+This page is under construction.
 {{%/warning%}}
 
 When a client connects to a space, a proxy is created that holds a connection to the space. All client interaction is performed through this proxy.

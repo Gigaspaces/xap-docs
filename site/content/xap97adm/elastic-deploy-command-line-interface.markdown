@@ -9,7 +9,7 @@ weight: 250
  
 
 {{%refer "Interacting with a Secured Grid"%}}
-In order to interact with a secured grid you need to login first. See [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html).
+In order to interact with a secured grid you need to login first. See [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html).
 {{%/refer%}}
 
 # application
@@ -85,7 +85,7 @@ application.xml file describes the application dependencies:
 </beans>
 ```
 
-A [dedicated machine provisioning]({{%currentjavaurl%}}/elastic-processing-unit-provisioning.html) config can be provided to elastic space/pu element:
+A [dedicated machine provisioning]({{%currentjavaurl%}}/elastic-processing-unit.html#dedicated-management-machines) config can be provided to elastic space/pu element:
 
 
 ```xml
@@ -96,7 +96,7 @@ A [dedicated machine provisioning]({{%currentjavaurl%}}/elastic-processing-unit-
 </os-admin:elastic-space>
 ```
 
-You can also use the [shared machine provisioning]({{%currentjavaurl%}}/elastic-processing-unit-provisioning.html#shared-machine-provisioning) config that allows two processing units to share the same machine:
+You can also use the [shared machine provisioning]({{%currentjavaurl%}}/elastic-processing-unit.html#shared-machine-provisioning) config that allows two processing units to share the same machine:
 
 
 ```xml
@@ -119,8 +119,8 @@ You can also use the [shared machine provisioning]({{%currentjavaurl%}}/elastic-
 | -timeout        | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to `5000` milliseconds (5 seconds).| -timeout \[timeoutValue\]|
 | -deploy-timeout | Timeout for deploy operation (in milliseconds),{{<wbr>}}otherwise blocks until all successful/failed deployment events arrive (default)" |-deploy-timeout \[timeoutValue\]|
 | -h / -help      | Prints help | |
-| -secured        | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -secured \[true/false\]|
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
+| -secured        | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html)| -secured \[true/false\]|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
  
 
 
@@ -154,8 +154,8 @@ gs> undeploy-application data-app
 | -timeout          | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to `5000` milliseconds (5 seconds).| -timeout \[timeoutValue\]|
 | -undeploy-timeout | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |-undeploy-timeout \[timeoutValue\]|
 | -h / -help        | Prints help | |
-| -secured          | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -secured \[true/false\]|
-| -user -password   | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
+| -secured          | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html)| -secured \[true/false\]|
+| -user -password   | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
  
 
 
@@ -221,7 +221,7 @@ gs> deploy-elastic-space -cmdargs "-Xms2g,-Xmx10g" -max-memory-capacity 20g mySp
 | -smd, -single-machine-deployment | Allows deployment of the processing unit on a single machine.{{<wbr>}}Defaults to `false`. | -smd \[true/false\] |
 | -ha, -highly-available | Specifies if each space partition has a backup instance.{{<wbr>}}True by default. | -ha \[true/false\] |
 | -secured | Deploys a secured processing unit (implicit when using -user/-password).{{<wbr>}}Defaults to `false`. | -secured \[true/false\] |
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
 | -dmp, -dedicated-machine-provisioning | Configure the server side bean that starts and stops machines automatically. | -dmp \[dedicated machine provisioning properties\] {{<wbr>}} [dedicated machine provisioning properties](#dedicated-machine-provisioning-properties) |
 | -smp, -shared-machine-provisioning | Configure the server side bean that starts and stops machines automatically.{{<wbr>}}The machines returned by the machine provisioner will be shared by other processing unit instances with the same sharingId. | -smd \[shared machine provisioning properties\] {{<wbr>}} [shared machine provisioning properties](#shared-machine-provisioning-properties) |
 | -scale | Enables the specified scale strategy, and disables all other scale strategies.{{<wbr>}}Defaults to `eager` scale strategy. | -scale \[scale properties\] {{<wbr>}} [scale properties](#scale-properties) |
@@ -283,7 +283,7 @@ gs> deploy-elastic-pu -type stateful -memory-capacity-per-container 32m -number-
 | -name                                 | Overrides the Processing Unit's name | -name myProcessingUnitName |
 | -mcpc, -memory-capacity-per-container {{<wbr>}}**mandatory** | Specifies the the heap size per GSC. | -mcpc \[number\[m/g\]\] |
 | -secured                              | Deploys a secured processing unit (implicit when using -user/-password).{{<wbr>}}Defaults to `false`. | -secured \[true/false\] |
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
 | -dmp, -dedicated-machine-provisioning | Configure the server side bean that starts and stops machines automatically. | -dmp \[dedicated machine provisioning properties\] {{<wbr>}} [dedicated machine provisioning properties](#dedicated-machine-provisioning-properties) |
 | -smp, -shared-machine-provisioning | Configure the server side bean that starts and stops machines automatically.{{<wbr>}}The machines returned by the machine provisioner will be shared by other processing unit instances with the same sharingId. | -smd \[shared machine provisioning properties\] {{<wbr>}} [shared machine provisioning properties](#shared-machine-provisioning-properties) |
 | -scale | Enables the specified scale strategy, and disables all other scale strategies.{{<wbr>}}Defaults to `eager` scale strategy. | -scale \[scale properties\] {{<wbr>}} [scale properties](#scale-properties) |
