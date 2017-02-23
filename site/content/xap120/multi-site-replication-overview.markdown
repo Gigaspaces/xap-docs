@@ -11,6 +11,24 @@ weight: 2400
 
 Multiple site replication is the ability to replicate state between different deployed spaces, where each space can be also physically located in a different geographical location (also termed a different deployment site).
 
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar` and `${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar` files on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>com.gigaspaces</groupId>
+    <artifactId>xap-wan-gateway</artifactId>
+    <version>{{%version maven-version%}}</version>
+</dependency>
+<dependency>
+    <groupId>com.gigaspaces</groupId>
+    <artifactId>xap-wan-gateway-spring</artifactId>
+    <version>{{%version maven-version%}}</version>
+</dependency>
+```
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts](./maven-artifacts.html)
+{{%/refer%}} 
  
 
 <br>

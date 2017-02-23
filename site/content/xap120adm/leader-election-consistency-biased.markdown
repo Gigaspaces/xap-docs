@@ -10,6 +10,20 @@ weight: 200
 
  In this mode the Active Election process requires that a quorum of Zookeeper nodes, each space instance is elected as primary/backup according to the Zookeeper right image.
 
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar` file on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>com.gigaspaces</groupId>
+    <artifactId>xap-zookeeper</artifactId>
+    <version>{{%version maven-version%}}</version>
+</dependency>
+```
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts]({{%currentjavaurl%}}/maven-artifacts.html)
+{{%/refer%}} 
+
 # What is Zookeeper?
 
 ZooKeeper is a distributed, hierarchical file system that facilitates loose coupling between clients and provides an eventually consistent view of its znodes, which are like files and directories in a traditional file system. It provides basic operations such as creating, deleting, and checking existence of znodes, also It provides an event-driven model in which clients can watch for changes to specific znodes. ZooKeeper achieves high availability by running multiple ZooKeeper servers, called an ensemble, with each server holding an in-memory copy of the distributed file system to service client read requests. Each server also holds a persistent copy on disk.

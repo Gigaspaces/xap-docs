@@ -9,7 +9,22 @@ weight: 1900
 
 
 
-The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running [GigaSpaces Agent](/product_overview/service-grid.html#gsa), [GigaSpaces Manager](/product_overview/service-grid.html#gsm), [GigaSpaces Container](/product_overview/service-grid.html#gsc), [Lookup Service](/product_overview/service-grid.html#lus), [Processing Unit](./the-processing-unit-overview.html) and Spaces.
+The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running [XAP Agent](/product_overview/service-grid.html#gsa), [XAP Manager](/product_overview/service-grid.html#gsm), [XAP Container](/product_overview/service-grid.html#gsc), [Lookup Service](/product_overview/service-grid.html#lus), [Processing Unit](./the-processing-unit-overview.html) and Spaces.
+
+
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/platform/service-grid/xap-admin.jar` file on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>com.gigaspaces</groupId>
+    <artifactId>xap-admin</artifactId>
+    <version>{{%version maven-version%}}</version>
+</dependency>
+```
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts]({{%currentjavaurl%}}/maven-artifacts.html)
+{{%/refer%}} 
 
 <br>
 

@@ -12,6 +12,26 @@ weight: 1300
 XAP supports client side caching of space data within the client application's JVM. When using client-side caching, the user essentially uses a two-layer cache architecture: The first layer is stored locally, within the client's JVM, and the second layer is stored within the remote master space. The remote master space may be used with any of the supported deployment topologies.
 
 
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar` and `${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar` files on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>com.gigaspaces</groupId>
+    <artifactId>xap-near-cache</artifactId>
+    <version>{{%version maven-version%}}</version>
+</dependency>
+<dependency>
+    <groupId>com.gigaspaces</groupId>
+    <artifactId>xap-near-cache-spring</artifactId>
+    <version>{{%version maven-version%}}</version>
+</dependency>
+```
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts](./maven-artifacts.html)
+{{%/refer%}} 
+
+
 <br>
 
 {{%fpanel%}}

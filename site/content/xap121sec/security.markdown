@@ -8,7 +8,22 @@ weight : 100
 
 
 
-GigaSpaces Security provides comprehensive support for securing your data, services, or both. GigaSpaces provides a set of authorities granting privileged access to data, and for performing operations on services.
+XAP Security provides comprehensive support for securing your data, services, or both. GigaSpaces provides a set of authorities granting privileged access to data, and for performing operations on services.
+
+
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/optional/security/xap-security.jar` file on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>com.gigaspaces</groupId>
+    <artifactId>xap-security</artifactId>
+    <version>{{%version maven-version%}}</version>
+</dependency>
+```
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts]({{%currentjavaurl%}}/maven-artifacts.html)
+{{%/refer%}} 
 
 Security comprises of **authentication** and **authorization**. These concepts are not specific to XAP Security. 
 
