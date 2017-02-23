@@ -53,7 +53,9 @@ The Calculating Flow includes the following:
 - [The AnalysisTask](#the-analysisTask) is executed. Once completed, an intermediate result is sent back to the client. If the requested Trade cannot be found within the space, it is loaded from the database.
 -  The client aggregating the results retrieved from all the calculations nodes and reducing it to four numbers. These four numbers represent books.
 
+{{%align center%}}
 ![ElasticDistributedRiskAnalysisEngine_colocated_workers.jpg](/attachment_files/sbp/ElasticDistributedRiskAnalysisEngine_colocated_workers.jpg)
+{{%/align%}}
 
 {{%note%}}
 When running the Elastic Calcualtion Engine on a single machine, scaling up and down will not affect the calculation time, but when running this on a grid with multiple machines, you will see better or worse calculation time when the grid scales up or down.
@@ -88,7 +90,10 @@ public void calculateNPV(double rate , Trade trade) {
 ```
 
 The above can be described using the following formula:
+
+ 
 ![NPV_formula.jpg](/attachment_files/sbp/NPV_formula.jpg)
+ 
 
 ## The NPVResultsReducer
 The `NPVResultsReducer` receives the NPV calculation for each book from each calculation node (partition) and reduces it into a list of NPV values for each book (four values).
@@ -100,36 +105,40 @@ The Trade Space class stores the following items:
 - CacheFlowData - The cache flow data for Year 0 through Year 5.
 
 ## Elasticity
+
 The [Elastic Processing Unit]({{%latestjavaurl%}}/elastic-processing-unit.html) is used to deploy the data/compute grid and scale it dynamically. This allows you to increase the capacity of the data grid and leverage additional CPU resources for the calculation activity. With this demo, the user changes the capacity using a scale command that instructs the data/compute grid to increase its capacity (this in turn starts additional containers and re balances the data/compute grid) or decrease its capacity (by terminating containers and re balancing).
+
 
 # Remote Calculations
 For long calculations that consume relatively large amount of CPU time, the recommended approach to implement distributed calculations is the [Master-Worker Pattern](./master-worker-pattern.html). The approach suggested with the Master-Worker pattern should be used when the calculation time is relativity very long where the data access time can't be considered as overhead.
 
+{{%align center%}}
 ![ElasticDistributedRiskAnalysisEngine_remote_workers.jpg](/attachment_files/sbp/ElasticDistributedRiskAnalysisEngine_remote_workers.jpg)
+{{%/align%}}
 
 # Running the Demo
 
-1. Download the [ElasticCalculationEngine.zip](/attachment_files/sbp/ElasticCalculationEngine.zip) and extract it into an empty folder. Move into the ElasticRiskAnalysisDemo folder and **edit** the `setExampleEnv.bat` to include correct values for the `NIC_ADDR` and the `GS_HOME` variables.
+**1. Download the** [ElasticCalculationEngine.zip](/attachment_files/sbp/ElasticCalculationEngine.zip) and extract it into an empty folder. Move into the ElasticRiskAnalysisDemo folder and **edit** the `setExampleEnv.bat` to include correct values for the `NIC_ADDR` and the `GS_HOME` variables.
 
-2. Start the GigaSpaces agent by running the following:
+**2. Start the GigaSpaces agent by running the following:**
 
-```java
+```bash
 startAgent.bat
 ```
 {{% note%}}
 You will need a machine with at least 2GB free memory to run this demo.
 {{%/note%}}
 
-3. Run the Elastic Data-Grid deploy script:
+**3. Run the Elastic Data-Grid deploy script:**
 
-```java
+```bash
 deployDataGrid.bat
 ```
 
 This will deploy the data grid/compute grid and will later allow you to scale it. Whenever you would like to scale the data grid/compute grid just **hit Enter**. Running the deploy script again will initiate the scaling cycle again for the existing running data grid/compute grid.
 
 
-4. Scale the Data-Grid using the scaleDataGrid script 
+**4. Scale the Data-Grid using the scaleDataGrid script**
 
 ```java
 scaleDataGrid.bat
@@ -148,25 +157,25 @@ runClientExecutor.bat
 
 ## Remote Calculations Demo
 
-1. Deploy the Elastic Worker:
+**1. Deploy the Elastic Worker:**
 
-```java
+```bash
 deployWorker.bat
 ```
 This will deploy the Worker PU into the exiting Service Grid.
 
 
-2. Run the client invoking the Remote calculations (this will be using the worker PU):
+**2. Run the client invoking the Remote calculations (this will be using the worker PU):**
 
-```java
+```bash
 runClientMasterWorker.bat
 ```
 
 The client will run the calculation repeatedly for 10,000 Trades where each cycle will use different rates (2%, 3%, 4%, 5%, 6%, 7%, 8%). To stop the client hit CTRL + C.
 
-3. To scale the worker run the following:
+**3. To scale the worker run the following:**
 
-```java
+```bash
 ScaleWorker.bat
 ```
 and follow the instructions. You can add or remove workers.
@@ -178,7 +187,7 @@ You may run the Calcualtion Engine within eclipse by using the StartCluster main
 ## Expected Output
 
 When scaling from 256 MB to 512 MB:
-```java
+```bash
 Thu Feb 23 15:52:31 EST 2017 Total GSCs:2 Total Heap[MB]:257
 Thu Feb 23 15:52:32 EST 2017 Total GSCs:2 Total Heap[MB]:257
 Thu Feb 23 15:52:33 EST 2017 Total GSCs:2 Total Heap[MB]:257
@@ -187,7 +196,7 @@ Hit Enter to scale Data Grid to 1024m
 ```
 
 When scaling from 512 MB to 1024 MB:
-```java
+```bash
 Thu Feb 23 15:53:42 EST 2017 Total GSCs:4 Total Heap[MB]:514
 Thu Feb 23 15:53:43 EST 2017 Total GSCs:4 Total Heap[MB]:514
 Thu Feb 23 15:53:44 EST 2017 Total GSCs:4 Total Heap[MB]:514
@@ -197,7 +206,7 @@ Hit Enter to scale Data Grid to 256m
 ```
 
 When scaling from 1024 MB to 256 MB:
-```java
+```bash
 Thu Feb 23 15:55:30 EST 2017 Total GSCs:8 Total Heap[MB]:1028
 ..
 Thu Feb 23 15:55:44 EST 2017 Total GSCs:7 Total Heap[MB]:899
@@ -209,7 +218,7 @@ Thu Feb 23 15:56:52 EST 2017 Total GSCs:3 Total Heap[MB]:385
 Thu Feb 23 15:56:53 EST 2017 Total GSCs:2 Total Heap[MB]:257
 ```
 
-```java
+```bash
 We have 8 partitions
 2017-02-23 16:36:39,578  INFO [Client] - Calculating Net present value for 10000 Trades ...
 2017-02-23 16:36:39,703  INFO [Client] -
