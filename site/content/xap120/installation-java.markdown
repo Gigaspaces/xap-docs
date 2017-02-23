@@ -43,7 +43,7 @@ Unzipping the file creates a `<XAP_HOME>` directory (e.g. `{{%version "gshome-di
 # What's Next?
 
 - To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment]({{%currentadmurl%}}/troubleshooting-testing-system-environment.html) section.
-- See the [Quick Start Guide](/xap110tut/) for your first steps with XAP.
+- See the [Quick Start Guide]({{%currentjavatuturl%}}) for your first steps with XAP.
 
 {{% anchor 2 %}}
 

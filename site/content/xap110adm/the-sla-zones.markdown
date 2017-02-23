@@ -81,14 +81,14 @@ When using the host or zone requirements, note that more than one requirement ca
 ![zones.jpg](/attachment_files/zones.jpg)
 {{%/align%}}
 
-Defining zones allows you to configure logical tags for each GSC, according to which the processing unit instances will be provisioned to. You can use any alphanumeric combination for a zone name. The GSC can be started with a set of zones that are tagged to it, which match (or not) a given zone requirement in the processing unit's SLA (the zone name matching is case sensitive). The zones of a GSC are specified via the `com.gs.zones` system property. Typically this will be done by setting the GSC_JAVA_OPTIONS environment variable before running the GSC, as shown below (note that you can also edit the `setenv.sh/bat` script manually, but it is less recommended since it touches a core system script):
+Defining zones allows you to configure logical tags for each GSC, according to which the processing unit instances will be provisioned to. You can use any alphanumeric combination for a zone name. The GSC can be started with a set of zones that are tagged to it, which match (or not) a given zone requirement in the processing unit's SLA (the zone name matching is case sensitive). The zones of a GSC are specified via the `com.gs.zones` system property. Typically this will be done by setting the XAP_GSC_OPTIONS environment variable before running the GSC, as shown below (note that you can also edit the `setenv.sh/bat` script manually, but it is less recommended since it touches a core system script):
 
 {{%tabs%}}
 {{%tab "  Unix "%}}
 
 
 ```bash
-export GSC_JAVA_OPTIONS=-Dcom.gs.zones=zone1,zone3 ${GSC_JAVA_OPTIONS}
+export XAP_GSC_OPTIONS=-Dcom.gs.zones=zone1,zone3 ${XAP_GSC_OPTIONS}
 ```
 
 {{% /tab %}}
@@ -96,7 +96,7 @@ export GSC_JAVA_OPTIONS=-Dcom.gs.zones=zone1,zone3 ${GSC_JAVA_OPTIONS}
 
 
 ```java
-set GSC_JAVA_OPTIONS=-Dcom.gs.zones=zone1,zone3 %GSC_JAVA_OPTIONS%
+set XAP_GSC_OPTIONS=-Dcom.gs.zones=zone1,zone3 %XAP_GSC_OPTIONS%
 ```
 
 {{% /tab %}}
@@ -309,21 +309,21 @@ To accommodate partitions with different size we can use the zones configuration
 To start the small zone:
 
 ```bash
-set GSC_JAVA_OPTIONS=-Dcom.gs.zones=zoneSmall -Xmx1g
+set XAP_GSC_OPTIONS=-Dcom.gs.zones=zoneSmall -Xmx1g
 gs-agent.bat
 ```
 
 To start the medium zone:
 
 ```bash
-set GSC_JAVA_OPTIONS=-Dcom.gs.zones=zoneMedium -Xmx2g
+set XAP_GSC_OPTIONS=-Dcom.gs.zones=zoneMedium -Xmx2g
 gs-agent.bat
 ```
 
 To start the large zone:
 
 ```bash
-set GSC_JAVA_OPTIONS=-Dcom.gs.zones=zoneLarge -Xmx3g
+set XAP_GSC_OPTIONS=-Dcom.gs.zones=zoneLarge -Xmx3g
 gs-agent.bat
 ```
 

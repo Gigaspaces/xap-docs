@@ -119,9 +119,9 @@ There are numerous ways allowing different systems/applications/groups to share 
 2. [Using Multiple Zones](#running-multiple-zones):  A single XAP runtime environment spans all servers, where each group of XAP containers (across several machines) are labeled with a specific Zone.  You may have multiple Zones used by different containers on the same server. For example, have on server A two containers labeled with zoneX and four containers labeled with zoneY and on server B two containers labeled with zoneX and four containers labeled with zoneY.
 At deployment time, application services (aka processing Unit) are deployed using a specific Zone. This instructs the system to provision the services into the corresponding containers.  Use of multiple Zones breaks logically the runtime environment into different segments.
 
-3. [Using Multiple Lookup Groups (multicast lookup discovery)](#running-multiple-groups):  All servers running multiple XAP runtime environments, where each XAP container using a specific Lookup Group when registering with the Lookup Service.  At deployment time, application services (aka processing Unit) are deployed using a specific lookup group. Use of multiple lookup group breaks logically the Infrastructure into different segments. The Lookup Group value controlled via the `LOOKUPGROUPS` environment variable. When using this option you should make sure multicast is enabled on all machines.
+3. [Using Multiple Lookup Groups (multicast lookup discovery)](#running-multiple-groups):  All servers running multiple XAP runtime environments, where each XAP container using a specific Lookup Group when registering with the Lookup Service.  At deployment time, application services (aka processing Unit) are deployed using a specific lookup group. Use of multiple lookup group breaks logically the Infrastructure into different segments. The Lookup Group value controlled via the `XAP_LOOKUP_GROUPS` environment variable. When using this option you should make sure multicast is enabled on all machines.
 
-4. [Using Multiple Lookup Locators (unicast lookup discovery)](#running-multiple-locators): All servers running multiple XAP runtime environments, where each XAP container using a specific Lookup locator when registering with the Lookup Service.  At deployment time, application services (aka processing Unit) are deployed using a specific lookup locator. Use of multiple lookup locators breaks logically the Infrastructure into different segments. If you have multiple lookup services running on the same server, each will use a different listening port. You may control this port using the `com.sun.jini.reggie.initialUnicastDiscoveryPort` system property. The Lookup Locators value controlled via the `LOOKUPLOCATORS` environment variable.
+4. [Using Multiple Lookup Locators (unicast lookup discovery)](#running-multiple-locators): All servers running multiple XAP runtime environments, where each XAP container using a specific Lookup locator when registering with the Lookup Service.  At deployment time, application services (aka processing Unit) are deployed using a specific lookup locator. Use of multiple lookup locators breaks logically the Infrastructure into different segments. If you have multiple lookup services running on the same server, each will use a different listening port. You may control this port using the `com.sun.jini.reggie.initialUnicastDiscoveryPort` system property. The Lookup Locators value controlled via the `XAP_LOOKUP_LOCATORS` environment variable.
 
 5. Using a shared XAP runtime environment: A single XAP runtime environment spans all servers, with no use of Zones or Lookup Groups/Locators.   Application services share the servers and allocation done in a random manner without using any pre-defined segmentation.
 
@@ -131,13 +131,13 @@ Devising the appropriate resource sharing strategy for your system should consid
 XAP provides consultancy services for the environment planning stage that addresses the above as well as other considerations impacting your environment. For more information see [GigaPro Services](http://www.gigaspaces.com/content/gigapro-full-services-offering-xap-customers)
 
 # Binding the Process into a Machine IP Address
-In many cases, the machines that are running GigaSpaces XAP (i.e., a GSA, GSM, or GSC), or running GigaSpaces XAP client applications (e.g., web servers or standalone JVM/.Net/CPP processes) have multiple network cards with multiple IP addresses. To make sure that the XAP processes or the XAP client application processes bind themselves to the correct IP addresses - accessible from another machines - you should use the `NIC_ADDR` environment variable, or the [java.rmi.server.hostname](http://docs.oracle.com/javase/7/docs/api/java/rmi/server/package-summary.html) system property. Both should be set to the IP of the machine (one of them in case of a machine with multiple IP addresses). Without having this environment/property specified, in some cases, a client process is not able to be notified of events generated by the XAP runtime environment or the space.
+In many cases, the machines that are running GigaSpaces XAP (i.e., a GSA, GSM, or GSC), or running GigaSpaces XAP client applications (e.g., web servers or standalone JVM/.Net/CPP processes) have multiple network cards with multiple IP addresses. To make sure that the XAP processes or the XAP client application processes bind themselves to the correct IP addresses - accessible from another machines - you should use the `XAP_NIC_ADDR` environment variable, or the [java.rmi.server.hostname](http://docs.oracle.com/javase/7/docs/api/java/rmi/server/package-summary.html) system property. Both should be set to the IP of the machine (one of them in case of a machine with multiple IP addresses). Without having this environment/property specified, in some cases, a client process is not able to be notified of events generated by the XAP runtime environment or the space.
 
 Examples:
 
 
 ```bash
-export NIC_ADDR=10.10.10.100
+export XAP_NIC_ADDR=10.10.10.100
 ./gs-agent.sh &
 ```
 
@@ -229,19 +229,19 @@ There are 2 main options for how to discover a lookup service:
 - **Via locator(s)** - Unicast Discovery mode. With this option a specific IP (or hostname) used indicating the machine running the lookup service. This option can be used when multicast communication is disabled on the network, or when you want to avoid the overhead involved with the multicast discovery.
 - **Via group(s)** - Multicast Discovery mode. relevant **only when the network supports multicast**. This is a "tag" you assign to the lookup.  Clients that want to register with this lookup service, or search for a service proxy, need to use this specific group when discovering the lookup service.
 
-To configure the GigaSpaces XAP runtime components (GSA,GSC,GSM,LUS) to use unicast discovery you should set the `LOOKUPLOCATORS` variable:
+To configure the GigaSpaces XAP runtime components (GSA,GSC,GSM,LUS) to use unicast discovery you should set the `XAP_LOOKUP_LOCATORS` variable:
 
 
 ```bash
-export LOOKUPLOCATORS=MachineA,MachineB
+export XAP_LOOKUP_LOCATORS=MachineA,MachineB
 ./gs-agent.sh &
 ```
 
-To configure the GigaSpaces XP runtime components (GSA,GSC,GSM,LUS) to use multicast discovery you should set the `LOOKUPGROUPS` variable:
+To configure the GigaSpaces XP runtime components (GSA,GSC,GSM,LUS) to use multicast discovery you should set the `XAP_LOOKUP_GROUPS` variable:
 
 
 ```bash
-export LOOKUPGROUPS=Group1,Group2
+export XAP_LOOKUP_GROUPS=Group1,Group2
 ./gs-agent.sh &
 ```
 
@@ -268,7 +268,7 @@ When running unit tests, you might want these set up so that no remote client ca
 
 {{% tip %}}
 When running a space running in embedded mode and not deployed into a GSC (standalone space), it starts a lookup service automatically. This allows you to access it from the GS-UI.
-If it is running within the GSC, it finds the lookup via the `LOOKUPLOCATORS` or `LOOKUPGROUPS` settings.
+If it is running within the GSC, it finds the lookup via the `XAP_LOOKUP_LOCATORS` or `XAP_LOOKUP_GROUPS` settings.
 {{% /tip %}}
 .
 Here is a simple configuration you should place within your pu.xml to disable the lookup service startup, disable the space registration with the lookup service, and disable the space registration with the Rmi registry, when the space starts as a PU or running as a standalone:
@@ -306,7 +306,7 @@ A good number for the amount of GSCs a machine should host would be **half of th
 
 ## Configuring the Runtime Environment
 
-JVM parameters (system properties, heap settings etc.) that are shared between all components are best set using the `EXT_JAVA_OPTIONS` environment variable. However, starting from 7.1.1, specific GSA JVM parameters can be easily passed using `GSA_JAVA_OPTIONS` that will be appended to `EXT_JAVA_OPTIONS`. If `GSA_JAVA_OPTIONS` is not defined, the system will behave as in 7.1.0. As a good practice, one can add all components' environment variables ( `GSA_JAVA_OPTIONS`, `GSM_JAVA_OPTIONS`, `GSC_JAVA_OPTIONS`, `LUS_JAVA_OPTIONS`) within the GSA script, or in a wrapper script and the values will be passed to corresponding components.
+JVM parameters (system properties, heap settings etc.) that are shared between all components are best set using the `EXT_JAVA_OPTIONS` environment variable. However, starting from 7.1.1, specific GSA JVM parameters can be easily passed using `XAP_GSA_OPTIONS` that will be appended to `EXT_JAVA_OPTIONS`. If `XAP_GSA_OPTIONS` is not defined, the system will behave as in 7.1.0. As a good practice, one can add all components' environment variables ( `XAP_GSA_OPTIONS`, `XAP_GSM_OPTIONS`, `XAP_GSC_OPTIONS`, `XAP_LUS_OPTIONS`) within the GSA script, or in a wrapper script and the values will be passed to corresponding components.
 
 {{%tabs%}}
 
@@ -315,10 +315,10 @@ JVM parameters (system properties, heap settings etc.) that are shared between a
 
 ```bash
 #Wrapper Script
-export GSA_JAVA_OPTIONS='-Xmx256m'
-export GSC_JAVA_OPTIONS='-Xmx2048m'
-export GSM_JAVA_OPTIONS='-Xmx1024m'
-export LUS_JAVA_OPTIONS='-Xmx1024m'
+export XAP_GSA_OPTIONS='-Xmx256m'
+export XAP_GSC_OPTIONS='-Xmx2048m'
+export XAP_GSM_OPTIONS='-Xmx1024m'
+export XAP_LUS_OPTIONS='-Xmx1024m'
 
 #call gs-agent.sh
 . ./gs-agent.sh
@@ -331,10 +331,10 @@ export LUS_JAVA_OPTIONS='-Xmx1024m'
 
 ```bash
 @rem Wrapper Script
-@set GSA_JAVA_OPTIONS=-Xmx256m
-@set GSC_JAVA_OPTIONS=-Xmx2048m
-@set GSM_JAVA_OPTIONS=-Xmx1024m
-@set LUS_JAVA_OPTIONS=-Xmx1024m
+@set XAP_GSA_OPTIONS=-Xmx256m
+@set XAP_GSC_OPTIONS=-Xmx2048m
+@set XAP_GSM_OPTIONS=-Xmx1024m
+@set XAP_LUS_OPTIONS=-Xmx1024m
 
 @rem call gs-agent.bat
 call gs-agent.bat
@@ -359,42 +359,42 @@ You may have a set of LUS/GSM managing GSCs associated to a specific group. Let'
 {{%accord  title="Step 1. Run gs-agent starting LUS/GSM with GroupX: "%}}
 
 ```bash
-export LOOKUPGROUPS=GroupX
+export XAP_LOOKUP_GROUPS=GroupX
 gs-agent.sh gsa.global.lus 0 gsa.lus 1 gsa.global.gsm 0 gsa.gsm 1 gsa.gsc 0
 ```
 {{%/accord%}}
 {{%accord  title="Step 2. Run gs-agent that will start GSCs with GroupX (4 GGCs with this example): "%}}
 
 ```bash
-export LOOKUPGROUPS=GroupX
+export XAP_LOOKUP_GROUPS=GroupX
 gs-agent.sh gsa.global.lus 0 gsa.lus 0 gsa.global.gsm 0 gsa.gsm 0 gsa.gsc 4
 ```
 {{%/accord%}}
 {{%accord  title="Step 3. Run gs-agent starting LUS/GSM with GroupY: "%}}
 
 ```bash
-export LOOKUPGROUPS=GroupX
+export XAP_LOOKUP_GROUPS=GroupX
 gs-agent.sh gsa.global.lus 0 gsa.lus 1 gsa.global.gsm 0 gsa.gsm 1 gsa.gsc 0
 ```
 {{%/accord%}}
 {{%accord  title="Step 4. Run gs-agent that will start GSCs with GroupY (2 GGCs with this example): "%}}
 
 ```bash
-export LOOKUPGROUPS=GroupY
+export XAP_LOOKUP_GROUPS=GroupY
 gs-agent.sh gsa.global.lus 0 gsa.lus 0 gsa.global.gsm 0 gsa.gsm 0 gsa.gsc 2
 ```
 {{%/accord%}}
 {{%accord   title="Step 5. Deploy a space into GroupX GSCs "%}}
 
 ```bash
-export LOOKUPGROUPS=GroupX
+export XAP_LOOKUP_GROUPS=GroupX
 gs deploy-space -cluster schema=partitioned total_members=4 spaceX
 ```
 {{%/accord%}}
 {{%accord  title="Step 6. Deploy a space into GroupY GSCs"%}}
 
 ```bash
-export LOOKUPGROUPS=GroupY
+export XAP_LOOKUP_GROUPS=GroupY
 gs deploy-space -cluster schema=partitioned total_members=2 spaceY
 ```
 {{%/accord%}}
@@ -411,8 +411,8 @@ You may have a set of LUS/GSM managing GSCs associated to a specific locator. Le
 {{%accord   title="Step 1. Run gs-agent starting LUS/GSM with a lookup service listening on port 8888:"%}}
 
 ```bash
-export LUS_JAVA_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=8888
-export LOOKUPLOCATORS=127.0.0.1:8888
+export XAP_LUS_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=8888
+export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
 export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
 gs-agent.sh gsa.global.lus 0 gsa.lus 1 gsa.global.gsm 0 gsa.gsm 1 gsa.gsc 0
 ```
@@ -420,7 +420,7 @@ gs-agent.sh gsa.global.lus 0 gsa.lus 1 gsa.global.gsm 0 gsa.gsm 1 gsa.gsc 0
 {{%accord   title="Step 2. Run gs-agent that will start GSCs using the lookup listening on port 8888 (4 GGCs with this example):"%}}
 
 ```bash
-export LOOKUPLOCATORS=127.0.0.1:8888
+export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
 export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
 gs-agent.sh gsa.global.lus 0 gsa.lus 0 gsa.global.gsm 0 gsa.gsm 0 gsa.gsc 4
 ```
@@ -428,8 +428,8 @@ gs-agent.sh gsa.global.lus 0 gsa.lus 0 gsa.global.gsm 0 gsa.gsm 0 gsa.gsc 4
 {{%accord   title="Step 3. Run gs-agent starting LUS/GSM with a lookup service listening on port 9999:"%}}
 
 ```bash
-export LUS_JAVA_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=9999
-export LOOKUPLOCATORS=127.0.0.1:8888
+export XAP_LUS_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=9999
+export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
 export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
 gs-agent.sh gsa.global.lus 0 gsa.lus 1 gsa.global.gsm 0 gsa.gsm 1 gsa.gsc 0
 ```
@@ -438,7 +438,7 @@ gs-agent.sh gsa.global.lus 0 gsa.lus 1 gsa.global.gsm 0 gsa.gsm 1 gsa.gsc 0
 
 
 ```bash
-export LOOKUPLOCATORS=127.0.0.1:9999
+export XAP_LOOKUP_LOCATORS=127.0.0.1:9999
 export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
 gs-agent.sh gsa.global.lus 0 gsa.lus 0 gsa.global.gsm 0 gsa.gsm 0 gsa.gsc 2
 ```
@@ -446,14 +446,14 @@ gs-agent.sh gsa.global.lus 0 gsa.lus 0 gsa.global.gsm 0 gsa.gsm 0 gsa.gsc 2
 {{%accord   title="Step 5. Deploy a space using lookup listening on port 8888:"%}}
 
 ```bash
-export LOOKUPLOCATORS=127.0.0.1:8888
+export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
 gs deploy-space -cluster schema=partitioned total_members=4 spaceX
 ```
 {{%/accord%}}
 {{%accord  title="Step 6. Deploy a space using lookup listening on port 9999"%}}
 
 ```bash
-export LOOKUPLOCATORS=127.0.0.1:9999
+export XAP_LOOKUP_LOCATORS=127.0.0.1:9999
 gs deploy-space -cluster schema=partitioned total_members=2 spaceY
 ```
 {{%/accord%}}
@@ -529,7 +529,7 @@ gs-agent.sh gsa.global.lus 0 gsa.lus 0 gsa.global.gsm 0 gsa.gsm 0 gsa.gsc 2
 {{%/accord%}}
 {{%/accordion%}}
 
-Note that with XAP 7.1.1 new variables provided that allows you to set different JVM arguments for GSC,GSM,LUS,GSA separately (GSA_JAVA_OPTIONS , GSC_JAVA_OPTIONS , GSM_JAVA_OPTIONS , LUS_JAVA_OPTIONS).
+Note that with XAP 7.1.1 new variables provided that allows you to set different JVM arguments for GSC,GSM,LUS,GSA separately (XAP_GSA_OPTIONS , XAP_GSC_OPTIONS , XAP_GSM_OPTIONS , XAP_LUS_OPTIONS).
 
 
 # Failover Considerations
@@ -927,8 +927,8 @@ After a machine startup (where GSCs are started), when the ESM is not used to de
 This parameter controls the total amount of PU instances that can be instantiated within a GSC. This is very different than the `max-instances-per-vm` that controls how many instances a partition may have within a GSC.  To control the Total Max PU Instances a GSC may host you should use `com.gigaspaces.grid.gsc.serviceLimit` system property and set its value before starting the GigaSpaces agent:
  
 
-```java
-set GSC_JAVA_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=1
+```bash
+set XAP_GSC_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=1
 ```
 
 Note the default value of the `com.gigaspaces.grid.gsc.serviceLimit` is **500** that may not work well for most production environments.
@@ -1006,7 +1006,7 @@ GigaSpaces XAP generates some files while the system is running. You should chan
 |com.gigaspaces.lib.platform.ext | PUs shared classloader libraries folder. PU jars located within this folder loaded once into the **JVM system classloader** and shared between all the PU instances classloaders within the GSC. In most cases this is a better option than the `com.gs.pu-common` for JDBC drivers and other 3rd party libraries. This is useful option when you  want multiple processing units to share the same 3rd party jar files and do not want to repackage the processing unit jar whenever one of these 3rd party jars changes.| `<gigaspaces-xap root>\lib\platform\ext`|
 |com.gs.pu-common|The location of common classes used across multiple processing units. The libraries located within this folder **loaded into each PU instance classloader** (and not into the system classloader as with the `com.gigaspaces.lib.platform.ext`. |`<gigaspaces-xap root>\lib\optional\pu-common`|
 |com.gigaspaces.grid.gsa.config-directory|The location of the GSA configuration files. [The GigaSpaces Agent](/product_overview/service-grid.html#gsa) (GSA) manages different process types. Each process type is defined within this folder in an xml file that identifies the process type by its name. |`<gigaspaces-xap root>\config\gsa`|
-|java.util.logging.config.file| It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces XAP Services. You may control this setting via the `GS_LOGGING_CONFIG_FILE_PROP` environment variable.| `<gigaspaces-xap root>\config\gs_logging.properties`|
+|java.util.logging.config.file| It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces XAP Services. You may control this setting via the `XAP_LOGS_CONFIG_FILE` environment variable.| `<gigaspaces-xap root>\config\gs_logging.properties`|
 
 {{% note %}}
 The `com.gigaspaces.lib.platform.ext` and the `com.gs.pu-common` are useful to decrease the deployment time in case your processing unit **contains a lot of 3rd party jars files**. In such case, each GSC will download the processing unit jar file (along with all the jars it depends on) to its local working directory from the GSM, and in case of large deployments spanning tens or hundreds of GSCs this can be quite time consuming. In such cases you should consider **placing the jars on which your processing unit depends on** in a shared location on your network, and then point the `com.gs.pu-common` or `com.gigaspaces.lib.platform.ext` directory to this location.

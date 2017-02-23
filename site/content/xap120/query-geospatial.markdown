@@ -10,6 +10,8 @@ weight: 340
 Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries. 
 
 
+
+
 # Getting Started
 
 Suppose we want to write an application to locate nearby gas stations.  First, we create a `GasStation` class which includes the location and address of the gas station:

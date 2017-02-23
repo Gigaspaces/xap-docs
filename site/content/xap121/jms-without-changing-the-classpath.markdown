@@ -25,7 +25,7 @@ For example, the security policy may be set to the policy file of GigaSpaces:
 
 
 ```java
--Djava.security.policy=<JSHOMEDIR>\policy\policy.all
+-Djava.security.policy=<XAP_HOME>\policy\policy.all
 ```
 
 1. The security manager is set to be the RMISecurityManager:

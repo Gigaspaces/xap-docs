@@ -59,7 +59,7 @@ XAP scripts rely on the exported environment variable `GS_LOGGING_CONFIG_FILE` (
 ```bash
 # unix
 
-export GS_LOGGING_CONFIG_FILE=myfile.properties
+export XAP_LOGS_CONFIG_FILE=myfile.properties
 ./gsc.sh
 ```
 

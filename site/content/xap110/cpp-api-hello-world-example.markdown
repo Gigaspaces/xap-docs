@@ -68,17 +68,17 @@ For example, in Windows:-
 
 Replace:
 
-    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" jini://localhost/*/mySpace
+    "%XAP_HOME%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" jini://localhost/*/mySpace
 
 with:
 
-    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" java://localhost/./mySpace
+    "%XAP_HOME%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" java://localhost/./mySpace
 
 Changing the space URL protocol to Java causes the application to launch a space collocated in the same process, instead of connecting to a remote one.
 
 Another way to activate the example with an embedded space is:
 
-    "%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" /./mySpace
+    "%XAP_HOME%\cpp\bin\%PLATFORM%\%COMPILER%\HelloWorld" /./mySpace
 
 
 
@@ -100,23 +100,23 @@ OBJS = HelloWorldMessage.o
 
 DEF = -DACE_AS_STATIC_LIBS -D__RENTRANT -DHAVE_CONFIG_H
 
-LIBS = "-L$(JSHOMEDIR)/cpp/lib/$(PLATFORM)/$(COMPILER)" \
- "-L$(JSHOMEDIR)/cpp/open-source/platform-libs/$(PLATFORM)/$(COMPILER)" \
+LIBS = "-L$(XAP_HOME)/cpp/lib/$(PLATFORM)/$(COMPILER)" \
+ "-L$(XAP_HOME)/cpp/open-source/platform-libs/$(PLATFORM)/$(COMPILER)" \
  "-L$(JAVA_HOME)/jre/lib/amd64/server/" \
  -lgscpplib -lACE -lxerces-c \
  -lpthread \
  -ldl \
  -lnsl
 
-INCL = "-I$(JSHOMEDIR)/cpp/include"\
- "-I$(JSHOMEDIR)/cpp/open-source/platform-includes/$(PLATFORM)"\
- "-I$(JSHOMEDIR)/cpp/open-source/platform-independant-includes"\
- "-I$(JSHOMEDIR)/cpp/examples/HelloWorld/serializer"\
+INCL = "-I$(XAP_HOME)/cpp/include"\
+ "-I$(XAP_HOME)/cpp/open-source/platform-includes/$(PLATFORM)"\
+ "-I$(XAP_HOME)/cpp/open-source/platform-independant-includes"\
+ "-I$(XAP_HOME)/cpp/examples/HelloWorld/serializer"\
 
 %.o:%.cpp
 	$(CC) $(CXXFLAGS) $(INCL) -c $<
 
-TARGET = "$(JSHOMEDIR)/lib/platform/native/libHelloWorldMessage.so"
+TARGET = "$(XAP_HOME)/lib/platform/native/libHelloWorldMessage.so"
 
 $(TARGET):	$(OBJS)
 	g++ -shared -Wl $(INCL) -o $(TARGET) $(OBJS) $(LIBS)
@@ -135,7 +135,7 @@ When debugging the code in Linux, you may receive the signal SIGSEGV (segmentati
 
 
 Step 6. Start Visual Studio using the `<XAP Root>\cpp\GigaVisualStudio.bat` script.
-{{% exclamation %}} You might need to edit this file (`GigaVisualStudio.bat`) and the file it calls (`env.cmd`) to include the correct values for the `JAVA_HOME` and `JSHOMEDIR` environment variables and the correct location of Visual Studio.
+{{% exclamation %}} You might need to edit this file (`GigaVisualStudio.bat`) and the file it calls (`env.cmd`) to include the correct values for the `JAVA_HOME` and `XAP_HOME` environment variables and the correct location of Visual Studio.
 
 Step 7. Once Visual Studio is started, open the examples solution `<XAP Root>\cpp\examples\examples.sln`:
 
@@ -203,19 +203,19 @@ The above scripts and the Visual Studio solution define several environment sett
 
 The following environment variables need to be defined:
 
-- `JSHOMEDIR` -- the `<XAP Root>` directory.
+- `XAP_HOME` -- the `<XAP Root>` directory.
 - `PLATFORM` -- the build platform, in this case win32 or win64.
 - `COMPILER` -- the compiler used for building, for example: VS9.0.
 
 For example:
 
-    set JSHOMEDIR=C:\gigaspaces-xap-8
+    set XAP_HOME=C:\gigaspaces-xap-8
     set PLATFORM=win32
     set COMPILER=VS9.0
 
 In addition, the variable `PATH` should be updated to include:
 
-    %JSHOMEDIR%\cpp\lib\%PLATFORM%\%COMPILER%;%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\client
+    %XAP_HOME%\cpp\lib\%PLATFORM%\%COMPILER%;%XAP_HOME%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\client
 
 {{% note %}}
 You can also run the `<XAP Root>\cpp\env.cmd` file to define these variables to match your platform.
@@ -225,10 +225,10 @@ You can also run the `<XAP Root>\cpp\env.cmd` file to define these variables to 
 
 (Properties window -> Configuration Properties -> C/C++ -> General -> Additional Include Directories)
 
-    "$(JSHOMEDIR)\cpp\include";
-    "$(JSHOMEDIR)\cpp\open-source\platform-independant-includes";
-    "$(JSHOMEDIR)\cpp\open-source\platform-includes\$(PLATFORM)";
-    "$(JSHOMEDIR)\cpp\examples\helloWorld\serializer"
+    "$(XAP_HOME)\cpp\include";
+    "$(XAP_HOME)\cpp\open-source\platform-independant-includes";
+    "$(XAP_HOME)\cpp\open-source\platform-includes\$(PLATFORM)";
+    "$(XAP_HOME)\cpp\examples\helloWorld\serializer"
 
 ## Additional Dependencies
 
@@ -243,13 +243,13 @@ You can also run the `<XAP Root>\cpp\env.cmd` file to define these variables to 
 
 The following environment variables need to be defined:
 
-- `JSHOMEDIR` -- the `<XAP Root>` directory.
+- `XAP_HOME` -- the `<XAP Root>` directory.
 - `PLATFORM` -- the build platform, in this case linux-amd64 or linux32.
 - `COMPILER` -- the compiler used for building, for example: gcc-4.1.2.
 
 Example:
 
-    JSHOMEDIR=../../..
+    XAP_HOME=../../..
     PLATFORM=linux-amd64
     COMPILER=gcc-4.1.2
 
@@ -259,19 +259,19 @@ You can also run the `<XAP Root>\cpp\setenv.sh` file to define these variables t
 
 ## Additional Include Paths
 
-    -I$(JSHOMEDIR)/cpp/include\
-    -I$(JSHOMEDIR)/cpp/open-source/platform-includes/$(PLATFORM)\
-    -I$(JSHOMEDIR)/cpp/open-source/platform-independant-includes\
-    -I$(JSHOMEDIR)/cpp/examples/HelloWorld\
-    -I$(JSHOMEDIR)/cpp/examples/HelloWorld/serializer\
+    -I$(XAP_HOME)/cpp/include\
+    -I$(XAP_HOME)/cpp/open-source/platform-includes/$(PLATFORM)\
+    -I$(XAP_HOME)/cpp/open-source/platform-independant-includes\
+    -I$(XAP_HOME)/cpp/examples/HelloWorld\
+    -I$(XAP_HOME)/cpp/examples/HelloWorld/serializer\
 
 ## Additional Libraries
 
 Paths:
 
-    -L$(JSHOMEDIR)/cpp/lib/$(PLATFORM)/$(COMPILER) \
-    -L$(JSHOMEDIR)/cpp/open-source/platform-libs/$(PLATFORM)/$(COMPILER) \
-    -L$(JAVA_HOME)/jre/lib/amd64/server/
+    -L$(XAP_HOME)/cpp/lib/$(PLATFORM)/$(COMPILER) \
+    -L$(XAP_HOME)/cpp/open-source/platform-libs/$(PLATFORM)/$(COMPILER) \
+    -L$(XAP_HOME)/jre/lib/amd64/server/
 
 {{% info%}}
 The last path might differ from the example above, depending on your Java installation.

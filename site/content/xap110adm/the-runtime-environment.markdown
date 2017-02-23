@@ -54,7 +54,7 @@ Service Grid configuration is often composed of two layers: system-wide configur
 
 The system-wide configuration specifies settings which all components share, e.g. discovery (unicast/multicast), security, zones, etc. These are set using the `EXT_JAVA_OPTIONS` environment variable.
 
-The component-specific configuration specifies settings per component type, e.g. the GSC memory limit is greater than the GSM and LUS. These are set using one or more of the environment variables: `GSA_JAVA_OPTIONS`, `GSC_JAVA_OPTIONS`, `GSM_JAVA_OPTIONS`, `LUS_JAVA_OPTIONS`.
+The component-specific configuration specifies settings per component type, e.g. the GSC memory limit is greater than the GSM and LUS. These are set using one or more of the environment variables: `XAP_GSA_OPTIONS`, `XAP_GSC_OPTIONS`, `XAP_GSM_OPTIONS`, `XAP_LUS_OPTIONS`.
 
 {{%info%}}The component-specific configuration override the system-wide configuration. {{%/info%}}
 
@@ -65,10 +65,10 @@ For example:
 
 ```xml
 Linux
-export GSA_JAVA_OPTIONS=-Xmx256m
-export GSC_JAVA_OPTIONS=-Xmx2048m
-export GSM_JAVA_OPTIONS=-Xmx1024m
-export LUS_JAVA_OPTIONS=-Xmx1024m
+export XAP_GSA_OPTIONS=-Xmx256m
+export XAP_GSC_OPTIONS=-Xmx2048m
+export XAP_GSM_OPTIONS=-Xmx1024m
+export XAP_LUS_OPTIONS=-Xmx1024m
 
 ./gs-agent.sh
 ```
@@ -78,10 +78,10 @@ export LUS_JAVA_OPTIONS=-Xmx1024m
 
 ```xml
 Windows
-set GSA_JAVA_OPTIONS=-Xmx256m
-set GSC_JAVA_OPTIONS=-Xmx2048m
-set GSM_JAVA_OPTIONS=-Xmx1024m
-set LUS_JAVA_OPTIONS=-Xmx1024m
+set XAP_GSA_OPTIONS=-Xmx256m
+set XAP_GSC_OPTIONS=-Xmx2048m
+set XAP_GSM_OPTIONS=-Xmx1024m
+set XAP_LUS_OPTIONS=-Xmx1024m
 
 call gs-agent.bat
 ```
@@ -137,13 +137,13 @@ The GSA can either spawn a script based process, or a pure JVM (with its argumen
 In addition, within the `script` tag, you can add the following tags:
 
 * `argument` - adds a command ling argument which will be passed to the script. In the `gsc.xml` example above, there are two command line arguments.
-* `environment` -adds an environment variable. For example, `<environment name="GSC_JAVA_OPTIONS">-Xmx1024m</environment>` can be used to override the memory for the GSC.
+* `environment` -adds an environment variable. For example, `<environment name="XAP_GSC_OPTIONS">-Xmx1024m</environment>` can be used to override the memory for the GSC.
 
 # Advanced Configuration
 
 In some scenarios you'll need to have several 'flavours' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.
 
-For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a zone called *Small*, and 1 'large' GSC (1024MB) in a zone called *Large*. To achieve this, we'll duplicate the default `gsc.xml` (which resides in `<XAPHOME>/config/gsa`) into `gsc_small.xml` and `gsc_large.xml`, and modify them to include an `environment` tag which sets `GSC_JAVA_OPTIONS` to the required settings:
+For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a zone called *Small*, and 1 'large' GSC (1024MB) in a zone called *Large*. To achieve this, we'll duplicate the default `gsc.xml` (which resides in `<XAPHOME>/config/gsa`) into `gsc_small.xml` and `gsc_large.xml`, and modify them to include an `environment` tag which sets `XAP_GSC_OPTIONS` to the required settings:
 
 {{%tabs%}}
 {{%tab "  gsc_small.xml "%}}
@@ -154,7 +154,7 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
             windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh">
         <argument>start</argument>
         <argument>"GSC"</argument>
-		<environment name="GSC_JAVA_OPTIONS"> -Xms512m -Xmx512m -Dcom.gs.zones=Small</environment>
+		<environment name="XAP_GSC_OPTIONS"> -Xms512m -Xmx512m -Dcom.gs.zones=Small</environment>
     </script>
     <vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot">
         <input-argument></input-argument>
@@ -172,7 +172,7 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
             windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh">
         <argument>start</argument>
         <argument>"GSC"</argument>
-		<environment name="GSC_JAVA_OPTIONS">-Xms1024m -Xmx1024m -Dcom.gs.zones=Large</environment>
+		<environment name="XAP_GSC_OPTIONS">-Xms1024m -Xmx1024m -Dcom.gs.zones=Large</environment>
     </script>
     <vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot">
         <input-argument></input-argument>

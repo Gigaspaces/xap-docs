@@ -222,7 +222,7 @@ This parameter controls the total amount of PU instances that can be instantiate
 
 
 ```java
-set GSC_JAVA_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=2
+set XAP_GSC_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=2
 ```
 
 The default value of the `com.gigaspaces.grid.gsc.serviceLimit` is **500**.

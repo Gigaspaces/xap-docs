@@ -153,7 +153,7 @@ Start an agent and deploy your PU as usual. The agent will start GSCs in non-deb
 
 ## Step 2
 
-Start a command window and set `IDE_REMOTE_DEBUG` and the `GSC_JAVA_OPTIONS` variables:
+Start a command window and set `IDE_REMOTE_DEBUG` and the `XAP_GSC_OPTIONS` variables:
 
 {{%tabs%}}
 {{%tab "  Linux "%}}
@@ -161,7 +161,7 @@ Start a command window and set `IDE_REMOTE_DEBUG` and the `GSC_JAVA_OPTIONS` var
 
 ```bash
 export IDE_REMOTE_DEBUG="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y"
-export GSC_JAVA_OPTIONS=$IDE_REMOTE_DEBUG
+export XAP_GSC_OPTIONS=$IDE_REMOTE_DEBUG
 ```
 
 {{% /tab %}}
@@ -170,7 +170,7 @@ export GSC_JAVA_OPTIONS=$IDE_REMOTE_DEBUG
 
 ```bash
 set IDE_REMOTE_DEBUG=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y
-set GSC_JAVA_OPTIONS=%IDE_REMOTE_DEBUG%
+set XAP_GSC_OPTIONS=%IDE_REMOTE_DEBUG%
 ```
 
 {{% /tab %}}
@@ -214,7 +214,7 @@ If you have started the agent with a specific zone, have the GSC running in debu
 
 
 ```bash
-export GSC_JAVA_OPTIONS=-Dcom.gs.zones="myZone"
+export XAP_GSC_OPTIONS=-Dcom.gs.zones="myZone"
 ./gsc.sh
 ```
 
@@ -224,7 +224,7 @@ export GSC_JAVA_OPTIONS=-Dcom.gs.zones="myZone"
 
 
 ```bash
-set GSC_JAVA_OPTIONS=-Dcom.gs.zones="myZone"
+set XAP_GSC_OPTIONS=-Dcom.gs.zones="myZone"
 gsc.bat
 ```
 

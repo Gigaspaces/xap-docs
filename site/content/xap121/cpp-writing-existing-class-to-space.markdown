@@ -116,7 +116,7 @@ Step 7. Type the following lines in the **Command Line** text box:
 
 
 ```bash
-"$(JSHOMEDIR)/cpp/bin/$(PLATFORM)\$(COMPILER)/gsxml2cpp" "$(InputPath)" NA "$(InputDir)\UserMessageSerializer.cpp" DummyHeaderFile
+"$(XAP_HOME)/cpp/bin/$(PLATFORM)\$(COMPILER)/gsxml2cpp" "$(InputPath)" NA "$(InputDir)\UserMessageSerializer.cpp" DummyHeaderFile
   nmake -f makefileSerializer.mk
 ```
 

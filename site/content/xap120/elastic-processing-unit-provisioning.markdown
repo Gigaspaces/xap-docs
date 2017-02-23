@@ -23,8 +23,8 @@ That means that potentially any machine could be a management machine:
 ```bash
 rem Agent deployment that potentially can start management processes
 set XAP_LOOKUP_GROUPS=myGroup
-set JSHOMEDIR=d:\gigaspaces
-start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2"
+set XAP_HOME=d:\gigaspaces
+start cmd /c "%XAP_HOME%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2"
 ```
 
 {{% /tab %}}
@@ -35,8 +35,8 @@ start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global
 ```bash
 1. Agent deployment that potentially can start management processes
 export XAP_LOOKUP_GROUPS=myGroup
-export JSHOMEDIR=~/gigaspaces
-nohup ${JSHOMEDIR}/bin/gs-agent.sh gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2 > /dev/null 2>&1 &
+export XAP_HOME=~/gigaspaces
+nohup ${XAP_HOME}/bin/gs-agent.sh gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2 > /dev/null 2>&1 &
 ```
 
 {{% /tab %}}
@@ -55,8 +55,8 @@ In case you prefer having dedicated management machines, start GigaSpaces agents
 ```bash
 rem Agent that does not start management processes
 set XAP_LOOKUP_GROUPS=myGroup
-set JSHOMEDIR=d:\gigaspaces
-start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 gsa.global.lus 0"
+set XAP_HOME=d:\gigaspaces
+start cmd /c "%XAP_HOME%\bin\gs-agent.bat gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 gsa.global.lus 0"
 ```
 
 {{% /tab %}}
@@ -67,8 +67,8 @@ start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 0 gsa.gsc 0 gsa.global
 ```bash
 1. Agent that does not start management processes
 export XAP_LOOKUP_GROUPS=myGroup
-export JSHOMEDIR=~/gigaspaces
-nohup ${JSHOMEDIR}/bin/gs-agent.sh gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 gsa.global.lus 0 > /dev/null 2>&1 &
+export XAP_HOME=~/gigaspaces
+nohup ${XAP_HOME}/bin/gs-agent.sh gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 gsa.global.lus 0 > /dev/null 2>&1 &
 ```
 
 {{% /tab %}}
@@ -82,7 +82,7 @@ The EPU can be deployed into specific zone. This allows you to determine the spe
 
 
 ```bash
-export GSA_JAVA_OPTIONS="-Dcom.gs.zones=zoneX ${GSA_JAVA_OPTIONS}"
+export XAP_GSA_OPTIONS="-Dcom.gs.zones=zoneX ${XAP_GSA_OPTIONS}"
 gs-agent.sh gsa.global.lus 1 gsa.lus 0 gsa.global.gsm 1 gsa.gsm 0 gsa.gsc 0 gsa.global.esm 1
 ```
 

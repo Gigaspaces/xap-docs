@@ -9,10 +9,26 @@ weight: 340
 
 Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries. 
 
-
 {{%note%}}
 Spatial queries can be used with any space operation which supports SQL queries (read, readMultiple, take, etc.)
 {{%/note%}}
+
+
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/optional/spatial/xap-spatial.jar` file on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>org.gigaspaces</groupId>
+    <artifactId>xap-spatial</artifactId>
+    <version>{{%version xap-release%}}</version>
+</dependency>
+```
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts](./maven-artifacts.html)
+{{%/refer%}} 
+
+
  
 
 # Getting Started
@@ -401,6 +417,7 @@ SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerCon
 ```
 
 
+
  
 # WKT Support
 
@@ -466,3 +483,4 @@ Lucene indexes are stored in the file system. When used within a processing unit
 {{%refer%}}
 The performance of Geospatial queries can be vastly improved by indexing shape properties. For detailed information see [Geospatial indexing](./indexing-geospatial.html)
 {{%/refer%}}
+

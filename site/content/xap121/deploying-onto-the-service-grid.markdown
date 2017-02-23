@@ -116,8 +116,8 @@ You should have **one GigaSpaces agent** running the ESM. No GSCs should be star
 ```java
 rem Agent deployment that potentially can start management processes
 set XAP_LOOKUP_GROUPS=myGroup
-set JSHOMEDIR=d:\gigaspaces
-start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2"
+set XAP_HOME=d:\gigaspaces
+start cmd /c "%XAP_HOME%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2"
 ```
 
 {{% /tab %}}
@@ -129,8 +129,8 @@ start cmd /c "%JSHOMEDIR%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global
 # Agent deployment that potentially can start management processes
 
 export XAP_LOOKUP_GROUPS=myGroup
-export JSHOMEDIR=~/gigaspaces
-nohup ${JSHOMEDIR}/bin/gs-agent.sh gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2 > /dev/null 2>&1 &
+export XAP_HOME=~/gigaspaces
+nohup ${XAP_HOME}/bin/gs-agent.sh gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2 > /dev/null 2>&1 &
 ```
 
 {{% /tab %}}
@@ -204,7 +204,7 @@ Running the deployment code from the command line is very convenient. Rename the
 
 
 ```java
-%JSHOMEDIR%\tools\groovy\bin\groovy deploy.groovy
+%XAP_HOME%\tools\groovy\bin\groovy deploy.groovy
 ```
 
 {{% /tab %}}
@@ -213,7 +213,7 @@ Running the deployment code from the command line is very convenient. Rename the
 
 
 ```java
-${JSHOMEDIR}tools/groovy/bin/groovy deploy.groovy
+${XAP_HOME}tools/groovy/bin/groovy deploy.groovy
 ```
 
 {{% /tab %}}

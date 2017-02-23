@@ -50,7 +50,7 @@ There are several environment settings that are necessary to build and run the e
 
 The following environment variables need to be defined:
 
-- `JSHOMEDIR` -- the `<XAP Root>` directory.
+- `XAP_HOME` -- the `<XAP Root>` directory.
 - `PLATFORM` -- the build platform, in this case win32 or win64.
 - `COMPILER` -- the compiler used for building, for example: VS9.0.
 - `PATH` -- This should include the compiler folder , GigaSpaces gsxml2cpp location and the jvm.dll location
@@ -59,7 +59,7 @@ For example:
 
 
 ```bash
-set JSHOMEDIR=C:\{{%version "gshome-directory" %}}
+set XAP_HOME=C:\{{%version "gshome-directory" %}}
 set PLATFORM=win32
 set COMPILER=VS9.0
 ```
@@ -67,14 +67,14 @@ set COMPILER=VS9.0
 In addition, for windows 32 bit the `PATH` variable should be updated to include:
 
 ```bash
-%JSHOMEDIR%\cpp\lib\%PLATFORM%\%COMPILER%;%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\client
+%XAP_HOME%\cpp\lib\%PLATFORM%\%COMPILER%;%XAP_HOME%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\client
 ```
 
 For windows 64 bit the `PATH` variable should be updated to include:
 
 
 ```bash
-%JSHOMEDIR%\cpp\lib\%PLATFORM%\%COMPILER%;%JSHOMEDIR%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\server
+%XAP_HOME%\cpp\lib\%PLATFORM%\%COMPILER%;%XAP_HOME%\cpp\bin\%PLATFORM%\%COMPILER%;%JAVA_HOME%\jre\bin\server
 ```
 
 ## Environment Script Files
@@ -84,7 +84,7 @@ If you don't want to set these variables globally (by defining System Variables)
 - `<XAP Root>\cpp\env.cmd` -- Running this file defines these variables to match your platform.
 - `<XAP Root>\cpp\GigaVisualStudio.bat` -- Running this file starts **Visual Studio** and automatically sets the environment.
 
-{{% tip %}} You might need to edit these files to include the correct values for the `PATH` , `JAVA_HOME` and `JSHOMEDIR` environment variables and the correct location of Visual Studio and the jvm.dll.{{%/tip%}}
+{{% tip %}} You might need to edit these files to include the correct values for the `PATH` , `JAVA_HOME` and `XAP_HOME` environment variables and the correct location of Visual Studio and the jvm.dll.{{%/tip%}}
 
 {{% /tab %}}
 {{%tab "  Linux "%}}
@@ -93,13 +93,13 @@ If you don't want to set these variables globally (by defining System Variables)
 
 The following environment variables need to be defined:
 
-- `JSHOMEDIR` -- the `<XAP Root>` directory.
+- `XAP_HOME` -- the `<XAP Root>` directory.
 - `PLATFORM` -- the build platform, in this case linux-amd64 or linux32.
 - `COMPILER` -- the compiler used for building, for example: gcc-4.1.2.
 
 Example:
 
-    JSHOMEDIR=../../..
+    XAP_HOME=../../..
     PLATFORM=linux-amd64
     COMPILER=gcc-4.1.2
 

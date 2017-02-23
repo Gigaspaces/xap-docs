@@ -38,7 +38,7 @@ The main dependency required to use XAP is `xap-openspaces`
 
 This section lists core artifacts. Note that you only need to add `xap-openspaces`, since all other core artifacts are its dependencies.
 
-The group Id for the these artifacts is `org.gigaspaces`
+The group Id for these artifacts is `org.gigaspaces`
 
 | Artifact Id	   | Location in product |
 |------------------|---------------------|
@@ -50,7 +50,7 @@ The group Id for the these artifacts is `org.gigaspaces`
 
 ## Extension artifacts
 
-This section lists extension artifacts. The group Id for the these artifacts is `org.gigaspaces`
+This section lists extension artifacts. The group Id for these artifacts is `org.gigaspaces`
 
 | Artifact Id	   | Location in product | Required For |
 |------------------|---------------------|---|
@@ -64,7 +64,7 @@ This section lists extension artifacts. The group Id for the these artifacts is 
 
 ## Premium Extensions
 
-This section lists premium artifacts. The group Id for the these artifacts is `com.gigaspaces`
+This section lists premium artifacts. The group Id for hese artifacts is `com.gigaspaces`
 
 | Artifact Id	   | Location in product | Required For |
 |------------------|---------------------|---|

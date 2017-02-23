@@ -221,8 +221,8 @@ Here is an example of setting the max instances per machine parameter:
 This parameter controls the total amount of PU instances that can be instantiated within a GSC. This is very different than the `max-instances-per-vm` that controls how many instances a partition may have within a GSC. It does not control the total amount of instances from different PUs or other partitions that can be provisioned into a GSC. To control the Total Max Instances Per VM you should use the system property `com.gigaspaces.grid.gsc.serviceLimit` and set its value before running the GSC:
 
 
-```java
-set GSC_JAVA_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=2
+```bash
+set XAP_GSC_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=2
 ```
 
 The default value of the `com.gigaspaces.grid.gsc.serviceLimit` is **500**.

@@ -19,13 +19,13 @@ To disable a protective mode you will need to use the relevant system property. 
 **Linux:**
 
 ```bash
-export GSC_JAVA_OPTIONS=-Dcom.gs.protectiveMode.typeWithoutId=false -Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false -Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
+export XAP_GSC_OPTIONS=-Dcom.gs.protectiveMode.typeWithoutId=false -Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false -Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
 ```
 
 **Windows:**
 
 ```bash
-set GSC_JAVA_OPTIONS=-Dcom.gs.protectiveMode.typeWithoutId=false -Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false -Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
+set XAP_GSC_OPTIONS=-Dcom.gs.protectiveMode.typeWithoutId=false -Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false -Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
 ```
 {{%/accord%}}
 {{% accord title=".NET"%}}

@@ -76,7 +76,7 @@ Define two zones (zone1,zone2) need to be defined:
 
 
 ```bash
-set GSC_JAVA_OPTIONS=-Dcom.gs.zones="A"
+set XAP_GSC_OPTIONS=-Dcom.gs.zones="A"
 gs-agent gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 ```
 {{%/tab%}}
@@ -84,7 +84,7 @@ gs-agent gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 {{%tab "  Linux "%}}
 
 ```bash
-export GSC_JAVA_OPTIONS=-Dcom.gs.zones="A"
+export XAP_GSC_OPTIONS=-Dcom.gs.zones="A"
 ./gs-agent.sh gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 ```
 
@@ -98,7 +98,7 @@ export GSC_JAVA_OPTIONS=-Dcom.gs.zones="A"
 
 
 ```xml
-set GSC_JAVA_OPTIONS=-Dcom.gs.zones="B"
+set XAP_GSC_OPTIONS=-Dcom.gs.zones="B"
 gs-agent gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 ```
 {{%/tab%}}
@@ -106,7 +106,7 @@ gs-agent gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 {{%tab "  Linux "%}}
 
 ```xml
-export GSC_JAVA_OPTIONS=-Dcom.gs.zones="B"
+export XAP_GSC_OPTIONS=-Dcom.gs.zones="B"
 ./gs-agent.sh gsa.gsc 2 gsa.lus 0 gsa.gsm 0
 ```
 
