@@ -23,6 +23,24 @@ The following features are supported:<br>
 Full text search queries can be used with any space operation which supports SQL queries (read, readMultiple, take, etc.)
 {{%/note%}}
 
+ 
+
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar` file on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>org.gigaspaces</groupId>
+    <artifactId>xap-full-text-search</artifactId>
+    <version>{{%version xap-release%}}</version>
+</dependency>
+```
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts](./maven-artifacts.html)
+{{%/refer%}} 
+
+
+
 # Examples
  
  

@@ -17,6 +17,31 @@ A XAP web processing unit can use {{%exurl "Jetty" "http://www.eclipse.org/jetty
 ![web_app_archi.jpg](/attachment_files/web_app_archi.jpg)
 {{% /align %}}
 
+
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty-8.jar` file on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>org.gigaspaces</groupId>
+    <artifactId>xap-jetty-8</artifactId>
+    <version>{{%version xap-release%}}</version>
+</dependency>
+```
+
+or `${XAP_HOME}/lib/optional/jetty-9/xap-jetty/xap-jetty-9.jar`
+```xml
+<dependency>
+    <groupId>org.gigaspaces</groupId>
+    <artifactId>xap-jetty-9</artifactId>
+    <version>{{%version xap-release%}}</version>
+</dependency>
+```
+
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts](./maven-artifacts.html)
+{{%/refer%}} 
+
 {{%anchor jetty-version%}}
 
 # Jetty version

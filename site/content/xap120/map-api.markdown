@@ -11,6 +11,24 @@ weight: 300
 XAP allows applications to interact with the space and cache data using the Map API (JCache) or a [HashTable API](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/util/Hashtable.html). Accessing the space via the Map API can be done using the [GigaMap]({{% api-javadoc %}}/org/openspaces/core/GigaMap.html) interfaces. It includes enhanced options such as declarative transactions support, coherent runtime exception hierarchy, timeout operations , TTL, locking and versioning.
 
 
+**Dependencies**<br>
+In order to use this feature, include the `${XAP_HOME}/lib/optional/map/xap-map.jar` and `${XAP_HOME}/lib/optional/map/xap-map-spring.jar` files on your classpath or use maven dependencies:
+
+```xml
+<dependency>
+    <groupId>org.gigaspaces</groupId>
+    <artifactId>xap-map</artifactId>
+    <version>{{%version xap-release%}}</version>
+</dependency>
+<dependency>
+    <groupId>org.gigaspaces</groupId>
+    <artifactId>xap-map-spring</artifactId>
+    <version>{{%version xap-release%}}</version>
+</dependency>
+```
+{{%refer%}}
+For more information on dependencies see [Maven Artifacts](./maven-artifacts.html)
+{{%/refer%}} 
 
 
 
