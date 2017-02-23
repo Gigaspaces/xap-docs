@@ -22,7 +22,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/mongodb/xap-
 <dependency>
     <groupId>org.gigaspaces</groupId>
     <artifactId>xap-mongodb</artifactId>
-    <version>{{%version xap-release%}}</version>
+    <version>{{%version maven-version%}}</version>
 </dependency>
 ```
 {{%refer%}}

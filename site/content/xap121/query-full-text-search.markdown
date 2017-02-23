@@ -32,7 +32,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/full-text-se
 <dependency>
     <groupId>org.gigaspaces</groupId>
     <artifactId>xap-full-text-search</artifactId>
-    <version>{{%version xap-release%}}</version>
+    <version>{{%version maven-version%}}</version>
 </dependency>
 ```
 {{%refer%}}

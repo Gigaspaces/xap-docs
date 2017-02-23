@@ -24,7 +24,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/jetty/xap-je
 <dependency>
     <groupId>org.gigaspaces</groupId>
     <artifactId>xap-jetty-8</artifactId>
-    <version>{{%version xap-release%}}</version>
+    <version>{{%version maven-version%}}</version>
 </dependency>
 ```
 

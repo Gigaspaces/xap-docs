@@ -25,7 +25,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/jetty/xap-je
 <dependency>
     <groupId>org.gigaspaces</groupId>
     <artifactId>xap-jetty-8</artifactId>
-    <version>{{%version xap-release%}}</version>
+    <version>{{%version maven-version%}}</version>
 </dependency>
 ```
 
@@ -34,7 +34,7 @@ or `${XAP_HOME}/lib/optional/jetty-9/xap-jetty/xap-jetty-9.jar`
 <dependency>
     <groupId>org.gigaspaces</groupId>
     <artifactId>xap-jetty-9</artifactId>
-    <version>{{%version xap-release%}}</version>
+    <version>{{%version maven-version%}}</version>
 </dependency>
 ```
 

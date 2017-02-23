@@ -17,7 +17,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/jms/xap-jms.
 <dependency>
     <groupId>org.gigaspaces</groupId>
     <artifactId>xap-jms</artifactId>
-    <version>{{%version xap-release%}}</version>
+    <version>{{%version maven-version%}}</version>
 </dependency>
 ```
 {{%refer%}}
