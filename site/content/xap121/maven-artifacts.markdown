@@ -61,7 +61,7 @@ This section lists extension artifacts. The group Id for the these artifacts is 
 | xap-jetty-9			| ${XAP_HOME}/lib/optional/jetty-9/xap-jetty/xap-jetty-9.jar | [Jetty PU Container](./web-jetty-processing-unit-container.html) |
 | xap-mongodb			| ${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar | [MongoDB integration](./mongodb.html) |
 | xap-spatial			| ${XAP_HOME}/lib/optional/spatial/xap-spatial.jar | [Geospatial Queries](./query-geospatial.html) |
-| xap-full-text-search| ${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar | Full Text Search |
+| xap-full-text-search| ${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar | [Full Text Search](./query-full-text-search.html) |
 
 ## Premium Extensions
 
