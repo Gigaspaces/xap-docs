@@ -10,15 +10,12 @@ weight: 100
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Shay Hassidim| 8.0.3 | Sep 2011|    |    |
-
+| Shay Hassidim| 12.0.1 | Feb 2017|    |    |
 
 
 # Overview
 
-
-
-Financial services, Healthcare, Transportations, Fraud Detection, Payment systems, etc. produce reports constantly. Some of them produce reports where the data required for the report is generated over night via batch processing, and some other type of reports are produced instantly upon user request. This type of processing activity requires fast access to the raw data and the ability to utilize distributed resources available on the local environment or on the cloud.
+Financial services, Healthcare, Transportations, Fraud Detection, Payment systems, etc. produce reports constantly. Some of them produce reports where the data required for the report is generated over night via batch processing, and some other type of reports are produced instantly upon user request. This type of processing activity requires fast access to the raw data and the ability to utilize distributed resources available on the local environment or on the cloud. 
 
 The Elastic Calculation Engine example illustrates the following:
 
@@ -26,8 +23,6 @@ The Elastic Calculation Engine example illustrates the following:
 2. Intelligent Map-Reduce directing calculations into distributed nodes, lowering the network traffic and lowering the load on each calculation node.
 3. Simulating lazy data load in a batch mode optimizing database access in case of a cache miss.
 4. While the calculation is going on, dynamically scaling up and down the compute/data grid. This will increase the capacity of the compute/data grid and will allow it to utilize additional CPU resources to speed up the calculation time.
-
-
 
 The Distributed Calculation Engine performs Net Present Value calculations where the Trades used for the calculation divided into several Books. These books could represent different types of Trades, different markets, different customers , etc.
 
@@ -115,6 +110,7 @@ For long calculations that consume relatively large amount of CPU time, the reco
 # Running the Demo
 
 1. Download the [ElasticCalculationEngine.zip](/attachment_files/sbp/ElasticCalculationEngine.zip) and extract it into an empty folder. Move into the ElasticRiskAnalysisDemo folder and **edit** the `setExampleEnv.bat` to include correct values for the `NIC_ADDR` and the `GS_HOME` variables.
+
 2. Start the GigaSpaces agent by running the following:
 
 ```java
@@ -129,114 +125,133 @@ You will need a machine with at least 2GB free memory to run this demo.
 ```java
 deployDataGrid.bat
 ```
+
 This will deploy the data grid/compute grid and will later allow you to scale it. Whenever you would like to scale the data grid/compute grid just **hit Enter**. Running the deploy script again will initiate the scaling cycle again for the existing running data grid/compute grid.
-4. Run the Ealstic Worker deploy script:
+
+
+4. Scale the Data-Grid using the scaleDataGrid script 
 
 ```java
-deployWorker.bat
+scaleDataGrid.bat
 ```
-This will deploy the Worker PU into the Service Grid.
-5. Run the client invoking the Colocated calculations (this will be using the Task):
+
+This will allow you to scale it from 256MB , to 512MB , to 1024MB and back to 256MB.
+
+## Colocated Calculations Demo
+
+At any point you can run the calculation logic using the Colocated Tasks using runClientExecutor.bat
 
 ```java
 runClientExecutor.bat
 ```
-6. Run the client invoking the Remote calculations (this will be using the workers):
+
+
+## Remote Calculations Demo
+
+1. Deploy the Elastic Worker:
+
+```java
+deployWorker.bat
+```
+This will deploy the Worker PU into the exiting Service Grid.
+
+
+2. Run the client invoking the Remote calculations (this will be using the worker PU):
 
 ```java
 runClientMasterWorker.bat
 ```
+
 The client will run the calculation repeatedly for 10,000 Trades where each cycle will use different rates (2%, 3%, 4%, 5%, 6%, 7%, 8%). To stop the client hit CTRL + C.
-7. To scale the worker run the following:
+
+3. To scale the worker run the following:
 
 ```java
 ScaleWorker.bat
 ```
- and follow the instructions.
-8. To Scale the Data-Grid following Hit Enter at the command running the `deployDataGrid.bat`.
+and follow the instructions. You can add or remove workers.
+
 
 ## Running within eclipse
 You may run the Calcualtion Engine within eclipse by using the StartCluster main class. It will start a clustered space. You can use this to debug the `AnalysisTask` when executed at the space side.
 
 ## Expected Output
 
-
+When scaling from 256 MB to 512 MB:
 ```java
-\ElasticRiskAnalysisDemo>set NIC_ADDR=127.0.0.1
-Log file: D:\gigaspaces-xap-premium-8.0.1-ga\logs\2011-06-23~15.05-gigaspaces-service-192.168.1.100-13980.log
-2011-06-23 15:05:32,566  INFO [Deployer] - Created Admin - OK!
-2011-06-23 15:05:37,906  INFO [Deployer] - --- > Local Machine Demo - Starting initial deploy - Deploying a PU with:256MB
-2011-06-23 15:05:40,590  INFO [Deployer] - >> Total Memory used:0.0 MB - Progress:0.0 % done - Total Containers:0
-...
-2011-06-23 15:05:56,597  INFO [Deployer] - >> Total Memory used:256.0 MB - Progress:100.0 % done - Total Containers:2
-2011-06-23 15:05:58,597  INFO [Deployer] - Initial Deploy done! - Time to deploy system:20 seconds
-2011-06-23 15:06:00,609  INFO [Deployer] -
-
-About to scale data-grid memory capacity from 256.0 MB to 512 MB
-2011-06-23 15:06:00,609  INFO [Deployer] - Hit enter to scale the data grid...
-
-2011-06-23 15:06:37,060  INFO [Deployer] - >> Total Memory used:256.0 MB - Progress:50.0 % done - Total Containers:2
-...
-2011-06-23 15:06:48,824  INFO [Deployer] - >> Total Memory used:512.0 MB - Progress:100.0 % done - Total Containers:4
-2011-06-23 15:06:50,825  INFO [Deployer] - Data-Grid Memory capacity change done! - Time to scale system:13 seconds
-2011-06-23 15:06:52,307  INFO [Deployer] -
-
-About to scale data-grid memory capacity from 512.0 MB to 1024 MB
-2011-06-23 15:06:52,307  INFO [Deployer] - Hit enter to scale the data grid...
-
-2011-06-23 15:06:53,565  INFO [Deployer] - >> Total Memory used:512.0 MB - Progress:50.0 % done - Total Containers:4
-...
-2011-06-23 15:07:17,584  INFO [Deployer] - >> Total Memory used:896.0 MB - Progress:87.5 % done - Total Containers:8
-2011-06-23 15:07:21,032  INFO [Deployer] - >> Total Memory used:1024.0 MB - Progress:100.0 % done - Total Containers:8
-2011-06-23 15:07:23,033  INFO [Deployer] - Data-Grid Memory capacity change done! - Time to scale system:29 seconds
-2011-06-23 15:07:25,036  INFO [Deployer] -
-
-About to scale data-grid memory capacity from 1024.0 MB to 256 MB
-2011-06-23 15:07:25,036  INFO [Deployer] - Hit enter to scale the data grid...
-
-2011-06-23 15:09:16,208  INFO [Deployer] - >> Total Memory used:1024.0 MB - Progress:25.0 % done - Total Containers:8
-...
-2011-06-23 15:09:57,049  INFO [Deployer] - >> Total Memory used:384.0 MB - Progress:66.7 % done - Total Containers:3
-2011-06-23 15:10:00,398  INFO [Deployer] - >> Total Memory used:256.0 MB - Progress:100.0 % done - Total Containers:2
-2011-06-23 15:10:02,400  INFO [Deployer] - Data-Grid Memory capacity change done! - Time to scale system:46 seconds
+Thu Feb 23 15:52:31 EST 2017 Total GSCs:2 Total Heap[MB]:257
+Thu Feb 23 15:52:32 EST 2017 Total GSCs:2 Total Heap[MB]:257
+Thu Feb 23 15:52:33 EST 2017 Total GSCs:2 Total Heap[MB]:257
+Thu Feb 23 15:52:34 EST 2017 Total GSCs:4 Total Heap[MB]:514
+Hit Enter to scale Data Grid to 1024m
 ```
 
-
+When scaling from 512 MB to 1024 MB:
 ```java
-Time to calculate Net present value for 10000 Trades using 2.0 % rate:41 ms
-2011-06-23 15:08:15,346  INFO [Client] - Book = Book0, NPV = 2237537745.8
-2011-06-23 15:08:15,346  INFO [Client] - Book = Book2, NPV = 2238433119.1
-2011-06-23 15:08:15,347  INFO [Client] - Book = Book1, NPV = 2237985432.4
-2011-06-23 15:08:15,347  INFO [Client] - Book = Book3, NPV = 2238880805.7
-2011-06-23 15:08:16,412  INFO [Client] -
-Time to calculate Net present value for 10000 Trades using 3.0 % rate:65 ms
-2011-06-23 15:08:16,413  INFO [Client] - Book = Book0, NPV = 4353811571.6
-2011-06-23 15:08:16,413  INFO [Client] - Book = Book2, NPV = 4355553793.1
-2011-06-23 15:08:16,413  INFO [Client] - Book = Book1, NPV = 4354682682.4
-2011-06-23 15:08:16,413  INFO [Client] - Book = Book3, NPV = 4356424903.9
-2011-06-23 15:08:17,509  INFO [Client] -
-Time to calculate Net present value for 10000 Trades using 4.0 % rate:95 ms
-2011-06-23 15:08:17,510  INFO [Client] - Book = Book0, NPV = 6354633987.8
-2011-06-23 15:08:17,510  INFO [Client] - Book = Book2, NPV = 6357176858.5
-2011-06-23 15:08:17,510  INFO [Client] - Book = Book1, NPV = 6355905423.1
-2011-06-23 15:08:17,510  INFO [Client] - Book = Book3, NPV = 6358448293.9
-2011-06-23 15:08:18,656  INFO [Client] -
-Time to calculate Net present value for 10000 Trades using 5.0 % rate:145 ms
-2011-06-23 15:08:18,657  INFO [Client] - Book = Book0, NPV = 8245475707.5
-2011-06-23 15:08:18,657  INFO [Client] - Book = Book2, NPV = 8248775217.6
-2011-06-23 15:08:18,657  INFO [Client] - Book = Book1, NPV = 8247125462.6
-2011-06-23 15:08:18,657  INFO [Client] - Book = Book3, NPV = 8250424972.7
-2011-06-23 15:08:19,814  INFO [Client] -
-Time to calculate Net present value for 10000 Trades using 6.0 % rate:156 ms
-2011-06-23 15:08:19,814  INFO [Client] - Book = Book0, NPV = 10031489134.5
-2011-06-23 15:08:19,814  INFO [Client] - Book = Book2, NPV = 10035503335.8
-2011-06-23 15:08:19,815  INFO [Client] - Book = Book1, NPV = 10033496235.2
-2011-06-23 15:08:19,815  INFO [Client] - Book = Book3, NPV = 10037510436.5
-2011-06-23 15:08:21,029  INFO [Client] -
-Time to calculate Net present value for 10000 Trades using 7.0 % rate:214 ms
-2011-06-23 15:08:21,029  INFO [Client] - Book = Book0, NPV = 11717530016.3
-2011-06-23 15:08:21,029  INFO [Client] - Book = Book2, NPV = 11722218903.8
-2011-06-23 15:08:21,031  INFO [Client] - Book = Book1, NPV = 11719874460.1
-2011-06-23 15:08:21,031  INFO [Client] - Book = Book3, NPV = 11724563347.6
+Thu Feb 23 15:53:42 EST 2017 Total GSCs:4 Total Heap[MB]:514
+Thu Feb 23 15:53:43 EST 2017 Total GSCs:4 Total Heap[MB]:514
+Thu Feb 23 15:53:44 EST 2017 Total GSCs:4 Total Heap[MB]:514
+Thu Feb 23 15:53:45 EST 2017 Total GSCs:4 Total Heap[MB]:514
+Thu Feb 23 15:53:46 EST 2017 Total GSCs:8 Total Heap[MB]:1028
+Hit Enter to scale Data Grid to 256m
 ```
 
+When scaling from 1024 MB to 256 MB:
+```java
+Thu Feb 23 15:55:30 EST 2017 Total GSCs:8 Total Heap[MB]:1028
+..
+Thu Feb 23 15:55:44 EST 2017 Total GSCs:7 Total Heap[MB]:899
+...
+Thu Feb 23 15:56:04 EST 2017 Total GSCs:6 Total Heap[MB]:771
+...
+Thu Feb 23 15:56:52 EST 2017 Total GSCs:3 Total Heap[MB]:385
+...
+Thu Feb 23 15:56:53 EST 2017 Total GSCs:2 Total Heap[MB]:257
+```
+
+```java
+We have 8 partitions
+2017-02-23 16:36:39,578  INFO [Client] - Calculating Net present value for 10000 Trades ...
+2017-02-23 16:36:39,703  INFO [Client] -
+Time to calculate Net present value for 10000 Trades using 2.0 % rate:122 ms
+2017-02-23 16:36:39,705  INFO [Client] - Book = Book0, NPV = 2237537745.8
+2017-02-23 16:36:39,705  INFO [Client] - Book = Book3, NPV = 2238880805.7
+2017-02-23 16:36:39,705  INFO [Client] - Book = Book1, NPV = 2237985432.4
+2017-02-23 16:36:39,706  INFO [Client] - Book = Book2, NPV = 2238433119.1
+2017-02-23 16:36:40,739  INFO [Client] -
+Time to calculate Net present value for 10000 Trades using 3.0 % rate:33 ms
+2017-02-23 16:36:40,739  INFO [Client] - Book = Book0, NPV = 4353811571.6
+2017-02-23 16:36:40,740  INFO [Client] - Book = Book3, NPV = 4356424903.9
+2017-02-23 16:36:40,741  INFO [Client] - Book = Book1, NPV = 4354682682.4
+2017-02-23 16:36:40,742  INFO [Client] - Book = Book2, NPV = 4355553793.1
+2017-02-23 16:36:41,773  INFO [Client] -
+Time to calculate Net present value for 10000 Trades using 4.0 % rate:30 ms
+2017-02-23 16:36:41,774  INFO [Client] - Book = Book0, NPV = 6354633987.8
+2017-02-23 16:36:41,774  INFO [Client] - Book = Book3, NPV = 6358448293.9
+2017-02-23 16:36:41,774  INFO [Client] - Book = Book1, NPV = 6355905423.1
+2017-02-23 16:36:41,775  INFO [Client] - Book = Book2, NPV = 6357176858.5
+2017-02-23 16:36:42,816  INFO [Client] -
+Time to calculate Net present value for 10000 Trades using 5.0 % rate:40 ms
+2017-02-23 16:36:42,816  INFO [Client] - Book = Book0, NPV = 8245475707.5
+2017-02-23 16:36:42,817  INFO [Client] - Book = Book3, NPV = 8250424972.7
+2017-02-23 16:36:42,817  INFO [Client] - Book = Book1, NPV = 8247125462.6
+2017-02-23 16:36:42,817  INFO [Client] - Book = Book2, NPV = 8248775217.6
+2017-02-23 16:36:43,863  INFO [Client] -
+Time to calculate Net present value for 10000 Trades using 6.0 % rate:45 ms
+2017-02-23 16:36:43,863  INFO [Client] - Book = Book0, NPV = 10031489134.5
+2017-02-23 16:36:43,864  INFO [Client] - Book = Book3, NPV = 10037510436.5
+2017-02-23 16:36:43,864  INFO [Client] - Book = Book1, NPV = 10033496235.2
+2017-02-23 16:36:43,865  INFO [Client] - Book = Book2, NPV = 10035503335.8
+2017-02-23 16:36:44,915  INFO [Client] -
+Time to calculate Net present value for 10000 Trades using 7.0 % rate:50 ms
+2017-02-23 16:36:44,916  INFO [Client] - Book = Book0, NPV = 11717530016.3
+2017-02-23 16:36:44,916  INFO [Client] - Book = Book3, NPV = 11724563347.6
+2017-02-23 16:36:44,916  INFO [Client] - Book = Book1, NPV = 11719874460.1
+2017-02-23 16:36:44,916  INFO [Client] - Book = Book2, NPV = 11722218903.8
+2017-02-23 16:36:45,980  INFO [Client] -
+Time to calculate Net present value for 10000 Trades using 8.0 % rate:62 ms
+2017-02-23 16:36:45,981  INFO [Client] - Book = Book0, NPV = 13308177424.2
+2017-02-23 16:36:45,981  INFO [Client] - Book = Book3, NPV = 13316165525.9
+2017-02-23 16:36:45,981  INFO [Client] - Book = Book1, NPV = 13310840124.8
+2017-02-23 16:36:45,982  INFO [Client] - Book = Book2, NPV = 13313502825.3
+```
