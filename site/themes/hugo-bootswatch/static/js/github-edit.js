@@ -26,11 +26,11 @@ $(document).ready(function() {
         markdownFile = path.replace(".html", ".markdown");
         location.href=repo + "/edit/master/site/content/" + markdownFile + "#";
 
-        if (path.indexOf("/sbp/") != -1) {
-            repo = "https://github.com/Gigaspaces/xap-docs-sbp";
-            markdownFile = markdownFile.replace("/sbp/", "/")
-            location.href=repo + "/edit/master" + markdownFile + "#";
-        }
+ //       if (path.indexOf("/sbp/") != -1) {
+ //           repo = "https://github.com/Gigaspaces/xap-docs";
+ //           markdownFile = markdownFile.replace("/sbp/", "/")
+ //           location.href=repo + "/edit/master" + markdownFile + "#";
+ //       }
     });
 
     
