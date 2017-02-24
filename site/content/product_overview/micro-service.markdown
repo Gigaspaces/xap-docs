@@ -17,7 +17,7 @@ This paper describes how microservices related to SBA and XAP. We will review th
 # What is SBA?
 The Space based architecture is a software architecture pattern for achieving linear scalability of stateful, high-performance applications using the tuple space paradigm. It follows many of the principles of representational state transfer (REST), service-oriented architecture (SOA) and event-driven architecture (EDA), as well as elements of grid computing. With a space-based architecture, applications are built out of a set of self-sufficient units, known as processing-units (PU) or elastic processing-units (EPU). These units are independent of each other, so that the application can scale by adding more units (called also instances).
 
-The XAP PU
+# The XAP PU
 The XAP PU is the unit of scalability and failover. The PU support Java , .Net and C++. It includes the definition of artifacts the user would like to have common lifecycle. These may have some dependency. For Java based PU such dependency would be descried via Spring IoC. XAP allows you to deploy multiple independent PU's into the same grid or deploy a composition of PUs that have some inter-dependency. In such a case , XAP will orchestrate the PUs provisioning to have the right deploy , healing and scaling order.
 
 # Separation of Concerns
