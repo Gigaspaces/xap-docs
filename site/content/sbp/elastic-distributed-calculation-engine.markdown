@@ -118,7 +118,7 @@ For long calculations that consume relatively large amount of CPU time, the reco
 
 # Running the Demo
 
-**1. Download the** [ElasticCalculationEngine.zip](/attachment_files/sbp/ElasticCalculationEngine.zip) and extract it into an empty folder. Move into the ElasticRiskAnalysisDemo folder and **edit** the `setExampleEnv.bat` to include correct values for the `XAP_NIC_ADDRESS` and the `GS_HOME` variables.
+**1. Download the** [ElasticCalculationEngine.zip](/download_files/sbp/ElasticCalculationEngine.zip) and extract it into an empty folder. Move into the ElasticRiskAnalysisDemo folder and **edit** the `setExampleEnv.bat` to include correct values for the `XAP_NIC_ADDRESS` and the `GS_HOME` variables.
 
 **2. Start the GigaSpaces agent by running the following:**
 
