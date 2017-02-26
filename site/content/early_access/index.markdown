@@ -23,14 +23,17 @@ Early Access builds are provided as-is and should not be used in production. If 
 * Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/GigaSpaces-XAP.NET-Premium-12.1.0.16719-M19-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/GigaSpaces-XAP.NET-Premium-12.1.0.16719-M19-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/GigaSpaces-XAP.NET-Enterprise-12.1.0.16719-M19-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/GigaSpaces-XAP.NET-Enterprise-12.1.0.16719-M19-x86.msi)\]
 
 #### Milestone Release Notes
-New Manager REST operations:
+
+The following Manager REST operations were added:
+
 - GET /containers/{id}/details/jvm
 - GET /containers/{id}/details/transport
 - GET /containers/{id}/statistics/jvm
 - GET /containers/{id}/statistics/transport
 - GET /spaces/{id}/instances/{instanceId}/statistics/replication
 
-Enhancements in Manager REST:
+Additional Manager REST enhancements:
+
 - Long running requests (undeploy/relocate PU, kill/restart container, etc.) can now be tracked via requests.
 - Request status can now be `running`, `successful` or `failed`.
 - Request now contains `completedAt` which indicated time of completion.
