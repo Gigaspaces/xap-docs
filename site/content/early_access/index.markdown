@@ -17,6 +17,26 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M19 (Feb-26-2017)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m19/gigaspaces-xap-open-12.1.0-m19-b16719.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/gigaspaces-xap-premium-12.1.0-m19-b16719.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/gigaspaces-xap-enterprise-12.1.0-m19-b16719.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/GigaSpaces-XAP.NET-Premium-12.1.0.16719-M19-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/GigaSpaces-XAP.NET-Premium-12.1.0.16719-M19-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/GigaSpaces-XAP.NET-Enterprise-12.1.0.16719-M19-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m19/GigaSpaces-XAP.NET-Enterprise-12.1.0.16719-M19-x86.msi)\]
+
+#### Milestone Release Notes
+New Manager REST operations:
+- GET /containers/{id}/details/jvm
+- GET /containers/{id}/details/transport
+- GET /containers/{id}/statistics/jvm
+- GET /containers/{id}/statistics/transport
+- GET /spaces/{id}/instances/{instanceId}/statistics/replication
+
+Enhancements in Manager REST:
+- Long running requests (undeploy/relocate PU, kill/restart container, etc.) can now be tracked via requests.
+- Request status can now be `running`, `successful` or `failed`.
+- Request now contains `completedAt` which indicated time of completion.
+- Request now contains `statusUrl` which can be used to get additional information on progress.
+- Request now contains `result` properties which contain additional information on execution.
+
 ## 12.1 M18 (Feb-19-2017)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m18/gigaspaces-xap-open-12.1.0-m18-b16718.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m18/gigaspaces-xap-premium-12.1.0-m18-b16718.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m18/gigaspaces-xap-enterprise-12.1.0-m18-b16718.zip)\] 
