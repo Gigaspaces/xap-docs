@@ -25,18 +25,20 @@ Early Access builds are provided as-is and should not be used in production. If 
 #### Milestone Release Notes
 
 New Manager REST operations:
-* GET /containers/{id}/details/jvm
-* GET /containers/{id}/details/transport
-* GET /containers/{id}/statistics/jvm
-* GET /containers/{id}/statistics/transport
-* GET /spaces/{id}/instances/{instanceId}/statistics/replication
+```json
+GET /containers/{id}/details/jvm
+GET /containers/{id}/details/transport
+GET /containers/{id}/statistics/jvm
+GET /containers/{id}/statistics/transport
+GET /spaces/{id}/instances/{instanceId}/statistics/replication
+```
 
-Enhancements in Manager REST:
-* Long running requests (undeploy/relocate PU, kill/restart container, etc.) can now be tracked via requests.
-* Request status can now be `running`, `successful` or `failed`.
-* Request now contains `completedAt` which indicated time of completion.
-* Request now contains `statusUrl` which can be used to get additional information on progress.
-* Request now contains `result` properties which contain additional information on execution.
+Enhancements in Manager REST:<br>
+- Long running requests (undeploy/relocate PU, kill/restart container, etc.) can now be tracked via requests.<br>
+- Request status can now be `running`, `successful` or `failed`.<br>
+- Request now contains `completedAt` which indicated time of completion.<br>
+- Request now contains `statusUrl` which can be used to get additional information on progress.<br>
+- Request now contains `result` properties which contain additional information on execution.
 
 ## 12.1 M18 (Feb-19-2017)
 
