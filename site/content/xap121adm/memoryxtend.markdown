@@ -13,8 +13,6 @@ By default, XAP entries are stored in-memory (actually, in the JVM heap) to prov
 
 Obviously, simply storing the data in SSD means XAP will no longer be an In-Memory Data Grid. The solution is a hybrid storage model offered by XAP called **MemoryXtend**, which uses the best of both worlds.
 
-
-
 # How it works
 
 In MemoryXtend, the entry's data is stored off-heap (e.g. in the native heap or on a file in SSD), but the indexes are stored in the managed JVM heap. This allows queries which leverage indexes to minimize off-heap penalty, since most of the work is done in-memory and only matched entries are loaded from the off-heap storage. 
@@ -55,7 +53,7 @@ Creating a space with a MemoryXtend add-on can be done via `pu.xml` or code. The
 
     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" space-name="mySpace" >
+    <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
     </os-core:embedded-space>
 
@@ -77,7 +75,7 @@ Creating a space with a MemoryXtend add-on can be done via `pu.xml` or code. The
         <property name="mappingDir" value="/tmp/mapping"/>
     </bean>
 
-    <os-core:embedded-space id="space" space-name="mySpace">
+    <os-core:embedded-space id="space" name="mySpace">
         <os-core:blob-store-data-policy blob-store-handler="blobstoreid" persistent="true"/>
     </os-core:embedded-space>
 
@@ -150,7 +148,7 @@ However, when using a MemoryXtend add-on which is based on non-volatile technolo
 Persistency is off by default, and needs to be explicitly enabled. For example:
 
 ```xml
-<os-core:embedded-space id="space" space-name="mySpace" >
+<os-core:embedded-space id="space" name="mySpace" >
     <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
 </os-core:embedded-space>
 ```
@@ -159,9 +157,15 @@ In addition, persistency requires the following settings:
 
 ## Machine-Instance Affinity
 
-If a container or a machine restarts, there's no guarantee the instance will be provisioned on the same machine it had before. When MemoryXtend is used in a non-persitent manner, this is no problem since the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, we must ensure the instance is provisioned on the same machine it was before so it can recover from the correct device, which is usually local to the machine.
+If a GSC or a machine running a GSC restarts, there's no guarantee the IMDG instance running within the GSC will be provisioned into the same machine it was running before. When MemoryXtend is used in a non-persitent manner, this will not introduce a problem as the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, we must ensure the instance is provisioned on the same machine it was before so it can recover from the correct device, which is usually local to the machine.
 
-To ensure the Service Grid deploys data grid instances on the correct machines, [Instance level SLA](./the-sla-overview.html) should be used. For exmaple:
+
+{{% note "Central Storage"%}}
+Central Storage mode will allow you to use MemoryXtend without having Machine-Instance Affinity configuration.
+{{% /note %}}
+
+
+To ensure the Service Grid deploys IMDG instances on the correct machines, [Instance level SLA](./the-sla-overview.html) should be used. For exmaple:
 
 {{%tabs%}}
 {{%tab "Partitioned with a backup SLA"%}}
@@ -243,7 +247,7 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 
     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" space-name="mySpace" >
+    <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
         <os-core:attribute-store store-handler="attributeStoreHandler"/>
     </os-core:embedded-space>
@@ -271,7 +275,7 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 
     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
-    <os-core:embedded-space id="space" space-name="mySpace" >
+    <os-core:embedded-space id="space" name="mySpace" >
         <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
         <os-core:attribute-store store-handler="attributeStoreHandler"/>
     </os-core:embedded-space>
@@ -286,18 +290,19 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 
 # Asynchronous Persistency - Write Behind
 
-MemoryXtend can work together with the [XAP Mirror Service]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html) which provides reliable asynchronous persistency that asynchronously delegates the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database.
+MemoryXtend can work together with the [XAP Mirror Service]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html) which provides reliable asynchronous persistency that asynchronously delegates the operations conducted against the IMDG into a backend database.
 
 {{%align center%}}
 ![image](/attachment_files/blobstore/ssd-rocksdb-mirror.png)
 {{%/align%}}
 
 
-# Initial Load
-MemoryXtend can load data from a database or attached storage directly into the Data-Grid instances. This feature is called [Initial Load]({{%currentjavaurl%}}/space-persistency-initial-load.html).<br/>
+## Initial Load
+The MemoryXtend initial-load fearure speed up read operations avoiding cache miss that force the space to fetch the data from file. Instead, some or all the data can be loaded (pre-fetch) from file once the space bootstrap itself before it is available for users to access.  
 
-- When configuring `persistent=true` each space instance will start the initial load from it's attached storage(flash device),  in case it is the empty initial load will be performed from the database.
-- When configuring `persistent=false` initial load will be performed from the database only.
+By default, when MemoryXtend configured with `persistent=true` and the IMDG is restarted, it reloads from file only the indexes data. The actual raw data will be loaded into heap upto the `cache-entries-percentage` setting based on users activity. MemoryXtend can load raw data from a database (when using write-behind) or attached storage directly into the IMDG instances. This feature is called [Initial Load]({{%currentjavaurl%}}/space-persistency-initial-load.html).<br/>
+
+When configuring `persistent=true` each IMDG instance will start the initial load process from it's attached storage (flash device),  in case it is the empty, initial load will be performed from the database based on the `space-data-source` configuration. When configuring `os-core:blob-store-data-policy` with `persistent=false`, initial load will be performed using the `space-data-source` settings.
 
 {{%tabs%}}
 {{%tab "Data-Grid Space settings"%}}
@@ -451,70 +456,10 @@ MemoryXtend can load data from a database or attached storage directly into the 
 {{% /tab %}}
 {{% /tabs %}}
 
-# User-defined query for initial Load
-
-MemoryXtend saves only indexes in RAM and the rest of the objects on disk. If you want to store objects and indexes in RAM, you can use queries to accomplish this.
-
-In the example below we are loading `Stock` instances where the name=a1000 and `Trade` instances with id > 10000.
-
-{{%tabs%}}
-{{%tab "Namespace"%}}
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:os-core="http://www.openspaces.org/schema/core"
-       xmlns:os-events="http://www.openspaces.org/schema/events"
-       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
-       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
-       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
-       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/{{%currentversion%}}/events/openspaces-events.xsd
-       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%currentversion%}}/remoting/openspaces-remoting.xsd
-       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
-
-    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/tmp/rocksdb]" mapping-dir="/tmp/mapping"/>
-
-    <os-core:embedded-space id="space" space-name="mySpace">
-        <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
-            <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="name = a1000"/>
-            <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="id > 10000"/>
-        </os-core:blob-store-data-policy>
-    </os-core:embedded-space>
-
-    <os-core:giga-space id="gigaSpace" space="space"/>
-```
-{{%/tab%}}
-
-{{%tab "Code"%}}
-
-```java
-BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
-blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
-blobStorePolicy.setPersistent(true);
-blobStorePolicy.addCacheQuery(new SQLQuery(Stock.class, "name = a1000"));
-blobStorePolicy.addCacheQuery(new SQLQuery(Trade.class, "id > 10000"));
-
-EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
-spaceConfigurer.cachePolicy(blobStorePolicy);
-GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer.space()).gigaSpace();
-```
-{{%/tab%}}
-{{%/tabs%}}
-
-When the logging `com.gigaspaces.cache` is turned on the following output is generated:
-
-```bash
-2016-12-26 07:57:56,378  INFO [com.gigaspaces.cache] - BlobStore internal cache recovery:
-   blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE name = 'a1000', SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock.Trade WHERE id > 10000].
-   Entries inserted to blobstore cache: 80.
-```
-
 # Limitation
 - MemoryXtend and [Direct Persistency]({{%currentjavaurl%}}/direct-persistency.html) configuration is not supported.
 - Supported only for `ALL_IN_CACHE` cache policy, not supported for `LRU` and other evictable cache policies.
-- All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the JVM the Space is running on.
+- All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the Space JVM.
 - MemoryXtend and `ESM` is not supported.
 
 
