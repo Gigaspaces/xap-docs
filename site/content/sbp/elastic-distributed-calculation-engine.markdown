@@ -116,11 +116,12 @@ For long calculations that consume relatively large amount of CPU time, the reco
 ![ElasticDistributedRiskAnalysisEngine_remote_workers.jpg](/attachment_files/sbp/ElasticDistributedRiskAnalysisEngine_remote_workers.jpg)
 {{%/align%}}
 
+
 # Running the Demo
 
 **1. Download the** [ElasticCalculationEngine.zip](/download_files/sbp/ElasticCalculationEngine.zip) and extract it into an empty folder. Move into the ElasticRiskAnalysisDemo folder and **edit** the `setExampleEnv.bat` to include correct values for the `XAP_NIC_ADDRESS` and the `GS_HOME` variables.
 
-**2. Start the GigaSpaces agent by running the following:**
+**2. Start the XAP agent by running the following:**
 
 ```bash
 startAgent.bat
@@ -145,6 +146,28 @@ scaleDataGrid.bat
 ```
 
 This will allow you to scale it from 256MB , to 512MB , to 1024MB and back to 256MB.
+
+Using the [Web Management Console]({{%currentadmurl%}}/web-management-console.html) you can see how the scaling takes effect:
+
+**4.1 Initial State - 256 MB Capacity**
+
+![image](/attachment_files/sbp/epu-example2.png)
+ 
+ 
+**4.2  Scale to 512MB**
+ 
+![image](/attachment_files/sbp/epu-example3.png)
+
+
+**4.3 Scale to 1024MB**
+ 
+![image](/attachment_files/sbp/epu-example5.png)
+
+**4.4 Scale back to 256MB**
+ 
+ 
+![image](/attachment_files/sbp/epu-example6.png)
+
 
 ## Colocated Calculations Demo
 
