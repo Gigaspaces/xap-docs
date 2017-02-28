@@ -13,8 +13,6 @@ By default, XAP entries are stored in-memory (actually, in the JVM heap) to prov
 
 Obviously, simply storing the data in SSD means XAP will no longer be an In-Memory Data Grid. The solution is a hybrid storage model offered by XAP called **MemoryXtend**, which uses the best of both worlds.
 
-
-
 # How it works
 
 In MemoryXtend, the entry's data is stored off-heap (e.g. in the native heap or on a file in SSD), but the indexes are stored in the managed JVM heap. This allows queries which leverage indexes to minimize off-heap penalty, since most of the work is done in-memory and only matched entries are loaded from the off-heap storage. 
@@ -159,9 +157,15 @@ In addition, persistency requires the following settings:
 
 ## Machine-Instance Affinity
 
-If a container or a machine restarts, there's no guarantee the instance will be provisioned on the same machine it had before. When MemoryXtend is used in a non-persitent manner, this is no problem since the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, we must ensure the instance is provisioned on the same machine it was before so it can recover from the correct device, which is usually local to the machine.
+If a GSC or a machine running a GSC restarts, there's no guarantee the IMDG instance running within the GSC will be provisioned into the same machine it was running before. When MemoryXtend is used in a non-persitent manner, this will not introduce a problem as the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, we must ensure the instance is provisioned on the same machine it was before so it can recover from the correct device, which is usually local to the machine.
 
-To ensure the Service Grid deploys data grid instances on the correct machines, [Instance level SLA](./the-sla-overview.html) should be used. For exmaple:
+
+{{% note "Central Storage"%}}
+Central Storage mode will allow you to use MemoryXtend without having Machine-Instance Affinity configuration.
+{{% /note %}}
+
+
+To ensure the Service Grid deploys IMDG instances on the correct machines, [Instance level SLA](./the-sla-overview.html) should be used. For exmaple:
 
 {{%tabs%}}
 {{%tab "Partitioned with a backup SLA"%}}
@@ -286,7 +290,7 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 
 # Asynchronous Persistency - Write Behind
 
-MemoryXtend can work together with the [XAP Mirror Service]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html) which provides reliable asynchronous persistency that asynchronously delegates the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database.
+MemoryXtend can work together with the [XAP Mirror Service]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html) which provides reliable asynchronous persistency that asynchronously delegates the operations conducted against the IMDG into a backend database.
 
 {{%align center%}}
 ![image](/attachment_files/blobstore/ssd-rocksdb-mirror.png)
@@ -294,9 +298,11 @@ MemoryXtend can work together with the [XAP Mirror Service]({{%currentjavaurl%}}
 
 
 ## Initial Load
-MemoryXtend can load data from a database or attached storage directly into the Data-Grid instances. This feature is called [Initial Load]({{%currentjavaurl%}}/space-persistency-initial-load.html).<br/>
-When configuring `persistent=true` each space instance will start the initial load from it's attached storage(flash device),  in case it is the empty initial load will be performed from the database.
-When configuring `persistent=false` initial load will be performed from the database only.
+The MemoryXtend initial-load fearure speed up read operations avoiding cache miss that force the space to fetch the data from file. Instead, some or all the data can be loaded (pre-fetch) from file once the space bootstrap itself before it is available for users to access.  
+
+By default, when MemoryXtend configured with `persistent=true` and the IMDG is restarted, it reloads from file only the indexes data. The actual raw data will be loaded into heap upto the `cache-entries-percentage` setting based on users activity. MemoryXtend can load raw data from a database (when using write-behind) or attached storage directly into the IMDG instances. This feature is called [Initial Load]({{%currentjavaurl%}}/space-persistency-initial-load.html).<br/>
+
+When configuring `persistent=true` each IMDG instance will start the initial load process from it's attached storage (flash device),  in case it is the empty, initial load will be performed from the database based on the `space-data-source` configuration. When configuring `os-core:blob-store-data-policy` with `persistent=false`, initial load will be performed using the `space-data-source` settings.
 
 {{%tabs%}}
 {{%tab "Data-Grid Space settings"%}}
@@ -453,7 +459,7 @@ When configuring `persistent=false` initial load will be performed from the data
 # Limitation
 - MemoryXtend and [Direct Persistency]({{%currentjavaurl%}}/direct-persistency.html) configuration is not supported.
 - Supported only for `ALL_IN_CACHE` cache policy, not supported for `LRU` and other evictable cache policies.
-- All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the JVM the Space is running on.
+- All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the Space JVM.
 - MemoryXtend and `ESM` is not supported.
 
 
