@@ -38,4 +38,4 @@ The Scala version required in order to use the Scala XAP extension is {{%version
  
 
 Assuming there is a scala installation under `$SCALA_HOME`, the jars under `$SCALA_HOME/lib` should be copied to `$GS_HOME/lib/optional/scala/lib`.
-Another options is to change `setenv.{bat,sh`} so that `$SCALA_JARS` points to `$SCALA_HOME/lib`.
+ 
