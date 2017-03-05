@@ -16,6 +16,25 @@ This page contains early access information for XAP 12.1, which is scheduled for
 Early Access builds are provided as-is and should not be used in production. If your're looking for the latest stable release, please refer to **12.0.1** - [Download](http://www.gigaspaces.com/xap-download) | [XAP docs](/xap120) | [XAP.NET docs](/xap120net)
 {{%/info%}}
 <hr/>
+## 12.1 M20 (Mar-5-2017)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m20/gigaspaces-xap-open-12.1.0-m20-b16720.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m20/gigaspaces-xap-premium-12.1.0-m20-b16720.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m20/gigaspaces-xap-enterprise-12.1.0-m20-b16720.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m20/GigaSpaces-XAP.NET-Premium-12.1.0.16720-M20-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m20/GigaSpaces-XAP.NET-Premium-12.1.0.16720-M20-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m20/GigaSpaces-XAP.NET-Enterprise-12.1.0.16720-M20-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m20/GigaSpaces-XAP.NET-Enterprise-12.1.0.16720-M20-x86.msi)\]
+
+#### Milestone Release Notes
+
+- Deploy via REST API is now supported.
+- Default port is 8090
+- Added SSL support (off by default, configured by system properties, validation when service grid is secured)
+3rd party
+- Jetty 9.2.21.v20170120
+- XAP.NET using Java 8u111 (JRE instead of JDK)
+
+|ID        | Type    | Description|
+|----------|---------|-----------|
+|XAP-13175 | Bug Fix     | SpaceInstance.waitForMode and SpaceInstance.getMode are not correlated |
+|XAP-13116 | New Feature | Allowing <async-supported>true</async-supported> in web PUs on Jetty 9 |
+
 
 ## 12.1 M19 (Feb-26-2017)
 
