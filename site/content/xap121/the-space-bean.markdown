@@ -32,16 +32,16 @@ Here are the available parameters for an embedded space:
 | space-name                            |String| The space name to use| |Yes ||
 | lookup-groups                         |String|The Jini Lookup Service group to find the space using multicast        || No |  |
 | lookup-locators                       |String| Instructs the started space to locate the Jini Lookup Service on specific host name and port        ||  No  | |
-| lookup-timeout                        |MSeconds| Lookup timeout in milli seconds            | 5000ms |No| |
+| lookup-timeout                        |Number| Lookup timeout in milli seconds            | 5000ms |No| |
 | versioned                             |Boolean|  When false, optimistic lock is disabled. In a local cache and views the default is true, otherwise the default value is false.|False |No| [Annotation](./pojo-attribute-annotations.html#spaceversion)<br>[Optimistic Locking](./transaction-optimistic-locking.html) |
-| schema                                |String|  Schema options, default, cache, persistent           | |No ||
-| mirrored                              |Boolean|          |False| No |[Mirror Service](./asynchronous-persistency-with-the-mirror.html) |          
-| register-for-space-mode-notifications |Boolean| |False |No| [Space Notifications](./the-space-notifications.html) |
+| schema                                |String|  Schema options: mirror, persistent           | |No ||
+| mirrored                              |Boolean|Asynchronous Persistency - Write Behind          |False| No |[Mirror Service](./asynchronous-persistency-with-the-mirror.html) |          
+| register-for-space-mode-notifications |Boolean| Register for Space mode notifications |False |No| [Space Notifications](./the-space-notifications.html) |
 | external-data-source                  |Reference|| |No ||
-| space-data-source                     |Reference|||No| [Space Persistency](./space-persistency-overview.html)|
-| space-sync-endpoint                   |Reference|| |No| [Asynchronous Persistence](./asynchronous-persistency-with-the-mirror.html)|
+| space-data-source                     |Reference|Data Source for the Space||No| [Space Persistency](./space-persistency-overview.html)|
+| space-sync-endpoint                   |Reference|Space Synchronization Endpoint| |No| [Asynchronous Persistence](./asynchronous-persistency-with-the-mirror.html)|
 | enable-member-alive-indicator         || | |No ||
-| gateway-targets                       |String| | |No ||
+| gateway-targets                       |String|Multi Site WAN Replication | |No |[Multi Site WAN Replication](./multi-site-replication-over-the-wan.html#configuring-a-space-with-gateway-targets)|
 
 ## Bean Properties
 

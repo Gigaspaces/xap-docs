@@ -24,7 +24,7 @@ Our example application will be a simple order processing application. Orders ge
 This is not a "real application," of course; as such, there are a lot of real-world features that won't be covered in this tutorial. However, this **will** demonstrate a testable, asynchronous, transactional event model with a presentation layer.
 
 {{% tip %}}
-The full source code for this project is available on [GigaSpaces' github repository](https://github.com/Gigaspaces/bestpractices), in the "`order.management`" directory.
+The full source code for this project is available on [GigaSpaces' github repository](https://github.com/Gigaspaces/bestpractices), in the `order.management` directory.
 {{% /tip %}}
 
 # Application Description
