@@ -52,7 +52,7 @@ It is possible to separate the security configurations from the Processing Unit 
 
 #### Space - Security Configuration file
 
-For a standalone space, the default Space security configuration file is `<Space-name>-security.properties`. Just like the `pu.properties`, you can include the security properties as part of the custom properties being passed to the space `"/./space?properties=myCustomProps`.
+For a standalone space, the default Space security configuration file is `<Space-name>-security.properties`. Just like the `pu.properties`, you can include the security properties as part of the custom properties being passed to the space `/./space?properties=myCustomProps`.
 
 #### Configure using a System property
 

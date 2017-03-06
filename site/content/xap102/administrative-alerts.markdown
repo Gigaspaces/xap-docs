@@ -101,7 +101,7 @@ Javadoc ref: [Alert]({{% api-javadoc %}}/org/openspaces/admin/alert/Alert.html)&
 ```
 
 {{% info "Alert XML Configuration "%}}
-The `"alerts.xml"` file argument specifies the file which holds the configuration settings.
+The `alerts.xml` file argument specifies the file which holds the configuration settings.
 The file argument can be:
 
 - a direct path (e.g. /export/user/my-alerts.xml) or,

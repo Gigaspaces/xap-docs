@@ -39,7 +39,7 @@ com.gs.security.security-manager.class=my.company.MySecurityManagerImpl
 
 #### Space - Security Configuration file
 
-For a standalone space, the default Space security configuration file is `<space-name>-security.properties`. You can include the security properties as part of the custom properties being passed to the space `"/./space?properties=myCustomProps`.
+For a standalone space, the default Space security configuration file is `<space-name>-security.properties`. You can include the security properties as part of the custom properties being passed to the space `/./space?properties=myCustomProps`.
 
 
 #### Space Processing Unit - Security Configuration file

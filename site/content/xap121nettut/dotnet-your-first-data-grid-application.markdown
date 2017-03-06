@@ -122,7 +122,7 @@ If you're using the web console mentioned above to see what's going on, you'll s
 ### {{% anchor source %}} Full Source Code
 
 {{%accordion%}}
-{{%accord title="`Program.cs`"%}}
+{{%accord title="Program.cs"%}}
 
 ```csharp
 using System;
@@ -168,7 +168,7 @@ namespace XapDemo
 {{%/accordion%}}
 
 {{%accordion%}}
-{{%accord title="`Person.cs`"%}}
+{{%accord title="Person.cs"%}}
 
 
 ```csharp

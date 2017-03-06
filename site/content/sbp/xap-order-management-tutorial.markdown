@@ -758,9 +758,9 @@ The model for deployment used by the feeder and the processor is a "processing u
 
 The model followed by the "web" module is a standard Java EE web module, a .war. It has no special requirements at all; the GigaSpaces dependencies are provided by the environment, when deployed in XAP, but we could just as easily have deployed it in a normal servlet container like Tomcat or Jetty, in which case it'd serve as a normal external client to XAP.
 
-The "processor" module is stateful, in that it establishes a data model and defines a container for the data grid. Stateful processing units are the basis for data scalability in GigaSpaces; to add memory to a grid, stateful processing units are added. A stateful processing unit connects to a data grid using a "local URL," which might look like "`/./dataGridName`."
+The "processor" module is stateful, in that it establishes a data model and defines a container for the data grid. Stateful processing units are the basis for data scalability in GigaSpaces; to add memory to a grid, stateful processing units are added. A stateful processing unit connects to a data grid using a "local URL," which might look like `/./dataGridName`.
 
-The "feeder" and "web" modules are stateless, in that they don't define a container for the data grid; they use a "remote URL", which might look like "`jini://*/*/dataGridName`." As stateless containers, they provide services for a stateful container; therefore, they have dependencies on stateful containers and must be deployed after the stateful containers are deployed.
+The "feeder" and "web" modules are stateless, in that they don't define a container for the data grid; they use a "remote URL", which might look like `jini://*/*/dataGridName`. As stateless containers, they provide services for a stateful container; therefore, they have dependencies on stateful containers and must be deployed after the stateful containers are deployed.
 
 To deploy a module in XAP, you send it to a "[Grid Service Manager](/product_overview/service-grid.html#gsm)," a GSM, which then sends it to GSCs based on service level requirements. (This might mean sending it to multiple GSCs to fulfill space or failover requirements.)
 

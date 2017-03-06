@@ -409,7 +409,7 @@ public class SimpleFilter {
 Custom Access control using Space Filters allows for access decisions based on user/role/data relationships. The `SpaceContext` filter invocation parameter holds the `SecurityContext` of the current operation. This context provides you with `UserDetails`, the `Authentication` and `AuditDetails`. Based on these, you can enforce custom access decisions (e.g. allow or disallow the operation).
 
 {{% info %}}
-Note that the `SpaceContext` may be `null` in cases related to replication/recovery and filter operations such as "`notify-trigger`". In these cases, there is no user context.
+Note that the `SpaceContext` may be `null` in cases related to replication/recovery and filter operations such as `notify-trigger`. In these cases, there is no user context.
 {{%/info%}}
 
 The filter can be declared just like any other filter, but note that the `priority` plays a role in the order of filter execution. Default priority is zero.

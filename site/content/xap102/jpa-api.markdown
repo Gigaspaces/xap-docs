@@ -40,9 +40,9 @@ Maven users should define the following dependency in their `pom.xml` file:
 
 To enable the XAP JPA implementation you should specify  the following 3 mandatory properties in your `persistence.xml`:
 
-- `BrokerFactory` should be set to `"abstractstore"` which tells OpenJPA that an alternate `StoreManager` (the layer responsible for interaction with underlying database) is going to be used.
-- `abstractstore.AbstractStoreManager` should be set to `"org.openspaces.jpa.StoreManager"` which tells OpenJPA to use the OpenSpaces `StoreManager`.
-- `LockManager` should be set to `"none"` since OpenJPA's default lock manager is set to `"version"` (Optimistic locking) which is currently unsupported (it will be supported in one of the future 8.0 service packs)
+- `BrokerFactory` should be set to `abstractstore` which tells OpenJPA that an alternate `StoreManager` (the layer responsible for interaction with underlying database) is going to be used.
+- `abstractstore.AbstractStoreManager` should be set to `org.openspaces.jpa.StoreManager` which tells OpenJPA to use the OpenSpaces `StoreManager`.
+- `LockManager` should be set to `none` since OpenJPA's default lock manager is set to `version` (Optimistic locking) which is currently unsupported (it will be supported in one of the future 8.0 service packs)
 
 Your persistence.xml file should be placed in any **/META-INF folder in your classpath.
 
@@ -414,7 +414,7 @@ public class Card {
 }
 ```
 
-In order to query the Card entity using a specific Integer in the numbers collection we use JPQL's `"MEMBER OF"`:
+In order to query the Card entity using a specific Integer in the numbers collection we use JPQL's `MEMBER OF`:
 
 
 ```java

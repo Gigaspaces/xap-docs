@@ -128,7 +128,7 @@ clean:
 ```
 
 {{% note "Debugging in Linux "%}}
-When debugging the code in Linux, you may receive the signal SIGSEGV (segmentation fault). It is recommended to instruct the debugger to ignore these signals ("`handle SIGSEGV nostop noprint`" in gdb, "`ignore SIGSEGV`" in most versions of dbx).
+When debugging the code in Linux, you may receive the signal SIGSEGV (segmentation fault). It is recommended to instruct the debugger to ignore these signals (`handle SIGSEGV nostop noprint` in gdb, `ignore SIGSEGV` in most versions of dbx).
 {{% /note %}}
 {{% /tab %}}
 {{%tab "  Using Visual Studio "%}}

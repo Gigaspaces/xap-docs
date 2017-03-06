@@ -24,7 +24,7 @@ Our example application will be a simple order processing application. Orders ge
 This is not a "real application," of course; as such, there are a lot of real-world features that won't be covered in this tutorial. However, this **will** demonstrate a testable, asynchronous, transactional event model with a presentation layer.
 
 {{% tip %}}
-The full source code for this project is available on [GigaSpaces' github repository](https://github.com/Gigaspaces/bestpractices), in the "`order.management`" directory.
+The full source code for this project is available on [GigaSpaces' github repository](https://github.com/Gigaspaces/bestpractices), in the `order.management` directory.
 {{% /tip %}}
 
 # Application Description
@@ -760,7 +760,7 @@ The model for deployment used by the feeder and the processor is a "processing u
 
 The model followed by the "web" module is a standard Java EE web module, a .war. It has no special requirements at all; the GigaSpaces dependencies are provided by the environment, when deployed in XAP, but we could just as easily have deployed it in a normal servlet container like Tomcat or Jetty, in which case it'd serve as a normal external client to XAP.
 
-The "processor" module is stateful, in that it establishes a data model and defines a container for the data grid. Stateful processing units are the basis for data scalability in GigaSpaces; to add memory to a grid, stateful processing units are added. A stateful processing unit connects to a data grid using a "local URL," which might look like "`/./dataGridName`."
+The "processor" module is stateful, in that it establishes a data model and defines a container for the data grid. Stateful processing units are the basis for data scalability in GigaSpaces; to add memory to a grid, stateful processing units are added. A stateful processing unit connects to a data grid using a "local URL," which might look like `/./dataGridName`.
 
 The "feeder" and "web" modules are stateless, in that they don't define a container for the data grid; they use a "remote URL", which might look like "`jini://*/*/dataGridName`." As stateless containers, they provide services for a stateful container; therefore, they have dependencies on stateful containers and must be deployed after the stateful containers are deployed.
 
