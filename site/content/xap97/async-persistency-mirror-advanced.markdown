@@ -19,7 +19,7 @@ If you need "multiple mirrors" for the same space cluster you can implement a Mi
 
 If you have multiple different space clusters, each with its own Mirror service running, you should use a different name for each Mirror Service.
 
-The Mirror Service name is used as part of the space config, specified via the `"cluster-config.mirror-service.url"` property. Its default is `"jini://*/mirror-service_container/mirror-service"` which match the "mirror-service" that is used as part of the `url` property used to start the mirror service.
+The Mirror Service name is used as part of the space config, specified via the `cluster-config.mirror-service.url` property. Its default is `jini://*/mirror-service_container/mirror-service` which match the "mirror-service" that is used as part of the `url` property used to start the mirror service.
 
 As an example, let's say we would like to call my mirror service `mymirror-service` (instead of the default `mirror-service`). Here is how the mirror service should be started:
 
@@ -305,7 +305,7 @@ Since 9.1.0 - distributed transaction consolidation is enabled by default.
 </os-core:space>
 ```
 
-As specified in the example above, it is required to set the "`cluster-config.groups.group.repl-policy.processing-type`" property to "`multi-source`".
+As specified in the example above, it is required to set the `cluster-config.groups.group.repl-policy.processing-type` property to `multi-source`.
 
 In order to take advantage of this feature, mirror operation grouping should be set to "group-by-space-transaction" in mirror:
 
