@@ -36,7 +36,7 @@ Any of the above will display the following dialog. Select the desired options a
 Selecting the "JVM Heap Dump" option will also generate a heap file for the JVMs. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.
 
 {{% align center %}}
-![WEB-UI2.png](/attachment_files/dump/dump-3.png)
+![dump3](/attachment_files/dump/dump-3.png)
 {{% /align %}}
 
 ## Generate Overview

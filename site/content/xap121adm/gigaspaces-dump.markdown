@@ -31,7 +31,7 @@ Specific GSC dump:
 Any of the above will display the following dialog. Place the location of the dump file , select the desired options and click the **Generate** button.
 
 {{% align center %}}
-![dump2.jpg](/attachment_files/dump/dump-1.png)
+![dump2.jpg](/attachment_files/dump/dump-2.png)
 {{% /align %}}
 
 {{% note %}}
