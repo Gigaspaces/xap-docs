@@ -8,6 +8,8 @@ weight: 300
 
 {{%fpanel%}}
 
+[Distributed Mirror](./distributed-mirror.html)
+
 [Embedding XAP for OEMs](./embedding-xap-for-oems.html)
 
 [Capacity Planning](./capacity-planning.html)

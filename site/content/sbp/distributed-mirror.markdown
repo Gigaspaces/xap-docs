@@ -24,13 +24,13 @@ With the example below we will run a partitioned space (2 partitions) and 2 mirr
 {{%/align%}}
 
 #  The Example
-Download the distributed-mirror.zip and extract its content into an empty folder. You will find 3 zip files:
+{{%download "/download_files/sbp/distributed-mirror.zip"%}} the example and extract its content into an empty folder. You will find 3 zip files:
 
 - multi-mirror.zip – A Mirror PU configured to support multiple mirror instances
 - space.zip - A Space PU configured to support multiple mirror instances
 - feeder.zip – A PU writing objects into the space
 
-#  Start the Database and its UI
+##  Start the Database and its UI
 
 Run SQLDB:
 ```bash
@@ -70,6 +70,9 @@ You can create a script that will loop and deploy multiple mirror instances each
 ##  Deploying the Space
 To deploy the space:
 
+```bash
+gs deploy -cluster schema=partitioned total_members=2,1 -override-name space space.zip
+```
 
 ##  Deploying the Feeder
 Deploy the feeder via the following:
@@ -82,11 +85,13 @@ This will write objects into the space. The mirrors will persist these into the 
 
 ##  View the Space and the Mirrors Status
 
-Start the GS-UI or GS-Web UI. You should see the space and the different mirror instances:
+Start the GS-Web UI. You should see the space and the different mirror instances:
 
 {{%align center%}}
 ![image](/attachment_files/sbp/mirror/distributed-mirror-3.jpg)
 {{%/align%}}
+
+Or you can start the Management console and view the space and the different mirror instances:
 
 {{%align center%}}
 ![image](/attachment_files/sbp/mirror/distributed-mirror-4.jpg)
@@ -128,4 +133,4 @@ The url mirror bean property should include the mirror service id together with 
 
 
 #  Limitations
-- Distributed transactions are not supported. Local transactions supported.
+- Distributed transactions are not supported. Local transactions are supported.

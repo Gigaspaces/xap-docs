@@ -223,6 +223,15 @@ To use this optimization you need to set the following space property:
 If you are using a custom implementation of the data source you also need to implement how the partial update is persisted.
 See com.gigaspaces.sync.DataSyncOperation for more details.
 
+# Large Space Cluster
+
+There are cases with large space clusters or with systems that produce large volume of activity where the amount of activity performed by a clustered space would require a distributed (multi-instance) mirror setup.
+ 
+{{%refer%}}
+See the [Distributed Mirror](/sbp/distributed-mirror.html) for an example how to configure this scenario.
+{{%/refer%}}
+
+
 # Mirror Monitoring
 
 

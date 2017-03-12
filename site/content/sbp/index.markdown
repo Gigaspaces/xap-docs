@@ -89,6 +89,7 @@ The patterns below are presented as is. While most of them are used in real life
 
 | Pattern | Level | Description |
 |:--------------|:------|:------------|
+|[Distributed Mirror](./distributed-mirror.html)| Advanced | A mirror service for each partition|
 |[Embedding Tomcat as a Web Container](./tomcat-pu.html)| Beginner | This article presents embedding Tomcat 7 within the XAP data grid|
 |[Embedding XAP for OEMs](./embedding-xap-for-oems.html)| Beginner | A quick and simple example of how an OEM might embed GigaSpaces XAP for customer use.|
 |[Universal Deployer](./universal-deployer.html) |Beginner | Allows deploying composite applications. Support multiple processing unit dependency based deployment.|

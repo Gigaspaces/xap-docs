@@ -149,6 +149,13 @@ In such a case you may need to have multiple mirrors. In order to implement this
 See the [Mirror Monitor](/sbp/mirror-monitor.html) for a simple example how such approach should be implemented.
 {{%/refer%}}
 
+
+There are cases with large space clusters or with systems that produce large volume of activity where the amount of activity performed by a clustered space would require a distributed (multi-instance) mirror setup.
+ 
+{{%refer%}}
+See the [Distributed Mirror](/sbp/distributed-mirror.html) for an example how to configure this scenario.
+{{%/refer%}}
+
 # Handling Mirror Exceptions
 
 Since the space synchronization endpoint configured for the mirror service communicates with the database, it may run into database related errors, such as constraint violations, wrong class mappings (if the Hibernate-based space synchronization endpoint implementation is used), or other database-related errors.
