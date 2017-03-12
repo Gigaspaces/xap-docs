@@ -20,7 +20,7 @@ By default a single mirror instance used to perform write-behind activity, persi
 With the example below we will run a partitioned space (2 partitions) and 2 mirror instances, both writing into a single database.  
 
 {{%align center%}}
-![image](/attachment_files/sbp/mirror/distributed-mirror-1.jpg)
+![image](/attachment_files/sbp/mirror/distributed-mirror-1.png)
 {{%/align%}}
 
 #  The Example
