@@ -40,25 +40,21 @@ This example includes:
 
 ```xml
 <!-- Construct Atomikos UserTransactionManager, needed to configure Spring -->
-<bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
-	init-method="init" destroy-method="close">
-	<property name="forceShutdown" value="false" />
-</bean>
+	<bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
+		init-method="init" destroy-method="close">
+		<property name="forceShutdown" value="false" />
+	</bean>
 
-<!-- Also use Atomikos UserTransactionImp, needed to configure Spring -->
-<bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
-	<property name="transactionTimeout" value="300" />
-</bean>
+	<!-- Also use Atomikos UserTransactionImp, needed to configure Spring -->
+	<bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+		<property name="transactionTimeout" value="300" />
+	</bean>
 
-<bean id="transactionManager"
-	class="org.springframework.transaction.jta.JtaTransactionManager">
-	<property name="transactionManager">
-		<ref local="atomikosTransactionManager" />
-	</property>
-	<property name="userTransaction">
-		<ref local="atomikosUserTransaction" />
-	</property>
-</bean>
+	<bean id="transactionManager"
+		class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="transactionManager" ref="atomikosTransactionManager" />
+		<property name="userTransaction" ref="atomikosUserTransaction" />
+	</bean>
 ```
 
 {{% /tab %}}
