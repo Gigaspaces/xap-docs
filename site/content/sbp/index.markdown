@@ -125,7 +125,7 @@ The patterns below are presented as is. While most of them are used in real life
 
 | Pattern | Level | Description |
 |:--------------|:------|:------------|
-|[Distributed WAN Gateway](./wan-gateway-distributed.html)| Beginner | Distributed (multi-instance) gateway example.|
+|[Distributed WAN Gateway](./wan-gateway-distributed.html)| Advanced | Distributed (multi-instance) gateway example.|
 |[WAN Gateway Multi-Master Replication](./wan-replication-gateway.html)| Beginner | Multi-Master WAN replication example.|
 |[WAN Gateway Master-Slave Replication](./wan-gateway-master-slave-replication.html)| Beginner | Single-Master/Multi-slave replication topology example.|
 |[WAN Gateway Pass-Through Replication](./wan-gateway-pass-through-replication.html)| Beginner | Pass-Through WAN replication topology example.|
