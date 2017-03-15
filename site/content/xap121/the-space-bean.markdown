@@ -2,8 +2,7 @@
 type: post121
 title:  The Space Bean
 categories: XAP121
-weight: 150
-parent: the-gigaspace-interface-overview.html
+
 ---
 
 {{%warning%}}
