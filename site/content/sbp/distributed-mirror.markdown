@@ -24,7 +24,7 @@ With the example below we will run a partitioned space (2 partitions) and 2 mirr
 {{%/align%}}
 
 #  The Example
-{{%download "/download_files/sbp/distributed-mirror.zip"%}} the example and extract its content into an empty folder. You will find 3 zip files:
+Download {{%download "/download_files/sbp/distributed-mirror.zip"%}} the example and extract its content into an empty folder. You will find 3 zip files:
 
 - multi-mirror.zip – A Mirror PU configured to support multiple mirror instances
 - space.zip - A Space PU configured to support multiple mirror instances
