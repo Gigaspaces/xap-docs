@@ -3,7 +3,7 @@ type: post
 title:  Observable WAN
 categories: SBP
 parent: wan-based-deployment.html
-weight: 400
+weight: 500
 ---
 
 
