@@ -30,21 +30,16 @@ With the example below we will run a source space (New-York) with 2 partitions a
 
 # Example
 
-**1.** Download the example and extract its content into an empty folder. 
-
+**1.** Download the example and extract its content into an empty folder.<br> 
 It includes two folders: deploy and scripts.
 
 **Deploy** - This includes the PU folders for space and gateway <br>
 **Scripts** - This includes all the start agents and deploy scripts 
 
- 
-
-**2.** Move the content of the deploy folder into `<GIGASPACES_HOME>\deploy` folder.
-
-**3.** Move into the scripts folder and edit the setExampleEnv.bat/sh script to include correct values for `XAP_NIC_ADDRESS` as the machine IP and GS_HOME as the GigaSpaces root folder location.
-
-**4.** Run startAgent-GB.bat/sh script to start GB site agents.
-**5.** Run startAgent-US.bat/sh script to start US site agents.
+**2.** Move the content of the deploy folder into `<GIGASPACES_HOME>\deploy` folder.<br>
+**3.** Move into the scripts folder and edit the setExampleEnv.bat/sh script to include correct values for `XAP_NIC_ADDRESS` as the machine IP and GS_HOME as the XAP root folder location.<br>
+**4.** Run startAgent-GB.bat/sh script to start GB site agents.<br>
+**5.** Run startAgent-US.bat/sh script to start US site agents.<br>
 **6.** Run deployAll.bat/sh script to deploy the required processing units.
 
 ## Viewing the Space Clusters and Gateways
