@@ -46,12 +46,11 @@ Web applications which need to know which port they're running on can now get it
 
 ## GS-Agent enhancements
 
-GS-Agent has received the following enhancements:
+GS-Agent now supports a new, user-friendly syntax. For example, to start 2 GSCs simply specify `--gsc=2`.
 
-* Help screen: run gs-agent with `--help` or `-h` to get a help screen explaining how to use it.
-* Zero Defaults: run gs-agent with `--zero-defaults` or `-z` to disable the default services. e.g. `gs-agent -z gsa.gsc 1' starts a single container, without explicitly disabling the global lus and gsm.
+The old syntax is still supported for backwards compatibility.
 
-{{<infosign>}} For more information see [gs-agent options](/xap121adm/the-runtime-environment.html#gs-agent-options).
+{{<infosign>}} For more information see [gs-agent options](/xap121adm/the-runtime-environment.html#gs-agent-options) (or run gs-agent with `-h`)
 
 ## Simplified Replication Configuration for Transactions
 
@@ -88,3 +87,12 @@ The dump functionality is useful for gathering log files from system components.
 Whenever a service grid component is started, it prints a system report in its log file. Starting 12.1, if you increase the log level from `INFO` to `CONFIG` or beyond, this report will be more verbose and include all system properties and environment variables, which can come in handy for troubleshooting some problems.
 
 {{<infosign>}} Documentation is under construction - more information coming soon.
+
+# Third Party Upgrades
+
+* [Jetty](http://www.eclipse.org/jetty/) integration has been upgraded to `9.2.21`
+* [Curator](http://curator.apache.org/) integration has been upgraded to `12.2.0`
+* [Lucene](https://lucene.apache.org/) integration has been upgraded to `6.4.2` (affects geospatial and full text search)
+* [Spatial4J](https://github.com/locationtech/spatial4j) integration has been upgraded to `0.6` (affects geospatial)
+
+In addition, the jvm bundled with XAP.NET hase been upgraded to Java 8 update 121.
