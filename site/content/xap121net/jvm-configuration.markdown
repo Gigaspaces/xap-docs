@@ -14,7 +14,7 @@ This page explains how to configure runtime settings for XAP.NET applications. I
 
 # Jvm Location
 
-GigaSpaces XAP.NET is bundled with [Oracle JDK 7 update 17](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html), aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):
+GigaSpaces XAP.NET is bundled with [Oracle Java SE 8 update 121](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html), aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):
 
 1. Edit the `Settings.xml` file (located in `<XapNet>\config\Settings.xml`).
 2. Locate the `<XapNet.Runtime.JavaHome>` node and change its value to the location of the JVM you wish to use.
