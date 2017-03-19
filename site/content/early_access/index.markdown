@@ -17,6 +17,23 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.1 M22 (Mar-19-2017)
+
+* Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m22/gigaspaces-xap-open-12.1.0-m22-b16723.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m22/gigaspaces-xap-premium-12.1.0-m22-b16723.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m22/gigaspaces-xap-enterprise-12.1.0-m22-b16723.zip)\] 
+* Download XAP for .NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m22/GigaSpaces-XAP.NET-Premium-12.1.0.16723-M22-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m22/GigaSpaces-XAP.NET-Premium-12.1.0.16723-M22-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m22/GigaSpaces-XAP.NET-Enterprise-12.1.0.16723-M22-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m22/GigaSpaces-XAP.NET-Enterprise-12.1.0.16723-M22-x86.msi)\]
+
+#### Milestone Release Notes
+
+- Updated Java examples' README with instructions of working with manager
+
+|ID        | Type        | Description                                                  |
+|----------|-------------|--------------------------------------------------------------|
+|XAP-13181 | New Feature | Add the ability to provide WriteOptions for persistent MemoryXtend space (RocksDB configuration)  |
+|XAP-13105 | New Feature | Upgrade Spatial4J to 0.6                                     |
+|XAP-13106 | New Feature | Upgrade Lucene to 6.4.2                                      |
+|XAP-13167 | Bug Fix     | JDK 7u131, 8u121 and above which contains the new Serialization Filter Configuration feature are polluting our logs with WARNING messages |
+  
+
 ## 12.1 M21 (Mar-12-2017)
 
 * Download XAP for Java \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.1.0/12.1.0-m21/gigaspaces-xap-open-12.1.0-m21-b16721.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m21/gigaspaces-xap-premium-12.1.0-m21-b16721.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.1.0/12.1.0-m21/gigaspaces-xap-enterprise-12.1.0-m21-b16721.zip)\] 
