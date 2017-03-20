@@ -8,7 +8,7 @@ weight: 400
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|:----------:|
-| Shay  Hassidim| 11.0 | March 2017|    | {{%download "/download_files/sbp/wan-replication_multi_gw.zip"%}}   |
+| Shay  Hassidim| 12.0.1 | March 2017|    | {{%download "/download_files/sbp/wan-replication_multi_gw.zip"%}}   |
 
 
 # Overview
