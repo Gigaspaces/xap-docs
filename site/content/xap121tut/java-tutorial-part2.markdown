@@ -20,21 +20,36 @@ XAP can be used as a scalable application platform on which you can host your Ja
 To start an XAP data grid, run the following command:
 
 {{%tabs%}}
-{{%tab "  Windows "%}}
+{{%tab "Windows CLI"%}}
 
 ```bash
 GS_HOME\bin\gs-agent.bat  
 ```
 {{% /tab %}}
 
-{{%tab "  Unix "%}}
+{{%tab "Unix CLI"%}}
 
 ```bash
 GS_HOME/bin/gs-agent.sh
 ```
 {{% /tab %}}
-{{% /tabs %}}
 
+{{%tab "REST"%}}
+```bash
+# start the agent with the REST interface
+gs-agent --manager-local
+
+# deploy first GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+-d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+
+# deploy second GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+-d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+```
+{{%/tab%}}
+
+{{% /tabs %}}
 
 
 {{%imagertext "/attachment_files/gs_runtime.jpg" %}}
@@ -72,9 +87,21 @@ There are several ways you can deploy a new Data Grid; by command line, with jav
 We want to deploy a data grid that has two primary partitions and one backup for each primary partition.
 Here is the gs command that you would execute to achieve this:
 
+
+{{%tabs%}}
+{{%tab CLI%}}
 ```bash
 GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=2,1  xapTutorialSpace
 ```
+{{%/tab%}}
+{{%tab "REST"%}}
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+'http://localhost:8090/v1/spaces?name=xapTutorialSpace&partitions=2&backups=true&requiresIsolation=false'
+```
+{{%/tab%}}
+{{%/tabs%}}
+
 This command will start a space called xapTutorialSpace with two primary partitions and a backup for failover for each primary. 
 
 You can also deploy the space via Java code. Here is an example:
@@ -108,10 +135,20 @@ Here is how you would configure your IMDG:
 Lets assume we have 4 machines available. On all machines we will start a GSA. The default gs-agent script will give us a total number of 8 GSC's. We want to deploy 4 partitions each having a backup and there should only be one instance per machine. 
 
 
+{{%tabs%}}
+{{%tab "CLI"%}}
 ```bash
-GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=4,1 
-       -max-instances-per-machine 1 xapTutorialSpace
+GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=4,1 -max-instances-per-machine 1 xapTutorialSpace
 ```
+{{%/tab%}}
+{{%tab "REST"%}}
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+'http://localhost:8090/v1/spaces?name=xapTutorialSpace&partitions=4&backups=true&requiresIsolation=true'
+```
+{{%/tab%}}
+{{%/tabs%}}
+
 When the application write Payment objects into this space, XAP will use the routing information provided (@SpaceRouting) by the Payment class to route the object to the right partition. 
 
 {{%refer%}}
