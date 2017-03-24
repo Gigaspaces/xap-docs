@@ -10,7 +10,8 @@ parent: none
 In the previous section you have learned about XAP's capabilities as a data store. In this part of the tutorial we will show you how you can deploy an In Memory Data Grid (IMDG) that provides scalability and failover.
 
 
-XAP can be used as a scalable application platform on which you can host your Java application, similar to JEE and web containers. However, GigaSpaces XAP's IMDG can also be embedded within another Java application which is not hosted within the XAP platform. In this part of the tutorial we will show you how to start a data grid and how you can interact with it.
+XAP can be used as a scalable application platform on which you can host your Java application, similar to JEE and web containers. However, GigaSpaces XAP's IMDG can also be embedded within another Java application which is not hosted within the XAP platform. 
+In this part of the tutorial we will show you how to start a data grid and how you can interact with it.
 
 
 
@@ -85,7 +86,7 @@ In order to create a data grid, you need to first deploy it onto the GigaSpaces 
 There are several ways you can deploy a new Data Grid; by command line, with java code embedded in your application and the admin UI. The following snippets shows how to deploy a data grid.
 
 We want to deploy a data grid that has two primary partitions and one backup for each primary partition.
-Here is the gs command that you would execute to achieve this:
+Here are the gs and REST commands that you would execute to achieve this:
 
 
 {{%tabs%}}
