@@ -32,9 +32,24 @@ There are several ways to configure Space session based support, depending on th
 Here is how you can deploy an existing WAR file without changing it (or use Spring) to use XAP HTTP Session Management:
 
 
+{{%tabs%}}
+{{%tab CLI%}}
 ```java
 gs deploy -properties embed://jetty.sessions.spaceUrl=jini://*/*/sessionSpace?useLocalCache myWar.war
 ```
+{{%/tab%}}
+
+{{%tab REST%}}
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ 
+   "name": "myWar", 
+   "resource": "myWar.war" 
+ }, 
+   "contextProperties": {embed://jetty.sessions.spaceUrl=jini://*/*/sessionSpace?useLocalCache} 
+ }' 'http://localhost:8090/v1/deployments'
+```
+{{%/tab%}}
+{{%/tabs%}}
 
 ## Using Spring
 
@@ -52,15 +67,15 @@ Controlling the session Management done via the following properties:
 
 |Property|Description|Default|Mandatory?|
 |:-------|:----------|:------|:---------|
-|`jetty.sessions.spaceUrl`|specifies the URL of the space with the HTTP session store will be backed. Use the `bean://` notation to reference a space proxy defined within the `META-INF/spring/pu.xml` file.|`jini://*/*/sessionSpace?useLocalCache`{{<wbr>}}`/./sessionSpace?cluster_schema=replicated`{{<wbr>}}`bean://sessionSpace`| Yes |
-|`jetty.sessions.scavengePeriod`| Determines how often the web container will check for expired sessions. Set in seconds.| 300 seconds (5 minutes) | No |
-|`jetty.sessions.savePeriod`| How often an actual update of a **non dirty** session will be performed to the Space. Set in seconds|60 seconds. This is useful for cases where a session attribute is not updated explicitly using the `HttpSession#setAttribute` method. More importantly, it makes sure to report the last time the user has accessed the application to the space so that the user session will not expire |No |
-|`jetty.sessions.timeout`| Determines the HTTP session timeout in minutes (similar to `session-timeout` element in `web.xml`|30 minutes| No |
-|`jetty.sessions.lease`| The lease of the [SessionData]({{% api-javadoc %}}/org/openspaces/jee/sessions/jetty/SessionData.html) that is written to the Space |Long.MAX_VALUE | No |
+|jetty.sessions.spaceUrl|specifies the URL of the space with the HTTP session store will be backed. Use the `bean://` notation to reference a space proxy defined within the `META-INF/spring/pu.xml` file.|`jini://*/*/sessionSpace?useLocalCache`{{<wbr>}}`/./sessionSpace?cluster_schema=replicated`{{<wbr>}}`bean://sessionSpace`| Yes |
+|jetty.sessions.scavengePeriod| Determines how often the web container will check for expired sessions. Set in seconds.| 300 seconds (5 minutes) | No |
+|jetty.sessions.savePeriod| How often an actual update of a **non dirty** session will be performed to the Space. Set in seconds|60 seconds. This is useful for cases where a session attribute is not updated explicitly using the `HttpSession#setAttribute` method. More importantly, it makes sure to report the last time the user has accessed the application to the space so that the user session will not expire |No |
+|jetty.sessions.timeout| Determines the HTTP session timeout in minutes (similar to `session-timeout` element in `web.xml`|30 minutes| No |
+|jetty.sessions.lease| The lease of the [SessionData]({{% api-javadoc %}}/org/openspaces/jee/sessions/jetty/SessionData.html) that is written to the Space |Long.MAX_VALUE | No |
 
-{{% info %}}
+{{% note %}}
 XAP integration implements Jetty `SessionManager` and `SessionIdManager` in `GigaSesssionManager` and `GigaSessionIdManager`. When setting the `jetty.sessions.spaceUrl` they get automatically set as the session manager and session id manager of the web app.
-{{%/info%}}
+{{%/note%}}
 
 # Deployment Topologies
 

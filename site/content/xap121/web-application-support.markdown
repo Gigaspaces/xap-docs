@@ -6,11 +6,8 @@ parent: web-application-overview.html
 weight: 100
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
 
-
-
-OpenSpaces integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the [Service Grid Processing Unit Container](./deploying-onto-the-service-grid.html).
+XAP's integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the [Service Grid Processing Unit Container](./deploying-onto-the-service-grid.html).
 
 The integration allows you to make use of the following Service Grid features:
 
@@ -47,10 +44,10 @@ Deploying an exploded WAR is similar to deploying a packaged WAR. Here are the s
 1. Each GSC that is supposed to run an instance of the web application, downloads the web application into its own local file system. By default, it downloads it into `GSRoot/work/deployed-processing-units/[processing unit name]_[unique identifier]`.
 1. The appropriate web container is configured to run the web application using the local file system location.
 
-{{% info %}}
+{{% note %}}
 The directory where the web applications are extracted (up to the `work` directory) on the GSC side can be controlled using the `com.gs.work` system property.
 The deploy directory location (up to the `deploy` directory) used on the GSM side can be controlled using the `com.gs.deploy` system property.
-{{%/info%}}
+{{%/note%}}
 
 # Web Application Structure
 
@@ -88,8 +85,8 @@ A special case happen with `xap-datagrid.jar` which is automatically removed fro
 
 In terms of class loader delegation model, the web application class loader uses a parent last delegation mode. This means that the web application will first try and load classes from its own class loader, and only if they are not found, will delegate up to the parent class loader. This is the recommended way to work with this class loader model.
 
-{{% note %}}
-Where has the Service Class Loader gone? The Service Class Loader is still used in order to load the JEE container, but it is hidden from the user. The web application class loader is created with its parent class loader being the JEE container specific class loader and not the Service Class loader. Users should not worry in this case about the Service Class Loader and how it is used, as the above class loader model provides exactly the same semantics as a plain web container class loader model.
+{{% note "Where has the Service Class Loader gone?"%}}
+The Service Class Loader is still used in order to load the JEE container, but it is hidden from the user. The web application class loader is created with its parent class loader being the JEE container specific class loader and not the Service Class loader. Users should not worry in this case about the Service Class Loader and how it is used, as the above class loader model provides exactly the same semantics as a plain web container class loader model.
 {{% /note %}}
 
 {{% note %}}
@@ -147,7 +144,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
 
 // ...
 
-// shutting down / closing the Space
+// shutting down .. closing the Space
 spaceConfigurer.destroy();
 ```
 
@@ -162,18 +159,13 @@ Here is an example that starts an embedded Space as part of the web application 
 
 {{%tabs%}}
 {{%tab "  Spring Namespace "%}}
-
-
 ```xml
 <os-core:embedded-space id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 <os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/>
 ```
-
 {{% /tab %}}
 {{%tab "  Spring Plain XML "%}}
-
-
 ```xml
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
@@ -186,7 +178,6 @@ Here is an example that starts an embedded Space as part of the web application 
 	<property name="clustered" ref="true" />
 </bean>
 ```
-
 {{% /tab %}}
 {{% /tabs %}}
 

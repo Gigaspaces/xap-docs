@@ -28,9 +28,9 @@ The GigaSpaces Gateway features the following:
 - Data filtering - The Gateway replication can have a custom plug-in that allows users to filter/modify data before it is replicated and after it has been replicated at each source/target spaces.
 - Changing replication topology in run-time - adding or removing remote spaces without system shutdown.
 
-{{% info %}}
+{{% note %}}
 In the case where each space resides on a different network and there is no network connectivity between all space instances of all the spaces, please refer to [Multi-Site Replication over the WAN](./multi-site-replication-over-the-wan.html) to understand how to establish such replication between different networks.
-{{% /info %}}
+{{% /note %}}
 
 
 # Supported Topologies

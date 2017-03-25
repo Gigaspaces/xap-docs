@@ -50,9 +50,9 @@ SLA definitions are only enforced when deploying the processing unit to the Giga
 
 - `META-INF/MANIFEST.MF` (not mandatory): This file could be used for adding additional jars to the processing unit classpath, using the standard `MANIFEST.MF` `Class-Path` property. (see [Manifest Based Classpath](./the-processing-unit-structure-and-configuration.html#Manifest Based Classpath) for more details)
 
-{{% tip %}}
+{{% note %}}
 You may add your own jars into the runtime (GSC) classpath by using the `PRE_CLASSPATH` and `POST_CLASSPATH` variables. These should point to your application jars.
-{{% /tip %}}
+{{% /note %}}
 
 
 

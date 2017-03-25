@@ -47,11 +47,11 @@ Deploying an exploded WAR is similar to deploying a packaged WAR. Here are the s
 1. Each GSC that is supposed to run an instance of the web application, downloads the web application into its own local file system. By default, it downloads it into `GSRoot/work/deployed-processing-units/[processing unit name]_[unique identifier]`.
 1. The appropriate web container is configured to run the web application using the local file system location.
 
-{{% info %}}
+{{% note %}}
 The directory where the web applications are extracted (up to the `work` directory) on the GSC side can be controlled using the `com.gs.work` system property.
 
 The deploy directory location (up to the `deploy` directory) used on the GSM side can be controlled using the `com.gs.deploy` system property.
-{{%/info%}}
+{{%/note%}}
 
 # Web Application Structure
 

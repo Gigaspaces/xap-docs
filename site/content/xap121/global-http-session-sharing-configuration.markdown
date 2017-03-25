@@ -6,9 +6,6 @@ parent: global-http-session-sharing-overview.html
 weight: 200
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
-
-
 
 # The Web Application Configuration
 
@@ -17,23 +14,22 @@ The web application requires a couple of configuration changes to the `web.xml` 
 
 ```xml
 <web-app>
-		....
-	<listener>
-      		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
-    	</listener>
-    	<listener>
-      		<listener-class>com.gigaspaces.httpsession.sessions.GigaSpacesCacheManager</listener-class>
-    	</listener>
-        <filter>
-        	<filter-name>GigaSpacesHttpSessionFilter</filter-name>
-        	<filter-class>com.gigaspaces.httpsession.web.GigaSpacesHttpSessionFilter</filter-class>
-        	<web:init-param> 
-        		<web:param-name>rewriteUrl</web:param-name> 
-            		<web:param-value>false</web:param-value> <!-- default true -->
-        	</web:init-param>
-        </filter>
-        <filter-mapping>
-            <filter-name>GigaSpacesHttpSessionFilter</filter-name>
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.gigaspaces.httpsession.sessions.GigaSpacesCacheManager</listener-class>
+    </listener>
+    <filter>
+        <filter-name>GigaSpacesHttpSessionFilter</filter-name>
+        <filter-class>com.gigaspaces.httpsession.web.GigaSpacesHttpSessionFilter</filter-class>
+        <web:init-param> 
+            <web:param-name>rewriteUrl</web:param-name> 
+            <web:param-value>false</web:param-value> <!-- default true -->
+        </web:init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>GigaSpacesHttpSessionFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
 </web-app>
@@ -398,14 +394,35 @@ Another option is to use Maven:
 The XAP IMDG should be deployed using one of the [topologies](/product_overview/space-topologies.html).
 
 
+{{%tabs%}}
+{{%tab CLI%}}
 ```bash
 # To deploy the IMDG called `sessionSpace` start the XAP agent using:
 <XAP-HOME>/bin/gs-agent
 
 # and run the following command to deploy the session Space:
 <XAP-HOME>/bin/gs deploy-space sessionSpace
+```
+{{%/tab%}}
+{{%tab "REST"%}}
+```bash
+# start the agent with the REST interface
+gs-agent --manager-local
+
+# deploy first GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain'  -d '{"host": "Chriss-MacBook-Pro.local"}' 'http:/localhost:8090/v1/containers'
+
+# deploy second GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+-d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+
+# deploy the space
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+'http://localhost:8090/v1/spaces?name=sessionSpace&requiresIsolation=false'
 
 ```
+{{%/tab%}}
+{{%/tabs%}}
 
 
 {{% refer %}}See the [deploy-space]({{%currentadmurl%}}/deploy-command-line-interface.html) command for details.
