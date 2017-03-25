@@ -189,7 +189,7 @@ class MyBean implements SpaceBeforeBackupListener, SpaceAfterPrimaryListener {
     }
 
     // invoked after a space becomes primary
-    public void onAfterPrimary(AfterSpaceModeChangeEvent event {
+    public void onAfterPrimary(AfterSpaceModeChangeEvent event) {
         // Do something
     }
 
