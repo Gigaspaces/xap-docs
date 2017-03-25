@@ -24,14 +24,14 @@ To start an XAP data grid, run the following command:
 {{%tab "Windows CLI"%}}
 
 ```bash
-GS_HOME\bin\gs-agent.bat  
+XAP_HOME\bin\gs-agent.bat  
 ```
 {{% /tab %}}
 
 {{%tab "Unix CLI"%}}
 
 ```bash
-GS_HOME/bin/gs-agent.sh
+XAP_HOME/bin/gs-agent.sh
 ```
 {{% /tab %}}
 
@@ -92,7 +92,7 @@ Here are the gs and REST commands that you would execute to achieve this:
 {{%tabs%}}
 {{%tab CLI%}}
 ```bash
-GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=2,1  xapTutorialSpace
+XAP-HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=2,1  xapTutorialSpace
 ```
 {{%/tab%}}
 {{%tab "REST"%}}
@@ -139,7 +139,7 @@ Lets assume we have 4 machines available. On all machines we will start a GSA. T
 {{%tabs%}}
 {{%tab "CLI"%}}
 ```bash
-GS_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=4,1 -max-instances-per-machine 1 xapTutorialSpace
+XAP_HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=4,1 -max-instances-per-machine 1 xapTutorialSpace
 ```
 {{%/tab%}}
 {{%tab "REST"%}}
@@ -183,13 +183,13 @@ You can start XAP's console and inspect the Data Grid components that have been 
 {{%tab "  Windows"%}}
 
 ```bash
-GS_HOME\bin\gs_webui.bat
+XAP_HOME\bin\gs_webui.bat
 ```
 {{% /tab %}}
 {{%tab "  Unix"%}}
 
 ```bash
-GS_HOME/bin/gs_webui.sh
+XAP_HOME/bin/gs_webui.sh
 ```
 {{% /tab %}}
 {{% /tabs %}}
@@ -197,75 +197,18 @@ GS_HOME/bin/gs_webui.sh
 After you execute the above command, open a browser and go to  `http://your_host:8099` and the login screen for the admin application will open up. The following screen shots will demonstrate some of the UI features: (no username and password needed)
 
  
-{{%section%}}
-{{%column width="25%" %}}
-Login
-
-{{%popup   "/attachment_files/qsg/Shot0.png" Login%}}
-
-{{%/column%}}
-
-{{%column width="25%" %}}
-Dashboard
-
-{{%popup   "/attachment_files/qsg/Shot1.png" Dashboard %}}
-
-{{%/column%}}
-
-{{%column width="25%" %}}
-Deployed Applications
-
-{{%popup   "/attachment_files/qsg/Shot11.png" "Deployed Applications"%}}
-
-{{%/column%}}
-
-{{%column width="25%" %}}
-Hosts (GSA,GSC,GSM,LUS)
-
-{{%popup   "/attachment_files/qsg/Shot2.png" "Hosts (GSA,GSC,GSM,LUS)"%}}
-
-{{%/column%}}
-{{%/section%}}
- 
-
-{{%section%}}
-{{%column width="25%" %}}
-Deployed Data Grids
-
-{{%popup "/attachment_files/qsg/Shot3.png"  "Deployed Data Grids"%}}
-
-{{%/column%}}
-
-{{%column width="25%" %}}
-Classes in Space
-
-{{%popup   "/attachment_files/qsg/Shot4.png" "Classes in Space"%}}
-
-{{%/column%}}
-
-{{%column width="25%" %}}
-Class attributes
-
-{{%popup   "/attachment_files/qsg/Shot5.png" "Class attributes"%}}
-
-{{%/column%}}
-
-{{%column width="25%" %}}
-Space Query
-
-{{%popup   "/attachment_files/qsg/Shot6.png" "Space Query"%}}
-
-{{%/column%}}
-{{%/section%}}
- 
-{{%tip%}}You can modify the query statement and query the space in realtime.
-Example : select UID,* from xap.tutorial.user.model.User *where creditLimit > 100 and* rowNum<5000{{%/tip%}}
+{{%note%}}
+You can modify the query statement and query the space in realtime.
+Example : select UID,* from xap.tutorial.user.model.User *where creditLimit > 100 and* rowNum<5000
+{{%/note%}}
  
 The Admin UI console has many more features which we will introduce you to throughout this tutorial.
 
    
 
-{{%refer%}}[Web Management Console]({{%currentadmurl%}}/web-management-console.html){{%/refer%}}
+{{%refer%}}
+[Web Management Console]({{%currentadmurl%}}/web-management-console.html)
+{{%/refer%}}
 
  
 

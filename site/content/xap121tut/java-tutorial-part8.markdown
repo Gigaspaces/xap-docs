@@ -29,27 +29,38 @@ The integration allows you to make use of the following Service Grid features:
 # Deployment
 The web application itself is a pure, JEE based, web application. The application can be the most generic web application, and automatically make use of the Service Grid features.
  
-Here is an example how you can deploy a web application on top of the service grid. We can accomplish this in two ways; by command line or with the admin UI.
+Here is an example how you can deploy a web application on top of the service grid. 
+We can accomplish this in three ways; by command line, with the admin UI or with the REST API:
 
-### Command line deployment
+## Command line deployment
 You deploy a war file just like you deploy a pu jar.
 
 {{%tabs%}}
-{{%tab "  Unix "%}}
+{{%tab "Unix CLI"%}}
 
 ```bash
 GS_HOME/bin/gs.sh deploy tutorial.war
 ```
 {{% /tab %}}
-{{%tab "  Windows "%}}
+{{%tab "Windows CLI"%}}
 
 ```bash
 GS_HOME\bin\gs.sh deploy tutorial.war
 ```
 {{% /tab %}}
+ 
+{{%tab "REST"%}}
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ 
+   "name": "eventPU", 
+   "resource": "...path..to\eventPU.jar"  
+ }' 'http://localhost:8090/v1/deployments'
+```
+{{%/tab%}}
 {{%/tabs%}}
 
-### Deploy with Web Admin UI
+
+## Deploy with Web Admin UI
 You can deploy a war file just like a PU with the Web Administration UI:
 
 {{%section%}}

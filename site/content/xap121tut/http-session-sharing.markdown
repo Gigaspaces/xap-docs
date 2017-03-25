@@ -9,7 +9,7 @@ weight: 1500
 
 
 {{%section%}}
-{{%column width="70%" %}}
+{{%column width="60%" %}}
 <br>
 With XAP you can share HTTP session data across multiple data centers, multiple web server instances or different types of web servers.
 
@@ -133,16 +133,43 @@ Place the following within the `HttpSession.conf` file. The `BalancerMember` sho
 -	Move to the `\gigaspaces-xap-premium-10.2.0-ga\bin` folder and start GigaSpaces agent by running:
 
 
+{{%tabs%}}
+{{%tab "CLI"%}}
 ```bash
 gs-agent.bat
 ```
+{{%/tab%}}
+{{%tab "REST"%}}
+```bash
+# start the agent with the REST interface
+gs-agent --manager-local
+
+# deploy first GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain'  -d '{"host": "Chriss-MacBook-Pro.local"}' 'http:/localhost:8090/v1/containers'
+
+# deploy second GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+-d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+```
+{{%/tab%}}
+{{%/tabs%}}
+
 
 -	Deploy a space named **sessionSpace**. You may have a single instance Space or deploy a clustered Space using the command line , GS-UI or the Web-UI. Here is how you can do this via the CLI
 
-
+{{%tabs%}}
+{{%tab "CLI" %}}
 ```bash
 gs.bat deploy-space sessionSpace
 ```
+{{%/tab%}}
+{{%tab "REST"%}}
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+'http://localhost:8090/v1/spaces?name=sessionSpace&requiresIsolation=false'
+```
+{{%/tab%}}
+{{%/tabs%}}
 
 -	Double check the **shiro.ini** within the `demo-app.war` file located under the `WEB-INF` folder includes the lookup service host name as part of the `connector.url` property. With the example below we are using a lookup service running locally - hence the `localhost` is used:
 
@@ -334,13 +361,15 @@ http://localhost:8081/demo-app2
 -	See session been fully recovered.
 
 {{%section%}}
-{{%column   %}}
+{{%column width="40%"%}}
 {{%popup "/attachment_files/httpsession102/httpsession-tomcat-2.png"%}}
 {{%/column %}}
-{{%column  %}}
+{{%column  width="40%"%}}
 {{%popup "/attachment_files/httpsession102/httpsession-jboss-2.png"%}}
 {{%/column %}}
 {{%/section%}}
 
 
-{{%refer%}}[Global HTTP Session Sharing]({{%currentjavaurl%}}/global-http-session-sharing-overview.html){{%/refer%}}
+{{%refer%}}
+[Global HTTP Session Sharing]({{%currentjavaurl%}}/global-http-session-sharing-overview.html)
+{{%/refer%}}

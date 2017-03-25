@@ -264,30 +264,61 @@ In this step will create the configuration file for the PU deployment
 #### Deployment
 Now we have all the pieces that are necessary to create the jar file for the PU. After we have created the jar file its time to deploy the PU onto the data grid. Again, you can do this in three ways; by script, Java code or via the admin UI. In our example will use the scripts to deploy the PU.
 
-First we start the GigaSpace Agent (GSA) that will create our IMDG on this machine:
+First we start the XAP Agent (GSA) that will create our IMDG on this machine:
 
 {{%tabs%}}
-{{%tab "  Windows "%}}
+{{%tab "Windows CLI"%}}
 
 ```bash
-GS_HOME\bin\gs-agent.bat
+XAP_HOME\bin\gs-agent.bat
 ```
 {{% /tab %}}
 
-{{%tab "  Linux "%}}
-
+{{%tab "Linux CLI"%}}
 ```bash
-GS_HOME/bin/gs-agent.sh
+XAP_HOME/bin/gs-agent.sh
 ```
 {{% /tab %}}
+
+{{%tab "REST"%}}
+```bash
+# start the agent with the REST interface
+gs-agent --manager-local
+
+# deploy first GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+-d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+
+# deploy second GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+-d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+```
+{{%/tab%}}
 
 {{% /tabs %}}
 
 And now we deploy the PU onto the IMDG:
 
+
+{{%tabs%}}
+{{%tab "CLI" %}}
 ```bash
 GS_HOME\bin\gs.sh deploy  eventPU.jar
 ```
+{{%/tab%}}
+
+{{%tab "REST" %}}
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ 
+   "name": "eventPU", 
+   "resource": "...path..to\eventPU.jar"  
+ }' 'http://localhost:8090/v1/deployments'
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+
+
 We assume that the jar we created is named eventPU.jar
 
 If you startup the Admin UI you will be able to see that through the deployment a space called eventSpace was created and a PU named with the jar name.

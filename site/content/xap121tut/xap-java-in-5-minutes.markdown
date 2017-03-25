@@ -20,23 +20,39 @@ A Data Grid requires a [Service Grid](/product_overview/service-grid.html) to ho
 In this tutorial you'll launch a single node service grid on your machine. To start the service grid, simply run the `gs-agent` script from the product's `bin` folder.
 
 {{%tabs%}}
-{{%tab "  Unix "%}}
+{{%tab "Unix CLI"%}}
 
 ```bash
 ./gs-agent.sh
 ```
 {{% /tab %}}
-{{%tab "  Windows "%}}
+
+{{%tab "Windows CLI"%}}
 
 ```bash
 gs-agent.bat
 ```
 {{% /tab %}}
+
+{{%tab "REST"%}}
+```bash
+# start the agent with the REST interface
+gs-agent --manager-local
+
+# deploy first GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+-d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+
+# deploy second GC
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+-d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+```
+{{%/tab%}}
 {{% /tabs %}}
 
-{{% tip "The Web Console "%}}
+{{% note "The Web Console "%}}
 XAP provides a web-based tool for monitoring and management. From the `bin` folder start the `gs-webui` script, then browse to `localhost:8099`. Click the 'Login' button and take a look at the *Hosts* tab - you'll see the service grid components created on your machine.
-{{% /tip %}}
+{{% /note %}}
 
 # Deploying the Data Grid
 
@@ -45,18 +61,24 @@ The Data grid can be deployed from command line, from the web management tool or
 Start a command line, navigate to the product's `bin` folder and run the following command:
 
 {{%tabs%}}
-{{%tab "  Unix "%}}
-
+{{%tab "Unix CLI"%}}
 ```bash
 ./gs.sh deploy-space -cluster total_members=2,1 myGrid
 ```
 {{% /tab %}}
-{{%tab "  Windows "%}}
-
+{{%tab "Windows CLI"%}}
 ```bash
 gs.bat deploy-space -cluster total_members=2,1 myGrid
 ```
 {{% /tab %}}
+
+{{%tab "REST"%}}
+````json
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+'http://localhost:8090/v1/spaces?name=myGrid&partitions=2&backups=true&requiresIsolation=true'
+````
+{{% /tab %}}
+
 {{% /tabs %}}
   
 This command deploys a Data Grid (aka space) called **myGrid** with 2 partitions and 1 backup per partition (hence the `2,1` syntax). 
