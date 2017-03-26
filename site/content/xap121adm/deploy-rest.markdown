@@ -1,6 +1,6 @@
 ---
 type: post121
-title:  REST Deployment
+title:  Deploy with REST
 categories: XAP121ADM, PRM
 parent: administration-tools.html
 weight: 220
