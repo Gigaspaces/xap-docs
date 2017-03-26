@@ -6,9 +6,9 @@ parent: administration-tools.html
 weight: 400
 ---
 
- {{%refer%}}
- For more information please refer to the [Quiesce documentation](./quiesce-overview.html)
- {{%/refer%}}
+{{%refer%}}
+For more information please refer to the [Quiesce documentation](./quiesce-overview.html)
+{{%/refer%}}
 
 XAP allows putting a processing unit in quiesce mode (a.k.a maintenance mode). The quiesce mode can be invoked via the CLI. This page explains the usage of the CLI commands.
 
@@ -23,9 +23,19 @@ In order to interact with a secured grid you need to login first. See [(CLI) Sec
 ## Syntax
 
 
+{{%tabs%}}
+{{%tab CLI%}}
 ```bash
 gs> quiesce [options] PU_NAME
 ```
+{{%/tab%}}
+{{%tab REST%}}
+```bash
+curl -X POST  url PU_NAME quiesce
+```
+{{%/tab%}}
+{{%/tabs%}}
+
 
 ## Description
 
@@ -85,10 +95,18 @@ Quiesce command completed successfully [token=ee16f577-92df-430b-afc7-2dd9f2c169
 
 ## Syntax
 
-
+{{%tabs%}}
+{{%tab CLI%}}
 ```bash
 gs> unquiesce [options] PU_NAME
 ```
+{{%/tab%}}
+{{%tab REST%}}
+```bash
+curl -X POST  url PU_NAME unquiesce
+```
+{{%/tab%}}
+{{%/tabs%}}
 
 ## Description
 

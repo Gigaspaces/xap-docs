@@ -38,7 +38,9 @@ The processing unit's name will be `spacename`-rest unless the -puname [name] op
 
 The following deploys rest processing unit and starts a rest service on port 8888 that connects to mySpace.
 
-    gs> deploy-rest -spacename mySpace -port 8888
+```bash
+gs> deploy-rest -spacename mySpace -port 8888
+```
 
 
 {{%/accord%}}

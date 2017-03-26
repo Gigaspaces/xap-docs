@@ -12,7 +12,7 @@ weight: 200
 
 ProcessingUnit interface API to trigger and manage Quiesce Mode:
 
-
+ 
 ```java
 // Requests quiesce request from the GSM.
 // All space instances and listeners will switch to quiesced mode.
@@ -87,4 +87,20 @@ System.out.println("the system was successfully upgraded");
 
 ```
 
+
+# REST API
+
+Example:
+
+Quiesce:
+
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myApp/quiesce'
+```
+
+Un Quiesce:
+
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myApp/unquiesce'
+```
 

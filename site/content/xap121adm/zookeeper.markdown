@@ -16,7 +16,7 @@ XAP uses {{%exurl "ZooKeeper""http://zookeeper.apache.org/"%}} for storing the i
 To start a ZooKeeper instance on a machine, launch the `gs-agent` script located in the `<XAPHOME>/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible for starting and managing the other Service Grid components (GSC, GSM, etc.). For example, to start two GSCs, two global GSMs and two global LUSs and a ZooKeeper, use the following command:
 
 
-```xml
+```bash
 gs-agent gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2 gsa.zk 1
 ```
 
@@ -27,7 +27,7 @@ For reliable ZooKeeper services, you should deploy ZooKeeper in a cluster known 
 Since every machine that is part of the ZooKeeper ensemble should know about every other machine in the ensemble, ZooKeeper instances are using the `XAP_ZOOKEEPER_SERVERS` environment variable or the `-Dorg.openspaces.grid.zookeeper.servers` system property. It accepts a comma separated list of `host:port:port`, the first port is used by followers to connect to the leader, and the second is for the leader election. By default it is configured with `hostname:2888:3888`.
 
 For example:
-```command
+```bash
 XAP_ZOOKEEPER_SERVERS=host1:2888:3888,host3:2888:3888,host3:2888:3888
 ```
 
@@ -37,7 +37,7 @@ The ip/hostname above should be the same as it configured in `XAP_NIC_ADDR` as i
 <br>
 Then start a ZooKeeper instances on an odd number of machines like the example below:
 
-```xml
+```bash
 Machine A:
 gs-agent gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2 gsa.zk 1
 
@@ -63,7 +63,7 @@ export XAP_ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
 
 {{% /tab %}}
 {{% tab Windows %}}
-```xml
+```bash
 set XAP_ZOOKEEPER_JAVA_OPTIONS=-Xmx256m
 call gs-agent.bat
 ```
