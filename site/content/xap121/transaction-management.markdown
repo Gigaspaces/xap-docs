@@ -24,7 +24,6 @@ The following should be added to your `pu.xml` to enable the configuration of tr
 ```xml
 <beans ....
        xmlns:tx="http://www.springframework.org/schema/tx"
-...
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-{{%version "spring"%}}.xsd">
 
        <tx:annotation-driven transaction-manager="transactionManager"/>

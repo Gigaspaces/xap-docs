@@ -7,7 +7,7 @@ weight: 200
 ---
 
 
-{{% ssummary  %}}{{% /ssummary %}}
+ 
 
 
 The dump feature of the Admin API allows to easily generate dump information out of GigaSpaces runtime environment. Here is an example:
@@ -18,8 +18,7 @@ Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
 
 // wait a bit for components to be discovered (or use waitFor) ...
 
-DumpResult dumpResult = admin.dump("reason comes here", null,
-                                "summary", "thread", "log", "processingUnits");
+DumpResult dumpResult = admin.dump("reason comes here", null,"summary", "thread", "log", "processingUnits");
 dumpResult.download(new File("target/dump.zip"), null);
 ```
 
@@ -38,17 +37,14 @@ Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
 // wait a bit for components to be discovered (or use waitFor) ...
 
 // dump all the GSMs
-DumpResult dumpResult = admin.getGridServiceManagers().dump("reason comes here", null,
-                                "summary", "thread", "log", "processingUnits");
+DumpResult dumpResult = admin.getGridServiceManagers().dump("reason comes here", null,"summary", "thread", "log", "processingUnits");
 dumpResult.download(new File("target/gsms.zip"), null);
 
 // dump all the GSCs
-dumpResult = admin.getGridServiceContainers().dump("reason comes here", null,
-                                "summary", "thread", "log", "processingUnits");
+dumpResult = admin.getGridServiceContainers().dump("reason comes here", null,"summary", "thread", "log", "processingUnits");
 dumpResult.download(new File("target/gscs.zip"), null);
 
-dumpResult = admin.getZones().getByName("zoneA").dump("reason comes here", null,
-                                "summary", "thread", "log", "processingUnits");
+dumpResult = admin.getZones().getByName("zoneA").dump("reason comes here", null,"summary", "thread", "log", "processingUnits");
 dumpResult.download(new File("target/zoneA.zip"), null);
 ```
 

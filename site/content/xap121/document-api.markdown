@@ -7,16 +7,15 @@ weight: 100
 ---
 
 
-{{% ssummary %}}{{% /ssummary %}}
-
+ 
 
 Unlike POJOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic - users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class `SpaceTypeDescriptor`.
 
 Before a certain Document instance is written to the space, its type should be introduced to it. The type has a name and controls metadata such as identifier property, routing property and which properties are initially indexed (naturally, you can also index new properties at runtime after adding them to your documents).
 
-{{% tip %}}
+{{% note%}}
 The Type controls **metadata** - so only the metadata is part of the type. A document can introduce new properties at will.
-{{% /tip %}}
+{{% /note %}}
 
 Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties (although in most cases Document instances of the same type are likely to have identical or similar set of properties).
 
@@ -61,7 +60,6 @@ The following is an example of how to introduce a new document type:
       </os-core:space-type>
 </os-core:embedded-space>
 <os-core:giga-space id="gigaSpace" space="space"/>
-
 ```
 
 {{% /tab %}}

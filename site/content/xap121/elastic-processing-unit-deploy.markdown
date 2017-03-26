@@ -6,7 +6,7 @@ parent: elastic-processing-unit-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 The deployment of a partitioned (space based) EPU and stateless/web EPU is done via the Admin API.
 
@@ -31,13 +31,13 @@ The EPU deployment requires two important properties:
 {{%tab "  Java "%}}
 
 ```java
-    commandLineArgument("-Xmx"+memory).commandLineArgument("-Xms"+memory)
+commandLineArgument("-Xmx"+memory).commandLineArgument("-Xms"+memory)
 ```
 {{% /tab %}}
 {{%tab "  CLI "%}}
 
 ```bash
-    deploy-elastic-space -cmdargs "-Xms2g,-Xmx10g" -max-memory-capacity 20g mySpace
+deploy-elastic-space -cmdargs "-Xms2g,-Xmx10g" -max-memory-capacity 20g mySpace
 ```
 {{% /tab %}}
 {{% /tabs %}}
@@ -92,7 +92,7 @@ ProcessingUnit pu = gsm.deploy(
 {{%tab "  CLI "%}}
 
 ```bash
-    gs> deploy-elastic-space -memory-capacity-per-container 16g -max-memory-capacity 512g -scale strategy=manual memory-capacity=128g mySpace
+gs> deploy-elastic-space -memory-capacity-per-container 16g -max-memory-capacity 512g -scale strategy=manual memory-capacity=128g mySpace
 ```
 {{% /tab %}}
 {{% /tabs %}}
@@ -139,7 +139,7 @@ ProcessingUnit pu = gsm.deploy(
 {{%tab "  CLI "%}}
 
 ```bash
-    gs> deploy-elastic-pu -type stateful -file myPU.jar -memory-capacity-per-container 16g -max-memory-capacity 512g -max-number-of-cpu-cores 32
+gs> deploy-elastic-pu -type stateful -file myPU.jar -memory-capacity-per-container 16g -max-memory-capacity 512g -max-number-of-cpu-cores 32
 ```
 {{% /tab %}}
 {{% /tabs %}}
@@ -186,7 +186,7 @@ ProcessingUnit pu = gsm.deploy(
 {{%tab "  CLI "%}}
 
 ```bash
-    gs> deploy-elastic-pu -type stateful -file myPU.jar -memory-capacity-per-container 16g -number-of-partitions 12
+gs> deploy-elastic-pu -type stateful -file myPU.jar -memory-capacity-per-container 16g -number-of-partitions 12
 ```
 {{% /tab %}}
 {{% /tabs %}}
@@ -246,7 +246,6 @@ Specifying number of partitions explicitly is recommended only when fine grained
 {{% /tab %}}
 {{%tab "  memoryCapacityPerContainer 12G "%}}
 
-
 |Number of Containers|Number of partitions per container|Total available memory|
 |:-------------------|:---------------------------------|:---------------------|
 |2|24 / 2 = 12|2 * 12GB = 24GB|
@@ -256,7 +255,6 @@ Specifying number of partitions explicitly is recommended only when fine grained
 
 {{% /tab %}}
 {{%tab "  memoryCapacityPerContainer 24G "%}}
-
 
 |Number of Containers|Number of partitions per container|Total available memory|
 |:-------------------|:---------------------------------|:---------------------|

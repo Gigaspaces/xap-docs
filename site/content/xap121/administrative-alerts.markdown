@@ -11,9 +11,9 @@ parent: administration-and-monitoring-overview.html
 
 The alert mechanism provides the ability to receive alerts on various problematic conditions at runtime by using the [Administration and Monitoring API](./administration-and-monitoring-api.html). The alerts give indication for the "health state" of the system.
 
-{{% info "Runtime Model "%}}
+{{% note "Runtime Model "%}}
 The alerts rules are running within the `Admin` instance which the user created. GigaSpaces does not run an alert service that is running behind the scenes. If you would like to register for alerts in your production system, the recommended way to do it is to deploy your alert listener to the GigaSpaces [The Runtime Environment]({{%currentadmurl%}}/the-runtime-environment.html) in the form of a [processing unit](./the-processing-unit-structure-and-configuration.html).
-{{% /info %}}
+{{% /note %}}
 
 The [Administration and Monitoring API](./administration-and-monitoring-api.html) provides events and statistics on top of which 'rules' can be applied to trigger an alert when required.
 
@@ -54,14 +54,12 @@ The alert is configured with a high threshold of 80% and a low threshold of 60% 
 
 
 ```xml
-...
     <alert class="org.openspaces.admin.alert.config.CpuUtilizationAlertConfiguration"
            enabled="true">
         <property key="high-threshold-perc" value="80" />
         <property key="low-threshold-perc" value="60" />
         <property key="measurement-period-milliseconds" value="60000" />
     </alert>
-...
 ```
 
 The `class` attribute above is the implementation class used to configure the settings of this alert. When configuring `enabled="false"` alerts of this type will not be triggered, until enabled again (at runtime).
@@ -104,14 +102,14 @@ Javadoc ref: [Alert]({{% api-javadoc %}}/org/openspaces/admin/alert/Alert.html)&
  });
 ```
 
-{{% info "Alert XML Configuration "%}}
+{{% note "Alert XML Configuration "%}}
 The `alerts.xml` file argument specifies the file which holds the configuration settings.
 The file argument can be:
 
 - a direct path (e.g. /export/user/my-alerts.xml) or,
 - a file in the classpath or,
 - a file under config/alerts/ in the classpath.
-{{% /info %}}
+{{% /note %}}
 
 The default parser parses the XML file. If needed, you can implement a different parser (see [AlertConfigurationParser]({{% api-javadoc %}}/org/openspaces/admin/alert/config/parser/AlertConfigurationParser.html) interface).
 The `alertTriggered` method is called upon each alert triggered.

@@ -6,8 +6,6 @@ weight: 100
 parent: the-gigaspace-interface-overview.html
 ---
 
-{{% ssummary %}}{{%/ssummary%}}
-
 
 A Space is a logical in-memory service, which can store entries of information. An entry is a domain object; In Java, an entry can be as simple a POJO or a SpaceDocument.
 

@@ -7,11 +7,7 @@ weight: 300
 ---
 
 
-{{% ssummary  %}}{{% /ssummary %}}
-
-
-
-OpenSpaces integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the [Service Grid Processing Unit Container](./deploying-onto-the-service-grid.html).
+XAP's integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the [Service Grid Processing Unit Container](./deploying-onto-the-service-grid.html).
 
 The integration allows you to make use of the following Service Grid features:
 
@@ -28,9 +24,9 @@ The web container used behind the scenes is {{%exurl "Jetty" "http://www.eclipse
 
 The integration can either deploy a packaged WAR file or an exploded WAR file. In order to deploy packaged WAR file, it can be specified using one of the deployment mechanisms (UI/CLI/Programmatic, see more [here](./deploying-onto-the-service-grid.html#deployDirections)). When deploying a WAR file, it goes through the following steps until it gets to the GSC:
 
-{{% info %}}
+{{% note %}}
 Note that the deploy client, the GSMs, and the GSCs can run on different machines.
-{{%/info%}}
+{{%/note%}}
 
 1. Point the deployment tool to the WAR file (UI/CLI/Programmatic).
 1. The WAR file itself is uploaded to the chosen GSM (which will act as the primary GSM of the deployment).
@@ -127,7 +123,6 @@ A typical usage pattern is connecting remotely to a Space. Here is an example (e
 
 
 ```xml
-
 <os-core:space-proxy id="space" space-name="mySpace"/>
 <os-core:giga-space id="gigaSpace" space="space"/>
 ```
@@ -137,7 +132,6 @@ A typical usage pattern is connecting remotely to a Space. Here is an example (e
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean">
     <property name="name" value="space" />
 </bean>
@@ -151,7 +145,6 @@ A typical usage pattern is connecting remotely to a Space. Here is an example (e
 
 
 ```java
-
 EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("space");
 
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
@@ -185,7 +178,6 @@ Here is an example that starts an embedded Space as part of the web application 
 
 
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
