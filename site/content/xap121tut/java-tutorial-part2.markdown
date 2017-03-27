@@ -195,15 +195,6 @@ XAP_HOME/bin/gs_webui.sh
 {{% /tabs %}}
 
 After you execute the above command, open a browser and go to  `http://your_host:8099` and the login screen for the admin application will open up. The following screen shots will demonstrate some of the UI features: (no username and password needed)
-
- 
-{{%note%}}
-You can modify the query statement and query the space in realtime.
-Example : select UID,* from xap.tutorial.user.model.User *where creditLimit > 100 and* rowNum<5000
-{{%/note%}}
- 
-The Admin UI console has many more features which we will introduce you to throughout this tutorial.
-
    
 
 {{%refer%}}
