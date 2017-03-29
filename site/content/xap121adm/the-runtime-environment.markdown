@@ -6,47 +6,148 @@ parent: runtime-configuration.html
 weight: 100
 ---
 
-
-
 {{% anchor GSRuntimeEnv %}}
 
 A processing unit is deployed onto the XAP runtime environment, which is called the [Service Grid](/product_overview/the-runtime-environment.html). It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
 
-# Starting a Service Grid
+# Usage
 
-To start a Service Grid on a machine, launch the `gs-agent` utility located in the `<XAPHOME>/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, `gsa.[process type] n` will start `n` instances of the specified `process type`. Use the `global` keyword (e.g. `gsa.global.[process type] n`) to specify that the agent should coordinate with other running agents the hosting and management of that service. For example, to start two GSCs, two global GSMs and two global LUSs, use the following command:
+To start a Service Grid on a machine, launch the `gs-agent` utility located in the `$XAP_HOME/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, `--process_type=n` will start `n` instances of the specified `process_type`. Use the `global` keyword (e.g. `--global.process_type=n`) to specify that the agent should coordinate with other running agents the hosting and management of that service. Let's look at common use cases:
 
+## Help
+Run gs-agent with `--help` or `-h` to see all available options:
 
+{{% section %}}
+{{% column width="50%" %}}
+**Linux**
 ```bash
-gs-agent gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2
+./gs-agent.sh --help
 ```
+{{% /column %}}
 
-In fact, since this configuration is widely used, it is also default configuration - running `gs-agent` without any arguments would produce the same effect. If you simply want more GSCs (say, 3 instead of 2) and keep the other defaults, simply run:
-
-
+{{% column width="45%" %}}
+**Windows**
 ```bash
-gs-agent gsa.gsc 3
+gs-agent --help
 ```
+{{% /column %}}
+{{% /section %}}
 
-# Lookup Service Considerations
+## Manager
 
-When starting a [Lookup Service](/product_overview/service-grid.html#lus) and other services in unicast mode (not multicast), it means that specific machines will be the ones that will run the Lookup Service. This means that on the machines running the LUS, the following command will be used (assuming other defaults are used for GSM and GSC):
+To start a single manager on the local machine (useful for dev and testing):
 
-
+{{% section %}}
+{{% column width="50%" %}}
+**Linux**
 ```bash
-gs-agent gsa.global.lus 0 gsa.lus 1
+# Starts a local manager:
+./gs-agent.sh --manager-local
+# Starts a local manager and 2 GSCs:
+./gs-agent.sh --manager-local --gsc=2
 ```
+{{% /column %}}
 
-And on machines that will not run the LUS, the following command should be used:
-
-
+{{% column width="45%" %}}
+**Windows**
 ```bash
-gs-agent gsa.global.lus 0
+REM Starts a local manager:
+gs-agent --manager-local
+REM Starts a local manager and 2 GSCs:
+gs-agent --manager-local --gsc=2
 ```
+{{% /column %}}
+{{% /section %}}
 
-{{%refer%}}
-You can use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to deploy complex multi processing unit applications.
-{{%/refer%}}
+To start a highly-available cluster of managers on several hosts, run the following on each of the designated hosts:
+
+{{% section %}}
+{{% column width="50%" %}}
+**Linux**
+```bash
+# Starts a manager:
+./gs-agent.sh --manager
+# Starts a manager and 2 GSCs:
+./gs-agent.sh --manager --gsc=2
+```
+{{% /column %}}
+
+{{% column width="45%" %}}
+**Windows**
+```bash
+REM Starts a manager:
+gs-agent --manager
+REM Starts a manager and 2 GSCs:
+gs-agent --manager --gsc=2
+```
+{{% /column %}}
+{{% /section %}}
+
+(Note that you also need to configure the `XAP_MANAGER_SERVERS` to the list of designated manager servers)
+
+## Without Manager
+
+If you cannot use the manager for some reason, but you still want high-availability, you can pick a couple of hosts to serve for management, and start a LUS and GSM on them:
+
+{{% section %}}
+{{% column width="50%" %}}
+**Linux**
+```bash
+# Starts a LUS and GSM:
+./gs-agent.sh --lus --gsm
+# Starts a LUS, GSM and 2 GSCs:
+./gs-agent.sh --lus --gsm --gsc=2
+```
+{{% /column %}}
+
+{{% column width="45%" %}}
+**Windows**
+```bash
+REM Starts a LUS and GSM:
+gs-agent --lus --gsm
+REM Starts a LUS, GSM and 2 GSCs:
+gs-agent --lus --gsm --gsc=2
+```
+{{% /column %}}
+{{% /section %}}
+
+Alternatively, if your environment supports multicast and you prefer a more dynamic approach, you can use the `global` prefix to indicate that GSMs and LUSs will be automatically started and managed by the collective of gs-agents, instead of explicitly on a specific hosts. For example, to start 2 Global GSM and LUS accross a set of hosts, as well as 2 GSCs on each host:
+
+{{% section %}}
+{{% column width="50%" %}}
+**Linux**
+```bash
+# Starts a LUS, GSM and 2 GSCs:
+./gs-agent.sh --global.lus=2 --global.gsm=2 --gsc=2
+```
+{{% /column %}}
+
+{{% column width="45%" %}}
+**Windows**
+```bash
+REM Starts a LUS, GSM and 2 GSCs:
+gs-agent --global.lus=2 --global.gsm=2 --gsc=2
+```
+{{% /column %}}
+{{% /section %}}
+
+In fact, since this configuration is convenient for new users, it is also the default - running `gs-agent` without any arguments would produce the same effect. If you wish to disable it and start without any components, run gs-agent with `--zero-defaults` or `-z`. This can be useful if you're planning to use the  manager's RESTful API to add/remove containers.
+
+{{% section %}}
+{{% column width="50%" %}}
+**Linux**
+```bash
+./gs-agent.sh -z
+```
+{{% /column %}}
+
+{{% column width="45%" %}}
+**Windows**
+```bash
+gs-agent -z
+```
+{{% /column %}}
+{{% /section %}}
 
 # Configuration
 
@@ -64,26 +165,24 @@ For example:
 
 {{% section %}}
 {{% column width="50%" %}}
-
+**Linux**
 ```bash
-Linux
 export XAP_GSA_OPTIONS=-Xmx256m
-export XAP_GSC_OPTIONS=-Xmx2048m
-export XAP_GSM_OPTIONS=-Xmx1024m
-export XAP_LUS_OPTIONS=-Xmx1024m
+export XAP_GSC_OPTIONS=-Xms2g -Xmx2g
+export XAP_GSM_OPTIONS=-Xmx1g
+export XAP_LUS_OPTIONS=-Xmx1g
 
 ./gs-agent.sh
 ```
 {{% /column %}}
 
 {{% column width="45%" %}}
-
+**Windows**
 ```bash
-Windows
 set XAP_GSA_OPTIONS=-Xmx256m
-set XAP_GSC_OPTIONS=-Xmx2048m
-set XAP_GSM_OPTIONS=-Xmx1024m
-set XAP_LUS_OPTIONS=-Xmx1024m
+set XAP_GSC_OPTIONS=-Xms2g -Xmx2g
+set XAP_GSM_OPTIONS=-Xmx1g
+set XAP_LUS_OPTIONS=-Xmx1g
 
 call gs-agent.bat
 ```
@@ -92,7 +191,7 @@ call gs-agent.bat
 
 # Customizing GSA Components
 
-GSA manages different process types. Each process type is defined within the `<XAPHOME>\config\gsa` directory in an xml file that identifies the process type by its name.
+GSA manages different process types. Each process type is defined within the `$XAP_HOME/config/gsa` directory in an xml file that identifies the process type by its name.
 
 {{% note %}}
 You can change the default location of the GSA configuration files using the `com.gigaspaces.grid.gsa.config-directory` system property.
@@ -100,17 +199,15 @@ You can change the default location of the GSA configuration files using the `co
 
 The following are the process types that come out of the box:
 
-
-|Processes Type|Description|XML config file name|Properties file name|
-|:-------------|:----------|:-------------------|:-------------------|
-|gsc|Defines a [Grid Service Container](/product_overview/service-grid.html#gsc)|gsc.xml|gsc.properties|
-|gsm|Defines a [Grid Service Manager](/product_overview/service-grid.html#gsm)|gsm.xml|gsm.properties|
-|lus|Defines a [Lookup Service](/product_overview/service-grid.html#lus)| lus.xml|lus.properties|
-|gsm_lus|Defines a [Grid Service Manager](/product_overview/service-grid.html#gs) and [Lookup Service](/product_overview/service-grid.html#lus) within the same JVM|gsm_lus.xml|gsm_lus.properties|
-|esm|Defines an Elastic Service Manager which is required for deploying [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html)|esm.xml|esm.properties |
+|Processes Type|Description|XML config file name|
+|:-------------|:----------|:-------------------|
+|gsc|Defines a [Grid Service Container](/product_overview/service-grid.html#gsc)|gsc.xml|
+|gsm|Defines a [Grid Service Manager](/product_overview/service-grid.html#gsm)|gsm.xml|
+|lus|Defines a [Lookup Service](/product_overview/service-grid.html#lus)| lus.xml|
+|gsm_lus|Defines a [Grid Service Manager](/product_overview/service-grid.html#gs) and [Lookup Service](/product_overview/service-grid.html#lus) within the same JVM|gsm_lus.xml|
+|esm|Defines an Elastic Service Manager which is required for deploying [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html)|esm.xml|
 
 Here is an example of the `gsc.xml` configuration file:
-
 
 ```xml
 <process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always">
@@ -146,7 +243,7 @@ In addition, within the `script` tag, you can add the following tags:
 
 In some scenarios you'll need to have several 'flavours' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.
 
-For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a zone called *Small*, and 1 'large' GSC (1024MB) in a zone called *Large*. To achieve this, we'll duplicate the default `gsc.xml` (which resides in `<XAPHOME>/config/gsa`) into `gsc_small.xml` and `gsc_large.xml`, and modify them to include an `environment` tag which sets `XAP_GSC_OPTIONS` to the required settings:
+For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a zone called *Small*, and 1 'large' GSC (1024MB) in a zone called *Large*. To achieve this, we'll duplicate the default `gsc.xml` (which resides in `$XAP_HOME/config/gsa`) into `gsc_small.xml` and `gsc_large.xml`, and modify them to include an `environment` tag which sets `XAP_GSC_OPTIONS` to the required settings:
 
 {{%tabs%}}
 {{%tab "  gsc_small.xml "%}}
@@ -189,93 +286,6 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
 
 Now, to start the agent, we'll use the following command:
 
-
 ```xml
-gs-agent gsa.gsc 0 gsa.gsc_small 2 gsa.gsc_large 1
-```
-
-{{%note%}}
-Note that we're setting `gsa.gsc 0` to avoid loading the default `gsc` component.
-{{%/note%}}
-
- 
-# GS Agent options
-
-
-## Help
-You can run the gs-agent utility with the help argument to see all available options:
-
-```bash
-gs-agent --help
-# or
-gs-agent -h
-```
-
-This will produce the following output:
-
-```bash
-java version "1.8.0_45"
-Java(TM) SE Runtime Environment (build 1.8.0_45-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
-
-2017-02-05 12:55:35,456 CONFIG [com.gigaspaces.logger] - Log file: C:\GigaSpaces\12.1\gigaspaces-xap-enterprise-12.1.0-m14-b16714\logs\2017-02-05~12.55-gigaspaces-gsa-admin-17696.log
-2017-02-05 12:55:35,425  INFO [com.gigaspaces.start] - Starting ServiceGrid [user=hp, command="services=GSA --help"]
-2017-02-05 12:55:35,716  INFO [com.gigaspaces.start] - Exported JMX Platform MBeanServer with RMI Connector [duration=0.075s, url=service:jmx:rmi:///jndi/rmi://admin:10098/jmxrmi]
-
-Usage: gs-agent [gsa.{name} {count}] [gsa.global.{name} {count}] [options]
-Options:
---------
-  -h, --help
-     Prints this help screen
-  -z, --zero-defaults
-     Zero defaults (if not specified, default is "gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2")
-  gsa.{name} {count}
-     Start {count} number of local {name} processes
-  gsa.global.{name} {count}
-     Start {count} number of global {name} processes across all agents with the same
-     lookup group / locators
-  --manager
-     Starts a Deployment Manager (short for "gsa.manager 1")
-  gsa.processMonitorInterval {time}
-     The interval (in seconds) to monitor if the managed processes are alive (default=1)
-  gsa.initialGlobalMonitorInterval {time}
-     The randomized time window (in seconds) before global instance monitor is started
-  gsa.globalMonitorInterval {time}
-     The interval (in seconds) to check if global instances contract is breached
-
-Built-in services:
-------------------
-  manager - Deployment Manager (contains gsm and lus, as well as REST and ZooKeeper)
-  gsc     - Grid Service Container
-  gsm     - Grid Service Manager
-  lus     - LookUp Service
-  esm     - Elastic Service Manager
-
-Examples:
----------
-gs-agent
-    Starts the default gsa.gsc 2 gsa.global.gsm 2 gsa.global.lus 2
-gs-agent gsa.gsc 3
-    Starts 3 gsc (instead of the default 2), and the remaining default (2 global gsm and lus)
-gs-agent gsa.gsm 1 gsa.global.gsm 0
-    Starts a local gsm and disable the default 2 global gsm, and the remaining default (2 gsc and 2 global lus)
-gs-agent -z --manager
-    Starts a Deployment Manager
-gs-agent -z
-    Starts an empty agent with no services (services can be started remotely via admin api)
-```
-
-## Zero Defaults
-
-You van run the gs-agent with --zero-defaults or -z to disable the default services. 
-
-```bash
-#disable all
-gs-agent --zero-defaults 
-#or 
-gs-agent -z
-
-# starts a single container, without explicitly disabling the global lus and gsm.
-gs-agent -z gsa.gsc 1 
-
+gs-agent --gsc_small=2 --gsc_large
 ```
