@@ -14,6 +14,7 @@ Issues fixed in 12.1 Open Source edition:
 
 | Key                         | Summary                                                 | Fix Version(s) | Platform(s) |
 |:----------------------------|:------------------------------------------------------------------|:-----|:-----| 
+| {{% jira id="XAP-12979" %}} | Can't override pu.properties with external file while deploying war when specifying ContextLoaderListener in web.xml | 12.1 | Java |
 | {{% jira id="XAP-13013" %}} | Duplicated class 'SpaceCacheConfig' in 12.0                          | 12.1 | All |
 | {{% jira id="XAP-13017" %}} | Space failover might take an extended period of time (above 60 sec)  | 12.1 | All |
 | {{% jira id="XAP-13129" %}} | Invalid fifo order 2 equal entries from same class after inital load | 12.1 | All |
