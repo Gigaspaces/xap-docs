@@ -12,40 +12,32 @@ along with [Zookeeper](zookeeper.html) and an embedded web application which hos
 In addition to simplifying setup and management, the Manager also provides the following benefits:
 
 * Space leader election will use zookeeper instead of LUS, providing a more robust process (consistent when network partitions occur), and eliminating [split brains](./split-brain-and-primary-resolution.html).
-- When using MemoryXtend, last primary will automatically be stored in Zookeeper (instead of you needing to setup a shared NFS and configure the PU to use it)
-- The GSM will use Zookeeper for leader election (instead of an active-active topology used today). This provides a more robust process (consistent when network partitions occur). Also, having a single leader GSM means that the general behaviour is more deterministic and logs are easier to read.
-- RESTful API for managing the environment remotely from any platform.
+* When using MemoryXtend, last primary will automatically be stored in Zookeeper (instead of you needing to setup a shared NFS and configure the PU to use it)
+* The GSM will use Zookeeper for leader election (instead of an active-active topology used today). This provides a more robust process (consistent when network partitions occur). Also, having a single leader GSM means that the general behaviour is more deterministic and logs are easier to read.
+* RESTful API for managing the environment remotely from any platform.
 
-# Standalone Manager
-In a development environment, we use a standalone manager. To start the Manager, simply run the following command:
+# Getting Started
 
-{{%tabs%}}
-{{%tab "Unix"%}}
-```bash
-./gs-agent.sh --manager-local
-```
-{{%/tab%}}
-{{%tab "Windows"%}}
-```bash
-gs-agent.bat --manager-local
-```
-{{%/tab%}}
-{{%/tabs%}}
+The easiest way to get started is to run a standalone manager on your machine - simply run the following command:
 
+* On Linux: `./gs-agent.sh --manager-local`
+* On Windows: `gs-agent --manager-local`
 
-You’ll notice:
+In the manager log file (`$XAP_HOME/logs`), you can see:
 
-- The manager log file In `${XAP_HOME}/logs`, which shows that LUS, Zookeeper, GSM and REST API have started and various other details about them.
-- Zookeeper files reside in ${XAP_HOME}/work/manager/zookeeper (shown in log file)
-- REST API is available in [localhost:8090](http://localhost:8090) (shown in log file)
+* The maanger has started LUS, Zookeeper, GSM and REST API have started and various other details about them.
+* Zookeeper files reside in `$XAP_HOME/work/manager/zookeeper`
+* REST API is started on [localhost:8090](http://localhost:8090)
 
-# Multiple Managers on multiple hosts
-In a production environment, we need to start a cluster of managers on multiple hosts. In this scenario you need at least 3 machines (odd number is required to ensure quorum during network partitions). 
-Suppose you’ve decided machines alpha, bravo and charlie to host the managers:
+# High Availability
 
-1. Edit the setenv-overrides.sh/bat script and set `XAP_MANAGER_SERVERS` to the list of hosts. For example: `export XAP_MANAGER_SERVERS=alpha,bravo,charlie`
-2. Copy the modified `setenv-overrides.sh` to each machine which runs a `gs-agent`.
+In a production environment, you'll probably want a cluster of managers on multiple hosts, to ensure high availability. You'll need 3 machines (odd number is required to ensure quorum during network partitions). For examplem, suppose you’ve selected machines alpha, bravo and charlie to host the managers:
+
+1. Edit the `$XAP_HOME/bin/setenv-overrides.sh/bat` script and set `XAP_MANAGER_SERVERS` to the list of hosts. For example: `export XAP_MANAGER_SERVERS=alpha,bravo,charlie`
+2. Copy the modified `setenv-overrides.sh/bat` to each machine which runs a `gs-agent`.
 3. Run `gs-agent --manager` on the manager machines (alpha, bravo, charlie, in this case).
+
+# Configuration
 
 Port configurations:
 
@@ -56,30 +48,29 @@ Port configurations:
 |Lookup Service|com.gs.multicast.discoveryPort|4174 |
 
 {{%note "Note:"%}}
-Zookeeper requires that each manager can reach any other manager. 
-If you are changing the Zookeeper ports, make sure you use the same port on all machines. 
-If that is not possible for some reason, you may specify the ports via the `XAP_MANAGER_SERVERS` environment variable. 
-{{%/note%}}
-
-For example:
+Zookeeper requires that each manager can reach any other manager. If you are changing the Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the `XAP_MANAGER_SERVERS` environment variable.  For example:
 
 ```bash
 XAP_MANAGER_SERVERS=alpha;zookeeper:2000:3000;lus=4242,bravo;zookeeper:2100:3100,charlie;zookeeper:2200:3200
 ```
+{{%/note%}}
+
 # Backwards Compatibility
 
 The Manager is offered side-by-side with the existing stack (GSM, LUS, etc.). We think this is a better way of working with XAP, and we want new users and customers to work solely with it. 
 On the same note we understand that it requires some effort from existing users which upgrade to 12.1 (probably not too much, mostly on changing the scripts they use to start the environment), 
 so if you’re upgrading for bug fixes/other features and don’t want the manager for now, you can switch from 12.0 to 12.1 and continue using the old components - it’s all still there.
 
-#  Limitations/Known Issues
+# FAQ
 
-- Customers who need high availability are used to starting 2 GSM and 2 LUS - the manager requires an odd number of instances to ensure quorum (zookeeper)
-- Starting more than 3 managers (e.g. 5) is currently not supported - this will lead to 5 GSM and 5 LUS, which will probably lead to noisy network. We haven’t tested it, so we blocked this in code. We might enhance this in future releases.
-- Sticky session when using REST to maintain upload/deploy dependency
+### Q. Why do I need 3 managers? In previous versions 2 LUS + 2 GSM was enough for high availability
 
+With an even number of managers, consistency cannot be assured in case of a network partitioning, hence the 3 managers requirement.
 
+### Q. I want higher availability - can I use 5 managers instead of 3?
 
+Theoretically this is possible (e.g. Zookeeper supports this), but currently this is not supported in XAP - starting 5 managers would also start 5 Lookup Services, which will lead to excessive chatinnes and performance drop. This issue is in our backlog, though - if it's important for you please contact support or your sales rep to vote it up.
 
+### Q. Can I use a load balancer in front of the REST API?
 
-
+Sure. However, make sure to use sticky sessions, as some of the operations (e.g. upload/deploy) take time to resonate to the other managers.
