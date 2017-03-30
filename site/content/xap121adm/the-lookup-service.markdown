@@ -3,6 +3,7 @@ type: post121
 title:  The Lookup Service
 categories: XAP121ADM
 parent: runtime-configuration.html
+weight: 300
 ---
 
 {{%  ssummary  %}} {{%  /ssummary %}}

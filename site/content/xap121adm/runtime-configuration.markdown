@@ -1,22 +1,19 @@
 ---
 type: post121
 title:  The Service Grid
-categories: XAP121ADM
+categories: XAP121ADM, PRM
 weight: 700
 parent: none
 ---
 
-
-
-
 This section lists and explains the different runtime configuration parameters.
-
 
 <br>
 
 {{%fpanel%}}
 
-[Overview](./service-grid-overview.html){{<wbr>}}
+[Overview](./service-grid.html){{<wbr>}}
+A processing unit is deployed onto the Service Grid which is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
 
 [The Runtime Environment](./the-runtime-environment.html){{<wbr>}}
 A processing unit is deployed onto the Service Grid which is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
