@@ -3,7 +3,7 @@ type: post121
 title:  System Properties
 categories: XAP121ADM
 parent: runtime-configuration.html
-weight: 400
+weight: 900
 ---
 
 {{%ssummary%}}{{%/ssummary%}}
