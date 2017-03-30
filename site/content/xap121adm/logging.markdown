@@ -201,15 +201,6 @@ com.gigaspaces.bridge.pbsexecuter.level = INFO
 com.gigaspaces.dotnet.pu.level = INFO
 ```
 
-##  C++ API
-
-The logging configuration file includes declarations of the C++ Java Proxy logger, which logs info such as exceptions and JVM creation.
-
-
-```bash
-com.gigaspaces.cpp.proxy.level = INFO
-```
-
 ## OpenSpaces
 
 

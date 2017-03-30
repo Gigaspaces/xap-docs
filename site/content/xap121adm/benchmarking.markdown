@@ -23,6 +23,4 @@ A tool to run performance benchmarks with the space in various scenarios.
 [Benchmark View](./benchmark-browser.html){{<wbr>}}
 The Benchmark view provides a user interface for benchmarking the space.
 
-[C++ Benchmark](./benchmark-c++.html){{<wbr>}}
-How to configure and run the c++ POCO Benchmark Framework.
 {{%/fpanel%}}

@@ -86,7 +86,7 @@ Multiple space replication is the ability to replicate state between different d
 Multiple site replication is the ability to replicate state between different deployed spaces, where each space can be also physically located in a different geographical location (also termed a different deployment site).
 
 [Platform Interoperability](./interoperability-overview.html){{<wbr>}}
-The possibility for organizations whose projects include a combination of Java, .NET and C++ platforms to communicate and access each other easily and efficiently while also maintaining the benefits of the XAP scale-out application server.
+The possibility for organizations whose projects include a combination of Java, .NET and other platforms to communicate and access each other easily and efficiently while also maintaining the benefits of the XAP scale-out application server.
 
 {{%/fpanel%}}
 
