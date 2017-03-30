@@ -52,7 +52,6 @@ Refer to [Oracle Java SE Support Roadmap](http://www.oracle.com/technetwork/java
 
 Refer to [JVM & Third-Party End-Of-Life Policy](./lifecycle.html) for the latest updates.
  
-
 # XAP.NET
 
 Required Software: [Microsoft .NET Framework 3.5](http://msdn.microsoft.com/en-us/vstudio/aa496123) or later including Microsoft .NET Framework 4.0.
@@ -60,20 +59,9 @@ Recommended: [Microsoft .NET Framework 4](http://www.microsoft.com/en-us/downloa
 
 Supported Operating Systems: Any operating system supported by .NET Framework 3.5.
 
-64 bit support: XAP.NET is released in two separate packages for x86 and x64. Itanium (ia64) is currently not supported. The XAP.NET x86 package can be installed on a x64 machine and run in WoW64 mode.
+64 bit support: XAP.NET is released in two separate packages for x86 and x64. The XAP.NET x86 package can be installed on a x64 machine and run in WoW64 mode.
 
 For more information see [XAP.NET](/xap121net)
-
-# XAP C++
-
-GigaSpaces C++ source code can be built on Linux and Windows 32bit or 64bit machines.
-The current supported platforms and compilers are:
-
-- Linux
-   * 64bit - gcc.4.1.2
-   * 32bit - gcc.4.1.2
-- Windows
-   * 32/64bit C++ for Visual Studio 2008/2010 (VS9.0/VS10.0)
 
 # Integrations with 3rd Party Products
 
