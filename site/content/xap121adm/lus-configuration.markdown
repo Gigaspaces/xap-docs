@@ -1,9 +1,9 @@
 ---
 type: post121
 title:  Global vs. Local LUS
-categories: XAP121ADM
+categories: XAP121ADM, PRM
 parent: runtime-configuration.html
-weight: 200
+weight: 700
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

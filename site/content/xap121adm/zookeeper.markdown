@@ -1,9 +1,9 @@
 ---
 type: post121
 title:  ZooKeeper
-categories: XAP121ADM
+categories: XAP121ADM, PRM
 parent: runtime-configuration.html
-weight: 500
+weight: 400
 ---
 
 

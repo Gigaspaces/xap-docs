@@ -1,9 +1,9 @@
 ---
 type: post121
 title:  Global vs. Local GSM
-categories: XAP121ADM
+categories: XAP121ADM, PRM
 parent: runtime-configuration.html
-weight: 300
+weight: 800
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

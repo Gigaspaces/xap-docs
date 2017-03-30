@@ -1,9 +1,9 @@
 ---
 type: post121
-title:  The Runtime Environment
-categories: XAP121ADM
+title:  GS-Agent
+categories: XAP121ADM, PRM
 parent: runtime-configuration.html
-weight: 100
+weight: 200
 ---
 
 {{% anchor GSRuntimeEnv %}}
