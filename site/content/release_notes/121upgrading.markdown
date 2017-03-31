@@ -38,7 +38,7 @@ XAP 12.1 offers a simplified management experience using the XAP Manager, which 
 
 This is not a requirement for upgrading - you can perform a simple upgrade and continue using the service grid as-is. However, we recommend you learn about this and make the necessary changes to leverage it, as future improvements will be built on top of it.
 
-For more information see [XAP Manager](/xap121adm/ugm-overview.html).
+For more information see [XAP Manager](/xap121adm/xap-manager.html).
 
 ## Third Party Upgrades
 
