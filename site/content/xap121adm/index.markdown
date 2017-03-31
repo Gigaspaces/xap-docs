@@ -20,6 +20,9 @@ GigaSpaces Management Center is a GUI that allows you to view spaces, containers
 [Web Management Console](./web-management-console.html){{<wbr>}}
 The web management console is a new user interface for XAP allowing users to deploy, manage and monitor their Processing Units and Applications
 
+[Manager API](./xap-manager-rest.html)<br>
+The XAP Manager provides a RESTful API for managing XAP environments.
+
 [Data grid clustering](./data-grid-clustering.html){{<wbr>}}
 This section describe into details how the In-Memory-Data-Grid clustering works. It goes into the details of the fail-over, load-balancing, and replication facilities used.
 
