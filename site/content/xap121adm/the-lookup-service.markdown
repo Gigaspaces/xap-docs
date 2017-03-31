@@ -18,9 +18,9 @@ In a multicast enabled environment, the lookup groups can be set using either th
 
 In a unicast environment (where multicast is disabled), the lookup locators can be set using either `LOOKUPLOCATORS` environment variable (when using scripts), or by setting `-Dcom.gs.jini_lus.locators` system property. In a unicast environment, the LUS are started on specific machines (usually two LUS instances), and the lookup locators simply point to the two hosts the LUS instances are running on.
 
-{{%  tip %}}
+{{%  note %}}
 When a [XAP Container](./service-grid.html#gsc) is started with a specific lookup groups / lookup locators, any Processing Unit instance running within it (and Space instances as well) will inherit the configuration and join the virtualized LUS environment.
-{{% /tip%}}
+{{% /note%}}
 
 # Registering and Using a Service
 
