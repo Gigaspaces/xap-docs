@@ -1,13 +1,13 @@
 ---
 type: post121
-title:  Off Heap - MapDB
+title:  MemoryXtend for Off-Heap RAM
 categories: XAP121ADM, ENT
-parent: memory-management-overview.html
-weight: 400
+parent: memoryxtend-overview.html
+weight: 300
 ---
 
 
-# XAP Off-Heap Storage
+# Introduction
 
 XAP off-heap Storage mode store space objects off-heap. This mode can be used to reduce the space hosting JVM (GSC) heap utilization. This reduce garbage collection actvity delivering determentic behavior with lower chance having stop-the world pauses.
  
@@ -19,8 +19,6 @@ XAP off-heap using {{%exurl "MapDB""http://www.mapdb.org/"%}} that is an embedde
 {{%align center%}}
 ![image](/attachment_files/blobstore/ohr3.png)
 {{%/align%}}
-
-
 
 
 

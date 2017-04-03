@@ -5,21 +5,31 @@ categories: XAP121ADM, PRM
 parent: none
 weight: 250
 ---
-
-{{%warning%}}
-This page Is under construction
-{{%/warning%}}
-
+ 
 The [XAP Manager](xap-manager.html) provides a RESTful API for managing XAP environments.
 
 Getting started is easy:
 
 * Start a standalone Manager on your machine using the following command:
-  * Unix: `./gs-agent.sh --manager-local`
-  * Windows: `gs-agent.bat --manager-local`
-* After the Manager has started, Browse to [localhost:8090](http://localhost:8090) and start playing with the API. 
 
+{{%tabs%}}
+{{%tab Unix%}}
+```bash
+./gs-agent.sh --manager-local
+```
+{{%/tab%}}
+{{%tab Windows%}}
+```bash
+gs-agent.bat --manager-local
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+- After the Manager has started, Browse to {{%exurl "localhost:8090""http://localhost:8090"%}} and start playing with the API. 
+
+{{%refer%}}
 To learn more about the manager, see [XAP Manager](xap-manager.html).
+{{%/refer%}}
 
 The Manager’s RESTful API was built with {{%exurl "Swagger" "http://swagger.io/"%}}. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the `Try it out!` button from within the documentation. The operation will be invoked, and you'll see the response code and body, as well as the `curl` command and request URL which were used to invoke the command. If you are familiar with the older Admin API, most of this will be self explanatory. You can also download the `yaml` specification and use Swagger's `Online Editor` to generate a client in your favourite language.
 

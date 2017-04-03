@@ -20,9 +20,19 @@ In addition to simplifying setup and management, the Manager also provides the f
 
 The easiest way to get started is to run a standalone manager on your machine - simply run the following command:
 
-* On Linux: `./gs-agent.sh --manager-local`
-* On Windows: `gs-agent --manager-local`
-
+{{%tabs%}}
+{{%tab Linux%}}
+```bash
+./gs-agent.sh --manager-local
+```
+{{%/tab%}}
+{{%tab Windows%}}
+```bash
+gs-agent.bat --manager-local
+```
+{{%/tab%}}
+{{%/tabs%}}
+ 
 In the manager log file (`$XAP_HOME/logs`), you can see:
 
 * The maanger has started LUS, Zookeeper, GSM and REST API have started and various other details about them.

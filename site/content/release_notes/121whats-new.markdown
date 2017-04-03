@@ -12,6 +12,14 @@ It's not an exhaustive list of all new features. For a full change log for 12.1 
 
 # Functionality
 
+
+## XAP Manager
+
+The XAP Manager (or simply The Manager) is a component which stacks together the LUS and GSM along with Zookeeper and an embedded web application which hosts an admin instance with a RESTful management API on top of it.
+
+{{<infosign>}} For more information see [XAP Manager](/xap121adm/xap-manager.html)
+
+
 ## Change code without restarts
 
 When executing user code on the space (e.g. space tasks), the space automatically loads the code from the remote client and caches it for future executions. Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify their code. 
