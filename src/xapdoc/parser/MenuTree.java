@@ -20,6 +20,7 @@ import java.util.TreeSet;
 */
 public class MenuTree {
 
+	private static final boolean DEBUG_ENABLED = false;
 	private static String BASE_PATH;
 	
 	private static final String[] dirs = new String[] {
@@ -35,17 +36,17 @@ public class MenuTree {
 
     public static void main(String[] args) throws Exception {
 		if (args.length < 1) {
-			System.out.println("Incorrect number of arguments: " + args.length);			
+			warning("Incorrect number of arguments: " + args.length);			
 			System.exit(1);
 		}
 		int totalPages = 0;
 		// e.g. BASE_PATH = "/Users/xxxxx/Documents/xap-docs";
 		BASE_PATH = args[0];
-		System.out.println("Starting with base path " + BASE_PATH);			
+		info("Starting with base path " + BASE_PATH);			
 		long startTime = System.currentTimeMillis();
         // Read all pages
         for (String path : dirs) {
-            //System.out.println("Processing dir : " + path);
+            debug("Processing dir : " + path);
             Map<String, Page> pagesMap = new HashMap<String,Page>();
             File folder = new File(BASE_PATH + "/site/content/" + path);
             for (File file : folder.listFiles()) {
@@ -70,7 +71,8 @@ public class MenuTree {
                     }
                 }
                 else{
-                   // System.out.println(p.getCategory() + "  " + p.getFileName() + "  has nul weight");
+					if (!p.getFileName().equals("index.markdown"))
+						warning("[" + p.getCategory() + "]/" + p.getFileName() + "  has no weight");
                 }
             }
 
@@ -86,10 +88,10 @@ public class MenuTree {
                 }
             }
 
-           // System.out.println("Processed: " + path);
+           debug("Processed: " + path);
         }
 		long duration = System.currentTimeMillis() - startTime;
-        System.out.println("Finished generating navbar (duration=" + duration + "ms, folders=" + dirs.length + ", pages=" + totalPages + ")");
+        info("Finished generating navbar (duration=" + duration + "ms, folders=" + dirs.length + ", pages=" + totalPages + ")");
     }
 
     private static void printPage(PrintWriter writer, Page page) {
@@ -117,7 +119,7 @@ public class MenuTree {
         boolean foundHeader = false;
         boolean foundFooter = false;
 	
-		//System.out.println("*** Scanning " + file.getName());	
+		debug("*** Scanning " + file.getName());	
 		try {
             while (scanner.hasNextLine() && !foundFooter) {
                 final String line = scanner.nextLine().trim();
@@ -154,4 +156,18 @@ public class MenuTree {
 
         return p;
     }
+	
+	private static void info(String message)  {
+		System.out.println(message);
+	}
+	
+	private static void warning(String message)  {
+		System.out.println("WARNING: " + message);
+	}
+	
+	private static void debug(String message)  {
+		if (DEBUG_ENABLED)
+			System.out.println("DEBUG: " + message);
+	}
+
 }
