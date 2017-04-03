@@ -283,18 +283,12 @@ XAP_HOME/bin/gs-agent.sh
 {{%tab "REST"%}}
 ```bash
 # start the agent with the REST interface
-gs-agent --manager-local
-
-# deploy first GC
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
--d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
-
-# deploy second GC
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
--d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+# Windows
+gs-agent.bat --manager-local --gsc=2
+# Unix
+./gs-agent.sh --manager-local --gsc=2
 ```
 {{%/tab%}}
-
 {{% /tabs %}}
 
 And now we deploy the PU onto the IMDG:

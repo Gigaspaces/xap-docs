@@ -130,7 +130,7 @@ Place the following within the `HttpSession.conf` file. The `BalancerMember` sho
 -	Install XAP by unzipping it into `c:\` or `d:\`
 -	Start two Tomcat instances by running `\TOMCAT_HOME\bin\startup.bat` from the two Tomcat folders we prepared in the previous steps.
     -   Lets assume that the first instance is running with port 8080 and the second one with port 8090.
--	Move to the `\gigaspaces-xap-premium-10.2.0-ga\bin` folder and start GigaSpaces agent by running:
+-	Move to the `XAP_HOME/bin` folder and start XAP agent by running:
 
 
 {{%tabs%}}
@@ -142,20 +142,16 @@ gs-agent.bat
 {{%tab "REST"%}}
 ```bash
 # start the agent with the REST interface
-gs-agent --manager-local
-
-# deploy first GC
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain'  -d '{"host": "Chriss-MacBook-Pro.local"}' 'http:/localhost:8090/v1/containers'
-
-# deploy second GC
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
--d '{"host": "localhost"}' 'http://localhost:8090/v1/containers'
+# Windows
+gs-agent.bat --manager-local --gsc=2
+# Unix
+./gs-agent.sh --manager-local --gsc=2
 ```
 {{%/tab%}}
 {{%/tabs%}}
 
 
--	Deploy a space named **sessionSpace**. You may have a single instance Space or deploy a clustered Space using the command line , GS-UI or the Web-UI. Here is how you can do this via the CLI
+- Deploy a space named **sessionSpace**. You may have a single instance Space or deploy a clustered Space using the command line , GS-UI or the Web-UI. Here is how you can do this via the CLI
 
 {{%tabs%}}
 {{%tab "CLI" %}}

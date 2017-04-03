@@ -34,7 +34,7 @@ The space can store multiple versions of the same task side-by-side (ideal for s
 
 MemoryXtend includes a cache to store recently used entries in memory. You can now control this cache warmup using one or more queries to determine which entries should be cached.
 
-{{<infosign>}} For more information see [MemoryXtend Initial Load](/xap121adm/memoryxtend.html#user-defined-query-for-initial-load)
+{{<infosign>}} For more information see [MemoryXtend Initial Load](/xap121adm/memoryxtend-rocksdb-ssd.html#custom-initial-load)
 
 ## Full text search
 
