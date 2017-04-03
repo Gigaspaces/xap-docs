@@ -84,6 +84,8 @@ public class MenuTree {
                     Page parent = pagesMap.get(p.getParent());
                     if (parent != null)
                         parent.addChild(p);
+                    else
+                        warning(p.getCategory() + "/" + p.getFileName() + " - invalid parent [" + p.getParent() + "]");
                 }
             }
             else{
@@ -156,19 +158,8 @@ public class MenuTree {
             scanner.close();
         }
 
-        Page p = new Page();
+        Page p = new Page(properties);
         p.setFileName(file.getName());
-        p.setTitle(properties.getProperty("title"));
-        String weight = properties.getProperty("weight");
-        if (weight != null)
-            p.setWeight(Long.parseLong(weight));
-        String parent = properties.getProperty("parent");
-        if (parent != null && !parent.equals("none"))
-            p.setParent(parent);
-        String category = properties.getProperty("categories");
-        if (category != null )
-            p.setCategory(category);
-
         return p;
     }
 
