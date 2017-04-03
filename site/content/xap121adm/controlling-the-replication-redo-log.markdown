@@ -38,18 +38,20 @@ Two policies are available:
 All packets weight are 1.
 
 - **accumulated** <br>
-A single write/take/update operation is translated to a packet with weight of 1<br>
-Multiple operations are combined into a single operation with packet weight of 1.<br>
+A single write/take/update operation is translated to a packet with weight of 1.<br>
+Multiple operations are translated to multiple single operations with packet weight of 1.<br>
 A transaction is translated to a packet with the accumulated weight of all the single operations within the transaction.
 
 Here is an example of a transaction with weight 10 if the policy is set to `accumulated`:
 
 ```java
+TransactionStatus status = ptm.getTransaction(definition);
 for (int i = 0; i < 10; ++i) {
    Person person = new Person();
    person.setId(i);
    gigaSpace.write(person)
 }
+ptm.commit(status);
 ```
 
 You can use the `cluster-config.groups.group.repl-policy.backlog-weight-policy` property to configure the weight policy:
@@ -58,12 +60,11 @@ You can use the `cluster-config.groups.group.repl-policy.backlog-weight-policy` 
 |----|----|----|
 |cluster-config.groups.group.repl-policy.backlog-weight-policy | Weight policy. `fixed` or `accumulated` | accumulated  |
 
-
 {{%note%}}
+All configuration properties that regard the size or capacity of the redo log will refer to the redo log weight when running with accumulated policy. 
 Users upgrading from previous versions, who *modified the default replication settings*, should make sure they understand this change and test it before they upgrade the production environment. 
 If it affects them, we recommend they re-calibrate the replication settings to the new behaviour.
 {{%/note%}}
-
 
 Here are the parameters you may configure to tune the redo log behavior. You may configure the redo log behavior between replicated spaces and between the spaces and the Mirror:
 
