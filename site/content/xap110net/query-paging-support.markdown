@@ -2,8 +2,8 @@
 type: post110
 title:  Paging Support
 categories: XAP110NET
-parent:
-weight: 100
+parent: querying-the-space.html
+weight: 600
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

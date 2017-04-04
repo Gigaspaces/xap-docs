@@ -1,9 +1,9 @@
 ---
 type: post121
-title:  Paging Support
+title:  Paging Support - Old
 categories: XAP121NET, PRM
-parent: querying-the-space.html
-weight: 600
+parent: query-paging-support.html
+weight: 100
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

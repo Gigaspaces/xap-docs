@@ -2,8 +2,8 @@
 type: post121
 title:  Paging Support
 categories: XAP121NET, PRM
-parent:
-weight: 100
+parent: querying-the-space.html
+weight: 600
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
