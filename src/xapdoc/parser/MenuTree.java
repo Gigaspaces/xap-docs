@@ -6,6 +6,7 @@ import java.util.*;
 public class MenuTree {
 
     private static final boolean DEBUG_ENABLED = false;
+    private static final int NEW_STRUCTURE_VERSION = 122;
     private static String BASE_PATH;
 
     private static final String[] SHARED_DIRS = new String[] {
@@ -28,10 +29,14 @@ public class MenuTree {
         MenuTree instance = new MenuTree();
         for (String dir : SHARED_DIRS)
             instance.processDir(new File(contentPath + dir));
-        Map<String, Collection<File>> xapFolders = getProductFolders(contentPath);
-        for (Collection<File> xapVersionFolders : xapFolders.values()) {
-            for (File folder : xapVersionFolders) {
-                instance.processDir(folder);
+        Map<Integer, Collection<File>> xapFolders = getProductFolders(contentPath);
+        for (Map.Entry<Integer, Collection<File>> entry : xapFolders.entrySet()) {
+            if (entry.getKey() < NEW_STRUCTURE_VERSION) {
+                for (File folder : entry.getValue()) {
+                    instance.processDir(folder);
+                }
+            } else {
+                instance.processVersion(entry.getKey(), entry.getValue());
             }
         }
 
@@ -41,11 +46,31 @@ public class MenuTree {
                 ", pages=" + instance.totalPages + ")");
     }
 
-    private static Map<String, Collection<File>> getProductFolders(String path) {
-        Map<String, Collection<File>> result = new HashMap<String, Collection<File>>();
+    private void processVersion(Integer version, Collection<File> folders) throws IOException {
+        Map<String, Page> rootsMap = new HashMap<String, Page>();
+        for (File folder : folders) {
+            final Collection<Page> folderRoot = loadPages(folder, true);
+            if (folderRoot.isEmpty())
+                warning("No root for " + folder.getName());
+            else if (folderRoot.size() != 1)
+                warning("Ambiguous root for " + folder.getName());
+            else
+                rootsMap.put(folder.getName(), folderRoot.iterator().next());
+        }
+        // Relocate java tutorial from root under java dev guide:
+        rootsMap.get("xap" + version).addChild(rootsMap.remove("xap" + version + "tut"));
+        // Relocate .NET tutorial from root under .NET dev guide:
+        rootsMap.get("xap" + version + "net").addChild(rootsMap.remove("xap" + version + "nettut"));
+
+        // Sort and generate roots:
+        generateSidenav("xap" + version, new TreeSet<Page>(rootsMap.values()));
+    }
+
+    private static Map<Integer, Collection<File>> getProductFolders(String path) {
+        Map<Integer, Collection<File>> result = new HashMap<Integer, Collection<File>>();
         for (File file : new File(path).listFiles()) {
             if (file.isDirectory() && file.getName().startsWith("xap")) {
-                String version = extractVersion(file.getName());
+                Integer version = extractVersion(file.getName());
                 if (!result.containsKey(version))
                     result.put(version, new ArrayList<File>());
                 result.get(version).add(file);
@@ -55,112 +80,84 @@ public class MenuTree {
         return result;
     }
 
-    private static String extractVersion(String name) {
+    private static Integer extractVersion(String name) {
         String result = "";
         for (int i="xap".length() ; i < name.length() && Character.isDigit(name.charAt(i)) ; i++)
             result += name.charAt(i);
 
-        return result;
+        return Integer.parseInt(result);
     }
 
     private void processDir(File folder) throws IOException {
-        String path = folder.getName();
-        debug("Processing dir : " + path);
-        Map<String, Page> pagesMap = new HashMap<String,Page>();
-        for (File file : folder.listFiles()) {
-            // make sure we only process markdown files
-            if (file.isFile() && file.getName().contains(".markdown")) {
-                Page p = createPage(file);
-                pagesMap.put(file.getName().replace(".markdown", ".html"), p);
-            }
-        }
-        // now lets order them according to the weight
-        TreeSet<Page> pagesTree = new TreeSet<Page>();
-        for (Page p : pagesMap.values()) {
-            if ( p.getWeight() != null){
-                if (p.getParent() == null)
-                    pagesTree.add(p);
-                else {
-                    Page parent = pagesMap.get(p.getParent());
-                    if (parent != null)
-                        parent.addChild(p);
-                    else
-                        warning(p.getCategory() + "/" + p.getFileName() + " - invalid parent [" + p.getParent() + "]");
-                }
-            }
-            else{
-                if (!p.getFileName().equals("index.markdown"))
-                    warning("[" + p.getCategory() + "]/" + p.getFileName() + "  has no weight");
-            }
-        }
+        generateSidenav(folder.getName(), loadPages(folder, false));
+    }
 
+    private void generateSidenav(String suffix, Collection<Page> roots) throws IOException {
         // write the html to the file system
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter(BASE_PATH + "/site/themes/hugo-bootswatch/layouts/partials/sidenav-" + path + ".html", "UTF-8");
-            for (Page p : pagesTree)
-                printPage(writer, p);
+            writer = new PrintWriter(BASE_PATH + "/site/themes/hugo-bootswatch/layouts/partials/sidenav-" + suffix + ".html", "UTF-8");
+            for (Page root : roots) {
+                printPage(writer, root);
+            }
         } finally {
             if (writer != null) {
                 writer.close();
             }
         }
+    }
+
+    private Collection<Page> loadPages(File folder, boolean groupingMode) throws IOException {
+        debug("Processing dir : " + folder.getName());
+        final Collection<Page> roots = new TreeSet<Page>();
+        final Map<String, Page> pages = new HashMap<String,Page>();
+        for (File file : folder.listFiles()) {
+            // make sure we only process markdown files
+            if (file.isFile() && file.getName().endsWith(".markdown")) {
+                Page p = new Page(file, groupingMode);
+                pages.put(p.getId(), p);
+                if (p.getParent().isEmpty())
+                    roots.add(p);
+            }
+        }
 
         totalFolders++;
-        totalPages += pagesMap.size();
-        debug("Processed: " + path);
+        totalPages += pages.size();
+
+        buildTree(pages);
+        return roots;
+    }
+
+    private static void buildTree(Map<String, Page> pages) {
+        // now lets order them according to the weight
+        for (Page p : pages.values()) {
+            if (p.getWeight() == null) {
+                if (!p.isIndex())
+                    warning(p.getSource() + "  has no weight");
+            } else {
+                if (!p.getParent().isEmpty()) {
+                    Page parent = pages.get(p.getParent());
+                    if (parent != null)
+                        parent.addChild(p);
+                    else
+                        warning(p.getSource() + " - invalid parent [" + p.getParent() + "]");
+                }
+            }
+        }
     }
 
     private static void printPage(PrintWriter writer, Page page) {
-        String fileName = page.getFileName().replace(".markdown", ".html");
-        if (page.getChildren().size() != 0) {
-            writer.println("<li class='expandable'><div class='hitarea expandable-hitarea'></div><a href='./" + fileName + "'>" + page.getTitle() + "</a>");
+        String link = "<a href='/" + page.getHref() + "'>" + page.getTitle() + "</a>";
+        if (page.getChildren().size() == 0) {
+            writer.println("<li>" + link + "</li>");
+        } else {
+            writer.println("<li class='expandable'><div class='hitarea expandable-hitarea'></div>" + link);
             writer.println("<ul style='display: none'>");
             for (Page child : page.getChildren())
                 printPage(writer, child);
             writer.println("</ul>");
             writer.println("</li>");
-
-        } else {
-            writer.println("<li><a href='./" + fileName + "'>" + page.getTitle() + "</a></li>");
         }
-    }
-
-    private static Page createPage(File file) throws IOException {
-
-        if (file.getName().contains("--"))
-            throw new IOException("File names can't conatin more then one '-' :" + file.getName());
-
-        Scanner scanner = new Scanner(file);
-        Properties properties = new Properties();
-        boolean foundHeader = false;
-        boolean foundFooter = false;
-
-        debug("*** Scanning " + file.getName());
-        try {
-            while (scanner.hasNextLine() && !foundFooter) {
-                final String line = scanner.nextLine().trim();
-                if (line.equals("---")) {
-                    if (!foundHeader)
-                        foundHeader = true;
-                    else
-                        foundFooter = true;
-                } else if (foundHeader) {
-                    int pos = line.indexOf(':');
-                    if (pos != -1) {
-                        String name = line.substring(0, pos).trim();
-                        String value = line.substring(pos + 1).trim();
-                        properties.setProperty(name, value);
-                    }
-                }
-            }
-        } finally {
-            scanner.close();
-        }
-
-        Page p = new Page(properties);
-        p.setFileName(file.getName());
-        return p;
     }
 
     private static void info(String message)  {
