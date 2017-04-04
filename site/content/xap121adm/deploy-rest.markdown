@@ -6,10 +6,6 @@ parent: administration-tools.html
 weight: 220
 ---
 
-
-{{%warning%}}
-This page is under construction
-{{%/warning%}}
   
 
 # deploy resource

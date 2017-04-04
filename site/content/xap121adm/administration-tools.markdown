@@ -28,6 +28,9 @@ This tool provides many commands that can be used to manage and gather informati
 [Deploy command line interface](./deploy-command-line-interface.html){{<wbr>}}
 XAP provides an interactive command line tool as part of the product. This can be started using gs.sh/bat command (referred to as XAP CLI).
 
+[Deploy with REST](./deploy-rest.html){{<wbr>}}
+Deploying with REST
+
 [Elastic deploy command line interface](./elastic-deploy-command-line-interface.html){{<wbr>}}
 Command line tool for  deploying elastic processing units.
 
