@@ -1,9 +1,9 @@
 ---
 type: post102
-title:  Paging Support
+title:  Paging Support - Old
 categories: XAP102NET
-parent: querying-the-space.html
-weight: 600
+parent: query-paging-support.html
+weight: 100
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
