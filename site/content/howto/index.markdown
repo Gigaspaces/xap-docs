@@ -2,7 +2,6 @@
 type: post
 title:  XAP Documentation Markdown
 categories: HOWTO
-weight:  700
 parent:  none
 ---
 
