@@ -6,7 +6,7 @@ import java.util.*;
 public class MenuTree {
 
     private static final boolean DEBUG_ENABLED = false;
-    private static final int NEW_STRUCTURE_VERSION = 122;
+    private static final int NEW_STRUCTURE_VERSION = 121;
     private static String BASE_PATH;
 
     private static final String[] SHARED_DIRS = new String[] {

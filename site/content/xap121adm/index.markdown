@@ -1,8 +1,8 @@
 ---
 type: post121
-title:  Deployment and Administration
+title:  Administrators Guide
 categories: XAP121ADM
-
+weight: 300
 ---
 
 
