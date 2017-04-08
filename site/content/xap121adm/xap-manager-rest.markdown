@@ -129,15 +129,15 @@ For details on request parameters and url see your local Manager page: {{%exurl 
 
 
 
-# Specification
-
-(http://localhost:8090/v1/xap-manager-api.yaml)
-
-
+ 
 # Online Editor
 
-(http://editor.swagger.io/#!/)
+You can download the `yaml` configuration file from  {{%exurl "http://localhost:8090/v1/xap-manager-api.yaml""http://localhost:8090/v1/xap-manager-api.yaml"%}} 
+and import or copy and past the yaml content into the {{%exurl "Swagger Editor""http://editor.swagger.io/#!/"%}} 
 
+![image](/attachment_files/rest-admin/swagger-ui.png)
 
+From the Swagger UI you generate client code in your favorite language:
 
+![image](/attachment_files/rest-admin/generate-client-code.png)
 
