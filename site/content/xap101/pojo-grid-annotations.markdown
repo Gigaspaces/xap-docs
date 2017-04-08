@@ -2,8 +2,8 @@
 type: post101
 title:  Grid Metadata
 categories: XAP101
-parent: pojo-metadata.html
-weight: 400
+parent: modeling-your-data.html
+weight: 140
 ---
 
 {{% ssummary %}}This section explains the different data grid metadata.{{% /ssummary %}}

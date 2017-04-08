@@ -86,7 +86,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 public class MySpaceFilter implements InitializingBean{
 
-        //late context is needed since there's a circular dependency between the filter bean and the space itself
+    //late context is needed since there's a circular dependency between the filter bean and the space itself
 	@GigaSpaceLateContext
 	GigaSpace space;
 
