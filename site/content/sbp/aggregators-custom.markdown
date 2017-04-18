@@ -131,30 +131,52 @@ In the following example we extend the GroupByAggregator to add custom filtering
 
 ```java
 
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
+
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import com.gigaspaces.query.aggregators.GroupByAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
 public class GroupByAggregatorWithFilter extends GroupByAggregator{
 
-	private Double limit;
+    private Double limit;
 
-	public GroupByAggregatorWithFilter(){super();}
+    public GroupByAggregatorWithFilter(){
+    	super();
+    }
 
-	public GroupByAggregatorWithFilter(Double limit){
-		super();
-		this.limit = limit;
-	}
+    public GroupByAggregatorWithFilter(Double limit){
+        super();
+        this.limit = limit;
+    }
 
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
-		Double expenses = (Double) context.getPathValue("expenses");
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        Double expenses = (Double) context.getPathValue("expenses");
 
-		if(Math.abs(expenses) < this.limit) {
-			super.aggregate(context);
-		}
-	}
+        if(Math.abs(expenses) < this.limit) {
+            super.aggregate(context);
+        }
+    }
+    
+     /***
+     * Override Parent Serialization methods
+     * and serialize and new members
+     */
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    	super.readExternal(in);
+    	limit = (Double)in.readObject();
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+    	super.writeExternal(out);
+    	out.writeObject(limit);
+    }
 }
 ```
 {{%/tab%}}
@@ -165,7 +187,7 @@ public class GroupByAggregatorWithFilter extends GroupByAggregator{
 SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
 
 		GroupByAggregator groupByAggregator = new GroupByAggregatorWithFilter(100.0)
-				.selectAverage("salary")
+			.selectAverage("salary")
 		        .groupBy("departmentId");
 
 		AggregationSet aggregationSet = new AggregationSet();
