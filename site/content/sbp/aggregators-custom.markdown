@@ -48,67 +48,73 @@ In the following example we will implement a custom aggregator to retrieve a res
 {{%tab " Aggregator"%}}
 
 ```java
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.util.HashMap;
-
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
-public class SalaryAggrgetor extends SpaceEntriesAggregator<HashMap<String, Integer>>{
+public class SalaryAggregator extends SpaceEntriesAggregator<HashMap<String, Integer>>{
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -7641865740945835568L;
+	
+    private transient HashMap<String, Integer> map;
 
-	private transient HashMap<String, Integer> map;
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
 
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
+        String employeeId = (String)context.getPathValue("id");
+        Integer salary = (Integer)context.getPathValue("salary");
 
-		String employeeId = (String)context.getPathValue("employeeId");
-		Integer salary = (Integer)context.getPathValue("salary");
+        if(map == null)
+            map = new HashMap<String, Integer>();
 
-		if(map == null)
-			map = new HashMap<String, Integer>();
+        map.put(employeeId, salary);
+    }
 
-		map.put(employeeId, salary);
-	}
+    @Override
+    public HashMap<String, Integer> getIntermediateResult() {
+        return map;
+    }
 
-	@Override
-	public HashMap<String, Integer> getIntermediateResult() {
-		return map;
-	}
+    @Override
+    public void aggregateIntermediateResult(
+        HashMap<String, Integer> partitionResult) {
 
-	@Override
-	public void aggregateIntermediateResult(
-		HashMap<String, Integer> partitionResult) {
-
-		if(partitionResult != null){
-			if(map == null){
-				map = partitionResult;
-			}else{
-				map.putAll(partitionResult);
-			}
-		}
-	}
-	@Override
-	public String getDefaultAlias() {
-		return "salaryAggrgetor()";
-	}
-	@Override
-	public Object getFinalResult() {
-		return getIntermediateResult();
-	}
-
+    	if(partitionResult != null){
+        	if(map == null){
+                   map = partitionResult;
+            }else{
+                map.putAll(partitionResult);
+            }
+        }
+    }
+    
+    @Override
+    public String getDefaultAlias() {
+        return "salaryAggrgetor()";
+    }
+    @Override
+    public Object getFinalResult() {
+        return getIntermediateResult();
+    }
 }
+
 ```
 {{%/tab%}}
 
 {{%tab " Program"%}}
 
 ```java
-SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
-AggregationResult result = gigaSpace.aggregate(query, new AggregationSet().add(new SalaryAggrgetor()));
-Map<String, Integer> myResult = (Map<String, Integer>)result.get("salaryAggrgetor()");
+
+        SalaryAggregator salaryAggregator = new SalaryAggregator();
+        AggregationSet aggregationSet = new AggregationSet();
+        aggregationSet.add(salaryAggregator);
+        
+        SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+        AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
+	Map<String, Integer> employeeSalaryMap = (Map<String, Integer>)aggregationResult.get("salaryAggrgetor()");
+	
 ```
 {{%/tab%}}
 
