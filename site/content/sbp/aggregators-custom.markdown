@@ -323,76 +323,83 @@ Sometimes there is a need to compare two members of the same object. Currently (
 {{%tab " Aggregator"%}}
 
 ```java
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.util.HashMap;
 
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
-public class SalaryAggrgetorWithFilter extends SpaceEntriesAggregator<HashMap<String, Integer>>{
+public class SalaryAggregatorWithFilter extends SpaceEntriesAggregator<HashMap<String, Integer>>{
 
-	private static final long serialVersionUID = 1L;
+    
+    private static final long serialVersionUID = -1639750562385907859L;
+	
+    private transient HashMap<String, Integer> map;
 
-	private transient HashMap<String, Integer> map;
+    public SalaryAggregatorWithFilter() {
+    	super();
+    }
 
-	public SalaryAggrgetorWithFilter() {
-	}
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
 
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
+        String employeeId = (String)context.getPathValue("id");
+        String ssn = (String)context.getPathValue("ssn");
+        Integer salary = (Integer)context.getPathValue("salary");
 
-		String employeeId = (String)context.getPathValue("employeeId");
-		String ssn = (String)context.getPathValue("ssn");
-		Integer salary = (Integer)context.getPathValue("salary");
+        if(employeeId.equals(ssn)){
+            if(map == null)
+                map = new HashMap<String, Integer>();
 
-		if(employeeId.equalsIgnoreCase(ssn)){
-			if(map == null)
-				map = new HashMap<String, Integer>();
+            map.put(employeeId, salary);
+        }
+    }
 
-			map.put(employeeId, salary);
-		}
+    @Override
+    public HashMap<String, Integer> getIntermediateResult() {
+        return map;
+    }
 
-	}
+    @Override
+    public void aggregateIntermediateResult(
+        HashMap<String, Integer> partitionResult) {
 
-	@Override
-	public HashMap<String, Integer> getIntermediateResult() {
-		return map;
-	}
+        if(partitionResult != null){
+            if(map == null){
+                map = partitionResult;
+            }else{
+                map.putAll(partitionResult);
+            }
+        }
+    }
 
-	@Override
-	public void aggregateIntermediateResult(
-		HashMap<String, Integer> partitionResult) {
+    @Override
+    public String getDefaultAlias() {
+        return "salaryAggrgetorWithFilter()";
+    }
 
-		if(partitionResult != null){
-			if(map == null){
-				map = partitionResult;
-			}else{
-				map.putAll(partitionResult);
-			}
-		}
-	}
-
-	@Override
-	public String getDefaultAlias() {
-		return "salaryAggrgetorWithFilter()";
-	}
-
-	@Override
-	public Object getFinalResult() {
-		return getIntermediateResult();
-	}
+    @Override
+    public Object getFinalResult() {
+        return getIntermediateResult();
+    }
 
 }
+
 ```
 {{%/tab%}}
 
 {{%tab " Program"%}}
 
 ```java
-SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "age > 30");
-		AggregationResult result = gigaSpace.aggregate(query, new AggregationSet().add(new SalaryAggrgetorWithFilter()));
-		Map<String, Integer> myResult = (Map<String, Integer>)result.get(0);
+       SalaryAggregatorWithFilter salaryAggregator = new SalaryAggregatorWithFilter();
+        AggregationSet aggregationSet = new AggregationSet();
+        aggregationSet.add(salaryAggregator);
+        
+        SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+        AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
+	Map<String, Integer> employeeSalaryMap = (Map<String, Integer>)aggregationResult.get("salaryAggrgetorWithFilter()");
+
 ```
 {{%/tab%}}
 
@@ -402,7 +409,7 @@ SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "age > 30");
 ```sql
 SELECT employeeId, salary
 FROM employee
-WHERE employeeId = ssn AND age > 30
+WHERE employeeId = ssn AND salary > 50000
 ```
 {{%/tab%}}
 
