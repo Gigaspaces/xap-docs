@@ -509,7 +509,7 @@ public class GroupByAggregatorWithContainsFiler<T> extends GroupByAggregator{
 {{%tab " SQL"%}}
 
 ```sql
-SELECT * FROM
+SELECT AVG(salary), departmentId FROM
 Employee
 WHERE salary > 50000 AND departmentId IN (1,25,33,…. 10,000)
 ```
