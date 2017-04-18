@@ -222,55 +222,55 @@ Chaining aggregators allows users to reuse the same filtering logic for differen
 
 ```java
 
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.io.Serializable;
 
-import com.gigaspaces.query.aggregators.GroupByAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
 public class ChainedAggregatorWithFilter<T extends Serializable> extends SpaceEntriesAggregator<T>{
 
+	private static final long serialVersionUID = 3892805657010192758L;
+
 	private SpaceEntriesAggregator<T> aggregator;
 
-	private Double limit;
+    private Double limit;
 
-	public ChainedAggregatorWithFilter(SpaceEntriesAggregator<T> aggregator, Double limit){
-		super();
-		this.aggregator = aggregator;
-		this.limit = limit;
-	}
+    public ChainedAggregatorWithFilter(SpaceEntriesAggregator<T> aggregator, Double limit){
+        super();
+        this.aggregator = aggregator;
+        this.limit = limit;
+    }
 
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
-		Double expenses = (Double) context.getPathValue("expenses");
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        Double expenses = (Double) context.getPathValue("expenses");
 
-		if(Math.abs(expenses) > limit){
-			aggregator.aggregate(context);
-		}
-	}
+        if(Math.abs(expenses) < limit){
+        	aggregator.aggregate(context);
+        }
+    }
 
-	@Override
-	public void aggregateIntermediateResult(T partitionResult) {
-		aggregator.aggregateIntermediateResult(partitionResult);
-	}
+    @Override
+    public void aggregateIntermediateResult(T partitionResult) {
+    	aggregator.aggregateIntermediateResult(partitionResult);
+    }
 
-	@Override
-	public String getDefaultAlias() {
-		return "filterByExpenses";
-	}
+    @Override
+    public String getDefaultAlias() {
+        return "filterByExpenses";
+    }
 
-	@Override
-	public T getIntermediateResult() {
-		return aggregator.getIntermediateResult();
-	}
+    @Override
+    public T getIntermediateResult() {
+    	return aggregator.getIntermediateResult();
+    }
 
-	@Override
-	public Object getFinalResult() {
-		return aggregator.getFinalResult();
-	}
-
+    @Override
+    public Object getFinalResult() {
+        return aggregator.getFinalResult();
+    }
 }
 ```
 {{%/tab%}}
@@ -278,17 +278,20 @@ public class ChainedAggregatorWithFilter<T extends Serializable> extends SpaceEn
 {{%tab " Program"%}}
 
 ```java
-SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+        SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
 
-		GroupByAggregator groupByAggregator = new GroupByAggregator()
-				.selectAverage("salary")
-		        .groupBy("departmentId");
+        GroupByAggregator groupByAggregator = new GroupByAggregator()
+                .selectAverage("salary")
+                .groupBy("departmentId");
 
 
-		AggregationSet aggregationSet = new AggregationSet();
-		aggregationSet.add(new ChainedAggregatorWithFilter(groupByAggregator, 100.0));
+        AggregationSet aggregationSet = new AggregationSet();
+        aggregationSet.add(new ChainedAggregatorWithFilter<GroupByResult>(groupByAggregator, 100.0));
 
-		AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
+        AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
+
+        GroupByResult groupByResult = (GroupByResult)result.get(0);
+
 ```
 {{%/tab%}}
 
