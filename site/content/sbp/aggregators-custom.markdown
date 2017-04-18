@@ -425,60 +425,84 @@ Consider replacing the IN/NOT IN operator in SQLQuery with a custom aggregator w
 {{%tab " Aggregator"%}}
 
 ```java
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Collection;
 
 import com.gigaspaces.query.aggregators.GroupByAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
-public class CustomGroupByAggregator<T> extends GroupByAggregator{
+public class GroupByAggregatorWithContainsFiler<T> extends GroupByAggregator{
 
-	private Collection<T> collection;
+    private Collection<T> collection;
+    private String inFieldName;
+   
+    public GroupByAggregatorWithContainsFiler(String inFieldName, Collection<T> collection){
+    	super();
+    	this.inFieldName = inFieldName;
+    	this.collection = collection;
+    }
+    public GroupByAggregatorWithContainsFiler(){
+    	super();
+    }
 
-	public CustomGroupByAggregator(){super();}
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        T field = (T) context.getPathValue(inFieldName);
 
-	public CustomGroupByAggregator(Collection<T> collection){
-		super();
-		this.collection = collection;
-	}
-
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
-		Integer departmentId = (Integer) context.getPathValue("departmentId");
-
-		if(collection.contains(departmentId)) {
-			super.aggregate(context);
-		}
-	}
+        if(collection.contains(field)) {
+            super.aggregate(context);
+        }
+    }
+    
+    /***
+     * Override Parent Serialization methods
+     * and serialize and new members
+     */
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    	super.readExternal(in);
+    	
+    	collection = (Collection<T>)in.readObject();
+        inFieldName = (String)in.readObject();
+       
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+    	super.writeExternal(out);
+    	out.writeObject(collection);
+        out.writeObject(inFieldName);
+       
+    }
 }
+
 ```
 {{%/tab%}}
 
 {{%tab " Program"%}}
 
 ```java
-Collection<Integer> departmentList = new HashSet<Integer>(10000);
+        List<Integer> departmentList = new ArrayList<Integer>();
+        departmentList.add(1);
+	departmentList.add(2);
+	//Large List....
+	
+	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
 
-		departmentList.add(10);
-		departmentList.add(25);
-		departmentList.add(33);
-		//... Large List ...
-		departmentList.add(10000);
+        GroupByAggregator groupByAggregator = new GroupByAggregatorWithContainsFiler("departmentId", departmentList)
+                .selectAverage("salary")
+                .groupBy("departmentId");
 
-		SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000 AND department NOT IN (?)");
-		query.setParameter(0, departmentList);
+        AggregationSet aggregationSet = new AggregationSet();
+        aggregationSet.add(groupByAggregator);
 
-		GroupByAggregator groupByAggregator = new CustomGroupByAggregator(departmentList)
-				.selectAverage("salary")
-		        .groupBy("departmentId");
+        AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
 
-		AggregationSet aggregationSet = new AggregationSet();
-		aggregationSet.add(groupByAggregator);
-
-		AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
-
-		GroupByResult groupByResult = (GroupByResult)result.get(0);
+        GroupByResult groupByResult = (GroupByResult)result.get(0);
 ```
 {{%/tab%}}
 
