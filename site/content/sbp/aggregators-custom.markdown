@@ -48,67 +48,73 @@ In the following example we will implement a custom aggregator to retrieve a res
 {{%tab " Aggregator"%}}
 
 ```java
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.util.HashMap;
-
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
-public class SalaryAggrgetor extends SpaceEntriesAggregator<HashMap<String, Integer>>{
+public class SalaryAggregator extends SpaceEntriesAggregator<HashMap<String, Integer>>{
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -7641865740945835568L;
+	
+    private transient HashMap<String, Integer> map;
 
-	private transient HashMap<String, Integer> map;
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
 
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
+        String employeeId = (String)context.getPathValue("id");
+        Integer salary = (Integer)context.getPathValue("salary");
 
-		String employeeId = (String)context.getPathValue("employeeId");
-		Integer salary = (Integer)context.getPathValue("salary");
+        if(map == null)
+            map = new HashMap<String, Integer>();
 
-		if(map == null)
-			map = new HashMap<String, Integer>();
+        map.put(employeeId, salary);
+    }
 
-		map.put(employeeId, salary);
-	}
+    @Override
+    public HashMap<String, Integer> getIntermediateResult() {
+        return map;
+    }
 
-	@Override
-	public HashMap<String, Integer> getIntermediateResult() {
-		return map;
-	}
+    @Override
+    public void aggregateIntermediateResult(
+        HashMap<String, Integer> partitionResult) {
 
-	@Override
-	public void aggregateIntermediateResult(
-		HashMap<String, Integer> partitionResult) {
-
-		if(partitionResult != null){
-			if(map == null){
-				map = partitionResult;
-			}else{
-				map.putAll(partitionResult);
-			}
-		}
-	}
-	@Override
-	public String getDefaultAlias() {
-		return "salaryAggrgetor()";
-	}
-	@Override
-	public Object getFinalResult() {
-		return getIntermediateResult();
-	}
-
+    	if(partitionResult != null){
+        	if(map == null){
+                   map = partitionResult;
+            }else{
+                map.putAll(partitionResult);
+            }
+        }
+    }
+    
+    @Override
+    public String getDefaultAlias() {
+        return "salaryAggrgetor()";
+    }
+    @Override
+    public Object getFinalResult() {
+        return getIntermediateResult();
+    }
 }
+
 ```
 {{%/tab%}}
 
 {{%tab " Program"%}}
 
 ```java
-SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
-AggregationResult result = gigaSpace.aggregate(query, new AggregationSet().add(new SalaryAggrgetor()));
-Map<String, Integer> myResult = (Map<String, Integer>)result.get("salaryAggrgetor()");
+
+        SalaryAggregator salaryAggregator = new SalaryAggregator();
+        AggregationSet aggregationSet = new AggregationSet();
+        aggregationSet.add(salaryAggregator);
+        
+        SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+        AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
+	Map<String, Integer> employeeSalaryMap = (Map<String, Integer>)aggregationResult.get("salaryAggrgetor()");
+	
 ```
 {{%/tab%}}
 
@@ -125,30 +131,52 @@ In the following example we extend the GroupByAggregator to add custom filtering
 
 ```java
 
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
+
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import com.gigaspaces.query.aggregators.GroupByAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
 public class GroupByAggregatorWithFilter extends GroupByAggregator{
 
-	private Double limit;
+    private Double limit;
 
-	public GroupByAggregatorWithFilter(){super();}
+    public GroupByAggregatorWithFilter(){
+    	super();
+    }
 
-	public GroupByAggregatorWithFilter(Double limit){
-		super();
-		this.limit = limit;
-	}
+    public GroupByAggregatorWithFilter(Double limit){
+        super();
+        this.limit = limit;
+    }
 
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
-		Double expenses = (Double) context.getPathValue("expenses");
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        Double expenses = (Double) context.getPathValue("expenses");
 
-		if(Math.abs(expenses) < this.limit) {
-			super.aggregate(context);
-		}
-	}
+        if(Math.abs(expenses) < this.limit) {
+            super.aggregate(context);
+        }
+    }
+    
+     /***
+     * Override Parent Serialization methods
+     * and serialize and new members
+     */
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    	super.readExternal(in);
+    	limit = (Double)in.readObject();
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+    	super.writeExternal(out);
+    	out.writeObject(limit);
+    }
 }
 ```
 {{%/tab%}}
@@ -159,7 +187,7 @@ public class GroupByAggregatorWithFilter extends GroupByAggregator{
 SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
 
 		GroupByAggregator groupByAggregator = new GroupByAggregatorWithFilter(100.0)
-				.selectAverage("salary")
+			.selectAverage("salary")
 		        .groupBy("departmentId");
 
 		AggregationSet aggregationSet = new AggregationSet();
@@ -194,55 +222,55 @@ Chaining aggregators allows users to reuse the same filtering logic for differen
 
 ```java
 
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.io.Serializable;
 
-import com.gigaspaces.query.aggregators.GroupByAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
 public class ChainedAggregatorWithFilter<T extends Serializable> extends SpaceEntriesAggregator<T>{
 
+	private static final long serialVersionUID = 3892805657010192758L;
+
 	private SpaceEntriesAggregator<T> aggregator;
 
-	private Double limit;
+    private Double limit;
 
-	public ChainedAggregatorWithFilter(SpaceEntriesAggregator<T> aggregator, Double limit){
-		super();
-		this.aggregator = aggregator;
-		this.limit = limit;
-	}
+    public ChainedAggregatorWithFilter(SpaceEntriesAggregator<T> aggregator, Double limit){
+        super();
+        this.aggregator = aggregator;
+        this.limit = limit;
+    }
 
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
-		Double expenses = (Double) context.getPathValue("expenses");
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        Double expenses = (Double) context.getPathValue("expenses");
 
-		if(Math.abs(expenses) > limit){
-			aggregator.aggregate(context);
-		}
-	}
+        if(Math.abs(expenses) < limit){
+        	aggregator.aggregate(context);
+        }
+    }
 
-	@Override
-	public void aggregateIntermediateResult(T partitionResult) {
-		aggregator.aggregateIntermediateResult(partitionResult);
-	}
+    @Override
+    public void aggregateIntermediateResult(T partitionResult) {
+    	aggregator.aggregateIntermediateResult(partitionResult);
+    }
 
-	@Override
-	public String getDefaultAlias() {
-		return "filterByExpenses";
-	}
+    @Override
+    public String getDefaultAlias() {
+        return "filterByExpenses";
+    }
 
-	@Override
-	public T getIntermediateResult() {
-		return aggregator.getIntermediateResult();
-	}
+    @Override
+    public T getIntermediateResult() {
+    	return aggregator.getIntermediateResult();
+    }
 
-	@Override
-	public Object getFinalResult() {
-		return aggregator.getFinalResult();
-	}
-
+    @Override
+    public Object getFinalResult() {
+        return aggregator.getFinalResult();
+    }
 }
 ```
 {{%/tab%}}
@@ -250,17 +278,20 @@ public class ChainedAggregatorWithFilter<T extends Serializable> extends SpaceEn
 {{%tab " Program"%}}
 
 ```java
-SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+        SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
 
-		GroupByAggregator groupByAggregator = new GroupByAggregator()
-				.selectAverage("salary")
-		        .groupBy("departmentId");
+        GroupByAggregator groupByAggregator = new GroupByAggregator()
+                .selectAverage("salary")
+                .groupBy("departmentId");
 
 
-		AggregationSet aggregationSet = new AggregationSet();
-		aggregationSet.add(new ChainedAggregatorWithFilter(groupByAggregator, 100.0));
+        AggregationSet aggregationSet = new AggregationSet();
+        aggregationSet.add(new ChainedAggregatorWithFilter<GroupByResult>(groupByAggregator, 100.0));
 
-		AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
+        AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
+
+        GroupByResult groupByResult = (GroupByResult)result.get(0);
+
 ```
 {{%/tab%}}
 
@@ -292,76 +323,83 @@ Sometimes there is a need to compare two members of the same object. Currently (
 {{%tab " Aggregator"%}}
 
 ```java
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.util.HashMap;
 
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
-public class SalaryAggrgetorWithFilter extends SpaceEntriesAggregator<HashMap<String, Integer>>{
+public class SalaryAggregatorWithFilter extends SpaceEntriesAggregator<HashMap<String, Integer>>{
 
-	private static final long serialVersionUID = 1L;
+    
+    private static final long serialVersionUID = -1639750562385907859L;
+	
+    private transient HashMap<String, Integer> map;
 
-	private transient HashMap<String, Integer> map;
+    public SalaryAggregatorWithFilter() {
+    	super();
+    }
 
-	public SalaryAggrgetorWithFilter() {
-	}
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
 
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
+        String employeeId = (String)context.getPathValue("id");
+        String ssn = (String)context.getPathValue("ssn");
+        Integer salary = (Integer)context.getPathValue("salary");
 
-		String employeeId = (String)context.getPathValue("employeeId");
-		String ssn = (String)context.getPathValue("ssn");
-		Integer salary = (Integer)context.getPathValue("salary");
+        if(employeeId.equals(ssn)){
+            if(map == null)
+                map = new HashMap<String, Integer>();
 
-		if(employeeId.equalsIgnoreCase(ssn)){
-			if(map == null)
-				map = new HashMap<String, Integer>();
+            map.put(employeeId, salary);
+        }
+    }
 
-			map.put(employeeId, salary);
-		}
+    @Override
+    public HashMap<String, Integer> getIntermediateResult() {
+        return map;
+    }
 
-	}
+    @Override
+    public void aggregateIntermediateResult(
+        HashMap<String, Integer> partitionResult) {
 
-	@Override
-	public HashMap<String, Integer> getIntermediateResult() {
-		return map;
-	}
+        if(partitionResult != null){
+            if(map == null){
+                map = partitionResult;
+            }else{
+                map.putAll(partitionResult);
+            }
+        }
+    }
 
-	@Override
-	public void aggregateIntermediateResult(
-		HashMap<String, Integer> partitionResult) {
+    @Override
+    public String getDefaultAlias() {
+        return "salaryAggrgetorWithFilter()";
+    }
 
-		if(partitionResult != null){
-			if(map == null){
-				map = partitionResult;
-			}else{
-				map.putAll(partitionResult);
-			}
-		}
-	}
-
-	@Override
-	public String getDefaultAlias() {
-		return "salaryAggrgetorWithFilter()";
-	}
-
-	@Override
-	public Object getFinalResult() {
-		return getIntermediateResult();
-	}
+    @Override
+    public Object getFinalResult() {
+        return getIntermediateResult();
+    }
 
 }
+
 ```
 {{%/tab%}}
 
 {{%tab " Program"%}}
 
 ```java
-SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "age > 30");
-		AggregationResult result = gigaSpace.aggregate(query, new AggregationSet().add(new SalaryAggrgetorWithFilter()));
-		Map<String, Integer> myResult = (Map<String, Integer>)result.get(0);
+       SalaryAggregatorWithFilter salaryAggregator = new SalaryAggregatorWithFilter();
+        AggregationSet aggregationSet = new AggregationSet();
+        aggregationSet.add(salaryAggregator);
+        
+        SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+        AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
+	Map<String, Integer> employeeSalaryMap = (Map<String, Integer>)aggregationResult.get("salaryAggrgetorWithFilter()");
+
 ```
 {{%/tab%}}
 
@@ -371,7 +409,7 @@ SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "age > 30");
 ```sql
 SELECT employeeId, salary
 FROM employee
-WHERE employeeId = ssn AND age > 30
+WHERE employeeId = ssn AND salary > 50000
 ```
 {{%/tab%}}
 
@@ -387,67 +425,91 @@ Consider replacing the IN/NOT IN operator in SQLQuery with a custom aggregator w
 {{%tab " Aggregator"%}}
 
 ```java
-package com.mycompany.app.aggregator;
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Collection;
 
 import com.gigaspaces.query.aggregators.GroupByAggregator;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
 
-public class CustomGroupByAggregator<T> extends GroupByAggregator{
+public class GroupByAggregatorWithContainsFiler<T> extends GroupByAggregator{
 
-	private Collection<T> collection;
+    private Collection<T> collection;
+    private String inFieldName;
+   
+    public GroupByAggregatorWithContainsFiler(String inFieldName, Collection<T> collection){
+    	super();
+    	this.inFieldName = inFieldName;
+    	this.collection = collection;
+    }
+    public GroupByAggregatorWithContainsFiler(){
+    	super();
+    }
 
-	public CustomGroupByAggregator(){super();}
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        T field = (T) context.getPathValue(inFieldName);
 
-	public CustomGroupByAggregator(Collection<T> collection){
-		super();
-		this.collection = collection;
-	}
-
-	@Override
-	public void aggregate(SpaceEntriesAggregatorContext context) {
-		Integer departmentId = (Integer) context.getPathValue("departmentId");
-
-		if(collection.contains(departmentId)) {
-			super.aggregate(context);
-		}
-	}
+        if(collection.contains(field)) {
+            super.aggregate(context);
+        }
+    }
+    
+    /***
+     * Override Parent Serialization methods
+     * and serialize and new members
+     */
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    	super.readExternal(in);
+    	
+    	collection = (Collection<T>)in.readObject();
+        inFieldName = (String)in.readObject();
+       
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+    	super.writeExternal(out);
+    	out.writeObject(collection);
+        out.writeObject(inFieldName);
+       
+    }
 }
+
 ```
 {{%/tab%}}
 
 {{%tab " Program"%}}
 
 ```java
-Collection<Integer> departmentList = new HashSet<Integer>(10000);
+        List<Integer> departmentList = new ArrayList<Integer>();
+        departmentList.add(1);
+	departmentList.add(2);
+	//Large List....
+	
+	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
 
-		departmentList.add(10);
-		departmentList.add(25);
-		departmentList.add(33);
-		//... Large List ...
-		departmentList.add(10000);
+        GroupByAggregator groupByAggregator = new GroupByAggregatorWithContainsFiler("departmentId", departmentList)
+                .selectAverage("salary")
+                .groupBy("departmentId");
 
-		SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000 AND department NOT IN (?)");
-		query.setParameter(0, departmentList);
+        AggregationSet aggregationSet = new AggregationSet();
+        aggregationSet.add(groupByAggregator);
 
-		GroupByAggregator groupByAggregator = new CustomGroupByAggregator(departmentList)
-				.selectAverage("salary")
-		        .groupBy("departmentId");
+        AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
 
-		AggregationSet aggregationSet = new AggregationSet();
-		aggregationSet.add(groupByAggregator);
-
-		AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
-
-		GroupByResult groupByResult = (GroupByResult)result.get(0);
+        GroupByResult groupByResult = (GroupByResult)result.get(0);
 ```
 {{%/tab%}}
 
 {{%tab " SQL"%}}
 
 ```sql
-SELECT * FROM
+SELECT AVG(salary), departmentId FROM
 Employee
 WHERE salary > 50000 AND departmentId IN (1,25,33,…. 10,000)
 ```
