@@ -35,8 +35,9 @@ Once all partitions have returned their results, the proxy invokes the getFinalR
 ### [getDefaultAlias]({{%api-javadoc%}}/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getDefaultAlias--)
 An aggregation result can contain the results from multiple aggregations. An alias provides a way to distinguish one aggregation result from another.
 
+{{%align center%}}
 ![aggregators.jpg](/attachment_files/aggregators-custom.png)
-
+{{%/align%}}
 
 # Simple Aggregator
 
@@ -106,15 +107,13 @@ public class SalaryAggregator extends SpaceEntriesAggregator<HashMap<String, Int
 {{%tab " Program"%}}
 
 ```java
-
-        SalaryAggregator salaryAggregator = new SalaryAggregator();
-        AggregationSet aggregationSet = new AggregationSet();
-        aggregationSet.add(salaryAggregator);
+    SalaryAggregator salaryAggregator = new SalaryAggregator();
+    AggregationSet aggregationSet = new AggregationSet();
+    aggregationSet.add(salaryAggregator);
         
-        SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
-        AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
-	Map<String, Integer> employeeSalaryMap = (Map<String, Integer>)aggregationResult.get("salaryAggrgetor()");
-	
+    SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+    AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
+    Map<String, Integer> employeeSalaryMap = (Map<String, Integer>)aggregationResult.get("salaryAggrgetor()");
 ```
 {{%/tab%}}
 
@@ -130,7 +129,6 @@ In the following example we extend the GroupByAggregator to add custom filtering
 {{%tab " Aggregator"%}}
 
 ```java
-
 package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.io.IOException;
@@ -184,18 +182,18 @@ public class GroupByAggregatorWithFilter extends GroupByAggregator{
 {{%tab " Program"%}}
 
 ```java
-SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+    SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
 
-		GroupByAggregator groupByAggregator = new GroupByAggregatorWithFilter(100.0)
-			.selectAverage("salary")
-		        .groupBy("departmentId");
+    GroupByAggregator groupByAggregator = new GroupByAggregatorWithFilter(100.0)
+    .selectAverage("salary")
+    .groupBy("departmentId");
 
-		AggregationSet aggregationSet = new AggregationSet();
-		aggregationSet.add(groupByAggregator);
+	AggregationSet aggregationSet = new AggregationSet();
+	aggregationSet.add(groupByAggregator);
 
-		AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
+	AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
 
-		GroupByResult groupByResult = (GroupByResult)result.get(0);
+	GroupByResult groupByResult = (GroupByResult)result.get(0);
 ```
 {{%/tab%}}
 
@@ -221,7 +219,6 @@ Chaining aggregators allows users to reuse the same filtering logic for differen
 {{%tab " Aggregator"%}}
 
 ```java
-
 package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.io.Serializable;
@@ -392,14 +389,13 @@ public class SalaryAggregatorWithFilter extends SpaceEntriesAggregator<HashMap<S
 {{%tab " Program"%}}
 
 ```java
-       SalaryAggregatorWithFilter salaryAggregator = new SalaryAggregatorWithFilter();
-        AggregationSet aggregationSet = new AggregationSet();
-        aggregationSet.add(salaryAggregator);
+    SalaryAggregatorWithFilter salaryAggregator = new SalaryAggregatorWithFilter();
+    AggregationSet aggregationSet = new AggregationSet();
+    aggregationSet.add(salaryAggregator);
         
-        SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
-        AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
+    SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+    AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
 	Map<String, Integer> employeeSalaryMap = (Map<String, Integer>)aggregationResult.get("salaryAggrgetorWithFilter()");
-
 ```
 {{%/tab%}}
 
@@ -486,23 +482,23 @@ public class GroupByAggregatorWithContainsFiler<T> extends GroupByAggregator{
 {{%tab " Program"%}}
 
 ```java
-        List<Integer> departmentList = new ArrayList<Integer>();
-        departmentList.add(1);
+    List<Integer> departmentList = new ArrayList<Integer>();
+    departmentList.add(1);
 	departmentList.add(2);
 	//Large List....
 	
 	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
 
-        GroupByAggregator groupByAggregator = new GroupByAggregatorWithContainsFiler("departmentId", departmentList)
-                .selectAverage("salary")
-                .groupBy("departmentId");
+    GroupByAggregator groupByAggregator = new GroupByAggregatorWithContainsFiler("departmentId", departmentList)
+        .selectAverage("salary")
+        .groupBy("departmentId");
 
-        AggregationSet aggregationSet = new AggregationSet();
-        aggregationSet.add(groupByAggregator);
+    AggregationSet aggregationSet = new AggregationSet();
+    aggregationSet.add(groupByAggregator);
 
-        AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
+    AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
 
-        GroupByResult groupByResult = (GroupByResult)result.get(0);
+    GroupByResult groupByResult = (GroupByResult)result.get(0);
 ```
 {{%/tab%}}
 
