@@ -108,7 +108,6 @@ The following example writes an `Employee` object into the space:
 ```java
     GigaSpace space = ....
 
-
     Employee employee = new Employee("Last Name", new Integer(32));
     employee.setFirstName("first name");
     LeaseContext<Employee> lc = space.write(employee);
@@ -213,9 +212,9 @@ When updating an object which already exists in the space, in some scenarios it 
   MyData previousValue = lc.getObject();
 ```
 
-{{% info %}}
+{{% note %}}
 Since in most scenarios the previous value is irrelevant, the default behavior is not to return it (i.e. `LeaseContext.getObject()` return null). The `RETURN_PREV_ON_UPDATE` modifier is used to indicate the previous value should be returned.
-{{%/info%}}
+{{%/note%}}
 
 {{%anchor asynchronousWrite%}}
 
@@ -234,18 +233,14 @@ Asynchronous `write` operation can be implemented using a [Task](./task-executio
 ```
 
 
-## Modifiers
 
-{{%refer%}}
-For further details on each of the available modifiers see: [WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)
-{{%/refer%}}
 
 {{%note%}}
 Writing an object into a space might generate [notifications](./notify-container.html) to registered objects.
 {{%/note%}}
 
-{{%accordion%}}
-{{%accord title="Method summary..."%}}
+ 
+**Method summary**
 
 Writes a new object to the space, returning its LeaseContext.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#write(T))
 
@@ -265,6 +260,9 @@ Writes new objects to the space, returning its LeaseContexts.[Java API]({{% api-
 ......
 ```
 
+## Modifiers
+
+The write operations can be configured with different modifiers:
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
@@ -273,9 +271,10 @@ Writes new objects to the space, returning its LeaseContexts.[Java API]({{% api-
 |timeout     | The timeout of an update operation, in milliseconds. If the entry is locked by another transaction wait for the specified number of milliseconds for it to be released. | 0  |
 |[WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)|Provides modifiers to customize the behavior of write operations | UPDATE_OR_WRITE  |
 |[LeaseContext]({{% api-javadoc %}}/com/j_spaces/core/LeaseContext.html) |LeaseContext is a return-value encapsulation of a write operation.| |
-{{%/accord%}}
-{{%/accordion%}}
 
+{{%refer%}}
+For further details on each of the available modifiers see: [WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)
+{{%/refer%}}
 
 
 {{%anchor change%}}
@@ -415,12 +414,11 @@ Example:
 
 ```java
     Employee employee = new Employee("Last Name", new Integer(32));
-	employee.setFirstName("first name");
-	space.write(employee);
+    employee.setFirstName("first name");
+    space.write(employee);
 
-	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class,
-				"firstName='first name'");
-	Employee e = space.readIfExists(query);
+    SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class,"firstName='first name'");
+    Employee e = space.readIfExists(query);
 ```
 
 {{%anchor asynchronousRead%}}
@@ -486,14 +484,23 @@ The read operations can be configured with different modifiers.
 Examples:
 
 ```java
-	Employee template = new Employee();
+    Employee template = new Employee();
 
     // Read objects in a FIFO mode
- 	Employee e = space.read(template, 0, ReadModifiers.FIFO);
+    Employee e = space.read(template, 0, ReadModifiers.FIFO);
 
     // Dirty read
-	Employee e = space.read(template, 0, ReadModifiers.DIRTY_READ);
+    Employee e = space.read(template, 0, ReadModifiers.DIRTY_READ);
 ```
+
+| Modifier and Type | Description | Default | Unit|
+|:-----|:------------|:--------|:----|
+| T          | POJO, SpaceDocument|| |
+|timeout     | Time to wait for the response| 0  |  milliseconds |
+|query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
+|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
+|[ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations | NONE  |  |
+
 
 
 {{%refer%}}
@@ -557,20 +564,12 @@ Read if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html
 <T> T readIfExistsById(IdQuery<T> query, long timeout, ReadModifiers modifiers) throws DataAccessException
 ....
 ```
-
-
-
-
-| Modifier and Type | Description | Default | Unit|
-|:-----|:------------|:--------|:----|
-| T          | POJO, SpaceDocument|| |
-|timeout     | Time to wait for the response| 0  |  milliseconds |
-|query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
-|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
-|[ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations | NONE  |  |
-
 {{%/accord%}}
 {{%/accordion%}}
+
+
+
+
 
 
 
@@ -644,9 +643,9 @@ The following example writes an `Employee` object into the space and removes it 
 The GigaSpace interface provides simple way to perform bulk take operations. You may take large amount of objects in one call.
 
 
-{{% info %}}
+{{% note %}}
 To remove a batch of objects without returning these back into the client use `GigaSpace.clear(SQLQuery)`;
-{{%/info%}}
+{{%/note%}}
 
 Examples:
 
@@ -778,6 +777,16 @@ Examples:
 ```
 
 
+
+| Modifier and Type | Description | Default | Unit|
+|:-----|:------------|:--------|:----|
+| T          | POJO, SpaceDocument|| |
+|timeout     | Time to wait for the response| 0  |  milliseconds |
+|query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
+|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
+|[TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations | NONE  |  |
+
+
 {{%refer%}}
 For further details on each of the available modifiers see: [TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)
 {{%/refer%}}
@@ -839,18 +848,6 @@ Take if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html
 <T> T takeIfExistsById(IdQuery<T> query, long timeout, TakeModifiers modifiers) throws DataAccessException
 ....
 ```
-
-
-
-
-| Modifier and Type | Description | Default | Unit|
-|:-----|:------------|:--------|:----|
-| T          | POJO, SpaceDocument|| |
-|timeout     | Time to wait for the response| 0  |  milliseconds |
-|query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
-|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
-|[TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations | NONE  |  |
-
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -880,13 +877,11 @@ Examples:
    space.clear(query);
 
    // Clear by IdQuery
-   IdQuery<Employee> query = new IdQuery<Employee>(Employee.class,
-   				new Integer(32));
+   IdQuery<Employee> query = new IdQuery<Employee>(Employee.class,new Integer(32));
    space.clear(query);
 
    // Clear with Modifier
-   SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class,
-				"firstName='first name'");
+   SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class,"firstName='first name'");
    space.clear(query, ClearModifiers.EVICT_ONLY);
 ```
 
@@ -903,17 +898,18 @@ void clear(T entry) throws DataAccessException
 void clear(T entry, ClearModifiers modifiers) throws DataAccessException
 void clear(ISpaceQuery<T> query) throws DataAccessException
 ......
-
 ```
+{{%/accord%}}
+{{%/accordion%}}
 
+**Modifiers**
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |query         | SQLQuery, IdQuery||
 |[ClearModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ClearModifiers.html)|Provides modifiers to customize the behavior of the clear operations | NONE  |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -946,9 +942,8 @@ Examples:
    int count = space.count(query);
 
    // Count with Modifier
-   SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class,
-				"firstName='first name'");
-    int count = space.count(query, CountModifiers.EXCLUSIVE_READ_LOCK);
+   SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class,"firstName='first name'");
+   int count = space.count(query, CountModifiers.EXCLUSIVE_READ_LOCK);
 ```
 
 
@@ -964,17 +959,18 @@ int count(T entry) throws DataAccessException
 int count(T entry, ClearModifiers modifiers) throws DataAccessException
 int count(ISpaceQuery<T> query) throws DataAccessException
 ......
-
 ```
+{{%/accord%}}
+{{%/accordion%}}
 
+**Modifiers**
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |query         | SQLQuery, IdQuery||
 |[CountModifiers]({{% api-javadoc %}}/com/gigaspaces/client/CountModifiers.html)|Provides modifiers to customize the behavior of the count operations | NONE  |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 {{%anchor counters%}}

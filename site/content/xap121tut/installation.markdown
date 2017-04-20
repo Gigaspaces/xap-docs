@@ -10,7 +10,7 @@ weight: 100
 Download the latest XAP release {{%download "http://www.gigaspaces.com/xap-download"%}}<br>
 
 # Installation
-- Unzip the distribution into a working directory; GS_HOME<br>
+- Unzip the distribution into a working directory; XAP_HOME<br>
 - Set the JAVA_HOME environment variable to point to the JDK root directory<br>
 - Start your favorite Java IDE<br>
 - Create a new project<br>
