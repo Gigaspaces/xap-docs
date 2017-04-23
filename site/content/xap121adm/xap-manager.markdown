@@ -39,6 +39,8 @@ In the manager log file (`$XAP_HOME/logs`), you can see:
 * Zookeeper files reside in `$XAP_HOME/work/manager/zookeeper`
 * REST API is started on [localhost:8090](http://localhost:8090)
 
+Note that the local manager was designed for developers working on their own machine, hence it binds to `localhost`, and is not accessible from other machines. If you're interested in starting a single manager and accessing it from other hosts, use the procedure described in **High Availability** below with a single host.
+
 # High Availability
 
 In a production environment, you'll probably want a cluster of managers on multiple hosts, to ensure high availability. You'll need 3 machines (odd number is required to ensure quorum during network partitions). For examplem, suppose you’ve selected machines alpha, bravo and charlie to host the managers:
