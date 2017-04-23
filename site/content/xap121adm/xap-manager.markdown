@@ -61,8 +61,10 @@ Port configurations:
 Zookeeper requires that each manager can reach any other manager. If you are changing the Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the `XAP_MANAGER_SERVERS` environment variable.  For example:
 
 ```bash
-XAP_MANAGER_SERVERS=alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200
+XAP_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200"
 ```
+
+When using this syntax in unix/linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.
 {{%/note%}}
 
 # Backwards Compatibility
