@@ -7,7 +7,7 @@ weight: 250
 ---
 
 The XAP Manager (or simply The Manager) is a component which stacks together the [LUS](service-grid.html#lus) and [GSM](service-grid.html#gsm) 
-along with [Zookeeper](zookeeper.html) and an embedded web application which hosts an admin instance with a [RESTful management API](xap-manager-rest.html) on top of it.
+along with {{%exurl "Apache ZooKeeper""http://zookeeper.apache.org/"%}} and an embedded web application which hosts an admin instance with a [RESTful management API](xap-manager-rest.html) on top of it.
 
 In addition to simplifying setup and management, the Manager also provides the following benefits:
 
@@ -39,7 +39,9 @@ In the manager log file (`$XAP_HOME/logs`), you can see:
 * Zookeeper files reside in `$XAP_HOME/work/manager/zookeeper`
 * REST API is started on [localhost:8090](http://localhost:8090)
 
-Note that the local manager was designed for developers working on their own machine, hence it binds to `localhost`, and is not accessible from other machines. If you're interested in starting a single manager and accessing it from other hosts, use the procedure described in **High Availability** below with a single host.
+{{%note "Remote Access"%}}
+The local manager is intended for local usage on the developer's machine, hence it binds to `localhost`, and is not accessible from other machines. If you wish to start a manager and access it from other hosts, follow the procedure described in **High Availability** below with a single host.
+{{%/note%}}
 
 # High Availability
 
@@ -50,6 +52,8 @@ In a production environment, you'll probably want a cluster of managers on multi
 3. Run `gs-agent --manager` on the manager machines (alpha, bravo, charlie, in this case).
 
 # Configuration
+
+## Ports
 
 Port configurations:
 
@@ -68,6 +72,12 @@ XAP_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:310
 
 When using this syntax in unix/linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.
 {{%/note%}}
+
+## Zookeeper
+
+ZooKeeper's behavior is governed by the ZooKeeper configuration file (`zoo.cfg`). When using XAP manager, an embedded Zookeeper instance is started using a default configuration located at `$XAP_HOME/config/zookeeper/zoo.cfg`. If you need to override the default settings, either edit the default file, or use the `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `com.gs.zookeeper.config-file` system property to point to your custom configuration file.
+
+Additional information on Zookeeper configuration can be found at {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration"%}}.
 
 # Backwards Compatibility
 
