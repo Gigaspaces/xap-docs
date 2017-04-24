@@ -72,7 +72,7 @@ Replication configuration is affected by the size of the redolog, measured in re
 
 The Web Management Console (web-ui) now supports custom security, same as the gs-ui.
 
-{{<infosign>}} For more information see [Weight Policy](/xap121sec/custom-authentication.html#web-management-console-and-custom-credentials).
+{{<infosign>}} For more information see [Web Management Console and Custom Credentials](/xap121sec/custom-authentication.html#web-management-console-and-custom-credentials).
 
 ## SSL Support for Web Management Console
 
@@ -94,7 +94,7 @@ The dump functionality is useful for gathering log files from system components.
 
 Whenever a service grid component is started, it prints a system report in its log file. Starting 12.1, if you increase the log level from `INFO` to `CONFIG` or beyond, this report will be more verbose and include all system properties and environment variables, which can come in handy for troubleshooting some problems.
 
-{{<infosign>}} Documentation is under construction - more information coming soon.
+{{<infosign>}} For more information see [Logging - Troubleshooting](/xap121adm/logging.html#troubleshooting).
 
 # Third Party Upgrades
 
