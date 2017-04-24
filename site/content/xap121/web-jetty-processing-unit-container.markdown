@@ -133,16 +133,17 @@ Controlling the size of the data a client can push to the server can be done usi
 
 The above xml fragment from the **jetty.plain.xml** controls the port numbers that are used by the Jetty instance started. The `PortGenerator` is a utility class that does not do more than expose itself as the sum of the `basePort` property and the `portOffset` property. In our case, each instance of a web application that is deployed in plain mode, will have a unique port (that, by default, starts from 8080). For example, if a web application is deployed with 2 instances, the first instance will start on port 8080, the second instance will start on port 8081 (regardless of the host).
 
-{{% note %}}
 In this case, if another web application is deployed on the same GSC, the `web.port` property should be changed (for example, to start from 9090), so there won't be any port clashes between the two web applications. By default, if a port is taken on the same host, the subsequent port will be used with up to 20 retries. To limit the number of retries, for example to 10 (instead of the default 20), you must define a bean named **retryPortCount** of class `Integer` and the value as the number of attempts. Setting a value of 1, will only try once using the `basePort` and `portOffset`.
-{{%/note%}}
-
 
 ```xml
 <bean id="retryPortCount" class="java.lang.Integer">
     <constructor-arg value="10" />
 </bean>
 ```
+
+{{% tip %}}
+You can find out at runtime which port jetty actually uses by calling `getServletContext().getAttribute("jetty.port.actual")`
+{{% /tip %}}
 
 ## Jetty Instance
 
