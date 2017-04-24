@@ -72,7 +72,7 @@ Replication configuration is affected by the size of the redolog, measured in re
 
 The Web Management Console (web-ui) now supports custom security, same as the gs-ui.
 
-{{<infosign>}} Documentation is under construction - more information coming soon.
+{{<infosign>}} For more information see [Weight Policy](/xap121sec/custom-authentication.html#web-management-console-and-custom-credentials).
 
 ## SSL Support for Web Management Console
 
