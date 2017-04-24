@@ -88,7 +88,7 @@ A couple of improvements which can come in handy for troubleshooting:
 
 The dump functionality is useful for gathering log files from system components. However, up to now it only included components which are currently running - if a process has terminated and restarted, only its current log would be collected. Starting 12.1 you can specify if you want to collect terminated processes as well when you perform a dump.
 
-{{<infosign>}} Documentation is under construction - more information coming soon.
+{{<infosign>}} For more information see [Dump](/xap121adm/web-management-dump.html).
 
 ## Verbose System Report
 
