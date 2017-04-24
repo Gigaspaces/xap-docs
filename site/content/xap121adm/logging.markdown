@@ -79,6 +79,16 @@ To troubleshoot and detect which logging properties file was loaded and from whi
 -Dcom.gs.logging.debug=true
 ```
 
+## Verbose System Report
+
+Whenever a service grid component is started, it prints a system report in its log file. Increasing the log level from INFO to CONFIG or beyond will generate a verbose report and include all system properties and environment variables, which can come in handy for troubleshooting some problems. 
+
+For example, to enable verbose system report for GSC, change the following log level:
+
+```bash
+com.gigaspaces.grid.gsc.level = CONFIG
+```
+
 # Handlers
 
 XAP out of the box configures logging with two log Handlers,
