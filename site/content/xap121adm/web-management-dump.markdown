@@ -32,12 +32,16 @@ Specific GSC dump:
 ![WEB-UI4.png](/attachment_files/WEB-UI4.png)
 {{% /align %}}
 
-Any of the above will display the following dialog. Select the desired options and click the  **Generate**  button.
-Selecting the "JVM Heap Dump" option will also generate a heap file for the JVMs. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.
+Any of the above will display the following dialog: 
 
 {{% align center %}}
 ![dump3](/attachment_files/dump/dump-3.png)
 {{% /align %}}
+
+Select the desired options and click the  **Generate**  button.
+
+* The "JVM Heap Dump" option determines wether a JVM heap dump should be generated for the JVMs. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.
+* The "Only Live Services Log Dump" determines if dump should include only services which are currently running, or also services which have been terminated (useful for trouble-shooting failover scenarios)
 
 ## Generate Overview
 
