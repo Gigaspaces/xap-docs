@@ -48,7 +48,7 @@ Full text search is using {{%exurl "Lucene" "https://lucene.apache.org/"%}} unde
 
 Web applications which need to know which port they're running on can now get it directly from the context properties.
 
-{{<infosign>}} More information coming soon.
+{{<infosign>}} For more information see [Jetty Processing Unit Container - Port Numbers](/xap121/web-jetty-processing-unit-container.html#port-numbers.html)
 
 # Administration
 
