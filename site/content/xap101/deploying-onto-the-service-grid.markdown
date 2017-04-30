@@ -28,11 +28,11 @@ Once built according to the processing unit [directory structure](./the-processi
 
 After you [package](./the-processing-unit-overview.html) the processing unit and deploy it via one of the deployment tools, the deployment tool uploads it to all the running [GSMs](/product_overview/service-grid.html#gsm), where it is extracted and provisioned to the [GSCs](/product_overview/service-grid.html#gsc).
 
-{{% info "To Jar or Not to Jar "%}}
+{{% note "To Jar or Not to Jar "%}}
 The recommended way to deploy the processing unit is by packaging it into a .jar or a .zip archive and specifying the location of the packaged file to the deployment tool in use.
 
 However, GigaSpaces XAP also supports the deployment of exploded processing units. (The deployment tool will package the processing unit directories into a jar file automatically). Another option to deploy a processing unit is by placing the exploded processing unit under the deploy directory of each of the GSMs and issuing  a deploy command with the processing unit name (the name of the directory under the deploy directory).
-{{% /info %}}
+{{% /note %}}
 
 # Distribution of Processing Unit Binaries to the Running GSCs
 
@@ -246,6 +246,11 @@ To restart a running PU (all instances) via the GS-UI you should:
 5. Within few seconds the restart operation will be completed. If the amount of data to recover is large (few millions of objects), this might take few minutes.
 6. Repeat steps 2-4 for all backup instances.
 7. Repeat steps 2-4 for all primary instances. This will switch the relevant backup to be a primary mode where the existing primary will switch into a backup mode.
+
+
+{{%note%}}
+The Space class can't be changed with hot deploy, only business logic.
+{{%/note%}}
 
 ## Restart a running PU via the Admin API
 
