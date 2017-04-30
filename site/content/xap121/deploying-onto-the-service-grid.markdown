@@ -229,7 +229,10 @@ To enable business continuity in a better manner, having system upgrade without 
 4. Restart the Primary PU instance. This will turn the existing backup instance to become a primary instance. The previous primary will turn into a backup, load the new business logic classes and recover its data from the existing primary.
 5. Optional - You can restart the existing primary to force it to switch into a backup instance again. The new primary will also use the new version of the business logic classes.
 
+
 You can script the above procedure via the [Administration and Monitoring API](./administration-and-monitoring-api.html), allowing you to perform system upgrade without downtime.
+
+Note: Space class can't be changed by hot deploy, only business logic.
 
 ## Restart a running PU via the GS-UI
 
