@@ -18,7 +18,7 @@ ZooKeeper is already used by Apache HBase, HDFS, and other Apache Hadoop project
 <br>
 
 # Zookeeper leader selector
-XAP is using Apache curator [leader selector](http://curator.apache.org/curator-recipes/leader-election.html) recipe which implements a distributed lock with notifications mechanism using Zookeeper.
+XAP is using Apache Curator [leader selector](http://curator.apache.org/curator-recipes/leader-election.html) recipe which implements a distributed lock with notifications mechanism using Zookeeper.
 
 {{%align center%}}
 ![image](/attachment_files/zookeeper-based-leader-selector.png)
