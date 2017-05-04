@@ -310,13 +310,11 @@ GROUP BY  departmentId
 
 # Common Use Cases
 
-### Comparing Two Properties From the Same Object
+## Comparing Two Properties From the Same Object
 
 Sometimes there is a need to compare two members of the same object. Currently (XAP 10.2) SQLQuery does not support this type of comparison. To achieve this a user may create a custom aggregator to perform the comparison before performing the aggregation. The following example will emulate a read multiple call. It has a special filter that compares two fields from the same object.
 
 {{%tabs%}}
-
-
 {{%tab " Aggregator"%}}
 
 ```java
@@ -411,7 +409,7 @@ WHERE employeeId = ssn AND salary > 50000
 
 {{%/tabs%}}
 
-# Replacing Large Collection for IN Operator
+## Replacing Large Collection for IN Operator
 
 Consider replacing the IN/NOT IN operator in SQLQuery with a custom aggregator when using a large collection as a parameter. The SQLQuery supports the IN and NOT IN operator, but when the collection is extensive, it may be beneficial to pass the collection into a custom aggregator as shown below.
 
@@ -513,3 +511,175 @@ WHERE salary > 50000 AND departmentId IN (1,25,33,…. 10,000)
 
 {{%/tabs%}}
 
+
+## SQL IN Queries – Custom Aggregator Example
+
+This example has a Space with a million Employee objects. 
+The Employee objects are associated with 50,000 different Departments – in average 20 Employees per Department. 
+An Employee object has an id field, a salary field (extended indexed) and a departmentId field (indexed). 
+
+Out of the million Employees within the space we had 750,000 with a salary = 6000 and 250,000 Employees with salary = 1000.
+
+The query executed using a classic `SQL IN` statement:
+
+```sql
+select id from Employee where salary > 5000 AND departmentId IN (?)
+```
+Where the dynamic parameter had a different size of IDs list each time. The normal way of implementing such a query is to use the `SQLQuery` in the following manner:
+
+```java
+Collection<Integer> departmentList = new HashSet<Integer>();
+departmentList.add(…);
+….
+SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 5000 AND departmentId IN (?)");
+query.setProjections("id");
+query.setParameter(1, departmentList);
+Employee result[] = gigaSpace.readMultiple(query);
+```
+
+where the **departmentList** includes the list of IDs we want to match against.
+
+The other option is to use a `Custom Aggregator` as described below.
+
+Here are the results comparing regular query using IN with the custom aggregator:
+
+
+{{%align center%}}
+![image](/attachment_files/sbp/custom-agg-example.png)
+{{%/align%}}
+
+As we can see - the time it takes to execute the query using the regular approach grows exponentially as we increase the departmentList size, where with the custom aggregator we are getting a minor increase with the query execution time. 
+
+The reason for this difference is the way the Custom Aggregator is implemented.  With the Custom Aggregator, the Space iterates the candidate set (in our case Employee objects that matches salary > 5000) and calls the CustomINAggregator.Aggregate() 
+for each where the given **departmentList** matched against the Employee **departmentID** field value. The ones that can be found within the departmentList are added to the result set that eventually is sent back to the client using getIntermediateResult and finally aggregated via the aggregateIntermediateResult that is called for each partition. 
+Iterating the candidate set is a very fast process that does not generates many new objects on the server. 
+Getting the final result (HashSet) back into the client size also have very minimal garbage creation footprint.
+
+The regular approach, where the `SQLQuery` is getting the departmentList to match against , performs a separate query for each element within the departmentList collections. All results are eventually aggregated into a final one returned back to the client. 
+This is a time consuming process. In addition – the aEmployee objects are materialize on the client side, which may consume memory and invoke garbage collection activity. 
+With the Custom Aggregator approach, Employee objects are not created anywhere throughout the process (these are accessed by reference during the scan activity), so no garbage is created. 
+This generates a very stable system in case such a query is executed continuously by many threads. 
+
+ 
+
+{{%tabs%}}
+{{%tab "CustomINAggregator"%}}
+```java
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.util.Collection;
+import java.util.HashSet;
+
+import com.gigaspaces.query.aggregators.SpaceEntriesAggregator;
+import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
+
+public class CustomINAggregator extends SpaceEntriesAggregator<HashSet<String>> implements Externalizable {
+
+	private Collection<Integer> collection;
+	private HashSet<String> result = new HashSet<String>();
+
+	public CustomINAggregator() {
+		super();
+	}
+
+	public String getDefaultAlias() {
+		return "IN";
+	}
+
+	public HashSet<String> getIntermediateResult() {
+		return result;
+	}
+
+	public CustomINAggregator(Collection<Integer> collection) {
+		super();
+		this.collection = collection;
+	}
+
+	public void aggregateIntermediateResult(HashSet<String> partitionResult) {
+		result.addAll(partitionResult);
+	}
+
+	@Override
+	public void aggregate(SpaceEntriesAggregatorContext context) {
+		Integer departmentId = (Integer) context.getPathValue("departmentId");
+
+		if (collection.contains(departmentId)) {
+			result.add((String) context.getPathValue("id"));
+		}
+	}
+
+	public void readExternal(ObjectInput in) {
+		try {
+			collection = (Collection<Integer>) in.readObject();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void writeExternal(ObjectOutput out) {
+		try {
+			out.writeObject(collection);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab Employee%}}
+```java
+import com.gigaspaces.annotation.pojo.SpaceId;
+import com.gigaspaces.annotation.pojo.SpaceIndex;
+import com.gigaspaces.metadata.index.SpaceIndexType;
+
+public class Employee {
+	String id;
+	Integer salary;
+	Integer departmentId;
+
+	@SpaceId
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	@SpaceIndex(type = SpaceIndexType.EXTENDED)
+	public Integer getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Integer salary) {
+		this.salary = salary;
+	}
+
+	@SpaceIndex
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
+	}
+}
+```
+{{%/tab%}}
+
+{{%tab "Custom aggregator Query"%}}
+```java
+    SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 5000");
+    CustomINAggregator customINAggregator = new CustomINAggregator(departmentList);
+    AggregationSet aggregationSet = new AggregationSet();
+    aggregationSet.add(customINAggregator);
+
+    AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
+    HashSet<String> aggreResult = (HashSet<String>) result.get(0);
+```
+{{%/tab%}}
+
+{{%/tabs%}}
