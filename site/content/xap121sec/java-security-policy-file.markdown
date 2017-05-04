@@ -29,7 +29,7 @@ Use the `setenv-overrides.(sh/bat)` script and define the security policy file p
   export XAP_SECURITY_POLICY=/home/xap-user/my-policy.txt
 ```
 
-GigaSpaces includes default security permissions, based on the above settings. These are located in the `xap-common.jar` file, under `\com\gigaspaces\start\gs.policy`. If you do not need special security settings, you do not need to set up the `java.security.policy` property when accessing the space. The default setting is used. The same occurs when using the `SpaceFinder` to start a space (not using the `ServiceStarter`).
+GigaSpaces includes default security permissions, based on the above settings. These are located in the `xap-common.jar` file, under `\com\gigaspaces\start\policy.all`. If you do not need special security settings, you do not need to set up the `java.security.policy` property when accessing the space. The default setting is used. The same occurs when using the `SpaceFinder` to start a space (not using the `ServiceStarter`).
 
 **Flat File Structure** -- the `policy.all` file can be moved under the `<XAP Root>` directory, if you want to maintain a flat file structure -- where configuration, jar, and security files can be organized under the `<XAP Root>` folder, or under their main folder without having sub-folders.
 
