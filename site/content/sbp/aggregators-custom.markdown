@@ -409,107 +409,7 @@ WHERE employeeId = ssn AND salary > 50000
 
 {{%/tabs%}}
 
-## Replacing Large Collection for IN Operator
 
-Consider replacing the IN/NOT IN operator in SQLQuery with a custom aggregator when using a large collection as a parameter. The SQLQuery supports the IN and NOT IN operator, but when the collection is extensive, it may be beneficial to pass the collection into a custom aggregator as shown below.
-
-{{%tabs%}}
-
-
-{{%tab " Aggregator"%}}
-
-```java
-package com.gigaspaces.se.aggregator.example.salaryaggregator;
-
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-import java.util.Collection;
-
-import com.gigaspaces.query.aggregators.GroupByAggregator;
-import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
-
-public class GroupByAggregatorWithContainsFiler<T> extends GroupByAggregator{
-
-    private Collection<T> collection;
-    private String inFieldName;
-   
-    public GroupByAggregatorWithContainsFiler(String inFieldName, Collection<T> collection){
-    	super();
-    	this.inFieldName = inFieldName;
-    	this.collection = collection;
-    }
-    public GroupByAggregatorWithContainsFiler(){
-    	super();
-    }
-
-    @Override
-    public void aggregate(SpaceEntriesAggregatorContext context) {
-        T field = (T) context.getPathValue(inFieldName);
-
-        if(collection.contains(field)) {
-            super.aggregate(context);
-        }
-    }
-    
-    /***
-     * Override Parent Serialization methods
-     * and serialize and new members
-     */
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-    	super.readExternal(in);
-    	
-    	collection = (Collection<T>)in.readObject();
-        inFieldName = (String)in.readObject();
-       
-    }
-    
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-    	super.writeExternal(out);
-    	out.writeObject(collection);
-        out.writeObject(inFieldName);
-       
-    }
-}
-
-```
-{{%/tab%}}
-
-{{%tab " Program"%}}
-
-```java
-    List<Integer> departmentList = new ArrayList<Integer>();
-    departmentList.add(1);
-	departmentList.add(2);
-	//Large List....
-	
-	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
-
-    GroupByAggregator groupByAggregator = new GroupByAggregatorWithContainsFiler("departmentId", departmentList)
-        .selectAverage("salary")
-        .groupBy("departmentId");
-
-    AggregationSet aggregationSet = new AggregationSet();
-    aggregationSet.add(groupByAggregator);
-
-    AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
-
-    GroupByResult groupByResult = (GroupByResult)result.get(0);
-```
-{{%/tab%}}
-
-{{%tab " SQL"%}}
-
-```sql
-SELECT AVG(salary), departmentId FROM
-Employee
-WHERE salary > 50000 AND departmentId IN (1,25,33,…. 10,000)
-```
-{{%/tab%}}
-
-{{%/tabs%}}
 
 
 ## SQL IN Queries – Custom Aggregator Example
@@ -682,4 +582,105 @@ public class Employee {
 ```
 {{%/tab%}}
 
+{{%/tabs%}}
+
+## Replacing Large Collection for IN Operator
+
+Consider replacing the IN/NOT IN operator in SQLQuery with a custom aggregator when using a large collection as a parameter. The SQLQuery supports the IN and NOT IN operator, but when the collection is extensive, it may be beneficial to pass the collection into a custom aggregator as shown below.
+
+{{%tabs%}}
+
+
+{{%tab " Aggregator"%}}
+
+```java
+package com.gigaspaces.se.aggregator.example.salaryaggregator;
+
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.util.Collection;
+
+import com.gigaspaces.query.aggregators.GroupByAggregator;
+import com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext;
+
+public class GroupByAggregatorWithContainsFiler<T> extends GroupByAggregator{
+
+    private Collection<T> collection;
+    private String inFieldName;
+   
+    public GroupByAggregatorWithContainsFiler(String inFieldName, Collection<T> collection){
+    	super();
+    	this.inFieldName = inFieldName;
+    	this.collection = collection;
+    }
+    public GroupByAggregatorWithContainsFiler(){
+    	super();
+    }
+
+    @Override
+    public void aggregate(SpaceEntriesAggregatorContext context) {
+        T field = (T) context.getPathValue(inFieldName);
+
+        if(collection.contains(field)) {
+            super.aggregate(context);
+        }
+    }
+    
+    /***
+     * Override Parent Serialization methods
+     * and serialize and new members
+     */
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    	super.readExternal(in);
+    	
+    	collection = (Collection<T>)in.readObject();
+        inFieldName = (String)in.readObject();
+       
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+    	super.writeExternal(out);
+    	out.writeObject(collection);
+        out.writeObject(inFieldName);
+       
+    }
+}
+
+```
+{{%/tab%}}
+
+{{%tab " Program"%}}
+
+```java
+    List<Integer> departmentList = new ArrayList<Integer>();
+    departmentList.add(1);
+	departmentList.add(2);
+	//Large List....
+	
+	SQLQuery<Employee> query = new SQLQuery<Employee>(Employee.class, "salary > 50000");
+
+    GroupByAggregator groupByAggregator = new GroupByAggregatorWithContainsFiler("departmentId", departmentList)
+        .selectAverage("salary")
+        .groupBy("departmentId");
+
+    AggregationSet aggregationSet = new AggregationSet();
+    aggregationSet.add(groupByAggregator);
+
+    AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
+
+    GroupByResult groupByResult = (GroupByResult)result.get(0);
+```
+{{%/tab%}}
+
+{{%tab " SQL"%}}
+
+```sql
+SELECT AVG(salary), departmentId FROM
+Employee
+WHERE salary > 50000 AND departmentId IN (1,25,33,…. 10,000)
+```
+{{%/tab%}}
 {{%/tabs%}}
