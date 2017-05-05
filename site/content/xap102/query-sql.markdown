@@ -101,6 +101,17 @@ The following operations support`SQLQuery` only with Simple Queries:
 - `INNER JOIN`
 {{%/vbar%}}
 
+
+# Comparing null values
+`SQLQuery` comparisons will evaluate the non-null values for a field. If you want to include objects with null values in a `SQLQuery` you will need to add another condition to your clause.
+ 
+For example, if you have an object with a property named message of type `String`, which is set to `null` and you write it to the space, then you write a `SQLQuery` with the where clause is: 
+`"message <> 'abcd'"`. 
+
+You may expect that the object with `message = null` gets returned in the query. However it doesn't, the comparison looks at only non-null values. To get the objects that are also null for message use: 
+`"message <> 'abcd' or message = null"` to include objects whose message property is set to null. 
+
+
 # Indexing
 
 It is highly recommended to use indexes on relevant properties to increase performance when using equality , bigger / less than , BETWEEN, IN , LIKE , NOT LIKE, IS NULL statements. For more information see [Indexing](./indexing.html). The above supported query features can leverage indexes except for the `is NOT null` and `NOT IN` statement.
