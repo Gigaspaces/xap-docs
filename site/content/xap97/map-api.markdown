@@ -224,7 +224,7 @@ The local cache support the following properties:
 
 # Multiple GigaMaps
 
-You mat have several `GigaMap` used with your application, each with different characteristics , all will be interacting with the same remote space. In this case each `GigaMap` should use different set of keys. If you want to use same keys for these different maps, each should use a different space.
+You may have several `GigaMap` used with your application, each with different characteristics , all will be interacting with the same remote space. In this case each `GigaMap` should use different set of keys. If you want to use same keys for these different maps, each should use a different space.
 
 # GigaMap Operations
 
