@@ -410,6 +410,7 @@ WHERE employeeId = ssn AND salary > 50000
 {{%/tabs%}}
 
 
+# SQL IN Query vs. Custom Aggregator Query
 
 
 ## SQL IN Queries – Custom Aggregator Example
