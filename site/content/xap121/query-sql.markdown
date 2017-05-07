@@ -136,8 +136,9 @@ query.setParameters(2, 3, "smith");
 SQLQuery<MyClass> query3 = new SQLQuery<MyClass>(MyClass.class,"num > ? or num < ? and name = ?", 2, 3, "smith");
 ```
 
-{{% info %}} The number of **'?'** symbols in the expression string must match the number of parameters set on the query. For example, when using `IN` condition:
-{{%/info%}}
+{{% note %}} 
+The number of **'?'** symbols in the expression string must match the number of parameters set on the query. For example, when using `IN` condition:
+{{%/note%}}
 
 
 ```java
@@ -211,7 +212,9 @@ public class Vehicle {
 ... = new SQLQuery<Vehicle>(Vehicle.class, "type = 'CAR'");
 ```
 
-{{% info %}} When using an Enum string value, the value must be identical (case sensitive) to the name of the Enum value.{{%/info%}}
+{{% note%}} 
+When using an Enum string value, the value must be identical (case sensitive) to the name of the Enum value.
+{{%/note%}}
 
 # Date Properties
 
@@ -254,9 +257,10 @@ For example:
 
 These space properties should be configured with a valid Java format pattern as defined in the {{%exurl "official Java language documentation" "http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.html"%}}.
 
-{{% info%}} The `space-config.QueryProcessor.date_format` property used when your query include a String representing the date
+{{% note%}} 
+The `space-config.QueryProcessor.date_format` property used when your query include a String representing the date
 Date properties are often used for comparison (greater/less than). Consider using [extended indexing](./indexing.html) to boost performance.
-{{%/info%}}
+{{%/note%}}
 
 ## sysdate
 
@@ -265,9 +269,9 @@ The `sysdate` value is evaluated differently when using the JDBC API vs when usi
 - On windows there is a {{%exurl "windows service" "http://technet.microsoft.com/en-us/library/cc773061%28WS.10%29.aspx"%}} that deals with clock synchronization.
 - On Linux there is a {{%exurl "daemon service" "http://www.brennan.id.au/09-Network_Time_Protocol.html#starting"%}} that deals with clock synchronization.
 
-{{% tip %}}
+{{% note %}}
 Internally dates are stored as a **TimeStamp**. This means that both time (hour/min/sec) and date (year/month/day) information are available for date range queries.
-{{% /tip %}}
+{{% /note %}}
 
 
 # Java 8 Dates
