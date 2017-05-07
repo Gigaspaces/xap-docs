@@ -113,7 +113,7 @@ The messaging style can be configured on the endpoints in the following way:
 
 By default the exchange-pattern is set to request-response.
 
-For further information see [http://www.mulesoft.org/documentation/display/MULECDEV/MEPs](http://www.mulesoft.org/documentation/display/MULECDEV/MEPs).
+For further information see {{%exurl "Mulesoft" "http://www.mulesoft.org/documentation/display/MULECDEV/MEPs"%}}.
 
 # Transaction Support
 

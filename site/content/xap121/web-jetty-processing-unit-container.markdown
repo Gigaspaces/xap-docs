@@ -59,7 +59,7 @@ To install Jetty 9.3.7.v20160115 follow these steps:
    * `<Jetty>/lib/annotations/*.jar`
    * `<Jetty>/lib/websocket/*.jar`
    * `<Jetty>/lib/apache-jsp/*.jar`
-4. Also, Download cdi-api-2.0-EDR1.jar and place it at under the Jetty directory as well. The file could be downloaded from here: [http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar](http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar)
+4. Also, Download cdi-api-2.0-EDR1.jar and place it at under the Jetty directory as well. The file could be downloaded from here: {{%exurl "cdi-api-2.0-EDR1" "http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar"%}}
 5. With version 9 the connector configuration has [changed](#jetty9).
 
 {{%/panel%}}
@@ -112,9 +112,9 @@ The first part of the **jetty.plain.pu.xml** is the different deploy time proper
 
 All the above properties can be controlled during deployment (or by adding a **META-INF/spring/pu.properties** file). What they actually control (though very evident from the name) is explained in the following sections.
 
-{{% tip %}}
+{{% note %}}
 Controlling the size of the data a client can push to the server can be done using the `org.mortbay.jetty.Request.maxFormContentSize` property.
-{{% /tip %}}
+{{% /note %}}
 
 ## Port Numbers
 
@@ -141,9 +141,9 @@ In this case, if another web application is deployed on the same GSC, the `web.p
 </bean>
 ```
 
-{{% tip %}}
+{{% note%}}
 You can find out at runtime which port jetty actually uses by calling `getServletContext().getAttribute("jetty.port.actual")`
-{{% /tip %}}
+{{% /note %}}
 
 ## Jetty Instance
 
@@ -412,7 +412,7 @@ The `context` itself passed to the `SharedContextFactory`, is the property `web.
 
 # Load Balancing
 
-In this section, we will show how the plain mode can be configured with Apache and `mod_proxy` load balancer (more information here [http://docs.codehaus.org/display/JETTY/Configuring+mod_proxy](http://docs.codehaus.org/display/JETTY/Configuring+mod_proxy)). The plain deployment mode will be used in the example. First, after installing Apache 2.2, the `mod_proxy`, `mod_proxy_balancer`, and `mod_proxy_http` (at least) modules need to be enabled.
+In this section, we will show how the plain mode can be configured with Apache and `mod_proxy` load balancer (more information here {{%exurl "Jetty" "http://docs.codehaus.org/display/JETTY/Configuring+mod_proxy"%}}). The plain deployment mode will be used in the example. First, after installing Apache 2.2, the `mod_proxy`, `mod_proxy_balancer`, and `mod_proxy_http` (at least) modules need to be enabled.
 
 The second step (as per the link to jetty documentation) is to set the workerName property of the session id manager. The jetty integration automatically sets the workerName (if it is not set explicitly) to be the clusterInfo name and the clusterInfo running number. In case one wishes to override it, it can be done by configuring the `jetty-web.xml`. The following is how the `jetty-web.xml` workerName gets set automatically (if it was configured explicitly):
 
