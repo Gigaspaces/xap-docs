@@ -27,6 +27,35 @@ MemoryXtend is designed as a pluggable architecture, supporting multiple impleme
 - For storing data on Off-Heap Memory (also known as native heap) [MemoryXtend for Off-Heap Memory](./memoryxtend-ohr.html).
 
 
+# Class Level Settings
+
+Once MemoryXtend is configured for a space, all entries stored in that space will be stored using the MemoryXtend settings. This is obviously somewhat slower than entries stored in-memory, in the traditional XAP storage mechanism. In some scenarios it makes sense to use MemoryXtend for some classes but not for others. For example, a user might say: "I have a limited amount of `Customer` entries, but tons of `Order` entries, and I want to disable MemoryXtend for the `Customer` entries". This can be done via the space class metadata. For example:
+
+{{%tabs%}}
+{{%tab "Annotation"%}}
+
+```java
+@SpaceClass(blobstoreEnabled = false)
+public class Customer {
+    //
+}
+```
+
+{{%/tab%}}
+
+{{%tab "gs.xml"%}}
+```xml
+<gigaspaces-mapping>
+    <class name="com.test.Customer" "blobstoreEnabled"="false">
+     </class>
+</gigaspaces-mapping>
+```
+{{%/tab%}}
+
+{{%/tabs%}}
+
+
+
 # System Requirements
 - Java 7 (or later)
 - Linux, Mac OS X, or Windows operating system
