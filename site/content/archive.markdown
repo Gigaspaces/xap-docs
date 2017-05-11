@@ -18,3 +18,5 @@ Version | Released | End Of Life | Java | .NET
 `7.1`   | April 2010 | April 2012 | [xap-7.1-docs.zip](./xap/resources/archive/xap-7.1-docs.zip) | [xap-7.1-net-docs.zip](./xap/resources/archive/xap-7.1-net-docs.zip)
 `7.0`   | July 2009 | July 2011 | [xap-7.0-docs.zip](./xap/resources/archive/xap-7.0-docs.zip) | [xap-7.0-net-docs.zip](./xap/resources/archive/xap-7.0-net-docs.zip)
 `6.6`   | September 2008 | September 2010 | [xap-6.6-docs.zip](./xap/resources/archive/xap-6.6-docs.zip) | [xap-6.6-net-docs.zip](./xap/resources/archive/xap-6.6-net-docs.zip)
+Paket Wisata Bromo (http://pakettourbromomurah.com)
+Mount Bromo Tour Package (http://gunungbromo.com)
