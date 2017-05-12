@@ -694,7 +694,7 @@ See below a simple benchmark results comparing the different options:
 {{% /align%}}
 
 
-See full benchmark description on the [How to Implement my Processor? - The Polling Container Benchmark](http://blog.gigaspaces.com/2008/10/03/how-to-implement-my-processor-the-polling-container-benchmark) GigaSpaces blog site.
+See full benchmark description on the [How to Implement my Processor? - The Polling Container Benchmark](https://blog.gigaspaces.com/how-to-implement-my-processor-the-polling-container-benchmark/) GigaSpaces blog site.
 
 You may use batching via the `MultiTakeReceiveOperationHandler`. The `MultiTakeReceiveOperationHandler.setMaxEntries(integer)` allows you to set the maximum amount of objects to be consumed with each polling event. If the space does not have sufficient number of matching objects during the polling point in time, the event listener method will be called with the existing number of matching objects (will be smaller than the `MaxEntries` value. There will be no delay in such a case and the polling container will not wait until there will be exact amount of matching objects to consume as specified via the `MaxEntries`.
 

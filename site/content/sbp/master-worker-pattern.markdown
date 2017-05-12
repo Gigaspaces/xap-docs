@@ -602,5 +602,5 @@ Here is an example of the Master Worker Pattern for .NET {{%download "/download_
 # References
 
 - [JavaSpaces Principles, Patterns, and Practice: Chapter 11](http://java.sun.com/developer/Books/JavaSpaces/chapter11.html)
-- [Blog post:How to Implement my Processor? - The Polling Container Benchmark](http://blog.gigaspaces.com/2008/10/03/how-to-implement-my-processor-the-polling-container-benchmark)
+- [Blog post:How to Implement my Processor? - The Polling Container Benchmark](https://blog.gigaspaces.com/how-to-implement-my-processor-the-polling-container-benchmark/)
 
