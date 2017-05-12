@@ -199,6 +199,88 @@ public void writeProduct2(GigaSpace gigaspace) {
     gigaspace.write(document);
 }
 ```
+You can map JSON to and from a SpaceDocument with any parser. Here is an example:
+ 
+	          
+```java
+package xap.sandbox.document;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.openspaces.core.GigaSpace;
+import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.EmbeddedSpaceConfigurer;
+
+import com.gigaspaces.document.SpaceDocument;
+import com.gigaspaces.metadata.SpaceTypeDescriptor;
+import com.gigaspaces.metadata.SpaceTypeDescriptorBuilder;
+import com.gigaspaces.metadata.index.SpaceIndexType;
+import com.j_spaces.core.client.SQLQuery;
+
+public class ConvertJSONTODocument {
+
+	@SuppressWarnings("unchecked")
+	public static void main (String[] args) throws JsonGenerationException, JsonMappingException, IOException{
+		
+		GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpace")).gigaSpace();
+		
+		/****
+	     * We Need to Register a type by specifying a name, id, and routing field.
+	     * Routing is used to partition data across the grid, similar to a shard key 
+	     * This only needs to be done once 
+	     */
+	    final String PRODUCT_TYPE_NAME = "Product";
+
+	    SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder(PRODUCT_TYPE_NAME)
+	                .idProperty("id")
+	                .routingProperty("location")
+	                .addPropertyIndex("processed", SpaceIndexType.BASIC)
+	                .create();
+
+	    gigaSpace.getTypeManager().registerTypeDescriptor(typeDescriptor);
+
+	    /****
+	     * Example JSON payload containing the properties 
+	     * of the new Type. In this example we use jaxson object mapper.
+	     * You can use any parser you would like
+	     */
+	    String jsonPayload = "{\"id\":1, \"location\":\"usa\", \"processed\":false}";
+
+		HashMap<String,Object> jsonProperties =
+	            new ObjectMapper().readValue(jsonPayload, HashMap.class);
+
+	    /****
+	     * Convert to a space document simply pass the hash map to the 
+	     * in to the SpaceDocument Constructor along with the document type name
+	     * from above
+	     */
+	    SpaceDocument dataAsDocument = new SpaceDocument(PRODUCT_TYPE_NAME, jsonProperties);
+
+	    /***
+	     * Insert to the grid
+	     */
+	    gigaSpace.write(dataAsDocument);
+
+	    /***
+	     * To confirm the result. Read the document from the grid
+	     */
+	    SpaceDocument dataAsDocumentFromGrid = gigaSpace.read(new SQLQuery<SpaceDocument>(PRODUCT_TYPE_NAME, "id = ?", 1));
+
+	    /***
+	     * Map the Object back to JSON
+	     */
+	    String jsonFromGrid = new ObjectMapper().writeValueAsString(dataAsDocumentFromGrid);
+	    
+	    System.out.println(jsonFromGrid);
+	}
+}
+```
+
+
 
 {{% note %}}
 - The `GigaSpace.writeMultiple` method can be used to write a batch of documents.
