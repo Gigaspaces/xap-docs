@@ -55,13 +55,13 @@ In a production environment, you'll probably want a cluster of managers on multi
 
 ## Ports
 
-Port configurations:
+The following ports can be modified using system properties, e.g. via the `setenv-overrides` script located in `$XAP_HOME/bin`:
 
 |Port   |System property |Default  |
 |-------|----------------|---------|
-|REST |com.gs.manager.rest.port| 8090|
-|Zookeeper |com.gs.manager.zookeeper.discovery.port<br>com.gs.manager.zookeeper.leader-election.port |2888<br>3888|
-|Lookup Service|com.gs.multicast.discoveryPort|4174 |
+|REST |`com.gs.manager.rest.port`| 8090|
+|Zookeeper |`com.gs.manager.zookeeper.discovery.port`<br>`com.gs.manager.zookeeper.leader-election.port` |2888<br>3888|
+|Lookup Service|`com.gs.multicast.discoveryPort`|4174 |
 
 {{%note "Note:"%}}
 Zookeeper requires that each manager can reach any other manager. If you are changing the Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the `XAP_MANAGER_SERVERS` environment variable.  For example:
