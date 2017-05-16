@@ -51,6 +51,8 @@ In a production environment, you'll probably want a cluster of managers on multi
 2. Copy the modified `setenv-overrides.sh/bat` to each machine which runs a `gs-agent`.
 3. Run `gs-agent --manager` on the manager machines (alpha, bravo, charlie, in this case).
 
+Note that starting more than one manager on the same host is not supported.
+
 # Configuration
 
 ## Ports
