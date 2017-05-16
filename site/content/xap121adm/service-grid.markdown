@@ -80,17 +80,16 @@ Usually, each machine runs a single gs-agent. If you're setting up multiple Serv
 
 The gs-agent exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API]({{% currentjavaurl%}}/administration-and-monitoring-api.html) or the GigaSpaces UI.
 
+# High Availability
+
+High availability is acheived by redundancy. The recommended way is to setup and start 3 XAP Managers (See [XAP Manager High Availability](xap-manager.html#high-availability). 
+
+Alternatively, it's possible to manually configure and start multiple LUS and GSM instances. For more information on this see:
+
+* [Global vs. Local LUS](lus-configuration.html)
+* [Global vs. Local GSM](gsm-configuration.html)
+
 # Advanced
-
-## High Availability
-
-{{% tip%}}
-It is common to start two GSM instances in each Service Grid for high-availability reasons: At any given point in time, each deployed processing unit is managed by a one GSM instance, and the other GSM(s) serve as its hot standby. If the active GSM fails for some reason, one of the standbys automatically takes over and start managing and monitoring the processing units that the failed GSM managed.
-{{% /tip%}}
-
-{{% tip%}}
-It is common to start at least two LUS instances in each Service Grid for high-availability reasons. Note that the lookup service can run in the same process with a GSM, or in standalone mode using its own process.
-{{% /tip%}}
 
 ## Process Management
 
