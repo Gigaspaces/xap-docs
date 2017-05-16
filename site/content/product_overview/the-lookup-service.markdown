@@ -56,8 +56,9 @@ All GSCs advertise themselves on the Lookup Service. Once these are registered t
 # Space Instance Registration
 
 {{% imagertext "/attachment_files/lus4.jpg" %}}
-Space instances register themselves with the lookup service. Space instances go through an active-election process, discovering current instances and electing a primary
-Active-election is 3-phase procedure: pending, prepare, active
+Space instances register themselves with the lookup service, so they can be discovered and used by clients. 
+
+In addition, when leader election is required and XAP Manager is not used, the lookup service is used for leader election as well, discovering current instances and electing a primary Active-election using 3-phase procedure (pending, prepare, active).
 {{% /imagertext%}}
 
 
