@@ -8,6 +8,10 @@ weight: 700
 
 {{%ssummary%}}{{%/ssummary%}}
 
+{{%note "This page is irrelevant for XAP Manager"%}}
+This page explains how to setup multiple LUSs manually to achieve high availability. This technique is still supported, but outdated, and will be phased out in the future. It's highly recommended to use [XAP Manager](xap-manager.html) instead, which is both easier to use and provides superior [high availability](xap-manager.html#high-availability).
+{{%/note%}}
+
 {{%anchor global-lus%}}
 
 # Global LUS
