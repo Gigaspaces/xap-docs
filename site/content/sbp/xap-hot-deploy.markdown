@@ -2,8 +2,8 @@
 type: post
 title:  Hot deploy
 categories: SBP
-weight: 2100
-parent: production.html
+weight: 100
+parent: hot-deploy.html
 ---
 
 

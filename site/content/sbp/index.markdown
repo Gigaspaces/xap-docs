@@ -107,6 +107,7 @@ The patterns below are presented as is. While most of them are used in real life
 |[Managing XAP with init.d](./initd.html)| Beginner | This pattern explains how to manage XAP with init.d.|
 |[Ensuring Accurate Time Across the Cluster](./cluster-time-sync.html)| Beginner | This pattern explains how to setup cluster wide time synchronization.|
 |[XAP Hot Deploy](./xap-hot-deploy.html)| Advanced | This tool allows business logic to be refreshed without any system downtime and data loss.|
+|[Dynamic Processing](./xap-dynamic-processing.html)| Advanced | Example how to deploy dynamic business logic|
 |[Refresh Business Logic](./refreshable-business-logic-example.html)| Advanced | Example how to refresh  business logic|
 
 
