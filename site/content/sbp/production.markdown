@@ -23,8 +23,6 @@ weight: 300
 
 [Mirror Monitor](./mirror-monitor.html)
 
-[Primary-Backup Zone Controller](./primary-backup-zone-controller.html)
-
 [Safe Grid Shutdown](./safe-grid-shutdown.html)
 
 [Scaling Agent](./scaling-agent.html)

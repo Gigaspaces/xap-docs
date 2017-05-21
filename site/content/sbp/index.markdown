@@ -97,8 +97,6 @@ The patterns below are presented as is. While most of them are used in real life
 |[Mirror Monitor](./mirror-monitor.html)| Beginner | Monitoring asynchronous persistency behavior in real time using JMX.|
 |[Safe Grid Shutdown](./safe-grid-shutdown.html)| Beginner | Cleanly shutting down the grid after all async replication operations are committed.|
 |[Hyperic integration](./hyperic-integration.html)| Beginner | Hyperic monitoring integration example.|
-|[Primary-Backup Zone Controller](./primary-backup-zone-controller.html)|Beginner | Using Zones to control Data-Grid primary/backup instances location.|
-|[RESTful Admin API](http://www.openspaces.org/display/RES/Project+Documentation)| Beginner | Using web services to monitor and administrate GigaSpaces.|
 |[Scaling Agent](./scaling-agent.html)| Beginner | Using the administration API to scale web applications. Can be used when moving **J2EE Web applications** into XAP elastic Web Container.|
 |[Web Load Balancer Agent PU](./web-load-balancer-agent-pu.html)| Advanced | Using the administration API to build customized HTTP load-balancer agent. Can be used when moving **J2EE Web applications** into XAP elastic Web Container.|
 |[Capacity Planning](./capacity-planning.html)| Advanced | Considerations for sizing your system before moving into production.|
