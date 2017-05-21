@@ -116,13 +116,13 @@ The example includes:
 This demo will illustrate how collocated polling containers can be swapped without any downtime.  It is using the [@SupportCodeChange]({{%latestjavaurl%}}/the-space-no-restart.html) functionality available with 12.1.
 
 Download the example:<br>
-[Dynamic PU](/download_files/sbp/hotdeploy/DynamicPC.zip) <br>
+[Client Applications](/download_files/sbp/hotdeploy/DynamicPC.zip) <br>
 [Space PU](/download_files/sbp/hotdeploy/space-pu.zip)
 
 Basic running instructions:
 
-1. Compile the provided classes. Package the pu.xml and the Data class within a jar file or load into your IDE. Use a separate project for the pu.xml.
-2. Deploy the space using the provided pu.xml. Include the Data class as part of the PU. You can deploy a single or clustered space. You may deploy the pu.xml without your IDE using the IntegratedProcessingUnitContainer or into a GSC. The PU or IDE project using the pu.xml
+1. Compile the provided classes within the Client Applications package. 
+2. Deploy the Space PU into a GSC or run pu.xml within your IDE using IntegratedProcessingUnitContainer. Make sure Data class be included with the pu.xml IDE project. Use a separate project for the pu.xml. You can deploy a single or clustered space. 
 3. Once the space is running , Start polling containers using MainTaskExecutor class. Please do not run this using the same project as the space in case you use IDE to run this demo. Use different projects for the space PU and client.
 4. Start the feeder using the Feeder class. This will write Data objects into the space. The existing running collocated Processor will take these and “process” these.
 5. Change the StartPollingContainerTask version to “2” by updating the SupportCodeChange id property to have the value 2. You may change the Processor class as needed. Compile the StartPollingContainerTask and the Processor.
