@@ -93,9 +93,15 @@ With our example below we have:
 - MainTaskExecutor – Responsible to execute StartPollingContainerTask against the space. The StartPollingContainerTask delivers new versions of Processor object to the space. Once the Task is executed it stops existing polling containers running (in case such exists) and starting a new one using the encapsulated Processor class.
 - SpaceModeListener – Responsible to identify primary instance failure and execute the StartPollingContainerTask against the new Primary (previously backup instance) to resume the processing activity.
 
+
+![pic](/attachment_files/hotdeploy/dynamic-processing-1.png)
+
+
 Once a new version of the processor is available (V2), you may call the Task Executor again with a new
 version ID of the StartPollingContainerTask (V2). This will replace the existing PollingContainer that is
 using V1 Processor with V2.
+
+![pic](/attachment_files/hotdeploy/dynamic-processing-2.png)
 
 
 #  Running the Example
@@ -109,7 +115,12 @@ The example includes:
 - Processor class implements SpaceDataEventListener – This is the polling container DataEventListener that performs the actual processing.
 - StartPollingContainerTask class – A DistributedTask implementation that start a processor object. It will stop an existing processor in case such is already running.
 - StopPollingContainerTask class - A DistributedTask implementation that stop a processor object. You may use it when required.
-- pu.xml - Processing unit configuration file that include the space and a singleton object that holds the existing polling container. Note the pu.xml includes the following: &lt;bean id = &quot;eventContainerList&quot; class = &quot;java.util.ArrayList&quot; scope = &quot;singleton&quot;&gt;&lt;/bean&gt;
+- pu.xml - Processing unit configuration file that include the space and a singleton object that holds the existing polling container.
+   Note the pu.xml includes the following: 
+   
+```xml
+<id ="eventContainerList" class ="java.util.ArrayList" scope="singleton" />
+```
 - SpaceModeListener implements SpaceModeChangedEventListener – This identify primary instance failure and execute StartPollingContainerTask with latest version of the Processor.
 
 
