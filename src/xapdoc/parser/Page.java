@@ -2,11 +2,11 @@ package xapdoc.parser;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Properties;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Page implements Comparable<Page> {
+
+    private static final Collection<String> NEW_VERSIONS = Arrays.asList("10.1", "10.2");
 
     private final boolean index;
     private final String id;
@@ -27,7 +27,7 @@ public class Page implements Comparable<Page> {
         this.title = properties.getProperty("title");
         this.weight = properties.containsKey("weight") ? Long.valueOf(properties.getProperty("weight")) : null;
 		
-		if (tokens[1].equals("10.1")) {
+		if (NEW_VERSIONS.contains(tokens[1])) {
 			String prefix = tokens[0] + "/" + tokens[1] + "/" + tokens[2] + "/";
 			this.href = index ? prefix : prefix + file.getName().replace(".markdown", ".html");
 		} else {
@@ -57,7 +57,7 @@ public class Page implements Comparable<Page> {
         String category = toCategory(s);
         return new String[] {product, version, category};
     }
-
+		
     private static String toCategory(String s) {
         if (s.equals("adm"))
             return "admin";
@@ -69,7 +69,7 @@ public class Page implements Comparable<Page> {
             return "dev-dotnet";
         if (s.equals("tut"))
             return "tut-java";
-        if (s.equals("tutnet"))
+        if (s.equals("nettut"))
             return "tut-dotnet";
 
         return s;

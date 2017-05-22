@@ -32,12 +32,10 @@ public class MenuTree {
         Map<Integer, Collection<File>> xapFolders = getProductFolders(contentPath);
         for (Map.Entry<Integer, Collection<File>> entry : xapFolders.entrySet()) {
             if (OLD_VERSIONS.contains(entry.getKey())) {
-				info("old version " + entry.getKey());
                 for (File folder : entry.getValue()) {
                     instance.processDir(folder);
                 }
             } else {
-				info("new version " + entry.getKey());
                 instance.processVersion(entry.getKey(), entry.getValue());
             }
         }
