@@ -1,7 +1,8 @@
 ---
 type: post101
-title:  .Net Developers Guide
+title: .NET Developers Guide
 categories: XAP101NET
+weight: 200
 ---
 
 
