@@ -1,8 +1,8 @@
 ---
 type: post120
-title:  Deployment and Administration
+title:  Administrators Guide
 categories: XAP120ADM
-
+weight: 300
 ---
 
 

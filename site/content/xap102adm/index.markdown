@@ -1,8 +1,8 @@
 ---
 type: post102
-title:  Deployment and Administration
+title:  Administrators Guide
 categories: XAP102ADM
-
+weight: 300
 ---
 
 

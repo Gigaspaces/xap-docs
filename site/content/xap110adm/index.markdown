@@ -1,8 +1,8 @@
 ---
 type: post110
-title:  Deployment and Administration
+title:  Administrators Guide
 categories: XAP110ADM
-
+weight: 300
 ---
 
 

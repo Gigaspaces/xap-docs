@@ -6,12 +6,13 @@
         <div id="breadcrumbs" class="row">
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-home fa-lg"></i></a></li>
-                {{ if in .Permalink "xap120nettut"}}<li><a href="/xap120nettut">12.0 .Net Tutorial</a></li>
-                {{ else if in .Permalink "xap120sec"}}<li><a href="/xap120sec">12.0 Security</a></li>
-                {{ else if in .Permalink "xap120net"}}<li><a href="/xap120net">12.0 .Net</a></li>
-                {{ else if in .Permalink "xap120adm"}}<li><a href="/xap120adm">12.0 Administration</a></li>
-                {{ else if in .Permalink "xap120tut"}}<li><a href="/xap120tut">12.0 Java Tutorial</a></li>
-                {{ else if in .Permalink "xap120"}}<li><a href="/xap120">12.0 Java</a></li>
+				<li><a href="/xap120">12.0</a></li>
+                {{ if in .Permalink "xap120nettut"}}<li><a href="/xap120nettut">.NET Tutorial</a></li>
+                {{ else if in .Permalink "xap120sec"}}<li><a href="/xap120sec">Security Guide</a></li>
+                {{ else if in .Permalink "xap120net"}}<li><a href="/xap120net">.NET Developers Guide</a></li>
+                {{ else if in .Permalink "xap120adm"}}<li><a href="/xap120adm">Administration Guide</a></li>
+                {{ else if in .Permalink "xap120tut"}}<li><a href="/xap120tut">Java Tutorial</a></li>
+                {{ else if in .Permalink "xap120"}}<li><a href="/xap120">Java Developer Guide</a></li>
                 {{end}}
                 <li class="active">{{.Title}}</li>
             </ol>
@@ -21,12 +22,7 @@
             <div id="leftbar-div" class="col-md-2 hidden-xs">
                 <div class="leftbar">
                     <ul class="treeview" id="tree">
-                        {{ if in .Permalink "xap120nettut"}}{{ partial "sidenav-xap120nettut.html" .}}
-                        {{ else if in .Permalink "xap120sec"}}{{ partial "sidenav-xap120sec.html" .}}
-                        {{ else if in .Permalink "xap120net"}}{{ partial "sidenav-xap120net.html" .}}
-                        {{ else if in .Permalink "xap120adm"}}{{ partial "sidenav-xap120adm.html" .}}
-                        {{ else if in .Permalink "xap120tut"}}{{ partial "sidenav-xap120tut.html" .}}
-                        {{ else if in .Permalink "xap120"}}{{ partial "sidenav-xap120.html" .}}
+                        {{ if in .Permalink "xap120"}}{{ partial "sidenav-xap120.html" .}}
                         {{end}}
                     </ul>
                 </div>

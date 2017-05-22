@@ -6,7 +6,7 @@ import java.util.*;
 public class MenuTree {
 
     private static final boolean DEBUG_ENABLED = false;	
-    private static final Collection<Integer> NEW_STRUCTURE_VERSIONS = Arrays.asList(101, 121);
+    private static final Collection<Integer> OLD_VERSIONS = Arrays.asList(97, 100);
     private static String BASE_PATH;
 
     private static final String[] SHARED_DIRS = new String[] {
@@ -31,12 +31,14 @@ public class MenuTree {
             instance.processDir(new File(contentPath + dir));
         Map<Integer, Collection<File>> xapFolders = getProductFolders(contentPath);
         for (Map.Entry<Integer, Collection<File>> entry : xapFolders.entrySet()) {
-            if (NEW_STRUCTURE_VERSIONS.contains(entry.getKey())) {
-                instance.processVersion(entry.getKey(), entry.getValue());
-            } else {
+            if (OLD_VERSIONS.contains(entry.getKey())) {
+				info("old version " + entry.getKey());
                 for (File folder : entry.getValue()) {
                     instance.processDir(folder);
                 }
+            } else {
+				info("new version " + entry.getKey());
+                instance.processVersion(entry.getKey(), entry.getValue());
             }
         }
 

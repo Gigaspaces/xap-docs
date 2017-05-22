@@ -2,6 +2,7 @@
 type: post102
 title:  Java Developers Guide
 categories: XAP102
+weight: 100
 ---
 
 
