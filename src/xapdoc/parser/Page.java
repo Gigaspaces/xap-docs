@@ -12,22 +12,67 @@ public class Page implements Comparable<Page> {
     private final String id;
     private final String title;
     private final Long weight;
+    private final String href;
     private final String parent;
     private final TreeSet<Page> children = new TreeSet<Page>();
 
     public Page(File file, boolean groupingMode) throws IOException {
         String category = file.getParentFile().getName();
+		String[] tokens = parseCategory(category);
         this.index = file.getName().equals("index.markdown");
-        this.id = category + "/" + (index ? "" : file.getName().replace(".markdown", ""));
+		String filename = index ? "" : file.getName().replace(".markdown", "");
+        this.id = category + "/" + filename;
+		
         Properties properties = extractProperties(file);
         this.title = properties.getProperty("title");
         this.weight = properties.containsKey("weight") ? Long.valueOf(properties.getProperty("weight")) : null;
+		
+		if (tokens[1].equals("10.1")) {
+			String prefix = tokens[0] + "/" + tokens[1] + "/" + tokens[2] + "/";
+			this.href = index ? prefix : prefix + file.getName().replace(".markdown", ".html");
+		} else {
+			this.href = index ? id : id + ".html";			
+		}
         String parent = properties.getProperty("parent", "none");
         if (parent.equals("none")) {
             this.parent = groupingMode && !index ? category + "/" : "";
         } else {
             this.parent = category + "/" + (parent.startsWith("index.") ? "" : parent.replace(".html", ""));
         }
+    }
+	
+    private static String[] parseCategory(String s) {
+		if (!s.startsWith("xap"))
+			return new String[] {"xap", "", s};
+        final String product  = s.substring(0, 3); // "xap"
+        s = s.substring(product.length());
+
+        String version = "";
+        for (;s.length() != 0 && Character.isDigit(s.charAt(0)) ; s = s.substring(1)) {
+            version += s.charAt(0);
+        }
+        // "nnn" => "nn.n"
+        version = version.substring(0, version.length() - 1) + "." + version.charAt(version.length()-1);
+
+        String category = toCategory(s);
+        return new String[] {product, version, category};
+    }
+
+    private static String toCategory(String s) {
+        if (s.equals("adm"))
+            return "admin";
+        if (s.equals("sec"))
+            return "security";
+        if (s.equals(""))
+            return "dev-java";
+        if (s.equals("net"))
+            return "dev-dotnet";
+        if (s.equals("tut"))
+            return "tut-java";
+        if (s.equals("tutnet"))
+            return "tut-dotnet";
+
+        return s;
     }
 
     private static Properties extractProperties(File file) throws IOException {
@@ -92,7 +137,7 @@ public class Page implements Comparable<Page> {
     }
 
     public String getHref() {
-        return index ? id : id + ".html";
+		return href;
     }
 
     public TreeSet<Page> getChildren() {
