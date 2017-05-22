@@ -6,9 +6,9 @@ set -e
 hugo_0.17/hugo -s ./site -d ../_site 
 
 # 10.1 redirects
-mkdir -p _site/xap/10.1/dev-java & cp -R _site/xap101/* _site/xap/10.1/dev-java
-mkdir -p _site/xap/10.1/dev-dotnet & cp -R _site/xap101net/* _site/xap/10.1/dev-dotnet
-mkdir -p _site/xap/10.1/tut-java & cp -R _site/xap101tut/* _site/xap/10.1/tut-java
-mkdir -p _site/xap/10.1/tut-dotnet & cp -R _site/xap101nettut/* _site/xap/10.1/tut-dotnet
-mkdir -p _site/xap/10.1/admin & cp -R _site/xap101adm/* _site/xap/10.1/admin
-mkdir -p _site/xap/10.1/security & cp -R _site/xap101sec/* _site/xap/10.1/security
+mv _site/xap101 _site/xap/10.1/dev-java
+mv _site/xap101net _site/xap/10.1/dev-dotnet
+mv _site/xap101tut _site/xap/10.1/tut-java
+mv _site/xap101nettut _site/xap/10.1/tut-dotnet
+mv _site/xap101adm _site/xap/10.1/admin
+mv _site/xap101sec _site/xap/10.1/security
