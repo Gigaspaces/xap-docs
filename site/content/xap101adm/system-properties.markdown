@@ -10,7 +10,7 @@ weight: 400
 
 # Administration
 
-{{% include "/COM/xap101/config-admin.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-admin.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|----|------|
@@ -25,7 +25,7 @@ weight: 400
 
 # Deployment
 
-{{% include "/COM/xap101/config-deploy.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-deploy.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|------|------|
@@ -39,7 +39,7 @@ weight: 400
 
 # Security
 
-{{% include "/COM/xap101/config-security.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-security.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|------|---------|
@@ -50,7 +50,7 @@ weight: 400
 
 # PU
 
-{{% include "/COM/xap101/config-pu.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-pu.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|-----|------|
@@ -62,7 +62,7 @@ weight: 400
 
 ## Transport
 
-{{% include "/COM/xap101/config-lrmi-transport.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-lrmi-transport.markdown" %}}
 
 | Property name | Description | Default   | Server Client  | Unit | Can be overridden at the client side|
 |:----------------|:------------|:--------------|:----------------------|:-----|:------------------------------------|
@@ -97,7 +97,7 @@ Refer to [Tuning the communication protocol](./tuning-communication-protocol.htm
 
 ## Filter
 
-{{% include "/COM/xap101/config-lrmi-filter.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-lrmi-filter.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|-----|------|
@@ -110,7 +110,7 @@ Refer to [Tuning the communication protocol](./tuning-communication-protocol.htm
 
 # JMS
 
-{{% include "/COM/xap101/config-jms.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-jms.markdown" %}}
 
 
 | Property name | Description | Default   |
@@ -130,7 +130,7 @@ Refer to [Messaging support]({{%currentjavaurl%}}/messaging-support.html)
 
 # JMX
 
-{{% include "/COM/xap101/config-jmx.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-jmx.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|------|------|
@@ -146,7 +146,7 @@ Refer to [JMX Management](./space-jmx-management.html)
 
 # Multicast
 
-{{% include "/COM/xap101/config-multicast.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-multicast.markdown" %}}
 
 
 
@@ -165,7 +165,7 @@ Refer to [Multicast Settings](./network-lookup-service-configuration.html#multic
 
 # Web
 
-{{% include "/COM/xap101/config-web.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-web.markdown" %}}
 
 
 | Property name | Description | Default   |
@@ -182,7 +182,7 @@ Refer to [Multicast Settings](./network-lookup-service-configuration.html#multic
 
 # Space Filter
 
-{{% include"/COM/xap101/config-space-filter.markdown" %}}
+{{% include"/COM/xap/10.1/dev-java/config-space-filter.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|-----|----|
@@ -198,7 +198,7 @@ Refer to [Space Filters]({{%currentjavaurl%}}/the-space-filters.html)
 
 # Logging
 
-{{% include "/COM/xap101/config-logging.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-logging.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|-----|------|
@@ -216,7 +216,7 @@ Refer to [Logging](./logging-overview.html)
 
 # Debug
 
-{{% include "/COM/xap101/config-debug.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-debug.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|------|-----|
@@ -227,12 +227,12 @@ Refer to [Logging](./logging-overview.html)
 
 # Fault Detection
 
-{{% include "/COM/xap101/config-fault-detection.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-fault-detection.markdown" %}}
 
 
 # Space Proxy Router
 
-{{% include "/COM/xap101/config-space-proxy-router.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-space-proxy-router.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|-----|-------|
@@ -246,7 +246,7 @@ Refer to [Logging](./logging-overview.html)
 
 ### Server side
 
-{{% include "/COM/xap101/config-slow-consumer-server.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-slow-consumer-server.markdown" %}}
 
 | Property name | Description | Default   | Unit|
 |-----|-------|------|-----|
@@ -258,7 +258,7 @@ Refer to [Logging](./logging-overview.html)
 
 ### Client side
 
-{{% include "/COM/xap101/config-slow-consumer-client.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-slow-consumer-client.markdown" %}}
 
 | Property name | Description | Default| Unit|
 |-----|-----|-----|------|
@@ -273,7 +273,7 @@ Refer to [Slow consumer](./slow-consumer.html)
 
 # Cluster
 
-{{% include "/COM/xap101/config-cluster.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-cluster.markdown" %}}
 
 | Property name | Description | Default   |
 |-------|------|------|
@@ -296,7 +296,7 @@ Refer to [Data Grid Clustering](./data-grid-clustering.html)
 
 # Replication
 
-{{% include "/COM/xap101/config-replication.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-replication.markdown" %}}
 
 | Property name | Description | Default   |
 |-------|------|-------|
@@ -310,7 +310,7 @@ Refer to [Replication](./replication.html)
 
 # Space Browser
 
-{{% include "/COM/xap101/config-space-browser.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-space-browser.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|------|------|
@@ -322,7 +322,7 @@ Refer to [Replication](./replication.html)
 
 # XML
 
-{{% include "/COM/xap101/config-xml.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-xml.markdown" %}}
 
 
 | Property name | Description | Default   |
@@ -333,7 +333,7 @@ Refer to [Replication](./replication.html)
 
 # Transaction
 
-{{% include "/COM/xap101/config-transaction.markdown" %}}
+{{% include "/COM/xap/10.1/dev-java/config-transaction.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|-----|----|

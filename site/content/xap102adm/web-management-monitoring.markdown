@@ -29,7 +29,7 @@ Once enabled, XAP reports metrics to InfluxDB, and the Web Management Console pr
 InfluxDB and Grafana are both open-source and free, but are not bundled in XAP distribution. Installation is straight-forward, as described below. Note that XAP's default metrics configuration is set to match the default settings of InfluxDB and Grafana, so if this is your first time we recommend sticking with the defaults to simplify the process.
 
 {{%info "Modified In 10.2.1"%}}
-The Web Management Console now uses Grafana 2.x, which requires a separate download and different configuration, whereas XAP 10.2.0 uses Grafana 1.x which was embedded in the Web Server. This page is relevant for 10.2.1. If you're looking for the previous version, please refer to [10.1 docs](../xap101adm/web-management-monitoring.html).
+The Web Management Console now uses Grafana 2.x, which requires a separate download and different configuration, whereas XAP 10.2.0 uses Grafana 1.x which was embedded in the Web Server. This page is relevant for 10.2.1. If you're looking for the previous version, please refer to [10.1 docs](../../10.1/admin/web-management-monitoring.html).
 {{%/info%}}
 
 ## Installation

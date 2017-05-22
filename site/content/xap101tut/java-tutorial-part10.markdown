@@ -82,7 +82,7 @@ Note that the monitoring is secured only by the 'tooling' (CLI/UI).
 |Monitor PU	 |Monitoring of Processing Units (classes, connections, statistics, etc.)|
 
 
-{{%learn "/xap101sec/security-authorities.html"%}}
+{{%learn "/xap/10.1/security/security-authorities.html"%}}
 
 
 # Managing Roles
@@ -116,7 +116,7 @@ The default username and password for the security are admin/admin.
 
 You may have noticed that you can assign fine grained access control for space operations (read/write/etc) per space class(slide 4).
 
-{{%learn "/xap101sec/gigaspaces-management-center-ui-security.html"%}}
+{{%learn "/xap/10.1/security/gigaspaces-management-center-ui-security.html"%}}
 
 
 # Managing Users
@@ -177,7 +177,7 @@ private Role createRole() {
 {{% /tab  %}}
 {{% /tabs %}}
 
-{{%learn "/xap101sec/gigaspaces-management-center-ui-security.html"%}}
+{{%learn "/xap/10.1/security/gigaspaces-management-center-ui-security.html"%}}
 
 
 # Securing XAP Components
@@ -240,7 +240,7 @@ public void setupSpace()
 
 
 
-{{%learn "/xap101sec/securing-your-data.html"%}}
+{{%learn "/xap/10.1/security/securing-your-data.html"%}}
 
 
 
@@ -257,14 +257,14 @@ Grid Security is enabled in XAP by setting a global system property. This system
 
 This property affects the GSA, GSM, GSC and standalone PU instances with a space.
 
-{{%learn "/xap101sec/securing-the-grid-services.html"%}}
+{{%learn "/xap/10.1/security/securing-the-grid-services.html"%}}
 
 
 
 ### Transport Security
 The transport layer can be secured using an SSL communication filter.
 
-{{%learn "/xap101sec/securing-the-transport-layer-using-ssl.html"%}}
+{{%learn "/xap/10.1/security/securing-the-transport-layer-using-ssl.html"%}}
 
 
 {{%info%}}This concludes this tutorial. For more detailed information of the XAP platform and its API please consult the [Programmers Guide]({{%currentjavaurl%}}) {{%/info%}}

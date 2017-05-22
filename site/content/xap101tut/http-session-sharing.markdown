@@ -251,4 +251,4 @@ http://localhost:8081/demo-app2
 {{%/panel%}}
 
 
-{{%learn "/xap101/global-http-session-sharing-overview.html"%}}
+{{%learn "/xap/10.1/dev-java/global-http-session-sharing-overview.html"%}}

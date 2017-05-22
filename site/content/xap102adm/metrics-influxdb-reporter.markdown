@@ -11,7 +11,7 @@ GigaSpaces XAP is shipped with built-in support for [InfluxDB](http://influxdb.c
 Configuration takes place in `metrics.xml`, which resides in `XAP_HOME/config/metrics`. For more information see [Configuration](./metrics-configuration.html).
 
 {{%info "Modified In 10.2.1"%}}
-The InfluxDB reporter now supports InfluxDB 0.9.x, whereas the InfluxDB reporter in XAP 10.2.0 supports InfluxDB 0.8. As a result, there have been some minor changes in configuration options, which are reflected in this page. If you're looking for the InfluxDB 0.8.x integration details, please refer to [10.1 docs](../xap101adm/metrics-influxdb-reporter.html).
+The InfluxDB reporter now supports InfluxDB 0.9.x, whereas the InfluxDB reporter in XAP 10.2.0 supports InfluxDB 0.8. As a result, there have been some minor changes in configuration options, which are reflected in this page. If you're looking for the InfluxDB 0.8.x integration details, please refer to [10.1 docs](../../10.1/admin/metrics-influxdb-reporter.html).
 {{%/info%}}
 
 # Usage

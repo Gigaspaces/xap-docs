@@ -392,7 +392,7 @@ Here is an example of how to define security with an embedded space. In this cas
 
 It is possible to configure the space to be secured using deploy time properties (bean level properties), without declaring the security element. The `security.username` and `security.password` can be provided, and the spaces defined within the processing unit are automatically secured.
 
-{{%learn "/xap101sec"%}}
+{{%learn "/xap/10.1/security"%}}
 
 
 # Persistency

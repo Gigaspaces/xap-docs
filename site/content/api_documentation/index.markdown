@@ -124,7 +124,7 @@ This page provides links to the API documentation and related resources for each
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs10.1/)
 - [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs10.1/annotated.html)
 - [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs10.1)
-- [REST API](/xap101/rest-service-api.html)
+- [REST API](/xap/10.1/dev-java/rest-service-api.html)
 - [Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs10.1/apidocs/)
 - [Cassandra-Datasource API Documentation](http://www.gigaspaces.com/docs/cassandra-docs10.1/apidocs/)
 {{%/tab%}}
