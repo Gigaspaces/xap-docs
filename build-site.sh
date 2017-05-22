@@ -6,6 +6,7 @@ set -e
 hugo_0.17/hugo -s ./site -d ../_site 
 
 # 10.1 redirects
+mkdir -p _site/xap/10.1
 mv _site/xap101 _site/xap/10.1/dev-java
 mv _site/xap101net _site/xap/10.1/dev-dotnet
 mv _site/xap101tut _site/xap/10.1/tut-java
