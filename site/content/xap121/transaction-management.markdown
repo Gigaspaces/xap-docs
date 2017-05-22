@@ -429,34 +429,43 @@ If you don't want to leverage {{%exurl "Spring's declarative transaction managem
 
 Here is how you should use the Transaction manager via the API:
 
-Get a reference to the relevant `PlatformTransactionManager`:
-
+1. Create a Transaction Manager using:
 
 ```java
 PlatformTransactionManager ptm = new DistributedJiniTxManagerConfigurer().transactionManager();
 ```
 
-or
+or get a reference to an exiting Transaction Manager:
 
 
 ```java
 PlatformTransactionManager ptm = new LookupJiniTxManagerConfigurer().lookupTimeout(5000).transactionManager();
 ```
 
-Use the `GigaSpace` to execute space operations and rollback/commit using the `PlatformTransactionManager` created:
+2. Create a `GigaSpace` using the relevant API and have the 'transactionManager' associated with it :
+
+```java
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).transactionManager(ptm).gigaSpace();
+```
+
+
+Here is a full example where the `GigaSpace` used to execute space operations and rollback/commit using the `DistributedJiniTxManagerConfigurer` created without having spring involved:
 
 
 ```java
-GigaSpace gigaSpace = ...//get reference to a GigaSpace instance
-PlatformTransactionManager ptm = ... //get a reference to a XAP PlatformTransactionManager
- // instance as described in step one above.
- // Use the relevant type based on the nature of the business logic behavior.
+//get reference to a GigaSpace instance - with the example below we use a remote proxy
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).transactionManager(ptm).gigaSpace();
+
+//get a reference to a XAP PlatformTransactionManager instance as described in step one above.
+PlatformTransactionManager ptm = new DistributedJiniTxManagerConfigurer().commitTimeout(2000L).defaultTimeout(30).transactionManager();
+
 DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
-//configure the definition...
+//configure the transaction definition
 definition.setPropagationBehavior(Propagation.REQUIRES_NEW.ordinal());
 TransactionStatus status = ptm.getTransaction(definition);
 try {
     //do things with the GigaSpace instance...
+    gigaSpace.write(myObject);
 }
 catch (MyException e) {
     ptm.rollback(status);
