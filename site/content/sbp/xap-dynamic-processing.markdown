@@ -9,7 +9,7 @@ parent: hot-deploy.html
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Shay Hassidim | 12.0 | May 2017|  [No Space restart]({{%latestjavaurl%}}/the-space-no-restart.html) |      |
+| Shay Hassidim | 12.1 | May 2017|  [No Space restart]({{%latestjavaurl%}}/the-space-no-restart.html) |      |
 
 
 #  Dynamic Processing
