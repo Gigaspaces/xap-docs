@@ -14,15 +14,15 @@ parent: hot-deploy.html
 
 #  Dynamic Processing
 {{%imagertext "/attachment_files/hotdeploy/zero-downtime.png" %}}
-Data processing in real-time microservices oriented systems may handle unstructured data , data that
-may be feed by very disparate systems. Data may be sent from IoT , FiS , Life science , media , Telco ,
+Data processing in real-time micro services oriented systems may handle unstructured data , data that
+may be feed by very disparate systems. Data may be sent from IoT,FiS,Life science,media,Telco,
 Logistics and other mission critical systems. Such data may be sent into an edge or a central system
-running on the cloud or a private data center for processing."
+running on the cloud or a private data center for processing.
 
-This incoming data may need to go through complex flow of validation , formatting , transformation ,
-enrichment, aggregation etc. before it can be used by the backend system. Quick access to this data
-with minimal serialization and network utilization is essential to the system scalability , availability ,
-reliability, optimized &amp; effective resource utilization, and overall system agility.
+This incoming data may need to go through complex flow of validation, formatting, transformation, enrichment,
+aggregation etc. before it can be used by the backend system. Quick access to this data
+with minimal serialization and network utilization is essential to the system scalability,availability,
+reliability,optimized; effective resource utilization and overall system agility.
 
 The best approach to achieve such system behavior is to consume and process the data exactly where it
 is hitting its data store fabric. This means there is no need to move the incoming data into another
