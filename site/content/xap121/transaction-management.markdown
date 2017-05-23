@@ -429,7 +429,7 @@ If you don't want to leverage {{%exurl "Spring's declarative transaction managem
 
 Here is how you should use the Transaction manager via the API:
 
-1. Create a Transaction Manager using:
+**1.** Create a Transaction Manager using:
 
 ```java
 PlatformTransactionManager ptm = new DistributedJiniTxManagerConfigurer().transactionManager();
@@ -442,7 +442,7 @@ or get a reference to an exiting Transaction Manager:
 PlatformTransactionManager ptm = new LookupJiniTxManagerConfigurer().lookupTimeout(5000).transactionManager();
 ```
 
-2. Create a `GigaSpace` using the relevant API and have the 'transactionManager' associated with it :
+**2.** Create a `GigaSpace` using the relevant API and have the 'transactionManager' associated with it :
 
 ```java
 GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).transactionManager(ptm).gigaSpace();
