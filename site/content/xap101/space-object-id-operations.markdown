@@ -67,7 +67,7 @@ public class CompoundId implements Serializable{
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof CompoundId)) 
 			return false;
 		CompoundId other = (CompoundId) obj;
 		if (key1 == null) {
