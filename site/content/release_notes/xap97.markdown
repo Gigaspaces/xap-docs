@@ -8,11 +8,7 @@ weight: 200
 
 
 
+## Previous releases
 
-{{%children%}}
-
-
-## Previouse releases
-
-You can find release notes of earlier versions [here](http://wiki.gigaspaces.com/wiki/display/RN/GigaSpaces+Release+Notes).
+You can find release notes of earlier versions in the [archive](/archive.html).
 
