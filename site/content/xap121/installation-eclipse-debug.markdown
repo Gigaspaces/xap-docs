@@ -153,15 +153,14 @@ Start an agent and deploy your PU as usual. The agent will start GSCs in non-deb
 
 ## Step 2
 
-Start a command window and set `IDE_REMOTE_DEBUG` and the `XAP_GSC_OPTIONS` variables:
+Start a command window and set the `JAVA_OPTIONS` variable:
 
 {{%tabs%}}
 {{%tab "  Linux "%}}
 
 
 ```bash
-export IDE_REMOTE_DEBUG="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y"
-export XAP_GSC_OPTIONS=$IDE_REMOTE_DEBUG
+export JAVA_OPTIONS="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y"
 ```
 
 {{% /tab %}}
@@ -169,8 +168,7 @@ export XAP_GSC_OPTIONS=$IDE_REMOTE_DEBUG
 
 
 ```bash
-set IDE_REMOTE_DEBUG=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y
-set XAP_GSC_OPTIONS=%IDE_REMOTE_DEBUG%
+set JAVA_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y
 ```
 
 {{% /tab %}}
@@ -180,7 +178,7 @@ If you would like to specify a specific listening port, use the `address` parame
 
 
 ```bash
-set IDE_REMOTE_DEBUG=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+set JAVA_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
 ```
 
 ## Step 3
@@ -206,37 +204,11 @@ gsc.bat
 {{% /tab %}}
 {{% /tabs %}}
 
-If you have started the agent with a specific zone, have the GSC running in debug mode to use the same zone as well:
-
-{{%tabs%}}
-
-{{%tab "  Linux "%}}
-
-
-```bash
-export XAP_GSC_OPTIONS=-Dcom.gs.zones="myZone"
-./gsc.sh
-```
-
-{{% /tab %}}
-
-{{%tab "  Windows "%}}
-
-
-```bash
-set XAP_GSC_OPTIONS=-Dcom.gs.zones="myZone"
-gsc.bat
-```
-
-{{% /tab %}}
-
-{{% /tabs %}}
-
 Make sure you see the `Listening for transport dt_socket at address` message:
 
 
 ```bash
-D:\gigaspaces-xap-premium-8.0.1-ga\bin>gsc.bat
+C:\gigaspaces-xap-premium-12.1.0-ga-b17000>gsc.bat
 
 Listening for transport dt_socket at address: 8000
 ```
