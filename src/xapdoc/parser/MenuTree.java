@@ -6,7 +6,7 @@ import java.util.*;
 public class MenuTree {
 
     private static final boolean DEBUG_ENABLED = false;	
-    private static final Collection<Integer> OLD_VERSIONS = Arrays.asList(97, 100);
+    private static final Collection<Integer> OLD_VERSIONS = Arrays.asList(97);
     private static String BASE_PATH;
 
     private static final String[] SHARED_DIRS = new String[] {
@@ -58,13 +58,19 @@ public class MenuTree {
                 rootsMap.put(folder.getName(), folderRoot.iterator().next());
         }
         // Relocate java tutorial from root under java dev guide:
-        rootsMap.get("xap" + version).addChild(rootsMap.remove("xap" + version + "tut"));
+		relocate(rootsMap, "xap" + version + "tut", "xap" + version);
         // Relocate .NET tutorial from root under .NET dev guide:
-        rootsMap.get("xap" + version + "net").addChild(rootsMap.remove("xap" + version + "nettut"));
+		relocate(rootsMap, "xap" + version + "nettut", "xap" + version + "net");
 
         // Sort and generate roots:
         generateSidenav("xap" + version, new TreeSet<Page>(rootsMap.values()));
     }
+	
+	private static void relocate(Map<String, Page> rootsMap, String sourceKey, String targetKey) {
+		Page source = rootsMap.remove(sourceKey);
+		if (source != null)
+            rootsMap.get(targetKey).addChild(source);
+	}
 
     private static Map<Integer, Collection<File>> getProductFolders(String path) {
         Map<Integer, Collection<File>> result = new HashMap<Integer, Collection<File>>();

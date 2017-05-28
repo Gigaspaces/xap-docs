@@ -1,8 +1,8 @@
 ---
 type: post100
-title:  Deployment and Administration
+title:  Administrators Guide
 categories: XAP100ADM
-
+weight: 300
 ---
 
 
