@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Page implements Comparable<Page> {
 
-    private static final Collection<String> NEW_VERSIONS = Arrays.asList("10.1", "10.2", "11.0", "12.0", "12.1");
+    private static final Collection<String> NEW_VERSIONS = Arrays.asList("10.0", "10.1", "10.2", "11.0", "12.0", "12.1");
 
     private final boolean index;
     private final String id;
