@@ -6,13 +6,13 @@
         <div id="breadcrumbs" class="row">
             <ol class="breadcrumb">
 				<li><a href="/"><i class="fa fa-home fa-lg"></i></a></li>
-                <li><a href="/xap121">12.1</a></li>
-                {{ if in .Permalink "xap121nettut"}}<li><a href="/xap121nettut">.NET Tutorial</a></li>
-                {{ else if in .Permalink "xap121sec"}}<li><a href="/xap121sec">Security Guide</a></li>
-                {{ else if in .Permalink "xap121net"}}<li><a href="/xap121net">.NET Developers Guide</a></li>
-                {{ else if in .Permalink "xap121adm"}}<li><a href="/xap121adm">Administration Guide</a></li>
-                {{ else if in .Permalink "xap121tut"}}<li><a href="/xap121tut">Java Tutorial</a></li>
-                {{ else if in .Permalink "xap121"}}<li><a href="/xap121">Java Developer Guide</a></li>
+                <li><a href="/xap121.html">12.1</a></li>
+                {{ if in .Permalink "/dev-java/"}}<li><a href="/xap/12.1/dev-java/">Java Developer Guide</a></li>
+                {{ else if in .Permalink "/tut-java/"}}<li><a href="/xap/12.1/tut-java/">Java Tutorial</a></li>
+                {{ else if in .Permalink "/dev-dotnet/"}}<li><a href="/xap/12.1/dev-dotnet/">.NET Developers Guide</a></li>
+                {{ else if in .Permalink "/tut-dotnet/"}}<li><a href="/xap/12.1/tut-dotnet/">.NET Tutorial</a></li>
+                {{ else if in .Permalink "/admin/"}}<li><a href="/xap/12.1/admin/">Administration Guide</a></li>
+                {{ else if in .Permalink "/security/"}}<li><a href="/xap/12.1/security/">Security Guide</a></li>
                 {{end}}
                 <li class="active">{{.Title}}</li>
             </ol>
@@ -22,8 +22,7 @@
             <div id="leftbar-div" class="col-md-2 hidden-xs">
                 <div class="leftbar">
                     <ul class="treeview" id="tree">
-                        {{ if in .Permalink "xap121"}}{{ partial "sidenav-xap121.html" .}}
-                        {{end}}
+                        {{ partial "sidenav-xap121.html" .}}
                     </ul>
                 </div>
 

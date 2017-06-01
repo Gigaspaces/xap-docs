@@ -11,12 +11,3 @@ mv _site/xap100 _site/xap/10.0/dev-java
 mv _site/xap100net _site/xap/10.0/dev-dotnet
 mv _site/xap100adm _site/xap/10.0/admin
 mv _site/xap100sec _site/xap/10.0/security
-
-# 12.1 redirects
-mkdir -p _site/xap/12.1
-mv _site/xap121 _site/xap/12.1/dev-java
-mv _site/xap121net _site/xap/12.1/dev-dotnet
-mv _site/xap121tut _site/xap/12.1/tut-java
-mv _site/xap121nettut _site/xap/12.1/tut-dotnet
-mv _site/xap121adm _site/xap/12.1/admin
-mv _site/xap121sec _site/xap/12.1/security
