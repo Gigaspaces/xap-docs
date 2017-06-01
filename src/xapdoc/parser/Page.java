@@ -17,7 +17,7 @@ public class Page implements Comparable<Page> {
     private final TreeSet<Page> children = new TreeSet<Page>();
 
     public Page(File file, boolean groupingMode) throws IOException {
-        String category = file.getParentFile().getName();
+        String category = initCategory(file);
 		String[] tokens = parseCategory(category);
         this.index = file.getName().equals("index.markdown");
 		String filename = index ? "" : file.getName().replace(".markdown", "");
@@ -40,6 +40,15 @@ public class Page implements Comparable<Page> {
             this.parent = category + "/" + (parent.startsWith("index.") ? "" : parent.replace(".html", ""));
         }
     }
+	
+	private static String initCategory(File file) {
+		if (file.getParentFile().getParentFile().getName().equals("content"))
+			return file.getParentFile().getName();
+		String category = file.getParentFile().getName();
+		String version = file.getParentFile().getParentFile().getName();
+		String product = file.getParentFile().getParentFile().getParentFile().getName();
+		return product + version.replace(".", "") + category;
+	}
 	
     private static String[] parseCategory(String s) {
 		if (!s.startsWith("xap"))
@@ -162,7 +171,7 @@ public class Page implements Comparable<Page> {
         if (c1 < c2)
             return -1;
 
-        System.out.println(this.id + " => " + c1 + ", " + o.id + " => " + c2);
+        System.out.println("Ambigous comparison: " + this.id + " => " + c1 + ", " + o.id + " => " + c2);
         return 0;
     }
 }

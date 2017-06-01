@@ -6,7 +6,7 @@ import java.util.*;
 public class MenuTree {
 
     private static final boolean DEBUG_ENABLED = false;	
-    private static final Collection<Integer> OLD_VERSIONS = Arrays.asList(97);
+    private static final Collection<String> OLD_VERSIONS = Arrays.asList("97");
     private static String BASE_PATH;
 
     private static final String[] SHARED_DIRS = new String[] {
@@ -29,8 +29,8 @@ public class MenuTree {
         MenuTree instance = new MenuTree();
         for (String dir : SHARED_DIRS)
             instance.processDir(new File(contentPath + dir));
-        Map<Integer, Collection<File>> xapFolders = getProductFolders(contentPath);
-        for (Map.Entry<Integer, Collection<File>> entry : xapFolders.entrySet()) {
+        Map<String, Collection<File>> xapFolders = getProductFolders(contentPath);
+        for (Map.Entry<String, Collection<File>> entry : xapFolders.entrySet()) {
             if (OLD_VERSIONS.contains(entry.getKey())) {
                 for (File folder : entry.getValue()) {
                     instance.processDir(folder);
@@ -46,7 +46,8 @@ public class MenuTree {
                 ", pages=" + instance.totalPages + ")");
     }
 
-    private void processVersion(Integer version, Collection<File> folders) throws IOException {
+    private void processVersion(String version, Collection<File> folders) throws IOException {
+		debug("processVersion(" + version + ")");
         Map<String, Page> rootsMap = new HashMap<String, Page>();
         for (File folder : folders) {
             final Collection<Page> folderRoot = loadPages(folder, true);
@@ -54,13 +55,17 @@ public class MenuTree {
                 warning("No root for " + folder.getName());
             else if (folderRoot.size() != 1)
                 warning("Ambiguous root for " + folder.getName());
-            else
+            else {
                 rootsMap.put(folder.getName(), folderRoot.iterator().next());
+				debug("Processed " + folder.getName());
+			}
         }
         // Relocate java tutorial from root under java dev guide:
 		relocate(rootsMap, "xap" + version + "tut", "xap" + version);
+		relocate(rootsMap, "tut-java", "dev-java");
         // Relocate .NET tutorial from root under .NET dev guide:
 		relocate(rootsMap, "xap" + version + "nettut", "xap" + version + "net");
+		relocate(rootsMap, "tut-dotnet", "dev-dotnet");
 
         // Sort and generate roots:
         generateSidenav("xap" + version, new TreeSet<Page>(rootsMap.values()));
@@ -72,26 +77,43 @@ public class MenuTree {
             rootsMap.get(targetKey).addChild(source);
 	}
 
-    private static Map<Integer, Collection<File>> getProductFolders(String path) {
-        Map<Integer, Collection<File>> result = new HashMap<Integer, Collection<File>>();
-        for (File file : new File(path).listFiles()) {
-            if (file.isDirectory() && file.getName().startsWith("xap")) {
-                Integer version = extractVersion(file.getName());
-                if (!result.containsKey(version))
-                    result.put(version, new ArrayList<File>());
-                result.get(version).add(file);
-            }
+    private static Map<String, Collection<File>> getProductFolders(String path) {
+        Map<String, Collection<File>> result = getProductFoldersOld(path);
+        for (File versionDir : new File(path, "xap").listFiles()) {
+            if (versionDir.isDirectory()) {
+				String version = versionDir.getName().replace(".", "");
+				result.put(version, new ArrayList<File>());
+				for (File contentDir : versionDir.listFiles()) {
+					if (versionDir.isDirectory()) {
+						result.get(version).add(contentDir);						
+					}
+				}
+			}				
         }
 
         return result;
     }
 
-    private static Integer extractVersion(String name) {
+    private static Map<String, Collection<File>> getProductFoldersOld(String path) {
+        Map<String, Collection<File>> result = new HashMap<String, Collection<File>>();
+        for (File file : new File(path).listFiles()) {
+            if (file.isDirectory() && file.getName().startsWith("xap") && !file.getName().equals("xap") ) {
+				String version = extractVersion(file.getName());
+				if (!result.containsKey(version))
+					result.put(version, new ArrayList<File>());
+				result.get(version).add(file);
+			}
+        }
+
+        return result;
+    }
+	
+    private static String extractVersion(String name) {
         String result = "";
         for (int i="xap".length() ; i < name.length() && Character.isDigit(name.charAt(i)) ; i++)
             result += name.charAt(i);
-
-        return Integer.parseInt(result);
+		
+        return result;
     }
 
     private void processDir(File folder) throws IOException {
