@@ -6,10 +6,6 @@ parent: installation-eclipse-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
-
-
-
 As part of your development process, you may want to run/debug your processing unit within your IDE, or create unit tests (with JUnit for example) to tests in isolation certain aspects of it.
 
 The Integrated processing unit container allows you to run a processing unit within such "embedded" environment. It's implementation class is [IntegratedProcessingUnitContainer]({{% api-javadoc %}}/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html).
@@ -57,9 +53,9 @@ To run a clustered PU with an embedded space with 2 partitions and a backup for 
 Start these using the order above. The first 2 will be primary members and the other two will be backup members.
 You can terminate any of the primary instances to test failover scenario.
 
-{{% info %}}
+{{% note %}}
 You can run the Integrated Processing Unit Container without actually specifying the instance id (and backup id). In this case, the container will automatically start all the relevant instances that form a complete cluster based on the _total_members_ parameter provided.
-{{% /info %}}
+{{% /note %}}
 
 # Using IntegratedProcessingUnitContainer in the IDE
 
@@ -72,9 +68,9 @@ The following screenshot displays the **Create, manage, and run configurations**
 
 In the screenshot above, we run the data processor module using the integrated processing unit container from within the Eclipse IDE (we simply imported the Eclipse project provided with the example into our Eclipse workspace). There are no arguments provided in this example, which means that the integrated processing unit container will use its defaults. Since our project source includes a `META-INF/spring/pu.xml` file, it is automatically detected by the `IntegratedProcessingUnitContainer` class and used as the processing unit's deployment descriptor (since it's part of the processor module's classpath). The processor Eclipse project also has all the required libraries in its project definition. These include all the jars located under the `XAP root>/lib/required` directory, so the integrated processing unit container will run with these libraries.
 
-{{% info "Classpath Settings of the IntegratedProcessingUnitContainer "%}}
+{{% note "Classpath Settings of the IntegratedProcessingUnitContainer "%}}
 The `IntegratedProcessingUnitContainer` is a simple class that wraps the processing unit with Spring application context and makes all the proper initializations around it. Note that as with any other code you run within your IDE, you will have to manually include the classes your processing unit code depends on in your project classpath. In contrast, when [running your processing unit on the GigaSpaces service grid](./deploying-onto-the-service-grid.html) or in [standalone mode](./running-in-standalone-mode.html), all of the jars located under the processing unit's `lib` directory are automatically added to the classpath and GigaSpaces specific jar files (`xap-datagrid.jar` and `xap-openspaces.jar` are added automatically).
-{{% /info %}}
+{{% /note %}}
 
 The following screenshot shows how to run a data processor instance with a partitioned cluster schema and ID `1`, and the arguments that should provided in this configuration:
 
@@ -82,7 +78,7 @@ The following screenshot shows how to run a data processor instance with a parti
 ![IntegratedProcessingUnitContainer3.jpg](/attachment_files/IntegratedProcessingUnitContainer3.jpg)
 {{% /align %}}
 
-{{% info "Using Lookup Groups/Locators "%}}
+{{% note "Using Lookup Groups/Locators "%}}
 You can isolate your environment by defining [Lookup Groups/Locators](/product_overview/service-grid.html#lus). You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have `XAP_LOOKUP_GROUPS`/`XAP_LOOKUP_LOCATORS` OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using `XAP_LOOKUP_GROUPS` environment variable you need to add the following as VM argument to the run configuration:
 
 
@@ -96,7 +92,7 @@ To set the lookup locators:
 -Dcom.gs.jini_lus.locators=${env_var:XAP_LOOKUP_LOCATORS}
 ```
 
-{{% /info %}}
+{{% /note %}}
 
 # Starting an IntegratedProcessingUnitContainer Programmatically
 
@@ -125,9 +121,9 @@ ProcessingUnitContainer container = provider.createContainer();
 container.close();
 ```
 
-{{% info %}}
+{{% note %}}
 When using a cluster and **not** specifying an instance Id (see `setInstanceId()`), the `createContainer()` method will return a CompoundProcessingUnitContainer filled with processing unit containers (`IntegratedProcessingUnitContainer`) for each instance in the cluster.
-{{% /info %}}
+{{% /note %}}
 
 # Remote Debugging
 
@@ -153,26 +149,19 @@ Start an agent and deploy your PU as usual. The agent will start GSCs in non-deb
 
 ## Step 2
 
-Start a command window and set `IDE_REMOTE_DEBUG` and the `XAP_GSC_OPTIONS` variables:
+Start a command window and set the `JAVA_OPTIONS` variable:
 
 {{%tabs%}}
 {{%tab "  Linux "%}}
-
-
 ```bash
-export IDE_REMOTE_DEBUG="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y"
-export XAP_GSC_OPTIONS=$IDE_REMOTE_DEBUG
+export JAVA_OPTIONS="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y"
 ```
 
 {{% /tab %}}
 {{%tab "  Windows "%}}
-
-
 ```bash
-set IDE_REMOTE_DEBUG=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y
-set XAP_GSC_OPTIONS=%IDE_REMOTE_DEBUG%
+set JAVA_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y
 ```
-
 {{% /tab %}}
 {{% /tabs %}}
 
@@ -180,7 +169,7 @@ If you would like to specify a specific listening port, use the `address` parame
 
 
 ```bash
-set IDE_REMOTE_DEBUG=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+set JAVA_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
 ```
 
 ## Step 3
@@ -189,54 +178,23 @@ Start a GSC in debug mode:
 
 {{%tabs%}}
 {{%tab "  Linux "%}}
-
-
 ```bash
 ./gsc.sh
 ```
-
 {{% /tab %}}
 {{%tab "  Windows "%}}
-
-
 ```bash
 gsc.bat
 ```
-
 {{% /tab %}}
 {{% /tabs %}}
 
-If you have started the agent with a specific zone, have the GSC running in debug mode to use the same zone as well:
-
-{{%tabs%}}
-
-{{%tab "  Linux "%}}
-
-
-```bash
-export XAP_GSC_OPTIONS=-Dcom.gs.zones="myZone"
-./gsc.sh
-```
-
-{{% /tab %}}
-
-{{%tab "  Windows "%}}
-
-
-```bash
-set XAP_GSC_OPTIONS=-Dcom.gs.zones="myZone"
-gsc.bat
-```
-
-{{% /tab %}}
-
-{{% /tabs %}}
-
+ 
 Make sure you see the `Listening for transport dt_socket at address` message:
 
 
 ```bash
-D:\gigaspaces-xap-premium-8.0.1-ga\bin>gsc.bat
+C:\{{%version "gshome-directory"%}}-ga\bin>gsc.bat
 
 Listening for transport dt_socket at address: 8000
 ```

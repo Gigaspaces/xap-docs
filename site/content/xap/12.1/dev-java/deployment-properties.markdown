@@ -6,15 +6,12 @@ parent: deploying-and-running-overview.html
 weight: 400
 ---
 
- {{% ssummary   %}} {{% /ssummary %}}
-
-
 
 When a processing unit is deployed and provisioned, you can inject property values to it only known at deployment time, or in order to further configure the processing unit elements. Injected properties can be either properties that have been explicitly externalized from the [processing unit configuration file](./configuring-processing-unit-elements.html) or properties related to one the platform components (e.g. a space) that can be configured at deployment time. This mechanism is built on top of Spring's support for an externalized properties configuration called {{%exurl "PropertyPlaceholderConfigurer" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html#beans-factory-placeholderconfigurer"%}}. This mechanism has been enhanced to provide a powerful yet simple property injection.
 
-{{% info %}}
+{{% note %}}
 One of the core values of GigaSpaces XAP processing unit model is the fact that a processing unit need not be changed at all in the transition from the development environment (namely your IDE) to the production environment. This feature, along with others, is one of the enablers of this behavior.
-{{%/info%}}
+{{%/note%}}
 
 # Defining Property Place Holders in Your Processing Unit
 
@@ -22,16 +19,15 @@ Property injection to the processing unit's configuration is supported at the Sp
 
 Below you can find an example of an XML configuration which defines to property place holders, `spaceSchema` and `connectionTimeout`. In this example we also specify default values for them, which is always a good practice and does not force the deployer to specify values for these place holders.
 
-{{% tip %}}
+{{% note %}}
 Note that for property place holders we use the `${placeholder name}` notation.
-{{%/tip%}}
+{{%/note%}}
 
 {{%tabs%}}
 {{%tab "  Namespace "%}}
 
 
 ```xml
-
 <!-- The PropertyPlaceholderConfigurer must be present in order to define default value
      for properties.
 -->
@@ -54,7 +50,6 @@ Note that for property place holders we use the `${placeholder name}` notation.
 
 
 ```xml
-
 <!-- Define sensible defaults -->
 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="properties"><props>
@@ -109,13 +104,13 @@ When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html
 This can be specified as part of the command line arguments or as a program argument when running within your IDE.
 When deploying via the UI, click "Next" in the first screen of the deployment wizard and then "+" to add properties. Any property you specify here will be injected to the appropriate property place holder (if such exists) and will override the `pu.properties` within the processing unit.
 
-{{% info "Property Injection for SLA Definitions "%}}
+{{% note "Property Injection for SLA Definitions "%}}
 From version 7.0 onwards, the processing unit's [SLA definitions]({{%currentadmurl%}}/the-sla-overview.html)  can be defined in a separate `sla.xml` file (unlike previous release in which they could only have been defined in the `pu.xml` file). As you may recall, the SLA definition are expressed via the `<os-sla:sla>` XML element in either the `pu.xml` of the `sla.xml` files.
 
 You should note however that property injection, as described in this page, and any external jars imports, is only available for SLA definitions expressed in a separate `sla.xml` file, and will not be applied to the `<os-sla:sla>` element if it is part of the `pu.xml` file.
 
 Also note that the parsing of the SLA element happens on the deploy tool side, so the properties should be available on the deploy tool side.
-{{% /info %}}
+{{% /note %}}
 
 # Using Deployment Properties to Override Space Schema and Cluster Schema
 
@@ -132,21 +127,16 @@ Here's an example for a space configured within the processing unit, and a prope
 
 
 ```xml
-
  <os-core:embedded-space id="space" space-name="mySpace" />
 ```
 
 {{% /tab %}}
 {{%tab "  Plain "%}}
-
-
 ```xml
-
 <bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean">
     <property name="name" value="space" />
 </bean>
 ```
-
 {{% /tab %}}
 {{% /tabs %}}
 
