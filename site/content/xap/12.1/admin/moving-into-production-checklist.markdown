@@ -605,6 +605,15 @@ The Mirror Service does not hold state so its failure would not result any data 
 
 The WAN gateway like the mirror service acting as a broker, responsible to replicate activities conducted at the local data grid into another (remote) data grid. The WAN Gateway does not hold state so its failure would not result any data lose, but its failure means data will not be replicated between source and destination data grid. You do not need to deploy the WAN Gateway in a clustered configuration (aka primary-backup). By default XAP will try to start a WAN Gateway in case it failed. Since WAN Gateway usually configured to use specific port on specific machine(s), you should configure the WAN Gateway PU to be provisioned into specific machine(s).
 
+
+## Split Brain 
+{{%warning%}}
+A partitioned space topology with no backups should not be used in production. Running an XAP space with no backups may cause split brain and data inconsistency issues.
+{{%/warning%}}
+
+
+
+
 # Capacity Planning
 
 In order to estimate the amount of total RAM and CPU required for your application, you should take the following into consideration:

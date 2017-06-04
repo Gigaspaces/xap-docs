@@ -7,11 +7,6 @@ weight: 10
 menu: product
 ---
 
-
-{{%  ssummary  %}}{{%  /ssummary %}}
-
-
-
 Different applications might have different caching requirements. Some applications require on-demand loading from an external, slower data source, due to limited memory; others use the cache for read-mostly purposes; transactional applications need a cache that handles both write and read operations, maintains consistency and serves as the application's system of record.
 
 In order to address these different requirements, GigaSpaces provides an in-memory data grid that is policy-driven. Most of the policies do not affect the actual application code, but rather affect the way each data grid instance interacts with other instances.
@@ -144,7 +139,7 @@ For more information see Local View {{%latestjavanet "local-view.html"%}}.
 {{%/refer%}}
 
 
-{{%  info %}}
+ 
 The topologies above are provided in the GigaSpaces product as predefined cluster schemas. The schema names are:
 
 - Synchronous replication - `sync-replicated`
@@ -152,5 +147,8 @@ The topologies above are provided in the GigaSpaces product as predefined cluste
 - Partitioned with backup - `partitioned-sync2backup`
 
 The local cache and local view topologies do not need their own schemas, because they are defined on the client side.
-
-{{% /info%}}
+ 
+# Split Brain 
+{{%warning%}}
+A partitioned space topology with no backups should not be used in production. Running an XAP space with no backups may cause split brain and data inconsistency issues.
+{{%/warning%}}
