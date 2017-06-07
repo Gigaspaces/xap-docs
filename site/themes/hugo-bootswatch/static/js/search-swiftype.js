@@ -165,68 +165,49 @@ $(document).ready(function () {
         return str.indexOf(prefix) == 0;
     }
 
-    function getSection(url) {
+	function getSection(url) {
         if (url) {
             var urlSections = url.split("/");
             if (urlSections.length > 3 && urlSections[3]) {
                 var sectionPath = urlSections[3];
+				switch (sectionPath) {
+					case "sbp": 				return {desc: "Solutions &amp; Patterns", docSection: "SBP"};
+					case "api_documentation":	return {desc: "API Documentation", docSection: "API"};
+					case "early_access":		return {desc: "Early Access", docSection: "EA"};
+					case "product_overview":	return {desc: "Product Overview", docSection: "PO"};
+					case "tutorials":			return {desc: "Tutorials", docSection: "TUT"};
+					case "howto":				return {desc: "How To", docSection: "HT"};
+					case "release_notes":		return {desc: "Release Notes", docSection: "EA"};
+					case "faq":					return {desc: "FAQ", docSection: "FAQ"};
+					case "videos":				return {desc: "Videos", docSection: "VID"};
+					case "xap97":				return {desc: "XAP 9.7",       version:"9.7", docSection:"XAP", lang:"java"};
+					case "xap97net":			return {desc: "XAP.NET 9.7",   version:"9.7", docSection:"XAP", lang:"dotnet"};
+					case "xap97adm":			return {desc: "XAP 9.7 Admin", version:"9.7", docSection:"XAP"};
+					case "xap":		
+						var version = urlSections[4];
+						var section = urlSections[5];
+						switch (section) {
+							case "admin":
+								return {desc: "XAP " + version + " Admin", version:version, docSection:"XAP"};;
+							case "security":
+								return {desc: "XAP " + version + " Security", version:version, docSection:"XAP"};;
+							case "dev-dotnet":
+							case "tut-dotnet":
+								return {desc: "XAP.NET " + version, version:version, docSection:"XAP", lang:"dotnet"};
+							default:
+								return {desc: "XAP " + version, version:version, docSection:"XAP",lang:"java"};
+						}
+				}
+				
                 if (startsWith(sectionPath, "xap")) {
-                    var isDotNet = endsWith(sectionPath, "net");
-                    var isAdmin = endsWith(sectionPath, "adm");
-                    var isSecurity = endsWith(sectionPath, "sec");
-                    sectionPath = sectionPath.replace("xap","")
-                    sectionPath = sectionPath.replace("nettut","")
-                    sectionPath = sectionPath.replace("tut","")
-                    sectionPath = sectionPath.replace("net","")
-                    sectionPath = sectionPath.replace("adm","")
-                    sectionPath = sectionPath.replace("sec","")
-                    var version = sectionPath.slice(0, -1) +"."+sectionPath.slice(-1);
-
-                    if (endsWith(url,"xap121.html"))
-                      return {desc: "XAP " + version, version:"12.1", docSection:"XAP"};
-
-                    if (endsWith(url,"xap120.html"))
-                      return {desc: "XAP " + version, version:"12.0", docSection:"XAP"};
-
-                    if (endsWith(url,"xap110.html"))
-                      return {desc: "XAP " + version, version:"11.0", docSection:"XAP"};
-
-                    if (endsWith(url,"xap102.html"))
-                      return {desc: "XAP " + version, version:"10.2", docSection:"XAP"};
-
-                    if (endsWith(url,"xap101.html"))
-                      return {desc: "XAP " + version, version:"10.1", docSection:"XAP"};
-
-                    if (endsWith(url,"xap100.html"))
-                      return {desc: "XAP " + version, version:"10.0", docSection:"XAP"};
-
-                    if (endsWith(url,"xap97.html"))
-                        return {desc: "XAP " + version, version:"9.7", docSection:"XAP"};
-
-                    if (isDotNet)
-                        return {desc: "XAP.NET " + version, version:version, docSection:"XAP", lang:"dotnet"};
-                    if (isAdmin)
-                        return {desc: "XAP " + version + " Admin", version:version, docSection:"XAP"};;
-                    if (isSecurity)
-                        return {desc: "XAP " + version + " Security", version:version, docSection:"XAP"};;
-                    return {desc: "XAP " + version, version:version, docSection:"XAP",lang:"java"};
+					if (endsWith(url,"xap121.html")) return {desc: "XAP 12.1", version:"12.1", docSection:"XAP"};
+					if (endsWith(url,"xap120.html")) return {desc: "XAP 12.0", version:"12.0", docSection:"XAP"};
+					if (endsWith(url,"xap110.html")) return {desc: "XAP 11.0", version:"11.0", docSection:"XAP"};
+					if (endsWith(url,"xap102.html")) return {desc: "XAP 10.2", version:"10.2", docSection:"XAP"};
+					if (endsWith(url,"xap101.html")) return {desc: "XAP 10.1", version:"10.1", docSection:"XAP"};
+					if (endsWith(url,"xap100.html")) return {desc: "XAP 10.0", version:"10.0", docSection:"XAP"};
+					if (endsWith(url,"xap97.html"))  return {desc: "XAP 9.7",  version:"9.7",  docSection:"XAP"};
                 }
-                else if (sectionPath == "sbp")
-                    return {desc: "Solutions &amp; Patterns", docSection:"SBP"};
-                else if (sectionPath == "api_documentation")
-                    return {desc:"API Documentation", docSection:"API"};
-                else if (sectionPath == "early_access")
-                    return {desc:"Early Access", docSection:"EA"};
-                else if (sectionPath == "product_overview")
-                    return {desc:"Product Overview", docSection:"PO"};
-                else if (sectionPath == "tutorials")
-                    return {desc:"Tutorials", docSection:"TUT"};
-                else if (sectionPath == "howto")
-                    return {desc:"How To", docSection:"HT"};
-                else if (sectionPath == "release_notes")
-                    return {desc:"Release Notes", docSection:"EA"};
-                else if (sectionPath == "faq")
-                    return {desc:"FAQ", docSection:"FAQ"};
             }            
         }
         return {desc:"", docSection:""};
