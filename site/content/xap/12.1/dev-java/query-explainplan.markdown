@@ -238,17 +238,15 @@ Detailed Execution Information:
  
 # Limitations
  
- - Only Java API is supported
- - JDBC not supported (hence also Web-UI/GS-UI)
- - .NET not supported
- - Only Basic and Extended index are supported
- - No support for collection, compound, unique.
- - Off-Heap is not supported
- - FIFO grouping is not supported
- - Geospatial is not supported
- - Only Read, ReadMultiple, TakeMultiple & count  operations are supported
- - Not supported: Take/Clear and variations, blocking operations, space iterator, aggregate , change, notifications
+ - Supported via the Java API. Not supported via the .Net API.
+ - Supported operations: Read, ReadMultiple, TakeMultiple , count
+ - Supported index types: Basic and Extended. Compund , Unique , Collection , Geospatial index are not supported. 
+ - Supported query type : Basic.
+ - Not Supported:
+ 	- Off-Heap 
+ 	- FIFO grouping 
+ 	- Operations: Take/Clear and variations, blocking operations, space iterator, aggregate , change, notifications
+ 	- JDBC API (hence also Web-UI/GS-UI)
+	- Regex, Is null, Sql function
  - Not thread Safe
- - Only Basic query type are Supported
- - Not supported: Regex, Is null, Sql function
  
