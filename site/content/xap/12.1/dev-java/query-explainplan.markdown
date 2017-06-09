@@ -26,13 +26,13 @@ For detailed information how to assign index consult [indexing](./indexing.html#
 
  - Indices that the space considered using and the selected index at each stage of the query.
  - Each cluster node may produce a different result.
- - Information breakdown is by Pojo  type.
+ - Information breakdown by Pojo  type.
 
 ##  Scanning Information
 
  - Number of entries the space scanned in order to find the matching entries and how many entries were matched.
  - Each cluster node may produce a different result.
- - Information breakdown is by Pojo  type.
+ - Information breakdown by Pojo  type.
 
 
 # Index Types
