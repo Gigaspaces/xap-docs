@@ -20,6 +20,23 @@ Issues fixed in 12.1 Open Source edition:
 | {{% jira id="XAP-13129" %}} | Invalid fifo order 2 equal entries from same class after inital load | 12.1 | All |
 | {{% jira id="XAP-13167" %}} | Java 7u131/8u121 (and later) includes new Serialization Filter which pollutes XAP logs with WARNING messages | 12.1 | All |
 | {{% jira id="XAP-13169" %}} | Possible empty result in `hola-mundo` example                          | 12.1 | Java |
+| {{% jira id="XAP-13264" %}} | The standalone gsc.{bat/sh} script does not recognize settings in XAP_GSC_OPTIONS       | 12.1.1 | Java |
+| {{% jira id="XAP-13263" %}} | Webster HTTPS affects SSL although it's disabled                                        | 12.1.1 | Java |
+| {{% jira id="XAP-13255" %}} | NPE in SpaceImpl.getMetricSnapshots() during un-deploy                                  | 12.1.1 | Java |
+| {{% jira id="XAP-13253" %}} | Delete request in Manager REST API should return 404 when no matching request           | 12.1.1 | Java |
+| {{% jira id="XAP-13250" %}} | REST call to getQuiesceDetails throws AdminException during active GSM failover         | 12.1.1 | Java |
+| {{% jira id="XAP-13243" %}} | Extra Backup resolution when using ZooKeeper                                            | 12.1.1 | Java |
+| {{% jira id="XAP-13232" %}} | Un-deploy through non active GSM throws Exception although successful                   | 12.1.1 | Java |
+| {{% jira id="XAP-13230" %}} | Read multiple with memory extend goes to blob-store before intersecting all indices     | 12.1.1 | Java |
+| {{% jira id="XAP-13229" %}} | Typos in xap-manager-api.yaml                                                           | 12.1.1 | Java |
+| {{% jira id="XAP-13223" %}} | Only a Space which has been detected as unhealthy should be forcefully destroyed        | 12.1.1 | Java |
+| {{% jira id="XAP-13217" %}} | ProcessingUnit undeployAndWait times out when not all GSMs are in sync                  | 12.1.1 | Java |
+| {{% jira id="XAP-13216" %}} | Endless warnings regarding disconnected connection after related durable notification member was removed due to long disconnection  | 12.1.1 | Java |
+| {{% jira id="XAP-13194" %}} | Login to web-ui should be enforced with full equality and hashcode                      | 12.1.1 | Java |
+| {{% jira id="XAP-13005" %}} | Class not found in distributed task                                                     | 12.1.1 | Java |
+| {{% jira id="XAP-12050" %}} | SocketException is thrown seconds after deploying the alert-integration                 | 12.1.1 | Java |
+
+
 
 ## Premium and Enterprise
 

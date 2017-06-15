@@ -29,6 +29,16 @@ New features and improvements in 12.1 Open Source edition:
 | {{% jira id="XAP-13170" %}} | Upgrade Jetty integration to v9.2.21                              | 12.1 | All  |
 | {{% jira id="XAP-13178" %}} | End Of Life - GigaSpace operations with int modifiers             | 12.1 | Java |
 | {{% jira id="XAP-13180" %}} | End Of Life - NotifyComType                                       | 12.1 | Java |
+| {{% jira id="XAP-13254" %}} | Change memory measurements in XAP Manager API from GB (double) to bytes (long)| 12.1.1 | Java |
+| {{% jira id="XAP-13252" %}} | Enhance hosts in Manager REST API to be case insensitive                        | 12.1.1 | Java |
+| {{% jira id="XAP-13245" %}} | Enhanced class loader traceability                                              | 12.1.1 | Java |
+| {{% jira id="XAP-13244" %}} | Deploy using active GSM by default in CLI,UI and Web-UI                         | 12.1.1 | Java |
+| {{% jira id="XAP-13238" %}} | Add last-primary attribute to Space leader election when using ZooKeeper        | 12.1.1 | Java |
+| {{% jira id="XAP-13228" %}} | Improve error message when starting unknown service type in gs-agent            | 12.1.1 | Java |
+| {{% jira id="XAP-13227" %}} | Enhanced validation of invalid XAP_MANAGER_SERVERS                              | 12.1.1 | Java |
+
+
+
 
 ## Premium and Enterprise
 
