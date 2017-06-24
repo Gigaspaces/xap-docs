@@ -21,7 +21,7 @@ The BlobStore storage model allows an external storage medium (one that does not
 [MemoryXtend for Flash/SSD](./memoryxtend-rocksdb-ssd.html)<br>
 XAP provides a multi-tiered data storage architecture embedding RocksDB, which is the recommended choice for hybrid RAM-SSD clusters.
 
-[MemoryXtend for Off-Heap RAM](./memoryxtend-rocksdb-ssd.html)<br>
+[MemoryXtend for Off-Heap RAM](./memoryxtend-ohr.html)<br>
 XAP provides a MemoryXtend configuration for tiering JVM heap with direct memory buffers.
 
  
