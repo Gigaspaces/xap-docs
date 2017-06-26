@@ -90,7 +90,7 @@ public void WriteProduct1(ISpaceProxy spaceProxy)
     review2["Name"] = "Road Runner";
     review2["Rate"] = 5;
     review2["Comments"] = "Beep Beep!";
-    document["Reviews"] = new IDictionary<String, Object>[] {review1, review2});
+    document["Reviews"] = new IDictionary<String, Object>[] {review1, review2};
 
     // 3. Write the document to the space:
     spaceProxy.Write(document);
