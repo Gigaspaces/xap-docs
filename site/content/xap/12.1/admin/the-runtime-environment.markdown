@@ -131,7 +131,7 @@ gs-agent --global.lus=2 --global.gsm=2 --gsc=2
 {{% /column %}}
 {{% /section %}}
 
-In fact, since this configuration is convenient for new users, it is also the default - running `gs-agent` without any arguments would produce the same effect. If you wish to disable it and start without any components, run gs-agent with `--zero-defaults` or `-z`. This can be useful if you're planning to use the  manager's RESTful API to add/remove containers.
+In fact, since this configuration is convenient for new users, it is also the default - running `gs-agent` without any arguments would produce the same effect. If you wish to disable it and start without any components, run gs-agent with `--zero-defaults` or `-z`. This can be useful if you're planning to use the  manager's RESTful API from another host to add/remove containers.
 
 {{% section %}}
 {{% column width="50%" %}}
