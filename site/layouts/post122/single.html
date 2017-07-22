@@ -1,0 +1,60 @@
+{{ partial "header.html" . }}
+<div id="wrap">
+    {{ partial "navbar122.html" . }}
+
+    <div class="container">
+        <div id="breadcrumbs" class="row">
+            <ol class="breadcrumb">
+				<li><a href="/"><i class="fa fa-home fa-lg"></i></a></li>
+                <li><a href="/xap122.html">12.2</a></li>
+                {{ if in .Permalink "/dev-java/"}}<li><a href="/xap/12.2/dev-java/">Java Developer Guide</a></li>
+                {{ else if in .Permalink "/tut-java/"}}<li><a href="/xap/12.2/tut-java/">Java Tutorial</a></li>
+                {{ else if in .Permalink "/dev-dotnet/"}}<li><a href="/xap/12.2/dev-dotnet/">.NET Developers Guide</a></li>
+                {{ else if in .Permalink "/tut-dotnet/"}}<li><a href="/xap/12.2/tut-dotnet/">.NET Tutorial</a></li>
+                {{ else if in .Permalink "/admin/"}}<li><a href="/xap/12.2/admin/">Administration Guide</a></li>
+                {{ else if in .Permalink "/security/"}}<li><a href="/xap/12.2/security/">Security Guide</a></li>
+                {{end}}
+                <li class="active">{{.Title}}</li>
+            </ol>
+        </div>
+        <div class="container-fluid">
+
+            <div id="leftbar-div" class="col-md-2 hidden-xs">
+                <div class="leftbar">
+                    <ul class="treeview" id="tree">
+                        {{ partial "sidenav-xap122.html" .}}
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="content" class="col-md-8">
+                <div id="page-content" class="page-content">
+                    <div style="float: right;border:0px;margin-top: 145px;">
+                        {{ if in .Params.categories "PRM" }}
+                        <button id="premium-download" type="button" style="margin-right:60px"   class="btn btn-info btn-xs">Premium</button>
+
+                        {{ else if in .Params.categories "ENT"}}
+                        <button id="enterprise-download" type="button" style="margin-right:60px"  class="btn btn-success btn-xs">Enterprise</button>
+                        {{ end}}
+                        <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default" style="border:0px;">
+                            <i class="fa fa-pencil-square-o fa-lg"></i>
+                        </button>
+                    </div>
+                    <h1 style="padding-top:135px;">{{.Title }}</h1>
+                    <hr>
+
+                    {{ .Content }}
+                </div>
+            </div>
+
+            {{ partial "toc.html" .}}
+
+        </div>
+    </div>
+    <div class="push"></div>
+</div>
+
+{{ partial "footer.html" . }}
+
+ 
