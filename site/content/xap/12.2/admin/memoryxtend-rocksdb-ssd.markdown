@@ -288,8 +288,8 @@ A list of configuration properties can be found in  the [org.rocksdb.ColumnFamil
 | levelZeroSlowdownWritesTrigger | Soft limit on number of level-0 files. We start slowing down writes at this point. <br />A value < 0 means that no writing slow down will be triggered by number of files in level-0. | 8 |
 | maxWriteBufferNumber | The maximum number of write buffers that are built up in memory. | 4 |
 | targetFileSizeBase | The target file size for compaction, should be in bytes. | 64 MB |
-| softRateLimit | The soft-rate-limit of a compaction score for put delay. | 0 | 
-| hardRateLimit | The hard-rate-limit of a compaction score for put delay. | 0 |
+| softPendingCompactionBytesLimit | The soft limit to impose on compaction. | 0 | 
+| hardPendingCompactionBytesLimit | The hard limit to impose on compaction. | 0 |
 | levelCompactionDynamicLevelBytes | If true, RocksDB will pick target size of each level dynamically. | false |
 | maxBytesForLevelBase | The upper-bound of the total size of level-1 files in bytes. | 512 MB |
 | compressionPerLevel | Sets the compression policy for each level | [NO_COMPRESSION, <br /> NO_COMPRESSION, <br/>SNAPPY_COMPRESSION]  |
