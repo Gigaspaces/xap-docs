@@ -5,5 +5,5 @@ set -e
 ./generate-navbar.sh . 
 echo Starting Hugo...
 pushd site
-hugo server --watch
+hugo server --watch -v
 popd
