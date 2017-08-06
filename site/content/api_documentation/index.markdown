@@ -6,6 +6,8 @@ categories: API_DOCUMENTATION
 
 This page provides links to the API documentation and related resources for each version of XAP.
 
+ 
+
 # XAP 12.1
 
 {{%tabs%}}
@@ -13,7 +15,6 @@ This page provides links to the API documentation and related resources for each
 - [Javadoc](http://docs.gigaspaces.com/api/xap/12.1.0/java/index.html)
 - [.Net API Documentation](http://docs.gigaspaces.com/api/xap/12.1.0/dotnet/Index.html)
 - C+\+ API Documentation - Under Construction, coming soon
-- [REST API](/xap121/rest-service-api.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/12.1/core/openspaces-core.xsd)
@@ -39,7 +40,6 @@ This page provides links to the API documentation and related resources for each
 - [Javadoc](http://www.gigaspaces.com/docs/JavaDoc12.0/index.html)
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs12.0/)
 - C+\+ API Documentation - Under Construction, coming soon
-- [REST API](/xap120/rest-service-api.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/12.0/core/openspaces-core.xsd)
@@ -66,9 +66,6 @@ This page provides links to the API documentation and related resources for each
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs11.0/)
 - [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs11.0/annotated.html)
 - [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs11.0)
-- [REST API](/xap110/rest-service-api.html)
-- [Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs11.0/apidocs/)
-- [Cassandra-Datasource API Documentation](http://www.gigaspaces.com/docs/cassandra-docs11.0/apidocs/)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/11.0/core/openspaces-core.xsd)
@@ -95,9 +92,6 @@ This page provides links to the API documentation and related resources for each
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs10.2/)
 - [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs10.2/annotated.html)
 - [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs10.2)
-- [REST API](/xap102/rest-service-api.html)
-- [Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs10.2/apidocs/)
-- [Cassandra-Datasource API Documentation](http://www.gigaspaces.com/docs/cassandra-docs10.2/apidocs/)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/10.2/core/openspaces-core.xsd)
@@ -125,8 +119,6 @@ This page provides links to the API documentation and related resources for each
 - [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs10.1/annotated.html)
 - [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs10.1)
 - [REST API](/xap/10.1/dev-java/rest-service-api.html)
-- [Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs10.1/apidocs/)
-- [Cassandra-Datasource API Documentation](http://www.gigaspaces.com/docs/cassandra-docs10.1/apidocs/)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/10.1/core/openspaces-core.xsd)
@@ -152,7 +144,6 @@ This page provides links to the API documentation and related resources for each
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs10.0/)
 - [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs10.0/annotated.html)
 - [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs10.0)
-- [Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs10.0/apidocs/)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/10.0/core/openspaces-core.xsd)
@@ -178,7 +169,6 @@ This page provides links to the API documentation and related resources for each
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs9.7/)
 - [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs9.7/annotated.html)
 - [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs9.7)
-- [Mongo-Datasource API Documentation](http://www.gigaspaces.com/docs/mongoeds-docs9.7/apidocs/)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/9.7/core/openspaces-core.xsd)
