@@ -110,8 +110,27 @@ The following tables describes the configuration options used in `rocksdb-blob-s
 | central-storage | Specifies whether the deployment strategy is for [central storage](./memoryxtend-rocksdb-ssd.html#central-storage) (i.e. SAN configuration) or [local storage](./memoryxtend-rocksdb-ssd.html#local-storage) on each grid machine (default)| false | optional |
 | db-options | Specifies the tuning parameters for the persistent data store in the underlying blob store. This includes SST formats, compaction settings and flushes. See [Performance Tuning](./memoryxtend-rocksdb-ssd.html#performance-tuning) section for details. | | optional |  
 | <nobr>data-column-family-options<nobr> | Specifies the tuning parameters for the LSM logic and memory tables. See [Performance Tuning](./memoryxtend-rocksdb-ssd.html#performance-tuning) section for details.| | optional |
+| blob-store-handler | BlobStore implementation |  | required |
+| <nobr>cache-entries-percentage</nobr> | On-Heap cache stores objects in their native format.This cache size determined based on the percentage of the GSC JVM max memory(-Xmx). If `-Xmx` is not specified the cache size default to `10000` objects. This is an LRU based data cache.(*)| 20% | optional |
+| avg-object-size-KB |  Average object size in KB. avg-object-size-bytes and avg-object-size-KB cannot be used together. | 5 | optional |
+| avg-object-size-bytes |  Average object size in bytes. avg-object-size-bytes and avg-object-size-KB cannot be used together. | 5000 | optional |
+| persistent |  data is written to flash, space will perform recovery from flash if needed.  |  | required |
 
 
+**Calculating cache-entries-percentage**
+
+The purpose of this settings is to set the maximum number of objects that a GSC heap can hold before it starts evicting. Here is the formula for calculating it:
+
+`Number of objects = ((GSC Xmx) * (cache-entries-percentage/100))/average-object-size-KB`
+
+Lets say we set a cache entries percentage of 20, and an average object size of 2KB (the default). On a 10GB GSC: 
+
+N = {10GB * 1024 * 1024) * (20/100) } / 2
+  = {(10,485,760) * (0.2)} / 2
+  = {2,097,152} / 2
+  = 1,048,576 objects can fit in a single GSC before LRU starts evicting. 
+ 
+<br>
 
 # Deployment Strategies
 ## Local Storage
