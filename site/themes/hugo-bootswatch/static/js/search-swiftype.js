@@ -200,6 +200,7 @@ $(document).ready(function () {
 				}
 				
                 if (startsWith(sectionPath, "xap")) {
+                	if (endsWith(url,"xap122.html")) return {desc: "XAP 12.2", version:"12.2", docSection:"XAP"};
 					if (endsWith(url,"xap121.html")) return {desc: "XAP 12.1", version:"12.1", docSection:"XAP"};
 					if (endsWith(url,"xap120.html")) return {desc: "XAP 12.0", version:"12.0", docSection:"XAP"};
 					if (endsWith(url,"xap110.html")) return {desc: "XAP 11.0", version:"11.0", docSection:"XAP"};
