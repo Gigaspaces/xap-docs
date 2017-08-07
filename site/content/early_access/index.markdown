@@ -15,6 +15,32 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.2 M8 (Aug-6-2017)
+
+**Download Links**
+
+* XAP \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.2.0/12.2.0-m8/gigaspaces-xap-open-12.2.0-m8-b18009.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m8/gigaspaces-xap-premium-12.2.0-m8-b18009.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m8/gigaspaces-xap-enterprise-12.2.0-m8-b18009.zip)\] 
+* XAP.NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m8/GigaSpaces-XAP.NET-Premium-12.2.0.18009-M8-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m8/GigaSpaces-XAP.NET-Premium-12.2.0.18009-M8-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m8/GigaSpaces-XAP.NET-Enterprise-12.2.0.18009-M8-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m8/GigaSpaces-XAP.NET-Enterprise-12.2.0.18009-M8-x86.msi)\]
+* InsightEdge Platform \[[InsightEdge](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.2.0/12.2.0-m8/gigaspaces-insightedge-12.2.0-m8-11009-premium.zip)\] 
+
+**Summary**
+
+- Initial support for Pluggable XAP Manager RESTful operations (see [What's New](/release_notes/122whats-new.html) for more info.
+- XAP Manager RESTful API supports submitting a Spark job  
+- XAP Manager RESTful API supports uploading and managing resources (jars) used for Spark job submission API
+- Renamed gs-agent verb `spark_slave` to `spark_worker`
+- Added Windows support for starting Spark master and worker via `gs-agent`
+- Added `manager-local` support for starting Spark master and worker via `gs-agent`
+- The `insightedge.sh` script now uses environment variables from `setenv.sh` (and `setenv-overrides.sh`)
+- Reducing clutter in insightedge/sbin - subscripts are being merged into the main `insightedge.sh` script
+
+**Resolved Issues**
+
+|ID         | Type        | Description                                                  |
+|-----------|-------------|--------------------------------------------------------------|
+| XAP-13296 | New Feature | Start Spark Master via gs-agent |
+| XAP-13297 | New Feature | Start Spark Worker (slave) via gs-agent |
+
 ## 12.2 M7 (Jul-30-2017)
 
 **Download Links**
