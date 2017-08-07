@@ -30,9 +30,6 @@ Configuring a global or local LUS.
 [Global vs. Local GSM](./gsm-configuration.html){{<wbr>}}
 Configuring a global or local GSM.
 
-[ZooKeeper](./zookeeper.html){{<wbr>}}
-ZooKeeper   Single and Clustered configuration.
-
 [System Properties](./system-properties.html){{<wbr>}}
 A list of system runtime parameters.
 
