@@ -77,7 +77,9 @@ When using this syntax in unix/linux systems, make sure to wrap it in quotes (as
 
 ## Zookeeper
 
-ZooKeeper's behavior is governed by the ZooKeeper configuration file (`zoo.cfg`). When using XAP manager, an embedded Zookeeper instance is started using a default configuration located at `$XAP_HOME/config/zookeeper/zoo.cfg`. If you need to override the default settings, either edit the default file, or use the `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `com.gs.zookeeper.config-file` system property to point to your custom configuration file.
+ZooKeeper's behavior is governed by the ZooKeeper configuration file (`zoo.cfg`). When using XAP manager, an embedded Zookeeper instance is started using a default configuration located at `$XAP_HOME/config/zookeeper/zoo.cfg`. 
+If you need to override the default settings, either edit the default file, or use the `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `com.gs.zookeeper.config-file` system property to point to your custom configuration file.
+Default port of Zookeeper is 2181.
 
 Additional information on Zookeeper configuration can be found at {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration"%}}.
 

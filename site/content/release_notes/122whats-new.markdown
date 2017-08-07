@@ -12,9 +12,10 @@ It's not an exhaustive list of all new features. For a full change log of 12.2 p
 
 # The InsightEdge Platform
 
-Starting 12.2, InsightEdge is transforming from a Spark Distribution to a **Platform** which combines XAP, Apache Spark and the InsightEdge components, to serve both transactional and analytical use cases.
+Starting with version 12.2, {{%exurl "InsightEdge" "https://insightedge.io/"%}} is transforming from a Spark Distribution to a **Platform** which combines XAP, Apache Spark and the InsightEdge components, to serve both transactional and analytical use cases.
 
-InsightEdge is released as a new package, alongside the existing XAP packages (OSS, Premium and Enterprise), and use XAP's versioning scheme. The InsightEdge package contains an Apache Spark distribution, but users may override it and use any Spark distribution, as long as its standard and compatible with the Apache Spark distribution.
+InsightEdge is released as a new package, alongside the existing XAP packages (OSS, Premium and Enterprise) and uses XAP's versioning scheme. The InsightEdge package contains an Apache Spark distribution, 
+but users may override it and use any Spark distribution, as long as its standard and compatible with the Apache Spark distribution.
 
 # Functionality
 
@@ -34,4 +35,4 @@ Note: gs-agent support for spark is currently limited for Linux only. Windows su
 
 # Third Party Upgrades
 
-* [RocksDB](http://rocksdb.org/) integration has been upgraded to `5.5.1`
+* {{%exurl "RocksDB" "http://rocksdb.org/"%}} integration has been upgr1aded to `5.5.1`

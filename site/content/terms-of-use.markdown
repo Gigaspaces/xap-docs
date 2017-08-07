@@ -1,5 +1,5 @@
 ---
-layout: post
+type: post
 title: Terms Of Use
 ---
 
