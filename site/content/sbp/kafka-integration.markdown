@@ -55,7 +55,7 @@ Step 1: Install Kafka<br/>
 
 Step 2:	Start Zookeeper and Kafka server<br/>
 bin/zookeeper-server-start.sh config/zookeeper.properties{{<wbr>}}
-bin/kafka-list-topic.sh --zookeeper localhost:2181
+bin/kafka-server-start.sh config/server.properties
 
 Step 3:	Build project<br/>
 
