@@ -48,6 +48,6 @@ This feature is under active development, with new functionality added each spri
 
 * Supported operations: `GET` (Support for `@PUT`, `@POST`, `@DELETE` will be added in upcoming sprints)
 * Parameters: Currently only `@QueryParam` on type `String` is supported (Support for additional types and parameter types will be added in upcoming sprints)
-* `@Context` is currently supported only for public fields (No support for constructors or method args)
+* `@Context` is currently supported only for fields (No support for constructors or method args)
 * `@Context` is currently supported only for fields of type `Admin`.
 * Operations always return 200 (Support for specifying http response code and other response settings will be added in upcoming sprints)
