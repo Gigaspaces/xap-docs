@@ -15,6 +15,32 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.2 M9 (Aug-13-2017)
+
+**Download Links**
+
+* XAP \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.2.0/12.2.0-m9/gigaspaces-xap-open-12.2.0-m9-b18010.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m9/gigaspaces-xap-premium-12.2.0-m9-b18010.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m9/gigaspaces-xap-enterprise-12.2.0-m9-b18010.zip)\] 
+* XAP.NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m9/GigaSpaces-XAP.NET-Premium-12.2.0.18010-M9-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m9/GigaSpaces-XAP.NET-Premium-12.2.0.18010-M9-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m9/GigaSpaces-XAP.NET-Enterprise-12.2.0.18010-M9-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m9/GigaSpaces-XAP.NET-Enterprise-12.2.0.18010-M9-x86.msi)\]
+* InsightEdge Platform \[[InsightEdge](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.2.0/12.2.0-m9/gigaspaces-insightedge-12.2.0-m9-18009-premium.zip)\] 
+
+**Summary**
+
+- Enhancements to Pluggable XAP Manager RESTful operations (see [What's New](/release_notes/122whats-new.html) for more info.
+- XAP Manager RESTful API supports:
+  - private/protected @Context
+  - Response object (not just String) as a return value
+  - Submitting a Spark job
+- Simplified configuration for InsightEdge windows environment variables
+
+**Resolved Issues**
+
+|ID         | Type        | Description                                                               |
+|-----------|-------------|---------------------------------------------------------------------------|
+| XAP-13295 | New Feature | Allow using @Context on private/protected field (only Admin is supported) |
+| XAP-13295 | New Feature | Allow to return Response object from custom REST controller               |
+
+
+
 ## 12.2 M8 (Aug-6-2017)
 
 **Download Links**
