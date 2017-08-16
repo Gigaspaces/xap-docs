@@ -90,6 +90,15 @@ The Manager is offered side-by-side with the existing stack (GSM, LUS, etc.). We
 On the same note we understand that it requires some effort from existing users which upgrade to 12.1 (probably not too much, mostly on changing the scripts they use to start the environment), 
 so if you’re upgrading for bug fixes/other features and don’t want the manager for now, you can switch from 12.0 to 12.1 and continue using the old components - it’s all still there.
 
+{{%note "Note:"%}}
+The Manager uses a different selection scheme when selecting resources where to deploy a processing unit instance. The 'LeastRoundRobinSelector' chooses the container which has the least amount of instances on it. To avoid choosing the same container twice when amounts equal, it keeps the containers in a round-robin order. This scheme is different from the previous 'WeightedSelector' which assigned weights to the containers based on heuristics and state gathered while selecting the less weighted container. The reason for this is that in large deployments, the network overhead and the overall deployment time is costly and may result in an uneven resource consumption.
+
+Notice that you may be experiencing a different instance distribution than before, in some cases non-even. To force the use of the previous selector scheme, use the following system property:
+```bash
+Set '-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector' when loading the manager (in XAP_MANAGER_OPTIONS environment variable).
+```
+{{%/note%}}
+
 # FAQ
 
 ### Q. Why do I need 3 managers? In previous versions 2 LUS + 2 GSM was enough for high availability
