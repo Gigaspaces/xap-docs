@@ -138,5 +138,7 @@ Primary instances will be provisioned in the configured order - A,C,D.
 
 In the above example: max-instances-per-zone="A/1,B/1.
 
-
+{{% note%}}
+The property 'com.gs.grid.gsm.provision.maxBackupDelay=10s' by default controls the delay until we instantiate a 'backup' space. This gives enough time for the first instance to be elected as a 'primary'. You may increase this delay, e.g. to "20s" (20 seconds) if your instance availability takes longer. Set this property in 'XAP_GSM_OPTIONS' environment variable. Note that this functionality is ignored when using '--manager'
+{{% /note %}}
 
