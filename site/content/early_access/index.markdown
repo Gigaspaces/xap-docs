@@ -15,6 +15,37 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.2 M10 (Aug-21-2017)
+
+**Download Links**
+
+* XAP \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.2.0/12.2.0-m10/gigaspaces-xap-open-12.2.0-m10-b18011.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m10/gigaspaces-xap-premium-12.2.0-m10-b18011.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m10/gigaspaces-xap-enterprise-12.2.0-m10-b18011.zip)\] 
+* XAP.NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m10/GigaSpaces-XAP.NET-Premium-12.2.0.18011-M10-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m10/GigaSpaces-XAP.NET-Premium-12.2.0.18011-M10-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m10/GigaSpaces-XAP.NET-Enterprise-12.2.0.18011-M10-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m10/GigaSpaces-XAP.NET-Enterprise-12.2.0.18011-M10-x86.msi)\]
+* InsightEdge Platform \[[InsightEdge](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.2.0/12.2.0-m10/gigaspaces-insightedge-12.2.0-m10-18011-premium.zip)\] 
+
+**Summary**
+
+- Enhancements to Pluggable XAP Manager RESTful operations
+  - Response object and @CustomManagerResource annotation extracted to xap-admin.jar
+  - @QueryParam support for non-primitive types - Integer, Double, String, etc.
+  - Support for POST, PUT and DELETE operations
+- XAP Manager RESTful API supports:
+  - Monitor Spark job status 
+  - Submit job spark request holds link to Spark job status and submitted driver Id of the Spark job
+- Configuration and scripts now source setenv and setenv-overrides.
+  - (added) /conf/insightedge-env.{sh/cmd}
+  - (added) /insightedge/spark/conf/spark-env.{sh/cmd}
+
+**Resolved Issues**
+
+|ID         | Type        | Description                                                                             |
+|-----------|-------------|-----------------------------------------------------------------------------------------|
+| XAP-13295 | New Feature | Move Response and CustomManagerResource annotation from xap-admin-rest-v1 to xap-admin  |
+| XAP-13295 | New Feature | Add support for PUT, POST, DELETE using Query Param                                     |
+| IE-221    | New Feature | GET spark application status                                                            |
+| IE-221    | New Feature | Return Spark 'submit job status' URL in response                                        |
+
+
 ## 12.2 M9 (Aug-13-2017)
 
 **Download Links**
@@ -26,9 +57,9 @@ Early Access builds are provided as-is and should not be used in production. If 
 **Summary**
 
 - Enhancements to Pluggable XAP Manager RESTful operations (see [What's New](/release_notes/122whats-new.html) for more info.
-- XAP Manager RESTful API supports:
   - private/protected @Context
   - Response object (not just String) as a return value
+- XAP Manager RESTful API supports:
   - Submitting a Spark job
 - Simplified configuration for InsightEdge windows environment variables
 
