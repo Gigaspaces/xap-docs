@@ -27,7 +27,7 @@ Early Access builds are provided as-is and should not be used in production. If 
 
 - Enhancements to Pluggable XAP Manager RESTful operations
   - Response object and @CustomManagerResource annotation extracted to xap-admin.jar
-  - @QueryParam support for non-primitive types - Integer, Double, String, etc.
+  - @QueryParam support for primitive types as well as Integer, Double, String, etc. (except char - known issue)
   - Support for POST, PUT and DELETE operations
 - XAP Manager RESTful API supports:
   - Monitor Spark job status 
@@ -41,6 +41,7 @@ Early Access builds are provided as-is and should not be used in production. If 
 |ID         | Type        | Description                                                                             |
 |-----------|-------------|-----------------------------------------------------------------------------------------|
 | XAP-13295 | New Feature | Move Response and CustomManagerResource annotation from xap-admin-rest-v1 to xap-admin  |
+| XAP-13295 | New Feature | @QueryParam support for primitive and non-primitive                                     |
 | XAP-13295 | New Feature | Add support for PUT, POST, DELETE using Query Param                                     |
 | XAP-13313 | New Feature | GET spark application status                                                            |
 | XAP-13313 | New Feature | Return Spark 'submit job status' URL in response                                        |
