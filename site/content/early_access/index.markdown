@@ -35,6 +35,7 @@ Early Access builds are provided as-is and should not be used in production. If 
 - Configuration and scripts now source setenv and setenv-overrides.
   - (added) /conf/insightedge-env.{sh/cmd}
   - (added) /insightedge/spark/conf/spark-env.{sh/cmd}
+- Know issue: http-session non-sticky session fails after updating jax
 
 **Resolved Issues**
 
