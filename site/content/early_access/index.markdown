@@ -15,6 +15,32 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.2 M12 (Aug-31-2017)
+
+**Download Links**
+
+* XAP \[[Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.2.0/12.2.0-m12/gigaspaces-xap-open-12.2.0-m12-b18014.zip) | [Premium](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m12/gigaspaces-xap-premium-12.2.0-m12-b18014.zip) | [Enterprise](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m12/gigaspaces-xap-enterprise-12.2.0-m12-b18014.zip)\] 
+* XAP.NET \[[Premium x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m12/GigaSpaces-XAP.NET-Premium-12.2.0.18014-M12-x64.msi) | [Premium x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m12/GigaSpaces-XAP.NET-Premium-12.2.0.18014-M12-x86.msi) | [Enterprise x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m12/GigaSpaces-XAP.NET-Enterprise-12.2.0.18014-M12-x64.msi) | [Enterprise x86](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-m12/GigaSpaces-XAP.NET-Enterprise-12.2.0.18014-M12-x86.msi)\]
+* InsightEdge Platform \[[InsightEdge](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.2.0/12.2.0-m12/gigaspaces-insightedge-12.2.0-m12-18014-premium.zip)\] 
+
+**Summary**
+
+- InsightEdge Configuration and scripts now source `setenv` and `setenv-overrides`.
+- Enhancements to Pluggable XAP Manager RESTful operations
+  - Support `@DefaultValue` annotation
+  - Support `@PathParam` annotation
+  - Support `POST` request with body  
+- XAP Manager RESTful API supports:
+  - Add API for kill spark job
+
+**Resolved Issues**
+
+|ID         | Type        | Description                                                                             |
+|-----------|-------------|-----------------------------------------------------------------------------------------|
+| XAP-13294	| New Feature | On MemoryXtend, Read operation with projection including only indexed fields executes without disk access |
+| XAP-13305	| Bug		  | Cannot deploy clustered Space with MemoryXtend and blob-store-cache-query | 
+| XAP-13315	| Bug	      | Manager un-evenly deploys instances when there are extra GSCs |
+
 ## 12.2 M10 (Aug-21-2017)
 
 **Download Links**
