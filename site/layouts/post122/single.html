@@ -33,11 +33,13 @@
                 <div id="page-content" class="page-content">
                     <div style="float: right;border:0px;margin-top: 145px;">
                         {{ if in .Params.categories "PRM" }}
-                        <button id="premium-download" type="button" style="margin-right:60px"   class="btn btn-info btn-xs">Premium</button>
-
+                            <button id="premium-download" type="button" style="margin-right:60px"   class="btn btn-info btn-xs">Premium</button>
                         {{ else if in .Params.categories "ENT"}}
-                        <button id="enterprise-download" type="button" style="margin-right:60px"  class="btn btn-success btn-xs">Enterprise</button>
+                            <button id="enterprise-download" type="button" style="margin-right:60px"  class="btn btn-success btn-xs">Enterprise</button>
+                        {{ else if in .Params.categories "IEE"}}
+                            <button id="insightedge-download" type="button" style="margin-right:60px"  class="btn btn-secondary btn-xs">InsightEdge Engine</button>
                         {{ end}}
+
                         <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default" style="border:0px;">
                             <i class="fa fa-pencil-square-o fa-lg"></i>
                         </button>

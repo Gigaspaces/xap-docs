@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Spark Streaming
-categories: XAP122I9E
+categories: XAP122I9E, IEE
 weight: 800
 ---
 
