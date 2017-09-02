@@ -13,7 +13,7 @@ When running in `ALL_IN_CACHE` cache policy mode, the space uses only the availa
 {{% tip %}}
 When using the All IN CACHE, the **cache size** parameter is ignored.
 {{% /tip %}}
-
+ 
 # SpaceMemoryShortageException
 
 The `org.openspaces.core.SpaceMemoryShortageException` (which wraps the `com.j_spaces.core.MemoryShortageException`) is thrown when:
