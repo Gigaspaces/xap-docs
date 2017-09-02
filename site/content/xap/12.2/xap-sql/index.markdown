@@ -15,7 +15,7 @@ This page is under construction !
 
 [Installation](./installation.html)<br>
 You will learn   how to install XAP SQL.
- 
+  
  
 {{%/fpanel%}}
 
