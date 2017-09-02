@@ -14,6 +14,7 @@
                 {{ else if in .Permalink "/admin/"}}<li><a href="/xap/12.2/admin/">Administration Guide</a></li>
                 {{ else if in .Permalink "/security/"}}<li><a href="/xap/12.2/security/">Security Guide</a></li>
                 {{ else if in .Permalink "/insightedge/"}}<li><a href="/xap/12.2/insightedge/">InsightEdge</a></li>
+                {{ else if in .Permalink "/xap-sql/"}}<li><a href="/xap/12.2/xap-sql/">XAP SQL</a></li>
                 {{end}}
                 <li class="active">{{.Title}}</li>
             </ol>
@@ -38,6 +39,8 @@
                             <button id="enterprise-download" type="button" style="margin-right:60px"  class="btn btn-success btn-xs">Enterprise</button>
                         {{ else if in .Params.categories "IEE"}}
                             <button id="insightedge-download" type="button" style="margin-right:60px"  class="btn btn-secondary btn-xs">InsightEdge Engine</button>
+                        {{ else if in .Params.categories "XAPSQL"}}
+                            <button id="insightedge-download" type="button" style="margin-right:60px"  class="btn btn-secondary btn-xs">XAP SQL</button>
                         {{ end}}
 
                         <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default" style="border:0px;">

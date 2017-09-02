@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     
     var insightEdgePopupTitle = 'InsightEdge Engine';
-    var insightEdgePopupText = 'The features below are not available in the open source edition. You may download a trial version from the InsightEdge Download Center.';
+    var insightEdgePopupText = 'This feature is not available in the open source edition. You may download a trial version from the InsightEdge Download Center.';
 
     var mq = window.matchMedia( "(min-width: 1024px)" );
     if (mq.matches) {

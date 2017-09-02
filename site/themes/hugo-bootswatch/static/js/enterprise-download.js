@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     
     var enterprisePopupTitle = 'XAP Enterprise';
-    var enterprisePopupText = 'The features below are not available in the open source edition of XAP. You may download a trial version of the Enterprise edition at the GigaSpaces Download Center.';
+    var enterprisePopupText = 'This feature is not available in the open source edition of XAP. You may download a trial version of the Enterprise edition at the GigaSpaces Download Center.';
 
     var mq = window.matchMedia( "(min-width: 1024px)" );
     if (mq.matches) {
