@@ -80,7 +80,7 @@ Finally, if you need to configure something which we don’t expose (we’re usi
 
 |Port |System property |Default |
 |:----|:---------------|:-------|
-|Enable/disable |com.gs.manager.rest.ssl.enabled| false |
+|Enable/disable |com.gs.manager.rest.ssl.enabled| unset |
 |Keystore path  |com.gs.manager.rest.ssl.keystore-path | |
 |Keystore password|com.gs.manager.rest.ssl.keystore-password| |
 |Custom config |com.gs.manager.rest.jetty.config|  |
