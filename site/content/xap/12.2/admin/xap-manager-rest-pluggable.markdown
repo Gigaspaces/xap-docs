@@ -6,7 +6,7 @@ parent: xap-manager-rest.html
 weight: 200
 ---
  
-The XAP Manager RESTful API extensible: Developers can implement a plain Java class with [JAX-RS](https://github.com/jax-rs) annotations.
+The XAP Manager RESTful API extensible: Developers can implement a plain Java class with {{%exurl "JAX-RS" "https://github.com/jax-rs"%}} annotations.
 
 **NOTE**: The `JAX-RS` API is being used because it's a well-known standard, but it's not fully supported - see list of limitations below.
 
