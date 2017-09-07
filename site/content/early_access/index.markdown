@@ -21,11 +21,7 @@ Early Access builds are provided as-is and should not be used in production. If 
 
 * \[[InsightEdge](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.2.0/12.2.0-rc/gigaspaces-insightedge-12.2.0-rc-18015-premium.zip)\] 
 
-* \[[XAP](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-rc/gigaspaces-xap-enterprise-12.2.0-rc-b18015.zip)\]
-
-* \[[XAP.NET x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-rc/GigaSpaces-XAP.NET-Enterprise-12.2.0.18015-M12-x64.msi)\]
-
-* \[[XAP Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.2.0/12.2.0-rc/gigaspaces-xap-open-12.2.0-rc-b18015.zip)\]
+* \[[XAP](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-rc/gigaspaces-xap-enterprise-12.2.0-rc-b18015.zip) | [XAP.NET x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-rc/GigaSpaces-XAP.NET-Enterprise-12.2.0.18015-M12-x64.msi) | [XAP Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.2.0/12.2.0-rc/gigaspaces-xap-open-12.2.0-rc-b18015.zip)\]
 
 (**Note:** XAP Premium and Enterprise are packaged as one)
 
