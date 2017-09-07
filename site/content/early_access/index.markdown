@@ -33,8 +33,8 @@ Early Access builds are provided as-is and should not be used in production. If 
 - InsightEdge changes:
   - Upgrade Spark version to 2.2
   - InsightEdge new command line script
-  - InsightEdge examples packaged under insightedge/examples (including sources)
-  - Fix Zeppling scripts to run on Windows
+  - InsightEdge examples (including sources) are packaged under `insightedge/examples`
+  - Fix Zepplin scripts to run on Windows
 - Enhancements to Pluggable XAP Manager RESTful operations
   - Support `@PrivilegeRequired` annotation for securing custom REST operations
   - Adjust `POST` request with body to not require @Consumes
