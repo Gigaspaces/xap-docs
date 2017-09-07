@@ -103,7 +103,7 @@ For details on request parameters and url see your local Manager page: {{%exurl 
 
 ## Spaces
 
-![image](/attachment_files/rest-admin/containers.png)
+![image](/attachment_files/rest-admin/spaces.png)
 
 For details on request parameters and url see your local Manager page: {{%exurl "Space Operations" "http://localhost:8090/v1/index.html#/Spaces"%}}
 

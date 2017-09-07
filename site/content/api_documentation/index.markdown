@@ -14,7 +14,6 @@ This page provides links to the API documentation and related resources for each
 {{%tab API%}}
 - [Javadoc](http://docs.gigaspaces.com/api/xap/12.1.0/java/index.html)
 - [.Net API Documentation](http://docs.gigaspaces.com/api/xap/12.1.0/dotnet/Index.html)
-- C+\+ API Documentation - Under Construction, coming soon
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/12.1/core/openspaces-core.xsd)
@@ -39,7 +38,6 @@ This page provides links to the API documentation and related resources for each
 {{%tab API%}}
 - [Javadoc](http://www.gigaspaces.com/docs/JavaDoc12.0/index.html)
 - [.Net API Documentation](http://www.gigaspaces.com/docs/dotnetdocs12.0/)
-- C+\+ API Documentation - Under Construction, coming soon
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/12.0/core/openspaces-core.xsd)
