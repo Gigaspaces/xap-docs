@@ -13,11 +13,13 @@ This page is under construction !
  
 {{%fpanel%}}
 
-[Installation](./installation.html)<br>
-You will learn   how to install XAP SQL.
 
-[Java](./java.html)<br>
+
+[SQL Driver](./sql-driver.html)<br>
+You will learn 
  
+[SQL Client](./sql-client.html)<br>
+You will learn   
   
  
 {{%/fpanel%}}

@@ -1,8 +1,8 @@
 ---
 type: post122
-title:  JAVA
+title:  SQL Driver
 categories:  XAP122SQL, XAPSQL
-weight: 200
+weight: 100
 ---
 
 {{%note%}}
@@ -11,7 +11,19 @@ This page is under construction !
  
 
 
-# POJO support
+# Installation
+
+XAP Maven Repository
+
+```xml
+<repository>
+   
+</repository>
+```
+
+# Usage
+
+## POJO support
  
 {{%tabs%}}
 {{%tab Person%}}
@@ -123,7 +135,7 @@ public class JdbcTest {
 
 <br>
 
-# SpaceDocument Support
+## SpaceDocument Support
 
 {{%tabs%}}
 {{%tab Program %}}
