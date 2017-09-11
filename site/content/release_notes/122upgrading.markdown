@@ -1,11 +1,9 @@
 ---
 type: post
-title:  Upgrading from previous versions
+title:  Upgrading from a Previous Version
 categories:
 parent: xap122.html
 weight: 800
 ---
 
-This page contains information about changes in this release which can affect upgrading from previous versions. Note that it includes information about changes from the previous version (12.1) - if you're upgrading from an older version, we recommend you read the respective "Upgrading from previous versions" pages of those versions.
-
- 
+ If you are currently using a previous version of XAP or InsightEdge, contact <support@gigaspaces.com> for information on how to upgrade to the most recent version (add link to download center).

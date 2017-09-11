@@ -1,6 +1,6 @@
 ---
 type: post
-title:  XAP Lifecycle and End-of-Life Policy
+title:  Product Lifecycle and End-of-Life Policy
 categories: RELEASE_NOTES
 parent: none
 weight: 100000
@@ -14,11 +14,11 @@ This page explains GigaSpaces’ product lifecycle's End-of-Life (EOL) policy re
 
 <br>
 
-#### GigaSpaces XAP Lifecycle Policy
+#### GigaSpaces Product Lifecycle Policy
 
-The common GigaSpaces XAP product lifecycle policy is based on the following guidelines (unless stated otherwise in your service contract):
+The common GigaSpaces  product lifecycle policy is based on the following guidelines (unless stated otherwise in your service contract):
 
-- New policy change: For all XAP versions, GigaSpaces provides technical product support for 2 years, starting from next upcoming public GA of the release of the relevant product version.
+- New policy change: For all versions, GigaSpaces provides technical product support for 2 years, starting from next upcoming public GA of the release of the relevant product version.
 - Effective as of the official Support Discontinuance Date (2 years starting from next upcoming public GA) these versions will no longer be supported under a standard support agreement. Extended Support may be available for an additional limited period, for an extra fee. Please contact GigaSpaces' Customer Service for more information.
 - Maintenance releases (Service Packs) are scheduled to be publicly available every 6-8 weeks and are driven by customer feedback. The above, is the planned schedule however does not constitute a firm commitment to produce a release at every such interval.
  
@@ -42,8 +42,8 @@ GigaSpaces recognizes that end-of-life milestones often have a broad impact on G
 
 #### Upgrade Path and Assistance
 
-- Upgrading will ensure that you are leveraging all of the bug fixes and improvements of the most current version, and will ensure our ability to properly support you should you encounter any issues. Furthermore, GigaSpaces has made tremendous improvements in scalability, stability, performance, user experience, and functionality in version {{%latestxaprelease%}}. Upgrading your application to the latest {{%latestxaprelease%}} version and migrating to our latest best practices will ensure you leverage the XAP technology to its fullest potential, minimizing deployment risks, while shortening project cycle times. GigaPro are modular consultancy and professional services designed to ensure smooth and effective deployment of GigaSpaces solutions.
-- The recommended upgrade path is to the latest GigaSpaces XAP {{%latestxaprelease%}} series of editions. Please refer to this Upgrade Guide for more details.
+- Upgrading will ensure that you are leveraging all of the bug fixes and improvements of the most current version, and will ensure our ability to properly support you should you encounter any issues. Furthermore, GigaSpaces has made tremendous improvements in scalability, stability, performance, user experience, and functionality in version {{%latestxaprelease%}}. Upgrading your application to the latest {{%latestxaprelease%}} version and migrating to our latest best practices will ensure you leverage the product's technology to its fullest potential, minimizing deployment risks, while shortening project cycle times. GigaPro are modular consultancy and professional services designed to ensure smooth and effective deployment of GigaSpaces solutions.
+- The recommended upgrade path is to the latest GigaSpaces {{%latestxaprelease%}} series of editions. Please refer to this Upgrade Guide for more details.
 - Customers on annual subscription can upgrade to latest release as well.
 
 
@@ -75,9 +75,9 @@ Upon request, GigaSpaces' [Consulting Services](mailto:ps@gigaspaces.com) expert
 |Product Release [1] |	GA Date | 	Last Maintenance Service Pack Release|	Planned Next Maintenance Service Pack Release [2]|	Support Discontinuance ("End of Life") [3]|
 |--------------------|----------|----------------------------------------|---------------------------------------------------|--------------------------------------------|
 |R4.x	    |April 2005	     |R4.1 b1185                            |No Plans|	April 2008 |
-|R5.1	    |Sep 2006	     |R5.1 b1603	                        |No Plans|	September 2008 |
-|R5.2 b1708	|Dec 2006	     |R5.2.3 b1780 on June 2007	            |No Plans	|June 2009 |
-|R6.0 b1855	|Aug 2007	     |R6.0.5 b2150 on May 2007              |No Plans	|August 2009 [4]|
+|R5.1	    |Sept. 2006	     |R5.1 b1603	                        |No Plans|	September 2008 |
+|R5.2 b1708	|Dec. 2006	     |R5.2.3 b1780 on June 2007	            |No Plans	|June 2009 |
+|R6.0 b1855	|Aug. 2007	     |R6.0.5 b2150 on May 2007              |No Plans	|August 2009 [4]|
 |R6.6 b2601 (or R6.5)        |Sep 2008	|R6.6.5 b3320 on June 2009	|No Plans	|September 2010 [4]|
 |R7.0 b3500	|July 2009	     |R7.0.4 b4100 on July 2010	            |No Plans	|July 2011[4] ||
 |R7.1 b4300	|April 2010	     |R7.1.4 b4750 on February 2011	        |No Plans	|April 2012 [4]|
@@ -86,13 +86,14 @@ Upon request, GigaSpaces' [Consulting Services](mailto:ps@gigaspaces.com) expert
 |R9.1 b7500	|Oct. 2012 	     |R9.1.2 b7920 on Feb 2013	            |No Plans	|April 2015|
 |R9.5 b8500	|April 2013	     |R9.5.2 b8900 on Aug 2013	            |No Plans	|July 2015|
 |R9.6 b9500	|July 2013	     |R9.6.2 b9900 on Oct 2013	            |No Plans	|January 2016|
-|R9.7 b10496	|Jan 2014	 |R9.7.2 b11000 on Feb 2015	            |No Plans	|July 2016|
+|R9.7 b10496	|Jan. 2014	 |R9.7.2 b11000 on Feb 2015	            |No Plans	|July 2016|
 |R10.0 	        |July 2014           |R10.0.1 b11800 on Aug 2014            |R10.0.2	|March 2017 |
 |R10.1 b12600	|March 2015	 |R10.1.1 b12800 on April 2015	        |No Plans   |July 2017	 |
 |R10.2 b13800	|July 2015	 |R10.2.1 b14000 on November 2015	    |No Plans   |April 2018 |	 
 |R11.0 b14800	|April 2016	 | 	                                    |No Plans	|January 2019 |     
 |R12.0 b16000	|<nobr>January  2017<nobr> |                        |No Plans	|March 2019  |            
 |R12.1 b17100   |March 2017	 |R12.1.1 b17100       on June 2017     | No Plans  |  |
+|R12.2 bxxxxx   |Sept. 2017	 |  | No Plans  |  |
                          
         
 **[1] Product Releases** – GigaSpaces R4.x and R5.x refer to all editions including the Enterprise (EE), Caching (EDG) and Community editions. R6.x refers to all editions including the XAP, Caching (EDG) and Community editions.<br>
