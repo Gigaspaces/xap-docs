@@ -51,6 +51,22 @@ public class Customer {
 {{%/tab%}}
 {{%/tabs%}}
 
+# Persistence & Recovery
+
+When using a cluster with backups for high availability, if one of the nodes fails and restarts, it automatically locates the primary node and copies all the data from it so it can serve as a backup again. This process is called **Recovery**. The more data in the space, the longer recovery takes, and if MemoryXtend is used this is no longer a RAM only process - the primary space must iterate thtough its MemoryXtend instance to fetch all the data for the backup node performing the recovery...
+
+However, when using a MemoryXtend add-on which is based on non-volatile technology (for example, SSD), the backup can use the persisted data for the recovery process, and instead of recovering *everything* from the primary, it can recover only the *delta* which it missed while it was down. In addition, the backup can rebuild the indexes for the persisted data without the primary's assitance.
+
+Persistency is off by default, and needs to be explicitly enabled. For example:
+
+```xml
+<os-core:embedded-space id="space" name="mySpace" >
+    <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
+</os-core:embedded-space>
+```
+
+In addition, persistency requires the following settings:
+
 ## Machine-Instance Affinity
 
 If a GSC or a machine running a GSC restarts, there's no guarantee the IMDG instance running within the GSC will be provisioned into the same machine it was running before. When MemoryXtend is used in a non-persitent manner, this will not introduce a problem as the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, we must ensure the instance is provisioned on the same machine it was before so it can recover from the correct device, which is usually local to the machine.
