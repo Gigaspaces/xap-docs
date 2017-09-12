@@ -26,7 +26,7 @@ The following licensing options are available:
 - XAP open source
 
 
-{{%note “Note…..”%}} The InsightEdge package contains an Apache Spark distribution, but users may override it and use any Spark distribution that is standard and compatible with the Apache Spark distribution. {{% /note%}}
+{{%note%}} The InsightEdge package contains an Apache Spark distribution, but users may override it and use any Spark distribution that is standard and compatible with the Apache Spark distribution. {{% /note%}}
 
 # Administration Features
 
