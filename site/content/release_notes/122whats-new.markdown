@@ -15,18 +15,18 @@ XAP and InsightEdge have been unified in a single platform, and are now availabl
 - Develop innovative customer applications that levereage the XAP in-memory data grid for low latency and high-throughput workloads.
 - Perform analytics to analyze data in motion, identify hidden insights in user data, and perform predictive analytics.
 
+{{%note "Note…..”%}} The InsightEdge package contains an Apache Spark distribution, but users may override it and use any Spark distribution that is standard and compatible with the Apache Spark distribution. {{% /note%}}
+
 As part of this repackaging, the InsightEdge Platform has adopted the versioning scheme used by XAP, and is being released as version 12.2. The InsightEdge Platform combines InsightEdge, Apache Spark and XAP components, to serve both transactional and analytical data use cases.
 
-The following licensing options are available:
+The following editions are available:
 
-- Full InsightEdge Platform
-- InsightEdge open source
-- XAP Enterprise
-- XAP Premium
-- XAP open source
+- Full InsightEdge Platform (license required)
+- XAP Enterprise (license required)
+- XAP Premium (license required)
+- InsightEdge/XAP open source (always free, no license required)
 
-
-{{%note “Note…..”%}} The InsightEdge package contains an Apache Spark distribution, but users may override it and use any Spark distribution that is standard and compatible with the Apache Spark distribution. {{% /note%}}
+{{%panel "Important Licensing Information"%}}The licensing policy has been updated, and each minor version (12.2, 12.x, etc.) now requires its own license key. If you need to upgrade from a previous version of 12.x, the original upgrade support policy is still valid, however you must contact GigaSpaces support to request a new license key. {{% /panel %}}  
 
 # Administration Features
 
@@ -69,9 +69,9 @@ The Spark Standalone cluster is now fully integrated into the InsightEdge Platfo
 
 In addition, developers can leverage the `manager-local` option to run locally with zero configuration: `gs-agent --manager-local --spark_master --spark_worker` will run a local manager, spark master and worker on the local host.
 
-# SQL Data Management
+# SQL-99 Support
 
-This new feature provides a familiar interface for developers that need to query the XAP in-memory data grid as if it were a traditional SQL database. This enables the use of existing plug-in visualization tools on top of XAP for faster and easier adoption within existing frameworks.
+This new InsightEdge Platform feature provides in-grid SQL capability. This provides a familiar interface for querying the XAP in-memory data grid as if it were a traditional SQL database. It also enables the use of existing plug-in visualization tools on top of XAP, for faster and easier adoption within existing frameworks.
 
 
 # Third Party Upgrades
