@@ -5,10 +5,14 @@ categories:  XAP122SQL, XAPSQL
 weight: 100
 ---
 
-{{%note%}}
+{{%warning%}}
 This page is under construction !
-{{%/note%}}
- 
+{{%/warning%}}
+
+
+The JDBC Driver allows database-driven applications to interact with the Space via SQL compatible read queries. 
+The driver will make the query optimization if needed and translates the SQL query into Space operations.
+
 
 
 # Installation
@@ -130,7 +134,7 @@ public class JdbcTest {
 {{%/tab%}}
 {{%/tabs%}}
 
-<br>
+ 
 
 ## SpaceDocument Support
 
@@ -221,7 +225,7 @@ Category :Aviation
 For more information about SpaceDocuments see the [Document API]({{%currentjavaurl%}}/document-api.html)
 {{%/refer%}}
 
-<br>
+ 
 
 # JDBC URL
 
@@ -241,8 +245,23 @@ The following url_properties are available:
 | logLevel                    | Driver log level (client side only). See more in `Logging` section.      |     INFO         |
 | log4jFile                   | The path to log4j.properties file. If not provided, the default configuration is used. See more in `Logging` section. ||
 
+Other properties inherited from `Calcite` {{%exurl "jdbc-connect-string-parameters""https://calcite.apache.org/docs/adapter.html#jdbc-connect-string-parameters"%}}
 
-<br>
+Examples:
+
+Accessing an embedded Space with custom log level:
+
+```bash
+jdbc:xap:url=/./mySpace;logLevel=DEBUG
+```
+
+Accessing a remote secured Space:
+
+```bash
+jdbc:xap:url=jini://LookupServiceHostname/*/mySpace;user=admin;password=admin
+```
+
+ 
 
 # Explain plan
 
@@ -305,13 +324,13 @@ XapToEnumerableConverter
 {{%/tab%}}
 {{%/tabs%}}
 
-<br>
+ 
 
 
 # Table mapping
 
 The driver can query either space classes or space documents. In case of the space class, the class package is stripped and only the class name is used. 
-If there are several classes with the same name but in different packages in classpath, the full class name needs to be specified by replacing the package separator (.) with (_).
+If there are several classes with the same name but in different packages in the classpath, the full class name needs to be specified by replacing the package separator (.) with (_).
 Example:
 
 ```java
@@ -319,22 +338,14 @@ String sql = "SELECT e.firstName, e.age FROM xapsql_sandbox_Person e WHERE e.age
 ```
 
 In case of space documents the table name is equal to document name. The table name is case sensitive.
-
- 
 <br>
-
-
- 
-
 
 # Indexing 
 
 {{%refer%}}
 The performance of queries can be greatly improved by indexing. For more information about indexing see [Indexing]({{%currentjavaurl%}}/indexing-overview.html)
 {{%/refer%}}
-
-<br>
-
+ 
 # Logging 
 
 ## Client Side logging (Driver)
@@ -359,6 +370,59 @@ com.gigaspaces.jdbc.level = FINE
 {{%refer%}}
 For more information on how to set logging levels see [Logging configuration]({{%currentadmurl%}}/logging.html)
 {{%/refer%}}
+
+
+# The Driver
+
+The driver translates SQL queries into Space API calls. It is important to understand which SQL construction driver convert to which Space calls. 
+This will allow you to create more sufficient queries.
+
+There are several types of queries and let's first consider the main types of queries and how they are converted to the native xap interactions:
+
+
+##  Simple select with filters
+
+Consider the following query: 
+```sql
+SELECT sales FROM Orders WHERE orderId = 100
+```
+
+This query will create XAP SQLQuery and will push predicate and projection down to the XAP side, so only small result subset will be loaded on the client side.
+
+{{%refer%}}
+See more about [SQLQuery]({{%currentjavaurl%}}/query-sql.html)
+{{%/refer%}}
+
+
+## Query with aggregator
+
+Consider the following query: 
+
+```sql
+SELECT category, sum(profit) FROM Orders ORDER BY category
+```
+
+This query will use XAP aggregation API and push the aggregation fields and the projections down to datagrid. Hence all the calculation will be made on the server side.
+
+{{%refer%}}
+See more about [aggregation api]({{%currentjavaurl%}}/aggregators.html)
+{{%/refer%}}
+
+
+
+## Join query - Algorithms
+
+There were implemented two join algorithms: `Hash Join` and  `Nested Loop Join`. They use the distributed tasks to execute the join. Considering two join tables, the bigger will be used as `probe` table while the smaller as `build` table.
+
+The `Hash Join` algorithm will be applied in case of equality conjunction (when only equals conditions are used in join predicates) while `Nested Loop Join` algorithm will be applied in other cases.
+
+It is important to note that each partition will load the `build` table from all the cluster and store it in memory. It is worth to mention that node has to have enough free memory while executing not collocated join to hold all the `build` table in memory of the single partition.
+
+To gain the performance of the join queries consider to design your schema to run `Collocated Join`. The benefit of the collocated joins that it does not load the `build` table from all partitions, but only from the current partition. It uses `share nothing` approach. In order to achieve this join condition can only use a routing field.
+
+Be aware that in case of `Nested Loop Join` the linear search will be applied against `build` table for each item in the `probe` table. It could make performance impact.
+
+In order to turn off server side join execution and run all calculation on the client side set `disableServerSideJoins=false` url parameter.
 
 
 # Limitations 
