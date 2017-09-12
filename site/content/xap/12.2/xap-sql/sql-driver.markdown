@@ -13,15 +13,12 @@ This page is under construction !
 
 # Installation
 
-XAP Maven Repository
-
-```xml
-<repository>
-   
-</repository>
-```
+TBD
 
 # Usage
+
+The driver can query either [POJO's]({{%currentjavaurl%}}/pojo-overview.html) or [Space Documents]({{%currentjavaurl%}}/document-overview.html).
+
 
 ## POJO support
  
@@ -221,7 +218,7 @@ Category :Aviation
 {{%/tabs%}}
 
 {{%refer%}}
-For more information about SpaceDocuments see [Document API]({{%currentjavaurl%}}/document-api.html)
+For more information about SpaceDocuments see the [Document API]({{%currentjavaurl%}}/document-api.html)
 {{%/refer%}}
 
 <br>
@@ -313,35 +310,27 @@ XapToEnumerableConverter
 
 # Table mapping
 
-The driver could query either space classes or space documents.
-
-In case of the space class the class package is stripped and only the class name should be specified.
-
-{{%note%}}
-If there are several classes with the same name but in different packages in classpath the full class name should be specified.
-{{%/note%}}
-
+The driver can query either space classes or space documents. In case of the space class, the class package is stripped and only the class name is used. 
+If there are several classes with the same name but in different packages in classpath, the full class name needs to be specified by replacing the package separator (.) with (_).
 Example:
 
+```java
+String sql = "SELECT e.firstName, e.age FROM xapsql_sandbox_Person e WHERE e.age = ?";
+```
 
-In case of space documents the table name is equal to document name.
-
-
-{{%note%}}
-The table name is case sensitive.
-{{%/note%}}
+In case of space documents the table name is equal to document name. The table name is case sensitive.
 
  
 <br>
 
 
-# Spring integration
+ 
 
 
 # Indexing 
 
 {{%refer%}}
-For more information about Indexing see [Indexing]({{%currentjavaurl%}}/indexing-overview.html)
+The performance of queries can be greatly improved by indexing. For more information about indexing see [Indexing]({{%currentjavaurl%}}/indexing-overview.html)
 {{%/refer%}}
 
 <br>
@@ -350,18 +339,18 @@ For more information about Indexing see [Indexing]({{%currentjavaurl%}}/indexing
 
 ## Client Side logging (Driver)
 
-In order to adjust the logging level you should use logLevel JDBC url parameter. The level may be configured with one of the options: TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. 
-This url parameter configuration does not cover third party libraries' loggers level.
+The logging granularity can be set with the JDBC url parameter. 
+The level may be configured with one of the options: TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. 
+This url parameter configuration does not cover third party libraries logger level.
 
 The default configuration of the driver's logger:
 
 - File appender is used, which writes to the file **<user_home>/xap-jdbc-driver.out**
-- INFO log level is used.
+- Log level is INFO.
 
 
 ## Server side logging (XAP)
-
-Join operation involve the distributed task running, hence part of the driver code is run on the server side. In order to change the logging level adjust XAP server side logging with:
+In order to change the logging level on the server use the following runtime property:
 
 ```bash
 com.gigaspaces.jdbc.level = FINE
@@ -373,7 +362,8 @@ For more information on how to set logging levels see [Logging configuration]({{
 
 
 # Limitations 
+
 - The driver was not designed for low latency operations
 - The driver allows only read operations
-- Embedded objects could not be used in the queries
-- Document's dynamic properties could not be used in the queries
+- Embedded objects can not be used in the queries
+- Document's dynamic properties can not be used in the queries
