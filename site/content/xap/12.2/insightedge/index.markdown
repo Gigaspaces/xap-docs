@@ -2,7 +2,7 @@
 type: post122
 title: InsightEdge
 categories: XAP122I9E, IEE
-weight: 50
+weight: 350
 ---
 
 {{%note "Maintenance Notice"%}}

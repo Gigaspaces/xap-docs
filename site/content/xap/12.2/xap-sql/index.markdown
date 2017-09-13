@@ -2,7 +2,7 @@
 type: post122
 title: In-Grid SQL Query
 categories:  XAP122SQL, XAPSQL
-weight: 70
+weight: 370
 ---
 
 
