@@ -26,7 +26,7 @@ The following editions are available:
 - Full InsightEdge Platform (license required)
 - XAP Enterprise (license required)
 - XAP Premium (license required)
-- InsightEdge/XAP open source (always free, no license required)
+- InsightEdge/XAP open source (free)
 
 {{%panel "Important Licensing Information"%}}The licensing policy has been updated, and each minor version (12.2, 12.x, etc.) now requires its own license key. If you need to upgrade from a previous version of 12.x, the original upgrade support policy is still valid, however you must contact GigaSpaces support to request a new license key. {{% /panel %}}  
 
@@ -65,11 +65,11 @@ In the above example, the class maps an HTTP `GET` operation in the path `/demo/
 
 The Spark Standalone cluster is now fully integrated into the InsightEdge Platform/XAP management environment and tools. In addition to starting spark master/worker instances via Spark's standard scripts, you can use the InsightEdge Platform process manager (`gs-agent`) to start a master and/or worker instance.
 
-- `gs-agent --manager --spark_master` will start a spark master instance alongside the XAP Manager instance. If you require high availability,  start 3 servers using this command, and the spark master instances will automatically connect to the manager's Zookeeper cluster and elect a leader.
+- `gs-agent --manager --spark-master` will start a spark master instance alongside the XAP Manager instance. If you require high availability,  start 3 servers using this command, and the spark master instances will automatically connect to the manager's Zookeeper cluster and elect a leader.
 
-- `gs-agent --spark_worker` will start a spark worker (a.k.a. slave) instance, and automatically set its master URL to the spark master's URL (assuming there is a spark master on each XAP Manager instance).
+- `gs-agent --spark-worker` will start a spark worker (a.k.a. slave) instance, and automatically set its master URL to the spark master's URL (assuming there is a spark master on each XAP Manager instance).
 
-In addition, developers can leverage the `manager-local` option to run locally with zero configuration: `gs-agent --manager-local --spark_master --spark_worker` will run a local manager, spark master and worker on the local host.
+In addition, developers can leverage the `manager-local` option to run locally with zero configuration: `gs-agent --manager-local --spark_master --spark-worker` will run a local manager, spark master and worker on the local host.
 
 # SQL-99 Support
 
