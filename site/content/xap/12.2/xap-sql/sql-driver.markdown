@@ -387,7 +387,7 @@ Consider the following query:
 SELECT sales FROM Orders WHERE orderId = 100
 ```
 
-This query will create XAP SQLQuery and will push predicate and projection down to the XAP side, so only small result subset will be loaded on the client side.
+This query will create an XAP SQLQuery and will push predicate and projection down to the XAP side so only a small result subset will be loaded on the client side.
 
 {{%refer%}}
 See more about [SQLQuery]({{%currentjavaurl%}}/query-sql.html)
@@ -402,10 +402,10 @@ Consider the following query:
 SELECT category, sum(profit) FROM Orders ORDER BY category
 ```
 
-This query will use XAP aggregation API and push the aggregation fields and the projections down to datagrid. Hence all the calculation will be made on the server side.
+This query will use the XAP aggregation API and push the aggregation fields and the projections down to data grid. All the calculation will be made on the server side.
 
 {{%refer%}}
-See more about [aggregation api]({{%currentjavaurl%}}/aggregators.html)
+See more about [Aggregation API]({{%currentjavaurl%}}/aggregators.html)
 {{%/refer%}}
 
 
