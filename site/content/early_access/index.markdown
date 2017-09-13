@@ -15,6 +15,38 @@ Early Access builds are provided as-is and should not be used in production. If 
 {{%/info%}}
 <hr/>
 
+## 12.2 RC (Sep-10-2017)
+
+**Download Links**
+
+* \[[InsightEdge](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.2.0/12.2.0-rc/gigaspaces-insightedge-12.2.0-rc-18015-premium.zip)\] 
+
+* \[[XAP](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-rc/gigaspaces-xap-enterprise-12.2.0-rc-b18015.zip) | [XAP.NET x64](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap/12.2.0/12.2.0-rc/GigaSpaces-XAP.NET-Enterprise-12.2.0.18015-RC-x64.msi) | [XAP Open Source](https://gigaspaces-repository-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.2.0/12.2.0-rc/gigaspaces-xap-open-12.2.0-rc-b18015.zip)\]
+
+(**Note:** XAP Premium and Enterprise are packaged as one)
+
+**Summary**
+
+- XAP Manager RESTful API: 
+  - Fix status URL for Spark kill job
+  - Fix timeout for Spark submit job
+- InsightEdge changes:
+  - Upgrade Spark version to 2.2
+  - InsightEdge new command line script
+  - InsightEdge examples (including sources) are packaged under `insightedge/examples`
+  - Fix Zepplin scripts to run on Windows
+- Enhancements to Pluggable XAP Manager RESTful operations
+  - Support `@PrivilegeRequired` annotation for securing custom REST operations
+  - Adjust `POST` request with body to not require @Consumes
+
+**Resolved Issues**
+
+|ID         | Type        | Description                                                   |
+|-----------|-------------|---------------------------------------------------------------|
+| XAP-13313	| New Feature | Enhance REST over Spark                                       |
+| XAP-13318	| Bug         | Secured XAP Manager requires default security.properties file | 
+| XAP-13264 | Bug         | XAP_GSA_OPTIONS are not applied to gs-agent.sh script         |
+
 ## 12.2 M12 (Aug-31-2017)
 
 **Download Links**
