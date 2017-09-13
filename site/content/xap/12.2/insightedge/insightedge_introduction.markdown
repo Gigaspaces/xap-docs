@@ -7,7 +7,7 @@ weight: 50
 
 ## Overview
 
-The unified InsightEdge solution, implemented via industry-standard REST APIs, is an open-source, in-memory insight platform that supports fast-data analytics, artificial intelligence and real-time applications. Customers can use this platform to develop their own systems that provide instant data-driven insights with time-to-analytics at a sub-second scale, and the ability to hyperscale analytics from SQL, streaming to machine learning via Apache Spark.
+The unified InsightEdge solution, a combination of the XAP in-memory data grid and an open-source analytics ecosystem, is an open-source, in-memory insight platform that supports fast-data analytics, artificial intelligence and real-time applications. Customers can use this platform to develop their own systems that provide instant data-driven insights with time-to-analytics at a sub-second scale, and the ability to hyperscale analytics from SQL, streaming to machine learning via Apache Spark.
 
 The InsightEdge Platform provides extreme performance with ultra-low latency, high-throughput transactions and stream processing, due to the co-location of applications and analytics. All of this functionality is available in a cloud-native, infrastructure-agnostic deployment for hybrid cloud and on-premises environments. 
 

@@ -16,7 +16,7 @@ XAP and InsightEdge have been unified in a single platform, and are now availabl
 - Perform analytics to analyze data in motion, identify hidden insights in user data, and perform predictive analytics.
 
 {{%note "Note..."%}}
-The InsightEdge package contains an Apache Spark distribution, but users may override it and use any Spark distribution that is standard and compatible with the Apache Spark distribution.
+The InsightEdge package contains an Apache Spark 2.2 distribution, but users may override it and use any Spark distribution that is standard and compatible with the Apache Spark distribution.
 {{% /note%}}
 
 As part of this repackaging, the InsightEdge Platform has adopted the versioning scheme used by XAP, and is being released as version 12.2. The InsightEdge Platform combines InsightEdge, Apache Spark and XAP components, to serve both transactional and analytical data use cases.
