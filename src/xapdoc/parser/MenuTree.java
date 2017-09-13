@@ -29,14 +29,14 @@ public class MenuTree {
         MenuTree instance = new MenuTree();
         for (String dir : SHARED_DIRS)
             instance.processDir(new File(contentPath + dir));
-        Map<String, Collection<File>> xapFolders = getProductFolders(contentPath);
-        for (Map.Entry<String, Collection<File>> entry : xapFolders.entrySet()) {
-            if (OLD_VERSIONS.contains(entry.getKey())) {
-                for (File folder : entry.getValue()) {
+        Collection<VersionContainer> xapVersions = getProductFolders(contentPath);
+        for (VersionContainer vc : xapVersions) {
+            if (OLD_VERSIONS.contains(vc.version)) {
+                for (File folder : vc.files) {
                     instance.processDir(folder);
                 }
             } else {
-                instance.processVersion(entry.getKey(), entry.getValue());
+                instance.processVersion(vc);
             }
         }
 
@@ -46,10 +46,10 @@ public class MenuTree {
                 ", pages=" + instance.totalPages + ")");
     }
 
-    private void processVersion(String version, Collection<File> folders) throws IOException {
-		debug("processVersion(" + version + ")");
+    private void processVersion(VersionContainer vc) throws IOException {
+		debug("processVersion(" + vc.version + ")");
         Map<String, Page> rootsMap = new HashMap<String, Page>();
-        for (File folder : folders) {
+        for (File folder : vc.files) {
             final Collection<Page> folderRoot = loadPages(folder, true);
             if (folderRoot.isEmpty())
                 warning("No root for " + folder.getName());
@@ -60,15 +60,18 @@ public class MenuTree {
 				debug("Processed " + folder.getName());
 			}
         }
+		File indexFile = new File(vc.path, "index.markdown");
+		if (indexFile.exists()) 
+            rootsMap.put("intro", new Page(indexFile, true));
         // Relocate java tutorial from root under java dev guide:
-		relocate(rootsMap, "xap" + version + "tut", "xap" + version);
+		relocate(rootsMap, "xap" + vc.version + "tut", "xap" + vc.version);
 		relocate(rootsMap, "tut-java", "dev-java");
         // Relocate .NET tutorial from root under .NET dev guide:
-		relocate(rootsMap, "xap" + version + "nettut", "xap" + version + "net");
+		relocate(rootsMap, "xap" + vc.version + "nettut", "xap" + vc.version + "net");
 		relocate(rootsMap, "tut-dotnet", "dev-dotnet");
 
         // Sort and generate roots:
-        generateSidenav("xap" + version, new TreeSet<Page>(rootsMap.values()));
+        generateSidenav("xap" + vc.version, new TreeSet<Page>(rootsMap.values()));
     }
 	
 	private static void relocate(Map<String, Page> rootsMap, String sourceKey, String targetKey) {
@@ -77,15 +80,15 @@ public class MenuTree {
             rootsMap.get(targetKey).addChild(source);
 	}
 
-    private static Map<String, Collection<File>> getProductFolders(String path) {
-        Map<String, Collection<File>> result = getProductFoldersOld(path);
+    private static Collection<VersionContainer> getProductFolders(String path) {
+        Collection<VersionContainer> result = getProductFoldersOld(path);
         for (File versionDir : new File(path, "xap").listFiles()) {
             if (versionDir.isDirectory()) {
-				String version = versionDir.getName().replace(".", "");
-				result.put(version, new ArrayList<File>());
+				VersionContainer vc = new VersionContainer(versionDir);
+				result.add(vc);
 				for (File contentDir : versionDir.listFiles()) {
-					if (versionDir.isDirectory()) {
-						result.get(version).add(contentDir);						
+					if (contentDir.isDirectory()) {
+						vc.files.add(contentDir);						
 					}
 				}
 			}				
@@ -94,19 +97,26 @@ public class MenuTree {
         return result;
     }
 
-    private static Map<String, Collection<File>> getProductFoldersOld(String path) {
-        Map<String, Collection<File>> result = new HashMap<String, Collection<File>>();
+    private static Collection<VersionContainer> getProductFoldersOld(String path) {
+        Collection<VersionContainer> result = new HashSet<VersionContainer>();
         for (File file : new File(path).listFiles()) {
             if (file.isDirectory() && file.getName().startsWith("xap") && !file.getName().equals("xap") ) {
-				String version = extractVersion(file.getName());
-				if (!result.containsKey(version))
-					result.put(version, new ArrayList<File>());
-				result.get(version).add(file);
+				getOrCreateVersionContainer(result, file).files.add(file);
 			}
         }
 
         return result;
     }
+	
+	private static VersionContainer getOrCreateVersionContainer(Collection<VersionContainer> containers, File path) {
+		for (VersionContainer vc : containers) {
+			if (vc.path.equals(path))
+				return vc;
+		}
+		VersionContainer vc = new VersionContainer(path, extractVersion(path.getName()));
+		containers.add(vc);
+		return vc;
+	}
 	
     private static String extractVersion(String name) {
         String result = "";
@@ -200,5 +210,18 @@ public class MenuTree {
         if (DEBUG_ENABLED)
             System.out.println("DEBUG: " + message);
     }
-
+    private static class VersionContainer {
+		private final File path;
+		private final String version;
+		private final Collection<File> files = new ArrayList<File>();
+		
+		public VersionContainer(File path) {
+			this(path, path.getName().replace(".", ""));
+		}
+		
+		public VersionContainer(File path, String version) {
+			this.path = path;
+			this.version = version;
+		}
+	}
 }

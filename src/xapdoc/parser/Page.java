@@ -28,7 +28,8 @@ public class Page implements Comparable<Page> {
         this.weight = properties.containsKey("weight") ? Long.valueOf(properties.getProperty("weight")) : null;
 		
 		if (NEW_VERSIONS.contains(tokens[1])) {
-			String prefix = tokens[0] + "/" + tokens[1] + "/" + tokens[2] + "/";
+			String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? file.getName().replace(".markdown", ".html") : tokens[2] + "/");
+			//String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? "" : tokens[2] + "/");
 			this.href = index ? prefix : prefix + file.getName().replace(".markdown", ".html");
 		} else {
 			this.href = index ? id : id + ".html";			
@@ -47,6 +48,11 @@ public class Page implements Comparable<Page> {
 		String category = file.getParentFile().getName();
 		String version = file.getParentFile().getParentFile().getName();
 		String product = file.getParentFile().getParentFile().getParentFile().getName();
+		if (product.equals("content")) {
+			product = version;
+			version = category;
+			category = "";			
+		}
 		return product + version.replace(".", "") + category;
 	}
 	
@@ -63,23 +69,17 @@ public class Page implements Comparable<Page> {
         // "nnn" => "nn.n"
         version = version.substring(0, version.length() - 1) + "." + version.charAt(version.length()-1);
 
-        String category = toCategory(s);
+        String category = version.equals("9.7") ? toCategory(s) : s;
         return new String[] {product, version, category};
     }
 		
     private static String toCategory(String s) {
         if (s.equals("adm"))
             return "admin";
-        if (s.equals("sec"))
-            return "security";
         if (s.equals(""))
             return "dev-java";
         if (s.equals("net"))
             return "dev-dotnet";
-        if (s.equals("tut"))
-            return "tut-java";
-        if (s.equals("nettut"))
-            return "tut-dotnet";
 
         return s;
     }
