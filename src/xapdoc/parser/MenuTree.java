@@ -69,6 +69,9 @@ public class MenuTree {
         // Relocate .NET tutorial from root under .NET dev guide:
 		relocate(rootsMap, "xap" + vc.version + "nettut", "xap" + vc.version + "net");
 		relocate(rootsMap, "tut-dotnet", "dev-dotnet");
+        // Relocate security under admin:
+		if (vc.version.equals("122"))
+			relocate(rootsMap, "security", "admin");
 
         // Sort and generate roots:
         generateSidenav("xap" + vc.version, new TreeSet<Page>(rootsMap.values()));

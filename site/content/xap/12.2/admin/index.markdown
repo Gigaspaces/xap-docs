@@ -1,6 +1,6 @@
 ---
 type: post122
-title:  Administrators Guide
+title:  Administration
 categories: XAP122ADM
 weight: 600
 ---

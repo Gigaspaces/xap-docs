@@ -1,8 +1,8 @@
 ---
 type: post122
-title:  Security Guide
+title:  Security
 categories: XAP122SEC, OS
-weight: 700
+weight: 1250
 ---
 
 
