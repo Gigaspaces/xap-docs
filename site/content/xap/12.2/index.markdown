@@ -1,6 +1,6 @@
 ---
 type: post122
-title:  Introduction to InsightEdge
+title:  Introduction
 weight: 100
 ---
 

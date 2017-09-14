@@ -1,6 +1,6 @@
 ---
 type: post122
-title: .NET Developers Guide
+title: XAP.NET Guide
 categories: XAP122NET, PRM
 weight: 500
 ---
