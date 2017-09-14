@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Developing Your First Application
-categories: XAP122I9E, IEE
+categories: XAP122GS, IEE
 weight: 200
 ---
 

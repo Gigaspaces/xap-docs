@@ -1,8 +1,9 @@
 ---
 type: post122
 title: In-Grid SQL Query
-categories:  XAP122SQL, XAPSQL
-weight: 370
+categories:  XAP122, IEE
+parent: insight-edge-apis.html
+weight: 1000
 ---
 
 

@@ -1,8 +1,8 @@
 ---
 type: post122
 title:  Local Machine Setup
-categories: XAP122I9E, IEE
-weight: 1000
+categories: XAP122GS, IEE
+weight: 1200
 ---
 
 {{%note "Maintenance Notice"%}}

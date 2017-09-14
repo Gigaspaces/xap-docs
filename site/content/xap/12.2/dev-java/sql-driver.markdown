@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  SQL Driver
-categories:  XAP122SQL, XAPSQL
+categories:  XAP122, IEE
 weight: 100
 ---
 
