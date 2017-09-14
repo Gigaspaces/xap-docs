@@ -122,13 +122,13 @@ The application can be submitted with `insightedge-submit` script, e.g.
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge-submit ./insightedge/quickstart/python/sf_salaries.py
+./insightedge/bin/insightedge-submit ./insightedge/examples/python/sf_salaries.py
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\bin\insightedge-submit insightedge\quickstart\python\sf_salaries.py
+insightedge\bin\insightedge-submit insightedge\examples\python\sf_salaries.py
 ```
 {{%/tab%}}
 {{%/tabs%}}
