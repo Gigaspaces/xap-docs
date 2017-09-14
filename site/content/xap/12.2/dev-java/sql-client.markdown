@@ -2,6 +2,7 @@
 type: post122
 title:  SQL Client
 categories:  XAP122, IEE
+parent: in-grid-sql-query-intro.html
 weight: 200
 ---
 

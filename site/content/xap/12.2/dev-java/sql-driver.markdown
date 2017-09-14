@@ -2,6 +2,7 @@
 type: post122
 title:  SQL Driver
 categories:  XAP122, IEE
+parent: in-grid-sql-query-intro.html
 weight: 100
 ---
 
