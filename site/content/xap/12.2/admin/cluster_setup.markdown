@@ -1,8 +1,8 @@
 ---
 type: post122
-title:  Cluster Setup
-categories: XAP122I9E, IEE
-weight: 1100
+title:  Cluster Setup for InsightEdge
+categories: XAP122ADM, IEE
+weight: 50
 ---
 
 {{%note "Maintenance Notice"%}}

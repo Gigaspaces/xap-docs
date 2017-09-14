@@ -1,8 +1,8 @@
 ---
 type: post122
 title:  Zeppelin Notebook
-categories: XAP122I9E, IEE
-weight: 1200
+categories: XAP122GS, IEE
+weight: 1000
 ---
 
 {{%note "Maintenance Notice"%}}

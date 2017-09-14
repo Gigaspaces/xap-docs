@@ -1,7 +1,8 @@
 ---
 type: post122
 title:  Data Modeling
-categories: XAP122I9E, IEE
+categories: XAP122, IEE
+parent: insight-edge-apis.html
 weight: 400
 ---
 

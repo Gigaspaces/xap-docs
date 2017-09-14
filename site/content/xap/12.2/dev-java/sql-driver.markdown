@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  SQL Driver
-categories:  XAP122SQL, XAPSQL
+categories:  XAP122, IEE
 weight: 100
 ---
 
@@ -10,9 +10,15 @@ This page is under construction !
 {{%/warning%}}
 
 
-The JDBC Driver allows database-driven applications to interact with the Space via SQL compatible read queries. 
+The JDBC Driver is broadly compatible with the SQL-99 Core specification. It allows database-driven applications to interact with the Space via SQL read queries. 
 The driver will make the query optimization if needed and translates the SQL query into Space operations.
 
+{{%note%}}
+The JDBC driver was designed to allow only SQL compatible read operations against data stored in the grid. It does not support create/update/delete operations. Furthermore, the driver was not designed for low latency requirements, although it was developed for integration with applications, such as visualization tools, which support JDBC compliant datasources.
+
+If you are looking for low latency read operations [SQLQuery]({{%currentjavaurl%}}/query-sql.html) is a better option.
+{{%/note%}} 
+ 
 
 
 # Installation
@@ -387,7 +393,7 @@ Consider the following query:
 SELECT sales FROM Orders WHERE orderId = 100
 ```
 
-This query will create XAP SQLQuery and will push predicate and projection down to the XAP side, so only small result subset will be loaded on the client side.
+This query will create an XAP SQLQuery and will push predicate and projection down to the XAP side so only a small result subset will be loaded on the client side.
 
 {{%refer%}}
 See more about [SQLQuery]({{%currentjavaurl%}}/query-sql.html)
@@ -402,10 +408,10 @@ Consider the following query:
 SELECT category, sum(profit) FROM Orders ORDER BY category
 ```
 
-This query will use XAP aggregation API and push the aggregation fields and the projections down to datagrid. Hence all the calculation will be made on the server side.
+This query will use the XAP aggregation API and push the aggregation fields and the projections down to data grid. All the calculation will be made on the server side.
 
 {{%refer%}}
-See more about [aggregation api]({{%currentjavaurl%}}/aggregators.html)
+See more about [Aggregation API]({{%currentjavaurl%}}/aggregators.html)
 {{%/refer%}}
 
 

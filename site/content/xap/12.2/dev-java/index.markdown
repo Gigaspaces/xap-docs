@@ -1,6 +1,6 @@
 ---
 type: post122
-title:  Java Developers Guide
+title:  Developer Guide
 categories: XAP122
 weight: 400
 ---
@@ -8,7 +8,7 @@ weight: 400
 
 
 
-This guide introduces the key concepts for building XAP applications. The topics in this guide span installation, tutorials, the XAP API, Processing Unit, web application support, Space replication, platform interoperability and security.
+This guide introduces the key concepts for building InsightEdge and XAP applications. The topics in this guide span installation, tutorials, the XAP API, Processing Unit, web application support, Space replication, platform interoperability and security.
 
 
 

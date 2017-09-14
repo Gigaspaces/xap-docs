@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Quick Start Guide
-categories: XAP122I9E, IEE
+categories: XAP122GS, IEE
 weight: 100
 ---
 
