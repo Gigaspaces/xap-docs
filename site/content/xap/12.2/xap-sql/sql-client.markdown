@@ -13,15 +13,36 @@ This page is under construction !
  
 # SquirreL
 
-1. Download and install {{%exurl "SquirreL" "http://squirrel-sql.sourceforge.net/#installation"%}}
+**1.** Download and install {{%exurl "SquirreL" "http://squirrel-sql.sourceforge.net/#installation"%}}
 
-2. Start SquirreL
+**2.** Start SquirreL
 
-3. Go to `Drivers` vertical tab on the left and click + button to add a new driver.
+**3.** Go to `Drivers` vertical tab on the left and click + button to add a new driver.
 
-4. Go to `Aliases` vertical tab on the left and click + button to add a new connection.
+{{%align center%}}
+![image](/attachment_files/xap-sql/squirrel-driver.png)
+{{%/align%}}
 
-5. Connect and run query, e.g. SELECT * FROM Employee;
+**4.** Go to `Aliases` vertical tab on the left and click + button to add a new connection.
+
+{{%align center%}}
+![image](/attachment_files/xap-sql/squirrel-alias.png)
+{{%/align%}}
+
+ 
+**5.** Connect to the data grid
+
+{{%align center%}}
+![image](/attachment_files/xap-sql/squirrel-connect.png)
+{{%/align%}}
+
+
+**6.** Run query, e.g. SELECT * FROM Product;
+
+{{%align center%}}
+![image](/attachment_files/xap-sql/squirrel-query.png)
+{{%/align%}}
+
 
 {{%note%}}
 Currently there is a problem with RMI Classloader + Squirell, so as a workaround we copy our driver to the SquirreL lib folder. On Mac, copy jar as following: cp ./xap-calcite/target/gigaspaces-xap-jdbc-1.12.0-SNAPSHOT.jar /Applications/SQuirreLSQL.app/Contents/Resources/Java/lib.
