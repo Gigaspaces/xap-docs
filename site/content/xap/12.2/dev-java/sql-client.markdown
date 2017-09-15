@@ -2,7 +2,7 @@
 type: post122
 title:  SQL Client
 categories:  XAP122, IEE
-parent: in-grid-sql-query-intro.html
+parent: sql-query-intro.html
 weight: 200
 ---
 
@@ -53,16 +53,32 @@ Currently there is a problem with RMI Classloader + Squirell, so as a workaround
 
 # sqlline
 
-Make sure you have space deployed with some data (you can use com.gigaspaces.jdbc.schema.dept.DeptSchemaSetup to populate space with a sample schema)
+Make sure you have Space deployed with some data and is accessible.
 
-1. cd ./xap-calcite/
 
-2. ./sqlline
+**1.** Download {{%exurl "sqlline" "http://sqlline.sourceforge.net/"%}}
 
-3. (in sqlline) To connect to the space: !connect jdbc:xap:url=jini://*/*/space?locators=127.0.0.1 Enter credentials if your space is secured (or just press Return otherwise).
+**2.** cd ./xap-calcite/
 
-4. To list available tables: !tables
+**3.** ./sqlline
 
-5. Execute any query, e.g. SELECT * FROM Employee;
+**4.** To connect to the space: 
+```bash
+!connect jdbc:xap:url=jini://*/*/space?locators=127.0.0.1 Enter credentials if your space is secured (or just press Return otherwise).
+```
 
-6. To close sqlline: !quit
+**5.** To list available tables: 
+
+```bash
+!tables
+```
+
+**6.** Execute any query, e.g. 
+
+```sql
+SELECT * FROM Product;
+```
+**7.** To close sqlline: 
+```bash
+!quit
+```
