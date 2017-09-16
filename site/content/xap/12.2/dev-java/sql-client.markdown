@@ -6,9 +6,16 @@ parent: sql-query-intro.html
 weight: 200
 ---
 
-{{%warning%}}
-This page is under construction !
-{{%/warning%}}
+
+The In-Grid SQL Query driver can be used with existing visualization tools to gain insight into the date grid by using the specific tool provided features like drag and drop.
+
+Examples:
+
+- {{%exurl "Tableau""https://www.tableau.com/"%}}, 
+- {{%exurl "MicroStrategy""https://www.microstrategy.com/us"%}}, 
+- {{%exurl "QlikView""https://www.visualintelligence.co.nz/qlikview/"%}}) 
+- {{%exurl "SquirreL" "http://squirrel-sql.sourceforge.net/"%}}
+- {{%exurl "sqlline" "http://sqlline.sourceforge.net/"%}}
  
 
  
