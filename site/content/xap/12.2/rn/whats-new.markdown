@@ -50,7 +50,7 @@ The Spark Standalone cluster is now fully integrated into the InsightEdge Platfo
 
 - `gs-agent --spark-worker` will start a spark worker (a.k.a. slave) instance, and automatically set its master URL to the spark master's URL (assuming there is a spark master on each XAP Manager instance).
 
-In addition, developers can leverage the `manager-local` option to run locally with zero configuration: `gs-agent --manager-local --spark_master --spark-worker` will run a local manager, spark master and worker on the local host.
+In addition, developers can leverage the `manager-local` option to run locally with zero configuration: `gs-agent --manager-local --spark-master --spark-worker` will run a local manager, spark master and worker on the local host.
 
 {{<infosign>}} For more information, see [Cluster Setup for InsightEdge](/xap/12.2/admin/cluster_setup.html).
 
