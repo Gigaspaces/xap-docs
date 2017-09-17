@@ -16,8 +16,8 @@ This section describes how to use the interactive Web Notebook.
 
 There are several options how you can start the Web Notebook:
 
-* in a `demo` mode, Web Notebook is started automatically at {{%exurl "127.0.0.1:8090""http://127.0.0.1:8090"%}}. Refer to a [Quick Start](./quick_start.html) for `demo` mode details.
-* when running a [remote cluster](./cluster_setup.html), Web Notebook is started on a master host on port `8090`
+* in a `demo` mode, Web Notebook is started automatically at {{%exurl "localhost:9090""http://localhost:9090"%}}. Refer to a [Quick Start](./quick_start.html) for `demo` mode details.
+* when running a [remote cluster](./cluster_setup.html), Web Notebook is started on a master host on port `9090`
 
 You can also start and stop Web Notebook any time manually with:
 ```bash

@@ -33,12 +33,12 @@ insightedge\sbin\insightedge.cmd --mode demo
 
 This will start Spark, the Data Grid and an interactive Web Notebook:
 
-* Spark Master web ui is running at {{%exurl "127.0.0.1:8080""http://127.0.0.1:8080"%}}
-* Web Notebook is running at {{%exurl "127.0.0.1:8090""http://127.0.0.1:8090"%}}
+* Spark Master web ui is running at {{%exurl "localhost:8080""http://localhost:8080"%}}
+* Web Notebook is running at {{%exurl "localhost:9090""http://localhost:9090"%}}
 
 # Running the examples
 
-Open the web notebook at {{%exurl "127.0.0.1:8090""http://127.0.0.1:8090"%}} and run any of the available examples.
+Open the web notebook at {{%exurl "localhost:9090""http://localhost:9090"%}} and run any of the available examples.
 
 {{%align center%}}
 ![image](/attachment_files/Zeppelin_examples_100.png)
