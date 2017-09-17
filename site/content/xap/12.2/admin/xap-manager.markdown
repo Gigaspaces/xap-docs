@@ -82,7 +82,9 @@ When using XAP manager, an embedded Zookeeper instance is started using a defaul
 If you need to override the default settings, either edit the default file, or use the `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `com.gs.zookeeper.config-file` system property to point to your custom configuration file.
 Default port of Zookeeper is 2181.
 
+{{%refer%}}
 Additional information on Zookeeper configuration can be found at {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration"%}}.
+{{%/refer%}}
 
 # Backwards Compatibility
 
@@ -97,7 +99,7 @@ Notice that you may be experiencing a different instance distribution than befor
 
 To change between selector strategies, use the following system property (org.jini.rio.monitor.serviceResourceSelector). For example, to set the strategy to the on prior to 12.1, assign the following when loading the manager (in `XAP_MANAGER_OPTIONS` environment variable):
 ```bash
-'-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector'
+-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector
 ```
 {{%/note%}}
 

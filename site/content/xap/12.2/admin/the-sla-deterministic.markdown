@@ -74,7 +74,6 @@ Define two zones (zone1,zone2) need to be defined:
 {{%tabs%}}
 {{%tab "  Windows "%}}
 
-
 ```bash
 set XAP_GSC_OPTIONS=-Dcom.gs.zones="A"
 gs-agent gsa.gsc 2 gsa.lus 0 gsa.gsm 0
@@ -115,8 +114,9 @@ export XAP_GSC_OPTIONS=-Dcom.gs.zones="B"
 
 ### Deploy the PU
 
-Deploy your PU from CLI or UI.
-[See CLI example]({{%currentadmurl%}}/deploy-command-line-interface.html#deploy-pu).
+{{%refer%}}
+Deploy your PU from CLI or UI. [See CLI example]({{%currentadmurl%}}/deploy-command-line-interface.html#deploy-pu).
+{{%/refer%}}
 
 When deployed all primary instances will be allocated in zone `A` and backups in zone `B`. If primary fails the order will be restored by using restart.
 
@@ -136,9 +136,9 @@ Primary instances will be provisioned in the configured order - A,C,D.
 * Deterministic deployment supports only clusters with singe backup (X,1).
 * Deterministic deployment requires to set _max-instances-per-zone_ to 1.
 
-In the above example: max-instances-per-zone="A/1,B/1.
+In the above example: max-instances-per-zone="A/1,B/1".
 
 {{% note%}}
-The property 'com.gs.grid.gsm.provision.maxBackupDelay=10s' by default controls the delay until we instantiate a 'backup' space. This gives enough time for the first instance to be elected as a 'primary'. You may increase this delay, e.g. to "20s" (20 seconds) if your instance availability takes longer. Set this property in 'XAP_GSM_OPTIONS' environment variable.
+The property `com.gs.grid.gsm.provision.maxBackupDelay=10s` by default controls the delay until we instantiate a `backup` space. This gives enough time for the first instance to be elected as a `primary`. You may increase this delay, e.g. to "20s" (20 seconds) if your instance availability takes longer. Set this property in `XAP_GSM_OPTIONS` environment variable.
 {{% /note %}}
 
