@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Environment Variables
-categories: XAP122
+categories: XAP122GS
 parent: installation.html
 weight: 120
 ---

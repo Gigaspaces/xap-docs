@@ -1,21 +1,16 @@
 ---
 type: post122
 title:  Setup
-categories: XAP122
+categories: XAP122GS
 parent: installation-eclipse-overview.html
 weight: 100
 ---
-
-
-
-
-
 
 {{% anchor 0 %}}
 Follow these steps to prepare your development environment:
 
 
-- **Ensure you have a JDK installed** - you will need version 1.6 or higher, latest Java 1.6 is recommended.
+- **Ensure you have a JDK installed** - you will need version 7 or higher, latest Java 8 is recommended.
 
 #### Checking your JDK version
 

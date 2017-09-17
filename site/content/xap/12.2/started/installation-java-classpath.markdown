@@ -1,16 +1,16 @@
 ---
 type: post122
 title:  Classpath
-categories: XAP122
+categories: XAP122GS
 parent: installation-eclipse-overview.html
 weight: 150
 ---
 
 XAP libraries are located under `XAP_HOME/lib`. There are three sub directories:
 
-`lib/required` - jar files that are required for any GigaSpaces application.
-`lib/optional` - jar files which enable additional capabilities, such as servlet api.
-`lib/platform` - jar files which are used by the XAP platform only.
+* `lib/required` - jar files that are required for any GigaSpaces application.
+* `lib/optional` - jar files which enable additional capabilities, such as servlet api.
+* `lib/platform` - jar files which are used by the XAP platform only.
 
 # Compilation
 

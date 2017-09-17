@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Advanced Configuration
-categories: XAP122,PRM
+categories: XAP122GS,PRM
 parent: installation-maven.html
 weight: 200
 ---

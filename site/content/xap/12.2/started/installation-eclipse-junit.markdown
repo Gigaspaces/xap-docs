@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  JUnit Testing
-categories: XAP122
+categories: XAP122GS
 parent: installation-eclipse-overview.html
 weight: 300
 ---

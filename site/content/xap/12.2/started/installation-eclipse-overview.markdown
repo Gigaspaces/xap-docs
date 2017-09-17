@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Setting up your IDE
-categories: XAP122
+categories: XAP122GS
 parent: installation.html
 weight: 600
 ---

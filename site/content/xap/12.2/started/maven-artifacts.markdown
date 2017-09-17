@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Maven Artifacts
-categories: XAP122
+categories: XAP122GS
 parent: installation-maven-overview.html
 weight: 50
 ---

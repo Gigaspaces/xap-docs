@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  License Key
-categories: XAP122,PRM
+categories: XAP122GS,PRM
 parent: installation.html
 weight: 110
 ---
