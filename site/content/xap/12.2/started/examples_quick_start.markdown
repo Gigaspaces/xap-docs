@@ -1,39 +1,52 @@
 ---
 type: post122
-title:  InsightEdge Examples
+title:  Using the InsightEdge Examples
 categories: XAP122GS, IEE
 weight: 1110
 ---
+
+# Overview
 
 {{%note "Maintenance Notice"%}}
 InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
 {{%/note%}}
 
-In this tutorial, you will learn how to start InsightEdge and run examples locally. You can download the latest InsightEdge distribution from [here](http://insightedge.io/#download) and unpack it to any location.
+This section explains how to use the sample code that has been provided with the InsightEdge package. You can download the latest InsightEdge distribution from [here](http://insightedge.io/#download) and unpack it to any location.
+
+{{%info "Info..."%}}
+The example sources are located at `insightedge/examples`.
+
+The example .jar is located at `insightedge/examples/jars`.
+{{%/info%}}
+
+In order to get InsightEdge up and running with the provided examples, you will have to perform the following:
+
+1. Start a local environment.
+2. Build the examples.
+3. Run the examples.
+4. Shut down the local environment when you are done.
 
 
-The examples sources are located at `insightedge/examples`.
+# Prerequisites
 
-The examples jar is located at `insightedge/examples/jars`.
+Before installing and running InsightEdge, verify that you have the following installed in your environment:
 
-# overview
-What we are going to to:
-
-- Starting local environment
-- Building examples
-- Running the examples
-- Shutdown local environment
-
-
-# Requirements For Building InsightEdge Examples
 * Java 1.8
 * Scala 2.10
 * Maven 3.1+
 
 
-# Starting local environment
+# Starting the Local Environment
 
-Prior to executing example application, you have to start insightEdge
+Before you can launch the sample application, you must start insightEdge. Use one of the command lines provided below. Starting InsightEdge initializes the following components: 
+
+* Spark master/slave at `spark://127.0.0.1:7077`
+* XAP Manager at `http://localhost:8080`
+* Spark monitoring UI at `http://localhost:8090`
+* Zeppelin UI at `http://localhost:9090`
+* Data Grid manager and two containers with `1G` heap each
+    - space is deployed with name `insightedge-space`
+
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
@@ -48,19 +61,11 @@ insightedge\bin\insightedge.cmd demo
 {{%/tab%}}
 {{%/tabs%}}
 
-This will start next components:
+# Building Examples with Maven
 
-* Spark master at `spark://127.0.0.1:7077` and Spark slave
-* XAP Manager at `http://localhost:8080`
-* Spark monitoring UI at `http://localhost:8090`
-* Zeppelin  UI at `http://localhost:9090`
-* Data Grid manager and two containers with `1G` heap each
-    - space is deployed with name `insightedge-space`
+Next, you must install the InsightEdge artifacts in your local Maven repository, and then build the examples using Maven.
 
-
-# Building examples
-
-Prior to executing example application you need to install insightedge artifacts to your local Maven repository, make sure you have Maven installed and then run the following from InsightEdge directory:
+Run the following from the InsightEdge directory:
 
 {{%tabs%}}
 {{%tab Linux%}}
@@ -77,35 +82,36 @@ insightedge\tools\maven\insightedge-maven.cmd
 {{%/tabs%}}
 
 
-Building the examples, from  `insightedge/examples`, using Maven:
+Next, use the following command in Maven to build the examples from `insightedge/examples`:
+
 ```bash
 mvn clean package
 ```
 
-This will create the examples jar at `insightedge/examples/target/insightedge-examples.jar`
+The end result is an examples .jar located at `insightedge/examples/target/insightedge-examples.jar`.
 
-# Running examples
+# Running the insightedge-examples.jar File
 
-There are several options how you can run examples:
+You can run the InsightEdge example .jar from any of the following:
 
-* from Web Notebook
-* from your IDE
-* from a command line
+* Apache Zeppelin Web Notebook
+* An IDE
+* A command line
 
-## Zeppelin Notebook
+## Using the Web Notebook
 
-Run the examples from the zeppelin notebook at `http://localhost:9090/`
+To run the examples from your web notebook, go to `http://localhost:9090/`.
 
-## Running from IDE
+## Using an IDE
 
-You can run examples from your favourite IDE. Every example has a `main` method, so it can be executed as standard application. There two important things:
+You can run the examples from your preferred IDE. Every example has a `main` method, so it can be executed as standard application. Note these two important configuration requirements:
 
-* enable `run-from-ide` maven profile (this will switch required dependencies to `compile` scope so they are available in classpath)
-* Pass as arguments `local[*]` and `insightedge-space`
+* Enable `run-from-ide` in the Maven profile. This will switch the required dependencies to `compile` scope, so they are available in the classpath.
+* Pass the examples as `local[*]` and `insightedge-space` arguments.
 
-## Running from command line
+## Using a Command Line
 
-Submit examples as Spark applications with the next command:
+To run the examples from a command line, submit them as Spark applications with the following command:
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
@@ -121,7 +127,7 @@ insightedge\bin\insightedge-submit --class {main class name} --master {Spark mas
 {{%/tab%}}
 {{%/tabs%}}
 
-For example, `SaveRDD` can be submitted with the next syntax:
+For example, `SaveRDD` can be submitted with the following syntax:
 {{%tabs%}}
 
 {{%tab Linux%}}
@@ -139,13 +145,13 @@ insightedge\bin\insightedge-submit --class org.insightedge.examples.basic.SaveRd
 {{%/tabs%}}
 
 {{%note "Note..."%}}
-Running `TwitterPopularTags` example requires you to pass {{%exurl "Twitter app tokens" "https://apps.twitter.com/"%}} as arguments.
+Running the `TwitterPopularTags` example requires you to pass {{%exurl "Twitter app tokens" "https://apps.twitter.com/"%}} as arguments.
 {{%/note%}}
 
 
-### Python examples
+### Python Examples
 
-You can run Python examples with
+In addition to the above, you can run Python examples using the following command:
 {{%tabs%}}
 
 {{%tab Linux%}}
@@ -160,7 +166,7 @@ insightedge\bin\insightedge-submit --master {Spark master URL} {path to .py file
 {{%/tab%}}
 {{%/tabs%}}
 
-For example,
+For example:
 
 {{%tabs%}}
 {{%tab Linux%}}
@@ -175,9 +181,9 @@ insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 insightedge\e
 {{%/tab%}}
 {{%/tabs%}}
 
-# Stopping local environment
+# Stopping the Local Environment
 
-To stop all InsightEdge components, next command can be executed:
+To stop all InsightEdge components, use the following command:
 
 {{%tabs%}}
 {{%tab Linux%}}
