@@ -44,6 +44,8 @@ To use Response you will need to import 'org.openspaces.admin.rest.Response', cu
 
 For example:
 ```java
+import org.openspaces.admin.rest.Response
+
 @CustomManagerResource
 @Path("/response")
 public class ResponsePluggableOperationTest {
@@ -54,16 +56,27 @@ public class ResponsePluggableOperationTest {
         return Response.ok().entity("good").header("headername","headervalue").build();
     }
 
+    @GET
+    @Path("/badResponse")
+    public Response badResponse() {
+         return Response.status(javax.ws.rs.core.Response.Status.BAD_REQUEST).header("headername","headervalue").build();
+    }
+
+
 }
 ```
 # Security
 
-Security and privileges are supported.To use it import 'org.openspaces.admin.rest.PrivilegeRequired' and 'org.openspaces.admin.rest.RestPrivileges' and use '@PrivilegeRequired'.
-The '@PrivilegeRequired' annotation can contain only 'RestPrivileges' enum.
+To define security privilege for a custom method, you need to import 'org.openspaces.admin.rest.PrivilegeRequired', 'org.openspaces.admin.rest.RestPrivileges' and use '@PrivilegeRequired'.
+The '@PrivilegeRequired' annotation accepts a 'RestPrivileges' enum which corresponds to the Security privileges. For more information on security see [Security Guide](../security/).
 
 
 For example:
 ```java
+
+import org.openspaces.admin.rest.PrivilegeRequired
+import org.openspaces.admin.rest.RestPrivileges
+
 @CustomManagerResource
 @Path("/secured/")
 public class PluggableSecuredContoller {
@@ -91,9 +104,8 @@ By default, the XAP manager scans `$XAP_HOME/lib/platform/manager/plugins` for p
 
 This feature is under active development, with new functionality added each sprint. This limitations list is updated with each sprint release.
 
-* Supported operations: `GET` `@PUT`, `@POST`, `@DELETE` .
+* Supported operations: `@GET` `@PUT`, `@POST`, `@DELETE` .
 * Parameters: Currently `@QueryParam` support String and primitive types (e.g. 'int').
 * `@Context` is currently supported only for fields (No support for constructors or method args).
 * `@Context` is currently supported only for fields of type `Admin`.
-* Operations always return 200 (Support for specifying http response code and other response settings will be added in upcoming sprints).
 * The following JAX-RS are not supported: '@Consumes' , '@Produces' , '@FormParam' , '@HeaderParam' , '@CookieParam', '@MatrixParam' , '@OPTIONS' , '@HEAD' , '@Context (parameter, constructor)'.
