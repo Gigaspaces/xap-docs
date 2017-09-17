@@ -18,6 +18,10 @@ The full InsightEdge Platform offers the following additional benefits:
 
 * Disaster recovery via geo-redundancy, fast data replication and native persistence
 
+{{% info "Info..." %}}
+If you are already using InsightEdge or XAP, refer to the [Release Notes](/xap/12.2/rn/index.html) for a list of new features, changes, updates, and resolved issues.
+{{% /info %}}
+
 ## Licensing Options
 
 InsightEdge is available in Java and .NET flavors, and offers several licensed editions, along with XAP and InsightEdge open-source editions. You can download a free 90-day trial version of any of the following:
@@ -36,25 +40,25 @@ A wide variety of documentation is provided to help you learn how to install, im
 
 ### Main Documentation Page
 
-For a brief overview of concepts, terminology, and other programming fundamentals, see the Getting Started with InsightEdge section.
+For a brief overview of concepts, terminology, and other programming fundamentals, see the [Getting Started](/xap/12.2/started/index.html) section.
 
 Read one of the following guides for detailed instructions on how to install InsightEdge and XAP and configure your working environment, and understand the APIs that comprise the InsightEdge Platform.
 
-* Java Developer Guide
+* [Developer Guide](/xap/12.2/dev-java/index.html)
 
-* .NET Developer Guide
+* [XAP.NET Guide](/xap/12.2/dev-dotnet/index.html)
 
-* Administration Guide (with a Security Guide)
+* [Administration Guide](/xap/12.2/admin/index.html) (with a [Security Guide](/xap/12.2/security/index.html))
 
 ### Additional Resources
 
 The following resources may provide a deeper understanding of the products, and help kick-start your development process:
 
-* Tutorials
+* [Tutorials](/xap/12.2/tut-java/index.html)
 
-* FAQs
+* [FAQs](/faq/index.html)
 
-* API Reference Guides for Java, .NET and Scala
+* [API Reference Guides for Java and .NET](/api_documentation/index.html)
 
 * Real-time examples (complete with code samples)
 
