@@ -34,16 +34,8 @@ insightedge\sbin\insightedge.cmd --mode demo
 If you are not familiar with the Apache Zeppelin web-based notebook, refer to [Apache Zeppelin Web Notebook](./notebook.html).
 {{%/refer%}}
 
-<<<<<<< HEAD
+
 # Running InsightEdge Examples
-=======
-This will start Spark, the Data Grid and an interactive Web Notebook:
-
-* Spark Master web ui is running at {{%exurl "localhost:8080""http://localhost:8080"%}}
-* Web Notebook is running at {{%exurl "localhost:9090""http://localhost:9090"%}}
-
-# Running the examples
->>>>>>> ca78deee7c25e6b70e87bc7ec29046bcbd964437
 
 Open the web notebook at {{%exurl "localhost:9090""http://localhost:9090"%}} and run any of the available examples.
 
