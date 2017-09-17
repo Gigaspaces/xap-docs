@@ -6,16 +6,21 @@ parent: xap-manager-rest.html
 weight: 200
 ---
  
-The XAP Manager RESTful API extensible: Developers can implement a plain Java class with {{%exurl "JAX-RS" "https://github.com/jax-rs"%}} annotations.
 
-**NOTE**: The `JAX-RS` API is being used because it's a well-known standard, but it's not fully supported - see list of limitations below.
+ 
+ 
+The XAP Manager RESTful API can be extended by implement a plain Java class with {{%exurl "JAX-RS" "https://github.com/jax-rs"%}} annotations. 
+At this point in time, not all JAX-RS features are supported, see list of [limitations](#limitations) below.
 
 # Usage
 
-1. Create a class and annotate it with `com.gigaspaces.manager.rest.CustomManagerResource`. When the XAP Manager starts, it scans the `$XAP_HOME/lib/platform/manager/plugins` for classes with that annotations and registers them.
-2. For each path you wish to register to, create a method annotated with an HTTP operation (e.g. `@GET`) and a `@Path` annotation with the relevant path.
-3. Each method parameter must have an annotation (e.g. `@QueryParam`) so its value can be returned at runtime.
-4. Some services (e.g. `Admin`) can be injected via the `@Context` annotation.
+Here is an example:<br>
+1. Create a class and annotate it with `com.gigaspaces.manager.rest.CustomManagerResource`. <br>
+2. For each path you wish to register to, create a method annotated with an HTTP operation (e.g. `@GET`) and a `@Path` annotation with the relevant path.<br>
+3. Each method parameter must have an annotation (e.g. `@QueryParam`) so its value can be returned at runtime.<br>
+4. Some services (e.g. `Admin`) can be injected via the `@Context` annotation.<br>
+5. Create a jar file
+
 
 For example:
 
@@ -36,7 +41,8 @@ public class BasicPluggableOperationTest {
 }
 ```
 
-This class maps an HTTP `GET` operation on path `/demo/report` to a `report` method. It accepts a query parameter, and uses an injected `Admin` instance to perform some user-define code (in this case, a custom report).
+This class maps an HTTP `GET` operation on path `/demo/report` to a `report` method. 
+It accepts a query parameter and uses an injected `Admin` instance to perform some user-define code (in this case, a custom report).
 
 # Response
 
@@ -63,9 +69,25 @@ public class ResponsePluggableOperationTest {
     }
 }
 ```
+
+
+# Deploying
+
+When the XAP Manager starts, it scans the `$XAP_HOME/lib/platform/manager/plugins` for classes in the jar files with the JAX-RS annotations and registers them.
+You can override the location using the following system property:
+
+```bash
+com.gs.manager.rest.plugins.path="pathToJar"
+```
+
 # Security
 
-To define security privilege for a custom method, you need to import `org.openspaces.admin.rest.PrivilegeRequired`, `org.openspaces.admin.rest.RestPrivileges` and use `@PrivilegeRequired`.
+To define security privilege for a custom method, you need to import:
+ 
+- `org.openspaces.admin.rest.PrivilegeRequired`
+- `org.openspaces.admin.rest.RestPrivileges`
+- `@PrivilegeRequired`
+
 The `@PrivilegeRequired` annotation accepts a `RestPrivileges` enum which corresponds to the Security privileges. 
 
 {{%refer%}}
@@ -95,9 +117,7 @@ public class PluggableSecuredContoller {
 
 
 
-# Configuration
 
-By default, the XAP manager scans `$XAP_HOME/lib/platform/manager/plugins` for pluggable operations classes. You can override this using the `com.gs.manager.rest.plugins.path` system property.
 
 # Limitations
 
@@ -105,6 +125,6 @@ This feature is under active development, with new functionality added each spri
 
 * Supported operations: `@GET` `@PUT`, `@POST`, `@DELETE` .
 * Parameters: Currently `@QueryParam` support String and primitive types (e.g. `int`).
-* `@Context` is currently supported only for fields (No support for constructors or method args).
+* `@Context` is currently supported only for fields (No support for constructors or method arguments).
 * `@Context` is currently supported only for fields of type `Admin`.
-* The following JAX-RS are not supported: '@Consumes' , `@Produces` , `@FormParam` , `@HeaderParam` , `@CookieParam`, `@MatrixParam` , `@OPTIONS` , `@HEAD` , `@Context` (parameter, constructor).
+* The following JAX-RS annotations are not supported: `@Consumes` , `@Produces` , `@FormParam` , `@HeaderParam` , `@CookieParam`, `@MatrixParam` , `@OPTIONS` , `@HEAD` , `@Context` (parameter, constructor).

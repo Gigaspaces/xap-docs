@@ -26,7 +26,9 @@ The following editions are available:
 - XAP Premium (license required)
 - InsightEdge/XAP open source (free)
 
-{{%panel "Important Licensing Information"%}}The licensing policy has been updated, and each minor version (12.2, 12.x, etc.) now requires its own license key. If you need to upgrade from a previous version of 12.x, the original upgrade support policy is still valid, however you must contact GigaSpaces support to request a new license key. {{% /panel %}}  
+{{%panel "Important Licensing Information"%}}
+The licensing policy has been updated, and each minor version (12.2, 12.x, etc.) now requires its own license key. If you need to upgrade from a previous version of 12.x, the original upgrade support policy is still valid, however you must contact GigaSpaces support to request a new license key. 
+{{% /panel %}}  
 
 # Administration Features
 
@@ -36,27 +38,8 @@ Several XAP administration features have been updated and can now be used with t
 
 The XAP Manager RESTful API can now be used with the full InsightEdge Platform package, and is now extensible. Therefore, it has been renamed to REST Manager API. This extended functionality enaables customers to develop custom management interfaces (to deploy applications, troubleshoot problems, and monitor system health) in order to simplify day-to-day system management tasks.
 
-To add an operation, simply implement a plain Java class with [JAX-RS](https://github.com/jax-rs) annotations, build it, and drop the jar in `$XAP_HOME/lib/platform/manager/plugins`. For example:
-
-```java
-@CustomManagerResource
-@Path("/demo")
-public class BasicPluggableOperationTest {
-    @Context public Admin admin;
-
-    @GET
-    @Path("/report")
-    public String report(@QueryParam("hostname") String hostname) {
-        final Machine machine = admin.getMachines().getMachineByHostName(hostname);
-        return "Custom report: host=" + hostname + 
-                ", containers=" + machine.getGridServiceContainers() + 
-                ", PU instances=" + machine.getProcessingUnitInstances();
-    }
-}
-```
-
-In the above example, the class maps an HTTP `GET` operation in the path `/demo/report` to a `report` method. It accepts a query parameter, and uses an injected `Admin` instance to run user-defined code and generate a custom report.
-
+To add an operation, simply implement a plain Java class with [JAX-RS](https://github.com/jax-rs) annotations, build it, and drop the jar in `$XAP_HOME/lib/platform/manager/plugins` folder. 
+ 
 {{<infosign>}} For more information, see [Pluggable Manager Operations](/xap/12.2/admin/xap-manager-rest-pluggable.html).
 
 ## Spark Standalone Management
