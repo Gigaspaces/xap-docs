@@ -9,20 +9,20 @@ weight: 200
 InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
 {{%/note%}}
 
-In this tutorial, you will learn how to develop your first InsightEdge application to read and write from/to the Data Grid. This tutorial assumes that you have basic knowledge of {{%exurl "Apache Spark""http://spark.apache.org/docs/latest/index.html"%}}.
+This topic explains how to create an InsightEdge application that can read and write from/to the Data Grid. You should have a basic knowledge of {{%exurl "Apache Spark""http://spark.apache.org/docs/latest/index.html"%}}.
 
 
 
 {{%refer%}}
-For installation and launching the InsightEdge cluster, refer to [Quick Start](./quick_start.html) for the minimum cluster setup.
+For instructions on how to install a minimum InsightEdge cluster setup and launch it, refer to [Starting InsightEdge](./quick_start.html).
 {{%/refer%}}
 
 
-# Project dependencies
+# Project Dependencies
 
 InsightEdge {{%version "xap-version"%}} runs on Spark {{%version "spark-version"%}} and Scala {{%version "scala-version"%}}. These dependencies will be included when you depend on the InsightEdge artifacts.
 
-InsightEdge jars are not published to Maven Central Repository yet. To install artifacts to your local Maven repository, make sure you have {{%exurl "Maven""https://maven.apache.org/"%}} installed and then run:
+InsightEdge .jars are not published to Maven Central Repository yet. To install artifacts to your local Maven repository, make sure you have {{%exurl "Maven""https://maven.apache.org/"%}} installed and then run:
 
 {{%tabs%}}
 {{%tab Linux%}}
@@ -58,21 +58,19 @@ And if you are building with Maven:
 </dependency>
 ```
 
-{{%note%}}
-InsightEdge jars are already packed into InsightEdge distribution and are automatically loaded with your application if you submit them with `insightedge-submit` script or run the Web Notebook. Therefore you don't need to pack them into your uber jar. But if you want to run Spark in a `local[*]` mode, the dependencies should be declared with the `compile` scope.
-{{%/note%}}
+{{%info "Info..."%}}
+InsightEdge .jars are already packed in the InsightEdge distribution, and are automatically loaded with your application if you submit them with `insightedge-submit` script or run the Web Notebook. As such, there is no need to pack them into your uber .jar. However, if you want to run Spark in `local[*]` mode, the dependencies should be declared with the `compile` scope.
+{{%/info%}}
 
-# Developing the Spark application
+# Developing a Spark Application
 
 InsightEdge provides an extension to the regular Spark API.
 
-{{%refer%}}
-Please refer to {{%exurl "Self-Contained Applications""http://spark.apache.org/docs/latest/quick-start.html#self-contained-applications"%}} if you are new to Spark.
+{{%refer "See also..."%}}
+Read the {{%exurl "Self-Contained Applications""http://spark.apache.org/docs/latest/quick-start.html#self-contained-applications"%}} topic in the Apache Spark documentation if you are new to Spark.
 {{%/refer%}}
 
-`InsightEdgeConfig` is the starting point in connecting Spark with the Data Grid.
-
-Create the `InsightEdgeConfig` and the `SparkContext`:
+`InsightEdgeConfig` is the starting point in connecting Spark with the Data Grid. Create the `InsightEdgeConfig` and the `SparkContext`:
 
 {{%tabs%}}
 {{%tab "Scala" %}}
@@ -87,16 +85,14 @@ val sc = new SparkContext(sparkConf)
 {{%/tab%}}
 {{%/tabs%}}
 
-{{%note%}}
-It is important to import `org.insightedge.spark.implicits.all._`, this will enable Data Grid specific API.
+{{%info "Info..."e%}}
+It is important to import `org.insightedge.spark.implicits.all._` to enable the Data Grid specific API. "insightedge-space", "insightedge", and "127.0.0.1:4174" are the default Data Grid settings.
 
-"insightedge-space", "insightedge" and "127.0.0.1:4174" are the default Data Grid settings
+When you are running Spark applications from the Web Notebook, `InsightEdgeConfig` is created implicitly with the properties defined in the Spark interpreter.
 
-When you are running Spark applications from the Web Notebook, the `InsightEdgeConfig` is created implicitly with the properties defined in the Spark interpreter.
+{{%/info%}}
 
-{{%/note%}}
-
-# Modeling Data Grid objects
+# Modeling Data Grid Objects
 
 Create a case class `Product.scala` to represent a Product entity in the Data Grid:
 
@@ -114,35 +110,35 @@ case class Product(
 }
 ```
 
-# Saving to Data Grid
+# Saving to the Data Grid
 
-To save Spark RDD just use `saveToGrid` method.
+To save a Spark RDD,  use the `saveToGrid` method.
 
 ```scala
 val rdd = sc.parallelize(1 to 1000).map(i => Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean()))
 rdd.saveToGrid()
 ```
 
-# Loading and analyzing data from Data Grid
+# Loading and Analyzing Data from the Data Grid
 
-Use the `gridRdd` method of the `SparkContext` to view Data Grid objects as Spark `RDD`
+Use the `gridRdd` method of the `SparkContext` to view Data Grid objects as Spark RDDs.
 
 ```scala
 val gridRdd = sc.gridRdd[Product]()
 println("total products quantity: " + gridRdd.map(_.quantity).sum())
 ```
 
-# Closing context
-When you are done, close the Spark context and all connections to Data Grid with
+# Closing the Spark Context
+When you are done, close the Spark context and all connections to Data Grid with the following command:
 
 ```scala
 sc.stopInsightEdgeContext()
 ```
 
-Under the hood it will call regular Spark's `sc.stop()`, so no need to call it manually.
+Under the hood, this will call the regular Spark `sc.stop()` command, so there is no need to call it manually.
 
-# Running your Spark application
-After you packaged a jar, submit the Spark job via `insightedge-submit` instead of `spark-submit`.
+# Running your Spark Application
+After you have packaged a .jar, submit the Spark job via `insightedge-submit` instead of `spark-submit` as follows:
 
 {{%tabs%}}
 {{%tab Linux%}}
