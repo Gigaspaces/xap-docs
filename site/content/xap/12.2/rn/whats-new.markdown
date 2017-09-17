@@ -80,3 +80,4 @@ This new InsightEdge Platform feature provides in-grid SQL capability. This prov
 # Third Party Upgrades
 
 * {{%exurl "RocksDB" "http://rocksdb.org/"%}} integration has been upgraded to `5.5.1`.
+* {{%exurl "Spark" "https://spark.apache.org/"%}} integration has been upgraded to `2.2`.
