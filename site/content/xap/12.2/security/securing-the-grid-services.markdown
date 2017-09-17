@@ -35,6 +35,10 @@ The [Grid Service Manager (GSM)](/product_overview/service-grid.html#gsm) is res
 
 A secured GSM can **only** connect to another secured GSM. This means that a Processing Unit managed by a secured GSM can be recoverable upon failover only by another secured GSM.
 
+# XAP Manager
+
+The [XAP Manager](../admin/xap-manager.html) is a component which stacks together the LUS and GSM along with ZooKeeper and a [RESTful Management API](../admin/xap-manager-rest.html). The privileges of the GSM are the same as if it were standalone. For each REST operation, we list the required privilege in the yaml file, also viewable in the Swagger tool (see [RESTful API](../admin/xap-manager-rest-overview.html)). For example, starting a container would require **Manage Grid** privileges. Deploying a Space or a Processing Unit would require **Provision PU** privileges. For more information about using the RESTful API with security, refer to [RESTful API - Security](../admin/xap-manager-rest-overview.html#security)
+
 ## Elastic Processing Units
 
 When an [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html) is deployed, the GSM performs the initial provisioning and the *ESM* monitors it to ensure the elastic requirements are met. This means that when the service grid is secured, the ESM requires credentials with *Manage PU* and *Manage Grid* permissions to monitor and manage the elastic processing units. This is done using the `com.gs.esm.username` and `com.gs.esm.password` system properties.
