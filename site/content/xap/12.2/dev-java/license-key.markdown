@@ -12,12 +12,14 @@ GigaSpaces XAP Premium and Enterprise editions require a valid license to start.
 
 # Getting started
 
-When downloading XAP Premium or Enterprise from the {{%exurl "XAP Download Center" "http://www.gigaspaces.com/LatestProductVersion"%}}, you'll get an email with a license key for the evaluation period. To start your evaluation, simply edit the license file located in `<XAP_HOME>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
+When downloading InsightEdge or XAP from the {{%exurl "Download Center" "http://www.gigaspaces.com/LatestProductVersion"%}}, you'll get an email with a license key for the evaluation period. To start your evaluation, simply edit the license file located in `<XAP_HOME>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
 
 ```xml
-# License can also be set via the system property com.gs.licensekey
-Version=12;Type=EVALUATION;Customer=yourname@yourcompany.com;Expiration=2016-Dec-31;Hash=NP6SQOOdOZrPRcN9OTYQ
+# License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
+Product=InsightEdge;Version=12.2;Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2017-Sep-30;Hash=PNXrPIPANOOddPNQFdQQ
 ```
+
+The same evaluation license is emailed for both InsightEdge and XAP downloaders, enabling you to evaluate all features in both packages.
 
 {{% info %}}
 If you're using more than one machine for the evaluation, make sure you copy the license to each of those machines.
@@ -38,6 +40,7 @@ XAP validates the license whenever the Service Grid is started. If the license i
 The system looks for the license key in the following order:
 
 1. The `com.gs.licensekey` system property.
+1. The `XAP_LICENSE` environment variable.
 1. A `xap-license.txt` file in the Classpath.
 1. A `xap-license.txt` file in XAP installation folder (can be explicitly set using `com.gs.home` system property)
 1. A `xap-license.txt` file in the current directory.
