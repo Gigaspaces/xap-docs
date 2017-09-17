@@ -64,8 +64,13 @@ Currently you cannot delete/replace a JAR file if there’s a deployed PU using 
 
 
 # Security
-Security is off by default, same as before, and can be enabled via configuration, same as before. When security is enabled, the REST API performs basic authentication and checks if the user has sufficient privileges to execute the operation. 
-Note that since basic authentication does not encrypt user credentials, running a manager in a secured environment without SSL is a security hazard, and the system detects this and aborts. 
+Security needs to be explicitly enabled. As with any other `grid` component, to enable the security add the system property `-Dcom.gs.security.enabled=true`. For more information, see the [Security Guide](../security/). By default, to get you up and running, if nothing was configured, the fallback security implementation uses a local file to save credentials (see [File-Based Security](../security/default-file-based-security-implementation-ext.html).
+
+When security is enabled, the REST API performs basic authentication and checks if the user has sufficient privileges to execute the operation.
+
+{{%note%}}
+Note that since basic authentication does not encrypt user credentials, running a manager in a secured environment without SSL is a security hazard, and the system detects this and aborts. You must **explicitly** enable or disable the SSL by setting the system property `com.gs.manager.rest.ssl.enabled`.
+{{%/note%}}
 
 You can either:
 
@@ -80,7 +85,7 @@ Finally, if you need to configure something which we don’t expose (we’re usi
 
 |Port |System property |Default |
 |:----|:---------------|:-------|
-|Enable/disable |com.gs.manager.rest.ssl.enabled| unset |
+|Enable/disable |com.gs.manager.rest.ssl.enabled| must be explicitly set |
 |Keystore path  |com.gs.manager.rest.ssl.keystore-path | |
 |Keystore password|com.gs.manager.rest.ssl.keystore-password| |
 |Custom config |com.gs.manager.rest.jetty.config|  |
