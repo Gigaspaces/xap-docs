@@ -139,7 +139,7 @@ insightedge\bin\insightedge-submit --class org.insightedge.examples.basic.SaveRd
 {{%/tabs%}}
 
 {{%note "Note..."%}}
-Running `TwitterPopularTags` example requires you to pass [Twitter app tokens](https://apps.twitter.com/) as arguments.
+Running `TwitterPopularTags` example requires you to pass {{%exurl "Twitter app tokens" "https://apps.twitter.com/"%}} as arguments.
 {{%/note%}}
 
 
@@ -174,18 +174,21 @@ insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 insightedge\e
 ```
 {{%/tab%}}
 {{%/tabs%}}
+
 # Stopping local environment
 
 To stop all InsightEdge components, next command can be executed:
+
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
 ./insightedge/bin/insightedge shutdown
 ```
 {{%/tab%}}
+
 {{%tab Windows%}}
 ```bash
 insightedge\bin\insightedge.cmd shutdown
 ```
 {{%/tab%}}
-{{%tabs%}}
+{{%/tabs%}}
