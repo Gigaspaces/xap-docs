@@ -60,8 +60,8 @@ The following resources may provide a deeper understanding of the products, and 
 
 * [API Reference Guides for Java and .NET](/api_documentation/index.html)
 
-* Real-time examples (complete with code samples)
+* [Real-time examples (complete with code samples)](/sbp)
 
-* Blog
+* {{%exurl "Blog" "http://blog.gigaspaces.com/"%}}
 
-* Forum
+* {{%exurl "Forum" "http://ask.gigaspaces.org/questions/"%}}
