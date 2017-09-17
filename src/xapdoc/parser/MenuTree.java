@@ -63,14 +63,15 @@ public class MenuTree {
 		File indexFile = new File(vc.path, "index.markdown");
 		if (indexFile.exists()) 
             rootsMap.put("intro", new Page(indexFile, true));
+		boolean newStructure = vc.version.equals("122");
         // Relocate java tutorial from root under java dev guide:
 		relocate(rootsMap, "xap" + vc.version + "tut", "xap" + vc.version);
-		relocate(rootsMap, "tut-java", "dev-java");
+		relocate(rootsMap, "tut-java", newStructure ? "started" : "dev-java");
         // Relocate .NET tutorial from root under .NET dev guide:
 		relocate(rootsMap, "xap" + vc.version + "nettut", "xap" + vc.version + "net");
 		relocate(rootsMap, "tut-dotnet", "dev-dotnet");
         // Relocate security under admin:
-		if (vc.version.equals("122"))
+		if (newStructure)
 			relocate(rootsMap, "security", "admin");
 
         // Sort and generate roots:

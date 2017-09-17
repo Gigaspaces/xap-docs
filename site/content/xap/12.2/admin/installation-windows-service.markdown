@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  XAP as Windows Service
-categories: XAP122GS
-parent: installation.html
-weight: 800
+categories: XAP122ADM
+parent: none
+weight: 1300
 ---
 
 {{% ssummary %}} {{% /ssummary %}}
