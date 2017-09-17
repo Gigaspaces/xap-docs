@@ -1,6 +1,6 @@
 ---
 type: post122
-title:   RESTful API
+title:   RESTful Manager API
 categories: XAP122ADM, PRM
 parent: xap-manager-rest.html
 weight: 100

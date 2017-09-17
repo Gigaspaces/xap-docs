@@ -12,19 +12,24 @@ weight: 100
 
 The XAP JDBC interface allows database-driven applications to interact with spaces via SQL queries and commands. A query processor transparently translates SQL queries into legal space operations. No integration is required - all you need to do is point the application to the GigaSpaces JDBC driver like any other JDBC driver.
 
+{{%refer%}}
+If you need SQL-99 compliant query functionality,  it is available in the InsightEdge Platform package. Look at the SQLQuery and [JDBC Driver]({{%latestjavaurl%}}/sql-query-intro.html) topics in the Java developers guide. 
+{{%/refer%}}
+
+
 Applications can access the XAP Data Grid using the JDBC API; data written to the IMDG using the JDBC API can also be accessed using other APIs.
 
-{{% note %}}
+{{% refer %}}
 An alternative way of querying the space using SQL syntax is the [SQLQuery](./query-sql.html) class. This class allows you to perform SQL queries directly against space objects, without adding O/R mapping complexity.
-{{% /note %}}
+{{% /refer %}}
 
 JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the space, beyond the template matching provided by the [The GigaSpace Interface](./the-gigaspace-interface.html).
 
 GigaSpaces is not a full-fledged relational database and it does not support the full SQL92 standard (see [JDBC Supported Features](#supported-features)). However, the existing SQL support is extremely useful for applications that need to execute queries on a space for real-time queries.
 
-{{% tip %}}
+{{% refer %}}
 You can use the [SQL Command Line]({{%currentadmurl%}}/space-gigaspaces-cli.html) to query and fetch data from the IMDG. The SQL Command Line using the GigaSpaces JDBC Driver when accessing the IMDG.
-{{% /tip %}}
+{{% /refer %}}
 
 # Using Existing SQL Code and Porting to External Systems
 

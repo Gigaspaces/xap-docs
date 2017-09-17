@@ -16,8 +16,9 @@ This section describes how to use the interactive Apache Zeppelin Web Notebook.
 
 The Web Notebook can be started in any of the following ways:
 
-* In `demo` mode, the Web Notebook is started automatically at {{%exurl "127.0.0.1:8090""http://127.0.0.1:8090"%}}. (Refer to a [Starting InsightEdge](./quick_start.html) for information about `demo` mode.)
-* When running a [remote cluster](./cluster_setup.html), the Web Notebook is started on a master host, on port `8090`.
+
+* In `demo` mode, the Web Notebook is started automatically at {{%exurl "127.0.0.1:9090""http://127.0.0.1:9090"%}}. (Refer to a [Starting InsightEdge](./quick_start.html) for information about `demo` mode.)
+* When running a [remote cluster](./cluster_setup.html), the Web Notebook is started on a master host, on port `9090`.
 * Start and stop the Web Notebook manually at any time using the following commands:
 
 ```bash

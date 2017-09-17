@@ -1,6 +1,6 @@
 ---
 type: post122
-title:  Manager API
+title:  REST Manager API
 categories: XAP122ADM, PRM
 weight: 250
 parent: none
