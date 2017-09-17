@@ -3,7 +3,7 @@ type: post122
 title:  Installation
 categories: XAP122GS
 parent: none
-weight: 100
+weight: 50
 ---
 
 
