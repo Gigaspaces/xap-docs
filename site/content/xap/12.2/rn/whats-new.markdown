@@ -75,7 +75,7 @@ In addition, developers can leverage the `manager-local` option to run locally w
 
 This new InsightEdge Platform feature provides in-grid SQL capability. This provides a familiar interface for querying the XAP in-memory data grid as if it were a traditional SQL database. It also enables the use of existing plug-in visualization tools on top of XAP, for faster and easier adoption within existing frameworks.
 
-{{<infosign>}} For more information, see [In-Grid SQL Query](/xap/12.2/admin/in-grid-sql-query-intro.html).
+{{<infosign>}} For more information, see [In-Grid SQL Query](/xap/12.2/dev-java/sql-query-intro.html).
 
 # Third Party Upgrades
 
