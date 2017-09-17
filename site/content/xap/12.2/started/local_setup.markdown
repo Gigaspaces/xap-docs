@@ -9,15 +9,15 @@ weight: 1200
 InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
 {{%/note%}}
 
-In this tutorial, you will learn how to install and run InsightEdge on a local machine.
+This section explains how to install and run InsightEdge on a local machine.
 
 
 # Installation
 
-The InsightEdge environment consists of Spark and the Data Grid. You have two options to run InsightEdge locally.
+The InsightEdge environment consists of Spark and the Data Grid. There are two options for running InsightEdge locally.
 
-{{%warning%}}
-Currently, only demo mode is available for Windows. This mode runs local Spark and Datagrid cluster, which is enough for most dev environments. Starting `demo` mode on Windows described in [Quick Start Guide](quick_start.html).
+{{%warning "Important..."%}}
+Currently, only demo mode is available for Windows. Demo mode runs a local Spark and Data Grid cluster, which is enough for most development environments. Refer to [Starting InsightEdge](quick_start.html) for instructions on starting `demo` mode in a Windows environment.
 {{%/warning%}} 
 
 The first option is to start the full InsightEdge environment:
