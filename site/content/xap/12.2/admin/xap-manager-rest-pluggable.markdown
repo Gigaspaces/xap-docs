@@ -40,7 +40,7 @@ This class maps an HTTP `GET` operation on path `/demo/report` to a `report` met
 
 # Response
 
-To use Response you will need to import 'org.openspaces.admin.rest.Response', currently the Response support only String as a body.
+To use Response you will need to import `org.openspaces.admin.rest.Response`, currently the Response support only String as a body.
 
 For example:
 ```java
@@ -61,19 +61,19 @@ public class ResponsePluggableOperationTest {
     public Response badResponse() {
          return Response.status(javax.ws.rs.core.Response.Status.BAD_REQUEST).header("headername","headervalue").build();
     }
-
-
 }
 ```
 # Security
 
-To define security privilege for a custom method, you need to import 'org.openspaces.admin.rest.PrivilegeRequired', 'org.openspaces.admin.rest.RestPrivileges' and use '@PrivilegeRequired'.
-The '@PrivilegeRequired' annotation accepts a 'RestPrivileges' enum which corresponds to the Security privileges. For more information on security see [Security Guide](../security/).
+To define security privilege for a custom method, you need to import `org.openspaces.admin.rest.PrivilegeRequired`, `org.openspaces.admin.rest.RestPrivileges` and use `@PrivilegeRequired`.
+The `@PrivilegeRequired` annotation accepts a `RestPrivileges` enum which corresponds to the Security privileges. 
 
+{{%refer%}}
+For more information on security see [Security Guide](../security/).
+{{%/refer%}}
 
 For example:
 ```java
-
 import org.openspaces.admin.rest.PrivilegeRequired
 import org.openspaces.admin.rest.RestPrivileges
 
@@ -89,7 +89,6 @@ public class PluggableSecuredContoller {
     public String getBase() {
         return "hello";
     }
-
 }
 ```
 
@@ -105,7 +104,7 @@ By default, the XAP manager scans `$XAP_HOME/lib/platform/manager/plugins` for p
 This feature is under active development, with new functionality added each sprint. This limitations list is updated with each sprint release.
 
 * Supported operations: `@GET` `@PUT`, `@POST`, `@DELETE` .
-* Parameters: Currently `@QueryParam` support String and primitive types (e.g. 'int').
+* Parameters: Currently `@QueryParam` support String and primitive types (e.g. `int`).
 * `@Context` is currently supported only for fields (No support for constructors or method args).
 * `@Context` is currently supported only for fields of type `Admin`.
-* The following JAX-RS are not supported: '@Consumes' , '@Produces' , '@FormParam' , '@HeaderParam' , '@CookieParam', '@MatrixParam' , '@OPTIONS' , '@HEAD' , '@Context (parameter, constructor)'.
+* The following JAX-RS are not supported: '@Consumes' , `@Produces` , `@FormParam` , `@HeaderParam` , `@CookieParam`, `@MatrixParam` , `@OPTIONS` , `@HEAD` , `@Context` (parameter, constructor).
