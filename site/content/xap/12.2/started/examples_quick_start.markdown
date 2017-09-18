@@ -14,9 +14,9 @@ InsightEdge is being transformed from a Spark distribution to a Unified transact
 This section explains how to use the sample code that has been provided with the InsightEdge package. You can download the latest InsightEdge distribution from [here](http://insightedge.io/#download) and unpack it to any location.
 
 {{%info "Info..."%}}
-The example sources are located at `insightedge/examples`.
+The example sources are located at `$XAP_HOME/insightedge/examples`.
 
-The example .jar is located at `insightedge/examples/jars`.
+The example .jar is located at `$XAP_HOME/insightedge/examples/jars`.
 {{%/info%}}
 
 In order to get InsightEdge up and running with the provided examples, you will have to perform the following:
@@ -31,64 +31,44 @@ In order to get InsightEdge up and running with the provided examples, you will 
 
 Before installing and running InsightEdge, verify that you have the following installed in your environment:
 
-* Java 1.8
-* Scala 2.10
+* Java 8
+* Scala 2.11
 * Maven 3.1+
 
 
 # Starting the Local Environment
 
-Before you can launch the sample application, you must start insightEdge. Use one of the command lines provided below. Starting InsightEdge initializes the following components: 
+Before you can launch the sample application, you must start insightEdge. To do that, run the following from the `$XAP_HOME/insightedge/bin` directory:
 
-* Spark master/slave at `spark://127.0.0.1:7077`
-* XAP Manager at `http://localhost:8080`
-* Spark monitoring UI at `http://localhost:8090`
-* Zeppelin UI at `http://localhost:9090`
-* Data Grid manager and two containers with `1G` heap each
-    - space is deployed with name `insightedge-space`
-
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge demo
+insightedge demo
 ```
-{{%/tab%}}
 
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge.cmd demo
-```
-{{%/tab%}}
-{{%/tabs%}}
+This will start the following components on your machine:
+
+* Spark Master UI at {{%exurl "localhost:8080""http://localhost:8080"%}}
+   * Url for submitting spark jobs: `spark://127.0.0.1:7077`
+* Spark Worker UI at {{%exurl "localhost:8081""http://localhost:8081"%}}
+* Zeppelin UI at {{%exurl "localhost:9090""http://localhost:9090"%}}
+* XAP Service grid:
+    * XAP Manager at {{%exurl "localhost:8090""http://localhost:8090"%}}
+    * A Space called `insightedge-space` with 2 partitions (`1G` heap each)
 
 # Building Examples with Maven
 
-Next, you must install the InsightEdge artifacts in your local Maven repository, and then build the examples using Maven.
+Next, you must install the InsightEdge artifacts in your local Maven repository, and then build the examples using Maven. To do that, run the following from the `$XAP_HOME/insightedge/tools/maven` directory:
 
-Run the following from the InsightEdge directory:
-
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/tools/maven/insightedge-maven.sh
+insightedge-maven
 ```
-{{%/tab%}}
 
-{{%tab Windows%}}
-```bash
-insightedge\tools\maven\insightedge-maven.cmd
-```
-{{%/tab%}}
-{{%/tabs%}}
-
-
-Next, use the following command in Maven to build the examples from `insightedge/examples`:
+Next, use the following command in Maven to build the examples from `$XAP_HOME/insightedge/examples`:
 
 ```bash
 mvn clean package
 ```
 
-The end result is an examples .jar located at `insightedge/examples/target/insightedge-examples.jar`.
+The end result is an examples .jar located at `$XAP_HOME/insightedge/examples/target/insightedge-examples.jar`.
 
 # Running the insightedge-examples.jar File
 
@@ -111,90 +91,43 @@ You can run the examples from your preferred IDE. Every example has a `main` met
 
 ## Using a Command Line
 
-To run the examples from a command line, submit them as Spark applications with the following command:
-{{%tabs%}}
-{{%tab Linux%}}
+
+To run the examples from a command line, run the following from the `$XAP_HOME/insightedge/bin` directory:
+
 ```bash
-./insightedge/bin/insightedge-submit --class {main class name} --master {Spark master URL} \
-    {insightedge-examples.jar location}
+insightedge-submit --class {main class name} --master {Spark master URL} {path/to/insightedge-examples.jar}
 ```
-{{%/tab%}}
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge-submit --class {main class name} --master {Spark master URL} ^
-    {insightedge-examples.jar location}
-```
-{{%/tab%}}
-{{%/tabs%}}
 
 For example, `SaveRDD` can be submitted with the following syntax:
-{{%tabs%}}
 
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
-    ./insightedge/examples/jars/insightedge-examples.jar
+insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
+    ./$XAP_HOME/insightedge/examples/jars/insightedge-examples.jar
 ```
-{{%/tab%}}
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 ^
-    insightedge\examples\jars\insightedge-examples.jar
-```
-{{%/tab%}}
-{{%/tabs%}}
 
 {{%note "Note..."%}}
 Running the `TwitterPopularTags` example requires you to pass {{%exurl "Twitter app tokens" "https://apps.twitter.com/"%}} as arguments.
 {{%/note%}}
-
 
 ### Python Examples
 
 In addition to the above, you can run Python examples using the following command:
 {{%tabs%}}
 
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge-submit --master {Spark master URL} {path to .py file}
+insightedge-submit --master {Spark master URL} {path/to/your-example.py}
 ```
-{{%/tab%}}
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge-submit --master {Spark master URL} {path to .py file}
-```
-{{%/tab%}}
-{{%/tabs%}}
 
 For example:
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge-submit --master spark://127.0.0.1:7077 ./insightedge/examples/python/sf_salaries.py
+insightedge-submit --master spark://127.0.0.1:7077 ./$XAP_HOME/insightedge/examples/python/sf_salaries.py
 ```
-{{%/tab%}}
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 insightedge\examples\python\sf_salaries.py
-```
-{{%/tab%}}
-{{%/tabs%}}
 
 # Stopping the Local Environment
 
-To stop all InsightEdge components, use the following command:
+To stop all InsightEdge components, run the following from the `$XAP_HOME/insightedge/bin` directory:
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge shutdown
+insightedge shutdown
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge.cmd shutdown
-```
-{{%/tab%}}
-{{%/tabs%}}
