@@ -74,19 +74,19 @@ Upon request, GigaSpaces' [Consulting Services](mailto:ps@gigaspaces.com) expert
 |6.0 b1855	     |Aug. 2007	    |6.0.5 b2150 on May 2007               |No Plans|August 2009 [4]|
 |6.6 b2601 (or R6.5) |Sep 2008	|6.6.5 b3320 on June 2009	           |No Plans|September 2010 [4]|
 |7.0 b3500	     |July 2009	    |7.0.4 b4100 on July 2010	           |No Plans|July 2011[4] ||
-|7.1 b4300	     |April 2010	|7.1.4 b4750 on February 2011	       |No Plans|April 2012 [4]|
+|7.1 b4300	     |April 2010	|7.1.4 b4750 on Feb. 2011	       |No Plans|April 2012 [4]|
 |8.0 b5000	     |January 2011	|8.0.8 b6380 on March  2013	           |No Plans|January 2013|
-|9.0 b6500	     |May 2012 	    |9.0.2 b6900 on Aug 2012	           |No Plans|October 2014|
-|9.1 b7500	     |Oct. 2012 	|9.1.2 b7920 on Feb 2013	           |No Plans|April 2015|
-|9.5 b8500	     |April 2013	|9.5.2 b8900 on Aug 2013	           |No Plans|July 2015|
-|9.6 b9500	     |July 2013	    |9.6.2 b9900 on Oct 2013	           |No Plans|January 2016|
-|9.7 b10496      |Jan. 2014	    |9.7.2 b11000 on Feb 2015	           |No Plans|July 2016|
-|10.0 	         |July 2014     |10.0.1 b11800 on Aug 2014             |10.0.2	|March 2017 |
+|9.0 b6500	     |May 2012 	    |9.0.2 b6900 on Aug. 2012	           |No Plans|October 2014|
+|9.1 b7500	     |Oct. 2012 	|9.1.2 b7920 on Feb. 2013	           |No Plans|April 2015|
+|9.5 b8500	     |April 2013	|9.5.2 b8900 on Aug. 2013	           |No Plans|July 2015|
+|9.6 b9500	     |July 2013	    |9.6.2 b9900 on Oct. 2013	           |No Plans|January 2016|
+|9.7 b10496      |Jan. 2014	    |9.7.2 b11000 on Feb. 2015	           |No Plans|July 2016|
+|10.0 	         |July 2014     |10.0.1 b11800 on Aug. 2014             |10.0.2	|March 2017 |
 |10.1 b12600     |March 2015	|10.1.1 b12800 on April 2015	       |No Plans|July 2017	 |
-|10.2 b13800     |July 2015	    |10.2.1 b14000 on November 2015	       |No Plans|April 2018 |	 
+|10.2 b13800     |July 2015	    |10.2.1 b14000 on Nov. 2015	       |No Plans|April 2018 |	 
 |11.0 b14800     |April 2016	| 	                                   |No Plans|January 2019 |     
 |12.0 b16000     |<nobr>January 2017<nobr> |                           |No Plans|March 2019  |            
-|12.1 b17100     |March 2017	|R12.1.1 b17100 on June 2017           |No Plans|  |
+|12.1 b17100     |March 2017	|R12.1.1 b17100 on June 2017           |No Plans| September 2019 |
 |12.2 b18000     |Sept. 2017	|                                      |No Plans|  |
                          
         
