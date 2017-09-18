@@ -37,19 +37,19 @@ For example:
 com.gs.security.security-manager.class=my.company.MySecurityManagerImpl
 ```
 
-#### Space - Security Configuration file
+### Space - Security Configuration file
 
 For a standalone space, the default Space security configuration file is `<space-name>-security.properties`. You can include the security properties as part of the custom properties being passed to the space `/./space?properties=myCustomProps`.
 
 
-#### Space Processing Unit - Security Configuration file
+### Space Processing Unit - Security Configuration file
 
 The default Space Processing Unit security configuration file is `/META-INF/spring/pu.properties`. This is equivalent to custom properties being passed to the Space. This allows you to configure different configurations for different Processing Units. Thus, having a Processing Unit Cluster point to a specific security directory.
 
 It is possible to separate the security configurations from the Processing Unit configurations, by placing the configurations in `/META-INF/spring/<Space name>-security.properties` file.
 
 
-#### Configure using a System property
+### Configure using a System property
 
 An alternative is the System Property override.
 
