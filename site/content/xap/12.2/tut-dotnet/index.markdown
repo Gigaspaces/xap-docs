@@ -1,13 +1,13 @@
 ---
 type: post122
-title:  Tutorials
+title:  XAP Basics for .NET
 categories:  XAP122NETTUT
 weight: 1
 ---
 
 
 
-This Tutorial provides a high-level overview of the GigaSpaces XAP platform. Hands on examples are provided to demonstrate the core concepts and API's. The primary people who can benefit from this tutorial, are architects and developers who wish to build scaled-out applications with GigaSpaces XAP.
+This section provides some hands-on examples to demonstrate the core concepts and APIs of the XAP in-memory data grid. The tutorials are geared toward architects and developers who want to build scaled-out applications with XAP.
 
 
 

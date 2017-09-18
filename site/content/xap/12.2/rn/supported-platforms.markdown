@@ -66,7 +66,5 @@ Refer to the [Oracle Java SE Support Roadmap](http://www.oracle.com/technetwork/
 
 Refer to the [JVM & Third-Party End-Of-Life Policy](./lifecycle.html) for the latest updates.
  
-# Integration with Third-Party Products
 
-Refer to [Integrations with 3rd Party Products](third-party.html).
 

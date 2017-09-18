@@ -1,12 +1,12 @@
 ---
 type: post122
-title:  XAP Basics
-categories:  XAP122TUT
-weight: 2000
+title:  InsightEdge Basics
+categories:  XAP122GS
+weight: 70
 ---
 
 
-This section provides some hands-on examples to demonstrate the core concepts and APIs of the XAP in-memory data grid. The tutorials are geared toward architects and developers who want to build scaled-out applications with XAP.
+This section provides a high-level introduction to the InsightEdge platform, and provides some code examples to get you started. 
 
 
 <br>

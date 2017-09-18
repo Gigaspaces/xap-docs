@@ -7,14 +7,12 @@
             <ol class="breadcrumb">
 				<li><a href="/"><i class="fa fa-home fa-lg"></i></a></li>
                 <li><a href="/xap/12.2">12.2</a></li>
-                {{ if in .Permalink "/dev-java/"}}<li><a href="/xap/12.2/dev-java/">Java Developer Guide</a></li>
-                {{ else if in .Permalink "/tut-java/"}}<li><a href="/xap/12.2/tut-java/">Java Tutorial</a></li>
-                {{ else if in .Permalink "/dev-dotnet/"}}<li><a href="/xap/12.2/dev-dotnet/">.NET Developers Guide</a></li>
-                {{ else if in .Permalink "/tut-dotnet/"}}<li><a href="/xap/12.2/tut-dotnet/">.NET Tutorial</a></li>
+                {{ if in .Permalink "/dev-java/"}}<li><a href="/xap/12.2/dev-java/">Developer Guide</a></li>
+                {{ else if in .Permalink "/tut-java/"}}<li><a href="/xap/12.2/tut-java/">Getting Started</a></li>
+                {{ else if in .Permalink "/dev-dotnet/"}}<li><a href="/xap/12.2/dev-dotnet/">XAP.NET Guide</a></li>
+                {{ else if in .Permalink "/tut-dotnet/"}}<li><a href="/xap/12.2/tut-dotnet/">XAP.NET Guide</a></li>
                 {{ else if in .Permalink "/admin/"}}<li><a href="/xap/12.2/admin/">Administration Guide</a></li>
                 {{ else if in .Permalink "/security/"}}<li><a href="/xap/12.2/security/">Security Guide</a></li>
-                {{ else if in .Permalink "/insightedge/"}}<li><a href="/xap/12.2/insightedge/">InsightEdge</a></li>
-                {{ else if in .Permalink "/xap-sql/"}}<li><a href="/xap/12.2/xap-sql/">In-Grid SQL Query</a></li>
                 {{end}}
                 <li class="active">{{.Title}}</li>
             </ol>
