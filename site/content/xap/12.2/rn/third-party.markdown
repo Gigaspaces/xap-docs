@@ -105,18 +105,6 @@ This page list all the 3rd party libraries shipped with   XAP on a per version b
 
 {{% /tab %}}
 
-{{%tab "  XAP C++ "%}}
-
-
-| Product | Version | License |
-|:--------|:--------|:--------|
-| [Winhoard - The Hoard Memory Allocator](http://www.cs.umass.edu/~emery/hoard/hoard-documentation.html) | | [Commercial](http://www.otc.utexas.edu) |
-| [Xerces-C++](http://xerces.apache.org/xerces-c/) | | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
-| [ACE](http://www.cs.wustl.edu/~schmidt/ACE.html) | | [ACE](http://www.cs.wustl.edu/~schmidt/ACE-copying.html) |
-| [Boost](http://www.boost.org/) | | [Boost](http://www.boost.org/more/license_info.html) |
-
-{{% /tab %}}
-
 {{%tab "  REST "%}}
 
 
