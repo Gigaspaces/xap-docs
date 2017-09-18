@@ -2,12 +2,9 @@
 type: post122
 title:  InsightEdge Script
 categories: XAP122GS, IEE
-weight: 1100
+parent: insightedge-basics.html
+weight: 500
 ---
-
-{{%note "Maintenance Notice"%}}
-InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
-{{%/note%}}
 
 # Overview
 
@@ -15,7 +12,7 @@ The `insightedge` script facilitates getting started with InsightEdge. It wraps 
 
 # Usage
 
-The script is located under `insightedge/bin` folder.
+The script is located under `<XAP Home>/insightedge/bin` folder.
 
 ```
 > ./insightedge help
@@ -58,26 +55,13 @@ The demo command will start a minimal environment that includes:
 * Spark worker
 * XAP manager in local mode with the RESTful Manager API at `http://localhost:8090`
 * Two XAP containers
-* Empty space named `insightedge-space`
+* Empty space named `insightedge-space` with 2 partitions
 * Zeppelin UI at `http://localhost:9090`
 * Zookeeper with one node to demonstrate how InsightEdge components connects to Zookeeper for high availability
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge demo
+insightedge demo
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge demo
-```
-{{%/tab%}}
-{{%/tabs%}}
-
-<br />
-
 
 ## The `run` Command
 
@@ -89,59 +73,25 @@ Since XAP Manager is started, you must configure the XAP_MANAGER_SERVERS environ
 
 The command will start XAP Manager and Spark Master.
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge run --master
+insightedge run --master
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge run --master
-```
-{{%/tab%}}
-{{%/tabs%}}
-
 
 ## Running InsightEdge Worker
 
 The command allows starting XAP Containers and Spark Worker. If the optional `--containers=n` option is not specified, no XAP Containers will be started.
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge run --worker [--containers=n]
+insightedge run --worker [--containers=n]
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge run --worker [--containers=n]
-```
-{{%/tab%}}
-{{%/tabs%}}
-
 
 ## Running Apache Zeppelin
 
 The command will start Zeppelin on the local machine. It will be accessible at http://localhost:9090.
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge run --zeppelin
+insightedge run --zeppelin
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge run --zeppelin
-```
-{{%/tab%}}
-{{%/tabs%}}
-
-<br />
 
 ## The `deploy-space` command
 
@@ -151,42 +101,17 @@ If the `--patitions=n` option is not specified, the command will deploy a single
 Otherwise, it will deploy a partitioned space with n partitions without backups.
 If you wish to have backups, you can use the `--backups` option.
 
-
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge deploy-space [--partitions=x [--backups]] <space-name>
+insightedge deploy-space [--partitions=x [--backups]] <space-name>
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge deploy-space [--partitions=x [--backups]] <space-name>
-```
-{{%/tab%}}
-{{%/tabs%}}
-
-
-<br />
 
 ## The `undeploy` command
 
 This command enables you to undeploy an already deployed space.
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge undeploy <space-name>
+insightedge undeploy <space-name>
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge undeploy <space-name>
-```
-{{%/tab%}}
-{{%/tabs%}}
-
 
 ## The `shutdown` command
 
@@ -194,26 +119,15 @@ The shutdown command kills all components that are started via the insightedge s
 
 If you have deployed a space to one or more components, the space will be destroyed.
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge shutdown
+insightedge shutdown
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge shutdown
-```
-{{%/tab%}}
-{{%/tabs%}}
-
 
 # Configuration
 
 By default, XAP components starts with default lookup groups and lookup locators (e.g. 12.2.0-ga and localhost:4174). These lookup groups and locators are used for the discovering the services in the network. InsightEdge scripts uses these groups and locators when starting Master, Worker and Zeppelin as well as when using the different scripts under `insightedge/bin` folder (e.g. insightedge-submit).
 
-Please refer to the [Environment Variables](./common-environment-variables.html) page if you wish to use different values.
+Please refer to the [Environment Variables](common-environment-variables.html) page if you wish to use different values.
 
 InsightEdge uses the XAP Manager that starts Zookeeper for high availability. Please refer to [XAP Manager](../admin/xap-manager.html) page for info about its configuration.
 
