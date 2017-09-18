@@ -19,13 +19,13 @@ The InsightEdge cluster consists of Spark and a Data Grid. To start the minimum 
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/sbin/insightedge.sh --mode demo
+./insightedge/bin/insightedge demo
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\sbin\insightedge.cmd --mode demo
+insightedge\bin\insightedge demo
 ```
 {{%/tab%}}
 {{%/tabs%}}
@@ -48,13 +48,13 @@ After you have finished exploring the examples, you can shut down the local envi
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/sbin/insightedge.sh --mode shutdown
+./insightedge/bin/insightedge shutdown
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\sbin\insightedge.cmd --mode shutdown
+insightedge\bin\insightedge shutdown
 ```
 {{%/tab%}}
 {{%/tabs%}}

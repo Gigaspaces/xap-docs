@@ -11,28 +11,27 @@ InsightEdge is being transformed from a Spark distribution to a Unified transact
 
 This section explains how to install and run InsightEdge on a local machine.
 
+Please refer to [InsightEdge Script](./insightedge_script.html) page for more info about the commands that will be used in this page.
 
 # Installation
 
 The InsightEdge environment consists of Spark and the Data Grid. There are two options for running InsightEdge locally.
 
-{{%warning "Important..."%}}
-Currently, only demo mode is available for Windows. Demo mode runs a local Spark and Data Grid cluster, which is enough for most development environments. Refer to [Starting InsightEdge](quick_start.html) for instructions on starting `demo` mode in a Windows environment.
-{{%/warning%}} 
-
 The first option is to start the full InsightEdge environment:
 
 * Spark `master` and `worker`
-* Data Grid `manager` and `node`
+* Data Grid `manager` and `container`
 * Data Grid with `empty space`
 * Spark WebUI will be available at {{%exurl "127.0.0.1:8080""http://127.0.0.1:8080"%}}
 * Spark Master connection endpoint will be at {{%exurl "spark://127.0.0.1:7077""spark://127.0.0.1:7077"%}}
 
+Running XAP local manager is not supported via the `insightedge` script therefore we will be using the `gs-agent` script directly.
 
 ```bash
-./insightedge/sbin/insightedge.sh --mode master --master 127.0.0.1
-./insightedge/sbin/insightedge.sh --mode slave --master 127.0.0.1
-./insightedge/sbin/insightedge.sh --mode deploy --master 127.0.0.1
+# Start Spark Master, Spark Worker, XAP Manager (local) and two XAP Containers
+./bin/gs-agent.sh --manager-local --gsc=2 --spark-master --spark-worker
+# Deploy a partitioned space named insightedge-space with 2 partitions and 1 backup each
+./insightedge/bin/insightedge deploy-space --partitions=2 --backups insightedge-space
 ```
 
 
@@ -41,9 +40,8 @@ The second option is to start a Data Grid and use local mode to run Spark applic
 
 
 ```bash
-./insightedge/sbin/start-datagrid-master.sh --master 127.0.0.1
-./insightedge/sbin/start-datagrid-slave.sh --master 127.0.0.1
-./insightedge/sbin/deploy-datagrid.sh --master 127.0.0.1
+./bin/gs-agent.sh --manager-local --gsc=2
+./insightedge/bin/insightedge deploy-space --partitions=2 --backups insightedge-space
 ```
 
 When you run your applications using this option, you should specify `local[*]` instead of the Spark master url.
@@ -51,58 +49,32 @@ When you run your applications using this option, you should specify `local[*]` 
 Both options run the Data Grid with default configuration:
 
 
-* Data Grid consists of manager and 2 containers (`1G` heap each)
+* Data Grid consists of manager and 2 containers (`512m` heap each)
 * Data Grid lookup locator is `127.0.0.1:4174` (lookup service is started on `4174` port)
-* Data Grid lookup group is `insightedge`
-* Data Grid has `insightedge-space` deployed on it with `2,0` topology (`2 primary` and `0 backup` partitions)
+* Data Grid lookup group is `xap-12.2.0`
+* Data Grid has `insightedge-space` deployed on it with `2,1` topology (`2 primary` and `1 backup` partitions)
 
 
-# Restarting or stopping local environment
+# Stopping local environment
 
-The simplest way to restart the local environment is to use `insightedge.sh` script:
+To stop the environment, you can use `shutdown` mode that sends kill signal to all relevant processes:
 
-
-
-```bash
-./insightedge/sbin/insightedge.sh --mode undeploy --master 127.0.0.1
-./insightedge/sbin/insightedge.sh --mode master --master 127.0.0.1
-./insightedge/sbin/insightedge.sh --mode slave --master 127.0.0.1
-./insightedge/sbin/insightedge.sh --mode deploy --master 127.0.0.1
-```
-
-
-
-If necessary, the `master` and `slave` modes will stop the currently running components and start new ones.
-
-To stop the environment, you can use `shutdown` mode:
 
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/sbin/insightedge.sh --mode shutdown
+./insightedge/bin/insightedge shutdown
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\sbin\insightedge.cmd --mode shutdown
+insightedge\bin\insightedge shutdown
 ```
 {{%/tab%}}
 {{%/tabs%}}
 
-Alternatively, you can execute the following component-specific scripts:
-
-
-```bash
-./insightedge/sbin/undeploy-datagrid.sh --master 127.0.0.1
-./insightedge/sbin/stop-master.sh
-./insightedge/insightedgesbin/stop-slave.sh
-./insightedge/sbin/stop-datagrid-master.sh
-./insightedge/sbin/stop-datagrid-slave.sh
-```
-
-You can skip `undeploy-datagrid.sh` if you just want to stop everything.
-
+Alternatively, you can use the Ctrl+C combination to abort the `gs-agent` process.
 
 
 # Running demo
@@ -112,13 +84,13 @@ You can run the entire local environment in this mode, which will start the `Web
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/sbin/insightedge.sh --mode demo
+./insightedge/bin/insightedge demo
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\sbin\insightedge.cmd --mode demo
+insightedge\bin\insightedge demo
 ```
 {{%/tab%}}
 {{%/tabs%}}
