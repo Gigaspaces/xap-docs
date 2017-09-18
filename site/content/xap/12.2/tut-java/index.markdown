@@ -1,8 +1,8 @@
 ---
 type: post122
-title:  Tutorials
+title:  XAP Tutorials
 categories:  XAP122TUT
-weight: 20
+weight: 2000
 ---
 
 

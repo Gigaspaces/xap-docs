@@ -8,30 +8,24 @@ parent: none
 
 The following APIs are available as part of the InsightEdge open source edition:
 
-* Spark Streaming
+* [Connecting to the Grid](connecting.html)
 
-* Geospatial API
+* [Data Modeling](modeling.html)
 
-The following APIs are part of the licensed InsightEdge Platform edition:
+* [RDD API](loading.html)
 
-* Connecting to the Grid
-
-* Data Modeling
-
-* RDD API
-
-* Data Frames API
+* [Data Frames API](dataframes.html)
  
-* Dataset API
+* [Dataset API](datasets.html)
 
-* Python
+* [Python](python.html)
 
-* Machine Learning
+* [Machine Learning](mllib.html)
 
-* Spark Streaming
+* [Spark Streaming](streaming.html)
 
-* Geospatial API
+* [Geospatial API](geospatial.html)
 
 The following API is part of the licensed InsightEdge Platform edition:
 
-* In-Grid SQL Query
+* [In-Grid SQL Query](sql-query-intro.html)
