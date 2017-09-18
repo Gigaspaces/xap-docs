@@ -8,24 +8,29 @@ parent: none
 
 The following APIs are available as part of the InsightEdge open source edition:
 
-* [Connecting to the Grid](connecting.html)
+<br>
 
-* [Data Modeling](modeling.html)
+{{%fpanel%}}
+[Connecting to the Grid](connecting.html)
 
-* [RDD API](loading.html)
+[Data Modeling](modeling.html)
 
-* [Data Frames API](dataframes.html)
+[RDD API](loading.html)
+
+[Data Frames API](dataframes.html)
  
-* [Dataset API](datasets.html)
+[Dataset API](datasets.html)
 
-* [Python](python.html)
+[Python](python.html)
 
-* [Machine Learning](mllib.html)
+[Machine Learning](mllib.html)
 
-* [Spark Streaming](streaming.html)
+[Spark Streaming](streaming.html)
 
-* [Geospatial API](geospatial.html)
+[Geospatial API](geospatial.html)
 
 The following API is part of the licensed InsightEdge Platform edition:
 
-* [In-Grid SQL Query](sql-query-intro.html)
+[In-Grid SQL Query](sql-query-intro.html)
+
+{{%/fpanel%}}
