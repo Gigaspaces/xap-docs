@@ -27,13 +27,13 @@ InsightEdge .jars are not published to Maven Central Repository yet. To install 
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/sbin/insightedge-maven.sh
+./insightedge/tools/maven/insightedge-maven.sh
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\sbin\insightedge-maven.cmd
+insightedge\tools\maven\insightedge-maven.cmd
 ```
 {{%/tab%}}
 {{%/tabs%}}
@@ -78,7 +78,7 @@ Read the {{%exurl "Self-Contained Applications""http://spark.apache.org/docs/lat
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
 
-val gsConfig = InsightEdgeConfig("insightedge-space", Some("insightedge"), Some("127.0.0.1:4174"))
+val gsConfig = InsightEdgeConfig("insightedge-space", Some("your_lookup_groups"), Some("your_lookup_locators"))
 val sparkConf = new SparkConf().setAppName("sample-app").setMaster("spark://127.0.0.1:7077").setInsightEdgeConfig(gsConfig)
 val sc = new SparkContext(sparkConf)
 ```
@@ -86,7 +86,8 @@ val sc = new SparkContext(sparkConf)
 {{%/tabs%}}
 
 {{%info "Info..."e%}}
-It is important to import `org.insightedge.spark.implicits.all._` to enable the Data Grid specific API. "insightedge-space", "insightedge", and "127.0.0.1:4174" are the default Data Grid settings.
+It is important to import `org.insightedge.spark.implicits.all._` to enable the Data Grid specific API.
+<br />"insightedge-space" is the default Data Grid name that the demo mode starts automatically. The lookup groups and locators can be configured by XAP_LOOKUP_GROUPS and XAP_LOOKUP_LOCATORS environment variables. If they are not set, XAP defaults are used (groups: "xap-12.2.0", and locators: empty).
 
 When you are running Spark applications from the Web Notebook, `InsightEdgeConfig` is created implicitly with the properties defined in the Spark interpreter.
 

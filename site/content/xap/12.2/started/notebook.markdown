@@ -18,12 +18,10 @@ The Web Notebook can be started in any of the following ways:
 
 
 * In `demo` mode, the Web Notebook is started automatically at {{%exurl "127.0.0.1:9090""http://127.0.0.1:9090"%}}. (Refer to a [Starting InsightEdge](./quick_start.html) for information about `demo` mode.)
-* When running a [remote cluster](./cluster_setup.html), the Web Notebook is started on a master host, on port `9090`.
-* Start and stop the Web Notebook manually at any time using the following commands:
+* Start the Web Notebook manually at any time using the following command:
 
 ```bash
-./insightedge/sbin/start-zeppelin.sh
-./insightedge/sbin/stop-zeppelin.sh
+./insightedge/bin/insightedge run --zeppelin
 ```
 
 # Configuring the Web Notebook
@@ -72,7 +70,7 @@ import model.v1._
 
 ```scala
 %dep
-z.load("./quick-start/scala/insightedge-examples.jar")
+z.load("./insightedge/examples/jars/insightedge-examples.jar")
 ```
 
 {{%refer%}}
