@@ -32,13 +32,13 @@
                 <div id="page-content" class="page-content">
                     <div style="float: right;border:0px;margin-top: 145px;">
                         {{ if in .Params.categories "PRM" }}
-                            <button id="premium-download" type="button" style="margin-right:60px"   class="btn btn-info btn-xs">Premium</button>
+                            <button id="premium-download" type="button" style="margin-right:60px"   class="btn btn-premium btn-lg">XAP Premium</button>
                         {{ else if in .Params.categories "ENT"}}
-                            <button id="enterprise-download" type="button" style="margin-right:60px"  class="btn btn-success btn-xs">Enterprise</button>
+                            <button id="enterprise-download" type="button" style="margin-right:60px"  class="btn btn-enterprise btn-lg">XAP Enterprise</button>
                         {{ else if in .Params.categories "IEE"}}
-                            <button id="insightedge-download" type="button" style="margin-right:60px"  class="btn btn-secondary btn-xs">InsightEdge Engine</button>
+                            <button id="insightedge-download" type="button" style="margin-right:60px"  class="btn btn-insight-edge btn-lg">InsightEdge Platform</button>
                         {{ else if in .Params.categories "XAPSQL"}}
-                            <button id="insightedge-download" type="button" style="margin-right:60px"  class="btn btn-secondary btn-xs">In-Grid SQL Query</button>
+                            <button id="open-source-download" type="button" style="margin-right:60px"  class="btn btn-open-source btn-lg">Open Source</button>
                         {{ end}}
 
                         <button id="edit-on-github" data-toggle="popover" type="button" class="btn btn-default" style="border:0px;">
