@@ -14,7 +14,7 @@ The driver will make the query optimization if needed and translates the SQL que
 
 # Installation
 
-Include all jar files from the `<XAP-HOME>\insightedge\lib\jdbc` directory in your project.
+Include all jar files from the `<XAP-HOME>\insightedge\lib\jdbc` and `<XAP-HOME>\lib\required` directories in your project.
 
 
 # Usage
