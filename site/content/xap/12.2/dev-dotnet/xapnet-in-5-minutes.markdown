@@ -1,8 +1,8 @@
 ---
 type: post122
 title:  XAP.NET in 5 Minutes
-categories: XAP122NETTUT
-parent: none
+categories: XAP122NET
+parent: xapnet-basics.html
 weight: 100
 ---
 

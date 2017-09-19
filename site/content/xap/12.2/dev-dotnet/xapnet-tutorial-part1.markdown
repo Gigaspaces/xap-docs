@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Interacting with the Space
-categories: XAP122NETTUT
+categories: XAP122NET
+parent: xapnet-basics.html
 weight: 200
-parent: none
 ---
 
 

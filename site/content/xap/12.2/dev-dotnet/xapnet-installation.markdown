@@ -1,8 +1,8 @@
 ---
 type: post122
 title:  Installation
-categories:  XAP122NETTUT
-parent: none
+categories:  XAP122NET
+parent: xapnet-basics.html
 weight: 50
 ---
 

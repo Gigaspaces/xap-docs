@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Persist to Database
-categories: XAP122NETTUT
+categories: XAP122NET
+parent: xapnet-basics.html
 weight: 800
-parent: none
 ---
  
 

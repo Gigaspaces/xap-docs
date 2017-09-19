@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Creating a Processing Unit
-categories: XAP122NETTUT
+categories: XAP122NET
+parent: xapnet-basics.html
 weight: 600
-parent: none
 ---
 
 

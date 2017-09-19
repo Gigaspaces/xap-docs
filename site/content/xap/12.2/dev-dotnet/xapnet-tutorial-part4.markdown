@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Event-Driven Programming
-categories: XAP122NETTUT
+categories: XAP122NET
+parent: xapnet-basics.html
 weight: 500
-parent: none
 ---
 
 

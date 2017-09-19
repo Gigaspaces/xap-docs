@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Transactions and Concurrency
-categories: XAP122NETTUT
+categories: XAP122NET
+parent: xapnet-basics.html
 weight: 700
-parent: none
 ---
 
 
