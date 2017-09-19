@@ -5,13 +5,9 @@ categories: XAP122ADM, IEE
 weight: 50
 ---
 
-{{%note "Maintenance Notice"%}}
-InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
-{{%/note%}}
-
 In this tutorial, you will learn how to install and run the InsightEdge on a cluster.
 
-Please refer to [InsightEdge Script](../started/insightedge_script.html) page for more info about the commands that will be used in this page.
+Please refer to [InsightEdge Script](../started/insightedge-script.html) page for more info about the commands that will be used in this page.
 
 # Starting the whole cluster
 
@@ -21,13 +17,12 @@ Your cluster should consist of one master and a bunch of slaves:
 * Slave nodes have Spark workers and Data Grid cluster members running on them
 
 
-The master nodes start XAP Manager along with Zookeeper for high availability. Therefore you need to configure the XAP_MANAGER_SERVERS in each machine. Please refer to the [XAP Manager](../admin/xap-manager.html) page for more information.
+The master nodes start XAP Manager along with Zookeeper for high availability. Therefore you need to configure the `XAP_MANAGER_SERVERS` in each machine. Please refer to the [XAP Manager](../admin/xap-manager.html) page for more information.
 
 In addition, it is recommended to set the XAP_LOOKUP_GROUPS property that is used for discovering XAP component across the network.
-Please refer to the [Environment Variables](./common-environment-variables.html) page for more advanced configurations.
+Please refer to the [Environment Variables](../started/common-environment-variables.html) page for more advanced configurations.
 
-These configuration can be set in the `ROOT/bin/setenv-overrides.sh/cmd` file.
-
+These configuration can be set in the `<XAP_HOME>/bin/setenv-overrides.sh/bar` file.
 
 ## Starting Master Nodes
 
@@ -35,20 +30,9 @@ Master nodes are consisted of XAP Manager and a Spark Master.
 
 On each Master node run the following:
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge run --master
+insightedge run --master
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge run --master
-```
-{{%/tab%}}
-{{%/tabs%}}
-
 
 ## Starting Worker Nodes
 
@@ -58,40 +42,15 @@ On each Worker node run the following:
 
 Use `--containers=n` if you wish to have XAP containers on the specific machine. If not specified, no XAP containers will be started
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge run --worker [--containers=n]
+insightedge run --worker [--containers=n]
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\bin\insightedge run --worker [--containers=n]
-```
-{{%/tab%}}
-{{%/tabs%}}
-
 
 After installation you can verify that Spark slaves are up and running on the Spark master web UI at `http://your-master-ip-here:8080`.
 
-
 # Deploying empty Data Grid space
 
-
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
 #   topology 2,1 starts 2 primary partitions with 1 backup partition for each primary
-./insightedge/bin/insightedge deploy-space --partitions=2 --backups insightedge-space
+insightedge deploy-space --partitions=2 --backups insightedge-space
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-#   topology 2,1 starts 3 primary partitions with 1 backup partition for each primary
-./insightedge\bin\insightedge deploy-space --partitions=2 --backups insightedge-space
-```
-{{%/tab%}}
-{{%/tabs%}}
-
