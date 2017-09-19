@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  User Defined Classes
-categories: XAP122
+categories: XAP122, OSS
 parent: querying-the-space.html
 weight: 500
 ---

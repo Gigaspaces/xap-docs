@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Standalone Mode
-categories: XAP122
+categories: XAP122, OSS
 parent: deploying-and-running-overview.html
 weight: 200
 ---

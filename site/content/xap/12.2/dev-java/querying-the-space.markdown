@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Querying the Space
-categories: XAP122
+categories: XAP122, OSS
 parent: none
 weight: 800
 ---

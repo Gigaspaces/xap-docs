@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Transactions
-categories: XAP122
+categories: XAP122, OSS
 weight: 600
 parent: the-gigaspace-interface-overview.html
 ---

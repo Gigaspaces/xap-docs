@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Archive Handler
-categories: XAP122
+categories: XAP122, OSS
 parent: cassandra.html
 weight: 200
 ---

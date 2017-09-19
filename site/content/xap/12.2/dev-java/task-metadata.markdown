@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Metadata
-categories: XAP122
+categories: XAP122, OSS
 parent: task-execution-overview.html
 weight: 400
 ---

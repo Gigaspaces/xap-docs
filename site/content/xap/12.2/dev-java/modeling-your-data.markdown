@@ -1,7 +1,7 @@
 ---
 type: post122
-title:  Modeling your Data
-categories: XAP122
+title:  XAP Data Modeling
+categories: XAP122, OSS
 parent: none
 weight: 600
 ---

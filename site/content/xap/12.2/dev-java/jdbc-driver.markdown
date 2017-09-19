@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  JDBC Driver
-categories: XAP122
+categories: XAP122, OSS
 parent: other-data-access-apis.html
 weight: 100
 ---
@@ -12,7 +12,7 @@ weight: 100
 The XAP JDBC interface allows database-driven applications to interact with spaces via SQL queries and commands. A query processor transparently translates SQL queries into legal space operations. No integration is required - all you need to do is point the application to the XAP JDBC driver like any other JDBC driver.
 
 {{%refer%}}
-If you need SQL-99 compliant query functionality,  it is available in the InsightEdge Platform package. Look at the SQLQuery and [JDBC Driver]({{%latestjavaurl%}}/sql-query-intro.html) topics in the Java developers guide. 
+This JDBC driver is not SQL-99 compliant. SQL-99 compliant query functionality is available in the InsightEdge Platform edition. Refer to the SQLQuery and [JDBC Driver]({{%latestjavaurl%}}/sql-query-intro.html) topics in the Developer Guide. 
 {{%/refer%}}
 
 

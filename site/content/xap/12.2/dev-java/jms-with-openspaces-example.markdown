@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Example
-categories: XAP122
+categories: XAP122, OSS
 parent: messaging-support.html
 weight: 400
 ---

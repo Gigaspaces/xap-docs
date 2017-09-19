@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Property Annotations
-categories: XAP122
+categories: XAP122, OSS
 parent: pojo-annotation-overview.html
 weight: 200
 ---

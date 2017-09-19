@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Text Search Index
-categories: XAP122
+categories: XAP122, OSS
 parent: indexing-overview.html
 weight: 600
 ---

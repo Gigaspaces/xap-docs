@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Map API
-categories: XAP122
+categories: XAP122, OSS
 parent: other-data-access-apis.html
 weight: 300
 ---

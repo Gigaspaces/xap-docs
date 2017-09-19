@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Synchronization Endpoint
-categories: XAP122
+categories: XAP122, OSS
 parent: mongodb-space-persistency.html
 weight: 200
 ---

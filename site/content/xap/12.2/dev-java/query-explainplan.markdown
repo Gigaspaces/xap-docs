@@ -1,20 +1,14 @@
 ---
 type: post122
 title:  Explain Plan
-categories: XAP122
+categories: XAP122, OSS
 parent: querying-the-space.html
 weight: 900
 ---
 
-{{%warning%}}
-This is an experimental feature. The API and usage might change in future releases.   
-{{%/warning%}}
-
 
 **Explain Plan** can be used to obtain a description of the strategy or plan that XAP uses to implement a specific `SQLQuery`. 
 Explain Plan reports on the way in which the query uses indices and how many entries were scanned.
-
-
 
 
 {{%refer%}}

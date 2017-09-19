@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Data Type Meta Data
-categories: XAP122
+categories: XAP122, OSS
 weight: 1100
 parent: the-gigaspace-interface-overview.html
 ---

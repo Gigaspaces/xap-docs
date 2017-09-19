@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Security
-categories: XAP122
+categories: XAP122, OSS
 parent: jms-advanced.html
 weight: 300
 ---

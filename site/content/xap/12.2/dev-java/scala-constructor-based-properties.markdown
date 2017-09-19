@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Constructor Based Properties
-categories: XAP122
+categories: XAP122, OSS
 parent: scala.html
 weight: 100
 ---

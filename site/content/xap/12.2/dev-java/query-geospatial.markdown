@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Geospatial Queries
-categories: XAP122
+categories: XAP122, OSS
 parent: querying-the-space.html
 weight: 340
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Migrating From External Data Source API
-categories: XAP122
+categories: XAP122, OSS
 parent: space-persistency-overview.html
 weight: 1000
 ---

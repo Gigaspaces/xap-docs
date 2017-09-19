@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Paging Support - GSIterator
-categories: XAP122
+categories: XAP122, OSS
 parent: query-paging-support.html
 weight: 100
 ---

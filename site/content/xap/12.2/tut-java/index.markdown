@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  XAP Basics
-categories:  XAP122TUT
+categories:  XAP122TUT, OSS
 weight: 2000
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Advanced Topics
-categories: XAP122
+categories: XAP122, OSS
 parent: space-persistency-overview.html
 weight: 800
 ---

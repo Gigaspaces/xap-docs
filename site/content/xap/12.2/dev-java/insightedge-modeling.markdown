@@ -1,7 +1,7 @@
 ---
 type: post122
-title:  Data Modeling
-categories: XAP122, IEE
+title:  InsightEdge Data Modeling
+categories: XAP122, OSS
 parent: insightedge-apis.html
 weight: 400
 ---

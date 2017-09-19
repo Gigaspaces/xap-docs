@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Deployment Properties
-categories: XAP122
+categories: XAP122, OSS
 parent: deploying-and-running-overview.html
 weight: 400
 ---

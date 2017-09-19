@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Transaction Management
-categories: XAP122
+categories: XAP122, OSS
 parent: transaction-overview.html
 weight: 100
 ---

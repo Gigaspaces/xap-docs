@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Space Filters
-categories: XAP122
+categories: XAP122, OSS
 weight: 800
 parent: the-gigaspace-interface-overview.html
 ---

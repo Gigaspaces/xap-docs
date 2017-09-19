@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Platform Interoperability
-categories: XAP122
+categories: XAP122, OSS
 parent: none
 weight: 2500
 ---

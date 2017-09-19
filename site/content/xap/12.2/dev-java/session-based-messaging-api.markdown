@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Session Based Messaging API
-categories: XAP122
+categories: XAP122, OSS
 parent: notify-container-overview.html
 weight: 300
 ---

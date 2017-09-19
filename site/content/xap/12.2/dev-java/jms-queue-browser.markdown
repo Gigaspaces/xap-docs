@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Browsing JMS Queues
-categories: XAP122
+categories: XAP122, OSS
 parent: jms-advanced.html
 weight: 400
 ---

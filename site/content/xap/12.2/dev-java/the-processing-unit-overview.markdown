@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  The Processing Unit
-categories: XAP122
+categories: XAP122, OSS
 parent: none
 weight: 2000
 ---

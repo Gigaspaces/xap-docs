@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Distributed Processing
-categories: XAP122TUT
+categories: XAP122TUT, OSS
 weight: 700
 parent: none
 ---

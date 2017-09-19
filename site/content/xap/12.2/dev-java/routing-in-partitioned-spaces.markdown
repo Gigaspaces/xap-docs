@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Routing In Partitioned Spaces
-categories: XAP122
+categories: XAP122, OSS
 parent: modeling-your-data.html
 weight: 600
 ---

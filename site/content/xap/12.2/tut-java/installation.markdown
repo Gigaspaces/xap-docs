@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Installation
-categories:  XAP122TUT
+categories:  XAP122TUT, OSS
 parent: none
 weight: 100
 ---
