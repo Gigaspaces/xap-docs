@@ -2,13 +2,9 @@
 type: post122
 title:  Dataset API
 categories: XAP122, IEE
-parent: insight-edge-apis.html
+parent: insightedge-apis.html
 weight: 600
 ---
-
-{{%note "Maintenance Notice"%}}
-InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
-{{%/note%}}
 
 A Dataset is a distributed collection of data. Datasets provide the benefits of RDDs (strong typing, ability to use powerful lambda functions) 
 with the benefits of Spark SQL’s optimized execution engine. Both the typed transformations (e.g., map, filter, and groupByKey) and 

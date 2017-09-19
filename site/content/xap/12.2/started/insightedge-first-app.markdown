@@ -2,41 +2,25 @@
 type: post122
 title:  Developing Your First Application
 categories: XAP122GS, IEE
-weight: 200
+parent: insightedge-basics.html
+weight: 400
 ---
-
-{{%note "Maintenance Notice"%}}
-InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
-{{%/note%}}
 
 This topic explains how to create an InsightEdge application that can read and write from/to the Data Grid. You should have a basic knowledge of {{%exurl "Apache Spark""http://spark.apache.org/docs/latest/index.html"%}}.
 
-
-
 {{%refer%}}
-For instructions on how to install a minimum InsightEdge cluster setup and launch it, refer to [Starting InsightEdge](./quick_start.html).
+For instructions on how to install a minimum InsightEdge cluster setup and launch it, refer to [Starting InsightEdge](insightedge-starting.html).
 {{%/refer%}}
-
 
 # Project Dependencies
 
 InsightEdge {{%version "xap-version"%}} runs on Spark {{%version "spark-version"%}} and Scala {{%version "scala-version"%}}. These dependencies will be included when you depend on the InsightEdge artifacts.
 
-InsightEdge .jars are not published to Maven Central Repository yet. To install artifacts to your local Maven repository, make sure you have {{%exurl "Maven""https://maven.apache.org/"%}} installed and then run:
+InsightEdge .jars are not published to Maven Central Repository yet. To install Maven artifacts run the following command from the '<XAP HOME>/insightedge/tools/maven' directory:
 
-{{%tabs%}}
-{{%tab Linux%}}
 ```bash
-./insightedge/sbin/insightedge-maven.sh
+insightedge-maven
 ```
-{{%/tab%}}
-
-{{%tab Windows%}}
-```bash
-insightedge\sbin\insightedge-maven.cmd
-```
-{{%/tab%}}
-{{%/tabs%}}
 
 For SBT projects include the following:
 
@@ -78,15 +62,19 @@ Read the {{%exurl "Self-Contained Applications""http://spark.apache.org/docs/lat
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
 
-val gsConfig = InsightEdgeConfig("insightedge-space", Some("insightedge"), Some("127.0.0.1:4174"))
-val sparkConf = new SparkConf().setAppName("sample-app").setMaster("spark://127.0.0.1:7077").setInsightEdgeConfig(gsConfig)
+val sparkConf = new SparkConf()
+    .setAppName("sample-app")
+	.setMaster("spark://127.0.0.1:7077")
+	.setInsightEdgeConfig(InsightEdgeConfig("insightedge-space"))
 val sc = new SparkContext(sparkConf)
 ```
 {{%/tab%}}
 {{%/tabs%}}
 
 {{%info "Info..."e%}}
-It is important to import `org.insightedge.spark.implicits.all._` to enable the Data Grid specific API. "insightedge-space", "insightedge", and "127.0.0.1:4174" are the default Data Grid settings.
+It is important to import `org.insightedge.spark.implicits.all._` to enable the Data Grid specific API.
+
+`insightedge-space` is the default Data Grid name that the demo mode starts automatically.
 
 When you are running Spark applications from the Web Notebook, `InsightEdgeConfig` is created implicitly with the properties defined in the Spark interpreter.
 
@@ -138,18 +126,9 @@ sc.stopInsightEdgeContext()
 Under the hood, this will call the regular Spark `sc.stop()` command, so there is no need to call it manually.
 
 # Running your Spark Application
-After you have packaged a .jar, submit the Spark job via `insightedge-submit` instead of `spark-submit` as follows:
 
-{{%tabs%}}
-{{%tab Linux%}}
-```bash
-./insightedge/bin/insightedge-submit --class com.insightedge.spark.example.YourMainClass --master spark://127.0.0.1:7077 path/to/jar/insightedge-examples.jar
-```
-{{%/tab%}}
+After you have packaged a .jar, submit the Spark job via `insightedge-submit` located in `<XAP Home>/insightedge/bin` instead of `spark-submit` as follows:
 
-{{%tab Windows%}}
 ```bash
-insightedge\bin\insightedge-submit --class com.insightedge.spark.example.YourMainClass --master spark://127.0.0.1:7077 path\to\jar\insightedge-examples.jar
+insightedge-submit --class com.insightedge.spark.example.YourMainClass --master spark://127.0.0.1:7077 path/to/jar/insightedge-examples.jar
 ```
-{{%/tab%}}
-{{%/tabs%}}

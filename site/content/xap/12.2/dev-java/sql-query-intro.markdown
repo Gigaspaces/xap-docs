@@ -2,7 +2,7 @@
 type: post122
 title: In-Grid SQL Query
 categories:  XAP122, IEE
-parent: insight-edge-apis.html
+parent: insightedge-apis.html
 weight: 1000
 ---
  

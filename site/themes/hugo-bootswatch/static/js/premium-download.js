@@ -25,6 +25,7 @@ $(document).ready(function() {
     var premiumPopupText = 'The features below are not available in the open source edition of XAP. You may download a trial version of the Premium edition at the GigaSpaces Download Center.';
 
     var mq = window.matchMedia( "(min-width: 1024px)" );
+	/*
     if (mq.matches) {
         $("#premium-download").popover({
             placement: 'left',
@@ -49,5 +50,6 @@ $(document).ready(function() {
         var premiumPopupPresented = sessionStorage.getItem('premiumPopupPresented');
         enablePopoverOnMouseover();
     }
+	*/
 });
 

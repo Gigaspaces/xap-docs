@@ -1,30 +1,29 @@
 ---
 type: post122
-title:  Apache Zeppelin Web Notebook
+title: Web Notebook
 categories: XAP122GS, IEE
-weight: 1000
+parent: insightedge-basics.html
+weight: 200
 ---
 
-{{%note "Maintenance Notice"%}}
-InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
-{{%/note%}}
-
 This section describes how to use the interactive Apache Zeppelin Web Notebook.
-
 
 # Starting the Web Notebook
 
 The Web Notebook can be started in any of the following ways:
 
-
-* In `demo` mode, the Web Notebook is started automatically at {{%exurl "127.0.0.1:9090""http://127.0.0.1:9090"%}}. (Refer to a [Starting InsightEdge](./quick_start.html) for information about `demo` mode.)
-* When running a [remote cluster](./cluster_setup.html), the Web Notebook is started on a master host, on port `9090`.
-* Start and stop the Web Notebook manually at any time using the following commands:
+* In `demo` mode, the Web Notebook is started automatically at {{%exurl "localhost:9090""http://localhost:9090"%}}. See [Starting InsightEdge](./insightedge-starting.html) for information about `demo` mode.
+* Start the Web Notebook manually at any time by running the following command from the `<XAP HOME>/insightedge/bin` directory:
 
 ```bash
-./insightedge/sbin/start-zeppelin.sh
-./insightedge/sbin/stop-zeppelin.sh
+insightedge run --zeppelin
 ```
+
+Once Zeppeling is running, you can browse to {{%exurl "localhost:9090""http://localhost:9090"%}} and start playing with the pre-built notebooks:
+
+{{%align center%}}
+![image](/attachment_files/Zeppelin_examples_100.png)
+{{%/align%}}
 
 # Configuring the Web Notebook
 
@@ -37,7 +36,7 @@ InsightEdge-specific settings can be configured in *Interpreter* menu -> *Spark*
 These properties are transparently translated into `InsightEdgeConfig` to establish a connection between Spark and the Data Grid.
 
 {{%refer%}}
-Refer to [Connecting to the Data Grid](./connecting.html) for more details about the connection properties.
+Refer to [Connecting to the Data Grid](../dev-java/insightedge-connecting.html) for more details about the connection properties.
 {{%/refer%}}
 
 # Using the Web Notebook
@@ -72,7 +71,7 @@ import model.v1._
 
 ```scala
 %dep
-z.load("./quick-start/scala/insightedge-examples.jar")
+z.load("./insightedge/examples/jars/insightedge-examples.jar")
 ```
 
 {{%refer%}}

@@ -21,10 +21,11 @@ $(document).ready(function() {
     });
 
     
-    var enterprisePopupTitle = 'XAP Enterprise';
-    var enterprisePopupText = 'This feature is not available in the open source edition of XAP. You may download a trial version of the Open source edition at the GigaSpaces Download Center.';
+    var enterprisePopupTitle = 'Open Source';
+    var enterprisePopupText = 'This feature is available in the open source edition of XAP. You can download it at the GigaSpaces Download Center.';
 
     var mq = window.matchMedia( "(min-width: 1024px)" );
+	/*
     if (mq.matches) {
         $("#open-source-download").popover({
             placement: 'left',
@@ -50,5 +51,6 @@ $(document).ready(function() {
         enablePopoverOnMouseover();
 
     }
+	*/
 });
 
