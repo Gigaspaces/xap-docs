@@ -15,7 +15,7 @@ The basic unit of deployment in the GigaSpaces XAP platform is the [Processing U
 Once packaged, a processing unit is deployed onto the XAP runtime environment, which is called the *Service Grid*. It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
 
 {{%  info %}}
-While developing your processing unit, it's recommended to [run and debug the processing unit within your IDE]({{% currentjavaurl%}}/installation-eclipse-debug.html). Deploy it to the Service Grid when you want to test it in the real-life runtime environment, and of course for production.
+While developing your processing unit, it's recommended to [run and debug the processing unit within your IDE](../started/xap-debug.html). Deploy it to the Service Grid when you want to test it in the real-life runtime environment, and of course for production.
 {{%  /info %}}
 
 # Architecture

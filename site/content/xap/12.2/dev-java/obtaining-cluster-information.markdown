@@ -124,7 +124,7 @@ In the above example, the value of the `connectionUrl` property of `myBean` is  
 
 # Processing Unit Container Injection
 
-Each of the [runtime modes](./deploying-and-running-the-processing-unit.html) supports the injection of `ClusterInfo`. However, when running in [standalone mode](./running-in-standalone-mode.html) or [within your IDE](./installation-eclipse-debug.html), the `-cluster` parameter controls the clustering aspects of the processing unit instance(s). Below is a list of the parameters you can specify for the standalone and IDE runtime modes, and how they are mapped the `ClusterInfo` properties:
+Each of the [runtime modes](./deploying-and-running-the-processing-unit.html) supports the injection of `ClusterInfo`. However, when running in [standalone mode](./running-in-standalone-mode.html) or [within your IDE](../started/xap-debug.html), the `-cluster` parameter controls the clustering aspects of the processing unit instance(s). Below is a list of the parameters you can specify for the standalone and IDE runtime modes, and how they are mapped the `ClusterInfo` properties:
 
 |Runtime Mode | Maps to |
 |:------------|:--------|

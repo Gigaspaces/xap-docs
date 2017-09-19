@@ -2,8 +2,8 @@
 type: post122
 title:  License Key
 categories: XAP122GS,PRM
-parent: installation.html
-weight: 110
+parent: none
+weight: 200
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

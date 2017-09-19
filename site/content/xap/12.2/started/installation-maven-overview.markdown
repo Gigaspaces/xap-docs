@@ -2,8 +2,8 @@
 type: post122
 title:  Maven
 categories: XAP122GS
-parent: installation.html
-weight: 500
+parent: xap-basics.html
+weight: 300
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

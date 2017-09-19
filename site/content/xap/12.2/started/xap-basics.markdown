@@ -2,15 +2,18 @@
 type: post122
 title:  XAP Basics
 categories:  XAP122GS, OSS
-weight: 300
+weight: 500
 ---
 
 This section provides some hands-on examples to demonstrate the core concepts and APIs of the XAP in-memory data grid. The tutorials are geared toward architects and developers who want to build scaled-out applications with XAP.
 
 {{%fpanel%}}
 
-[Installation](xap-installation.html)<br>
-You will learn how to download and install XAP.
+[Setting up your IDE](xap-ide.html){{<wbr>}}
+Setting up your IDE to work with XAP.
+
+[Maven](installation-maven-overview.html){{<wbr>}}
+Installing the XAP Maven plugin, creating and running a Processing Unit project.
   
 [XAP in 5 minutes](xap-in-5-minutes.html)<br>
 This tutorial explains how to deploy and use a XAP [Data Grid](/product_overview/the-in-memory-data-grid.html) from a Java client application.
@@ -48,5 +51,11 @@ In this part of the tutorial we will show you how you can globally share HTTP se
 
 [Multi-Tiered Data Storage (SSD)](blobstore.html)<br>
 This guide describes the general architecture and functionality of this storage model that is leveraging both on-heap, off-heap and SSD implementation, called MemoryXtend.
+
+[Unit testing](xap-junit.html)<br>
+Creating unit tests for XAP and processing units with different topologies.
+
+[Debugging](xap-debug.html)<br>
+As part of your development process, you may want to run/debug your processing unit within your IDE.
 
 {{%/fpanel%}}

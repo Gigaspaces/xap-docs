@@ -39,7 +39,7 @@ The processing unit jar file is composed of several key elements:
 - `META-INF/spring/sla.xml` (not mandatory): This file contains SLA definitions for the processing unit (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an `<os:sla>` definition in the `pu.xml` file. If neither is present, the [default SLA]({{%currentadmurl%}}/the-sla-overview.html)  will be applied. Note, the `sla.xml` can also be placed at the root of the processing unit. SLA definitions can be also specified at the deploy time via the [deploy CLI]({{%currentadmurl%}}/deploy-command-line-interface.html) or [deploy API]({{% api-javadoc %}}/org/openspaces/admin/gsm/GridServiceManagers.html).
 
 {{% note %}}
-SLA definitions are only enforced when deploying the processing unit to the GigaSpaces service grid, since this environment actively manages and controls the deployment using the [GSM](/product_overview/service-grid.html#gsm). When [running within your IDE](./installation-eclipse-debug.html) or in [standalone mode](./running-in-standalone-mode.html) these definitions are ignored.
+SLA definitions are only enforced when deploying the processing unit to the GigaSpaces service grid, since this environment actively manages and controls the deployment using the [GSM](/product_overview/service-grid.html#gsm). When [running within your IDE](../started/xap-debug.html) or in [standalone mode](./running-in-standalone-mode.html) these definitions are ignored.
 {{% /note %}}
 
 - `META-INF/spring/pu.properties` (not mandatory): Enables you to externalize properties included in the `pu.xml` file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see [this page](./web-application-support.html) for more details) or space properties (when defining a space inside your processing unit). Note, the `pu.properties` can also be placed at the root of the processing unit.
@@ -107,7 +107,7 @@ The processing unit can [run](./deploying-and-running-the-processing-unit.html) 
 
 When deployed on to the [GigaSpaces runtime environment]({{%currentadmurl%}}/the-runtime-environment.html) or when running in [standalone mode](./running-in-standalone-mode.html), all the jars under the `lib` directory of your processing unit jar, will be automatically added to the processing unit's classpath.
 
-When [running within your IDE](./installation-eclipse-debug.html), it is similar to any other Java application, i.e. you should make sure all the dependent jars are part of your project classpath.
+When [running within your IDE](../started/xap-debug.html), it is similar to any other Java application, i.e. you should make sure all the dependent jars are part of your project classpath.
 
 # Deploying the Processing Unit to the Service Grid
 

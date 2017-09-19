@@ -2,8 +2,8 @@
 type: post122
 title:  Debugging
 categories: XAP122GS
-parent: installation-eclipse-overview.html
-weight: 200
+parent: xap-basics.html
+weight: 2100
 ---
 
 As part of your development process, you may want to run/debug your processing unit within your IDE, or create unit tests (with JUnit for example) to tests in isolation certain aspects of it.
