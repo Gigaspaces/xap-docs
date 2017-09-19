@@ -82,7 +82,9 @@ When using XAP manager, an embedded Zookeeper instance is started using a defaul
 If you need to override the default settings, either edit the default file, or use the `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `com.gs.zookeeper.config-file` system property to point to your custom configuration file.
 Default port of Zookeeper is 2181.
 
+{{%refer%}}
 Additional information on Zookeeper configuration can be found at {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration"%}}.
+{{%/refer%}}
 
 # Backwards Compatibility
 
@@ -91,11 +93,13 @@ On the same note we understand that it requires some effort from existing users 
 so if you’re upgrading for bug fixes/other features and don’t want the manager for now, you can switch from 12.0 to 12.1 and continue using the old components - it’s all still there.
 
 {{%note "Note:"%}}
-The Manager uses a different selection scheme when selecting resources where to deploy a processing unit instance. The 'LeastRoundRobinSelector' chooses the container which has the least amount of instances on it. To avoid choosing the same container twice when amounts equal, it keeps the containers in a round-robin order. This scheme is different from the previous 'WeightedSelector' which assigned weights to the containers based on heuristics and state gathered while selecting the less weighted container. The reason for this is that in large deployments, the network overhead and the overall deployment time is costly and may result in an uneven resource consumption.
+The Manager uses a different selection strategy when selecting resources where to deploy a processing unit instance. The strategy is to choose the container with the least relative weight. This is achieved by calculating the relative weight of each container in regards to other containers. Prior to 12.1 the strategy was to calculate the weight of a container based on gathering remote state. In large deployments, the network overhead and the overall deployment time is costly. We can achieve almost the same behavior with the new strategy.
 
-Notice that you may be experiencing a different instance distribution than before, in some cases non-even. To force the use of the previous selector scheme, use the following system property:
+Notice that you may be experiencing a different instance distribution than before. Although in both strategies we take a "best-effort" approach, in some cases it may still be an uneven distribution due to simultaneous selection process.
+
+To change between selector strategies, use the following system property (org.jini.rio.monitor.serviceResourceSelector). For example, to set the strategy to the on prior to 12.1, assign the following when loading the manager (in `XAP_MANAGER_OPTIONS` environment variable):
 ```bash
-Set '-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector' when loading the manager (in XAP_MANAGER_OPTIONS environment variable).
+-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector
 ```
 {{%/note%}}
 

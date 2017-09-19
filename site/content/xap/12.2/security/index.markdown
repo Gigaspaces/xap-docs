@@ -17,6 +17,9 @@ This section provides an understanding of GigaSpaces XAP Security, where it fits
 [Overview](./security.html){{<wbr>}}
 Overview of main features
 
+[Getting Started](./security-getting-started.html){{<wbr>}}
+Getting Started with Security
+
 [Concepts](./security-concepts.html){{<wbr>}}
 Authentication and Encryption
 

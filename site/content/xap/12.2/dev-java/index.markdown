@@ -89,5 +89,9 @@ Multiple site replication is the ability to replicate state between different de
 [Platform Interoperability](./interoperability-overview.html){{<wbr>}}
 The possibility for organizations whose projects include a combination of Java, .NET and other platforms to communicate and access each other easily and efficiently while also maintaining the benefits of the XAP scale-out application server.
 
+
+[InsightEdge API's](./insight-edge-apis.html){{<wbr>}}
+API guide for the InsightEdge platform.
+
 {{%/fpanel%}}
 

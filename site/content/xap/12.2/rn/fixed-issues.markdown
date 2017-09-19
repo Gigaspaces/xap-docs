@@ -14,7 +14,7 @@ Issues fixed in 12.2 Open Source edition:
 
 | Key                         | Summary                                                 | Fix Version(s) | Platform(s) |
 |:----------------------------|:------------------------------------------------------------------|:-----|:-----| 
- 
+| {{% jira id="XAP-13359" %}} | An asynchronous connection generated a null pointer, causing a connection/socket leak. | 12.2 | All | 
 
 
 ## Commercially Licensed Editions
@@ -28,5 +28,6 @@ The commerically licensed editions include all Open Source functionality and inc
 | XAP-13315 | The XAP Manager unevenly deploys instances when there are extra containers. | 12.2 | All | 
 | XAP-13305 | Cannot deploy a clustered Space with MemoryXtend and blob-store-cache-query configuration tag. | 12.2 | All | 
 | XAP-13299 | Customer client application stops getting notification events when all 20 connections are in use during high load. | 12.2 | All |  
-
+| XAP-13357 | Recovery attempts continued after a Space was marked as unstable. | 12.2 | All | 
+| XAP-13245 | Wrong access permissions for xap-common.jar in the installation package. | 12.2 | All |  
 

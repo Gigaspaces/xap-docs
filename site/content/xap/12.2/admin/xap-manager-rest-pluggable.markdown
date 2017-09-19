@@ -1,21 +1,21 @@
 ---
 type: post122
-title:  Pluggable Manager Operations
+title:  Extending the REST Manager API
 categories: XAP122ADM, PRM
 parent: xap-manager-rest.html
 weight: 200
 ---
  
-The XAP Manager RESTful API extensible: Developers can implement a plain Java class with {{%exurl "JAX-RS" "https://github.com/jax-rs"%}} annotations.
+The REST Manager API is extensible so that custom methods can be added. Developers can implement a plain Java class with {{%exurl "JAX-RS" "https://github.com/jax-rs"%}} annotations.
 
-**NOTE**: The `JAX-RS` API is being used because it's a well-known standard, but it's not fully supported - see list of limitations below.
+# Sample Implementation
 
-# Usage
+Follow the instructions below to create a sample extension for the REST Manager API:
 
-1. Create a class and annotate it with `com.gigaspaces.manager.rest.CustomManagerResource`. When the XAP Manager starts, it scans the `$XAP_HOME/lib/platform/manager/plugins` for classes with that annotations and registers them.
-2. For each path you wish to register to, create a method annotated with an HTTP operation (e.g. `@GET`) and a `@Path` annotation with the relevant path.
-3. Each method parameter must have an annotation (e.g. `@QueryParam`) so its value can be returned at runtime.
-4. Some services (e.g. `Admin`) can be injected via the `@Context` annotation.
+1. Create a class and annotate it with `com.gigaspaces.manager.rest.CustomManagerResource`.
+1. Create a method for each path you wish to intercept, and annotate it with an HTTP operation (e.g. `@GET`) and a `@Path` annotation with the relevant path.
+1. Use JAX-RS parameter annotations (e.g. `@QueryParam`) to map HTTP request parameters to your method.
+1. If you wish to use `Admin`, create an appropiate field and annotate it with JAX-RS `@Context` annotation.
 
 For example:
 
@@ -23,12 +23,12 @@ For example:
 @CustomManagerResource
 @Path("/demo")
 public class BasicPluggableOperationTest {
-    @Context public Admin admin;
+    @Context Admin admin;
 
     @GET
     @Path("/report")
     public String report(@QueryParam("hostname") String hostname) {
-        final Machine machine = admin.getMachines().getMachineByHostName(hostname);
+        Machine machine = admin.getMachines().getMachineByHostName(hostname);
         return "Custom report: host=" + hostname + 
                 ", containers=" + machine.getGridServiceContainers() + 
                 ", PU instances=" + machine.getProcessingUnitInstances();
@@ -36,18 +36,96 @@ public class BasicPluggableOperationTest {
 }
 ```
 
-This class maps an HTTP `GET` operation on path `/demo/report` to a `report` method. It accepts a query parameter, and uses an injected `Admin` instance to perform some user-define code (in this case, a custom report).
+This class maps an HTTP `GET` operation in the `/demo/report` path to a `report` method. It accepts a query parameter, and uses an injected `Admin` instance to perform user-defined code (in this case, a custom report).
+
+To run the example, compile it and package it into a .jar file, then copy the .jar to `$XAP_HOME/lib/platform/manager/plugins` and start the XAP Manager.
+
+Note that some JAX-RS features are not supported - see [JAX-RS Support](#jax-rs-support) below for detailed information.
 
 # Configuration
 
-By default, the XAP manager scans `$XAP_HOME/lib/platform/manager/plugins` for pluggable operations classes. You can override this using the `com.gs.manager.rest.plugins.path` system property.
+When the XAP Manager starts, it scans the `$XAP_HOME/lib/platform/manager/plugins` for classes in the jar files with the JAX-RS annotations and registers them.
+You can override the location using the following system property:
 
-# Limitations
+```bash
+com.gs.manager.rest.plugins.path="pathToJar"
+```
 
-This feature is under active development, with new functionality added each sprint. This limitations list is updated with each sprint release.
+# Response
 
-* Supported operations: `GET` (Support for `@PUT`, `@POST`, `@DELETE` will be added in upcoming sprints)
-* Parameters: Currently only `@QueryParam` on type `String` is supported (Support for additional types and parameter types will be added in upcoming sprints)
-* `@Context` is currently supported only for fields (No support for constructors or method args)
-* `@Context` is currently supported only for fields of type `Admin`.
-* Operations always return 200 (Support for specifying http response code and other response settings will be added in upcoming sprints)
+In the example above the method returns a String, and in addition it implicitly returns an HTTP code 200 (OK). If you need to explicitly specify the HTTP result code, use `org.openspaces.admin.rest.Response` instead of a `String`. 
+
+For example:
+
+```java
+import org.openspaces.admin.rest.Response
+
+@GET
+@Path("/report")
+public Response report(@QueryParam("hostname") String hostname) {
+    Machine machine = admin.getMachines().getMachineByHostName(hostname);
+	if (machine == null)
+        return Response.status(javax.ws.rs.core.Response.Status.NOT_FOUND).entity("Host not found").build();	
+    String result = "Custom report: host=" + hostname + 
+            ", containers=" + machine.getGridServiceContainers() + 
+            ", PU instances=" + machine.getProcessingUnitInstances();
+	return Response.ok().entity(result).build();
+}
+```
+
+{{%note "Note"%}}
+Make sure you use `org.openspaces.admin.rest.Response` and not JAX-RS Response.
+{{%/note%}}
+
+# Security
+
+To define security privileges for a custom method, you have to import `org.openspaces.admin.rest.PrivilegeRequired` and `org.openspaces.admin.rest.RestPrivileges`, and use `@PrivilegeRequired`.
+The `@PrivilegeRequired` annotation accepts a `RestPrivileges` enum that corresponds to the Security privileges. 
+
+{{%refer%}}
+For more information about security, see the [Security Guide](../security/).
+{{%/refer%}}
+
+For example:
+
+```java
+import org.openspaces.admin.rest.PrivilegeRequired
+import org.openspaces.admin.rest.RestPrivileges
+
+@CustomManagerResource
+@Path("/secured/")
+public class PluggableSecuredContoller {
+    @Context Admin admin;
+
+    @PrivilegeRequired(RestPrivileges.MANAGE_GRID)
+    @GET
+    @Path("/getBase")
+    public String getBase() {
+        return "hello";
+    }
+}
+```
+
+# JAX-RS Support
+
+The `JAX-RS` API is used for extension support because it is a well-known standard and commonly used by developers. The sections below list the annotations that are supported, and those that are not supported.
+
+## Supported Annotations
+
+The following JAX-RS annotations are supported:
+
+* HTTP operations: `@GET`, `@PUT`, `@POST`, `@DELETE`
+* Parameters: `@QueryParam`, `@PathParam`, `@DefaultValue` 
+   * Supported types: Java primitive types ('int', 'long', etc.) and `String`
+* Other: `@Context`
+   * Fields only (No support for constructors or method arguments)
+   * Supported types: `Admin`
+
+## Unsupported Annotations
+
+The following JAX-RS annotations are not supported:
+
+* HTTP operations: `@OPTIONS`, `@HEAD`
+* Parameters: `@FormParam`, `@HeaderParam`, `@CookieParam`, `@MatrixParam`
+* Other: `@Consumes`, `@Produces`
+
