@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Extended Document
-categories: XAP122
+categories: XAP122, OSS
 parent: document-overview.html
 weight: 200
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Change API
-categories: XAP122
+categories: XAP122, OSS
 weight: 400
 parent: the-gigaspace-interface-overview.html
 ---

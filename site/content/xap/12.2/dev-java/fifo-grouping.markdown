@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  FIFO Grouping
-categories: XAP122
+categories: XAP122, OSS
 parent: fifo-overview.html
 weight: 200
 ---

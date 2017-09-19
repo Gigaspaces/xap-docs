@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Interoperability
-categories: XAP122
+categories: XAP122, OSS
 parent: document-overview.html
 weight: 300
 ---

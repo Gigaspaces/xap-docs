@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Space Based Remoting
-categories: XAP122
+categories: XAP122, OSS
 parent: none
 weight: 1600
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Processing Unit
-categories: XAP122
+categories: XAP122, OSS
 parent: mule-esb.html
 weight: 200
 ---

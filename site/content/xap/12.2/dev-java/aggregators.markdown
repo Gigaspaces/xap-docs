@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Aggregators
-categories: XAP122
+categories: XAP122, OSS
 weight: 550
 parent: the-gigaspace-interface-overview.html
 ---

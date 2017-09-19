@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Data Source
-categories: XAP122
+categories: XAP122, OSS
 parent: cassandra-space-persistency.html
 weight: 100
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Metadata Summary
-categories:
+categories: XAP122, OSS
 parent: space-based-remoting-overview.html
 weight: 400
 ---

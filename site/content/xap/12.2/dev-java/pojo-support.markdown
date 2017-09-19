@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Overview
-categories: XAP122, ES
+categories: XAP122, OSS
 parent: pojo-overview.html
 weight: 100
 ---

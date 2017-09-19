@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Polling Container
-categories: XAP122
+categories: XAP122, OSS
 parent: event-processing.html
 weight: 300
 ---

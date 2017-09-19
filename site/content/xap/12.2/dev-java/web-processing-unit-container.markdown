@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Web Processing Unit Container
-categories: XAP122
+categories: XAP122, OSS
 parent: web-application-overview.html
 weight: 300
 ---

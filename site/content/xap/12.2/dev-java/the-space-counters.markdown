@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Counters
-categories: XAP122
+categories: XAP122, OSS
 weight: 500
 parent: the-gigaspace-interface-overview.html
 ---

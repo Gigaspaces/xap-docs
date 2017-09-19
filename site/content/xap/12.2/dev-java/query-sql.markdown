@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  SQLQuery
-categories: XAP122
+categories: XAP122, OSS
 parent: querying-the-space.html
 weight: 300
 ---
@@ -15,7 +15,9 @@ The `SQLQuery` class is used to query the space using SQL-like syntax. The query
 For the full documentation of the class's methods and constructors, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SQLQuery.html).
 {{% /refer %}}
 
-
+{{% info "Info"%}}
+The the XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Platform edition. For more information, refer to [In-Grid SQL Query](./sql-query-intro.html).
+{{% /info %}}
 
 
 # Examples
@@ -165,7 +167,7 @@ query.setParameter(1,"A");
 query.setParameter(2,collection);
 ```
 
-{{% warning %}}
+{{% warning "Warning"%}}
 Parameter assignment to the `SQLQuery` instance is not thread safe. If the query is intended to be executed on multiple threads which may change the parameters, it is recommended to use different `SQLQuery` instances. This has an analogue in JDBC, because `PreparedStatement` is not threadsafe either.
 In previous options, parameters could be passed via a POJO template as well. This option is still available, but is deprecated and will be removed in future versions.
 {{%/warning%}}

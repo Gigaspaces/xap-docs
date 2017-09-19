@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  POJO Support
-categories: XAP122, OS
+categories: XAP122, OSS
 parent: none
 weight: 400
 ---

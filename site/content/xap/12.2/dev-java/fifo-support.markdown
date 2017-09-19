@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  FIFO Support
-categories: XAP122
+categories: XAP122, OSS
 parent: fifo-overview.html
 weight: 100
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Change code without restarts
-categories: XAP122
+categories: XAP122, OSS
 weight: 650
 parent: the-gigaspace-interface-overview.html
 ---

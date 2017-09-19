@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Concurrent Consumers
-categories: XAP122
+categories: XAP122, OSS
 parent: polling-container-overview.html
 weight: 300
 ---

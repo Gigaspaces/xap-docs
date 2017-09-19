@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Deploying a Space
-categories: XAP122TUT
+categories: XAP122TUT, OSS
 weight: 600
 parent: none
 ---

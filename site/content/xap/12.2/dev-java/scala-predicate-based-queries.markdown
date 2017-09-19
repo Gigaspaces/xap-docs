@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Predicate Based Queries
-categories: XAP122
+categories: XAP122, OSS
 parent: scala.html
 weight: 300
 ---

@@ -10,6 +10,10 @@ The unified InsightEdge solution, a combination of the XAP in-memory data grid a
 
 The InsightEdge Platform provides extreme performance with ultra-low latency, high-throughput transactions and stream processing, due to the co-location of applications and analytics. All of this functionality is available in a cloud-native, infrastructure-agnostic deployment for hybrid cloud and on-premises environments. 
 
+{{% align center%}}
+![archi_overview.jpg](/attachment_files/Product_Architecture1.png)
+{{% /align %}}
+
 The full InsightEdge Platform offers the following additional benefits:
 
 * Multi-tiered data storage across RAM, SSD, and Storage-Class Memory (3DXPoint) 
@@ -18,7 +22,7 @@ The full InsightEdge Platform offers the following additional benefits:
 
 * Disaster recovery via geo-redundancy, fast data replication and native persistence
 
-{{% info%}}
+{{% info "Info"%}}
 If you are already using InsightEdge or XAP, refer to the [Release Notes](/xap/12.2/rn/index.html) for a list of new features, changes, updates, and resolved issues.
 {{% /info %}}
 

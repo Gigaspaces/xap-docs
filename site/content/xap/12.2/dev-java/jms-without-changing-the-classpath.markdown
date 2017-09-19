@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Using GigaSpaces JMS Without Changing the Classpath
-categories: XAP122
+categories: XAP122, OSS
 parent: jms-advanced.html
 weight: 600
 ---

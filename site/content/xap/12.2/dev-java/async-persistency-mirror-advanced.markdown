@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Advanced Configuration
-categories: XAP122
+categories: XAP122, OSS
 parent: asynchronous-persistency-with-the-mirror.html
 weight: 100
 ---

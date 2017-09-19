@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Other Data Access APIs
-categories: XAP122
+categories: XAP122, OSS
 parent: none
 weight: 1200
 ---

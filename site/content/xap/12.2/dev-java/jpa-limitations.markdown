@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Limitations
-categories: XAP122
+categories: XAP122, OSS
 parent: jpa-api-overview.html
 weight: 400
 ---

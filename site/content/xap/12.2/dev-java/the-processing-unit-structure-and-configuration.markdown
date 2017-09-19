@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Directory Structure
-categories: XAP122
+categories: XAP122, OSS
 parent: the-processing-unit-overview.html
 weight: 100
 ---

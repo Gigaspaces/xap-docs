@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  The Space URL  
-categories: XAP122
+categories: XAP122, OSS
 weight: 200
 parent: the-gigaspace-interface-overview.html
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Executor Based Remoting
-categories: XAP122
+categories: XAP122, OSS
 parent: space-based-remoting-overview.html
 weight: 200
 ---

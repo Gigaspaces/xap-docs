@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Deploying and Running
-categories: XAP122
+categories: XAP122, OSS
 parent: the-processing-unit-overview.html
 weight: 600
 ---

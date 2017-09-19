@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Local Machine Setup
-categories: XAP122GS, IEE
+categories: XAP122GS, OSS
 weight: 1200
 ---
 

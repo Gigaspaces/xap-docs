@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Custom Data Event Filters
-categories: XAP122
+categories: XAP122, OSS
 parent: session-based-messaging-api.html
 weight: 300
 ---

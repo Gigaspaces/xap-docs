@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Class Metadata
-categories: XAP122
+categories: XAP122, OSS
 parent: pojo-xml-metadata-overview.html
 weight: 100
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Transient Entries
-categories: XAP122
+categories: XAP122, OSS
 parent: space-persistency-overview.html
 weight: 700
 ---

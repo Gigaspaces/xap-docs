@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Reloading Business Logic
-categories: XAP122
+categories: XAP122, OSS
 parent: the-processing-unit-overview.html
 weight: 350
 ---

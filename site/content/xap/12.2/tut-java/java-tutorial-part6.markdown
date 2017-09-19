@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Transactions and Concurrency
-categories: XAP122TUT
+categories: XAP122TUT, OSS
 weight: 1000
 parent: none
 ---

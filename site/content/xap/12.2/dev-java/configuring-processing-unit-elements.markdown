@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Configuration
-categories: XAP122
+categories: XAP122, OSS
 weight: 200
 parent: the-processing-unit-overview.html
 ---
