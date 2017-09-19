@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Dataset API
-categories: XAP122, IEE
+categories: XAP122, OSS
 parent: insightedge-apis.html
 weight: 600
 ---
