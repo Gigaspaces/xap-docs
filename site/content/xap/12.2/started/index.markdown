@@ -17,8 +17,8 @@ This guide provides step by step instructions on how to download and install Ins
 [License Key](license-key.html){{<wbr>}}
 Getting the license key and configuring it
 
-[Environment Variables](common-environment-variables.html){{<wbr>}}
-Overview of common environment variables used by XAP and InsightEdge
+[Configuration](common-environment-variables.html){{<wbr>}}
+Overview of common configuration tasks in XAP and InsightEdge
 
 [InsightEdge Basics](insightedge-basics.html)<br>
 Guides you thru your first steps with InsightEdge usage.

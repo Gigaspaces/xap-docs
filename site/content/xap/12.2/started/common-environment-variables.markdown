@@ -1,39 +1,62 @@
 ---
 type: post122
-title:  Environment Variables
+title:  Configuration
 categories: XAP122GS
 parent: none
 weight: 300
 ---
 
-The XAP environment configuration is maintained by a configuration script file called `setenv`, located in the `XAP_HOME/bin` directory. It is recommended to use the `setenv` utility to derive the commonly used XAP libraries and setup environment. 
+
+# Overview
+
+In this page you'll learn how XAP and InsightEdge configuration is applied, and how to override it.
+
+## XAP
+
+The XAP environment configuration is maintained by a configuration script file called `setenv`, located in the `XAP_HOME/bin` directory. Each of XAP's scripts invokes this script to load XAP's configuration. If you're developing standalone XAP client, it is recommended to use the `setenv` utility to derive the commonly used XAP libraries and setup environment. 
+
 To use this utility, you simply need to call it from within your script file.
 
-The following list describes commonly used variables which are defined in this script:
+## InsightEdge
 
-|Name|Description|Default Value|
-|:---|:----------|:------------|
-|  JAVA_HOME            |The directory in which Java is installed              ||
-|  XAP_HOME             |The GigaSpaces XAP home directory                     | Automatically set via the folder structure |
-|  XAP_LOOKUP_GROUPS    |Lookup Service groups used for multicast discovery    | {{%version "default-lookup-group"%}} |
-|  XAP_LOOKUP_LOCATORS  | Lookup Service Locators used for unicast discovery   ||
-|  XAP_NIC_ADDRESS      | The network interface card which will be used by XAP | Automatically set to the host name |
-|  XAP_SECURITY_POLICY  | The default policy file.|XAP_HOME/policy/policy.all  |
-|  XAP_LOGS_CONFIG_FILE | The location of XAP logging configuration            | XAP_HOME/config/log/xap_logging.properties |
-|  XAP_GSC_OPTIONS      | Java options for the Grid Service Container (GSC)    ||
-|  XAP_GSM_OPTIONS      | Java options for the Grid Service Manager (GSM)      ||
-|  XAP_GSA_OPTIONS      | Java options for the Grid Service Agent (GSA)        ||
-|  XAP_LUS_OPTIONS      | Java options for the Lookup Service (LUS)            ||
-|  XAP_ESM_OPTIONS      | Java options for the Elastic Service Manager (ESM)   ||
+The InsightEdge environment configuration is maintained by a configuration script file called `insightedge-env`, located in the `XAP_HOME/insightedge/conf` directory. Again, each InsightEdge script invokes this script. Now, since `insightedge-env` starts by invoking XAP's `setenv`, all of XAP's configuration is applied as well.
 
 # Overriding Default Values
 
 During initial development and usage of XAP there's usually no need to change any of the default values, but at some point you'll probably want to change some of them (e.g. the Grid Service Container heap size). 
 
-
 {{%note%}}
 It is highly recommended not to make those changes in the original `setenv` script, as it complicates upgrading XAP later on. Instead, XAP provides an additional empty script called `setenv-overrides`, which is automatically called by `setenv`, and is intended for users to specify their overrides in a safe manner.
 {{%/note%}}
+
+# XAP Environment Variables
+
+The following list describes XAP-related environment variables:
+
+|Name                   |Description                                           |Default Value|
+|:----------------------|:-----------------------------------------------------|:------------|
+|  JAVA_HOME            | The directory in which Java is installed             | |
+|  XAP_HOME             | The GigaSpaces XAP home directory                    | Automatically set via the folder structure |
+|  XAP_LOOKUP_GROUPS    | Lookup Service groups used for multicast discovery   | {{%version "default-lookup-group"%}} |
+|  XAP_LOOKUP_LOCATORS  | Lookup Service Locators used for unicast discovery   | |
+|  XAP_NIC_ADDRESS      | The network interface card which will be used by XAP | Automatically set to the host name |
+|  XAP_SECURITY_POLICY  | The default policy file.|XAP_HOME/policy/policy.all  | |
+|  XAP_LOGS_CONFIG_FILE | The location of XAP logging configuration            | XAP_HOME/config/log/xap_logging.properties |
+|  XAP_GSC_OPTIONS      | Java options for the Grid Service Container (GSC)    | |
+|  XAP_MANAGER_OPTIONS  | Java options for the XAP Manager                     | |
+|  XAP_GSA_OPTIONS      | Java options for the Grid Service Agent (GSA)        | |
+
+# InsightEdge Environment Variables
+
+The following list describes InsightEdge-related environment variables:
+
+|Name                       |Description                                            |Default Value|
+|:--------------------------|:------------------------------------------------------|:------------|
+| SPARK_HOME                | The directory in which Spark is installed             | `XAP_HOME/insightedge` |
+| INSIGHTEDGE_CLASSPATH_EXT | Extra classpath to append to InsightEdge components   | |
+| INSIGHTEDGE_SPACE_NAME    | Space name to use in InsightEdge scripts and examples | `insightedge-space`    |
+
+In addition, you can use standard Spark environment variables as well - The InsightEdge platform loads spark components in a manner which preserves their usage. For example, set `SPARK_MASTER_PORT` to override the default `7077` port.
 
 # Upgrading From Previous Versions
 
