@@ -2,13 +2,9 @@
 type: post122
 title:  Data Frames API
 categories: XAP122, IEE
-parent: insight-edge-apis.html
+parent: insightedge-apis.html
 weight: 550
 ---
-
-{{%note "Maintenance Notice"%}}
-InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
-{{%/note%}}
 
 DataFrames provide an API for manipulating data within Spark. These provide a more user friendly experience than pure Scala for common queries.
 

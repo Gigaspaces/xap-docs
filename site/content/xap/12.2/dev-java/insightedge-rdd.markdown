@@ -2,13 +2,9 @@
 type: post122
 title:  RDD API
 categories: XAP122, IEE
-parent: insight-edge-apis.html
+parent: insightedge-apis.html
 weight: 500
 ---
-
-{{%note "Maintenance Notice"%}}
-InsightEdge is being transformed from a Spark distribution to a Unified transactional/analytics platform. This documentation was imported from the previous release as-is, and may contain some inaccuracies. We're currently reviewing and fixing it, and will remove this notice once we're done.
-{{%/note%}}
 
 This section describes how to load data from the Data Grid to Spark.
 
