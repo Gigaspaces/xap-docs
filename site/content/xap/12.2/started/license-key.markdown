@@ -19,6 +19,8 @@ When downloading InsightEdge or XAP from the {{%exurl "Download Center" "http://
 Product=InsightEdge;Version=12.2;Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2017-Sep-30;Hash=PNXrPIPANOOddPNQFdQQ
 ```
 
+(Note that in XAP.NET the `xap-license.txt` file is located at `<XAP_HOME>\Runtime\xap-license.txt`)
+
 The same evaluation license is emailed for both InsightEdge and XAP downloaders, enabling you to evaluate all features in both packages.
 
 {{% info %}}
