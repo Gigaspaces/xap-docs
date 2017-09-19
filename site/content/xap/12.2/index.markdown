@@ -58,8 +58,6 @@ Read one of the following guides for detailed instructions on how to install Ins
 
 The following resources may provide a deeper understanding of the products, and help kick-start your development process:
 
-* [Tutorials](/xap/12.2/tut-java/index.html)
-
 * [FAQs](/faq/index.html)
 
 * [API Reference Guides for Java and .NET](/api_documentation/index.html)

@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Distributed Processing
-categories: XAP122TUT, OSS
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 700
-parent: none
 ---
 
 

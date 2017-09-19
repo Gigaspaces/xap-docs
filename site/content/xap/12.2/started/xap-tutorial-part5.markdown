@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Creating a Processing Unit
-categories: XAP122TUT, OSS
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 900
-parent: none
 ---
 
 

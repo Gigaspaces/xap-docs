@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Deploy a Web App
-categories: XAP122TUT, OSS
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 1200
-parent: none
 ---
 
 

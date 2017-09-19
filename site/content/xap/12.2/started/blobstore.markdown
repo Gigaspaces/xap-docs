@@ -1,8 +1,8 @@
 ---
 type: post122
 title:  Multi-Tiered Data Storage (SSD)
-categories: XAP122TUT, ENT
-parent: none
+categories: XAP122GS, ENT
+parent: xap-basics.html
 weight: 1600
 ---
 

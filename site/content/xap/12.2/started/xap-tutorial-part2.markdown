@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Deploying a Space
-categories: XAP122TUT, OSS
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 600
-parent: none
 ---
 
 

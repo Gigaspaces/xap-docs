@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Security
-categories: XAP122TUT, OSS
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 1400
-parent: none
 ---
 
 

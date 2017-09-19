@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Persist to Database
-categories: XAP122TUT, OSS
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 1100
-parent: none
 ---
 
 

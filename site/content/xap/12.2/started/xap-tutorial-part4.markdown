@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Event-Driven Programming
-categories: XAP122TUT, OSS
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 800
-parent: none
 ---
 
 

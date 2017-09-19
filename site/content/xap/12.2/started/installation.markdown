@@ -3,14 +3,10 @@ type: post122
 title:  Installation
 categories: XAP122GS
 parent: none
-weight: 10
+weight: 100
 ---
 
-
-
 This guide provides step by step instructions on how to download and install XAP on different operating systems for the supported languages.
-
-<br>
 
 {{%note%}}
 The latest version of XAP can be downloaded {{%exurl "here" "http://www.gigaspaces.com/xap-download" %}} For a list of supported platforms please consult [the release notes](/release_notes)

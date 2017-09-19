@@ -1,9 +1,9 @@
 ---
 type: post122
 title:  Interacting with the Space
-categories: XAP122TUT, OSS
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 500
-parent: none
 ---
 
 

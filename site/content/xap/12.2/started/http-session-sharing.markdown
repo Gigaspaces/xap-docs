@@ -1,8 +1,8 @@
 ---
 type: post122
 title:  HTTP Session Sharing
-categories: XAP122TUT, PRM
-parent: none
+categories: XAP122GS, PRM
+parent: xap-basics.html
 weight: 1500
 ---
 

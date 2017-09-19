@@ -1,8 +1,8 @@
 ---
 type: post122
 title:  Installation
-categories:  XAP122TUT, OSS
-parent: none
+categories: XAP122GS, OSS
+parent: xap-basics.html
 weight: 100
 ---
 
