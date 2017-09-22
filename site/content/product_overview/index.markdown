@@ -37,7 +37,3 @@ XAP is a platform that scales out stateful applications in high-performance low-
 
 [Real Time Analytics](./real-time-analytics.html){{% wbr%}}
 {{% /fpanel%}}
-
-
-
-
