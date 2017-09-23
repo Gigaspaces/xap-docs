@@ -1,6 +1,6 @@
 ---
 type: post122
-title:  Security Getting Started
+title: Getting Started
 categories: XAP122SEC
 parent: none
 weight: 150
