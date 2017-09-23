@@ -2,7 +2,7 @@
 type: post122
 title: Space Based Architecture
 categories: XAP122OVW
-parent: none
+parent: the-in-memory-data-grid.html
 weight: 800
 ---
 
@@ -64,4 +64,3 @@ Once a [Processing Unit library]({{% latestjavaurl%}}/the-processing-unit-struct
 - Partition - Collection of primary and backup processing unit instances
 - [Polling container]({{% latestjavaurl%}}/polling-container.html) - Execution queue. Consumes objects from the space.
 {{%  /vbar %}}
-

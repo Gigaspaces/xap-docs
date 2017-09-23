@@ -1,18 +1,17 @@
 ---
 type: post122
-title: J2EE vs. XAP
+title: Migrating from Java EE to XAP
 categories: XAP122OVW
 parent: none
 weight: 1000
 ---
 
 
+From a design and implementation perspective, XAP shares a lot of patterns with Java Enterprise Edition ecosystem. The following sections provide a mapping to help migrate your existing JavaEE application to GigaSpaces XAP. 
 
-Here is a simple mapping between the J2EE common components and equivalent XAP components:
+# Java EE versus XAP
 
-# J2EE verses XAP
-
-|Component|J2EE|XAP|
+|Component|JEE|XAP|
 |:--------|:---|:--|
 |Persistency|JPA|[Hibernate]({{% latestjavaurl%}}/hibernate-space-persistency.html), [JPA]({{% latestjavaurl%}}/jpa-api.html)|
 |Messaging|JMS,MDB|[JMS]({{%latestjavaurl%}}/messaging-support.html){{% wbr%}}Polling Container {{%latestjavanet%}} {{% wbr%}}Notify Container {{% latestjavanet %}} {{% wbr%}} [Native Messaging API]({{% latestjavaurl%}}/session-based-messaging-api.html), MDB {{%  star %}} |
@@ -32,7 +31,7 @@ Here is a simple mapping between the J2EE common components and equivalent XAP c
 # Messaging Concepts & Patterns
 
 
-|Functionality|J2EE|XAP|
+|Functionality|JEE|XAP|
 |:------------|:---|:--|
 |Queue|JMS Queue|Polling Container {{%latestjavanet "polling-container.html"%}}|
 |Topic|JMS Topic|Notify Container  {{%latestjavanet "notify-container.html"%}}|

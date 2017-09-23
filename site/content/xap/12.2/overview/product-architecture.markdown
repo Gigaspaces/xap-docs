@@ -1,6 +1,6 @@
 ---
 type: post122
-title: Product Architecture
+title: XAP Architecture
 categories: XAP122OVW
 parent: none
 weight: 400
@@ -8,7 +8,7 @@ weight: 400
 
 {{%  ssummary %}}{{%  /ssummary %}}
 
-### GigaSpaces XAP is built from the following sub-systems:
+GigaSpaces XAP is built from the following sub-systems:
 
 {{% align center%}}
 ![archi_overview.jpg](/attachment_files/archi_overview.jpg)
@@ -205,114 +205,4 @@ GigaSpaces allows you to deploy web applications (packaged as WAR files) onto th
 The deployed WAR is a pure Java EE-based web application. The application can be the most generic web application, and automatically make use of the Service Grid features. The web application can define a Space (either embedded or remote) very easily (either using Spring or not).
 
 # Virtualized Deployment Infrastructure
-
-XAP supports any environment, anytime, anywhere - traditional data center, public/private cloud, or hybrid deployments.
-
-Isolate the runtime environment, physical address, and platform type from your application. The system takes care of provisioning your application onto the best available resources, and self adjusts to maintain utilization levels as machine availability changes over time.
-
-## Real-Time SLA Assurance Engine
-
-- Optimize IT resource utilization
-- Dynamic resource allocation: Allocate resources automatically or manually - to avoid over-provisioning and/or under-utilization
-- Automatic failover and self healing: Automatically recover from failures to maintain consistent SLA throughout the application life cycle
-- Automation of manual processes such as provisioning, deployment, scaling and failover.
-
-## Management & Monitoring Engine
-
-Production-grade control and visibility
-
-- Out-of-the-box multi-dimensional monitoring:
-    - Operational: Services availability and topology
-    - Application: Deep level business logic and data monitoring
-    - Scalability: Load balancing and throughput monitoring
-    - Utilization: Resource utilization tracking
-
-- Fully managed platform:
-    - Remote services control
-    - Provision interface for integration with external tools and processes
-    - Security - easily integrates with existing security mechanisms via JAAS
-
-- Intuitive, comprehensive, user-friendly graphical interface: Short learning curve, fast time to service.
-
-# Unified In-Memory Clustering
-
-
-
-The role of clustering in GigaSpaces XAP is to provide scaling, load-balancing and high-availability. The main difference between GigaSpaces XAP and other clustering alternatives, is the use of a single clustering model for all middleware core capabilities. This means that the data and the services colocated with it are equally available. An example of how useful this is is that when a primary node fails, and another node acts as its backup, both application components (i.e. data and messaging) become active at the same time.
-
-The ability to support a unified clustering model is a direct result of the underlying space-based clustering model. For more information on the concept of space, please refer to [Space - Concepts and Capabilities](./concepts.html#space-concepts-and-capabilities).
-
-## Scaling
-
-In space-based architecture, adding additional cluster nodes results in a linear addition of compute power and memory capacity. This results in the application's ability to support a higher workload, without adding to latency or application complexity.
-
-## Data Load Balancing and Partitioning
-
-GigaSpaces XAP's ability to distribute the processing load and/or storage across the cluster nodes results in the ability to support high and fluctuating throughput in addition to large volumes of data.
-
-GigaSpaces XAP also supports content-based balancing, in addition to other technical balancing procedures, such as round-robin, random and connection affinity. The full power of content-based routing results in the ability to predict the physical location of the data, and to make sure that processing is routed into the same partition. This results in in-process computation, which leads to lower latencies and higher throughput.
-
-## High Availability
-
-High Availability (HA) is key to business critical applications, and it is a common requirement from the application server, to support it. The basic requirement of high availability is that failing services and application components will continue on different backup servers, without service disruption.
-
-The key challenge with HA is state management. The typical solution for servers without state recovery capabilities is to remain 'stateless', and to store the state in a single shared storage - database or some kind of shared file system. However these solutions are very costly, since they result in synchronization and remote access to physical disks. In addition, the session state can be large, which means it introduces network latency into every update of data - even when that data is limited to the current transaction.
-
-As GigaSpaces XAP has distributed shared memory capabilities, it is very simple and efficient to preserve high availability of stateful applications. The application state is replicated into backup nodes, resulting in immediate recovery in cases of fail-over and high-performance high-availability.
-
-The GigaSpaces XAP solution does not require a compromise between stateless application complexity, performance and resiliency.
-
-
-
-# Virtualized Deployment Infrastructure
-
-
-
-A Deployment Infrastructure is responsible for abstracting the physical characteristics of the host machines from the application deployment. The Deployment Infrastructure is a set of runtime container processes deployed on multiple physical machines, which together form a virtual runtime cloud.  Once the cloud is formed, applications can be deployed for execution across the cloud, without a need to define specific host machine characteristics.
-
-In addition, a Service Level agreement (SLA) is used at deployment time. It guarantees the system will be available and scalable. When it comes to provisioning and monitoring large-scale systems, the ability to specifically define the location of each node in the cluster becomes very laborious. The Deployment Infrastructure takes a pre-defined application SLA, and makes sure that it is met during deployment and runtime, throughout the application's life-cycle.
-
-To clarify, here is an example of an application SLA:
-
-1. Deploy 50 instances of each Processing Unit.
-1. Make sure each processing unit has one backup.
-1. Make sure primary and backups of the same Processing Unit are not deployed to the same VM.
-1. Make sure primary and backup of the same Processing Unit are not deployed on the same physical server.
-
-In this type of example, the Deployment Infrastructure is responsible for making sure that 100 Processing Units instances are deployed. Once the SLA is breached (for example, if a machine that is hosting contains a Processing Unit instance fails), the deployment infrastructure is responsible for re-provisioning all the processing units previously deployed on this machine into other containers running on another available machine(s).
-
-{{%  info %}}
-Note: The logical separation between multiple Deployment Infrastructures is defined by a Lookup Group. A lookup group is a logical name associated with each Deployment Infrastructure components. This is the prime way of separating between multiple Deployment Infrastructure environments running on the same network.
-{{% /info%}}
-
-## Grid Service Agent (GSA)
-
-The [Grid Service Agent (GSA)](./service-grid.html#gsa) acts as a process manager that can spawn and manage Deployment Infrastructure processes (Operating System level processes) such as [Grid Service Manager](./service-grid.html#gsm) and [Grid Service Container](./service-grid.html#gsc).
-
-Usually, a single GSA is deployed on each individual machine. The GSA spawns [Grid Service Managers](./service-grid.html#gsm), [Grid Service Containers](./service-grid.html#gsc), and other processes. Once a process is spawned, the GSA assigns a unique id for it and manages its life cycle. The GSA will restart the process if it exits abnormally (exit code different than 0), or if a specific console output has been encountered (for example, OutOfMemoryError).
-
-{{%  note %}}
-Though [Grid Service Manager](./service-grid.html#gsm), [Grid Service Container](./service-grid.html#gsc), and other processes can be started independently, it is preferable that they be started using the GSA, thus allowing to easily monitor and manage them.
-{{% /note%}}
-
-{{%  anchor gsm %}}
-
-## Grid Service Manager (GSM)
-
-The Grid Service Manager (GSM) is a special Deployment Infrastructure service responsible for managing the GSCs. The GSM accepts user deployment and undeployment requests, and provisions the Deployment Infrastructure cloud accordingly.
-
-The GSM monitors SLA breach events throughout the life-cycle of the application, and is responsible for taking corrective actions once SLAs are breached.
-
-{{%  info %}}
-It is common to start two instances of GSMs across a Deployment Infrastructure cloud, for high-availability reasons.
-{{% /info%}}
-
-{{%  anchor gsc %}}
-
-## Grid Service Container (GSC)
-
-A Grid Service Container (GSC) is a container which hosts Processing Units instances. The GSC can be perceived as a node on the grid, which is controlled by the GSM. The GSM instruct the GSC to deploy or undeploy Processing Unit instances. The GSC reports its status to the GSM.
-
-It is common to start several GSCs on the same physical machine, depending on the machine CPU and memory resources. The GSCs provide a layer of abstraction on top of the physical layer (Machines). This concept enables deployment of clusters on various deployment topologies on enterprise data centers and public clouds.
-
-
+Detailed information about the virtualized deployment infrastructure can found under [The Service Grid](./the-runtime-environment.html) section.

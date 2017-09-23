@@ -47,7 +47,7 @@ To achieve these goals, Open Spaces adds the following components to the Spring 
 - [Remoting]({{% latestjavaurl%}}/space-based-remoting.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
 - [Declarative transaction support]({{% latestjavaurl%}}/transaction-management.html) for GigaSpaces In-Memory Data Grid.
 
- 
+
 ## Core Middleware
 
 XAP relies on the JavaSpaces (space-based) model as its core middleware, and provides specialized components, implemented as wrapper facades on top of the space implementations, to deliver specific data or messaging semantics. XAP exposes both the JavaSpaces API, with different flavors suited to the usage scenario (SQLQuery for data, FIFO for messaging, etc.), and other standard APIs such JCache/JDBC and JMS.
