@@ -12,7 +12,9 @@ This section provides the concepts used throught this security guide, and presen
 
 # Authentication
 
-Authentication is the act of supplying user credentials (usually username and password) to be confirmed as authentic against a secured service. Authentication fails either due to an unknown user or an invalid password, resulting in an `AuthenticationException`. A successful authentication results in an authenticated session used for further correspondence.
+Authentication is the process of establishing and confirming the authenticity of a _principal_. A _principal_ in XAP terms, means a user (human or software) performing an action in your application. XAP's authentication layer is equipped with standard encryption algorithms (such as AES and MD5), and can be customized to integrate with other security standards (i.e. Spring Security). 
+
+Authenticating a user is achieved by supplying credentials (usually username and password) to be confirmed as authentic against a secured service. Authentication fails either due to an unknown user or an invalid password, resulting in an `AuthenticationException`. A successful authentication results in an authenticated session used for further correspondence.
 
 ```java
 interface SecurityManager {
@@ -32,6 +34,13 @@ The service (e.g. Space Instance) receives a request for authentication. Usually
 An attempt to authenticate the passed `UserDetails` object, returns a fully populated `Authentication` object (including granted authorities) if successful. On failure, an `AuthenticationException` is thrown.
 
 Further correspondence are done via this authenticated session context. The service has security interceptors which intercept each method call to verify the granted privileges. An `AccessDeniedException` is thrown if the user lacks sufficient privileges to perform an operation.
+
+# Authorization
+
+Authorization refers to the process of deciding whether a principal is allowed to perform an action/operation. A principal is first established by the authentication process, and then authorized by the authorization decision process, when performing actions. The authorization layer is used to intercept unauthorized access to data and restrict operations. It also maps users to specific authorities and allows grouping of authorities into roles.
+
+XAP Security architecture has been designed to meet the needs of enterprise application security. XAP provides a complete experience throughout all the components, for a useful, configurable and extend-able security system.
+
 
 # Encryption
 
