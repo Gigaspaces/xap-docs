@@ -1,36 +1,37 @@
 ---
 type: post122
-title:  License Key
-categories: XAP122GS,PRM
+title:  Product License
+categories: XAP122GS
 parent: none
 weight: 200
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
 
-GigaSpaces XAP Premium and Enterprise editions require a valid license to start. This page explains how to setup the initial evaluation license and provides additional related information.
+If you are using the XAP or InsightEdge open source editions, you don't need a product license. Simply download and unzip the software, and begin by exploring the examples or building your own application.
 
-# Getting started
+The XAP Premium, XAP Enterprise, and InsightEdge Platform editions each require a valid license to start. This section explains how to set up the initial 90-day evaluation license, and also provides additional related information.
 
-When downloading InsightEdge or XAP from the {{%exurl "Download Center" "http://www.gigaspaces.com/LatestProductVersion"%}}, you'll get an email with a license key for the evaluation period. To start your evaluation, simply edit the license file located in `<XAP_HOME>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
+# Applying the License
+
+After you download an InsightEdge or XAP commerical edition from the {{%exurl "Download Center" "http://www.gigaspaces.com/LatestProductVersion"%}}, you will receive an email with a license key for the evaluation period. To start the evaluation period, open the license file located in `<XAP_HOME>/xap-license.txt` with any text editor, and copy the license key from the email to a blank line in the file. For example:
 
 ```xml
 # License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
 Product=InsightEdge;Version=12.2;Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2017-Sep-30;Hash=PNXrPIPANOOddPNQFdQQ
 ```
 
-(Note that in XAP.NET the `xap-license.txt` file is located at `<XAP_HOME>\Runtime\xap-license.txt`)
+The same evaluation license is used for both InsightEdge and XAP downloaders, enabling you to evaluate the full InsightEdge Platform edition, which contains all available features for all the commercial editions.
 
-The same evaluation license is emailed for both InsightEdge and XAP downloaders, enabling you to evaluate all features in both packages.
+{{% note "Notes"%}}
+* If you are using XAP.NET, the `xap-license.txt` file is located at `<XAP_HOME>\Runtime\xap-license.txt`.
+* If you are using more than one machine for your evaluation, you must apply the license to each machine.
+{{%/note%}}
 
-{{% info %}}
-If you're using more than one machine for the evaluation, make sure you copy the license to each of those machines.
-{{%/info%}}
+After you have applied the license, you can access all of the available features for the duration of the 90-day evaluation period without any limitations. When the evaluation license expires, the next time you restart the data grid you will only have access to the open-source functionality. Contact GigaSpaces support to purchase a license for the edition that meets your needs. After the new license is applied, the relevant functionality will once again be available.
 
-That's it! You're good to go!
-
-{{% tip "Viewing the license in the logs" %}}
-When the system starts, it writes an information summary to the logs and console, including the license key. You can use that to verify that the system is using the correct license key.
+{{% tip "Tip" %}}
+The license key can be viewed in the application logs. When the system starts, it writes an information summary to the logs and console, including the license key. You can use the logs to verify that you are using the correct license key.
 {{% /tip %}}
 
 # License Validation

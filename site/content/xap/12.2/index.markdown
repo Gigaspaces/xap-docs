@@ -6,13 +6,9 @@ weight: 100
 
 ## Overview
 
-The unified InsightEdge solution, a combination of the XAP in-memory data grid and an open-source analytics ecosystem, is an open-source, in-memory insight platform that supports fast-data analytics, artificial intelligence and real-time applications. Customers can use this platform to develop their own systems that provide instant data-driven insights with time-to-analytics at a sub-second scale, and the ability to hyperscale analytics from SQL, streaming to machine learning via Apache Spark.
+The unified InsightEdge solution, a combination of the XAP in-memory data grid and an open-source analytics ecosystem, is an in-memory insight platform that supports fast-data analytics, artificial intelligence and real-time applications. Customers can use this platform to develop their own systems that provide instant data-driven insights with time-to-analytics at a sub-second scale, and the ability to hyperscale analytics from SQL, streaming to machine learning via Apache Spark.
 
 The InsightEdge Platform provides extreme performance with ultra-low latency, high-throughput transactions and stream processing, due to the co-location of applications and analytics. All of this functionality is available in a cloud-native, infrastructure-agnostic deployment for hybrid cloud and on-premises environments. 
-
-{{% align center%}}
-![archi_overview.jpg](/attachment_files/Product_Architecture1.png)
-{{% /align %}}
 
 The full InsightEdge Platform offers the following additional benefits:
 
@@ -30,9 +26,9 @@ If you are already using InsightEdge or XAP, refer to the [Release Notes](/xap/1
 
 InsightEdge is available in Java and .NET flavors, and offers several licensed editions, along with XAP and InsightEdge open-source editions. You can download a free 90-day trial version of any of the following:
 
-* XAP Premium - Provides all the functionality of the open-source package, plus high availability and convenient management features (including the Service Grid user interface).
+* XAP Premium - Provides all the functionality of the open-source edition, plus high availability and convenient management features (including the Service Grid user interface).
 
-* XAP Enterprise - Builds on the XAP Premium package, adding the MemoryXtend feature (supporting SSD/flash memory and Off-Heap RAM) and Multi-Site WAN Replication for geo-redundancy.
+* XAP Enterprise - Builds on the XAP Premium edition, adding the MemoryXtend feature (supporting SSD/flash memory and Off-Heap RAM) and Multi-Site WAN Replication for geo-redundancy.
 
 * InsightEdge Platform - Offers the full functionality of InsightEdge and the XAP Enterprise edition, along with additional features such as full SQL-99 compatibility.
 
@@ -52,7 +48,7 @@ Read one of the following guides for detailed instructions on how to install Ins
 
 * [XAP.NET Guide](/xap/12.2/dev-dotnet/index.html)
 
-* [Administration Guide](/xap/12.2/admin/index.html) (with a [Security Guide](/xap/12.2/security/index.html))
+* [Administration Guide](/xap/12.2/admin/index.html) (with a [Security section](/xap/12.2/security/index.html))
 
 ### Additional Resources
 
