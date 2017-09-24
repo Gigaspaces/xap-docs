@@ -1,7 +1,7 @@
 ---
 type: post122
-title:  Security Getting Started
-categories: XAP122SEC, OSS
+title: Getting Started
+categories: XAP122SEC
 parent: none
 weight: 150
 ---
@@ -12,10 +12,11 @@ This section will get you started quickly with XAP security mechanism.
 
 # Layers of Security
 
-The security can be applied in three separate layers. 
-- The [data layer](securing-your-data.html) that includes Space and Processing Units.
-- The [grid layer](securing-the-grid-services.html) that includes grid components (GSA, GSM, GSC, XAP Manager + RESTful API).
-- The [transport layer](securing-the-transport-layer-using-ssl.html) that provides a generic network filter with SSL support.
+The security can be applied in three separate layers.
+
+* The [data layer](securing-your-data.html) that includes Space and Processing Units.
+* The [grid layer](securing-the-grid-services.html) that includes grid components (GSA, GSM, GSC, XAP Manager + RESTful API).
+* The [transport layer](securing-the-transport-layer-using-ssl.html) that provides a generic network filter with SSL support.
 
 You may secure either or all for maximum security.
 
@@ -23,14 +24,16 @@ You may secure either or all for maximum security.
 
 Security is configured using a property file that includes required and custom properties.
 For more information see the following sections on:
-- [Space and Processing Unit](security-configurations.html) configuration options
-- [Grid components](security-configurations-ext.html) configuration options
+
+* [Space and Processing Unit](security-configurations.html) configuration options
+* [Grid components](security-configurations-ext.html) configuration options
 
 # Enabling Security
 
 Security can be enabled separately for the data layer and the grid layer.
-- The [data layer](securing-your-data.html) has options to declare a secured Space or Processing Unit.
-- The [grid layer](securing-the-grid-services.html) has options to declare the Grid as secured.
+
+* The [data layer](securing-your-data.html) has options to declare a secured Space or Processing Unit.
+* The [grid layer](securing-the-grid-services.html) has options to declare the Grid as secured.
 
 # Security implementations
 
