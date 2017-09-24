@@ -34,13 +34,13 @@ After you have applied the license, you can access all of the available features
 The license key can be viewed in the application logs. When the system starts, it writes an information summary to the logs and console, including the license key. You can use the logs to verify that you are using the correct license key.
 {{% /tip %}}
 
-# License Validation
+# License Validation on Start-Up
 
-XAP validates the license whenever the Service Grid is started. If the license is invalid (e.g. expired), the system will report there's a license problem and terminate. If the license expires while the system is running, it is not terminated, but if one of the system's components fails and tries to restart, it will fail because the license has expired.
+The license is validated whenever the Service Grid is started. If the license is invalid for some reasone (e.g. expired), the system will report a problem with the license and terminate. If the license expires while the system is up and running, it will continue to run. However, if a system components fails and tries to restart, it will fail because the license is not valid.
 
 # License Lookup Order
 
-The system looks for the license key in the following order:
+The system looks for the license key in the following locations, in the following order:
 
 1. The `com.gs.licensekey` system property.
 1. The `XAP_LICENSE` environment variable.
