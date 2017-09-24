@@ -91,11 +91,11 @@ The Grid Service Container (GSC) is responsible for providing Grid capabilities,
 
 GigaSpaces XAP provides several default implementations as part of the product, and an additional plugin API, to enable other technology integrations.
 
-**Current implementations supported by GigaSpaces XAP**:
+**Current implementations supported by GigaSpaces XAP**
 
 
 
-More information on the usage of the above integrations can be found in the Programmer's Guide {{% latestjavanet %}}.
+More information on the usage of the above integrations can be found in the Developer Guide {{% latestjavanet %}}.
 
 {{%  anchor Spring-Container%}}
 
@@ -109,7 +109,7 @@ The Spring framework provides very elegant abstractions, which makes it very eas
 
 Jetty is a very popular web container, which provides support for JEE [web container]({{% latestjavaurl%}}/web-application-support.html) specification services such as: Servlet, JavaServer Pages, JavaServer Faces, and others.
 
-The [integration with the Jetty web container]({{% latestjavaurl%}}/web-jetty-processing-unit-container.html), allows you to run JEE web applications (.war files) in GigaSpaces XAP.
+The integration with the [Jetty web container]({{% latestjavaurl%}}/web-jetty-processing-unit-container.html) allows you to run JEE web applications (.war files) in GigaSpaces XAP.
 
 ## Microsoft .NET container
 
@@ -145,7 +145,7 @@ The core middleware capabilities are:
 
 ## In-Memory Data Grid
 
-An In-Memory Data Grid (IMDG) is the way of storing data across a grid of memory nodes. This service provides the application with:
+An In-Memory Data Grid (IMDG) is a way of storing data across a grid of memory nodes. This service provides the application with:
 
 1. Data storage capabilities.
 1. Data query capabilities - single object, multiple object and aggregated complex queries.
@@ -156,7 +156,7 @@ It is important to note that the IMDG, although a memory-based service, is fully
 
 The IMDG uses the unified clustering layer, to provide a highly available and reliable service.
 
-The main API to access the IMDG service, is the [GigaSpace interface]({{% latestjavaurl%}}/the-gigaspace-interface.html). In addition, one can use the Map API (using the [GigaMap interface]({{% latestjavaurl%}}/map-api.html)) to access the IMDG. Please refer to the [Programmer's Guide]({{% latestjavaurl%}}) for usage examples.
+The main API to access the IMDG service, is the [GigaSpace interface]({{% latestjavaurl%}}/the-gigaspace-interface.html). In addition, one can use the Map API (using the [GigaMap interface]({{% latestjavaurl%}}/map-api.html)) to access the IMDG. Please refer to the [Developer Guide]({{% latestjavaurl%}}) for usage examples.
 
 ## Messaging Grid
 
@@ -205,4 +205,4 @@ GigaSpaces allows you to deploy web applications (packaged as WAR files) onto th
 The deployed WAR is a pure Java EE-based web application. The application can be the most generic web application, and automatically make use of the Service Grid features. The web application can define a Space (either embedded or remote) very easily (either using Spring or not).
 
 # Virtualized Deployment Infrastructure
-Detailed information about the virtualized deployment infrastructure can found under [The Service Grid](./the-runtime-environment.html) section.
+Detailed information about the virtualized deployment infrastructure can found in the [Service Grid Layer](./the-runtime-environment.html) section.

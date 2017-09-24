@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Scripts
-categories: XAP122ADM, PRM
+categories: XAP122ADM, OSS
 parent: administration-tools.html
 weight: 50
 ---

@@ -119,11 +119,11 @@ The relations between the spaces define the [Data Grid Topology](#Data Grid Topo
 
 {{%  anchor Data Grid Topology %}}
 
-### Data Grid Topologies
+## Data Grid Topologies
 
 {{%  anchor Primary Backup Data Grid %}}
 
-## Primary Backup Data Grid
+### Primary Backup Data Grid
 
 {{%  section %}}
 {{%  column width="30%" %}}
@@ -139,7 +139,7 @@ Destructive operations (write, update and take) are applied to the primary insta
 
 {{%  anchor Partitioned Data Grid %}}
 
-## Partitioned Data Grid
+### Partitioned Data Grid
 
 {{%  section %}}
 {{%  column width="30%" %}}
@@ -154,7 +154,7 @@ When the objects are written to this Data Grid, they are routed to the proper pa
 
 {{%  anchor Routing %}}
 
-## Routing
+### Routing
 
 {{%  section %}}
 {{%  column width="30%" %}}
@@ -170,7 +170,7 @@ The routing is based on a designated attribute inside the objects that are writt
 
 {{%  anchor Primary Backup Partitioned Data Grid %}}
 
-## Primary Backup Partitioned Data Grid
+### Primary Backup Partitioned Data Grid
 
 {{%  section %}}
 {{%  column width="30%" %}}
@@ -182,7 +182,7 @@ A [partitioned Data Grid](#Partitioned Data Grid), with one or more [backup](#Pr
 {{%  /section %}}
 
 {{%  refer %}}
-For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{% latestjavaurl%}}/elastic-processing-unit.html) section.
+For details about scaling a running space cluster **in runtime**, refer to the [Elastic Processing Unit]({{% latestjavaurl%}}/elastic-processing-unit.html) section.
 {{%  /refer %}}
 
 
@@ -203,9 +203,9 @@ The Processing Unit can run only inside a hosting Processing Unit Container.
 {{%  /section %}}
 
 
-### Types of Processing Unit Containers
+## Types of Processing Unit Containers
 
-## Integrated Processing Unit Container
+### Integrated Processing Unit Container
 
 {{%  section %}}
 {{%  column width="30%" %}}
@@ -219,7 +219,7 @@ A container that runs the Processing Unit inside an IDE (e.g. IntelliJ IDEA, Ecl
 
 {{%  anchor SGPUC %}}
 
-## Service Grid Processing Unit Container (SLA Driven Container)
+### Service Grid Processing Unit Container (SLA Driven Container)
 
 {{%  section %}}
 {{%  column width="30%" %}}
@@ -235,7 +235,7 @@ It enables running the processing unit within a [service grid](#service-grid), w
 
 {{%  anchor Service Grid %}}
 
-## Service Grid
+### Service Grid
 
 {{%  section %}}
 {{%  column width="30%" %}}
@@ -251,7 +251,7 @@ Each container can be run on a separate physical machine.
 
 {{%  anchor GSC %}}
 
-## GigaSpaces Container (GSC)
+### GigaSpaces Container (GSC)
 
 {{%  section %}}
 {{%  column width="30%" %}}
@@ -267,7 +267,7 @@ A machine can run one or more [GSC](#gsc) processes. Each GSC communicates with 
 
 {{%  anchor GSM %}}
 
-## GigaSpaces Manager (GSM)
+### GigaSpaces Manager (GSM)
 
 {{%  section %}}
 {{%  column width="30%" %}}

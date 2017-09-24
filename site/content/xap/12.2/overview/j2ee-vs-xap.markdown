@@ -7,7 +7,7 @@ weight: 1000
 ---
 
 
-From a design and implementation perspective, XAP shares a lot of patterns with Java Enterprise Edition ecosystem. The following sections provide a mapping to help migrate your existing JavaEE application to GigaSpaces XAP. 
+From a design and implementation perspective, XAP shares a lot of patterns with Java Enterprise Edition ecosystem. This section provides a mapping to help migrate your existing JavaEE application to GigaSpaces XAP. 
 
 # Java EE versus XAP
 

@@ -27,12 +27,13 @@ weight: 800
 
 - Full monitoring and management during runtime are available through the [Management UI](./terminology.html#management-ui).
 
+**SBA Implementation with 3 Primary Instances and 1 Backup for Each, Accessed by 2 Client Applications**
 
 {{% align center%}}
 ![sba_with_backup.jpg](/attachment_files/sba_with_backup.jpg)
 {{% /align%}}
 
-{{%  sub %}}**An SBA implementation, with 3 primary instances and one backup for each them, accessed by two client applications**{{%  /sub %}}
+
 
 
 
@@ -42,14 +43,17 @@ weight: 800
 
 {{%  anchor Space Based Architecture Artifacts %}}
 
-Once a [Processing Unit library]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html) is deployed, a processing unit instance is created. The processing unit instance is hosted within the [GigaSpaces container](./service-grid.html#gsc). If the processing unit instance includes a space, all the collocated beans within the processing unit instance inherit the space primary/backup mode: If the space running in a primary mode, they will be active; if the space running in a backup mode, they will be in a standby mode.
+When a [Processing Unit library]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html) is deployed, a processing unit instance is created. The processing unit instance is hosted within the [GigaSpaces container](./service-grid.html#gsc). If the processing unit instance includes a space, all the collocated beans within the processing unit instance inherit the space primary/backup mode. If the space is running in primary mode, they will be active; if the space is running in backup mode, they will be in standby mode.
+
+The following diagram illustrates a deployed Processing Unit with 2 partitions and a backup. The Processing Unit includes a Space, polling container and 2 User Beans. The deployed Processing Unit is hosted within 2 GigaSpaces containers.
 
 {{%  section %}}
 ![term_sba_artifacts.jpg](/attachment_files/term_sba_artifacts.jpg)
-{{%  sub %}}**A deployed Processing Unit with 2 partitions and a backup. The Processing unit includes a space, polling container and tow user beans. The deployed PU hosted within 2 GigaSpaces containers**{{%  /sub %}}
 {{%  /section %}}
 
 {{% vbar%}}
+**Legend**
+
 - JVM - Java process. Native OS process.
 - Processing unit - Deployable package (bundle).
 - GigaSpaces Container - Hosting deployed PU.

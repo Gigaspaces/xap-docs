@@ -6,7 +6,7 @@ parent: insightedge-apis.html
 weight: 650
 ---
 
-InsightEdge has Python API available via PySpark. The functionality is limited to DataFrame API.
+InsightEdge has a Python API available via PySpark. Its functionality is limited to the DataFrame API.
 
 
 # Interactive Use
@@ -14,17 +14,17 @@ InsightEdge has Python API available via PySpark. The functionality is limited t
 There are two options to analyze data interactively in Python: 
 
 - [Zeppelin](./notebook.html)<br>
-- command line shell.
+- command line shell
 
-# Zeppelin notebook
+# Zeppelin Notebook
 
-To develop notebooks in Python just use `%pyspark` interpreter in the Zeppelin. You can find the `InsightEdge python example` notebook as a reference example.
+To develop notebooks in Python, use the `%pyspark` interpreter in the Zeppelin web notebook. See the `InsightEdge python example` notebook as a reference example.
 
-# Command line shell
+# Command Line Shell
 
 To start the command line shell, run the `./bin/insightedge-pyspark` script in the InsightEdge directory.
 
-For example, start InsightEdge in the demo mode:
+For example, start InsightEdge in demo mode:
 
 {{%tabs%}}
 {{%tab Linux%}}
@@ -56,7 +56,7 @@ insightedge\bin\insightedge-pyspark --master spark://127.0.0.1:7077
 {{%/tab%}}
 {{%/tabs%}}
 
-# Saving and loading DataFrames in Python
+# Saving and Loading DataFrames in Python
 
 To operate on InsightEdge DataFrames, use the regular PySpark DataFrame API with the `org.apache.spark.sql.insightedge` format and specify Data Grid `collection` or `class` options. For example,
 
@@ -80,7 +80,7 @@ gridDf.show()
 {{%/tab%}}
 {{%/tabs%}}
 
-You can also load a DataFrame backed by a DataGrid Scala class with the `class` options, e.g.:
+You can also load a DataFrame backed by a DataGrid Scala class with the `class` options, for example:
 
 {{%tabs%}}
 {{%tab "Python"%}}
@@ -92,7 +92,7 @@ df = spark.read.format("org.apache.spark.sql.insightedge").option("class", "com.
 
 # Self-Contained Applications
 
-To develop the self-contained submittable application, just use the regular PySpark and configure InsightEdge settings in `SparkConf`:
+To develop a self-contained submittable application, use the regular PySpark and configure InsightEdge settings in `SparkConf`:
 
 {{%tabs%}}
 {{%tab "Python"%}}
@@ -114,18 +114,18 @@ spark = SparkSession.builder.config(conf=SparkConf()).getOrCreate()
 
 The complete source code is available at `./quickstart/python/sf_salaries.py`.
 
-The application can be submitted with `insightedge-submit` script, e.g.
+The application can be submitted with `insightedge-submit` script, for example:
 
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge-submit ./insightedge/quickstart/python/sf_salaries.py
+./insightedge/bin/insightedge-submit ./insightedge/examples/python/sf_salaries.py
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\bin\insightedge-submit insightedge\quickstart\python\sf_salaries.py
+insightedge\bin\insightedge-submit insightedge\examples\python\sf_salaries.py
 ```
 {{%/tab%}}
 {{%/tabs%}}

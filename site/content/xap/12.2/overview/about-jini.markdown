@@ -9,14 +9,14 @@ weight: 1100
 {{%  ssummary %}}{{%  /ssummary %}}
 
 
-Jini is a network architecture for the construction of distributed systems where scale, rate of change and complexity of interactions within and between networks are extremely important and cannot be satisfactorily addressed by existing technologies. Jini technology provides a flexible infrastructure for delivering services in a network and for creating spontaneous interactions between clients that use these services regardless of their hardware or software implementations.
+Jini is a network architecture for the construction of distributed systems where scale, rate of change and complexity of interactions within and between networks are extremely important and cannot be satisfactorily addressed by existing technologies. Jini technology provides a flexible infrastructure for delivering services in a network, and for creating spontaneous interactions between clients that use these services regardless of their hardware or software implementations.
 
 # Dynamic Network Architecture
 
-Traditional network architecture is static in nature. Network designers know in advance which computer hardware and software will participate in a specific customer solution and the network infrastructure is built in accordance with this concept. For example, in the Client/Server network architecture, specific server resources are designated to be served to clients on request, while other software units are indigenous on the clients.
+Traditional network architecture is static in nature. Network designers know in advance which computer hardware and software will participate in a specific customer solution, and the network infrastructure is built in accordance with this concept. For example, in the Client/Server network architecture, specific server resources are designated to be served to clients on request, while other software units are indigenous on the clients.
 Dynamic network architecture recognizes that to achieve the best customer solution, it is better not to decide in advance the specific hardware and software that will participate in the solution. Because of the multiplicity of software and hardware available on the network that could participate in the solution, it is advantageous to defer the decision until the software or hardware is actually required. The idea is to have the solution itself seek on the network the components and resources it requires, choosing them on the basis of availability, performance and quality. Should the selected components and resources degrade or fail during execution, the solution can replace them while continuing to operate, increasing the reliability of the solution.
 
-It would be difficult to draw a network connection diagram for such a solution, since it would be constantly changing during the solution's execution, as the system connects, disconnects and reconnects to various network hardware and software -- hence: **dynamic** network architecture.
+It is difficult to draw a network connection diagram for such a solution, because it changes constantly during the solution's execution as the system connects, disconnects and reconnects to various network hardware and software -- hence **dynamic** network architecture.
 
 # Service-Oriented Architecture
 
@@ -47,7 +47,7 @@ The Jini technology includes the following services:
 - Transaction Processing Service
 
 {{%  refer %}}
-For a detailed explanation of these services, see the [Key Jini Services](#1) section below.
+For a detailed explanation of these services, refer to the [Key Jini Services](#1) section below.
 {{%  /refer %}}
 
 # A Java-Based Technology
@@ -184,7 +184,7 @@ The leasing service has the main interface `Lease`, which provides methods to ca
 
 The package `com.sun.jini.lease` contains some basic utility classes for helping with client-side lease renewal operations.
 
-{{%  tip %}}
+{{%  tip "Tip"%}}
 Transactions, Entries and notifications use the leasing mechanism.
 {{%  /tip %}}
 
@@ -217,7 +217,7 @@ The `EventRegistration` class is a utility class for use as a return value for e
 
 The `RemoteEvent` class represents the event, including ID, registration hand back object and sequence number.
 
-{{%  tip %}}
+{{%  tip "Tip"%}}
 The `NotifyDelegator` uses the above interfaces and classes.
 {{%  /tip %}}
 

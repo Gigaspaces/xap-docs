@@ -11,12 +11,14 @@ weight: 700
 
 # Architecture Perspectives
 
-- [A components perspective](#components) - explains key capabilities of GigaSpaces XAP -- the Open Spaces framework; the space-based core middleware and the middleware facilities it provides; and the SLA-Driven Container.
-- [A runtime perspective](#runtime) - shows how GigaSpaces components execute and interact in runtime on multiple physical machines.
-- [An SOA/EDA perspective](#soa) - shows how GigaSpaces XAP and the Space-Based Architecture are actually a special case of SOA/EDA, and can be used to implement a Service Oriented Architecture which supports high-performance, stateful services.
-- [A remote client perspective](#client) - illustrates how GigaSpaces XAP is viewed and accessed by remote clients, whether they are running inside XAP Processing Units or as independent POJO services.
+This section describes the In-Memory Data Grid (IMDG) architecture according to the following, in order to provide a comprehensive understanding of its functionality, behavior, and accessibility.
 
-{{%  refer %}} For a GigaSpaces XAP product architecture overview, see the [Product Architecture section](./product-architecture.html).{{%  /refer %}}
+- [XAP Components Perspective](#components) - explains the key capabilities of GigaSpaces XAP, namely the Open Spaces framework, the space-based core middleware and the middleware facilities it provides, and the SLA-Driven Container.
+- [Runtime Perspective](#runtime) - explains how the GigaSpaces components execute and interact in runtime on multiple physical machines.
+- [SOA/EDA Perspective](#soa) - explains how GigaSpaces XAP and the Space-Based Architecture are actually a special case of SOA/EDA, and can be used to implement a Service Oriented Architecture that supports high-performance, stateful services.
+- [Remote Client Perspective](#client) - explains how GigaSpaces XAP is viewed and accessed by remote clients, whether they are running inside XAP Processing Units or as independent POJO services.
+
+{{%  refer %}} For a general explanation of the GigaSpaces XAP product architecture, refer to  [XAP Architecture](./product-architecture.html).{{%  /refer %}}
 
 {{%  anchor components %}}
 
@@ -30,9 +32,9 @@ The following diagram shows a component view of GigaSpaces XAP. The main compone
 
 ## OpenSpaces
 
-Open Spaces is the primary framework for developing applications in GigaSpaces. Open Spaces uses Spring as a POJO-driven development infrastructure, and adds runtime and development components for developing POJO-driven EDA/SOA-based applications, and scaling them out simply across a pool of machines, without dependency on a J2EE container.
+OpenSpaces is the primary framework for developing applications in GigaSpaces. OpenSpaces uses Spring as a POJO-driven development infrastructure, and adds runtime and development components for developing POJO-driven EDA/SOA-based applications, and scaling them out simply across a pool of machines, without dependency on a J2EE container.
 
-To achieve these goals, Open Spaces adds the following components to the Spring development environment:
+To achieve these goals, OpenSpaces adds the following components to the Spring development environment:
 
 - [Processing Unit]({{%latestjavaurl%}}/the-processing-unit-overview.html) -- the core unit of work. Encapsulates the middleware together with the business logic in a single unit of scaling and failover.
 - [SLA-Driven Container](./service-grid.html#gsc) -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
@@ -46,7 +48,7 @@ To achieve these goals, Open Spaces adds the following components to the Spring 
 
 XAP relies on the JavaSpaces (space-based) model as its core middleware, and provides specialized components, implemented as wrapper facades on top of the space implementations, to deliver specific data or messaging semantics. XAP exposes both the JavaSpaces API, with different flavors suited to the usage scenario (SQLQuery for data, FIFO for messaging, etc.), and other standard APIs such JCache/JDBC and JMS.
 
-**XAP middleware virtualization facilities:**
+**XAP middleware virtualization facilities**
 
 - **Space-Based Clustering** -- provides all clustering services necessary to stateful applications. Based on a clustered JavaSpaces implementation.
 - **In-Memory Data Grid** -- provides data caching semantics on top of the GigaSpaces core middleware; addresses the key issues of distributed state sharing. Supports a wide set of APIs including JDBC for SQL/IMDB, hash table through Map/JCache interface, and JavaSpaces. All common caching topologies are supported, including replication and partitioning of data. The table below summarizes the key features of this component.
@@ -161,7 +163,7 @@ In XAP, this mode of interaction is achieved by space-based remoting. This metho
 
 With space-based remoting, a remote stub in generated for the remote service, using dynamic proxies. When a method is invoked on this proxy, the stub implicitly maps it to a command that is written to the space and is routed to the appropriate server instance. On the server-side, a generic delegator takes these commands and execute the method on the specific bean instance, based on the method name and arguments provided in the command. The result is also returned through the space, is received by the dynamic proxy, and is returned transparently to the client as the return value of the method.
 
-{{%  refer %}}For more details, see [Executor Based Remoting]({{% latestjavaurl%}}/executor-based-remoting.html).{{%  /refer %}}
+{{%  refer %}}For more details, refer to [Executor Based Remoting]({{% latestjavaurl%}}/executor-based-remoting.html).{{%  /refer %}}
 
 ## Remote Client Interaction Options
 
@@ -184,9 +186,9 @@ The Space enables your application to read data from it, and write data to it in
 One of the unique concepts of GigaSpaces is that its In-Memory-Data-Grid (IMDG or the Space) serves as the system of record for your application.
 This means that all or major parts of your application's data are stored in the space and your data access layer interacts with it via the various space APIs. This allows for ultra-fast read and write performance, while still maintaining a high level of reliability and fault tolerance via data replication to peer space instances in the cluster, and eventual persistency to a relational database if needed.
 
-# The Space as a cache
+# The Space as a Cache
 
-GigaSpaces IMDG support variety of caching scenarios. Using GigaSpaces IMDG as a cache provides you the following benefits:
+The GigaSpaces IMDG supports a variety of caching scenarios. Using GigaSpaces IMDG as a cache provides the following benefits:
 
 - Low latency - In-Memory Data access time without any disk usage.
 - Data access layer elasticity - Scale out/up on demand to leverage additional machine resources.
@@ -201,7 +203,7 @@ The space has a number of determining characteristics that should be configured 
 
 
 
-## The Space Clustering Topology
+## Space Clustering Topology
 
 The space can have a single instance, in which case it runs on a single JVM, or multiple instances, in which case it can run on multiple JVMs.
 When it has multiple instances, the space can run in a number of [topologies](./space-topologies.html) which determine how the data is distributed across those JVMs. In general, the data can be either **replicated**, which means it resides on all of the JVMs in the cluster, or **partitioned**, which means that the data is distributed across all of the JVMs, each containing a different subset of it. With a partitioned topology you can also assign one or more backup space instances for each partition.
@@ -213,7 +215,7 @@ When it has multiple instances, the space can run in a number of [topologies](./
 Regardless of the space's topology, you can also define a "local cache" for space clients, which caches space entries recently used by the client, or a predefined subset of the central space's data (this is often referred to as **Continuous Query**).
 The data cached on the client side is kept up-to-date by the server, so whenever another space client changes a space entry that resides in a certain client's local cache, the space makes sure to update that client.
 
-## The Replication Mode
+## Replication Mode
 
 When running multiple space instances, in many cases the data should be replicated from one space instance to another. This can happen in a replicated topology (in which case every change to the data is replicated to all of the space instances that belong to the space) or in a partitioned topology (in this case you choose to have backups for each partition).
 There are two replication modes - synchronous and asynchronous. With synchronous replication, data is replicated to the target instance as it is written. So the client code which writes, updates or deletes data, waits until replication to the target is completed.
@@ -310,7 +312,8 @@ This section explains the topologies supported by XAP - replicated, partitioned 
 {{% align center%}}
 ![DGA-ServiceGridDataGrid.jpg](/attachment_files/DGA-ServiceGridDataGrid.jpg)
 {{% /align%}}
-- **Remote vs. Collocated** - The Space can be remote to the application or collocated with the application. With Remote mode any space operation involves network usage. With collocated mode there is no network utilization. This mode improves the performance and latency with activities that performs space operations.
+
+- **Remote vs. Co-located** - The Space can be remote to the application or co-located with the application. With Remote mode any space operation involves network usage. With co-located mode there is no network utilization. This mode improves the performance and latency with activities that perform space operations.
 
 {{% align center%}}
 ![remote_embedded_space_topology.jpg](/attachment_files/remote_embedded_space_topology.jpg)
@@ -336,7 +339,7 @@ This section explains the topologies supported by XAP - replicated, partitioned 
 
 {{%  refer%}}
 Replication Configuration
-For more details on how to configure the replication mechanisms of the Space, please refer to [this page]({{% latestadmurl%}}/replication.html) in the [Administrator's Guide]({{% latestadmurl%}}).
+For more details on how to configure the replication mechanisms of the Space,  refer to [Replication]({{% latestadmurl%}}/replication.html) in the [Administration Guide]({{% latestadmurl%}}).
 {{%  /refer %}}
 
 # Data Grid Topologies
@@ -393,7 +396,7 @@ GigaSpaces XAP supports the following data grid topologies:
 {{% /section%}}
 
 {{%refer%}}
-For more information see Local Cache {{%latestjavanet "local-cache.html"%}}.
+For more information, refer to Local Cache {{%latestjavanet "local-cache.html"%}}.
 {{%/refer%}}
 
 ### Local View
@@ -413,7 +416,7 @@ For more information see Local Cache {{%latestjavanet "local-cache.html"%}}.
 {{% /section%}}
 
 {{%refer%}}
-For more information see Local View {{%latestjavanet "local-view.html"%}}.
+For more information, refer to Local View {{%latestjavanet "local-view.html"%}}.
 {{%/refer%}}
 
 
@@ -427,6 +430,6 @@ The topologies above are provided in the GigaSpaces product as predefined cluste
 The local cache and local view topologies do not need their own schemas, because they are defined on the client side.
 
 # Split Brain
-{{%warning%}}
+{{%warning "Important"%}}
 A partitioned space topology with no backups should not be used in production. Running an XAP space with no backups may cause split brain and data inconsistency issues.
 {{%/warning%}}
