@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Advanced Configuration
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: network-multi-nic.html
 weight: 100
 ---
@@ -12,7 +12,7 @@ weight: 100
 
 # Configuration
 
-When loading an XAP space (or when using the `<XAP Root>\bin\PlatformInfo` script), the Network Interface information is displayed. Each network card is identified by its Network Interface name and IP.
+When loading a XAP space (or when using the `<XAP Root>\bin\PlatformInfo` script), the Network Interface information is displayed. Each network card is identified by its Network Interface name and IP.
 
 For example, the following information describes 3 network cards: `(eth0/192.168.80.145, eth1/212.143.27.76, ipoib0/192.168.60.145)`
 
@@ -42,14 +42,14 @@ There is only one environment variable that needs to be configured when limiting
 
 There are multiple ways to specify the `XAP_NIC_ADDRESS`:
 
-### Specifying an explicit IP address. For example:
+**Specifying an explicit IP address.** For example:
 
 
 ```bash
 XAP_NIC_ADDRESS=192.168.80.145
 ```
 
-### Specifying a network interface name. For example:
+**Specifying a network interface name.** For example:
 
 
 ```bash
@@ -58,7 +58,7 @@ XAP_NIC_ADDRESS="#eth0:ip#"
 
 In the above example, `eth0` is the interface name and the `ip` indicates that the registered ip of the interface will be used. It is recommended to use the ip address, however, the host name can also be used by replacing the `ip` with `host`.
 
-### Specifying the "local" network interface. For example:
+**Specifying the "local" network interface.** For example:
 
 
 ```bash
@@ -69,7 +69,7 @@ This is equivalent to `InetAddress.getLocalHost().getHostAddress()`.
 
 {{% anchor 2 %}}
 
-### Specifying a Network Card to Bind the Jini Lookup Service (Reggie or Mahalo)
+**Specifying a Network Card to Bind the Jini Lookup Service (Reggie or Mahalo).**
 
 
 ### Configuring Lookup Service
@@ -78,8 +78,9 @@ The lookup service should be configured to run against a specific Network IP Add
 
 ### Configuring Server Hostname
 
-The server hostname should be configured to use the `XAP_NIC_ADDRESS` variable. By default The `XAP_NIC_ADDRESS` environment variable (exposed as part of the `<GigaSpaces Installation>\bin\setenv` script) omits the system property `java.rmi.server.hostname`. **Append the property to the `RMI_OPTIONS`**:
+The server hostname should be configured to use the `XAP_NIC_ADDRESS` variable. By default The `XAP_NIC_ADDRESS` environment variable (exposed as part of the `<GigaSpaces Installation>\bin\setenv` script) omits the system property `java.rmi.server.hostname`.
 
+**Append the property to the `RMI_OPTIONS`**:
 
 ```bash
 RMI_OPTIONS="-Djava.rmi.server.hostname=${XAP_NIC_ADDRESS}
@@ -142,7 +143,7 @@ multicastInterfaces=new java.net.NetworkInterface[]
 
 Unicast discovery can be either used with or without multicast.
 
-### Using Unicast to Register With a Lookup Service
+## Using Unicast to Register With a Lookup Service
 
 By default, the cluster member URLs are configured to use `jini://*/container_name/space_name`, which performs lookup using the multicast protocol. To enable unicast in a clustered environment, specify the exact machine network interface card accessible for discovery.
 
@@ -210,7 +211,7 @@ Another simple way to set the unicast discovery is using `SpaceURL` locators att
 
 The comma-separated list of `IP:ports` pairs specify the exact machine network interface card by which the Jini lookup service performs discovery.
 
-### Using Unicast to Locate Other Cluster Members
+## Using Unicast to Locate Other Cluster Members
 
 By default the cluster member URLs are configured to use `jini://*/container_name/space_name` which performs lookup using the multicast protocol.
 
@@ -290,7 +291,7 @@ Replicator: Connection established with target space
 [ target space: rep_cache_container2:rep_cache   ]
 ```
 
-### Discovery by Unicast
+## Discovery by Unicast
 
 The configuration for unicast can be added to the `setenv` script, and should be appended to the `space-instance` script loading an instance of each node.
 
@@ -332,7 +333,7 @@ XAP_NIC_ADDRESS=192.168.80.146; export XAP_NIC_ADDRESS
 
 {{% refer %}}For details on viewing the exact configuration in which the system is currently running, refer to the [Container Maintenance](./gigaspaces-browser-managing-space-container.html#Runtime Configuration Report) section.{{% /refer %}}
 
-### Logging with RMI_OPTIONS
+## Logging with RMI_OPTIONS
 
 The `RMI_OPTIONS` environment variable specifies a system property used for logging calls:
 
@@ -343,7 +344,7 @@ java.rmi.server.logCalls=false
 
 This property can be set to `true`, enabling log output to the screen. Both lookup service and lookup registrars can be configured to show which network IP address they are trying to communicate with.
 
-### Identifying Wrong Configuration
+## Identifying Wrong Configuration
 
 Something similar to the following can indicate a wrong configuration:
 
@@ -355,7 +356,7 @@ sun.rmi.transport.DGCImpl[0:0:0, 2]: java.rmi.dgc.Lease
 dirty(java.rmi.server.ObjID[], long, java.rmi.dgc.Lease)]
 ```
 
-### Bind Exception
+## Bind Exception
 
 A bind exception could be the cause of a machine trying to bind to a lookup service not on the correctly configured network interface. For example, if `node2` had its `$\{XAP_NIC_ADDRESS\`} configured to `192.168.80.145`, while its own network interface for `eth0` is `192.168.80.147`.
 

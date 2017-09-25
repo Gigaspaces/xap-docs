@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  JMX Management
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: monitoring.html
 weight: 200
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Managing Log Files
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: logging-overview.html
 weight: 400
 ---
@@ -17,7 +17,7 @@ The rollover mechanism is based on two policies, whichever policy is triggered f
 - File size rolling policy (default 2MB)
 - Time based rolling policy (default is daily)
 
-# formatter property
+# `formatter` Property
 
 The default log output formatting is determined by `GSSimpleFormatter` (see [Formatting Log Messages](./logging-formatting-messages.html)).
 
@@ -26,7 +26,7 @@ The default log output formatting is determined by `GSSimpleFormatter` (see [For
 com.gigaspaces.logger.RollingFileHandler.formatter = com.gigaspaces.logger.GSSimpleFormatter
 ```
 
-# filename-pattern Property
+# `filename-pattern` Property
 
 The file name pattern can be configured to include a placeholder for properties to resolve, such as homedir, host, pid and date. Each placeholder is identified by a set of curly brackets \{..\}. It may also be a placeholder for a custom defined property.
 
@@ -88,11 +88,11 @@ And have the `filename-pattern` include the `mycustom` property key
 com.gigaspaces.logger.RollingFileHandler.filename-pattern = ../{mycustom}/mylog.log
 ```
 
-{{% note %}}
-Note that the property value will have illegal path characters removed. (e.g. `/\:*?"<>|`)
+{{% note "Note"%}}
+The property value will have illegal path characters removed. (e.g. `/\:*?"<>|`)
 {{%/note%}}
 
-# append Property
+# `append` Property
 
 The append property specifies if output should be appended to an existing file. Default is set to false. Thus, if a file already exists by this name, a unique incrementing index to resolve the conflict will be concatenated. It will be added at the end of the filename replacing ".log" with "__\{unique\}.log" or at the end of the filename if the pattern doesn't end with ".log".
 
@@ -101,7 +101,7 @@ The append property specifies if output should be appended to an existing file. 
 com.gigaspaces.logger.RollingFileHandler.append = false
 ```
 
-# size-rolling-policy Property
+# `size-rolling-policy` Property
 
 The file size rolling policy can be configured to roll the file when a size limit is reached. It specifies an approximate maximum amount to write (in bytes) to any one file. If this is zero, then there is no limit. If the property is omitted, then a default of 2MB is assumed.
 
@@ -110,7 +110,7 @@ The file size rolling policy can be configured to roll the file when a size limi
 com.gigaspaces.logger.RollingFileHandler.size-rolling-policy = 2000000
 ```
 
-# time-rolling-policy Property
+# `time-rolling-policy` Property
 
 The time based rolling policy can be configured to roll the file based on a certain recurring schedule. The time policy can be set to one of the following values: daily, weekly, monthly or yearly. If the property is omitted, then the default pattern of "daily" is assumed; meaning a daily rollover (at midnight). For example, if "monthly" is configured, the file will rollover at the beginning of each month.
 
@@ -119,7 +119,7 @@ The time based rolling policy can be configured to roll the file based on a cert
 com.gigaspaces.logger.RollingFileHandler.time-rolling-policy = daily
 ```
 
-# backup-policy Property
+# `backup-policy` Property
 
 A backup-policy can be configured to backup files. By default a **NullBackupPolicy** is configured, which does nothing. It can be replaced by a **DeleteBackupPolicy** to keep a backup of files for a specified period. The **BackupPolicy** interface allows custom implementations to be plugged-in.
 
@@ -132,7 +132,7 @@ com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
 
 For more information see [Backing-up Files With a Custom Policy](./logging-backing-custom-policy.html)
 
-# debug-level Property
+# `debug-level` Property
 
 The debug level (configured to one of logging Levels) is the level in which debug messages are displayed to the "standard" output stream. By default the level is configured to "CONFIG" which displays the log file name.
 
@@ -145,7 +145,7 @@ com.gigaspaces.logger.RollingFileHandler.debug-level = CONFIG
 
 This can also be overridden by a system property.
 
-# System property overrides
+# System Property Overrides
 
 Any of the logger properties can be configured by a system property override, specified as follows:
 

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Lookup Service Configuration
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: network.html
 weight: 400
 ---

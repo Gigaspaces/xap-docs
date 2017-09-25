@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  XAP.NET in 5 Minutes
-categories: XAP122NET
+categories: XAP122NET, PRM
 parent: xapnet-basics.html
 weight: 100
 ---

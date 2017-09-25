@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  XAP Basics for .NET
-categories:  XAP122NET
+categories:  XAP122NET, PRM
 weight: 110
 ---
 

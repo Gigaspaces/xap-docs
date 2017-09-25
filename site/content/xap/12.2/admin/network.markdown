@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Network Configuration
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: none
 weight: 800
 ---

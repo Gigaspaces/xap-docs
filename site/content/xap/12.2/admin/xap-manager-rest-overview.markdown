@@ -1,12 +1,12 @@
 ---
 type: post122
-title:   RESTful Manager API
+title:   REST Manager API
 categories: XAP122ADM, PRM
 parent: xap-manager-rest.html
 weight: 100
 ---
  
-The [XAP Manager](xap-manager.html) provides a RESTful API for managing the XAP environment.
+The [XAP Manager](xap-manager.html) provides the REST Manager API for managing the XAP environment.
 
 Getting started is easy:
 
@@ -28,16 +28,16 @@ gs-agent.bat --manager-local
 - After the Manager has started, Browse to {{%exurl "localhost:8090""http://localhost:8090"%}} and start playing with the API. 
 
 {{%refer%}}
-Starting a manager is required to access the RESTful API. You can also start a cluster of managers to ensure high availability. To learn more about the manager, see [XAP Manager](xap-manager.html).
+Starting a manager is required to access the REST Manager API. You can also start a cluster of managers to ensure high availability. To learn more about the manager, refer to [XAP Manager](xap-manager.html).
 {{%/refer%}}
 
-The Manager’s RESTful API was built with {{%exurl "Swagger" "http://swagger.io/"%}}. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the `Try it out!` button from within the documentation. The operation will be invoked, and you'll see the response code and body, as well as the `curl` command and request URL which were used to invoke the command. If you are familiar with the older Admin API, most of this will be self explanatory. You can also download the `yaml` specification and use Swagger's `Online Editor` to generate a client in your favourite language.
+The REST Manager API was built with {{%exurl "Swagger" "http://swagger.io/"%}}. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the `Try it out!` button from within the documentation. The operation will be invoked, and you'll see the response code and body, as well as the `curl` command and request URL which were used to invoke the command. If you are familiar with the older Admin API, most of this will be self explanatory. You can also download the `yaml` specification and use Swagger's `Online Editor` to generate a client in your favourite language.
 
 
 ![image](/attachment_files/rest-admin/rest-admin-1.png)
 
 
-# Long running operations
+# Long Running Operations
 In the Admin API, long running operations (e.g. deploy, undeploy, etc.) are asynchronous with no future or callback. 
 You can either track progress manually, or use various ‘andWait’ overloads (e.g. deployAndWait). 
 In the REST API we cannot use andWait, so you need to poll for completion, but each such operation behaves differently. 
@@ -51,7 +51,7 @@ The request exposes additional useful information:
 
 By default, the system keeps up to 100,000 completed requests (configurable), and purges the oldest as needed.
 
-#  PU deployment  and upload
+#  PU Deployment  and Upload
 
 Deploying a PU requires uploading a resource (jar/war/zip) to the manager, but due to technical issues we currently can’t include both binary file and json payload in the same REST operation. 
 Instead, there are two operations:
@@ -68,8 +68,8 @@ Security needs to be explicitly enabled. As with any other `grid` component, to 
 
 When security is enabled, the REST API performs basic authentication and checks if the user has sufficient privileges to execute the operation.
 
-{{%note%}}
-Note that since basic authentication does not encrypt user credentials, running a manager in a secured environment without SSL is a security hazard, and the system detects this and aborts. You must **explicitly** enable or disable the SSL by setting the system property `com.gs.manager.rest.ssl.enabled`.
+{{%note "Note"%}}
+Basic authentication does not encrypt user credentials, so running a manager in a secure environment without SSL is a security hazard; the system detects this and aborts. You must **explicitly** enable or disable the SSL by setting the system property `com.gs.manager.rest.ssl.enabled`.
 {{%/note%}}
 
 You can either:

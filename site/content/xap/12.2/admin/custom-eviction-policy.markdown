@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Custom Eviction Policy
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: lru-cache-policy.html
 weight: 300
 ---
@@ -85,7 +85,7 @@ The `SpaceEvictionStrategy` class consists of several callback methods that are 
 
 These methods are used to specify what your strategy should do in the event a specific entry is inserted or read from the In-Memory Data Grid. For example, if you want to implement an LRU policy, you should update the entry's index in your supporting data structure when the object is being accessed. When implementing your strategy, keep in mind that these methods should provide a high level of concurrency. The cache manager will not call two methods with the same entry concurrently in most cases so using Java's concurrent package should suffice for most implementations, however due to the non blocking read nature of the system, `onRead()` can be called in parallel to other `onRead()` invocations and also with `onUpdate()` invocation on the same entry.
 
-# Configuring a Space With Custom Eviction Strategy
+# Configuring a Space with Custom Eviction Strategy
 
 In order to start a space with custom eviction policy it should be configured as follows:
 

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Event-Driven Programming
-categories: XAP122NET
+categories: XAP122NET, PRM
 parent: xapnet-basics.html
 weight: 500
 ---

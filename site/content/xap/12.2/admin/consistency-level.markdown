@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Consistency Level
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: data-grid-clustering.html
 weight: 300
 ---

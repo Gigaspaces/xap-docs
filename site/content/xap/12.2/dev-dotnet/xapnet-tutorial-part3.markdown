@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Distributed Processing
-categories: XAP122NET
+categories: XAP122NET, PRM
 parent: xapnet-basics.html
 weight: 400
 ---

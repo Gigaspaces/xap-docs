@@ -1,14 +1,14 @@
 ---
 type: post122
-title:  Backing-up Files With a Custom Policy
-categories: XAP122ADM
+title:  Backing Up Files With a Custom Policy
+categories: XAP122ADM, OSS
 parent: logging-overview.html
 weight: 500
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
 
-A backup-policy can be configured to backup files. By default a `NullBackupPolicy` is configured, which does nothing. It can be replaced by a `DeleteBackupPolicy` to keep a backup of files for a specified period. The `BackupPolicy` interface allows custom implementations to be plugged-in.
+A backup policy can be configured to back up files. By default a `NullBackupPolicy` is configured, which does nothing. It can be replaced by a `DeleteBackupPolicy` to keep a backup of files for a specified period of time. The `BackupPolicy` interface allows custom implementations to be plugged-in.
 
 # Null Backup Policy
 
@@ -16,11 +16,11 @@ A null backup policy acts as a placeholder for a 'do-nothing' behavior. Used whe
 
 # Delete Backup Policy
 
-A backup policy that deletes any file which is older than the specified period, but keeps at least as many of the specified backup files.
+A backup policy that deletes any file that is older than the specified backup period, but keeps at least as many of the specified backup files.
 
-By default, a file is kept for a 30 day period. After 30 days, the file is deleted; Unless if there are less than 10 backup files available. In other words, maintain a history of 10 files, even if there was nothing logged for more than 30 days.
+By default, a file is kept for a 30-day period. After 30 days, the file is deleted, unless there are less than 10 backup files available. In other words, maintain a history of 10 files, even if there was nothing logged for more than 30 days.
 
-These properties can be configured either by modifying the logging configuration file:
+These properties can be configured by modifying the logging configuration file:
 
 
 ```bash
@@ -29,7 +29,7 @@ com.gigaspaces.logger.DeleteBackupPolicy.period = 30
 com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
 ```
 
-or by use of a system property override:
+The backup properties can also be configured using a system property override:
 
 
 ```bash
@@ -41,7 +41,7 @@ For example:
 
 # Customized Backup Policy
 
-The `com.gigaspaces.logger.``BackupPolicy` is an interface for a pluggable backup policy. For example, you may wish to write an implementation to zip files if reached a certain threshold. The interface has a single method, which is used to **track** newly created log files. A file is either created upon rollover or at initialization time. Implementation can keep track of files and decide whether to trigger the backup policy.
+The `com.gigaspaces.logger.``BackupPolicy` is an interface for a pluggable backup policy. For example, you may wish to write an implementation to zip files if a certain threshold is reached. The interface has a single method, which is used to **track** newly created log files. A file is either created upon rollover or at initialization time. Implementation can keep track of files and decide whether to trigger the backup policy.
 
 
 ```bash

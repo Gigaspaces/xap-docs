@@ -1,7 +1,7 @@
 ---
 type: post122
-title:  ALL IN CACHE-Cache Policy
-categories: XAP122ADM
+title:  ALL IN CACHE Policy
+categories: XAP122ADM, OSS
 parent: memory-management-overview.html
 weight: 200
 ---
@@ -10,9 +10,9 @@ weight: 200
 
 When running in `ALL_IN_CACHE` cache policy mode, the space uses only the available physical memory. When running in a persistent space mode and having [Space Persistency]({{%currentjavaurl%}}/space-persistency.html) defined, the space data is backed with the underlying database, but the overall capacity of the space does not exceed the capacity of the available physical memory.
 
-{{% tip %}}
-When using the All IN CACHE, the **cache size** parameter is ignored.
-{{% /tip %}}
+{{% note "Note"%}}
+When using All IN CACHE, the **cache size** parameter is ignored.
+{{% /note %}}
  
 # SpaceMemoryShortageException
 

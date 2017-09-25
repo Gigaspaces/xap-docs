@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Replication Parameters
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: replication.html
 weight: 700
 ---

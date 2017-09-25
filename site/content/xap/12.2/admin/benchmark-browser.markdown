@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Benchmark View
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: benchmarking.html
 weight: 300
 ---
@@ -84,7 +84,7 @@ The numbers in the **Iterations**, **Sampling rate**, and **Read/Take timeout** 
 
 Checking the **Return Lease** check defines that operations performed in the space also create a `Lease` object. You can specify the expiration time of the lease in the **Lease Time** area, or check the **FOREVER Lease** check box, which means the lease will not expire unless you remove it from the space.
 
-{{% note %}}
+{{% note "Note"%}}
 Checking the **Return Lease** check box might decrease performance.
 {{%/note%}}
 
@@ -113,7 +113,7 @@ The following operations can be performed when the **JavaSpaces** area is select
 - **Write and Take** -- writes and takes objects, according to the number of iterations. For example, defining 20,000 iterations in the **Iterations** text box writes 2,000 objects to the space, and takes those 2,000 objects from the space.
 - **Write and Notify** -- writes objects according to the number of iterations, and registers for notifications on those objects. For example, defining 20,000 iterations in the **Iterations** text box writes 2,000 objects to the space, sends 2,000 notifications, receives 2,000 notify acknowledgments, and registers for notifications on the written objects.
 
-{{% info %}}
+{{% info "Info"%}}
 The referral to objects above means either Entries or POJOs, depending on the specified **Object Format**.
 {{%/info%}}
 
@@ -152,7 +152,7 @@ In the **Txn Manager URL** text box, specify the host name and port in which you
 
 - You can choose how many operations are performed before a transaction is committed. Default is **Commit every 1 operation**, meaning the transaction is committed after every single operation.
 
-{{% refer %}}For more details on transactions, refer to the [Transaction Manager]({{%currentjavaurl%}}/transaction-management.html) section.{{% /refer %}}
+{{% refer %}}For more details on transactions, refer to [Transaction Manager]({{%currentjavaurl%}}/transaction-management.html).{{% /refer %}}
 
 ## Master-Local
 
@@ -162,7 +162,7 @@ Distributed cache is relevant when using read or get operations. This option sta
 
 To save the benchmark sample readings into a file, check the **Save results to file** check box, and specify a file. This generates a file with the results in tab-separated values.
 
-{{%note%}}
+{{%note "Note"%}}
 The benchmark results are printed to an Excel file, which allows you to easily sort your results. To do this, open your printed Excel file, and select **Filter* > **AutoFilter** from the **Data** menu at the top.
 {{%/note%}}
 
@@ -231,4 +231,4 @@ The progress bar at the bottom of the **Service view** displays the current benc
 
 The benchmark utility provides a good tool for running performance benchmarks on the cache in various scenarios. This program performs a loop of write/put and read/get, or take/remove operations from a space, according to a different set of parameters. The result is the average time it took to perform the operations. You can define a sampling rate to allow you to track the intermediate performance while the benchmark example is running. You may also dump the results into a file to be converted into graphs and analyzed using a spreadsheet and analysis tools.
 
-{{% refer %}}For more details, refer to the [Benchmark Utility](./benchmark-utility-cli.html) section.{{% /refer %}}
+{{% refer %}}For more details, refer to [Benchmark Utility](./benchmark-utility-cli.html).{{% /refer %}}

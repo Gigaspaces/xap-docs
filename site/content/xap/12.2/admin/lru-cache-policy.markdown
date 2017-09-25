@@ -1,7 +1,7 @@
 ---
 type: post122
-title:  LRU-Cache Policy
-categories: XAP122ADM
+title:  LRU Cache Policy
+categories: XAP122ADM, OSS
 parent: memory-management-overview.html
 weight: 300
 ---
@@ -140,8 +140,8 @@ container: mySpace_container_container1, space mySpace_container_DCache, total m
 used memory: 1497 mb
 ```
 
-{{% note %}}
-Note that the **_DCache** prefix is part of the space name - it indicates that the exception is thrown from the client local cache. In such a case, you should increase the `space-config.engine.memory_usage.retry_count` to a larger number. See more details at the [Moving into Production Checklist ](./moving-into-production-checklist.html#Local Cache) page.
+{{% note "Note"%}}
+The **_DCache** prefix is part of the space name - it indicates that the exception is thrown from the client local cache. In this case, increase the `space-config.engine.memory_usage.retry_count` to a larger number. For more information, refer to [Moving into Production Checklist ](./moving-into-production-checklist.html#Local Cache).
 {{% /note %}}
 
 # Monitoring the Space Memory Manager Activity

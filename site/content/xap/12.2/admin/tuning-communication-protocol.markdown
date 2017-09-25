@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Communication Protocol
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent:  tuning.html
 weight: 700
 ---
@@ -58,7 +58,7 @@ or by lowering the `com.gs.transport_protocol.lrmi.max-conn-pool` value.
 
 The LRMI connection thread pool is a server side component. It is in charge of executing the incoming LRMI invocations. It is a single thread pool within the JVM that executes all the invocations, from all the clients and all the replication targets.
 
-{{% note %}}
+{{% note "Note"%}}
 In some cases you might need to increase the LRMI Connection thread pool maximum size. Without this tuning activity, the system might hang in the case of a large amount of concurrent access. Using a value as **1024** for the LRMI Connection Thread Pool should be sufficient for most large scale systems.
 {{% /note %}}
 
@@ -101,7 +101,7 @@ Failure detection uses a watchdog design pattern to monitor timeouts of NIO oper
 
 
 
-{{% note %}}
+{{% note "Note"%}}
 When network failure occurs and notify is used, the space tries to resend the notify the number of times specified in the `<notifier-retries>` property. When using a clustered space, `<notifier-retries>` is used together with the network failure detection properties.
 {{%/note%}}
 
@@ -218,7 +218,7 @@ You can monitor network and usage activity during runtime to track which client 
 
 You can troubleshoot the space activity using LRMI logging. You can turn on LRMI logging in the following ways:
 
-## Offline mode -- via xap_logging.properties
+## Offline Mode via xap_logging.properties
 
 Step 1: Open `<XAP Root>/config/log/xap_logging.properties`
 
@@ -244,7 +244,7 @@ Start a space by deploying a data-grid PU or a custom PU with a space. You may a
 
 LRMI communication transport protocol debug messages are displayed.
 
-## During Runtime -- using JMX
+## During Runtime -- Using JMX
 
 Step 1: Start `space-instance` using the following Java system properties:
 
@@ -323,7 +323,7 @@ at java.lang.Thread.run(Thread.java:595)
 
 This is a JVM bug resolved with JDJ 1.6u18. For more details, see {{%exurl "http://bugs.sun.com" "http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6524172"%}}.
 
-{{% note %}}
+{{% note "Note"%}}
 If your client application loses its connection to the server, you can follow a simple procedure to check if the server erased any of your notify templates in the interim. For each notify template, write an Entry to the space that matches the template and see if you receive a notification. If you do not receive a notification, this means that while you were disconnected, new Entries matching the notify template entered the space (you can try to find them -- depending on their lease time, they may still exist). As a result, your notify template was erased.
 {{%/note%}}
 

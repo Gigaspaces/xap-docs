@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Monitoring
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: none
 weight: 900
 ---
@@ -28,9 +28,6 @@ Controlling space attributes and operations using the JMX console.
 
 [Monitoring Tools](./suggested-monitoring-tools.html){{<wbr>}}
 Suggested list of monitoring tools.
-
-[Metrics](./metrics-overview.html){{<wbr>}}
-XAP provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice, which can then be analysed and used to identity trends in the system behaviour.
 
 {{%/fpanel%}}
 

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Overview
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: logging-overview.html
 weight: 100
 ---

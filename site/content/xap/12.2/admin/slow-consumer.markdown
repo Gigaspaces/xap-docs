@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Slow Consumer
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent:  tuning.html
 weight: 300
 ---
@@ -29,7 +29,7 @@ A different approach to handle slow consumers is to drop the client identified a
 
 This approach is not feasible with traditional messaging systems, since the notion of 'current-state' does not exists. The space on the other hand, maintains the current state inevitably and therefore it makes much more sense to handle slow consumer by **disconnecting it from the space server**. Once the client is ready, allow it to reconnect, initializes its status by reading the relevant data set from the space, re-register for notifications and resume the notifications delivery.
 
-# How it Works?
+# How Does It Work?
 
 When sending notifications to clients, the space includes a special mechanism that detects clients that cannot consume the notification sent fast enough - i.e. a slow consumer.
 
@@ -48,7 +48,7 @@ To allow the client to detect that the space removed its notify registration, it
 
 The LRMI thread pool queue size parameter, measured in **Objects**, configures the client and space server communication queue maximum size when processing incoming requests.
 
-{{% info%}}
+{{% info "Info"%}}
 In general, you should have a different LRMI thread pool queue size value for clients and for the space server.
 {{%/info%}}
 
@@ -56,7 +56,7 @@ When the LRMI thread pool queue size in the client side reached its limit (clien
 
 # Configuration
 
-### Server Side
+## Server Side
 
 To enable and tune the slow consumer mechanism, you should configure the LRMI layer at the server side with the following JVM system properties:
 
@@ -71,16 +71,16 @@ To enable and tune the slow consumer mechanism, you should configure the LRMI la
 
 
 
-{{% note %}}
-It may be required to alter the default slow consumer parameters according to the specific scenario.
-Please make sure you are not adding the services.config file to your server class path, this may cause the slow consumer to be turned on by default.
+{{% note "Note"%}}
+You may have to alter the default slow consumer parameters according to the specific scenario.
+Ensure that you are not adding the services.config file to your server class path, as this may cause the slow consumer to be turned on by default.
 {{%/note%}}
 
-### Client Side
+## Client Side
 
 You should configure the following JVM system properties at the **client side**. These specify the capacity of the LRMI thread pool, and set a specific limit. This allows the client to block incoming requests once the capacity is reached, in this case an incoming notification invocation. This will trigger the slow consumer mechanism at the server side since that client will stop receiving new notification invocations.
 
-{{% info %}}
+{{% info "Info"%}}
 When using FIFO notifications, the fifo notify queue should be limited as well for the same reasons
 {{%/info%}}
 

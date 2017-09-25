@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Overview
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: memory-management-overview.html
 weight: 100
 ---
@@ -11,12 +11,12 @@ weight: 100
 
 The Memory Management facility is used to assist the client in avoiding a situation where a space server gets into an out-of-memory failure scenario. Based on the configured cache policy, the memory manager protects the space (and the application, in the case it is running collocated with the space) from consuming memory beyond a defined threshold.
 
-{{% warning %}}
+{{% warning "Important"%}}
 The client/Application is expected to have some business logic that will handle `org.openspaces.core.SpaceMemoryShortageException` that might be thrown (when using the openspaces API). When the legacy `IJSpace` interface is used, `com.j_spaces.core.MemoryShortageException` will be thrown instead. Without such business logic, the space server or a client local cache may eventually exhaust all their parent process available memory resources.
 {{% /warning %}}
 
-{{% tip %}}
-Most of the considerations described in this topic are also relevant for the client application when running a Local Cache running with a LRU Cache policy.
+{{% tip "Tip"%}}
+Most of the considerations described in this topic are also relevant for the client application when running a Local Cache with a LRU Cache policy.
 {{% /tip %}}
 
 The space memory can be managed using the following mechanisms:
@@ -26,7 +26,7 @@ The space memory can be managed using the following mechanisms:
 
 # Cache Eviction Policies
 
-The space supports two cache eviction policies: [LRU-Cache Policy](./lru-cache-policy.html) (code 0) and [ALL IN CACHE-Cache Policy](./all-in-cache-cache-policy.html) (code 1) defined via the the `space-config.engine.cache_policy` property. See below example how you can configure it:
+The space supports two cache eviction policies: [LRU Cache Policy](./lru-cache-policy.html) (code 0) and [ALL IN CACHE Policy](./all-in-cache-cache-policy.html) (code 1) defined via the the `space-config.engine.cache_policy` property. See below example how you can configure it:
 
 
 ```xml
@@ -39,8 +39,8 @@ The space supports two cache eviction policies: [LRU-Cache Policy](./lru-cache-p
 </os-core:embedded-space>
 ```
 
-- [ALL IN CACHE-Cache Policy](./all-in-cache-cache-policy.html) - Assumes the JVM hosting the space instance has enough heap to hold all data in memory.
-- [LRU-Cache Policy](./lru-cache-policy.html) - Assumes the JVM hosting the space instance does not have enough heap to hold all data in memory.
+- [ALL IN CACHE Policy](./all-in-cache-cache-policy.html) - Assumes the JVM hosting the space instance has enough heap to hold all data in memory.
+- [LRU Cache Policy](./lru-cache-policy.html) - Assumes the JVM hosting the space instance does not have enough heap to hold all data in memory.
 By default ALL IN CACHE policy is used for an in-memory data grid,and LRU-Cache Policy is used for a persistent space with [Space Persistency]({{%currentjavaurl%}}/space-persistency.html) enabled.
 
 # Calculating the Available Memory
@@ -77,8 +77,8 @@ When configuring the JVM to use large heap sizes (over 10GB), it is recommended 
 
 These values represent 400MB difference between the `high_watermark_percentage` and the `low_watermark_percentage` when having 10GB max heap size. The above values will make sure the memory manager will not waste memory, but throw `MemoryShortageException` when running in `ALL_IN_CACHE` or evict objects when running in `LRU` cache policy mode when the absolute amount of JVM available memory is low.
 
-{{% tip %}}
-With large JVM heap size it is recommended to use the CMS Garbage collector. This will avoid long Garbage collector pauses.
+{{% tip "Tip"%}}
+With large JVM heap size, it is recommended to use the CMS Garbage collector. This will prevent long Garbage collector pauses.
 {{% /tip %}}
 
 # Memory Manager Activity when Initializing the Space
@@ -87,15 +87,15 @@ In this phase of the space life cycle, the space checks for the amount of availa
 
 # Memory Manager and Transient Objects
 
-Transient Objects are specified using the `@SpaceClass (persist=false)` decoration. You may specify transient decoration at the class or object level (field method level decoration).
+Transient objects are specified using the `@SpaceClass (persist=false)` decoration. You may specify transient decoration at the class or object level (field method level decoration).
 When using transient objects, note that they are:
 
 - Included in the free heap size calculation.
 - Included in the count of total objects (for max cache size).
 - Not evicted when running in LRU cache policy mode.
 
-{{% tip %}}
-You may use the transient object option to prevent the space from evicting objects  when running in LRU cache policy mode.
+{{% tip "Tip"%}}
+Use the transient object option to prevent the space from evicting objects when running in LRU cache policy mode.
 {{% /tip %}}
 
 # Memory Manager's Synchronous Eviction
@@ -131,15 +131,15 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% info %}}
+{{% info "Info"%}}
 It's important to note the following about the `TakeModifiers.EVICT_ONLY` modifier:
-{{%/info%}}
 
 - It can be used with any take operation - `take`, `takeById`, `takeMultiple`, etc.
 - It can be used only with LRU policy.
 - When using this modifier, the timeout argument in operations that allow to specify a timeout is ignored. The operations will always return immediately.
 - When using this modifier, the `take` or `clear` calls will never be propagated to the underlying database (EDS layer) when running in synchronous or asynchronous persistency mode. A `take` operation for example might return a `null` while a matching object exists in the underlying database.
 - The `TakeModifiers.EVICT_ONLY` is **ignored when used in a transactional operation** - A `take` or `clear` in the context of a transaction will not result eviction.
+{{%/info%}}
 
 # Exceeding Physical Memory Capacity
 
@@ -169,7 +169,7 @@ The following properties used to control the memory manager.
 |space-config.engine.initial_load | When a persistent space running in LRU cache policy mode is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the `space-config.engine.cache_size value`. See the [Reloading Data](./lru-cache-policy.html#Reloading Data) section for details. | 50 | LRU |
 |space-config.engine.memory_usage.{{<wbr>}}lruTouchThreshold | LRU touch activity kicks-in when the percentage of objects within the space exceeds `space-config.engine.memory_usage.lruTouchThreshold` where the `space-config.engine.cache_size` is the max amount. This avoid the overhead involved with the LRU activity. A 0 value means always touch, 100 means no touch at all.{{<wbr>}}The default value of the `space-config.engine.memory_usage.lruTouchThreshold` is 50 which means the LRU touch activity will kick-in when the amount of objects within the space will cross half of the amount specified by the `space-config.engine.cache_size` value. | 50 | LRU |
 
-{{% note %}}
+{{% note "Note"%}}
 A `com.j_spaces.core.MemoryShortageException` or an `org.openspaces.core.SpaceMemoryShortageException` are thrown only when the JVM garbage collection and the eviction mechanism do not evict enough memory. This can happen if the `space-config.engine.memory_usage.low_watermark_percentage` value is too high.
 {{%/note%}}
 

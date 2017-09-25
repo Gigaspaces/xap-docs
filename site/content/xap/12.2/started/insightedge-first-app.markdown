@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Developing Your First Application
-categories: XAP122GS, IEE
+categories: XAP122GS, OSS
 parent: insightedge-basics.html
 weight: 400
 ---

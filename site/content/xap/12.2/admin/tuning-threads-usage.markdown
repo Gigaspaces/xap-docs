@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Threads Usage
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: tuning.html
 weight: 900
 ---
@@ -9,15 +9,15 @@ weight: 900
 
 
 
-XAP using Thread resources in an extensive manner to scale the different activities executed within the JVM process. The may happen at the client or server side. Some of the modules within the server or client side (proxy) require some tuning before moving into production. This section describes the important Thread (Thread pools) started and provides information when and how these should be tuned.
+XAP uses Thread resources in an extensive manner to scale the different activities executed within the JVM process. The may happen at the client or server side. Some of the modules within the server or client side (proxy) require some tuning before moving into production. This section describes the important Thread (Thread pools) started and provides information when and how these should be tuned.
 
 # Threads List
 
 - Indicates the thread name includes a running number.
 - SPACE_NAME - Indicates the thread name includes the associated space name using this thread.
 
-{{% note %}}
-All GigaSpaces threads running within the JVM, using the **GS-** prefix as part of their name.
+{{% note "Note"%}}
+All GigaSpaces threads running within the JVM use the **GS-** prefix as part of their name.
 {{%/note %}}
 
 
