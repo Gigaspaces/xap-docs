@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Overview
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: benchmarking.html
 weight: 100
 ---
@@ -30,7 +30,7 @@ The different benchmarks results can be found on the {{%exurl "benchmarks page" 
 
 # Large Scale
 
-Note that once you are running large scale benchmarks with a large number of concurrent accesses, or a large number of data grid partitions, you should consider our involvement to help tune the configuration of the environment and JVM, and in some cases we should help with the code, too, as some of the default behaviors for the basic API have special modifiers that may boost the performance.
+Note that when you are running large scale benchmarks with a large number of concurrent accesses, or a large number of data grid partitions, you should consider our involvement to help tune the configuration of the environment and JVM, and in some cases we should help with the code, too, as some of the default behaviors for the basic API have special modifiers that may boost the performance.
 
 Many times developers sometime miss or misunderstand these advanced options, due to the vast amount of features the products offers.  Please do not hesitate to {{%exurl "approach our support team" "http://www.gigaspaces.com/content/customer-support-services"%}} for advanced benchmarking and testing options. The information about tuning the product for such environments is not fully publicly available, since many larger systems have specialized requirements for which configurations are available but for which generalized solutions are not entirely appropriate.
 

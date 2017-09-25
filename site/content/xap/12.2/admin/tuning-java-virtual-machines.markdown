@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Java Virtual Machines
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: tuning.html
 weight: 800
 ---
@@ -75,7 +75,7 @@ The [sun rmi dgc gcInterval](http://docs.oracle.com/javase/{{%version "java-vers
 
 In some cases this might cause the JVM process to slow down every 60 seconds. To reduce the performance impact of redundant GC cycles, increase the interval to be an hour (3600000 milliseconds) both for the space JVM and the client JVM.
 
-{{% tip %}}
+{{% tip "Tip"%}}
 When starting the space in embedded mode or running it in remote mode using the `space-instance` or `gsc` commands make sure you have the following system properties:
 
 - `-Dsun.rmi.dgc.client.gcInterval=36000000`
@@ -110,26 +110,26 @@ The -XX:+UseCompressedOops option can improve performance of the 64-bit JRE when
 
 # References
 
-**General:**
+**General**
 
 - [Java Performance Tuning](http://www.javaperformancetuning.com/)
 - [Sun; Java Platform Performance: Stratergies  and Tactics](http://java.sun.com/docs/books/performance/)
 - [Sun; Chapter 6 - Controlling Class Loading](http://java.sun.com/docs/books/performance/1st_edition/html/JPClassLoading.fm.html)
 - [Scaling Enterprise Java on 64-bit Multi-Core X86-Based Servers](http://www.onjava.com/lpt/a/6781)
 
-**Oracle Sun JVM:**
+**Oracle Sun JVM**
 
 - [Sun; Java HotSpot VM Options](http://java.sun.com/docs/hotspot/VMOptions.html)
 - [NetBeans; Tuning JVM switches for performance](http://performance.netbeans.org/howto/jvmswitches/)
 - [Sun; Tuning Garbage Collection with the 5.0 Java Virtual Machine](http://java.sun.com/docs/hotspot/gc5.0/gc_tuning_5.html)
 
-**IBM JVM:**
+**IBM JVM**
 
 - [Tuning Java virtual machines](http://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/index.jsp?topic=/com.ibm.websphere.nd.doc/info/ae/ae/tprf_tunejvm.html)
 - [IBM developer kits](http://www-128.ibm.com/developerworks/java/jdk/)
 - [Diagnosis documentation](http://www-128.ibm.com/developerworks/java/jdk/diagnosis/)
 - [Tuning](http://publib.boulder.ibm.com/infocenter/wasinfo/v5r1/index.jsp?topic=/com.ibm.websphere.nd.doc/info/ae/ae/welc_tuning.html)
 
-**Tuning Operating Systems:**
+**Tuning Operating Systems**
 
 - [IBM; Tuning operating systems](http://publib.boulder.ibm.com/infocenter/ws60help/topic/com.ibm.websphere.nd.doc/info/ae/ae/tprf_tuneopsys.html)

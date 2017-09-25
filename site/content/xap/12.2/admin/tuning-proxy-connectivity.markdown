@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Proxy Connectivity
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent:  tuning.html
 weight: 500
 ---
@@ -39,11 +39,11 @@ The space proxy router has the following responsibilities:
 | space-config.proxy.router.load-balancer-type | Load balancer type to be used by the router for active-active topologies (STICKY or ROUND_ROBIN) | STICKY |
 
 
-{{% note %}}
+{{% note "Note"%}}
 In most scenarios the goal is for all proxies to be configured with the same settings. This is provided out of the box by configuring the proxy settings as part of the space deployment - clients that connect to the space automatically retrieve the space proxy settings and use them. If a specific client needs a different configuration, it can override the configuration locally without affecting the space or other clients.
 {{%/note%}}
 
-Example : To increase the lookup duration timeout to 5 minutes you should have the following:
+Example: To increase the lookup duration timeout to 5 minutes you should have the following:
 
 {{%tabs%}}
 {{%tab "  Namespace "%}}
@@ -146,7 +146,7 @@ When a client fails to execute an operation due to a network problem, it can't t
 
 The new router uses a much simpler strategy: when a network problem occurs, it starts sampling all the potential spaces (usually there are no more than two: primary and backup) to determine which one is active. The sampling is done concurrently using multiple threads. If the problem is a short disconnection the primary member will respond shortly, and the operation will be executed on it. If it's a long disconnection the active election process will select a new primary, which the router will detect soon after, and execute the operation on. This approach is more efficient, predictable, and easier for users to understand and configure.
 
-{{% warning %}}
+{{% warning "Important"%}}
 All the old properties/settings used to configure number of retries and interval between retries are ignored in the new router. If those settings are customized in your system and you're upgrading to 9.0.1, you should figure out what timeout you want and use the new space properties to set it.
 {{%/warning%}}
 

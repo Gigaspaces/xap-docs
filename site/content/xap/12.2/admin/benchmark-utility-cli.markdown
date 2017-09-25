@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Utility
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: benchmarking.html
 weight: 200
 ---
@@ -65,7 +65,7 @@ Other possible values are:
 |-exit | Benchmark will hang once finished. When used with embedded space, space will still be alive.|
 
 
-### Operations:
+### Operations
 
 
 
@@ -80,7 +80,7 @@ Other possible values are:
 |bench | perform first-*second-second-third operation with uid|
 
 
-### Options:
+### Options
 
 
 |Option | Description|
@@ -108,7 +108,7 @@ Other possible values are:
 
 
 
-### Transactions:
+### Transactions
 
 
 |Option | Description|
@@ -117,7 +117,7 @@ Other possible values are:
 |dtx 1000| Perform operation under distributed transaction, commit every 1000 operations.|
 
 
-### Topologies:
+### Topologies
 
 
 |Option | Description|
@@ -129,7 +129,7 @@ Other possible values are:
 |-hashtable |use java.util.Hashtable API- first/second/third operations as: put,get, remove |
 
 
-### Statistics:
+### Statistics
 
 
 |Option | Description|
@@ -139,7 +139,7 @@ Other possible values are:
 |-stress \[repeat times\] |runs the entire benchmark as many as 'repeat times' as stated |
 
 
-#### Examples:
+#### Examples
 
 
 
@@ -184,12 +184,9 @@ Other possible values are:
 
 {{%anchor 61%}}
 
-{{%note%}} 
-The benchmark results are printed to an Excel file (using the `FileName` parameter), which allows you to easily sort your results. To do this, open your printed Excel file, and select *Filter* > *AutoFilter* from the *Data* menu at the top.
-{{%/note%}}
-
-{{%note%}} 
-The `rangefirst` and `rangesecond` parameters are supported *only with single operations* (and not with multiple/batch operations).
+{{%note "Notes"%}} 
+* The benchmark results are printed to an Excel file (using the `FileName` parameter), which allows you to easily sort your results. To do this, open your printed Excel file, and select *Filter* > *AutoFilter* from the *Data* menu at the top.
+* The `rangefirst` and `rangesecond` parameters are supported *only with single operations* (and not with multiple/batch operations).
 {{%/note%}}
 
 # More Examples

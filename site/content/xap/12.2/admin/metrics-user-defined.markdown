@@ -1,7 +1,7 @@
 ---
 type: post122
-title:  User Defined Metrics
-categories: XAP122ADM
+title:  User-Defined Metrics
+categories: XAP122ADM, PRM
 parent: metrics-overview.html
 weight: 400
 ---

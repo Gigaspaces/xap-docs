@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Running The Examples
-categories: XAP122GS, IEE
+categories: XAP122GS, OSS
 parent: insightedge-basics.html
 weight: 300
 ---

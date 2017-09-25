@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Monitoring Tools
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: monitoring.html
 weight: 300
 ---
@@ -10,7 +10,7 @@ weight: 300
 
 # Suggested Monitoring Tools
 
-Find below a (partial) list of recommended monitoring tools that can be used to monitor GigaSpaces platform.
+Find below a (partial) list of recommended monitoring tools that can be used to monitor your GigaSpaces platform.
 
 1. JVM Garbage Collection activity
 1. Heap memory usage

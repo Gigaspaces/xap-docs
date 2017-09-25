@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  System Properties
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: runtime-configuration.html
 weight: 900
 ---

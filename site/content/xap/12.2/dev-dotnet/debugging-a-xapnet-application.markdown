@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Application Debugging
-categories: XAP122NET
+categories: XAP122NET, PRM
 parent: installation-overview.html
 weight: 600
 ---

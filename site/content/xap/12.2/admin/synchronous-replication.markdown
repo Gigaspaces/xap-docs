@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Synchronous Replication
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: replication.html
 weight: 200
 ---

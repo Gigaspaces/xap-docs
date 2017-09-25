@@ -1,7 +1,7 @@
 ---
 type: post122
-title:  Multiple Network-Cards
-categories: XAP122ADM
+title:  Multiple Network Cards
+categories: XAP122ADM, OSS
 parent: network.html
 weight: 500
 ---
@@ -9,7 +9,7 @@ weight: 500
 
 
 
-XAP can be configured for a multiple network-card environment. For security reasons, network administrators may choose to configure their network with limited access of one card open to outside connections, and another card for internal connections. The default network card configuration is not always set to the network card used for internal connection, and thus needs to be configured.
+XAP can be configured for a multiple network card environment. For security reasons, network administrators may choose to configure their network with limited access of one card open to outside connections, and another card for internal connections. The default network card configuration is not always set to the network card used for internal connection, and thus needs to be configured.
 
 The `java.rmi.server.hostname` system property is used to resolve the NIC address for all services, which bind to a specific network interface, e.g. Jini unicast discovery lookup host, Webster, etc. More specifically, multicast and unicast discovery both use this property to limit and set the desired network interface card.
 
@@ -19,20 +19,15 @@ Since the `java.rmi.server.hostname` system property is set by default to the `X
 
 To apply this configuration easily, the `XAP_NIC_ADDRESS` variable can be passed at the **script level** of each node startup, before the call to `setenv`, thus overriding the default value set for this property in the `setenv` script.
 
-{{% note %}}
-
-{{% align center %}}
-The following procedure explains the general configuration process required to test and configure the Multi-NIC settings in XAP.
-**Please refer to these sections only if the out-of-the-box settings fail to work**.
-{{% /align %}}
-
-{{% /note %}}
-
-{{% warning %}}
-Make sure your network and machines running XAP are configured to have multicast enabled. See the [Multicast Configuration](./network-multicast.html) section for details on how to enable multicast.
+{{% warning "Important"%}}
+Make sure your network and machines running XAP are configured to have multicast enabled. Refer to [Multicast Configuration](./network-multicast.html) for details on how to enable multicast.
 {{%/warning%}}
 
 # Configuring XAP for Multiple NICs
+
+{{% note "Note"%}}
+This procedure lists the general configuration process steps that are required to test and configure the Multi-NIC settings in XAP. **Refer to these sections only if the out-of-the-box settings fail to work**.
+{{% /note %}}
 
 1. [Viewing the network interface information](./network-multi-nic-advanced.html#1) (optional)
 1. [Specifying a network card to bind the lookup service](./network-multi-nic-advanced.html#2)

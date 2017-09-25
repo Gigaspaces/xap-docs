@@ -74,12 +74,11 @@ Process units can be deployed through the GigaSpaces [Management Center]({{%curr
 # Analytics and Big Data
 GigaSpaces' InsightEdge Platform provides a first-class integration between Apache Spark and any data grid capability. This allows hybrid/transactional analytics processing by co-locating Spark jobs in-place with low-latency data grid applications. The platform includes a full Spark distribution that is managed by a highly-available clustering tier that provides auto-healing, as well as local and geographical redundancy. The following is a sample of available InsightEdge analytics capabilities:
 
-- [Interactive Data Analytics Web UI]({{% latestjavaurl%}}/insightedge-zeppelin.html)
+- [Interactive Data Analytics Web UI](../started/insightedge-zeppelin.html)
 - [Spark ETL and Transformations]({{% latestjavaurl%}}/insightedge-rdd.html)
 - [Spark SQL]({{% latestjavaurl%}}/insightedge-dataframes.html)
 - [Streaming]({{% latestjavaurl%}}/insightedge-streaming.html)
 - [Machine Learning]({{% latestjavaurl%}}/insightedge-mllib.html)
-- [Deep Learning]({{% latestjavaurl%}}/insightedge-deeplearning.html)
 - [Geospatial Analytics]({{% latestjavaurl%}}/insightedge-geospatial.html)
 - [Python API]({{% latestjavaurl%}}/insightedge-python.html)
 

@@ -1,13 +1,13 @@
 ---
 type: post122
 title:  Logging API
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: logging-overview.html
 weight: 350
 ---
 
  
-As part of the Administration API is an extensive logging extraction and filtering from different runtime components of XAP. Here is a very simple example:
+Part of the Administration API is an extensive logging extraction and filtering from different runtime components of XAP. Here is a very simple example:
 
 
 ```java
@@ -92,6 +92,10 @@ Logging are extracted by running the provided matchers on the server side on the
 All logging extraction enabled runtime components implement the `LogProviderGridComponent` interface. The default `logEntries` method automatically uses the above mentioned logic. The `logEntriesDirect` method will always execute on the runtime component, without trying to go to the agent if the runtime component was started by one.
 
 # Grid Service Agent
+
+{{% note "Note"%}}
+The Grid Service Agent (GSA) is a XAP Premium feature, and is not available in the open source edition.
+{{%/note%}}
 
 The Agent is just another component that its log files can be extracted by the above mentioned ways. It also provide additional ways to extract logs for runtime components it is managing. For example, extracting all the log information of all the different runtime components that are currently executed by the agent. Here is an example:
 

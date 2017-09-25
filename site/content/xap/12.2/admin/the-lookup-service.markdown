@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  The Lookup Service
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: runtime-configuration.html
 weight: 300
 ---

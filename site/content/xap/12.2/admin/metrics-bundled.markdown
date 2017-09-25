@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Predefined Metrics
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: metrics-overview.html
 weight: 500
 ---
@@ -18,7 +18,7 @@ Operating system metrics are reported with the following tags:
 * `ip` - The IP address.
 * `pid` - The process ID of the `gs-agent` which reported this metric.
 
-### Memory Metrics
+## Memory Metrics
 
 
 | Metric | Description | Type |
@@ -29,7 +29,7 @@ Operating system metrics are reported with the following tags:
 | os_memory_actual-used-bytes | Actual used memory (bytes) | Long |
 | os_memory_used-percent | Used memory (%) | Double |
 
-### Swap Metrics
+## Swap Metrics
 
 
 | Metric | Description | Type |
@@ -38,14 +38,14 @@ Operating system metrics are reported with the following tags:
 | os_swap_used-bytes | Used swap (bytes) | Long |
 | os_swap_used-percent | Used swap (%) | Long |
 
-### CPU Metrics
+## CPU Metrics
 
 
 | Metric | Description | Type |
 |:-------|:------------|:-----|
 | os_cpu_used-percent | CPU Usage (%) | Double |
 
-### Network Metrics
+## Network Metrics
 
 Network metrics are reported for each network interface card with an IP address. In addition to the tags listed above, the `nic` tag is also reported to indicate which network interface card the metric was sampled from.
 
@@ -70,7 +70,7 @@ Process metrics are reported with the following tags:
 * `pid` - The process ID.
 * `process_name` - The process name (`gsa` \| `lus` \| `gsm` \| `esm` \| `gsc`).
 
-### Process CPU Metrics
+## Process CPU Metrics
 
 
 | Metric | Description | Type |
@@ -148,7 +148,7 @@ Processing Unit metrics are reported with the following tags:
 * `pu_name` - Processing Unit name.
 * `pu_instance_id` - Processing Unit instance id.
 
-### Event Containers
+## Event Containers
 
 | Metric | Description |
 |:-------|:------------|
@@ -167,7 +167,7 @@ Space metrics are reported with the following tags:
 * `space_name` - Space name.
 * `space_instance_id` - Space instance id.
 
-### Data
+## Data
 
 
 | Metric | Description | Type |
@@ -177,7 +177,7 @@ Space metrics are reported with the following tags:
 | space_data_notify-templates_total | Total number of notify templates in the space. | Integer |
 | space_data_notify-templates_{type-name} | Total number of notify templates in the space of type. | Integer |
 
-### Operations
+## Operations
 
 
 | Metric | Description | Type |
@@ -207,7 +207,7 @@ Space metrics are reported with the following tags:
 | space_operations_before-listener-trigger-tp | ?triggered events (before trigger) per second? | Double |
 | space_operations_after-listener-trigge-tp | ?triggered events (after trigger) per second? | Double |
 
-### Blobstore Operations
+## Blobstore Operations
 
 
 | Metric | Description |
@@ -223,23 +223,23 @@ Space metrics are reported with the following tags:
 | space_blobstore_cache_miss  | blobstore cache miss |
 | space_blobstore_cache_hit | blobstore cache hit |
 
-### Connections
+## Connections
 
 
 | Metric | Description | Type |
 |:-------|:------------|:-----|
 | space_connections_incoming_active | Number of active incoming connections | Integer |
 
-### Transactions
+## Transactions
 
 
 | Metric | Description | Type |
 |:-------|:------------|:-----|
 | space_transactions_active | Number of active transactions | Integer |
 
-### Replication
+## Replication
 
-#### Replication Redo Log
+### Replication Redo Log
 
 
 | Metric | Description | Type |
@@ -251,7 +251,7 @@ Space metrics are reported with the following tags:
 | space_replication_redo-log_first-key-in-backlog | First key in the backlog (-1 if empty) | Long |
 | space_replication_redo-log_last-key-in-backlog | Last key in the backlog (-1 if empty) | Long |
 
-#### Replication Channels
+### Replication Channels
 
 
 | Metric | Description | Type |

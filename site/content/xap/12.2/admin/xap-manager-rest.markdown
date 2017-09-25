@@ -14,10 +14,10 @@ The [XAP Manager](xap-manager.html) provides a RESTful API for managing the XAP 
 
 {{%fpanel%}}
 
-[RESTful API](./xap-manager-rest-overview.html){{<wbr>}}
+[REST Manager API](./xap-manager-rest-overview.html){{<wbr>}}
 The [XAP Manager](xap-manager.html) provides a RESTful API for managing the XAP environments.
 
-[Pluggable Manager ](./xap-manager-rest-pluggable.html){{<wbr>}}
+[Extending the REST Manager API](./xap-manager-rest-pluggable.html){{<wbr>}}
 The XAP Manager RESTful API can be extended by implement a plain Java class with {{%exurl "JAX-RS" "https://github.com/jax-rs"%}} annotations.
 
 {{%/fpanel%}}

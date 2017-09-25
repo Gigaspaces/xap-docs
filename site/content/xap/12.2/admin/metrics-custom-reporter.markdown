@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Custom Reporter
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: metrics-overview.html
 weight: 300
 ---

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Large Scale Deployment
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent:  tuning.html
 weight: 400
 ---
@@ -31,7 +31,7 @@ To avoid the unregistering of spaces, add resources (memory, CPU) or spaces, or 
 -Dcom.gs.jini.config.maxLeaseDuration=8000
 ```
 
-{{% note %}}
+{{% note "Note"%}}
 It is recommended to **increase these values to 40000/80000 respectively** in case a large cluster is used.
 
 Increasing these values causes a delay when the space recognizes failover, since the active election infrastructure is based on space un-registration.
@@ -41,7 +41,7 @@ Increasing these values causes a delay when the space recognizes failover, since
 
 Since every space container starts an embedded `RMIRegistry` service, it creates a set of threads which consume some resources.
 
-{{% note%}}
+{{% note "Note"%}}
 If the `RMIRegistry` service is not used, or if a full replication cluster or a large cluster is used; it is recommended to disable the `RMIRegistry` service in the space container and in the GSC/GSM.
 {{%/note%}}
 
@@ -59,4 +59,4 @@ When attempting to run hundreds of clients, which need to find a space and perfo
 
 When there are many clients monitoring the availability of a cluster, it is recommended to increase the value of the `Monitor` thread to a maximum. Usually, when there is no failover or there are no backup-only spaces, the `Monitor` thread can be safely set to its maximum value; since clients directly interact with the space members. If either is detected as unavailable, the `Detector` thread is responsible for detecting their re-availability.
 
-{{% refer %}}For more details, refer to the [Viewing Clustered Space Status](./cluster-view-gigaspaces-browser.html) section.{{% /refer %}}
+{{% refer %}}For more details, refer to [Viewing Clustered Space Status](./cluster-view-gigaspaces-browser.html).{{% /refer %}}

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Metrics
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: none
 weight: 950
 ---

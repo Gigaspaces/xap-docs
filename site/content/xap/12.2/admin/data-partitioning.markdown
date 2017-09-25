@@ -1,13 +1,13 @@
 ---
 type: post122
-title:  Data-Partitioning
-categories: XAP122ADM
+title:  Data Partitioning
+categories: XAP122ADM, OSS
 parent: data-grid-clustering.html
 weight: 400
 ---
 
 
-Load-balancing (Data-Partitioning) is essential in any truly scalable architecture, as it enables scaling beyond the physical resources of a single-server machine. In XAP, load-balancing is the mechanism used by the clustered proxy to distribute space operations among the different cluster members. Each cluster member can run on a different physical or virtual machine.
+Load balancing (data partitioning) is essential in any truly scalable architecture, as it enables scaling beyond the physical resources of a single-server machine. In XAP, load balancing is the mechanism used by the clustered proxy to distribute space operations among the different cluster members. Each cluster member can run on a different physical or virtual machine.
 
 A clustered proxy for a partitioned data grid holds logical references to all space members in the cluster. The references are "logical", in the sense that no active connection to a space member is opened until it is needed. This is illustrated in the following diagram:
 
@@ -32,9 +32,9 @@ The following table describes the built-in load balancing types.
 |local-space|This policy routes the operation to the local embedded space (without specifying the exact space name). It is used in P2P clusters.|
 |round-robin |The clustered proxy distributes the operations to the group members in a round-robin fashion. For example, if there are three spaces, one operation is performed on the first space, the next on the second space, the next on the third space, the next on the first space, and so on.|
 
-# Hash-Based Load-Balancing
+# Hash-Based Load Balancing
 
-This is the **default mode** and applicable for most of the application. When using hash-based load-balancing policy the client proxy spread new written space objects into relevant cluster space nodes. The relevant space to rout the operation is determined using space object routing field (aka also as routing index) value hash code. This value together with the number of the cluster partitions used to calculate the target space for the operation.
+This is the **default mode** and applicable for most of the application. When using a hash-based load balancing policy, the client proxy spreads new written space objects into relevant cluster space nodes. The relevant space to rout the operation is determined using a space object routing field (also called a routing index) value hash code. This value, together with the number of the cluster partitions, is used to calculate the target space for the operation.
 
 
 ```java
@@ -57,25 +57,25 @@ int partitionCount = admin.getSpaces().waitFor("MyDataGridName", 5, TimeUnit.SEC
 ```
 
 
-{{% tip %}}
+{{% tip "Tip"%}}
 
-- It is recommended to use an Integer or a Long field type to be used as the routing field.
-- Default routing field is the space id field. In such a case make sure you have the @SpaceId using the `autoGenarate=false` mode.
+- It is recommended to use an Integer or a Long field type as the routing field.
+- The default routing field is the space ID field. In this case, make sure you have the @SpaceId using the `autoGenarate=false` mode.
 {{% /tip %}}
 
-{{% warning %}}
-Converting a numeric value to a String and using the string representation as the routing key will give a different load balancing in comparison to a numeric value.
+{{% warning "Important"%}}
+Converting a numeric value to a String and using the string representation as the routing key will give different load balancing in comparison to a numeric value.
 {{% /warning %}}
 
 # Example
 
-A cluster is defined with 3 partitions where each partition has one primary and one backup space.
+A cluster is defined with 3 partitions, where each partition has one primary and one backup space.
 
 {{% align center%}}
 ![load_balancing1.jpg](/attachment_files/load_balancing1.jpg)
 {{% /align%}}
 
-The cluster configured to use the hash-based load-balancing policy. The application writes the `Account` space object into the clustered space. The `accountID` field as part of the `Account` class is defined as the routing field using the `@SpaceRouting` decoration.
+The cluster is configured to use the hash-based load balancing policy. The application writes the `Account` space object into the clustered space. The `accountID` field as part of the `Account` class is defined as the routing field using the `@SpaceRouting` decoration.
 
 The Account class implementation:
 
@@ -117,9 +117,9 @@ If we will write 30 Account space objects with different `accountID` values into
 If the relevant target space or its backup space is not active an error message will be thrown.
 {{% /tip %}}
 
-## Hash based Load-Balancing Calculator
+## Hash-Based Load Balancing Calculator
 
-See below Hash based Load-Balancing Calculator that calculates the target space of a given routing value.
+See the below hash-based load balancing calculator that calculates the target space of a given routing value.
 You may change this to use String based routing values or numerical values.
 
 
@@ -168,7 +168,7 @@ static int safeABS(int value) {
 }
 ```
 
-Here is an example output:
+Here is a sample output:
 
 
 ```bash
@@ -189,11 +189,11 @@ Routing field values:
 487,935,676,124,....
 ```
 
-# Load-balancing with Replication/Failover
+# Load Balancing with Replication/Failover
 
-Load-balancing can be combined with replication. Depending on the application needs and the load-balancing policy used, this may or may not be necessary. For example, if users tend to perform read operations, and the policy used is round-robin, replication will be necessary to ensure the requested space object exists on the target space. If, by contrast, the policy used is distribute-by-class, it may not be necessary to replicate, because the class requested should have been written to the same space.
+Load balancing can be combined with replication. Depending on the application needs and the load-balancing policy used, this may or may not be necessary. For example, if users tend to perform read operations, and the policy used is round-robin, replication will be necessary to ensure the requested space object exists on the target space. If, by contrast, the policy used is distribute-by-class, it may not be necessary to replicate, because the class requested should have been written to the same space.
 
-Load-balancing can also be combined with failover, to achieve both scalability and fault tolerance.
+Load balancing can also be combined with failover, to achieve both scalability and fault tolerance.
 
 # Broadcast
 
@@ -229,8 +229,8 @@ The following table specifies when the different batch operations executed in pa
 
 # Considerations
 
-- The replication scheme does not take into account `IReplicatable` (partial replication) and replication matrix.
-- In some cases broadcast can cause ownership/SSI problems to happen.
-- All objects with a given routing value will be stored in the _same partition_. This means that a given partition _must_ be able to hold all similarly-routed objects. If the routing value does not have uniform distribution the partitioning will be uneven. Use a derived routing field (such as ID field) as the routing field value that gives a flat distribution across all nodes, if possible.
+- The replication scheme does not take into account the `IReplicatable` (partial replication) and replication matrix.
+- In some cases, broadcast can cause ownership/SSI problems.
+- All objects with a given routing value will be stored in the _same partition_. This means that a given partition _must_ be able to hold all similarly-routed objects. If the routing value does not have uniform distribution, the partitioning will be uneven. Use a derived routing field (such as ID field) as the routing field value that gives a flat distribution across all nodes, if possible.
 
 

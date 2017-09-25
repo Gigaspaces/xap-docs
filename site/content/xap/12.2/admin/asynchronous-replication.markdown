@@ -1,6 +1,6 @@
 ---
 type: post122
-title:  Asynchronous Replication
+title:  Asynchronous Replication, OSS
 categories: XAP122ADM
 parent: replication.html
 weight: 300

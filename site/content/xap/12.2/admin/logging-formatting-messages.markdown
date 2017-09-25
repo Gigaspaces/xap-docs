@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Formatting Log Messages
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent: logging-overview.html
 weight: 300
 ---
@@ -29,7 +29,7 @@ The format is simply a string, which can contain any character including line-br
 6 - Context (processing unit, GSC, etc)<br>
 7 - Thread name
 
-## The default format
+## Default Format
 
 By default, the logging configuration file comes with the following as the default format:
 
@@ -40,7 +40,7 @@ com.gigaspaces.logger.GSSimpleFormatter.format = {0,date,yyyy-MM-dd HH:mm:ss,SSS
 
 Which translates to: **Date and time* printed down to the millisecond, **context** (if available), the **log level** of the message, the **logger name** and the **message**.
 
-## Customized format
+## Customized Format
 
 If you wish to customize the format, change the default setting the in the logging configuration file (`<GigaSpaces>/config/log/xap_logging.properties`).
 For example,
@@ -58,5 +58,5 @@ Jul 14, 2009  com.gigaspaces.Class.method(..) INFO - Sample message
 ```
 
 {{%refer%}}
-For more details on how to customize a message see {{%exurl "java.text.MessageFormat""http://java.sun.com/javase/{{%version "java-version"%}}/docs/api/java/text/MessageFormat.html"%}} and [java.text.SimpleDateFormat](http://java.sun.com/javase/{{%version "java-version"%}}/docs/api/java/text/SimpleDateFormat.html)
+For more details on how to customize a message, refer to {{%exurl "java.text.MessageFormat""http://java.sun.com/javase/{{%version "java-version"%}}/docs/api/java/text/MessageFormat.html"%}} and [java.text.SimpleDateFormat](http://java.sun.com/javase/{{%version "java-version"%}}/docs/api/java/text/SimpleDateFormat.html).
 {{%/refer%}}

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Infrastructure
-categories: XAP122ADM
+categories: XAP122ADM, OSS
 parent:  tuning.html
 weight: 100
 ---
@@ -32,15 +32,12 @@ To improve performance and stability, you must set the limit of processes for th
 ulimit -u 32000
 ```
 
-{{% info %}}
-Before deciding about the proper values of the file descriptors, a further testing and monitoring is required on the actual environment. 8K,16K or 32K is used just an example.
-{{%/info%}}
-
-{{% info %}}
-Verify that you set the ulimit using the -n option e.g. ulimit -n 8192, rather than ulimit 8192. ulimit defaults to ulimit -f. If **no parameter** is set, it sets the maximum file size in 512k blocks, which might cause a fatal process crash
+{{% info "Info"%}}
+* Before deciding about the proper values of the file descriptors, a further testing and monitoring is required on the actual environment. 8K,16K or 32K is used just an example.
+* Verify that you set the ulimit using the -n option e.g. ulimit -n 8192, rather than ulimit 8192. ulimit defaults to ulimit -f. If **no parameter** is set, it sets the maximum file size in 512k blocks, which might cause a fatal process crash
 {{% /info %}}
 
-### How do I configure the File Descriptors on Linux?
+### How do I Configure the File Descriptors on Linux?
 
 In /etc/system file, the descriptors **hard limit** should be set (8192), and the file descriptors **soft limit** should be increased from 1024 to 8192 as shown below:
 
@@ -61,7 +58,7 @@ It should report 8192.
 
 To change the default value, modify the `/etc/security/limits.conf` file.
 
-{{% info %}}
+{{% info "Info"%}}
 Modify the `ulimit` value when having many concurrent users accessing the space.
 {{% /info %}}
 
@@ -69,7 +66,7 @@ Modify the `ulimit` value when having many concurrent users accessing the space.
 
 Windows 2003 has no parameter dealing directly with the number of **file handles**, it is not explicitly limited, but file handles allocations take part of heap shared section which is relatively small (default 512KB). Heap being exhausted might lead to the application failure.
 
-### How do I configure the File Handlers on Windows?
+### How do I Configure the File Handlers on Windows?
 
 To increase it run regedit - HKEY_LOCAL_MACHINE->SYSTEM->CurrentControlSet->Control->Session Manager->Subsystems:
 in the key "Windows" find "SharedSection=1024,3072,512", where 512KB is the size of heap shared section for the processes running in the background. The value should be increased, the recommendation is to increase it initially to 1024KB, max value 3072. **Reboot is necessary** to enable the new setting.
@@ -94,7 +91,7 @@ Should be changed in order to secure fast fail-over in case of network failure (
 echo 1  > /proc/sys/net/ipv4/tcp_keepalive_time
 ```
 
-{{% info %}}
+{{% info "Info"%}}
 Default value: 7200 seconds (2 hours){{<wbr>}}
 Recommended value: 1 seconds
 {{%/info%}}
@@ -109,7 +106,7 @@ Recommended value: 1 seconds
 echo 1 > /proc/sys/net/ipv4/tcp_keepalive_intvl
 ```
 
-{{% info %}}
+{{% info "Info"%}}
 Default value: 75 seconds{{<wbr>}}
 Recommended value: 1 seconds
 {{%/info%}}
@@ -124,13 +121,13 @@ Recommended value: 1 seconds
 echo 5  > /proc/sys/net/ipv4/tcp_keepalive_probes
 ```
 
-{{% info %}}
+{{% info "Info"%}}
 Default value: 9 {{<wbr>}}
 Recommended value: 5 {{<wbr>}}
 tcp_keepalive_interval is Solaris equivalent to the Linux TCP_KEEPALIVE_TIME setting. Default value in Solaris is 2 hours
 {{% /info %}}
 
-### Connection backlog
+### Connection Backlog
 
 **Description**: Determines the maximum number of packets, queued on the input side, when the interface receives packets faster than kernel can process them.
 **Set**:
@@ -140,7 +137,7 @@ tcp_keepalive_interval is Solaris equivalent to the Linux TCP_KEEPALIVE_TIME set
 echo 3000 > /proc/sys/net/core/netdev_max_backlog
 ```
 
-{{% info %}}
+{{% info "Info"%}}
 Default value: 300{{<wbr>}}
 Recommended value: 3000
 {{%/info%}}
@@ -154,7 +151,7 @@ Should be changed when a high rate of incoming connection requests result in con
 echo 3000 > /proc/sys/net/core/somaxconn
 ```
 
-{{% info %}}
+{{% info "Info"%}}
 Default value: 128 {{<wbr>}}
 Recommended value: 3000{{<wbr>}}
 See also: [http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html](http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html)
@@ -171,7 +168,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 ```
 
 {{% refer %}}
-See also:
+Refer to
 - [http://support.microsoft.com/kb/314053](http://support.microsoft.com/kb/314053)
 {{% /refer %}}
 
