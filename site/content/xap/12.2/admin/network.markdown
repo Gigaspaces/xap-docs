@@ -9,8 +9,11 @@ weight: 800
 
 
 
-In this guide we will show you how to configure the network including configuring unicast, multicast, over a firewall and over NAT.
+This section explains how to configure the network, including configuring unicast, multicast, over a firewall and over NAT.
 
+{{% note "Note" %}}
+Some of the features listed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+{{% /note %}}
 
 <br>
 

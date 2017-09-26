@@ -6,6 +6,10 @@ parent: network-multi-nic.html
 weight: 100
 ---
 
+{{% note "Note" %}}
+Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+{{% /note %}}
+
 {{% ssummary %}} {{% /ssummary %}}
 
 {{% anchor 1 %}}
@@ -104,7 +108,7 @@ More specifically, multicast and unicast discovery both use this property to lim
 
 ### Limiting Use to a Specific Network Interface (Multicast Only)
 
-{{% note %}}
+{{% note "Note"%}}
 By default, Jini is configured to support multicast over multiple (all) interface cards. The only time you need to change this, is if you want to limit these interface cards.
 {{%/note%}}
 
@@ -134,7 +138,7 @@ multicastInterfaces=new java.net.NetworkInterface[]
 {java.net.NetworkInterface.getByName("${java.rmi.server.hostname}")};
 ```
 
-{{% refer %}}For more details, see {{%exurl "Sun Javadoc" "http://www.gigaspaces.com/docs/JiniApi/com/sun/jini/reggie/package-summary.html"%}}.{{% /refer %}}
+{{% refer %}}For more information, refer to {{%exurl "Sun Javadoc" "http://www.gigaspaces.com/docs/JiniApi/com/sun/jini/reggie/package-summary.html"%}}.{{% /refer %}}
 
 {{% anchor 4 %}}
 
@@ -239,7 +243,7 @@ Or, on a Windows-based machine:
 -Dcom.gs.cluster.url-protocol-prefix=jini://%XAP_NIC_ADDRESS%/
 ```
 
-{{% note %}}
+{{% note "Note"%}}
 You can set the `jini://` and/or `rmi://` protocols in the `com.gs.cluster.url-protocol-prefix` system property.
 {{%/note%}}
 
@@ -331,7 +335,7 @@ XAP_NIC_ADDRESS=192.168.80.146; export XAP_NIC_ADDRESS
 # Troubleshooting your Configuration
 
 
-{{% refer %}}For details on viewing the exact configuration in which the system is currently running, refer to the [Container Maintenance](./gigaspaces-browser-managing-space-container.html#Runtime Configuration Report) section.{{% /refer %}}
+{{% refer %}}For information on viewing the exact configuration in which the system is currently running, refer to  [Container Maintenance](./gigaspaces-browser-managing-space-container.html#Runtime Configuration Report).{{% /refer %}}
 
 ## Logging with RMI_OPTIONS
 

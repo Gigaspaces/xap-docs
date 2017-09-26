@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Logging API
-categories: XAP122ADM, OSS
+categories: XAP122ADM, PRM
 parent: logging-overview.html
 weight: 350
 ---

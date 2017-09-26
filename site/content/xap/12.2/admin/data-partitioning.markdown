@@ -6,6 +6,9 @@ parent: data-grid-clustering.html
 weight: 400
 ---
 
+{{% note "Note" %}}
+Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+{{% /note %}}
 
 Load balancing (data partitioning) is essential in any truly scalable architecture, as it enables scaling beyond the physical resources of a single-server machine. In XAP, load balancing is the mechanism used by the clustered proxy to distribute space operations among the different cluster members. Each cluster member can run on a different physical or virtual machine.
 

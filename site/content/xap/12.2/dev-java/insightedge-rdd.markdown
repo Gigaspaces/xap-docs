@@ -48,7 +48,7 @@ rdd.saveToGrid()
 {{%/tab%}}
 {{%/tabs%}}
 
-# Grid-side RDD filters
+# Grid-Side RDD Filters
 
 To query a subset of data from the Data Grid, use the `SparkContext.gridSql[R](sqlQuery, args)` method. The type parameter `R` is a Data Grid model class, the `sqlQuery`parameter is a native Data Grid SQL query, `args` are arguments for the SQL query. For example, to load only products with a quantity more than 10:
 
@@ -66,16 +66,16 @@ You can also bind parameters in the SQL query:
 {{%tabs%}}
 {{%tab "Scala"%}}
 ```scala
-val products = sc.gridSql("quantity > ? and featuredProduct = ?", Seq(10, true))
+val products = sc.gridSql[Product]("quantity > ? and featuredProduct = ?", Seq(10, true))
 ```
 {{%/tab%}}
 {{%/tabs%}}
 
 {{%refer%}}
-For more details on Data Grid SQL queries please refer to [Data Grid documentation](https://docs.gigaspaces.com/xap/12.1/dev-java/query-sql.html).
+For more information about the Data Grid SQL queries, refer to [Data Grid documentation](https://docs.gigaspaces.com/xap/12.1/dev-java/query-sql.html).
 {{%/refer%}}
 
-# Zip RDD with Grid SQL data
+# Zip RDD with Grid SQL Data
 
 You may want to transform the RDD by executing SQL query for each element in the RDD. This can be done using `rdd.zipWithGridSql()` method. It returns a new RDD of tuple (element, query result items).
 Note, this might be an expensive operation.
@@ -102,5 +102,5 @@ val orders: RDD[(Customer, Seq[Order])] = customers.zipWithGridSql[Order](query,
 Methods `SparkContext.gridRdd()` and `SparkContext.gridSql()` take an optional `splitCount` parameter which defines the number of Spark partitions per Data Grid partition. This feature is limited to `bucketed` grid model. 
 
 {{%refer%}}
-Refer to [Data Modeling](modeling.html) for more details.
+For more information, refer to [Data Modeling](modeling.html).
 {{%/refer%}}

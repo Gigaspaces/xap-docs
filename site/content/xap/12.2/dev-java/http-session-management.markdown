@@ -20,14 +20,14 @@ The XAP HTTP Session Management provides the following:
 - Non intrusive session management or explicit Data Grid API access for fine grain control - Allows multiple web servers to share the same session in transparent manner
 
 {{% refer %}}
-For global HTTP Session Managment for Tomcat , JBoss , Weblogic , Websphere , Glassfish and other J2EE web/application servers see the [Global Http Session Sharing](./global-http-session-sharing.html).
+For global HTTP Session Managment for Tomcat , JBoss , Weblogic , Websphere , Glassfish and other J2EE web/application servers,refer to [Global HTTP Session Sharing](./global-http-session-sharing.html).
 {{% /refer %}}
 
 # How to enable XAP's HTTP Session Management
 
 There are several ways to configure Space session based support, depending on the definition of which Space and how the Space was started.
 
-## Using Deploy property
+## Using the Deploy Property
 
 Here is how you can deploy an existing WAR file without changing it (or use Spring) to use XAP HTTP Session Management:
 
@@ -73,7 +73,7 @@ Controlling the session Management done via the following properties:
 |jetty.sessions.timeout| Determines the HTTP session timeout in minutes (similar to `session-timeout` element in `web.xml`|30 minutes| No |
 |jetty.sessions.lease| The lease of the [SessionData]({{% api-javadoc %}}/org/openspaces/jee/sessions/jetty/SessionData.html) that is written to the Space |Long.MAX_VALUE | No |
 
-{{% note %}}
+{{% note "Note" %}}
 XAP integration implements Jetty `SessionManager` and `SessionIdManager` in `GigaSesssionManager` and `GigaSessionIdManager`. When setting the `jetty.sessions.spaceUrl` they get automatically set as the session manager and session id manager of the web app.
 {{%/note%}}
 

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Custom Processing Unit
-categories: XAP122, OSS
+categories: XAP122, PRM
 parent: the-processing-unit-overview.html
 weight: 400
 ---

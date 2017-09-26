@@ -6,10 +6,11 @@ parent: monitoring.html
 weight: 100
 ---
 
-
 {{% ssummary %}} {{% /ssummary %}}
 
-
+{{% note "Note" %}}
+Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+{{% /note %}}
 
 Monitoring network and usage activity during runtime gives you the ability to track which client is invoking which methods on each service (e.g a space serving remote client request such as read/write). Which can be very useful to identify issues, such as which remote proxy is causing a high load on a specific space. Or investigating version conflicts and so on. This monitoring exposes the details for both inbound and outbound communication, allowing you to track the activity of the remote clients on services hosted on a specific Jvm, or alternatively track the activity of the proxies in a specific Jvm on remote services.
 
@@ -50,7 +51,7 @@ For GSC that contains a space instance, you can also access the GSC via JMX usin
 
 Note that when enabling it via JMX it will enable the monitoring for the entire Jvm and not just the space that was used to enable the monitoring.
 
-# Retrieving LRMI Monitoring details
+# Retrieving LRMI Monitoring Details
 
 There are three ways to retrieve the LRMI monitoring details, all of which requires that the relevant Jvm will have the LRMI monitoring enabled which as done as described previously.
 

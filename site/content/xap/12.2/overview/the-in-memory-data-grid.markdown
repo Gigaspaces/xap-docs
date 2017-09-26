@@ -11,7 +11,7 @@ weight: 700
 
 # Architecture Perspectives
 
-This section describes the In-Memory Data Grid (IMDG) architecture according to the following, in order to provide a comprehensive understanding of its functionality, behavior, and accessibility.
+This section describes the [In-Memory Data Grid](https://www.gigaspaces.com/solution/in-memory-data-grid) (IMDG) architecture according to the following, in order to provide a comprehensive understanding of its functionality, behavior, and accessibility.
 
 - [XAP Components Perspective](#components) - explains the key capabilities of GigaSpaces XAP, namely the Open Spaces framework, the space-based core middleware and the middleware facilities it provides, and the SLA-Driven Container.
 - [Runtime Perspective](#runtime) - explains how the GigaSpaces components execute and interact in runtime on multiple physical machines.

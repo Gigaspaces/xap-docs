@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Memcached API
-categories: XAP122, OSS
+categories: XAP122, PRM
 parent: other-data-access-apis.html
 weight: 400
 ---
@@ -13,7 +13,7 @@ weight: 400
 
 The memcached support is provided as a template deployment (similar to how basic data grid deployment works), allowing to easily issue commands to deploy a memcached cluster using the CLI, Admin API, or the UI. See "[The Runtime Environment]({{%currentadmurl%}}/the-runtime-environment.html)" for an explanation of the moving parts and components in a GigaSpaces XAP server instance.
 
-# Why use Memcached
+# Why Use Memcached?
 
 Memcached is a simple protocol, which makes it naturally cross-platform. This simplicity means a reduction in features, such as failover or distribution of data. The traditional memcached client/server architecture has one memcached client connected to a number of _disconnected_ memcached server instances, which share no data and are entirely unaware of each other.
 
@@ -35,13 +35,13 @@ The last deployment model uses a single access point for access - a single node 
 ![xap_memcached_router.jpg](/attachment_files/xap_memcached_router.jpg)
 {{%/align%}}
 
-# Using memcached
+# Using Memcached
 
 Memcached uses a standardized and language-neutral [protocol](https://code.google.com/p/memcached/wiki/NewCommands), providing fourteen commands (six reads, two sets, two updates, one delete, and some status-related commands), issued over a plain text connection. A client application can open a telnet session and use a memcached server with no problems (assuming no errors are made in using the protocol, of course.)
 
 However, since the protocol is simple and well-known, there have been many client libraries written that provide access to memcached services.
 
-## Using memcached from Java
+## Using Memcached from Java
 
 There are many memcached clients for Java; the one GigaSpaces' example applications have used is [xmemcached](http://code.google.com/p/xmemcached/).
 
@@ -71,7 +71,7 @@ MemcachedClientBuilder builder = new XMemcachedClientBuilder(
 MemcachedClient c = builder.build();
 ```
 
-{{% warning %}}
+{{% warning "Important"%}}
 Traditional memcached servers shard data by running multiple instances as unassociated peers. Clients connect to each of them, and manually determine which of the server instances data is sent to.
 
 XAPs memcached service would run access points on each of the servers - memcached1 and memcached2, as shown above - but the servers share data, so you could get the same dataset by just connecting to only one of the server instances.

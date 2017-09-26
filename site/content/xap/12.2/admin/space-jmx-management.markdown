@@ -8,11 +8,13 @@ weight: 200
 
 {{% ssummary %}}{{% /ssummary %}}
 
-
+{{% note "Note" %}}
+Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+{{% /note %}}
 
 The Java Management Extensions (JMX specification) describe an architecture, design patterns, API's, and services for application and network management in the Java programming language. JMX functions beyond a simple API since it can specify the architecture as to how that API is used. It provides the means to construct Java code, create smart Java agents, implement distributed management middleware and managers, and integrate these solutions smoothly into existing management systems. You can integrate such solutions with either HTML or industry standards such as SNMP and WBEM. JMX is dynamic, allowing the monitoring and management of resources in real time while they are created, installed, and implemented. The JMX also works along with JVM, the Java Virtual Machine.
 
-{{% refer %}}For more details about JMX, refer to: {{%exurl "JavaManagement" "http://java.sun.com/products/JavaManagement/"%}}.{{% /refer %}}
+{{% refer %}}For more details about JMX, refer to {{%exurl "JavaManagement" "http://java.sun.com/products/JavaManagement/"%}}.{{% /refer %}}
 
 ## Manageable Resource
 
@@ -47,22 +49,23 @@ Step 4. You can browse the various MBeans.{{<wbr>}}
 Step 5. Make sure you have a deployed space.   {{<wbr>}}
 Step 6. Open a console and type the following command: `jconsole`{{<wbr>}}
 
-{{% note %}}
-By default, operations in the MBeans **Operations** tab which have XAP classes as their type are disabled. To enable these, type in your console:<br> 
+{{% note "Note"%}}
+By default, operations in the MBeans **Operations** tab that have XAP classes as their type are disabled. To enable these, type the following in your console:<br> 
 `jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\required\xap-datagrid.jar` <br>
-Instead of `GS_HOME`, type the directory in which GigaSpaces is installed on your computer.
+Instead of `GS_HOME`, type the directory where GigaSpaces is installed on your computer.
 {{%/note%}}
 
 Step 7. Connect to the MBean server (choose one of the following options):
 
 - Using the **Advanced** tab:
+
     a. The JConsole: Connect to Agent window appears. Select the **Advanced** tab.
 
     b. In the **JMX URL** text box, copy the URL in the log message displayed in your GigaSpaces Server,for example:
 
     c. Press **Connect**. {{<wbr>}}
 
-{{% info %}}
+{{% info "Info"%}}
  New JMXConnectionServer was successfully registered into the MBeanServer
  using service url: service:jmx:rmi:///jndi/rmi://localhost:10098/jmxrmi
 {{% /info %}}
@@ -102,7 +105,7 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
 
 {{% include "/COM/jconsolejmapwarning.markdown" %}}
 
-# Remote JConsole connection
+# Remote JConsole Connection
 
 In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable **REMOTE_JMX**
 
@@ -111,8 +114,8 @@ In order to enable monitoring and management from remote systems using JMX jcons
 REMOTE_JMX=-Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 ```
 
-{{%note%}}
-For secure JConsole use -Dcom.gigaspaces.system.registryRetries=1 and -Dcom.gigaspaces.system.registryPort=5001 (same as the -Dcom.sun.management.jmxremote.port)
+{{%note "Note"%}}
+For a secure JConsole, use -Dcom.gigaspaces.system.registryRetries=1 and -Dcom.gigaspaces.system.registryPort=5001 (same as the -Dcom.sun.management.jmxremote.port).
 {{%/note%}}
 
 
@@ -130,7 +133,7 @@ JConsole includes a {{%exurl "new tab" "http://blog.luminis.nl/luminis/entry/top
 
 - [Download the topthreads.jar file](http://blog.luminis.nl/luminis/resource/peter/topthreads.jar) and add it to your `<XAP Root>\lib\platform\ui` folder.
 
-{{% info %}}
+{{% info "Info"%}}
 `topthreads-{{%version "topthreads"%}}.jar` is used by default. If `topthreads-{{%version "topthreads"%}}.jar` isn't found, the `JTop.jar` file (which is part of the JDK) is used instead.
 {{%/info%}}
 
@@ -228,7 +231,7 @@ The space **Operations** tab allows you to perform different space operations:
 
 
 {{% refer %}}
-For more details, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/admin/SpaceRuntimeInfo.html).
+For more information, refer to [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/admin/SpaceRuntimeInfo.html).
 
 [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/filters/FilterOperationCodes.html) and the [statistics filter operation codes list]({{% api-javadoc %}}/constant-values.html#com.j_spaces.core.filters.FilterOperationCodes.AFTER_ALL_NOTIFY_TRIGGER).
 
@@ -257,7 +260,6 @@ The Space MBean Extension exposes advanced space attributes -- this includes mem
 
 The space extensions **Attributes** tab displays a list of advanced space attributes/elements by XPath, in the selected space. Attribute values appearing in blue can be controlled, while values in black can not be changed. Red values are unavailable.
 
-{{% refer %}}For details on specific configuration file elements, refer to the Configuration Files Element List\*** section. {{% /refer %}}
 
 {{% align center %}}
 ![space_JMX_16_IMG999.gif](/attachment_files/space_JMX_16_IMG999.gif)
@@ -275,7 +277,7 @@ The space extensions **Info** tab displays the MBean name and its Java class.
 
 There is an option to restrict the access to space and space container operations or attributes; for example, you can decide to hide some of the attributes and configuration, and disable execution of operations.
 
-{{% info %}}
+{{% info "Info"%}}
 This way, you can view, restrict or modify most of the space and space container **configuration** (as set in the space/container schema files), or the basic **admin operations**, which were discussed in the above sections.
 {{%/info%}}
 

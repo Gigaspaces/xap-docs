@@ -6,7 +6,9 @@ parent: deploying-and-running-overview.html
 weight: 100
 ---
 
-
+{{% note "Note" %}}
+Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+{{% /note %}}
 
 In production, your processing units run on the GigaSpaces service grid, taking advantage of its SLA and monitoring capabilities. However, when developing the application, you typically want to run it from within your IDE or in a more lightweight mode that will not require you to start a complete runtime environment.
 
