@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Deploying onto the Grid
-categories: XAP122, OSS
+categories: XAP122, PRM
 parent: deploying-and-running-overview.html
 weight: 300
 ---
