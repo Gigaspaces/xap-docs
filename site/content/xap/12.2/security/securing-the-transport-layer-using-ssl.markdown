@@ -14,7 +14,7 @@ XAP provides a generic network filter that also provides SSL support, through an
 ![lrmi-filters](/attachment_files/lrmi-filters.jpg)
 {{%/align  %}}
 
-{{% refer %}}[How to Set XAP Over a Firewall]({{%currentadmurl%}}/network-over-firewall.html) {{%/refer%}}
+{{% refer %}}[XAP Over a Firewall]({{%currentadmurl%}}/network-over-firewall.html) {{%/refer%}}
 
 
 
@@ -23,8 +23,8 @@ XAP provides two types of communication filter:
 - Stream-based filter - for a protocol like ZIP. This type of filter does not support a handshake phase.
 - Block-based filter - for encryption network filters. These filters do support a handshake phase.
 
-{{% info %}}
-For now, XAP supports only one communication filter, and this filter is applied to all the connections in the JVM.
+{{% info "Info"%}}
+XAP currently supports only one communication filter, and this filter is applied to all the connections in the JVM.
 {{%/info%}}
 
 # Usage
@@ -63,7 +63,7 @@ The keystore file is loaded from somewhere in the classpath.
 The provided SSLFilter uses keystore type JKS, with key management method SunX509.
 
 {{% refer %}}
-Please refer to the JavaDocs for more details about the reference classes:
+Refer to the API Reference guide for more details about the reference classes:
 
 - [com.gigaspaces.lrmi.nio.filters.IOSSLFilter]({{% api-javadoc %}}/com/gigaspaces/lrmi/nio/filters/IOSSLFilter.html)
 
@@ -142,8 +142,8 @@ Alternatively if you do not need authentication and just wish to encrypt the dat
 It is also possible to select the encryption protocol (`TLSv1.1`, `TLSv1.2` etc) by setting the `com.gs.lrmi.filter.security.protocol` system property to the required protocol.
 In case this property is not set XAP will use the generic `TLS` protocol.
 
-{{% tip %}}
-With production environment you should have the SSLFilterFactory password (or any other secured user access information) protected by passing its value at the deploy time into the pu.xml (where the actual property using a variable) or at the start-up time as an argument to a wrapper script starting the GigaSpaces agent and not place such secured data on file.
+{{% tip "Tip"%}}
+In your production environment, you should have the SSLFilterFactory password (or any other secured user access information) protected by passing its value at the deploy time into the pu.xml (where the actual property using a variable) or at the start-up time as an argument to a wrapper script starting the GigaSpaces agent and not place such secured data on file.
 {{% /tip %}}
 
 The indication that SSL is used is the message:

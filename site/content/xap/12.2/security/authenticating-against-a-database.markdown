@@ -25,7 +25,7 @@ Configuring the provider is quite simple:
 
 In addition, you can optionally configure a `PasswordEncoder` and a `SaltSource`. A `PasswordEncoder` provides encoding and decoding of passwords presented in the `UserDetails` object that is returned from the configured `UserDetailsService`. A `SaltSource` enables the passwords to be populated with a "salt", which enhances the security of the passwords in the authentication repository. For more details, refer to Spring Security reference.
 
-# Using an in-memory DAO
+# Using an In-Memory DAO
 
 Spring Security comes with an implementation of UserDetailsService that draws its user information from its Spring configuration. This is perfect when just starting to integrate Spring Security. Here's a sample configuration:
 
@@ -42,8 +42,8 @@ Spring Security comes with an implementation of UserDetailsService that draws it
 
 Consider Edward, a Box-Office Employee, which has privileges to list all movies and their available seats, and to reserve a seat. Edward is granted `READ` privileges for class `eg.cinema.Movie` and for class `eg.cinema.Seat`, and `WRITE` privileges to update a `eg.cinema.Seat` as reserved. Of course, this can get quite cumbersome for production use.
 
-{{% note %}}
-This Spring Security configuration file can be found under `<XAP root>/config/security/in-memory-security-config.xml`
+{{% note "Note"%}}
+This Spring Security configuration file can be found under `<XAP root>/config/security/in-memory-security-config.xml`.
 {{% /note %}}
 
 # Declaring a JDBC DAO
@@ -147,11 +147,11 @@ You may have noticed that we omitted the 'enabled' column in our example Users t
 </bean>
 ```
 
-{{% note %}}
-This Spring Security configuration file can be found under `<XAP root>/config/security/jdbc-security-config.xml`
+{{% note "Note"%}}
+This Spring Security configuration file can be found under `<XAP root>/config/security/jdbc-security-config.xml`.
 {{% /note %}}
 
-# Working with encrypted passwords
+# Working with Encrypted Passwords
 
 Spring Security's `PasswordEncoder` interface is used to support the use of passwords which are encoded in some way in persistent storage. This will normally mean that the passwords are "hashed" using a digest algorithm such as MD5 or SHA.
 

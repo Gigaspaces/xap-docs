@@ -286,7 +286,7 @@ Space Filters {{%currentjavanet "the-space-filters.html"%}} are interceptors ins
 
 The username and password supplied when creating a Space, will be used to _implicitly_ create a `secured` Space. The security privileges of the specified user will be propagated to the Filter. If the user has **Read** privileges, then the filter will be able to perform a `space.read(..)` on its embedded Space.
 
-#### Before Authentication operation
+## Before Authentication operation
 
 A filter can be registered for `before-authentication` events. Before a client tries to authenticate, any filter with the `before-authentication` operation-code will be invoked. The `SpaceContext` supplied as part of the call holds a `SecurityContext` that has the `UserDetails` object.
 
@@ -324,7 +324,9 @@ An example of a simple POJO filter using annotations:
 </os-core:embedded-space>
 ```
 
-**Note** that the annotated method must have the `SpaceContext` as a parameter.
+{{% note "Note" %}}
+The annotated method must have the `SpaceContext` as a parameter.
+{{%/note%}}
 
 
 ```java
@@ -408,9 +410,9 @@ public class SimpleFilter {
 
 Custom Access control using Space Filters allows for access decisions based on user/role/data relationships. The `SpaceContext` filter invocation parameter holds the `SecurityContext` of the current operation. This context provides you with `UserDetails`, the `Authentication` and `AuditDetails`. Based on these, you can enforce custom access decisions (e.g. allow or disallow the operation).
 
-{{% info %}}
-Note that the `SpaceContext` may be `null` in cases related to replication/recovery and filter operations such as `notify-trigger`. In these cases, there is no user context.
-{{%/info%}}
+{{% note "Note" %}}
+The `SpaceContext` may be `null` in cases related to replication/recovery and filter operations such as `notify-trigger`. In these cases, there is no user context.
+{{%/note%}}
 
 The filter can be declared just like any other filter, but note that the `priority` plays a role in the order of filter execution. Default priority is zero.
 
@@ -504,17 +506,17 @@ While executed tasks are effective when collocated, you may require operations o
 GigaSpace clustered = gigaSpace.getClustered();
 ```
 
-{{% info %}}
+{{% info "Info"%}}
 Space operations performed from +within+ the task are guarded by a _temporary_ trust available throughout the life-cycle of the task. If you are trying to enforce custom access control, the `SecurityContext` will need to be extracted in a `before-execute` filter call.
 {{% /info %}}
 
-# Executors Based Remoting
+# Executor-Based Remoting
 
 Executor Remoting {{%currentjavanet "executor-based-remoting.html" %}}allows you to use remote invocations of POJO services, with the Space as the transport layer using OpenSpaces Executors. To invoke a service method, you must have **Execute** privileges for class `org.openspaces.remoting.ExecutorRemotingTask`.
 
 
 
-# Event Driven Remoting
+# Event-Driven Remoting
 
 
 [Event Driven Remoting]({{%currentjavaurl%}}/event-driven-remoting.html) allows you to use remote invocations of POJO services, with the space as the transport layer using a polling container on the space side to process the invocations. Under the wires, event driven remoting uses the Space write and take capabilities. Thus, you must have **Write* and *Take** privileges (at both ends) for class `org.openspaces.remoting.EventDrivenSpaceRemotingEntry`.

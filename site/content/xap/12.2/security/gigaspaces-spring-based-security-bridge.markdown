@@ -1,6 +1,6 @@
 ---
 type: post122
-title:  Spring-based bridge
+title:  Spring-based Bridge
 categories: XAP122SEC, PRM
 parent: spring-security-bridge.html
 weight: 200
@@ -49,7 +49,7 @@ spring-security-config-location = ../config/security/security-config.xml
 
 This is all the configuration required to enable the use of the Spring-based security bridge. The rest is part of the Spring Security configuration XML file.
 
-{{% info %}}
+{{% info "Info"%}}
  For convenience, the template properties `config/security/spring-security.properties` can be renamed to `security.properties` or referenced using a system property (see [Security Configurations](./security-configurations.html)).
 {{% /info %}}
 
@@ -62,7 +62,7 @@ Any configurations that are applied can be seen by setting the logging level to 
 com.gigaspaces.security.level = CONFIG
 ```
 
-# Testing the Spring-based security bridge
+# Testing the Spring-based Security Bridge
 
 Before launching up a whole full-blown application, you may want to test that the bridge is actually working to your satisfaction. For example, that the users, roles, and authorities are extracted correctly, etc. For this, you don't even need a GigaSpaces instance.
 
@@ -92,7 +92,7 @@ public class Main {
 }
 ```
 
-{{% note %}}
+{{% note "Note"%}}
  When running a standalone test, you will need to include the following jars in your classpath: <XAP root>/lib/optional/security/spring-security-core-\*.jar , <XAP root>/lib/optional/spring/\*.jar , <XAP root>/lib/required/\*.jar
 {{% /note %}}
 

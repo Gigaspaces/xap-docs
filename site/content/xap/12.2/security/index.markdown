@@ -1,13 +1,13 @@
 ---
 type: post122
 title:  Security
-categories: XAP122SEC, OS
+categories: XAP122SEC, OSS
 weight: 1250
 ---
 
 
 
-This section provides an understanding of GigaSpaces XAP Security, where it fits in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data, services, or both. XAP provides a set of authorities granting privileged access to data, and for performing operations on services.
+This section provides an understanding of GigaSpaces Security features, where they fit in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data, services, or both. XAP provides a set of authorities granting privileged access to data, and for performing operations on services.
 
 <br>
 
@@ -15,7 +15,7 @@ This section provides an understanding of GigaSpaces XAP Security, where it fits
 {{%fpanel%}}
 
 [Overview](./security.html){{<wbr>}}
-Overview of main features
+Overview of the main security features
 
 [Getting Started](./security-getting-started.html){{<wbr>}}
 Getting Started with Security
@@ -35,7 +35,7 @@ Configurations and defaults
 [Reference Implementation](./security-ref-impl.html){{<wbr>}}
 An implementation of SecurityManager
 
-[Default File Based Security](./default-file-based-security-implementation-ext.html){{<wbr>}}
+[Default File-Based Security](./default-file-based-security-implementation-ext.html){{<wbr>}}
 XAP provides a default security implementation. The implementation uses a local file to store the users and roles.
 
 
@@ -43,7 +43,7 @@ XAP provides a default security implementation. The implementation uses a local 
 Additional authorities available for administration and monitoring
 
 [Securing Components](./securing-xap-components.html){{<wbr>}}
-GigaSpaces XAP has security built over the major server components-  GSA, GSM, GSC and also Processing Unit with Space data. This section explains how security relates to each component and the configurations needed to securing your application.
+GigaSpaces has security built over the major server components-  GSA, GSM, GSC and also Processing Unit with Space data. This section explains how security relates to each component and the configurations needed to securing your application.
 
 [Custom Security](./custom-security.html){{<wbr>}}
 Customize security to meet your application requirements

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Failure Detection
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: troubleshooting.html
 weight: 400
 ---
@@ -66,15 +66,15 @@ Change the default settings **only if you have a special need** to reduce the fa
 - the `yield-time` minimum value should be 200 ms.
 - Reducing the `invocation-delay` and `retry-timeout` values, and increasing the `retry-count` values might increase the chatting overhead between the spaces and the lookup service.
 
-{{% refer %}}
+{{% tip "Tip" %}}
 For additional tuning options please contact the [GigaSpaces Support Team](http://www.gigaspaces.com/supportcenter).
-{{% /refer %}}
+{{% /tip %}}
 
 # Failure Detection Parameters
 
 
 
-## Space Side Parameters
+## Space-Side Parameters
 
 ### Active Election Parameters
 
@@ -91,7 +91,7 @@ The following parameters in the cluster schema active election  block regard fai
 
 
 
-## Client Side Parameters
+## Client-Side Parameters
 
 ### Proxy Connectivity
 
@@ -135,12 +135,12 @@ The `LeaseRenewalManager` in the `advanced-space.config` file is also related to
 
 
 
-## Lookup Service Unicast discovery parameters
+## Lookup Service Unicast Discovery Parameters
 
 When a Jini Lookup Service fails and is brought back online, a client (such as a GSC, space or a client with a space proxy) needs to re-discover it. It uses Jini unicast discovery retrying to connect to the failed remote lookup service. The default unicast retry protocol provides a graduating approach, increasing the amount of time to wait before the next discovery attempts are made - upon each invocation, eventually reaching a maximum time interval over which discovery is re-tried. In this way, the network is not flooded with unicast discovery requests referencing a lookup service that may not be available for quite some time (if ever).
 
 The downside is that it may delay the discovery of services if these are not brought up quickly. A discovery can be delayed us much as 15 minutes. If you have two GSMs and one fails, but it will be brought back up only in the next hour, then it's discovery will take ~15 minutes after it has loaded.
 
 {{%refer%}}
-These settings can be configured - see [How to Configure Unicast Discovery](./network-unicast-discovery.html).
+These settings can be configured. Refer to [How to Configure Unicast Discovery](./network-unicast-discovery.html).
 {{%/refer%}}

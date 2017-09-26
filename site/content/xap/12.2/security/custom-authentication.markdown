@@ -42,13 +42,14 @@ public class CustomUserDetails extends com.gigaspaces.security.directory.User {
 }
 ```
 
-Note that since `User` is `Serializable`, the `customPayload` field is automatically serialized along with the default credentials.
-
-{{% note%}}
-When a proxy sends a `UserDetails` instance to the server over the wire, it is implicitly encrypted before serialization and decrypted post de-serialization. This encryption is internal to GigaSpaces and is intended only to secure the transport layer. In addition, a custom security implementation may choose to encrypt some/all of the data in the **UserDetails** instance (For example, the default file-based security implementation hashes the user password and encrypts the file contents when persisting data to the disk).
+`User` is `Serializable`, therefore the `customPayload` field is automatically serialized along with the default credentials.
+ 
+{{% note "Note"%}}
+When a proxy sends a `UserDetails` instance to the server over the wire, it is implicitly encrypted before serialization and decrypted post de-serialization. This encryption is internal to GigaSpaces and is intended only to secure the transport layer.<br>
+In addition, a custom security implementation may choose to encrypt some/all of the data in the **UserDetails** instance (For example, the default file-based security implementation hashes the user password and encrypts the file contents when persisting data to the disk).
 {{%/note%}}
 
-# The Client side
+# The Client Side
 
 A secured proxy is usually configured with a username-password pair, which are implicitly translated to a default `UserDetails` implementation as discussed above. When custom credentials are required, the proxy can be configured with a `CredentialsProvider` implementation, which is used to obtain a `UserDetails` instance whenever the client connects to a new server.
 
@@ -92,8 +93,8 @@ public class CustomCredentialsProvider extends CredentialsProvider {
 }
 ```
 
-{{% note %}}
-Note that when using the custom credentials provider from the UI or CLI, it is instantiated via the default constructor and initialized via the `initialize(properties)` method.
+{{% note "Note"%}}
+When using the custom credentials provider from the UI or CLI, it is instantiated via the default constructor and initialized via the `initialize(properties)` method.
 {{%/note%}}
 
 ## Usage
@@ -236,12 +237,12 @@ public class CustomSecurityManager implements com.gigaspaces.security.SecurityMa
 }
 ```
 
-## Authentication result
+## Authentication Result
 
 The `authenticate` method not only validates the credentials are authentic - it also returns the `Authority` (XAP name for privilege) set granted to the user. The `authenticate` method returns an `Authentication` instance, which is created using a `UserDetails` instance which stores the user's authorities. You can choose between using the built-in `User` class to encapsulate the original credentials with the granted authorities (as shown in the demo implementation), or adjusting your custom user details implementation to store the authorities.
 
-{{% note %}}
-Since 3rd party security repositories usually store privileges as strings, you may find it convenient to use the `AuthorityFactory.create(String)` method to load the authorities (if it's being stored in its formal string representation).
+{{% note "Note"%}}
+Third-party security repositories usually store privileges as strings,so you may find it convenient to use the `AuthorityFactory.create(String)` method to load the authorities (if it's being stored in its formal string representation).
 {{%/note%}}
 
 Security repositories and administrators often prefer not to map users directly to privileges, but rather to create **roles** (e.g. Admins, Managers, Employees), map a role to a set of privileges (e.g. Write, Read) and then map users to roles (this simplifies management of large sets of users). However, XAP expects a flat array of `Authority`. To bridge this gap you can either traverse the roles hierarchy and flatten it, or use the `PopulatedRoleAuthority` class, which  implicitly flattens the hierarchy for authorization but maintains it for administration.
@@ -314,7 +315,7 @@ custom-security.server-address = myServer
 Use the `-user-details-provider` and `-user-details-properties` arguments to use a custom credentials provider with the CLI.
 
 {{% refer %}}
-For a full list of command usage, please refer to: [Command Line Interface (CLI) Security](./command-line-interface-cli-security.html)
+For a full list of command usage, refer to [Command Line Interface (CLI) Security](./command-line-interface-cli-security.html).
 {{%/refer%}}
 
 Run the `gs` script, and then use the `login` command:
@@ -350,7 +351,7 @@ The implementation class can be placed in a JAR under `Gigaspaces\lib\platform\e
 ![customlogin-properties-new.png](/attachment_files/customlogin-properties-new.png)
 {{%/align%}}
 
-{{% note %}}
+{{% note "Note"%}}
 If you only have one provider, it might be convenient to set it prior to launching the UI. This will automatically set it as the "user details provider class".
 {{%/note%}}
 
