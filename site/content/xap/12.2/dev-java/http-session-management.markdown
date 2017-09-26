@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  HTTP Session Management
-categories: XAP122, OSS
+categories: XAP122, PRM
 parent: web-application-overview.html
 weight: 250
 ---

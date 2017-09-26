@@ -34,7 +34,7 @@ If you need to start the [Service Grid](/product_overview/service-grid.html) com
 
 **Open-Source Scripts**
 
-- **lookup-instance** - starts an instance of the [LUS](/product_overview/service-grid.html#lus).
+- **lookup-service** - starts an instance of the [LUS](/product_overview/service-grid.html#lus).
 
 **Additional Scripts**
 
@@ -99,8 +99,8 @@ XAP supports space monitoring and management using JMX - The Java Management Ext
 {{% /note %}}
 
 {{% note "Note"%}}
-When running `gs-instance`, the Jini Lookup Service runs implicitly. When having many Jini Lookup Services running across the network, the spaces and clients might be overloaded since they publish themselves into the Lookup Service, or are trying to get updates about newly registered services.
-A good practice is to have two Lookup Services running using the `lookup-instance` command located in the `<XAP Root>\bin` directory, or the GSM command located in the `<XAP Root>\bin` folder. This ensures no single point of failure for the Lookup Service.
+When running `space-instance`, the Jini Lookup Service runs implicitly. When having many Jini Lookup Services running across the network, the spaces and clients might be overloaded since they publish themselves into the Lookup Service, or are trying to get updates about newly registered services.
+A good practice is to have two Lookup Services running using the `lookup-service` command located in the `<XAP Root>\bin` directory, or the GSM command located in the `<XAP Root>\bin` folder. This ensures no single point of failure for the Lookup Service.
 {{% /note %}}
 
 ### Syntax & Arguments
