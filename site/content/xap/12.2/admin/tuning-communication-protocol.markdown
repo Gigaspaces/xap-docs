@@ -6,6 +6,9 @@ parent:  tuning.html
 weight: 700
 ---
 
+{{% note "Note" %}}
+Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+{{% /note %}}
 
 XAP provides a pluggable communication adaptor, LRMI (**Light Remote Method Invocation**), built on top of the {{%exurl "NIO communication protocol" "http://en.wikipedia.org/wiki/New_I/O"%}}.
 
@@ -184,7 +187,7 @@ With a system that may trigger a notify listener (that performs remote space acc
 
 
 {{% refer %}}
-If you are using the **notification slow consumer** mechanism see the [Slow Consumer](./slow-consumer.html#Configuration -- Server Side) for additional LRMI parameters to configure.
+If you are using the **notification slow consumer** mechanism, refer to [Slow Consumer](./slow-consumer.html#Configuration -- Server Side) for additional LRMI parameters to configure.
 {{%/refer%}}
 
 {{% anchor portrange %}}

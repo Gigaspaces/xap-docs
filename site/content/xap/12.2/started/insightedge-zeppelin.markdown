@@ -12,7 +12,7 @@ This section describes how to use the interactive Apache Zeppelin Web Notebook.
 
 The Web Notebook can be started in any of the following ways:
 
-* In `demo` mode, the Web Notebook is started automatically at {{%exurl "localhost:9090""http://localhost:9090"%}}. See [Starting InsightEdge](./insightedge-starting.html) for information about `demo` mode.
+* In `demo` mode, the Web Notebook is started automatically at {{%exurl "localhost:9090""http://localhost:9090"%}}. See [InsightEdge Script](./insightedge-script.html) for information about `demo` mode.
 * Start the Web Notebook manually at any time by running the following command from the `<XAP HOME>/insightedge/bin` directory:
 
 ```bash

@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Multicast Configuration
-categories: XAP122ADM, OSS
+categories: XAP122ADM, PRM
 parent: network.html
 weight: 200
 ---

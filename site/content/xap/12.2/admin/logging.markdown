@@ -6,6 +6,9 @@ parent: logging-overview.html
 weight: 100
 ---
 
+{{% note "Note" %}}
+Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+{{% /note %}}
 
 XAP makes logging calls using the Java platform's core logging facilities.
 For more information on the JDK logging framework, please refer to the following online documentation: {{%exurl "Java Logging Overview" "https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html"%}}.
@@ -104,7 +107,7 @@ Formatters are in charge of formatting the log messages and adding meta data to 
 XAP configures the logging `Handler`'s `formatter` property with a single `Formatter` implementation class:
 `com.gigaspaces.logger.GSSimpleFormatter. This formatter class is based on the `java.util.logging.SimpleFormatter` class. see [Formatting Log Messages](./logging-formatting-messages.html) for more details.
 
-# Exception visibility
+# Exception Visibility
 
 XAP prints exception stack traces for messages with level `SEVERE` or higher.
 
@@ -133,8 +136,8 @@ To change the logging level in JConsole do the following:
 
 {{% include "/COM/jconsolejmapwarning.markdown" %}}
 
-{{% note %}}
-Note, you will need to use the logging level without the .level string e.g.: `com.gigaspaces.core.cluster.replication` and set value `FINE`
+{{% note "Note"%}}
+You will need to use the logging level without the .level string e.g.: `com.gigaspaces.core.cluster.replication` and set value `FINE`
 {{%/note%}}
 
 The LoggingMXBean enables you to:
@@ -149,7 +152,7 @@ The LoggingMXBean enables you to:
 
 The [logging level](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/util/logging/Level.html) class defines a set of standard logging levels that can be used to control logging output. The logging level are ordered and are specified by ordered integers/constants.
 
-{{% note %}}
+{{% note "Note"%}}
 Enabling logging at a given level also enables logging at all higher levels.
 {{% /note %}}
 
@@ -184,8 +187,6 @@ For each category there are various logger name you should use when configuring 
 Here are the different modules , their logging names and their default logging level:
 
 
-
-
 ## Client General
 
 
@@ -198,7 +199,7 @@ GigaSpaces Client can be another component or application that connects to a Gig
 Liveness check is a functionality that runs inside a GigaSpaces proxy (usually held by a client connecting to a space) to keep track of the cluster members.
 Additional info about GigaSpaces proxy can be found [here]({{%currentadmurl%}}/tuning-proxy-connectivity.html)
 
-##  .Net API
+##  .NET API
 
 The logging configuration file includes declarations of the loggers available at the bridge between .NET and Java.
 

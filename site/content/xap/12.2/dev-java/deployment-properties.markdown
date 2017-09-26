@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Deployment Properties
-categories: XAP122, OSS
+categories: XAP122, PRM
 parent: deploying-and-running-overview.html
 weight: 400
 ---
@@ -9,8 +9,8 @@ weight: 400
 
 When a processing unit is deployed and provisioned, you can inject property values to it only known at deployment time, or in order to further configure the processing unit elements. Injected properties can be either properties that have been explicitly externalized from the [processing unit configuration file](./configuring-processing-unit-elements.html) or properties related to one the platform components (e.g. a space) that can be configured at deployment time. This mechanism is built on top of Spring's support for an externalized properties configuration called {{%exurl "PropertyPlaceholderConfigurer" "http://static.springframework.org/spring/docs/2.5.x/reference/beans.html#beans-factory-placeholderconfigurer"%}}. This mechanism has been enhanced to provide a powerful yet simple property injection.
 
-{{% note %}}
-One of the core values of GigaSpaces XAP processing unit model is the fact that a processing unit need not be changed at all in the transition from the development environment (namely your IDE) to the production environment. This feature, along with others, is one of the enablers of this behavior.
+{{% note "Note"%}}
+One of the core values of GigaSpaces XAP processing unit model is that a processing unit need not be changed at all in the transition from the development environment (namely your IDE) to the production environment. This feature, along with others, is one of the enablers of this behavior.
 {{%/note%}}
 
 # Defining Property Place Holders in Your Processing Unit
@@ -19,8 +19,8 @@ Property injection to the processing unit's configuration is supported at the Sp
 
 Below you can find an example of an XML configuration which defines to property place holders, `spaceSchema` and `connectionTimeout`. In this example we also specify default values for them, which is always a good practice and does not force the deployer to specify values for these place holders.
 
-{{% note %}}
-Note that for property place holders we use the `${placeholder name}` notation.
+{{% note "Note"%}}
+For property placeholders, we use the `${placeholder name}` notation.
 {{%/note%}}
 
 {{%tabs%}}
@@ -73,7 +73,7 @@ Note that for property place holders we use the `${placeholder name}` notation.
 
 The various [processing unit runtime modes](./deploying-and-running-the-processing-unit.html) all provide support for injecting property values instead of place holders. There are several ways to define the values for the property place holders, depending on how you choose to run/deploy your processing unit.
 
-### Using a `.properties` File
+## Using a `.properties` File
 
 If you would like your properties to be configured in a dedicated file this can be done in various ways.
 

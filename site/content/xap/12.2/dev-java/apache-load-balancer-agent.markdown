@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Apache Load Balancer Agent
-categories: XAP122, OSS
+categories: XAP122, PRM
 parent: web-application-overview.html
 weight: 400
 ---

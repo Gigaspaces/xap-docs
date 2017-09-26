@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Is Multicast Available
-categories: XAP122ADM, OSS
+categories: XAP122ADM, PRM
 parent: network-multicast.html
 weight: 300
 ---
