@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Testing System Environment
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: troubleshooting.html
 weight: 200
 ---
@@ -12,7 +12,7 @@ weight: 200
 To perform a simple system testing you should use the `space-instance.bat` script on windows or `space-instance.sh` script on linux.
 
 {{% refer %}}
-To setup a production environment see the [Moving into Production Checklist](./moving-into-production-checklist.html).
+To set up a production environment,refer to [Moving into Production Checklist](./moving-into-production-checklist.html).
 {{% /refer %}}
 
 # Verifying Local Installation
@@ -88,7 +88,7 @@ persistency mode [memory]
 1. Ping the space by running the `<XAP Root>\bin\gs.bat/sh` utility:{{<wbr>}}
     `gs space ping -url jini://*/*/mySpace`
 
-{{% tip %}}
+{{% tip "Tip"%}}
 The following using multicast lookup discovery protocol. The first `*` of the URL means search for the lookup service across the network using multicast.
 {{% /tip %}}
 
@@ -109,7 +109,7 @@ Iterations: 5
 Average Time = 135 milliseconds
 ```
 
-{{% tip %}}
+{{% tip "Tip"%}}
 Subsequent space ping calls will have much faster response time. The fist space ping call introduce some meta data to the space. This happens only once.
 {{% /tip %}}
 
@@ -142,7 +142,7 @@ Iterations: 5
 Average Time = 135 milliseconds
 ```
 
-{{% tip %}}
+{{% tip "Tip"%}}
 When the ping client running on a remote machine (other than the machine running the space), `localhost` should be replaced with the machine **hostname** or **IP** running the space instance.
 {{% /tip %}}
 

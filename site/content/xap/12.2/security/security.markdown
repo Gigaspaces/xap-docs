@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Overview
-categories: XAP122SEC, OS
+categories: XAP122SEC, OSS
 parent: none
 weight : 100
 ---
@@ -10,8 +10,13 @@ weight : 100
 
 XAP Security provides comprehensive support for securing your data, services, or both. GigaSpaces provides a set of authorities granting privileged access to data, and for performing operations on services.
 
+{{%note "Note"%}}
+Some security features are part of the open source edition, while others are only available with the commercial (licensed) editions.
+{{%/note%}} 
 
-**Dependencies**<br>
+
+# Dependencies
+
 In order to use this feature, include the `${XAP_HOME}/lib/optional/security/xap-security.jar` file on your classpath or use maven dependencies:
 
 ```xml
@@ -22,10 +27,12 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/security/xap
 </dependency>
 ```
 {{%refer%}}
-For more information on dependencies see [Maven Artifacts]({{%currentjavaurl%}}/maven-artifacts.html)
+For more information on dependencies, refer to [Maven Artifacts]({{%currentjavaurl%}}/maven-artifacts.html).
 {{%/refer%}} 
 
-**XAP Main Security Features:**
+# Main Security Features
+
+The features listed below are available with the open-source editions of GigaSpaces products.
 
 - Authority and Roles
     - Data access privileges
@@ -37,7 +44,9 @@ For more information on dependencies see [Maven Artifacts]({{%currentjavaurl%}}/
 
 - SSL Transport Layer security
 
-**Extensions:** _(available in XAP Premium/Enterprise)_
+# Extensions
+
+The features listed below are available with the commercial licensed editions of GigaSpaces products.
 
 - Spring Based Security support
     - LDAP Authenticating

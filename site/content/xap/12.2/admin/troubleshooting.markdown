@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Troubleshooting
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: none
 weight: 1350
 ---
@@ -20,7 +20,7 @@ Troubleshooting common user mistakes which might lead to issues.
 [Protective Modes](./troubleshooting-protective-modes.html){{<wbr>}}
 Guidelines for building highly  robust and efficient applications as well as to avoid common mistakes.
 
-[Testing System environment](./troubleshooting-testing-system-environment.html){{<wbr>}}
+[Testing System Environment](./troubleshooting-testing-system-environment.html){{<wbr>}}
 Verifying a local installation and a remote installation.
 
 [Viewing Clustered Space Status](./troubleshooting-viewing-clustered-space-status.html){{<wbr>}}

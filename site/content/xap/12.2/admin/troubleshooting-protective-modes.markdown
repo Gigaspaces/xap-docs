@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Protective Modes
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 weight: 150
 parent: troubleshooting.html
 ---
@@ -54,7 +54,7 @@ Writing an entry to the space without a space ID {{%currentjavanet "query-by-id.
 com.gigaspaces.client.protective.ProtectiveModeException: Cannot introduce a type named 'MyClass' without an id property defined...
 ```
 
-{{% note %}}
+{{% note "Note"%}}
 It is highly recommended that you modify them and add a `SpaceId` decoration. If this is not feasible, it can be disabled using the following system property:
 
 ```bash
@@ -63,7 +63,7 @@ It is highly recommended that you modify them and add a `SpaceId` decoration. If
 {{% /note %}}
 
 
-# Space Routing property Validation
+# Space Routing Property Validation
 
 The `Space Routing` property is used to partition the data across different partitions. It is recommended to define such property explicitly to control how data is partitioned and avoid common mistakes like writing data to the wrong partition.
 
@@ -78,7 +78,7 @@ com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected 
 
 A Space routing value should be specified before writing the space. Missing routing value would result in a remote client not being able to locate this entry as the routing value will not match the partition the entry is located.
 
-{{% note%}}
+{{% note "Note"%}}
 It is highly recommended that you modify them and add a routing value. If this is not feasible, you can disable it using the following system property:
 
 ```bash
@@ -99,7 +99,7 @@ It is highly recommended that you modify them and set the right routing.
 The following [example](/sbp/storing-partition-information.html) demonstrates one way to handle writing entries to a partition with the wrong routing value.
 {{% /refer %}}          
 
-{{% note%}}
+{{% note "Note"%}}
 If this is not feasible, and you know what you're doing, it can be disabled using the following system property: 
 
 ```bash
@@ -108,7 +108,7 @@ If this is not feasible, and you know what you're doing, it can be disabled usin
 {{% /note %}}
 
 
-# Primitive types Validation
+# Primitive Types Validation
 
 If you must use primitive property types, then assign null values. This is enforced by the protective mode since 9.7.
 
@@ -116,7 +116,7 @@ When querying the space using template matching {{%currentjavanet "query-templat
 
 See primitive types matching {{%currentjavanet "query-template-matching.html#primitive-types" %}}
 
-Starting XAP 9.7 a new protective mode has been added to protect against querying with a template which contains one or more primitive properties without a `nullValue`, since such templates are likely to produce unexpected results. 
+A protective mode was added to protect against querying with a template that contains one or more primitive properties without a `nullValue`, since such templates are likely to produce unexpected results. 
 
 If your application uses template matching with such types, you'll get the following exception:
 
@@ -128,7 +128,7 @@ com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected 
 
 It is highly recommended that you define `nullValue` where appropriate, or switch to SQLQuery {{%currentjavanet "query-sql.html"%}} instead.
 
-{{%note%}}
+{{%note "Note"%}}
 If this is not feasible, this protective mode can be disabled using the following system property: 
 
 ```bash

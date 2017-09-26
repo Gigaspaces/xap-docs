@@ -13,7 +13,7 @@ These release notes provide information about product changes, updates, resolved
 {{%fpanel%}}
 
 [What's New](whats-new.html){{<wbr>}}
-Summary of product changes and new features in this release
+Description of product changes and new features in this release
 
 [Resolved Issues](fixed-issues.html){{<wbr>}}
 List of issues resolved in this release

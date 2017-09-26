@@ -6,23 +6,40 @@ parent: administration-tools.html
 weight: 50
 ---
 
+{{% note "Note"%}}
+Some of the features described here are part of the open source edition, while others are only available with the commercial (licensed) editions.
+{{% /note %}}
 
-The `<XAP root>/bin` folder includes scripts to manage and monitor [GigaSpaces Runtime](./the-runtime-environment.html) Components and Applications:
+The `<XAP root>/bin` folder includes the following scripts that can be used to manage and monitor [GigaSpaces Runtime](./the-runtime-environment.html) components and applications. 
+
+**Open-Source Scripts**
 
 - **setenv** - Used by all scripts to configure and load [Common Environment Variables]({{%currentjavaurl%}}/common-environment-variables.html).
+
+**Additional Scripts**
+
+The scripts listed below are available in the licensed editions of the GigaSpaces applications.
+
 - **gs** - starts the GigaSpaces [interactive shell](./command-line-interface.html).
 - **gs-ui** - starts the [GigaSpaces Management Center](./gigaspaces-management-center.html).
 - **gs-webui** - starts the [Web Management Console](./web-management-console.html).
 - **gs-agent** - Starts the [GigaSpaces runtime environment](./the-runtime-environment.html) via the [Grid Service Agent](/product_overview/service-grid.html#gsa) (GSA), which starts and manages the [Service Grid](/product_overview/service-grid.html) components.
 
 
-In addition to the scripts described [here](./scripts.html), the `bin` folder contains **advanced_scripts.zip** for additional tasks, usually for development and troubleshooting
+In addition to the scripts described [here](./scripts.html), the `bin` folder contains **advanced_scripts.zip** for additional tasks, usually for development and troubleshooting.
 
 # Service Grid Scripts
 
-If you need to start the [Service Grid](/product_overview/service-grid.html) components manually instead of via the [gs-agent](/product_overview/service-grid.html#gsa), use the following scripts:
+If you need to start the [Service Grid](/product_overview/service-grid.html) components manually instead of via the [gs-agent](/product_overview/service-grid.html#gsa), use the following scripts.
+
+**Open-Source Scripts**
 
 - **lookup-instance** - starts an instance of the [LUS](/product_overview/service-grid.html#lus).
+
+**Additional Scripts**
+
+The scripts listed below are available in the licensed editions of the GigaSpaces applications.
+
 - **gsc** - starts an instance of the [GSC](/product_overview/service-grid.html#gsc).
 - **gsm** - starts an instance of the [GSM](/product_overview/service-grid.html#gsm) and [LUS](/product_overview/service-grid.html#lus).
 - **gsm_nolus** - starts an instance of the [GSM](/product_overview/service-grid.html#gsm).
@@ -30,15 +47,24 @@ If you need to start the [Service Grid](/product_overview/service-grid.html) com
 - **startJiniTX_Mahalo** - starts an instance of the Distributed transaction manager.
 
 # Processing Units
+
+**Open-Source Scripts**
+
 - **pu-instance** - starts a standalone, un managed instance of a processing unit.
 - **space-instance** - starts a standalone, un managed instance of a space. Used usually in development.
+
+**Additional Scripts**
+
+The script listed below is available in the licensed editions of the GigaSpaces applications.
+
 - **gs-memcached** - starts standalone, un managed instance of [Memcached API]({{%currentjavaurl%}}/memcached-api.html) listener.
 
 # Misc
+
+The scripts listed below are available in the licensed editions of the GigaSpaces applications.
+
 - **lookupbrowser** - Used with for special debug scenarios to inspect the lookup service.
 - **platform-info** - prints GigaSpaces version info (Use the command line [version](./command-line-interface.html) instead).
-
-
 
 This section explains how to start a light version of the GigaSpaces server, which loads a container and one space, using the `space-instance` script. The `space-instance` (which calls [SpaceFinder]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SpaceFinder.html)) starts by default embedded Reggie and Webster services.
 
@@ -68,11 +94,11 @@ You can enable this option in one of the following ways:
 
     com.j_spaces.core.container.embedded-services.mahalo.start-embedded-mahalo=true
 
-{{% note %}}
+{{% note "Note"%}}
 XAP supports space monitoring and management using JMX - The Java Management Extensions. For more details, refer to the [JMX Management](./space-jmx-management.html) section.
 {{% /note %}}
 
-{{% note %}}
+{{% note "Note"%}}
 When running `gs-instance`, the Jini Lookup Service runs implicitly. When having many Jini Lookup Services running across the network, the spaces and clients might be overloaded since they publish themselves into the Lookup Service, or are trying to get updates about newly registered services.
 A good practice is to have two Lookup Services running using the `lookup-instance` command located in the `<XAP Root>\bin` directory, or the GSM command located in the `<XAP Root>\bin` folder. This ensures no single point of failure for the Lookup Service.
 {{% /note %}}

@@ -11,30 +11,26 @@ weight: 1400
 In this part of the tutorial we will introduce you to XAP security, where it fits in the XAP architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements.
 XAP Security provides comprehensive support for securing your data and services.
 
-
-
-
-
-
+{{%note "Note"%}}
+Some security features are part of the open source edition, while others are only available with the commercial (licensed) editions.
+{{%/note%}}
 
 #  Security in XAP
 Security is made up of *Authentication* and *Authorization*.
 
-### Authentication
+## Authentication
 Authentication is the process of establishing and confirming the authenticity of a principal. A principal in GigaSpaces terms, means a user (human or software) performing an action in your application. A principal in XAP terms means a user (human or software) performing an action in your application. XAP Security is equipped with standard encryption algorithms (such as AES and MD5), which can be easily configured and replaced. The authentication layer is provided with a default implementation, which can be customized to integrate with other security standards. This layer is also known as the authentication manager. You can integrated the authentication layer through Spring Security to use LDAP or Data Base authentication.
 
 
-### Authorization
+## Authorization
 Authorization refers to the process of deciding whether a principal is allowed to perform a certain action. The authorization decision layer is totally independent from the authentication layer. The authorization decision manager is internal to XAP components and is used to intercept unauthorized access/operations to data and services. This layer uses roles that are made up of authorities which contain a set of permissions.
 
 
-
-
-# Role Based Security
+# Role-Based Security
 XAP's authorization implementation is based on roles. A role is comprised of a collection of *authorities* where an authority has a set of *permissions*. There are four categories of user authorities; System, Grid, Space and Monitoring.
 
 
-### System Authority
+## System Authority
 The System Authority consists of two privileges:
 
 
@@ -46,7 +42,7 @@ The System Authority consists of two privileges:
 
 
 
-### Grid Authority
+## Grid Authority
 The Grid Authority consists of privileges for managing the Grid and its Services (GSMs, GSCs, Processing Units).
 
 {{%indent%}}
@@ -59,7 +55,7 @@ The Grid Authority consists of privileges for managing the Grid and its Services
 {{%/indent%}}
 
 
-### Space Authority
+## Space Authority
 The Space Authority consists of privileges for operations on space data.
 
 {{%indent%}}
@@ -74,7 +70,7 @@ The Space Authority consists of privileges for operations on space data.
 |Execute |Execute tasks|
 {{%/indent%}}
 
-### Monitoring Authority
+## Monitoring Authority
 The Monitor Authority consists of privileges for monitoring the Grid and its Processing Units.
 Note that the monitoring is secured only by the 'tooling' (CLI/UI).
 
@@ -86,10 +82,15 @@ Note that the monitoring is secured only by the 'tooling' (CLI/UI).
 |Monitor PU	 |Monitoring of Processing Units (classes, connections, statistics, etc.)|
 {{%/indent%}}
 
-{{%refer%}}[Security Authorities]({{%currentsecurl%}}/security-authorities.html){{%/refer%}}
+{{%refer%}}For more information about role-based security, refer to [Security Authorities]({{%currentsecurl%}}/security-authorities.html).{{%/refer%}}
 
 
 # Managing Roles
+
+{{%note "Note"%}}
+This security feature is only available with the commercial (licensed) editions.
+{{%/note%}}
+
 You can create new roles and users with a configuration file or with the Admin UI. Here is an example how you use the Admin UI to create/update roles. Lets create a role called "training" that can access and interact with our xapTutorialSpace, but does not have monitoring authority.
 Start the Admin UI:
 
@@ -136,6 +137,11 @@ You may have noticed that you can assign fine grained access control for space o
 
 
 # Managing Users
+
+{{%note "Note"%}}
+This security feature is only available with the commercial (licensed) editions.
+{{%/note%}}
+
 A user is assigned roles. You can create new roles and users with a configuration file or with the Admin UI. Here is an example how you use the Admin UI to create/update users. Lets create a user called student and assign the role training we have just created in the step above. A user can have multiple roles.
 
 {{%section%}}
@@ -203,6 +209,11 @@ private Role createRole() {
 
 
 # Securing XAP Components
+
+{{%note "Note"%}}
+This security feature is only available with the commercial (licensed) editions.
+{{%/note%}}
+
 {{%section%}}
 {{%column width="70%" %}}
 XAP has security built over the major component, GSA, GSM, GSC and Processing Unit with Space data. Each one of these components can be configured according to your application security requirements.
@@ -214,7 +225,7 @@ XAP has security built over the major component, GSA, GSM, GSC and Processing Un
 {{%/column%}}
 {{%/section%}}
 
-### Data Security
+## Data Security
 A secured embedded Space protects access (to data) which is granted only to users with sufficient privileges. Here is an example how to create a secure space with no internal services:.
 
 {{%tabs%}}
@@ -265,10 +276,7 @@ public void setupSpace()
 {{%refer%}}[Securing Your Data]({{%currentsecurl%}}/securing-your-data.html){{%/refer%}}
 
 
-
-
-
-### Grid Security
+## Grid Security
 Grid Security is enabled in XAP by setting a global system property. This system property can be set when using the deployment scripts, or it can be appended in the setenv.sh/bat script in the GS_HOME/bin directory. Once the Grid Security is enabled, you can use the predefined roles and user names to protect and control the grid access.
 
 
@@ -282,8 +290,7 @@ This property affects the GSA, GSM, GSC and standalone PU instances with a space
 {{%refer%}}[Securing Grid Services]({{%currentsecurl%}}/securing-the-grid-services.html){{%/refer%}}
 
 
-
-### Transport Security
+## Transport Security
 The transport layer can be secured using an SSL communication filter.
 
 {{%refer%}}[Securing the Transport Layer]({{%currentsecurl%}}/securing-the-transport-layer-using-ssl.html){{%/refer%}}

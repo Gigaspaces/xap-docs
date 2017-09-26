@@ -62,7 +62,7 @@ Download the [sample.ldif](/download_files/sample.ldif)
 {{%/align%}}
 
 
-# Configure Spring to use an LDAP Server
+# Configure Spring to Use an LDAP Server
 
 Spring Security supports authentication against LDAP through `LdapAuthenticationProvider`, an authentication provider that knows how to check user credentials against and LDAP repository.
 
@@ -79,11 +79,11 @@ Spring Security supports authentication against LDAP through `LdapAuthentication
 </bean>
 ```
 
-{{% note %}}
+{{% note "Note"%}}
 An LDAP Spring Security configuration file can be found under <XAP root>/config/security/ldap-security-config.xml
 {{% /note %}}
 
-## Authenticating with LDAP binding
+## Authenticating with LDAP Binding
 
 Spring Security comes with an `LdapAuthenticator` implementation called `BindAuthenticator`. `Bindauthenticator` uses an LDAP bind operator to bind as a user to the LDAP server. This approach relies on the LDAP server to authenticate the user's credentials.
 
@@ -109,7 +109,7 @@ Spring Security comes with an `LdapAuthenticator` implementation called `BindAut
 
 The `userDnPatterns` property is used to tell the authenticator how to find a user in LDAP. In this case we are only using a single DN pattern. For example, if the username is Edward, the DN used to bind to LDAP will be `uid=Edward,ou=people` relative to the initial context `dc=example,dc=com`.
 
-## Authenticating by comparing passwords
+## Authenticating by Comparing Passwords
 
 Spring Security also supports authentication by password comparison with `PasswordComparisonAuthenticator`. `PasswordComparisonAuthenticator` compares the supplied password with a password attribute (`userpassword`, by default) in the user record. The password is encoded using the password encoder, by default `LdapShaPasswordEncoder`.
 
@@ -139,7 +139,7 @@ Unlike `BindAuthenticator`, `PasswordComparisonAuthenticator` doesn't bind to LD
 </bean>
 ```
 
-## Declaring the populator
+## Declaring the Populator
 
 Once the user identity is confirmed, `LdapAuthenticationProvider` must retrieve a list of the user's granted authorities. Spring Security comes with `DefaultLdapAuthoritiesPopulator`. Here's how a populator is configured:
 
@@ -165,7 +165,7 @@ Once the user identity is confirmed, `LdapAuthenticationProvider` must retrieve 
 
 The `groupRoleAttribute` property specifies the name of the attribute that will contain role information which effectively translate into a user's granted authorities. It defaults to `cn`, but for our example, we've set it to `ou`.
 
-{{% note%}}
+{{% note "Note"%}}
 Notice that the `convertToUpperCase` and `rolePrefix` are different than the defaults. The granted authorities should be returned as-is, without any conversion. For example, the authority `SpacePrivilege READ ClassFilter eg.cinema.Movie` **should not** be converted to upper case, nor should it be prefixed with a role prefix "ROLE_".
 {{% /note %}}
 

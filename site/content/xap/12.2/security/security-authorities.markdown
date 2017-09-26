@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Authorities and Privileges
-categories: XAP122SEC, OS
+categories: XAP122SEC, OSS
 parent: none
 weight: 300
 ---

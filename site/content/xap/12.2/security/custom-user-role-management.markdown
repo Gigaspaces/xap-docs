@@ -14,13 +14,13 @@ From the `DirectoryManager` you can gain a `UserManager` interface and a `RoleMa
 
 GigaSpaces security is not aware of the directory at all. As long as the authentication process manages to access the user storage, authenticate the user and return all its authorities.
 
-#### Example usage of the `DirectoryManager` API
+**Sample usage of the `DirectoryManager` API**
 
 In the [Hello World example](./securing-the-helloworld-example.html), we presented a way to declare the users using the UI. It can also be done using the `DirectoryManager` API.
 
 Using the API we would like to declare the following:
 
-{{% note %}}
+{{% note "Note"%}}
 The **helloProcessor** user will be granted `Take` access for `HelloObject` and `Write` access for `ProcessedHelloObject`.
 The **helloFeeder** user will be granted `Write` access for `HelloObject` and `Read` access for `ProcessedHelloObject`.
 {{% /note %}}

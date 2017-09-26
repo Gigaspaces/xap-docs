@@ -1,7 +1,7 @@
 ---
 type: post122
 title:  Viewing Clustered Space Status
-categories: XAP122ADM
+categories: XAP122ADM, PRM
 parent: troubleshooting.html
 weight: 300
 ---
@@ -14,7 +14,7 @@ The status of clustered spaces can be viewed using different logging levels. Thi
 
 The `Monitor` monitors the status of live spaces and reports disconnections, while the `Detector` detects the status of disconnected spaces and reports reconnection. The space status frequency can be configured using the `CONFIG` logging level.
 
-{{% note %}}
+{{% note "Note"%}}
 See the [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html) for details how to tune the Monitor and Detector behavior.
 {{%/note%}}
 
@@ -69,7 +69,7 @@ In most cases, `livenessDetectorFrequency` is the property you need to alter, si
 
 The unavailability of cluster members is noticed when a direct operation is performed on them. The `livenessMonitorFrequency` property timely monitors all live cluster members. Usually, when you have backup-only spaces, this is most important. The only time an operation is performed on a _backup-only_ space is when it becomes active (i.e., primary), and thus you want it's availability status to be noticed beforehand.
 
-{{% note %}}
+{{% note "Note"%}}
 It is recommended to **increase the value of the `Monitor` thread to a maximum** if there are **many clients** or if a large cluster is used.
 {{%/note%}}
 
