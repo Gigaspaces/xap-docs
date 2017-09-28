@@ -59,17 +59,17 @@ To learn more about the XAP open-source [features](https://xap.github.io/), cont
 
 # Documentation Links
 
-* Data partitioning (missing page in getting started)
+*  [Data partitioning](../started/data-partitioning.html)
 
-* [Rich query language](https://docs.gigaspaces.com/xap/12.2/started/xap-tutorial-part1.html)
+* [Rich query language](../started/xap-tutorial-part1.html)
 
-* [Distributed execution](https://docs.gigaspaces.com/xap/12.2/started/xap-tutorial-part3.html)
+* [Distributed execution](../started/xap-tutorial-part3.html)
 
-* [Event processing](https://docs.gigaspaces.com/xap/12.2/started/xap-tutorial-part4.html)
+* [Event processing](../started/xap-tutorial-part4.html)
 
-* [Full transactionality](https://docs.gigaspaces.com/xap/12.2/started/xap-tutorial-part6.html)
+* [Full transactionality](../started/xap-tutorial-part6.html)
 
-* [Persistence](https://docs.gigaspaces.com/xap/12.2/started/xap-tutorial-part7.html)
+* [Persistence](../started/xap-tutorial-part7.html)
 
 # How Can I Contribute to the XAP Open Source Data Grid?
 
