@@ -21,7 +21,7 @@ Learn how to run the InsightEdge examples.
 [Develop Your First Application](insightedge-examples.html)<br>
 Get started with developing InsightEdge applications.
 
-[insightedge Script](insightedge-examples.html)<br>
+[InsightEdge Script](insightedge-examples.html)<br>
 Get full information on the `insightedge` script.
 
 {{%/fpanel%}}

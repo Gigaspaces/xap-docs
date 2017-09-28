@@ -24,7 +24,7 @@ insightedge-maven
 
 For SBT projects include the following:
 
-```
+```bash
 resolvers += Resolver.mavenLocal
 resolvers += "Openspaces Maven Repository" at "http://maven-repository.openspaces.org"
 
@@ -50,7 +50,7 @@ InsightEdge .jars are already packed in the InsightEdge distribution, and are au
 
 InsightEdge provides an extension to the regular Spark API.
 
-{{%refer "See also..."%}}
+{{%refer%}}
 Read the {{%exurl "Self-Contained Applications""http://spark.apache.org/docs/latest/quick-start.html#self-contained-applications"%}} topic in the Apache Spark documentation if you are new to Spark.
 {{%/refer%}}
 
