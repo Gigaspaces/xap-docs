@@ -59,7 +59,7 @@ Performance benchmarks with XAP's In-Memory Data Grid mainly involve testing lat
 [Quiesce Mode](./quiescemode.html){{<wbr>}}
 Processing Units can be configured to be put into maintenance mode. When a processing unit is in maintenance mode, it rejects all data-related operations with an exception. This is useful when performing a safe shutdown or for a rolling system upgrade.
 
-[Security](./security/index.html){{<wbr>}}
+[Security](../security/index.html){{<wbr>}}
 This section provides an understanding of GigaSpaces XAP Security, where it fits in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements.
 
 [XAP as a Windows Service](./installation-windows-service.html){{<wbr>}}
