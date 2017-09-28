@@ -13,7 +13,7 @@ weight: 100
 {{% /align %}}
 
 # XAP In-Memory Data Grid
-GigaSpaces XAP is the core in-memory data grid for the InsightEdge Platform. XAP is designed to support ultra-low latency and high-throughput applications that follow [Space Based Architecture](./concepts.html#concepts-space-based-architecture) design patterns. XAP is based on GigaSpaces' Spring-based [Open Spaces Framework](./product-architecture.html#product-architecture-openSpaces-api-and-components) as the primary development environment, and uses the GigaSpaces space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
+GigaSpaces XAP is the core in-memory data grid for the InsightEdge Platform. XAP is designed to support ultra-low latency and high-throughput applications that follow [Space-Based Architecture](./space-based-architecture.html) design patterns. XAP is based on GigaSpaces' Spring-based [OpenSpaces Framework](./product-architecture.html#product-architecture-openSpaces-api-and-components) as the primary development environment, and uses the GigaSpaces space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
 
 The following is a brief overview of some XAP data grid capabilities.
 
@@ -47,7 +47,7 @@ The following is a brief overview of some XAP data grid capabilities.
 - [Persistency]({{% latestjavaurl%}}/space-persistency-overview.html)
 
 
-Applications running on XAP can be scaled out linearly, because XAP uses the [Space Based Architecture](./concepts.html#concepts-space-based-architecture) (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as Processing Units (PU). These units are completely independent of each other, so that the application can scale indefinitely without increasing complexity, just by adding more units. SBA is based on the [Tuple Space](http://en.wikipedia.org/wiki/Tuple_space) paradigm; it follows many of the principles of [Service-Oriented Architecture](http://en.wikipedia.org/wiki/Service-Oriented_Architecture) and [Event-Driven Architecture](http://en.wikipedia.org/wiki/Event_Driven_Architecture), as well as elements of [grid computing](http://en.wikipedia.org/wiki/Grid_computing).
+Applications running on XAP can be scaled out linearly, because XAP uses the [Space-Based Architecture](./space-based-architecture.html) (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as Processing Units (PU). These units are completely independent of each other, so that the application can scale indefinitely without increasing complexity, just by adding more units. SBA is based on the [Tuple Space](http://en.wikipedia.org/wiki/Tuple_space) paradigm; it follows many of the principles of [Service-Oriented Architecture](http://en.wikipedia.org/wiki/Service-Oriented_Architecture) and [Event-Driven Architecture](http://en.wikipedia.org/wiki/Event_Driven_Architecture), as well as elements of [grid computing](http://en.wikipedia.org/wiki/Grid_computing).
 
 # Applications and Microservices
 Applications deployed on GigaSpaces XAP are very much like JEE distributed server-side applications. Each application is composed of one or more scalable modules, and contains one or more business logic code components, domain model objects (entries), in-memory data storage, messaging, and event processing code.

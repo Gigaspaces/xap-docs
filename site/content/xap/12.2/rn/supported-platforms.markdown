@@ -38,7 +38,8 @@ GigaSpaces products are tested with the following JVMs (32-bit and 64-bit):
 - IBM 1.7.0: XAP was tested using IBM JVM version 1.7.0 SR6.
 
 {{%warning "Important"%}}
-Java8 and Java7 (> u79) have changed their multicast operations regarding IPv6, and this can cause long initial connection times. To mitigate this issue, add '-Djava.net.preferIPv4Stack=true' to the JVM arguments.
+* Java 8 and Java 7 (> u79): In these versions, the behavior of the multicast operations regarding IPv6 has changed, and this can cause long initial connection times. To mitigate this issue, add '-Djava.net.preferIPv4Stack=true' to the JVM arguments.
+* Java 9: Not currently supported with this version of InsightEdge and XAP due to changes in the Java platform. Java 9 is planned to be supported in a future release.
 {{%/warning%}}
 
 ## XAP.NET Requirements

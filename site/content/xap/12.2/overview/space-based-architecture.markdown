@@ -1,6 +1,6 @@
 ---
 type: post122
-title: Space Based Architecture
+title: Space-Based Architecture
 categories: XAP122OVW
 parent: the-in-memory-data-grid.html
 weight: 800
