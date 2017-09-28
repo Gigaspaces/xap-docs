@@ -13,7 +13,7 @@
 {{else if in .Page.Permalink "xap121"}}
 <a href='/xap121/{{.Get 0}}'>Java version | </a> <a href='/xap121net/{{.Get 0}}'>.Net version</a>
 {{else if in .Page.Permalink "12.2"}}
-<a href='/xap/12.2/xap/dev-java/{{.Get 0}}'>Java version | </a> <a href='/xap/12.2/dev-dotnet/{{.Get 0}}'>.Net version</a>
+<a href='/xap/12.2/dev-java/{{.Get 0}}'>Java version | </a> <a href='/xap/12.2/dev-dotnet/{{.Get 0}}'>.Net version</a>
 {{else}}
 <a href="{{index .Page.Site.Params "latest_java_url"}}/{{.Get 0}}">Java version | </a>
 <a href="{{index .Page.Site.Params "latest_net_url"}}/{{.Get 0}}">.Net version</a>
