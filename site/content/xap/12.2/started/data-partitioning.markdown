@@ -17,12 +17,15 @@ Available topologies:
 
 * Partitioned with backup - data resides in a partition, and also in one or more backup space instances for this partition.
 
-![topologies.jpg](/attachment_files/topologies.jpg)
 
-With a partitioned topology, data or operations on data are [routed](https://docs.gigaspaces.com/xap/12.2/dev-java/routing-in-partitioned-spaces.html) to one of several space instances (partitions). Each space instance holds a subset of the data, with no overlap. Business logic can be [collocated](https://docs.gigaspaces.com/sbp/data-collocation-deployment-topology.html) within the partition to allow for fast parallel processing.
+{{%align center%}}
+![topologies.jpg](/attachment_files/topologies.jpg)
+{{%/align%}}
+
+With a partitioned topology, data or operations on data are [routed](../dev-java/routing-in-partitioned-spaces.html) to one of several space instances (partitions). Each space instance holds a subset of the data, with no overlap. Business logic can be [collocated](/sbp/data-collocation-deployment-topology.html) within the partition to allow for fast parallel processing.
 
 {{% refer %}}
-To learn more about data partitioning and load balancing, refer to [https://docs.gigaspaces.com/xap/12.2/admin/data-partitioning.html](https://docs.gigaspaces.com/xap/12.2/admin/data-partitioning.html).
+To learn more about data partitioning and load balancing, refer to [Data Partitioning](../admin/data-partitioning.html).
 {{%/refer%}}
 
 

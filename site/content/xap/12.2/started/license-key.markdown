@@ -18,14 +18,14 @@ After you download an InsightEdge or XAP commerical edition from the {{%exurl "D
 
 ```bash
 # License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
-Product=InsightEdge;Version=12.2;Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2017-Sep-30;Hash=PNXrPIPANOOddPNQFdQQ
+Product=InsightEdge;Version={{%version xap-version%}};Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2017-Sep-30;Hash=PNXrPIPANOOddPNQFdQQ
 ```
 
 The same evaluation license is used for both InsightEdge and XAP downloaders, enabling you to evaluate the full InsightEdge Platform edition, which contains all available features for all the commercial editions.
 
 {{% note%}}
-* If you are using XAP.NET, the `xap-license.txt` file is located at `<XAP_HOME>\Runtime\xap-license.txt`.
-* If you are using more than one machine for your evaluation, you must apply the license to each machine.
+If you are using XAP.NET, the `xap-license.txt` file is located at `<XAP_HOME>\Runtime\xap-license.txt`.<br>
+If you are using more than one machine for your evaluation, you must apply the license to each machine.
 {{%/note%}}
 
 After you have applied the license, you can access all of the available features for the duration of the 90-day evaluation period without any limitations. When the evaluation license expires, the next time you restart the data grid you will only have access to the open-source functionality. Contact GigaSpaces support to purchase a license for the edition that meets your needs. After the new license is applied, the relevant functionality will once again be available.
