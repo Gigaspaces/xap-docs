@@ -50,7 +50,7 @@ Read one of the following guides for detailed instructions on how to install Ins
 
 * [Administration Guide](./admin/index.html) 
 
-* [Security section](./security/index.html)
+* [Security Guide](./security/index.html)
 
 ## Additional Resources
 
