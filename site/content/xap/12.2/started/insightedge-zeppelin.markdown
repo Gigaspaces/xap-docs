@@ -75,7 +75,7 @@ z.load("./insightedge/examples/jars/insightedge-examples.jar")
 ```
 
 {{%refer%}}
-For more details, please, refer to [Zeppelin Dependency Management](https://zeppelin.apache.org/docs/latest/interpreter/spark.html#dependency-management)
+For more details, please, refer to {{%exurl "Zeppelin Dependency Management""https://zeppelin.apache.org/docs/latest/interpreter/spark.html#dependency-management"%}}
 {{%/refer%}}
 
 * You must load your dependencies before you start using the `SparkContext` (`sc`) command. If you want to redefine the model or load another .jar after `SparkContext` has already started, you will have to reload the Spark interpreter.

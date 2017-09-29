@@ -440,7 +440,7 @@ connector.password = pass
 # Example
 
 {{%refer %}}
-Examples of using the XAP HTTP Session can be found [here]({{%currentjavatuturl%}}/http-session-sharing.html) 
+Examples of using the XAP HTTP Session can be found [here](../started/http-session-sharing.html) 
 {{%/refer%}}
 
 

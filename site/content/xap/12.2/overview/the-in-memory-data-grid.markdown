@@ -260,7 +260,7 @@ The space supports a number of APIs to allow for maximum flexibility to space cl
 - The core [Space API]({{<latestjavaurl>}}/the-gigaspace-interface.html), which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the space entries are simply Java objects. This API supports transactions.
 
 {{%  info "Accessing the Space from Other Languages" %}}
-The code space API is also supported in [.Net]({{<latestneturl>}}/) and [C++]({{<latestjavaurl>}}/xap-cpp.html). This allows clients to access the space via these languages. It also supports [interoperability]({{<latestjavaurl>}}/interoperability.html) between languages, so in effect you can write an object to the space using one language, say C++, and read it with another, say Java
+The code space API is also supported in [.Net]({{<latestneturl>}}/). This allows clients to access the space via these languages. It also supports [interoperability]({{<latestjavaurl>}}/interoperability.html) between languages, so in effect you can write an object to the space using one language, and read it with another, say Java
 {{%  /info %}}
 
 - The [JPA API]({{<latestjavaurl>}}/jpa-api.html) allows you to use JPA annotations and execute JPQL queries on the space

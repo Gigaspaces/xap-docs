@@ -9,7 +9,7 @@ weight: 950
 This section gives a brief overview of Geospatial API and describes how to use it with Spark RDD and DataFrames.
 
 {{%refer%}}
-For a detailed description of the Geospatial queries refer to {{%exurl "Geospatial Queries""https://docs.gigaspaces.com/xap/12.1/dev-java/query-geospatial.html"%}} for more info.
+For a detailed description of the Geospatial queries refer to [Geospatial Queries](./query-geospatial.html) for more info.
 {{%/refer%}}
 
 # Shapes
@@ -97,12 +97,13 @@ case class GasStation(
 ```
 
 {{%refer%}}
-To read more about indexing fields in Data Grid, refer to {{%exurl "Geospatial Index""https://docs.gigaspaces.com/xap/12.1/dev-java/indexing-geospatial.html"%}}
+To read more about indexing fields in Data Grid, refer to [Geospatial Index](./indexing-geospatial.html)
 {{%/refer%}}
 
 # Zeppelin Notebook
 
-A great place to start experimenting with the Geospatial API is the [Zeppelin notebook](notebook.html) - check out the 'InsightEdge GeoSpatial' notebook.
+A great place to start experimenting with the Geospatial API is the [Zeppelin notebook](../started/insightedge-zeppelin.html) - check out the 'InsightEdge GeoSpatial' notebook.
 
-{{%exclamation%}} If you're using Windows, you'll need to manually copy the jars from `INSIGHTEDGE_HOME\datagrid\lib\optional\spatial` to the Spark jars folder (`INSIGHTEDGE_HOME\jars`) to use this notebook. We're working of fixing that for the next release.
-
+{{%note%}}
+If you're using Windows, you'll need to manually copy the jars from `INSIGHTEDGE_HOME\datagrid\lib\optional\spatial` to the Spark jars folder (`INSIGHTEDGE_HOME\jars`) to use this notebook. We're working of fixing that for the next release.
+{{%/note%}}

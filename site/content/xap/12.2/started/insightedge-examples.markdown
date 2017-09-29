@@ -10,11 +10,11 @@ weight: 300
 
 This section explains how to use the sample code that has been provided with the InsightEdge package. 
 
-{{%info "Info..."%}}
+{{%note%}}
 The example sources are located at `<XAP HOME>/insightedge/examples`.
 
 The example .jar is located at `<XAP HOME>/insightedge/examples/jars`.
-{{%/info%}}
+{{%/note%}}
 
 # Building the examples
 

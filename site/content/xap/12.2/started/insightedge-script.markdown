@@ -87,7 +87,7 @@ insightedge run --worker [--containers=n]
 
 ## Running Apache Zeppelin
 
-The command will start Zeppelin on the local machine. It will be accessible at http://localhost:9090.
+The command will start Zeppelin on the local machine. It will be accessible at {{%exurl "http://localhost:9090""http://localhost:9090"%}}
 
 ```bash
 insightedge run --zeppelin

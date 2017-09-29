@@ -89,8 +89,8 @@ Describes how to replicate state between different deployed spaces and synchroni
 The possibility for organizations whose projects include a combination of Java, .NET and other platforms to communicate and access each other easily and efficiently while also maintaining the benefits of the XAP scale-out application server.
 
 
-[InsightEdge APIs](./insight-edge-apis.html){{<wbr>}}
-Description of APIs that are part of the InsightEdge application.
+[InsightEdge APIs](./insightedge-apis.html){{<wbr>}}
+Description of APIs that are part of the InsightEdge engine.
 
 {{%/fpanel%}}
 

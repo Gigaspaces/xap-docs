@@ -32,10 +32,10 @@ To improve performance and stability, you must set the limit of processes for th
 ulimit -u 32000
 ```
 
-{{% info "Info"%}}
+{{% note%}}
 * Before deciding about the proper values of the file descriptors, a further testing and monitoring is required on the actual environment. 8K,16K or 32K is used just an example.
 * Verify that you set the ulimit using the -n option e.g. ulimit -n 8192, rather than ulimit 8192. ulimit defaults to ulimit -f. If **no parameter** is set, it sets the maximum file size in 512k blocks, which might cause a fatal process crash
-{{% /info %}}
+{{% /note %}}
 
 ### How do I Configure the File Descriptors on Linux?
 
@@ -52,15 +52,15 @@ Edit /etc/system with root access and reboot the server. After reboot, please, r
 It should report 8192.
 
 {{% refer %}}
-- [http://www.faqs.org/docs/securing/x4733.html](http://www.faqs.org/docs/securing/x4733.html)
-- [http://www.ss64.com/bash/ulimit.html](http://www.ss64.com/bash/ulimit.html)
+- {{%exurl "www.faqs.org/docs/securing""http://www.faqs.org/docs/securing/x4733.html"%}}
+- {{%exurl "www.ss64.com/bash" "http://www.ss64.com/bash/ulimit.html"%}}
 {{% /refer %}}
 
 To change the default value, modify the `/etc/security/limits.conf` file.
 
-{{% info "Info"%}}
+{{% note%}}
 Modify the `ulimit` value when having many concurrent users accessing the space.
-{{% /info %}}
+{{% /note %}}
 
 ## Windows
 
@@ -73,7 +73,7 @@ in the key "Windows" find "SharedSection=1024,3072,512", where 512KB is the size
 
 
 {{% refer %}}
-[One of reports in Sun bug database](http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4189011) describes the fixed bug (fix done in JVM 1.5 RC1) which mention file handles limit 2035 per jvm - the case has the test java code attached. It could be used to check the influence of the registry reconfiguration.
+{{%exurl "One of reports in Sun bug database" "http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4189011"%}} describes the fixed bug (fix done in JVM 1.5 RC1) which mention file handles limit 2035 per jvm - the case has the test java code attached. It could be used to check the influence of the registry reconfiguration.
 {{%/refer%}}
 
 # TCP tuning
@@ -83,7 +83,7 @@ in the key "Windows" find "SharedSection=1024,3072,512", where 512KB is the size
 ### TCP_KEEPALIVE_TIME
 
 **Description**: Determines how often to send TCP keepalive packets to keep an connection alive if it is currently unused
-Should be changed in order to secure fast fail-over in case of network failure (e.g. router failure).
+Should be changed in order to secure fast fail-over in case of network failure (e.g. router failure).<br>
 **Set**:
 
 
@@ -91,14 +91,14 @@ Should be changed in order to secure fast fail-over in case of network failure (
 echo 1  > /proc/sys/net/ipv4/tcp_keepalive_time
 ```
 
-{{% info "Info"%}}
+{{% note%}}
 Default value: 7200 seconds (2 hours){{<wbr>}}
 Recommended value: 1 seconds
-{{%/info%}}
+{{%/note%}}
 
 ### TCP_KEEPALIVE_INTERVAL
 
-**Description**: Determines the wait time between isAlive interval probes.
+**Description**: Determines the wait time between isAlive interval probes.<br>
 **Set**:
 
 
@@ -106,14 +106,14 @@ Recommended value: 1 seconds
 echo 1 > /proc/sys/net/ipv4/tcp_keepalive_intvl
 ```
 
-{{% info "Info"%}}
+{{% note%}}
 Default value: 75 seconds{{<wbr>}}
 Recommended value: 1 seconds
-{{%/info%}}
+{{%/note%}}
 
 ### TCP_KEEPALIVE_PROBES
 
-**Description***: Determines the number of probes before timing out.
+**Description**: Determines the number of probes before timing out.<br>
 **Set**:
 
 
@@ -121,15 +121,15 @@ Recommended value: 1 seconds
 echo 5  > /proc/sys/net/ipv4/tcp_keepalive_probes
 ```
 
-{{% info "Info"%}}
+{{% note%}}
 Default value: 9 {{<wbr>}}
 Recommended value: 5 {{<wbr>}}
 tcp_keepalive_interval is Solaris equivalent to the Linux TCP_KEEPALIVE_TIME setting. Default value in Solaris is 2 hours
-{{% /info %}}
+{{% /note %}}
 
 ### Connection Backlog
 
-**Description**: Determines the maximum number of packets, queued on the input side, when the interface receives packets faster than kernel can process them.
+**Description**: Determines the maximum number of packets, queued on the input side, when the interface receives packets faster than kernel can process them.<br>
 **Set**:
 
 
@@ -137,13 +137,13 @@ tcp_keepalive_interval is Solaris equivalent to the Linux TCP_KEEPALIVE_TIME set
 echo 3000 > /proc/sys/net/core/netdev_max_backlog
 ```
 
-{{% info "Info"%}}
+{{% note%}}
 Default value: 300{{<wbr>}}
 Recommended value: 3000
-{{%/info%}}
+{{%/note%}}
 
 **Description**: Determines the maximum number of pending connection.
-Should be changed when a high rate of incoming connection requests result in connection failures.
+Should be changed when a high rate of incoming connection requests result in connection failures.<br>
 **Set**:
 
 
@@ -151,11 +151,11 @@ Should be changed when a high rate of incoming connection requests result in con
 echo 3000 > /proc/sys/net/core/somaxconn
 ```
 
-{{% info "Info"%}}
+{{% note%}}
 Default value: 128 {{<wbr>}}
 Recommended value: 3000{{<wbr>}}
-See also: [http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html](http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html)
-{{% /info %}}
+See also: {{%exurl "tldp.org/HOWTO" "http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html"%}}
+{{% /note %}}
 
 ## Windows
 
@@ -168,7 +168,6 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 ```
 
 {{% refer %}}
-Refer to
-- [http://support.microsoft.com/kb/314053](http://support.microsoft.com/kb/314053)
+{{%exurl "support.microsoft" "http://support.microsoft.com/kb/314053"%}}
 {{% /refer %}}
 

@@ -30,7 +30,7 @@ Information about upgrading from previous versions
 [Third-Party License Agreements](third-party.html){{<wbr>}}
 List of third-party license agreements according to product component
 
-{{%exurl "Product Lifecycle and End-of-Life Policy""/release_notes/lifecycle.html"%}}{{<wbr>}}
+[Product Lifecycle and End-of-Life Policy](/release_notes/lifecycle.html){{<wbr>}}
 Detailed information about GigaSpaces' Product Lifecycle and End-of-Life Policy
 
 {{%/fpanel%}}

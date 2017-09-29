@@ -9,7 +9,7 @@ weight: 400
 This topic explains how to create an InsightEdge application that can read and write from/to the Data Grid. You should have a basic knowledge of {{%exurl "Apache Spark""http://spark.apache.org/docs/latest/index.html"%}}.
 
 {{%refer%}}
-For instructions on how to install a minimum InsightEdge cluster setup and launch it, refer to [Starting InsightEdge](insightedge-starting.html).
+For instructions on how to install a minimum InsightEdge cluster setup and launch it, refer to [Starting InsightEdge](./insightedge-local-setup.html).
 {{%/refer%}}
 
 # Project Dependencies
