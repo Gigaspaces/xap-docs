@@ -18,9 +18,9 @@ The basic unit of deployment in the GigaSpaces XAP platform is the [Processing U
 Once packaged, a processing unit is deployed onto the GigaSpaces runtime environment, which is called the *Service Grid*. It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
 
 
-{{%  info "Info"%}}
+{{% note%}}
 When developing your processing unit, you can [run and debug the processing unit within your IDE](../started/xap-debug.html). You will typically deploy it to the GigaSpaces runtime environment when it's ready for production or when you want to run it in the real-life runtime environment
-{{%  /info %}}
+{{%  /note %}}
 
 # Architecture
 
@@ -51,9 +51,9 @@ When a processing unit is uploaded to the GSM (using one of GigaSpaces deploymen
 
 Once provisioned, the GSM continuously monitors the processing unit instances to determine if they're functioning properly or not. When a certain instance fails, the GSM identifies that and re-provisions the failed instance on to another GSC, thus enforcing the processing unit's SLA.
 
-{{% tip "Tip"%}}
+{{% note%}}
 It is common to start two GSM instances in each Service Grid for high-availability reasons: At any given point in time, each deployed processing unit is managed by a one GSM instance, and the other GSM(s) serve as its hot standby. If the active GSM fails for some reason, one of the standbys automatically takes over and start managing and monitoring the processing units that the failed GSM managed.
-{{% /tip%}}
+{{% /note%}}
 
 {{%  anchor gsc %}}
 
@@ -81,9 +81,9 @@ The Lookup Service can be configured for either a [multicast]({{% latestadmurl%}
 
 Another important attribute in that context is the *lookup group*. The lookup group is a logical grouping of all the components that belong to the same runtime cluster. Using lookup groups, you can run multiple deployments on the same physical infrastructure, without them interfering with one another. For more details please refer to [Lookup Service Configuration]({{% latestadmurl%}}/network-lookup-service-configuration.html).
 
-{{% tip%}}
+{{% note%}}
 It is common to start at least two LUS instances in each Service Grid for high-availability reasons. Note that the lookup service can run in the same process with a GSM, or in standalone mode using its own process.
-{{% /tip%}}
+{{% /note%}}
 
 The following services use the LUS:
 
