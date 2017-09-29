@@ -4,7 +4,7 @@ title:  Introduction
 weight: 100
 ---
 
-## Overview
+ 
 
 The unified InsightEdge solution, a combination of the XAP in-memory data grid and an open-source analytics ecosystem, is an in-memory insight platform that supports fast-data analytics, artificial intelligence and real-time applications. Customers can use this platform to develop their own systems that provide instant data-driven insights with time-to-analytics at a sub-second scale, and the ability to hyperscale analytics from SQL, streaming to machine learning via Apache Spark.
 
@@ -19,10 +19,10 @@ The full InsightEdge Platform offers the following additional benefits:
 * Disaster recovery via geo-redundancy, fast data replication and native persistence
 
 {{% note%}}
-If you are already using InsightEdge or XAP, refer to the [Release Notes](/xap/12.2/rn/index.html) for a list of new features, changes, updates, and resolved issues.
+If you are already using InsightEdge or XAP, refer to the [Release Notes](./rn/index.html) for a list of new features, changes, updates, and resolved issues.
 {{% /note %}}
 
-## Licensing Options
+# Licensing Options
 
 InsightEdge is available in Java and .NET flavors, and offers several licensed editions, along with XAP and InsightEdge open-source editions. You can download a free 90-day trial version of any of the following:
 
@@ -34,23 +34,23 @@ InsightEdge is available in Java and .NET flavors, and offers several licensed e
 
 When the trial period is over, you can continue to benefit from the open-source functionality, or contact GigaSpaces support to purchase a license for the edition that best suits your needs.
 
-## Documentation
+# Documentation
 
 A wide variety of documentation is provided to help you learn how to install, implement, and deploy InsightEdge and XAP. Below is a general description of of the guides and other learning aids that are available.
 
-### Main Documentation Page
+## Main Documentation Page
 
-For a brief overview of concepts, terminology, and other programming fundamentals, see the [Getting Started](/xap/12.2/started/index.html) section.
+For a brief overview of concepts, terminology, and other programming fundamentals, see the [Getting Started](./started/index.html) section.
 
 Read one of the following guides for detailed instructions on how to install InsightEdge and XAP and configure your working environment, and understand the APIs that comprise the InsightEdge Platform.
 
-* [Developer Guide](/xap/12.2/dev-java/index.html)
+* [Developer Guide](./dev-java/index.html)
 
-* [XAP.NET Guide](/xap/12.2/dev-dotnet/index.html)
+* [XAP.NET Guide](./dev-dotnet/index.html)
 
-* [Administration Guide](/xap/12.2/admin/index.html) (with a [Security section](/xap/12.2/security/index.html))
+* [Administration Guide](./admin/index.html) (with a [Security section](./security/index.html))
 
-### Additional Resources
+## Additional Resources
 
 The following resources may provide a deeper understanding of the products, and help kick-start your development process:
 

@@ -7,8 +7,6 @@ weight: 300
 ---
 
 
-# Overview
-
 In this page you'll learn how XAP and InsightEdge configuration is applied, and how to override it.
 
 ## XAP
