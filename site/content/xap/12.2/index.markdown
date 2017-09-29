@@ -48,7 +48,9 @@ Read one of the following guides for detailed instructions on how to install Ins
 
 * [XAP.NET Guide](./dev-dotnet/index.html)
 
-* [Administration Guide](./admin/index.html) (with a [Security section](./security/index.html))
+* [Administration Guide](./admin/index.html) 
+
+* [Security section](./security/index.html)
 
 ## Additional Resources
 
