@@ -26,7 +26,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/mongodb/xap-
 </dependency>
 ```
 {{%refer%}}
-For more information on dependencies see [Maven Artifacts](./maven-artifacts.html)
+For more information on dependencies see [Maven Artifacts](../started/maven-artifacts.html)
 {{%/refer%}} 
 
 

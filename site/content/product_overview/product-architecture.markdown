@@ -118,10 +118,7 @@ The .NET SBA application takes advantage of the ability to run business services
 
 The [.NET container]({{% latestneturl%}}) bridges the technical gap and provides a native .NET experience for .NET applications.
 
-## C++ Container
-
-Much like the .NET container, the [CPP Processing Unit]({{% latestjavaurl%}}/cpp-processing-unit.html) provides a native C++ runtime environment for C++ SBA applications.
-
+ 
 ## Mule Integration
 
 Mule is a popular open source Enterprise Services Bus implementation in Java. The [Mule container integration]({{% latestjavaurl%}}/mule-esb.html) allows you to run a Mule application on top of the GigaSpaces XAP, and gain scalability, performance and high-availability, with almost no changes to the Mule application.

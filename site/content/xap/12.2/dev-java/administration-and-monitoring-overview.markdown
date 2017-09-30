@@ -23,7 +23,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/platform/service-grid
 </dependency>
 ```
 {{%refer%}}
-For more information on dependencies see [Maven Artifacts]({{%currentjavaurl%}}/maven-artifacts.html)
+For more information on dependencies see [Maven Artifacts](../started/maven-artifacts.html)
 {{%/refer%}} 
 
 <br>

@@ -27,7 +27,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/security/xap
 </dependency>
 ```
 {{%refer%}}
-For more information on dependencies, refer to [Maven Artifacts]({{%currentjavaurl%}}/maven-artifacts.html).
+For more information on dependencies, refer to [Maven Artifacts](../started/maven-artifacts.html).
 {{%/refer%}} 
 
 # Main Security Features

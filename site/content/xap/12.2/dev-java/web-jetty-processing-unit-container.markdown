@@ -39,7 +39,7 @@ or `${XAP_HOME}/lib/optional/jetty-9/xap-jetty/xap-jetty-9.jar`
 ```
 
 {{%refer%}}
-For more information on dependencies see [Maven Artifacts](./maven-artifacts.html)
+For more information on dependencies see [Maven Artifacts](../started/maven-artifacts.html)
 {{%/refer%}} 
 
 {{%anchor jetty-version%}}
