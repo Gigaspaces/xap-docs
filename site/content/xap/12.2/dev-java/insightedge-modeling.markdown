@@ -1,6 +1,6 @@
 ---
 type: post122
-title:  InsightEdge Data Modeling
+title:  Data Modeling
 categories: XAP122, OSS
 parent: insightedge-apis.html
 weight: 400
@@ -17,7 +17,9 @@ The Data Grid native modeling is designed for  Java POJO classes. In order to us
 * Mark each property as `var`
 * Add a no-args constructor with default values
 
-{{%infosign%}} There's partial support for immutable case classes in the data grid. For more information see [Constructor Based Properties](https://docs.gigaspaces.com/xap/12.1/dev-java/scala-constructor-based-properties.html).
+{{%note%}}
+There's partial support for immutable case classes in the data grid. For more information see [Constructor Based Properties](./scala-constructor-based-properties.html).
+{{%/note%}}
 
 In addition, you can use Data grid specific annotations from `org.insightedge.scala.annotation` to enhance your data model. `@SpaceId` is mandatory, the rest is optional.
 
@@ -41,7 +43,7 @@ case class Product(
 {{%/tabs%}}
 
 {{%note "Annotations and Shell"%}}
-Unfortunately spark shell does not support defining annotations on your class model. Instead, pre-compile and import your model classes, or use [Zeppelin notebooks](notebook.html) instead of the shell.
+Unfortunately spark shell does not support defining annotations on your class model. Instead, pre-compile and import your model classes, or use [Zeppelin notebooks](../started/insightedge-zeppelin.html) instead of the shell.
 {{%/note%}}
 
 ## Autogenerate ID
@@ -50,7 +52,13 @@ If you want to increment the `id` property automatically when saving to the data
 
 ## Indexing
 
-You can improve the speed of data filtering and retrieval operations by indexing relevant fields with the `@SpaceIndex` annotation. For more information see [Indexing](https://docs.gigaspaces.com/xap/12.1/dev-java/indexing-overview.html) at the data grid documentation.
+You can improve the speed of data filtering and retrieval operations by indexing relevant fields with the `@SpaceIndex` annotation. 
+
+{{%refer%}}
+For more information see [Indexing](./indexing-overview.html) at the data grid documentation.
+{{%/refer%}}
+
+<br>
 
 ## Controlling Spark partitions
 

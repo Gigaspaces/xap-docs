@@ -60,7 +60,7 @@ In addition, you can use standard Spark environment variables as well - The Insi
 
 In previous versions, environment variable names were inconsistent, which occasionally led to confusion. Starting with XAP 11.0, all XAP related environment variables have been renamed to have a `XAP_` prefix, so they're easier to identify. The following table maps the pre-11.0 names to the new names:
 
-|Name before 11.0|Name in 11.0|
+|Name before 11.0|Name in 12.0|
 |:---|:----------|
 |  JSHOMEDIR  |  XAP_HOME  |
 |  LOOKUPGROUPS  |  XAP_LOOKUP_GROUPS  |
@@ -96,6 +96,7 @@ call gs-agent.bat
 {{%/tab%}}
 {{%/tabs%}}
 
+<br>
 The `gs-agent` script calls the `setenv` script to setup the environment, which in turn calls the `setenv-overrides` script mentioned above to allow users to override the default values. You can modify `setenv-overrides` to propagate the old variables to the new ones, for example:
 
 {{%tabs%}}

@@ -13,7 +13,7 @@ InsightEdge has a Python API available via PySpark. Its functionality is limited
 
 There are two options to analyze data interactively in Python: 
 
-- [Zeppelin](./notebook.html)<br>
+- [Zeppelin](../started/insightedge-zeppelin.html)<br>
 - command line shell
 
 # Zeppelin Notebook

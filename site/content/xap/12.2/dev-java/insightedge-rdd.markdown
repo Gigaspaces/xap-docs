@@ -72,7 +72,7 @@ val products = sc.gridSql[Product]("quantity > ? and featuredProduct = ?", Seq(1
 {{%/tabs%}}
 
 {{%refer%}}
-For more information about the Data Grid SQL queries, refer to [Data Grid documentation](https://docs.gigaspaces.com/xap/12.1/dev-java/query-sql.html).
+For more information about the Data Grid SQL queries, refer to [Data Grid documentation](./query-sql.html).
 {{%/refer%}}
 
 # Zip RDD with Grid SQL Data
@@ -95,12 +95,12 @@ val orders: RDD[(Customer, Seq[Order])] = customers.zipWithGridSql[Order](query,
 {{%/tab%}}
 {{%/tabs%}}
 
-
+<br>
 
 # Controlling Spark partitions
 
 Methods `SparkContext.gridRdd()` and `SparkContext.gridSql()` take an optional `splitCount` parameter which defines the number of Spark partitions per Data Grid partition. This feature is limited to `bucketed` grid model. 
 
 {{%refer%}}
-For more information, refer to [Data Modeling](modeling.html).
+For more information, refer to [Data Modeling](./insightedge-modeling.html).
 {{%/refer%}}
