@@ -23,8 +23,10 @@ Before installing InsightEdge or XAP, do the following:
 To install InsightEdge or XAP, download and unzip it to the location of your choice. Unzipping the file creates a `<XAP_HOME>` directory (e.g. `{{%version "gshome-directory-oss"%}}`).
 
 {{% warning%}}
-- Do not use path with spaces (such as `C:\Program Files\xap`). In some scenarios they may break.
-- Linux users: Make sure all `sh` files in the `/bin` and `/examples` folders are in executable mode, so you can run them from your machine. To check this, use the `ls \-all` command for the relevant directory, and make sure that `x` is included in the file permissions.
+Do not use path with spaces (such as `C:\Program Files\xap`). In some scenarios they may break.
+
+Linux users: Make sure all `sh` files in the `/bin` and `/examples` folders are in executable mode, so you can run them from your machine. 
+To check this, use the `ls -all` command for the relevant directory, and make sure that `x` is included in the file permissions.
 {{% /warning %}}
 
 ## Network Discovery
@@ -36,7 +38,7 @@ By default, InsightEdge and XAP use multicast network discovery. If your environ
 Before you begin working with GigaSpaces, it is recommended to review the [Performance Tuning](../admin/tuning.html) section and apply the required changes in your system. For example, you may need to update the [max file descriptors limit](../admin/tuning-infrastructure.html#Max Processes and File Descriptors Limit) before you begin.
 
 {{% refer %}}
- It is strongly recommended to read the following sections in addition to the above, which explain how to further fine-tune your environment for better application performance, and how to assess system performance:
+It is strongly recommended to read the following sections in addition to the above, which explain how to further fine-tune your environment for better application performance, and how to assess system performance:
 
 - [Infrastructure](../admin/tuning-infrastructure.html)
 - [Applications](../admin/tuning-gigaspaces-performance.html)
