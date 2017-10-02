@@ -31,7 +31,8 @@ test:
 ## Customize deployment commands
 deployment:
   production:
-    branch: master
+    #branch: master
+    tag: /release-.*/
     commands:
       #- s3_website cfg apply
       - s3_website push
