@@ -32,5 +32,4 @@ deployment:
   staging:
     branch: master
     commands:
-      #- s3_website cfg apply
-      #- s3_website push
+      - ./publish-staging.sh
