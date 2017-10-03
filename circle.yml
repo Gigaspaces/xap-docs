@@ -32,10 +32,5 @@ deployment:
   staging:
     branch: master
     commands:
-      - echo "Testing staging 1, S3_BUCKET_STAGING=[$S3_BUCKET_STAGING], S3_BUCKET=[$S3_BUCKET]"
-      - echo "Testing staging 2, S3_BUCKET_STAGING=[$S3_BUCKET_STAGING], S3_BUCKET=[$S3_BUCKET]":
-          environment:
-            S3_BUCKET=$S3_BUCKET_STAGING
-      - echo "Publishing to staging (under construction)"
       #- s3_website cfg apply
       #- s3_website push
