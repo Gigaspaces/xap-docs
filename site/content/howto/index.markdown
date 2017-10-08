@@ -287,7 +287,7 @@ Some text content
 ### Landing page panel
 
 {{%fpanel%}}
-- [Overview](/xap110/change-api.html)<br>
+- [Overview](/xap/11.0/dev-java/change-api.html)<br>
 Change API overview.
 
 {{%/fpanel%}}
@@ -297,7 +297,7 @@ Change API overview.
 
 ```
 {{%/* fpanel */%}}
-- [Overview](/xap110/change-api.html)<br>
+- [Overview](/xap/11.0/dev-java/change-api.html)<br>
 Change API overview.
 
 {{%/* /fpanel */%}}

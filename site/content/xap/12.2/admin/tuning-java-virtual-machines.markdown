@@ -115,7 +115,7 @@ The -XX:+UseCompressedOops option can improve performance of the 64-bit JRE when
 - [Java Performance Tuning](http://www.javaperformancetuning.com/)
 - [Sun; Java Platform Performance: Stratergies  and Tactics](http://java.sun.com/docs/books/performance/)
 - [Sun; Chapter 6 - Controlling Class Loading](http://java.sun.com/docs/books/performance/1st_edition/html/JPClassLoading.fm.html)
-- [Scaling Enterprise Java on 64-bit Multi-Core X86-Based Servers](http://www.onjava.com/lpt/a/6781)
+- [Scaling Enterprise Java on 64-bit Multi-Core X86-Based Servers](http://www.onjava.com/pub/a/onjava/2006/11/01/scaling-enterprise-java-on-64-bit-multi-core.html)
 
 **Oracle Sun JVM**
 

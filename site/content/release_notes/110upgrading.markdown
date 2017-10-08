@@ -15,7 +15,7 @@ In previous versions environment variable names were inconsistent, which occasio
 
 
 {{%refer%}}
-For more information please visit [Common Environment Variables](/xap110/common-environment-variables.html)
+For more information please visit [Common Environment Variables](/xap/11.0/dev-java/common-environment-variables.html)
 {{%/refer%}}
 
 

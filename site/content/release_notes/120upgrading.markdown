@@ -14,7 +14,7 @@ This page contains information about changes in this release which can affect up
 The maven artifacts have changed.
 
 {{%refer%}}
-For more information please visit [Maven Artifacts](/xap120/maven-artifacts.html)
+For more information please visit [Maven Artifacts](/xap/12.0/dev-java/maven-artifacts.html)
 {{%/refer%}}
 
 

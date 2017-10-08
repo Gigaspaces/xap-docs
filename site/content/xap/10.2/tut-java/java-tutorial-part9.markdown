@@ -185,7 +185,7 @@ The attributes will be mapped to the AuditRecord column family in Cassandra. Not
 
 It is possible to override this default behavior by providing a custom implementation.
 
-{{%learn "/xap102/cassandra-space-synchronization-endpoint.html"%}}
+{{%learn "/xap/10.2/dev-java/cassandra-space-synchronization-endpoint.html"%}}
 
 
 
@@ -256,6 +256,6 @@ The XAP Mirror Service provides reliable asynchronous persistency. This allows y
 # Mongo Integration
 XAP provides out of the box support for the MongoDB.
 
-{{%learn "/xap102/mongodb.html"%}}
+{{%learn "/xap/10.2/dev-java/mongodb.html"%}}
 
 

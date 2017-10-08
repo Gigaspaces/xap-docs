@@ -353,4 +353,4 @@ http://localhost:8081/demo-app2
 {{%/section%}}
 
 
-{{%learn "/xap102/global-http-session-sharing-overview.html"%}}
+{{%learn "/xap/10.2/dev-java/global-http-session-sharing-overview.html"%}}

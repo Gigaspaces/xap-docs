@@ -39,7 +39,7 @@ When running in direct persistency mode the IMDG interacts with the data source 
 {{%/column%}}
 {{%/section%}}
 
-{{%learn "/xap102/direct-persistency.html"%}}
+{{%learn "/xap/10.2/dev-java/direct-persistency.html"%}}
 
 
 
@@ -56,7 +56,7 @@ The XAP Mirror Service provides reliable asynchronous persistency. This allows y
 {{%/column%}}
 {{%/section%}}
 
-{{%learn "/xap102/asynchronous-persistency-with-the-mirror.html"%}}
+{{%learn "/xap/10.2/dev-java/asynchronous-persistency-with-the-mirror.html"%}}
 
  
 
@@ -74,20 +74,20 @@ XAP comes with built in persistence support for Hibernate, Cassandra and MongoDB
 - Cassandra adapter
 XAP comes with built in implementations of Space Data Source and Space Synchronization Endpoint for Cassandra, called CassandraSpaceDataSource and CassandraSpaceSynchronizationEndpoint, respectively.
 
-{{%learn "/xap102/cassandra.html"%}}
+{{%learn "/xap/10.2/dev-java/cassandra.html"%}}
 
 - MongoDB adapter
 XAP comes with built in implementations of Space Data Source and Space Synchronization Endpoint for MongoDB, called MongoSpaceDataSource and MongoSpaceSynchronizationEndpoint, respectively.
 
 
-{{%learn "/xap102/mongodb.html"%}}
+{{%learn "/xap/10.2/dev-java/mongodb.html"%}}
 
 
 
 - Hibernate adapter
   XAP comes with a built in implementation of Space Persistency APIs for Hibernate. This implementation is an extension of the SpaceDataSource and SpaceSynchronizationEndpoint classes. The implementation allows custom objects persistency using Hibernate mappings.
 
-{{%learn "/xap102/hibernate-space-persistency.html"%}}
+{{%learn "/xap/10.2/dev-java/hibernate-space-persistency.html"%}}
 
 
 
