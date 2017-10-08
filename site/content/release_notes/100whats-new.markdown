@@ -50,7 +50,7 @@ This page lists the main new features in XAP 10.0 (Java and .Net editions). It's
 
 This is a tutorial that will setup a XAP Cluster on a real server on demand. The tutorial include an interactive shell that will allow you to execute the various XAP API for writing and reading data as well as open a groovy shell to write your own code and experience the full XAP API.
 
-{{%learn "/xap100/tutorials.html"%}}
+{{%learn "/xap/10.0/dev-java/tutorials.html"%}}
 
 {{%anchor 1%}}
 
@@ -58,7 +58,7 @@ This is a tutorial that will setup a XAP Cluster on a real server on demand. The
 
 XAP 10 introduces a new Storage interface allowing an external storage mechanism (one that does not reside on the JVM heap) to act as storage medium for the data in the IMDG. This storage model allows the IMDG to interact with the storage medium for storing IMDG data.
 
-{{%learn "/xap100adm/blobstore-cache-policy.html"%}}
+{{%learn "/xap/10.0/admin/blobstore-cache-policy.html"%}}
 
 {{%anchor 2%}}
 
@@ -73,7 +73,7 @@ XAP 10 Global HTTP Session Sharing includes the following new features:
 - Role based SSO Support
 - Better logging
 
-{{%learn "/xap100/global-http-session-sharing.html"%}}
+{{%learn "/xap/10.0/dev-java/global-http-session-sharing.html"%}}
 
 
 {{%anchor 3%}}
@@ -135,10 +135,10 @@ Person youngestPersonInSpace = queryable.MinEntry(p => p.Age);
 {{%column width="50%" %}}
 {{%/column%}}
 {{%column width="10%" %}}
-{{%learn "/xap100/aggregators.html"%}}
+{{%learn "/xap/10.0/dev-java/aggregators.html"%}}
 {{%/column%}}
 {{%column width="10%" %}}
-{{%learn "/xap100net/aggregators.html"%}}
+{{%learn "/xap/10.0/dev-dotnet/aggregators.html"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -162,7 +162,7 @@ public class InitialLoadQueryExample {
 }
 ```
 
-{{%learn "/xap100/space-persistency-initial-load.html"%}}
+{{%learn "/xap/10.0/dev-java/space-persistency-initial-load.html"%}}
 
 
 {{%anchor 5%}}
@@ -175,7 +175,7 @@ public class InitialLoadQueryExample {
 
 The change API now includes an option for custom change operation. The user can implement his own change operation in case the built-in operations (increment, add, remove, set, etc.) do not suffice.
 
-{{%learn "/xap100/change-api-custom-operation.html"%}}
+{{%learn "/xap/10.0/dev-java/change-api-custom-operation.html"%}}
 
 
 {{%anchor 7%}}
@@ -188,10 +188,10 @@ Free text search and Regular Expression queries can use indexes now, which will 
 {{%column width="50%" %}}
 {{%/column%}}
 {{%column width="10%" %}}
-{{%learn "/xap100/query-free-text-search.html"%}}
+{{%learn "/xap/10.0/dev-java/query-free-text-search.html"%}}
 {{%/column%}}
 {{%column width="10%" %}}
-{{%learn "/xap100net/query-free-text-search.html"%}}
+{{%learn "/xap/10.0/dev-dotnet/query-free-text-search.html"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -202,7 +202,7 @@ Free text search and Regular Expression queries can use indexes now, which will 
 
 With this new version it is possible to use Jetty version 9.
 
-{{%learn "/xap100/web-jetty-processing-unit-container.html#jetty-version"%}}
+{{%learn "/xap/10.0/dev-java/web-jetty-processing-unit-container.html#jetty-version"%}}
 
 
 {{%anchor 9%}}
@@ -212,7 +212,7 @@ With this new version it is possible to use Jetty version 9.
 A number of additional features were added to the web ui, specifically the ability to view jmx urls, specify zones, deployment properties and the capability of viewing the full data grid configuration.
 
 
-{{%learn "/xap100adm/web-management-data-grid-view.html"%}}
+{{%learn "/xap/10.0/admin/web-management-data-grid-view.html"%}}
 
 
 
@@ -293,14 +293,14 @@ For a remote Space the `space-proxy` tag is used in the name space configuration
 
 # XAP Support for Mule 3.5
 
-{{%learn "/xap100/mule-esb.html"%}}
+{{%learn "/xap/10.0/dev-java/mule-esb.html"%}}
 
 
 {{%anchor 12%}}
 
 # Compressed Storage Mode .Net
 
-{{%learn "/xap100net/poco-storage-type.html"%}}
+{{%learn "/xap/10.0/dev-dotnet/poco-storage-type.html"%}}
 
 
 

@@ -173,7 +173,7 @@ private Role createRole() {
 {{% /tab  %}}
 {{% /tabs %}}
 
-{{%learn "/xap100sec/gigaspaces-management-center-ui-security.html"%}}
+{{%learn "/xap/10.0/security/gigaspaces-management-center-ui-security.html"%}}
 
 
 # Securing XAP Components
@@ -236,7 +236,7 @@ public void setupSpace()
 
 
 
-{{%learn "/xap100sec/securing-your-data.html"%}}
+{{%learn "/xap/10.0/security/securing-your-data.html"%}}
 
 
 
@@ -253,14 +253,14 @@ Grid Security is enabled in XAP by setting a global system property. This system
 
 This property affects the GSA, GSM, GSC and standalone PU instances with a space.
 
-{{%learn "/xap100sec/securing-the-grid-services.html"%}}
+{{%learn "/xap/10.0/security/securing-the-grid-services.html"%}}
 
 
 
 ### Transport Security
 The transport layer can be secured using an SSL communication filter.
 
-{{%learn "/xap100sec/securing-the-transport-layer-using-ssl.html"%}}
+{{%learn "/xap/10.0/security/securing-the-transport-layer-using-ssl.html"%}}
 
 
 {{%info%}}This concludes this tutorial. For more detailed information of the XAP platform and its API please consult the [Programmers Guide](./programmers-guide.html) {{%/info%}}

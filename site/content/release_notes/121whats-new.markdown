@@ -17,7 +17,7 @@ It's not an exhaustive list of all new features. For a full change log for 12.1 
 
 The XAP Manager (or simply The Manager) is a component which stacks together the LUS and GSM along with Zookeeper and an embedded web application which hosts an admin instance with a RESTful management API on top of it.
 
-{{<infosign>}} For more information see [XAP Manager](/xap121adm/xap-manager.html)
+{{<infosign>}} For more information see [XAP Manager](/xap/12.1/admin/xap-manager.html)
 
 
 ## Change code without restarts
@@ -34,7 +34,7 @@ The space can store multiple versions of the same task side-by-side (ideal for s
 
 MemoryXtend includes a cache to store recently used entries in memory. You can now control this cache warmup using one or more queries to determine which entries should be cached.
 
-{{<infosign>}} For more information see [MemoryXtend Initial Load](/xap121adm/memoryxtend-rocksdb-ssd.html#custom-initial-load)
+{{<infosign>}} For more information see [MemoryXtend Initial Load](/xap/12.1/admin/memoryxtend-rocksdb-ssd.html#custom-initial-load)
 
 ## Full text search
 
@@ -58,13 +58,13 @@ GS-Agent now supports a new, user-friendly syntax. For example, to start 2 GSCs 
 
 The old syntax is still supported for backwards compatibility.
 
-{{<infosign>}} For more information see [gs-agent options](/xap121adm/the-runtime-environment.html#gs-agent-options) (or run gs-agent with `-h`)
+{{<infosign>}} For more information see [gs-agent options](/xap/12.1/admin/the-runtime-environment.html#gs-agent-options) (or run gs-agent with `-h`)
 
 ## Simplified Replication Configuration for Transactions
 
 Replication configuration is affected by the size of the redolog, measured in replication packets, and various thresholds and policies which dictate system behavior. Since transactions are replicated in a single packet (to ensure atomicity), redolog size was not granular enough, as transactions can include few or many sub-operations. Starting 12.1, replication packets have weight, where simple operations weigh 1 and transactions weigh as the sum of their sub-operations, which makes it easier to configure replication.
 
-{{<infosign>}} For more information see [Weight Policy](/xap121adm/controlling-the-replication-redo-log.html#weight-policy).
+{{<infosign>}} For more information see [Weight Policy](/xap/12.1/admin/controlling-the-replication-redo-log.html#weight-policy).
 
 
 
@@ -78,7 +78,7 @@ The Web Management Console (web-ui) now supports custom security, same as the gs
 
 The Web Management Console (web-ui) can now be configured to use SSL.
 
-{{<infosign>}} For more information see [SSL Connection](/xap121adm/web-management-console-starting.html#ssl-connection).
+{{<infosign>}} For more information see [SSL Connection](/xap/12.1/admin/web-management-console-starting.html#ssl-connection).
 
 # Troubleshooting
 
@@ -88,13 +88,13 @@ A couple of improvements which can come in handy for troubleshooting:
 
 The dump functionality is useful for gathering log files from system components. However, up to now it only included components which are currently running - if a process has terminated and restarted, only its current log would be collected. Starting 12.1 you can specify if you want to collect terminated processes as well when you perform a dump.
 
-{{<infosign>}} For more information see [Dump](/xap121adm/web-management-dump.html).
+{{<infosign>}} For more information see [Dump](/xap/12.1/admin/web-management-dump.html).
 
 ## Verbose System Report
 
 Whenever a service grid component is started, it prints a system report in its log file. Starting 12.1, if you increase the log level from `INFO` to `CONFIG` or beyond, this report will be more verbose and include all system properties and environment variables, which can come in handy for troubleshooting some problems.
 
-{{<infosign>}} For more information see [Logging - Troubleshooting](/xap121adm/logging.html#troubleshooting).
+{{<infosign>}} For more information see [Logging - Troubleshooting](/xap/12.1/admin/logging.html#troubleshooting).
 
 # Third Party Upgrades
 

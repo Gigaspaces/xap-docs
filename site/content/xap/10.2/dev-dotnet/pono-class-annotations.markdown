@@ -152,7 +152,7 @@ public class Person {
 
 
 
-{{%learn "/xap102adm/replication.html"%}}
+{{%learn "/xap/10.2/admin/replication.html"%}}
 
 
 # Compound Index

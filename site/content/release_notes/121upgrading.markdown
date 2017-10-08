@@ -24,13 +24,13 @@ B) GS-Agent defaults to 2 GSCs, 2 global GSMs and 2 global LUSs. This forces you
 
 Note that the previous syntax is still fully supported and unchanged - if you've written scripts based on it in previous versions, they will behave the same in 12.1. We do recommend upgrading to the new syntax as soon as possible - it will simplify your scripts.
 
-For more information see [The Runtime Environment](/xap121adm/the-runtime-environment.html).
+For more information see [The Runtime Environment](/xap/12.1/admin/the-runtime-environment.html).
 
 ## Replication Configuration Semantics
 
 We've made some changes in replication configuration semantics. Most users upgrading from earlier version will either not notice this change, or will experience more predictable behaviour. However, if you've modified the default configuration settings, we recommend you read the relevant section (Weight Policy) before upgrading, and verify how this change affects your system in a test environment. If needed, this change can be disabled to restore the previous semantics.
 
-For more information see [Weight Policy](/xap121adm/controlling-the-replication-redo-log.html#weight-policy)
+For more information see [Weight Policy](/xap/12.1/admin/controlling-the-replication-redo-log.html#weight-policy)
 
 ## New XAP Manager
 
@@ -38,7 +38,7 @@ XAP 12.1 offers a simplified management experience using the XAP Manager, which 
 
 This is not a requirement for upgrading - you can perform a simple upgrade and continue using the service grid as-is. However, we recommend you learn about this and make the necessary changes to leverage it, as future improvements will be built on top of it.
 
-For more information see [XAP Manager](/xap121adm/xap-manager.html).
+For more information see [XAP Manager](/xap/12.1/admin/xap-manager.html).
 
 ## Third Party Upgrades
 
@@ -53,7 +53,7 @@ In addition, the jvm bundled with XAP.NET hase been upgraded to Java 8 update 12
 
 ### Deprecations
 
-* [Elastic Processing Unit](/xap120/elastic-processing-unit-overview.html) is deprecated, and will be removed in future releases. 
+* [Elastic Processing Unit](/xap/12.1/dev-java/elastic-processing-unit-overview.html) is deprecated, and will be removed in future releases. 
 
 ### Removals
 

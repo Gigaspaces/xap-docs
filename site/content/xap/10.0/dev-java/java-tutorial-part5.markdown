@@ -174,7 +174,7 @@ spring
 </beans>
 ```
 
-{{%learn "/xap100adm/the-sla-overview.html"%}}
+{{%learn "/xap/10.0/admin/the-sla-overview.html"%}}
 
 
 
@@ -420,6 +420,6 @@ With a stateless PU
 ./gs.sh deploy -cluster total_members=4 -max-instances-per-machine 2 eventPU.jar
 ```
 
-{{%learn "/xap100adm/deploy-command-line-interface.html"%}}
+{{%learn "/xap/10.0/admin/deploy-command-line-interface.html"%}}
 
 
