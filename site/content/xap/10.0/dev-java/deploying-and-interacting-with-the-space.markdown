@@ -514,7 +514,7 @@ Person[] multipleResults2 = gigaSpace.takeMultiple(query, 50);
 
 ## Changing an Object in the Space
 
-{{% include "/COM/xap100/change-api-code-snippet.markdown" %}}
+{{% include "/COM/xap/10.0/dev-java/change-api-code-snippet.markdown" %}}
 
 ## Ordering of Results
 

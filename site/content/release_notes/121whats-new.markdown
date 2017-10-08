@@ -28,7 +28,7 @@ Starting 12.1, you can use the `@SupportCodeChange` annotation to tell the space
 
 The space can store multiple versions of the same task side-by-side (ideal for supporting clients using different versions). This feature also applies for other features which execute user-defined code at the space, namely custom change and custom aggregate.
 
-{{<infosign>}} For more information see [Change code without restarts](/xap121/the-space-no-restart.html)
+{{<infosign>}} For more information see [Change code without restarts](/xap/12.1/dev-java/the-space-no-restart.html)
 
 ## Customize MemoryXtend cache warmup
 
@@ -42,13 +42,13 @@ Querying text properties made a great step forward, with full text search capabi
 
 Full text search is using {{%exurl "Lucene" "https://lucene.apache.org/"%}} under the hood, so you're getting all the power of lucene within your XAP application.
 
-{{<infosign>}} For more information see [Full text search](/xap121/query-full-text-search.html)
+{{<infosign>}} For more information see [Full text search](/xap/12.1/dev-java//query-full-text-search.html)
 
 ## Get Jetty port within your application
 
 Web applications which need to know which port they're running on can now get it directly from the context properties.
 
-{{<infosign>}} For more information see [Jetty Processing Unit Container - Port Numbers](/xap121/web-jetty-processing-unit-container.html#port-numbers)
+{{<infosign>}} For more information see [Jetty Processing Unit Container - Port Numbers](/xap/12.1/dev-java//web-jetty-processing-unit-container.html#port-numbers)
 
 # Administration
 

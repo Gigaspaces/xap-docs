@@ -56,7 +56,7 @@ A processing unit is essentially a .NET class library with a deployment descript
 
 {{%info%}}"PU Configuration SnippetsFrom here on processing unit configuration snippets will usually be shortened to focus on the `<ProcessingUnit>` tag. {{%/info%}}
 
-{{%learn "/xap102net/the-processing-unit-overview.html"%}}
+{{%learn "/xap/10.2/dev-dotnet/the-processing-unit-overview.html"%}}
 
 # Service Level Agreement (SLA)
 

@@ -68,7 +68,7 @@ An example of how the MongoDB Space Data Source can be configured for a space th
 also asynchronously persists the data using a mirror (see [MongoDB Space Synchronization Endpoint](./mongodb-space-synchronization-endpoint.html))).
 
 {{%note%}}
-With XAP 9.7.1 version please use the code example provided in [version 10.0](/xap100/mongodb-space-data-source.html)
+With XAP 9.7.1 version please use the code example provided in [version 10.0](/xap/10.0/dev-java/mongodb-space-data-source.html)
 {{%/note%}}
 
 

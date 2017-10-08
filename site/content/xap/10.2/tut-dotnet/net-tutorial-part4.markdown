@@ -162,7 +162,7 @@ public void registerPollingListener() {
 ```
 
 
-{{%learn "/xap102net/event-processing.html"%}}
+{{%learn "/xap/10.2/dev-dotnet/event-processing.html"%}}
 
 # FIFO Support
 Sometimes it is necessary to process events in the order the way they have been created. By default events are not ordered. XAP supports FIFO (First In, First Out) processing of events.  To enable FIFO operations you can turn on FIFO support for classes which will participate in such operations.    
@@ -192,7 +192,7 @@ namespace xaptutorial.model
 }
 ```
 
-{{%learn "/xap102net/fifo-support.html"%}}
+{{%learn "/xap/10.2/dev-dotnet/fifo-support.html"%}}
 
 
 # Master Worker Pattern

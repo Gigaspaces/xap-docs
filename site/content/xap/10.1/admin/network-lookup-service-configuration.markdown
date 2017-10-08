@@ -60,7 +60,7 @@ To support co-existence of different XAP versions, the defaults below may change
 Adjusting the lookup services multicast settings can be done using the following system properties:
 
 
-{{% include "/COM/xap100/config-multicast.markdown" %}}
+{{% include "/COM/xap/10.0/dev-java/config-multicast.markdown" %}}
 
 | Property name | Description | Default |
 |-----|------|------|

@@ -61,7 +61,7 @@ Supported Operating Systems: Any operating system supported by .NET Framework 3.
 
 64 bit support: XAP.NET is released in two separate packages for x86 and x64. The XAP.NET x86 package can be installed on a x64 machine and run in WoW64 mode.
 
-For more information see [XAP.NET](/xap121net)
+For more information see [XAP.NET](/xap/12.1/dev-dotnet)
 
 # Integrations with 3rd Party Products
 

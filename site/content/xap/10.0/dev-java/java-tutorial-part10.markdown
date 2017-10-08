@@ -78,7 +78,7 @@ Note that the monitoring is secured only by the 'tooling' (CLI/UI).
 |Monitor PU	 |Monitoring of Processing Units (classes, connections, statistics, etc.)|
 {{%/indent%}}
 
-{{%learn "/xap100sec/security-authorities.html"%}}
+{{%learn "//xap/10.0/security/security-authorities.html"%}}
 
 
 # Managing Roles
@@ -112,7 +112,7 @@ The default username and password for the security are admin/admin.
 
 You may have noticed that you can assign fine grained access control for space operations (read/write/etc) per space class(slide 4).
 
-{{%learn "/xap100sec/gigaspaces-management-center-ui-security.html"%}}
+{{%learn "//xap/10.0/security/gigaspaces-management-center-ui-security.html"%}}
 
 
 # Managing Users

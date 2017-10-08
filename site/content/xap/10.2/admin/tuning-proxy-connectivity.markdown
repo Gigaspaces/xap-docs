@@ -28,7 +28,7 @@ The space proxy router has the following responsibilities:
 
  The space proxy router behavior is controlled using the following configuration properties, which can be specified as part of the [Space Component]({{%currentjavaurl%}}/the-space-configuration.html#proxy) or via API:
 
-{{% include "/COM/xap100/config-space-proxy-router.markdown" %}}
+{{% include "/COM/xap/10.0/dev-java/config-space-proxy-router.markdown" %}}
 
 | Property name | Description | Default   |
 |-----|-----|-------|

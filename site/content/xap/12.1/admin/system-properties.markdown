@@ -74,7 +74,7 @@ Refer to [Change code without restarts]({{%currentjavaurl%}}/the-space-no-restar
 
 ## Transport
 
-{{% include "/COM/xap100/config-lrmi-transport.markdown" %}}
+{{% include "/COM/xap/10.0/dev-java/config-lrmi-transport.markdown" %}}
 
 | Property name | Description | Default   | Server Client  | Unit | Can be <br>over<br>ridden <br>at the client side|
 |----------------|------------|--------------|----------------------|-----|------------------------------------|

@@ -40,10 +40,10 @@ This page list all the 3rd party libraries shipped with   XAP on a per version b
 |[MongoDB](http://www.mongodb.org/)         | 3.2.0 | [Creative Commons](http://creativecommons.org/licenses/by-nc-sa/3.0/) | Persistency | [MongoDB Integration](/xap/12.1/dev-java/mongodb.html) |
 |[InfluxDB](https://influxdata.com/) | 0.9 (As of 10.2.1, 0.8 for 10.2.0) | [MIT](https://influxdb.com/docs/v0.9/about/licenses.html) | Metrics | [InfluxDB](/xap/12.1/admin/metrics-influxdb-reporter.html) |
 |[Jetty](http://eclipse.org/jetty/)         | 8.1.8, 9.1.3 | [Apache2](http://www.eclipse.org/jetty/licenses.php) | Web Container | [Jetty Processing Unit Container](/xap/12.1/dev-java/web-jetty-processing-unit-container.html) |
-|[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](/xap121/messaging-support.html) |
-|[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](/xap121/mule-esb.html) |
+|[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](/xap/12.1/dev-java/messaging-support.html) |
+|[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](/xap/12.1/dev-java/mule-esb.html) |
 |[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](http://svn.codehaus.org/groovy/trunk/groovy/groovy-core/LICENSE.txt) | Dynamic Scripting | [Dynamic Scripting Support](/xap/12.1/dev-java/task-dynamic-language.html)|
-|[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](/xap121/scala.html) |
+|[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](/xap/12.1/dev-java/scala.html) |
 |[MapDB](http://www.mapdb.org/)             | 1.0.7 | [Apache2](https://github.com/jankotek/MapDB/blob/master/license.txt) | Off Heap | [Off Heap RAM](/xap/12.1/admin/memoryxtend-ohr.html) |
 |[snmp4j](http://www.snmp4j.org/)           | 1.11.2 | [Apache2](http://www.snmp4j.org/LICENSE-2_0.txt) | SNMP | [SNMP Connectivity via Alert Logging Gateway](/xap/12.1/dev-java/snmp-connectivity-via-alert-logging-gateway.html) |
 |[log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SNMP | [SNMP Connectivity via Alert Logging Gateway](/xap/12.1/dev-java/snmp-connectivity-via-alert-logging-gateway.html)  |

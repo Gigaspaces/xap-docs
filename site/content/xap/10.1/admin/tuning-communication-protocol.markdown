@@ -135,7 +135,7 @@ To allow the above , the client must set the `java.rmi.server.hostname` property
 The `LRMI` configuration options set as system properties. They are listed below:
 
 
-{{% include "/COM/xap100/config-lrmi-transport.markdown" %}}
+{{% include "/COM/xap/10.0/dev-java/config-lrmi-transport.markdown" %}}
 
 | Property name | Description | Default   | Server Client  | Unit | Can be <br>over<br>ridden <br>at the client side|
 |----------------|------------|--------------|----------------------|-----|------------------------------------|
