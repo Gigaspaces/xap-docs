@@ -603,7 +603,7 @@ The Mirror Service does not hold state so its failure would not result any data 
 
 ## WAN Gateway Failure
 
-The WAN gateway like the mirror service acting as a broker, responsible to replicate activities conducted at the local data grid into another (remote) data grid. The WAN Gateway does not hold state so its failure would not result any data lose, but its failure means data will not be replicated between source and destination data grid. You do not need to deploy the WAN Gateway in a clustered configuration (aka primary-backup). By default XAP will try to start a WAN Gateway in case it failed. Since WAN Gateway usually configured to use specific port on specific machine(s), you should configure the WAN Gateway PU to be provisioned into specific machine(s).
+The WAN gateway like the mirror service acting as a broker, responsible to replicate activities conducted at the local data grid into another (remote) data grid. The WAN Gateway does not hold state so its failure would not result any data lose, but its failure means data will not be replicated between source and destination data grid. You do not need to deploy the WAN Gateway in a clustered configuration (aka primary-backup). By default XAP will try to start a WAN Gateway if it fails. The WAN Gateway is usually configured to use a specific port on a specific machine(s), therefore you should configure the WAN Gateway PU to be provisioned on a specific machine(s).
 
 
 ## Split Brain 

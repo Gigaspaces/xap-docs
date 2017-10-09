@@ -40,17 +40,19 @@ A wide variety of documentation is provided to help you learn how to install, im
 
 ## Main Documentation Page
 
-For a brief overview of concepts, terminology, and other programming fundamentals, see the [Getting Started](./started/index.html) section.
+Read the following if you are just starting out with InsightEdge or XAP:
 
-Read one of the following guides for detailed instructions on how to install InsightEdge and XAP and configure your working environment, and understand the APIs that comprise the InsightEdge Platform.
+* For a brief overview of concepts, terminology, and other programming fundamentals, see the [Product Overview](./overview/index.html) section.
+
+* For for information how to install and configure InsightEdge and XAP, and how to quickly get up and running with these products, see the [Getting Started](./started/index.html) section.
+
+Read the following for detailed information about the InsightEdge and XAP and APIs and how to use them to build your own full-featured applications:
 
 * [Developer Guide](./dev-java/index.html)
 
 * [XAP.NET Guide](./dev-dotnet/index.html)
 
-* [Administration Guide](./admin/index.html) 
-
-* [Security Guide](./security/index.html)
+* [Administration Guide](./admin/index.html) (inlcudes a [Security](./security/index.html) section)
 
 ## Additional Resources
 
