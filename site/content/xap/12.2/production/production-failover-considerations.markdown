@@ -64,7 +64,7 @@ CPU utilization should not exceed 40% on average, to support complete machine/VM
 
 ## LUS
 
-To enable failover on LUS (Lookup Service) failure, at least two LUSs should be started for redundancy. You can use global or local [LUS configuration](./lus-configuration.html) to ensure that two LUS will be running.
+To enable failover on LUS (Lookup Service) failure, at least two LUSs should be started for redundancy. You can use global or local [LUS configuration](../admin/lus-configuration.html) to ensure that two LUS will be running.
 
 When using a multicast discovery configuration, it is recommended to use the global LUS configuration to ensure that two LUS will run on two different machines, even if a machine running a LUS fails. When using a unicast lookup discovery configuration and a LUS fails, the clients and service grid components may throw exceptions because internally they are frequently trying to perform lookup discovery for the missing lookup.
 
@@ -76,7 +76,7 @@ The GSA acts as a process manager, watching the GSC, LUS, ESM, and GSM processes
 
 ## GSM 
 
-The GSM is responsible for deployment and provisioning of deployed PUs(stateless, statefull). The GSM is utilized during deploymnt, PU failure, and PU migration from one GSC to another. To support high availability, you should have two GSMs started per grid. You can use either global or local [GSM configuration](./gsm-configuration.html) to ensure that two GSM will be running. In most cases, global GSM configuration is recommended unless you require hot deploy functionality.
+The GSM is responsible for deployment and provisioning of deployed PUs(stateless, statefull). The GSM is utilized during deploymnt, PU failure, and PU migration from one GSC to another. To support high availability, you should have two GSMs started per grid. You can use either global or local [GSM configuration](../admin/gsm-configuration.html) to ensure that two GSM will be running. In most cases, global GSM configuration is recommended unless you require hot deploy functionality.
 
 ## ESM 
 

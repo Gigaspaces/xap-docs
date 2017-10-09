@@ -8,7 +8,7 @@ weight: 1000
 
 # The Runtime Environment (GSA, LUS, GSM and GSC)
 
-In a dynamic environment where you want to start [GSCs](/product_overview/service-grid.html#gsc) and [GSMs](/product_overview/service-grid.html#gsm) remotely, manually, or dynamically, the [GSA](/product_overview/service-grid.html#gsa) is the only component that should be running on the machine hosting the [XAP runtime environment](./the-runtime-environment.html). This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.
+In a dynamic environment where you want to start [GSCs](/product_overview/service-grid.html#gsc) and [GSMs](/product_overview/service-grid.html#gsm) remotely, manually, or dynamically, the [GSA](/product_overview/service-grid.html#gsa) is the only component that should be running on the machine hosting the [XAP runtime environment](../admin/the-runtime-environment.html). This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.
 
 Plan the initial number of GSCs and GSMs based on the application memory footprint, and the amount of processing you might need. The most basic deployment should include 2 GSMs (running on different machines), 2 lookup services (running on different machines), and 2 GSCs (running on each machine). These host your data Grid or any other application components (services, web servers, Mirror) that you deploy.
 
@@ -187,7 +187,7 @@ The Lookup Service runs by default as a standalone JVM process started by the GS
 
 # Zones
 
-The [XAP zone](./the-sla-overview.html) allows you to "label" a running GSC(s) before starting it. The XAP **zone** should be used to isolate applications and a data grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs, where they all share the **same set of LUSs and GSMs**.
+The [XAP zone](../admin/the-sla-zones.html) allows you to "label" a running GSC(s) before starting it. The XAP **zone** should be used to isolate applications and a data grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs, where they all share the **same set of LUSs and GSMs**.
 
 {{%align "center"%}}
 ![image](/attachment_files/zones.jpg)
@@ -290,7 +290,7 @@ To avoid having to load the same library into each PU instance classloader runni
 
 # Space Memory Management
 
-The Space supports two [memory management](./memory-management-facilities.html) modes:
+The Space supports two [memory management](../admin/memory-management-facilities.html) modes:
 
 - `ALL_IN_CACHE` - this assumes all application data is stored within the space.
 - `LRU` - this assumes some of the application data is stored within the space, and all the rest is stored in some external data source.
@@ -375,5 +375,5 @@ When using the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing
 
 # Log Files
 
-XAP generates log files for each running component . This includes the GSA, GSC, GSM, Lookup Service and client-side components. By default, the log files are created within the `<gigaspaces-xap-root>\logs` folder. After some time, you may end up with a large number of files that are difficult to maintain and search. it is recommended to back up or delete old log files. You can use the [logging backup policy](./logging-backing-custom-policy.html) to manage your log files.
+XAP generates log files for each running component . This includes the GSA, GSC, GSM, Lookup Service and client-side components. By default, the log files are created within the `<gigaspaces-xap-root>\logs` folder. After some time, you may end up with a large number of files that are difficult to maintain and search. it is recommended to back up or delete old log files. You can use the [logging backup policy](../admin/logging-backing-custom-policy.html) to manage your log files.
 
