@@ -31,7 +31,7 @@ Supports any language, any platform, any API - Achieve interoperability, easy mi
 
 ## OpenSpaces
 
-OpenSpaces is the GigaSpaces native programming API. It is an open-source [Spring-based](http://www.springframework.org/about) application interface designed to make space-based development easy, reliable, and scalable. In addition, the programming model is non-intrusive, based on a simple POJO programming model and a clean integration point with other development frameworks.
+OpenSpaces is the GigaSpaces native programming API. It is an open-source [Spring-based](https://spring.io/) application interface designed to make space-based development easy, reliable, and scalable. In addition, the programming model is non-intrusive, based on a simple POJO programming model and a clean integration point with other development frameworks.
 
 The OpenSpaces API is divided into four parts:
 
@@ -101,7 +101,7 @@ More information on the usage of the above integrations can be found in the Deve
 
 ## Spring Container
 
-The Spring framework container integration is included as part of XAP, and provides the ability to take advantage of [Spring](http://www.springframework.org/about) components, programming model and capabilities.
+The Spring framework container integration is included as part of XAP, and provides the ability to take advantage of [Spring](https://spring.io/) components, programming model and capabilities.
 
 The Spring framework provides very elegant abstractions, which makes it very easy to build layered and decoupled applications.
 
@@ -117,10 +117,7 @@ The .NET SBA application takes advantage of the ability to run business services
 
 The [.NET container]({{% latestneturl%}}) bridges the technical gap and provides a native .NET experience for .NET applications.
 
-## C++ Container
-
-Much like the .NET container, the [CPP Processing Unit]({{% latestjavaurl%}}/cpp-processing-unit.html) provides a native C++ runtime environment for C++ SBA applications.
-
+ 
 ## Mule Integration
 
 Mule is a popular open source Enterprise Services Bus implementation in Java. The [Mule container integration]({{% latestjavaurl%}}/mule-esb.html) allows you to run a Mule application on top of the GigaSpaces XAP, and gain scalability, performance and high-availability, with almost no changes to the Mule application.

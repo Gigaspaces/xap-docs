@@ -232,7 +232,7 @@ public class Evictor {
 {{% note %}}
 This example is using Maven for packaging and build.
 
-- Please [install the OpenSpaces Maven plugin]({{%latestjavaurl%}}/installation-maven-overview.html#MavenPlugin-Installation) before you run this example.
+- Please [install the OpenSpaces Maven plugin]({{%lateststartedurl%}}/installation-maven-overview.html#MavenPlugin-Installation) before you run this example.
 - Please update the GigaSpaces and Spring versions to appropriate versions in the pom.xml file.
 {{% /note %}}
 
@@ -554,7 +554,7 @@ gs.write(wMark, Lease.FOREVER, 5000, UpdateModifiers.UPDATE_OR_WRITE);
 {{% note %}}
 This example is using Maven for packaging and build.
 
-- Please [install the OpenSpaces Maven plugin]({{%latestjavaurl%}}/installation-maven-overview.html#MavenPlugin-Installation) before you run this example.
+- Please [install the OpenSpaces Maven plugin]({{%lateststartedurl%}}/installation-maven-overview.html#MavenPlugin-Installation) before you run this example.
 - Please update the GigaSpaces and Spring versions to appropriate versions in the pom.xml file.
 {{% /note %}}
 

@@ -1128,12 +1128,12 @@ asyncRead(gigaSpace, template).thenAccept(value -> {
 
 
 
-{{% include "/COM/xap102/ops-write.markdown" %}}
-{{% include "/COM/xap102/ops-change.markdown" %}}
-{{% include "/COM/xap102/ops-read.markdown" %}}
-{{% include "/COM/xap102/ops-take.markdown" %}}
-{{% include "/COM/xap102/ops-clear.markdown" %}}
-{{% include "/COM/xap102/ops-count.markdown" %}}
-{{% include "/COM/xap102/ops-counters.markdown" %}}
-{{% include "/COM/xap102/ops-aggregation.markdown" %}}
-{{% include "/COM/xap102/ops-async-extension.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-write.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-change.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-read.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-take.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-clear.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-count.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-counters.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-aggregation.markdown" %}}
+{{% include "/COM/xap/10.2/dev-java/ops-async-extension.markdown" %}}

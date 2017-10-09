@@ -25,7 +25,7 @@ the system property `com.gs.transport_protocol.lrmi.serialize-using-externalizab
 to aid for investigating these issues and will be removed in future versions, when `Externalizable` support will reach end of life.
 
 {{% refer %}}
-[Custom Serialization](/xap100/custom-serialization.html)
+[Custom Serialization](/xap/10.0/dev-java/custom-serialization.html)
 {{% /refer %}}
 
 ## .NET 2.0 support

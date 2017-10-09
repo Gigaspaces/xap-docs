@@ -74,7 +74,7 @@ In remote mode, the Object's non-primitive fields are serialized where the seria
 - Native mode - non-primitive Object fields are serialized using Java Serialization. These are de-serialized at the space side before they are stored inside the space.
 - Light mode - when non-primitive fields are serialized, they are wrapped with GigaSpaces special Marshaled Object. When stored inside the space, these field are not de-serialized, but stored as in their serialized form. This provide better performance when writing and reading objects with large collections/maps. With the light serialization mode, you can't index and query fields within nested objects.
 java-version
-- Full mode - supports the [JavaSpace specification](http://river.apache.org/doc/spec-index.html). When serialized, non-primitive fields are wrapped with a [MarshaledObject](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/rmi/MarshalledObject.html). The MarshalledObject is de-serialized at the space side before it is stored, allowing you to perform matching using these fields. This mode is slower compared other options.
+- Full mode - supports the [JavaSpace specification](http://river.apache.org). When serialized, non-primitive fields are wrapped with a [MarshaledObject](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/rmi/MarshalledObject.html). The MarshalledObject is de-serialized at the space side before it is stored, allowing you to perform matching using these fields. This mode is slower compared other options.
 - Compressed mode - non-primitive fields are compressed before being sent to the space at the client side. These are stored in compressed form within the space.
 
 

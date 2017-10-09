@@ -210,7 +210,7 @@ Example:
 ```
 
 
-{{%learn "/xap102adm/memoryxtend.html"%}}
+{{%learn "/xap/10.2/admin/memoryxtend.html"%}}
 
 
 

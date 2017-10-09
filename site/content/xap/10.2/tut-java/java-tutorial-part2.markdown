@@ -65,7 +65,7 @@ The GSA is a process manager that can spawn and manage service grid processes (O
 
 When you execute the gs-agent command above without any arguments, 1 GSA, 1 GSM, 1 LUS and 2 GSC's will be started. The gs-agent command takes several different parameters as arguments.
 
-{{%learn "/xap102adm/scripts.html"%}}
+{{%learn "/xap/10.2/admin/scripts.html"%}}
  
  
 # Connecting to a Data Grid
@@ -230,7 +230,7 @@ The Admin UI console has many more features which we will introduce you to throu
 
    
 
-{{%learn "/xap102adm/web-management-console.html"%}}
+{{%learn "/xap/10.2/admin/web-management-console.html"%}}
 
  
 

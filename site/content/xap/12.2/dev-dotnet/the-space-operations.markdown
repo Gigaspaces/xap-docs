@@ -900,9 +900,9 @@ public class Person
 
 
 
-{{% include "/COM/xap102net/ops-write.markdown" %}}
-{{% include "/COM/xap102net/ops-read.markdown" %}}
-{{% include "/COM/xap102net/ops-take.markdown" %}}
-{{% include "/COM/xap102net/ops-clear.markdown" %}}
-{{% include "/COM/xap102net/ops-count.markdown" %}}
-{{% include "/COM/xap102net/ops-aggregation.markdown" %}}
+{{% include "/COM/xap/10.2/dev-dotnet/ops-write.markdown" %}}
+{{% include "/COM/xap/10.2/dev-dotnet/ops-read.markdown" %}}
+{{% include "/COM/xap/10.2/dev-dotnet/ops-take.markdown" %}}
+{{% include "/COM/xap/10.2/dev-dotnet/ops-clear.markdown" %}}
+{{% include "/COM/xap/10.2/dev-dotnet/ops-count.markdown" %}}
+{{% include "/COM/xap/10.2/dev-dotnet/ops-aggregation.markdown" %}}

@@ -69,7 +69,7 @@ public void createNewPayment() {
 	space.write(payment);
 }
 ```
-{{%learn "/xap102/transaction-management.html"%}}
+{{%learn "/xap/10.2/dev-java/transaction-management.html"%}}
 
 
 # Event Processing
@@ -101,24 +101,24 @@ public class PaymentListener {
 }
 ```
 
-{{%learn "/xap102/polling-container.html"%}}
+{{%learn "/xap/10.2/dev-java/polling-container.html"%}}
 
 
 ### Notify Container
 Just like the Polling container, both the receive operation and the actual event action can be configured to be performed under a transaction. However, in case an error occurs (rollback), the notification is lost and not sent again.
 
-{{%learn "/xap102/notify-container.html"%}}
+{{%learn "/xap/10.2/dev-java/notify-container.html"%}}
 
 
 # Task Execution
 Executors fully support transactions similar to other XAP operations. Once an execute operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on and added declaratively to it. This means that any XAP operation performed within the task execute operation will automatically join the transaction started on the client side.
-{{%learn "/xap102/task-execution-over-the-space.html"%}}
+{{%learn "/xap/10.2/dev-java/task-execution-over-the-space.html"%}}
 
 
 
 # Remoting Service
 Executor remoting supports transactional execution of services. On the client side, if there is an ongoing declarative transaction during the service invocation (a Space based transaction), the service will be executed under the same transaction. The transaction itself is passed to the server and any Space related operations (performed using XAP) will be executed under the same transaction.
-{{%learn "/xap102/space-based-remoting.html"%}}
+{{%learn "/xap/10.2/dev-java/space-based-remoting.html"%}}
 
 
 
@@ -174,7 +174,7 @@ public class Account {
 	}
 }
 ```
-{{%learn "/xap102/transaction-optimistic-locking.html"%}}
+{{%learn "/xap/10.2/dev-java/transaction-optimistic-locking.html"%}}
 
 
 
@@ -196,7 +196,7 @@ public void executePayment(Integer orderIDs[]) throws Exception {
 	space.write(payment);
 }
 ```
-{{%learn "/xap102/transaction-pessimistic-locking.html"%}}
+{{%learn "/xap/10.2/dev-java/transaction-pessimistic-locking.html"%}}
 
 
 
@@ -208,7 +208,7 @@ XAP provides additional read modifiers to denote the isolation level:
 - READ_COMMITTED
 - EXCLUSIVE_READ_LOCK
 
-{{%learn "/xap102/transaction-read-modifiers.html"%}}
+{{%learn "/xap/10.2/dev-java/transaction-read-modifiers.html"%}}
 
 
 

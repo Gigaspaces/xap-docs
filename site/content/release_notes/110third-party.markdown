@@ -18,13 +18,13 @@ This page list all the 3rd party libraries shipped with GigaSpaces XAP on a per 
 |:--------|:--------|:--------|:---------|:----------|
 | [Security](http://java.sun.com/products/jsse/) |1.6 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | Yes | Core |
 | [Apache Commons](http://jakarta.apache.org/commons/) | 1.x-2.x | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | Yes | Core |
-| [Spring](http://www.springframework.org/about) | 4.1.1 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | Yes | Core |
+| [Spring](https://spring.io/) | 4.1.1 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | Yes | Core |
 | [ASM](http://asm.objectweb.org/doc/tutorial.html) | 2.2.3 | [INRIA](http://asm.objectweb.org/license.html) | No | Core |
 | [Sigar](http://support.hyperic.com/display/SIGAR/Home) | 1.6.5 | [Apache2](http://support.hyperic.com/display/SIGAR/Home#Home-license) | No | Core |
 | [HyperSonic SQL](http://www.hsqldb.org/) | 1.8.0 | [Hypersonic SQL](http://www.hsqldb.org/web/hsqlLicense.html) | No | Persistency |
 | [H2](http://www.h2database.com/) | 1.2 | [H2](http://www.h2database.com/html/license.html) | No | Persistency |
 | [Velocity](http://velocity.apache.org/) | 1.5 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | No | Utilities |
-| [Maven](http://maven.apache.org/) | 3.0.2| [Apache2](http://maven.apache.org/license.html) | No | OpenSpaces Maven Integration |
+| [Maven](http://maven.apache.org/) | 3.0.2| [Apache2](https://www.apache.org/licenses/) | No | OpenSpaces Maven Integration |
 | [Ant](http://ant.apache.org/) | 1.9.4 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | No | Examples |
 
 {{% /tab %}}
@@ -34,19 +34,19 @@ This page list all the 3rd party libraries shipped with GigaSpaces XAP on a per 
 
 | Product | Version | License | Component | Documentation |
 |:--------|:--------|:--------|:----------|:--------------|
-|[OpenJPA](http://openjpa.apache.org/)      | 2.0.1 | [Apache2](http://openjpa.apache.org/license.html)          | Persistency | [JPA](/xap110/jpa-api-overview.html) |
-|[Hibernate](http://www.hibernate.org/orm/) | 4.1.9 | [LGPL](http://hibernate.org/community/license/)            | Persistency | [Hibernate Space Persistency](/xap110/hibernate-space-persistency.html) |
-|[Cassandra](http://cassandra.apache.org/)  | 1.1.6 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |Persistency | [Cassandra Integration](/xap110/cassandra.html) |
-|[MongoDB](http://www.mongodb.org/)         | 2.11.2 | [Creative Commons](http://creativecommons.org/licenses/by-nc-sa/3.0/) | Persistency | [MongoDB Integration](/xap110/mongodb.html) |
-|[InfluxDB](https://influxdata.com/) | 0.9 (As of 10.2.1, 0.8 for 10.2.0) | [MIT](https://influxdb.com/docs/v0.9/about/licenses.html) | Metrics | [InfluxDB](/xap110adm/metrics-influxdb-reporter.html) |
-|[Jetty](http://eclipse.org/jetty/)         | 8.1.8, 9.1.3 | [Apache2](http://www.eclipse.org/jetty/licenses.php) | Web Container | [Jetty Processing Unit Container](/xap110/web-jetty-processing-unit-container.html) |
-|[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](/xap110/messaging-support.html) |
-|[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](/xap110/mule-esb.html) |
-|[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](http://svn.codehaus.org/groovy/trunk/groovy/groovy-core/LICENSE.txt) | Dynamic Scripting | [Dynamic Scripting Support](/xap110/task-dynamic-language.html)|
-|[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](/xap110/scala.html) |
-|[MapDB](http://www.mapdb.org/)             | 1.0.7 | [Apache2](https://github.com/jankotek/MapDB/blob/master/license.txt) | Off Heap | [Off Heap RAM](/xap110adm/memoryxtend-ohr.html) |
-|[snmp4j](http://www.snmp4j.org/)           | 1.11.2 | [Apache2](http://www.snmp4j.org/LICENSE-2_0.txt) | SNMP | [SNMP Connectivity via Alert Logging Gateway](/xap110/snmp-connectivity-via-alert-logging-gateway.html) |
-|[log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SNMP | [SNMP Connectivity via Alert Logging Gateway](/xap110/snmp-connectivity-via-alert-logging-gateway.html)  |
+|[OpenJPA](http://openjpa.apache.org/)      | 2.0.1 | [Apache2](http://openjpa.apache.org/license.html)          | Persistency | [JPA](/xap/11.0/dev-java/jpa-api-overview.html) |
+|[Hibernate](http://www.hibernate.org/orm/) | 4.1.9 | [LGPL](http://hibernate.org/community/license/)            | Persistency | [Hibernate Space Persistency](/xap/11.0/dev-java/hibernate-space-persistency.html) |
+|[Cassandra](http://cassandra.apache.org/)  | 1.1.6 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |Persistency | [Cassandra Integration](/xap/11.0/dev-java/cassandra.html) |
+|[MongoDB](http://www.mongodb.org/)         | 2.11.2 | [Creative Commons](http://creativecommons.org/licenses/by-nc-sa/3.0/) | Persistency | [MongoDB Integration](/xap/11.0/dev-java/mongodb.html) |
+|[InfluxDB](https://influxdata.com/) | 0.9 (As of 10.2.1, 0.8 for 10.2.0) | [MIT](https://influxdb.com/docs/v0.9/about/licenses.html) | Metrics | [InfluxDB](/xap/11.0/admin/metrics-influxdb-reporter.html) |
+|[Jetty](http://eclipse.org/jetty/)         | 8.1.8, 9.1.3 | [Apache2](http://www.eclipse.org/jetty/licenses.php) | Web Container | [Jetty Processing Unit Container](/xap/11.0/dev-java/web-jetty-processing-unit-container.html) |
+|[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](/xap/11.0/dev-java/messaging-support.html) |
+|[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](/xap/11.0/dev-java/mule-esb.html) |
+|[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](http://svn.codehaus.org/groovy/trunk/groovy/groovy-core/LICENSE.txt) | Dynamic Scripting | [Dynamic Scripting Support](/xap/11.0/dev-java/task-dynamic-language.html)|
+|[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](/xap/11.0/dev-java/scala.html) |
+|[MapDB](http://www.mapdb.org/)             | 1.0.7 | [Apache2](https://github.com/jankotek/MapDB/blob/master/license.txt) | Off Heap | [Off Heap RAM](/xap/11.0/admin/memoryxtend-ohr.html) |
+|[snmp4j](http://www.snmp4j.org/)           | 1.11.2 | [Apache2](http://www.snmp4j.org/LICENSE-2_0.txt) | SNMP | [SNMP Connectivity via Alert Logging Gateway](/xap/11.0/dev-java/snmp-connectivity-via-alert-logging-gateway.html) |
+|[log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SNMP | [SNMP Connectivity via Alert Logging Gateway](/xap/11.0/dev-java/snmp-connectivity-via-alert-logging-gateway.html)  |
 
 {{% /tab %}}
 

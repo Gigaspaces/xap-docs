@@ -25,8 +25,11 @@ test:
 ## Customize deployment commands
 deployment:
   production:
-    #branch: master
     tag: /release-.*/
     commands:
-      #- s3_website cfg apply
+      - echo "Publishing to production..."
       - s3_website push
+  staging:
+    branch: master
+    commands:
+      #- ./publish-staging.sh

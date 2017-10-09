@@ -84,7 +84,7 @@ A sample SLA definition is shown below:
 </beans>
 ```
 
-{{%learn "/xap100adm/the-sla-overview.html"%}}
+{{%learn "/xap/10.0/admin/the-sla-overview.html"%}}
 
 # Deployment
 When deploying the PU to the XAP Service Grid, the PU is uploaded to the XAP Manager (GSM) and extracted to the deploy directory of the local XAP installation (located by default under <XAP Root>\deploy).
@@ -272,7 +272,7 @@ gs-cli deploy -cluster total_members=4 -max-instances-per-machine 2 eventProcess
 Deploying with the command line options will override the sla definitions
 {{%/note%}}
 
-{{%learn "/xap100adm/deploy-command-line-interface.html"%}}
+{{%learn "/xap/10.0/admin/deploy-command-line-interface.html"%}}
 
 
 
