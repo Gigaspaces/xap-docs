@@ -6,90 +6,101 @@ parent: insightedge.html
 weight: 200
 ---
 
-In this demo/blog post we will show you how to combine real-time speech recognition with real-time speech classification based on Intel's BigDL library and Insightedge.
+This topic explains how to combine real-time speech recognition with real-time speech classificationm based on Intel's BigDL library and Insightedge.
 
 ## What is BigDL?
-BigDL is a distributed deep learning library for Apache Spark. You can lean more about deep learning and neural networks on {{%exurl "Coursera""https://www.coursera.org/specializations/deep-learning"%}}.
+BigDL is a distributedm deep-learning library for Apache Spark. To learn more about deep learning and neural networks, refer to {{%exurl "Coursera""https://www.coursera.org/specializations/deep-learning"%}}.
 
-With BigDL it's possible write deep learning applications as standard Spark programs thus allowing to leverage Spark during model training, prediction, and tuning. High performance and throughput is achieved with {{%exurl "Intel Math Kernel Library""https://software.intel.com/en-us/mkl"%}}.
+With BigDL, it is possible to write deep-learning applications as standard Spark programs, which enables leveraging Spark during model training, prediction, and tuning. High performance and throughput is achieved using the {{%exurl "Intel Math Kernel Library""https://software.intel.com/en-us/mkl"%}}.
  
 {{%refer%}} 
 Read more about {{%exurl "Distributed Deep Learning on Apache Spark""https://github.com/intel-analytics/BigDL"%}}.
 {{%/refer%}}
 
-## Motivation
-As for example let's consider big companies with huge client base requires to organize call centers. In order to service client correctly it's vital to which specialist he should be directed. Current demo takes advantage of cutting edge technologies to resolve such tasks in effective manner less then in 100ms.
+## Use Case
+As a sample use case, consider a big company with a very large client base that continually contacts the company call centers for customer service, technical support, etc. In order to serve the clients correctly and maintain high customer satisfaction, it is critical to direct calls to the appropriate specialist. The current demo takes advantage of cutting-edge technologies to handle this task effectively in under 100 ms.
 Here is a general workflow:
 
 ![Application flow](/attachment_files/sbp/bigdl/flow.png)
 
 
 ## Architecture
-Let's take a helicopter view of the application components.
+The following diagram provides a high-level view of the application components.
 
 ![Architecture](/attachment_files/sbp/bigdl/architecture.png)
 
+{{%info "Info"%}} 
+Additional documentation about Intel's BigDL is available at https://bigdl-project.github.io/master/ and https://software.intel.com/en-us/ai-academy/frameworks/bigdl. 
+ {{%/info%}}
+
+## Running BigDL with InsightEdge
+
+In this demo, the follwoing software was used:
+
+- Scala version 2.10.4
+- Java version 1.8.x
+- Kafka version 0.8.2.2
+- InsightEdge version 1.0.0
+- BigDL version 0.2.0>
+- sbt
+- Maven version 3.x
+
+### Prerequisites
+
+Before running the demo, do the following to prepare your environment:
+
+* Download and extract data ( the first three steps as described in {{%exurl "here""https://github.com/intel-analytics/BigDL/tree/master/spark/dl/src/main/scala/com/intel/analytics/bigdl/example/textclassification"%}}).
+* Set the `INSIGHTEDGE_HOME` and `KAFKA_HOME` environment variables.
+* Verify that Scala is installed: `scala -version` 
+* Modify the variables according to your system requirments using `runModelTrainingJob.sh`, `runTextPredictionJob.sh`, and `runKafkaProducer.sh`.
+
+### Launching the Demo
 
 
-Documentation 
+There are three stages to running the BigDL demo.
 
-https://bigdl-project.github.io/master/
+**Stage 1 - Build the project and start the components**
 
+1. Clone this repo.
+1. Navigate to the InsightEdge directory: `cd BigDL/insightedge`
+1. Build the project: `sh build.sh`
+1. Start Apache Zookeeper and the Kafka server: `sh kafka-start.sh`
+1. Create a Kafka topic: `sh kafka-create-topic.sh` (to verify that the topic was created, run `sh kafka-topics.sh`).
+1. Start Insightedge in demo mode: `sh ie-demo.sh`
+1. Deploy the processor-0.2.0-jar-with-dependencies.jar in the XAP Management Center.
 
-https://software.intel.com/en-us/ai-academy/frameworks/bigdl
+**Stage 2 - Train the BigDL model**
 
+- Train the text classifier model: `sh runModelTrainingJob.sh`
 
+**Stage 3 - Run the Spark streaming job with the trained BigDL classification model**
 
+1. In separate terminal tab, start Spark streaming for predictions: `sh runTextClassificationJob.sh`.
+1. Start the web server: `cd BigDL/web and sh runWeb.sh`.
 
-## How to run
+### Testing the Demo
 
-Used software:<br>
-- scala v2.10.4<br>
-- java 1.8.x<br>
-- kafka v0.8.2.2<br>
-- Insightedge v1.0.0<br>
-- BigDL v0.2.0<br>
-- sbt<br>
-- maven v3.x<br>
+To use the demo and get a feel for how deep learning occurs with BigDL, open a browser window at {{%exurl "https://localhost:9443""https://localhost:9443"%}}. We suggest performing the following test steps:
 
-Prerequisites:<br>
+1. Click the microphone button and begin talking. 
+1. Click the microphone button again to stop recording and send the recorded speech to Kafka.
+1. Wait for a new record to appear in the "In-process calls" table. This indicates that the call is currently being processed.
+1. When the row moves from the "In-process call" table to the "Call sessions" table, check the following:
+ - In the "Category" column, you can see how the speech was classified by the BigDL model.
+ - In the "Time" column, you can see how much time (in milliseconds) it took to classify the speech. 
 
-* Download and extract data(first three steps) as described {{%exurl "here""https://github.com/intel-analytics/BigDL/tree/master/spark/dl/src/main/scala/com/intel/analytics/bigdl/example/textclassification"%}}<br>
-* Set `INSIGHTEDGE_HOME` and `KAFKA_HOME` env variables<br>
-* Make sure you have Scala installed: `scala -version` <br>
-* Change variables according to your needs in runModelTrainingJob.sh, runTextPredictionJob.sh, runKafkaProducer.sh
+## Shutting Down InsightEdge
 
-Running demo is divided in three parts:
+There are two steps to the shutdown process; first stop Kafka, and then stop InsightEdge.
 
-1. Build project and start components
-    * Clone this repo
-    * Go to insightedge directory: `cd BigDL/insightedge`
-    * Build the project: `sh build.sh`
-    * Start zookeeper and kafka server: `sh kafka-start.sh`
-    * Create Kafka topic: `sh kafka-create-topic.sh`. To verify that topic was created run `sh kafka-topics.sh`
-    * Start Insightedge in demo mode: `sh ie-demo.sh`
-    * Deploy processor-0.2.0-jar-with-dependencies.jar in GS UI.
+To stop Kafka, use the following command:
 
-2. Train BigDL model
-    * Train text classifier model: `sh runModelTrainingJob.sh`
-
-3. Run Spark streaming job with trained BigDL classification model
-    * In separate terminal tab start Spark streaming for predictions: `sh runTextClassificationJob.sh`.
-    * Start web server: `cd BigDL/web and sh runWeb.sh`.
-
-Now go to {{%exurl "https://localhost:9443""https://localhost:9443"%}}:
-
-1. Click on a microphone button and start talking. Click microphone button one more time to stop recording and send speech to Kafka.
-2. Shortly you will see a new record in "In-process calls" table. It means that call is currently processed.
-3. After a while row from "In-process call" table will be moved to the "Call sessions" table. In column "Category" you can see to which category speech was classified by BigDL model. In column "Time" you will see how much time in milliseconds it took to classify the speech. 
-
-## Shutting down:
-Stop kafka: 
 ```bash
 ./kafka-stop.sh
 ```
 
-Stop Insightedge: 
+To stop Insightedge, use the following command:
+
 ```bash
 ./ie-shutdown.sh
 ```
