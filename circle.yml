@@ -27,8 +27,7 @@ deployment:
   production:
     tag: /release-.*/
     commands:
-      - echo "Publishing to production..."
-      - s3_website push
+      - bash ./publish-production.sh
   staging:
     branch: master
     commands:
