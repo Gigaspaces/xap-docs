@@ -16,9 +16,9 @@ function isScrolledIntoView(elem, offsetFromTop)
 $(document).ready(function() {
 
 
-    $('#premium-download').click(function(e) {
+/*    $('#premium-download').click(function(e) {
        location.href="http://www.gigaspaces.com/xap-download";
-    });
+    });*/
 
     
     var premiumPopupTitle = 'XAP Premium';

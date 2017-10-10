@@ -16,9 +16,11 @@ function isScrolledIntoView(elem, offsetFromTop)
 $(document).ready(function() {
 
 
+/*
     $('#insightedge-download').click(function(e) {
        location.href="https://insightedge.io/";
     });
+*/
 
     
     var insightEdgePopupTitle = 'InsightEdge Platform';
