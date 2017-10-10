@@ -18,7 +18,7 @@ The full InsightEdge Platform offers the following additional benefits:
 
 * Disaster recovery via geo-redundancy, fast data replication and native persistence
 
-{{% note%}}
+{{% note "Note"%}}
 If you are already using InsightEdge or XAP, refer to the [Release Notes](./rn/index.html) for a list of new features, changes, updates, and resolved issues.
 {{% /note %}}
 
