@@ -10,12 +10,12 @@ weight: 100
 
 
 {{% imagertext   "/attachment_files/notify_container_basic.jpg"%}}
-The notify event container uses the space inherited support for notifications (continuous query) using a XAPs unified event session API. If a notification occurs, the [data event listener](./data-event-listener.html) is invoked with the event. A notify event operation is mainly used when simulating Topic semantics.
+The notify event container uses the space inherited support for notifications (continuous query), using a XAP unified event session API. If a notification occurs, the [data event listener](./data-event-listener.html) is invoked with the event. A notify event operation is mainly used when simulating Topic semantics.
 {{% /imagertext %}}
 
 
 # Life Cycle Events
-The notify container life cycle events described below. You may implement each of of these to perform the desired activity.
+The notify container life cycle events are described below. You may implement each of of these to perform the desired activity.
 
 {{%align center%}}
 ![polling_container_basic.jpg](/attachment_files/notify_container_life_cycle.jpg)
@@ -131,7 +131,7 @@ notifyEventListenerContainer.destroy();
 {{% /tabs %}}
 
 {{% note "Restrictions"%}}
-**@EventDriven** , **@Polling** , **@Notify** can't be placed on interface classes. You should place these on the implementation class.
+**@EventDriven** , **@Polling** , and **@Notify** cannot be placed on interface classes. You should place these on the implementation class.
 {{% /note %}}
 
 The above example registers with the space for write notifications using the provided template (a `Data` object with its processed flag set to `false`). If a notification occurs, the `SimpleListener` is invoked. Registration for notifications is performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean. (In this case, if working in a clustered topology, the notification is performed directly on the cluster member.)
@@ -140,26 +140,23 @@ The above example registers with the space for write notifications using the pro
 # General Guidelines
 
 A notify listener configured in a [non-FIFO](#fifo-events) mode uses a thread that is maintained via a [thread pool](#scaling-notification-delivery).
-If the notify container [template/query](#template-definition) matches a large number of space objects in a short duration, you may consume the entire thread pool. 
+If the notify container [template/query](#template-definition) matches a large number of space objects within a short period of time, you may consume the entire thread pool. 
 If the notify listener implementation performs a write/update/change/removal of an object from the same space, this may trigger additional notifications (cascading affect) that may consume the thread pool faster.
 
  
-This behavior should be avoided as it may throttle the activity or impose large concurrent replication activity (in case a backup / replica is running) that may consume large amount of CPU and network resources in a short duration. 
+This behavior should be avoided as it may throttle the activity or impose large concurrent replication activity (if a backup/replica is running), which may consume large amount of CPU and network resources within a short period of time. 
 This may be observed with garbage created very quickly that may result in long pauses due-to garbage collection activity.
  
 To avoid this behavior, the notify listener implementation should have [batching enabled](#batch-events) where minimal write/update/change/removal operations should be conducted, if any. 
-If the listener performs a large number of space operations, a [polling container](./polling-container.html#notify-verses-polling-container) should be considered as this is a more controlled event handler.
-
+If the listener performs a large number of space operations, a [polling container](./polling-container.html#notify-verses-polling-container) should be considered, as this is a more controlled event handler.
 
 
 # Primary/Backup
 
-By default, the notify event container registers for notifications only when the relevant space it is working against is in primary mode. When the space is in backup mode, no registration occurs. If the space moves from backup mode to primary mode, the container registers for notifications, and if it moved to backup mode, the registrations are canceled.
+By default, the notify event container registers for notifications only when the relevant space against which it is working is in primary mode. When the space is in backup mode, no registration occurs. If the space moves from backup mode to primary mode, the container registers for notifications, and if it moved to backup mode, the registrations are canceled.
 
+ This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.
  
-This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.
- 
-
 {{% note "NOTIFY_LEASE_EXPIRATION"%}}
 Notifications for expired objects (NOTIFY_LEASE_EXPIRATION type) are sent both from the primary and the backup space. To avoid this, you should set the Notify Container `replicateNotifyTemplate` to `false` and run the notify container collocated with the space. This will start the Notify Container only with the primary and will avoid duplicated notifications.
 {{%/note%}}
@@ -229,8 +226,8 @@ public class SimpleListener {
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% note %}}
-A polling container or notify container can have only one template. If you need multiple event handlers you will need to create another polling container or notify container or use the [Session Based Messaging API](./session-based-messaging-api.html#Registering Large Number of Listeners) that support multiple listeners with one Session. If you use multiple polling containers make sure the different templates does not overlap each other.
+{{% note "Note"%}}
+A polling container or notify container can have only one template. If you need multiple event handlers, you must create another polling container or notify container, or use the [Session Based Messaging API](./session-based-messaging-api.html#Registering Large Number of Listeners) that supports multiple listeners with one Session. If you use multiple polling containers, make sure the different templates does not overlap each other.
 {{% /note %}}
 
 # Multiple Event Handlers
@@ -273,7 +270,7 @@ public class NotifyExample {
 
 # Multiple Values Template
 
-You may use a `SQLQuery` having `IN` operator with multiple values to register a Template with multiple values. This can be a simple alternative avoiding using multiple notify containers. See below example:
+You may use a `SQLQuery` that has an `IN` operator with multiple values to register a Template with multiple values. This can be a simple alternative to using multiple notify containers. See below example:
 
 
 {{%tabs%}}
@@ -334,19 +331,19 @@ SimpleNotifyEventListenerContainer notifyEventListenerContainer =
 {{%/tab%}}
 {{%/tabs%}}
 
-# Free Notify Container Resources
+# Freeing Up the Notify Container Resources
 
-To free the resources used by the notify container make sure you close it properly. A good life cycle event to place the `destroy()` call would be within the `@PreDestroy` or `DisposableBean.destroy()` method.
+To free up the resources used by the notify container, make sure you close it properly. A good life cycle event within which to place the `destroy()` call is the `@PreDestroy` or `DisposableBean.destroy()` method.
 
 
 
-# Notify Container Lifecycle
+# Notify Container Life Cycle
 
 The Notify Event Listener container supports several life cycle methods. 
-These allow you to create, start , stop and destroy the listener programmatically. 
-There is also the `setActiveWhenPrimary` lifecycle mode that will bind it to the Space mode when set to **TRUE**, starting it when the Space mode is PRIMARY and stopping otherwise.
+These allow you to create, start, stop, and destroy the listener programmatically. 
+There is also the `setActiveWhenPrimary` life cycle mode that binds it to the Space mode when set to **TRUE**, starting it when the Space mode is PRIMARY and stopping otherwise.
  
-You can get the exact status of the Notify Event Listener container using the `isActive()`  and `isRunning()` method.
+You can get the exact status of the Notify Event Listener container using the `isActive()`  and `isRunning()` methods.
 Here is a simple example illustrating the different Notify Event Listener container life cycle methods:
 
 {{%tabs%}}
@@ -471,7 +468,7 @@ Mon Aug 01 08:54:40 CAT 2016:10 -  isActive:false isRunning:false notifyContaine
 
 # Masking Notifications
 
-The notify container allows you to mask which operations performed against the space, should cause notifications. By default (if none is defined), notifications are sent for write operations. The operations are:
+The notify container allows you to mask which operations (that are performed against the space) should cause notifications. By default (if none is defined), notifications are sent for write operations. The operations are:
 
 
 |Operation| Description |
@@ -482,6 +479,10 @@ The notify container allows you to mask which operations performed against the s
 |leaseExpire| An entry matching the template lease has been expired.|
 |unmatched| An entry matching the template no longer matches the template.|
 |all| All the above.|
+
+{{% note "Note"%}}
+The leaseExpire notification does not support FIFO.
+{{% /note %}}
 
 Here is an example of the notify container configured to trigger notifications for both write and update operations:
 
@@ -564,19 +565,19 @@ public class SimpleListener {
 
 ## The UNMATCHED NotifyActionType
 
-The `UNMATCHED` `NotifyActionType` should be used when you would like to receive notifications for objects which got their value been updated where the object that was initially matches the template no longer matches the template.
+The `UNMATCHED` `NotifyActionType` should be used when you want to receive notifications for objects whose value has been updated so that the object that initially matched the template no longer matches the template.
 Example:
 You would like to maintain within the client side a list for all the objects which got their status as `true`. You register for notifications using a template which had the status field as `true`.
 
-An object with status as `true` is written into the space. This triggers a notification about the existence of this object. In some point the object is read from the space, the status field value changed from `true` to `false` and the object is written back into the space with its updated data.
+An object with status of `true` is written to the space. This triggers a notification about the existence of this object. At some point the object is read from the space, the status field value changes from `true` to `false`, and the object is written back into the space with its updated data.
 
-Registering a notification using a template which got `status=true` with the `NOTIFY_UPDATE` `NotifyActionType` without using the `UNMATCHED NotifyActionType` as well, **will not trigger** a notification when the `status` field value changed from `true` to `false`.
+Registering a notification using a template that has `status=true` with the `NOTIFY_UPDATE` `NotifyActionType` without using the `UNMATCHED NotifyActionType` as well, **will not trigger** a notification when the `status` field value changes from `true` to `false`.
 
-You have to include the `UNMATCHED NotifyActionType` to receive a notification when the object changing `status=true` to `status=false`.
+You have to include the `UNMATCHED NotifyActionType` to receive a notification when an object changes its from `status=true` to `status=false`.
 
 # Scaling Notification Delivery
 
-To increase the number of space threads that are dealing with notification delivery you should increase the `space-config.engine.notify_max_threads` space property. Its default is 128 threads.
+To increase the number of space threads that handle notification delivery, you should increase the `space-config.engine.notify_max_threads` space property. The default is 128 threads.
 Here is an example how you can configure the minimum and the maximum of the thread pool responsible for notification delivery:
 
 
@@ -610,7 +611,7 @@ Here is an example how you can configure the minimum and the maximum of the thre
 </os-events:notify-container>
 ```
 
-Note that you can always delegate the notification processing to a separate application defined thread pool, if you'd like to manage the processing thread pool yourself. This can be done by configuring a separate thread pool within your application, for example using {{%exurl "Spring's TaskExecutor abstraction" "http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/scheduling.html"%}}.
+You can always delegate the notification processing to a separate application defined thread pool, if you want to manage the processing thread pool yourself. This can be done by configuring a separate thread pool within your application, for example using {{%exurl "Spring's TaskExecutor abstraction" "http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/scheduling.html"%}}.
 In your `pu.xml` file you can define a `ThreadPoolTaskExecutor` and an async listener:
 
 {{%tabs%}}
@@ -671,14 +672,14 @@ public class AsyncListener {
 
 # Batch Events
 
-OpenSpaces, through the [Session Based Messaging API](./session-based-messaging-api.html), allows batching of notifications. Batching causes the space to accumulate the notifications at the space side for the specified operation(s) with objects that match the template/SQL criteria. Once a certain amount of time has been elapsed or a certain amount of objects have been accumulated, the events are sent to the client.
+OpenSpaces, through the [Session Based Messaging API](./session-based-messaging-api.html), allows batching of notifications. Batching causes the space to accumulate the notifications on the space side for the specified operation(s) with objects that match the template/SQL criteria. When a certain amount of time has elapsed or a certain amount of objects have accumulated, the events are sent to the client.
 
-Batching is very useful when working with a remote space, since it reduces the network roundtrip operations.  The downside of this approach is a potential delay when events are delivered to the client.
+Batching is very useful when working with a remote space, because it reduces the network roundtrip operations.  The downside of this approach is a potential delay when events are delivered to the client.
 
-Below is an example how batch notification should be configured. With this example the `eventListener` method will be called having one event passed as an argument each time (since the `pass-array-as-is` is not enabled) once there were 10 matching objects accumulated within the space or every 5000 millisecond since the last time a batch was sent to the client. In this case (notification delivery based on elapsed time), there might be less than 10 objects that will be sent to the client.
+Below is an example of how batch notification should be configured. With this example, the `eventListener` method will be called having one event passed as an argument each time (because the `pass-array-as-is` is not enabled) 10 matching objects have accumulated within the space, or every 5000 milliseconds since the last time a batch was sent to the client. In this case (notification delivery based on elapsed time), there may be fewer than 10 objects sent to the client.
 
-{{% note %}}
-Make sure you set a reasonable batch size to avoid overloading the listener with a large burst of events to process. A value under 100 will be acceptable for most cases.
+{{% note "Note"%}}
+Make sure you set a reasonable batch size, to avoid overloading the listener with a large burst of events to process. A value under 100 will be acceptable for most cases.
 {{% /note %}}
 
 {{%tabs%}}
@@ -756,12 +757,12 @@ public class SimpleListener {
 {{% /tab %}}
 {{% /tabs %}}
 
-## Pass Array as is
+## Passing an Array As Is
 
-When batching is enabled an array of Entries is received from the notification. By default, the notify container serializes the execution of the array into invocation of the event listener for each element in the array. If you want the event to operate on the whole array (receive the array as a parameter), the `pass-array-as-is` configuration attribute should be set to `true`.
+When batching is enabled, an array of Entries is received from the notification. By default, the notify container serializes the execution of the array into an invocation of the event listener for each element in the array. If you want the event to operate on the entire array (receive the array as a parameter), the `pass-array-as-is` configuration attribute should be set to `true`.
 
-{{% note %}}
-Listener argument has to be defined as Object[] when using passArrayAsIs and converted to appropriate class as part of the listener code.
+{{% note "Note"%}}
+The Listener argument has to be defined as Object[] when using passArrayAsIs and converted to appropriate class as part of the listener code.
 {{% /note %}}
 
 For the above example when using passArrayAsIs equivalent listener code will be,
@@ -789,8 +790,11 @@ public class SimpleListener {
 
 # FIFO Events
 
-By default the notify event container running on non-FIFO mode. This means the event listener will be called simultaneously by multiple threads in case there are concurrent notifications sent from the space. To have a sequential event listener calls, you should run the notify  event container in a FIFO mode.
+By default, the notify event container runs in non-FIFO mode. This means the event listener will be called simultaneously by multiple threads if there are concurrent notifications sent from the space. To have a sequential event listener calls, you should run the notify event container in FIFO mode.
 
+{{% note "Note"%}}
+FIFO is not supported by the leaseExpire notification.
+{{% /note %}}
 
 Here is an example of how FIFO events can be configured with the notify container:
 
@@ -871,11 +875,11 @@ For full FIFO support, the actual template also has to be marked as FIFO. For mo
 
 
 
-# Re-Register after complete space shutdown and restart
+# Re-Registerinf after Complete Space Shutdown and Restart
 
-The Notify Container can recover from partial disconnections (e.g failover) automatically, but if the entire cluster is shut down and  restarted, the event registrations are lost and the notify container needs to be restarted. 
+The Notify Container can recover from partial disconnections (e.g failover) automatically, but if the entire cluster is shut down and restarted, the event registrations are lost and the notify container needs to be restarted. 
 
-To get a notification about such disconnections, the *Auto Renew* feature needs to be enabled, and the container needs to implement a `LeaseListener` and register if to be triggered when the container becomes disconnected. For example:
+To get a notification about such disconnections, the *Auto Renew* feature must be enabled, and the container must implement a `LeaseListener` and register so it will be triggered when the container becomes disconnected. For example:
 
 {{%tabs%}}
 
@@ -954,15 +958,15 @@ public class MyLeaseListener implements LeaseListener {
 
 {{% /tabs %}}
 
-{{% note %}}
-To make sure the client application will manage to reconnect automatically to the space cluster once it was restarted you may want to change the default configuration. See the [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html) for details.
+{{% note "Note"%}}
+To ensure that the client application reconnects automatically to the space cluster after it is restarted, you may have to change the default configuration. See the [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html) for details.
 {{% /note %}}
 
 For more information see [Auto Renew](./session-based-messaging-api.html#disconnections).
 
 # Resending Notifications after a Space-Client Disconnection
 
-When a network failure occurs and the space can't communicate with the client, the space attempts to trigger the remote client listener several times. The `space-config.notifier-retries` property controls the re-try attempts. The default is 3 attempts.
+When a network failure occurs and the space cannot communicate with the client, the space attempts to trigger the remote client listener several times. The `space-config.notifier-retries` property controls the re-try attempts. The default is 3 attempts.
 
 
 ```java
@@ -980,7 +984,7 @@ When a network failure occurs and the space can't communicate with the client, t
 
 # Triggering Notifications on Backup Instances
 
-By default notifications are replicated to backup instances but are not triggered. To enable notifications triggered also on backup instances the `cluster-config.groups.group.repl-policy.trigger-notify-templates` should be enabled. See below:
+By default, notifications are replicated to backup instances but are not triggered. To enable also triggering notifications on backup instances, the `cluster-config.groups.group.repl-policy.trigger-notify-templates` should be enabled. See below:
 
 
 ```xml
@@ -993,13 +997,13 @@ By default notifications are replicated to backup instances but are not triggere
 </os-core:space>
 ```
 
-{{% note %}}
-When this option is enabled - When running collocated notify container the listener implementation should not access its collocated instance as this is blocked with backup instances.  
+{{% note "Note"%}}
+If this option is enabled, when running co-located notify containers the listener implementation should not access its co-located instance because it is blocked by the backup instances.  
 {{%/note%}}
 
 # Durable Notifications
 
-Due-to the asynchronous nature of notification delivery, when a primary space fails right after replicating an operation to the backup space and before sending the notification to the registered client, the backup space might not be able to send the missing notifications, since it is in the process of moving to active mode.
+Due to the asynchronous nature of notification delivery, when a primary space fails right after replicating an operation to the backup space and before sending the notification to the registered client, the backup space might not be able to send the missing notifications, because it is in the process of moving to primary mode.
 This means that during this very short period of time, the registered client might not receive events that occurred in the primary space and were replicated to the backup space.
 
 Durable notifications allows configuring the notify container to withstand failover and short network disconnections with no notifications lost.
@@ -1079,23 +1083,23 @@ public class SimpleListener {
 
 
 
-{{%warning%}}
-Durable Notification does not support an embedded Space, it can only be used with a remote proxy.  The alternative is to use a `Polling Container` using [SingleReadReceiveOperationHandler](./polling-container.html#trigger-receive-operation).
+{{%warning "Important"%}}
+Durable Notification does not support an embedded Space, and can only be used with a remote proxy.  The alternative is to use a `Polling Container` using [SingleReadReceiveOperationHandler](./polling-container.html#trigger-receive-operation).
 {{%/warning%}}
 
-Durable notifications are based on the replication mechanism and as such have some different semantics regarding other notify container configuration parameters.
+Durable notifications are based on the replication mechanism, and therefore have some different semantics regarding other notify container configuration parameters.
 
 {{%refer%}}
-For further details see [Durable Notifications](./durable-notifications.html).
+For further details, refer to [Durable Notifications](./durable-notifications.html).
 {{%/refer%}}
 
 
 # Take on Notify
 
-The notify event container can be configured to automatically perform a take on the notification data event. It can also be further configured to filter out events if the take operation returned `null`. (This usually happens when several clients receive this event, and only one succeeds with the take.)
+The notify event container can be configured to automatically perform a take on the notification data event. It can also be configured to filter out events if the take operation returns `null`. (This usually happens when several clients receive this event, and only one succeeds with the take.)
 
-{{%note%}}
-Pojo properties should implement `hashcode` and `equals` methods for matching to succeed.(avoid using take on notify when one of the object fields is a primitive array)
+{{%note"Note"%}}
+POJO properties should implement `hashcode` and `equals` methods for matching to succeed. Avoid using take on notify when one of the object fields is a primitive array.
 {{%/note%}}
 
 Here is how the notify container can be configured:
@@ -1173,9 +1177,9 @@ public class SimpleListener {
 {{% /tab %}}
 {{% /tabs %}}
 
-# Event meta data
+# Event Metadata
 
-When registering for notifications, using the unified event session API (or using plain notify registration), the following interface needs to be implemented:
+When registering for notifications using the unified event session API (or using plain notify registration), the following interface must be implemented:
 
 
 ```java
@@ -1186,7 +1190,7 @@ public interface RemoteEventListener extends java.rmi.Remote, java.util.EventLis
 }
 ```
 
-XAP extends this interface by providing the `EntryArrivedRemoteEvent`, which holds additional information regarding the event that occurred. The notify container, by default, uses the `EntryArrivedRemoteEvent` in order to extract the actual data event represented by the event, and passes it as the first parameter. If access to the `EntryArrivedRemoteEvent` is still needed, it is passed as the last parameter to the space data event listener. Here is an example of how it can be used:
+XAP extends this interface by providing the `EntryArrivedRemoteEvent`, which holds additional information regarding the event that occurred. The notify container, by default, uses the `EntryArrivedRemoteEvent` to extract the actual data event represented by the event, and passes it as the first parameter. If access to the `EntryArrivedRemoteEvent` is still needed, it is passed as the last parameter to the space data event listener. Here is an example of how it can be used:
 
 
 ```java
@@ -1199,7 +1203,7 @@ public class SimpleListener implements SpaceDataEventListener {
 }
 ```
 
-When using the different listener adapters, such as the annotation adapter, it can be accessed in the following manner (since adapters use reflection, there is no need to cast to `EntryArrivedRemoteEvent`):
+When using different listener adapters, such as the annotation adapter, it can be accessed in the following manner (adapters use reflection, so there is no need to cast to `EntryArrivedRemoteEvent`):
 
 
 ```java
@@ -1229,11 +1233,10 @@ public class BatchListener {
 }
 ```
 
-# Default Values of Notify Container Configuration Parameters
+#  Notify Container Configuration Parameters- Default Values
 
-The default values for all of the notify container configuration parameters, such as `perform-take-on-notify, ignore-event-on-null-take` and others can be found in the JavaDoc (and sources) of the class [SimpleNotifyEventListenerContainer]({{% api-javadoc %}}/org/openspaces/events/notify/SimpleNotifyEventListenerContainer.html) and its super class, namely [AbstractNotifyEventListenerContainer]({{% api-javadoc %}}/org/openspaces/events/notify/AbstractNotifyEventListenerContainer.html).
-For example, `perform-take-on-notify` default value is documented in the method `SimpleNotifyEventListenerContainer.setPerformTakeOnNotify(boolean)`.
-
+The default values for all of the notify container configuration parameters, such as `perform-take-on-notify`, `ignore-event-on-null-take` and others, can be found in the JavaDoc (and sources) of the class [SimpleNotifyEventListenerContainer]({{% api-javadoc %}}/org/openspaces/events/notify/SimpleNotifyEventListenerContainer.html) and its super class, namely [AbstractNotifyEventListenerContainer]({{% api-javadoc %}}/org/openspaces/events/notify/AbstractNotifyEventListenerContainer.html).
+For example, the `perform-take-on-notify` default value is documented in the method `SimpleNotifyEventListenerContainer.setPerformTakeOnNotify(boolean)`.
 
 
 {{% include "/COM/notify-verses-polling.markdown" %}}
