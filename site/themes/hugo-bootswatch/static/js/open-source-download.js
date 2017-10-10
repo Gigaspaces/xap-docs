@@ -16,9 +16,9 @@ function isScrolledIntoView(elem, offsetFromTop)
 $(document).ready(function() {
 
 
-    $('#open-source-download').click(function(e) {
+/*    $('#open-source-download').click(function(e) {
        location.href="http://www.gigaspaces.com/xap-download";
-    });
+    });*/
 
     
     var enterprisePopupTitle = 'Open Source';
