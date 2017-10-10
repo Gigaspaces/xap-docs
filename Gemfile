@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 
-gem 's3_website', '2.16.0'
+gem 's3_website', '3.2.0'
