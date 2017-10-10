@@ -22,7 +22,7 @@ Before installing InsightEdge or XAP, do the following:
    
 To install InsightEdge or XAP, download and unzip it to the location of your choice. Unzipping the file creates a `<XAP_HOME>` directory (e.g. `{{%version "gshome-directory-oss"%}}`).
 
-{{% warning%}}
+{{% warning "Important"%}}
 Do not use path with spaces (such as `C:\Program Files\xap`). In some scenarios they may break.
 
 Linux users: Make sure all `sh` files in the `/bin` and `/examples` folders are in executable mode, so you can run them from your machine. 

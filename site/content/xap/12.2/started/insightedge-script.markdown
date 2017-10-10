@@ -93,7 +93,7 @@ The command will start Zeppelin on the local machine. It will be accessible at {
 insightedge run --zeppelin
 ```
 
-## The `deploy-space` command
+## The `deploy-space` Command
 
 This command enables you to deploy an empty space to the XAP Grid.
 
@@ -105,7 +105,7 @@ If you wish to have backups, you can use the `--backups` option.
 insightedge deploy-space [--partitions=x [--backups]] <space-name>
 ```
 
-## The `undeploy` command
+## The `undeploy` Command
 
 This command enables you to undeploy an already deployed space.
 
@@ -113,7 +113,7 @@ This command enables you to undeploy an already deployed space.
 insightedge undeploy <space-name>
 ```
 
-## The `shutdown` command
+## The `shutdown` Command
 
 The shutdown command kills all components that are started via the insightedge script.
 

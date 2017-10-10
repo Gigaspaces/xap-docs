@@ -23,7 +23,7 @@ The InsightEdge environment configuration is maintained by a configuration scrip
 
 During initial development and usage of XAP there's usually no need to change any of the default values, but at some point you'll probably want to change some of them (e.g. the Grid Service Container heap size). 
 
-{{%note%}}
+{{%note "Note"%}}
 It is highly recommended not to make those changes in the original `setenv` script, as it complicates upgrading XAP later on. Instead, XAP provides an additional empty script called `setenv-overrides`, which is automatically called by `setenv`, and is intended for users to specify their overrides in a safe manner.
 {{%/note%}}
 
@@ -74,7 +74,7 @@ In previous versions, environment variable names were inconsistent, which occasi
 |  LUS_JAVA_OPTIONS  |  XAP_LUS_OPTIONS  |
 |  ESM_JAVA_OPTIONS  |  XAP_ESM_OPTIONS  |
 
-{{%note%}}
+{{%note "Note"%}}
  If you'd rather postpone or avoid changing your scripts to the new names, you can use the new `setenv-overrides` script to map the corresponding values. For example, suppose in the past you've needed to override the default lookup groups and the GSC options. If you've followed the best practices, you probably created a custom script to set those environment variables before calling the original script, something like:
 {{%/note%}}
 

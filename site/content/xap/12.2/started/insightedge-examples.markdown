@@ -10,10 +10,10 @@ weight: 300
 
 This section explains how to use the sample code that has been provided with the InsightEdge package. 
 
-{{%note%}}
-The example sources are located at `<XAP HOME>/insightedge/examples`.
+{{%note "Notes"%}}
+- The example sources are located at `<XAP HOME>/insightedge/examples`.
 
-The example .jar is located at `<XAP HOME>/insightedge/examples/jars`.
+- The example .jar is located at `<XAP HOME>/insightedge/examples/jars`.
 {{%/note%}}
 
 # Building the examples
@@ -34,7 +34,7 @@ mvn clean package
 
 The end result is an examples .jar located at `$XAP_HOME/insightedge/examples/target/insightedge-examples.jar`.
 
-# Running the examples
+# Running the Examples
 
 In order to run the examples on your local machine you need to start a local InsightEdge environment. If you haven't done so already, refer to [Local Machine Setup](insightedge-local-setup.html) for more info.
 
@@ -71,7 +71,7 @@ insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark
     ./$XAP_HOME/insightedge/examples/jars/insightedge-examples.jar
 ```
 
-{{%note "Note..."%}}
+{{%note "Note"%}}
 Running the `TwitterPopularTags` example requires you to pass {{%exurl "Twitter app tokens" "https://apps.twitter.com/"%}} as arguments.
 {{%/note%}}
 
