@@ -248,7 +248,7 @@ To run the application, run the **processor** configuration, and then the **feed
 
 The following are step-by-step instructions for running the application in XAP:
 
-- [Download](http://www.gigaspaces.com/LatestProductVersion) and [install]({{%latestjavaurl%}}/installation.html) XAP.
+- [Download](http://www.gigaspaces.com/LatestProductVersion) and [install]({{%lateststartedurl%}}/installation.html) XAP.
 - Edit `<XapInstallationRoot>/gslicense.xml>` and place the license key file provided with the email sent to you after downloading GigaSpaces XAP as the `<licensekey>` value.
 - Make sure you have the `feeer` and `processor` PUs built.
 - Start a [Grid Service Agent](/product_overview/service-grid.html#gsa) by running the `gs-agent.sh/bat` script. 

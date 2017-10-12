@@ -106,7 +106,7 @@ This section provides instructions on switching your existing Hibernate local ca
 **To switch your Hibernate cache provider to GigaSpaces and use GigaSpaces distributed caching:**
 
 1. Download the GigaSpaces  [Download Page](http://www.gigaspaces.com/xap-download) <br>
-2. Install GigaSpaces. If you need help, refer to the [installation instructions]({{%latestjavaurl%}}/installation.html).<br>
+2. Install GigaSpaces. If you need help, refer to the [installation instructions]({{%lateststartedurl%}}/installation.html).<br>
 3. This step is different if you are managing your Hibernate configuration using Spring (refer to the Spring documentation, ORM Data Access, section 12.2.2), or directly using `hibernate.properties` or `hibernate.cfg.xml`. Select the relevant tab below.
 
 

@@ -263,7 +263,8 @@ Writes new objects to the space, returning its LeaseContexts.[Java API]({{% api-
 <T> LeaseContext<T>[] writeMultiple(T[] entries, long[] leases, WriteModifiers modifiers) throws DataAccessException
 ......
 ```
-
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
@@ -272,8 +273,7 @@ Writes new objects to the space, returning its LeaseContexts.[Java API]({{% api-
 |timeout     | The timeout of an update operation, in milliseconds. If the entry is locked by another transaction wait for the specified number of milliseconds for it to be released. | 0  |
 |[WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)|Provides modifiers to customize the behavior of write operations | UPDATE_OR_WRITE  |
 |[LeaseContext]({{% api-javadoc %}}/com/j_spaces/core/LeaseContext.html) |LeaseContext is a return-value encapsulation of a write operation.| |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -558,6 +558,8 @@ Read if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html
 ```
 
 
+{{%/accord%}}
+{{%/accordion%}}
 
 
 | Modifier and Type | Description | Default | Unit|
@@ -568,8 +570,6 @@ Read if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html
 |[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
 |[ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations | NONE  |  |
 
-{{%/accord%}}
-{{%/accordion%}}
 
 
 
@@ -839,7 +839,8 @@ Take if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html
 ....
 ```
 
-
+{{%/accord%}}
+{{%/accordion%}}
 
 
 | Modifier and Type | Description | Default | Unit|
@@ -850,8 +851,7 @@ Take if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html
 |[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
 |[TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations | NONE  |  |
 
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -904,15 +904,15 @@ void clear(ISpaceQuery<T> query) throws DataAccessException
 ......
 
 ```
-
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |query         | SQLQuery, IdQuery||
 |[ClearModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ClearModifiers.html)|Provides modifiers to customize the behavior of the clear operations | NONE  |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -965,15 +965,15 @@ int count(ISpaceQuery<T> query) throws DataAccessException
 ......
 
 ```
-
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |query         | SQLQuery, IdQuery||
 |[CountModifiers]({{% api-javadoc %}}/com/gigaspaces/client/CountModifiers.html)|Provides modifiers to customize the behavior of the count operations | NONE  |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 {{%anchor counters%}}
@@ -1014,19 +1014,4 @@ int counterValue = wordount.getMycounter();
 {{%/refer%}}
 
 
-
-
-
-
-
-
-
-{{% include "/COM/xap/10.2/dev-java/ops-write.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-change.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-read.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-take.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-clear.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-count.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-counters.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-aggregation.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-async-extension.markdown" %}}
+ 

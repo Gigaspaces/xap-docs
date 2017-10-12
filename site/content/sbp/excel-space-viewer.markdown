@@ -133,7 +133,7 @@ The Configure View window already includes your previously selected options, and
 JSHOMEDIR is configured.
 For more details see [Installing GigaSpaces]({{%latestneturl%}}/installation.html) section.
 
-- A [JDK 1.5]({{%latestjavaurl%}}/installation.html)
+- A [JDK 1.5]({{%lateststartedurl%}}/installation.html)
 - The [.NET Framework](http://msdn2.microsoft.com/en-us/netframework/aa569263.aspx)
 - Microsoft Office 2003
 

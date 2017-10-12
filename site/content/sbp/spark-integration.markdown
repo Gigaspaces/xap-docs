@@ -171,7 +171,7 @@ The high-level design diagram of the Word Counter Demo is below:
 ### Installing and building the Demo application
 
 1.	Download {{%download "http://www.gigaspaces.com/LatestProductVersion" %}}
-2.	[Install XAP]({{%latestjavaurl%}}/installation.html)
+2.	[Install XAP]({{%lateststartedurl%}}/installation.html)
 3.	Install Maven and the [XAP Maven plug-in]({{%lateststartedurl%}}/installation-maven-overview.html)
 4.	Download the application [{{%git "https://github.com/fe2s/xap-spark" %}}
 5.	Build a project by running `mvn clean install`

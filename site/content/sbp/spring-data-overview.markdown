@@ -12,7 +12,7 @@ parent: spring-data.html
 
 When developing an XAP application using Spring we need to configure a connection to the active Space inside the Spring IoC container. We will show you how a basic connection can be created using XML or Java based Spring configurations.
 
-You can start an `Embedded Space` or set up a `Service Grid`. When using the [Embedded Space]({{%latestjavatuturl%}}/java-tutorial-part1.html) you don't need to start any additional processes in your environment.
+You can start an `Embedded Space` or set up a `Service Grid`. When using the [Embedded Space]({{%lateststartedurl%}}/xap-tutorial-part1.html) you don't need to start any additional processes in your environment.
 
 To start the Data Grid use the following command:
 
@@ -35,7 +35,7 @@ gs.bat deploy-space -cluster total_members=1,1 space
 {{%/tabs%}}
 
 {{%refer%}}
-Refer to [XAP Quick Start guide]({{%latestjavatuturl%}}/xap-java-in-5-minutes.html) for more information.
+Refer to [XAP Quick Start guide]({{%lateststartedurl%}}/xap-in-5-minutes.html) for more information.
 {{%/refer%}}
 
 In your project (assuming you build it with [Maven](http://maven.apache.org/)) add the following to the `pom.xml` dependencies section:
@@ -161,7 +161,7 @@ To read more on Local View, refer to [Local View Reference]({{%latestjavaurl%}}/
 Space Persistence is a configuration where Space data is persisted into permanent storage and retrieved from it.
 
 {{%refer%}}
-Read more on persisting Space data [here]({{%latestjavatuturl%}}/java-tutorial-part7.html).
+Read more on persisting Space data [here]({{%lateststartedurl%}}/xap-tutorial-part7.html).
 {{%/refer%}}
 
 

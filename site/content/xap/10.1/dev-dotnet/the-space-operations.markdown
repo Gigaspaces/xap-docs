@@ -189,7 +189,7 @@ for (int i = 0; i < leaseContexts.Length; i++) {
 -  you should verify that duplicated entries (with the same ID) do not appear as part of the passed array, since the identity of the object is determined based on its `ID` and not based on its reference. This is extremely important with an embedded space, since `WriteMultiple` injects the ID value into the object after the write operation (when autogenerate=false).
 
 - Exception handling - the operation many throw the following Exceptions.
-    - [WriteMultipleException]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_Exceptions_WriteMultipleException__ctor.htm)
+- [WriteMultipleException]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_Exceptions_WriteMultipleException__ctor.htm)
 
 {{%/note%}}
 
@@ -456,6 +456,8 @@ T ReadIfExists<T>(IQuery<T> query,ITransaction tx,long timeout);
 ....
 ```
 
+{{%/accord%}}
+{{%/accordion%}}
 
 
 
@@ -466,8 +468,6 @@ T ReadIfExists<T>(IQuery<T> query,ITransaction tx,long timeout);
 |query| [IQuery]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|      | |
 |[ReadModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)|Provides modifiers to customize the behavior of read operations | NONE  |  |
 
-{{%/accord%}}
-{{%/accordion%}}
 
 
 
@@ -706,7 +706,8 @@ Object TakeIfExistsById(Type type,Object id);
 T TakeIfExistsById<T>(IdQuery<T> idQuery,ITransaction tx,long timeout,TakeModifiers modifiers);
 ....
 ```
-
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | Default | Unit|
 |:-----|:------------|:--------|:----|
@@ -715,8 +716,7 @@ T TakeIfExistsById<T>(IdQuery<T> idQuery,ITransaction tx,long timeout,TakeModifi
 |query| [IQuery]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|      | |
 |[TakeModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_ISpaceProxy_TakeModifiers.htm)|Provides modifiers to customize the behavior of take operations | NONE  |  |
 |[ITakeByIdsResult]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|ResultSet||
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -765,15 +765,15 @@ int Count(ISpaceQuery<T> query);
 ......
 
 ```
-
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
 |T          | PONO, SpaceDocument||
 |query         | SqlQuery, IdQuery||
 |[ReadModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)|Provides modifiers to customize the behavior of the count operations | NONE  |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -826,15 +826,15 @@ void Clear(ISpaceQuery<T> query)
 ......
 
 ```
-
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
 |T          | PONO, SpaceDocument||
 |query         | SqlQuery, IdQuery||
 |[TakeModifiers]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_TakeModifiers.htm)|Provides modifiers to customize the behavior of the clear operations | NONE  |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -897,12 +897,4 @@ public class Person
 {{%/refer%}}
 
 
-
-
-
-{{% include "/COM/xap/10.2/dev-dotnet/ops-write.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-read.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-take.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-clear.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-count.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-aggregation.markdown" %}}
+ 
