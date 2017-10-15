@@ -31,6 +31,8 @@ deployment:
   staging:
     branch: master
     commands:
+      - echo "Adding staging files..."
+      - cp staging/* ../_site
       - echo "Publishing to staging..."
       - DOCS_TARGET=STAGING s3_website push
       - echo "Publishing to experimental production..."
