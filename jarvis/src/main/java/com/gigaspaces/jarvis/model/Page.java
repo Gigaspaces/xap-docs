@@ -1,13 +1,15 @@
-package xapdoc.parser;
+package com.gigaspaces.jarvis.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.*;
 
 public class Page implements Comparable<Page> {
 
     private static final Collection<String> NEW_VERSIONS = Arrays.asList("10.0", "10.1", "10.2", "11.0", "12.0", "12.1", "12.2");
 
+    private final File file;
     private final boolean index;
     private final String id;
     private final String title;
@@ -17,6 +19,7 @@ public class Page implements Comparable<Page> {
     private final TreeSet<Page> children = new TreeSet<Page>();
 
     public Page(File file, boolean groupingMode) throws IOException {
+        this.file = file;
         String category = initCategory(file);
 		String[] tokens = parseCategory(category);
         this.index = file.getName().equals("index.markdown");
@@ -120,6 +123,20 @@ public class Page implements Comparable<Page> {
     public void addChild(Page p) {
         children.add(p);
     }
+    
+    public File getFile() {
+        return file;
+    }
+    
+    public String getMarkdown() {
+        byte[] bytes;
+        try {
+            bytes = Files.readAllBytes(file.toPath());
+        } catch (IOException ex) {
+            return ex.toString();
+        }
+        return new String(bytes);
+    }
 
     public String getTitle() {
         return title;
@@ -155,7 +172,7 @@ public class Page implements Comparable<Page> {
 
     @Override
     public String toString() {
-        return "Page [title=" + title + ", weight=" + weight + "]";
+        return getTitle();
     }
 
     @Override

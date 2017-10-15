@@ -1,12 +1,6 @@
 set -x
 set -e
-echo Compiling navbar generator
-rm -rf ./target
-mkdir ./target
-javac src/xapdoc/parser/* -d ./target
-
-echo Running navbar generator
-java -cp ./target xapdoc.parser.MenuTree $1
-echo testing maven
-java -version
-mvn --version
+echo Building Jarvis...
+mvn --file jarvis package -DskipTests
+echo Generating navbar...
+java -cp ./jarvis/target/jarvis-1.0.jar com.gigaspaces.jarvis.model.MenuTree $1

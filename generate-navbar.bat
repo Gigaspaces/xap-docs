@@ -1,9 +1,5 @@
 @echo off
-
-echo Compiling navbar generator
-rd target /S /Q
-md target
-javac src/xapdoc/parser/* -d target
-
-echo Running navbar generator
-java -cp target xapdoc.parser.MenuTree %~dp0
+echo Building Jarvis...
+call mvn --file jarvis package -DskipTests
+echo Generating navbar...
+java -cp jarvis/target/jarvis-1.0.jar com.gigaspaces.jarvis.model.MenuTree %~dp0
