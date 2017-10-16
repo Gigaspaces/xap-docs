@@ -176,7 +176,7 @@ From a runtime perspective, there are several ways remote clients can interact w
 - **Remote client running in a Processing Unit on an SLA-Driven Container** -- a client can be deployed in its own Processing Unit, like the server instances, except that the client references services residing in remote Processing Units. In this mode the client is deployed and runs in an SLA-Driven Container, just like the server instances.
 - **Remote client running in a standalone processing unit** -- the client still runs in a processing unit, but outside the container. This allows it to leverage Processing Unit facilities to simplify its logic -- facilities such as the space abstraction and transactions -- without being dependent on the container. This mode can be useful for rich clients running as Swing applications, as web containers, and so on.
 - **Plain Java clients, J2EE** -- this can be either a regular POJO client that interacts with the space, or a Session Bean that obtains a reference to the space through the GigaSpaces SpaceFinder method, and uses that reference to interact with the space directly.
-- [.NET]({{% latestjavaurl%}}/index.html), [C++]({{% latestjavaurl%}}/xap-cpp.html)** -- GigaSpaces provides .NET and C++ libraries that enable direct interaction with services via the space, just like a POJO client.
+- [.NET]({{% latestjavaurl%}}/index.html), [C++](/xap/11.0/dev-java/xap-cpp.html) -- GigaSpaces provides .NET and C++ libraries that enable direct interaction with services via the space, just like a POJO client.
 
 {{% align center%}}
 ![Remote Clients.jpg](/attachment_files/Remote Clients.jpg)

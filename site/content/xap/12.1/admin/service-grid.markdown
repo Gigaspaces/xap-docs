@@ -25,7 +25,7 @@ The service grid is composed of the following components:
 * **XAP Manager**, or `manager` - Encapsulates the following management components:
   * [Lookup Service](#lus), or `lus` - Provides service discovery for service grid components
   * [Grid Service Manager](#gsm), or `gsm` - Manages the deployment and life cycle of the processing unit
-  * [Embedded Zookeeper](zookeeper.html) - Provides consistent state management and facilitates leader election in data grids
+  * Embedded Zookeeper - Provides consistent state management and facilitates leader election in data grids
   * [RESTful API](xap-manager-rest.html) - Provides cross-platform endpoint to manage the XAP runtime environment from anywhere
 * [Grid Service Container](#gsc), or `gsc` - Provides an isolated runtime for one (or more) processing unit instance
 * [Grid Service Agent](#gsa), or `gs-agent` - Starts and monitors service grid components on its machine.

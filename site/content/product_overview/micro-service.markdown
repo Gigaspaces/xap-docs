@@ -82,7 +82,7 @@ With microservices , [API gateway](http://microservices.io/patterns/apigateway.h
 
 API gateway is primarily used to Insulates the clients from how the application is partitioned into microservices and to Insulates the clients from the problem of determining the locations of service instances. It can also Reduces the number of requests/roundtrips. For example, the API gateway enables clients to retrieve data from multiple services with a single round-trip. Fewer requests also means less overhead and improves the user experience.
 
-WIth XAP an API gateway will be implemented as a [web PU]({{%latestjavatuturl%}}/xap-tutorial-part8.html) exposing Rest API deployed into XAP. You may use Jetty or Tomcat as the web container that will be running within the XAP Grid. As any PU , the web PU can scale dynamically to increase/decrease its capacity in runtime without any downtime.
+WIth XAP an API gateway will be implemented as a [web PU]({{%lateststartedurl%}}/xap-tutorial-part8.html) exposing Rest API deployed into XAP. You may use Jetty or Tomcat as the web container that will be running within the XAP Grid. As any PU , the web PU can scale dynamically to increase/decrease its capacity in runtime without any downtime.
 
 # Best-of-Breed
 Microservice promotes developers to choose best-of-breed languages, frameworks and tools to write parts of applications. XAP provides developers ability to deploy .Net , Java , Groovy, Scala and C++ PUs into the same grid and share data between them without any special conversion. This allow each microservice to be written in a language that is best suited for the task.

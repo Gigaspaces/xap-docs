@@ -172,9 +172,7 @@ Property files and other resources should be jared and placed within any of the 
 | `-secured` | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html)| `-secured [true/false]`|
 | `-user` `-password` | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentjavaurl%}}/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
-{{% tip %}}
-You may use the [Primary-Backup Zone Controller](/sbp/primary-backup-zone-controller.html) to deploy primary and backup on specific different zones.
-{{% /tip %}}
+ 
 
 {{%accordion%}}
 {{%accord title="Example"%}}
@@ -343,7 +341,6 @@ A Space only Processing Unit can be easily deployed onto the Service Grid.
 
 {{% tip %}}
 You may use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to deploy complex multi processing unit applications.
-You may use the [Primary-Backup Zone Controller](/sbp/primary-backup-zone-controller.html) to deploy primary and backup instances on different zones.
 {{% /tip %}}
 
 {{%accordion%}}

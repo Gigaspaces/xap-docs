@@ -26,7 +26,7 @@ For a list of supported platforms please consult [the release notes](/release_no
 [Basic installation](./installation.html){{<wbr>}}
 Basic installation instructions.
 
-[XAP License](./license-key.html){{<wbr>}}
+[XAP License](../started/license-key.html){{<wbr>}}
 Getting a license key and defining it in the space schema.
 
 [Advanced installation](./advanced-installation-scenarios.html){{<wbr>}}

@@ -179,9 +179,7 @@ When a processing unit does start an embedded space with a backup topology, the 
 
 In the above case, the primary and the backup will not run on the same zone. If the primary of partition 1 was started on zone1, then the backup of partition 1 will be started on zone2. This comes very handy when defining rack aware deployments.
 
-{{% refer %}}
-You may use the [Primary-Backup Zone Controller](/sbp/primary-backup-zone-controller.html) to deploy primary and backup instances on specific different zones.
-{{% /refer %}}
+ 
 
 # Requires Isolation
 
@@ -298,9 +296,7 @@ You can also define SLA deployment requirements on per processing unit instance 
 
 The above example verifies that the **first instance** is deployed to a specific machine (specified by its IP address), and its **second instance** for the same partition is deployed to a different machine. All instances share the "general" requirements of CPU and memory. The first instance **might be** the primary and the second might be the backup, but there is no guarantee these will remain primary/backup as these are runtime properties and might change during the life-cycle of the clustered space. The activation property of the space (primary or backup) is determined once the instance is deployed and is not controlled by the GSM but as part of the primary election process.
 
-
-To control the location of the primary and backup instances during the life-cycle of the clustered space you should use the [Primary-Backup Zone Controller best practice](/sbp/primary-backup-zone-controller.html).
-
+ 
 # Zone Based Partitioning Provisioning
 To accommodate partitions with different size we can use the zones configuration to provision each partition into a different zone. Each zone will be associated with GSCs having a different heap size (Xmx). The assumption here is a GSCs hosting a single partition instance (primary or a backup instance). With the following example we deploy a cluster with 3 partitions where each partition deployed into a different zone: Small (1GB GSC), Medium (2GB GSC ) and Large (3GB GSC).
 

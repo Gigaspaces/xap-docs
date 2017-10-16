@@ -24,7 +24,7 @@ You can use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to
 
 # The Deployment Process
 
-Once built according to the processing unit [directory structure](./the-processing-unit-structure-and-configuration.html), the processing unit can be deployed via the various deployment tools available in GigaSpaces XAP ([UI]({{%currentadmurl%}}/gigaspaces-management-center.html), [CLI]({{%currentadmurl%}}/deploy-command-line-interface.html), Ant, [Maven](./installation-maven-overview.html) or the [Admin API](./administration-and-monitoring-api.html)).
+Once built according to the processing unit [directory structure](./the-processing-unit-structure-and-configuration.html), the processing unit can be deployed via the various deployment tools available in GigaSpaces XAP ([UI]({{%currentadmurl%}}/gigaspaces-management-center.html), [CLI]({{%currentadmurl%}}/deploy-command-line-interface.html), Ant, [Maven](../started/installation-maven-overview.html) or the [Admin API](./administration-and-monitoring-api.html)).
 
 After you [package](./the-processing-unit-overview.html) the processing unit and deploy it via one of the deployment tools, the deployment tool uploads it to all the running [GSMs](/product_overview/service-grid.html#gsm), where it is extracted and provisioned to the [GSCs](/product_overview/service-grid.html#gsc).
 

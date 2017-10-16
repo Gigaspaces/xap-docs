@@ -287,7 +287,7 @@ val df = spark.read.option("splitCount", "4").grid[Person]
 {{%/tab%}}
 {{%/tabs%}}
 
-The `splitCount` defines the number of Spark partitions per Data Grid partition. This feature is limited to `bucketed` grid model. Please, refer to [Data Modeling](./modeling.html) for more details.
+The `splitCount` defines the number of Spark partitions per Data Grid partition. This feature is limited to `bucketed` grid model. Please, refer to [Data Modeling](./insightedge-modeling.html) for more details.
 
 
 # Loading custom SpaceDocuments

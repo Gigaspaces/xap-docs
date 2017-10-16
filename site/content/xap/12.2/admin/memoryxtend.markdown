@@ -135,7 +135,7 @@ To overcome that problem, the space can be configured with **Attribute Store** w
 XAP is bundled with 2 implementations:
  
 * File-based implementation of an attribute store which can be used in conjunction with an NFS filesystem to maintain the last primary.
-* [Zookeeper](./zookeeper.html).
+ 
 
 The following examples demonstrate how to configure a persistent SSD RocksDB add-on with such an attribute store:
  
