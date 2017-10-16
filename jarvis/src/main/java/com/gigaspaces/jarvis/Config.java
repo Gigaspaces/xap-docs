@@ -17,10 +17,23 @@ public class Config {
         this.contentPath = path + File.separatorChar + 
                 "site" + File.separatorChar + 
                 "content" + File.separatorChar;
-        // TODO: read from config file
-        pagePluging.put("Open With Notpad...", "notepad");
-        pagePluging.put("Open With Notpad++...", "C:\\Program Files\\Notepad++\\notepad++.exe");
+        
+		// TODO: read from config file
+		final boolean isWindows = File.separatorChar == '\\';
+		if (isWindows) {
+            registerPluginIfExists("Open With Notpad...", "notepad");
+		    registerPluginIfExists("Open With Notpad++...", "C:\\Program Files\\Notepad++\\notepad++.exe");
+            registerPluginIfExists("Open With Notpad++...", "C:\\Program Files (x86)\\Notepad++\\notepad++.exe");
+		} else {
+			// TODO: register linux/mac tools
+		}
     }
+	
+	private void registerPluginIfExists(String name, String path) {
+		File f = new File(path);
+		if (!f.isAbsolute() || f.exists())
+			pagePluging.put(name, path);
+	}
     
     public File getPath() {
         return path;
