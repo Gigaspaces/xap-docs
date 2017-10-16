@@ -36,7 +36,7 @@ Several XAP administration features have been updated and can now be used with t
 
 ## REST Manager API
 
-The XAP Manager RESTful API can now be used with the full InsightEdge Platform package, and is now extensible. Therefore, it has been renamed to REST Manager API. This extended functionality enaables customers to develop custom management interfaces (to deploy applications, troubleshoot problems, and monitor system health) in order to simplify day-to-day system management tasks.
+The XAP Manager RESTful API can now be used with the full InsightEdge Platform package, and is now extensible. Therefore, it has been renamed to REST Manager API. This extended functionality enables customers to develop custom management interfaces (to deploy applications, troubleshoot problems, and monitor system health) in order to simplify day-to-day system management tasks.
 
 To add an operation, simply implement a plain Java class with [JAX-RS](https://github.com/jax-rs) annotations, build it, and drop the jar in `$XAP_HOME/lib/platform/manager/plugins` folder. 
  
