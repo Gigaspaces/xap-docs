@@ -154,7 +154,7 @@ Once a lease is given to a lease renewal manager, the manager will continue to r
 
 ### Configuring LeaseRenewalManager
 
-LeaseRenewalManager supports [Configuration](http://www.gigaspaces.com/docs/JiniApi/net/jini/config/Configuration.html) entries, with component "net.jini.lease.LeaseRenewalManager":
+LeaseRenewalManager supports [Configuration]({{% api-javadoc %}}/index.html?net/jini/config/Configuration.html) entries, with component "net.jini.lease.LeaseRenewalManager":
 
 
 | Property | Type | Default | Description |
@@ -417,7 +417,7 @@ public class Order implements Serializable {
 {{% /tab %}}
 {{% /tabs %}}
 
-API page for [LeaseRenewalManager](http://www.gigaspaces.com/docs/JiniApi/net/jini/lease/LeaseRenewalManager.html) has additional information.
+API page for [LeaseRenewalManager]({{% api-javadoc %}}/index.html?net/jini/lease/LeaseRenewalManager.html) has additional information.
 
 # Lease Expiration Notifications
 

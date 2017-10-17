@@ -131,7 +131,7 @@ The Configure View window already includes your previously selected options, and
 - GigaSpaces 6.5 GA.
 .Net product is unzipped.
 JSHOMEDIR is configured.
-For more details see [Installing GigaSpaces]({{%latestneturl%}}/installation.html) section.
+For more details see [Installing GigaSpaces]({{%lateststartedurl%}}/installation.html) section.
 
 - A [JDK 1.5]({{%lateststartedurl%}}/installation.html)
 - The [.NET Framework](http://msdn2.microsoft.com/en-us/netframework/aa569263.aspx)

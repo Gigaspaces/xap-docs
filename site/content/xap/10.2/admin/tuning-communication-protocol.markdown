@@ -16,7 +16,7 @@ XAP provides a pluggable communication adaptor, LRMI (**Light Remote Method Invo
 ![lrmi.jpg](/attachment_files/lrmi.jpg)
 {{% /align %}}
 
-The LRMI uses a `GenericExporter` that implements the [net.jini.export.Exporter](http://www.gigaspaces.com/docs/JiniApi/net/jini/export/Exporter.html) interface.
+The LRMI uses a `GenericExporter` that implements the [net.jini.export.Exporter]({{% api-javadoc %}}/index.html?net/jini/export/Exporter.html) interface.
 
 All XAP components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.
 

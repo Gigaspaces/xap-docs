@@ -138,7 +138,9 @@ multicastInterfaces=new java.net.NetworkInterface[]
 {java.net.NetworkInterface.getByName("${java.rmi.server.hostname}")};
 ```
 
-{{% refer %}}For more information, refer to {{%exurl "Sun Javadoc" "http://www.gigaspaces.com/docs/JiniApi/com/sun/jini/reggie/package-summary.html"%}}.{{% /refer %}}
+{{% refer %}}
+For more information, refer to [Sun Javadoc]({{% api-javadoc %}}/index.html?com/sun/jini/reggie/package-summary.html).
+{{% /refer %}}
 
 {{% anchor 4 %}}
 

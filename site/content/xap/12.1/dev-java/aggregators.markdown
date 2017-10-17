@@ -257,7 +257,7 @@ public class Demographics     {
 # Group Aggregation
 
 
-The [GroupByAggregator](http://www.gigaspaces.com/docs//JavaDoc{{%currentversion%}}/index.html?com/gigaspaces/query/aggregators/GroupByAggregator.html) is used in conjunction with the aggregate functions to group the result-set by one or more columns. Here is an example:
+The [GroupByAggregator]({{% api-javadoc %}}/index.html?com/gigaspaces/query/aggregators/GroupByAggregator.html) is used in conjunction with the aggregate functions to group the result-set by one or more columns. Here is an example:
 
 
 
@@ -314,7 +314,7 @@ for (GroupByValue group : groupByResult) {
 # Distinct Aggregation
 
 
-The [DistinctAggregator](http://www.gigaspaces.com/docs//JavaDoc{{%currentversion%}}/index.html?com/gigaspaces/query/aggregators/DistinctAggregator.html) is used in conjunction with the aggregate functions to perform a distinct select by one or more columns. Here is an example:
+The [DistinctAggregator]({{% api-javadoc %}}/index.html?com/gigaspaces/query/aggregators/DistinctAggregator.html) is used in conjunction with the aggregate functions to perform a distinct select by one or more columns. Here is an example:
 
 
 ```java

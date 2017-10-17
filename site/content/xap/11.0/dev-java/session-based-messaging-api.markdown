@@ -614,7 +614,7 @@ space-config.engine.notify_max_threads {{<wbr>}}
 See the [Scaling Notification Delivery](./notify-container.html#Scaling Notification Delivery) for details.
 {{%/note%}}
 
-To reduce the amount of stale registrations, register notification with a reasonable lease time (30 seconds - 2 minutes can be a good interval), and renew these using the [LeaseRenewalManager](http://www.gigaspaces.com/docs/JiniApi/net/jini/lease/LeaseRenewalManager.html) every 30 seconds - 2 minutes. This ensures that once the client exists in an abnormal manner, the registration automatically expires and is removed, reducing the chance to fully consume the notification thread pool and delay notification delivery to live clients.
+To reduce the amount of stale registrations, register notification with a reasonable lease time (30 seconds - 2 minutes can be a good interval), and renew these using the [LeaseRenewalManager]({{% api-javadoc %}}/index.html?net/jini/lease/LeaseRenewalManager.html) every 30 seconds - 2 minutes. This ensures that once the client exists in an abnormal manner, the registration automatically expires and is removed, reducing the chance to fully consume the notification thread pool and delay notification delivery to live clients.
 
 ## Improving Notification Speed
 
