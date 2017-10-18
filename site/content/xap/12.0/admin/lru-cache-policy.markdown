@@ -36,6 +36,10 @@ In order to minimize the potential database overhead above, the `LRU` cache poli
 
 Constructing read operations using `SQLQuery` with `Order by`, `Group by` is not recommended either, because in many cases it requires traversing the entire result data set on the client side. In such cases, the preferred option is to perform the query directly against the database and select only the IDs, and then retrieve the actual data from space using the `readById` or `readByIds` operations. When working with a partitioned space, it is recommended to store the routing value in a separate database column, and select it as so that the `readById` or `readByIds` operations will be more efficient.
 
+# Eviction and Primary-Backup Multi-Replica Setup 
+
+The eviction activity running with the LRU policy is performed independently by each Space instance. There is no replication activity associated with the eviction activity. This means that when a primary instance performs an eviction activity, the evicted objects may not be evicted from the backup instance and vice versa. This can result in different object counts between the primary and backup instances (or different replicas). The LRU mechanism assumes a that a database is used to store all the data, where a cache miss triggers a data reload (via the data source or client activity) from the database. 
+
 # The `MEMORY_ONLY_SEARCH` Modifier
 
 The `MEMORY_ONLY_SEARCH` modifier may be used to instruct the space to limit the query / template matching performed with read/take/clear/change operations to the data stored only in memory and not the space's backend persistence store (database). This give you the flexibility of minimizing the database load in cases where this modifier can be applied. 
