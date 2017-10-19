@@ -9,7 +9,15 @@ weight: 750
 
  
 
-GigaSpaces XAP fully supports deployment on virtualized environments running on VMWare Type 1 Hypervisors. This includes all major product featurs and APIs, including data access, messaging, code execution, local cache, remoting and persistency.
+
+GigaSpaces XAP fully supports the following:
+
+- Using virtual machines to host InsightEdge and XAP applications and components.
+- Deployment on virtualized environments running on VMWare Type 1 Hypervisors. This includes all major product features and APIs, including data access, messaging, code execution, local cache, remoting and persistency.
+
+{{%note "Note"%}}
+There are certain guidelines regarding virtual machines that should be followed when setting up the production environment, in order to ensure stability and optimal performance. For more information, refer to [JVM Tuning](/xap/12.1/admin/moving-into-production-checklist.html#jvm-tuning).
+{{%/note%}}
 
 # Supported versions
 

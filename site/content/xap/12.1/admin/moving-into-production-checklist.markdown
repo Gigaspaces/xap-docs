@@ -640,6 +640,8 @@ It is recommended that you include all space classes and their dependency classe
 To avoid the need to load the same library into each PU instance classloader running within the GSC, you should place common libraries (such as JDBC driver, logging libraries, Hibernate libraries and their dependencies) at the `<gigaspaces-xap root>\lib\optional\pu-common` folder. You may specify the location of this folder using the `com.gs.pu-common` system property.
 {{% /tip %}}
 
+{{% anchor jvm-tuning %}}
+
 # JVM Tuning
 
 
