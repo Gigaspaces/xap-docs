@@ -25,10 +25,10 @@ public class MenuTree {
         Config config = new Config(args[0]);
         logger.info("Starting with base path " + config.getPath());
 
-        final String contentPath = config.getContentPath();
+        final File contentPath = config.getContentPath();
         MenuTree instance = new MenuTree();
         for (String dir : SHARED_DIRS) {
-            instance.processDir(config, new File(contentPath + dir));
+            instance.processDir(config, new File(contentPath, dir));
         }
         Collection<VersionContainer> xapVersions = getProductFoldersOld(contentPath);
         xapVersions.addAll(VersionContainer.find(contentPath).values());
@@ -50,9 +50,9 @@ public class MenuTree {
                 + ", pages=" + instance.totalPages + ")");
     }
 
-    private static Collection<VersionContainer> getProductFoldersOld(String path) {
+    private static Collection<VersionContainer> getProductFoldersOld(File path) {
         Collection<VersionContainer> result = new HashSet<>();
-        for (File file : new File(path).listFiles()) {
+        for (File file : path.listFiles()) {
             if (file.isDirectory() && file.getName().startsWith("xap") && !file.getName().equals("xap")) {
                 getOrCreateVersionContainer(result, file).getFiles().add(file);
             }
@@ -86,6 +86,8 @@ public class MenuTree {
     }
 
     public Collection<Page> loadPages(File folder, boolean groupingMode) throws IOException {
+        if (!folder.exists())
+            throw new RuntimeException("No such folder: " + folder);
         logger.debug("Processing dir : " + folder.getName());
         final Collection<Page> roots = new TreeSet<>();
         final Map<String, Page> pages = new HashMap<>();

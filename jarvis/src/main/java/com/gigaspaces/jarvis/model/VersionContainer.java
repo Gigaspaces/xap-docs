@@ -17,15 +17,17 @@ public class VersionContainer {
     private final String formattedVersion;
     private final Collection<File> files = new ArrayList<>();
     
-    public static Map<String, VersionContainer> find(String path) {
+    public static Map<String, VersionContainer> find(File path) {
         Map<String, VersionContainer> result = new HashMap<>();
-        for (File versionDir : new File(path, "xap").listFiles()) {
-            if (versionDir.isDirectory()) {
-                VersionContainer vc = new VersionContainer(versionDir);
-                result.put(vc.getFormattedVersion(), vc);
+        File[] files = new File(path, "xap").listFiles();
+        if (files != null) {
+            for (File versionDir : files) {
+                if (versionDir.isDirectory()) {
+                    VersionContainer vc = new VersionContainer(versionDir);
+                    result.put(vc.getFormattedVersion(), vc);
+                }
             }
         }
-
         return result;
     }
 

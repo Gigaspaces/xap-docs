@@ -47,6 +47,7 @@ public class HugoContainer implements Closeable{
                     MenuTree.main(new String[] {config.getPath().getPath()});
                 } catch (Exception e) {
                     logger.warning("Failed to generate navbar: " + e.toString());
+                    return;
                 }
                 logger.info("Starting hugo...");
                 try {
@@ -73,7 +74,8 @@ public class HugoContainer implements Closeable{
     
     @Override
     public void close() {
-        stop();
+        if (isAlive())
+            stop();
     }
     
     private static class StreamGobbler extends SwingWorker<Void, String> {

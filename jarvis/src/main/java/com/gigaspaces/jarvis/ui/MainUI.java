@@ -15,8 +15,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
 import java.util.TreeMap;
-import javax.swing.JFrame;
+import java.awt.Font;
+import java.io.File;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -28,27 +30,57 @@ import javax.swing.tree.TreePath;
 public class MainUI extends javax.swing.JFrame {
 
     private final Logger logger = Logger.getInstance();
+    private final Config config;
+    private final HugoContainer hugoContainer;
     private final TreeMap<String, VersionContainer> versions = new TreeMap<>();
-    private final Config config = new Config();
-    private final HugoContainer hugoContainer = new HugoContainer(config);
-    
+    private final StringBuilder tempLog = new StringBuilder();
+
     /**
      * Creates new form MainUI
      */
     public MainUI() {
-        initComponents();        
-    }
-    
-    private void initialize() {
         // Initialize logger
         logger.addListener(this::log);
+        File jarvisHome = findJarvisHome();
+        logger.info("Starting Jarvis at " + jarvisHome);
+        this.config = new Config(jarvisHome);
+        this.hugoContainer = new HugoContainer(config);
+        changeDefaultFont(config);
+        initComponents();
+        outputTextArea.setText(tempLog.toString());
+    }
+    
+    private static File findJarvisHome() {
+        File path = new File(System.getProperty("user.dir"));
+        while (!"xap-docs".equals(path.getName()) && path.getParent() != null) {
+            path = path.getParentFile();
+        }
+        return path;
+    }
+    
+    private void log(String s) {
+        if (outputTextArea != null) {
+            outputTextArea.append(s + System.lineSeparator());
+        } else {
+            tempLog.append(s).append(System.lineSeparator());
+        }
+    }
+    
+    private static void changeDefaultFont(Config config) {
+        Font font = (Font) UIManager.getLookAndFeelDefaults().get("defaultFont");
+        String name = config.getFontName(font.getName());
+        int style = config.getFontStyle(font.getStyle());
+        int size = config.getFontSize(font.getSize());
+        UIManager.getLookAndFeelDefaults().put("defaultFont", new Font(name, style, size));
+    }
+
+    private void initialize() {
         // Register pluging...
         config.getPagePluging().forEach(this::registerPlugin);
         // Init versions...
         versions.clear();
         versions.putAll(VersionContainer.find(config.getContentPath()));
         versions.descendingKeySet().forEach(v -> versionComboBox.addItem(v));
-        logger.info("Started - " + config.getPath());
     }
 
     private Page getContextPage() {
@@ -56,19 +88,16 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     private Page getPageIfExists(TreePath treePath) {
-        if (treePath == null)
+        if (treePath == null) {
             return null;
+        }
         return getPageIfExists((DefaultMutableTreeNode) treePath.getLastPathComponent());
     }
 
     private Page getPageIfExists(DefaultMutableTreeNode node) {
-        return node.getUserObject() instanceof Page ? (Page)node.getUserObject() : null;        
+        return node.getUserObject() instanceof Page ? (Page) node.getUserObject() : null;
     }
-    
-    private void log(String s) {
-        outputTextArea.append(s + System.lineSeparator());
-    }
-    
+
     private void appendPage(DefaultTreeModel tree, Page page, DefaultMutableTreeNode parent) {
         DefaultMutableTreeNode pageNode = new DefaultMutableTreeNode(page);
         //parent.add(pageNode);
@@ -83,7 +112,7 @@ public class MainUI extends javax.swing.JFrame {
         pagePopupMenu.add(menuItem);
 
     }
-    
+
     private void openWith(Page page, String path) {
         if (page != null) {
             try {
@@ -93,7 +122,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void browse(Page page, String prefix) {
         if (page != null) {
             String url = prefix + page.getHref();
@@ -101,7 +130,7 @@ public class MainUI extends javax.swing.JFrame {
                 java.awt.Desktop.getDesktop().browse(URI.create(url));
             } catch (IOException ex) {
                 logger.warning(ex.toString());
-            }        
+            }
         }
     }
 
@@ -319,14 +348,14 @@ public class MainUI extends javax.swing.JFrame {
         pageTextArea.setSelectionStart(0);
         pageTextArea.setSelectionEnd(0);
     }//GEN-LAST:event_pagesTreeValueChanged
-        
+
     private void versionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_versionComboBoxActionPerformed
-        
+
         DefaultTreeModel treeModel = (DefaultTreeModel) pagesTree.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel.getRoot();
         root.removeAllChildren();
 
-        String versionKey = (String)versionComboBox.getSelectedItem();
+        String versionKey = (String) versionComboBox.getSelectedItem();
         VersionContainer version = versions.get(versionKey);
         try {
             Collection<Page> pages = version.load(new MenuTree());
@@ -334,7 +363,7 @@ public class MainUI extends javax.swing.JFrame {
         } catch (IOException ex) {
             logger.warning(ex.toString());
         }
-        
+
         treeModel.reload();
         //pagesTree.updateUI();
     }//GEN-LAST:event_versionComboBoxActionPerformed
@@ -360,8 +389,9 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_hugoStopMenuItemActionPerformed
 
     private void hugoRestartMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hugoRestartMenuItemActionPerformed
-        if (hugoContainer.isAlive())
+        if (hugoContainer.isAlive()) {
             hugoContainer.stop();
+        }
         hugoContainer.start();
     }//GEN-LAST:event_hugoRestartMenuItemActionPerformed
 
@@ -373,12 +403,12 @@ public class MainUI extends javax.swing.JFrame {
         if (SwingUtilities.isRightMouseButton(evt)) {
             TreePath selPath = pagesTree.getPathForLocation(evt.getX(), evt.getY());
             if (selPath != null) {
-                pagesTree.setSelectionPath(selPath); 
+                pagesTree.setSelectionPath(selPath);
                 pagePopupMenu.show(pagesTree, evt.getX(), evt.getY());
             }
         }
     }//GEN-LAST:event_pagesTreeMouseClicked
-  
+
     /**
      * @param args the command line arguments
      */
@@ -405,6 +435,7 @@ public class MainUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
