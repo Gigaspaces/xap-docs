@@ -73,7 +73,7 @@ Operating system-level virtualization called also Container technology such as D
 # Unit Testing
 Microservices application , like any other application should have for every service that you deliver a test suite. It should cover all the service functionality, security, performance, error handling, and consumption driven testing for every current and future consumer. This must be included as part of the build pipeline for automated regression testing. XAP PU can have [unit tests](/xap/11.0/dev-java/installation-eclipse-junit.html) developed that will mimic any data grid cluster topology leveraging the same pu.xml used when deploying the PU into production environment.
 
-The [IPUC]({{%latestjavaurl%}}/installation-eclipse-debug.html) for Java users has been designed allow users running their PU within their IDE and also to be used with Unit Tests. This allow users to simulate a complete PU (specific PU instance or a complete cluster) to be provisioned within the single JVM. When testing microservices based application this makes the Unit testing very simple.
+The [IPUC]({{%lateststartedurl%}}/xap-ide.html) for Java users has been designed allow users running their PU within their IDE and also to be used with Unit Tests. This allow users to simulate a complete PU (specific PU instance or a complete cluster) to be provisioned within the single JVM. When testing microservices based application this makes the Unit testing very simple.
 
 The [XAP Maven Plugin]({{%lateststartedurl%}}/installation-maven-overview.html) provides similar functionality as it allow users to build , deploy and run a PU.
 

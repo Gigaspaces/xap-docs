@@ -106,7 +106,7 @@ We use a local file to store the historical data. XAP will process and persist t
 The following are step-by-step instructions building the application:
 
 1. Install XAP 
-Follow these [instructions]({{%latestjavaurl%}}/installation-java.html) to download and install the latest version of XAP.
+Follow these [instructions]({{%lateststartedurl%}}/installation.html) to download and install the latest version of XAP.
 
 2. Get the demo application code from github
 Get the [demo application](https://github.com/gigaspaces/rt-analytics-streaming-bigdata) and place the files under an empty folder.
@@ -215,7 +215,7 @@ rt-feeder project run configuration:
 {{%/section%}}
 
 
-For more information about the `IntegratedProcessingUnitContainer` class (runs the processing units within your IDE), see [Running and Debugging Within Your IDE]({{%latestjavaurl%}}/installation-eclipse-debug.html).
+For more information about the `IntegratedProcessingUnitContainer` class (runs the processing units within your IDE), see [Running and Debugging Within Your IDE]({{%lateststartedurl%}}/xap-ide.html).
 
 {{% tip %}}
 Make sure you have updated **gslicense.xml** located under the GigaSpaces XAP root folder with the license key provided as part of the email sent to you after downloading GigaSpaces XAP.

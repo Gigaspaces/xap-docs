@@ -310,7 +310,7 @@ Next, we compile and run the sample application
 
 **Steps to run the application inside Eclipse IDE:**
 
-If you haven't already done so,[download GigaSpaces and set up your development environment]({{%currentjavaurl%}}/installation.html)
+If you haven't already done so,[download GigaSpaces and set up your development environment]({{%currentjav%}}/installation.html)
 - This is needed for running the tutorial sample application.
 
 {{% anchor JImporting Project to the IDE %}}
