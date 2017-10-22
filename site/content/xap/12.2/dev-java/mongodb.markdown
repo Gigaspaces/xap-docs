@@ -7,7 +7,7 @@ weight: 630
 ---
 
 {{%warning "Important"%}}
-This is a reference implementation of integrating MongoDB with XAP for persistency and data reload. GigaSpaces does not guarantee up-to-date upgrades or support of the target NoSQL store drivers. We encourage users to extend the open source implementation to their liking or contact GigaSpaces Professional Services for guidance. 
+This is a reference implementation of integrating MongoDB with XAP for persistency and data reload. GigaSpaces does not guarantee up-to-date upgrades or support of the target NoSQL store drivers. We encourage users to extend the open source implementation to their liking or contact GigaSpaces Professional Services for guidance at [Consulting Services](mailto:ps@gigaspaces.com). 
 {{%/warning%}} 
 
 [MongoDB](http://www.mongodb.com/) is an open-source database used by companies of all sizes, across all industries and for a wide variety of applications. It is an agile database that allows schemas to change quickly as applications evolve, while still providing the functionality developers expect from traditional databases, such as secondary indexes, a full query language and strict consistency.
