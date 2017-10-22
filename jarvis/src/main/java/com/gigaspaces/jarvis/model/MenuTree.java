@@ -24,7 +24,10 @@ public class MenuTree {
         }
         Config config = new Config(args[0]);
         logger.info("Starting with base path " + config.getPath());
-
+        generateNavbar(config);
+    }
+    
+    public static void generateNavbar(Config config) throws IOException {
         final File contentPath = config.getContentPath();
         MenuTree instance = new MenuTree();
         for (String dir : SHARED_DIRS) {

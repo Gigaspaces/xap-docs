@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.logging.Level;
 import javax.swing.SwingWorker;
 
 public class HugoContainer implements Closeable{
@@ -21,7 +20,7 @@ public class HugoContainer implements Closeable{
     public HugoContainer(Config config) {
         this.config = config;
         this.processBuilder = new ProcessBuilder()
-                .command("hugo", "server")
+                .command(config.getHugoPath(), "server")
                 .directory(new File(config.getPath(), "site"))
                 .redirectErrorStream(true);
         
@@ -44,7 +43,7 @@ public class HugoContainer implements Closeable{
             else {
                 logger.info("Generating navbar...");
                 try {
-                    MenuTree.main(new String[] {config.getPath().getPath()});
+                    MenuTree.generateNavbar(config);
                 } catch (Exception e) {
                     logger.warning("Failed to generate navbar: " + e.toString());
                     return;

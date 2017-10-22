@@ -61,6 +61,7 @@ public class Config {
     }
 
     private void loadDefaultConfig() {
+        properties.put("hugo.path", "hugo");
         final boolean isWindows = File.separatorChar == '\\';
         if (isWindows) {
             addDefaultPluginIfExists("notepad", "Open With Notpad...", "notepad");
@@ -121,14 +122,17 @@ public class Config {
     public File getContentPath() {
         return contentPath;
     }
+    
+    public String getHugoPath() {
+        return properties.get("hugo.path");
+    }
 
     public Map<String, String> getPagePluging() {
         return pagePluging;
     }
 
     public String getFontName(String defaultValue) {
-        String s = properties.get("font.name");
-        return s != null ? s : defaultValue;
+        return getProperty("font.name", defaultValue);
     }
 
     public int getFontStyle(int defaultValue) {
@@ -139,6 +143,11 @@ public class Config {
     public int getFontSize(int defaultValue) {
         String s = properties.get("font.size");
         return s != null ? Integer.parseInt(s) : defaultValue;
+    }
+    
+    private String getProperty(String key, String defaultValue) {
+        String s = properties.get(key);
+        return s != null ? s : defaultValue;        
     }
 
     private static Map<String, Properties> groupByPrefix(Map<String, String> properties, String prefix) {
