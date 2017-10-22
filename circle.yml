@@ -35,5 +35,3 @@ deployment:
       - cp staging/* _site
       - echo "Publishing to staging..."
       - DOCS_TARGET=STAGING s3_website push
-      - echo "Publishing to experimental production..."
-      - DOCS_TARGET=PROD_EXP s3_website push
