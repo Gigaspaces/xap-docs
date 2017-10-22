@@ -1,5 +1,2 @@
 @echo off
-echo Building Jarvis...
-call mvn --file jarvis package -DskipTests
-echo Generating navbar...
-java -cp jarvis/target/jarvis-1.0.jar com.gigaspaces.jarvis.model.MenuTree %~dp0
+call jarvis.bat generate-navbar %~dp0

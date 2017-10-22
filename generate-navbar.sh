@@ -1,6 +1,1 @@
-set -x
-set -e
-echo Building Jarvis...
-mvn --file jarvis package -DskipTests
-echo Generating navbar...
-java -cp ./jarvis/target/jarvis-1.0.jar com.gigaspaces.jarvis.model.MenuTree $1
+./jarvis.sh generate-navbar $1
