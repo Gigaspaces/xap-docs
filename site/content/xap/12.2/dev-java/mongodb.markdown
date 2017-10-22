@@ -6,7 +6,9 @@ parent: space-persistency-overview.html
 weight: 630
 ---
 
-
+{{%warning "Important"%}}
+This is a reference implementation of integrating MongoDB with XAP for persistency and data reload. GigaSpaces does not guarantee up-to-date upgrades or support of the target NoSQL store drivers. We encourage users to extend the open source implementation to their liking or contact GigaSpaces Professional Services for guidance. 
+{{%/warning%}} 
 
 [MongoDB](http://www.mongodb.com/) is an open-source database used by companies of all sizes, across all industries and for a wide variety of applications. It is an agile database that allows schemas to change quickly as applications evolve, while still providing the functionality developers expect from traditional databases, such as secondary indexes, a full query language and strict consistency.
 
@@ -26,7 +28,7 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/mongodb/xap-
 </dependency>
 ```
 {{%refer%}}
-For more information on dependencies see [Maven Artifacts](../started/maven-artifacts.html)
+For more information on dependencies see [Maven Artifacts](../started/maven-artifacts.html).
 {{%/refer%}} 
 
 
