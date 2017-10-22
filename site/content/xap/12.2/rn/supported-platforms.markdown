@@ -65,7 +65,7 @@ Refer to the [Oracle Java SE Support Roadmap](http://www.oracle.com/technetwork/
  
 ## XAP  
 
-Refer to the [JVM & Third-Party End-Of-Life Policy](./lifecycle.html) for the latest updates.
+Refer to the [JVM & Third-Party End-Of-Life Policy](/release_notes/lifecycle.html) for the latest updates.
  
 
 

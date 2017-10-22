@@ -456,7 +456,8 @@ T ReadIfExists<T>(IQuery<T> query,ITransaction tx,long timeout);
 ....
 ```
 
-
+{{%/accord%}}
+{{%/accordion%}}
 
 
 | Modifier and Type | Description | Default | Unit|
@@ -466,8 +467,7 @@ T ReadIfExists<T>(IQuery<T> query,ITransaction tx,long timeout);
 |query| [IQuery]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|      | |
 |[ReadModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)|Provides modifiers to customize the behavior of read operations | NONE  |  |
 
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -707,6 +707,8 @@ T TakeIfExistsById<T>(IdQuery<T> idQuery,ITransaction tx,long timeout,TakeModifi
 ....
 ```
 
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | Default | Unit|
 |:-----|:------------|:--------|:----|
@@ -715,8 +717,7 @@ T TakeIfExistsById<T>(IdQuery<T> idQuery,ITransaction tx,long timeout,TakeModifi
 |query| [IQuery]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|      | |
 |[TakeModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_ISpaceProxy_TakeModifiers.htm)|Provides modifiers to customize the behavior of take operations | NONE  |  |
 |[ITakeByIdsResult]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IQuery_1.htm)|ResultSet||
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -766,14 +767,15 @@ int Count(ISpaceQuery<T> query);
 
 ```
 
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
 |T          | PONO, SpaceDocument||
 |query         | SqlQuery, IdQuery||
 |[ReadModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_IReadOnlySpaceProxy_ReadModifiers.htm)|Provides modifiers to customize the behavior of the count operations | NONE  |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -827,14 +829,15 @@ void Clear(ISpaceQuery<T> query)
 
 ```
 
+{{%/accord%}}
+{{%/accordion%}}
 
 | Modifier and Type | Description | default |
 |:-----|:------------|:-------- |
 |T          | PONO, SpaceDocument||
 |query         | SqlQuery, IdQuery||
 |[TakeModifiers]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_TakeModifiers.htm)|Provides modifiers to customize the behavior of the clear operations | NONE  |
-{{%/accord%}}
-{{%/accordion%}}
+
 
 
 
@@ -845,7 +848,7 @@ void Clear(ISpaceQuery<T> query)
 
 
 There is no need to retrieve the entire data set from the space to the client side , iterate the result set and perform the aggregation. This would be an expensive activity as it might return large amount of data into the client application. The Aggregators allow you to perform the entire aggregation activity at the space side avoiding any data retrieval back to the client side.
- }
+ 
 
 
 Example:

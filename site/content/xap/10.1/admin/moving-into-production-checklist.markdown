@@ -1016,7 +1016,7 @@ XAP generates log files for each running component . This includes GSA, GSC, GSM
 # Hardware Selection
 The general rule when selecting the HW to run GigaSpaces XAP would be: The faster the better. Multi-core machines with large amount of memory would be most cost effective since these will allow GigaSpaces XAP to provide ultimate performance leveraging large JVM heap size handling simultaneous requests with minimal thread context switch overhead.
 
-Running production systems with 30G-50G heap size is doable with some JVM tuning when leveraging multi-core machines. The recommended HW is [Intel Xeon Processor 5600 Series](http://ark.intel.com/ProductCollection.aspx?series=47915). Here is an example for [recommended server configuration](http://www.cisco.com/en/US/products/ps10280/prod_models_comparison.html):
+Running production systems with 30G-50G heap size is doable with some JVM tuning when leveraging multi-core machines. The recommended HW is [Intel Xeon Processor 5600 Series](https://ark.intel.com/products/series/59213/Legacy-Intel-Xeon-Processors?series=47915). Here is an example for [recommended server configuration](http://www.cisco.com/en/US/products/ps10280/prod_models_comparison.html):
 
 
 |Model|Cisco UCS B200 M2 Blade Server|Cisco UCS B250 M2 Extended Memory Blade Server|

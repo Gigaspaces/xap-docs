@@ -304,7 +304,7 @@ You can switch between the On-Line `TwitterHomeTimelineFeederTask` Feeder and th
    - Copy the `Access Token` and `Access Token Secret` to [feeder.properties](https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/feeder/src/main/resources/META-INF/spring/feeder.properties)
 
 {{% warning %}}
-Since the [Twitter API uses rate limiting](https://dev.twitter.com/docs/rate-limiting), the twitter feeder is configured to poll once every 24 seconds (150 requests per hour) `-Dtwitter.delayInMs=24000`. Your feeder might stop if this rate limit is exceeded.
+Since the [Twitter API uses rate limiting](https://developer.twitter.com/en/docs/basics/rate-limitinghttp://velocity.apache.org/), the twitter feeder is configured to poll once every 24 seconds (150 requests per hour) `-Dtwitter.delayInMs=24000`. Your feeder might stop if this rate limit is exceeded.
 {{% /warning %}}
 
 # Running the Application with XAP Runtime Environment
