@@ -128,7 +128,7 @@ cd <project root directory>
 git clone --branch=2_5_1 <your new repository URL>
 ```
 
-We welcome your contributions and suggestions for improvements, and invite you to submit them by performing a [pull request](http://help.github.com/send-pull-requests/). We will review your recommendations and have relevant changes merged.
+We welcome your contributions and suggestions for improvements, and invite you to submit them by performing a [pull request](http://help.github.com). We will review your recommendations and have relevant changes merged.
 
 3. Install Maven and the GigaSpaces Maven plug-in
 The application uses [Apache Maven](http://maven.apache.org/). If you don't have Apache Maven installed, please [download](http://maven.apache.org/download.html#Installation) and install it. Once installed:
@@ -304,7 +304,7 @@ You can switch between the On-Line `TwitterHomeTimelineFeederTask` Feeder and th
    - Copy the `Access Token` and `Access Token Secret` to [feeder.properties](https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/feeder/src/main/resources/META-INF/spring/feeder.properties)
 
 {{% warning %}}
-Since the [Twitter API uses rate limiting](https://developer.twitter.com/en/docs/basics/rate-limitinghttp://velocity.apache.org/), the twitter feeder is configured to poll once every 24 seconds (150 requests per hour) `-Dtwitter.delayInMs=24000`. Your feeder might stop if this rate limit is exceeded.
+Since the [Twitter API uses rate limiting](https://developer.twitter.com/en/docs/basics/rate-limiting), the twitter feeder is configured to poll once every 24 seconds (150 requests per hour) `-Dtwitter.delayInMs=24000`. Your feeder might stop if this rate limit is exceeded.
 {{% /warning %}}
 
 # Running the Application with XAP Runtime Environment
@@ -557,7 +557,7 @@ RowKey: 0439486840025000
 
 # Running the Example using Cloudify
 
-To run the application with the Cassandra DB as one application on any cloud, we will use [Cloudify](http://getcloudify.org). A key concept with Cloudify is deploying and managing the entire application life cycle using a [Recipe](http://www.getcloudify.org/guide/{{%latestcloudifyrelease%}}/developing/recipes_overview.html). This approach provides total application life-cycle automation without any code or architecture change. Furthermore, it is cloud neutral so you don't get locked-in to a specific cloud vendor.
+To run the application with the Cassandra DB as one application on any cloud, we will use [Cloudify](http://getcloudify.org). A key concept with Cloudify is deploying and managing the entire application life cycle using a [Recipe](http://docs.getcloudify.org/). This approach provides total application life-cycle automation without any code or architecture change. Furthermore, it is cloud neutral so you don't get locked-in to a specific cloud vendor.
 
 The following snippet shows the application's recipe:
 
@@ -647,7 +647,7 @@ For more information, see [Deploying Applications](http://getcloudify.org/guide/
 
 To run the application on one of the supported clouds, proceed the following steps:
 
-1. Configure the cloud driver configuration file and get the cloud certificate. For more information, see [Post-Installation Configuration](http://getcloudify.org/guide/{{%latestcloudifyrelease%}}/setup/post_installation_configuration.html) page.
+1. Configure the cloud driver configuration file and get the cloud certificate. For more information, see [Post-Installation Configuration](http://docs.getcloudify.org/guide) page.
 1. Bootstrap the cloud. For more information, see [The Bootstrapping Process](http://shlomo-tech-tav.github.com/guide/bootstrapping/bootstrapping_process) page.
 1. To install and deploy the application, use the `install-application` command, as described in the previous section.
 

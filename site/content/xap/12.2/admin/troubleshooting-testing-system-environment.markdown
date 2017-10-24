@@ -12,7 +12,7 @@ weight: 200
 To perform a simple system testing you should use the `space-instance.bat` script on windows or `space-instance.sh` script on linux.
 
 {{% refer %}}
-To set up a production environment,refer to [Moving into Production Checklist](./moving-into-production-checklist.html).
+To set up a production environment,refer to [Moving into Production Checklist]({{%currentxapurl%}}/production/).
 {{% /refer %}}
 
 # Verifying Local Installation

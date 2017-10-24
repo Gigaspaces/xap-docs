@@ -47,4 +47,4 @@ This section describes Thread pool tuning.
 
 ## Additional Resources
 
-- [Moving Into Production Checklist](./moving-into-production-checklist.html)
+- [Moving Into Production Checklist]({{%currentxapurl%}}/production/)

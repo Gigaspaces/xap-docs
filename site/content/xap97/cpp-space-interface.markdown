@@ -21,9 +21,7 @@ The `SpaceProxy` is used with the different space topologies and runtime modes i
 
 The `SpaceProxy` supports single and batch space operations. Batch operations are used to optimize space operations with multiple objects and can boost the application performance when interacting with the space.
 
-{{% note %}}
-Please refer to the [GigaSpaces c++ Documentation](http://www.gigaspaces.com/docs/cppdocs{{% latestxaprelease %}}/annotated.html) for the API Documentation.
-{{%/note%}}
+ 
 
 ## Writing and Reading from Space
 

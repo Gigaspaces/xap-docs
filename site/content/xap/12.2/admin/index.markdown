@@ -68,7 +68,7 @@ When using a Windows-based operating system for running GigaSpaces infrastructur
 [Troubleshooting](./troubleshooting.html){{<wbr>}}
 This section provides useful information on how to troubleshoot your XAP application.
 
-[Moving into Production Checklist](./moving-into-production-checklist.html){{<wbr>}}
+[Moving into Production Checklist]({{%currentxapurl%}}/production){{<wbr>}}
 This list describes the main activities that should be performed prior moving your system into production.
 
 {{%/fpanel%}}

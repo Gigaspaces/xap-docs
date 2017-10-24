@@ -369,9 +369,9 @@ The Monitor Service includes the following properties:
 
 The Monitor Service using the following Classes to implement the dynamic scaling behavior:
 
-- [org.openspaces.admin.Admin](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/org/openspaces/admin/Admin.html) -  The main interface for accessing Admin API. Created using the AdminFactory class. It provides access to the main elements in the Admin API and in GigaSpaces such as the GridServiceAgents, LookupServices, GridServiceManagers, GridServiceContainers, ProcessingUnits, and Spaces.
-- [org.openspaces.admin.AdminFactory](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/org/openspaces/admin/AdminFactory.html) - This class should be used to access all GigaSpaces Administration classes.
-- [org.openspaces.admin.pu.ProcessingUnit](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease%}}/org/openspaces/admin/pu/ProcessingUnit.html) - This class provides methods to manipulate the life cycle and mange a running Proecssing Unit. You may Increment , Decrement the amount of processing unit instances associated with this PU.
+- [org.openspaces.admin.Admin]({{%api-javadoc%}}/org/openspaces/admin/Admin.html) -  The main interface for accessing Admin API. Created using the AdminFactory class. It provides access to the main elements in the Admin API and in GigaSpaces such as the GridServiceAgents, LookupServices, GridServiceManagers, GridServiceContainers, ProcessingUnits, and Spaces.
+- [org.openspaces.admin.AdminFactory]({{%api-javadoc%}}/org/openspaces/admin/AdminFactory.html) - This class should be used to access all GigaSpaces Administration classes.
+- [org.openspaces.admin.pu.ProcessingUnit]({{%api-javadoc%}}/org/openspaces/admin/pu/ProcessingUnit.html) - This class provides methods to manipulate the life cycle and mange a running Proecssing Unit. You may Increment , Decrement the amount of processing unit instances associated with this PU.
 
 {{% exclamation %}} See the [Administration and Monitoring API]({{%latestjavaurl%}}/administration-and-monitoring-api.html) for more details about the GigaSpaces Administration API.
 
