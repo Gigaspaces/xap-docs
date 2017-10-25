@@ -31,7 +31,7 @@ If the redo logs are not flushed after a specific timeout, an E-mail alert is se
 The sample code below is meant to illustrate how the Admin API can be used to discover Grid Service Containers, Spaces, and Mirrors in order to check the replication statistics.
 
 {{% note %}}
- This example uses multicast to discover the service grid components. For unicast discovery, you can use the  [addLocator()](http://www.gigaspaces.com/docs/JavaDoc{{%latestxaprelease %}}/org/openspaces/admin/AdminFactory.html#addLocator(java.lang.String)) method with a LUS address.
+ This example uses multicast to discover the service grid components. For unicast discovery, you can use the  [addLocator()]({{%api-javadoc%}}/org/openspaces/admin/AdminFactory.html#addLocator) method with a LUS address.
 {{% /note %}}
 
 {{%tabs%}}

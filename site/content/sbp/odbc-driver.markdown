@@ -51,7 +51,7 @@ And deploy the space.
 
 # ODBC-JDBC bridge
 
-- Download and install the ODBC-JDBC bridge from http://uda.openlinksw.com/odbc/st/odbc-jdbc-bridge-st.
+- Download and install the ODBC-JDBC bridge [from](http://uda.openlinksw.com/odbc).
 - Set the following environment variables in your system:
 
 
