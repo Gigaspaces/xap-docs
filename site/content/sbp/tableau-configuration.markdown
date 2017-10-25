@@ -11,18 +11,18 @@ weight: 10
 |------|-----------|-------------|-----------|----------|
 | Vitalii Zinchenko    | 12.2 | September 2017|    |     |
 
-# To configure the Tableau-DataGrid integration, complete the following steps:
+To configure the Tableau-DataGrid integration, complete the following steps:
 
 ## Prerequisites
 
-- Run XAP Datagrid
+- Start XAP Datagrid
 - Make sure you have a space `<SPACE_NAME>` deployed and data loaded into the space.
 
  
 ## ODBC bridge installation
 
-- Login/Register on EasySoft official web site: {{%exurl "link""http://www.easysoft.com/cgi-bin/account/login.cgi"%}}
-- Download the bridge from here {{%exurl "page""http://www.easysoft.com/products/data_access/odbc_odbc_bridge/index.html"%}}
+- Login/Register at the EasySoft official web site: {{%exurl "link""http://www.easysoft.com/cgi-bin/account/login.cgi"%}}
+- {{%exurl "Download the bridge""http://www.easysoft.com/products/data_access/odbc_odbc_bridge/index.html"%}}
 - Proceed with the installation on your local machine.
 
 ### EasySoft license configuration
@@ -71,7 +71,7 @@ Test your new connection.
 ![](/attachment_files/sbp/easysoft/odbc_data_source_administrator_4.png)
 
 - Observe message `OK`, close `ODBC-JDBC Gateway Test` message window
-- Save changes of DSN Setup by clicking `OK`
+- Save changes of the DSN Setup by clicking `OK`
 
 ### Tableau configuration
 
@@ -87,14 +87,14 @@ Test your new connection.
 
 ![](/attachment_files/sbp/easysoft/tableau_2_1.png)
 
-- Make schema search and choose your `<SPACE_NAME>`:
+- Perform a schema search and choose your `<SPACE_NAME>`:
 
 ![](/attachment_files/sbp/easysoft/tableau_3.png)
 
-- Make tables search:
+- Perform a tables search:
 
 ![](/attachment_files/sbp/easysoft/tableau_4_1.png)
 
-### Now you can use Tableau to query the XAP Datagrid:
+### Tableau is now ready to query the XAP Datagrid:
 
 ![](/attachment_files/sbp/easysoft/tableau_5_1.png)

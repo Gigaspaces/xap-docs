@@ -15,15 +15,13 @@ weight: 20
 
 
 Organizations often require quick insight into the data to understand the business without involving  the IT team. With the [SQL Driver]({{%latestjavaurl%}}/sql-query-intro.html) 
-it is possible to achieve this with the data stored in XAP Data grid. To visualize  the data, [Tableau](https://www.tableau.com/) can be connected to the XAP Datagrid through the ODBC-JDBC driver.
-
-So, on this topic, we are going to setup the Tableau-XAP integration.
+it is possible to achieve this with the data stored in the XAP Data grid. To visualize  the data, [Tableau](https://www.tableau.com/) can be connected to the XAP Datagrid through the ODBC-JDBC driver.
 
 
 ## Dataset
 
-We will use the familiar  Tableau users data set - `Simple - Superstore`. 
-The original scheme is too simple to show the join capabilities so we made some modifications.
+The familiar Tableau users data set is used - `Simple - Superstore`. 
+The original scheme is too simple to show the join capabilities, therefore some additions were made to the model.
 The location information is referenced by the orders entity. Here is the schema:
 
  
@@ -35,25 +33,27 @@ The location information is referenced by the orders entity. Here is the schema:
 ![image](/attachment_files/sbp/tableau/diagram.png)
  
 
-Now it is possible to connect to the XAP Datagrid with the SQL-92 compatible JDBC driver. However, there is no possibility to use JDBC driver from Tableau to query the data behind JDBC driver. Tableau can only use ODBC as a general connection option, although we can use ODBC-JDBC bridge to convert ODBC requests from Tableau side to JDBC requests to XAP Datagrid side.
+Now it is possible to connect to the XAP Datagrid with the SQL-92 compatible JDBC driver. However, it is impossible to use the JDBC driver from Tableau to query the data behind JDBC driver. Tableau can only use ODBC as a general connection option. 
+We can use the ODBC-JDBC bridge to convert ODBC requests from Tableau to JDBC requests and access the XAP Datagrid.
 
-Tableau connects to `ODBC-JDBC` bridge which the XAP JDBC driver to query the Datagrid.
+ 
 
 ## Configuration
 
 **Space setup:**
 
-- Make sure you have running Datagrid and you have access to it.
+- Make sure you have a running Datagrid and you have access to it. To start a Data Grid use the following command:
+
 ```bash
 <XAP-HOME>/bin/gs-agent.sh 
 ```
-- Create/observe the space with name `tableauSpace`
+- Create the space with name `tableauSpace`
 
-- Filling space: 
+- Populate the space with data: 
 
 [Download](/download_files/sbp/xap-sql-demo.rar) and build the sample.
 
-Execute the following command from folder "xap-sql-demo" or run it from within your IDE. 
+Execute the following command from folder "xap-sql-demo" to execute from the command line: 
 
 ```bash
 java -jar target\xap-sql-demo.jar --space-url "jini://*/*/space?locators=<DATA_GRID_IP>" --lookup-group <DATA_GRID_LOOKUP_GROUP>
@@ -70,7 +70,7 @@ Substitute values <DATA_GRID_IP> and <DATA_GRID_LOOKUP_GROUP> with appropriate v
 
 **Bridge configuration**
 
-Follow the step-by-step [instruction](./tableau-configuration.html) to set up the EasySoft bridge or use any other bridge implementation.
+Follow these steps [instruction](./tableau-configuration.html) to set up the `EasySoft` bridge or use any other bridge implementation.
 
 
 **Tableau configuration**
@@ -102,7 +102,7 @@ Follow the step-by-step [instruction](./tableau-configuration.html) to set up th
 ![image](/attachment_files/sbp/tableau/tableau_1.png)
  
 
-**Query data with Tableau**
+**Query the Data Grid with Tableau**
 
 First, let's take a look at the space before executing any query.
 
@@ -112,7 +112,7 @@ As we can see there were no read operations yet:
 ![image](/attachment_files/sbp/tableau/xap_2.png)
  
 
-At this point, we have everything set up and ready to make queries against the data in the grid.
+At this point, we have everything set up and ready to execute queries against the data in the grid.
 
 To do so, drag and drop the two tables: "Orders" a "Locations" and join them by fields as shown below:
 
@@ -120,15 +120,15 @@ To do so, drag and drop the two tables: "Orders" a "Locations" and join them by 
 ![image](/attachment_files/sbp/tableau/tableau_2.png)
  
 
-When the tables are joined let's switch to the "Sheet1"
+When the tables are joined switch to the "Sheet1"
 
-Choose "Country" and "State" fields. Then click "Create Hierarchy..." as shown on the image:
+Choose "Country" and "State" fields. Then click "Create Hierarchy..." as shown below:
 
  
 ![image](/attachment_files/sbp/tableau/tableau_3.png)
  
 
-Then double click on the "State" field.
+Double click on the "State" field.
 
 Drop the field `Sales` as "Size" mark and the field `Profit` as `Color` mark.
 
