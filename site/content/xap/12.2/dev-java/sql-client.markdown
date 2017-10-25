@@ -7,7 +7,7 @@ weight: 200
 ---
 
 
-The In-Grid SQL Query driver can be used with existing visualization tools to gain insight into the date grid by using the specific tool provided features like drag and drop.
+The In-Grid SQL Query driver can be used with existing visualization tools to gain insight into the data grid by using the specific tool provided features like drag and drop.
 
 Examples:
 
