@@ -53,7 +53,7 @@ We can use the ODBC-JDBC bridge to convert ODBC requests from Tableau to JDBC re
 
 [Download](/download_files/sbp/xap-sql-demo.rar) and build the sample.
 
-Execute the following command from folder "xap-sql-demo" to execute from the command line: 
+Execute the following command from folder "xap-sql-demo" from the command line: 
 
 ```bash
 java -jar target\xap-sql-demo.jar --space-url "jini://*/*/space?locators=<DATA_GRID_IP>" --lookup-group <DATA_GRID_LOOKUP_GROUP>
