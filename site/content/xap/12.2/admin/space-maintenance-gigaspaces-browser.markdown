@@ -3,7 +3,7 @@ type: post122
 title:  Maintenance
 categories: XAP122ADM, PRM
 parent: working-with-spaces-gigaspaces-browser.html
-weight: 200
+weight: 100
 ---
 
 Pinging, destroying, cleaning, stopping, starting, and restarting a space using the button toolbar.

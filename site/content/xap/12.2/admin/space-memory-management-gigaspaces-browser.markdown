@@ -3,7 +3,7 @@ type: post122
 title:  Memory Management
 categories: XAP122ADM, PRM
 parent: working-with-spaces-gigaspaces-browser.html
-weight: 300
+weight: 400
 ---
 
  Using the **Memory Management** tab of the advanced space configuration dialog.

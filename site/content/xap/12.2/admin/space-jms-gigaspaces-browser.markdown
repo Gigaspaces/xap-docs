@@ -3,7 +3,7 @@ type: post122
 title:  Space JMS
 categories: XAP122ADM, PRM
 parent: working-with-spaces-gigaspaces-browser.html
-weight: 100
+weight: 500
 ---
 
 
