@@ -2,7 +2,7 @@
 type: post122
 title:  InsightEdge Basics
 categories:  XAP122GS, OSS
-weight: 400
+weight: 500
 ---
 
 This section provides a high-level introduction to the InsightEdge platform, and provides some code examples to get you started. 

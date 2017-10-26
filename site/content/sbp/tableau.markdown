@@ -12,10 +12,19 @@ weight: 20
 | Vitalii Zinchenko    | 12.2 | September 2017|  [Tableau](https://www.tableau.com/)  |     |
 
 
+# Overview
 
+Organizations often require quick insight into data to understand the business impact, and don't want to waste valuable time consulting their corporate IT team. With the [In-Grid SQL Query]({{%latestjavaurl%}}/sql-query-intro.html) feature,
+this can be done using the data stored in the XAP in-memory data grid. [Tableau](https://www.tableau.com/) can be connected to the XAP data grid via the ODBC-JDBC driver, in order to retrieve and present the required data in a visual format.
 
-Organizations often require quick insight into the data to understand the business without involving  the IT team. With the [SQL Driver]({{%latestjavaurl%}}/sql-query-intro.html) 
-it is possible to achieve this with the data stored in the XAP Data grid. To visualize  the data, [Tableau](https://www.tableau.com/) can be connected to the XAP Datagrid through the ODBC-JDBC driver.
+## Architecture
+
+ 
+![image](/attachment_files/sbp/tableau/diagram.png)
+ 
+
+Tableau can connect to the XAP data grid using the SQL-99-compatible JDBC driver. However, it is impossible to use the JDBC driver from Tableau to query the data behind JDBC driver. Tableau can only use ODBC as a general connection option. 
+We can use the ODBC-JDBC bridge to convert ODBC requests from Tableau to JDBC requests and access the XAP Datagrid.
 
 
 ## Dataset
@@ -27,14 +36,7 @@ The location information is referenced by the orders entity. Here is the schema:
  
 ![](/attachment_files/sbp/tableau/schema.png)
  
-## Architecture
 
- 
-![image](/attachment_files/sbp/tableau/diagram.png)
- 
-
-Now it is possible to connect to the XAP Datagrid with the SQL-92 compatible JDBC driver. However, it is impossible to use the JDBC driver from Tableau to query the data behind JDBC driver. Tableau can only use ODBC as a general connection option. 
-We can use the ODBC-JDBC bridge to convert ODBC requests from Tableau to JDBC requests and access the XAP Datagrid.
 
  
 
@@ -42,7 +44,7 @@ We can use the ODBC-JDBC bridge to convert ODBC requests from Tableau to JDBC re
 
 **Space setup:**
 
-- Make sure you have a running Datagrid and you have access to it. To start a Data Grid use the following command:
+- Make sure you have a running Datagrid and you have access to it. To start a Data Grid follow the instructions provided in (insightedge basics>local machine setup) or :
 
 ```bash
 <XAP-HOME>/bin/gs-agent.sh 
