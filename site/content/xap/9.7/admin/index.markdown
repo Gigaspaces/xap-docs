@@ -1,8 +1,8 @@
 ---
 type: post97
-title:  Deployment and Administration
+title:  Administrators Guide
 categories: XAP97ADM
-
+weight: 300
 ---
 
 

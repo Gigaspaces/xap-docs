@@ -32,19 +32,14 @@ public class VersionContainer {
     }
 
     public VersionContainer(File path) {
-        this(path, path.getName().replace(".", ""));
+        this.path = path;
+        this.version = path.getName().replace(".", "");
+        this.formattedVersion = path.getName();
         for (File contentDir : path.listFiles()) {
             if (contentDir.isDirectory()) {
                 files.add(contentDir);
             }
         }
-    }
-
-    public VersionContainer(File path, String version) {
-        this.path = path;
-        this.version = version;
-        // TODO: Avoid version formatting hack.
-        this.formattedVersion = version.substring(0, version.length() - 1) + "." + version.substring(version.length()-1);
     }
     
     public String getFormattedVersion() {

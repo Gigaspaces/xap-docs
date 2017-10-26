@@ -8,7 +8,6 @@ import java.util.*;
 public class MenuTree {
 
     private static final Logger logger = Logger.getInstance();
-    private static final Collection<String> OLD_VERSIONS = Arrays.asList("97");
 
     private static final String[] SHARED_DIRS = new String[]{
         "product_overview", "faq", "api_documentation", "release_notes", "howto", "videos", "sbp"};
@@ -31,61 +30,18 @@ public class MenuTree {
         final File contentPath = config.getContentPath();
         MenuTree instance = new MenuTree();
         for (String dir : SHARED_DIRS) {
-            instance.processDir(config, new File(contentPath, dir));
+            File folder = new File(contentPath, dir);
+            instance.generateSidenav(config, folder.getName(), instance.loadPages(folder, false));
         }
-        Collection<VersionContainer> xapVersions = getProductFoldersOld(contentPath);
-        xapVersions.addAll(VersionContainer.find(contentPath).values());
-
-        for (VersionContainer vc : xapVersions) {
-            if (OLD_VERSIONS.contains(vc.getVersion())) {
-                for (File folder : vc.getFiles()) {
-                    instance.processDir(config, folder);
-                }
-            } else {
-                TreeSet<Page> tree = vc.load(instance);
-                instance.generateSidenav(config, "xap" + vc.getVersion(), tree);
-            }
+        
+        for (VersionContainer vc : VersionContainer.find(contentPath).values()) {
+            instance.generateSidenav(config, "xap" + vc.getVersion(), vc.load(instance));
         }
 
         long duration = System.currentTimeMillis() - instance.startTime;
         logger.info("Finished generating navbar (duration=" + duration + "ms"
                 + ", folders=" + instance.totalFolders
                 + ", pages=" + instance.totalPages + ")");
-    }
-
-    private static Collection<VersionContainer> getProductFoldersOld(File path) {
-        Collection<VersionContainer> result = new HashSet<>();
-        for (File file : path.listFiles()) {
-            if (file.isDirectory() && file.getName().startsWith("xap") && !file.getName().equals("xap")) {
-                getOrCreateVersionContainer(result, file).getFiles().add(file);
-            }
-        }
-
-        return result;
-    }
-
-    private static VersionContainer getOrCreateVersionContainer(Collection<VersionContainer> containers, File path) {
-        for (VersionContainer vc : containers) {
-            if (vc.getPath().equals(path)) {
-                return vc;
-            }
-        }
-        VersionContainer vc = new VersionContainer(path, extractVersion(path.getName()));
-        containers.add(vc);
-        return vc;
-    }
-
-    private static String extractVersion(String name) {
-        String result = "";
-        for (int i = "xap".length(); i < name.length() && Character.isDigit(name.charAt(i)); i++) {
-            result += name.charAt(i);
-        }
-
-        return result;
-    }
-
-    private void processDir(Config config, File folder) throws IOException {
-        generateSidenav(config, folder.getName(), loadPages(folder, false));
     }
 
     public Collection<Page> loadPages(File folder, boolean groupingMode) throws IOException {

@@ -7,8 +7,6 @@ import java.util.*;
 
 public class Page implements Comparable<Page> {
 
-    private static final Collection<String> NEW_VERSIONS = Arrays.asList("10.0", "10.1", "10.2", "11.0", "12.0", "12.1", "12.2");
-
     private final File file;
     private final boolean index;
     private final String id;
@@ -16,80 +14,71 @@ public class Page implements Comparable<Page> {
     private final Long weight;
     private final String href;
     private final String parent;
-    private final TreeSet<Page> children = new TreeSet<Page>();
+    private final TreeSet<Page> children = new TreeSet<>();
 
     public Page(File file, boolean groupingMode) throws IOException {
         this.file = file;
         String category = initCategory(file);
-		String[] tokens = parseCategory(category);
         this.index = file.getName().equals("index.markdown");
-		String filename = index ? "" : file.getName().replace(".markdown", "");
+        String filename = index ? "" : file.getName().replace(".markdown", "");
         this.id = category + "/" + filename;
-		
+
         Properties properties = extractProperties(file);
         this.title = properties.getProperty("title");
         this.weight = properties.containsKey("weight") ? Long.valueOf(properties.getProperty("weight")) : null;
-		
-		if (NEW_VERSIONS.contains(tokens[1])) {
-			String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? file.getName().replace(".markdown", ".html") : tokens[2] + "/");
-			//String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? "" : tokens[2] + "/");
-			this.href = index ? prefix : prefix + file.getName().replace(".markdown", ".html");
-		} else {
-			this.href = index ? id : id + ".html";			
-		}
-        String parent = properties.getProperty("parent", "none");
-        if (parent.equals("none")) {
+
+        String[] tokens = parseCategory(category);
+        if (tokens != null) {
+            String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? file.getName().replace(".markdown", ".html") : tokens[2] + "/");
+            //String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? "" : tokens[2] + "/");
+            this.href = index ? prefix : prefix + file.getName().replace(".markdown", ".html");
+        } else {
+            this.href = index ? id : id + ".html";
+        }
+        String parentProp = properties.getProperty("parent", "none");
+        if (parentProp.equals("none")) {
             this.parent = groupingMode && !index ? category + "/" : "";
         } else {
-            this.parent = category + "/" + (parent.startsWith("index.") ? "" : parent.replace(".html", ""));
+            this.parent = category + "/" + (parentProp.startsWith("index.") ? "" : parentProp.replace(".html", ""));
         }
     }
-	
-	private static String initCategory(File file) {
-		if (file.getParentFile().getParentFile().getName().equals("content"))
-			return file.getParentFile().getName();
-		String category = file.getParentFile().getName();
-		String version = file.getParentFile().getParentFile().getName();
-		String product = file.getParentFile().getParentFile().getParentFile().getName();
-		if (product.equals("content")) {
-			product = version;
-			version = category;
-			category = "";			
-		}
-		return product + version.replace(".", "") + category;
-	}
-	
+
+    private static String initCategory(File file) {
+        if (file.getParentFile().getParentFile().getName().equals("content")) {
+            return file.getParentFile().getName();
+        }
+        String category = file.getParentFile().getName();
+        String version = file.getParentFile().getParentFile().getName();
+        String product = file.getParentFile().getParentFile().getParentFile().getName();
+        if (product.equals("content")) {
+            product = version;
+            version = category;
+            category = "";
+        }
+        return product + version.replace(".", "") + category;
+    }
+
     private static String[] parseCategory(String s) {
-		if (!s.startsWith("xap"))
-			return new String[] {"xap", "", s};
-        final String product  = s.substring(0, 3); // "xap"
+        if (!s.startsWith("xap"))
+            return null;
+        
+        final String product = s.substring(0, 3); // "xap"
         s = s.substring(product.length());
 
         String version = "";
-        for (;s.length() != 0 && Character.isDigit(s.charAt(0)) ; s = s.substring(1)) {
+        for (; s.length() != 0 && Character.isDigit(s.charAt(0)); s = s.substring(1)) {
             version += s.charAt(0);
         }
         // "nnn" => "nn.n"
-        version = version.substring(0, version.length() - 1) + "." + version.charAt(version.length()-1);
+        version = version.substring(0, version.length() - 1) + "." + version.charAt(version.length() - 1);
 
-        String category = version.equals("9.7") ? toCategory(s) : s;
-        return new String[] {product, version, category};
-    }
-		
-    private static String toCategory(String s) {
-        if (s.equals("adm"))
-            return "admin";
-        if (s.equals(""))
-            return "dev-java";
-        if (s.equals("net"))
-            return "dev-dotnet";
-
-        return s;
+        return new String[]{product, version, s};
     }
 
     private static Properties extractProperties(File file) throws IOException {
-        if (file.getName().contains("--"))
+        if (file.getName().contains("--")) {
             throw new IOException("File names can't contain more then one '-' :" + file.getName());
+        }
 
         Scanner scanner = new Scanner(file);
         Properties properties = new Properties();
@@ -100,10 +89,11 @@ public class Page implements Comparable<Page> {
             while (scanner.hasNextLine() && !foundFooter) {
                 final String line = scanner.nextLine().trim();
                 if (line.equals("---")) {
-                    if (!foundHeader)
+                    if (!foundHeader) {
                         foundHeader = true;
-                    else
+                    } else {
                         foundFooter = true;
+                    }
                 } else if (foundHeader) {
                     int pos = line.indexOf(':');
                     if (pos != -1) {
@@ -123,11 +113,11 @@ public class Page implements Comparable<Page> {
     public void addChild(Page p) {
         children.add(p);
     }
-    
+
     public File getFile() {
         return file;
     }
-    
+
     public String getMarkdown() {
         byte[] bytes;
         try {
@@ -163,7 +153,7 @@ public class Page implements Comparable<Page> {
     }
 
     public String getHref() {
-		return href;
+        return href;
     }
 
     public TreeSet<Page> getChildren() {
@@ -177,16 +167,19 @@ public class Page implements Comparable<Page> {
 
     @Override
     public int compareTo(Page o) {
-        if (this == o || this.getWeight() == null || o.getWeight() == null)
+        if (this == o || this.getWeight() == null || o.getWeight() == null) {
             return 0;
+        }
 
         int c1 = this.getWeight().intValue();
         int c2 = o.getWeight().intValue();
 
-        if (c1 > c2)
+        if (c1 > c2) {
             return 1;
-        if (c1 < c2)
+        }
+        if (c1 < c2) {
             return -1;
+        }
 
         System.out.println("Ambigous comparison: " + this.id + " => " + c1 + ", " + o.id + " => " + c2);
         return 0;
