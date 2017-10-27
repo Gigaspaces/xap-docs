@@ -9,22 +9,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
-public class VersionContainer {
+public class VersionContainer implements Comparable<VersionContainer> {
 
     private final Logger logger = Logger.getInstance();
     private final File path;
     private final String version;
-    private final String formattedVersion;
+    private final Double numericVersion;
     private final Collection<File> files = new ArrayList<>();
     
-    public static Map<String, VersionContainer> find(File path) {
-        Map<String, VersionContainer> result = new HashMap<>();
+    public static TreeSet<VersionContainer> find(File path) {
+        TreeSet<VersionContainer> result = new TreeSet<>();
         File[] files = new File(path, "xap").listFiles();
         if (files != null) {
             for (File versionDir : files) {
                 if (versionDir.isDirectory()) {
-                    VersionContainer vc = new VersionContainer(versionDir);
-                    result.put(vc.getFormattedVersion(), vc);
+                    result.add(new VersionContainer(versionDir));
                 }
             }
         }
@@ -34,18 +33,24 @@ public class VersionContainer {
     public VersionContainer(File path) {
         this.path = path;
         this.version = path.getName().replace(".", "");
-        this.formattedVersion = path.getName();
+        this.numericVersion = Double.valueOf(path.getName());
         for (File contentDir : path.listFiles()) {
             if (contentDir.isDirectory()) {
                 files.add(contentDir);
             }
         }
     }
-    
-    public String getFormattedVersion() {
-        return formattedVersion;
+
+    @Override
+    public int compareTo(VersionContainer o) {
+        return this.numericVersion.compareTo(o.numericVersion);
     }
-    
+
+    @Override
+    public String toString() {
+        return numericVersion.toString();
+    }
+
     public String getVersion() {
         return version;
     }

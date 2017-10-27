@@ -34,7 +34,7 @@ public class MenuTree {
             instance.generateSidenav(config, folder.getName(), instance.loadPages(folder, false));
         }
         
-        for (VersionContainer vc : VersionContainer.find(contentPath).values()) {
+        for (VersionContainer vc : VersionContainer.find(contentPath)) {
             instance.generateSidenav(config, "xap" + vc.getVersion(), vc.load(instance));
         }
 

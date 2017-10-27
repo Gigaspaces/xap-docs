@@ -14,9 +14,9 @@ import com.gigaspaces.jarvis.model.VersionContainer;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
-import java.util.TreeMap;
 import java.awt.Font;
 import java.io.File;
+import java.util.TreeSet;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -32,7 +32,6 @@ public class MainUI extends javax.swing.JFrame {
     private final Logger logger = Logger.getInstance();
     private final Config config;
     private final HugoContainer hugoContainer;
-    private final TreeMap<String, VersionContainer> versions = new TreeMap<>();
     private final StringBuilder tempLog = new StringBuilder();
 
     /**
@@ -77,10 +76,9 @@ public class MainUI extends javax.swing.JFrame {
     private void initialize() {
         // Register pluging...
         config.getPagePluging().forEach(this::registerPlugin);
-        // Init versions...
-        versions.clear();
-        versions.putAll(VersionContainer.find(config.getContentPath()));
-        versions.descendingKeySet().forEach(v -> versionComboBox.addItem(v));
+        // Init sections...
+        TreeSet<VersionContainer> sections = VersionContainer.find(config.getContentPath());
+        sections.descendingSet().forEach(s -> versionComboBox.addItem(s));
     }
 
     private Page getContextPage() {
@@ -335,7 +333,7 @@ public class MainUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainSplitPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addComponent(mainSplitPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -355,8 +353,7 @@ public class MainUI extends javax.swing.JFrame {
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel.getRoot();
         root.removeAllChildren();
 
-        String versionKey = (String) versionComboBox.getSelectedItem();
-        VersionContainer version = versions.get(versionKey);
+        VersionContainer version = (VersionContainer)versionComboBox.getSelectedItem();
         try {
             Collection<Page> pages = version.load(new MenuTree());
             pages.forEach((page) -> appendPage(treeModel, page, root));
@@ -472,6 +469,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane pagesScrollPane;
     private javax.swing.JSplitPane pagesSplitPane;
     private javax.swing.JTree pagesTree;
-    private javax.swing.JComboBox<String> versionComboBox;
+    private javax.swing.JComboBox<VersionContainer> versionComboBox;
     // End of variables declaration//GEN-END:variables
 }
