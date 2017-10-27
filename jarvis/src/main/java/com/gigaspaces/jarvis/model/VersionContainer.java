@@ -47,11 +47,11 @@ public class VersionContainer extends ContentSection implements Comparable<Versi
     }
     
     @Override
-    public TreeSet<Page> load(MenuTree menuTree) throws IOException {
+    public TreeSet<Page> load(Config config) throws IOException {
         logger.debug("processVersion(" + version + ")");
         Map<String, Page> rootsMap = new HashMap<>();
         for (File folder : files) {
-            final Collection<Page> folderRoot = menuTree.loadPages(folder, true);
+            final Collection<Page> folderRoot = loadPages(config, folder, true);
             if (folderRoot.isEmpty()) {
                 logger.warning("No root for " + folder.getName());
             } else if (folderRoot.size() != 1) {
@@ -82,8 +82,8 @@ public class VersionContainer extends ContentSection implements Comparable<Versi
     }
 
     @Override
-    public void generateSidenav(MenuTree instance, Config config) throws IOException {
-        generateSidenav(config, "xap" + getVersion(), load(instance));
+    public void generateSidenav(Config config) throws IOException {
+        generateSidenav(config, "xap" + getVersion(), load(config));
     }
     
     private void relocate(Map<String, Page> rootsMap, String sourceKey, String targetKey) {

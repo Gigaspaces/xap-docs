@@ -16,7 +16,6 @@ import java.net.URI;
 import java.util.Collection;
 import java.awt.Font;
 import java.io.File;
-import java.util.TreeSet;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -356,7 +355,7 @@ public class MainUI extends javax.swing.JFrame {
 
         ContentSection section = (ContentSection)versionComboBox.getSelectedItem();
         try {
-            Collection<Page> pages = section.load(new MenuTree());
+            Collection<Page> pages = section.load(config);
             pages.forEach((page) -> appendPage(treeModel, page, root));
         } catch (IOException ex) {
             logger.warning(ex.toString());

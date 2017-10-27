@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class Config {
@@ -19,6 +20,8 @@ public class Config {
     private final File contentPath;
     private final Map<String, String> properties = new TreeMap<>();
     private final Map<String, String> pagePluging = new TreeMap<>();
+    private final AtomicInteger totalFolders = new AtomicInteger();
+    private final AtomicInteger totalPages= new AtomicInteger();
 
     public Config(String path) {
         this(new File(path));
@@ -143,6 +146,14 @@ public class Config {
     public int getFontSize(int defaultValue) {
         String s = properties.get("font.size");
         return s != null ? Integer.parseInt(s) : defaultValue;
+    }
+
+    public AtomicInteger getTotalFolders() {
+        return totalFolders;
+    }
+
+    public AtomicInteger getTotalPages() {
+        return totalPages;
     }
     
     private String getProperty(String key, String defaultValue) {
