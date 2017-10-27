@@ -27,21 +27,40 @@ public class MenuTree {
     }
     
     public static void generateNavbar(Config config) throws IOException {
-        final File contentPath = config.getContentPath();
         MenuTree instance = new MenuTree();
-        for (String dir : SHARED_DIRS) {
-            File folder = new File(contentPath, dir);
-            instance.generateSidenav(config, folder.getName(), instance.loadPages(folder, false));
+        for (ContentSection section : loadSection(config)) {
+            section.generateSidenav(instance, config);
         }
         
-        for (VersionContainer vc : VersionContainer.find(contentPath)) {
-            instance.generateSidenav(config, "xap" + vc.getVersion(), vc.load(instance));
+        for (VersionContainer section : loadVersions(config)) {
+            section.generateSidenav(instance, config);
         }
 
         long duration = System.currentTimeMillis() - instance.startTime;
         logger.info("Finished generating navbar (duration=" + duration + "ms"
                 + ", folders=" + instance.totalFolders
                 + ", pages=" + instance.totalPages + ")");
+    }
+
+    public static Collection<ContentSection> loadSection(Config config) {
+        Collection<ContentSection> result = new ArrayList<>();
+        for (String dir : SHARED_DIRS) {
+            result.add(new ContentSection(new File(config.getContentPath(), dir)));
+        }
+        return result;
+    }
+    
+    public static TreeSet<VersionContainer> loadVersions(Config config) {
+        TreeSet<VersionContainer> result = new TreeSet<>();
+        File[] files = new File(config.getContentPath(), "xap").listFiles();
+        if (files != null) {
+            for (File versionDir : files) {
+                if (versionDir.isDirectory()) {
+                    result.add(new VersionContainer(versionDir));
+                }
+            }
+        }
+        return result;
     }
 
     public Collection<Page> loadPages(File folder, boolean groupingMode) throws IOException {
@@ -85,28 +104,6 @@ public class MenuTree {
                     }
                 }
             }
-        }
-    }
-
-    private void generateSidenav(Config config, String suffix, Collection<Page> roots) throws IOException {
-        String path = config.getPath() + "/site/themes/hugo-bootswatch/layouts/partials/sidenav-" + suffix + ".html";
-        // write the html to the file system
-        try ( 
-            PrintWriter writer = new PrintWriter(path, "UTF-8")) {
-            roots.forEach((root) -> printPage(writer, root));
-        }
-    }
-
-    private static void printPage(PrintWriter writer, Page page) {
-        String link = "<a href='/" + page.getHref() + "'>" + page.getTitle() + "</a>";
-        if (page.getChildren().isEmpty()) {
-            writer.println("<li>" + link + "</li>");
-        } else {
-            writer.println("<li class='expandable'><div class='hitarea expandable-hitarea'></div>" + link);
-            writer.println("<ul style='display: none'>");
-            page.getChildren().forEach((child) -> printPage(writer, child));
-            writer.println("</ul>");
-            writer.println("</li>");
         }
     }
 }

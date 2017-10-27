@@ -1,5 +1,6 @@
 package com.gigaspaces.jarvis.model;
 
+import com.gigaspaces.jarvis.Config;
 import com.gigaspaces.jarvis.Logger;
 import java.io.File;
 import java.io.IOException;
@@ -9,29 +10,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
-public class VersionContainer implements Comparable<VersionContainer> {
+public class VersionContainer extends ContentSection implements Comparable<VersionContainer> {
 
     private final Logger logger = Logger.getInstance();
-    private final File path;
     private final String version;
     private final Double numericVersion;
     private final Collection<File> files = new ArrayList<>();
     
-    public static TreeSet<VersionContainer> find(File path) {
-        TreeSet<VersionContainer> result = new TreeSet<>();
-        File[] files = new File(path, "xap").listFiles();
-        if (files != null) {
-            for (File versionDir : files) {
-                if (versionDir.isDirectory()) {
-                    result.add(new VersionContainer(versionDir));
-                }
-            }
-        }
-        return result;
-    }
-
     public VersionContainer(File path) {
-        this.path = path;
+        super(path);
         this.version = path.getName().replace(".", "");
         this.numericVersion = Double.valueOf(path.getName());
         for (File contentDir : path.listFiles()) {
@@ -55,14 +42,11 @@ public class VersionContainer implements Comparable<VersionContainer> {
         return version;
     }
     
-    public File getPath() {
-        return path;
-    }
-    
     public Collection<File> getFiles() {
         return files;
     }
     
+    @Override
     public TreeSet<Page> load(MenuTree menuTree) throws IOException {
         logger.debug("processVersion(" + version + ")");
         Map<String, Page> rootsMap = new HashMap<>();
@@ -77,7 +61,7 @@ public class VersionContainer implements Comparable<VersionContainer> {
                 logger.debug("Processed " + folder.getName());
             }
         }
-        File indexFile = new File(path, "index.markdown");
+        File indexFile = new File(getPath(), "index.markdown");
         if (indexFile.exists()) {
             rootsMap.put("intro", new Page(indexFile, true));
         }
@@ -95,6 +79,11 @@ public class VersionContainer implements Comparable<VersionContainer> {
 
         // Sort and generate roots:
         return new TreeSet<>(rootsMap.values());
+    }
+
+    @Override
+    public void generateSidenav(MenuTree instance, Config config) throws IOException {
+        generateSidenav(config, "xap" + getVersion(), load(instance));
     }
     
     private void relocate(Map<String, Page> rootsMap, String sourceKey, String targetKey) {

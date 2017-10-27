@@ -8,9 +8,9 @@ package com.gigaspaces.jarvis.ui;
 import com.gigaspaces.jarvis.Config;
 import com.gigaspaces.jarvis.HugoContainer;
 import com.gigaspaces.jarvis.Logger;
+import com.gigaspaces.jarvis.model.ContentSection;
 import com.gigaspaces.jarvis.model.MenuTree;
 import com.gigaspaces.jarvis.model.Page;
-import com.gigaspaces.jarvis.model.VersionContainer;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
@@ -76,9 +76,10 @@ public class MainUI extends javax.swing.JFrame {
     private void initialize() {
         // Register pluging...
         config.getPagePluging().forEach(this::registerPlugin);
-        // Init sections...
-        TreeSet<VersionContainer> sections = VersionContainer.find(config.getContentPath());
-        sections.descendingSet().forEach(s -> versionComboBox.addItem(s));
+        // Add versions sections in descending order:
+        MenuTree.loadVersions(config).descendingSet().forEach(s -> versionComboBox.addItem(s));
+        // Append other sections:
+        MenuTree.loadSection(config).forEach(s -> versionComboBox.addItem(s));
     }
 
     private Page getContextPage() {
@@ -353,9 +354,9 @@ public class MainUI extends javax.swing.JFrame {
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel.getRoot();
         root.removeAllChildren();
 
-        VersionContainer version = (VersionContainer)versionComboBox.getSelectedItem();
+        ContentSection section = (ContentSection)versionComboBox.getSelectedItem();
         try {
-            Collection<Page> pages = version.load(new MenuTree());
+            Collection<Page> pages = section.load(new MenuTree());
             pages.forEach((page) -> appendPage(treeModel, page, root));
         } catch (IOException ex) {
             logger.warning(ex.toString());
@@ -469,6 +470,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane pagesScrollPane;
     private javax.swing.JSplitPane pagesSplitPane;
     private javax.swing.JTree pagesTree;
-    private javax.swing.JComboBox<VersionContainer> versionComboBox;
+    private javax.swing.JComboBox<ContentSection> versionComboBox;
     // End of variables declaration//GEN-END:variables
 }
