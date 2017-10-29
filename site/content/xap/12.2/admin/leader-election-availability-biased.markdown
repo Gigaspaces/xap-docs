@@ -6,9 +6,14 @@ parent: leader-election.html
 weight: 300
 ---
 
-# Overview
+
 
 {{% imagertext "/attachment_files/lus4.jpg" %}}
-Space instances register themselves with the lookup service. Space instances go through an active-election process, discovering current instances and electing a primary
-Active-election is 3-phase procedure: pending, prepare, active
+In this leader election implementation, Space instances register themselves with the Lookup Service (LUS). The Space instances then undergo an active-election process, to discover current Space instances and elect a primary instance.
+
+The active-election process is a 3-phase procedure:
+
+- Pending
+- Prepare
+- Active
 {{% /imagertext%}}
