@@ -241,7 +241,7 @@ Example:
 
 
 {{%refer%}}
-[MemoryXtend]({{%currentadmurl%}}/memoryxtend.html")
+[MemoryXtend]({{%currentadmurl%}}/memoryxtend-overview.html")
 {{%/refer%}}
 
 

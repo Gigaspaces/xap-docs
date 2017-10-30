@@ -32,11 +32,11 @@ foreach (var person in query)
 } 
 ```
 
-For more details please refer to the [LINQ reference page](/xap97net/query-linq.html) in the XAP.Net 9.7 documentation.
+For more details please refer to the [LINQ reference page](/xap/9.7/dev-dotnet/query-linq.html) in the XAP.Net 9.7 documentation.
 
 # Unique Indexes 
 
-You can now add a uniqueness constraint for indexes fields, making sure that values stay unique for that fields in the boundaries of a single space partition. This available for both [Java](/xap97/indexing.html#unique-index) and [.Net](/xap97net/indexing-unique.html). Here's an example for how it's defined:
+You can now add a uniqueness constraint for indexes fields, making sure that values stay unique for that fields in the boundaries of a single space partition. This available for both [Java](/xap/9.7/dev-java/indexing.html#unique-index) and [.Net](/xap/9.7/dev-dotnet/indexing-unique.html). Here's an example for how it's defined:
 
 {{%tabs%}}
 
@@ -76,10 +76,10 @@ public class Person
 
 # Deterministic Deployment across Zones 
 
-Zones provide a powerful tagging mechanism for GSC which allow users to group together multiple GSCs and restrict processing unit instances only to these GSC. They also support SLA restrictions to make sure a primary and a backup of the same partition never end up in the same zone. This can be used to tag racks or data centers and make sure that high availability is maintained across them. When using the latter functionality, in many cases one zone has priority over another (e.g. the data center which is represents is geographically closer to your application's end users). 9.7 adds support for prioritized zones. When tagging as zone as prioritized for a specific processing unit, the GSM will extend its best effort to make sure that all primary instances of that processing unit will be started on the prioritized zone. You can refer to the [Deterministic Deployment Section](/xap97/configuring-the-processing-unit-sla.html#deterministic-deployment) in the docs for more details.
+Zones provide a powerful tagging mechanism for GSC which allow users to group together multiple GSCs and restrict processing unit instances only to these GSC. They also support SLA restrictions to make sure a primary and a backup of the same partition never end up in the same zone. This can be used to tag racks or data centers and make sure that high availability is maintained across them. When using the latter functionality, in many cases one zone has priority over another (e.g. the data center which is represents is geographically closer to your application's end users). 9.7 adds support for prioritized zones. When tagging as zone as prioritized for a specific processing unit, the GSM will extend its best effort to make sure that all primary instances of that processing unit will be started on the prioritized zone. You can refer to the [Deterministic Deployment Section](/xap/9.7/dev-java/configuring-the-processing-unit-sla.html#deterministic-deployment) in the docs for more details.
 
 # Change API Enhancements
-The change API now includes an option to get the previous value of a changed field. XAP 9.7 also includes a new mechanism called [Change Extension](/xap97/change-api.html) that encapsulates common usage patterns (such as Add and Get) into simpler to use API calls. Here's an example for an add and get operation that uses the change extension mechanism:
+The change API now includes an option to get the previous value of a changed field. XAP 9.7 also includes a new mechanism called [Change Extension](/xap/9.7/dev-java/change-api.html) that encapsulates common usage patterns (such as Add and Get) into simpler to use API calls. Here's an example for an add and get operation that uses the change extension mechanism:
 
 
 ```java
@@ -91,7 +91,7 @@ Integer newCounter = ChangeExtension.addAndGet(space, idQuery, "counter", 1);
 
 # Advanced Projections 
 
-[Projections](/xap97/query-partial-results.html) are supported since XAP 9.5, however it only supported the projection of top level properties (i.e. properties that are belong to the top level space class and not to a nested object). Starting from version 9.7, you can also project nested properties (e.g. `user.address.street`) and not just top level properties. This can help in reducing the amount of traffic and serialization overhead when querying for specific properties.
+[Projections](/xap/9.7/dev-java/query-partial-results.html) are supported since XAP 9.5, however it only supported the projection of top level properties (i.e. properties that are belong to the top level space class and not to a nested object). Starting from version 9.7, you can also project nested properties (e.g. `user.address.street`) and not just top level properties. This can help in reducing the amount of traffic and serialization overhead when querying for specific properties.
 
 
 ```java
@@ -102,7 +102,7 @@ SpaceDocument docresult[] = gigaSpace.readMultiple(docQuery);
 
 # Immutable Objects Support
 
-Up to version 9.7, every space property needed to have both a getter and a setter, which made it impossible to implement read only properties. In version 9.7, you can define space properties that have only a getter, or no accessors at all. Refer to the [Constructor Based Property Injection](/xap97/modeling-your-data.html) for more details.
+Up to version 9.7, every space property needed to have both a getter and a setter, which made it impossible to implement read only properties. In version 9.7, you can define space properties that have only a getter, or no accessors at all. Refer to the [Constructor Based Property Injection](/xap/9.7/dev-java/modeling-your-data.html) for more details.
 
 # Grid Activity Breakdown by Client in the Web UI
 
@@ -114,7 +114,7 @@ Starting from version 9.7, XAP implements separate thread pools for client notif
 
 # New Documentation Infrastructure and Enhanced Search 
 
-If you got here, you've been using our new docs infrastructure. We hope you like it. We've significantly improved the visuals, search experience, and also beefed up some of the content (checkout [our all new XAP tutorial](/xap97/java-home.html) for example). Last, all of the documentation website source are [stored in a public github repo](http://github.com/gigaspaces/xap-docs) and are based on [Hugo](http://gohugo.io) and [Markdown](http://daringfireball.net/projects/markdown/). If you see an error or something you'd like to improve, you're more than welcome to fork this repository and submit pull requests.
+If you got here, you've been using our new docs infrastructure. We hope you like it. We've significantly improved the visuals, search experience, and also beefed up some of the content (checkout [our all new XAP tutorial](/xap/9.7/dev-java/java-home.html) for example). Last, all of the documentation website source are [stored in a public github repo](http://github.com/gigaspaces/xap-docs) and are based on [Hugo](http://gohugo.io) and [Markdown](http://daringfireball.net/projects/markdown/). If you see an error or something you'd like to improve, you're more than welcome to fork this repository and submit pull requests.
 
 ![New Docs](/attachment_files/new-docs.png)
 

@@ -230,7 +230,7 @@ In order to properly configure the local cache eviction mechanism, you should co
 |space-config.engine.memory_usage.retry_yield_time|100|
 
 {{%refer%}}
-See the [Memory Management Facilities]({{%currentadmurl%}}/memory-management-facilities.html) for additional details on these configuration properties.
+See the [Memory Management Facilities]({{%currentadmurl%}}/memory-management-overview.html) for additional details on these configuration properties.
 {{%/refer%}}
 
 {{% tip %}}

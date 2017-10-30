@@ -246,7 +246,7 @@ The general properties are used to override various components such as the space
 
 Popular overrides:
 
-- [Memory Manager Settings]({{%currentadmurl%}}/memory-management-facilities.html#Memory Manager Parameters)
+- [Memory Manager Settings]({{%currentadmurl%}}/memory-management-overview.html#Memory Manager Parameters)
 - [Replication Settings]({{%currentadmurl%}}/replication-parameters.html)
 - [Replication Redo-log Settings]({{%currentadmurl%}}/controlling-the-replication-redo-log.html#Redo Log Capacity Configuration)
 - [Proxy Connectivity Settings]({{%currentadmurl%}}/tuning-proxy-connectivity.html#Configuration)

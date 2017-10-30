@@ -417,6 +417,6 @@ With a stateless PU
 ./gs.sh deploy -cluster total_members=4 -max-instances-per-machine 2 eventPU.jar
 ```
 
-{{%learn "/xap97adm/deploy-command-line-interface.html"%}}
+{{%learn "/xap/9.7/admin/deploy-command-line-interface.html"%}}
 
 

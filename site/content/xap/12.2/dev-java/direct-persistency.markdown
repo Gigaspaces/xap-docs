@@ -22,7 +22,7 @@ When the application reading data from the IMDG there are two operational modes 
 - Having **All** Application Data within the IMDG - Enabled when running in `ALL_IN_CACHE` Cache policy mode. IMDG will not perform any lazy load in case matching object can't be found within the IMDG. This more provides the most deterministic performance.
 - Having a **subset** of the Application Data within the IMDG - Enabled when running in `LRU` Cache policy mode. IMDG will perform lazy load (i.e. Read Through) in case of matching object can't be found within the IMDG. Lazy load might impact the performance and the scalability of the application.
 
-{{% refer %}}See the [Memory Management Facilities]({{%currentadmurl%}}/memory-management-facilities.html) for details about the differences between `ALL_IN_CACHE` and the `LRU` cache policies.{{% /refer %}}
+{{% refer %}}See the [Memory Management Facilities]({{%currentadmurl%}}/memory-management-overview.html) for details about the differences between `ALL_IN_CACHE` and the `LRU` cache policies.{{% /refer %}}
 
 The Cache policy mode impacts also the initialization of the IMDG instance and the way it is reading data from the data source to bootstrap itself.
 

@@ -18,7 +18,7 @@ XAP.NET components use the tracing mechanism for logging/tracing, built-in with 
 
 If the user does not specify a configuration, the default configuration is assumed.
 
-{{% refer %}}GigaSpaces XAP.NET contains some of the GigaSpaces XAP components. Its logging level needs to be configured separately -- this is described in [GigaSpaces XAP Logging]({{% currentadmurl %}}/logging.html){{% /refer %}}.
+{{% refer %}}GigaSpaces XAP.NET contains some of the GigaSpaces XAP components. Its logging level needs to be configured separately -- this is described in [GigaSpaces XAP Logging]({{% currentadmurl %}}/logging-overview.html){{% /refer %}}.
 
  
 

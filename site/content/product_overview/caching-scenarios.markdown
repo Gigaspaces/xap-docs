@@ -26,8 +26,8 @@ Both the In-line cache and the Side cache support the common deployment topologi
 
 With this mechanism, the IMDG is the system of record. The database data is loaded into the IMDG when it is started. The IMDG is responsible for loading the data and pushing updates back into the database. The database can be updated in synchronously or asynchronously.
 
-- When running in `all-in-cache` [cache policy mode]({{% latestadmurl%}}/memory-management-facilities.html), all data is loaded from the database into the cache once it is started.
-- When running in `LRU` [cache policy]({{% latestadmurl%}}/memory-management-facilities.html) mode, a subset of the data is loaded from the database into the cache when it is started. Data is evicted from the cache based on available memory or a maximum amount of cache objects. Once there is a cache miss, the cache looks for the data within the underlying data-source. If matching data is found, it is loaded into the cache and delivered to the application.
+- When running in `all-in-cache` [cache policy mode]({{% latestadmurl%}}/memory-management-overview.html), all data is loaded from the database into the cache once it is started.
+- When running in `LRU` [cache policy]({{% latestadmurl%}}/memory-management-overview.html) mode, a subset of the data is loaded from the database into the cache when it is started. Data is evicted from the cache based on available memory or a maximum amount of cache objects. Once there is a cache miss, the cache looks for the data within the underlying data-source. If matching data is found, it is loaded into the cache and delivered to the application.
 
 {{% align center%}}
 ![in-line-cache.jpg](/attachment_files/in-line-cache.jpg)

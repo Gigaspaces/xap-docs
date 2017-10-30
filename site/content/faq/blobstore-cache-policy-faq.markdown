@@ -103,5 +103,5 @@ Yes. XAP is fully supported with Cloudify allowing you to scale XAP over SSD dyn
 
 
 {{%refer%}}
-[MemoryXtend]({{%latestadmurl%}}/memoryxtend.html)
+[MemoryXtend]({{%latestadmurl%}}/memoryxtend-overview.html)
 {{%/refer%}}

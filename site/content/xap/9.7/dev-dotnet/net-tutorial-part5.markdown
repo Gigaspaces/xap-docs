@@ -109,7 +109,7 @@ Here is an example of a pu.conf file:
 </configuration>
 ```
 
-{{%learn "/xap97/configuring-processing-unit-elements.html"%}}
+{{%learn "/xap/9.7/dev-java/configuring-processing-unit-elements.html"%}}
 
 
 
@@ -135,7 +135,7 @@ A sample SLA definition is shown below:
 </beans>
 ```
 
-{{%learn "/xap97/configuring-the-processing-unit-sla.html"%}}
+{{%learn "/xap/9.7/dev-java/configuring-the-processing-unit-sla.html"%}}
 
 
 
@@ -367,6 +367,6 @@ With a stateless PU
 Deploying with the command line options will override the sla definitions
 {{%/note%}}
 
-{{%learn "/xap97adm/deploy-command-line-interface.html"%}}
+{{%learn "/xap/9.7/admin/deploy-command-line-interface.html"%}}
 
 

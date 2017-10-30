@@ -46,7 +46,7 @@ Here are the available parameters for an embedded space:
 |all-in-cache-policy | | |
 |lru-cache-policy |||
 |custom-cache-policy||[Custom eviction policy]({{%currentadmurl%}}/custom-eviction-policy.html)|
-|blob-store-data-policy|| [MemoryXtend]({{%currentadmurl%}}/memoryxtend.html)|
+|blob-store-data-policy|| [MemoryXtend]({{%currentadmurl%}}/memoryxtend-overview.html)|
 |attribute-store|||
 |leader-selection|||
 |properties|||

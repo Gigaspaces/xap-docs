@@ -68,7 +68,7 @@ It supports the following options, from which you can choose:
 
 ## Eviction Policy and Memory Management
 
-Since the space is memory-based, it is essential to verify that it does not overflow and crash. The space has a number of [facilities]({{% latestadmurl%}}/memory-management-facilities.html) to manage its memory and make sure it does not overflow.
+Since the space is memory-based, it is essential to verify that it does not overflow and crash. The space has a number of [facilities]({{% latestadmurl%}}/memory-management-overview.html) to manage its memory and make sure it does not overflow.
 The first one is the eviction policy. The space supports two eviction policies: `ALL_IN_CACHE` and `LRU` (Least Recently Used). With the `LRU` policy, the space starts to evict the least used entries when it becomes full. The `ALL_IN_CACHE` policy never evicts anything from the space.
 The memory manager allows you to define numerous thresholds that control when entries are evicted (in case you use `LRU`), or when the space simply blocks clients from adding data to it.
 Combined, these two facilities enable you to better control your environment and make sure that the memory of the space instances in your cluster does not overflow.

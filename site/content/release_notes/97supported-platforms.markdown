@@ -77,14 +77,14 @@ GigaSpaces recommends that customers upgrade to a fully-supported environment, s
 
 | Product | Product Page | Version | Component | Documentation
 |-------|--------|--------|-------|----------|
-| Cassandra                | [Cassandra](http://cassandra.apache.org/)                                             | 1.1.6 | Cassandra archiver and Cassandra EDS | [Cassandra Integration](/xap97/cassandra.html) |
-| Hibernate                | [Hivernate](http://www.hibernate.org/)                                                   | 3.6.1 | Persistency                          | [Hibernate Space Persistency](/xap97/hibernate-space-persistency.html) |
+| Cassandra                | [Cassandra](http://cassandra.apache.org/)                                             | 1.1.6 | Cassandra archiver and Cassandra EDS | [Cassandra Integration](/xap/9.7/dev-java/cassandra.html) |
+| Hibernate                | [Hivernate](http://www.hibernate.org/)                                                   | 3.6.1 | Persistency                          | [Hibernate Space Persistency](/xap/9.7/dev-java/hibernate-space-persistency.html) |
 | log4j                    | [log4j](http://logging.apache.org/log4j/1.2/)                             | 1.2.17 | Hibernate                           |      | 
-| log4j-snmp-trap-appender | [log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | Alert integration example            | [SNMP Connectivity via Alert Logging Gateway](/xap97/snmp-connectivity-via-alert-logging-gateway.html)  |
-| MongoDB                  | [MongoDB](http://www.mongodb.org/)                                                       | 2.11.2 | MongoDB archiver and MongoDB EDS    | [MongoDB Integration](/xap97/mongodb.html) |
-| Mule                     | [Mule](http://www.mulesoft.org/)                                                     | 3.3.0 | XAP Mule PU                          | [Mule ESB](/xap97/mule-esb.html) |
-| Scala                    | [Scala](http://oss.sonatype.org/content/groups/scala-tools/) | 2.10.1 | Express common programming patterns in a concise | [Scala](/xap97/scala.html) | 
-| snmp4j                   | [snmp4j](http://www.snmp4j.org/)                                                          | 1.11.2 | Alert integration example   | [SNMP Connectivity via Alert Logging Gateway](/xap97/snmp-connectivity-via-alert-logging-gateway.html) | 
+| log4j-snmp-trap-appender | [log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | Alert integration example            | [SNMP Connectivity via Alert Logging Gateway](/xap/9.7/dev-java/snmp-connectivity-via-alert-logging-gateway.html)  |
+| MongoDB                  | [MongoDB](http://www.mongodb.org/)                                                       | 2.11.2 | MongoDB archiver and MongoDB EDS    | [MongoDB Integration](/xap/9.7/dev-java/mongodb.html) |
+| Mule                     | [Mule](http://www.mulesoft.org/)                                                     | 3.3.0 | XAP Mule PU                          | [Mule ESB](/xap/9.7/dev-java/mule-esb.html) |
+| Scala                    | [Scala](http://oss.sonatype.org/content/groups/scala-tools/) | 2.10.1 | Express common programming patterns in a concise | [Scala](/xap/9.7/dev-java/scala.html) | 
+| snmp4j                   | [snmp4j](http://www.snmp4j.org/)                                                          | 1.11.2 | Alert integration example   | [SNMP Connectivity via Alert Logging Gateway](/xap/9.7/dev-java/snmp-connectivity-via-alert-logging-gateway.html) | 
 
 
 # .NET Interface

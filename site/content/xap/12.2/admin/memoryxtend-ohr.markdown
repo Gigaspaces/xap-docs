@@ -12,7 +12,7 @@ weight: 300
 XAP off-heap Storage mode store space objects off-heap. This mode can be used to reduce the space hosting JVM (GSC) heap utilization. This reduce garbage collection actvity delivering determentic behavior with lower chance having stop-the world pauses.
  
 
-XAP off-heap using {{%exurl "MapDB""http://www.mapdb.org/"%}} that is an embedded database engine provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory. XAP off-heap is part of the [MemoryXtend](./memoryxtend.html) add-on. XAP off-heap support Java 7 (or later)
+XAP off-heap using {{%exurl "MapDB""http://www.mapdb.org/"%}} that is an embedded database engine provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory. XAP off-heap is part of the [MemoryXtend](./memoryxtend-overview.html) add-on. XAP off-heap support Java 7 (or later)
 
 <br>
 
@@ -73,7 +73,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(urlConfig.space()).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-In addition to the general [MemoryXtend configuration options](./memoryxtend.html#configuration), the MapDB MemoryXtend add-on supports the following configuration options:
+In addition to the general [MemoryXtend configuration options](./memoryxtend-overview.html#configuration), the MapDB MemoryXtend add-on supports the following configuration options:
 
 | Property               | Description                                               | Default | Use |
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|

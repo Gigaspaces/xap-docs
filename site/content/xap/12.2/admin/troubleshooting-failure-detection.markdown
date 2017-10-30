@@ -110,7 +110,7 @@ The Service Grid uses two complementary mechanisms for service detections -- the
 
 The fault-detection handlers check periodically if a service is alive, and in case of failure, how many times to retry and how often.
 
-The GSM and GSC fault-detection handler settings are controlled via the relevant properties. The `PUFaultDetectionHandler` is configurable using the [SLA - member alive indicator](./the-sla.html#monitoring-the-liveness-of-processing-unit-instances).
+The GSM and GSC fault-detection handler settings are controlled via the relevant properties. The `PUFaultDetectionHandler` is configurable using the [SLA - member alive indicator](./the-sla-overview.html#monitoring-the-liveness-of-processing-unit-instances).
 
 For logging information, it is advised to monitor service failure by setting the logging level to `Level.FINE`.
 

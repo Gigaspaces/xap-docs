@@ -78,7 +78,7 @@ The space can be used as a [Hibernate second level cache](/sbp/gigaspaces-for-hi
 
 # Caching policies
 
-[Space Persistency]({{% latestjavaurl%}}/space-persistency.html) supports the **All In Cache** and **LRU** [Cache policies]({{% latestadmurl%}}/memory-management-facilities.html).
+[Space Persistency]({{% latestjavaurl%}}/space-persistency.html) supports the **All In Cache** and **LRU** [Cache policies]({{% latestadmurl%}}/memory-management-overview.html).
 
 ## All In Cache Policy
 
