@@ -10,9 +10,9 @@ weight: 1200
 
 This feature adds support for "Quiesce state" (or maintenance mode) for a Processing Unit. If a space is **quiesced**, it rejects all data-related operations with an exception, allowing the user to perform maintenance operations.
 
-The XAP [Polling Container]({{%currentjavaurl%}}/polling-container.html) and [Notify Container]({{%currentjavaurl%}}/notify-container.html) are also aware of the Space's quiesce state, and handle quiesce state changed events by implementing [QuiesceStateChangedListener](./quiesce-pu-api.html#quiesce-state-changed-listener). 
+The XAP [Polling Container]({{%currentjavaurl%}}/polling-container.html) and [Notify Container]({{%currentjavaurl%}}/notify-container.html) are also aware of the Space's quiesce state, and handle quiesce state changed events by implementing [QuiesceStateChangedListener](./quiescemode#quiesce-state-changed-listener). 
 
-In addition to the XAP event containers mentioned above, a user-defined Bean can also handle quiesce state changed events by implementing [QuiesceStateChangedListener](./quiesce-pu-api.html#quiesce-state-changed-listener). 
+In addition to the XAP event containers mentioned above, a user-defined Bean can also handle quiesce state changed events by implementing [QuiesceStateChangedListener](./quiescemode.html#quiesce-state-changed-listener). 
 
 Quiesce is usually triggered using the ProcessingUnit API, and is propagated to all Space instances and quiesce state changed listeners in the Processing Unit. 
 
@@ -50,7 +50,7 @@ Use Quiesce mode to perform a rolling system upgrade on a live system (typically
 3. Exit Quiesce mode and verify that the upgraded system resumes and works as expected,
 
 {{% refer %}}
-Review additional use case examples [here](./quiesce-pu-api.html#use-cases-examples).
+Review additional use case examples [here](./quiescemode.html#use-cases-examples).
 {{%/refer%}}
 
 ## Space Behavior During Quiesce Mode
@@ -77,7 +77,7 @@ The following limitations and open issues apply to Quiesce mode:
 
 - The Processing Unit should be **intact** before triggering a quiesce request.
 - Although Quiesce handles the Processing Unit restart, it is not resilient regarding sudden network disconnections (in XAP grid component machines). Therefore, under rare conditions the quiesce request must be repeated manually by the user. 
-- Quiesce state changed events are propagated only to the components (beans) that are located within the Processing Unit context file ([pu.xml]({{%currentjavaurl%}}/configuring-processing-unit-elements.html)), therefore custom components are not aware of quiesce state changed events (even if the component implements [QuiesceStateChangedListener](./quiesce-pu-api.html#quiesce-state-changed-listener)).
+- Quiesce state changed events are propagated only to the components (beans) that are located within the Processing Unit context file ([pu.xml]({{%currentjavaurl%}}/configuring-processing-unit-elements.html)), therefore custom components are not aware of quiesce state changed events (even if the component implements [QuiesceStateChangedListener](./quiescemode.html#quiesce-state-changed-listener)).
 - Replication of the Quiesce state between primary and backup GSM is not yet supported. GSM failover may result in losing the quiesce state of the system. If this happens, you must repeat the quiesce request  in order to re-inform the GSM about the current quiesce state.
 
  

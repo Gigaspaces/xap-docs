@@ -6,20 +6,20 @@ parent: runtime-configuration.html
 weight: 300
 ---
 
-{{%  ssummary  %}} {{%  /ssummary %}}
+ 
 
 
 
-The Lookup Service (LUS) provides a leased based registry holding Service Grid level services advertised on it. Some of the services exposed on the LUS are [GigaSpaces Agent](./service-grid.html#gsa), [GigaSpaces Manager](./service-grid.html#gsm), [GigaSpaces Container](./service-grid.html#gsc), Space Instances (actual instances of a Space that form a topology), and Processing Unit Instances (actual instances of a deployed Processing Unit).
+The Lookup Service (LUS) provides a leased based registry holding Service Grid level services advertised on it. Some of the services exposed on the LUS are [GigaSpaces Agent]({{%currentoverviewurl%}}/the-runtime-environment.html#gsa), [GigaSpaces Manager]({{%currentoverviewurl%}}/the-runtime-environment.html#gsm), [GigaSpaces Container]({{%currentoverviewurl%}}/the-runtime-environment.html#gsc), Space Instances (actual instances of a Space that form a topology), and Processing Unit Instances (actual instances of a deployed Processing Unit).
 
-A Lookup Service creates a virtualized isolated environment by utilizing lookup groups (when using multicast) or lookup locators (when using unicast). When starting the LUS and other runtime components [GigaSpaces Agent](./service-grid.html#gsa), [GigaSpaces Manager](./service-grid.html#gsm) and [GigaSpaces Container](./service-grid.html#gsc), the lookup groups / lookup locators can be set in order to form an isolated environment.
+A Lookup Service creates a virtualized isolated environment by utilizing lookup groups (when using multicast) or lookup locators (when using unicast). When starting the LUS and other runtime components [GigaSpaces Agent]({{%currentoverviewurl%}}/the-runtime-environment.html#gsa), [GigaSpaces Manager]({{%currentoverviewurl%}}/the-runtime-environment.html#gsm) and [GigaSpaces Container]({{%currentoverviewurl%}}/the-runtime-environment.html#gsc), the lookup groups / lookup locators can be set in order to form an isolated environment.
 
 In a multicast enabled environment, the lookup groups can be set using either the `LOOKUPGROUPS` environment variable (when using scripts), or by setting `-Dcom.gs.jini_lus.groups` system property.
 
 In a unicast environment (where multicast is disabled), the lookup locators can be set using either `LOOKUPLOCATORS` environment variable (when using scripts), or by setting `-Dcom.gs.jini_lus.locators` system property. In a unicast environment, the LUS are started on specific machines (usually two LUS instances), and the lookup locators simply point to the two hosts the LUS instances are running on.
 
 {{%  note %}}
-When a [XAP Container](./service-grid.html#gsc) is started with a specific lookup groups / lookup locators, any Processing Unit instance running within it (and Space instances as well) will inherit the configuration and join the virtualized LUS environment.
+When a [XAP Container]({{%currentoverviewurl%}}/the-runtime-environment.html#grid-service-container-gsc) is started with a specific lookup groups / lookup locators, any Processing Unit instance running within it (and Space instances as well) will inherit the configuration and join the virtualized LUS environment.
 {{% /note%}}
 
 # Registering and Using a Service

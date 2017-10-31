@@ -1,0 +1,2 @@
+{{ if in .Page.Permalink "12.2" }}      {{"/xap/12.2/overview"}}
+{{ else }}{{ index .Page.Site.Params "latest_overview_url"}}{{ end }}

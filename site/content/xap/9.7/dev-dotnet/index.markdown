@@ -23,7 +23,7 @@ Here you will find a quick start guide that explains how to deploy and use a Gig
 [XAP API](./programmers-guide.html){{<wbr>}}
 The guide provides all the information and tools needed to quickly develop either basic or more complex scaled-out applications
 
-[The Processing Unit](./the-processing-unit-overview.html){{<wbr>}}
+[The Processing Unit](./processing-units.html){{<wbr>}}
 The Processing Unit is the unit of packaging and deployment in the GigaSpaces XAP platform. This section describes its directory structure, deployment descriptor and SLA definition and configuration.
 
 [Deployment and Administration](./administrators-guide.html){{<wbr>}}

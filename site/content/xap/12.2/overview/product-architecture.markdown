@@ -31,7 +31,7 @@ Supports any language, any platform, any API - Achieve interoperability, easy mi
 
 ## OpenSpaces
 
-OpenSpaces is the GigaSpaces native programming API. It is an open-source [Spring-based](https://spring.io/) application interface designed to make space-based development easy, reliable, and scalable. In addition, the programming model is non-intrusive, based on a simple POJO programming model and a clean integration point with other development frameworks.
+OpenSpaces is the GigaSpaces native programming API. It is an open-source {{%exurl "Spring-based""https://spring.io/"%}} application interface designed to make space-based development easy, reliable, and scalable. In addition, the programming model is non-intrusive, based on a simple POJO programming model and a clean integration point with other development frameworks.
 
 The OpenSpaces API is divided into four parts:
 
@@ -60,7 +60,7 @@ The events module includes components for simplified EDA/Service Bus development
 
 ## Space Based Remoting
 
-The Remoting {{% latestjavanet "space-based-remoting-overview.html" %}} package provides capabilities for clients to access remote services. Remoting in GigaSpaces XAP is implemented on top of the data grid's clustering model, which provides location transparency, fail-over, and performance to remote service invocations. XAP implements remoting , using the space as the transport layer, similar to [other Spring remoting components](http://static.springframework.org/spring/docs/3.0.x/reference/remoting.html).
+The Remoting {{% latestjavanet "space-based-remoting-overview.html" %}} package provides capabilities for clients to access remote services. Remoting in GigaSpaces XAP is implemented on top of the data grid's clustering model, which provides location transparency, fail-over, and performance to remote service invocations. XAP implements remoting , using the space as the transport layer, similar to {{%exurl "the Spring remoting components""http://static.springframework.org/spring/docs/3.0.x/reference/remoting.html"%}}.
 
 Remoting can be viewed as the alternative to Java EE Session Beans, or Java RMI, as it provides all of their capabilities as well as supporting synchronous and asynchronous invocations, and dynamic scripting languages - enabling you to use Groovy or Ruby in your space-based applications.
 
@@ -101,7 +101,7 @@ More information on the usage of the above integrations can be found in the Deve
 
 ## Spring Container
 
-The Spring framework container integration is included as part of XAP, and provides the ability to take advantage of [Spring](https://spring.io/) components, programming model and capabilities.
+The Spring framework container integration is included as part of XAP, and provides the ability to take advantage of {{%exurl "Spring""https://spring.io/"%}} components, programming model and capabilities.
 
 The Spring framework provides very elegant abstractions, which makes it very easy to build layered and decoupled applications.
 
@@ -134,7 +134,7 @@ Data access, messaging, parallel processing services, speeding up your applicati
 - High Availability: Built-in hot backup and self-healing capabilities for zero downtime
 - Consistency: Maintain data integrity with 100% transactional data handling
 
-As an application platform, GigaSpaces XAP provides integrated, memory-based runtime capabilities. The core of these capabilities is backed by the space technology - for more information, please refer to [Space - Concepts and Capabilities](./concepts.html#space-concepts-and-capabilities).
+As an application platform, GigaSpaces XAP provides integrated, memory-based runtime capabilities. The core of these capabilities is backed by the space technology.  
 
 The core middleware capabilities are:
 

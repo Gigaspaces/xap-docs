@@ -7,7 +7,7 @@ weight: 400
 ---
 
 {{%refer%}}
-For more information please refer to the [Quiesce documentation](./quiesce-overview.html)
+For more information please refer to the [Quiesce documentation](./quiescemode.html)
 {{%/refer%}}
 
 XAP allows putting a processing unit in quiesce mode (a.k.a maintenance mode). The quiesce mode can be invoked via the CLI. This page explains the usage of the CLI commands.

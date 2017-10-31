@@ -6,7 +6,7 @@ parent: product-architecture.html
 weight: 600
 ---
 
-{{%  ssummary %}}{{%  /ssummary %}}
+ 
 
 {{%  anchor GSRuntimeEnv %}}
 

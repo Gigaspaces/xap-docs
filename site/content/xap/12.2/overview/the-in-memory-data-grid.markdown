@@ -7,7 +7,7 @@ weight: 700
 ---
 
 
-{{%  ssummary  %}}   {{%  /ssummary %}}
+ 
 
 # Architecture Perspectives
 
@@ -37,7 +37,7 @@ OpenSpaces is the primary framework for developing applications in GigaSpaces. O
 To achieve these goals, OpenSpaces adds the following components to the Spring development environment:
 
 - [Processing Unit]({{%latestjavaurl%}}/the-processing-unit-overview.html) -- the core unit of work. Encapsulates the middleware together with the business logic in a single unit of scaling and failover.
-- [SLA-Driven Container](./service-grid.html#gsc) -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
+- [SLA-Driven Container](./the-runtime-environment.html#gsc) -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
 - [In-Memory Data Grid](./the-in-memory-data-grid.html) -- provides in-memory distributed data storage.
 - [Declarative Event Containers]({{% latestjavaurl%}}/messaging-support.html) -- for triggering events from the space into POJOs in pull or push mode.
 - [Remoting]({{% latestjavaurl%}}/space-based-remoting.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
@@ -206,7 +206,7 @@ The space has a number of determining characteristics that should be configured 
 ## Space Clustering Topology
 
 The space can have a single instance, in which case it runs on a single JVM, or multiple instances, in which case it can run on multiple JVMs.
-When it has multiple instances, the space can run in a number of [topologies](./space-topologies.html) which determine how the data is distributed across those JVMs. In general, the data can be either **replicated**, which means it resides on all of the JVMs in the cluster, or **partitioned**, which means that the data is distributed across all of the JVMs, each containing a different subset of it. With a partitioned topology you can also assign one or more backup space instances for each partition.
+When it has multiple instances, the space can run in a number of topologies which determine how the data is distributed across those JVMs. In general, the data can be either **replicated**, which means it resides on all of the JVMs in the cluster, or **partitioned**, which means that the data is distributed across all of the JVMs, each containing a different subset of it. With a partitioned topology you can also assign one or more backup space instances for each partition.
 
 ![topologies.jpg](/attachment_files/topologies.jpg)
 
@@ -225,7 +225,7 @@ With asynchronous replication, this replication is done in a separate thread, an
 
 The space is an in-memory data grid. As such its capacity is limited to the sum of the memory capacity of all the JVMs on which the space instances run.
 In many cases, you have to deal with larger portions of data, or load a subset of a larger data set, which resides in an external data source such as a relational database, into the space.
-The space supports many [persistency options](./database-integration.html), allowing you to easily configure how it interacts with an external relational database, or a more exotic source of data.
+The space supports many [persistency options]({{%currentjavaurl%}}/space-persistency-overview.html), allowing you to easily configure how it interacts with an external relational database, or a more exotic source of data.
 It supports the following options, from which you can choose:
 
 - Cache warm-up: load data from an external data source on startup.
@@ -242,7 +242,7 @@ Combined, these two facilities enable you to better control your environment and
 
 ## Reactive Programming
 
-GigaSpaces and its Space-Based-Architecture embrace the [reactive programming](http://en.wikipedia.org/wiki/Reactive_programming) approach. The following falls under reactive programming with GigaSpaces:
+GigaSpaces and its Space-Based-Architecture embrace the {{%exurl "reactive programming""http://en.wikipedia.org/wiki/Reactive_programming"%}} approach. The following falls under reactive programming with GigaSpaces:
 
 - [Data Event Listener]({{% latestjavaurl%}}/data-event-listener.html) - [Polling Container]({{% latestjavaurl%}}/polling-container.html), [Notify Container]({{% latestjavaurl%}}/notify-container.html)
 - [Local View and Local Cache](./caching-scenarios.html)
@@ -270,14 +270,14 @@ The code space API is also supported in [.Net]({{<latestneturl>}}/). This allows
 
 # Services on Top of the Space
 
-Building on top of the core API, the Space also provides [higher level services](./services-on-top-of-the-data-grid.html) onto the application. These services, along with the space's basic capabilities, provide the full stack of middleware features that you can build your application with.
+Building on top of the core API, the Space also provides higher level services  onto the application. These services, along with the space's basic capabilities, provide the full stack of middleware features that you can build your application with.
 [The Task Execution API]({{% latestjavaurl%}}/task-execution-over-the-space.html) allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
 [Event containers]({{% latestjavaurl%}}/messaging-support.html) use the core API's operations and abstract your code from all the low level details involved in handling the event, such as event registration with the space, transaction initiation, etc. This has the benefit of abstracting your code from the lower level API and allows it to focus on your business logic and the application behavior.
 [Space-Based Remoting]({{% latestjavaurl%}}/space-based-remoting.html) allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.
 
 # Spring Integration
 
-The space APIs are integrated tightly with the [Spring framework](http://www.springframework.org).
+The space APIs are integrated tightly with the {{%exurl "Spring framework""http://www.springframework.org"%}}).
 This gives you the ability to use all of the benefits that Spring brings to the table, such as dependency injection, declarative transaction management, and a well defined application life cycle model.
 In addition, the higher level services (remoting and event processing), are also tightly integrated with Spring and follow the Spring framework proven design patterns. GigaSpaces XAP provides a set of well-defined Spring bindings, utilizing Spring's support for custom namespaces, which allows you to easily create and wire GigaSpaces components within Spring.
 
