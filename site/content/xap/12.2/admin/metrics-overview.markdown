@@ -8,29 +8,9 @@ weight: 950
 
 
 
-XAP provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice, which can then be analysed and used to identity trends in the system behaviour.
+XAP provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice. These metrics be analyzed and used to identify trends in the system behavior.
 
-<br>
+This section describes the core metrics concepts and how to [configure](./metrics-configuration.html) metrics collection. XAP contains a set of [predefined metrics](./metrics-bundled.html), and you can also create custom [user-defined metrics](./metrics-user-defined.html).
 
-{{%fpanel%}}
+You can configure XAP to report metrics to [InfluxDB](./metrics-influxdb-reporter.html) and [CA APM Introscope](./ca-apm-introscope-reporter.html), or you can create a [custom metrics reporter](./metrics-custom-reporter.html) as per the requirements of your specific application and XAP environment. 
 
-[Configuration](./metrics-configuration.html){{<wbr>}}
-Introduction to the core metrics concepts and how to configure them
-
-[InfluxDB Reporter](./metrics-influxdb-reporter.html){{<wbr>}}
-Configuring XAP to report metrics to InfluxDB
-
-[CA APM Introscope Reporter](./ca-apm-introscope-reporter.html){{<wbr>}}
-Configuring XAP to report metrics to CA APM Introscope
-
-
-[Custom Reporter](./metrics-custom-reporter.html){{<wbr>}}
-Implementing and using a custom metrics reporter
-
-[User Defined Metrics](./metrics-user-defined.html){{<wbr>}}
-Implementing and using a user-defined metric
-
-[Predefined Metrics](./metrics-bundled.html){{<wbr>}}
-Lists the predefined metrics bundled with the product
-
-{{%/fpanel%}}

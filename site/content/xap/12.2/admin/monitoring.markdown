@@ -10,25 +10,10 @@ weight: 900
 
 
 
- In this guide you will find information on how to monitor XAP and your deployed application.
+ You can [monitor the network and usage activity](./monitoring-network-activity.html) for XAP and your deployed applications during runtime. This is done via the proprietery [LRMI](./tuning-communication-protocol.html) communication protocol.
+ 
+ Additionally, you can set up monitoring of specific services using [JMX](./space-jmx-management.html) to access the JConsole. You can also use any of the recommended [monitoring tools](./suggested-monitoring-tools.html) to track memory and CPU usage, heap memory usage, garbage collection, etc.
 
 
-
-<br>
-
-{{%fpanel%}}
-
-[Network Monitoring](./monitoring-network-activity.html){{<wbr>}}
-Monitoring network and usage activity used by the LRMI layer between GigaSpaces component.
-
-
-[JMX Management](./space-jmx-management.html){{<wbr>}}
-Controlling space attributes and operations using the JMX console.
-
-
-[Monitoring Tools](./suggested-monitoring-tools.html){{<wbr>}}
-Suggested list of monitoring tools.
-
-{{%/fpanel%}}
 
 

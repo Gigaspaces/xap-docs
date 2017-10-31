@@ -7,37 +7,13 @@ weight: 800
 ---
 
 
-
-
-This section explains how to configure the network, including configuring unicast, multicast, over a firewall and over NAT.
-
 {{% note "Note" %}}
-Some of the features listed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
+Some of the features described on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
 {{% /note %}}
 
-<br>
+
+This section explains how to configure the network to support your XAP implementation. XAP supports [unicast service discovery](./network-unicast-discovery.html) and [multicast](./network-multicast.html) where available (for both Linux and Microsoft Windows operating systems).
+
+You can [configure the Lookup Service (LUS)](./network-lookup-service-configuration.html) to work with both unicast and multicast. XAP is supported [over NAT](./network-over-nat.html) and [over firewall](./network-over-firewall.html), and you can either [use the default ports or specify custom ports](./network-ports.html) for the different XAP components and services. XAP can also be configured to work with a specific subset of network cards in environments with [multiple network cards](./network-multi-nic.html). 
 
 
- {{%fpanel%}}
-
-[Unicast Discovery](./network-unicast-discovery.html){{<wbr>}}
-The section explains how to configure and use Unicast Discovery.
-
-[Multicast Configuration](./network-multicast.html){{<wbr>}}
-Enabling multicast on Linux and Windows.
-
-[Configuring Lookup Service](./network-lookup-service-configuration.html){{<wbr>}}
-Defining group names and unicast Locators for Jini Services; searching for available lookup services in the network.
-
-[XAP Over Network Address Translation](./network-over-nat.html){{<wbr>}}
-Settings to enable operation with Network Address Translation (NAT).
-
-[Multi Network Cards](./network-multi-nic.html){{<wbr>}}
-Configuring XAP for a machine with multiple network cards. By default all network cards are used; you can limit XAP to specific ones.
-
-[XAP over Firewall](./network-over-firewall.html){{<wbr>}}
-Settings to enable functioning over a Firewall.
-
-[Controlling Port Usage](./network-ports.html){{<wbr>}}
-Default ports used by the space, container, and Jini Lookup Service and how to configure them.
-{{%/fpanel%}}
