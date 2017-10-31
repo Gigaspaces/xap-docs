@@ -33,15 +33,18 @@ The service grid is composed of a number of components:
 
 # Core Components
 
-A processing unit can be deployed to the Service Grid using one of GigaSpaces deployment tools (UI, CLI, API), which uploads it to the *GSM* [Grid Service Manager](./service-grid.html#gsm), the component which manages the deployment and life cycle of the processing unit). The GSM analyzes the deployment descriptor and determines how many instances of the processing unit should be created, and which containers should run them. It then ships the processing unit code to the running *GSC*'s [Grid Service Container](./service-grid.html#gsc) and instructs them to instantiate the processing unit instances. The GSC provides an isolated runtime for the processing unit instance, and exposes its state to the GSM for monitoring. This phase in the deployment process is called *provisioning*.
+A processing unit can be deployed to the Service Grid using one of GigaSpaces deployment tools (UI, CLI, API), which uploads it to the *GSM* [Grid Service Manager](#gsm), the component which manages the deployment and life cycle of the processing unit). The GSM analyzes the deployment descriptor and determines how many instances of the processing unit should be created, and which containers should run them. 
+It then ships the processing unit code to the running *GSC*'s [Grid Service Container](#gsc) and instructs them to instantiate the processing unit instances. The GSC provides an isolated runtime for the processing unit instance, and exposes its state to the GSM for monitoring. This phase in the deployment process is called *provisioning*.
 
 Once provisioned, the GSM continuously monitors the processing unit instances to determine if they're functioning properly or not. When a certain instance fails, the GSM identifies that and re-provisions the failed instance on to another GSC, thus enforcing the processing unit's SLA.
 
-In order to discover one another in the network, the GSCs and GSMs use a [Lookup Service](./service-grid.html#lus), also called *LUS*. Each GSM and GSC registers itself in the LUS, and monitors the LUS to discover other GSM and GSC instances.
+In order to discover one another in the network, the GSCs and GSMs use a [Lookup Service](#lus), also called *LUS*. Each GSM and GSC registers itself in the LUS, and monitors the LUS to discover other GSM and GSC instances.
 
-Finally, the *GSA* [Grid Service Agent](./service-grid.html#gsa) component is used to start and manage the other components of the Service Grid (i.e. GSC, GSM, LUS). Typically, the GSA is started with the hosting machine's startup. Using the agent, you can bootstrap the entire cluster very easily, and start and stop additional GSCs, GSMs and lookup services at will.
+Finally, the *GSA* [Grid Service Agent](#gsa) component is used to start and manage the other components of the Service Grid (i.e. GSC, GSM, LUS). Typically, the GSA is started with the hosting machine's startup. Using the agent, you can bootstrap the entire cluster very easily, and start and stop additional GSCs, GSMs and lookup services at will.
 
 All of the above components are fully manageable from the GigaSpaces management interfaces such as the [UI]({{% latestadmurl%}}/gigaspaces-management-center.html), CLI and [Admin API]({{% latestjavaurl%}}/administration-and-monitoring-api.html).
+
+{{%  anchor gsm %}}
 
 # Grid Service Manager (GSM)
 
@@ -63,7 +66,7 @@ The Grid Service Container provides an isolated runtime for one (or more) proces
 
 The GSC can be perceived as a node on the grid, which is controlled by [The Grid Service Manager](#gsm). The GSM provides commands of deployment and un-deployment of the Processing Unit instances into the GSC. The GSC reports its status to the GSM.
 
-The GSC can host multiple processing unit instances simultaneously. The processing unit instances are isolated from each other using separate [Class loaders](http://en.wikipedia.org/wiki/Java_Classloader) (in java) or [AppDomains](http://en.wikipedia.org/wiki/Appdomain) (in .NET).
+The GSC can host multiple processing unit instances simultaneously. The processing unit instances are isolated from each other using separate {{%exurl "Class loaders""http://en.wikipedia.org/wiki/Java_Classloader"%}} (in java) or {{%exurl "AppDomains""http://en.wikipedia.org/wiki/Appdomain"%}} (in .NET).
 
 It is common to start several GSCs on the same physical machine, depending on the machine CPU and memory resources. The deployment of multiple GSCs on a single or multiple machines creates a virtual Service Grid. The fact is that GSCs are providing a layer of abstraction on top of the physical layer of machines. This concept enables deployment of clusters on various deployment typologies of enterprise data centers and public clouds.
 
@@ -96,7 +99,7 @@ The following services use the LUS:
 * Space Instances (actual instances of a Space that form a topology)
 
 {{%  refer %}}
-For advanced information on the lookup service architecture, refer to [The Lookup Service](./the-lookup-service.html).
+For advanced information on the lookup service architecture, refer to [The Lookup Service](#lus).
 {{% /refer%}}
 
 {{%  anchor gsa %}}
