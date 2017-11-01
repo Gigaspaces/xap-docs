@@ -449,7 +449,7 @@ The processor prints the _id_ and _info_ attributes for each messages it takes f
 
 **Steps to run the application inside IntelliJ IDE:**
 
-If you haven't already done so,[download GigaSpaces and set up your development environment]({{%latestjavaurl%}}/installation.html)
+If you haven't already done so,[download GigaSpaces and set up your development environment]({{%currentjavaurl%}}/installation.html)
 - This is needed for running the tutorial sample application.
 
 {{% anchor JImporting Project to the IDE %}}

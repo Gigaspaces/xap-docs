@@ -42,7 +42,7 @@ When the database issues change notification, it can contain some or all of the 
 * The type of change. For example, the message specifies whether the change was caused by an INSERT, UPDATE, DELETE, ALTER TABLE, or DROP TABLE.
 * The ROWIDs of the changed rows and the type of DML that changed them.
 
-For further information please consult the Oracle [documentation](http://docs.oracle.com/cd/B19306_01/appdev.102/b14251/adfns_dcn.htm).
+ 
 In our example we will only demonstrate the notifications for INSERT, UPDATE and Delete.
 
 ## Registering a listener

@@ -7,7 +7,7 @@ parent: the-gigaspace-interface-overview.html
 ---
 
 
-{{% ssummary %}}{{%/ssummary%}}
+ 
 
 
 XAP provides a simple space API using the [ISpaceProxy]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceProxy.htm) interface for interacting with the space.
@@ -754,7 +754,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Count objects in space.[.NetAPI]{{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Count.htm)
+Count objects in space.[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Count.htm)
 
 
 ```java
