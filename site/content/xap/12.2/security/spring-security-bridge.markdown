@@ -8,30 +8,10 @@ weight: 900
 
 
 
-Spring Security is one of the most mature and widely used Spring projects. In the following sections, we present a brief introduction to Spring Security and GigaSpaces Spring-based security bridge.
+Spring Security is one of the most mature and widely used Spring projects. This section provides a short introduction to [Spring Security](./introducing-spring-security.html), and describes the GigaSpaces [Spring-based security bridge](./gigaspaces-spring-based-security-bridge.html), which leverages our [custom security](./custom-security.html) support. The implementation class `org.openspaces.security.spring.SpringSecurityManager` is open source as part of the **OpenSpaces** distribution.
 
-We will focus on a couple of the most commonly used authentication providers, such as database-oriented authentication and LDAP (Lightweight Data Access Protocol). For each, we provide a Spring XML security configuration, while demonstrating how GigaSpaces granted authorities should be stored.
+This section also discusses two of the most commonly used authentication providers, [database-oriented authentication](./authenticating-against-a-database.html) and [Lightweight Data Access Protocol (LDAP)](./authenticating-against-an-ldap-repository.html). For each option, we provide a Spring XML security configuration, and explain how GigaSpaces-granted authorities should be stored.
 
-The Spring-based security bridge leverages our [Custom Security](./custom-security.html) support. The implementation class `org.openspaces.security.spring.SpringSecurityManager` is open source as part of the **OpenSpaces** distribution.
-
-<br>
-
-{{%fpanel%}}
-
-[Spring Security](./introducing-spring-security.html){{<wbr>}}
-Introduction Spring Security Framework.
-
-[Spring-based Bridge](./gigaspaces-spring-based-security-bridge.html){{<wbr>}}
-Introducing GigaSpaces Spring-based security bridge.
-
-[Database Authentication](./authenticating-against-a-database.html){{<wbr>}}
-Storing user details in a relational database using DaoAuthenticationProvider.
-
-[LDAP Authentication](./authenticating-against-an-ldap-repository.html){{<wbr>}}
-Using LDAP (Lightweight Directory Access Protocol) with Spring Security.
-
-
-{{%/fpanel%}}
 
 
 
