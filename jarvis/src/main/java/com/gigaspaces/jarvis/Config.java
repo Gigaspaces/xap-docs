@@ -17,6 +17,7 @@ public class Config {
 
     private final Logger logger = Logger.getInstance();
     private final File path;
+    private final File sitePath;
     private final File contentPath;
     private final Map<String, String> properties = new TreeMap<>();
     private final Map<String, String> pagePluging = new TreeMap<>();
@@ -29,7 +30,8 @@ public class Config {
 
     public Config(File path) {
         this.path = path;
-        this.contentPath = new File(new File(path, "site"), "content");
+        this.sitePath = new File(path, "site");
+        this.contentPath = new File(sitePath, "content");
         loadProperties();
         groupByPrefix(properties, "plugin.").forEach(this::addPlugin);
 
@@ -120,6 +122,10 @@ public class Config {
 
     public File getPath() {
         return path;
+    }
+
+    public File getSitePath() {
+        return sitePath;
     }
 
     public File getContentPath() {

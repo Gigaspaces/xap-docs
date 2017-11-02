@@ -8,6 +8,7 @@ package com.gigaspaces.jarvis.ui;
 import com.gigaspaces.jarvis.Config;
 import com.gigaspaces.jarvis.HugoContainer;
 import com.gigaspaces.jarvis.Logger;
+import com.gigaspaces.jarvis.VersionForker;
 import com.gigaspaces.jarvis.model.ContentSection;
 import com.gigaspaces.jarvis.model.MenuTree;
 import com.gigaspaces.jarvis.model.Page;
@@ -16,6 +17,7 @@ import java.net.URI;
 import java.util.Collection;
 import java.awt.Font;
 import java.io.File;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -165,6 +167,8 @@ public class MainUI extends javax.swing.JFrame {
         hugoStartMenuItem = new javax.swing.JMenuItem();
         hugoStopMenuItem = new javax.swing.JMenuItem();
         hugoRestartMenuItem = new javax.swing.JMenuItem();
+        adminMenu = new javax.swing.JMenu();
+        newVersionMenuItem = new javax.swing.JMenuItem();
 
         pageBrowseLocalMenuItem.setText("Browse Local...");
         pageBrowseLocalMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -323,6 +327,18 @@ public class MainUI extends javax.swing.JFrame {
 
         mainMenuBar.add(hugoMenu);
 
+        adminMenu.setText("Admin");
+
+        newVersionMenuItem.setText("Fork new version...");
+        newVersionMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newVersionMenuItemActionPerformed(evt);
+            }
+        });
+        adminMenu.add(newVersionMenuItem);
+
+        mainMenuBar.add(adminMenu);
+
         setJMenuBar(mainMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -406,6 +422,20 @@ public class MainUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pagesTreeMouseClicked
 
+    private void newVersionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newVersionMenuItemActionPerformed
+        String latestVersion = versionComboBox.getItemAt(0).toString();
+        String newVersion = JOptionPane.showInputDialog(this, "New version:", "Forking new version from " + latestVersion, JOptionPane.QUESTION_MESSAGE);
+        if (newVersion != null && newVersion.length() != 0) {
+            ContentSection newSection = new VersionForker(config, latestVersion, newVersion).fork();
+            if (newSection != null) {
+                versionComboBox.insertItemAt(newSection, 0);
+                versionComboBox.setSelectedIndex(0);
+            }
+        } else {
+            logger.info("Cancelled");
+        }
+    }//GEN-LAST:event_newVersionMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -446,6 +476,7 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu adminMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu hugoMenu;
@@ -454,6 +485,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem hugoStopMenuItem;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JSplitPane mainSplitPane;
+    private javax.swing.JMenuItem newVersionMenuItem;
     private javax.swing.JPanel outputPanel;
     private javax.swing.JScrollPane outputScrollPane;
     private javax.swing.JTextArea outputTextArea;
