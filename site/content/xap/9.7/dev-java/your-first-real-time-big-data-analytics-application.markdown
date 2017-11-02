@@ -648,7 +648,7 @@ For more information, see [Deploying Applications](http://getcloudify.org/guide/
 To run the application on one of the supported clouds, proceed the following steps:
 
 1. Configure the cloud driver configuration file and get the cloud certificate. For more information, see [Post-Installation Configuration](http://docs.getcloudify.org) page.
-1. Bootstrap the cloud. For more information, see [The Bootstrapping Process](http://shlomo-tech-tav.github.com/guide/bootstrapping/bootstrapping_process) page.
+1. Bootstrap the cloud. For more information.
 1. To install and deploy the application, use the `install-application` command, as described in the previous section.
 
 {{% info "Running XAP on the Cloud "%}}

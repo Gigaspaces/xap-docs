@@ -48,7 +48,7 @@ For a running demo of the Delta Server architecture publishing changes from DB2 
 References:
 
 - [Replication and Event Publishing documentation](http://publib.boulder.ibm.com/infocenter/db2luw/v10r5/index.jsp?topic=%2Fcom.ibm.swg.im.iis.db.prod.repl.nav.doc%2Fdochome%2Fiiyrcnav_dochome.html).
-- Examples and details about IBM QRep can be found on this [Solution Brief](http://public.dhe.ibm.com/common/ssi/ecm/en/ims14394usen/IMS14394USEN.PDF).
+- Examples and details about IBM QRep can be found on this [Solution Brief](https://www.ibm.com/support/knowledgecenter/SSDP5R_9.7.5/com.ibm.swg.im.iis.repl.qtutorial.doc/topics/iiyrqtutintro2.html).
 
 # GigaSpaces Intelligent Mainframe Front-end Architecture
 GigaSpaces XAP provides an extremely flexible persistence layer (known as the Space Data Source and Mirror Service) that enables transparent communication between the GigaSpaces IMDG and virtually any type of back-end application or database system.
@@ -105,7 +105,7 @@ References:
 
 - [IBM VSE/ESA e-business Connectors User's Guide](ftp://ftp.boulder.ibm.com/s390/zos/vse/pdf3/vse27/ieswue30.pdf) - See page 159 onward.
 - [JZOS Java Launcher and Toolkit Overview](http://www-03.ibm.com/systems/z/os/zos/tools/java/products/jzos/overview.html)
-- [Attunity VSAM Data Connectivity](http://www.attunity.com/products/attunity-connect/vsam-data-access)
+- [Attunity VSAM Data Connectivity](http://www.attunity.com)
 - [Using the VSE connector client as a JDBC provider](http://my.safaribooksonline.com/book/operating-systems-and-server-administration/websphere/0738490342/chapter-10-vse-java-based-connector-to-access-vsam-data/chapter_10_vse_javabased_conne#X2ludGVybmFsX0J2ZGVwRmxhc2hSZWFkZXI/eG1saWQ9MDczODQ5MDM0Mi8yMzE=)
 
 # JCICS
