@@ -1,8 +1,9 @@
-{{if in .Page.Permalink "xap97"}}{{index .Page.Site.Params.xap97 (.Get 0)}}
-{{else if in .Page.Permalink "/xap/10.0/"}}{{index .Page.Site.Params.xap100 (.Get 0)}}
-{{else if in .Page.Permalink "/xap/10.1/"}}{{index .Page.Site.Params.xap101 (.Get 0)}}
-{{else if in .Page.Permalink "/xap/10.2/"}}{{index .Page.Site.Params.xap102 (.Get 0)}}
-{{else if in .Page.Permalink "/xap/11.0/"}}{{index .Page.Site.Params.xap110 (.Get 0)}}
-{{else if in .Page.Permalink "/xap/12.0/"}}{{index .Page.Site.Params.xap120 (.Get 0)}}
-{{else if in .Page.Permalink "/xap/12.1/"}}{{index .Page.Site.Params.xap121 (.Get 0)}}
+{{ if in .Page.Permalink "/xap/12.2/"}}{{index .Page.Site.Params.xap122 (.Get 0)}}
+{{ else if in .Page.Permalink "/xap/12.1/"}}{{index .Page.Site.Params.xap121 (.Get 0)}}
+{{ else if in .Page.Permalink "/xap/12.0/"}}{{index .Page.Site.Params.xap120 (.Get 0)}}
+{{ else if in .Page.Permalink "/xap/11.0/"}}{{index .Page.Site.Params.xap110 (.Get 0)}}
+{{ else if in .Page.Permalink "/xap/10.2/"}}{{index .Page.Site.Params.xap102 (.Get 0)}}
+{{ else if in .Page.Permalink "/xap/10.1/"}}{{index .Page.Site.Params.xap101 (.Get 0)}}
+{{ else if in .Page.Permalink "/xap/10.0/"}}{{index .Page.Site.Params.xap100 (.Get 0)}}
+{{ else if in .Page.Permalink "/xap/9.7/"}} {{index .Page.Site.Params.xap97 (.Get 0)}}
 {{else}}{{index .Page.Site.Params.xap122 (.Get 0)}}{{end}}
