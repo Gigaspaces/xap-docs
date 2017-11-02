@@ -65,7 +65,7 @@ public class VersionContainer extends ContentSection implements Comparable<Versi
         if (indexFile.exists()) {
             rootsMap.put("intro", new Page(indexFile, true));
         }
-        boolean newStructure = version.equals("122");
+        boolean newStructure = numericVersion >= 12.2;
         // Relocate java tutorial from root under java dev guide:
         relocate(rootsMap, "xap" + version + "tut", "xap" + version);
         relocate(rootsMap, "tut-java", newStructure ? "started" : "dev-java");
