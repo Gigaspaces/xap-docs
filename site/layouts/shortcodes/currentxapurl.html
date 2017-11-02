@@ -1,9 +1,9 @@
-{{ if in .Page.Permalink "9.7" }}{{"/xap/9.7"}}
-{{ else if in .Page.Permalink "10.0" }}{{"/xap/10.0"}}
-{{ else if in .Page.Permalink "10.1" }}{{"/xap/10.1"}}
-{{ else if in .Page.Permalink "10.2" }}{{"/xap/10.2"}}
-{{ else if in .Page.Permalink "11.0" }}{{"/xap/11.0"}}
-{{ else if in .Page.Permalink "12.0" }}{{"/xap/12.0"}}
+{{ if in .Page.Permalink "12.2" }}{{"/xap/12.2"}}
 {{ else if in .Page.Permalink "12.1" }}{{"/xap/12.1"}}
-{{ else if in .Page.Permalink "12.2" }}{{"/xap/12.2"}}
+{{ else if in .Page.Permalink "12.0" }}{{"/xap/12.0"}}
+{{ else if in .Page.Permalink "11.0" }}{{"/xap/11.0"}}
+{{ else if in .Page.Permalink "10.2" }}{{"/xap/10.2"}}
+{{ else if in .Page.Permalink "10.1" }}{{"/xap/10.1"}}
+{{ else if in .Page.Permalink "10.0" }}{{"/xap/10.0"}}
+{{ else if in .Page.Permalink "9.7" }}{{"/xap/9.7"}}
 {{ else }}{{.Page.Site.Params.latest_xap_url}}{{ end }}

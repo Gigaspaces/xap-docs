@@ -1,8 +1,8 @@
-{{ if in .Page.Permalink "10.0" }}{{"/xap/10.0/tut-java"}}
-{{ else if in .Page.Permalink "10.1"}}{{"/xap/10.1/tut-java"}}
-{{ else if in .Page.Permalink "10.2"}}{{"/xap/10.2/tut-java"}}
-{{ else if in .Page.Permalink "11.0"}}{{"/xap/11.0/tut-java"}}
-{{ else if in .Page.Permalink "12.0"}}{{"/xap/12.0/tut-java"}}
+{{ if in .Page.Permalink "12.2"}}{{"/xap/12.2/tut-java"}}
 {{ else if in .Page.Permalink "12.1"}}{{"/xap/12.1/tut-java"}}
-{{ else if in .Page.Permalink "12.2"}}{{"/xap/12.2/tut-java"}}
+{{ else if in .Page.Permalink "12.0"}}{{"/xap/12.0/tut-java"}}
+{{ else if in .Page.Permalink "11.0"}}{{"/xap/11.0/tut-java"}}
+{{ else if in .Page.Permalink "10.2"}}{{"/xap/10.2/tut-java"}}
+{{ else if in .Page.Permalink "10.1"}}{{"/xap/10.1/tut-java"}}
+{{ else if in .Page.Permalink "10.0" }}{{"/xap/10.0/tut-java"}}
 {{ else }}{{ index .Page.Site.Params "latest_java_tut_url"}}{{ end }}
