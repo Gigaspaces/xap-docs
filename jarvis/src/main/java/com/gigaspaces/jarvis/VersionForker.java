@@ -58,10 +58,10 @@ public class VersionForker {
         }
         logger.info("Forking " + srcVersion + " to " + dstVersion);
         try {
-            //forkContent();
-            //forkLayouts();
-            //forkNavbar();
-            //updateConfigToml();
+            forkContent();
+            forkLayouts();
+            forkNavbar();
+            updateConfigToml();
             updateShortcodes();
             logger.info("Forking completed");
             VersionContainer result = new VersionContainer(destPath.toFile());
