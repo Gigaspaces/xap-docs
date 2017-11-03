@@ -287,7 +287,7 @@ When LRMI logging is turned on, the space displays the following when started:
 To test LRMI logging, you can run the `space ping` utility using the following command. See [space ping](./space-gigaspaces-cli.html#ping) for more information on this utility.:
 
 ```bash
-<XAP Root>/bin/gs.bat space ping mySpace_container mySpace -r -i 1
+<XAP Root>/bin/gs.bat space ping mySpace_container mySpace -i 1
 ```
 
 {{% align center %}}
