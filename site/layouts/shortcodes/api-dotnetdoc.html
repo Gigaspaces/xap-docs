@@ -7,4 +7,4 @@
 {{ else if in .Page.Permalink "10.1"}}{{"https://docs.gigaspaces.com/api/dotnetdocs10.1/html"}}
 {{ else if in .Page.Permalink "10.0"}}{{"https://docs.gigaspaces.com/api/dotnetdocs10.0/html"}}
 {{ else if in .Page.Permalink "9.7"}}{{"https://docs.gigaspaces.com/api/dotnetdocs9.7/html"}}
-{{else}}{{"https://docs.gigaspaces.com/api_documentation/"}}{{end}}
+{{ else }}{{.Page.Site.Params.latest_api_dotnet_url}}{{ end }}

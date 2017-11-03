@@ -7,4 +7,4 @@
 {{ else if in .Page.Permalink "10.1"}}{{"https://docs.gigaspaces.com/api/JavaDoc10.1"}}
 {{ else if in .Page.Permalink "10.0"}}{{"https://docs.gigaspaces.com/api/JavaDoc10.0"}}
 {{ else if in .Page.Permalink "9.7"}}{{"https://docs.gigaspaces.com/api/JavaDoc9.7"}}
-{{else}} {{"https://docs.gigaspaces.com/api_documentation/"}}{{end}}
+{{ else }}{{.Page.Site.Params.latest_api_java_url}}{{ end }}

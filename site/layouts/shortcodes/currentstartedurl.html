@@ -1,1 +1,3 @@
-{{index .Page.Site.Params "latest_started_url"}}
+{{ if in .Page.Permalink "12.2"}}{{"/xap/12.2/started"}}
+{{ else if in .Page.Permalink "12.3" }}{{"/xap/12.3/started"}}
+{{else}}{{.Page.Site.Params.latest_started_url}}{{ end }}
