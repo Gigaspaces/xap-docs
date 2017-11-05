@@ -1,17 +1,21 @@
 package com.gigaspaces.jarvis.model;
 
+import com.gigaspaces.jarvis.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Page implements Comparable<Page> {
 
+    private static final String YAML_SEPARATOR = "---";
     private final File file;
     private final boolean index;
     private final String id;
     private final String title;
-    private final Long weight;
+    private Long weight;
     private final String href;
     private final String parent;
     private final TreeSet<Page> children = new TreeSet<>();
@@ -23,7 +27,7 @@ public class Page implements Comparable<Page> {
         String filename = index ? "" : file.getName().replace(".markdown", "");
         this.id = category + "/" + filename;
 
-        Properties properties = extractProperties(file);
+        Properties properties = loadProperties();
         this.title = properties.getProperty("title");
         this.weight = properties.containsKey("weight") ? Long.valueOf(properties.getProperty("weight")) : null;
 
@@ -75,26 +79,21 @@ public class Page implements Comparable<Page> {
         return new String[]{product, version, s};
     }
 
-    private static Properties extractProperties(File file) throws IOException {
+    private Properties loadProperties() throws IOException {
         if (file.getName().contains("--")) {
             throw new IOException("File names can't contain more then one '-' :" + file.getName());
         }
 
-        Scanner scanner = new Scanner(file);
         Properties properties = new Properties();
-        boolean foundHeader = false;
-        boolean foundFooter = false;
-
-        try {
-            while (scanner.hasNextLine() && !foundFooter) {
+        AtomicInteger separators = new AtomicInteger(0);
+        
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
                 final String line = scanner.nextLine().trim();
-                if (line.equals("---")) {
-                    if (!foundHeader) {
-                        foundHeader = true;
-                    } else {
-                        foundFooter = true;
-                    }
-                } else if (foundHeader) {
+                if (line.equals(YAML_SEPARATOR)) {
+                    if (separators.incrementAndGet() > 1)
+                        break;
+                } else if (separators.get()  == 1) {
                     int pos = line.indexOf(':');
                     if (pos != -1) {
                         String name = line.substring(0, pos).trim();
@@ -103,12 +102,33 @@ public class Page implements Comparable<Page> {
                     }
                 }
             }
-        } finally {
-            scanner.close();
         }
 
         return properties;
     }
+    
+    private void flushProperties(Map<String, String> proeprties) {
+        try {
+            AtomicInteger separators = new AtomicInteger(0);
+            ArrayList<String> lines = new ArrayList<>();
+            Files.lines(file.toPath()).forEach(l -> {
+                String result = l;
+                if (l.equals(YAML_SEPARATOR))
+                    separators.incrementAndGet();
+                else if (separators.get() == 1) {
+                    for (Map.Entry entry : proeprties.entrySet()) {
+                        if (l.startsWith(entry.getKey() + ":"))
+                            result = entry.getKey() + ": " + entry.getValue();
+                    } 
+                }
+                lines.add(result);
+            });
+        Files.write(file.toPath(), lines, StandardOpenOption.CREATE);
+        } catch (IOException e) {
+            Logger.getInstance().warning("Failed to flush changes to " + file);
+        }
+    }
+    
 
     public void addChild(Page p) {
         children.add(p);
@@ -138,6 +158,13 @@ public class Page implements Comparable<Page> {
 
     public Long getWeight() {
         return weight;
+    }
+
+    public void setWeight(long weight) {
+        this.weight = weight;
+        Map<String, String> properties = new HashMap<>();
+        properties.put("weight", String.valueOf(weight));
+        flushProperties(properties);
     }
 
     public String getId() {

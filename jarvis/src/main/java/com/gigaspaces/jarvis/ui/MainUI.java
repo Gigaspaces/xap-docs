@@ -16,12 +16,18 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
 import java.awt.Font;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.io.File;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JTree;
 import javax.swing.SwingUtilities;
+import javax.swing.TransferHandler;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 /**
@@ -47,6 +53,7 @@ public class MainUI extends javax.swing.JFrame {
         this.hugoContainer = new HugoContainer(config);
         changeDefaultFont(config);
         initComponents();
+        pagesTree.setTransferHandler(new PageTransferHandler());
         outputTextArea.setText(tempLog.toString());
     }
     
@@ -95,7 +102,7 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     private Page getPageIfExists(DefaultMutableTreeNode node) {
-        return node.getUserObject() instanceof Page ? (Page) node.getUserObject() : null;
+        return node != null && node.getUserObject() instanceof Page ? (Page) node.getUserObject() : null;
     }
 
     private void appendPage(DefaultTreeModel tree, Page page, DefaultMutableTreeNode parent) {
@@ -134,6 +141,103 @@ public class MainUI extends javax.swing.JFrame {
         }
     }
 
+    private class PageTransferHandler extends TransferHandler {
+
+        private TreePath selectedPath;
+        
+        @Override
+        public int getSourceActions(JComponent c) {
+            //logger.info("getSourceActions");
+            return TransferHandler.COPY_OR_MOVE;
+        }
+
+        /**
+         *  This method bundles up the data to be exported into a Transferable object in preparation for the transfer. c
+         */
+        @Override
+        protected Transferable createTransferable(JComponent c) {
+            this.selectedPath = ((JTree)c).getSelectionPath();
+            String result = selectedPath.toString();
+            //logger.info("createTransferable: result=" + result);
+            return new StringSelection(result);
+        }
+
+
+        /**
+         * This method is called repeatedly during a drag gesture and returns true if the area below the cursor 
+         * can accept the transfer, or false if the transfer will be rejected. 
+         */
+        @Override
+        public boolean canImport(TransferSupport support) {
+            //return super.canImport(support); //To change body of generated methods, choose Tools | Templates.
+            return true;
+        }
+        
+        /**
+         * This method is called on a successful drop (or paste) and initiates the transfer of data to the 
+         * target component. This method returns true if the import was successful and false otherwise.
+         * @param support
+         * @return 
+         */
+        @Override
+        public boolean importData(TransferSupport support) {
+            if (!support.isDrop())
+                return false;
+            JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
+            DefaultMutableTreeNode srcNode = (DefaultMutableTreeNode) selectedPath.getLastPathComponent();
+            DefaultMutableTreeNode dstNode = (DefaultMutableTreeNode) dl.getPath().getLastPathComponent();
+            String errorMessage = processDragDrop(srcNode, dstNode, dl.getChildIndex());
+            if (errorMessage != null)
+                logger.warning("Cannot move " + selectedPath + " to " + dl.getPath() + ": " + errorMessage);
+            return errorMessage == null;
+        }
+        
+        private String processDragDrop(DefaultMutableTreeNode srcNode, DefaultMutableTreeNode dstNode, int dstIndex) {
+            //logger.info("Node: " +srcNode + " => " + dstNode);
+            if (srcNode.getChildCount() != 0) 
+                return "Moving pages with children is not supported (yet)";
+            if (dstIndex == -1)
+                return "Changing hierarchy is not supported (yet)";
+            if (srcNode.getParent() != dstNode) 
+                return "Moving a page to a different parent is not supported (yet)";
+            
+            Page srcPage = getPageIfExists(srcNode);
+            Page pageBefore = getPageIfExists(dstIndex == 0 ? null : (DefaultMutableTreeNode)dstNode.getChildAt(dstIndex-1));
+            Page pageAfter = getPageIfExists((DefaultMutableTreeNode)dstNode.getChildAt(dstIndex));
+            // Skip if move is redundant
+            if (srcPage == pageBefore || srcPage == pageAfter)
+                return "Skipped - nothing to move";
+            long weightBefore = pageBefore != null ? pageBefore.getWeight() : 0;
+            long weightAfter = pageAfter.getWeight();
+            long newWeight = (weightBefore + weightAfter) / 2;
+            if (pageBefore != null)
+                logger.info("Moving " + pageWithWeight(srcPage) + " between " + pageWithWeight(pageBefore) + " and " + pageWithWeight(pageAfter) + " - new weight " + newWeight);
+            else 
+                logger.info("Moving " + pageWithWeight(srcPage) + " before " + pageWithWeight(pageAfter) + " - new weight " + newWeight);
+            srcPage.setWeight(newWeight);
+            
+            DefaultTreeModel model = (DefaultTreeModel) pagesTree.getModel();            
+            int srcIndex = dstNode.getIndex(srcNode);
+            model.removeNodeFromParent(srcNode);
+            model.insertNodeInto(srcNode, dstNode, srcIndex < dstIndex ? dstIndex - 1 : dstIndex);           
+            return null;
+        }
+
+        private String pageWithWeight(Page p) {
+            return p.getTitle() + " [" + p.getWeight() + "]";
+        }
+        
+        /**
+         * This method is invoked after the export is complete. When the action is a MOVE, the data needs to 
+         * be removed from the source after the transfer is complete — this method is where any necessary 
+         * cleanup occurs.
+         */
+        @Override
+        protected void exportDone(JComponent source, Transferable data, int action) {
+            // Since we're doing drag-n-drop on the same component, everything is handled in importData
+        }        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -255,6 +359,8 @@ public class MainUI extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         pagesTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        pagesTree.setDragEnabled(true);
+        pagesTree.setDropMode(javax.swing.DropMode.ON_OR_INSERT);
         pagesTree.setRootVisible(false);
         pagesTree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
