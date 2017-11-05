@@ -85,11 +85,10 @@ The notify registration:
 
 
 ```java
-EventSessionFactory factory = EventSessionFactory.getFactory(space);
 EventSessionConfig config = new EventSessionConfig();
-DataEventSession session = factory.newDataEventSession(config, null);
+DataEventSession session = space.newDataEventSession(config);
 MyNotifyFilter filter = new MyNotifyFilter ();
-EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,filter,NotifyActionType.NOTIFY_ALL);
+EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,filter);
 ```
 
 When writing the following objects, only `msg1` is delivered to the client who registered for notifications:

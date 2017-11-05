@@ -78,10 +78,9 @@ When registering for events, use `EventSessionConfig.setFifo(true)` to instruct 
 // Create an event session configuration with FIFO:
 EventSessionConfig sessionConfig = new EventSessionConfig();
 sessionConfig.setFifo(true);
+
 // Create a data event session using the configuration:
-EventSessionFactory sessionFactory = EventSessionFactory.getFactory(space.getSpace());
-DataEventSession session = sessionFactory.newDataEventSession(sessionConfig, null);
-// Subscribe to an event:
+DataEventSession session = space.newDataEventSession(config);
 session.addListener(new Person(), listener);
 ```
 
