@@ -23,10 +23,9 @@ Using the `com.gigaspaces.events.EventSessionConfig` set the durable notificatio
 
 
 ```java
-EventSessionFactory factory = EventSessionFactory.getFactory(space);
 EventSessionConfig config = new EventSessionConfig();
 config.setDurableNotifications(true);
-DataEventSession session = factory.newDataEventSession(config);
+DataEventSession session = space.newDataEventSession(config);
 ```
 
 # Batch Parameters

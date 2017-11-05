@@ -7,11 +7,6 @@ weight: 300
 ---
 
 
-{{%ssummary%}} {{%/ssummary%}}
-
-
-
-
 In some cases, SBA applications require the ability to call the user's business logic once a relevant event occurs in the space. This can be a trader desk application that is notified when a quote stock object modifies its data, or when a matching engine removes/updates a matched order. The space supports a message delivery mechanism that allows clients to register for matching events inside the space - aka Continuous query. Once a matching event occurs in the space, the space triggers an event and notifies the client by calling the client business logic.
 
 The Event Session API is the low level API for notifications. It is preferable to use the high level [Notify Container](./notify-container.html) with simple continuous query scenarios. You can use the Notify Container programmatically using its `SimpleNotifyContainerConfigurer`.
@@ -90,20 +85,19 @@ Starting with XAP 8.0.6 Local view using the replication mechanism to update the
 # Register for Notifications
 {{%tabs%}}
 
-{{%tab "   EventSessionFactory "%}}
-The `EventSessionFactory` creates `DataEventSession` objects. The `EventSessionFactory` is associated with a space, and is required in order to create a factory. Once a factory has been created, it can be used to create sessions. Every session is configured according to an `EventSessionConfig` object and is bounded to a transaction.
+{{%tab "EventSession"%}}
+Sessions are created with the `space.newDataEventSession` method. Every session is configured according to an EventSessionConfig object and is bound to a transaction.
 
-The `EventSessionFactory` includes the following methods:
+Example:
 
 ```java
-EventSessionFactory getFactory(IJSpace)
-DataEventSession newDataSession(IJSpace, Transaction, String)
-DataEventSession newDataEventSession(EventSessionConfig, Transaction)
+EventSessionConfig config = new EventSessionConfig();
+DataEventSession session = space.newDataEventSession(config);
 ```
-{{% /tab   %}}
+{{%/tab%}}
 
-{{%tab "   Simple Template Registration"%}}
-Here is an example for getting an `EventSessionFactory`, generating a `DataEventSession`, and registering for notifications using simple template and cancelling the registration:
+{{%tab "Simple Template Registration"%}}
+Here is an example for creating the `DataEventSession` and registering for notifications using simple template and cancelling the registration:
 
 
 ```java
@@ -111,20 +105,19 @@ public class DataSessionEventExample implements RemoteEventListener
 {
  public void simpleTemplate() throws Exception
  {
-   EventSessionFactory factory = EventSessionFactory.getFactory(space);
    EventSessionConfig config = new EventSessionConfig();
-   DataEventSession session = factory.newDataEventSession(config);
-   EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,null,NotifyActionType.NOTIFY_ALL);
+   DataEventSession session = space.newDataEventSession(config);
+   EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,null);
    // wait for notifications
    session.removeListener(registration );
    session.close();
  }
 }
 ```
-{{% /tab   %}}
+{{%/tab%}}
 
-{{%tab "  SQLQuery Template Registration"%}}
-Here is an example for getting an `EventSessionFactory`, generating a `DataEventSession`, and registering for notifications using a `SQLQuery}`template and cancelling the registration:
+{{%tab "SQLQuery Template Registration"%}}
+Here is an example for creating the `DataEventSession` and registering for notifications using a `SQLQuery}`template and cancelling the registration:
 
 
 ```java
@@ -132,20 +125,19 @@ public class DataSessionEventExample implements RemoteEventListener
 {
   public void sqlTemplate() throws Exception
   {
-   EventSessionFactory factory = EventSessionFactory.getFactory(space);
    EventSessionConfig config = new EventSessionConfig();
-   DataEventSession session = factory.newDataEventSession(config, null);
+   DataEventSession session = space.newDataEventSession(config); 
    SQLQuery query = new SQLQuery (new MyData() , "m_integer > 22 and m_long > 15");
-   EventRegistration registration = session.addListener(query ,this,Lease.FOREVER,null,null,NotifyActionType.NOTIFY_ALL);
+   EventRegistration registration = session.addListener(query ,this,Lease.FOREVER,null,null);
    // wait for notifications
    session.removeListener(registration );
    session.close();
  }
 }
 ```
-{{% /tab   %}}
+{{%/tab%}}
 
-{{%tab "  Batch Notification Registration"%}}
+{{%tab "Batch Notification Registration"%}}
 When a client expects to receive a large amount of events, it is recommended to deliver the events from the space into the client in batches. Batch notifications minimize the amount of remote calls the space needs to perform in order to deliver the events to the client. The downside when using this approach is the potential of some latency issues when delivering the events to the client.
 
 
@@ -155,15 +147,14 @@ public class DataSessionEventExample implements RemoteEventListener
  public void batchNotify() throws Exception
  {
   final long TIME = 5000;
-  EventSessionFactory factory = EventSessionFactory.getFactory(space);
   EventSessionConfig config = new EventSessionConfig();
   config.setFifo(true);
 
   // setting batch size to 3 entries
   config.setBatch(3, TIME);
-  DataEventSession session = factory.newDataEventSession(config, null);
+  DataEventSession session = space.newDataEventSession(config);
 
-  EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,null,NotifyActionType.NOTIFY_ALL);
+  EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,null);
 
   // wait for notifications
   session.removeListener(registration);
@@ -171,10 +162,10 @@ public class DataSessionEventExample implements RemoteEventListener
  }
 }
 ```
-{{% /tab   %}}
+{{%/tab%}}
 
-{{%tab "  EventSession "%}}
-The session-based API defines an entity called `EventSession` -- a stateful registration service that is used to register/un-register listeners to the space. The `EventSession` is created using the `EventSessionFactory`, and configured using the `EventSessionConfig` entity.
+{{%tab "EventSession"%}}
+The session-based API defines an entity called `EventSession` -- a stateful registration service that is used to register/un-register listeners to the space. The `EventSession` is created using the `space.newDataEventSession` method, and configured using the `EventSessionConfig` entity.
 
 The `EventSessionConfig` can be configured using: <br>
 - A specific API  <br>
@@ -186,9 +177,6 @@ The created session is bound to a specific space (or cluster), and can be bounde
 
 The `EventSession` interface includes the following methods:
 
-
-
-
 ```java
 public interface EventSession
 {
@@ -197,7 +185,7 @@ EventSessionConfig getSessionConfig();
 void close() throws RemoteException, UnknownLeaseException;
 }
 ```
-{{% /tab   %}}
+{{%/tab%}}
 
 {{%tab "  DataEventSession"%}}
 The `DataEventSession` is a unified class that encapsulate the capabilities of the:
@@ -238,9 +226,9 @@ public interface DataEventSession extends EventSession
   void removeListener(EventRegistration registration) throws RemoteException, UnknownLeaseException;
 }
 ```
-{{% /tab   %}}
+{{%/tab%}}
 
-{{%tab "  EventRegistration"%}}
+{{%tab "EventRegistration"%}}
 
 The `EventRegistration` is a utility class used as a return value for event-interest registration methods. Objects in this class encapsulate the information needed by a client in order to identify a notification as a response to a registration request, and to maintain that registration request. It is not mandatory for an event-interest registration method to use this class.
 
@@ -266,9 +254,9 @@ long getSequenceNumber()
 Object getSource()
 }
 ```
-{{% /tab   %}}
+{{%/tab%}}
 
-{{%tab "  EventSessionConfig "%}}
+{{%tab "EventSessionConfig"%}}
 
 This class is used to configure an `EventSession`. It contains a set of configuration parameters that influence the way event listeners are registered with the space, and how event notifications are processed.
 
@@ -477,11 +465,10 @@ The notify registration:
 
 
 ```java
- EventSessionFactory factory = EventSessionFactory.getFactory(space);
  EventSessionConfig config = new EventSessionConfig();
- DataEventSession session = factory.newDataEventSession(config, null);
+ DataEventSession session = space.newDataEventSession(config);
  MyNotifyFilter filter = new MyNotifyFilter ();
- EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,filter,NotifyActionType.NOTIFY_ALL);
+ EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,filter);
 ```
 
 When writing the following objects, only `msg1` is delivered to the client who registered for notifications:
@@ -504,10 +491,6 @@ The `INotifyDelegatorFilter` implementation class should be part of the space cl
 {{%/tabs%}}
 
 
-
-
-
-
 # Advanced Options
 
 
@@ -515,16 +498,15 @@ The `INotifyDelegatorFilter` implementation class should be part of the space cl
 When having a system that requires  large number of listeners (above few hundreds) the `Multiplex` communication mode should be used. With this mode the amount of resources (threads) used to invoke the listener are shared between all the session listeners. This approach reduces the memory footprint of the client considerably. This option avoiding the need to construct multiple [notify containers|notify container] that may consume large amount of resources when having many of these created. See below how the `MULTIPLEX` communication mode should be used:
 
 ```java
- EventSessionFactory factory = EventSessionFactory.getFactory(space.getSpace());
  EventSessionConfig config = new EventSessionConfig();
  config.setComType(ComType.MULTIPLEX);
- DataEventSession session = factory.newDataEventSession(config);
+ DataEventSession session = space.newDataEventSession(config);
 
  for (int i=0;i<100;i++)
  {
   Listener lisenter = new Listener("Listener " + i);
   SQLQuery<MyData> query = new SQLQuery<MyData>(MyData.class , "key1='A"+i+"'");
-  EventRegistration registration = session.addListener(query,lisenter,Lease.FOREVER,null,null,NotifyActionType.NOTIFY_ALL);
+  EventRegistration registration = session.addListener(query,lisenter,Lease.FOREVER,null,null);
  }
 ```
 
@@ -670,11 +652,11 @@ This means that during this very short period of time, the registered client mig
 
 To ensure notification delivery by the backup space during the failover period, durable notifications mode needs to be enabled:
 
+
 ```java
-  EventSessionFactory factory = EventSessionFactory.getFactory(space);
   EventSessionConfig config = new EventSessionConfig();
   config.setDurableNotifications(true);
-  DataEventSession session = factory.newDataEventSession(config);
+  DataEventSession session = space.newDataEventSession(config);
 ```
 
 Durable notifications are based on the replication mechanism and as such have some different semantics regarding other `EventSessionConfig` parameters.

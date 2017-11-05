@@ -663,11 +663,13 @@ This means that during this very short period of time, the registered client mig
 
 To ensure notification delivery by the backup space during the failover period, durable notifications mode needs to be enabled:
 
+
 ```java
   EventSessionConfig config = new EventSessionConfig();
   config.setDurableNotifications(true);
   DataEventSession session = space.newDataEventSession(config);
 ```
+ 
 
 Durable notifications are based on the replication mechanism and as such have some different semantics regarding other `EventSessionConfig` parameters.
 For further details see [Durable Notifications](./durable-notifications.html).
