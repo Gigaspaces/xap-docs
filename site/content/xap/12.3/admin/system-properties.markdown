@@ -70,6 +70,16 @@ Refer to [Change code without restarts]({{%currentjavaurl%}}/the-space-no-restar
 | com.gs.pu.classloader.os-in-common-classloader |   | false  |
 
 
+# Lookup Service
+
+| Property name | Description | Default   |
+|-----|-----|------|
+| com.sun.jini.reggie.eventTaskManager.maxThreads | Maximum number of threads handling event notifications | 40 |
+| com.sun.jini.reggie.eventTaskManager.timeout | Idle time before a thread exits  | 1500 ms |
+| com.sun.jini.reggie.eventTaskManager.retriesOnIdle | Timeout retries before a thread exits   | 10 |
+| com.sun.jini.reggie.maxEventsPerEventReg | Maximum number of events to keep per event registration listener | 1500 |
+
+
 # LRMI
 
 ## Transport
