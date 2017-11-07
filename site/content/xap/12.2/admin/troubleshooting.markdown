@@ -6,29 +6,15 @@ parent: none
 weight: 1350
 ---
 
+This troubleshooting section provides a comprehensive list of [common user Issues](./troubleshooting-common-user-issues.html) that may occur while developing and deploying XAP-based user applciations, along with troubleshooting methodology, possible causes, and what information to collect if you have to consult with GigaSpaces support.
 
+This section also provides [guidelines](./troubleshooting-protective-modes.html) for building highly robust and efficient applications, with instructions on how to avoid common mistakes.
 
-In this guide you will find useful information on how to troubleshoot your XAP application. Common user issues, failure detection and tools are presented.
+However, if you encounter problems that require troublshooting, the following may be helpful:
 
-<br>
+- Verifying your local or remote installation by [testing the system environment](./troubleshooting-testing-system-environment.html).
+- [Viewing the clustered Space status](./troubleshooting-viewing-clustered-space-status.html) using different logging levels.
+- Configuring the [Failure Detection](./troubleshooting-failure-detection.html)parameters more accurately to reduce the failure detection time and avoid the need for failover.
 
- {{%fpanel%}}
+A list of recommended [troubleshooting tools](./troubleshooting-tools.html) is also provided, which can be used for testing a running product and identifying environmental issues.
 
-[Common user Issues](./troubleshooting-common-user-issues.html){{<wbr>}}
-Troubleshooting common user mistakes which might lead to issues.
-
-[Protective Modes](./troubleshooting-protective-modes.html){{<wbr>}}
-Guidelines for building highly  robust and efficient applications as well as to avoid common mistakes.
-
-[Testing System Environment](./troubleshooting-testing-system-environment.html){{<wbr>}}
-Verifying a local installation and a remote installation.
-
-[Viewing Clustered Space Status](./troubleshooting-viewing-clustered-space-status.html){{<wbr>}}
-The status of clustered spaces can be viewed using different logging levels.
-
-[Failure Detection](./troubleshooting-failure-detection.html){{<wbr>}}
-About failure detection, reducing failure detection time, and relevant parameters.
-
-[Tools](./troubleshooting-tools.html){{<wbr>}}
-Troubleshooting tools for testing a running product and environmental issues.
-{{%/fpanel%}}
