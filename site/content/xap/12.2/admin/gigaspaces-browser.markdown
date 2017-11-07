@@ -6,18 +6,9 @@ parent: gigaspaces-management-center.html
 weight: 50
 ---
 
+The GigaSpaces Management Center is a Graphical User Interface that allows you to view spaces, containers, and clusters and configure them, using the Space Browser tab. You can also deploy and manage services using the Deployments tab.
 
-{{% note "Using the XAP Management Center in production and large-scale environments "%}}
-
-It is highly recommended to run the XAP Management Center on the **same network subnet** as the Data-Grid and other GigaSpaces runtime components are running. Since the Management Center communicates with the Data-Grid,GSCs, GSM, GSA and Lookup-Service continuously, it should have fast connectivity with these components. High latency connectivity will impact the responsiveness of the  Management Center and its initial bootstrap time. In production environments you should use remote desktop products such as [VNC](http://www.realvnc.com/products/free/4.1/index.html) or [No Machine](http://www.nomachine.com), run the  Management Center at the **same** network subnet as the Data-Grid and the other XAP runtime components and run the VNC or NX client side to access the remote machines desktop from the administrator machine desktop.
-
-With relatively large amount of GSCs , Services or Data-Grid partitions (over 20 units) it is recommended to increase the heap size of the XAP Management Center to 1G (-Xmx1g).
-{{% /note %}}
-
-
-XAP Management Center is a Graphical User Interface that allows you to view spaces, containers, and clusters and configure them, using the Space Browser tab. You can also deploy and manage services using the Deployments tab.
-
-**To start the XAP Management Center, run:**
+**To start the GigaSpaces Management Center, run:**
 
 
 {{%tabs%}}
@@ -37,11 +28,11 @@ XAP Management Center is a Graphical User Interface that allows you to view spac
 
 
 
-The XAP Management Center is separated into 3 tabs (Space Browser, Deployment, Details, Utilization):
+The GigaSpaces Management Center is separated into 3 tabs (Space Browser, Deployment, Details, Utilization):
 
 ![GigaSpaces_Management_Center_6.5_M7.jpg](/attachment_files/GigaSpaces_Management_Center_6.5_M7.jpg)
 
-Each XAP Management Center tab is described in a dedicated documentation tab below:
+Each GigaSpaces Management Center tab is described in a dedicated documentation tab below:
 
 
 

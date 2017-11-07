@@ -8,43 +8,23 @@ weight: 200
 
 
 
+The Web Management console is a web application that enables GigaSpaces application users to quickly understand the state of a running XAP cluster. Users can also monitor the components that are running, such as the physical hosts, JVMs and deployed processing units.
 
-The XAP web management console is a web application which was designed to enable XAP users to quickly understand the state of a running XAP cluster and monitor the running components, i.e. physical hosts, JVMs and deployed processing units.
+This user interface complements the functionality of the GigaSpaces Management Center.
 
+{{% align center%}}
+![dashboard803_9_6.png](/attachment_files/web-console/dashboard.jpg)
+{{% /align%}}
 
-<br>
+You can [configure](./web-management-console-configuration.html) the 'locale' parameter (localization of the user interface, namely the language that is displayed). There are also multiple deployment options for [starting the console](./web-management-console-starting.html).
 
-{{%fpanel%}}
+The following functionality is available in the Web Management console:
 
-[Web Management Console](./web-management-console-console.html){{<wbr>}}
-The web management console is a new user interface for XAP allowing users to deploy, manage and monitor their Processing Units and Applications
-
-[Configuration](./web-management-console-configuration.html){{<wbr>}}
-Configuring various options and customizing the management console.
-
-[Starting the console](./web-management-console-starting.html){{<wbr>}}
-Reviews the different deployment option of the web management console
-
-[Hosts](./web-management-hosts-view.html){{<wbr>}}
-This screen enables you to monitor the physical resources of your cluster.
-
-[Menu Bar](./web-management-common-view.html){{<wbr>}}
-The menu bar for the web management UI is common across all tabs. It lets you deploy Processing Units and Spaces, view Alerts and Events.
-
-[Processing Units](./web-management-pu.html){{<wbr>}}
-This screen enables you to monitor the physical resources of your processing units.
-
-[Spaces](./web-management-data-grid-view.html){{<wbr>}}
-The Data Grid view provides Space and Space instance navigation, for querying data and viewing class metadata.
-
-[Monitoring](./web-management-monitoring.html){{<wbr>}}
-This view displays monitoring information about the deployed topology and its components. You can configure your own templates.
-
-
-[Dump](./web-management-dump.html){{<wbr>}}
-The dump feature of the Admin API allows to easily generate dump information out of GigaSpaces runtime environment.
-
-
-{{%/fpanel%}}
+- [Hosts](./web-management-hosts-view.html) - Monitor the physical resources of your cluster.
+- [Menu Bar](./web-management-common-view.html) - Use the commands here to deploy Processing Units and Spaces, and to view Alerts and Events.
+- [Processing Units](./web-management-pu.html) - Monitor the physical resources of the Processing Units.
+- [Spaces](./web-management-data-grid-view.html) - The Data Grid view provides Space and Space instance navigation for querying data and viewing class metadata.
+- [Monitoring](./web-management-monitoring.html) - View monitoring information about the deployed topology and its components (you can configure your own templates).
+- [Dump](./web-management-dump.html) - Use the dump feature of the Admin API to generate dump information about the GigaSpaces application runtime environment.
 
  
