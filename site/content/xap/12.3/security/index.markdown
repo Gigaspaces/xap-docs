@@ -75,7 +75,7 @@ Security is configured using a property file that includes required and custom p
 
 * [Space and Processing Unit](security-configurations.html) configuration options
 * [Grid components](security-configurations-ext.html) configuration options
-* [Web-UI](securing-the-web-ui.html) and [RESTful API](../admin/xap-manager-rest-overview.html#security) configuration options
+* [Web-UI](securing-the-web-ui.html) and [RESTful API](../admin/xap-manager-rest.html#security) configuration options
 
 # Enabling Security
 
@@ -83,7 +83,7 @@ Security can be enabled separately for the data layer and the grid layer.
 
 * The [data layer](securing-your-data.html) has options to declare a secured Space or Processing Unit.
 * The [grid layer](securing-the-grid-services.html) has options to declare the Grid as secured.
-* The [Web-UI](securing-the-web-ui.html) and [RESTful API](../admin/xap-manager-rest-overview.html#security) authenticate against the other XAP components (see the configuration options).
+* The [Web-UI](securing-the-web-ui.html) and [RESTful API](../admin/xap-manager-rest.html#security) authenticate against the other XAP components (see the configuration options).
 
 # Administration and Management tools
 

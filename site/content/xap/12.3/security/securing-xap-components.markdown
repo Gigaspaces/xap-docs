@@ -22,5 +22,5 @@ You can apply security settings at the following levels:
 To administer and manage these components, set security configurations for:
 
 - [Web-UI](./securing-the-web-ui.html) - using a secured Web-UI server.
-- [RESTful API](../admin/xap-manager-rest-overview.html#security) - using a secured RESTful API.
+- [RESTful API](../admin/xap-manager-rest.html#security) - using a secured RESTful API.
 

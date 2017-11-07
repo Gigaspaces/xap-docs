@@ -54,4 +54,4 @@ The REST server, an integrated component of the [XAP Manager](../admin/xap-manag
 performs authentication and checks for sufficient privileges when executing RESTful operations.
 Being an HTTP protocol, you must explicitly enable or disable SSL.
 
-See [REST Manager API](../admin/xap-manager-rest-overview.html#security) section.
+See [REST Manager API](../admin/xap-manager-rest.html#security) section.

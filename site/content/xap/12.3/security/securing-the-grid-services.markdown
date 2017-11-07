@@ -37,7 +37,7 @@ A secured GSM can **only** connect to another secured GSM. This means that a Pro
 
 # XAP Manager
 
-The [XAP Manager](../admin/xap-manager.html) is a component which stacks together the LUS and GSM along with ZooKeeper and a [RESTful Management API](../admin/xap-manager-rest.html). The privileges of the GSM are the same as if it were standalone. For each REST operation, we list the required privilege in the yaml file, also viewable in the Swagger tool (see [RESTful API](../admin/xap-manager-rest-overview.html)). For example, starting a container would require **Manage Grid** privileges. Deploying a Space or a Processing Unit would require **Provision PU** privileges. For more information about using the RESTful API with security, refer to [RESTful API - Security](../admin/xap-manager-rest-overview.html#security)
+The [XAP Manager](../admin/xap-manager.html) is a component which stacks together the LUS and GSM along with ZooKeeper and a [RESTful Management API](../admin/xap-manager-rest.html). The privileges of the GSM are the same as if it were standalone. For each REST operation, we list the required privilege in the yaml file, also viewable in the Swagger tool (see [RESTful API](../admin/xap-manager-rest.html)). For example, starting a container would require **Manage Grid** privileges. Deploying a Space or a Processing Unit would require **Provision PU** privileges. For more information about using the RESTful API with security, refer to [RESTful API - Security](../admin/xap-manager-rest.html#security)
 
 ## Elastic Processing Units
 

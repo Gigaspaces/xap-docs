@@ -546,7 +546,7 @@ com.gigaspaces.metrics.sampler.level = INFO
 com.gigaspaces.security.level = INFO
 ```
 
-This logger corresponds to the security of GigaSpaces components. This includes configuration and runtime execution of security functionality. More information regarding GigaSpaces security is available [here]({{%currentsecurl%}}/security.html).
+This logger corresponds to the security of GigaSpaces components. This includes configuration and runtime execution of security functionality. More information regarding GigaSpaces security is available [here]({{%currentsecurl%}}/).
  
 # Web Container
 
