@@ -34,6 +34,10 @@ A security properties file is first located by using a direct path. If it doesn'
 
 The default Grid components security configuration file is `grid-security.properties`. It can be located anywhere in the classpath or in the classpath under `config/security`. Here you can declare different configurations that will affect all the Grid components (such as GSA, GSM, GSC) together.
 
+#### Web-UI - Security Configuration file
+
+The default Web-UI component security configuration file is `webui-security.properties`. The configuration file affects only the Web-UI. It can be located anywhere in the classpath or in the classpath under `config/security`.
+
 #### Processing Unit - Security Configuration file
 
 The default Processing Unit (Space) security configuration file is `/META-INF/spring/pu.properties`. This is equivalent to custom properties being passed to the Space. This allows you to configure different configurations for different Processing Units. Thus, having a Processing Unit Cluster point to a specific security directory.

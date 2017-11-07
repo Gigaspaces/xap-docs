@@ -53,25 +53,29 @@ The features listed below are available with the commercial licensed editions of
     - Database Authenticating
 
 - Administration tools
-    - User intefaces: gs-ui, web-ui, gs CLI
+    - User interfaces: gs-ui, web-ui, gs CLI
     - Admin API
+
+
+![layers-of-security.png](/attachment_files/security/layers-of-security.png)
 
 # Layers of Security
 
 XAP security can be applied in three separate layers:
 
-* [Data layer](securing-your-data.html) - Includes Spaces and Processing Units.
-* [Grid layer](securing-the-grid-services.html)- Includes grid components (GSA, GSM, GSC, XAP Manager + REST Manager API).
-* [Transport layer](securing-the-transport-layer-using-ssl.html) - Provides a generic network filter with SSL support.
+* The [data layer](securing-your-data.html), which includes Space and Processing Units.
+* The [grid layer](securing-the-grid-services.html), which includes grid components (GSA, GSM, GSC, XAP Manager).
+* The [transport layer](securing-the-transport-layer-using-ssl.html), which provides a generic network filter with SSL support.
 
-You can secure any of these, or all of them for maximum security.
+You may secure any of these, or all of them for maximum security.
 
 # Configuring Security
 
-Security is configured via a property file that includes required and custom properties. For more information, refer to the following parts of the Security section in this Administration guide:
+Security is configured using a property file that includes required and custom properties. For more information, refer to the following parts of the Security section in this Administration guide:
 
 * [Space and Processing Unit](security-configurations.html) configuration options
 * [Grid components](security-configurations-ext.html) configuration options
+* [Web-UI](securing-the-web-ui.html) and [RESTful API](../admin/xap-manager-rest-overview.html#security) configuration options
 
 # Enabling Security
 
@@ -79,6 +83,14 @@ Security can be enabled separately for the data layer and the grid layer.
 
 * The [data layer](securing-your-data.html) has options to declare a secured Space or Processing Unit.
 * The [grid layer](securing-the-grid-services.html) has options to declare the Grid as secured.
+* The [Web-UI](securing-the-web-ui.html) and [RESTful API](../admin/xap-manager-rest-overview.html#security) authenticate against the other XAP components (see the configuration options).
+
+# Administration and Management tools
+
+Interacting with these layers are the administration, management and monitoring tools - which include the Web Management Console (Web-UI), CLI, Management Center (UI), RESTful API and Admin API.
+
+* [Administration and Management tools](securing-administration-and-management-tools.html) configuration options
+
 
 # Security Implementations for Licensed GigaSpaces Products
 
@@ -96,11 +108,11 @@ Refer to the following sections for more information about XAP security implemen
 * For other custom security implementations, refer to [Custom Security](custom-security.html). One such custom security implementation is the [Spring Security Bridge](spring-security-bridge.html).
 
 ## Hello World Example
-The [Hello World](securing-the-helloworld-example.html) example provides a step-by-step guide to deploying a Processing Unit with a secured Space, accessing it from a remote proxy, and declaring principals using the administration tools.
+The [Hello World](securing-the-helloworld-example.html) example will guide you step by step into deploying Processing-Unit with a secured Space, accessing it from a remote proxy, and declaring principals using the administration tools.
 
 
 ## Spring Security
 
-Spring Security is one of the most mature and widely used Spring projects. GigaSpaces provides a Spring-based security bridge to enable an extensible implementation to various authentication sources. One such example is with LDAP (Lightweight Directory Access Protocol).
+Spring Security is one of the most mature and widely used Spring projects. We provide a Spring-based security bridge to enable a pluggable implementation into various authentication sources. One such example is with LDAP (Lightweight Directory Access Protocol).
 
 For more information, refer to [Spring Security Bridge](spring-security-bridge.html).
