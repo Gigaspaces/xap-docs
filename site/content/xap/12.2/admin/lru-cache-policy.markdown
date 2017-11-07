@@ -334,5 +334,5 @@ This happens since the JVM hosting the space might not perform garbage collectio
 When using the `space-config.engine.memory_usage.explicit-gc` option:
 
 - Make sure that `-XX:+DisableExplicitGC` isn't set.
-- Add `-XX:+ExplicitGCInvokesConcurrent` - this might help to reduce the impact of the `System.gc()` calls.
+- Add `-XX:+ExplicitGCInvokesConcurrent` - this might help to reduce the impact of the `System.gc()` calls (available when using Concurrent Mark Sweep).
 - Make sure that `System.gc()` is called before calculating available memory.
