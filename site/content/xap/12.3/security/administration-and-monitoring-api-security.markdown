@@ -1,9 +1,9 @@
 ---
 type: post123
-title:  Security Admin API
+title:  Admin API
 categories: XAP123SEC, PRM
 parent: security-administration.html
-weight: 300
+weight: 250
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

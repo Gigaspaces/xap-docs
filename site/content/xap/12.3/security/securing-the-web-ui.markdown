@@ -1,17 +1,17 @@
 ---
 type: post123
-title:  Web-UI
+title: Web Management Console
 categories: XAP123SEC, PRM
-parent: securing-xap-components.html
-weight: 600
+parent: security-administration.html
+weight: 300
 ---
 
 {{% ssummary %}}{{% /ssummary %}}
 
-# Enabling Security for Web-UI
+# Enabling Security
 
-The Web-UI allows for a secured access when the security `enabled` property is set.
-Usually this property is configured using `EXT_JAVA_OPTIONS` in `setenv` script and is applied to all XAP [Grid Components](securing-the-grid-services.html).
+The Web Management Console (Web-UI) allows for a secured access when the security `enabled` property is set.
+This property should be configured using `EXT_JAVA_OPTIONS` in `setenv` script and is applied to all XAP [Grid Components](securing-the-grid-services.html).
 
 The property:
 ```java
@@ -48,6 +48,6 @@ Use `-user-details-properties` to provide additional properties. This argument i
 Run the `gs-webui` script with these parameters:
 
 ```bash
-gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address==myServer
+gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address=myServer
 ```
 

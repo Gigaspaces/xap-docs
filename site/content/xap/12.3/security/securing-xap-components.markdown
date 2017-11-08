@@ -8,8 +8,8 @@ weight: 800
 
 
 
-Each major component in XAP (Data-grid, Grid Service Agent, Grid Service Manager, Grid Service Container, Processing Unit, and Web-UI) 
-has its own [security configuration](./security-configurations-ext.html) that can be adapted individually to suit the needs of your application environment. 
+Each major component in XAP (Data-grid, Grid Service Agent, Grid Service Manager, Grid Service Container, Processing Unit, and Web Management Console) 
+has its own security configuration that can be adapted individually to suit the needs of your application environment. 
 Security can also be enabled for other components and processes in the XAP environment. 
 This section explains how security relates to each component, and how to configure the properties to properly secure your application.
 
@@ -21,6 +21,6 @@ You can apply security settings at the following levels:
 
 To administer and manage these components, set security configurations for:
 
-- [Web-UI](./securing-the-web-ui.html) - using a secured Web-UI server.
-- [RESTful API](../admin/xap-manager-rest.html#security) - using a secured RESTful API.
+- [Web Management Console](./securing-the-web-ui.html) - using a secured Web-UI server.
+- [REST Manager API](../admin/xap-manager-rest.html#security) - using a secured RESTful API.
 
