@@ -62,31 +62,11 @@ Currently you cannot delete/replace a JAR file if a deployed Processing Unit is 
 
 # Security
 
-Security needs to be explicitly enabled. As with any other `grid` component, to enable the security add the system property `-Dcom.gs.security.enabled=true`. For more information, see the [Security](../security/) topics in the Administration guide. By default, to get you up and running, if nothing was configured the fallback security implementation uses a local file to save credentials (see [File-Based Security](../security/default-file-based-security-implementation-ext.html).
+The REST component is part of the XAP Manager, and it's security configuration is derived from it.
+As the REST uses an HTTP protocol, it is best to configure SSL to allow for HTTPS (secure access). 
 
-When security is enabled, the REST Manager API performs basic authentication and checks if the user has sufficient privileges to execute the operation.
+For more information about using the RESTful API with security, refer to [REST Manager API - Security](../security/securing-the-REST-manager.html) section.
 
-{{%note "Note"%}}
-Basic authentication does not encrypt user credentials, so running a XAP Manager in a secure environment without SSL is a security hazard; the system detects this and aborts. You must **explicitly** enable or disable the SSL by setting the system property `com.gs.manager.rest.ssl.enabled`.
-{{%/note%}}
-
-You can either:
-
-- Disable SSL explicitly (not recommended).
-- Enable SSL, and the system will generate a certificate for you.
-- Enable SSL and provide a trusted certificate that you own.
-
-An auto-generated certificate provides reasonable security, but if your enterprise security guidelines are more strict you can provide your own certificate.
-
-Finally, if you need to configure something that we don’t expose (we use Jetty under the hood to host the web app), you can provide your own jetty.xml file via a system property.
-
-
-|Port |System Property |Default |
-|:----|:---------------|:-------|
-|Enable/disable |com.gs.manager.rest.ssl.enabled| must be explicitly set |
-|Keystore path  |com.gs.manager.rest.ssl.keystore-path | |
-|Keystore password|com.gs.manager.rest.ssl.keystore-password| |
-|Custom config |com.gs.manager.rest.jetty.config|  |
 
 # Operations
 

@@ -333,7 +333,7 @@ Use the `-user-details-provider` and `-user-details-properties` arguments to use
 Run the `gs-webui` script with these parameters:
 
 ```bash
-gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address==myServer
+gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address=myServer
 ```
 
 # UI and Custom Credentials

@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Data
+title:  Securing the Data Layer
 categories: XAP123SEC, PRM
 parent: securing-xap-components.html
 weight: 200
