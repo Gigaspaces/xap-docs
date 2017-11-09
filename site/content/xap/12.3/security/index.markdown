@@ -91,7 +91,7 @@ Interacting with these layers are the administration, management and monitoring 
 Includes the Web Management Console (Web-UI), Command-line Interface (CLI), GigaSpaces Management Center (UI), 
 REST Manager API and Admin API.
 
-* Refer to [Administration and Management tools](securing-administration.html) for configuration options.
+* Refer to [Administration and Management tools](security-administration.html) for configuration options.
 
 
 # Security Implementations for Licensed GigaSpaces Products
