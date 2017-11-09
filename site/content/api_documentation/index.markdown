@@ -10,8 +10,8 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- {{%exurl "Javadoc" "http://docs.gigaspaces.com/api/xap/12.2.0/java/index.html"%}}
-- {{%exurl ".NET API Documentation""http://docs.gigaspaces.com/api/xap/12.2.0/dotnet/Index.html"%}}
+- {{%exurl "Javadoc" "https://resources.gigaspaces.com/api/xap/12.2.0/java/index.html"%}}
+- {{%exurl ".NET API Documentation""https://resources.gigaspaces.com/api/xap/12.2.0/dotnet/Index.html"%}}
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/12.2/core/openspaces-core.xsd)
@@ -33,8 +33,8 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- {{%exurl "Javadoc""http://docs.gigaspaces.com/api/xap/12.1.0/java/index.html"%}}
-- {{%exurl ".NET API Documentation""http://docs.gigaspaces.com/api/xap/12.1.0/dotnet/Index.html"%}}
+- {{%exurl "Javadoc""https://resources.gigaspaces.com/api/xap/12.1.0/java/index.html"%}}
+- {{%exurl ".NET API Documentation""https://resources.gigaspaces.com/api/xap/12.1.0/dotnet/Index.html"%}}
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/12.1/core/openspaces-core.xsd)
@@ -57,8 +57,8 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- {{%exurl "Javadoc""http://www.gigaspaces.com/docs/JavaDoc12.0/index.html"%}}
-- {{%exurl ".NET API Documentation""http://www.gigaspaces.com/docs/dotnetdocs12.0/"%}}
+- {{%exurl "Javadoc""https://resources.gigaspaces.com/api/JavaDoc12.0/index.html"%}}
+- {{%exurl ".NET API Documentation""https://resources.gigaspaces.com/api/dotnetdocs12.0/index.html"%}}
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/12.0/core/openspaces-core.xsd)
@@ -81,10 +81,10 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc11.0/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs11.0/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs11.0/annotated.html)
-- [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs11.0)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc11.0/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs11.0/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs11.0/annotated.html)
+- [Scala API Documentation](https://resources.gigaspaces.com/api/scaladocs11.0/index.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/11.0/core/openspaces-core.xsd)
@@ -107,10 +107,10 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc10.2/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs10.2/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs10.2/annotated.html)
-- [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs10.2)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc10.2/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs10.2/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs10.2/annotated.html)
+- [Scala API Documentation](https://resources.gigaspaces.com/api/scaladocs10.2/index.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/10.2/core/openspaces-core.xsd)
@@ -133,10 +133,10 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc10.1/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs10.1/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs10.1/annotated.html)
-- [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs10.1)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc10.1/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs10.1/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs10.1/annotated.html)
+- [Scala API Documentation](https://resources.gigaspaces.com/api/scaladocs10.1/index.html)
 - [REST API](/xap/10.1/dev-java/rest-service-api.html)
 {{%/tab%}}
 {{%tab Schemas%}}
@@ -159,10 +159,10 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc10.0/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs10.0/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs10.0/annotated.html)
-- [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs10.0)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc10.0/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs10.0/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs10.0/annotated.html)
+- [Scala API Documentation](https://resources.gigaspaces.com/api/scaladocs10.0/index.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/10.0/core/openspaces-core.xsd)
@@ -184,10 +184,10 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc9.7/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs9.7/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs9.7/annotated.html)
-- [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs9.7)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc9.7/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs9.7/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs9.7/annotated.html)
+- [Scala API Documentation](https://resources.gigaspaces.com/api/scaladocs9.7/index.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/9.7/core/openspaces-core.xsd)
@@ -208,10 +208,10 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc9.6/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs9.6/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs9.6/annotated.html)
-- [Scala API Documentation](http://www.gigaspaces.com/docs/scaladocs9.6)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc9.6/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs9.6/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs9.6/annotated.html)
+- [Scala API Documentation](https://resources.gigaspaces.com/api/scaladocs9.6/index.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/9.6/core/openspaces-core.xsd)
@@ -232,9 +232,9 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc9.5/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs9.5/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs9.5/annotated.html)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc9.5/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs9.5/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs9.5/annotated.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/9.5/core/openspaces-core.xsd)
@@ -255,9 +255,9 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc9.1/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs9.1/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs9.1/annotated.html)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc9.1/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs9.1/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs9.1/annotated.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/9.1/core/openspaces-core.xsd)
@@ -279,9 +279,9 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc9.0/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs9.0/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs9.0/annotated.html)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc9.0/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs9.0/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs9.0/annotated.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/9.0/core/openspaces-core.xsd)
@@ -302,9 +302,9 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc8.0/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs8.0/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs8.0/annotated.html)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc8.0/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs8.0/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs8.0/annotated.html)
 {{%/tab%}}
 {{%tab Schemas%}}
 - [openspaces-core.xsd](http://www.openspaces.org/schema/8.0/core/openspaces-core.xsd)
@@ -324,9 +324,9 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc7.1/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs7.1/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs7.1/annotated.html)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc7.1/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs7.1/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs7.1/annotated.html)
 {{%/tab%}}
 
 {{%/tabs%}}
@@ -335,8 +335,8 @@ This page provides links to the API documentation and related resources for each
 
 {{%tabs%}}
 {{%tab API%}}
-- [Javadoc](http://www.gigaspaces.com/docs/JavaDoc7.0/index.html)
-- [.NET API Documentation](http://www.gigaspaces.com/docs/dotnetdocs7.0/)
-- [C+\+ API Documentation](http://www.gigaspaces.com/docs/cppdocs7.0/annotated.html)
+- [Javadoc](https://resources.gigaspaces.com/api/JavaDoc7.0/index.html)
+- [.NET API Documentation](https://resources.gigaspaces.com/api/dotnetdocs7.0/index.html)
+- [C+\+ API Documentation](https://resources.gigaspaces.com/api/cppdocs7.0/annotated.html)
 {{%/tab%}}
 {{%/tabs%}}
