@@ -19,9 +19,7 @@ The XAP HTTP Session Management provides the following:
 - Continuous High-Availability - Allows the application to survive any system failures
 - Non intrusive session management or explicit Data Grid API access for fine grain control - Allows multiple web servers to share the same session in transparent manner
 
-{{% refer %}}
-For global HTTP Session Managment for Tomcat , JBoss , Weblogic , Websphere , Glassfish and other J2EE web/application servers,refer to [Global HTTP Session Sharing](./global-http-session-sharing.html).
-{{% /refer %}}
+ 
 
 # How to enable XAP's HTTP Session Management
 

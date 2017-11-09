@@ -262,35 +262,7 @@ Inspect session
 
 {{%refer%}}[HTTP Session Management]({{%currentjavaurl%}}/http-session-management.html){{%/refer%}}
 
-
-# Global HTTP Session Sharing
-{{%section%}}
-{{%column width="80%" %}}
-
-XAP lets you share HTTP session data across multiple data centers, multiple web server instances or different types of web servers. Here are few scenarios where HTTP session sharing is required:
-
-- Multiple different Web servers running your web application
-  You may be porting your application from one web server to another and there will be a period of time when both types of servers need to be active in production.
-- Web Application is broken into multiple modules
-  When applications are modularized such that different functionalities are deployed across multiple server instances. For example, you may have login, basic info, check-in and shopping functionalities split into separate modules and deployed individually across different servers for manageability or scalability. In order for the user to be presented with a single, seamless, and transparent application, session data needs to be shared between all the servers.
-- Reduce Web application memory footprint
-  The web application storing all session within the web application process heap, consuming large amount of memory. Having the session stored within a remote process will reduce web application utilization avoiding garbage collocation and long pauses.
-- Multiple Data-Center deployment
-  You may need to deploy your application across multiple data centers for high-availability, scalability or flexibility, so session data will need to be replicated
-
-{{%/column%}}
-{{%column width="20%" %}}
-<br>
-<br>
-<br>
-<br>
-
-{{%popup   "/attachment_files/qsg/httpSessionSharing1.png" "Global HTTP Session Sharing"%}}
-{{%/column%}}
-{{%/section%}}
-
-{{%refer%}}[Global HTTP Session Sharing]({{%currentjavaurl%}}/global-http-session-sharing.html){{%/refer%}}
-
+ 
 
 # Load Balancing
 {{%section%}}

@@ -71,10 +71,7 @@ How to deploy and manage an Elastic Processing Unit (EPU).
 
 [Web Application Support](./web-application-overview.html){{<wbr>}}
 XAP's integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid.
-
-[HTTP Session Sharing](./global-http-session-sharing-overview.html){{<wbr>}}
-HTTP Session Sharing allows transparent session replication between remote sites and session sharing between different application servers in real-time. The solution uses the Shiro Session Manager library
-
+ 
 
 [Space Replication](./multi-space-replication-overview.html){{<wbr>}}
 Multiple space replication is the ability to replicate state between different deployed spaces, i.e different cluster of space instances.
