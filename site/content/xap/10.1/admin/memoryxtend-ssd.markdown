@@ -29,7 +29,7 @@ How to troubleshoot common problems.
 
 #### Additional Resources
 
-{{%pdf "/download_files/xap10–memoryXtend-tutorial.pdf"%}}
+{{%pdf "/download_files/xap10memoryXtend-tutorial.pdf"%}}
 
 The MemoryXtend Tutorial describes how to experiment with MemoryXtend and comparing RAM based Data Grid with SSD based Data Grid.
 
