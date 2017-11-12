@@ -4,7 +4,9 @@ title:  Introduction
 weight: 100
 ---
 
- 
+ {{% info "Info"%}}
+This draft documentation applies to the early access version of release 12.3, and is not final. For documentation on the current official release version 12.2, click [here](/xap/12.2). 
+{{% /info %}}
 
 The unified InsightEdge solution, a combination of the XAP in-memory data grid and an open-source analytics ecosystem, is an in-memory insight platform that supports fast-data analytics, artificial intelligence and real-time applications. Customers can use this platform to develop their own systems that provide instant data-driven insights with time-to-analytics at a sub-second scale, and the ability to hyperscale analytics from SQL, streaming to machine learning via Apache Spark.
 

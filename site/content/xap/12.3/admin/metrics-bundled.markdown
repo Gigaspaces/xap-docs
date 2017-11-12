@@ -136,13 +136,13 @@ Lookup Service metrics are reported with the following tags:
 |:-------|:------------|
 | lus_items | Number of registered services |
 | lus_listeners | Number of registered notification listeners |
-| lus_event-task-pool_threads-count | Number of threads currently allocated (less or equal to max threads) |
-| lus_event-task-pool_total-tasks | Total number of tasks to be executed and currently executing |
+| lus_event-task-pool_threads-count | Number of threads currently allocated (less or equal to maximum threads) |
+| lus_event-task-pool_total-tasks | Total number of tasks to be executed and currently being executed |
 | lus_pendingEvents | Number of events pending to be notified to event listeners |
 | lus_serviceById | Number of unique services |
-| lus_serviceByTime | Number of unique services that their lease hasn't expired yet |
+| lus_serviceByTime | Number of unique services whose lease hasn't expired yet |
 | lus_eventByID | Number of registered event listeners |
-| lus_eventByTime | Number of registered event listeners that their registration lease hasn't expired yet |
+| lus_eventByTime | Number of registered event listeners whose registration lease hasn't expired yet |
 
 # Processing Unit
 
