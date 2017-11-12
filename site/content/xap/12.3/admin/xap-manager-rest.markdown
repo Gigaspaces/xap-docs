@@ -62,10 +62,10 @@ Currently you cannot delete/replace a JAR file if a deployed Processing Unit is 
 
 # Security
 
-The REST component is part of the XAP Manager, and it's security configuration is derived from it.
+The REST component is part of the XAP Manager, and inherits the XAP Manager security configuration.
 As the REST uses an HTTP protocol, it is best to configure SSL to allow for HTTPS (secure access). 
 
-For more information about using the RESTful API with security, refer to [REST Manager API - Security](../security/securing-the-REST-manager.html) section.
+For more information about using the REST Manager API with security, refer to [REST Manager API - Security](../security/securing-the-REST-manager.html) section.
 
 
 # Operations

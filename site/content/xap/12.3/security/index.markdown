@@ -53,11 +53,12 @@ The features listed below are available with the commercial licensed editions of
     - Database Authenticating
 
 - Administration tools
-    - User interfaces: GigaSpaces Management Center, Web Management Console, Command-line interface
+    - User interfaces: GigaSpaces Management Center, Web Management Console, Command Line Interface
     - Admin API
 
-
+{{% align center%}}
 ![layers-of-security.png](/attachment_files/security/layers-of-security.png)
+{{% /align%}}
 
 # Layers of Security
 
@@ -85,13 +86,12 @@ Security can be enabled separately for the data layer and the grid layer.
 * The [Data layer](securing-your-data.html) has options to declare a secured Space or Processing Unit.
 * The [Grid layer](securing-the-grid-services.html) has options to declare the Grid as secured.
 
-# Administration and Management tools
+# Administration and Management Tools
 
-Interacting with these layers are the administration, management and monitoring tools - 
-Includes the Web Management Console (Web-UI), Command-line Interface (CLI), GigaSpaces Management Center (UI), 
-REST Manager API and Admin API.
+Interacting with these layers are the administration, management and monitoring tools. This includes the Web Management Console (Web-UI), Command Line Interface (CLI), GigaSpaces Management Center (UI), 
+REST Manager API,  and Admin API.
 
-* Refer to [Administration and Management tools](security-administration.html) for configuration options.
+Refer to [Administration and Management Tools](security-administration.html) for details about the configuration options.
 
 
 # Security Implementations for Licensed GigaSpaces Products
