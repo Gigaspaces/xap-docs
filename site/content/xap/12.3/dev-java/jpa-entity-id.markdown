@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  JPA Entity Id
+title:  JPA Entity ID
 categories: XAP123, OSS
 parent: jpa-api-overview.html
 weight: 200

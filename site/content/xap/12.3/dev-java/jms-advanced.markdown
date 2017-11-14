@@ -7,32 +7,15 @@ weight: 700
 ---
 
 
-XAP provides advanced JMS options including security, transaction support and a queue browser.
+XAP supports the following advanced JMS options:
 
-<br>
 
-{{%fpanel%}}
-
-[Failover](./jms-failover.html){{<wbr>}}
-JMS behavior during failover, How to recover JMS applications from failovers.
-
-[Transactions](./jms-transactions-in-gigaspaces.html){{<wbr>}}
-Using local and distributed transactions with the JMS implementation.
-
-[Security](./jms-user-security.html){{<wbr>}}
-Obtaining connections using client authentication.
-
-[Queue Browser](./jms-queue-browser.html){{<wbr>}}
-Using the QueueBrowser to examine messages in a queue without deleting them.
-
-[Known Issues](./jms-known-issues-and-considerations.html){{<wbr>}}
-JMS API open issues, unsupported features, and considerations.
-
-[JMS without changing the classpath](./jms-without-changing-the-classpath.html){{<wbr>}}
-Using XAP JMS without having to include GigaSpaces JAR files in the classpath.
-
-{{%/fpanel%}}
-
+- [Failover handling ](./jms-failover.html) - You can configure JMS behavior during failover, and define how to recover JMS applications from failovers.
+- [Transaction types](./jms-transactions-in-gigaspaces.html) - You can use local and distributed transactions with the JMS implementation.
+- [Security settings](./jms-user-security.html) - You can congfigure the client authentication to work in several different ways for creating a connection.
+- [Using the Queue Browser](./jms-queue-browser.html) - You can implement a Queue Browser to examine messages in a queue without deleting them.
+- [Using JMS without changing the classpath](./jms-without-changing-the-classpath.html) - You can use the XAP JMS implementation without including the GigaSpaces JAR files in the classpath.
+- [Known Issues](./jms-known-issues-and-considerations.html) JMS API open issues, unsupported features, and considerations.
 
 
 

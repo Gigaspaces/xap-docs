@@ -11,7 +11,7 @@ weight: 100
 
 
 {{%refer%}}
-XAP provides the ability to obtain and modify class meta data of objects stored in the Space [during runtime](./the-space-meta-data.html).
+XAP provides the ability to obtain and modify class metadata of objects stored in the Space [during runtime](./the-space-meta-data.html).
 {{%/refer%}}
 
 
@@ -216,7 +216,7 @@ Example:
 
 
 
-# Blob Store
+# Blobstore
 
 | | |
 |----|----|

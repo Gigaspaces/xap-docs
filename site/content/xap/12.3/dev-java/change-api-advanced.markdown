@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Advanced
+title:  Advanced Implementations
 categories: XAP123, OSS
 parent: change-api-overview.html
 weight: 300

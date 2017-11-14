@@ -28,19 +28,8 @@ In order to use this feature, include the `${XAP_HOME}/lib/optional/mongodb/xap-
 </dependency>
 ```
 {{%refer%}}
-For more information on dependencies see [Maven Artifacts](../started/maven-artifacts.html).
+For more information on dependencies, refer to [Maven Artifacts](../started/maven-artifacts.html).
 {{%/refer%}} 
 
 
-
-<br>
-
-{{%fpanel%}}
-[Space Persistence](./mongodb-space-persistency.html){{<wbr>}}
-A MongoDB Space Persistency Solution
-
-[Archive Handler](./mongodb-archive-operation-handler.html){{<wbr>}}
-Archives space objects to MongoDB.
-
-{{%/fpanel%}}
 

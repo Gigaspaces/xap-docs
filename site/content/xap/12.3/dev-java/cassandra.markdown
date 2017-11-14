@@ -21,19 +21,3 @@ Cassandra is in use at Digg, Facebook, Twitter, Reddit, Rackspace, Cloudkick, Ci
 
 
 
-
-<br>
-
-{{%fpanel%}}
-
-
-
-[Space Persistence](./cassandra-space-persistency.html){{<wbr>}}
-A Cassandra Space Persistency Solution
-
-[Archive Handler](./cassandra-archive-operation-handler.html){{<wbr>}}
-Archives space objects to a Cassandra backend.
-{{%/fpanel%}}
-
-
-

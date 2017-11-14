@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  XML based Metadata
+title:  XML-Based Metadata
 categories: XAP123, OSS
 parent: modeling-your-data.html
 weight: 130
@@ -8,24 +8,11 @@ weight: 130
 
 
 
-The Space mapping configuration file gs.xml allows you to define space class metadata when using a POJO class with getter or setter methods. Space mapping files are also required when using POJO objects with the ExternalDataSource interface. The gs.xml configuration file is loaded when the application and space are started. gs.xml files can be edited to include GigaSpaces specific attributes.
+XAP provides the gs.xml Space mapping configuration file so you can define Space [class metadata](./pojo-xml-metadata-class.html) when using a POJO class with getter or setter methods. Space mapping files are also required when using POJO objects with the ExternalDataSource interface. The gs.xml configuration file is loaded when the application and Space are started. 
 
-<br>
+The gs.xml files can be edited to include GigaSpaces specific attributes ([property metadata](./pojo-xml-metadata-attribute.html)).
 
-
-{{%fpanel%}}
-
-[Class metadata](./pojo-xml-metadata-class.html){{<wbr>}}
-Class metadata for POJOs.
-
-
-[Property metadata](./pojo-xml-metadata-attribute.html){{<wbr>}}
-Property level metadata for POJOs.
-{{%/fpanel%}}
-
-<br>
-
-#### Additional Resources
+### Additional Resources
 
 - [XML Schema](/api_documentation/)
 

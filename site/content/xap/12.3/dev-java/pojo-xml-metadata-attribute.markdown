@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Properties Metadata
+title:  Property Metadata
 categories: XAP123, OSS
 parent: pojo-xml-metadata-overview.html
 weight: 200
@@ -14,7 +14,7 @@ All the properties are written automatically into space. If the field is a refer
 
 
 {{%refer%}}
-XAP provides the ability to obtain and modify class meta data of objects stored in the Space [during runtime](./the-space-meta-data.html).
+XAP provides the ability to obtain and modify class metadata of objects stored in the Space [during runtime](./the-space-meta-data.html).
 {{%/refer%}}
 
 # Property
@@ -521,7 +521,7 @@ Example:
 
 
 
-# Space sequence number
+# Space Sequence Number
 
 | | |
 |----|----|

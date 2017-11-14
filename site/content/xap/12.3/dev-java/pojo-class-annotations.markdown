@@ -15,7 +15,7 @@ The [GigaSpaces API](./the-gigaspace-interface-overview.html) supports class lev
 
 
 {{%refer%}}
-XAP provides the ability to obtain and modify class meta data of objects stored in the Space [during runtime](./the-space-meta-data.html).
+XAP provides the ability to obtain and modify class metadata of objects stored in the Space [during runtime](./the-space-meta-data.html).
 {{%/refer%}}
 
 {{<wbr>}}
@@ -197,7 +197,7 @@ public class User {
 
 
 
-# Blob Store
+# Blobstore
 
 | | |
 |----|----|
@@ -222,7 +222,7 @@ public class Person {
 {{%/refer%}}
 
 
-# Change code without restarts
+# Change Code without Restarts
 
 | | |
 |----|----|

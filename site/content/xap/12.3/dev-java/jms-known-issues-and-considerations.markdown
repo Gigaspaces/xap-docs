@@ -3,7 +3,7 @@ type: post123
 title:  Known Issues and Considerations
 categories: XAP123, OSS
 parent: jms-advanced.html
-weight: 500
+weight: 600
 ---
 
 JMS API open issues, unsupported features, and considerations
