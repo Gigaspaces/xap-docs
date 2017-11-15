@@ -48,13 +48,13 @@ Refer to [Administration and Management Tools](security-administration.html) for
 
 ## Securable Layers
 
-XAP security can be applied in three separate layers:
+XAP security can be applied in three separate layers. You can enable security for any of the layers individually, or you can enable all of them for maximum security.
 
-* The [Data layer](securing-your-data.html) - Includes Spaces and Processing Units.
-* The [Grid layer](securing-the-grid-services.html) - Includes  grid components (GSA, GSM, GSC, XAP Manager).
-* The [Transport layer](securing-the-transport-layer-using-ssl.html) - Provides a generic network filter with SSL support.
+* The [data layer](securing-your-data.html) - You can declare a secured Space or Processing Unit.
+* The [grid layer](securing-the-grid-services.html) - You can declare the data grid as secured. Includes the grid components (GSA, GSM, GSC, XAP Manager).
+* The [transport layer](securing-the-transport-layer-using-ssl.html) - Provides a generic network filter with SSL support.
 
-You can secure any of these, or all of them for maximum security.
+
 
 ## Configuring Security
 
@@ -65,19 +65,10 @@ Security is configured via a property file that includes required and custom pro
 * [Web Management Console](securing-the-web-ui.html) - Includes configurations for authenticating with secure XAP components.
 * [REST Manager API](securing-the-REST-manager.html) - Includes security and SSL configurations for secured RESTful API support.  
 
-## Enabling Security
-
-Security can be enabled separately for the data layer and the grid layer.
-
-* The [Data layer](securing-your-data.html) has options to declare a secured Space or Processing Unit.
-* The [Grid layer](securing-the-grid-services.html) has options to declare the Grid as secured.
-
-## Out-of-the-Box Functionality
-
 When no property file is configured, there is a fallback implementation mainly used for testing or to get you started.
 This implementation stores the user credentials in a local file and can be used to demonstrate that security has been applied.
 
-Refer to the following sections for more information about XAP security implementation:
+Refer to the following sections for more information about the XAP security implementations:
 
 * To read more about the XAP file-based configuration options, refer to [Default File-Based Security](default-file-based-security-implementation-ext.html).
 * To write your own implementation, refer to [Reference Implementation](security-ref-impl.html), which uses MongoDB.
