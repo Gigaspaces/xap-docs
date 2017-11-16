@@ -33,8 +33,9 @@ The open source editions do not include a security implementation. A [reference 
 The commercial editions of XAP and InsightEdge come with an Admin API that can be used for administration and monitoring. Additionally, the following interfaces can also be used:
 
 - GigaSpaces Management Center
-- Web Management Console
 - Command Line Interface
+- Web Management Console
+- Rest Manager API
 
 The administration and monitoring tools interact with the application layers as follows.
 
@@ -98,8 +99,11 @@ The [Hello World](securing-the-helloworld-example.html) example provides a step-
 
 Spring Security is one of the most mature and widely used Spring projects. GigaSpaces provides a Spring-based security bridge to enable an extensible implementation to LDAP (Lightweight Directory Access Protocol) or database authentication.
 
+{{%refer%}}
+For more information, refer to [Spring Security Bridge](spring-security-bridge.html).
+{{%/refer%}} 
+
 {{% align center%}}
 ![spring-based-security.png](/attachment_files/security/spring-based-security.png)
 {{% /align%}}
 
-For more information, refer to [Spring Security Bridge](spring-security-bridge.html).
