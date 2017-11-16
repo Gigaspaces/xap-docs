@@ -85,7 +85,8 @@ You can also load a DataFrame backed by a DataGrid Scala class with the `class` 
 {{%tabs%}}
 {{%tab "Python"%}}
 ```python
-df = spark.read.format("org.apache.spark.sql.insightedge").option("class", "com.yourcompany.Data").load()
+my_class_name = ...
+df = spark.read.format("org.apache.spark.sql.insightedge").option("class", my_class_name).load()
 ```
 {{%/tab%}}
 {{%/tabs%}}
