@@ -22,20 +22,20 @@ To develop notebooks in Python, use the `%pyspark` interpreter in the Zeppelin w
 
 # Command Line Shell
 
-To start the command line shell, run the `./bin/insightedge-pyspark` script in the InsightEdge directory.
+To start the command line shell, run the `<XAP-HOME>/insightedge/bin/insightedge-pyspark` script.
 
 For example, start InsightEdge in demo mode:
 
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/sbin/insightedge.sh --mode demo
+<XAP-HOME>/insightedge/bin/insightedge.sh --mode demo
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\sbin\insightedge.cmd --mode demo
+<XAP-HOME>\insightedge\bin\insightedge.cmd --mode demo
 ```
 {{%/tab%}}
 {{%/tabs%}}
@@ -45,13 +45,13 @@ Then start the command line shell:
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge-pyspark --master spark://127.0.0.1:7077
+<XAP-HOME>/insightedge/bin/insightedge-pyspark --master spark://127.0.0.1:7077
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\bin\insightedge-pyspark --master spark://127.0.0.1:7077
+<XAP-HOME>\insightedge\bin\insightedge-pyspark --master spark://127.0.0.1:7077
 ```
 {{%/tab%}}
 {{%/tabs%}}
@@ -112,20 +112,20 @@ spark = SparkSession.builder.config(conf=SparkConf()).getOrCreate()
 {{%/tab%}}
 {{%/tabs%}}
 
-The complete source code is available at `./quickstart/python/sf_salaries.py`.
+The complete source code is available at `<XAP-HOME>/insightedge/examples/python/sf_salaries.py`.
 
 The application can be submitted with `insightedge-submit` script, for example:
 
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-./insightedge/bin/insightedge-submit ./insightedge/examples/python/sf_salaries.py
+<XAP-HOME>/insightedge/bin/insightedge-submit <XAP-HOME>/insightedge/examples/python/sf_salaries.py
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-insightedge\bin\insightedge-submit insightedge\examples\python\sf_salaries.py
+<XAP-HOME>\insightedge\bin\insightedge-submit </XAP-HOME/insightedge\examples\python\sf_salaries.py
 ```
 {{%/tab%}}
 {{%/tabs%}}
