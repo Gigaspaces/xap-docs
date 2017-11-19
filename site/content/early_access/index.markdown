@@ -15,6 +15,25 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/info%}}
 <hr/>
 
+## 12.3 M6 (Nov-19-2017)
+
+**Download Links**
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m6/gigaspaces-insightedge-12.3.0-m6-b18906.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m6/gigaspaces-xap-12.3.0-m6-b18906.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m6/gigaspaces-xap.net-12.3.0-m6-b18906.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m6/gigaspaces-xap-open-12.3.0-m5-b18906.zip)\]
+
+
+**Features and Enhancements**
+
+For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
+
+**Resolved Issues**
+
+| ID                          | Summary                                                 | Fix Version(s) | Platform(s) |
+|:----------------------------|:------------------------------------------------------------------|:-----|:-----| 
+| {{% jira id="GS-13427" %}} | The REST manager specification contained the wrong request status values. | 12.3 | All | 
+
 ## 12.3 M5 (Nov-12-2017)
 
 **Download Links**
