@@ -122,7 +122,7 @@ After you have installed the gateway software and obtained a trial license, you 
 
 	- DSN: **easysoft-xap-odbc-jdbc**
 	- Driver Class: **com.gigaspaces.jdbc.Driver**
-	- Class Path: {{% color red%}}*TBD - WAITING FOR THIS INFO*{{% /color %}}
+	- Class Path: Add the class path(s) to your JAR files. 
 	- URL: **jdbc:xap:url=jini://*/*/<SPACE_NAME>?locators=127.0.0.1**
 
 1. Check the **Strip Quote** check box.
