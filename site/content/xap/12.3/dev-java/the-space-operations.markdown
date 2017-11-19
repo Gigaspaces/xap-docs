@@ -26,8 +26,8 @@ The interface includes the following main operations:
 {{%column width="50%" %}}
 {{%panel  "Change objects in Space:"%}}
 [change](#change) one object in Space{{<wbr>}}
-		  [changeMultiple](./change-api.html) objects in Space {{<wbr>}}
-[asynchronous change](./change-api.html) of objects
+		  [changeMultiple](./change-api-overview.html) objects in Space {{<wbr>}}
+[asynchronous change](./change-api-overview.html) of objects
 {{%/panel%}}
 {{%/column%}}
 {{%/section%}}
@@ -299,7 +299,7 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
 ```
 
 {{%refer%}}
-[The Change API](./change-api.html)
+[The Change API](./change-api-overview.html)
 {{%/refer%}}
 
 

@@ -18,7 +18,7 @@ The [GigaSpace.change]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) a
 
 
 {{%imagertext "/attachment_files/change-api.jpg"  "Change API"%}}
-The [GigaSpace.change]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet]({{% api-javadoc %}}/com/gigaspaces/client/ChangeSet.html) allow updating existing objects in the Space, by specifying only the required change instead of passing the entire updated object.
+The `GigaSpace.change` and the `ChangeSet`  allow updating existing objects in the Space, by specifying only the required change instead of passing the entire updated object.
 This reduces the required network traffic between the client and the Space, and the network traffic generated from replicating changes between Space instances (for example, between the primary Space instance and its backup).
 {{%/imagertext%}}
 

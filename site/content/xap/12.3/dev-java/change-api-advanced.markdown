@@ -11,7 +11,7 @@ weight: 300
 
 # Change and SpaceSynchronizationEndpoint
 
-A `SpaceSynchronizationEndpoint` implementation can make use of the [Change API](./change-api.html) and support change operation, this way allowing the network utilization to be more optimized by sending only the change set to the mirror service instead of the fully updated object. By default the mirror service starts in a mode which does not support change, hence, any change operation done on the space is being replicated as a regular update to the mirror service. You could provide an implementation that does support change and configure the space to send the supported change operations to the mirror with only the required data to apply the change. Following is an example of how can one obtain the change set from a `DataSyncOperation`.
+A `SpaceSynchronizationEndpoint` implementation can make use of the [Change API](./change-api-overview.html) and support change operation, this way allowing the network utilization to be more optimized by sending only the change set to the mirror service instead of the fully updated object. By default the mirror service starts in a mode which does not support change, hence, any change operation done on the space is being replicated as a regular update to the mirror service. You could provide an implementation that does support change and configure the space to send the supported change operations to the mirror with only the required data to apply the change. Following is an example of how can one obtain the change set from a `DataSyncOperation`.
 
 
 

@@ -247,7 +247,7 @@ public void ChangeSet() {
 
 There are several other change operations available; 'increment', 'decrement', 'addToCollection', 'removeFromCollection' etc.
 
-{{%refer%}}[The Change API]({{%currentjavaurl%}}/change-api.html){{%/refer%}}
+{{%refer%}}[The Change API]({{%currentjavaurl%}}/change-api-overview.html){{%/refer%}}
 
 # Querying the Space
 
