@@ -12,7 +12,7 @@ weight: 610
 The archive container is used to transfer historical data into Big-Data storage (for example Cassandra).
 
 The typical scenario is when streaming vast number of raw events through the Space, enriching them and then moving them to a Big-Data storage. Typically, there is no  intention of keeping them in the space nor querying them in the space.
-
+{{%/imagertext%}}
 
 
 The Archive Container:<br>
@@ -25,7 +25,7 @@ The Archive Container:<br>
 - [MongoDB Archive Operation Handler](./mongodb-archive-operation-handler.html) implementation is available out of the box.
 
 
-{{%/imagertext%}}
+
 
 
 ## Archive Container vs Space Persistency

@@ -183,7 +183,8 @@ for (int i = 0; i < leaseContexts.Length; i++) {
 }
 ```
 
-{{%note "Here are a few important considerations when using the batch operation:"%}}
+**Here are a few important considerations when using the batch operation:**
+
 -  should be performed with transactions - this allows the client to roll back the space to its initial state prior the operation was started, in case of a failure.
 -  make sure `null` values are not part of the passed array.
 -  you should verify that duplicated entries (with the same ID) do not appear as part of the passed array, since the identity of the object is determined based on its `ID` and not based on its reference. This is extremely important with an embedded space, since `WriteMultiple` injects the ID value into the object after the write operation (when autogenerate=false).
@@ -191,7 +192,7 @@ for (int i = 0; i < leaseContexts.Length; i++) {
 - Exception handling - the operation many throw the following Exceptions.
     - [WriteMultipleException]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_Exceptions_WriteMultipleException__ctor.htm)
 
-{{%/note%}}
+ 
 
 
 ## Return Previous Value

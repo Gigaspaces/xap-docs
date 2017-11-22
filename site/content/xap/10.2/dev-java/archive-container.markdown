@@ -14,21 +14,23 @@ The archive container is used to transfer historical data into Big-Data storage 
 
 The typical scenario is when streaming vast number of raw events through the Space, enriching them and then moving them to a Big-Data storage. Typically, there is no  intention of keeping them in the space nor querying them in the space.
 
-{{%vbar "The Archive Container:"%}}
-- automatically moves objects from the Space to the Big-Data storage.
-- configures the set of objects to be archived.
-- supports Space fail-over, and Big-Data storage unavailability.
-- The persisted objects, can then be read by 3rd party tools directly from the Big-Data storage.
-- Big-Data storage is abstracted with the [ArchiveOperationHandler]({{% api-javadoc %}}/index.html?org/openspaces/archive/ArchiveOperationHandler.html) interface.
-- [Cassandra Archive Operation Handler](./cassandra-archive-operation-handler.html) implementation is available out of the box.
-- [MongoDB Archive Operation Handler](./mongodb-archive-operation-handler.html) implementation is available out of the box.
-{{%/vbar%}}
 
 {{%/column%}}
 {{%column width="20%" %}}
 {{%popup   "/attachment_files/archive-container.jpg"%}}
 {{%/column%}}
 {{%/section%}}
+
+**The Archive Container:**<br>
+- automatically moves objects from the Space to the Big-Data storage.<br>
+- configures the set of objects to be archived.<br>
+- supports Space fail-over, and Big-Data storage unavailability.<br>
+- The persisted objects, can then be read by 3rd party tools directly from the Big-Data storage.<br>
+- Big-Data storage is abstracted with the [ArchiveOperationHandler]({{% api-javadoc %}}/index.html?org/openspaces/archive/ArchiveOperationHandler.html) interface.<br>
+- [Cassandra Archive Operation Handler](./cassandra-archive-operation-handler.html) implementation is available out of the box.<br>
+- [MongoDB Archive Operation Handler](./mongodb-archive-operation-handler.html) implementation is available out of the box.
+ 
+
 
 
 

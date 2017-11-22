@@ -13,7 +13,7 @@ The archive container is used to transfer historical data into Big-Data storage 
 
 The typical scenario is when streaming vast number of raw events through the Space, enriching them and then moving them to a Big-Data storage. Typically, there is no  intention of keeping them in the space nor querying them in the space.
 
-
+{{%/imagertext%}}
 
 The Archive Container:<br>
 - automatically moves objects from the Space to the Big-Data storage.<br>
@@ -25,7 +25,7 @@ The Archive Container:<br>
 - [MongoDB Archive Operation Handler](./mongodb-archive-operation-handler.html) implementation is available out of the box.
 
 
-{{%/imagertext%}}
+
 
 
 ## Archive Container vs Space Persistency

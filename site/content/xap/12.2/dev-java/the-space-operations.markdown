@@ -189,16 +189,18 @@ When writing a batch of objects into the space, these should be placed into an a
   }
 ```
 
-{{%note "Here are a few important considerations when using the batch operation:"%}}
--  should be performed with transactions - this allows the client to roll back the space to its initial state prior the operation was started, in case of a failure.
--  make sure `null` values are not part of the passed array.
--  you should verify that duplicated entries (with the same ID) do not appear as part of the passed array, since the identity of the object is determined based on its `ID` and not based on its reference. This is extremely important with an embedded space, since `writeMultiple` injects the ID value into the object after the write operation (when autogenerate=false).
+**Here are a few important considerations when using the batch operation:**<br>
 
-- Exception handling - the operation many throw the following Exceptions.
-    - [WriteMultiplePartialFailureException]({{% api-javadoc %}}/org/openspaces/core/WriteMultiplePartialFailureException.html)
+- should be performed with transactions - this allows the client to roll back the space to its initial state prior the operation was started, in case of a failure.<br>
+- make sure `null` values are not part of the passed array.<br>
+- you should verify that duplicated entries (with the same ID) do not appear as part of the passed array, since the identity of the object is determined based on its `ID` and not based on its reference. 
+<br>This is extremely important with an embedded space, since `writeMultiple` injects the ID value into the object after the write operation (when autogenerate=false).
+
+- Exception handling - the operation many throw the following Exceptions.<br>
+    - [WriteMultiplePartialFailureException]({{% api-javadoc %}}/org/openspaces/core/WriteMultiplePartialFailureException.html)<br>
     - [WriteMultipleException]({{% api-javadoc %}}/org/openspaces/core/WriteMultipleException.html)
 
-{{%/note%}}
+ 
 
 
 ## Return Previous Value
@@ -272,9 +274,7 @@ The write operations can be configured with different modifiers:
 |[WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)|Provides modifiers to customize the behavior of write operations | UPDATE_OR_WRITE  |
 |[LeaseContext]({{% api-javadoc %}}/com/j_spaces/core/LeaseContext.html) |LeaseContext is a return-value encapsulation of a write operation.| |
 
-{{%refer%}}
-For further details on each of the available modifiers see: [WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)
-{{%/refer%}}
+  
 
 
 {{%anchor change%}}
@@ -395,12 +395,13 @@ Examples:
 
 ```
 
-{{%note "Here are a few important considerations when using the batch operation: "%}}
+**Here are a few important considerations when using the batch operation:**
+
 - boosts the performance, since it perform multiple operations using one call. These methods returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, these batch operations can be up to 10 times faster than multiple single based operations.
 - should be handled with care, since they can return a large data set (potentially all the space data). This might cause an out of memory error in the space and client process. You should use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
 - **dos not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
 - Exception handling - operation many throw the following Exceptions. [ReadMultipleException]({{% api-javadoc %}}/org/openspaces/core/ReadMultipleException.html)
-{{%/note%}}
+ 
 
 {{%anchor readIfExists%}}
 
@@ -503,9 +504,9 @@ Examples:
 
 
 
-{{%refer%}}
+ 
 For further details on each of the available modifiers see: [ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)
-{{%/refer%}}
+ 
 
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
@@ -678,13 +679,14 @@ Examples:
 
 ```
 
-{{%note "Here are a few important considerations when using the batch operation: "%}}
+**Here are a few important considerations when using the batch operation:**
+
 -  boosts the performance, since it performs multiple operations using one call. This method returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, this batch operation can be up to 10 times faster than multiple single based operations.
 -  should be handled with care, since it can return a large data set (potentially all the space data). This might cause an out of memory error in the space and client process. You should use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
 -  should be performed with transactions - this allows the client to roll back the space to its initial state prior the operation was started, in case of a failure.
 -  operation **dos not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
 -  in the event of a take error, DataAccessException will wrap a TakeMultipleException, accessible via DataAccessException.getRootCause().
-{{%/note%}}
+ 
 
 {{%anchor takeIfExists%}}
 
@@ -787,9 +789,9 @@ Examples:
 |[TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations | NONE  |  |
 
 
-{{%refer%}}
+ 
 For further details on each of the available modifiers see: [TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)
-{{%/refer%}}
+ 
 
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
