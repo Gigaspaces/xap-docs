@@ -10,7 +10,7 @@ weight: 1200
 
 This feature adds support for "Quiesce state" (or maintenance mode) for a Processing Unit. If a space is **quiesced**, it rejects all data-related operations with an exception, allowing the user to perform maintenance operations.
 
-The XAP [Polling Container]({{%currentjavaurl%}}/polling-container.html) and [Notify Container]({{%currentjavaurl%}}/notify-container.html) are also aware of the Space's quiesce state, and handle quiesce state changed events by implementing [QuiesceStateChangedListener](#listener). 
+The XAP [Polling Container]({{%currentjavaurl%}}/polling-container-overview.html) and [Notify Container]({{%currentjavaurl%}}/notify-container-overview.html) are also aware of the Space's quiesce state, and handle quiesce state changed events by implementing [QuiesceStateChangedListener](#listener). 
 
 In addition to the XAP event containers mentioned above, a user-defined Bean can also handle quiesce state changed events by implementing [QuiesceStateChangedListener](#listener). 
 

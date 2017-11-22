@@ -102,13 +102,13 @@ public class PaymentListener {
 }
 ```
 
-{{%refer%}}[Polling Container]({{%currentjavaurl%}}/polling-container.html){{%/refer%}}
+{{%refer%}}[Polling Container]({{%currentjavaurl%}}/polling-container-overview.html){{%/refer%}}
 
 
 ### Notify Container
 Just like the Polling container, both the receive operation and the actual event action can be configured to be performed under a transaction. However, in case an error occurs (rollback), the notification is lost and not sent again.
 
-{{%refer%}}[Notify Container]({{%currentjavaurl%}}/notify-container.html){{%/refer%}}
+{{%refer%}}[Notify Container]({{%currentjavaurl%}}/notify-container-overview.html){{%/refer%}}
 
 
 # Task Execution

@@ -113,7 +113,7 @@ An [event listener container](./event-processing.html) is one of the most common
 it will automatically detect classes decorated with `EventDriven` attributes (`PollingEventDriven` or `NotifyEventDriven`) and create corresponding event containers for them.
 
 {{% refer %}}
-See [Polling Container Component](./polling-container.html) and [Notify Container Component](./notify-container.html) for more info regarding event listener containers.
+See [Polling Container Component](./polling-container-overview.html) and [Notify Container Component](./notify-container-overview.html) for more info regarding event listener containers.
 {{% /refer %}}
 
 

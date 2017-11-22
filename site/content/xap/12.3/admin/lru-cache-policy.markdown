@@ -44,7 +44,7 @@ The eviction activity running with the LRU policy is performed independently by 
 
 The `MEMORY_ONLY_SEARCH` modifier may be used to instruct the space to limit the query / template matching performed with read/take/clear/change operations to the data stored only in memory and not the space's backend persistence store (database). This give you the flexibility of minimizing the database load in cases where this modifier can be applied. 
 
-This is very useful When running with the `LRU` cache policy and deploying a [Polling Container]({{%currentjavaurl%}}/polling-container.html). By default in such case, all `read`, `take` and `clear` operations will be conducted **both** against the space and the underlying persistent store. By using the `UseMemoryOnlySearch` Polling Container property, the operations invoked by the polling container will **only access the space** when conducting the search, without interacting with the persistent store.
+This is very useful When running with the `LRU` cache policy and deploying a [Polling Container]({{%currentjavaurl%}}/polling-container-overview.html). By default in such case, all `read`, `take` and `clear` operations will be conducted **both** against the space and the underlying persistent store. By using the `UseMemoryOnlySearch` Polling Container property, the operations invoked by the polling container will **only access the space** when conducting the search, without interacting with the persistent store.
 
 Here's a polling container example using the `MEMORY_ONLY_SEARCH` modifier:
 

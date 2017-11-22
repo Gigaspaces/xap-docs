@@ -20,10 +20,10 @@ This section will guide you through event processing APIs and configuration on t
 [Event Listener Container](./event-listener-container.html){{<wbr>}}
 IEventListenerContainer is an interface that represents an abstraction for subscribing to, and receiving events over a space proxy.
 
-[Notify Container](./notify-container.html){{<wbr>}}
+[Notify Container](./notify-container-overview.html){{<wbr>}}
 The notify event container wraps the space data event session API with event container abstraction.
 
-[Polling Container](./polling-container.html){{<wbr>}}
+[Polling Container](./polling-container-overview.html){{<wbr>}}
 Allows you to perform polling receive operations against the space.
 
 [FIFO Ordering](./fifo-overview.html){{<wbr>}}

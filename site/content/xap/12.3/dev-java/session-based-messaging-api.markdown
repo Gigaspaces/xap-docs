@@ -14,7 +14,7 @@ weight: 300
 
 In some cases, SBA applications require the ability to call the user's business logic once a relevant event occurs in the space. This can be a trader desk application that is notified when a quote stock object modifies its data, or when a matching engine removes/updates a matched order. The space supports a message delivery mechanism that allows clients to register for matching events inside the space - aka Continuous query. Once a matching event occurs in the space, the space triggers an event and notifies the client by calling the client business logic.
 
-The Event Session API is the low level API for notifications. It is preferable to use the high level [Notify Container](./notify-container.html) with simple continuous query scenarios. You can use the Notify Container programmatically using its `SimpleNotifyContainerConfigurer`.
+The Event Session API is the low level API for notifications. It is preferable to use the high level [Notify Container](./notify-container-overview.html) with simple continuous query scenarios. You can use the Notify Container programmatically using its `SimpleNotifyContainerConfigurer`.
 
 *Basic Flow*:
 
@@ -604,7 +604,7 @@ The root cause of this behavior is the thread pool within the space engine that 
 To configure the notification thread pool size you should use the following Space properties: {{<wbr>}}
 space-config.engine.notify_min_threads {{<wbr>}}
 space-config.engine.notify_max_threads {{<wbr>}}
-See the [Scaling Notification Delivery](./notify-container.html#Scaling Notification Delivery) for details.
+See the [Scaling Notification Delivery](./notify-container-overview.html#Scaling Notification Delivery) for details.
 {{%/note%}}
 
 To reduce the amount of stale registrations, register notification with a reasonable lease time (30 seconds - 2 minutes can be a good interval), and renew these using the [LeaseRenewalManager]({{% api-javadoc %}}/index.html?net/jini/lease/LeaseRenewalManager.html) every 30 seconds - 2 minutes. This ensures that once the client exists in an abnormal manner, the registration automatically expires and is removed, reducing the chance to fully consume the notification thread pool and delay notification delivery to live clients.

@@ -236,7 +236,7 @@ Asynchronous `write` operation can be implemented using a [Task](./task-executio
 
 
 {{%note%}}
-Writing an object into a space might generate [notifications](./notify-container.html) to registered objects.
+Writing an object into a space might generate [notifications](./notify-container-overview.html) to registered objects.
 {{%/note%}}
 
  
@@ -592,7 +592,7 @@ If any other exception is thrown, the take did not occur, and no object was remo
 {{%note%}}
 If you would like to take objects from the space in the same order they have been written into the space you should perform the take objects in a [FIFO mode](./fifo-support.html).
 
-Taking an object from the space might generate [notifications](./notify-container.html) to registered objects/queries.
+Taking an object from the space might generate [notifications](./notify-container-overview.html) to registered objects/queries.
 {{%/note%}}
 
 The take operation can be performed with the following options:

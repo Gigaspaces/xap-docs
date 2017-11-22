@@ -231,7 +231,7 @@ spaceProxy.Write(employee,WriteModifiers.OneWay);
 For further details on each of the available modifiers see: [WriteModifiers]({{%api-dotnetdoc%}}/P_GigaSpaces_Core_ISpaceProxy_WriteModifiers.htm)
 
 {{%note%}}
-Writing an object into a space might generate [notifications](./notify-container.html) to registered objects.
+Writing an object into a space might generate [notifications](./notify-container-overview.html) to registered objects.
 {{%/note%}}
 
 
@@ -489,7 +489,7 @@ In circumstances in which this is unacceptable, the take can be wrapped inside a
 {{%note%}}
 If you would like to take objects from the space in the same order they have been written into the space you should perform the take objects in a [FIFO mode](./fifo-support.html).
 
-Taking an object from the space might generate [notifications](./notify-container.html) to registered objects/queries.
+Taking an object from the space might generate [notifications](./notify-container-overview.html) to registered objects/queries.
 {{%/note%}}
 
 The take operation can be performed with the following options:

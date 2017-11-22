@@ -11,7 +11,7 @@ weight: 200
 The notify container can be configured with transaction support, so the event action can be performed under a transaction. Exceptions thrown by the event listener cause the operations performed within the listener to be rolled back automatically.
 
 {{% note %}}
-When using transactions, only the event listener operations are rolled back. The notifications are not sent again in case of a transaction rollback. In case this behavior is required, please consider using the [Polling Event Container](./polling-container.html).
+When using transactions, only the event listener operations are rolled back. The notifications are not sent again in case of a transaction rollback. In case this behavior is required, please consider using the [Polling Event Container](./polling-container-overview.html).
 {{%/note%}}
 
 Transaction support can be configured as follows:

@@ -10,7 +10,7 @@ weight: 100
 
 {{%section%}}
 {{%column width="70%" %}}
-The `IEventListenerContainer` interface is an abstraction that allows subscribing to, and receiving events from the space, where in most cases, the business logic doesn't need to be aware of the actual container implementation. The benefit of doing this, is the loose coupling between how the events are received (the different containers), and what to do with a received event (the listener). This interface has two out-of-the-box implementers: [PollingEventListenerContainer](./polling-container.html) and [NotifyEventListenerContainer](./notify-container.html).
+The `IEventListenerContainer` interface is an abstraction that allows subscribing to, and receiving events from the space, where in most cases, the business logic doesn't need to be aware of the actual container implementation. The benefit of doing this, is the loose coupling between how the events are received (the different containers), and what to do with a received event (the listener). This interface has two out-of-the-box implementers: [PollingEventListenerContainer](./polling-container-overview.html) and [NotifyEventListenerContainer](./notify-container-overview.html).
 {{%/column%}}
 {{%column width="30%" %}}
 ![Net_polling_notify_cont.jpg](/attachment_files/dotnet/Net_polling_notify_cont.jpg)
@@ -75,7 +75,7 @@ void MyEventHandler(object sender, BatchDataEventArgs<Data> e)
 
 # Event Listener Container Factory
 
-One of the ways to create an event listener container is to use the `EventListenerContainerFactory.CreateContainer` method. The factory creates a container from a supplied listener class, which is marked with attributes that are used to configure and create the container. This is demonstrated in the [Polling Container Component page](./polling-container.html) and the [Notify Container Component page](./notify-container.html).
+One of the ways to create an event listener container is to use the `EventListenerContainerFactory.CreateContainer` method. The factory creates a container from a supplied listener class, which is marked with attributes that are used to configure and create the container. This is demonstrated in the [Polling Container Component page](./polling-container-overview.html) and the [Notify Container Component page](./notify-container-overview.html).
 
 # Data Event Handler Adapters
 
@@ -126,7 +126,7 @@ The user methods can receive different parameters and be either a void method, o
 - The first parameter is the event data.
 - The second parameter is the space proxy the event arrived from.
 - The third parameter is a transaction if the event is executed within a transaction context.
-- The fourth parameter is the custom event args that each container creates (for example, see [Notify Container SpaceDataEventArgs](./notify-container.html#space-data-event-args)).
+- The fourth parameter is the custom event args that each container creates (for example, see [Notify Container SpaceDataEventArgs](./notify-container-overview.html#space-data-event-args)).
 - The fifth parameter is the `IEventListenerContainer` that triggered this event.
 
 The return parameter, if not void, is the result that is written back to the space (when the result is not null).

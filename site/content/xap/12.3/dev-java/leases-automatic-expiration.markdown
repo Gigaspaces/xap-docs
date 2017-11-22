@@ -421,7 +421,7 @@ API page for [LeaseRenewalManager]({{% api-javadoc %}}/net/jini/lease/LeaseRenew
 
 # Lease Expiration Notifications
 
-Getting events once the space object lease expired can be done using the [Notify Container](./notify-container.html). See example below:
+Getting events once the space object lease expired can be done using the [Notify Container](./notify-container-overview.html). See example below:
 
 
 ```java

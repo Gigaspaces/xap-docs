@@ -59,7 +59,7 @@ eventListener.destroy();
 
 
 {{%refer%}}
-[Notify Container](./notify-container.html)
+[Notify Container](./notify-container-overview.html)
 {{%/refer%}}
 
 
@@ -108,7 +108,7 @@ This example works just like the notification example above, except that the obj
 
 
 {{%refer%}}
-[Polling Container](./polling-container.html)
+[Polling Container](./polling-container-overview.html)
 {{%/refer%}}
 
 

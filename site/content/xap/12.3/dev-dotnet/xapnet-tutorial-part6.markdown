@@ -75,7 +75,7 @@ public class AuditListener {
 ```
 
 {{%refer%}}
-[Polling Container]({{%currentneturl%}}/polling-container.html)
+[Polling Container]({{%currentneturl%}}/polling-container-overview.html)
 {{%/refer%}}
 
 
@@ -85,7 +85,7 @@ public class AuditListener {
 Just like the Polling container, both the receive operation and the actual event action can be configured to be performed under a transaction. However, in case an error occurs (rollback), the notification is lost and not sent again.
 
 {{%refer%}}
-[Notify Container]({{%currentneturl%}}/notify-container.html)
+[Notify Container]({{%currentneturl%}}/notify-container-overview.html)
 {{%/refer%}}
 
 

@@ -485,7 +485,7 @@ For more information about indexing, see the [Indexing](./indexing.html) page.
 
 # Events
 
-Event containers (both [polling container](./polling-container.html) and [notify container](./notify-container.html)) support Space `Document` entries.
+Event containers (both [polling container](./polling-container-overview.html) and [notify container](./notify-container-overview.html)) support Space `Document` entries.
 
 Here is a simple example of a polling event container configuration using a `Document`:
 

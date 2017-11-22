@@ -8,7 +8,7 @@ weight: 200
 
 
 
-By default, the [polling event container](./polling-container.html) starts a single thread that performs the receive operations, and invokes the event listener. It can be configured to start several concurrent consumer threads, and have an upper limit to the concurrent consumer threads. The container manages the scaling up and down of concurrent consumers automatically, according to the load.
+By default, the [polling event container](./polling-container-overview.html) starts a single thread that performs the receive operations, and invokes the event listener. It can be configured to start several concurrent consumer threads, and have an upper limit to the concurrent consumer threads. The container manages the scaling up and down of concurrent consumers automatically, according to the load.
 There are 5 parameters that control the scaling behavior:
 
 

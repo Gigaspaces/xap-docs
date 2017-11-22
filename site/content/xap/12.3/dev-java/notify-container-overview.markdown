@@ -143,7 +143,7 @@ If the notify listener implementation performs a write/update/change/removal of 
  
 This behavior should be avoided, as it may throttle the activity or impose large concurrent replication activity (if a backup/replica is running). This in turn can consume a large amount of CPU and network resources within a short period of time. This can be observed with garbage created very quickly, which may cause long pauses due to garbage collection activity.
  
-To prevent this, the notify listener implementation should have [batching enabled](#batch-events), where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a [polling container](./polling-container.html#notify-verses-polling-container) should be considered, as this is a more controlled event handler.
+To prevent this, the notify listener implementation should have [batching enabled](#batch-events), where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a [polling container](./polling-container-overview.html#notify-verses-polling-container) should be considered, as this is a more controlled event handler.
 
 
 # Primary/Backup
@@ -1072,7 +1072,7 @@ public class SimpleListener {
 
 
 {{%warning "Important"%}}
-Durable Notification does not support embedded Spaces, and can only be used with a remote proxy.  As an alternative, use a `Polling Container` with [SingleReadReceiveOperationHandler](./polling-container.html#trigger-receive-operation).
+Durable Notification does not support embedded Spaces, and can only be used with a remote proxy.  As an alternative, use a `Polling Container` with [SingleReadReceiveOperationHandler](./polling-container-overview.html#trigger-receive-operation).
 {{%/warning%}}
 
 Durable notifications are based on the replication mechanism, and therefore have some different semantics regarding other notify container configuration parameters.

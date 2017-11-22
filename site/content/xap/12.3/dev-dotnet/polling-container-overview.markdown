@@ -16,7 +16,7 @@ A polling event operation is mainly used when simulating Queue semantics or when
 
 {{%fpanel%}}
 
-[Overview](./polling-container.html){{<wbr>}}
+[Overview](./polling-container-overview.html){{<wbr>}}
 The polling event container.
 
 [Concurrent consumers](./polling-container-scaling.html){{<wbr>}}

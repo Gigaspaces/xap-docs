@@ -100,7 +100,7 @@ Note that when adding a listener to the session with a specified lease, the maxi
 # Limitations and Requirements
 
 {{%vbar%}}
-- Durable Notification does not support an embedded Space, it can only be used with a remote proxy.  Use a [Polling container](./polling-container.html) as an alternative.
+- Durable Notification does not support an embedded Space, it can only be used with a remote proxy.  Use a [Polling container](./polling-container-overview.html) as an alternative.
 - The durable notifications feature is available only for primary backup topologies.
 - Notifications are always sent as batches over the network. (even if the client will receive them one by one)
 - Only Unicast communication type is supported.

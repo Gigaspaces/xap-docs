@@ -9,7 +9,7 @@ weight: 100
 {{% ssummary%}}  {{% /ssummary %}}
 
 
-XAP event container transport uses [event components](./messaging-support.html) (namely the [polling container](./polling-container.html) and [notify container](./notify-container.html)) to receive POJO messages using the Space as the transport layer. It also allows you to send POJO messages using the Space as the transport layer.
+XAP event container transport uses [event components](./messaging-support.html) (namely the [polling container](./polling-container-overview.html) and [notify container](./notify-container-overview.html)) to receive POJO messages using the Space as the transport layer. It also allows you to send POJO messages using the Space as the transport layer.
 
 Since Mule configuration uses Spring, the event container transport can be easily integrated with OpenSpaces event components.
 
@@ -137,7 +137,7 @@ There is option to configure `writeLease` (defaults to `FOREVER`), `updateOrWrit
 
 # Transaction Support
 
-Since the inbound component is based on the event containers, transaction support can be enabled using the event container transaction support. Learn how to do this with the [polling container](./polling-container.html#OpenSpacesEventsComponent-PollingContainer-TransactionSupport).
+Since the inbound component is based on the event containers, transaction support can be enabled using the event container transaction support. Learn how to do this with the [polling container](./polling-container-overview.html#OpenSpacesEventsComponent-PollingContainer-TransactionSupport).
 
 Any operation performed using the `GigaSpace` interface joins the ongoing transaction started by the event container using its support for [declarative transactions](./the-gigaspace-interface.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions).
 

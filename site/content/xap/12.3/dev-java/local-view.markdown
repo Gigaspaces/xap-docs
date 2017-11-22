@@ -107,7 +107,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 
 The Local View is a **Read-Only** client side cache. The following operations are supported - these are served by the local view. The master space is not accessed when calling these:
     - `read` , `readMultiple` , `asyncRead` , `count` , using [Template Matching](./query-template-matching.html), [Id Queries](./query-by-id.html) or [SQLQuery](./query-sql.html).
-    - [Notify Container](./notify-container.html) , [Session Based Messaging API](./session-based-messaging-api.html).
+    - [Notify Container](./notify-container-overview.html) , [Session Based Messaging API](./session-based-messaging-api.html).
     - [IteratorBuilder](./query-paging-support.html).
 
 The following operations are not supported when using local view, and should be performed using a regular space proxy:

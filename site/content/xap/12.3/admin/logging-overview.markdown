@@ -349,7 +349,7 @@ More information about the LRU policy and eviction behavior is available [here](
 com.gigaspaces.core.notify.level = INFO
 ```
 
-The Notification mechanism can be used to identify events related to Space data (write, update, take, etc). Notifications are typically used with a [Notify Container]({{%currentjavaurl%}}/notify-container.html).
+The Notification mechanism can be used to identify events related to Space data (write, update, take, etc). Notifications are typically used with a [Notify Container]({{%currentjavaurl%}}/notify-container-overview.html).
 Notifications can also be used via Session-based messaging, which is discussed in detail [here]({{%currentjavaurl%}}/session-based-messaging-api.html).
 
 ### FIFO

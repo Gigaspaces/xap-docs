@@ -244,7 +244,7 @@ Combined, these two facilities enable you to better control your environment and
 
 GigaSpaces and its Space-Based-Architecture embrace the {{%exurl "reactive programming""http://en.wikipedia.org/wiki/Reactive_programming"%}} approach. The following falls under reactive programming with GigaSpaces:
 
-- [Data Event Listener]({{% latestjavaurl%}}/data-event-listener.html) - [Polling Container]({{% latestjavaurl%}}/polling-container.html), [Notify Container]({{% latestjavaurl%}}/notify-container.html)
+- [Data Event Listener]({{% latestjavaurl%}}/data-event-listener.html) - [Polling Container]({{% latestjavaurl%}}/polling-container-overview.html), [Notify Container]({{% latestjavaurl%}}/notify-container-overview.html)
 - [Local View and Local Cache](./caching-scenarios.html)
 - [Mule ESB Integration]({{% latestjavaurl%}}/mule-esb.html)
 - [Task Execution over the Space]({{% latestjavaurl%}}/task-execution-over-the-space.html)

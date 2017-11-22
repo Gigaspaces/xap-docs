@@ -156,7 +156,7 @@ The next step is exporting the service over the space. Exporting the service is 
 {{% /tab %}}
 {{% /tabs %}}
 
-Exporting the service as a remote space service uses the [event polling container](./polling-container.html). The polling container automatically listens to internal `EventDrivenSpaceRemotingEntry` objects, and writes back an updated `EventDrivenSpaceRemotingEntry` to the space. All polling event container features, such as transactions and different receive handlers can be used with Space remoting.
+Exporting the service as a remote space service uses the [event polling container](./polling-container-overview.html). The polling container automatically listens to internal `EventDrivenSpaceRemotingEntry` objects, and writes back an updated `EventDrivenSpaceRemotingEntry` to the space. All polling event container features, such as transactions and different receive handlers can be used with Space remoting.
 
 ## Exporting a Service Non-Collocated with the Space
 

@@ -109,11 +109,11 @@ When executing a batch operation (write multiple, read multiple, etc.) on a part
 
 ## Blocking Operations
 
-When executing blocking operations (such as read/take operation with a timeout > 0 or [Polling Container]({{%currentjavaurl%}}/polling-container.html)), keep in mind that the operation's timeout argument determines the maximum time to wait for a matching entry in the space, whereas the space proxy configuration `active-server-lookup-timeout` determines the maximum time to wait for an active server. These timeouts are separate and do not affect each other. Moreover, if a failover occurs while the operation is blocked on a server, it will be re-invoked on the new active server with the original timeout, ignoring the amount of time the client already spent waiting for a matching object before the client was disconnected.
+When executing blocking operations (such as read/take operation with a timeout > 0 or [Polling Container]({{%currentjavaurl%}}/polling-container-overview.html)), keep in mind that the operation's timeout argument determines the maximum time to wait for a matching entry in the space, whereas the space proxy configuration `active-server-lookup-timeout` determines the maximum time to wait for an active server. These timeouts are separate and do not affect each other. Moreover, if a failover occurs while the operation is blocked on a server, it will be re-invoked on the new active server with the original timeout, ignoring the amount of time the client already spent waiting for a matching object before the client was disconnected.
 
 ## Notifications
 
-If communication is disrupted during the notification registration process, it is handled in the same manner as the other operations (i.e. proxy automatically looks for an active space up to the configured timeout). However, if communication is disrupted afterwards, other mechanisms are needed to ensure communication is restored and events are not lost. For more information refer to [Notify Container]({{%currentjavaurl%}}/notify-container.html) and [Session Based Messaging API]({{%currentjavaurl%}}/session-based-messaging-api.html).
+If communication is disrupted during the notification registration process, it is handled in the same manner as the other operations (i.e. proxy automatically looks for an active space up to the configured timeout). However, if communication is disrupted afterwards, other mechanisms are needed to ensure communication is restored and events are not lost. For more information refer to [Notify Container]({{%currentjavaurl%}}/notify-container-overview.html) and [Session Based Messaging API]({{%currentjavaurl%}}/session-based-messaging-api.html).
 
 ## Local Cache/View
 
