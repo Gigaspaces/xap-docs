@@ -502,16 +502,12 @@ Examples:
 |[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
 |[ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations | NONE  |  |
 
-
-
- 
-For further details on each of the available modifiers see: [ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)
- 
+  
 
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Read by template:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#read(T))
+Read by template: 
 
 ```java
 <T> T read(T template) throws DataAccessException
@@ -519,7 +515,7 @@ Read by template:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.ht
 .....
 ```
 
-Read by Id:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readById(java.lang.Class,%20java.lang.Object))
+Read by Id: 
 
 ```java
 <T> T readById(Class<T> clazz, Object id) throws DataAccessException
@@ -527,7 +523,7 @@ Read by Id:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#rea
 .....
 ```
 
-Read by ISpaceQuery:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#read(com.gigaspaces.query.ISpaceQuery))
+Read by ISpaceQuery: 
 
 ```java
 <T> T read(ISpaceQuery<T> query, Object id)throws DataAccessException
@@ -535,7 +531,7 @@ Read by ISpaceQuery:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace
 ....
 ```
 
-Read multiple:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readMultiple(com.gigaspaces.query.ISpaceQuery))
+Read multiple: 
 
 ```java
 <T> T[] readMultiple(ISpaceQuery<T> query) throws DataAccessException
@@ -546,7 +542,7 @@ Read multiple:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#
 ...
 ```
 
-Asynchronous Read:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#asyncRead(com.gigaspaces.query.ISpaceQuery))
+Asynchronous Read:  
 
 ```java
 <T> AsyncFuture<T> asyncRead(T template) throws DataAccessException
@@ -556,7 +552,7 @@ Asynchronous Read:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.h
 .....
 ```
 
-Read if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readIfExists(com.gigaspaces.query.ISpaceQuery))
+Read if exists: 
 
 ```java
 <T> T readIfExists(T template)throws DataAccessException
@@ -788,15 +784,12 @@ Examples:
 |[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
 |[TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations | NONE  |  |
 
-
- 
-For further details on each of the available modifiers see: [TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)
  
 
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Take by template:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#take(T))
+Take by template: 
 
 ```java
 <T> T take(T template) throws DataAccessException
@@ -804,7 +797,7 @@ Take by template:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.ht
 .....
 ```
 
-Take by Id:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#takeById(java.lang.Class,%20java.lang.Object))
+Take by Id:
 
 ```java
 <T> T takeById(Class<T> clazz, Object id) throws DataAccessException
@@ -812,7 +805,7 @@ Take by Id:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#tak
 .....
 ```
 
-Take by ISpaceQuery:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#take(com.gigaspaces.query.ISpaceQuery))
+Take by ISpaceQuery: 
 
 ```java
 <T> T take(ISpaceQuery<T> query, Object id)throws DataAccessException
@@ -820,7 +813,7 @@ Take by ISpaceQuery:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace
 ....
 ```
 
-Take multiple:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#takeMultiple(com.gigaspaces.query.ISpaceQuery))
+Take multiple: 
 
 ```java
 <T> T[] takeMultiple(ISpaceQuery<T> query) throws DataAccessException
@@ -831,7 +824,7 @@ Take multiple:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#
 ...
 ```
 
-Asynchronous take:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#asyncTake(com.gigaspaces.query.ISpaceQuery))
+Asynchronous take: 
 
 ```java
 <T> AsyncFuture<T> asyncTake(T template) throws DataAccessException
@@ -841,7 +834,7 @@ Asynchronous take:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.h
 .....
 ```
 
-Take if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#takeIfExists(com.gigaspaces.query.ISpaceQuery))
+Take if exists: 
 
 ```java
 <T> T takeIfExists(T template)throws DataAccessException
@@ -857,6 +850,7 @@ Take if exists:[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html
 
 {{%anchor clear%}}
 
+<br>
 # The Clear Operation
 
 
@@ -892,7 +886,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Clears objects from space.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#clear(java.lang.Object))
+Clears objects from space. 
 
 
 ```java
@@ -953,7 +947,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Count objects in space.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#count(java.lang.Object))
+Count objects in space. 
 
 
 ```java
