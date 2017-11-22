@@ -247,7 +247,7 @@ Writing an object into a space might generate [notifications](./notify-container
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Writes a new object to the space, returning its LeaseContext.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#write(T)))
+Writes a new object to the space, returning its LeaseContext.  
 
 
 ```java
@@ -257,7 +257,7 @@ Writes a new object to the space, returning its LeaseContext.[Java API]({{% api-
 
 ```
 
-Writes new objects to the space, returning its LeaseContexts.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#writeMultiple(T[]))
+Writes new objects to the space, returning its LeaseContexts. 
 
 ```java
 <T> LeaseContext<T>[] writeMultiple(T[] entries) throws DataAccessException

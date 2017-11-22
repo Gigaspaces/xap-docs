@@ -248,7 +248,7 @@ Writing an object into a space might generate [notifications](./notify-container
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Writes a new object to the space, returning its LeaseContext.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#write(T))
+Writes a new object to the space, returning its LeaseContext. 
 
 
 ```java
