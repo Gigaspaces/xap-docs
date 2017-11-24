@@ -34,12 +34,12 @@ Much like a JEE web application or an OSGi bundle, The Processing Unit is packag
 
 The processing unit jar file is composed of several key elements:
 
-- `META-INF/spring/pu.xml` (mandatory): This is the processing unit's deployment descriptor, which is in fact a [Spring](http://www.springframework.org) context XML configuration with a number of GigaSpaces-specific namespace bindings. These bindings include GigaSpaces specific components (such as the space for example). The `pu.xml` file typically contains definitions of GigaSpaces components ([space](/product_overview/the-in-memory-data-grid.html), [event containers](./event-processing.html), [remote service exporters](./space-based-remoting.html)) and user defined beans which would typically interact with those components (e.g. an event handler to which the event containers delegate the events, or a service beans which is exposed to remote clients by a remote service exporter).
+- `META-INF/spring/pu.xml` (mandatory): This is the processing unit's deployment descriptor, which is in fact a [Spring](http://www.springframework.org) context XML configuration with a number of GigaSpaces-specific namespace bindings. These bindings include GigaSpaces specific components (such as the space for example). The `pu.xml` file typically contains definitions of GigaSpaces components ([space](../overview/the-in-memory-data-grid.html), [event containers](./event-processing.html), [remote service exporters](./space-based-remoting.html)) and user defined beans which would typically interact with those components (e.g. an event handler to which the event containers delegate the events, or a service beans which is exposed to remote clients by a remote service exporter).
 
 - `META-INF/spring/sla.xml` (not mandatory): This file contains SLA definitions for the processing unit (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an `<os:sla>` definition in the `pu.xml` file. If neither is present, the [default SLA]({{%currentadmurl%}}/the-sla-overview.html)  will be applied. Note, the `sla.xml` can also be placed at the root of the processing unit. SLA definitions can be also specified at the deploy time via the [deploy CLI]({{%currentadmurl%}}/deploy-command-line-interface.html) or [deploy API]({{% api-javadoc %}}/org/openspaces/admin/gsm/GridServiceManagers.html).
 
 {{% note %}}
-SLA definitions are only enforced when deploying the processing unit to the GigaSpaces service grid, since this environment actively manages and controls the deployment using the [GSM](/product_overview/service-grid.html#gsm). When [running within your IDE](../started/xap-debug.html) or in [standalone mode](./running-in-standalone-mode.html) these definitions are ignored.
+SLA definitions are only enforced when deploying the processing unit to the GigaSpaces service grid, since this environment actively manages and controls the deployment using the [GSM](../overview/the-runtime-environment.html#gsm). When [running within your IDE](../started/xap-debug.html) or in [standalone mode](./running-in-standalone-mode.html) these definitions are ignored.
 {{% /note %}}
 
 - `META-INF/spring/pu.properties` (not mandatory): Enables you to externalize properties included in the `pu.xml` file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see [this page](./web-application-support.html) for more details) or space properties (when defining a space inside your processing unit). Note, the `pu.properties` can also be placed at the root of the processing unit.
@@ -111,9 +111,9 @@ When [running within your IDE](../started/xap-debug.html), it is similar to any 
 
 # Deploying the Processing Unit to the Service Grid
 
-When deploying the processing unit to [GigaSpaces Service Grid]({{%currentadmurl%}}/the-runtime-environment.html), the processing unit jar file is uploaded to the [XAP Manager (GSM)](/product_overview/service-grid.html#gsm) and extracted to the `deploy` directory of the local GigaSpaces installation (located by default under `<XAP Root>/deploy`).
+When deploying the processing unit to [GigaSpaces Service Grid]({{%currentadmurl%}}/the-runtime-environment.html), the processing unit jar file is uploaded to the [XAP Manager (GSM)](../overview/the-runtime-environment.html#gsm) and extracted to the `deploy` directory of the local GigaSpaces installation (located by default under `<XAP Root>/deploy`).
 
-Once extracted, the [GSM](/product_overview/service-grid.html#gsm) processes the deployment descriptor and based on that provisions processing unit instances to the running [XAP containers](/product_overview/service-grid.html#gsc).
+Once extracted, the [GSM](../overview/the-runtime-environment.html#gsm) processes the deployment descriptor and based on that provisions processing unit instances to the running [XAP containers](../overview/the-runtime-environment.html#gsc).
 
 Each GSC to which a certain instance was provisioned, downloads the processing unit jar file from the GSM, extracts it to its local work directory (located by default under `<XAP Root>/work/deployed-processing-units`) and starts the processing unit instance.
 

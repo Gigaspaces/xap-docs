@@ -14,7 +14,7 @@ In production, your processing units run on the GigaSpaces service grid, taking 
 
 The abstraction which enables to run the same processing unit in different modes (service grid, within your IDE, etc.) is called _Processing Unit Containers_.
 
-Naturally, the [GigaSpaces Container](/product_overview/service-grid.html#gsc) implements its own processing unit container, allowing for processing units which are provisioned to it to run properly.
+Naturally, the [GigaSpaces Container](../overview/the-runtime-environment.html#gsc) implements its own processing unit container, allowing for processing units which are provisioned to it to run properly.
 
 In addition, to facilitate easier development and debugging, GigaSpaces provides two more processing unit containers: The _Integrated Processing Unit Container_ allows you to debug and run your processing units within your IDE in an isolated easy to use mode. The integrated processing unit container is simply a class with a main method, that instantiates a Spring application context for your processing unit and makes sure other services (such [cluster information](./obtaining-cluster-information.html) is available to your code as if it was running in a real cluster.
 

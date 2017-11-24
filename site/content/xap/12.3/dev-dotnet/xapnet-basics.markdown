@@ -13,7 +13,7 @@ This section provides some hands-on examples to demonstrate the core concepts an
 You will learn how to download and install XAP.
 
 [XAP.NET in 5 minutes](xapnet-in-5-minutes.html)<br>
-This tutorial explains how to deploy and use a XAP [Data Grid](/product_overview/the-in-memory-data-grid.html) from a .NET client application.
+This tutorial explains how to deploy and use a XAP [Data Grid](../overview/the-in-memory-data-grid.html) from a .NET client application.
 
 [Interacting with the Space](xapnet-tutorial-part1.html)<br>
 In this part of the tutorial we will demonstrate how to create a Space and how you can interact with it. We will also demonstrate how you can improve your space search performance by using indexes and returning partial results.

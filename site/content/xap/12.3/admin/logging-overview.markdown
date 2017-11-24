@@ -370,7 +370,7 @@ com.gigaspaces.core.cluster.replication.redolog.level = INFO
 com.gigaspaces.core.cluster.sync_replication.level = INFO
 ```
 
-When a cluster topology is replicated, the replication functionality is enabled. More information about topologies is available [here](/product_overview/space-topologies.html).
+When a cluster topology is replicated, the replication functionality is enabled. More information about topologies is available [here](../overview/the-runtime-environment.html#topologies).
 
 Replication between Spaces is one of the core features of XAP, and is explained in detail [here](./replication.html).
 
@@ -381,7 +381,7 @@ Replication between Spaces is one of the core features of XAP, and is explained 
 com.gigaspaces.core.cluster.partition.level = INFO
 ```
 
-When a cluster uses partitioned topology, the data is partitioned across multiple Space instances. More information about topologies is available [here](/product_overview/space-topologies.html).
+When a cluster uses partitioned topology, the data is partitioned across multiple Space instances. More information about topologies is available [here](../overview/the-runtime-environment.html#topologies).
 
 ### Active-Election
 
@@ -470,7 +470,7 @@ com.sun.jini.start.service.starter.level = INFO
 com.sun.jini.thread.TaskManager.level = INFO
 ```
 
-The Lookup Service (LUS) is a runtime registry of GigaSpaces components. Each component registers itself to a LUS, which provides visibility to other components. For example, a GSM discovers a GSC by looking at an entry in the LUS, and a GSC discovers a GSM in a similar way. More information about the LUS is available [here](/product_overview/the-lookup-service.html).
+The Lookup Service (LUS) is a runtime registry of GigaSpaces components. Each component registers itself to a LUS, which provides visibility to other components. For example, a GSM discovers a GSC by looking at an entry in the LUS, and a GSC discovers a GSM in a similar way. More information about the LUS is available [here](../overview/the-runtime-environment.html#lus).
 
 ## GSM
 
@@ -486,7 +486,7 @@ com.gigaspaces.grid.gsm.selector.level = INFO
 org.jini.rio.tools.webster.level = INFO
 ```
 
-The GigaSpaces Manager (GSM) manages the applications and maintains the SLAs for deployments. More information about the GSM is available [here](/product_overview/service-grid.html#gsm).
+The GigaSpaces Manager (GSM) manages the applications and maintains the SLAs for deployments. More information about the GSM is available [here](../overview/the-runtime-environment.html#gsm).
 
 ## GSC
 
@@ -498,7 +498,7 @@ com.gigaspaces.grid.gsm.GSMFaultDetectionHandler.level = INFO
 org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level = INFO
 ```
 
-The GigaSpaces Container (GSC) is the runtime environment for GigaSpaces applications. More information about GSCs is available [here](/product_overview/service-grid.html#gsc).
+The GigaSpaces Container (GSC) is the runtime environment for GigaSpaces applications. More information about GSCs is available [here](../overview/the-runtime-environment.html#gsc).
 
 ## ESM
 
@@ -517,7 +517,7 @@ The Elastic Service Manager (ESM) is an implementation of the Elastic Middleware
 com.gigaspaces.grid.gsa.level = INFO
 ```
 
-The GigaSpaces Agent (GSA) acts as a process manager that can spawn and manage Service Grid processes (operating-system-level processes), such as the GigaSpaces Manager (GSM), GigaSpaces Container (GSC), and Lookup Service (LUS). More information about the GSA is available [here](/product_overview/service-grid.html#gsa).
+The GigaSpaces Agent (GSA) acts as a process manager that can spawn and manage Service Grid processes (operating-system-level processes), such as the GigaSpaces Manager (GSM), GigaSpaces Container (GSC), and Lookup Service (LUS). More information about the GSA is available [here](../overview/the-runtime-environment.html#gsa).
  
  
 # Replication

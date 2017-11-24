@@ -8,7 +8,7 @@ weight: 600
 
 
 
-A [partitioned space](/product_overview/terminology.html) provides the ability to perform space operations against multiple spaces from a single proxy transparently. The primary goal of the partitioned space is to provide unlimited In-Memory space storage size and group objects into the same partition to speed up performance. The initial intention is to write data into the partitioned space, and route query operations based on the template data.
+A [partitioned space](../overview/terminology.html) provides the ability to perform space operations against multiple spaces from a single proxy transparently. The primary goal of the partitioned space is to provide unlimited In-Memory space storage size and group objects into the same partition to speed up performance. The initial intention is to write data into the partitioned space, and route query operations based on the template data.
 
 Note that in such a configuration, the different spaces defined as partitions are not aware of each other ("Share Nothing") - the client proxy is the one that is aware of the partitioned space configuration.
 

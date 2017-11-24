@@ -94,7 +94,7 @@ pu.scale(new EagerScaleConfigurer().create());
 The Eager trigger has the following limitations:
 
 - Number of maximum machines is limited to the number of partitions calculated/defined during the deployment time. This limitation does not exist for stateless processing units.
-- Multiple Eager EPUs can run on the same [Lookup Service](/product_overview/service-grid.html#lus) but on different machines. Machines are marked by starting a Grid Service Agent with a specific zone (With a command line argument -Dcom.gs.zones=zone1).
+- Multiple Eager EPUs can run on the same [Lookup Service](../overview/the-runtime-environment.html#lus) but on different machines. Machines are marked by starting a Grid Service Agent with a specific zone (With a command line argument -Dcom.gs.zones=zone1).
 
 
 ```java

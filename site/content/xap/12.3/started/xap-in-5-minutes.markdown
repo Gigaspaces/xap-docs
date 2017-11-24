@@ -6,13 +6,13 @@ parent: xap-basics.html
 weight: 400
 ---
 
-This tutorial explains how to deploy and use a XAP [Data Grid](/product_overview/the-in-memory-data-grid.html) from a Java client application.
+This tutorial explains how to deploy and use a XAP [Data Grid](../overview/the-in-memory-data-grid.html) from a Java client application.
 
 
 
 # Starting a Service Grid
 
-A Data Grid requires a [Service Grid](/product_overview/service-grid.html) to host it. A service grid is composed of one or more machines (service grid nodes) running a [Service Grid Agent](/product_overview/service-grid.html#gsa) (or `GSA`), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.
+A Data Grid requires a [Service Grid](../overview/the-runtime-environment.html) to host it. A service grid is composed of one or more machines (service grid nodes) running a [Service Grid Agent](../overview/the-runtime-environment.html#gsa) (or `GSA`), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.
 
 In this tutorial you'll launch a single node service grid on your machine. To start the service grid, simply run the `gs-agent` script from the product's `bin` folder.
 

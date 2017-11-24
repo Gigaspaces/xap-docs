@@ -26,7 +26,7 @@ A Local View allows the client application to cache specific data based on clien
 
 #### Additional Resources
 
-- For a detailed description of the different caching scenarios please consult the [Product Overview](/product_overview/caching-scenarios.html)
+- For a detailed description of the different caching scenarios please consult the [Product Overview](../overview/caching-scenarios.html)
 
 
 

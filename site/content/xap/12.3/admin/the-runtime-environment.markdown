@@ -8,11 +8,11 @@ weight: 200
 
 {{% anchor GSRuntimeEnv %}}
 
-A processing unit is deployed onto the XAP runtime environment, which is called the [Service Grid](/product_overview/the-runtime-environment.html). It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
+A processing unit is deployed onto the XAP runtime environment, which is called the [Service Grid](../overview/the-runtime-environment.html). It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
 
 # Usage
 
-To start a Service Grid on a machine, launch the `gs-agent` utility located in the `$XAP_HOME/bin` folder. This will start the [Grid Service Agent](/product_overview/service-grid.html#gsa), which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, `--process_type=n` will start `n` instances of the specified `process_type`. Use the `global` keyword (e.g. `--global.process_type=n`) to specify that the agent should coordinate with other running agents the hosting and management of that service. Let's look at common use cases:
+To start a Service Grid on a machine, launch the `gs-agent` utility located in the `$XAP_HOME/bin` folder. This will start the [Grid Service Agent](../overview/the-runtime-environment.html#gsa), which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, `--process_type=n` will start `n` instances of the specified `process_type`. Use the `global` keyword (e.g. `--global.process_type=n`) to specify that the agent should coordinate with other running agents the hosting and management of that service. Let's look at common use cases:
 
 ## Help
 Run gs-agent with `--help` or `-h` to see all available options:
@@ -201,10 +201,10 @@ The following are the process types that come out of the box:
 
 |Processes Type|Description|XML config file name|
 |:-------------|:----------|:-------------------|
-|gsc|Defines a [Grid Service Container](/product_overview/service-grid.html#gsc)|gsc.xml|
-|gsm|Defines a [Grid Service Manager](/product_overview/service-grid.html#gsm)|gsm.xml|
-|lus|Defines a [Lookup Service](/product_overview/service-grid.html#lus)| lus.xml|
-|gsm_lus|Defines a [Grid Service Manager](/product_overview/service-grid.html#gs) and [Lookup Service](/product_overview/service-grid.html#lus) within the same JVM|gsm_lus.xml|
+|gsc|Defines a [Grid Service Container](../overview/the-runtime-environment.html#gsc)|gsc.xml|
+|gsm|Defines a [Grid Service Manager](../overview/the-runtime-environment.html#gsm)|gsm.xml|
+|lus|Defines a [Lookup Service](../overview/the-runtime-environment.html#lus)| lus.xml|
+|gsm_lus|Defines a [Grid Service Manager](../overview/the-runtime-environment.html#gsm) and [Lookup Service](../overview/the-runtime-environment.html#lus) within the same JVM|gsm_lus.xml|
 |esm|Defines an Elastic Service Manager which is required for deploying [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html)|esm.xml|
 
 Here is an example of the `gsc.xml` configuration file:

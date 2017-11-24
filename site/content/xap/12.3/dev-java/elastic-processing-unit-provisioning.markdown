@@ -12,7 +12,7 @@ weight: 400
 
 # System Bootstrapping
 
-Each machine requires a single running [GigaSpaces Agent](/product_overview/service-grid.html#gsa). The example below shows how to start a new XAP agent. The command line parameters instruct the agents to communicate with each other and start the specified amount of managers. It does not start any containers automatically. The EPU starts containers on demand.
+Each machine requires a single running [GigaSpaces Agent](../overview/the-runtime-environment.html#gsa). The example below shows how to start a new XAP agent. The command line parameters instruct the agents to communicate with each other and start the specified amount of managers. It does not start any containers automatically. The EPU starts containers on demand.
 
 That means that potentially any machine could be a management machine:
 

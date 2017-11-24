@@ -35,7 +35,7 @@ The GSA is a process manager that can spawn and manage service grid processes (O
 {{%/imagertext%}}
 
 {{%refer%}}
-[Service Grid](/product_overview/service-grid.html)
+[Service Grid](../overview/the-in-memory-data-grid.html)
 {{%/refer%}}
 
 
@@ -111,7 +111,7 @@ When the application write Payment objects into this space, XAP will use the rou
 
 
 {{%refer%}}
-[Service Grid](/product_overview/space-topologies.html)
+[Service Grid](../overview/the-runtime-environment.html#topologies)
 {{%/refer%}}
 
 

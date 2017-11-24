@@ -8,7 +8,7 @@ weight: 1000
 
 # The Runtime Environment (GSA, LUS, GSM and GSC)
 
-In a dynamic environment where you want to start [GSCs](/product_overview/service-grid.html#gsc) and [GSMs](/product_overview/service-grid.html#gsm) remotely, manually, or dynamically, the [GSA](/product_overview/service-grid.html#gsa) is the only component that should be running on the machine hosting the [XAP runtime environment](../admin/the-runtime-environment.html). This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.
+In a dynamic environment where you want to start [GSCs](../overview/the-runtime-environment.html#gsc) and [GSMs](../overview/the-runtime-environment.html#gsm) remotely, manually, or dynamically, the [GSA](../overview/the-runtime-environment.html#gsa) is the only component that should be running on the machine hosting the [XAP runtime environment](../admin/the-runtime-environment.html). This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.
 
 Plan the initial number of GSCs and GSMs based on the application memory footprint, and the amount of processing you might need. The most basic deployment should include 2 GSMs (running on different machines), 2 lookup services (running on different machines), and 2 GSCs (running on each machine). These host your data Grid or any other application components (services, web servers, Mirror) that you deploy.
 
@@ -262,7 +262,7 @@ XAP generates some files while the system is running. You can change the locatio
 |user.home|The location of system defaults config. Used by the GS-UI, and runtime system components.| |
 |com.gigaspaces.lib.platform.ext | PUs shared classloader libraries folder. PU jars located within this folder loaded once into the **JVM system classloader** and shared between all the PU instances classloaders within the GSC. In most cases this is a better option than the `com.gs.pu-common` for JDBC drivers and other 3rd party libraries. This is useful option when you  want multiple processing units to share the same 3rd party jar files and do not want to repackage the processing unit jar whenever one of these 3rd party jars changes.| `<gigaspaces-xap root>\lib\platform\ext`|
 |com.gs.pu-common|The location of common classes used across multiple processing units. The libraries located within this folder **loaded into each PU instance classloader** (and not into the system classloader as with the `com.gigaspaces.lib.platform.ext`. |`<gigaspaces-xap root>\lib\optional\pu-common`|
-|com.gigaspaces.grid.gsa.config-directory|The location of the GSA configuration files. [The GigaSpaces Agent](/product_overview/service-grid.html#gsa) (GSA) manages different process types. Each process type is defined within this folder in an xml file that identifies the process type by its name. |`<gigaspaces-xap root>\config\gsa`|
+|com.gigaspaces.grid.gsa.config-directory|The location of the GSA configuration files. [The GigaSpaces Agent](../overview/the-runtime-environment.html#gsa) (GSA) manages different process types. Each process type is defined within this folder in an xml file that identifies the process type by its name. |`<gigaspaces-xap root>\config\gsa`|
 |java.util.logging.config.file| It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces XAP Services. You may control this setting via the `XAP_LOGS_CONFIG_FILE` environment variable.| `<gigaspaces-xap root>\config\log\xap_logging.properties`|
 
 {{% note "Note"%}}

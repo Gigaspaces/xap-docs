@@ -65,7 +65,7 @@ The GSA is a process manager that can spawn and manage service grid processes (O
 {{%/imagertext%}}
 
 {{%refer%}}
-[Product Overview, Service Grid](/product_overview/service-grid.html)
+[Product Overview, Service Grid](../overview/the-runtime-environment.html)
 {{%/refer%}}
 
 
@@ -148,7 +148,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 When the application write Payment objects into this space, XAP will use the routing information provided (@SpaceRouting) by the Payment class to route the object to the right partition. 
 
 {{%refer%}}
-[Product Overview, Space Topology](/product_overview/space-topologies.html)
+[Product Overview, Space Topology](../overview/the-runtime-environment.html#topologies)
 {{%/refer%}}
 
 

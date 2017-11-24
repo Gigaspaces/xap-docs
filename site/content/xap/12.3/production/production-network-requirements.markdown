@@ -102,7 +102,7 @@ The LRMI connection thread pool is a server-side component. This thread pool is 
 
 # Lookup Locators and Groups
 
-A space (or any other service, such as a GSC or GSM) publishes (or registers/exports) itself within the [Lookup Service](/product_overview/the-lookup-service.html). The Lookup Service (also called the service proxy) acts as the system directory service. It keeps information about each service, such as its location and its exposed remote methods. Every client or service needs to discover a Lookup Service as part of its bootstrap process.
+A space (or any other service, such as a GSC or GSM) publishes (or registers/exports) itself within the [Lookup Service](../overview/the-runtime-environment.html#lus). The Lookup Service (also called the service proxy) acts as the system directory service. It keeps information about each service, such as its location and its exposed remote methods. Every client or service needs to discover a Lookup Service as part of its bootstrap process.
 
 There are two main options for how to discover a Lookup Service:
 

@@ -7,7 +7,7 @@ parent: none
 ---
 
 
-The GigaSpaces runtime environment (also referred to as the Service Grid) provides SLA-driven capabilities via the [Grid Service Manager (GSM)](/product_overview/service-grid.html#gsm) and the [Grid Service Container (GSC)](/product_overview/service-grid.html#gsc) runtime components. The GSC is responsible for running one or more Processing Units. The GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available GSCs.
+The GigaSpaces runtime environment (also referred to as the Service Grid) provides SLA-driven capabilities via the [Grid Service Manager (GSM)](../overview/the-runtime-environment.html#gsm) and the [Grid Service Container (GSC)](../overview/the-runtime-environment.html#gsc) runtime components. The GSC is responsible for running one or more Processing Units. The GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available GSCs.
 
 {{% note "Enforcing SLA Definitions "%}}
 The SLA definitions are only enforced when deploying the Processing Unit to the Service Grid, because this environment actively manages and controls the deployment using the GSM(s). When running within your IDE or in standalone mode, these definitions are ignored.
@@ -68,7 +68,7 @@ The SLA definition, whether it comes in a separate file or embedded inside the `
 {{% /tab %}}
 {{% /tabs %}}
 
-The SLA definition shown above creates four instances of a Processing Unit using the `partitioned` [space topology](/product_overview/space-topologies.html). It defines two partitions (`number-of-instances="2"`), each with one backup (`number-of-backups="1"`). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (`max-instances-per-vm="1"`).
+The SLA definition shown above creates four instances of a Processing Unit using the `partitioned` [space topology](../overview/the-runtime-environment.html#topologies). It defines two partitions (`number-of-instances="2"`), each with one backup (`number-of-backups="1"`). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (`max-instances-per-vm="1"`).
 
 {{% note "Note"%}}
 It is up to the developer to configure the SLA correctly. Trying to deploy a Processing Unit with a cluster schema that requires backups without specifying `numberOfBackups` will cause the deployment to fail.
@@ -101,7 +101,7 @@ You can choose from numerous clustering topologies:
 From the client application's perspective (the one that connects to the Space from another process), the clustering topology is transparent in most cases.
 
 {{% refer %}}
-Please refer to [this page](/product_overview/space-topologies.html) for more details about space clustering topologies and guidelines regarding when to use each of the topologies.
+Please refer to [this page](../overview/the-runtime-environment.html#topologies) for more details about space clustering topologies and guidelines regarding when to use each of the topologies.
 The number-of-backups parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.
 {{% /refer %}}
 
@@ -224,7 +224,7 @@ The default value of the `com.gigaspaces.grid.gsc.serviceLimit` is **500**.
 
 # Monitoring the Liveness of Processing Unit Instances
 
-The [GSM](/product_overview/service-grid.html#gsm) monitors the liveness of all the Processing Unit instances it provisioned to the GSCs. The GSM pings each instance in the cluster to see whether it is available.
+The [GSM](../overview/the-runtime-environment.html#gsm) monitors the liveness of all the Processing Unit instances it provisioned to the GSCs. The GSM pings each instance in the cluster to see whether it is available.
 
 You can control how often a Processing Unit instance is monitored by the GSM, and in case of failure, how many times the GSM will try again to ping the instance and how long it will wait between retry attempts.
 

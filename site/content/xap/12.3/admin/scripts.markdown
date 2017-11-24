@@ -23,26 +23,26 @@ The scripts listed below are available in the licensed editions of the GigaSpace
 - **gs** - starts the GigaSpaces [interactive shell](./command-line-interface.html).
 - **gs-ui** - starts the [GigaSpaces Management Center](./gigaspaces-management-center.html).
 - **gs-webui** - starts the [Web Management Console](./web-management-console.html).
-- **gs-agent** - Starts the [GigaSpaces runtime environment](./the-runtime-environment.html) via the [Grid Service Agent](/product_overview/service-grid.html#gsa) (GSA), which starts and manages the [Service Grid](/product_overview/service-grid.html) components.
+- **gs-agent** - Starts the [GigaSpaces runtime environment](./the-runtime-environment.html) via the [Grid Service Agent](../overview/the-runtime-environment.html#gsa) (GSA), which starts and manages the [Service Grid](../overview/the-runtime-environment.html) components.
 
 
 In addition to the scripts described [here](./scripts.html), the `bin` folder contains **advanced_scripts.zip** for additional tasks, usually for development and troubleshooting.
 
 # Service Grid Scripts
 
-If you need to start the [Service Grid](/product_overview/service-grid.html) components manually instead of via the [gs-agent](/product_overview/service-grid.html#gsa), use the following scripts.
+If you need to start the [Service Grid](../overview/the-runtime-environment.html) components manually instead of via the [gs-agent](../overview/the-runtime-environment.html#gsa), use the following scripts.
 
 **Open-Source Scripts**
 
-- **lookup-service** - starts an instance of the [LUS](/product_overview/service-grid.html#lus).
+- **lookup-service** - starts an instance of the [LUS](../overview/the-runtime-environment.html#lus).
 
 **Additional Scripts**
 
 The scripts listed below are available in the licensed editions of the GigaSpaces applications.
 
-- **gsc** - starts an instance of the [GSC](/product_overview/service-grid.html#gsc).
-- **gsm** - starts an instance of the [GSM](/product_overview/service-grid.html#gsm) and [LUS](/product_overview/service-grid.html#lus).
-- **gsm_nolus** - starts an instance of the [GSM](/product_overview/service-grid.html#gsm).
+- **gsc** - starts an instance of the [GSC](../overview/the-runtime-environment.html#gsc).
+- **gsm** - starts an instance of the [GSM](../overview/the-runtime-environment.html#gsm) and [LUS](../overview/the-runtime-environment.html#lus).
+- **gsm_nolus** - starts an instance of the [GSM](../overview/the-runtime-environment.html#gsm).
 - **esm** - starts an instance of the [ESM]({{%currentjavaurl%}}/elastic-processing-unit.html).
 - **startJiniTX_Mahalo** - starts an instance of the Distributed transaction manager.
 

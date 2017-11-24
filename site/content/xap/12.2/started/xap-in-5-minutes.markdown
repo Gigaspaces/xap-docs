@@ -6,7 +6,7 @@ parent: xap-basics.html
 weight: 400
 ---
 
-This tutorial explains how to deploy and use a XAP [Data Grid](../the-in-memory-data-grid.html) from a Java client application.
+This tutorial explains how to deploy and use a XAP [Data Grid](../overview/the-in-memory-data-grid.html) from a Java client application.
 
 
 
