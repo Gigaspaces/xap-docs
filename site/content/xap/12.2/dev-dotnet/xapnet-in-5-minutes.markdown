@@ -10,7 +10,7 @@ weight: 100
 
 
 
-This tutorial explains how to deploy and use an XAP [Data Grid](/product_overview/the-in-memory-data-grid.html) from a .NET client application.
+This tutorial explains how to deploy and use an XAP [Data Grid](../overview/the-in-memory-data-grid.html) from a .NET client application.
 
 
 
@@ -22,7 +22,7 @@ Once you accept the licence agreement, you will be asked to choose a setup type.
 
 # Starting a Service Grid
 
-A Data Grid requires a [Service Grid](/product_overview/service-grid.html) to host it. A service grid is composed of one or more machines (service grid nodes) running a [Service Grid Agent](/product_overview/service-grid.html#gsa) (or `GSA`), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.
+A Data Grid requires a [Service Grid](../overview/the-runtime-environment.html) to host it. A service grid is composed of one or more machines (service grid nodes) running a [Service Grid Agent](../overview/the-runtime-environment.html#gsa) (or `GSA`), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.
 
 In this tutorial you'll launch a single node service grid on your machine. To start the service grid, simply run the `Gs-agent.exe` from the product's `bin` folder.
 

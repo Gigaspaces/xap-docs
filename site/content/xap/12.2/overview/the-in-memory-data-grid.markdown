@@ -342,6 +342,7 @@ Replication Configuration
 For more details on how to configure the replication mechanisms of the Space,  refer to [Replication]({{% latestadmurl%}}/replication.html) in the [Administration Guide]({{% latestadmurl%}}).
 {{%  /refer %}}
 
+{{% anchor topologies %}} 
 # Data Grid Topologies
 
 GigaSpaces XAP supports the following data grid topologies:

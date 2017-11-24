@@ -54,7 +54,7 @@ Monitoring the Local View/Cache.
 
 #### Additional Resources
 
-- For a detailed description of the different caching scenarios please consult the [Product Overview](/product_overview/caching-scenarios.html)
+- For a detailed description of the different caching scenarios please consult the [Product Overview](../overview/caching-scenarios.html)
 
 - For more advanced WAN based topologies see the [Multi-Site Replication over the WAN](./multi-site-replication-over-the-wan.html) section.
 

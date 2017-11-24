@@ -391,7 +391,7 @@ Another option is to use Maven:
 
 # Deployment
 
-The XAP IMDG should be deployed using one of the [topologies](/product_overview/space-topologies.html).
+The XAP IMDG should be deployed using one of the [topologies](../overview/the-in-memory-data-grid.html#topologies).
 
 
 {{%tabs%}}

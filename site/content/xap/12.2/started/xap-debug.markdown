@@ -79,7 +79,7 @@ The following screenshot shows how to run a data processor instance with a parti
 {{% /align %}}
 
 {{% note "Using Lookup Groups/Locators "%}}
-You can isolate your environment by defining [Lookup Groups/Locators](/product_overview/service-grid.html#lus). You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have `XAP_LOOKUP_GROUPS`/`XAP_LOOKUP_LOCATORS` OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using `XAP_LOOKUP_GROUPS` environment variable you need to add the following as VM argument to the run configuration:
+You can isolate your environment by defining [Lookup Groups/Locators](../overview/the-runtime-environment.html#lus). You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have `XAP_LOOKUP_GROUPS`/`XAP_LOOKUP_LOCATORS` OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using `XAP_LOOKUP_GROUPS` environment variable you need to add the following as VM argument to the run configuration:
 
 
 ```bash

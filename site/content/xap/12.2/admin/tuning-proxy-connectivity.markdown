@@ -19,7 +19,7 @@ Generally speaking, the space proxy router is transparent to the data grid user.
 
 The space proxy router has the following responsibilities:
 
-- Obtain the data grid topology from the initial connection, and connect to the other data grid members implicitly on demand via the [Lookup Service](/product_overview/the-lookup-service.html).
+- Obtain the data grid topology from the initial connection, and connect to the other data grid members implicitly on demand via the [Lookup Service](../overview/the-runtime-environment.html#lus).
 - If an operation cannot be executed because a space is not available, try to reconnect. If the connection cannot be restored during a predefined timeout, throw an appropriate exception.
 - If the data grid topology is primary-backup, and the operation cannot be executed because a primary space is not available, try to reconnect. If the connection cannot be restored during a predefined timeout, throw an appropriate exception.
 - If the data grid topology is partitioned, route the operation to the relevant partition(s) and aggregate the partitions results. (For example: a **count** operation is broadcasted concurrently to each partition, results are accumulated implicitly and when the last partition result arrives the operation is completed).
@@ -121,7 +121,7 @@ When using [Client side caching]({{%currentjavaurl%}}/client-side-caching.html),
 
 ## Unicast Lookup Service
 
-The space proxy router uses the [Lookup Service](/product_overview/service-grid.html#lus) to locate data grid members. The lookup service uses either [multicast](./network-multicast.html) or [unicast](./network-unicast-discovery.html) discovery (default is multicast). When a unicast lookup service is restarted, the space proxy will automatically re-discover after a while. If you need to better understand that process and  fine-tune it, refer to [Configuring lookup discovery intervals](./network-unicast-discovery.html#configuring-lookup-discovery-intervals).
+The space proxy router uses the [Lookup Service](../overview/the-runtime-environment.html#lus) to locate data grid members. The lookup service uses either [multicast](./network-multicast.html) or [unicast](./network-unicast-discovery.html) discovery (default is multicast). When a unicast lookup service is restarted, the space proxy will automatically re-discover after a while. If you need to better understand that process and  fine-tune it, refer to [Configuring lookup discovery intervals](./network-unicast-discovery.html#configuring-lookup-discovery-intervals).
 
 # Load balancing
 

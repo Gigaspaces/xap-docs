@@ -10,7 +10,7 @@ weight: 1300
 
 # Common Scenarios
 
-GigaSpaces infrastructure can be started using a GigaSpaces Grid Service Agent as explained in [GSA page](/product_overview/service-grid.html#gsa). When using Windows based OS for running GigaSpaces infrastructure, users want to convert GSA into a windows service for following common reasons,
+GigaSpaces infrastructure can be started using a GigaSpaces Grid Service Agent as explained in [GSA page](../overview/the-runtime-environment.html#gsa). When using Windows based OS for running GigaSpaces infrastructure, users want to convert GSA into a windows service for following common reasons,
 
 1. GSA process should survive a user logoff.
 1. GSA command windows should be hidden so that they are not closed accidentally by users.

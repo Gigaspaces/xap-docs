@@ -326,7 +326,7 @@ See a fully running example of a [Scaling Agent](/sbp/scaling-agent.html) as par
 
 The Admin API uses the `AdminFactory` in order to create `Admin` instances. Once working with the `Admin` is done, its `Admin#close()` method should be called.
 
-The Admin discovers all the advertised services from the [Lookup Service](/product_overview/service-grid.html#lus). In order to define which lookup groups the `AdminFactory#addGroup` can be used. The lookup locators can also be used for non multicast enabled environment using `AdminFactory#addLocator` can be used. If the services started are secured, the username and password can be set on the Admin API as well.
+The Admin discovers all the advertised services from the [Lookup Service](../overview/the-runtime-environment.html#lus). In order to define which lookup groups the `AdminFactory#addGroup` can be used. The lookup locators can also be used for non multicast enabled environment using `AdminFactory#addLocator` can be used. If the services started are secured, the username and password can be set on the Admin API as well.
 
 
 # Discovery Process
@@ -381,7 +381,7 @@ The Admin Domain Model has representation to all GigaSpaces level main actors. T
 |     |  |
 |----|----|
 |Name            |[GridServiceAgent]({{% api-javadoc %}}/org/openspaces/admin/gsa/GridServiceAgent.html)|
-|Description     |A process manager that manages Service Grid processes such as GSM, GSC and LUS. More info [here](/product_overview/service-grid.html#gsa).|
+|Description     |A process manager that manages Service Grid processes such as GSM, GSC and LUS. More info [here](../overview/the-runtime-environment.html#gsa).|
 |Main Operations |Allows to list all the currently managed processes.- Start processes (GSM, GSC, LUS).       |
 |Runtime Events  | |
 
@@ -399,7 +399,7 @@ The Admin Domain Model has representation to all GigaSpaces level main actors. T
 |     |  |
 |----|----|
 |Name            | [GridServiceManager]({{% api-javadoc %}}/org/openspaces/admin/gsm/GridServiceManager.html)|
-|Description     |Managing Processing Unit deployments and Grid Service Containers. More info [here](/product_overview/service-grid.html#gsm).|
+|Description     |Managing Processing Unit deployments and Grid Service Containers. More info [here](../overview/the-runtime-environment.html#gsm).|
 |Main Operations |Deploy Processing Units. Deploy pure Space Processing Units. Get the Grid Service Agent Managing it. Restart itself (if managed by a Grid Service Agent).Kill itself (if managed by a Grid Service Agent).|
 |Runtime Events  |  |
 
@@ -417,7 +417,7 @@ The Admin Domain Model has representation to all GigaSpaces level main actors. T
 |     |  |
 |----|----|
 |Name            |[GridServiceContainer]({{% api-javadoc %}}/org/openspaces/admin/gsc/GridServiceContainer.html)|
-|Description     | Container hosting Processing Unit Instances deployed from the GSM. More info [here](/product_overview/service-grid.html#gsc).|
+|Description     | Container hosting Processing Unit Instances deployed from the GSM. More info [here](../overview/the-runtime-environment.html#gsc).|
 |Main Operations | List currently running Processing Units Instances.|
 |Runtime Events  | Register for Processing Unit Instance additions and removals events.|
 
@@ -437,7 +437,7 @@ The Admin Domain Model has representation to all GigaSpaces level main actors. T
 |     |  |
 |----|----|
 |Name            | [LookupService]({{% api-javadoc %}}/org/openspaces/admin/lus/LookupService.html)|
-|Description     | A registry of services (GSM, GSC, Space Instances, Processing Unit Instances) that can be lookup up using it. More info [here](/product_overview/the-lookup-service.html#lus).|
+|Description     | A registry of services (GSM, GSC, Space Instances, Processing Unit Instances) that can be lookup up using it. More info [here](../overview/the-runtime-environment.html#lus#lus).|
 |Main Operations | Get the Lookup Groups and Locator it was started with.|
 |Runtime Events  |  |
 

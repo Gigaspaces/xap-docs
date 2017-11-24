@@ -210,7 +210,7 @@ Currently, the web dashboard supports the following web browsers:
 
 ## Deployment Location of the Dashboard Web Application
 
-Since the dashboard web application communicates with the runtime components of the XAP cluster, and receives notification from the XAP [lookup service](/product_overview/service-grid.html#lus), it is highly recommended to run the dashboard web application in the same network segment of the other cluster components. Note that this does not affect the dashboard web browser client, which communicates with the dashboard web application using standard http and can be located anywhere, provided that it has access to the dashboard web application.
+Since the dashboard web application communicates with the runtime components of the XAP cluster, and receives notification from the XAP [lookup service](../overview/the-runtime-environment.html#lus), it is highly recommended to run the dashboard web application in the same network segment of the other cluster components. Note that this does not affect the dashboard web browser client, which communicates with the dashboard web application using standard http and can be located anywhere, provided that it has access to the dashboard web application.
 
 ## Running Via A Reverse Proxy
 

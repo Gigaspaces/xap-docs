@@ -11,7 +11,7 @@ weight: 600
 
 **Q: What version should I download, and  where can I find it?**
 
-A: You should download the XAP In-Memory Data Grid package for version 12.2, from here: [https://www.gigaspaces.com/download-center](https://www.gigaspaces.com/download-center).
+A: You should download the XAP In-Memory Data Grid package for version 12.2, from {{%exurl "here""https://www.gigaspaces.com/download-center"%}}.
 
 **Q: Do I need a new license?**
 
@@ -21,7 +21,7 @@ A: Yes, but there is no charge. Contact GigaSpaces Support so they can generate 
 
 **Q: What version should I download, and where can I find it?**
 
-A: You should download the XAP In-Memory Data Grid package for version 12.2, from here: [https://www.gigaspaces.com/download-center](https://www.gigaspaces.com/download-center).
+A: You should download the XAP In-Memory Data Grid package for version 12.2, from {{%exurl "here""https://www.gigaspaces.com/download-center"%}}.
 
 **Q: Do I need a new license?**
 
@@ -40,13 +40,12 @@ A: Not with the current release. However, the ability to use an existing Apache 
 
 **Q: If I already have a different version of Apache Spark, can I use it instead of the one that comes with InsightEdge?**
 
-A: InsightEdge supports Apache Spark versions 1.6, 2.1, and 2.2. If you have one of these Spark versions, you can use by setting the SPARK_HOME variable. Read this page on the GigaSpaces documentation website for details: 
-
-[https://docs.gigaspaces.com/xap/12.2/started/common-environment-variables.html#insightedge-environment-variables](https://docs.gigaspaces.com/xap/12.2/started/common-environment-variables.html#insightedge-environment-variables) 
+A: InsightEdge supports Apache Spark versions 1.6, 2.1, and 2.2. If you have one of these Spark versions, you can use by setting the SPARK_HOME variable. 
+Read this page on the GigaSpaces documentation website for details: [Common environment variables](https://docs.gigaspaces.com/xap/12.2/started/common-environment-variables.html#insightedge-environment-variables) 
 
 **Q: If I already have a different version of Scala, can I use it instead of the one that comes with InsightEdge?**
 
-A: You can use any version of Scala that is recommended by Apache Spark for the versions that are supported by InsightEdge (1.6, 2.1, and 2.2). Consult [http://spark.apache.org](http://spark.apache.org) for more information. 
+A: You can use any version of Scala that is recommended by Apache Spark for the versions that are supported by InsightEdge (1.6, 2.1, and 2.2). Consult {{%exurl "Apache Spark""http://spark.apache.org"%}} for more information. 
 
 **Q: What is the End of Life policy for InsightEdge?**
 
@@ -71,7 +70,6 @@ A: Yes, this functionality is planned for 2018. We will introduce a "proactive" 
 
 **Q: Can I get time series queries in InsightEdge? What is the best way to implement it?**
 
-A: Yes. You can store any RDD/DataFrame from Apache Spark as a Space object or document. One way to implement time series analysis is by leveraging a time series library on Spark, and saving the TimeSeries RDD/DataFrame to the XAP in-memory data grid. The following a good library to use:
+A: Yes. You can store any RDD/DataFrame from Apache Spark as a Space object or document. One way to implement time series analysis is by leveraging a time series library on Spark, and saving the TimeSeries RDD/DataFrame to the XAP in-memory data grid. The following is a good library to use:{{%exurl "A New Library for Analyzing Time-Series Data with Apache Spark" "https://blog.cloudera.com/blog/2015/12/spark-ts-a-new-library-for-analyzing-time-series-data-with-apache-spark/"%}} 
 
-[https://blog.cloudera.com/blog/2015/12/spark-ts-a-new-library-for-analyzing-time-series-data-with-apache-spark/](https://blog.cloudera.com/blog/2015/12/spark-ts-a-new-library-for-analyzing-time-series-data-with-apache-spark/) 
-
+ 
