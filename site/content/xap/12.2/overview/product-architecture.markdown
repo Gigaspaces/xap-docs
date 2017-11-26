@@ -21,7 +21,7 @@ GigaSpaces XAP is built from the following sub-systems:
 Supports any language, any platform, any API - Achieve interoperability, easy migration, reduced learning curves, and faster time to market by leveraging existing assets - such as code and programming expertise - through:
 
 - Standard API Support: Memcached, SQL, JPA, Spring, REST, a standard Map API and more.
-- Multi-language Interoperability: Java, .Net, and C++
+- Multi-language Interoperability: Java, .NET, and C++
 - Multi-platform Support: Any OS, physical or virtual
 - API Mashup: Easily leverage modern APIs alongside existing standard APIs - enables you to use the right tool for the job at hand.
 

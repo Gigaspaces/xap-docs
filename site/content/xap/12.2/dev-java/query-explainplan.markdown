@@ -232,7 +232,7 @@ Detailed Execution Information:
  
 # Limitations
  
- - Supported via the Java API. Not supported via the .Net API.
+ - Supported via the Java API. Not supported via the .NET API.
  - Supported operations: Read, ReadMultiple, TakeMultiple , count
  - Supported index types: Basic and Extended. Compund , Unique , Collection , Geospatial index are not supported. 
  - Supported query type : Basic.
