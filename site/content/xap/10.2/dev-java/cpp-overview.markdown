@@ -69,7 +69,7 @@ Running c++ classes in a SBA (Space Based Architecture) environment is just as e
 
 The POCO API is a micro version of the [GigaSpaces OpenSpaces API](./the-gigaspace-interface.html); it supports the read, write, take and notify paradigm of SBA.
 
-In order to allow interoperability of POCO objects with both POJO (Java) and PONO (.Net) counterparts error-free, you should generate matching Java and .Net classes used to interact with the space. All transformations between these objects will be done transparently using the lightweight GigaSpaces PBS protocol.
+In order to allow interoperability of POCO objects with both POJO (Java) and PONO (.NET) counterparts error-free, you should generate matching Java and .NET classes used to interact with the space. All transformations between these objects will be done transparently using the lightweight GigaSpaces PBS protocol.
 
 # Architecture
 

@@ -403,7 +403,7 @@ For further details on each of the available modifiers see: [ReadModifiers]({{%a
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Read by template:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
+Read by template:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
 
 ```csharp
 T Read(T template);
@@ -411,7 +411,7 @@ T Read(T template, long timeout, ReadModifiers modifiers);
 .....
 ```
 
-Read by Id:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadById.htm)
+Read by Id:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadById.htm)
 
 ```csharp
 T ReadById<T>(Object id);
@@ -419,7 +419,7 @@ T ReadById<T>(Object id,Object routing,ITransaction tx,long timeout);
 .....
 ```
 
-Read by ISpaceQuery:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
+Read by ISpaceQuery:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Read.htm)
 
 ```csharp
 T Read(ISpaceQuery<T> query, Object id);
@@ -427,7 +427,7 @@ T Read(ISpaceQuery<T> query, Object routing, long timeout, ReadModifiers modifie
 ....
 ```
 
-Read multiple:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadMultiple.htm)
+Read multiple:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadMultiple.htm)
 
 ```csharp
 T[] ReadMultiple<T>(T template);
@@ -437,7 +437,7 @@ T[] ReadMultiple<T>(IQuery<T> query,ITransaction tx,int maxItems,ReadModifiers m
 ```
 
 
-Asynchronous Read:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_BeginRead.htm)
+Asynchronous Read:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_BeginRead.htm)
 
 ```csharp
 IAsyncResult<T> BeginRead<T>(T template,AsyncCallback<T> userCallback, Object stateObject);
@@ -446,7 +446,7 @@ IAsyncResult<T> BeginRead<T>(T template,long timeout,AsyncCallback<T> userCallba
 ```
 
 
-Read if exists:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadIfExists.htm)
+Read if exists:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_ReadIfExists.htm)
 
 ```csharp
 T ReadIfExists<T>(T template);
@@ -645,7 +645,7 @@ For further details on each of the available modifiers see: [TakeModifiers]({{%a
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Take by template:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_Take.htm)
+Take by template:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_Take.htm)
 
 ```csharp
 T take<T>(T template);
@@ -653,7 +653,7 @@ T take<T>(T template, long timeout, TakeModifiers modifiers);
 .....
 ```
 
-Take by Id:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeById.htm)
+Take by Id:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeById.htm)
 
 ```csharp
 T TakeById<T>(Object id);
@@ -661,7 +661,7 @@ T TakeById<T>(Object id, Object routing, long timeout, TakeModifiers modifiers);
 .....
 ```
 
-Take by Id's:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeByIds.htm)
+Take by Id's:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeByIds.htm)
 
 ```csharp
 ITakeByIdsResult<T> TakeByIds<T>(IdsQuery<T> idsQuery,ITransaction tx);
@@ -670,7 +670,7 @@ ITakeByIdsResult<T> TakeByIds<T>(Object[] ids,Object routingKey,ITransaction tx,
 ```
 
 
-Take multiple:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeMultiple.htm)
+Take multiple:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeMultiple.htm)
 
 ```csharp
 T[] TakeMultiple<T>(T template);
@@ -680,7 +680,7 @@ T[] TakeMultiple<T>(T template,int maxItems);
 ```
 
 
-Asynchronous take:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_BeginTake.htm)
+Asynchronous take:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_BeginTake.htm)
 
 ```csharp
 IAsyncResult<T> BeginTake<T>(IQuery<T> query,AsyncCallback<T> userCallback,Object stateObject);
@@ -690,7 +690,7 @@ IAsyncResult<T> BeginTake<T>(T template,long timeout,AsyncCallback<T> userCallba
 ```
 
 
-Take if exists:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeIfExists.htm)
+Take if exists:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeIfExists.htm)
 
 ```csharp
 T TakeIfExists<T>(T template);
@@ -699,7 +699,7 @@ T TakeIfExists<T>(IQuery<T> query,ITransaction tx,long timeout,TakeModifiers mod
 
 ```
 
-Take by id if exists:[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeIfExistsById.htm)
+Take by id if exists:[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_ISpaceProxy_TakeIfExistsById.htm)
 
 ```csharp
 Object TakeIfExistsById(Type type,Object id);
@@ -755,7 +755,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Count objects in space.[.NetAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Count.htm)
+Count objects in space.[.NETAPI]({{%api-dotnetdoc%}}/Overload_GigaSpaces_Core_IReadOnlySpaceProxy_Count.htm)
 
 
 ```java
@@ -815,7 +815,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary"%}}
 
-Clears objects from space.[.NetAPI]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceProxy.htm)
+Clears objects from space.[.NETAPI]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceProxy.htm)
 
 
 

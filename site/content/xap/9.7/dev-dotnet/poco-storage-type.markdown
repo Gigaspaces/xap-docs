@@ -10,7 +10,7 @@ weight: 700
 
 
 
-XAP's PBS (Portable Binary Serialization) is the underlying technology used to serialize and transport non Java objects from the client side to the space side. It is highly optimized serialization technology allowing a .Net or C++ client to communicate with the space in very efficiency manner.
+XAP's PBS (Portable Binary Serialization) is the underlying technology used to serialize and transport non Java objects from the client side to the space side. It is highly optimized serialization technology allowing a .NET or C++ client to communicate with the space in very efficiency manner.
 
 To control Space Class field serialization you should use the [StorageType]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_StorageType.htm) attribute.
 Example:

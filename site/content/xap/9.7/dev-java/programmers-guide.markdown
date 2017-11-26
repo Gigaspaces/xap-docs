@@ -57,7 +57,7 @@ Remoting allows you to use remote invocations of POJO services, with the space a
 XAP provide a JMS implementation, built on top of the core spaces architecture.
 
 - [Interoperability](./interoperability-overview.html){{<wbr>}}
-Interoperability between Java, .Net, cpp, REST.
+Interoperability between Java, .NET, cpp, REST.
 
 - [Mule ESB Integration](./mule-esb.html){{<wbr>}}
 XAP  support for Mule ESB.

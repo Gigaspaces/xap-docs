@@ -122,15 +122,15 @@ The following modification sets the network interface to `eth0`.
 
 ```java
 multicastInterfaces=new
-java.net.NetworkInterface[]{java.net.NetworkInterface.getByName("eth0")};
+java.net.NETworkInterface[]{java.net.NETworkInterface.getByName("eth0")};
 ```
 
 By default, this line is commented out with the network interface argument as the `java.rmi.server.hostname` property value. Uncomment this line to limit the multicast to the `NIC_ADDR` chosen.
 
 
 ```java
-multicastInterfaces=new java.net.NetworkInterface[]
-{java.net.NetworkInterface.getByName("${java.rmi.server.hostname}")};
+multicastInterfaces=new java.net.NETworkInterface[]
+{java.net.NETworkInterface.getByName("${java.rmi.server.hostname}")};
 ```
 
 {{% refer %}}For more details, see [Sun Javadoc]({{% api-javadoc %}}/index.html?com/sun/jini/reggie/package-summary.html).{{% /refer %}}

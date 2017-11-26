@@ -9,7 +9,7 @@ parent: net-home.html
 
 In this part of the tutorial we will introduce you to the transaction processing capabilities of XAP.
 
-With the XAP .Net transaction model the developer is responsible for explicitly starting and managing the transaction. You obtain an object representing the underlying space transaction by calling `GigaSpacesFactory.CreateDistributedTransactionManager`. This call returns an implementation of the `ITransactionManager` interface used to create the transaction using the `ITransactionManager.Create()`.
+With the XAP .NET transaction model the developer is responsible for explicitly starting and managing the transaction. You obtain an object representing the underlying space transaction by calling `GigaSpacesFactory.CreateDistributedTransactionManager`. This call returns an implementation of the `ITransactionManager` interface used to create the transaction using the `ITransactionManager.Create()`.
 
 Here is an example how you use transactions:
 

@@ -99,7 +99,7 @@ ISpaceProxy persistentSpace = SpaceProxyProviderFactory.Instance.FindSpace("/./m
 
 ## Advanced Options
 
-The number of objects passed between the .Net `IDataEnumerator` (Part of the `ISqlDataSource` interface) to the server on each iteration can be changed, its default value is set to `1000`.
+The number of objects passed between the .NET `IDataEnumerator` (Part of the `ISqlDataSource` interface) to the server on each iteration can be changed, its default value is set to `1000`.
 
 This can be done by adding a custom property to the `ExternalDataSourceConfig` object.
 

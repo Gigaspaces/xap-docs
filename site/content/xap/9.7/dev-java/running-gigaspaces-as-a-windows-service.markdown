@@ -24,9 +24,9 @@ If your requirement is only item 1 and/or 2 above, you can use psexec (SysIntern
 
 If you need to fulfill all 3 reasons above, then you have to create a windows service for GSA.
 
-Easiest way to convert GSA into service is to use the .Net version of the product and create windows service using the instructions that are documented on our [.Net]({{%currentneturl%}}/installation.html).documentation.
+Easiest way to convert GSA into service is to use the .NET version of the product and create windows service using the instructions that are documented on our [.NET]({{%currentneturl%}}/installation.html).documentation.
 
-Some users are not comfortable using the .Net version of the product and want to use only Java version of the product. In such cases, there are many software that can help in converting a Java Application (like GigaSpaces) to a Windows Service.
+Some users are not comfortable using the .NET version of the product and want to use only Java version of the product. In such cases, there are many software that can help in converting a Java Application (like GigaSpaces) to a Windows Service.
 
 Following are some popular software that can help:
 

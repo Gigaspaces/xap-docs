@@ -39,7 +39,7 @@ This section explains the various mechanisms offered by GigaSpaces XAP to query 
 Supporting FIFO (First In, First Out) behavior for Entries is a critical requirement when building messaging systems or implementing master-worker patterns. Users should be able to get Entries in the same order in which they were written. GigaSpaces supports both non-ordered Entries and FIFO ordered Entries when performing space operations.
 
 [Transactions](./transaction-overview.html){{<wbr>}}
-XAP .Net provides an explicit transaction management programing model. It allows developers to easily write transactional code with the lowest overhead possible while minimizing the amount of hand-crafted code and separating it from the application hosting environment and instance management.
+XAP .NET provides an explicit transaction management programing model. It allows developers to easily write transactional code with the lowest overhead possible while minimizing the amount of hand-crafted code and separating it from the application hosting environment and instance management.
 
 [Space Persistence](./space-persistency-overview.html){{<wbr>}}
 Using the GigaSpaces External Data Source interface to persist data stored in the space

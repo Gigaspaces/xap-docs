@@ -121,7 +121,7 @@ In such scenarios, the shared folder that contains XAP must be mapped as a netwo
 
 Step 1. Register the following XAP.NET assemblies in the Global Assembly Cache:
     1. `Bin\GigaSpaces.Core.dll`
-    2. `Bin\GigaSpaces.NetToJava.dll`
+    2. `Bin\GigaSpaces.NETToJava.dll`
 
 Step 2. Modify the GigaSpaces section definition in `Config\Default.config` and `Config\DefaultApp.config` to specify a strong-name for GigaSpaces.Core:
 

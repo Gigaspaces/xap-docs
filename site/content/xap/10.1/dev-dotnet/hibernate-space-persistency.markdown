@@ -62,7 +62,7 @@ NHibernate requires a session factory that creates new sessions over the databas
     <property name="connection.connection_string">Server=localhost;Database=dotnetpersistency;User ID=root;CharSet=utf8</property>
     <!--Disable the writing of all the SQL statements to the console-->
     <property name="show_SQL">false</property>
-    <!--Disabled the validation of your persistent classes, allows using .Net properties and not getters and setters on your fields-->
+    <!--Disabled the validation of your persistent classes, allows using .NET properties and not getters and setters on your fields-->
     <property name="use_proxy_validator">false</property>
     <!--This will create the tables in the database for your persistent classes according to the mapping file.-->
     <![--If the tables are already created this will recreate them and clear the data](/attachment_files/dotnet/--If the tables are already created this will recreate them and clear the data)-->

@@ -127,4 +127,4 @@ The following XAP.NET assemblies should be registered when working with the Glob
 
   * `Bin\GigaSpaces.Core.dll`
 
-  * `Bin\GigaSpaces.NetToJava.dll`
+  * `Bin\GigaSpaces.NETToJava.dll`

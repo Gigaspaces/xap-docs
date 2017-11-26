@@ -10,7 +10,7 @@ weight: 200
 
 
 
-This page demonstrates how to use the GigaSpaces .Net NHibernate External Data Source  in a common scenario: a cluster topology with a mirror. This is asynchronous persistency, which means that the operation against the cluster members is persisted to the database in an asynchronous manner. Each cluster member uses the External Data Source in read-only mode. Therefore it only reads data from the External Data Source, and each write operation is replicated to the mirror space.
+This page demonstrates how to use the GigaSpaces .NET NHibernate External Data Source  in a common scenario: a cluster topology with a mirror. This is asynchronous persistency, which means that the operation against the cluster members is persisted to the database in an asynchronous manner. Each cluster member uses the External Data Source in read-only mode. Therefore it only reads data from the External Data Source, and each write operation is replicated to the mirror space.
 
 The mirror uses the External Data Source interface in write mode, and delegates destructive space operations (write, update, take) to the database through the External Data Source implementation.
 
@@ -43,7 +43,7 @@ NHibernate requires a session factory that creates new sessions over the databas
 
     <!--Disable the writing of all the SQL statments to the console-->
     <property name="show_SQL">false</property>
-    <!--Disabled the validation of your persistent classes, allows using .Net properties and not getters and setters on your fields-->
+    <!--Disabled the validation of your persistent classes, allows using .NET properties and not getters and setters on your fields-->
     <property name="use_proxy_validator">false</property>
     <!--This will create the tables in the database for your persistent classes according to the mapping file.-->
     <![--If the tables are already created this will recreate them and clear the data](/attachment_files/dotnet/--If the tables are already created this will recreate them and clear the data)-->

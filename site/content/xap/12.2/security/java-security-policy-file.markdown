@@ -67,7 +67,7 @@ grant {
   permission java.lang.RuntimePermission "setFactory";
   permission java.lang.RuntimePermission "setIO";
   permission java.lang.RuntimePermission "shutdownHooks";
-  permission java.net.NETPermission "specifyStreamHandler";
+  permission java.net.NetPermission "specifyStreamHandler";
   permission java.net.SocketPermission "*", "listen, resolve, connect, accept";
   permission java.security.SecurityPermission "createAccessControlContext";
   permission java.security.SecurityPermission "getDomainCombiner";

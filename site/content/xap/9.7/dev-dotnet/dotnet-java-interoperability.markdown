@@ -23,7 +23,7 @@ The following guidelines and restrictions should be followed in order to enable 
 - The full class name (including package\namespace) in all platforms should be identical.
 
 {{% note %}}
-Since java packages use a different naming convention than .Net namespaces, it is recommended to use the `SpaceClass(AliasName="")` feature to map a .Net class to the respective java class.
+Since java packages use a different naming convention than .NET namespaces, it is recommended to use the `SpaceClass(AliasName="")` feature to map a .NET class to the respective java class.
 {{%/note%}}
 
 - The properties/fields stored in the space in all platforms should be identical.
@@ -31,7 +31,7 @@ Since java packages use a different naming convention than .Net namespaces, it i
 {{% vbar %}}
 In Java, only properties are serialized into the space. In .NET, both fields and properties are serialized, so you can mix and match them.
 
-Since java properties start with a lowercase letter, whereas .Net properties usually start with an uppercase letter, it is recommended to use the `SpaceProperty(AliasName="")` feature to map a property/field name from .Net to java.
+Since java properties start with a lowercase letter, whereas .NET properties usually start with an uppercase letter, it is recommended to use the `SpaceProperty(AliasName="")` feature to map a property/field name from .NET to java.
 {{%/vbar%}}
 
 - Only the types listed in the table below are supported. If one of your fields uses a different type, you can use the class only in a homogeneous environment.
@@ -49,7 +49,7 @@ Some of the types have different characteristics in .NET and Java (signed\unsign
 The following types are supported by the space for matching and interoperability:
 
 
-| CLS | C# | VB.Net | Java | Description |
+| CLS | C# | VB.NET | Java | Description |
 |:----|:---|:-------|:-----|:------------|
 | [System.Byte](http://msdn2.microsoft.com/en-us/library/system.byte.aspx) | `byte` | `Byte` | [byte](http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html) | 8-bit integer.**<sup>1</sup>** |
 | [Nullable\<Byte\>](http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx) | `byte?`| `Nullable(Of Byte)` | [java.lang.Byte](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Byte.html) | Nullable wrapper for byte.**<sup>1</sup>** |
@@ -73,17 +73,17 @@ The following types are supported by the space for matching and interoperability
 | [System.Guid](http://msdn2.microsoft.com/en-us/library/system.guid.aspx) [Nullable\<Guid\>](http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx) | `Guid` `Guid?` | `Guid` `Nullable(Of Guid)` | [java.util.UUID](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/UUID.html) | A 128-bit integer representing a unique identifier.**<sup>2</sup>** |
 | [System.Object](http://msdn2.microsoft.com/en-us/library/system.object.aspx) | `object` | `Object` | [java.lang.Object](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html) | Any object |
 
-1. In .Net a `byte` is unsigned, whereas in java a `byte` is signed.
-2. These types can be either nullable or not nullable in .Net, whereas in java they are always nullable.
-3. In .Net a `DateTime` is measured in ticks (=100 nanoseconds) since 1/1/0001, whereas in java a `Date` is a measured in milliseconds since 1/1/1970.
-4. The types `Decimal` (.Net) and `BigDecimal` (java) have different precision and range (see .Net and java documentation for more details). In addition, be aware that serialization/de serialization of these types is relatively slow, compared to other numeric types. As a rule of thumb these types should not be used, unless the other numeric types precision/range is not satisfactory.
+1. In .NET a `byte` is unsigned, whereas in java a `byte` is signed.
+2. These types can be either nullable or not nullable in .NET, whereas in java they are always nullable.
+3. In .NET a `DateTime` is measured in ticks (=100 nanoseconds) since 1/1/0001, whereas in java a `Date` is a measured in milliseconds since 1/1/1970.
+4. The types `Decimal` (.NET) and `BigDecimal` (java) have different precision and range (see .NET and java documentation for more details). In addition, be aware that serialization/de serialization of these types is relatively slow, compared to other numeric types. As a rule of thumb these types should not be used, unless the other numeric types precision/range is not satisfactory.
 
 # Arrays and Collections support
 
 The following collections are mapped for interoperability:
 
 
-| .Net | Java | Description |
+| .NET | Java | Description |
 |:-----|:-----|:------------|
 | `T[]` | `E[]` | Fixed-size arrays of elements. |
 | [System.Collections.Generic.List\<T\>](http://msdn.microsoft.com/en-us/library/6sh2ey19.aspx) {{<wbr>}} [System.Collections.ArrayList](http://msdn2.microsoft.com/en-us/library/system.collections.arraylist.aspx){{<wbr>}}  [System.Collections.Specialized.StringCollection](http://msdn2.microsoft.com/en-us/library/system.collections.specialized.stringcollection.aspx) | [java.util.ArrayList](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/ArrayList.html) | Ordered list of elements. |

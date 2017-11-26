@@ -41,7 +41,7 @@ Supporting FIFO (First In, First Out) behavior for Entries is a critical require
 
 
 - [Transactions](./transaction-overview.html){{<wbr>}}
-XAP .Net provides an explicit transaction management programing model. It allows developers to easily write transactional code with the lowest overhead possible while minimizing the amount of hand-crafted code and separating it from the application hosting environment and instance management.
+XAP .NET provides an explicit transaction management programing model. It allows developers to easily write transactional code with the lowest overhead possible while minimizing the amount of hand-crafted code and separating it from the application hosting environment and instance management.
 
 - [Space Persistence](./space-persistency-overview.html){{<wbr>}}
 Using the GigaSpaces External Data Source interface to persist data stored in the space
