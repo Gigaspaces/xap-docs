@@ -9,7 +9,7 @@ weight: 500
 {{% ssummary%}}{{% /ssummary %}}
 
 
-GigaSpaces XAP is a universal grid based runtime environment for real-time Java, c++ and .Net applications. The real-time environment includes business logic Service Level agreement based container allowing you to deploy your libraries and their statefull data to have self-healing, dynamic scalability and continuous high-availability capabilities out of the box.
+GigaSpaces XAP is a universal grid based runtime environment for real-time Java, c++ and .NET applications. The real-time environment includes business logic Service Level agreement based container allowing you to deploy your libraries and their statefull data to have self-healing, dynamic scalability and continuous high-availability capabilities out of the box.
 
 The c++ code that is running within the SLA container should implement simple interface, compiled and deployed. c++ Libraries deployment can be done by placing the libraries on all the machines running GigaSpaces SLA container or by placing these on shared location accessible to all GigaSpaces SLA containers.
 
@@ -59,7 +59,7 @@ Before actually collocating the required state and business logic, you should ta
 2. Is your data model designed to support stickiness - to be routed to the same logical partition based on its content?
 3. Is your c++ process designed to cope with a self-healing mechanism that will restart the failed c++ instance somewhere else on the network, allowing the system to continue and function without disruption as long as there are machines available to run the application?
 4. What is the amount of work involved to process the incoming events? Does it involve lots of IO operations accessing many different resources?
-All the above considerations are also relevant for Java and .Net business logic, since both have the ability to collocate the required state.
+All the above considerations are also relevant for Java and .NET business logic, since both have the ability to collocate the required state.
 
 To help you make the right decision when deploying your application below are some guidelines that correlate to the above considerations:
 

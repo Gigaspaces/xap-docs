@@ -454,5 +454,5 @@ public class MyConflictResolver extends ConflictResolver {
 The space classes don't have to be part of the deployed WAN GW PU jar. You can leverage the [Space Document API](./document-api.html) 
 as a generic resolver to access incoming replicated objects and also the target copy (sink local space) allowing value comparison.
 
-This will work also with any Java / .Net / C++ / Rest API / JDBC API implementations. 
+This will work also with any Java / .NET / C++ / Rest API / JDBC API implementations. 
 {{%/note%}}

@@ -112,7 +112,7 @@ For the full documentation of the class's methods and constructors, see [Javadoc
 
 # User defined functions
 
-The user defined functions - UDF , should be implemented in Java and can be called from any data access API that supports SQL Queries. This means, you can call them from a client using the Space API , JDBC API , .Net API , C++ API , Rest API , JPA API , Scala API , UI , CLI etc.
+The user defined functions - UDF , should be implemented in Java and can be called from any data access API that supports SQL Queries. This means, you can call them from a client using the Space API , JDBC API , .NET API , C++ API , Rest API , JPA API , Scala API , UI , CLI etc.
 
 UDF allows you to access the relevant Space objects without serializing or materializing them. This means, the overall overhead of calling these functions is minimal. The `SqlFunctionExecutionContext` provides you direct access to the Space class properties. You can override existing functions such as `ABS` to perform customized functionality. Simply implement them as described below and register them using the `ABS` name.
 

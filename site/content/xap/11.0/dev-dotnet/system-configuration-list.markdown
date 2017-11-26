@@ -22,17 +22,17 @@ Set the `XapNet.HostName` to have the machine IP. This is required for machines 
 
 **Step 2**      
 
-Set the `XapNet.Locators` to have two machines IP comma separated that will run the lookup service (`IP1,IP2` or `MachineAddress1,MachineAddress2`). These machine XAP Agents should be started first!  The `XapNet.Locators`  should be set only with environments that do not have multicasting enabled or with environments where client applications don't have multicasting enabled between client machine and XAP .Net grid machines.
+Set the `XapNet.Locators` to have two machines IP comma separated that will run the lookup service (`IP1,IP2` or `MachineAddress1,MachineAddress2`). These machine XAP Agents should be started first!  The `XapNet.Locators`  should be set only with environments that do not have multicasting enabled or with environments where client applications don't have multicasting enabled between client machine and XAP .NET grid machines.
 
 **Step 3**
 
 Set the `XapNet.Gsc.Memory.Maximum` to have the right size.  Usually 20480 (20GB) will be a good number. For example: A machine with 64 GB RAM should have 3 GSCs running , each with 20GB GSC as Maximum size. 
 
-**Please make sure firewall and any anti-virus SW are DISABLED on XAP .Net Grid machines!**
+**Please make sure firewall and any anti-virus SW are DISABLED on XAP .NET Grid machines!**
 
 # Platform Configuration Properties
 
-Below common platform configuration properties you should set when you setup your XAP .Net grid:
+Below common platform configuration properties you should set when you setup your XAP .NET grid:
 
 
 | Property name  | Description | Default value  |

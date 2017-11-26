@@ -150,7 +150,7 @@ Create a file called `nHibernate.cfg.xml` in the `NHibernateCfg` folder created 
     <!--Disable the writing of all the SQL statments to the console-->
     <property name="show_SQL">false</property>
 
-    <!--Disabled the validation of your persistent classes, allows using .Net properties and not getters and setters on your fields-->
+    <!--Disabled the validation of your persistent classes, allows using .NET properties and not getters and setters on your fields-->
     <property name="use_proxy_validator">false</property>
 
     <!--This will create the tables in the database for your persistent classes according to the mapping file.-->

@@ -198,7 +198,7 @@ GigaSpaces Client can be another component or application that connects to a Gig
 Liveness check is a functionality that runs inside a GigaSpaces proxy (usually held by a client connecting to a space) to keep track of the cluster members.
 Additional info about GigaSpaces proxy can be found [here]({{%currentadmurl%}}/tuning-proxy-connectivity.html)
 
-##  .Net API
+##  .NET API
 
 The logging configuration file includes declarations of the loggers available at the bridge between .NET and Java.
 

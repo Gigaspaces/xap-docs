@@ -25,7 +25,7 @@ Using System Properties to configure XAP.NET.
 This page explains how to configure XAP.NET Grid environment.
 
 [JVM configuration](./jvm-configuration.html){{<wbr>}}
-.Net Client application JVM Settings Configuration.
+.NET Client application JVM Settings Configuration.
 
 [Logging configuration](./log-configuration.html){{<wbr>}}
 Logging and Tracing of XAP.NET components.
