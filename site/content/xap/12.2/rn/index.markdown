@@ -13,25 +13,25 @@ These release notes provide information about product changes, updates, resolved
 {{%fpanel%}}
 
 [What's New](whats-new.html){{<wbr>}}
-Description of product changes and new features in this release
+Description of product changes and new features in this release.
 
-[Resolved Issues](fixed-issues.html){{<wbr>}}
-List of issues resolved in this release
+[Changelog](fixed-issues.html){{<wbr>}}
+List of new features, enhancments to existing features, and resolved issues in this release.
 
 [Supported Platforms](supported-platforms.html){{<wbr>}}
 Information about supported platforms, operating systems, Java versions, etc.
 
 [VMWare Guidelines](vmware-guidelines.html){{<wbr>}}
-Guidelines for using InsightEdge and XAP with VMWare
+Guidelines for using InsightEdge and XAP with VMWare.
 
 [Upgrading from previous versions](upgrading.html){{<wbr>}}
-Information about upgrading from previous versions
+Information about upgrading from previous versions.
 
 [Third-Party License Agreements](third-party.html){{<wbr>}}
-List of third-party license agreements according to product component
+List of third-party license agreements according to product component.
 
 [Product Lifecycle and End-of-Life Policy](/release_notes/lifecycle.html){{<wbr>}}
-Detailed information about GigaSpaces' Product Lifecycle and End-of-Life Policy
+Detailed information about GigaSpaces' Product Lifecycle and End-of-Life Policy.
 
 {{%/fpanel%}}
 

@@ -15,59 +15,80 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/info%}}
 <hr/>
 
-## 12.3 M6 (Nov-19-2017)
+# 12.3 M7 (Nov-26-2017)
 
-**Download Links**
+## Download Links
 
-* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m6/gigaspaces-insightedge-12.3.0-m6-b18906.zip)\] 
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m7/gigaspaces-insightedge-12.3.0-m7-b18907.zip)\] 
 
-* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m6/gigaspaces-xap-12.3.0-m6-b18906.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m6/gigaspaces-xap.net-12.3.0-m6-b18906.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m6/gigaspaces-xap-open-12.3.0-m5-b18906.zip)\]
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m7/gigaspaces-xap-12.3.0-m7-b18907.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m7/gigaspaces-xap.net-12.3.0-m7-b18907.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m7/gigaspaces-xap-open-12.3.0-m7-b18907.zip)\]
 
+## Changelog
 
-**Features and Enhancements**
+### Features and Enhancements
 
 For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
 
-**Resolved Issues**
+### Resolved Issues
 
-| ID                          | Summary                                                 | Fix Version(s) | Platform(s) |
-|:----------------------------|:------------------------------------------------------------------|:-----|:-----| 
-| {{% jira id="GS-13427" %}} | The REST manager specification contained the wrong request status values. | 12.3 | All | 
+- {{% jira id="GS-13430" %}}: Inconsistent Request ID type in Manager REST API (string vs. numeric).
 
-## 12.3 M5 (Nov-12-2017)
+# 12.3 M6 (Nov-19-2017)
 
-**Download Links**
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m6/gigaspaces-insightedge-12.3.0-m6-b18906.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m6/gigaspaces-xap-12.3.0-m6-b18906.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m6/gigaspaces-xap.net-12.3.0-m6-b18906.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m6/gigaspaces-xap-open-12.3.0-m6-b18906.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
+
+### Resolved Issues
+
+- {{% jira id="GS-13427" %}}: The REST manager specification contained the wrong request status values.
+- {{% jira id="GS-13204" %}}: ProcessingUnitInstance.relocationAndWait() might block forever.
+
+# 12.3 M5 (Nov-12-2017)
+
+## Download Links
 
 * \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m5/gigaspaces-insightedge-12.3.0-m5-b18905.zip)\] 
 
 * \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m5/gigaspaces-xap-12.3.0-m5-b18905.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m5/gigaspaces-xap.net-12.3.0-m5-b18905.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m5/gigaspaces-xap-open-12.3.0-m5-b18905.zip)\]
 
+## Changelog
 
-**Features and Enhancements**
+### Features and Enhancements
 
 For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
 
-**Resolved Issues**
+### Resolved Issues
 
 There are no bug fixes in this build. 
 
-## 12.3 M4 (Nov-5-2017)
+# 12.3 M4 (Nov-5-2017)
 
-**Download Links**
+## Download Links
 
 * \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m4/gigaspaces-insightedge-12.3.0-m4-b18904.zip)\] 
 
 * \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m4/gigaspaces-xap-12.3.0-m4-b18904.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m4/gigaspaces-xap.net-12.3.0-m4-b18904.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m4/gigaspaces-xap-open-12.3.0-m4-b18904.zip)\]
 
+## Changelog
 
-**Features and Enhancements**
+### Features and Enhancements
 
 For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
 
-**Resolved Issues**
+### Resolved Issues
 
-| ID                          | Summary                                                 | Fix Version(s) | Platform(s) |
-|:----------------------------|:------------------------------------------------------------------|:-----|:-----| 
-| {{% jira id="GS-13383" %}} | Insightedge shutdown command on Mac systems doesn't terminate the gs-agent. | 12.3, 12.2.1 | All | 
-| {{% jira id="GS-13371" %}} | REST calls to Spark failed on machine failover. | 12.3, 12.2.1 | All | 
-| {{% jira id="GS-13317" %}} | No proactive verification of user credentials when logging into secured web-ui. | 12.3 | All | 
+- {{% jira id="GS-13383" %}}: Insightedge shutdown command on Mac systems doesn't terminate the gs-agent.
+- {{% jira id="GS-13371" %}}: REST calls to Spark failed on machine failover.
+- {{% jira id="GS-13317" %}}: No proactive verification of user credentials when logging into secured web-ui.
+- {{% jira id="GS-13416" %}}: Lookup service improvements resulted in loss of client notifications in rare scenarios.
+- {{% jira id="GS-13281" %}}: Querying a type with enum on a re-deployed space returns incorrect results.
+
