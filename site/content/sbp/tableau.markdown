@@ -15,7 +15,7 @@ weight: 20
 # Overview
 
 Organizations often require quick insight into data to understand the business impact, and don't want to waste valuable time consulting their corporate IT team. With the [In-Grid SQL Query]({{%latestjavaurl%}}/sql-query-intro.html) feature,
-this can be done using the data stored in the XAP in-memory data grid. [Tableau](https://www.tableau.com/) can be connected to the XAP data grid via an ODBC-JDBC driver, in order to retrieve and present the required data in a visual format.
+this can be done using the data stored in the XAP in-memory data grid. [Tableau](https://www.tableau.com/) can be connected to the XAP data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a visual format.
 
 This topic provides a demo for integrating Tableau with InsightEdge in a Microsoft Windows environment, so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.
 
