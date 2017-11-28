@@ -56,7 +56,7 @@ The explicit garbage collection call reduces the probability of throwing `SpaceM
 To avoid this behavior, add one of the following to your client-side or Space-side JVM parameter list:
 
 - XX:+DisableExplicitGC<br>
-- XX:+ExplicitGCInvokesConcurrent
+- XX:+ExplicitGCInvokesConcurrent (only available when using Concurrent Mark Sweep) 
 
 {{% note "Note"%}}
 Only do this if you've determined that it is absolutely necessary, because it disables a feature designed to protect your application.
