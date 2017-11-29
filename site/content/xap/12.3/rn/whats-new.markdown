@@ -12,7 +12,7 @@ Draft documentation is available, and may not completely describe the product up
 
 # Performance Improvement
 
-In systems with the MemoryXtend feature, XAP can store the values of indexed fields in off-heap memory, to avoid having to fetch the complete entry from disk for queries that only need the index. This feature optimizes performance for the following operations:
+In systems with MemoryXtend, XAP can store the values of indexed fields in off-heap memory, to avoid having to fetch data from disk for queries that only need the index. This feature can optimize performance by up to 50% for the following operations:
 
 - Read with projection and only indexed fields in query and projection - primary instance optimization
 - Take with only indexed fields in query - backup optimization
