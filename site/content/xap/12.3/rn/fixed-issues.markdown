@@ -10,7 +10,10 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Improvements
 
-- {{% jira id="GS-13281" %}}: Querying a type with enum on a re-deployed space returns incorrect results.
+- {{% jira id="GS-13302" %}}: When the query result set includes only indexes, fetch results from off-heap memory instead of disk.
+- {{% jira id="GS-12365" %}}: Asynchronous execution should always return immediately.
+- {{% jira id="GS-13417" %}}: Add metrics to Lookup Service to facilitate troubleshooting of performance issues.
+- {{% jira id="GS-13389" %}}: Lookup Service (LUS) enhancements to improve stability in environments with large clusters.
 
 # Resolved Issues
 
@@ -21,3 +24,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 - {{% jira id="GS-13317" %}}: No proactive verification of user credentials when logging into secured web-ui.
 - {{% jira id="GS-13427" %}}: The REST manager specification contained the wrong request status values.
 - {{% jira id="GS-13430" %}}: Inconsistent Request ID type in Manager REST API (string vs. numeric).
+
+{{% refer%}}
+The complete list of changes is also available in {{%exurl "JIRA" "https://insightedge.atlassian.net/issues/?filter=17726" %}}.
+{{%/refer%}}

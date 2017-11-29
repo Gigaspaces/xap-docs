@@ -27,7 +27,7 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ### Features and Enhancements
 
-For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
+- {{% jira id="GS-13302" %}}: When the query result set includes only indexes, fetch results from off-heap memory instead of disk .
 
 ### Resolved Issues
 
@@ -45,7 +45,7 @@ For details about the available features and enhancements in this version, click
 
 ### Features and Enhancements
 
-For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
+N/A
 
 ### Resolved Issues
 
@@ -64,11 +64,11 @@ For details about the available features and enhancements in this version, click
 
 ### Features and Enhancements
 
-For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
+N/A
 
 ### Resolved Issues
 
-There are no bug fixes in this build. 
+N/A 
 
 # 12.3 M4 (Nov-5-2017)
 
@@ -82,7 +82,9 @@ There are no bug fixes in this build.
 
 ### Features and Enhancements
 
-For details about the available features and enhancements in this version, click [here](https://insightedge.atlassian.net/issues/?filter=17602).
+- {{% jira id="GS-12365" %}}: Asynchronous execution should always return immediately.
+- {{% jira id="GS-13417" %}}: Add metrics to Lookup Service to facilitate troubleshooting of performance issues.
+- {{% jira id="GS-13389" %}}: Lookup Service (LUS) enhancements to improve stability in environments with large clusters.
 
 ### Resolved Issues
 
