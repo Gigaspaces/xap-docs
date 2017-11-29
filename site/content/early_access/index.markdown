@@ -27,7 +27,7 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ### Features and Enhancements
 
-- {{% jira id="GS-13302" %}}: When the query result set includes only indexes, fetch results from off-heap memory instead of disk .
+- {{% jira id="GS-13302" %}}: When the query result set includes only indexes, fetch results from off-heap memory instead of disk.
 
 ### Resolved Issues
 

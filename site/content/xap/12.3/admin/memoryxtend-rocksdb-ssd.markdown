@@ -129,8 +129,78 @@ N = {10GB * 1024 * 1024) * (20/100) } / 2
   = {(10,485,760) * (0.2)} / 2
   = {2,097,152} / 2
   = 1,048,576 objects can fit in a single GSC before LRU starts evicting. 
- 
-<br>
+
+
+# Off-Heap Memory Usage
+
+XAP can store the values of indexed fields in the process native (off-heap) memory. This is done to avoid having to fetch data from the disk for queries that only need the index. This feature is on by default, and can be disabled by setting the `space-config.engine.blobstore_offheap_optimization_enabled` space property.
+
+This optimization behavior is relevent for operations that don't need the un-indexed field values in order to execute. The current operations that benefit are:
+
+- Read with projection and only indexed fields in query and projection - primary instance optimization
+- Take with only indexed fields in query - backup optimization
+- Clear with only indexed fields in query - primary and backup instance optimization
+
+{{%note "Note"%}}
+This behavior increases the overall memory consuption of the Space by several bytes (depending on the indexed fields) per entry.
+{{%/note%}}
+
+See the following example:
+
+```java
+    public static class TestSpaceClass {
+
+        private Integer id;
+        private Integer age;
+        private Boolean active;
+
+        public TestSpaceClass() {
+        }
+
+        @SpaceId
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        @SpaceIndex
+        public Integer getAge() {
+            return age;
+        }
+
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+
+        public Boolean getActive() {
+            return active;
+        }
+
+        public void setActive(Boolean active) {
+            this.active = active;
+        }
+    }
+```
+
+```
+gigaSpace.readMultiple(new SQLQuery<TestSpaceClass>(TestSpaceClass.class, "age = 3").setProjections("id", "age"));
+```
+To see whether your query can benefit from this optimization behavior, you can set `com.gigaspaces.cache` to FINE and look for the following log entry: 
+
+```property
+2017-11-28 07:57:49,115  FINE [com.gigaspaces.cache] - BlobStore - enabled optimization for query: SELECT * FROM com.gigaspaces.test.blobstore.rocksdb.AbstractRocksDBOptimizationTest$TestSpaceClass 
+2017-11-28 07:57:49,115  FINE [com.gigaspaces.cache] - BlobStore - disabled optimization for query: SELECT * FROM com.gigaspaces.test.blobstore.rocksdb.AbstractRocksDBOptimizationTest$TestSpaceClass 
+```
+
+When set to FINER, you can see where the entries were fetched from. Look for the following log entry: 
+
+```property
+2017-11-28 07:57:49,117  FINER [com.gigaspaces.cache] - container [mySpace_container1_1:mySpace] Blobstore- entry loaded from off heap, uid=-1850388785^84^98^0^0
+2017-11-28 07:57:49,117  FINER [com.gigaspaces.cache] - container [mySpace_container1_1:mySpace] Blobstore- entry loaded from disk, uid=-1850388785^84^98^0^0
+```
 
 # Deployment Strategies
 ## Local Storage
@@ -155,7 +225,7 @@ This deployment strategy works well with {{%exurl "storage area networks (SAN)" 
 
 Tiering storage between space partition instances and attached storage can be applied across one or more storage arrays, as shown in the configurations below: 
 
-### Single storage array
+### Single Storage Array
 
 {{%section%}}
 {{%column width="80%" %}}
@@ -272,9 +342,6 @@ When the logging `com.gigaspaces.cache` is turned on the following output is gen
 blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE name = 'a1000', SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock.Trade WHERE id > 10000].
 Entries inserted to blobstore cache: 80.
 ```
-
-
-
 
 # Performance Tuning
 
