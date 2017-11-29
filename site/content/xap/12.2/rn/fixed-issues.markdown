@@ -10,6 +10,8 @@ This section lists the changes that were made in InsightEdge Platform 12.2.X.
 
 # 12.2.1
 
+This service pack was released in November 2017.
+
 ## Improvements
 
 - {{% jira id="GS-13389" %}}: Lookup Service (LUS) enhancements to improve stability in environments with large clusters.
@@ -26,6 +28,8 @@ This section lists the changes that were made in InsightEdge Platform 12.2.X.
 
 
 # 12.2
+
+The main version was released in September 2017.
 
 ## Features and Improvements
 
@@ -50,3 +54,8 @@ This section lists the changes that were made in InsightEdge Platform 12.2.X.
 - {{% jira id="GS-13299" %}}: Customer client application stops getting notification events when all 20 connections are in use during high load.
 - {{% jira id="GS-13357" %}}: Recovery attempts continued after a Space was marked as unstable.
 - {{% jira id="GS-13245" %}}: Wrong access permissions for xap-common.jar in the installation package.
+
+
+{{% refer%}}
+The complete list of changes is also available in {{%exurl "JIRA" "https://insightedge.atlassian.net/issues/?filter=17723" %}}.
+{{%/refer%}}
