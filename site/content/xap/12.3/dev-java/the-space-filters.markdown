@@ -176,8 +176,7 @@ The delegate filter shown above, can be configured in Spring using the following
 
 <os-core:embedded-space id="space" space-name="mySpace">
     <os-core:annotation-adapter-filter priority="2">
-
-        <os-core:filter ref="simpleFilter" />
+     <os-core:filter ref="simpleFilter" />
     </os-core:annotation-adapter-filter>
 </os-core:embedded-space>
 ```

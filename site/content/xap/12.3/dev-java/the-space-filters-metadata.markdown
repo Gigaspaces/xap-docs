@@ -350,7 +350,6 @@ public class MyTask implements Task<Serializable>{
 
 
 ```java
-
 MySpaceFilter Space Filter initialized
 INFO [com.gigaspaces.core.common] - Space [space_container:space] with url
  [/./space?schema=default&groups=gigaspaces-7.1.0-XAPPremium-rc&state=started] started successfully
@@ -405,10 +404,9 @@ afterAllNotifyTrigger called  Class Message - Object ID:1 data:AAAA
 {{%/accord%}}
 {{%/accordion%}}
 
-
 # Advanced Options
 
-A filter is an instance of a class that implements the `ISpaceFilter` interface (`com.j_spaces.core.filters.ISpaceFilter`; see [Javadoc]({{% api-javadoc %}}/com/j_spaces/core/filters/ISpaceFilter.html)).
+A filter is an instance of a class that implements the `ISpaceFilter` interface (`com.j_spaces.core.filters.ISpaceFilter`; see [Javadoc]({{% api-javadoc %}}/com/j_spaces/core/filters/ISpaceFilter.html).
 
 {{% tip %}}
 When performing operations using transactions (write, update, or take with a transaction object), the space filter callbacks are called when the operation is called, and not when the transaction commit/rollback is called.
