@@ -7,10 +7,6 @@ weight: 200
 ---
 
 
-
-
-
-
 The Management Console is a web application which was designed to enable users to quickly understand the state of a running data grid cluster and monitor the running components, i.e. physical hosts, JVMs and deployed processing units.
 
 In terms of functionality, it does not replace the existing Java-based GUI (the XAP Management Center), but rather augments it and provides a lightweight alternative for monitoring a running cluster without the need to install the GigaSpaces XAP runtime and run the standalone Java-based user interface.
@@ -188,20 +184,37 @@ By default, they are not part of the the `gs-webui.war` file since they are auto
 
 {{% /note %}}
 
-
-# Logging into the Web Dashboard
-
 After you've started the dashboard web application, point your browser to the proper location (For example, if you stated it using the standalone web container, the default URL is `http://<standalone server host>:8099`.
-You will see the following login screen (see inline notes for the available login options):
+You will see the following screen:
+ 
+---- new screen 
 
-![xap-login-inline.png](/attachment_files/web-console/login.png)
+
+# Securing the Web Dashboard
+
+If you configured your XAP instance to run in secure mode using the  `-Dcom.gs.security.enabled=true` property, you will see the following login screen:
+
+{{% align center %}}
+![xap-login-inline.png](/attachment_files/web-console/login-12.3.png)
+{{%/align%}}
+
+Lookup groups and Locators will be loaded from the `setenv/setenv-overrides` script. 
+
+{{%refer%}}
+For more information on how to secure the grid services, see [Securing Grid Services](../security/securing-the-grid-services.html).
+Lookup groups and Lookup Locators can be configured in the configuration files described in  [Configure Lookup Groups and Locators](../started/common-environment-variables.html#extension).
+{{%/refer%}}
+
+
+ 
+# Supported Web Browsers
 
 {{% info %}}
 **Supported Web Browsers**
 Currently, the web dashboard supports the following web browsers:
 
-- [Moziila Firefox 11 or higher](http://www.mozilla.com/firefox/)
-- [Google Chrome 18 or higher](http://www.google.com/chrome)
+- {{%exurl "Moziila Firefox 11 or higher""http://www.mozilla.com/firefox/"%}}
+- {{%exurl "Google Chrome 18 or higher""http://www.google.com/chrome"%}}
 
 **Internet explorer is supported from version 10 and higher.**
 {{% /info %}}
@@ -273,4 +286,4 @@ You can dump logging information to custom files on the Apache server by adding 
 </VirtualHost>
 ```
 
-For more information on apache's reverse proxy configuration, see [the corresponding entry on the Apache Tutor](http://www.apachetutor.org/admin/reverseproxies).
+For more information on apache's reverse proxy configuration, see {{%exurl "the corresponding entry on the Apache Tutor""http://www.apachetutor.org/admin/reverseproxies"%}}.
