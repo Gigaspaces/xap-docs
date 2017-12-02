@@ -185,9 +185,10 @@ By default, they are not part of the the `gs-webui.war` file since they are auto
 {{% /note %}}
 
 After you've started the dashboard web application, point your browser to the proper location (For example, if you stated it using the standalone web container, the default URL is `http://<standalone server host>:8099`.
+
 You will see the following screen:
  
----- new screen 
+![xap-login-inline.png](/attachment_files/web-console/main-page-12.3.png)
 
 
 # Securing the Web Dashboard
