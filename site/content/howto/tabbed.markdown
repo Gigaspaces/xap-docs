@@ -1,6 +1,6 @@
 
 ---
-title: Tabs test
+title: Tabs
 type: post
 weight: 1100
 ---
