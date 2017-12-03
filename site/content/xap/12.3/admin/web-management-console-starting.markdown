@@ -184,7 +184,7 @@ By default, they are not part of the the `gs-webui.war` file since they are auto
 
 {{% /note %}}
 
-After you've started the dashboard web application, point your browser to the proper location (For example, if you stated it using the standalone web container, the default URL is `http://<standalone server host>:8099`.
+After you've started the dashboard web application, point your browser to the proper location (for example, if you started the application using the standalone web container, the default URL is `http://<standalone server host>:8099`.
 
 You will see the following screen:
  
@@ -193,32 +193,28 @@ You will see the following screen:
 
 # Securing the Web Dashboard
 
-If you configured your XAP instance to run in secure mode using the  `-Dcom.gs.security.enabled=true` property, you will see the following login screen:
+If you configured your XAP instance to run in secure mode using the `-Dcom.gs.security.enabled=true` property, you will see the following login screen:
 
 {{% align center %}}
 ![xap-login-inline.png](/attachment_files/web-console/login-12.3.png)
 {{%/align%}}
 
-Lookup groups and Locators will be loaded from the `setenv/setenv-overrides` script. 
+The Lookup groups and Locators are loaded from the `setenv/setenv-overrides` script. 
 
 {{%refer%}}
-For more information on how to secure the grid services, see [Securing Grid Services](../security/securing-the-grid-services.html).
-Lookup groups and Lookup Locators can be configured in the configuration files described in  [Configure Lookup Groups and Locators](../started/common-environment-variables.html#extension).
+For more information on how to secure the grid services, refer to [Securing Grid Services](../security/securing-the-grid-services.html).
+Lookup groups and Lookup Locators can be configured in the configuration files described in [Configure Lookup Groups and Locators](../started/common-environment-variables.html#extension).
 {{%/refer%}}
 
 
  
 # Supported Web Browsers
 
-{{% info %}}
-**Supported Web Browsers**
 Currently, the web dashboard supports the following web browsers:
 
-- {{%exurl "Moziila Firefox 11 or higher""http://www.mozilla.com/firefox/"%}}
-- {{%exurl "Google Chrome 18 or higher""http://www.google.com/chrome"%}}
-
-**Internet explorer is supported from version 10 and higher.**
-{{% /info %}}
+- {{%exurl "Moziila Firefox 11""http://www.mozilla.com/firefox/"%}} or higher
+- {{%exurl "Google Chrome 18""http://www.google.com/chrome"%}} or higher
+- Microsoft Internet Explorer 10 or higher
 
 # Runtime Considerations
 
@@ -287,4 +283,4 @@ You can dump logging information to custom files on the Apache server by adding 
 </VirtualHost>
 ```
 
-For more information on apache's reverse proxy configuration, see {{%exurl "the corresponding entry on the Apache Tutor""http://www.apachetutor.org/admin/reverseproxies"%}}.
+For more information on Apache's reverse proxy configuration, refer to {{%exurl "the corresponding entry""http://www.apachetutor.org/admin/reverseproxies"%}} on the Apache Tutor website.

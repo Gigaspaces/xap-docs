@@ -17,3 +17,7 @@ In systems with MemoryXtend, XAP can store the values of indexed fields in off-h
 - Read with projection and only indexed fields in query and projection - primary instance optimization
 - Take with only indexed fields in query - backup optimization
 - Clear with only indexed fields in query - primary and backup instance optimization
+
+# Tiered Storage Enhancement
+
+The custom initial load mechanism in MemoryXtend has been extended to provide full life cycle management of the blobstore cache, so that users can prioritize data availability throughout the application lifetime. Users can define a set of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk.

@@ -15,6 +15,26 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/info%}}
 <hr/>
 
+# 12.3 M8 (Dec-03-2017)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m8/gigaspaces-insightedge-12.3.0-m8-b18908.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m8/gigaspaces-xap-12.3.0-m8-b18908.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m8/gigaspaces-xap.net-12.3.0-m8-b18908.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m8/gigaspaces-xap-open-12.3.0-m8-b18908.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13411" %}}: User-defined cache criteria for hot data in MemoryXtend.
+- {{% jira id="GS-13436" %}}: Added more GSM state information to application dump.
+- {{% jira id="GS-13442" %}}: Reduce the footprint of the Lookup Service template cache.
+
+### Resolved Issues
+
+- {{% jira id="GS-13440" %}}: Incomplete recovery of processing units after healing of GSM (if there are 3 or more).
+
 # 12.3 M7 (Nov-26-2017)
 
 ## Download Links
