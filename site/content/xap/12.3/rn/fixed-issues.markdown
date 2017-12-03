@@ -10,6 +10,9 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Improvements
 
+- {{% jira id="GS-13411" %}}: User-defined cache criteria for hot data in MemoryXtend.
+- {{% jira id="GS-13436" %}}: Added more GSM state information to application dump.
+- {{% jira id="GS-13442" %}}: Reduce the footprint of the Lookup Service template cache.
 - {{% jira id="GS-13302" %}}: When the query result set includes only indexes, fetch results from off-heap memory instead of disk.
 - {{% jira id="GS-12365" %}}: Asynchronous execution should always return immediately.
 - {{% jira id="GS-13417" %}}: Add metrics to Lookup Service to facilitate troubleshooting of performance issues.
@@ -17,6 +20,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Resolved Issues
 
+- {{% jira id="GS-13440" %}}: Incomplete recovery of processing units after healing of GSM (if there are 3 or more).
 - {{% jira id="GS-13281" %}}: Querying a type with enum on a re-deployed space returns incorrect results.
 - {{% jira id="GS-13383" %}}: Insightedge shutdown command on Mac systems doesn't terminate the gs-agent.
 - {{% jira id="GS-13416" %}}: Lookup service improvements resulted in loss of client notifications in rare scenarios.
