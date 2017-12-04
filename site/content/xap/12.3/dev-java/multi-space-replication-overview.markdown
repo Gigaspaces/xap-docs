@@ -7,7 +7,7 @@ weight: 2300
 ---
 
 
-Multiple Space replication is the ability to replicate state between different deployed Spaces (different cluster of Space instances), where each of the Space instances of each of the Spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, you must have a direct network connection between all the Space instances of all of the clusters (or at least a connection between all Space instances to the targeted Space gateway machine). Replicating between Spaces in the same network is done using exactly the same mechanisms and gateway described in [Multi-Site Replication over the WAN](./multi-site-replication-over-the-wan.html). However, the method is simplified because much of the configuration and some of the components are not needed, as the Spaces reside in the same network.
+Multiple Space replication is the ability to replicate state between different deployed Spaces (different cluster of Space instances), where each of the Space instances of each of the Spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, you must have a direct network connection between all the Space instances of all of the clusters (or at least a connection between all Space instances to the targeted Space gateway machine). Replicating between Spaces in the same network is done using exactly the same mechanisms and gateway described in [Multi-Site Replication over the WAN](./multi-site-replication-overview.html). However, the method is simplified because much of the configuration and some of the components are not needed, as the Spaces reside in the same network.
 
 {{% align center%}}
 ![wan_use_cases.jpg](/attachment_files/wan_use_cases.jpg)
@@ -26,7 +26,7 @@ The XAP Gateway features the following:
 - Changing replication topology in runtime - Remote Spaces can be added or removed without requiring system shutdown.
 
 {{% note "Note"%}}
-If each Space resides on a different network and there is no network connectivity between all the Space instances of all the Spaces, read [Multi-Site Replication over the WAN](./multi-site-replication-over-the-wan.html) to 
+If each Space resides on a different network and there is no network connectivity between all the Space instances of all the Spaces, read [Multi-Site Replication over the WAN](./multi-site-replication-overview.html) to 
 understand how to establish replication between different networks.
 {{% /note %}}
 

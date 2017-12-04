@@ -66,7 +66,7 @@ public interface ClusterInfoAware {
 }
 ```
 
-All of the processing unit [runtime modes](./deploying-and-running-the-processing-unit.html) provide support for the `ClusterInfo` and `ClusterInfoAware` interfaces by default. Built-in GigaSpaces components make use of this feature. User-defined beans can make use of this information as well (for example, to connect to a specific database based on the ID of the processing unit instance).
+All of the processing unit [runtime modes](./deploying-and-running-overview.html) provide support for the `ClusterInfo` and `ClusterInfoAware` interfaces by default. Built-in GigaSpaces components make use of this feature. User-defined beans can make use of this information as well (for example, to connect to a specific database based on the ID of the processing unit instance).
 
 {{% anchor ClusterInfoContext %}}
 
@@ -100,7 +100,7 @@ The [Space component](./the-space-configuration.html) implements the `ClusterInf
 
 # ClusterInfo XML Injection
 
-When running the processing unit in any of the [runtime modes](./deploying-and-running-the-processing-unit.html), `ClusterInfo` can also be used directly within the Spring XML configuration. In a similar manner, properties can be injected. Here is an example of how this can be used:
+When running the processing unit in any of the [runtime modes](./deploying-and-running-overview.html), `ClusterInfo` can also be used directly within the Spring XML configuration. In a similar manner, properties can be injected. Here is an example of how this can be used:
 
 
 ```xml
@@ -124,7 +124,7 @@ In the above example, the value of the `connectionUrl` property of `myBean` is  
 
 # Processing Unit Container Injection
 
-Each of the [runtime modes](./deploying-and-running-the-processing-unit.html) supports the injection of `ClusterInfo`. However, when running in [standalone mode](./running-in-standalone-mode.html) or [within your IDE](../started/xap-debug.html), the `-cluster` parameter controls the clustering aspects of the processing unit instance(s). Below is a list of the parameters you can specify for the standalone and IDE runtime modes, and how they are mapped the `ClusterInfo` properties:
+Each of the [runtime modes](./deploying-and-running-overview.html) supports the injection of `ClusterInfo`. However, when running in [standalone mode](./running-in-standalone-mode.html) or [within your IDE](../started/xap-debug.html), the `-cluster` parameter controls the clustering aspects of the processing unit instance(s). Below is a list of the parameters you can specify for the standalone and IDE runtime modes, and how they are mapped the `ClusterInfo` properties:
 
 |Runtime Mode | Maps to |
 |:------------|:--------|
@@ -133,5 +133,5 @@ Each of the [runtime modes](./deploying-and-running-the-processing-unit.html) su
 |id instanceId|`ClusterInfo#setInstanceId`|
 |backup_id backupId| `ClusterInfo#setBackupId`|
 
-{{% refer %}}For more details on how to use the `-cluster` option, see the [processing unit runtime modes section](./deploying-and-running-the-processing-unit.html){{% /refer %}}
+{{% refer %}}For more details on how to use the `-cluster` option, see the [processing unit runtime modes section](./deploying-and-running-overview.html){{% /refer %}}
 

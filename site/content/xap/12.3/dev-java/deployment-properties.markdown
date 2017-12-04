@@ -71,7 +71,7 @@ For property placeholders, we use the `${placeholder name}` notation.
 {{% /tab %}}
 {{% /tabs %}}
 
-The various [processing unit runtime modes](./deploying-and-running-the-processing-unit.html) all provide support for injecting property values instead of place holders. There are several ways to define the values for the property place holders, depending on how you choose to run/deploy your processing unit.
+The various [processing unit runtime modes](./deploying-and-running-overview.html) all provide support for injecting property values instead of place holders. There are several ways to define the values for the property place holders, depending on how you choose to run/deploy your processing unit.
 
 ## Using a `.properties` File
 

@@ -37,7 +37,7 @@ Here are the available parameters for an embedded space:
 | space-data-source                     |Reference|Data Source for the Space||No| [Space Persistency](./space-persistency-overview.html)|
 | space-sync-endpoint                   |Reference|Space Synchronization Endpoint| |No| [Asynchronous Persistence](./asynchronous-persistency-with-the-mirror.html)|
 | enable-member-alive-indicator         || | |No ||
-| gateway-targets                       |String|Multi Site WAN Replication | |No |[Multi Site WAN Replication](./multi-site-replication-over-the-wan.html#configuring-a-space-with-gateway-targets)|
+| gateway-targets                       |String|Multi Site WAN Replication | |No |[Multi Site WAN Replication](./multi-site-replication-overview.html#configuring-a-space-with-gateway-targets)|
 
 ## Bean Properties
 

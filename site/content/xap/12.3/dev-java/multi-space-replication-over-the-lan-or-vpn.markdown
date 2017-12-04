@@ -10,7 +10,7 @@ weight: 100
 
 
 
-Multiple space replication is the ability to replicate state between different deployed spaces, i.e different cluster of space instances. Where each of the space instances of each of the spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, it is required to have a direct network connection between all space instances of all of the clusters (or at least a connection between all space instances to the targeted space gateway machine). Replicating between spaces in the same network, is done using exactly the same mechanisms and gateway in the [Multi-Site Replication over the WAN](./multi-site-replication-over-the-wan.html) case, however in a simplified way since many if the configuration and some of the components are not needed as the spaces reside in the same network.
+Multiple space replication is the ability to replicate state between different deployed spaces, i.e different cluster of space instances. Where each of the space instances of each of the spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, it is required to have a direct network connection between all space instances of all of the clusters (or at least a connection between all space instances to the targeted space gateway machine). Replicating between spaces in the same network, is done using exactly the same mechanisms and gateway in the [Multi-Site Replication over the WAN](./multi-site-replication-overview.html) case, however in a simplified way since many if the configuration and some of the components are not needed as the spaces reside in the same network.
 
 {{% align center%}}
 ![wan_use_cases.jpg](/attachment_files/wan_use_cases.jpg)
@@ -29,7 +29,7 @@ The GigaSpaces Gateway features the following:
 - Changing replication topology in run-time - adding or removing remote spaces without system shutdown.
 
 {{% note %}}
-In the case where each space resides on a different network and there is no network connectivity between all space instances of all the spaces, please refer to [Multi-Site Replication over the WAN](./multi-site-replication-over-the-wan.html) to understand how to establish such replication between different networks.
+In the case where each space resides on a different network and there is no network connectivity between all space instances of all the spaces, please refer to [Multi-Site Replication over the WAN](./multi-site-replication-overview.html) to understand how to establish such replication between different networks.
 {{% /note %}}
 
 

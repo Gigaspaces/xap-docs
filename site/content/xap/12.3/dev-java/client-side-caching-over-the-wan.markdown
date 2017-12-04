@@ -21,6 +21,6 @@ Any read operations conducted at each site by the local users will be served fir
 Write/update/delete operations will be conducted against the remote master cache in a synchronous manner. This means they will suffer from the latency between the local site and the remote master cache since they are fully acknowledged when the master cache will be fully committing these.
 
 {{% refer %}}
-For more advanced WAN based topologies see the [Multi-Site Replication over the WAN](./multi-site-replication-over-the-wan.html) section.
+For more advanced WAN based topologies see the [Multi-Site Replication over the WAN](./multi-site-replication-overview.html) section.
 {{% /refer %}}
 

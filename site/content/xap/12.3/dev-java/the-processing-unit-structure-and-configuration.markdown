@@ -103,7 +103,7 @@ starting with 10.1 version the product dosn't include xml parsing jars under lib
 
 # Runtime Modes
 
-The processing unit can [run](./deploying-and-running-the-processing-unit.html) in multiple modes.
+The processing unit can [run](./deploying-and-running-overview.html) in multiple modes.
 
 When deployed on to the [GigaSpaces runtime environment]({{%currentadmurl%}}/the-runtime-environment.html) or when running in [standalone mode](./running-in-standalone-mode.html), all the jars under the `lib` directory of your processing unit jar, will be automatically added to the processing unit's classpath.
 
@@ -127,7 +127,7 @@ One way to package such processing unit is to use the standard processing unit p
 
 GigaSpaces also provides a simpler option via its built-in data-only processing unit templates (located under `<XAP Root>/deploy/templates/datagrid`. Using these templates you can deploy and run data only processing unit without creating a dedicated jar for them.
 
-For more information please refer to [Deploying and running the processing unit](./deploying-and-running-the-processing-unit.html)
+For more information please refer to [Deploying and running the processing unit](./deploying-and-running-overview.html)
 
 {{%anchor classloaders %}}
 

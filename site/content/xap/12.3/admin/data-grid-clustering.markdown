@@ -28,10 +28,10 @@ XAP's data grid clustering, scalability and high availability are based on the f
 - Persistency to database/disk is done in a reliable [asynchronous manner]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html).
 - When an instance of the system [fails](./failover.html), a new one is recreated on the fly on an available machine. If the failed instance is a primary, the existing backup becomes the new primary and a another backup is created.
 - You can have more than one backup copy per partition.
-- Backup can be on the LAN or WAN. For remote WAN, a special replication module called the [replication Gateway]({{%currentjavaurl%}}/multi-site-replication-over-the-wan.html ) is provided.
+- Backup can be on the LAN or WAN. For remote WAN, a special replication module called the [replication Gateway]({{%currentjavaurl%}}/multi-site-replication-overview.html ) is provided.
 - Backup instances cannot be accessed by clients for read/write. This ensures total data consistency and prevents conflicts.
 - When a backup instance is not available, the primary instance logs all activities (on file or [overflow to disk](./controlling-the-replication-redo-log.html)) and sends them to the backup instance when it becomes available (only the delta). If If there is a long disconnection time, then a total recovery of the backup is conducted.
-- The transaction boundary is preserved when data is replicated from a primary instance to the backup instance, when persisting the data or when replicating the data to a remote site over the WAN ([WAN Gateway]({{%currentjavaurl%}}/multi-site-replication-over-the-wan.html)).
+- The transaction boundary is preserved when data is replicated from a primary instance to the backup instance, when persisting the data or when replicating the data to a remote site over the WAN ([WAN Gateway]({{%currentjavaurl%}}/multi-site-replication-overview.html)).
 {{%/vbar%}}
 
 # Consistency

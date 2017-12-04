@@ -38,4 +38,4 @@ Each configuration can be configured for all gateways or specifically per each g
 |max-redo-log-capacity|Specifies the maximum number of packets that should be held in the redo-log for a replication gateway (-1 means unlimited) | 100,000,000 |
 |<nobr>on-redo-log-capacity-exceeded</nobr>| `drop-oldest` will result in dropping the oldest packet in the redo-log once the capacity is exceeded, `block-operations` will result in blocking all new replicated operations by denying such new operation by throwing an exception to the operation invoker. | `drop-oldest` |
 
-If one of the gateway targets name matches the local-gateway-name, it will be filtered and removed from the list at deploy time. This may be helpful for creating symmetric configuration which is demonstrated at [Multi-Site Replication (WAN)](./multi-site-replication-over-the-wan.html) page.
+If one of the gateway targets name matches the local-gateway-name, it will be filtered and removed from the list at deploy time. This may be helpful for creating symmetric configuration which is demonstrated at [Multi-Site Replication (WAN)](./multi-site-replication-overview.html) page.
