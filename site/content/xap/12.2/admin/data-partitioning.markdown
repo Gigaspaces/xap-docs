@@ -18,23 +18,6 @@ A clustered proxy for a partitioned data grid holds logical references to all sp
 ![load_balancing_basic.gif](/attachment_files/load_balancing_basic.gif)
 {{% /align%}}
 
-{{% refer %}}
-For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html) section.
-{{% /refer %}}
-
-# Partitioning Types
-
-XAP ships with a number of built-in load-balancing policies. These range from relatively static policies, where each proxy "attaches" to a specific instance and directs all operations to it, to a dynamic policies where the target of an operation takes into account the data and rout the operation based on the content.
-
-The following table describes the built-in load balancing types.
-
-
-|Policy|Description|
-|:-----|:----------|
-|<nobr>hash-based </nobr>|As above, except a new hash is computed for each user operation, and so each operation may be routed to a different space. This ensures, with high probability, that operations are evenly distributed. This is the **default mode** and the recommended mode.|
-|local-space|This policy routes the operation to the local embedded space (without specifying the exact space name). It is used in P2P clusters.|
-|round-robin |The clustered proxy distributes the operations to the group members in a round-robin fashion. For example, if there are three spaces, one operation is performed on the first space, the next on the second space, the next on the third space, the next on the first space, and so on.|
-
 # Hash-Based Load Balancing
 
 This is the **default mode** and applicable for most of the application. When using a hash-based load balancing policy, the client proxy spreads new written space objects into relevant cluster space nodes. The relevant space to rout the operation is determined using a space object routing field (also called a routing index) value hash code. This value, together with the number of the cluster partitions, is used to calculate the target space for the operation.
@@ -192,20 +175,6 @@ Routing field values:
 487,935,676,124,....
 ```
 
-# Load Balancing with Replication/Failover
-
-Load balancing can be combined with replication. Depending on the application needs and the load-balancing policy used, this may or may not be necessary. For example, if users tend to perform read operations, and the policy used is round-robin, replication will be necessary to ensure the requested space object exists on the target space. If, by contrast, the policy used is distribute-by-class, it may not be necessary to replicate, because the class requested should have been written to the same space.
-
-Load balancing can also be combined with failover, to achieve both scalability and fault tolerance.
-
-# Broadcast
-
-There are three Broadcast options:
-
-- `broadcast-if-null-values` -- for `null` fields, for hash-based `null` index. Default for read, take and notify. Its meaning is: the template is a `null` template (actual `null` or all fields are `null` or no fields), or, if the load-balancing policy is hash-based, the first index (hash index) is `null` or no index is defined. This option is triggered in the following case: the LB policy is not hash-based and extended-matching (Using `SQLQuery`, for example) is used by the template, or the LB policy is hash-based and extended matching is used and the match-code for the specific field is not EQ (equal). The latter is designated in order to enable query processor and other extended-matching users to query over multiple spaces.
--  `unconditional` -- use broadcast mode anyway -- whatever the template field value is.
-- `broadcast-disabled` -- disable broadcast. Operations are routed based on a template's first indexed field. If template's first indexed field is `null`, an error occurs.
-
 # Batch Operation Execution Mode
 
 The following table specifies when the different batch operations executed in parallel manner and when in serial manner when the space running in partitioned mode:
@@ -233,7 +202,6 @@ The following table specifies when the different batch operations executed in pa
 # Considerations
 
 - The replication scheme does not take into account the `IReplicatable` (partial replication) and replication matrix.
-- In some cases, broadcast can cause ownership/SSI problems.
 - All objects with a given routing value will be stored in the _same partition_. This means that a given partition _must_ be able to hold all similarly-routed objects. If the routing value does not have uniform distribution, the partitioning will be uneven. Use a derived routing field (such as ID field) as the routing field value that gives a flat distribution across all nodes, if possible.
 
 
