@@ -166,8 +166,7 @@ query.setParameter(2,collection);
 ```
 
 {{% warning %}}
-Parameter assignment to the `SQLQuery` instance is not thread safe. If the query is intended to be executed on multiple threads which may change the parameters, it is recommended to use different `SQLQuery` instances. This has an analogue in JDBC, because `PreparedStatement` is not threadsafe either.
-In previous options, parameters could be passed via a POJO template as well. This option is still available, but is deprecated and will be removed in future versions.
+Parameter assignment to the `SQLQuery` instance is not thread-safe. If the query is intended to be executed on multiple threads which may change the parameters, it is recommended to use different `SQLQuery` instances. This has an analogue in JDBC, because `PreparedStatement` is not thread-safe either.
 {{%/warning%}}
 
 
