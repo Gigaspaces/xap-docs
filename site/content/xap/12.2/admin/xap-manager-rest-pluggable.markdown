@@ -36,7 +36,7 @@ public class BasicPluggableOperationTest {
 }
 ```
 
-This class maps an HTTP `GET` operation in the `/demo/report` path to a `report` method. It accepts a query parameter, and uses an injected `Admin` instance to perform user-defined code (in this case, a custom report).
+This class maps an HTTP `GET` operation in the `/demo/report` path to a `report` method. It accepts a query parameter, and uses an injected `Admin` instance to perform user-defined code (in this case, a custom report). For example, `http://localhost:8090/v1/demo/report?hostname=mypc`.
 
 To run the example, compile it and package it into a .jar file, then copy the .jar to `$XAP_HOME/lib/platform/manager/plugins` and start the XAP Manager.
 
