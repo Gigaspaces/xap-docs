@@ -331,7 +331,7 @@ class MyBean {
 
 When a remote client is interested to receive events when a space instance changing its runtime mode (from primary to backup or vise versa), it should implement the `SpaceModeChangedEventListener`. See below how:
 
-Registering for the event using the [Administration API](./administration-and-monitoring-api.html):
+Registering for the event using the [Administration API](./administration-and-monitoring-overview.html):
 
 
 ```java

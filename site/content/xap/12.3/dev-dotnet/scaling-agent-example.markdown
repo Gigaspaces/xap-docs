@@ -15,7 +15,7 @@ weight: 200
 
 
 
-The [Administration and Monitoring API](./administration-and-monitoring-api.html) allows you to monitor an application's health and its resources, to enforce a specific pre-defined configurable SLA that scales the application while it is running. This ensures a deterministic response time when there is an increasing number of users accessing the system, and also ensures the high-availability and robustness of the application.
+The [Administration and Monitoring API](../dev-java/administration-and-monitoring-overview.html) allows you to monitor an application's health and its resources, to enforce a specific pre-defined configurable SLA that scales the application while it is running. This ensures a deterministic response time when there is an increasing number of users accessing the system, and also ensures the high-availability and robustness of the application.
 
 The following example illustrates how you can construct a simple processing unit (**The Scaling Agent**) to monitor an application deployed into GigaSpaces, and track the load on the application. Once the average throughput per instance of the application breaches a pre-defined limit, the scaling agent reacts and performs the necessary activities to scale the application tier.
 

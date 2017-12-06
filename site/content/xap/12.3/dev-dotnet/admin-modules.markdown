@@ -17,7 +17,7 @@ The Admin API provides a way to administer and monitor all of XAP services and c
 
 {{%fpanel%}}
 
-[Admin API](./administration-and-monitoring-api.html){{<wbr>}}
+[Admin API](../dev-java/administration-and-monitoring-overview.html){{<wbr>}}
 Simple API to monitor and administer XAP services and components.
 
 [Scaling Agent](./scaling-agent-example.html){{<wbr>}}

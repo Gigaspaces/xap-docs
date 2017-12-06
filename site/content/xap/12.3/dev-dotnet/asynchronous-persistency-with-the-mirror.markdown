@@ -180,7 +180,7 @@ To use this optimization you need to set the following space property:
 
 # Mirror Monitoring
 
-The activity of the mirror service can be monitored using the [Administration and monitoring API](./administration-and-monitoring-api.html#administrationand-monitoring-api-nonitoring-the-mirror-service). This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.
+The activity of the mirror service can be monitored using the [Administration and monitoring API](../dev-java/administration-and-monitoring-overview.html#administrationand-monitoring-api-nonitoring-the-mirror-service). This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.
 
 You may view Mirror and its replication statistics via the [GigaSpaces Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html). Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.
 

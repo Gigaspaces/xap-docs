@@ -82,7 +82,7 @@ There are many parameters that affect the replication behavior. For a full list 
 
 ## Monitoring and Statistics
 
-The replication module can be monitored, and exposes various statistics using the [Administration and Monitoring API]({{%currentjavaurl%}}/administration-and-monitoring-api.html) via [Replication Statistics]({{% api-javadoc %}}/com/j_spaces/core/filters/ReplicationStatistics.html).
+The replication module can be monitored, and exposes various statistics using the [Administration and Monitoring API]({{%currentjavaurl%}}/administration-and-monitoring-overview.html) via [Replication Statistics]({{% api-javadoc %}}/com/j_spaces/core/filters/ReplicationStatistics.html).
 
 
 

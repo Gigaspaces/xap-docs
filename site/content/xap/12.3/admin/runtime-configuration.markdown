@@ -38,7 +38,7 @@ In previous XAP versions, the Grid Service Manager and Lookup Service were stand
 For backward compatibility and to simplify the upgrade process, you can still start the LUS and GSM independently. However, future releases may include additional new features and functionality that will require using the XAP Manager.
 {{%  /info %}}
 
-All of the above components are fully manageable from management interfaces such as the [XAP Management Center](gigaspaces-management-center.html), the command line interface, and the [Admin API]({{% currentjavaurl%}}/administration-and-monitoring-api.html).
+All of the above components are fully manageable from management interfaces such as the [XAP Management Center](gigaspaces-management-center.html), the command line interface, and the [Admin API]({{% currentjavaurl%}}/administration-and-monitoring-overview.html).
 
 {{% align center%}}
 [comment]: <> (![gs_runtime.jpg](/attachment_files/gs_runtime.jpg))
@@ -82,7 +82,7 @@ The Grid Service Agent (gs-agent) is a process manager that can spawn and manage
 
 Usually, each machine runs a single gs-agent. If you are setting up multiple Service Grids separated by [Lookup Groups or Locators](#lus), you will probably start a gs-agent per machine, per group.
 
-The gs-agent exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API]({{% currentjavaurl%}}/administration-and-monitoring-api.html) or the XAP Management Center.
+The gs-agent exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API]({{% currentjavaurl%}}/administration-and-monitoring-overview.html) or the XAP Management Center.
 
 # High Availability
 

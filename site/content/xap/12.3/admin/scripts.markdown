@@ -43,7 +43,7 @@ The scripts listed below are available in the licensed editions of the GigaSpace
 - **gsc** - starts an instance of the [GSC](../overview/the-runtime-environment.html#gsc).
 - **gsm** - starts an instance of the [GSM](../overview/the-runtime-environment.html#gsm) and [LUS](../overview/the-runtime-environment.html#lus).
 - **gsm_nolus** - starts an instance of the [GSM](../overview/the-runtime-environment.html#gsm).
-- **esm** - starts an instance of the [ESM]({{%currentjavaurl%}}/elastic-processing-unit.html).
+- **esm** - starts an instance of the [ESM]({{%currentjavaurl%}}/elastic-processing-unit-overview.html).
 - **startJiniTX_Mahalo** - starts an instance of the Distributed transaction manager.
 
 # Processing Units

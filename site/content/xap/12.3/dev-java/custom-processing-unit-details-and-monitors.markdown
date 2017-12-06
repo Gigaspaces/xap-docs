@@ -21,7 +21,7 @@ The `ServiceDetails` are used to describe the service being monitored.
 
 # Service Monitors
 
-A [ServiceMonitors]({{% api-javadoc %}}/org/openspaces/pu/service/ServiceMonitors.html) describes **runtime** information the processing unit would like to expose. This is fetched periodically using the [Administration and Monitoring API](./administration-and-monitoring-api.html).
+A [ServiceMonitors]({{% api-javadoc %}}/org/openspaces/pu/service/ServiceMonitors.html) describes **runtime** information the processing unit would like to expose. This is fetched periodically using the [Administration and Monitoring API](./administration-and-monitoring-overview.html).
 
 One implementation class a processing unit can extend is the [PlainServiceMonitors]({{% api-javadoc %}}/org/openspaces/pu/service/PlainServiceMonitors.html) class. This is a simple straight forward implementation of the `ServiceMonitors` interface, which takes care of fast serialization using Externalizable, provides a handy toString, etc.
 

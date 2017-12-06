@@ -56,7 +56,7 @@ The bootstrap is initiated on the gateway sink of the space that needs to be boo
 </os-gateway:sink>
 ```
 
-After meting the condition specified in the previous, the bootstrap should be initiated using the [Admin API](./administration-and-monitoring-api.html).
+After meting the condition specified in the previous, the bootstrap should be initiated using the [Admin API](./administration-and-monitoring-overview.html).
 Following is an example of how to bootstrap New-York from London:
 
 

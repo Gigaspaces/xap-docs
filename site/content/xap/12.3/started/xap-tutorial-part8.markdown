@@ -145,7 +145,7 @@ GigaSpace gigaSpace = (GigaSpace) getServletContext().getAttribute("xapTutorialS
 ```
 
 
-{{%refer%}}[Web Application Support]({{%currentjavaurl%}}/web-application-support.html){{%/refer%}}
+{{%refer%}}[Web Application Support]({{%currentjavaurl%}}/web-application-overview.html){{%/refer%}}
 
 
 # Jetty Instance
@@ -161,7 +161,7 @@ Jetty itself is configured using Spring, and allows you to control all aspects o
 {{%/column%}}
 {{%/section%}}
 
-{{%refer%}}[Web Application Support]({{%currentjavaurl%}}/web-application-support.html){{%/refer%}}
+{{%refer%}}[Web Application Support]({{%currentjavaurl%}}/web-application-overview.html){{%/refer%}}
 
 
 

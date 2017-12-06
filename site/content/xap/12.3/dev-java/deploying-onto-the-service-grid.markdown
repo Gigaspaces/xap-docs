@@ -24,7 +24,7 @@ You can use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to
 
 # The Deployment Process
 
-Once built according to the processing unit [directory structure](./the-processing-unit-structure-and-configuration.html), the processing unit can be deployed via the various deployment tools available in GigaSpaces XAP ([UI]({{%currentadmurl%}}/gigaspaces-management-center.html), [CLI]({{%currentadmurl%}}/deploy-command-line-interface.html), Ant, [Maven](../started/installation-maven-overview.html) or the [Admin API](./administration-and-monitoring-api.html)).
+Once built according to the processing unit [directory structure](./the-processing-unit-structure-and-configuration.html), the processing unit can be deployed via the various deployment tools available in GigaSpaces XAP ([UI]({{%currentadmurl%}}/gigaspaces-management-center.html), [CLI]({{%currentadmurl%}}/deploy-command-line-interface.html), Ant, [Maven](../started/installation-maven-overview.html) or the [Admin API](./administration-and-monitoring-overview.html)).
 
 After you [package](./the-processing-unit-overview.html) the processing unit and deploy it via one of the deployment tools, the deployment tool uploads it to all the running [GSMs](../overview/the-runtime-environment.html#gsm), where it is extracted and provisioned to the [GSCs](../overview/the-runtime-environment.html#gsc).
 
@@ -48,7 +48,7 @@ GigaSpaces provides several options to deploy a processing unit onto the Service
 
 {{%tabs%}}
 {{%tab "  Admin API "%}}
-Deploying via code is done using the GigaSpaces [Admin API](./administration-and-monitoring-api.html). The following example shows how to deploy the `myPU.jar` processing unit using one of the available GSMs. For more details please consult the [Admin API](./administration-and-monitoring-api.html)
+Deploying via code is done using the GigaSpaces [Admin API](./administration-and-monitoring-overview.html). The following example shows how to deploy the `myPU.jar` processing unit using one of the available GSMs. For more details please consult the [Admin API](./administration-and-monitoring-overview.html)
 
 
 ```java
@@ -103,7 +103,7 @@ Deploying via the CLI is based on the `deploy` command. This command accepts var
 
 # Elastic Processing Unit Deployment using the Admin API
 
-When deploying a partitioned Processing Unit or a partitioned Space it is recommended to use the new [Elastic Processing Unit](./elastic-processing-unit.html). This can be done via the [Admin API](./administration-and-monitoring-api.html). The following example shows how to deploy a processing unit as an Elastic PU.
+When deploying a partitioned Processing Unit or a partitioned Space it is recommended to use the new [Elastic Processing Unit](./elastic-processing-unit-overview.html). This can be done via the [Admin API](./administration-and-monitoring-overview.html). The following example shows how to deploy a processing unit as an Elastic PU.
 
 ## Step 1 - Start a GigaSpaces agent on each machine:
 
@@ -229,7 +229,7 @@ To enable business continuity in a better manner, having system upgrade without 
 4. Restart the Primary PU instance. This will turn the existing backup instance to become a primary instance. The previous primary will turn into a backup, load the new business logic classes and recover its data from the existing primary.
 5. Optional - You can restart the existing primary to force it to switch into a backup instance again. The new primary will also use the new version of the business logic classes.
 
-You can script the above procedure via the [Administration and Monitoring API](./administration-and-monitoring-api.html), allowing you to perform system upgrade without downtime.
+You can script the above procedure via the [Administration and Monitoring API](./administration-and-monitoring-overview.html), allowing you to perform system upgrade without downtime.
 
 ## Restart a running PU via the GS-UI
 

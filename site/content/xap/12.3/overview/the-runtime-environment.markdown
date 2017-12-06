@@ -42,7 +42,7 @@ In order to discover one another in the network, the GSCs and GSMs use a [Lookup
 
 Finally, the *GSA* [Grid Service Agent](#gsa) component is used to start and manage the other components of the Service Grid (i.e. GSC, GSM, LUS). Typically, the GSA is started with the hosting machine's startup. Using the agent, you can bootstrap the entire cluster very easily, and start and stop additional GSCs, GSMs and lookup services at will.
 
-All of the above components are fully manageable from the GigaSpaces management interfaces such as the [UI]({{% latestadmurl%}}/gigaspaces-management-center.html), CLI and [Admin API]({{% latestjavaurl%}}/administration-and-monitoring-api.html).
+All of the above components are fully manageable from the GigaSpaces management interfaces such as the [UI]({{% latestadmurl%}}/gigaspaces-management-center.html), CLI and [Admin API]({{% latestjavaurl%}}/administration-and-monitoring-overview.html).
 
 {{%  anchor gsm %}}
 
@@ -110,7 +110,7 @@ The Grid Service Agent (GSA) is a process manager that can spawn and manage Serv
 
 Usually, a single GSA is run per machine. If you're setting up multiple Service Grids separated by [Lookup Groups or Locators](#lus), you'll probably start a GSA per machine per group.
 
-The GSA exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API]({{% latestjavaurl%}}/administration-and-monitoring-api.html) or the GigaSpaces UI.
+The GSA exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API]({{% latestjavaurl%}}/administration-and-monitoring-overview.html) or the GigaSpaces UI.
 
 ## Process Management
 
@@ -122,7 +122,7 @@ Global processes take into account the number of process types [Grid Service Man
 
 # Optional Components
 
-* The Elastic Service Manager (ESM) manages the [Elastic Processing Unit]({{<latestjavaurl>}}/elastic-processing-unit.html) together with the GSM.
+* The Elastic Service Manager (ESM) manages the [Elastic Processing Unit]({{<latestjavaurl>}}/elastic-processing-unit-overview.html) together with the GSM.
 
 * The [Apache Load Balancer Agent]({{<latestjavaurl>}}/apache-load-balancer-agent.html) is used when deploying web applications.
 

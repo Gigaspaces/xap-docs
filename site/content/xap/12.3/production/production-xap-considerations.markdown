@@ -363,14 +363,14 @@ The logical partitions may initially run on certain containers, and later get re
 ![rebalance_util.jpg](/attachment_files/sbp/rebalance_util.jpg)
 {{%/align%}}
 
-The Elastic Service Manager (ESM) component is responsible for scaling the IMDG during runtime, and is used with the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html):
+The Elastic Service Manager (ESM) component is responsible for scaling the IMDG during runtime, and is used with the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html):
 
 {{%align "center"%}}
 ![flow.gif](/attachment_files/sbp/flow.gif)
 {{%/align%}}
 
 {{% tip "Tip"%}}
-When using the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html), instances will be continuously rebalanced across all available machines.
+When using the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html), instances will be continuously rebalanced across all available machines.
 {{% /tip %}}
 
 # Log Files

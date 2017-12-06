@@ -9,13 +9,13 @@ parent: administration-and-monitoring-overview.html
 
 
 
-The alert mechanism provides the ability to receive alerts on various problematic conditions at runtime by using the [Administration and Monitoring API](./administration-and-monitoring-api.html). The alerts give indication for the "health state" of the system.
+The alert mechanism provides the ability to receive alerts on various problematic conditions at runtime by using the [Administration and Monitoring API](./administration-and-monitoring-overview.html). The alerts give indication for the "health state" of the system.
 
 {{% note "Runtime Model "%}}
 The alerts rules are running within the `Admin` instance which the user created. GigaSpaces does not run an alert service that is running behind the scenes. If you would like to register for alerts in your production system, the recommended way to do it is to deploy your alert listener to the GigaSpaces [The Runtime Environment]({{%currentadmurl%}}/the-runtime-environment.html) in the form of a [processing unit](./the-processing-unit-structure-and-configuration.html).
 {{% /note %}}
 
-The [Administration and Monitoring API](./administration-and-monitoring-api.html) provides events and statistics on top of which 'rules' can be applied to trigger an alert when required.
+The [Administration and Monitoring API](./administration-and-monitoring-overview.html) provides events and statistics on top of which 'rules' can be applied to trigger an alert when required.
 
 - **Events** such as `ReplicationStatusChangedEvent` indicate that the `ReplicationStatus` has changed (e.g. ACTIVE, DISABLED, DISCONNECTED). From this event, an alert trigger can be written to raise an alert if replication has disconnected, and to resolve an alert once replication has reconnected (ref. **Predefined Alerts** below).
 
@@ -82,7 +82,7 @@ Sort the 'status' column in ascending order to show latest unresolved alerts.
 
 # Listening for Alerts
 
-Alerts can be consumed using a registered event listener by registering with the `AlertManager` component (which is part of the [Administration and Monitoring API](./administration-and-monitoring-api.html). The listener will be notified of alerts that have been triggered.
+Alerts can be consumed using a registered event listener by registering with the `AlertManager` component (which is part of the [Administration and Monitoring API](./administration-and-monitoring-overview.html). The listener will be notified of alerts that have been triggered.
 
 Javadoc ref: [Alert]({{% api-javadoc %}}/org/openspaces/admin/alert/Alert.html)&nbsp;[AlertManager]({{% api-javadoc %}}/org/openspaces/admin/alert/AlertManager.html)&nbsp;[XmlAlertConfigurationParser]({{% api-javadoc %}}/org/openspaces/admin/alert/config/parser/XmlAlertConfigurationParser.html)&nbsp;[AlertTriggeredEventListener]({{% api-javadoc %}}/org/openspaces/admin/alert/events/AlertTriggeredEventListener.html)
 

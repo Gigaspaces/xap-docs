@@ -18,7 +18,7 @@ XAP's data grid clustering, scalability and high availability are based on the f
 - Some operations, such as batch read or [execute]({{%currentjavaurl%}}/task-execution-over-the-space.html), support [map-reduce]({{%currentjavaurl%}}/space-based-remoting.html) behavior. This allows the application to access multiple partitions in parallel.
 - The maximum partition  size is the GSC heap size. XAP supports a large heap size (up to 100GB in RAM). A GSC may host multiple partitions (primary or backup instances).
 - A data grid may have an unlimited number of partitions. In reality, the number of partitions will be of the same magnitude as the number of GSCs or servers that are running the data grid. This allows the data grid to scale dynamically and re-balance itself across additional GSCs.
-- The number of data grid partitions is determined at deployment time. The number of GSCs hosting the data grid partitions is dynamic and may change during runtime. It can scale in an [elastic]({{%currentjavaurl%}}/elastic-processing-unit.html) manner when using the ESM.
+- The number of data grid partitions is determined at deployment time. The number of GSCs hosting the data grid partitions is dynamic and may change during runtime. It can scale in an [elastic]({{%currentjavaurl%}}/elastic-processing-unit-overview.html) manner when using the ESM.
 {{%/vbar%}}
 
 {{%vbar "High Availability"%}}

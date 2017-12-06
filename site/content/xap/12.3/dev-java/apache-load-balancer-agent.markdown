@@ -17,7 +17,7 @@ The integration dynamically creates and updates the  {{%exurl "mod_proxy_balance
 General information on how to enable the mod_proxy load balancer and configuration can be found in the {{%exurl "Jetty mod_proxy docs" "http://docs.codehaus.org/display/JETTY/Configuring+mod_proxy"%}}. Note, the load balancer actual configuration of specific balancer members are generated automatically as explained below.
 
  
-Similar agents can be implemented for other HTTP load-balancers such as {{%exurl "F5" "http://www.f5.com"%}}, {{%exurl "Radware" "http://www.radware.com"%}},{{%exurl "CISCO ACE" "http://www.cisco.com/en/US/products/ps6906"%}}, {{%exurl "Barracuda" "http://www.barracudanetworks.com"%}} etc., using the [Administration and Monitoring API](./administration-and-monitoring-api.html). See the [Web Load Balancer Agent PU](/sbp/web-load-balancer-agent-pu.html) for details.
+Similar agents can be implemented for other HTTP load-balancers such as {{%exurl "F5" "http://www.f5.com"%}}, {{%exurl "Radware" "http://www.radware.com"%}},{{%exurl "CISCO ACE" "http://www.cisco.com/en/US/products/ps6906"%}}, {{%exurl "Barracuda" "http://www.barracudanetworks.com"%}} etc., using the [Administration and Monitoring API](./administration-and-monitoring-overview.html). See the [Web Load Balancer Agent PU](/sbp/web-load-balancer-agent-pu.html) for details.
  
 
 # How it Works?

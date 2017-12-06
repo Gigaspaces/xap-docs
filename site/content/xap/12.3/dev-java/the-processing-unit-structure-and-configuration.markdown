@@ -42,7 +42,7 @@ The processing unit jar file is composed of several key elements:
 SLA definitions are only enforced when deploying the processing unit to the GigaSpaces service grid, since this environment actively manages and controls the deployment using the [GSM](../overview/the-runtime-environment.html#gsm). When [running within your IDE](../started/xap-debug.html) or in [standalone mode](./running-in-standalone-mode.html) these definitions are ignored.
 {{% /note %}}
 
-- `META-INF/spring/pu.properties` (not mandatory): Enables you to externalize properties included in the `pu.xml` file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see [this page](./web-application-support.html) for more details) or space properties (when defining a space inside your processing unit). Note, the `pu.properties` can also be placed at the root of the processing unit.
+- `META-INF/spring/pu.properties` (not mandatory): Enables you to externalize properties included in the `pu.xml` file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see [this page](./web-application-overview.html) for more details) or space properties (when defining a space inside your processing unit). Note, the `pu.properties` can also be placed at the root of the processing unit.
 
 - **User class files**: Your processing unit's classes (here under the com.mycompany.myproject package)
 
