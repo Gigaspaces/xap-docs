@@ -10,6 +10,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Improvements
 
+- {{% jira id="GS-13136" %}}: Make instance variables in DefaultHibernateSpaceDataSourceConfigurer protected.
 - {{% jira id="GS-13411" %}}: User-defined cache criteria for hot data in MemoryXtend.
 - {{% jira id="GS-13436" %}}: Added more GSM state information to application dump.
 - {{% jira id="GS-13442" %}}: Reduce the footprint of the Lookup Service template cache.

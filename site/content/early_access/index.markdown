@@ -15,6 +15,24 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/info%}}
 <hr/>
 
+# 12.3 M9 (Dec-103-2017)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m9/gigaspaces-insightedge-12.3.0-m9-b18909.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m9/gigaspaces-xap-12.3.0-m9-b18909.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m9/gigaspaces-xap.net-12.3.0-m9-b18909.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m9/gigaspaces-xap-open-12.3.0-m9-b18909.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13136" %}}: Make instance variables in DefaultHibernateSpaceDataSourceConfigurer protected.
+
+### Resolved Issues
+
+N/A
+
 # 12.3 M8 (Dec-03-2017)
 
 ## Download Links
