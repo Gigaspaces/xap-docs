@@ -25,10 +25,7 @@ In addition, MemoryXtend uses an LRU cache for data entries, so entries that are
 ![memstorage](/attachment_files/blobstore/xap-memoryxtend-howitworks.png)
 {{%/align%}}
 
-MemoryXtend is designed as a pluggable architecture, supporting multiple implementations of off-heap storage (also called **blobstore**). XAP provides two options for a blobstore:
-
-- [MemoryXtend for Flash/SSD](./memoryxtend-rocksdb-ssd.html) - For storing data on SSD or flash.
-- [MemoryXtend for Off-Heap Memory](./memoryxtend-ohr.html) - For storing data on Off-Heap Memory (also known as native heap).
+MemoryXtend is designed as a pluggable architecture, implementing off-heap storage (also called **blobstore**) for storing data on SSD or flash.
 
 
 # Class-Level Settings

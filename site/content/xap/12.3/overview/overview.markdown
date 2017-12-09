@@ -39,7 +39,7 @@ The following is a brief overview of some XAP data grid capabilities.
 
 - [RAM]({{%currentadmurl%}}/memory-management-overview.html)
 - [SSD/Flash]({{%currentadmurl%}}/memoryxtend-rocksdb-ssd.html)
-- [Off-Heap]({{%currentadmurl%}}/memoryxtend-ohr.html)
+
 
 **Data Replication and Persistence**
 

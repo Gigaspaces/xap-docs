@@ -34,7 +34,7 @@ The XAP WAN Gateway features the following:
 - Changing WAN replication topology during runtime - adding or removing remote sites without system shutdown.
 
 {{% info "Info"%}}
-This page describes how to establish replication between multiple Spaces in a typical WAN environment. Each Space is a separate network and there is a need for a designated outbound and inbound gateway machine or machines on each network, in order to interact with the other network(s). If this is not the case, and there is a direct network connection available between all Space instances machine (such as VLAN or VPN), refer insetad to [Multi-Space Replication over the LAN or VPN](./multi-space-replication-over-the-lan-or-vpn.html).
+This page describes how to establish replication between multiple Spaces in a typical WAN environment. Each Space is a separate network and there is a need for a designated outbound and inbound gateway machine or machines on each network, in order to interact with the other network(s). 
 {{% /info %}}
 
 

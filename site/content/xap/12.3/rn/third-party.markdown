@@ -45,7 +45,6 @@ This page list all the third-party libraries shipped with InsightEdge and XAP on
 |[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](../dev-java/mule-esb.html) |
 |[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](http://svn.codehaus.org/groovy/trunk/groovy/groovy-core/LICENSE.txt) | Dynamic Scripting | [Dynamic Scripting Support](../dev-java/task-dynamic-language.html)|
 |[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](../dev-java/scala.html) |
-|[MapDB](http://www.mapdb.org/)             | 1.0.7 | [Apache2](https://github.com/jankotek/mapdb/blob/master/LICENSE.txt) | Off Heap | [Off Heap RAM](../admin/memoryxtend-ohr.html) |
 |[snmp4j](http://www.snmp4j.org/)           | 1.11.2 | [Apache2](http://www.snmp4j.org/LICENSE-2_0.txt) | SNMP | [SNMP Connectivity via Alert Logging Gateway](../dev-java/snmp-connectivity-via-alert-logging-gateway.html) |
 |[log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SNMP | [SNMP Connectivity via Alert Logging Gateway](../dev-java/snmp-connectivity-via-alert-logging-gateway.html)  |
 |[Apache Calcite](https://calcite.apache.org/) | 1.11.0 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SQL-99 | [In-Grid SQL Query](../dev-java/sql-query-intro.html)  |
