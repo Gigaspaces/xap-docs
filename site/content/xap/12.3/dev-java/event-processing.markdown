@@ -7,36 +7,13 @@ weight: 1500
 ---
 
 
-This section will guide you through the event processing APIs and configuration on top of the Space.
+This section describes the event processing APIs and how to configure them on top of the Space. The relevant APIs include the [Notify Container](./notify-container-overview.html), which wraps the space data event session API with event container abstraction, and the Polling Container](./polling-container-overview.html), which allows you to perform polling receive operations against the Space.
 
+Events that are received by the polling and notify containers are handled by the [Event Listener](./data-event-listener.html), which is a Space Data Event Listener and the [Event Exception Listener](./event-exception-handler.html).
 
-<br>
+Regarding [FIFO Ordering](./fifo-overview.html), XAP supports both non-ordered Entries and FIFO ordered Entries when performing Space operations. XAP also includes [JMS message support](./messaging-support.html) that is built on top of the core spaces architecture.
 
-
-{{% fpanel%}}
-[Notify Container](./notify-container-overview.html){{<wbr>}}
-The notify event container wraps the space data event session API with event container abstraction.
-
-[Polling Container](./polling-container-overview.html){{<wbr>}}
-Allows you to perform polling receive operations against the space.
-
-[Event Listener](./data-event-listener.html){{<wbr>}}
-Describe the common Space Data Event Listener and its different adapters.
-
-[Event Exception Listener](./event-exception-handler.html){{<wbr>}}
-Describe the common Exception Event Listener and its different adapters.
-
-[FIFO Ordering](./fifo-overview.html){{<wbr>}}
-XAP supports both non-ordered Entries and FIFO ordered Entries when performing space operations.
-
-[JMS Integration](./messaging-support.html){{<wbr>}}
-XAP provide a JMS implementation, built on top of the core spaces architecture.
-{{%/fpanel%}}
-
-
-<br>
-
-#### Additional Resources
+# Additional Resources
 
 {{%youtube "GwLfDYgl6f8"  "Event Processing"%}}
 
