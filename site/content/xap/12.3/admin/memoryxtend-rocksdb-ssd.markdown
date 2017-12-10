@@ -115,6 +115,7 @@ The following tables describes the configuration options used in `rocksdb-blob-s
 | avg-object-size-KB |  Average object size in KB. avg-object-size-bytes and avg-object-size-KB cannot be used together. | 5 | optional |
 | avg-object-size-bytes |  Average object size in bytes. avg-object-size-bytes and avg-object-size-KB cannot be used together. | 5000 | optional |
 | persistent |  data is written to flash, space will perform recovery from flash if needed.  |  | required |
+| blob-store-cache-query | one or more SQL queries that determine which objects will be stored in cache    |  | optional |
 
 
 **Calculating cache-entries-percentage**
@@ -128,9 +129,89 @@ Lets say we set a cache entries percentage of 20, and an average object size of 
 N = {10GB * 1024 * 1024) * (20/100) } / 2
   = {(10,485,760) * (0.2)} / 2
   = {2,097,152} / 2
-  = 1,048,576 objects can fit in a single GSC before LRU starts evicting. 
+  = 1,048,576 objects can fit in a single GSC before LRU starts evicting.
 
 
+
+## Custom Caching
+**Data Recovery on Restart**
+
+The MemoryXtend architecture allows for data persisted on the blob store to be available for the data grid upon restart. To enable this, all that's needed is to enable the `persistent` option on the blobstore policy.
+
+```xml
+  <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
+```
+**Blob Store Cache Custom Queries**
+
+The `blob-store-cache-query` option provides a way of customizing the cache contents. By defining a set of SQL criteria, only objects that fit the queries:
+- Will pre-load into the JVM heap upon data grid initialization/restart.
+- Will be stored in the JVM heap after space operations.
+
+This guarantees any subsequent read request will hit RAM, thereby providing predictable latency (avoiding cache misses).
+
+This customization is useful when read latencies for specific class type (e.g. hot data, current day stocks) need to be predictable upfront.
+
+**Lazy Load**
+
+If no custom queries are defined, data will be lazily loaded. In this approach, no data is loaded into the JVM heap upon a restart. MemoryXtend saves only indexes in RAM and the rest of the objects on disk. As read throughput increases from clients, most of the data will eventually load into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash far exceeds what can fit into memory.
+
+**Example**
+
+In the example below we are loading `Stock` instances where the name=a1000 and `Trade` instances with id > 10000.
+
+{{%tabs%}}
+{{%tab "Namespace"%}}
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+        xmlns:os-events="http://www.openspaces.org/schema/events"
+        xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+        xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
+        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
+        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/{{%currentversion%}}/events/openspaces-events.xsd
+        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%currentversion%}}/remoting/openspaces-remoting.xsd
+        http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
+
+     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/tmp/rocksdb]" mapping-dir="/tmp/mapping"/>
+
+     <os-core:embedded-space id="space" name="mySpace">
+         <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
+             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="name = a1000"/>
+             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="id > 10000"/>
+         </os-core:blob-store-data-policy>
+     </os-core:embedded-space>
+
+     <os-core:giga-space id="gigaSpace" space="space"/>
+ ```
+ {{%/tab%}}
+
+ {{%tab "Code"%}}
+
+```java
+ BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
+ blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
+ blobStorePolicy.setPersistent(true);
+ blobStorePolicy.addCacheQuery(new SQLQuery(Stock.class, "name = a1000"));
+ blobStorePolicy.addCacheQuery(new SQLQuery(Trade.class, "id > 10000"));
+
+ EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
+ spaceConfigurer.cachePolicy(blobStorePolicy);
+ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer.space()).gigaSpace();
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+When the logging `com.gigaspaces.cache` is turned on the following output is generated:
+
+```bash
+2016-12-26 07:57:56,378  INFO [com.gigaspaces.cache] - BlobStore internal cache recovery:
+blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE name = 'a1000', SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock.Trade WHERE id > 10000].
+Entries inserted to blobstore cache: 80.
+```
 # Off-Heap Memory Usage
 
 XAP can store the values of indexed fields in the process native (off-heap) memory. This is done to avoid having to fetch data from the disk for queries that only need the index. This feature is on by default, and can be disabled by setting the `space-config.engine.blobstore_offheap_optimization_enabled` space property.
@@ -265,82 +346,6 @@ The following example deployes a 2 partitions space with a single backup (2,1) i
 
 ```xml
 <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt1/db1,/mnt1/db2],[/mnt2/db1,/mnt2/db2]"/>
-```
-
-
-# Data Recovery on Restart
-The MemoryXtend architecture allows for data persisted on the blob store to be available for the data grid upon restart. There are two approaches for pre-loading data into the space: lazy and custom initial load. 
-
-## Lazy Load
- 
-In this approach, MemoryXtend saves only indexes in RAM and the rest of the objects on disk. Meaning, no data is loaded into the JVM heap upon a restart. As read throughput increases from clients, most of the data will eventually load into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash far exceeds what can fit into memory. To enable lazy load, all what's needed is to enable the `persistent` option on the blobstore policy. 
-
-```xml
-  <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
-```
-
- 
-
-## Custom Initial Load
-The `blob-store-cache-query` option provides a SQL criteria to pre-load all or specific space objects into the JVM heap upon data grid initialization. This guarantees any subsequent read request will hit RAM, thereby providing predictable latency (avoiding cache misses). This preload pattern is useful in two scenarios:
-
-- The persisted data capacity equals what can fit into RAM (eager pre-load). 
-- When read latencies for specific class type (e.g. hot data, current day stocks) need to be predictable upfront. 
-
-In the example below we are loading `Stock` instances where the name=a1000 and `Trade` instances with id > 10000.
-
-{{%tabs%}}
-{{%tab "Namespace"%}}
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
- <beans xmlns="http://www.springframework.org/schema/beans"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:os-core="http://www.openspaces.org/schema/core"
-        xmlns:os-events="http://www.openspaces.org/schema/events"
-        xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
-        xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
-        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
-        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/{{%currentversion%}}/events/openspaces-events.xsd
-        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/{{%currentversion%}}/remoting/openspaces-remoting.xsd
-        http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
- 
-     <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/tmp/rocksdb]" mapping-dir="/tmp/mapping"/>
- 
-     <os-core:embedded-space id="space" name="mySpace">
-         <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
-             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="name = a1000"/>
-             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="id > 10000"/>
-         </os-core:blob-store-data-policy>
-     </os-core:embedded-space>
- 
-     <os-core:giga-space id="gigaSpace" space="space"/>
- ```
- {{%/tab%}}
- 
- {{%tab "Code"%}}
- 
-```java
- BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
- blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
- blobStorePolicy.setPersistent(true);
- blobStorePolicy.addCacheQuery(new SQLQuery(Stock.class, "name = a1000"));
- blobStorePolicy.addCacheQuery(new SQLQuery(Trade.class, "id > 10000"));
- 
- EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
- spaceConfigurer.cachePolicy(blobStorePolicy);
- GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer.space()).gigaSpace();
-```
-{{%/tab%}}
-{{%/tabs%}}
-
-When the logging `com.gigaspaces.cache` is turned on the following output is generated:
-
-```bash
-2016-12-26 07:57:56,378  INFO [com.gigaspaces.cache] - BlobStore internal cache recovery:
-blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE name = 'a1000', SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock.Trade WHERE id > 10000].
-Entries inserted to blobstore cache: 80.
 ```
 
 # Performance Tuning

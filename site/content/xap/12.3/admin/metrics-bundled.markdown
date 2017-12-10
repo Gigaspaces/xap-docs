@@ -216,18 +216,20 @@ Space metrics are reported with the following tags:
 ## Blobstore Operations
 
 
-| Metric | Description |
-|:-------|:------------|
-| space_operations_remove | Number of remove operations |
-| space_operations_add | Number of add operations |
-| space_operations_replace  | Number of replace operations |
-| space_operations_get | Number of get operations |
-| space_operations_remove-tp | remove per second  |
-| space_operations_add-tp | add per second  |
-| space_operations_replace-tp  | replace per second |
-| space_operations_get-tp | get operations per second |
-| space_blobstore_cache_miss  | blobstore cache miss |
-| space_blobstore_cache_hit | blobstore cache hit |
+| Metric | Description | Type |
+|:-------|:------------|:-----|
+| space_operations_remove | Number of remove operations | Long |
+| space_operations_add | Number of add operations | Long |
+| space_operations_replace  | Number of replace operations | Long |
+| space_operations_get | Number of get operations | Long |
+| space_operations_remove-tp | remove per second  | Double |
+| space_operations_add-tp | add per second  | Double |
+| space_operations_replace-tp  | replace per second | Double |
+| space_operations_get-tp | get operations per second | Double |
+| space_blobstore_cache-size  | number of objects stored in blobstore cache | Long |
+| space_blobstore_cache-hit | blobstore cache hit | Long |
+| space_blobstore_cache-miss  | Total of blobstore cache misses | Long |
+| space_blobstore_hot-data-cache-miss  | Subgroup of cache misses - misses of hot data not found in cache | Long |
 
 ## Connections
 
