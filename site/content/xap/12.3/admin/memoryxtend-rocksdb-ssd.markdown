@@ -152,10 +152,6 @@ This guarantees that any subsequent read requests will hit RAM, providing predic
 
 This customization is useful when read latencies for specific class types (such as hot data, current day stocks) need to be predictable upfront.
 
-### Lazy Load
-
-If no custom queries are defined, the "lazy load" approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash memory exceeds what can fit into memory.
-
 **Example**
 
 In the example below we are loading `Stock` instances where the name=a1000 and `Trade` instances with id > 10000.
@@ -213,6 +209,11 @@ When the `com.gigaspaces.cache` logging is turned on, the following output is ge
 blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE name = 'a1000', SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock.Trade WHERE id > 10000].
 Entries inserted to blobstore cache: 80.
 ```
+
+### Lazy Load
+
+If no custom queries are defined, the "lazy load" approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash memory exceeds what can fit into memory.
+
 # Off-Heap Memory Usage
 
 XAP can store the values of indexed fields in the process native (off-heap) memory. This is done to avoid having to fetch data from the disk for queries that only need the index. This feature is on by default, and can be disabled by setting the `space-config.engine.blobstore_offheap_optimization_enabled` space property.
