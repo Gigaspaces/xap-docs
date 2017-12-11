@@ -30,7 +30,8 @@ The blobstore is based on a log-structured merge tree architecture (similar to p
 
 - <b>MemTable</b>: An in-memory data structure (residing on off-heap RAM) where all incoming writes are stored. When a MemTable fills up, it is flushed to an SST file on storage. 
 - <b>Log</b>: A write-ahead log (WAL) that serializes MemTable operations to a persistent medium as log files. In the event of failure, WAL files can be used to recover the key/value store to its consistent state, by reconstructing the MemTable from the logs. 
-- <b>Sorted String Table (SST) files</b>: SSTable is a data structure (residing on disk) that efficiently stores a large data footprint while optimizing for high throughput, and sequential read/write workloads. When a MemTable fills up, it is flushed to an SST file on storage and the corresponding WAL file can be deleted. 
+- <b>Sorted String Table (SST) files</b>: SSTable is a data structure (residing on disk) that efficiently stores a large data footprint while optimizing for high throughput, and sequential read/write workloads. When a MemTable fills up, it is flushed to an SST file on storage and the corresponding WAL file can be deleted.
+- <b> Built-in Cache</b>: MemoryXtend comes with a built-in cache. This cache is part of the space partition tier, and stores objects in their native form.
 
 # Configuration and Deployment
 
@@ -100,7 +101,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-The following tables describes the configuration options used in `rocksdb-blob-store` above, along with other parameters that may be specified:
+The following tables describes the configuration options used in `rocksdb-blob-store` above:
 
 | Property               | Description                                               | Default | Use |
 |:-----------------------|:----------------------------------------------------------|:--------|:--------|
@@ -110,12 +111,20 @@ The following tables describes the configuration options used in `rocksdb-blob-s
 | db-options | Specifies the tuning parameters for the persistent data store in the underlying blobstore. This includes SST formats, compaction settings and flushes. See the [Performance Tuning](./memoryxtend-rocksdb-ssd.html#performance-tuning) section for details. | | optional |  
 | <nobr>data-column-family-options<nobr> | Specifies the tuning parameters for the LSM logic and memory tables. See the [Performance Tuning](./memoryxtend-rocksdb-ssd.html#performance-tuning) section for details.| | optional |
 | blob-store-handler | Blobstore implementation |  | required |
-| <nobr>cache-entries-percentage</nobr> | On-Heap cache stores objects in their native format. This cache size is determined based on the percentage of the GSC JVM max memory(-Xmx). If `-Xmx` is not specified, the default cache size is `10000` objects. This is an LRU-based data cache.(*)| 20% | optional |
+
+## Blobstore On-Heap Cache Configuration
+
+As mentioned above, MemoryXtend comes with a built-in LRU-based data cache, which stores objects in their native form.
+
+The following tables describes the blobstore cache configuration options:
+
+| Property               | Description                                               | Default | Use |
+|:-----------------------|:----------------------------------------------------------|:--------|:--------|
+| <nobr>cache-entries-percentage</nobr> | The cache size is determined based on the percentage of the GSC JVM max memory(-Xmx). If `-Xmx` is not specified, the default cache size is `10000` objects. | 20% | optional |
 | avg-object-size-KB |  Average object size, in KB. `avg-object-size-bytes` and `avg-object-size-KB` cannot be used together. | 5 | optional |
 | avg-object-size-bytes |  Average object size, in bytes. `avg-object-size-bytes` and `avg-object-size-KB` cannot be used together. | 5000 | optional |
 | persistent |  Data is written to flash memory, and the space performs recovery from the flash memory if needed.  |  | required |
 | blob-store-cache-query | One or more SQL queries that determine which objects will be stored in cache.    |  | optional |
-
 
 **Calculating cache-entries-percentage**
 
@@ -132,18 +141,18 @@ N = {10GB * 1024 * 1024) * (20/100) } / 2
 
 
 
-## Custom Caching
+### Custom Caching
 
-### Data Recovery on Restart
+#### Data Recovery on Restart
 
 The MemoryXtend architecture allows for data persisted on the blobstore to be available for the data grid upon restart. To enable this, you have to enable the `persistent` option in the blobstore policy.
 
 ```xml
   <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
 ```
-### Blobstore Cache Custom Queries
+#### Blobstore Cache Custom Queries
 
-The `blob-store-cache-query` option enables customizing the cache contents. You can define a set of SQL criteria, so that only objects that fit the queries:
+The `blob-store-cache-query` option enables customizing the cache contents. You can define a set of SQL queries, so that only objects that fit the queries:
 
 - Are pre-loaded into the JVM heap upon data grid initialization/restart.
 - Are stored in the JVM heap after Space operations.
@@ -152,9 +161,14 @@ This guarantees that any subsequent read requests will hit RAM, providing predic
 
 This customization is useful when read latencies for specific class types (such as hot data, current day stocks) need to be predictable upfront.
 
+The SQL queries are static and cannot be changed dynamically. One can always modify them and restart the application
+
 **Example**
 
-In the example below we are loading `Stock` instances where the name=a1000 and `Trade` instances with id > 10000.
+In the example below, an online trading platform defines the following criteria for "hot" data
+- `Stock` instances where the price > 1000
+- `Trade` instances with volume > 10000
+- 'Account' instances with platinum rating
 
 {{%tabs%}}
 {{%tab "Namespace"%}}
@@ -177,8 +191,9 @@ In the example below we are loading `Stock` instances where the name=a1000 and `
 
      <os-core:embedded-space id="space" name="mySpace">
          <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
-             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="name = a1000"/>
-             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="id > 10000"/>
+             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="price > 1000"/>
+             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="volume > 10000"/>
+             <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Account" where="rating = 'platinum'"/>
          </os-core:blob-store-data-policy>
      </os-core:embedded-space>
 
@@ -192,8 +207,9 @@ In the example below we are loading `Stock` instances where the name=a1000 and `
  BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
  blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
  blobStorePolicy.setPersistent(true);
- blobStorePolicy.addCacheQuery(new SQLQuery(Stock.class, "name = a1000"));
- blobStorePolicy.addCacheQuery(new SQLQuery(Trade.class, "id > 10000"));
+ blobStorePolicy.addCacheQuery(new SQLQuery(Stock.class, "price > 1000"));
+ blobStorePolicy.addCacheQuery(new SQLQuery(Trade.class, "volume > 10000"));
+ blobStorePolicy.addCacheQuery(new SQLQuery(Account.class, "rating = 'platinum'"));
 
  EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
  spaceConfigurer.cachePolicy(blobStorePolicy);
@@ -206,11 +222,11 @@ When the `com.gigaspaces.cache` logging is turned on, the following output is ge
 
 ```bash
 2016-12-26 07:57:56,378  INFO [com.gigaspaces.cache] - BlobStore internal cache recovery:
-blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE name = 'a1000', SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock.Trade WHERE id > 10000].
+blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE price > 1000, SELECT * FROM com.gigaspaces.blobstore.rocksdb.Trade WHERE volume > 10000], SELECT * FROM com.gigaspaces.blobstore.rocksdb.Account WHERE rating = 'platinum'].
 Entries inserted to blobstore cache: 80.
 ```
 
-### Lazy Load
+#### Lazy Load
 
 If no custom queries are defined, the "lazy load" approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash memory exceeds what can fit into memory.
 
