@@ -26,13 +26,15 @@ parent:  none
 | **Description** | **Markdown** | **Output** |
 |-----------------|--------------|------------|
 | Link to external site | \[GigaSpaces\]\(http://www.gigaspaces.com\) | [GigaSpaces](http://www.gigaspaces.com) |
-| Link to page in same folder | \[Directory Structure\](./file-structure.html\) | [Directory Structure](file-structure.html) |
+| Link to page in same folder | \[Anchor\](./anchor.html\) | [Anchor](./anchor.html) |
 | Link to page in `xap` folder | \[SQL Query\]({{%/*currentjavaurl*/%}}/sqlquery.html) | [SQL Query]({{%currentjavaurl%}}/query-sql.html) |
 | Link to page in `xapnet` folder | \[SQL Query\]({{%/*currentneturl*/%}}/sqlquery.html\) | [SQL Query]({{%currentneturl%}}/query-sql.html) |
 | Link to page in latest `xap` folder | \[SQL Query\]({{%/*latestjavaurl*/%}}/sqlquery.html\) | [SQL Query]({{%latestjavaurl%}}/query-sql.html) |
 | Link to page in latest `xapnet` folder | \[SQL Query\]({{%/*latestneturl*/%}}/sqlquery.html\) | [SQL Query]({{%latestneturl%}}/query-sql.html) |
-| Link to latest Java Tutorial page | \[Getting started\]({{%/*latestjavatuturl*/%}}/java-tutorial-part1.html) | [Getting Started]({{%latestjavatuturl%}}/java-tutorial-part1.html) |
-| Link to latest .NET Tutorial page | \[Getting started\]({{%/*latestnettuturl*/%}}/net-tutorial-part1.html) | [Getting Started]({{%latestnettuturl%}}/net-tutorial-part1.html) |
+| Link to latest Java Tutorial page | \[Getting started\]({{%/*lateststartedurl*/%}}) | [Getting Started]({{%lateststartedurl%}}) |
+| Link to latest .NET Tutorial page | \[Getting started\]({{%/*latestnettuturl*/%}}) | [Getting Started]({{%latestnettuturl%}}) |
+| Link to latest Security page | \[Security\]({{%/*latestsecurl*/%}}) | [Security]({{%latestsecurl%}}) |
+| Link to latest Admin page | \[Administration\]({{%/*latestadmurl*/%}}) | [Admin]({{%latestadmurl%}}) |
 
 
 # Icons
