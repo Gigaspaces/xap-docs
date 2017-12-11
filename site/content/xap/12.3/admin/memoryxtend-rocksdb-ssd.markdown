@@ -222,7 +222,7 @@ When the `com.gigaspaces.cache` logging is turned on, the following output is ge
 
 ```bash
 2016-12-26 07:57:56,378  INFO [com.gigaspaces.cache] - BlobStore internal cache recovery:
-blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE price > 1000, SELECT * FROM com.gigaspaces.blobstore.rocksdb.Trade WHERE volume > 10000], SELECT * FROM com.gigaspaces.blobstore.rocksdb.Account WHERE rating = 'platinum'].
+blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE price > 1000, SELECT * FROM com.gigaspaces.blobstore.rocksdb.Trade WHERE volume > 10000, SELECT * FROM com.gigaspaces.blobstore.rocksdb.Account WHERE rating = 'platinum'].
 Entries inserted to blobstore cache: 80.
 ```
 
