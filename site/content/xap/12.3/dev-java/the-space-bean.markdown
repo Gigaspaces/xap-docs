@@ -26,14 +26,14 @@ Here are the available parameters for an embedded space:
 |--------|------|--------------|-----------|---------|-----------|
 | id                                    |String|  Used to create the GigaSpace Bean| |Yes| [GigaSpace Bean](#the-space-proxy-the-gigaspace-bean)  |
 | space-name                            |String| The space name to use| |Yes ||
-| lookup-groups                         |String|The Jini Lookup Service group to find the space using multicast        || No |  |
-| lookup-locators                       |String| Instructs the started space to locate the Jini Lookup Service on specific host name and port        ||  No  | |
+| lookup-groups                         |String|The Jini Lookup Service group to find the space using multicast        || No | [Lookup Service](../admin/network-lookup-service-configuration.html) |
+| lookup-locators                       |String| Instructs the started space to locate the Jini Lookup Service on specific host name and port        ||  No  |[Lookup Service](../admin/network-lookup-service-configuration.html)  |
 | lookup-timeout                        |Number| Lookup timeout in milli seconds            | 5000ms |No| |
 | versioned                             |Boolean|  When false, optimistic lock is disabled. In a local cache and views the default is true, otherwise the default value is false.|False |No| [Annotation](./pojo-attribute-annotations.html#spaceversion)<br>[Optimistic Locking](./transaction-optimistic-locking.html) |
-| schema                                |String|  Schema options: mirror, persistent           | |No ||
+| schema                                |String|  Schema options: default, mirror, persistent           | default |No ||
 | mirrored                              |Boolean|Asynchronous Persistency - Write Behind          |False| No |[Mirror Service](./asynchronous-persistency-with-the-mirror.html) |          
 | register-for-space-mode-notifications |Boolean| Register for Space mode notifications |False |No| [Space Notifications](./the-space-notifications.html) |
-| external-data-source                  |Reference|| |No ||
+| external-data-source                  |Reference|External Data Source is supported for Space Documents| |No | [Space Document](./document-api.html#persistency)|
 | space-data-source                     |Reference|Data Source for the Space||No| [Space Persistency](./space-persistency-overview.html)|
 | space-sync-endpoint                   |Reference|Space Synchronization Endpoint| |No| [Asynchronous Persistence](./asynchronous-persistency-with-the-mirror.html)|
 | enable-member-alive-indicator         || | |No ||
@@ -45,20 +45,20 @@ Here are the available parameters for an embedded space:
 |--------|-------------|-----------|
 |all-in-cache-policy | | |
 |lru-cache-policy |||
-|custom-cache-policy||[Custom eviction policy]({{%currentadmurl%}}/custom-eviction-policy.html)|
-|blob-store-data-policy|| [MemoryXtend]({{%currentadmurl%}}/memoryxtend-overview.html)|
-|attribute-store|||
+|custom-cache-policy|Custom eviction policy API for LRU cache policy mode |[Custom eviction policy]({{%currentadmurl%}}/custom-eviction-policy.html)|
+|blob-store-data-policy| Configuration and Deployment with RocksDB| [MemoryXtend](../admin/memoryxtend-rocksdb-ssd.html#configuration-and-deployment)|
+|attribute-store|Configure a persistent SSD RocksDB add-on with an attribute store|[MemoryXtend](../admin/memoryxtend-overview.html#persistence-and-recovery)|
 |leader-selection|||
-|properties|||
-|space-filter||[Space Filters](./the-space-filters.html)|
-|space-sql-function||[SQL Functions](./query-sql-function.html)|
-|annotation-adapter-filter||[Space Filters](./the-space-filters.html)|
-|method-adapter-filter||[Space Filters](./the-space-filters.html)|
-|filter-provider|||
+|space-sql-function|Register user defined SQL functions|[SQL Functions](./query-sql-function.html)|
 |query-extension-provider|||
+|space-filter| Space operation interceptors |[Space Filters](./the-space-filters.html)|
+|annotation-adapter-filter|Delegate Space Filters using annotations|[Space Filters](./the-space-filters.html)|
+|method-adapter-filter|Delegate Space Filters with explicit method listings |[Space Filters](./the-space-filters.html)|
+|filter-provider|||
 |replication-filter-provider|||
-|space-replication-filter||[Multi Site WAN Replication](./replication-gateway-filtering.html)|
+|space-replication-filter|Filter replication data between sites|[Multi Site WAN Replication](./replication-gateway-filtering.html)|
 |security |Accessing a secured space with username and password |[Secured Space]({{%currentsecurl%}}/securing-your-data.html)|
+|properties|||
 
 # Remote Space
 
@@ -90,7 +90,7 @@ Here are the available parameters for a remote space:
 |properties | | |
  
 
-# GigaSpace Bean
+# The GigaSpace Bean
 
 The `GigaSpace` Spring Bean provides a simple way to configure a proxy to be injected into the relevant Bean.
 
@@ -140,19 +140,19 @@ The `GigaSpace` Bean can have the following elements:
 
 |Element|Description|Required|Default Value|
 |:------|:----------|:-------|:------------|
-|space|This can be an embedded space , remote space , local view or local cache. |YES| |
-|clustered|Boolean. [Cluster flag]({{%currentadmurl%}}/clustered-vs-non-clustered-proxies.html). Controlling if this GigaSpace will work with a clustered view of the space or directly with a cluster member. By default if this flag is not set it will be set automatically by this factory. It will be set to true if the space is an embedded one AND the space is not a local cache proxy. It will be set to false otherwise (i.e. the space is not an embedded space OR the space is a local cache proxy)| NO | true for remote proxy , false for embedded proxy|
-|<nobr>default-read-timeout<nobr>|Numerical Value. Sets the default read timeout for `read(Object)` and `readIfExists(Object)` operations.|NO| 0 (NO_WAIT). TimeUnit:millsec|
-|default-take-timeout|Numerical Value. Sets the default take timeout for `take(Object)` and `takeIfExists(Object)` operations.|NO| 0 (NO_WAIT). TimeUnit:millsec|
-|default-write-lease| Numerical Value. Sets the default [space object lease](./leases-automatic-expiration.html) (TTL) for `write(Object)` operation. |NO| FOREVER. TimeUnit:millsec|
-|default-isolation| Options: DEFAULT , READ_UNCOMMITTED, READ_COMMITTED , REPEATABLE_READ|NO| DEFAULT|
-|tx-manager|Set the transaction manager to enable transactional operations. Can be null if transactional support is not required or the default space is used as a transactional context. |NO| |
-|write-modifier|Defines a single default write modifier for the space proxy. Options: NONE, WRITE_ONLY, UPDATE_ONLY, UPDATE_OR_WRITE, RETURN_PREV_ON_UPDATE, ONE_WAY, MEMORY_ONLY_SEARCH, PARTIAL_UPDATE|NO| UPDATE_OR_WRITE |
-|read-modifier|The modifier constant name as defined in ReadModifiers. Options:NONE, REPEATABLE_READ, READ_COMMITTED, DIRTY_READ, EXCLUSIVE_READ_LOCK, IGNORE_PARTIAL_FAILURE, FIFO, FIFO_GROUPING_POLL, MEMORY_ONLY_SEARCH|NO|READ_COMMITTED|
-|take-modifier|Defines a single default take modifier for the space proxy. Options:NONE, EVICT_ONLY, IGNORE_PARTIAL_FAILURE, FIFO, FIFO_GROUPING_POLL, MEMORY_ONLY_SEARCH|NO| NONE|
-|change-modifier|Defines a single default change modifier for the space proxy. Options:NONE, ONE_WAY, MEMORY_ONLY_SEARCH, RETURN_DETAILED_RESULTS|NO| NONE|
-|clear-modifier|Defines a single default count modifier for the space proxy. Options:NONE, EVICT_ONLY, MEMORY_ONLY_SEARCH|NO| NONE|
-|count-modifier|Defines a single default count modifier for the space proxy. Options:NONE, REPEATABLE_READ, READ_COMMITTED, DIRTY_READ, EXCLUSIVE_READ_LOCK, MEMORY_ONLY_SEARCH|NO| NONE|
+|space|This can be an embedded space , remote space , local view or local cache. |Yes| |
+|clustered|Boolean. [Cluster flag]({{%currentadmurl%}}/clustered-vs-non-clustered-proxies.html). Controlling if this GigaSpace will work with a clustered view of the space or directly with a cluster member. By default if this flag is not set it will be set automatically by this factory. It will be set to true if the space is an embedded one AND the space is not a local cache proxy. It will be set to false otherwise (i.e. the space is not an embedded space OR the space is a local cache proxy)| No | true for remote proxy , false for embedded proxy|
+|<nobr>default-read-timeout<nobr>|Numerical Value. Sets the default read timeout for `read(Object)` and `readIfExists(Object)` operations.|No| 0 (NO_WAIT). TimeUnit:millsec|
+|default-take-timeout|Numerical Value. Sets the default take timeout for `take(Object)` and `takeIfExists(Object)` operations.|No| 0 (NO_WAIT). TimeUnit:millsec|
+|default-write-lease| Numerical Value. Sets the default [space object lease](./leases-automatic-expiration.html) (TTL) for `write(Object)` operation. |No| FOREVER. TimeUnit:millsec|
+|default-isolation| Options: DEFAULT , READ_UNCOMMITTED, READ_COMMITTED , REPEATABLE_READ|No| DEFAULT|
+|tx-manager|Set the transaction manager to enable transactional operations. Can be null if transactional support is not required or the default space is used as a transactional context. |No| |
+|write-modifier|Defines a single default write modifier for the space proxy. Options: NONE, WRITE_ONLY, UPDATE_ONLY, UPDATE_OR_WRITE, RETURN_PREV_ON_UPDATE, ONE_WAY, MEMORY_ONLY_SEARCH, PARTIAL_UPDATE|No| UPDATE_OR_WRITE |
+|read-modifier|The modifier constant name as defined in ReadModifiers. Options:NONE, REPEATABLE_READ, READ_COMMITTED, DIRTY_READ, EXCLUSIVE_READ_LOCK, IGNORE_PARTIAL_FAILURE, FIFO, FIFO_GROUPING_POLL, MEMORY_ONLY_SEARCH|No|READ_COMMITTED|
+|take-modifier|Defines a single default take modifier for the space proxy. Options:NONE, EVICT_ONLY, IGNORE_PARTIAL_FAILURE, FIFO, FIFO_GROUPING_POLL, MEMORY_ONLY_SEARCH|No| NONE|
+|change-modifier|Defines a single default change modifier for the space proxy. Options:NONE, ONE_WAY, MEMORY_ONLY_SEARCH, RETURN_DETAILED_RESULTS|No| NONE|
+|clear-modifier|Defines a single default count modifier for the space proxy. Options:NONE, EVICT_ONLY, MEMORY_ONLY_SEARCH|No | NONE|
+|count-modifier|Defines a single default count modifier for the space proxy. Options:NONE, REPEATABLE_READ, READ_COMMITTED, DIRTY_READ, EXCLUSIVE_READ_LOCK, MEMORY_ONLY_SEARCH|No| NONE|
 
 Here is an example of the `GigaSpace` Bean:
 
