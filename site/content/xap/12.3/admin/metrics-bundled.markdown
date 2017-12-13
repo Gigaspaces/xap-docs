@@ -222,14 +222,15 @@ Space metrics are reported with the following tags:
 | space_operations_add | Number of add operations | Long |
 | space_operations_replace  | Number of replace operations | Long |
 | space_operations_get | Number of get operations | Long |
-| space_operations_remove-tp | remove per second  | Double |
-| space_operations_add-tp | add per second  | Double |
-| space_operations_replace-tp  | replace per second | Double |
-| space_operations_get-tp | get operations per second | Double |
-| space_blobstore_cache-size  | number of objects stored in blobstore cache | Long |
-| space_blobstore_cache-hit | blobstore cache hit | Long |
+| space_operations_remove-tp | Remove per second  | Double |
+| space_operations_add-tp | Add per second  | Double |
+| space_operations_replace-tp  | Replace per second | Double |
+| space_operations_get-tp | Get operations per second | Double |
+| space_blobstore_cache-size  | Number of objects stored in blobstore cache | Long |
+| space_blobstore_cache-hit | Blobstore cache hit | Long |
 | space_blobstore_cache-miss  | Total of blobstore cache misses | Long |
 | space_blobstore_hot-data-cache-miss  | Subgroup of cache misses - misses of hot data not found in cache | Long |
+| space_blobstore_offheap_used-bytes  | Amount of used offheap memory in bytes | Long |
 
 ## Connections
 
