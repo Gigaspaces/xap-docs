@@ -38,7 +38,7 @@ The space can be used as a [Hibernate second level cache](/sbp/gigaspaces-for-hi
 
 ## All In Cache Policy
 
-With the [All In Cache policy]({{%currentadmurl%}}/all-in-cache-cache-policy.html), the assumption is the Space holds the entire data in memory. In this case, the space communicated with the data source at startup, and loads all the data. If data within the space is updated/added/removed, the space is calling the [SpaceSynchronizationEndpoint](./space-synchronization-endpoint-api.html) implementation to update the underlying data source. All data activities leveraging the data in memory.
+With the [All In Cache policy](./all-in-cache-cache-policy.html), the assumption is the Space holds the entire data in memory. In this case, the space communicated with the data source at startup, and loads all the data. If data within the space is updated/added/removed, the space is calling the [SpaceSynchronizationEndpoint](./space-synchronization-endpoint-api.html) implementation to update the underlying data source. All data activities leveraging the data in memory.
 
 
 ## LRU Cache Policy - Read-Ahead
@@ -61,7 +61,7 @@ Database technology has proven itself to be able to store vast amount of data ve
 When using NoSQL databases you may also leverage GigaSpaces [Document API](./document-api.html) support to map complex data structure into a document data store model.
 {{% /tip %}}
 
-With the [LRU policy]({{%currentadmurl%}}/lru-cache-policy.html), the assumption is that some of the data (recently used) is stored in memory. The amount of data stored in memory is limited by the **cache size** parameter, the memory usage watermark threshold parameters and available free GSC JVM heap size. In this case, once the space is started is loads data up 50% (you may tune this value) of the defined cache max size (total of objects per partition).
+With the [LRU policy](./lru-cache-policy.html), the assumption is that some of the data (recently used) is stored in memory. The amount of data stored in memory is limited by the **cache size** parameter, the memory usage watermark threshold parameters and available free GSC JVM heap size. In this case, once the space is started is loads data up 50% (you may tune this value) of the defined cache max size (total of objects per partition).
 
 If data within the space is updated/added/removed, the space is calling the [SpaceSynchronizationEndpoint](./space-synchronization-endpoint-api.html) implementation to update the underlying data source. When performing read operations for a single object (read/readById/readIfExists) and no matching object is found in-memory (cache miss), the [SpaceDataSource](./space-data-source-api.html) implementation is called to search for a matching data to be loaded back into the space and from there sent to the client application (read-ahead). If a query is executed (readMultiple), and the max objects to read exceed beyond the amount of matching objects in memory, the `SpaceDataSource` is called to search for matching data elements to be loaded back into the space and from there sent to the client application. In this case, the client might have in return objects that were originally within the space, and objects that have been read from the data source and loaded into the space as a result of the query operation.
 

@@ -1,7 +1,7 @@
 ---
 type: post123
 title:  LRU Cache Policy
-categories: XAP123ADM, OSS
+categories: XAP123, OSS
 parent: memory-management-overview.html
 weight: 300
 ---

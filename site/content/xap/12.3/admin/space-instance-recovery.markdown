@@ -98,7 +98,7 @@ If the primary space is unavailable for some reason - recovery will be retried  
 - the primary gets reconnected and then the recovery continues normally.
 - the space itself becomes primary and then no recovery is necessary.
 
-Any other failure - [SpaceMemoryShortageException](./all-in-cache-cache-policy.html#SpaceMemoryShortageException), Database not available etc. is retried 3 times before failing.
+Any other failure - [SpaceMemoryShortageException](../dev-java/all-in-cache-cache-policy.html#SpaceMemoryShortageException), Database not available etc. is retried 3 times before failing.
 
 # Active-Active Topology
 

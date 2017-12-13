@@ -340,7 +340,7 @@ XAP supports SQL queries on data in the Space, and the logger corresponds to thi
 com.gigaspaces.cache.level = INFO
 ```
 
-More information about the LRU policy and eviction behavior is available [here](./lru-cache-policy.html).
+More information about the LRU policy and eviction behavior is available [here](../dev-java/lru-cache-policy.html).
 
 ###  Notifications
 

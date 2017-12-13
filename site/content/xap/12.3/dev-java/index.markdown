@@ -41,6 +41,10 @@ Transaction concept and API.
 [Space Persistency](./space-persistency-overview.html){{<wbr>}}
 XAP provides advanced persistency capabilities for the space architecture.
 
+[Memory Management](./memory-management-overview.html){{<wbr>}}
+The Memory Management facility is used to prevent situations where a Space server gets into an out-of-memory failure scenario.
+
+
 [Other Data Access APIs](./other-data-access-apis.html){{<wbr>}}
 XAP promotes openness and interoperability, supporting common interfaces for accessing data, such as JPA, Document, SQL, JDBC, Memcached and a native POJO based API.
 

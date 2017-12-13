@@ -1,8 +1,8 @@
 ---
 type: post123
 title:  Memory Management
-categories: XAP123ADM, OSS
-weight: 400
+categories: XAP123, OSS
+weight: 1150
 parent: none
 ---
 

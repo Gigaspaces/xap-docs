@@ -48,7 +48,7 @@ Persistence logic can either be the out-of-the-box [Hibernate external data sour
 The in-line cache ensures maximum performance when fetching data where the database is outside the critical path of the application transaction. (This makes more sense than it might seem: database contention is a primary source of application performance failure.)
 
 {{% note "Note"%}}
-For best performance, use the [ALL-IN-CACHE cache policy]({{% latestadmurl%}}/all-in-cache-cache-policy.html) with the [write-behind mirror]({{% latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html). This will ensure maximum hit rate when accessing the cache. With this mode, you should make sure the cache can accommodate _all_ the data you will access.
+For best performance, use the [ALL-IN-CACHE cache policy](../dev-java/all-in-cache-cache-policy.html) with the [write-behind mirror]({{% latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html). This will ensure maximum hit rate when accessing the cache. With this mode, you should make sure the cache can accommodate _all_ the data you will access.
 {{%  /note %}}
 
 The in-line cache mechanism is widely used with the following GigaSpaces APIs:
@@ -151,12 +151,12 @@ When running the cache in LRU cache policy mode, you may need to expire or evict
 
 Here are few options you may use to refresh the cache:
 
-- Eviction - You may configure the space to evict data by running in [LRU eviction policy]({{% latestadmurl%}}/lru-cache-policy.html).
+- Eviction - You may configure the space to evict data by running in [LRU eviction policy](../dev-java/lru-cache-policy.html).
 - Lease expiration - You may write objects into the space with a specific time to live (lease duration).
 - Programmatic expiration - You may expire the object using:
     - `net.jini.core.lease.Lease.cancel()` - You can get the Lease object as a result of a write operation for a new object.
     - `GigaSpace.write` operation for an existing object (update) using a short lease time. See the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface write operation for details.
-    - Take operation with [TakeModifiers.EVICT_ONLY mode]({{% latestadmurl%}}/lru-cache-policy.html#explicit-eviction-of-objects-from-the-space). See the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface take operation for details.
+    - Take operation with [TakeModifiers.EVICT_ONLY mode](../dev-java/lru-cache-policy.html#explicit-eviction-of-objects-from-the-space). See the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface take operation for details.
 
 ## Refresh Data using LRU and Timer
 
