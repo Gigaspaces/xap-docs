@@ -194,12 +194,6 @@ When using Spring declarative transaction management, a transaction timeout can 
 
 When using Jini-based transactions, a timeout value can be set for both the commit and abort operations. This values can also be set on the transaction manager.
 
-# Local Jini Transaction Manager - Deprecated
-
-{{% warning "Deprecated"%}}
-Local Jini Transaction Manager was deprecated in 8.0. Use [Distributed Jini Transaction Manager](#distributed-jini-transaction-manager) instead.
-{{% /warning %}}
-
 # Renewing Transactions
 
 Jini transactions allow you to configure automatic renewing of ongoing transactions. This feature is very useful if you have to configure a long transaction timeout, and have it expire earlier in case of a complete failure (for example, a JVM crash). Expiring the transaction is important so objects held under a transaction lock are released as soon as possible.

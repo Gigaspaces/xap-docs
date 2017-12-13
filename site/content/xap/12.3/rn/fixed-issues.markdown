@@ -29,6 +29,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 - {{% jira id="GS-13317" %}}: No proactive verification of user credentials when logging into secured web-ui.
 - {{% jira id="GS-13427" %}}: The REST manager specification contained the wrong request status values.
 - {{% jira id="GS-13430" %}}: Inconsistent Request ID type in Manager REST API (string vs. numeric).
+- {{% jira id="GS-13204" %}}: The ProcessingUnitInstance.relocationAndWait() may not abort after timeout, causing a permanent blocking state.
 
 {{% refer%}}
 The complete list of changes is also available in {{%exurl "JIRA" "https://insightedge.atlassian.net/issues/?filter=17726" %}}.
