@@ -40,9 +40,17 @@ The following list describes XAP-related environment variables:
 |  XAP_NIC_ADDRESS      | The network interface card which will be used by XAP | Automatically set to the host name |
 |  XAP_SECURITY_POLICY  | The default policy file.|XAP_HOME/policy/policy.all  | |
 |  XAP_LOGS_CONFIG_FILE | The location of XAP logging configuration            | XAP_HOME/config/log/xap_logging.properties |
-|  XAP_GSC_OPTIONS      | Java options for the Grid Service Container (GSC)    | |
 |  XAP_MANAGER_OPTIONS  | Java options for the XAP Manager                     | |
+|  XAP_GSC_OPTIONS      | Java options for the Grid Service Container (GSC)    | |
+|  XAP_GSM_OPTIONS      | Java options for the Grid Service Manager (GSM) 	{{%exclamation%}}      | |
 |  XAP_GSA_OPTIONS      | Java options for the Grid Service Agent (GSA)        | |
+|  XAP_LUS_OPTIONS      | Java options for the Lookup Service (LUS) 	{{%exclamation%}}            | |
+|  XAP_ESM_OPTIONS      | Java options for the Elastic Service Manager (ESM)   | |
+|  XAP_GUI_OPTIONS      | Java options for the GigaSpaces Management Center    | |
+|  XAP_WEBUI_OPTIONS    | Java options for the Web Management Console          | |
+
+{{%exclamation%}} When running in ./gs-agent --manager configuration, this environment variable is ignored. 
+
 
 # InsightEdge Environment Variables
 
