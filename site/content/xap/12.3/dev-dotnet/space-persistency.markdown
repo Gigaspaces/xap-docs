@@ -1,7 +1,7 @@
 ---
-type: post123
+type: post122
 title:  Overview
-categories: XAP123NET, PRM
+categories: XAP122NET, PRM
 parent: space-persistency-overview.html
 weight: 50
 ---
