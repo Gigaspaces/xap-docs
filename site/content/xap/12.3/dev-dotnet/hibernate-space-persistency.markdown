@@ -8,7 +8,7 @@ weight: 200
 
 {{% ssummary  %}}{{% /ssummary %}}
 
-XAP comes with a built in implementation of [Space Persistency](./space-persistency.html) APIs for NHibernate. This implementation is an extension of the `AbstractExternalDataSource` class. The implementation allows a custom objects persistency using NHibernate mappings.
+XAP comes with a built in implementation of [Space Persistency](./space-persistency-overview.html) APIs for NHibernate. This implementation is an extension of the `AbstractExternalDataSource` class. The implementation allows a custom objects persistency using NHibernate mappings.
 
 The `NHibernate Space Persistency Implementation` is used both with the [Synchronous](./direct-persistency.html) and the [Asynchronous Persistency](./asynchronous-persistency-with-the-mirror.html) modes.
 

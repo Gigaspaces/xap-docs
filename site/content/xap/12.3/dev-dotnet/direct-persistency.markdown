@@ -99,7 +99,7 @@ A Data-Grid running in Direct persistency mode using distributed databases topol
 </ProcessingUnit>
 ```
 
-{{% refer %}}See the [Space Persistency](./space-persistency.html) section for full details about the properties you may configure.{{% /refer %}}
+{{% refer %}}See the [Space Persistency](./space-persistency-overview.html) section for full details about the properties you may configure.{{% /refer %}}
 
 # Supported Options
 

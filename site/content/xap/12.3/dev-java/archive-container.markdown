@@ -30,10 +30,10 @@ The Archive Container:<br>
 
 ## Archive Container vs Space Persistency
 
-The Archive Container differs from [Space Persistency](./space-persistency.html) in the following ways:
+The Archive Container differs from [Space Persistency](./space-persistency-overview.html) in the following ways:
 
 - Persisted objects are not read back from the Big-Data storage into the Space.
-- Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the [Space Persistency](./space-persistency.html)).
+- Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the [Space Persistency](./space-persistency-overview.html)).
 - Archive Container uses the [Polling Container](./polling-container-overview.html) behind the scenes, which can be co-located with each space partition.
 
 ## Archive Container running side-by-side with Space Persistency

@@ -322,7 +322,7 @@ com.gigaspaces.persistent.shared_iterator.level = INFO
 org.hibernate.level = WARNING
 ```
 
-The GigaSpaces persistence options are explained here {{%currentjavanet "space-persistency.html"%}}. One of the packaged External Data Source implementations uses Hibernate. It is called Hibernate External Data Source, which is described [here]({{%currentjavaurl%}}/hibernate-space-persistency.html).
+The GigaSpaces persistence options are explained here {{%currentjavanet "space-persistency-overview.html"%}}. One of the packaged External Data Source implementations uses Hibernate. It is called Hibernate External Data Source, which is described [here]({{%currentjavaurl%}}/hibernate-space-persistency.html).
 
 ### Query
 

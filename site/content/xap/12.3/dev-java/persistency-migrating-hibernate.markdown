@@ -34,7 +34,7 @@ The space can be used as a [Hibernate second level cache](/sbp/gigaspaces-for-hi
 
 # Caching policies and Space Persistency
 
-[Space Persistency](./space-persistency.html) supports the **All In Cache** and **LRU** [Cache policies]({{%currentadmurl%}}/memory-management-overview.html).
+[Space Persistency](./space-persistency-overview.html) supports the **All In Cache** and **LRU** [Cache policies]({{%currentadmurl%}}/memory-management-overview.html).
 
 ## All In Cache Policy
 
@@ -73,7 +73,7 @@ In both cases (ALL_IN_CACHE and LRU cache policy), you can [customize the data l
 
 # Space Persistency
 
-The space can load data from data sources, store data into data sources, and persist data into a relational data source or any other media via a custom [SpaceSynchronizationEndpoint](./space-synchronization-endpoint-api.html) implementation. [Space Persistency](./space-persistency.html) a built-in implementation using [Hibernate](./hibernate-space-persistency.html), to store data in an existing data source and in the space. Data is loaded from the data source during space initialization (via the `SpaceDataSource` implementation), and from then onwards the application works with the space directly. Meanwhile, the data source is constantly updated with all the changes made in the space (via the `SpaceSynchronizationEndpoint` implementation). This is the recommended model.
+The space can load data from data sources, store data into data sources, and persist data into a relational data source or any other media via a custom [SpaceSynchronizationEndpoint](./space-synchronization-endpoint-api.html) implementation. [Space Persistency](./space-persistency-overview.html) a built-in implementation using [Hibernate](./hibernate-space-persistency.html), to store data in an existing data source and in the space. Data is loaded from the data source during space initialization (via the `SpaceDataSource` implementation), and from then onwards the application works with the space directly. Meanwhile, the data source is constantly updated with all the changes made in the space (via the `SpaceSynchronizationEndpoint` implementation). This is the recommended model.
 
 The [Hibernate Space Persistency](./hibernate-space-persistency.html) support RDBMS. The [Cassandra Space Persistency](./cassandra-space-persistency.html) allows applications to leverage NoSQL Cassandra DB having a distributed database infrastructure as an alternative to RDBMS.
 

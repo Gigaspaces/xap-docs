@@ -238,7 +238,7 @@ The grid components are secured using the Security Administration.
 
 # Persistency
 
-When constructing a Space, it is possible to provide [Space Persistency](./space-persistency.html) extensions using a NHibernate configuration. Here is an example of how it can be defined:
+When constructing a Space, it is possible to provide [Space Persistency](./space-persistency-overview.html) extensions using a NHibernate configuration. Here is an example of how it can be defined:
 
 
 ```xml

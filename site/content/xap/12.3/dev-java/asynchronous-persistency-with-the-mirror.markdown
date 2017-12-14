@@ -30,7 +30,7 @@ Enabling the Mirror Service involves the following:
 - The Data-Grid Processing Unit Mirror Settings
 - The Mirror Service Processing Unit Settings
 
-The above share the **same** [Space Persistency](./space-persistency.html) settings but have different space settings. See the [Hibernate Space Persistency](./hibernate-space-persistency.html) for details on how to use the built-in `HibernateSpaceSynchronizationEndpoint`.
+The above share the **same** [Space Persistency](./space-persistency-overview.html) settings but have different space settings. See the [Hibernate Space Persistency](./hibernate-space-persistency.html) for details on how to use the built-in `HibernateSpaceSynchronizationEndpoint`.
 
 # The Data-Grid Processing Unit
 

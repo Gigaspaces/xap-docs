@@ -65,7 +65,7 @@ On transaction execution, getting the transaction metadata was done using the `B
 
 # Configuration Changes
 
-When using [Space Persistency](./space-persistency.html) - the same space properties used to configure the EDS can be used with two exceptions:
+When using [Space Persistency](./space-persistency-overview.html) - the same space properties used to configure the EDS can be used with two exceptions:
 
 - "space-config.external-data-source.usage" specifies the EDS operation mode (read-only or read-write) is no longer used and the operation mode is determined by whether a `SpaceSynchronizationEndpoint` implementation has been specified or not. If it has been specified it means the operation mode is 'read-write', otherwise 'read-only'.
 
@@ -73,7 +73,7 @@ When using [Space Persistency](./space-persistency.html) - the same space proper
 
 # Built In Hibernate Implementation
 
-GigaSpaces provides a built in Hibernate EDS implementation. This implementation has been adjusted to work with the new [Space Persistency](./space-persistency.html) APIs. Therefore, two new Hibernate implementation classes were created: `DefaultHibernateSpaceDataSource` and `DefaultHibernateSpaceSynchronizationEndpoint`.
+GigaSpaces provides a built in Hibernate EDS implementation. This implementation has been adjusted to work with the new [Space Persistency](./space-persistency-overview.html) APIs. Therefore, two new Hibernate implementation classes were created: `DefaultHibernateSpaceDataSource` and `DefaultHibernateSpaceSynchronizationEndpoint`.
 
 The following example shows how to configure a space with a Hibernate `SpaceDataSource` and a Mirror service with a Hibernate `SpaceSynchronizationEndpoint`:
 
