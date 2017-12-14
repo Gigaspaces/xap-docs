@@ -29,9 +29,6 @@ Describes how in memory data grid clustering works. It also provides details of 
 [Service Level Agreement (SLA)](./the-sla-overview.html){{<wbr>}}
 The XAP runtime environment (Service Grid) provides Service Level Agreement driven capabilities.
 
-[Memory Management](./memory-management-overview.html){{<wbr>}}
-Explains the different Space cache policies, memory usage, and rules for exceeding physical memory capacity.
-
 [MemoryXtend](./memoryxtend-overview.html){{<wbr>}}
 This storage interface allows Blob/Block/external type storage to act as a natural memory space for the in memory data grid.
 
