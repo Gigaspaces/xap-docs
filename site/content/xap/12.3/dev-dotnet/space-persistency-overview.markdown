@@ -7,35 +7,54 @@ weight: 900
 ---
 
 
-XAP provides advanced persistency capabilities for the space architecture.
+The Space Persistency is provided via a component called **External Data Source**. This component provides persistency capabilities for the space architecture to interact with a persistency layer:
+
+- Pre-loading data from the persistency layer and lazy load data from the persistency (available when the Space is running in LRU mode).
+- Delegating changes within the Space to the persistency layer.
+
+XAP Space Persistency provides the `AbstractExternalDataSource` class, which can be extended and then used to load and store data into an existing data source. Data is [loaded from the data source](./space-persistency-initial-load.html) during Space initialization, and from then onwards the application works directly with the Space.
+
+{{% align center %}}
+![data-grid-initial-loadNew.jpg](/attachment_files/data-grid-initial-loadNew.jpg)
+{{% /align %}}
 
 
-<br>
+Persistency can be configured to run in Synchronous or Asynchronous mode:
 
-{{%fpanel%}}
+- Synchronous Mode - see [Direct Persistency](./direct-persistency.html)
 
-[Overview](./space-persistency.html){{<wbr>}}
-XAP persistency overview.
+{{% align center %}}
+![data-grid-sync-persist.jpg](/attachment_files/data-grid-sync-persist.jpg)
+{{% /align %}}
 
-[Direct persistency](./direct-persistency.html){{<wbr>}}
-Direct persistency mode support Read-Write Through.
+- Asynchronous Mode - see  [Asynchronous Persistency with the Mirror](./asynchronous-persistency-with-the-mirror.html)
 
-[NHibernate External Data Source](./hibernate-space-persistency.html){{<wbr>}}
-A walkthrough of a common scenario for using the GigaSpaces NHibernate External Data Source.
+{{% align center %}}
+![data-grid-async-persist.jpg](/attachment_files/data-grid-async-persist.jpg)
+{{% /align %}}
 
-[Initial Data Load](./space-persistency-initial-load.html){{<wbr>}}
-Space data source initial Load pre-loads the space with data before it is available for clients.
+{{% info "Info"%}}
+The difference between Synchronous and Asynchronous persistency mode is the way that data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the `ExternalDataSource` to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a **reliable** asynchronous manner using the mirror Service as a write-behind activity. This mode provides maximum performance.
+{{%/info%}}
 
-[Asynchronous Persistence](./asynchronous-persistency-with-the-mirror.html){{<wbr>}}
-Reliable Asynchronous Persistency (Mirror)
+# Space Persistency API
 
-[Transient Entries](./transient-entries.html){{<wbr>}}
-How to specify that some objects in a persistent space should not be saved to the persistent storage.
+The Space Persistency API contains an abstract class that should be extended in order to customize the Space persistency functionality. The ability to customize the Space persistency functionality allows XAP to interact with any external application or data source.
 
-[Advanced Concepts](./space-persistency-advanced-topics.html){{<wbr>}}
-Space Persistency advanced topics such as advanced operations, tuning, troubleshooting, and limitations.
 
-{{%/fpanel%}}
+| Client Call | External Data Source Call| Cache Policy Mode|EDS Usage Mode|
+|:------------|:-----------------------------------------------|:-----------------|:-------------|
+|`Write`, `Change`, `Take`, `WriteMultiple`, `TakeMultiple`, `Clear`|`ExecuteBulk` |ALL_IN_CACHE, LRU|read-write|
+|`Transaction Commit`|`ExecuteBulk`|ALL_IN_CACHE, LRU|read-write|
+|`Read`, `ReadMultiple`, `ReadById`, `ReadByIds`, `Count`|`GetEnumerator`|LRU|read-write,read-only|
+|`TakeMultiple`|`GetEnumerator`|ALL_IN_CACHE, LRU|read-write|
+
+For detailed API information, refer to [External Data Source API](./hibernate-space-persistency.html).
+
+XAP comes with a built-in implementation of `AbstractExternalDataSource` called [NHibernate Space Persistency](./hibernate-space-persistency.html).
+
+Refer to [Space Persistency Initial Load](./space-persistency-initial-load.html) for information on how to to allow the Space to pre-load its data.
+
 
 
 
