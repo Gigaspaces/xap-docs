@@ -229,6 +229,23 @@ Entries inserted to blobstore cache: 80.
 
 If no custom queries are defined, the "lazy load" approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash memory exceeds what can fit into memory.
 
+#### Blob Store Cache Metrics
+
+The concept of cache <i>hit</i> and cache <i>miss</i> is paramount for cache analysis. A hit occurs when querying data that is stored in the cache. A miss occurs when querying data that is stored in disk.
+
+Custom caching distinguishes between "hot" data (fits the custom queries) and "cold" data. Hot data is stored in cache and disk, cold data is stored only in disk.
+
+Ideally, all hot data would be found in cache. By definition, the cache size is limited, and very likely will not store all hot data.
+This means that data can be in three states:
+- Hot data <b>and</b> found in cache. Querying this data will result in a <b><i>cache hit</i></b>.
+- Hot data that is <b>not</b> found in cache (because cache is full). Querying this data will result in a <b><i>hot data cache miss</i></b>
+- Cold data that is stored only in disk. Querying this data will result in a <b><i>cold data cache miss</i></b>
+
+Total cache misses = hot data cache misses + cold data cache misses.
+
+By modifying the custom queries, the cache efficiency - maximizing hits, minimizing misses - can be improved. To keep track of the cache efficiency, key metrics are measured and stored , including hits, total misses and hot data misses.
+On how to use XAP metrics, follow this link (put here link to metrics section)
+
 # Off-Heap Memory Usage
 
 XAP can store the values of indexed fields in the process native (off-heap) memory. This is done to avoid having to fetch data from the disk for queries that only need the index. This feature is on by default, and can be disabled by setting the `space-config.engine.blobstore_offheap_optimization_enabled` space property.
@@ -240,7 +257,7 @@ This optimization behavior is relevent for operations that don't need the un-ind
 - Clear with only indexed fields in query - primary and backup instance optimization
 
 {{%note "Note"%}}
-This behavior increases the overall memory consuption of the Space by several bytes (depending on the indexed fields) per entry.
+This behavior increases the overall memory consumption of the Space by several bytes (depending on the indexed fields) per entry.
 {{%/note%}}
 
 See the following example:
