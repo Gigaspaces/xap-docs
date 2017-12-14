@@ -30,10 +30,10 @@ Upon a Space read operation, if the object exists in the JVM heap (i.e. a cache 
 
 The blobstore is based on a log-structured merge tree architecture (similar to popular NoSQL databases such as: {{%exurl "HBase""https://hbase.apache.org/"%}}, {{%exurl "BigTable""https://cloud.google.com/bigtable/"%}}, or {{%exurl "Cassandra""https://cassandra.apache.org/"%}}). There are three main components in the blobstore: 
 
-- <b>MemTable</b>: An in-memory data structure (residing on off-heap RAM) where all incoming writes are stored. When a MemTable fills up, it is flushed to an SST file on storage. 
-- <b>Log</b>: A write-ahead log (WAL) that serializes MemTable operations to a persistent medium as log files. In the event of failure, WAL files can be used to recover the key/value store to its consistent state, by reconstructing the MemTable from the logs. 
-- <b>Sorted String Table (SST) files</b>: SSTable is a data structure (residing on disk) that efficiently stores a large data footprint while optimizing for high throughput, and sequential read/write workloads. When a MemTable fills up, it is flushed to an SST file on storage and the corresponding WAL file can be deleted.
-- <b> Built-in Cache</b>: MemoryXtend comes with a built-in cache. This cache is part of the Space partition tier, and stores objects in their native form.
+- **MemTable**: An in-memory data structure (residing on off-heap RAM) where all incoming writes are stored. When a MemTable fills up, it is flushed to an SST file on storage. 
+- **Log**: A write-ahead log (WAL) that serializes MemTable operations to a persistent medium as log files. In the event of failure, WAL files can be used to recover the key/value store to its consistent state, by reconstructing the MemTable from the logs. 
+- **Sorted String Table (SST) files**: SSTable is a data structure (residing on disk) that efficiently stores a large data footprint while optimizing for high throughput, and sequential read/write workloads. When a MemTable fills up, it is flushed to an SST file on storage and the corresponding WAL file can be deleted.
+- **Built-in Cache**: MemoryXtend comes with a built-in cache. This cache is part of the Space partition tier, and stores objects in their native form.
 
 # Configuration and Deployment
 
@@ -227,24 +227,24 @@ Entries inserted to blobstore cache: 80.
 
 #### Lazy Load
 
-If no custom queries are defined, the "lazy load" approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash memory exceeds what can fit into memory.
+If no custom queries are defined, the **lazy load** approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash memory exceeds what can fit into memory.
 
-#### Blob Store Cache Metrics
+### Blobstore Cache Metrics
 
-The concept of cache <i>hit</i> and cache <i>miss</i> is paramount for cache analysis. A hit occurs when querying data that is stored in the cache. A miss occurs when querying data that is stored in disk.
+The concept of cache *hit* and cache *miss* is very important for cache analysis. A hit occurs when querying data that is stored in the cache. A miss occurs when querying data that is stored on disk.
 
-Custom caching distinguishes between "hot" data (fits the custom queries) and "cold" data. Hot data is stored in cache and disk, cold data is stored only in disk.
+Custom caching distinguishes between hot data (that fits the custom queries) and cold data. Hot data is stored in cache and on disk, while cold data is stored only on disk.
 
-Ideally, all hot data would be found in cache. By definition, the cache size is limited, and very likely will not store all hot data.
-This means that data can be in three states:
-- Hot data <b>and</b> found in cache. Querying this data will result in a <b><i>cache hit</i></b>.
-- Hot data that is <b>not</b> found in cache (because cache is full). Querying this data will result in a <b><i>hot data cache miss</i></b>
-- Cold data that is stored only in disk. Querying this data will result in a <b><i>cold data cache miss</i></b>
+Ideally, all hot data would be found in cache. However, the cache size is limited, and likely isn't able to store all the hot data. This means that data can exist in one of three states:
+
+- Hot data **and** found in cache. Querying this data will result in a **_cache hit_**.
+- Hot data **not** found in cache (because cache is full). Querying this data will result in a **_hot data cache miss_**.
+- Cold data that is stored only in disk. Querying this data will result in a **_cold data cache miss_**.
 
 Total cache misses = hot data cache misses + cold data cache misses.
 
-By modifying the custom queries, the cache efficiency - maximizing hits, minimizing misses - can be improved. To keep track of the cache efficiency, key metrics are measured and stored , including hits, total misses and hot data misses.
-On how to use XAP metrics, follow this link (put here link to metrics section)
+By modifying the custom queries, the cache efficiency (maximizing hits and minimizing misses) can be improved. To keep track of the cache efficiency, key metrics are measured and stored, including hits, total misses, and hot data misses.
+For information about XAP metrics and how to use them, refer to the [Metrics](./metrics-overview.html) section of this guide.
 
 # Off-Heap Memory Usage
 
