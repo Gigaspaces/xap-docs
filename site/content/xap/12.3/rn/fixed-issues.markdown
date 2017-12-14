@@ -18,6 +18,8 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 - {{% jira id="GS-12365" %}}: Asynchronous execution should always return immediately.
 - {{% jira id="GS-13417" %}}: Add metrics to Lookup Service to facilitate troubleshooting of performance issues.
 - {{% jira id="GS-13389" %}}: Lookup Service (LUS) enhancements to improve stability in environments with large clusters.
+- {{% jira id="GS-13433" %}}: Enhance LRMI network buffer allocation strategy by adding support for large objects (>10MB).
+- {{% jira id="GS-13418" %}}: Skip login page if Web UI is in non-secured mode.
 
 # Resolved Issues
 

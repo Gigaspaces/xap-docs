@@ -15,7 +15,19 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/info%}}
 <hr/>
 
-# 12.3 M9 (Dec-103-2017)
+# 12.3 M10 (Dec-17-2017)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m10/gigaspaces-insightedge-12.3.0-m10-b18910.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m10/gigaspaces-xap-12.3.0-m10-b18910.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m10/gigaspaces-xap.net-12.3.0-m10-b18910.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m10/gigaspaces-xap-open-12.3.0-m10-b18910.zip)\]
+
+## Changelog
+
+Features, feature enhancements, and bug fixes are currently in progress but were not completed within this milestone. 
+
+# 12.3 M9 (Dec-10-2017)
 
 ## Download Links
 
@@ -66,6 +78,7 @@ N/A
 ### Features and Enhancements
 
 - {{% jira id="GS-13302" %}}: When the query result set includes only indexes, fetch results from off-heap memory instead of disk.
+- {{% jira id="GS-13433" %}}: Enhance LRMI network buffer allocation strategy by adding support for large objects (>10MB).
 
 ### Resolved Issues
 
@@ -102,7 +115,7 @@ N/A
 
 ### Features and Enhancements
 
-N/A
+- {{% jira id="GS-13418" %}}: Skip login page if Web UI is in non-secured mode.
 
 ### Resolved Issues
 
