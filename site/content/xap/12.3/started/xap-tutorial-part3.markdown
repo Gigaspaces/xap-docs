@@ -290,5 +290,5 @@ public class RemoteService {
 }
 ```
 
-{{%refer%}}[Space Based Remoting]({{%currentjavaurl%}}/space-based-remoting.html){{%/refer%}}
+{{%refer%}}[Space Based Remoting]({{%currentjavaurl%}}/space-based-remoting-overview.html){{%/refer%}}
 

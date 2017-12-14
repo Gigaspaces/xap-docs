@@ -119,7 +119,7 @@ In the above example, the fact that we are using the `os-seda:model`, and in it 
 
 # Transaction Support
 
-The operations performed on the Space when working with the SEDA virtualized queue are all performed using the `GigaSpace` bean. `GigaSpace` supports [declarative transactions](./the-gigaspace-interface.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions) when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as its built-in transaction management strategy allows you to use OpenSpaces with [different transaction managers](./transaction-management.html), including XA.
+The operations performed on the Space when working with the SEDA virtualized queue are all performed using the `GigaSpace` bean. `GigaSpace` supports [declarative transactions](./the-gigaspace-interface.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions) when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as its built-in transaction management strategy allows you to use OpenSpaces with [different transaction managers](./transaction-overview.html), including XA.
 
 Here is an example of how working with `os-seda` using the Space Local Transaction Manager can be configured:
 

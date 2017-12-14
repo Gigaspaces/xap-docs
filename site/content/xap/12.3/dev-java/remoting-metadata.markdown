@@ -52,7 +52,7 @@ public interface MyService {
 {{%/accordion%}}
 
 {{%refer%}}
-[Space based remoting](./space-based-remoting.html)
+[Space based remoting](./space-based-remoting-overview.html)
 {{%/refer%}}
 
 
@@ -81,7 +81,7 @@ public class DataRemoting {
 {{%/accordion%}}
 
 {{%refer%}}
-[Space based remoting](./space-based-remoting.html)
+[Space based remoting](./space-based-remoting-overview.html)
 {{%/refer%}}
 
 
@@ -113,6 +113,6 @@ public class DataRemoting {
 {{%/accordion%}}
 
 {{%refer%}}
-[Space based remoting](./space-based-remoting.html)
+[Space based remoting](./space-based-remoting-overview.html)
 {{%/refer%}}
 

@@ -482,7 +482,7 @@ Vehicle result2 = (Vehicle) query2.getSingleResult();
 
 # Interoperability
 
-The XAP JPA implementation is fully interoperable with the XAP native [POJO API](./pojo-support.html).
+The XAP JPA implementation is fully interoperable with the XAP native [POJO API](./pojo-overview.html).
 For instance, you can persist a JPA entity and read it using the native POJO-driven Space API:
 
 

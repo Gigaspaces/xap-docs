@@ -29,7 +29,7 @@ The following is a brief overview of some XAP data grid capabilities.
 
 - [Grid SQL]({{% latestjavaurl%}}/query-sql.html)
 - [Event Processing]({{% latestjavaurl%}}/event-processing.html)
-- [RPC and Remoting]({{% latestjavaurl%}}/space-based-remoting.html)
+- [RPC and Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html)
 - [Map/Reduce]({{% latestjavaurl%}}/task-execution-overview.html)
 - [Aggregators]({{% latestjavaurl%}}/aggregators.html)
 - [Transaction Management]({{% latestjavaurl%}}/transaction-overview.html)

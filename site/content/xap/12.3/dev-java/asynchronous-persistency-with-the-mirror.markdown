@@ -212,7 +212,7 @@ With the above configuration the primary partition will replicate its redo log a
 - Implement a Mirror Service that will write the incoming data into a CSV file. This should be faster than writing data into the database. Later import the data into the database. (normally very fast operation)
 - Increase the database maximum connections.
 - Optimize Hibernate mapping and configuration. Using a proper [Hibernate ID generator](./space-persistency-advanced-topics.html#hibernate-id-generation) is crucial for getting optimum performance.
-- Use PARTIAL_UPDATE (see [Partial Update](./pojo-support.html)). Updates to an object that are performed using the PARTIAL_UPDATE modifier can be executed on the mirror as partial update as well. This can increase the performance in case a lot of updates are performed on a large object.
+- Use PARTIAL_UPDATE (see [Partial Update](./pojo-overview.html)). Updates to an object that are performed using the PARTIAL_UPDATE modifier can be executed on the mirror as partial update as well. This can increase the performance in case a lot of updates are performed on a large object.
 To use this optimization you need to set the following space property:
 
 

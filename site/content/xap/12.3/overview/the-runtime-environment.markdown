@@ -126,4 +126,4 @@ Global processes take into account the number of process types [Grid Service Man
 
 * The [Apache Load Balancer Agent]({{<latestjavaurl>}}/apache-load-balancer-agent.html) is used when deploying web applications.
 
-* The Transaction Manager (TXM) is an optional component. When executing transactions that spans multiple space partitions you should use the Jini Transaction Manager or the Distributed Transaction Manager. See the [Transaction Management]({{% latestjavaurl%}}/transaction-management.html) section for details.
+* The Transaction Manager (TXM) is an optional component. When executing transactions that spans multiple space partitions you should use the Jini Transaction Manager or the Distributed Transaction Manager. See the [Transaction Management]({{% latestjavaurl%}}/transaction-overview.html) section for details.

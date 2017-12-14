@@ -186,7 +186,7 @@ This means that any outbound component operating within a Spring managed transac
 </model>
 ```
 
-In the above example, the Mule transaction factory used is Spring-based, wrapping the Spring `PlatformTransactionManager`. For more information regarding OpenSpaces support for transactions (including XA), see the [OpenSpaces Core Component - Transaction Manager](./transaction-management.html) section.
+In the above example, the Mule transaction factory used is Spring-based, wrapping the Spring `PlatformTransactionManager`. For more information regarding OpenSpaces support for transactions (including XA), see the [OpenSpaces Core Component - Transaction Manager](./transaction-overview.html) section.
 
 # Full Example
 

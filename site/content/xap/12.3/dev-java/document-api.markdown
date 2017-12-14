@@ -704,7 +704,7 @@ For more information about FIFO, see the [FIFO Support](./fifo-support.html) pag
 
 # Transactions and Optimistic Locking
 
-Transactions and isolation modifiers semantics is identical to the POJO semantics. For more information about transactions, see the [Transaction Management](./transaction-management.html) page.
+Transactions and isolation modifiers semantics is identical to the POJO semantics. For more information about transactions, see the [Transaction Management](./transaction-overview.html) page.
 
 Optimistic locking is disabled by default with `Document` entries (same as with POJO). To enable it, modify the type introduction code and set the optimistic locking support. For example:
 

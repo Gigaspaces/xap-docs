@@ -88,7 +88,7 @@ When using a POJO as a Space domain class, follow these guidelines:
 - The ID field can be determined using the `@SpaceId` annotation or the `id` tag.
 - The `SpaceId` field can be `java.lang.String` type, or any other type that implements the `toString()` that provides a unique value.
 - The `@Spaceid` annotation or `id` tag must be declared when performing update operations.
-- A POJO class must implement the `Serializable`  interface if used as a parameter for a remote call ([Space Based Remoting](./space-based-remoting.html)).
+- A POJO class must implement the `Serializable`  interface if used as a parameter for a remote call ([Space Based Remoting](./space-based-remoting-overview.html)).
 
 ## Controlling Space Class Fields Introduction
 

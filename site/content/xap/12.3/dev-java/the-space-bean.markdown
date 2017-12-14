@@ -235,7 +235,7 @@ Declaring a remote space with a transaction manager and creating an embedded spa
 ```
 
 {{%refer%}}
-[Transaction management](./transaction-management.html)
+[Transaction management](./transaction-overview.html)
 {{%/refer%}}
 
 

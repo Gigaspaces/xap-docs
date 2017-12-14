@@ -27,7 +27,7 @@ It is recommended (although not mandatory) that you familiarize yourself with th
 
 The definitions in the `pu.xml` file are divided into 2 major categories:
 
-- GigaSpaces specific components, such as [space](./the-space-configuration.html#proxy), [GigaSpace](./the-gigaspace-interface.html), [event containers](./messaging-support.html) or [remote service exporters](./space-based-remoting.html).
+- GigaSpaces specific components, such as [space](./the-space-configuration.html#proxy), [GigaSpace](./the-gigaspace-interface.html), [event containers](./messaging-support.html) or [remote service exporters](./space-based-remoting-overview.html).
 
 - User defined beans, which define instances of user classes to be used by the processing unit. For example, user defined event handlers to which the event containers delegate events as those are received.
 
@@ -35,7 +35,7 @@ The definitions in the `pu.xml` file are divided into 2 major categories:
 the `pu.xml` may also contain [SLA definitions]({{%currentadmurl%}}/the-sla-overview.html). In previous releases, this was the recommended way to define your processing unit's SLA. As of version 7.0, the recommended way to do it is to use a separate sla.xml file, which separates this deployment and runtime aspect from the the processing unit's components. This enables better modularization and reuse of the processing unit.
 {{% /info %}}
 
-This section focuses on the overall structure of the `pu.xml` file. The various GigaSpaces components that can be included in the `pu.xml` (such as [event containers](./messaging-support.html), [remote services](./space-based-remoting.html) and others) are covered in detail in their respective sections in the programmer's guide.
+This section focuses on the overall structure of the `pu.xml` file. The various GigaSpaces components that can be included in the `pu.xml` (such as [event containers](./messaging-support.html), [remote services](./space-based-remoting-overview.html) and others) are covered in detail in their respective sections in the programmer's guide.
 
 # Multiple Configuration Options
 

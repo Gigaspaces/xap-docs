@@ -30,7 +30,7 @@ int safeABS( int value)
 }
 ```
 
-The routing property can be explicitly set using the `@SpaceRouting` annotation for [POJO entries](./pojo-support.html) or via the `SpaceTypeDescriptorBuilder` for [document entries](./document-api.html). If the routing property is not explicitly set, the space id property is used for routing. If the space id property is not defined, the first indexed property (alphabetically) is used for routing, otherwise the first property (alphabetically) is used for routing.
+The routing property can be explicitly set using the `@SpaceRouting` annotation for [POJO entries](./pojo-overview.html) or via the `SpaceTypeDescriptorBuilder` for [document entries](./document-api.html). If the routing property is not explicitly set, the space id property is used for routing. If the space id property is not defined, the first indexed property (alphabetically) is used for routing, otherwise the first property (alphabetically) is used for routing.
 
 {{% note %}} It is highly recommended to explicitly define a routing property - when both space routing and space id are not defined, relying on implicit routing property selection can be confusing (being maintained mainly for backwards compatibility).{{%/note%}}
 

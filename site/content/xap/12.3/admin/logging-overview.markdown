@@ -399,7 +399,7 @@ When there are multiple instances (primary/backup(s)), an Active-Election proces
 com.gigaspaces.pojo.level = INFO
 ```
 
-This logger corresponds to XAP POJO support. More information is available [here]({{%currentjavaurl%}}/pojo-support.html).
+This logger corresponds to XAP POJO support. More information is available [here]({{%currentjavaurl%}}/pojo-overview.html).
 
 ### XA Manager
 
@@ -408,7 +408,7 @@ This logger corresponds to XAP POJO support. More information is available [here
 com.gigaspaces.core.xa.level = INFO
 ```
 
-This logger corresponda to the XA Transaction manager running in the Space. More information is available here {{%currentjavanet "transaction-management.html" %}}.
+This logger corresponda to the XA Transaction manager running in the Space. More information is available here {{%currentjavanet "transaction-overview.html" %}}.
 
 ### Jini Dist. TX Manager
 
@@ -418,7 +418,7 @@ com.sun.jini.mahalo.startup.level = INFO
 com.sun.jini.mahalo.destroy.level = INFO
 ```
 
-This logger is for the Jini Distributed Transaction manager. More information is available here {{%currentjavanet "transaction-management.html" %}}.
+This logger is for the Jini Distributed Transaction manager. More information is available here {{%currentjavanet "transaction-overview.html" %}}.
 
 ### SpaceURL, SpaceValidator, SpaceURLParser
 
