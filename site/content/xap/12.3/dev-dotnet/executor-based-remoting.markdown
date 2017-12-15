@@ -12,7 +12,7 @@ weight: 200
 
 
 
-Executor based remoting uses [Executors](./task-execution-over-the-space.html) to implement remoting capabilities on top of the space. Executor based remoting allows for direct invocation of services, both in synchronous and an asynchronous manner as well as broadcast capabilities. Executor remoting works with services that are exposed within a processing unit that started a collocated space.
+Executor based remoting uses [Executors](./task-execution-overview.html) to implement remoting capabilities on top of the space. Executor based remoting allows for direct invocation of services, both in synchronous and an asynchronous manner as well as broadcast capabilities. Executor remoting works with services that are exposed within a processing unit that started a collocated space.
 
 {{%align center%}}
 ![Executor.jpg](/attachment_files/Executor.jpg)

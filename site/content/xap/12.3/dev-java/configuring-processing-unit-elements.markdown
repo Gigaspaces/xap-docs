@@ -27,7 +27,7 @@ It is recommended (although not mandatory) that you familiarize yourself with th
 
 The definitions in the `pu.xml` file are divided into 2 major categories:
 
-- GigaSpaces specific components, such as [space](./the-space-configuration.html#proxy), [GigaSpace](./the-gigaspace-interface.html), [event containers](./messaging-support.html) or [remote service exporters](./space-based-remoting-overview.html).
+- GigaSpaces specific components, such as [space](./the-space-configuration.html#proxy), [GigaSpace](./the-gigaspace-interface-overview.html), [event containers](./messaging-support.html) or [remote service exporters](./space-based-remoting-overview.html).
 
 - User defined beans, which define instances of user classes to be used by the processing unit. For example, user defined event handlers to which the event containers delegate events as those are received.
 

@@ -29,7 +29,7 @@ The optimistic locking protocol assumes that a client that retrieved an object f
 {{%/note%}}
 
 {{% tip %}}
-Having the above executed at the space side via [Executor Based Remoting](./executor-based-remoting.html) or [Task Executors](./task-execution-over-the-space.html) is highly recommended. This will shorten the transaction time period since all space operations will be executed against a colocated space.
+Having the above executed at the space side via [Executor Based Remoting](./executor-based-remoting.html) or [Task Executors](./task-execution-overview.html) is highly recommended. This will shorten the transaction time period since all space operations will be executed against a colocated space.
 {{%/tip%}}
 
 # Example

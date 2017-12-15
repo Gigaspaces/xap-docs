@@ -224,7 +224,7 @@ For all possible Spring configuration options see the [schema definitions](/api_
 
 
 The example above removes (takeMultiple) objects with a certain timestamp member value from space and writes them onto Cassandra.
-The takeMultiple operations are performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
+The takeMultiple operations are performed on the configured [GigaSpace](./the-gigaspace-interface-overview.html) bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
 The archive operation is performed on the bean that implements the ArchiveOpertaionHandler interface, in this case the CassandraArchiveOperationHandler bean.
 
 For a  real-world example consult the streaming big data example :

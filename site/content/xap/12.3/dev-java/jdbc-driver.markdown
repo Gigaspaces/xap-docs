@@ -26,7 +26,7 @@ An alternative way of querying the space using SQL syntax is the [SQLQuery](./qu
 
 
 
-JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the space, beyond the template matching provided by the [The GigaSpace Interface](./the-gigaspace-interface.html).
+JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the space, beyond the template matching provided by the [The GigaSpace Interface](./the-gigaspace-interface-overview.html).
 
 XAP is not a full-fledged relational database and it does not support the full SQL92 standard (see [JDBC Supported Features](#supported-features)). However, the existing SQL support is extremely useful for applications that need to execute queries on a space for real-time queries.
 
@@ -158,7 +158,7 @@ public static Connection getInstance(IJSpace space, String username, String pass
 
 # Mixing Space API with the JDBC API
 
-The following example using the Space API [DistributedTask](./task-execution-over-the-space.html) with the JDBC API. With this example we use map/reduce approach to query the space using the JDBC API, but we send the JDBC query to be executed within the space. This approach scales very well once the space have multiple partitions avoiding the need to retrieve the actual space objects from the space to evaluate the query. Retrieving objects from the space involved network latency and serialization overhead.
+The following example using the Space API [DistributedTask](./task-execution-overview.html) with the JDBC API. With this example we use map/reduce approach to query the space using the JDBC API, but we send the JDBC query to be executed within the space. This approach scales very well once the space have multiple partitions avoiding the need to retrieve the actual space objects from the space to evaluate the query. Retrieving objects from the space involved network latency and serialization overhead.
 
 With the example below we execute the following query:
 

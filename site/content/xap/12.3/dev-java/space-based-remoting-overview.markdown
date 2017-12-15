@@ -23,7 +23,7 @@ The OpenSpaces API supports two types of remoting, distinguished by the underlyi
 
 This section explains when you should choose to use each of the remoting implementations. As far as the calling code is concerned, the choice between the implementations is transparent and requires only configuration changes.
 
-In most cases, you should choose [Executor-Based Remoting](./executor-based-remoting.html). It is based on the XAP [Task Executors](./task-execution-over-the-space.html) feature, and executes the method invocation by submitting a special kind of task that executes on the Space side by calling the invoked service. This option allows for synchronous and asynchronous invocation, map/reduce style invocations, and transparent invocation failover.
+In most cases, you should choose [Executor-Based Remoting](./executor-based-remoting.html). It is based on the XAP [Task Executors](./task-execution-overview.html) feature, and executes the method invocation by submitting a special kind of task that executes on the Space side by calling the invoked service. This option allows for synchronous and asynchronous invocation, map/reduce style invocations, and transparent invocation failover.
 
 [Event-Driven Remoting](./event-driven-remoting.html) supports most of the above capabilities, but does not support map/reduce style invocations. In terms of implementation, it's based on the [Polling Container](./polling-container-overview.html) feature, which means that it writes an invocation entry to the space which is later consumed by a polling container. Once taking the invocation entry from the space, the polling container's event handler delegates the call to the space-side service.
 

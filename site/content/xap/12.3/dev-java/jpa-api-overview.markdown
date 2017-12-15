@@ -577,7 +577,7 @@ The XAP JPA native query execution is a powerful feature used to execute the ite
 
 {{%refer%}}
 - SQLQuery syntax-like queries ([SQLQuery](./query-sql.html)).
-- XAP Tasks ([Task Execution over the Space](./task-execution-over-the-space.html)).
+- XAP Tasks ([Task Execution over the Space](./task-execution-overview.html)).
 - XAP Dynamic Scripts ([Dynamic Language Tasks](./task-dynamic-language.html)).
 {{%/refer%}}
 
@@ -672,7 +672,7 @@ public class MyTask implements Task<Integer>, ApplicationContextAware {
 Another option (instead of using the ApplicationContextAware interface) is to annotate your task with the `@AutowireTask` annotation, and annotate the `EntityManagerFactory` property with a `@Resource` annotation.
 
 {{%refer%}}
-For more information about XAP tasks, refer to [Task Execution over the Space](./task-execution-over-the-space.html).
+For more information about XAP tasks, refer to [Task Execution over the Space](./task-execution-overview.html).
 {{%/refer%}}
 
 ## Dynamic Script Execution

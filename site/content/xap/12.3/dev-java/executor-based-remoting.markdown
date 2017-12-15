@@ -9,7 +9,7 @@ weight: 200
 {{% ssummary%}}{{%/ssummary%}}
 
 
-**Executor Based Remoting** uses [Executors](./task-execution-over-the-space.html) to provided remoting capabilities on top of the Space. Executor Based Remoting allows for direct invocation of services in an asynchronous manner in a broadcast or routed manner. Executor Remoting works with services that are deployed in a Processing Unit and execute within a collocated space.
+**Executor Based Remoting** uses [Executors](./task-execution-overview.html) to provided remoting capabilities on top of the Space. Executor Based Remoting allows for direct invocation of services in an asynchronous manner in a broadcast or routed manner. Executor Remoting works with services that are deployed in a Processing Unit and execute within a collocated space.
 
 {{% align center %}}
 ![Executor.jpg](/attachment_files/Executor.jpg)

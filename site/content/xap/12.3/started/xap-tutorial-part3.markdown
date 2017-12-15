@@ -132,7 +132,7 @@ public void executeTaskWithRouting() throws InterruptedException, ExecutionExcep
 
 There are other options available for task routing
 .
-{{%refer%}}[Task Execution over the Space]({{%currentjavaurl%}}/task-execution-over-the-space.html){{%/refer%}}
+{{%refer%}}[Task Execution over the Space]({{%currentjavaurl%}}/task-execution-overview.html){{%/refer%}}
 
 
 
@@ -205,7 +205,7 @@ XAP provides out of the box Aggregator Tasks.
 The executor builder allows to combine several task executions (both distributed ones and non distributed ones) into a seemingly single execution (with a reduce phase).
 
 {{%refer%}}
-[Task Execution over the Space]({{%currentjavaurl%}}/task-execution-over-the-space.html)
+[Task Execution over the Space]({{%currentjavaurl%}}/task-execution-overview.html)
 {{%/refer%}}
 
 

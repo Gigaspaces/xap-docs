@@ -31,8 +31,8 @@ Both the In-line cache and the Side cache support the common deployment topologi
 
 With this mechanism, the IMDG is the system of record. The database data is loaded into the IMDG when it is started. The IMDG is responsible for loading the data and pushing updates back into the database. The database can be updated synchronously or asynchronously.
 
-- When running in `all-in-cache` [cache policy mode]({{% latestadmurl%}}/memory-management-overview.html), all data is loaded from the database into the cache when it is started.
-- When running in `LRU` [cache policy]({{% latestadmurl%}}/memory-management-overview.html) mode, a subset of the data is loaded from the database into the cache when it is started. Data is evicted from the cache based on available memory or a maximum amount of cache objects. Once there is a cache miss, the cache looks for the data within the underlying data-source. If matching data is found, it is loaded into the cache and delivered to the application.
+- When running in `all-in-cache` [cache policy mode](../dev-java/memory-management-overview.html), all data is loaded from the database into the cache when it is started.
+- When running in `LRU` [cache policy](../dev-java/memory-management-overview.html) mode, a subset of the data is loaded from the database into the cache when it is started. Data is evicted from the cache based on available memory or a maximum amount of cache objects. Once there is a cache miss, the cache looks for the data within the underlying data-source. If matching data is found, it is loaded into the cache and delivered to the application.
 
 {{% align center%}}
 ![in-line-cache.jpg](/attachment_files/in-line-cache.jpg)
@@ -53,7 +53,7 @@ For best performance, use the [ALL-IN-CACHE cache policy](../dev-java/all-in-cac
 
 The in-line cache mechanism is widely used with the following GigaSpaces APIs:
 
-- [GigaSpace API]({{% latestjavaurl%}}/the-gigaspace-interface.html) - GigaSpaces native Object/SQL API.
+- [GigaSpace API]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html) - GigaSpaces native Object/SQL API.
 - [Map API]({{% latestjavaurl%}}/map-api.html) - GigaSpaces Key/Value (JCache/Hashtable) API.
 
 ## When Should You Use an In-Line Cache?
@@ -93,7 +93,7 @@ With a side cache architecture, there is no mirror. The application is responsib
 
 The side cache scenario is widely used with the following GigaSpaces APIs:
 
-- [GigaSpace API]({{% latestjavaurl%}}/the-gigaspace-interface.html) - GigaSpaces native Object/SQL API.
+- [GigaSpace API]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html) - GigaSpaces native Object/SQL API.
 - [Map API]({{% latestjavaurl%}}/map-api.html) - GigaSpaces Key/Value (JCache/Hashtable) API.
 - [JDBC API]({{% latestjavaurl%}}/jdbc-driver.html) - GigaSpaces native JDBC driver.
 - [memcached API]({{% latestjavaurl%}}/memcached-api.html) - Using any memcached client ([Java](http://code.google.com/p/xmemcached) , C# , C , C++..). See [memcached libraries page](http://code.google.com/p/memcached/wiki/Clients) for the different programming languages supporting the memcached protocol that may be used with GigaSpaces server memcached implementation.

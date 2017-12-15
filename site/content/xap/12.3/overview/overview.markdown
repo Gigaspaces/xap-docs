@@ -37,7 +37,7 @@ The following is a brief overview of some XAP data grid capabilities.
 
 **Memory and Storage**
 
-- [RAM]({{%currentadmurl%}}/memory-management-overview.html)
+- [RAM](../dev-java/memory-management-overview.html)
 - [SSD/Flash]({{%currentadmurl%}}/memoryxtend-rocksdb-ssd.html)
 
 
