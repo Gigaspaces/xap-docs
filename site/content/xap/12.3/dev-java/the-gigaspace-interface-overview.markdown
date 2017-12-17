@@ -370,7 +370,7 @@ For more information about how to secure XAP components, refer to the [Security]
 
 # Persistency
 
-When constructing a Space, you can provide [Space Persistency](./space-persistency.html) extensions using Spring-based configuration instead of using the Space schema. The following is an example of how it can be defined:
+When constructing a Space, you can provide [Space Persistency](./space-persistency-overview.html) extensions using Spring-based configuration instead of using the Space schema. The following is an example of how it can be defined:
 
 {{%tabs%}}
 {{%tab "  Namespace "%}}

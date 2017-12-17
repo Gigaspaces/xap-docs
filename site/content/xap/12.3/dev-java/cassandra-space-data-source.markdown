@@ -161,7 +161,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 {{% /tab %}}
 {{% /tabs %}}
 
-For more details about different configurations see [Space Persistency](./space-persistency.html).
+For more details about different configurations see [Space Persistency](./space-persistency-overview.html).
 
 # Before you begin
 

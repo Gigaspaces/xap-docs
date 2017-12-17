@@ -25,7 +25,7 @@ This reduces the required network traffic between the client and the Space, and 
 
 
 Moreover, using this API also can prevent having to read the existing object prior to the change operation, because the change operation can specify how to change the existing property without knowing its current value. For instance, implementing atomic [Counters](./the-space-counters.html) can be done by increasing a counter property of an integer property by some delta. Another example is adding a value to a collection.
-The change API supports [transactions](./transaction-management.html) in the same way the other Space operation supports it, using a transactional `GigaSpace` instance.
+The change API supports [transactions](./transaction-overview.html) in the same way the other Space operation supports it, using a transactional `GigaSpace` instance.
 
 {{%anchor change%}}
 

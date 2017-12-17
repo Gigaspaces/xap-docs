@@ -221,7 +221,7 @@ Since in most scenarios the previous value is irrelevant, the default behavior i
 
 ## Asynchronous write
 
-Asynchronous `write` operation can be implemented using a [Task](./task-execution-over-the-space.html), where the `Task` implementation include a write operation. With this approach the `Task` is sent to the space and executed in an asynchronous manner. The write operation itself will be completed once both the primary and the backup will acknowledge the operation. This activity will be performed as a background activity from the client perspective.
+Asynchronous `write` operation can be implemented using a [Task](./task-execution-overview.html), where the `Task` implementation include a write operation. With this approach the `Task` is sent to the space and executed in an asynchronous manner. The write operation itself will be completed once both the primary and the backup will acknowledge the operation. This activity will be performed as a background activity from the client perspective.
 
 
 #### Example

@@ -15,7 +15,7 @@ In this section we will show you how to create and configure a Space and how to 
 
 {{%fpanel%}}
 
-[Overview](./the-gigaspace-interface.html){{<wbr>}}
+[Overview](./the-gigaspace-interface-overview.html){{<wbr>}}
 A Space is a logical in-memory service, which can store entries of information.
 
 [Configuration](./the-space-configuration.html){{<wbr>}}

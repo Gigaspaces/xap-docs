@@ -19,7 +19,7 @@ XAP comes with built in implementations of [Space Data Source](./space-data-sour
 {{% /align%}}
 
 
-For further details about the persistency APIs used see [Space Persistency](./space-persistency.html).
+For further details about the persistency APIs used see [Space Persistency](./space-persistency-overview.html).
 
 
 {{%fpanel%}}

@@ -70,7 +70,7 @@ public void createNewPayment() {
 	space.write(payment);
 }
 ```
-{{%refer%}}[Transaction management]({{%currentjavaurl%}}/transaction-management.html){{%/refer%}}
+{{%refer%}}[Transaction management]({{%currentjavaurl%}}/transaction-overview.html){{%/refer%}}
 
 
 # Event Processing
@@ -113,13 +113,13 @@ Just like the Polling container, both the receive operation and the actual event
 
 # Task Execution
 Executors fully support transactions similar to other XAP operations. Once an execute operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on and added declaratively to it. This means that any XAP operation performed within the task execute operation will automatically join the transaction started on the client side.
-{{%refer%}}[Task Execution over the Space]({{%currentjavaurl%}}/task-execution-over-the-space.html){{%/refer%}}
+{{%refer%}}[Task Execution over the Space]({{%currentjavaurl%}}/task-execution-overview.html){{%/refer%}}
 
 
 
 # Remoting Service
 Executor remoting supports transactional execution of services. On the client side, if there is an ongoing declarative transaction during the service invocation (a Space based transaction), the service will be executed under the same transaction. The transaction itself is passed to the server and any Space related operations (performed using XAP) will be executed under the same transaction.
-{{%refer%}}[Space Based Remoting]({{%currentjavaurl%}}/space-based-remoting.html){{%/refer%}}
+{{%refer%}}[Space Based Remoting]({{%currentjavaurl%}}/space-based-remoting-overview.html){{%/refer%}}
 
 
 

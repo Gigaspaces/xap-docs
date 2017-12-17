@@ -13,5 +13,5 @@ weight: 400
 {{%/align%}}
 
 {{%refer%}}
-See the [Memory Management Facilities](./memory-management-overview.html) for details.
+See the [Memory Management Facilities](../dev-java/memory-management-overview.html) for details.
 {{%/refer%}}

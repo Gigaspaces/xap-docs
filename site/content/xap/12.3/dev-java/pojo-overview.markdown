@@ -14,7 +14,7 @@ When writing POJOs to the Space, you can provide some metadata about the POJO's 
 
 Here is an overview of the most commonly used POJO annotations:
 
-- `@SpaceClass`: Class level annotation - Optional. Used to mark a class that is written to the Space (by default if you write a class to the Space, it is marked as such automatically). Use this to provide additional metadata at the class level, such as whether or not this class is persisted to a database if [Persistency](./space-persistency.html) is configured on the Space.
+- `@SpaceClass`: Class level annotation - Optional. Used to mark a class that is written to the Space (by default if you write a class to the Space, it is marked as such automatically). Use this to provide additional metadata at the class level, such as whether or not this class is persisted to a database if [Persistency](./space-persistency-overview.html) is configured on the Space.
 
 - `@SpaceId`: The identifier property of the POJO. This property uniquely identifies the POJO within the Space, and is similar to a primary key in a database. You can choose between an application-generated ID (`autoGenerate=false`), and an automatically generated ID (`autoGenerate=true`).
 
@@ -88,7 +88,7 @@ When using a POJO as a Space domain class, follow these guidelines:
 - The ID field can be determined using the `@SpaceId` annotation or the `id` tag.
 - The `SpaceId` field can be `java.lang.String` type, or any other type that implements the `toString()` that provides a unique value.
 - The `@Spaceid` annotation or `id` tag must be declared when performing update operations.
-- A POJO class must implement the `Serializable`  interface if used as a parameter for a remote call ([Space Based Remoting](./space-based-remoting.html)).
+- A POJO class must implement the `Serializable`  interface if used as a parameter for a remote call ([Space Based Remoting](./space-based-remoting-overview.html)).
 
 ## Controlling Space Class Fields Introduction
 

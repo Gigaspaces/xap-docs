@@ -40,8 +40,8 @@ To achieve these goals, OpenSpaces adds the following components to the Spring d
 - [SLA-Driven Container](./the-runtime-environment.html#gsc) -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
 - [In-Memory Data Grid](./the-in-memory-data-grid.html) -- provides in-memory distributed data storage.
 - [Declarative Event Containers]({{% latestjavaurl%}}/messaging-support.html) -- for triggering events from the space into POJOs in pull or push mode.
-- [Remoting]({{% latestjavaurl%}}/space-based-remoting.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
-- [Declarative transaction support]({{% latestjavaurl%}}/transaction-management.html) for GigaSpaces In-Memory Data Grid.
+- [Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
+- [Declarative transaction support]({{% latestjavaurl%}}/transaction-overview.html) for GigaSpaces In-Memory Data Grid.
 
 
 ## Core Middleware
@@ -235,7 +235,7 @@ It supports the following options, from which you can choose:
 
 ## Eviction Policy and Memory Management
 
-Since the space is memory-based, it is essential to verify that it does not overflow and crash. The space has a number of [facilities]({{% latestadmurl%}}/memory-management-overview.html) to manage its memory and make sure it does not overflow.
+Since the space is memory-based, it is essential to verify that it does not overflow and crash. The space has a number of [facilities](../dev-java/memory-management-overview.html) to manage its memory and make sure it does not overflow.
 The first one is the eviction policy. The space supports two eviction policies: `ALL_IN_CACHE` and `LRU` (Least Recently Used). With the `LRU` policy, the space starts to evict the least used entries when it becomes full. The `ALL_IN_CACHE` policy never evicts anything from the space.
 The memory manager allows you to define numerous thresholds that control when entries are evicted (in case you use `LRU`), or when the space simply blocks clients from adding data to it.
 Combined, these two facilities enable you to better control your environment and make sure that the memory of the space instances in your cluster does not overflow.
@@ -247,8 +247,8 @@ GigaSpaces and its Space-Based-Architecture embrace the {{%exurl "reactive progr
 - [Data Event Listener]({{% latestjavaurl%}}/data-event-listener.html) - [Polling Container]({{% latestjavaurl%}}/polling-container-overview.html), [Notify Container]({{% latestjavaurl%}}/notify-container-overview.html)
 - [Local View and Local Cache](./caching-scenarios.html)
 - [Mule ESB Integration]({{% latestjavaurl%}}/mule-esb.html)
-- [Task Execution over the Space]({{% latestjavaurl%}}/task-execution-over-the-space.html)
-- [Asynchronous Operations]({{% latestjavaurl%}}/the-gigaspace-interface.html#asynchronous-operations)
+- [Task Execution over the Space]({{% latestjavaurl%}}/task-execution-overview.html)
+- [Asynchronous Operations]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html#asynchronous-operations)
 - [Drools Rule Engine Integration](/sbp/xap-drools-integration.html) - Available from a 3rd party.
 
 
@@ -257,7 +257,7 @@ GigaSpaces and its Space-Based-Architecture embrace the {{%exurl "reactive progr
 
 The space supports a number of APIs to allow for maximum flexibility to space clients when accessing the space:
 
-- The core [Space API]({{<latestjavaurl>}}/the-gigaspace-interface.html), which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the space entries are simply Java objects. This API supports transactions.
+- The core [Space API]({{<latestjavaurl>}}/the-gigaspace-interface-overview.html), which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the space entries are simply Java objects. This API supports transactions.
 
 {{%  info "Accessing the Space from Other Languages" %}}
 The code space API is also supported in [.NET]({{<latestneturl>}}/). This allows clients to access the space via these languages. It also supports [interoperability]({{<latestjavaurl>}}/interoperability.html) between languages, so in effect you can write an object to the space using one language, and read it with another, say Java
@@ -271,9 +271,9 @@ The code space API is also supported in [.NET]({{<latestneturl>}}/). This allows
 # Services on Top of the Space
 
 Building on top of the core API, the Space also provides higher level services  onto the application. These services, along with the space's basic capabilities, provide the full stack of middleware features that you can build your application with.
-[The Task Execution API]({{% latestjavaurl%}}/task-execution-over-the-space.html) allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
+[The Task Execution API]({{% latestjavaurl%}}/task-execution-overview.html) allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
 [Event containers]({{% latestjavaurl%}}/messaging-support.html) use the core API's operations and abstract your code from all the low level details involved in handling the event, such as event registration with the space, transaction initiation, etc. This has the benefit of abstracting your code from the lower level API and allows it to focus on your business logic and the application behavior.
-[Space-Based Remoting]({{% latestjavaurl%}}/space-based-remoting.html) allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.
+[Space-Based Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html) allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.
 
 # Spring Integration
 

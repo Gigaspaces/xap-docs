@@ -45,7 +45,7 @@ Here are the available parameters for an embedded space:
 |--------|-------------|-----------|
 |all-in-cache-policy | | |
 |lru-cache-policy |||
-|custom-cache-policy|Custom eviction policy API for LRU cache policy mode |[Custom eviction policy]({{%currentadmurl%}}/custom-eviction-policy.html)|
+|custom-cache-policy|Custom eviction policy API for LRU cache policy mode |[Custom eviction policy](./custom-eviction-policy.html)|
 |blob-store-data-policy| Configuration and Deployment with RocksDB| [MemoryXtend](../admin/memoryxtend-rocksdb-ssd.html#configuration-and-deployment)|
 |attribute-store|Configure a persistent SSD RocksDB add-on with an attribute store|[MemoryXtend](../admin/memoryxtend-overview.html#persistence-and-recovery)|
 |leader-selection|||
@@ -235,7 +235,7 @@ Declaring a remote space with a transaction manager and creating an embedded spa
 ```
 
 {{%refer%}}
-[Transaction management](./transaction-management.html)
+[Transaction management](./transaction-overview.html)
 {{%/refer%}}
 
 

@@ -11,7 +11,7 @@ weight: 200
 
 
 
-XAP comes with a built in implementation of [Space Persistency](./space-persistency.html) APIs for Hibernate. This implementation is an extension of the `SpaceDataSource` and `SpaceSynchronizationEndpoint` classes. The implementation allows a custom objects persistency using Hibernate mappings.
+XAP comes with a built in implementation of [Space Persistency](./space-persistency-overview.html) APIs for Hibernate. This implementation is an extension of the `SpaceDataSource` and `SpaceSynchronizationEndpoint` classes. The implementation allows a custom objects persistency using Hibernate mappings.
 
 {{% align center %}}
 ![HibernateSpacedataSource.jpg](/attachment_files/HibernateSpacedataSource.jpg)

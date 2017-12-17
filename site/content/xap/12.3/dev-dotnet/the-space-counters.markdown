@@ -69,7 +69,7 @@ WordCount wordount = spaceProxy.ReadById<WordCount>(idQuery);
 int counterValue = wordount.MyCounter;
 ```
 
-Another way getting the Counter value without reading the space object back to the client would be via a [Task](./task-execution-over-the-space.html):
+Another way getting the Counter value without reading the space object back to the client would be via a [Task](./task-execution-overview.html):
 
 
 ```csharp
@@ -105,7 +105,7 @@ When pre-loading the space via the [External Data Source initial-load](./space-p
 
 # Example
 
-With the following example the `Counter` class wraps the `GigaSpace.change` operation providing simple `increment`,`decrement`,`get` and `unset` methods to manage counters. The example using an [extended SpaceDocument](./document-extending.html) as the space object storing the counters data. To retrieve the counter existing value a [Task](./task-execution-over-the-space.html) is used. To launch the example run the `CounterTest` unit test.
+With the following example the `Counter` class wraps the `GigaSpace.change` operation providing simple `increment`,`decrement`,`get` and `unset` methods to manage counters. The example using an [extended SpaceDocument](./document-extending.html) as the space object storing the counters data. To retrieve the counter existing value a [Task](./task-execution-overview.html) is used. To launch the example run the `CounterTest` unit test.
 
 {{%tabs%}}
 {{%tab " CounterTest "%}}

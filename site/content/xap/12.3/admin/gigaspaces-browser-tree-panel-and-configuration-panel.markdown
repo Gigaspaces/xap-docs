@@ -73,19 +73,19 @@ For this option to work, the **Objects Count** checkbox must also be selected.
 - **Clustered** -- whether the space participates in a cluster.
 - **Primary** -- whether the space is primary (**Yes**) or a backup space (**No**).
 - **Used Memory (MB)** -- the amount of used memory in this space, in MB.
-This column is highlighted in orange if the space memory usage is more than the minimum (low) watermark percentage and lower than the write only block percentage (defined in the [memory usage tag](./memory-management-overview.html)), for example:
+This column is highlighted in orange if the space memory usage is more than the minimum (low) watermark percentage and lower than the write only block percentage (defined in the [memory usage tag](../dev-java/memory-management-overview.html)), for example:
 
 {{% align center %}}
 ![GMC_space_SpaceNetworkView_UsedMoemory_Column_Orange_6.5_RC2.jpg](/attachment_files/GMC_space_SpaceNetworkView_UsedMoemory_Column_Orange_6.5_RC2.jpg)
 {{% /align %}}
 
-This column is highlighted in red if the space memory exceeds the write only block percentage (defined in the [memory usage tag](./memory-management-overview.html)), for example:
+This column is highlighted in red if the space memory exceeds the write only block percentage (defined in the [memory usage tag](../dev-java/memory-management-overview.html)), for example:
 
 {{% align center %}}
 ![space_network_view_memoryUsage_red_6.5.jpg](/attachment_files/space_network_view_memoryUsage_red_6.5.jpg)
 {{% /align %}}
 
-{{% refer %}}For more details on memory usage, refer to the [Memory Management](./memory-management-overview.html) section.{{% /refer %}}
+{{% refer %}}For more details on memory usage, refer to the [Memory Management](../dev-java/memory-management-overview.html) section.{{% /refer %}}
 
 - **Write**, **Update**, **Read**, **Take**, **Notify Sent**, **Notify Ack.**, **Notify Registration** -- shows the number of objects the operation has been performed on. For example, 60000 in the **Write** column means that 60000 objects have been written to this space.
 

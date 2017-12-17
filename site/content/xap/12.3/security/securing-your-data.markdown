@@ -483,7 +483,7 @@ public class CustomAccessControlFilter {
 
 
 
-Tasks {{%currentjavanet "task-execution-over-the-space.html"%}} can be executed in a collocated asynchronous manner within the Space (processing unit with an embedded Space). To execute a task, you must have **Execute** privileges. Execution can be restricted to certain tasks by applying the 'Class-Filter'. There is no need to define specific privileges for operations being performed by the task on the Space.
+Tasks {{%currentjavanet "task-execution-overview.html"%}} can be executed in a collocated asynchronous manner within the Space (processing unit with an embedded Space). To execute a task, you must have **Execute** privileges. Execution can be restricted to certain tasks by applying the 'Class-Filter'. There is no need to define specific privileges for operations being performed by the task on the Space.
 
 Here is a simple implementation of a task that performs a 'count' operation on the space.
 

@@ -132,7 +132,7 @@ notifyEventListenerContainer.destroy();
 `@EventDriven`, `@Polling`, and `@Notify` cannot be placed on interface classes. Place them on the implementation class instead.
 {{% /note %}}
 
-The above example registers with the Space for write notifications using the provided template (a `Data` object with its processed flag set to **false**). If a notification occurs, the `SimpleListener` is invoked. Registration for notifications is performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean. (In this case, if working in a clustered topology, the notification is performed directly on the cluster member.)
+The above example registers with the Space for write notifications using the provided template (a `Data` object with its processed flag set to **false**). If a notification occurs, the `SimpleListener` is invoked. Registration for notifications is performed on the configured [GigaSpace](./the-gigaspace-interface-overview.html) bean. (In this case, if working in a clustered topology, the notification is performed directly on the cluster member.)
 
 
 # General Guidelines

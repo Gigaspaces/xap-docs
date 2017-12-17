@@ -9,14 +9,14 @@ weight: 1000
 {{%imagertext "/attachment_files/tx_manager.jpg" %}}
 
 The Spring Framework provides a transaction manager abstraction using the `PlatformTransactionManager` interface with several different built-in implementations, such as JDBC Data Source and JTA. XAP provides several implementations for Spring's `PlatformTransactionManager`, allowing you to use the XAP's local and Jini Distributed Transaction Managers.
-By implementing Spring's `PlatformTransactionManager`, the XAP API allows users to utilize Spring's rich support for {{%exurl "declarative transaction management""http://static.springframework.org/spring/docs/2.5.x/reference/transaction.html#transaction-declarative"%}}. The declarative transaction support can be easily utilized with the [GigaSpace Interface](./the-gigaspace-interface.html).
+By implementing Spring's `PlatformTransactionManager`, the XAP API allows users to utilize Spring's rich support for {{%exurl "declarative transaction management""http://static.springframework.org/spring/docs/2.5.x/reference/transaction.html#transaction-declarative"%}}. The declarative transaction support can be easily utilized with the [GigaSpace Interface](./the-gigaspace-interface-overview.html).
 
 When using Spring declarative transaction, a proxy is generated for the classes annotated with `@Transactional` methods. In this case, **only external method calls** coming in through the proxy are intercepted. This means that 'self-invocation', i.e. a method within the target object calling some other method of the target object, won't lead to an actual transaction at runtime even if the invoked method is marked with `@Transactional`.
 
 {{%/imagertext%}}
 
 {{% note "Note"%}}
-In order to make [The GigaSpace Interface ](./the-gigaspace-interface.html) transactional, the transaction manager must be provided to it when constructing the GigaSpace bean.
+In order to make [The GigaSpace Interface ](./the-gigaspace-interface-overview.html) transactional, the transaction manager must be provided to it when constructing the GigaSpace bean.
 The following should be added to your `pu.xml` to enable the configuration of transactional behavior based on annotations:
 
 
@@ -413,7 +413,7 @@ To enable the declarative transaction management:
 </beans>
 ```
 
-You can also annotate beans exposed via [space based remoting](./space-based-remoting.html). If you include the `<tx:annotation-driven>` element in your `pu.xml` file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.
+You can also annotate beans exposed via [space based remoting](./space-based-remoting-overview.html). If you include the `<tx:annotation-driven>` element in your `pu.xml` file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.
 
 # Programmatic Transaction Management
 

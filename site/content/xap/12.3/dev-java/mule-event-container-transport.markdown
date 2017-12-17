@@ -139,7 +139,7 @@ There is option to configure `writeLease` (defaults to `FOREVER`), `updateOrWrit
 
 Since the inbound component is based on the event containers, transaction support can be enabled using the event container transaction support. Learn how to do this with the [polling container](./polling-container-overview.html#OpenSpacesEventsComponent-PollingContainer-TransactionSupport).
 
-Any operation performed using the `GigaSpace` interface joins the ongoing transaction started by the event container using its support for [declarative transactions](./the-gigaspace-interface.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions).
+Any operation performed using the `GigaSpace` interface joins the ongoing transaction started by the event container using its support for [declarative transactions](./the-gigaspace-interface-overview.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions).
 
 This means that any outbound component operating within a Spring managed transaction automatically joins the transaction since it uses `GigaSpace`. For outbound components that are used with a different inbound component (such as JMS), the Mule Spring transaction manager can be used. Here is an example (note the custom-transaction tag in the inbound and outbound transports):
 
@@ -186,7 +186,7 @@ This means that any outbound component operating within a Spring managed transac
 </model>
 ```
 
-In the above example, the Mule transaction factory used is Spring-based, wrapping the Spring `PlatformTransactionManager`. For more information regarding OpenSpaces support for transactions (including XA), see the [OpenSpaces Core Component - Transaction Manager](./transaction-management.html) section.
+In the above example, the Mule transaction factory used is Spring-based, wrapping the Spring `PlatformTransactionManager`. For more information regarding OpenSpaces support for transactions (including XA), see the [OpenSpaces Core Component - Transaction Manager](./transaction-overview.html) section.
 
 # Full Example
 
