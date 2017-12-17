@@ -225,10 +225,6 @@ blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE 
 Entries inserted to blobstore cache: 80.
 ```
 
-#### Lazy Load
-
-If no custom queries are defined, the "lazy load" approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash memory exceeds what can fit into memory.
-
 #### Blob Store Cache Metrics
 
 The concept of cache <i>hit</i> and cache <i>miss</i> is paramount for cache analysis. A hit occurs when querying data that is stored in the cache. A miss occurs when querying data that is stored in disk.
