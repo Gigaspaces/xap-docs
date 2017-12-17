@@ -31,13 +31,13 @@ Many times, especially when working with a PU that starts an embedded space, ope
 
 The decision of working directly with a cluster member or against the whole cluster is done in the `GigaSpace` level. The `GigaSpacesFactoryBean` provides a clustered flag with the following logic as the default value: If the space is started in embedded mode (for example, `/./space`), the clustered flag is set to `false`. When the space is looked up in a remote protocol (i.e. `jini://*/*/space`, the clustered flag is set to `true`.
 
-You can use the `clustered` property to control this behavior or use the API to use a non-clustered embedded proxy to create a clustered proxy. This allows the collocated business logic to access the entire cluster to perform cluster wide operations. Clustered and Non-Clustered proxies may be used with a [Task]({{%currentjavaurl%}}/task-execution-over-the-space.html), [Service]({{%currentjavaurl%}}/executor-based-remoting.html), [Notify Container]({{%currentjavaurl%}}/notify-container-overview.html) , [Polling Container]({{%currentjavaurl%}}/polling-container-overview.html) and any other Collocated business logic.
+You can use the `clustered` property to control this behavior or use the API to use a non-clustered embedded proxy to create a clustered proxy. This allows the collocated business logic to access the entire cluster to perform cluster wide operations. Clustered and Non-Clustered proxies may be used with a [Task]({{%currentjavaurl%}}/task-execution-overview.html), [Service]({{%currentjavaurl%}}/executor-based-remoting.html), [Notify Container]({{%currentjavaurl%}}/notify-container-overview.html) , [Polling Container]({{%currentjavaurl%}}/polling-container-overview.html) and any other Collocated business logic.
 
 # How to Create a Clustered Proxy?
 You may use Spring based configuration or API to create a Clustered Proxy.
 
 ## Using Spring
-When using a Spring based `pu.xml` to construct the [GigaSpace]({{%currentjavaurl%}}/the-gigaspace-interface.html) bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered `GigaSpace` bean:
+When using a Spring based `pu.xml` to construct the [GigaSpace]({{%currentjavaurl%}}/the-gigaspace-interface-overview.html) bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered `GigaSpace` bean:
 
 ```xml
 <os-core:embedded-space id="space" space-name="mySpace"/>

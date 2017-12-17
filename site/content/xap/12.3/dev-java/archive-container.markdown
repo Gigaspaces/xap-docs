@@ -30,10 +30,10 @@ The Archive Container:<br>
 
 ## Archive Container vs Space Persistency
 
-The Archive Container differs from [Space Persistency](./space-persistency.html) in the following ways:
+The Archive Container differs from [Space Persistency](./space-persistency-overview.html) in the following ways:
 
 - Persisted objects are not read back from the Big-Data storage into the Space.
-- Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the [Space Persistency](./space-persistency.html)).
+- Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the [Space Persistency](./space-persistency-overview.html)).
 - Archive Container uses the [Polling Container](./polling-container-overview.html) behind the scenes, which can be co-located with each space partition.
 
 ## Archive Container running side-by-side with Space Persistency
@@ -224,7 +224,7 @@ For all possible Spring configuration options see the [schema definitions](/api_
 
 
 The example above removes (takeMultiple) objects with a certain timestamp member value from space and writes them onto Cassandra.
-The takeMultiple operations are performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
+The takeMultiple operations are performed on the configured [GigaSpace](./the-gigaspace-interface-overview.html) bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
 The archive operation is performed on the bean that implements the ArchiveOpertaionHandler interface, in this case the CassandraArchiveOperationHandler bean.
 
 For a  real-world example consult the streaming big data example :

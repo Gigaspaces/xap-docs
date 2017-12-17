@@ -219,7 +219,7 @@ When setting the `space-config.engine.lruTouchThreshold` value as **100**, it tu
 
 # Reloading Data
 
-When a persistent space (using [Space Persistency]({{%currentjavaurl%}}/space-persistency.html)), running in **LRU cache policy mode**, is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the `space-config.engine.cache_size` value.
+When a persistent space (using [Space Persistency]({{%currentjavaurl%}}/space-persistency-overview.html)), running in **LRU cache policy mode**, is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the `space-config.engine.cache_size` value.
 
 When the `space-config.engine.memory_usage` is `true` (evicting data from the space, based on free heap size), is it recommended to have a large value for the `space-config.engine.cache_size` property. This instructs the space engine to ignore the amount of space objects when launching the eviction mechanism. This ensures that the eviction is based only on heap size free memory.
 

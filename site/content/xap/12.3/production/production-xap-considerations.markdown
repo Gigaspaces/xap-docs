@@ -290,7 +290,7 @@ To avoid having to load the same library into each PU instance classloader runni
 
 # Space Memory Management
 
-The Space supports two [memory management](../admin/memory-management-overview.html) modes:
+The Space supports two [memory management](../dev-java/memory-management-overview.html) modes:
 
 - `ALL_IN_CACHE` - this assumes all application data is stored within the space.
 - `LRU` - this assumes some of the application data is stored within the space, and all the rest is stored in some external data source.

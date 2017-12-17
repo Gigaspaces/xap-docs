@@ -9,7 +9,7 @@ weight: 400
 
 
 
-The REST API exposing HTTP based interface Space. It is leveraging the [XAP API](./the-gigaspace-interface.html). It support the following methods:
+The REST API exposing HTTP based interface Space. It is leveraging the [XAP API](./the-gigaspace-interface-overview.html). It support the following methods:
 
 1. GET - can be used to perform an introduceType, readByID or a readMultiple action by a space query.
 1. POST - can be used to perform a write / writeMultiple or update / updateMultiple actions.

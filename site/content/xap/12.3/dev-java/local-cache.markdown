@@ -85,9 +85,9 @@ Transactional operations are **always** executed on the master space.
 
 The local cache uses the entry's version to determine whether the local entry is up-to-date or stale when handling updates. Usually this mechanism is transparent to the user and does not require declaring a version property, since the master space and local cache maintain version information for each entry implicitly.
 
-The exception is a master space with an [Space Persistency](./space-persistency.html) enabled - Suppose that an entry in the master space has version 7, and gets cached in the local cache, then evicted from the master space and later reloaded from the data source. If the version is not persisted and reloaded, it will be set to 1 and the local cache will ignore upcoming updates on that entry since its cached version is 7. In that case it is the user's responsibility to make sure that the entry's version is persisted and loaded in the data source, using the following rules:
+The exception is a master space with an [Space Persistency](./space-persistency-overview.html) enabled - Suppose that an entry in the master space has version 7, and gets cached in the local cache, then evicted from the master space and later reloaded from the data source. If the version is not persisted and reloaded, it will be set to 1 and the local cache will ignore upcoming updates on that entry since its cached version is 7. In that case it is the user's responsibility to make sure that the entry's version is persisted and loaded in the data source, using the following rules:
 
-1. Each POJO class should declare a [SpaceVersion](./pojo-support.html#JavaSpacesPOJO-POJOAnnotationsandXMLSpaceMappingFileElements) property.
+1. Each POJO class should declare a [SpaceVersion](./pojo-overview.html#JavaSpacesPOJO-POJOAnnotationsandXMLSpaceMappingFileElements) property.
 1. In the database, you should add a `VERSION_ID` column that will be mapped to this property in the corresponding tables. If you are using Hibernate, add the versionId property to the hbm.xml file or the `@Version` annotation to the mapped class.
 1. When writing new entries the space, it is recommended to use version 0 and let the space implicitly initialize to version 1.
 1. When using template matching to query the space, make sure that the template used has the version ID field set to ZERO to make sure the space will ignore it.
@@ -230,7 +230,7 @@ In order to properly configure the local cache eviction mechanism, you should co
 |space-config.engine.memory_usage.retry_yield_time|100|
 
 {{%refer%}}
-See the [Memory Management Facilities]({{%currentadmurl%}}/memory-management-overview.html) for additional details on these configuration properties.
+See the [Memory Management Facilities](./memory-management-overview.html) for additional details on these configuration properties.
 {{%/refer%}}
 
 {{% tip %}}

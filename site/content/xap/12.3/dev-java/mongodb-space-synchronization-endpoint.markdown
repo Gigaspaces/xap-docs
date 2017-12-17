@@ -127,7 +127,7 @@ An example of how the MongoDB Space Synchronization Endpoint can be configured w
 {{% /tab %}}
 {{% /tabs %}}
 
-For more details about different configurations see [Space Persistency](./space-persistency.html).
+For more details about different configurations see [Space Persistency](./space-persistency-overview.html).
 
 # Before you begin
 

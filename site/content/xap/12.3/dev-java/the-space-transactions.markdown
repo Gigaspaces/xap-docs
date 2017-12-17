@@ -8,7 +8,7 @@ parent: the-gigaspace-interface-overview.html
 
 
 
-`GigaSpace` with the different XAP [transaction managers](./transaction-management.html) and Spring allow simple declarative definition of transactions. This boils down to the fact that if there is an ongoing transaction running, any operation performed using the `GigaSpace` interface joins it, using Spring's rich transaction support.
+`GigaSpace` with the different XAP [transaction managers](./transaction-overview.html) and Spring allow simple declarative definition of transactions. This boils down to the fact that if there is an ongoing transaction running, any operation performed using the `GigaSpace` interface joins it, using Spring's rich transaction support.
 
 {{% note %}}
 In order to have XAP transactional, the transaction manager must be provided as a reference when constructing the GigaSpace bean.
@@ -141,6 +141,6 @@ In the above example, any operation performed using `GigaSpace` in the `updateFo
 
 
 {{%refer%}}
-[Transaction Management](./transaction-management.html)
+[Transaction Management](./transaction-overview.html)
 {{%/refer%}}
 

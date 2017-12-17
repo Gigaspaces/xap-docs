@@ -132,7 +132,7 @@ also asynchronously persists the data using a mirror (see [MongoDB Space Synchro
 {{% /tab %}}
 {{% /tabs %}}
 
-For more details about different configurations see [Space Persistency](./space-persistency.html). 
+For more details about different configurations see [Space Persistency](./space-persistency-overview.html). 
 
 # Before you begin
 
