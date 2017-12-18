@@ -18,8 +18,8 @@ Monitoring a production environment of any system requires inspecting many stati
 
 To overcome these limitations, XAP provides a powerful and versatile [framework for reporting metrics](./metrics-overview.html) - each component can report its own metrics (or even user-defined metrics) to any database or tool the user favours by implementing a [metrics reporter](./metrics-custom-reporter.html). In addition, XAP provides a [built-in reporter for InfluxDB](./metrics-influxdb-reporter.html) and integration with Grafana to provide metrics storage and visualization: 
 
-- [InfluxDB](http://influxdb.com/) is an open-source distributed time-series database with a powerful query language.
-- [Grafana](http://grafana.org) is a graph and dashboard builder for visualizing time-series metrics, which supports InfluxDB (and other data sources).
+- {{%exurl "InfluxDB""http://influxdb.com/"%}} is an open-source distributed time-series database with a powerful query language.
+- {{%exurl "Grafana""http://grafana.org"%}} is a graph and dashboard builder for visualizing time-series metrics, which supports InfluxDB (and other data sources).
 
 Once enabled, XAP reports metrics to InfluxDB, and the Web Management Console provides an embedded Grafana view in the **Monitoring** tab, as well as automatic creation of dashboards in Grafana whenever a new Processing Unit is deployed.
 
@@ -29,8 +29,8 @@ InfluxDB and Grafana are both open-source and free, but are not bundled in XAP d
 
 ## Installation
 
-- InfluxDB (0.9 or later) - Download [here](https://influxdb.com/download/index.html#) and follow the [installation instructions](https://influxdb.com/docs/v0.9/introduction/installation.html).
-- Grafana (2.5 or later) - Download [here](http://grafana.org/download/), and follow the [installation instructions](http://docs.grafana.org/installation/).
+- InfluxDB (0.9 or later) - Download {{%exurl "here""https://influxdb.com/download/index.html"%}} and follow the {{%exurl "installation instructions""https://influxdb.com/docs/v0.9/introduction/installation.html"%}}.
+- Grafana (2.5 or later) - Download {{%exurl "here""http://grafana.org/download/"%}}, and follow the {{%exurl "installation instructions""http://docs.grafana.org/installation/"%}}.
 
 ## Configuration
 
