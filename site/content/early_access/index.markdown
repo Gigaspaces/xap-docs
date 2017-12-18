@@ -25,7 +25,13 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ## Changelog
 
-Features, feature enhancements, and bug fixes are currently in progress but were not completed within this milestone. 
+### Features and Enhancements
+
+- {{% jira id="GS-13452" %}}: Improve responsiveness of remote statistics gathering in Admin API.
+
+### Resolved Issues
+
+- {{% jira id="GS-13236" %}}: The Admin API blocks itself, becoming unresponsive and exploding memory usage.
 
 # 12.3 M9 (Dec-10-2017)
 
@@ -78,7 +84,7 @@ N/A
 ### Features and Enhancements
 
 - {{% jira id="GS-13302" %}}: When the query result set includes only indexes, fetch results from off-heap memory instead of disk.
-- {{% jira id="GS-13433" %}}: Enhance LRMI network buffer allocation strategy by adding support for large objects (>10MB).
+- {{% jira id="GS-13433" %}}: Enhance LRMI network filter buffer allocation strategy by adding support for large objects (>10MB).
 
 ### Resolved Issues
 
