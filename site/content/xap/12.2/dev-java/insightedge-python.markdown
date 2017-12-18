@@ -29,13 +29,13 @@ For example, start InsightEdge in demo mode:
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-<XAP-HOME>/insightedge/bin/insightedge.sh --mode demo
+<XAP-HOME>/insightedge/bin/insightedge.sh demo
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-<XAP-HOME>\insightedge\bin\insightedge.cmd --mode demo
+<XAP-HOME>\insightedge\bin\insightedge.cmd demo
 ```
 {{%/tab%}}
 {{%/tabs%}}
