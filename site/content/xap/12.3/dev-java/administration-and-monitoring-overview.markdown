@@ -52,7 +52,6 @@ public void gsa() {
 
 
 ```java
-
 public void gsm() {
 	Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
 	// wait till things get discovered (you can also use specific waitFor)
@@ -61,7 +60,6 @@ public void gsm() {
 				+ gsm.getMachine().getHostAddress());
 	}
 }
-
 ```
 
 {{% /tab %}}
@@ -244,7 +242,6 @@ public void machine() {
 			}
 	}
 }
-
 ```
 
 {{% /tab %}}
@@ -288,7 +285,6 @@ Obtaining information about the currently deployed services/components via the s
 			}
 		}
 	}
-
 ```
 {{%/tab%}}
 
@@ -307,7 +303,6 @@ Obtaining information about the currently deployed services/components via the s
 			}
 		}
 	}
-
 ```
 {{%/tab%}}
 
@@ -325,7 +320,7 @@ Obtaining information about the currently deployed services/components via the s
 				// ....
 			}
 		}
-
+	}
 ```
 {{%/tab%}}
 
@@ -707,8 +702,7 @@ public static void printAllClassInstanceCountForAllPartitions (Admin admin , Str
 
 	for (int i = 0; i < spacePartitions.length; i++) {
 		SpacePartition partition = spacePartitions [i];
-		while (partition.getPrimary()==null)
-		{
+		while (partition.getPrimary()==null){
 			Thread.sleep(1000);
 		}
 
@@ -716,8 +710,7 @@ public static void printAllClassInstanceCountForAllPartitions (Admin admin , Str
 		System.out.println ("Partition " + partition.getPartitionId() + " Primary:");
 		Map<String, Integer> classInstanceCountsPrimary = primaryInstance.getRuntimeDetails().getCountPerClassName();
 		Iterator<String> keys = classInstanceCountsPrimary.keySet().iterator();
-		while (keys.hasNext())
-		{
+		while (keys.hasNext()){
 			String className = keys.next();
 			System.out.println ("Class:" + className +" Instance count:" + classInstanceCountsPrimary.get(className));
 		}
@@ -727,12 +720,10 @@ public static void printAllClassInstanceCountForAllPartitions (Admin admin , Str
 
 		Map<String, Integer> classInstanceCountsBackup = backupInstance .getRuntimeDetails().getCountPerClassName();
 		keys = classInstanceCountsPrimary.keySet().iterator();
-		while (keys.hasNext())
-		{
+		while (keys.hasNext()){
 			String className = keys.next();
 			System.out.println ("Class:" + className +" Instance count:" + classInstanceCountsBackup.get(className));
 		}
-
 	}
 }
 
@@ -756,8 +747,8 @@ The mirror statistics are available using the `SpaceInstance` statistics. They c
 ```java
 for (Space space : admin.getSpaces()) {
     System.out.println("Space [" + space.getUid() + "] numberOfInstances [" +
-     space.getNumberOfInstances() + "] numberOfbackups [" +
-     space.getNumberOfBackups() + "]");
+    space.getNumberOfInstances() + "] numberOfbackups [" +
+    space.getNumberOfBackups() + "]");
 
     for (SpaceInstance spaceInstance : space) {
         System.out.println("   -> INSTANCE [" + spaceInstance.getUid() + "] instanceId [" + spaceInstance.getInstanceId() +
@@ -766,16 +757,13 @@ for (Space space : admin.getSpaces()) {
 
          MirrorStatistics mirrorStat = spaceInstance.getStatistics().getMirrorStatistics();
          // check if this instance is mirror
-         if(mirrorStat != null)
-         {
-
+         if(mirrorStat != null){
             System.out.println("Mirror Stats:");
             System.out.println("total operation count:" + mirrorStat.getOperationCount());
             System.out.println("successful operation count:" + mirrorStat.getSuccessfulOperationCount());
             System.out.println("failed operation count:" + mirrorStat.getFailedOperationCount());
          }
     }
-
 }
 
 ```
@@ -797,11 +785,8 @@ Here is an example:
 public class ProcessingUnitStatusChanged {
 
 	public void processingUnitStatusChanged() {
-
 		Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
-
 		MyProcessingUnitStatusChangedEventListener listener = new MyProcessingUnitStatusChangedEventListener();
-
 		admin.addEventListener(listener);
 	}
 }
@@ -819,7 +804,6 @@ public class MyProcessingUnitStatusChangedEventListener implements
 			ProcessingUnitStatusChangedEvent event) {
 
 		DeploymentStatus newStatus = event.getNewStatus();
-
 		if (newStatus.equals(DeploymentStatus.INTACT))
 		{
 			// All has settled down
@@ -836,13 +820,13 @@ For monitoring purposes, the Processing Unit can be queried to show its deployme
 
 
 ```java
-ProcessingUnit processingUnit = admin.getProcessingUnits().getProcessingUnit("myProceessingUnitName");
-Properties properties = new Properties();
-properties.put("Name", processingUnit.getName());
-properties.put("Status", processingUnit.getStatus());
-properties.put("Type", processingUnit.getType());
-properties.put("Actual/Planned", processingUnit.getInstances().length + "/" + processingUnit.getPlannedNumberOfInstances());
-properties.put("SLA", processingUnit.getNumberOfInstances() + (processingUnit.getNumberOfBackups()>0 ? "," + processingUnit.getNumberOfBackups(): ""));
+    ProcessingUnit processingUnit = admin.getProcessingUnits().getProcessingUnit("myProceessingUnitName");
+    Properties properties = new Properties();
+    properties.put("Name", processingUnit.getName());
+    properties.put("Status", processingUnit.getStatus());
+    properties.put("Type", processingUnit.getType());
+    properties.put("Actual/Planned", processingUnit.getInstances().length + "/" + processingUnit.getPlannedNumberOfInstances());
+    properties.put("SLA", processingUnit.getNumberOfInstances() + (processingUnit.getNumberOfBackups()>0 ? "," + processingUnit.getNumberOfBackups(): ""));
 ```
 
 {{%anchor servicemonitors%}}
@@ -870,23 +854,14 @@ public void serviceMonitors() {
     Admin admin = new AdminFactory().createAdmin();
 
 	for (ProcessingUnit processingUnit : admin.getProcessingUnits()) {
-
 		for (ProcessingUnitInstance processingUnitInstance : processingUnit.getInstances()) {
-
 			ProcessingUnitInstanceStatistics processingUnitInstanceStatistics = processingUnitInstance.getStatistics();
-
 			if (processingUnitInstanceStatistics != null) {
-
 				WebRequestsServiceMonitors webRequestsServiceMonitors = processingUnitInstanceStatistics.getWebRequests();
-
 				RemotingServiceMonitors remoting = processingUnitInstanceStatistics.getRemoting();
-
 				Map<String, EventContainerServiceMonitors> eventContainers = processingUnitInstanceStatistics.getEventContainers();
-
 				Map<String, PollingEventContainerServiceMonitors> pollingEventContainers = processingUnitInstanceStatistics.getPollingEventContainers();
-
 				Map<String, NotifyEventContainerServiceMonitors> notifyEventContainers = processingUnitInstanceStatistics.getNotifyEventContainers();
-
 				Map<String, AsyncPollingEventContainerServiceMonitors> asyncPollingEventContainers = processingUnitInstanceStatistics.getAsyncPollingEventContainers();
 			}
 		}
@@ -909,13 +884,9 @@ public void serviceMonitorsEventListeners() {
 
 		@Override
 		public void processingUnitInstanceStatisticsChanged(ProcessingUnitInstanceStatisticsChangedEvent event) {
-
 		    ProcessingUnitInstanceStatistics statistics = event.getStatistics();
-
 			Map<String, EventContainerServiceMonitors> eventContainers = statistics.getEventContainers();
-
 			WebRequestsServiceMonitors webRequests = statistics.getWebRequests();
-
 			// .....
 		}
 	});
@@ -940,12 +911,8 @@ You can also change the intervals individually:
 
 ```java
 Spaces.setStatisticsInterval(30l, TimeUnit.SECONDS);
-
 VirtualMachines.setStatisticsInterval(10l, TimeUnit.MINUTES);
-
 Transports.setStatisticsInterval(10l, TimeUnit.SECONDS);
-
 OperatingSystems.setStatisticsInterval(3l, TimeUnit.MINUTES);
-
 ProcessingUnits.setStatisticsInterval(30l, TimeUnit.SECONDS);
 ```

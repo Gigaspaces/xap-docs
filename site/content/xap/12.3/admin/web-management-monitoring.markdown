@@ -70,23 +70,22 @@ Some InfluxDB packages do not automatically create the default `mydb` database. 
 
 Once you've installed InfluxDB and Grafana and configured `metrics.xml`, start the Web Management Console and navigate to the **Monitoring** tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default `admin`/`admin`, and you'll get the home page):
 
-{{% popup "/attachment_files/web-console/monitor.jpg"  %}}
+![image](/attachment_files/web-console/monitor.jpg)
 
 Since we haven't deployed anything yet, the **Dashboards** list is empty. Go ahead and deploy a space or any other processing unit - you'll notice a default dashboard is created for each processing unit and space, with graphs showing commonly used metrics.
 
 # Dashboards
 
-Click on image in order to see it in whole size
-{{% popup "/attachment_files/web-console/monitor1.jpg"  %}}
+![image](/attachment_files/web-console/monitor1.jpg)
 
-<br>
+ 
 
 ## Default Space dashboard
-Click on image in order to see it in whole size
-{{% popup "/attachment_files/web-console/monitor2.jpg"  %}}
+ 
+![image](/attachment_files/web-console/monitor2.jpg)
 
-<br>
+ 
 
-## Default Processing Unit dashboard
-Click on image in order to see it in whole size
-{{% popup "/attachment_files/web-console/monitor3.jpg"  %}}
+## Default Processing Unit dashboard 
+ 
+![image](/attachment_files/web-console/monitor3.jpg)
