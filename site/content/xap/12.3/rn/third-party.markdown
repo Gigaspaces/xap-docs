@@ -26,7 +26,8 @@ This page list all the third-party libraries shipped with InsightEdge and XAP on
 | [Velocity](http://velocity.apache.org/) | 1.5 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | No | Utilities |
 | [Maven](http://maven.apache.org/) | 3.0.2| [Apache2](https://www.apache.org/licenses/) | No | OpenSpaces Maven Integration |
 | [Ant](http://ant.apache.org/) | 1.9.4 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | No | Examples |
-|[Apache Zookeeper](https://zookeeper.apache.org/) | 3.4.8 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | No | XAP Manager |
+|[Apache Zookeeper](https://zookeeper.apache.org/) | 3.4.8 | [Apache2](https://www.apache.org/licenses/LICENSE-2.0.html) | No | XAP Manager |
+|[Apache  Spark](https://spark.apache.org/) | 2.2.0 |        [Apache2](https://www.apache.org/licenses/LICENSE-2.0.html) | No | XAP Manager |
 
 {{% /tab %}}
 
