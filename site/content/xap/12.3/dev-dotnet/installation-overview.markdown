@@ -12,35 +12,33 @@ weight: 100
 This guide provides step by step instructions on how to download and install XAP.
 
 
-<br>
-
-{{%note%}}
-The latest version of XAP can be downloaded {{%exurl "here" "http://www.gigaspaces.com/xap-download"%}}.
-For a list of supported platforms please consult [the release notes](/release_notes)
+{{%note "Note"%}}
+The latest version of XAP can be downloaded {{%exurl "here" "http://www.gigaspaces.com/xap-download"%}}. For a list of supported platforms, refer to the [release notes](../rn/supported-platforms.html).
 {{%/note%}}
 
-<br>
 
-{{%fpanel%}}
+**Required Software:** {{%exurl "Microsoft .NET Framework 3.5" "https://msdn.microsoft.com/en-us/library/w0x726c2.aspx"%}} or later.
 
-[Basic installation](./installation.html){{<wbr>}}
-Basic installation instructions.
-
-[XAP License](../started/license-key.html){{<wbr>}}
-Getting a license key and defining it in the space schema.
-
-[Advanced installation](./advanced-installation-scenarios.html){{<wbr>}}
-Common questions and answers about XAP.NET installations.
-
-[Product structure](./product-structure.html){{<wbr>}}
-XAP .NET basic artifacts.
-
-[XAP as a Windows Service](./gigaspaces-services-manager.html){{<wbr>}}
-Setting up XAP as a Windows Service.
-
-[Debugging and monitoring](./debugging-a-xapnet-application.html){{<wbr>}}
-Debugging and monitoring a .NET application.
+**Recommended Software** {{%exurl "Microsoft .NET Framework 4.0" "https://msdn.microsoft.com/en-us/library/w0x726c2.aspx"%}} or later.
 
 
-{{%/fpanel%}}
+**Supported Operating Systems:** Any Windows operating system supported by the designated .NET Framework version.
 
+**64-bit support:** XAP.NET is released in two separate packages for x86 and x64. The XAP.NET x86 package can be installed on a x64 environment and run using {{%exurl "WoW64" "http://msdn.microsoft.com/en-us/library/aa384249.aspx"%}}.
+
+#  Installation
+
+GigaSpaces XAP.NET is packaged as a standard Windows Installer package (`.msi` file). To start the installation simply double-click the msi file, and the installation wizard will pop up and guide you through the installation process. After you accept the license agreement, you will see the standard installation details screen, allowing you to modify the installation path (default is `C:\GigaSpaces\XAP.NET {{%currentversion%}} x86` or `x64`) and which features to install.
+
+## Other Installation Options
+
+GigaSpaces XAP.NET offers more installation scenarios and customizations. For example:
+
+- Command-line installation.
+- Packaging XAP.NET in another installation package.
+- Side-by-side installations.
+- Using a different JVM.
+
+{{%refer%}}
+For more information about installing XAP.NET, refer to [Advanced Installation Scenarios](./advanced-installation-scenarios.html).
+{{%/refer%}}

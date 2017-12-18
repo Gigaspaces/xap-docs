@@ -8,20 +8,11 @@ weight: 1500
 
 
 
-The Processing Unit is the unit of packaging and deployment in the GigaSpaces XAP platform. This section describes its directory structure, deployment descriptor and SLA definition and configuration.
+The Processing Unit is the unit of packaging and deployment in the GigaSpaces XAP platform. This section describes its directory structure, deployment descriptor, and SLA definition and configuration.
 
 
-<br>
+- [Processing Unit Configuration](./pu-config.html) - You can configure a  processing unit to create embedded Spaces, connect to remote Spaces, and more.
+- [Processing Unit Components](./pu-components.html) - You can creating user-defines components that execute user-defined code on the server side.
+- [Cluster Information](./obtaining-cluster-information.html) - Information about the clustering topology, member ID and other related information can be provided to the Processing Unit instances at deployment time.
 
-{{%fpanel%}}
 
-[Processing Unit Configuration](./pu-config.html){{<wbr>}}
-Configuring processing units to create embedded spaces, connect to remote spaces, and more.
-
-[Processing Unit Components](./pu-components.html){{<wbr>}}
-Creating processing unit components to execute user-defined code at the server side.
-
-[Cluster Information](./obtaining-cluster-information.html){{<wbr>}}
-Obtaining information about the clustering topology, member id and other cluster related information can be useful in many cases. Cluster information can be provided to the processing unit instances at deployment time.
-
-{{%/fpanel%}}

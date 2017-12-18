@@ -20,11 +20,11 @@ This guide provides step by step instructions on how to download and install XAP
 [PONO Support](./poco-overview.html){{<wbr>}}
 Understanding the semantics of Space Entries and .NET Objects
 
-[Document API](./document-overview.html){{<wbr>}}
-The XAP document API exposes the space as Document Store. A document, which is represented by the class SpaceDocument, is essentially collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof.
+[Space Document](./document-overview.html){{<wbr>}}
+The XAP document API exposes the Space as a Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof.
 
-[Modeling your Data](./modeling-your-data.html){{<wbr>}}
-Modeling your objects that are used to interact with the space.
+[Data Modeling](./modeling-your-data.html){{<wbr>}}
+Modeling your objects that are used to interact with the Space.
 
 [The Space Interface](./the-gigaspace-interface-overview.html){{<wbr>}}
 This section includes information about the different APIs for accessing and manipulating the Space data
@@ -35,16 +35,13 @@ This section explains the various mechanisms offered by GigaSpaces XAP to query 
 [Indexing](./indexing-overview.html){{<wbr>}}
 This section explains the various mechanisms offered by GigaSpaces XAP to query the space for data, as well as related topics, such as how to use indexing to boost query performance and how the space can be iterated to fetch entries more efficiently.
 
-[FIFO Support](./fifo-overview.html){{<wbr>}}
-Supporting FIFO (First In, First Out) behavior for Entries is a critical requirement when building messaging systems or implementing master-worker patterns. Users should be able to get Entries in the same order in which they were written. GigaSpaces supports both non-ordered Entries and FIFO ordered Entries when performing space operations.
-
 [Transactions](./transaction-overview.html){{<wbr>}}
 XAP .NET provides an explicit transaction management programing model. It allows developers to easily write transactional code with the lowest overhead possible while minimizing the amount of hand-crafted code and separating it from the application hosting environment and instance management.
 
-[Space Persistence](./space-persistency-overview.html){{<wbr>}}
+[Space Persistency](./space-persistency-overview.html){{<wbr>}}
 Using the GigaSpaces External Data Source interface to persist data stored in the space
 
-[Client Side Caching](./client-side-caching.html){{<wbr>}}
+[Client-Side Caching](./client-side-caching.html){{<wbr>}}
 Using the GigaSpaces External Data Source interface to persist data stored in the space
 
 [Task Execution](./task-execution-overview.html){{<wbr>}}
@@ -53,7 +50,7 @@ XAP support executing tasks in a collocated Space (processing unit that started 
 [Event Processing](./event-processing.html){{<wbr>}}
 This section will guide you through event processing APIs and configuration on top of the space.
 
-[Space Based Remoting](./space-based-remoting-overview.html){{<wbr>}}
+[Space-Based Remoting](./space-based-remoting-overview.html){{<wbr>}}
 Remoting allows you to use remote invocations of PONO services, with the space as the transport layer.
 
 [Admininstration API](./admin-modules.html){{<wbr>}}
