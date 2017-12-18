@@ -420,3 +420,8 @@ You should use the primitive wrapper types, as the operation semantic is to retu
 
 1. If replicated to a gateway and a conflict occurs, the change operation only supports the built-in `abort` resolution as `override` in change case may result with an inconsistent state of the object.
 1. The change operation is converted to a regular update when delegated to a synchronous data source.
+
+
+# Limitations
+
+`rownum`   is not supported with the Changeset SQLQuery operation.
