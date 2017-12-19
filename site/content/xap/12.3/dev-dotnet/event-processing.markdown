@@ -10,26 +10,9 @@ weight: 1200
 
 
 
-This section will guide you through event processing APIs and configuration on top of the space.
+This section the event processing APIs and how to configure them on top of the space. The relevant APIs include the [Notify Container](./notify-container-overview.html), which wraps the Space data event session API with event container abstraction, and the [Polling Container](./polling-container-overview.html), which allows you to perform polling receive operations against the Space.
 
+The [Event Listener Container](./event-listener-container.html) is an interface that represents an abstraction for subscribing to, and receiving events over a Space proxy.
 
-
-
-{{%fpanel%}}
-
-[Event Listener Container](./event-listener-container.html){{<wbr>}}
-IEventListenerContainer is an interface that represents an abstraction for subscribing to, and receiving events over a space proxy.
-
-[Notify Container](./notify-container-overview.html){{<wbr>}}
-The notify event container wraps the space data event session API with event container abstraction.
-
-[Polling Container](./polling-container-overview.html){{<wbr>}}
-Allows you to perform polling receive operations against the space.
-
-[FIFO Ordering](./fifo-overview.html){{<wbr>}}
-XAP supports both non-ordered Entries and FIFO ordered Entries when performing space operations.
-
-{{%/fpanel%}}
-
-
+Regarding [FIFO Ordering](./fifo-overview.html), XAP supports both non-ordered Entries and FIFO ordered Entries when performing space operations.
 

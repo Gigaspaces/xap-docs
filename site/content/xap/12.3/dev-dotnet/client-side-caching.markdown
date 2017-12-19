@@ -1,32 +1,24 @@
 ---
 type: post123
-title:  Client Side Caching
+title:  Client-Side Caching
 categories: XAP123NET, PRM
 parent: none
 weight: 1000
 ---
 
 
-XAP supports client side caching of space data within the client application's JVM. When using client-side caching, the user essentially uses a two-layer cache architecture: The first layer is stored locally, within the client's JVM, and the second layer is stored within the remote master space. The remote master space may be used with any of the supported deployment topologies.
+XAP supports client-side caching of Space data within the client application's JVM. When using client-side caching, the user essentially uses a two-layer cache architecture: The first layer is stored locally, within the client's JVM, and the second layer is stored within the remote master Space. The remote master Space may be used with any of the supported deployment topologies.
 
 
-<br>
+The following caching options are available:
 
-{{%fpanel%}}
+- [Local Cache](./local-cache.html) - A local cache allows the client application to cache recently used data at the client memory address, and have it updated automatically by the Space when that data changes.
+- [Local View](./local-view.html) - A Local View allows the client application to cache specific data based on client's criteria at the client memory address, and have it updated automatically by the Space when that data changes.
 
-[Local Cache](./local-cache.html){{<wbr>}}
-A local cache allows the client application to cache recently used data at the client memory address and have it updated automatically by the space when that data changes.
 
-[Local View](./local-view.html){{<wbr>}}
-A Local View allows the client application to cache specific data based on client's criteria at the client memory address and have it updated automatically by the space when that data changes.
+# Additional Resources
 
-{{%/fpanel%}}
-
-<br>
-
-#### Additional Resources
-
-- For a detailed description of the different caching scenarios please consult the [Product Overview](../overview/caching-scenarios.html)
+For a detailed description of the different caching scenarios, refer to [Caching Scenarios](../overview/caching-scenarios.html) in the Product Overview.
 
 
 

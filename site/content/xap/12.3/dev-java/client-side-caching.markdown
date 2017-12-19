@@ -35,9 +35,8 @@ For more information on dependencies, refer to [Maven Artifacts](../started/mave
 
 # Additional Resources
 
-- For a detailed description of the different caching scenarios please consult the [Product Overview](../overview/caching-scenarios.html)
-
-- For more advanced WAN based topologies see the [Multi-Site Replication over the WAN](./multi-site-replication-overview.html) section.
+- For a detailed description of the different caching scenarios, refer to [Caching Scenarios](../overview/caching-scenarios.html) in the Product Overview.
+- For more advanced WAN- based topologies see the [Multi-Site Replication over the WAN](./multi-site-replication-overview.html) section.
 
 
 

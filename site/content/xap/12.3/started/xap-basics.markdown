@@ -9,11 +9,14 @@ This section provides some hands-on examples to demonstrate the core concepts an
 
 {{%fpanel%}}
 
-[Setting up your IDE](xap-ide.html){{<wbr>}}
-Setting up your IDE to work with XAP.
+[XAP Open-Source Functionality](xap-open-source.html){{<wbr>}}
+A summary of the features and functionality that are available in the XAP open-source edition.
+
+[Setting Up your IDE](xap-ide.html){{<wbr>}}
+Set up your IDE to enable working with XAP.
 
 [Maven](installation-maven-overview.html){{<wbr>}}
-Installing the XAP Maven plugin, creating and running a Processing Unit project.
+Install the XAP Maven plugin, so you can create and run a Processing Unit project.
   
 [XAP in 5 minutes](xap-in-5-minutes.html)<br>
 This tutorial explains how to deploy and use a XAP [Data Grid](../overview/the-in-memory-data-grid.html) from a Java client application.
@@ -21,6 +24,8 @@ This tutorial explains how to deploy and use a XAP [Data Grid](../overview/the-i
 [Interacting with the Space](xap-tutorial-part1.html)<br>
 In this part of the tutorial we will demonstrate how to create a Space and how you can interact with it. We will also demonstrate how you can improve your space search performance by using indexes and returning partial results.
  
+[Data Partitioning](data-partitioning.html){{<wbr>}}
+An overview the the available data partition topologies available for the XAP in-memory data grid. 
 
 [Deploying a Space](xap-tutorial-part2.html)<br>
 In the previous section  you have learned about XAP's capabilities as a data store. In this part of the tutorial we will show you how you can deploy an In Memory Data Grid (IMDG) that provides scalability and failover.
@@ -50,7 +55,7 @@ In this part of the tutorial we will introduce you to XAP security, where it fit
 [Multi-Tiered Data Storage (SSD)](blobstore.html)<br>
 This guide describes the general architecture and functionality of this storage model that is leveraging both on-heap, off-heap and SSD implementation, called MemoryXtend.
 
-[Unit testing](xap-junit.html)<br>
+[JUnit testing](xap-junit.html)<br>
 Creating unit tests for XAP and processing units with different topologies.
 
 [Debugging](xap-debug.html)<br>

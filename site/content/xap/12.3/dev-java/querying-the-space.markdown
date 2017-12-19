@@ -20,9 +20,9 @@ weight: 800
 - [Nested property query](./query-nested-properties.html) - Use SQL queries on nested properties, maps and collections.
 - [Query with user-defined classes](./query-user-defined-classes.html) - Query by matching a user-defined class. 
  
-You can also perform a [free text search](./query-free-text-search.html) for records that include one or more words within a free text field, and a [full text search](./query-full-text-search.html) that leverages the Lucene search engine library/
+You can also perform a [free text search](./query-free-text-search.html) for records that include one or more words within a free text field, and a [full text search](./query-full-text-search.html) that leverages the Lucene search engine library.
  
-The following related topics describe how to use indexing to boost query performance and how the space can be iterated to fetch entries more efficiently:
+The following related topics describe how to use indexing to boost query performance, and how the Space can be iterated to fetch entries more efficiently:
 
 - [Paging support](./query-paging-support-old.html) - Reading a large number of objects using multiple queries in one call, in a continuous manner.
 - [Partial results - Projection](./query-partial-results.html) - You can obtain partial results when querying the Space, to improve application performance and reduce the memory footprint.

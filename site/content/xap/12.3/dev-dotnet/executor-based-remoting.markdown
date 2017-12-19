@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Executor Based Remoting
+title:  Executor-Based Remoting
 categories: XAP123NET, PRM
 parent: space-based-remoting-overview.html
 weight: 200

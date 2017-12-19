@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Space Based Remoting
+title:  Space-Based Remoting
 categories: XAP123, OSS
 parent: none
 weight: 1600
