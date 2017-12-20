@@ -9,21 +9,21 @@ weight: 300
 {{% ssummary %}}{{% /ssummary %}}
 
 
-XAP offers interoperability between documents and POJOs via the space - it is possible to write POJOs and read them back as documents, and vice versa. This is usually useful in scenarios requiring reading and/or manipulating POJO objects without loading the concrete java classes.
+XAP offers interoperability between documents and POJOs via the Space - it is possible to write POJOs and read them back as documents, and vice versa. This is usually useful in scenarios requiring reading and/or manipulating POJO objects without loading the concrete Java classes.
 
 {{%align center%}}
 ![document_arch2.jpg](/attachment_files/document_arch2.jpg)
 {{%/align  %}}
 
-{{% tip %}}
-In previous releases the `ExternalEntry` class was used to achieve this functionality. Starting with 8.0, the `SpaceDocument` class should be used to accomplish these needs in a simpler and safer manner, whereas `ExternalEntry` has been deprecated and should no longer be used.
+{{% tip "Tip"%}}
+In previous releases, the `ExternalEntry` class was used to achieve this functionality. Starting with 8.0, the `SpaceDocument` class should be used to accomplish these needs in a simpler and safer manner, whereas `ExternalEntry` has been deprecated and should no longer be used.
 {{%/tip%}}
 
 # Requirements
 
-When working with documents, the user is in charge of creating and registering the space type descriptor manually before interacting with the document types. When working with POJOs, the system implicitly generates a space type descriptor for the POJO's class using annotations or `gs.xml` files when the class is used for the first time. In order to inter-operate, the same type descriptor should be used for both POJOs and documents.
+When working with documents, the user is in charge of creating and registering the Space type descriptor manually before interacting with the document types. When working with POJOs, the system implicitly generates a Space type descriptor for the POJO's class using annotations or `gs.xml` files when the class is used for the first time. In order to inter-operate, the same type descriptor should be used for both POJOs and documents.
 
-If the POJO's class is in the application's classpath, or the POJO is already registered in the space, there's no need to register it again - the application will retrieve it automatically when it's used for the first time. For example:
+If the POJO's class is in the application's classpath, or the POJO is already registered in the Space, there's no need to register it again - the application will retrieve it automatically when it is used for the first time. For example:
 
 
 ```java
@@ -33,7 +33,7 @@ SpaceDocument template = new SpaceDocument(MyPojo.class.getName());
 int count = gigaSpace.count(template);
 ```
 
-If the POJO's class is not available in the classpath or in the data grid, the application will throw an exception indicating that there is no type descriptor registered for the specified type. In that case, it is possible to manually create a matching type descriptor using the `SpaceTypeDescriptorBuilder` and register it in the space. However, that's not recommended since it essentially requires you to duplicate all the POJO settings and maintain them if the POJO changes.
+If the POJO's class is not available in the classpath or in the data grid, the application will throw an exception indicating that there is no type descriptor registered for the specified type. In that case, it is possible to manually create a matching type descriptor using the `SpaceTypeDescriptorBuilder` and register it in the Space. However, this is not recommended since it essentially requires duplicating all the POJO settings and maintaining them if the POJO changes.
 
 # Query Result Type
 
@@ -62,7 +62,7 @@ The `SQLQuery` class has been enhanced with a `QueryResultType` parameter. The f
 
 - `OBJECT` - Return java Object(s) (POJO).
 - `DOCUMENT` - Return space document(s).
-- `DEFAULT` - If the type is registered with a concrete java class, return an Object. Otherwise, return a document. This is the default behavior.
+- `DEFAULT` - If the type is registered with a concrete Java class, return an object. Otherwise, return a document. This is the default behavior.
 
 For example:
 
@@ -86,9 +86,9 @@ SpaceDocument document = gigaSpace.read(
 
 This strategy both preserves backwards compatibility and simplifies non-interoperability scenarios, which are more common than interoperability scenarios.
 
-#### ID Based Query
+#### ID-Based Query
 
-In order to support ID queries for documents, the `IdQuery` class has been introduced, which encapsulates the type, id, routing and a `QueryResultType`. New `GigaSpace` signatures have been added for `readById`, `readIfExistsById`, `takeById`, `takeIfExistsById`. The result type is determined by the `QueryResultType`, similar to `SQLQuery`.
+In order to support ID queries for documents, the `IdQuery` class has been introduced, which encapsulates the type, ID, routing and a `QueryResultType`. New `GigaSpace` signatures have been added for `readById`, `readIfExistsById`, `takeById`, and `takeIfExistsById`. The result type is determined by the `QueryResultType`, similar to `SQLQuery`.
 
 For example:
 
@@ -109,7 +109,7 @@ SpaceDocument document = gigaSpace.readById(
         QueryResultType.DOCUMENT));
 ```
 
-Respectively, to support multiple ids queries, `IdsQuery` was also introduced, with new signatures for `readByIds` and `takeByIds`. For example:
+Respectively, to support multiple ID queries, `IdsQuery` was also introduced, with new signatures for `readByIds` and `takeByIds`. For example:
 
 
 ```java
@@ -130,21 +130,20 @@ SpaceDocument[] documents = gigaSpace.readByIds(
         ids, QueryResultType.DOCUMENT)).getResultsArray();
 ```
 
-{{% info %}}
-The original `readById` (and related methods) signatures are not suited for document types, since they require a concrete java class. They always return POJO(s).
+{{% info "Info"%}}
+The original `readById` (and related methods) signatures are not suited for document types, because they require a concrete Java class. They always return POJO(s).
 {{%/info%}}
 
 # Dynamic Properties
 
+When a type descriptor is created from a POJO class, the type descriptor builder checks if the POJO class supports [Dynamic Properties](./dynamic-properties.html). If it doesn't, the type descriptor will also not support dynamic properties. If a Space document is created using the same type with a property that is not defined in the POJO and written to the Space, an exception is thrown indicating the property is not defined in the type and the type does not support dynamic properties.
 
-When a type descriptor is created from a POJO class, the type descriptor builder checks if the POJO class supports [Dynamic Properties](./dynamic-properties.html) (new in 8.0.1). If it doesn't, the type descriptor will also not support dynamic properties. If a space document will be created using the same type with a property that is not defined in the POJO and written to the space, an exception will be thrown indicating the property is not defined in the type and the type does not support dynamic properties.
-
-It is possible to manually create a `SpaceTypeDescriptor` of the POJO using the `SpaceTypeDescriptorBuilder` and enable dynamic properties. Note, however, that in that case if client A writes a document with a dynamic property and client B reads it as a POJO, the dynamic property will be ignored, and if client B will proceed to update the entry the dynamic property will be deleted from the space.
+It is possible to manually create a `SpaceTypeDescriptor` of the POJO using the `SpaceTypeDescriptorBuilder` and enable dynamic properties. However, if client A writes a document with a dynamic property and client B reads it as a POJO, the dynamic property will be ignored, and if client B proceeds to update the entry the dynamic property is deleted from the Space.
 
 # Deep Interoperability
 
 
-If the POJO contains properties which are POJO themselves, the space will implicitly convert these properties to space documents as needed.
+If the POJO contains properties which are POJO themselves, the Space implicitly converts these properties to Space documents as needed.
 For example:
 
 
@@ -164,7 +163,7 @@ SpaceDocument personDoc = gigaSpace.read(template);
 SpaceDocument addressDoc = personDoc.getProperty("address");
 ```
 
-This works the other way around as well - if a space document is created with a nested space document property, it will be converted to a POJO with a nested POJO property when read as a POJO.
+This works the other way around as well - if a Space document is created with a nested Space document property, it will be converted to a POJO with a nested POJO property when read as a POJO.
 
 If you prefer to disable this implicit conversion and preserve the nested POJO instance within document entries, use the `@SpaceProperty` annotation and set `documentSupport` to `COPY`:
 
@@ -195,26 +194,22 @@ Address addressPojo = personDoc.getProperty("address");
 
 The `SpaceDocumentSupport` can be one of the following:
 
-- `CONVERT` -- Value is converted to/from space document, according to the operation's context.
-- `COPY` -- Value reference is copied as-is - no conversion is performed.
+- `CONVERT` -- Value is converted to/from a Space document, according to the operation's context.
+- `COPY` -- Value reference is copied as-is, and no conversion is performed.
 - `DEFAULT` -- Behavior will be determined automatically according to the object's class.
 
 This behavior applies to arrays and collections as well (for example, if `Person` would have `List<Address> getAddresses()`, it would be converted to a list of address documents).
 
-{{% note %}}
-This feature is new 8.0.1. In previous releases, there's no implicit conversion of nested properties.
-{{%/note%}}
-
 # Local View / Cache
 
-[Local View](./local-view.html) and [Local Cache](./local-cache.html) supports both POJOs and Documents. Unlike an embedded space, the entry is stored in the cache as a user object (either POJO or document), which speeds up query performance since the result entries do not have to be transformed.
+[Local View](./local-view.html) and [Local Cache](./local-cache.html) supports both POJOs and Documents. Unlike an embedded Space, the entry is stored in the cache as a user object (either POJO or document), which speeds up query performance since the result entries do not have to be transformed.
 
-When working with POJOs only or Documents only, this is not an issue. However, when working in a mixed POJO-document environment it is important to understand how the objects are stored in cache to assure optimal performance.
+When working with POJOs only or documents only, this is not an issue. However, when working in a mixed POJO-document environment, it is important to understand how the objects are stored in cache to assure optimal performance.
 
 Local view is defined by one or more views, which are essentially SQL queries, so the query result type discussed above actually determines if the objects are stored locally as POJOs or documents.
 
-Local cache stores its object locally according to the master space: If a POJO entry was written to the master space, it will be kept in the local cache as a POJO as well, and if a document entry is written to the master it will be kept as document in the local cache. If a user asks the local cache for a document result but the entry is stored as a POJO it will be converted, and vice versa.
+Local cache stores its object locally according to the master Space; if a POJO entry was written to the master Space, it will be kept in the local cache as a POJO as well, and if a document entry is written to the master it will be kept as document in the local cache. If a user asks the local cache for a document result but the entry is stored as a POJO it will be converted, and vice versa.
 
 # Space Filters and Space Replication Filters
 
-Space Filters are supported for space documents. If the space type descriptor that is registered in the space contains the POJO class, the entry will be passed to the filter as a POJO. Otherwise, it will be passed to the filter as a document.
+Space Filters are supported for Space documents. If the Space type descriptor that is registered in the Space contains the POJO class, the entry is passed to the filter as a POJO. Otherwise, it is passed to the filter as a document.
