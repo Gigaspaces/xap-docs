@@ -113,3 +113,4 @@ Note that when adding a listener to the session with a specified lease, the maxi
 # Notes
 
 - Durable Notifications are always in FIFO ordering.
+- The applicable replication parameters are described in the [Replication Parameters](../admin/replication-parameters.html#durable-notifications-parameters) section of the Administration guide.

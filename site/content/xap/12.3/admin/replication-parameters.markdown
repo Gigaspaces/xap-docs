@@ -91,8 +91,7 @@ The following parameters are low level configuration that relates to the swap re
 | cluster-config.groups.group.repl-policy.swap-redo-log.max-open-cursors | Specifies the maximum number of open file descriptor that the swap redo log will use. | 10 |
 
 
-
-{{% refer %}}For more info refer to [Controlling the Replication Redo Log](./controlling-the-replication-redo-log.html){{% /refer %}}
+{{% refer %}}For more information, refer to [Controlling the Replication Redo Log](./controlling-the-replication-redo-log.html).{{% /refer %}}
 
 # Mirror Service Parameters
 
@@ -107,7 +106,7 @@ The following parameters are low level configuration that relates to the swap re
 | cluster-config.mirror-service.redo-log-capacity | Specifies the total capacity of replication packets the redo log can hold for a mirror service replication target.
 
 
-See the [Controlling the Replication Redo Log](./controlling-the-replication-redo-log.html) for details. | 1000000 |
+{{% refer %}}For more information, refer to the [Controlling the Replication Redo Log](./controlling-the-replication-redo-log.html) topic. {{% /refer %}}
 
 # Durable Notifications Parameters
 
@@ -117,7 +116,7 @@ See the [Controlling the Replication Redo Log](./controlling-the-replication-red
 | cluster-config.groups.group.repl-policy.redo-log-durable-notification-capacity | Specifies the total capacity of replication packets the redo log can hold for a durable notification replication target | 150000 |
 | cluster-config.groups.group.repl-policy.durable-notification-max-disconnection-time| Specifies the maximum amount of time (in milliseconds) the space will wait for the durable notification replication target before it is considered disconnected, after which the target will be dropped. | 300000 |
 
-
+{{% refer %}}For more information about Durable Notfications, refer to [Durable Notifications](../dev-java/durable-notifications.html) in the Developer guide.{{% /refer %}}
 
 # Local View Parameters
 

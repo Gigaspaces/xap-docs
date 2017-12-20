@@ -56,8 +56,8 @@ Step 6: Each static XAP listener port behind the firewall should be mapped by NA
 
 Step 7: **Mandatory** -- the range of port numbers (just free unassigned ports allowed) should be above `1024` and below `65536`.
 
-{{% note %}}
-**Recommended port ranges** -- above `7100` in free unassigned IANA ranges (`7102`\-`7120`, `7130`\-`7160`, `7167`\-`7173`, `7175`\-`7199`, `7228`\-`7271`, `7282`\-`7299`, `7366`\-`7390`..., `47558`\-`47623`, `47625`\-`47805`, `47809`\-`47999`, `48004`\-`48127`, `48620`\-`49150`)
+{{% note "Recommended Port Ranges"%}}
+As per IANA standards, port numbers are based on three ranges: System Ports (0-1023), User Ports (1024-49151), and the Dynamic and/or Private Ports (49152-65535). Select your port range from the available user ports or dynamic ports. 
 {{%/note%}}
 
 ## Listener Ports per XAP Component
