@@ -24,6 +24,8 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Resolved Issues
 
+- {{% jira id="GS-13453" %}}: Inefficient use of underlying data structure slows down iterator performance.
+- {{% jira id="GS-13284" %}}: In rare scenarios, a transactional Polling container may drop events.
 - {{% jira id="GS-13236" %}}: The Admin API blocks itself, becoming unresponsive and exploding memory usage.
 - {{% jira id="GS-13440" %}}: Incomplete recovery of processing units after healing of GSM (if there are 3 or more).
 - {{% jira id="GS-13281" %}}: Querying a type with enum on a re-deployed space returns incorrect results.

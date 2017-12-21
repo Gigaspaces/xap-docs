@@ -15,6 +15,25 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/info%}}
 <hr/>
 
+# 12.3 M11 (Dec-24-2017)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m11/gigaspaces-insightedge-12.3.0-m11-b18911.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m11/gigaspaces-xap-12.3.0-m11-b18911.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m11/gigaspaces-xap.net-12.3.0-m11-b18911.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m11/gigaspaces-xap-open-12.3.0-m11-b18911.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+N/A
+
+### Resolved Issues
+
+- {{% jira id="GS-13453" %}}: Inefficient use of underlying data structure slows down iterator performance.
+- {{% jira id="GS-13284" %}}: In rare scenarios, a transactional Polling container may drop events.
+
 # 12.3 M10 (Dec-17-2017)
 
 ## Download Links
