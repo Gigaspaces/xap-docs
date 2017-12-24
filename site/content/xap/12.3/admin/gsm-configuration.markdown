@@ -32,14 +32,14 @@ The agent on these machines will be started using the following:
 
 
 ```bash
-gs-agent gsa.global.gsm 0 gsa.gsm 1
+gs-agent --gsm 1
 ```
 
 `Machine B` and `Machine C` will not run a GSM. The agent on these machines will be started using the following:
 
 
 ```bash
-gs-agent gsa.global.gsm 0 gsa.gsm 0
+gs-agent 
 ```
 
 Upon startup the only `Machine A` and `Machine D` agent's that are configured to start a local GSM will have it running.  In case of `Machine A` or `Machine D` failure the system will have a single GSM. Service Grid components (LUS , GSC) will be notified for this missing GSM. Once the missing GSM will be restarted on the relevant machine Service Grid components will be notified. With a network running a DNS - you may start a new machine with the same Host name to support total machine failure while keeping number of running GSMs intact.
@@ -60,7 +60,7 @@ All agents are started with the same command instructing them to maintain two gl
 
 
 ```bash
-gs-agent gsa.global.gsm 2 gsa.gsm 0
+gs-agent --global.gsm 2 
 ```
 
 Upon startup the agents will decide which ones will run a GSM and which won't.

@@ -33,7 +33,7 @@ With the following example we have `Machine A`, `Machine B`, `Machine C` and `Ma
 All agents are started with the same command instructing them to maintain two global LUSs across the entire service grid:
 
 ```bash
-gs-agent gsa.global.lus 2 gsa.lus 0
+gs-agent --global.lus 2
 ```
 
 Upon startup the agents will decide which ones will run a LUS and which won't.
@@ -54,14 +54,14 @@ The agent on these machines will be started using the following:
 
 
 ```bash
-gs-agent gsa.global.lus 0 gsa.lus 1
+gs-agent --lus 1
 ```
 
 `Machine B` and `Machine C` will not run the lookup service. The agent on the machines will be started using the following:
 
 
 ```bash
-gs-agent gsa.global.lus 0 gsa.lus 0
+gs-agent 
 ```
 
 Upon startup the only `Machine A` and `Machine D` agent's that are configured to start a local LUS will have it running.  In case of `Machine A` or `Machine D` failure the system will have a single LUS. Service Grid components (GSC , GSM) and client applications will keep looking for this missing LUS internally (configured via the `com.gigaspaces.unicast.interval`  system property).

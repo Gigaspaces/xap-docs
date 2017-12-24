@@ -20,7 +20,7 @@ The monitoring itself is not enabled by default since it introduces some overhea
 
 ## System Property
 
-Up front by providing a system property when starting the relevant components (Gs-agent, Grid service Manager/Container) - the following system property 'com.gs.transport_protocol.lrmi.monitorActivity=true' should be set in order to do so.
+Up front by providing a system property when starting the relevant components (gs-agent, Grid service Manager/Container) - the following system property 'com.gs.transport_protocol.lrmi.monitorActivity=true' should be set in order to do so.
 
 ## API
 

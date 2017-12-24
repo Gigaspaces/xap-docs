@@ -24,7 +24,7 @@ That means that potentially any machine could be a management machine:
 rem Agent deployment that potentially can start management processes
 set XAP_LOOKUP_GROUPS=myGroup
 set XAP_HOME=d:\gigaspaces
-start cmd /c "%XAP_HOME%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2"
+start cmd /c "%XAP_HOME%\bin\gs-agent.bat --global.esm 1 --global.gsm 2 --global.lus 2"
 ```
 
 {{% /tab %}}
@@ -36,7 +36,7 @@ start cmd /c "%XAP_HOME%\bin\gs-agent.bat gsa.global.esm 1 gsa.gsc 0 gsa.global.
 1. Agent deployment that potentially can start management processes
 export XAP_LOOKUP_GROUPS=myGroup
 export XAP_HOME=~/gigaspaces
-nohup ${XAP_HOME}/bin/gs-agent.sh gsa.global.esm 1 gsa.gsc 0 gsa.global.gsm 2 gsa.global.lus 2 > /dev/null 2>&1 &
+nohup ${XAP_HOME}/bin/gs-agent.sh --global.esm 1 --global.gsm 2 --global.lus 2 > /dev/null 2>&1 &
 ```
 
 {{% /tab %}}
@@ -56,7 +56,7 @@ In case you prefer having dedicated management machines, start GigaSpaces agents
 rem Agent that does not start management processes
 set XAP_LOOKUP_GROUPS=myGroup
 set XAP_HOME=d:\gigaspaces
-start cmd /c "%XAP_HOME%\bin\gs-agent.bat gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 gsa.global.lus 0"
+start cmd /c "%XAP_HOME%\bin\gs-agent.bat "
 ```
 
 {{% /tab %}}
@@ -68,7 +68,7 @@ start cmd /c "%XAP_HOME%\bin\gs-agent.bat gsa.global.esm 0 gsa.gsc 0 gsa.global.
 1. Agent that does not start management processes
 export XAP_LOOKUP_GROUPS=myGroup
 export XAP_HOME=~/gigaspaces
-nohup ${XAP_HOME}/bin/gs-agent.sh gsa.global.esm 0 gsa.gsc 0 gsa.global.gsm 0 gsa.global.lus 0 > /dev/null 2>&1 &
+nohup ${XAP_HOME}/bin/gs-agent.sh > /dev/null 2>&1 &
 ```
 
 {{% /tab %}}
@@ -83,7 +83,7 @@ The EPU can be deployed into specific zone. This allows you to determine the spe
 
 ```bash
 export XAP_GSA_OPTIONS="-Dcom.gs.zones=zoneX ${XAP_GSA_OPTIONS}"
-gs-agent.sh gsa.global.lus 1 gsa.lus 0 gsa.global.gsm 1 gsa.gsm 0 gsa.gsc 0 gsa.global.esm 1
+gs-agent.sh --global.lus 1 --global.gsm 1 --global.esm 1
 ```
 
 When deploying the EPU you should specify the zone you would like the EPU will be deployed into:
