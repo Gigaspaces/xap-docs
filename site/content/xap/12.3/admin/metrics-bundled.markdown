@@ -231,6 +231,7 @@ Space metrics are reported with the following tags:
 | space_blobstore_cache-miss  | Total of blobstore cache misses | Long |
 | space_blobstore_hot-data-cache-miss  | Subgroup of cache misses - misses of hot data not found in cache | Long |
 | space_blobstore_offheap_used-bytes  | Amount of used offheap memory in bytes | Long |
+| space_blobstore_offheap_{type_name}  | Amount of used offheap memory in bytes of type | Long |
 
 ## Connections
 
