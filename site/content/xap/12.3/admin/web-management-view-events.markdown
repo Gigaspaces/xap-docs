@@ -6,13 +6,13 @@ parent: web-management-common-view.html
 weight: 400
 ---
 
-In the events panel you can see events for the selected component. It lets you filter the events and you can also choose the narrow down the events by date and time.
+In the Events panel, you can view events for the selected component. You can filter the view based on text, and by date and time.
 
 {{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/events.jpg)
 {{% /align%}}
 
-The events timeline shows the deployment life cycle of all the Processing Units.
+The event timeline shows the deployment life cycle of all the Processing Units.
 
 **Life cycle success events for each instance**
 

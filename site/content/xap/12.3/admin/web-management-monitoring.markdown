@@ -23,18 +23,42 @@ To overcome these limitations, XAP provides a powerful and versatile [framework 
 
 Once enabled, XAP reports metrics to InfluxDB, and the Web Management Console provides an embedded Grafana view in the **Monitoring** tab, as well as automatic creation of dashboards in Grafana whenever a new Processing Unit is deployed.
 
-# Setup
+InfluxDB and Grafana are both open-source and free, but are not bundled in XAP distribution. Installation is straightforward, as described below. Note that XAP's default metrics configuration is set to match the default settings of InfluxDB and Grafana, so if this is your first time we recommend sticking with the defaults to simplify the process.
 
-InfluxDB and Grafana are both open-source and free, but are not bundled in XAP distribution. Installation is straight-forward, as described below. Note that XAP's default metrics configuration is set to match the default settings of InfluxDB and Grafana, so if this is your first time we recommend sticking with the defaults to simplify the process.
+# Installing and Configuring InfluxDB
 
-## Installation
+To install InfluxDB (0.9 or later), download from {{%exurl "here""https://influxdb.com/download/index.html"%}} and follow the {{%exurl "installation instructions""https://influxdb.com/docs/v0.9/introduction/installation.html"%}}.
 
-- InfluxDB (0.9 or later) - Download {{%exurl "here""https://influxdb.com/download/index.html"%}} and follow the {{%exurl "installation instructions""https://influxdb.com/docs/v0.9/introduction/installation.html"%}}.
-- Grafana (2.5 or later) - Download {{%exurl "here""http://grafana.org/download/"%}}, and follow the {{%exurl "installation instructions""http://docs.grafana.org/installation/"%}}.
+To configure InfluxDB,  edit the **metrics.xml** file (found under `[XAP_HOME]/config/metrics`). Change the following part according to your influxDB host (myhost) and database name (mydb) that stores metrics:
 
-## Configuration
 
-XAP's metrics configuration is located at `[XAP_HOME]/config/metrics/metrics.xml`. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB `reporter` and `grafana` elements, as shown below:
+```xml
+
+    <grafana>
+        <datasources>
+            <datasource name="influxdb">
+                <property name="type" value="influxdb"/>
+                <property name="url" value="http://myhost:8086/db/mydb"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </datasource>
+            <datasource name="grafana">
+                <property name="type" value="influxdb"/>
+                <property name="url" value="http://myhost:8086/db/grafana"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+                <property name="grafanaDB" value="true"/>
+            </datasource>
+        </datasources>
+    </grafana>
+
+```
+
+# Installing and Configuring Grafana
+
+To install Grafana (2.5 or later), download from {{%exurl "here""http://grafana.org/download/"%}}, and follow the {{%exurl "installation instructions""http://docs.grafana.org/installation/"%}}.
+
+After installation, you need to configure Grafana to work with XAP's metrics configuration, which is located at `[XAP_HOME]/config/metrics/metrics.xml`. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB `reporter` and `grafana` elements, as shown below:
 
 ```xml
 <metrics-configuration>
@@ -68,7 +92,7 @@ Some InfluxDB packages do not automatically create the default `mydb` database. 
 
 # Getting Started
 
-Once you've installed InfluxDB and Grafana and configured `metrics.xml`, start the Web Management Console and navigate to the **Monitoring** tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default `admin`/`admin`, and you'll get the home page):
+AFter you install InfluxDB and Grafana and configure the `metrics.xml` file, start the Web Management Console and navigate to the **Monitoring** tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default `admin`/`admin`, and you'll get the home page):
 
 ![image](/attachment_files/web-console/monitor.jpg)
 

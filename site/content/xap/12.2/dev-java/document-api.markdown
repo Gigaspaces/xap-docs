@@ -13,7 +13,7 @@ Unlike POJOs, which force users to design a fixed data schema (in the form of a 
 
 Before a certain Document instance is written to the space, its type should be introduced to it. The type has a name and controls metadata such as identifier property, routing property and which properties are initially indexed (naturally, you can also index new properties at runtime after adding them to your documents).
 
-{{% note%}}
+{{% note "Note"%}}
 The Type controls **metadata** - so only the metadata is part of the type. A document can introduce new properties at will.
 {{% /note %}}
 
@@ -349,7 +349,7 @@ public SpaceDocument[] readProductBySQLNested(GigaSpace gigaSpace) {
 }
 ```
 
-## ID Based Query
+## ID-Based Query
 
 For example: Read a document of type **Product** whose ID is **hw-1234**:
 
@@ -386,7 +386,7 @@ An ID-based query will not return results if the condition is on an auto-generat
 
 The `Document` properties values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as `DocumentProperties`). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot ('.') notation to describe paths, as shown above.
 
-{{% note %}} It's highly recommended to use `DocumentProperties` for nested documents since it contains performance and memory footprint optimizations which are tailored for GigaSpaces usage.
+{{% note "Note"%}} It's highly recommended to use `DocumentProperties` for nested documents since it contains performance and memory footprint optimizations which are tailored for GigaSpaces usage.
 
 - While it's possible to use  `SpaceDocument` as a property, it is probably a mistake, since it contains extra information which is not relevant for nested properties (type name, version, etc.).
 
@@ -700,7 +700,7 @@ gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% note %}} Changing FIFO support after a type has been registered is not supported.{{%/note%}}
+{{% note "Note"%}} Changing FIFO support after a type has been registered is not supported.{{%/note%}}
 
 {{%refer%}}
 For more information about FIFO, see the [FIFO Support](./fifo-support.html) page.
@@ -768,7 +768,7 @@ gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% note %}} Changing optimistic locking after a type has been registered is not supported. {{%/note%}}
+{{% note "Note"%}} Changing optimistic locking after a type has been registered is not supported. {{%/note%}}
 
 {{%refer%}}
 For more information about optimistic locking, see the [Optimistic Locking](./transaction-optimistic-locking.html) page.
@@ -869,7 +869,7 @@ public class DocumentEDS
 Different document database can be used to implement the document persistency - MongoDB, CouchDB and others.
 Pojos can be persisted via document EDS as well, in the same way.
 
-{{% note %}}
+{{% note "Note"%}}
 - In order to support initialLoad of documents the relevant types must be declared in the "space" bean, so that they are registered in the space before initialLoad is invoked.
 - Document persistence is currently not provided by default - If needed, the External Data Source should be implemented to fit the required solution.
 {{%/note%}}

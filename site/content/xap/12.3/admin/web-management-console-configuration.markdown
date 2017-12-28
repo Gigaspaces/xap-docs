@@ -157,29 +157,3 @@ gs-webui.bat
 {{% /tabs %}}
 
 
-# InfluxDB configuration
-
-* Edit the *metrics.xml* file (found under `[XAP_HOME]/config/metrics`). Change the following part according to your influxDB host(myhost) and database name(mydb) that stores metrics:
-
-
-```xml
-
-    <grafana>
-        <datasources>
-            <datasource name="influxdb">
-                <property name="type" value="influxdb"/>
-                <property name="url" value="http://myhost:8086/db/mydb"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
-            </datasource>
-            <datasource name="grafana">
-                <property name="type" value="influxdb"/>
-                <property name="url" value="http://myhost:8086/db/grafana"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
-                <property name="grafanaDB" value="true"/>
-            </datasource>
-        </datasources>
-    </grafana>
-
-```

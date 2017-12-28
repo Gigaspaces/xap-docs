@@ -12,9 +12,9 @@ weight: 500
 
  
  
-You can generate a dump file that includes information about the runtime GigaSpaces environment for a specific host or across the entire environment.
+You can generate a dump file that includes information about the runtime environment for a specific host, or across the entire environment.
 
-Start the WEB-UI, under the Generate Dump tab select the relevant option:
+Start the Web Management Console, click Generate Dump, and select the relevant option:
 {{% align center %}}
 ![WEB-UI1.png](/attachment_files/WEB-UI1.png)
 {{% /align %}}
@@ -38,24 +38,24 @@ Any of the above will display the following dialog:
 ![dump3](/attachment_files/dump/dump-3.png)
 {{% /align %}}
 
-Select the desired options and click the  **Generate**  button.
+Select the required options and click **Generate**.
 
-* The "JVM Heap Dump" option determines wether a JVM heap dump should be generated for the JVMs. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.
-* The "Only Live Services Log Dump" determines if dump should include only services which are currently running, or also services which have been terminated (useful for trouble-shooting failover scenarios)
+* The "JVM Heap Dump" option determines whether a JVM heap dump should be generated for the JVMs. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.
+* The "Only Live Services Log Dump" determines if the dump should include only services that are currently running, or also services that have been terminated (useful for troubleshooting failover scenarios).
 
 ## Generate Overview
 
-The "Generate Overview" will provide general information on the system deployment.
+The "Generate Overview" provides general information about the system deployment.
 This information is useful to quickly gather the system settings in production, for example when reporting a support case.
 
-When clicking on the Generate Overview option:
+When clicking on the **Generate Overview** option:
 
 {{% align center %}}
 ![WEB-UI5.png](/attachment_files/WEB-UI5.png)
 {{% /align %}}
 
-This will download a zip file containig an overview.txt file directly to the downloads folder.
-The dump overview structure will look like this:
+This downloads a zip file containing an overview.txt file directly to the Downloads folder.
+The dump overview structure looks like this:
 
 ```bash
 Overview
@@ -83,7 +83,7 @@ Hosts
 
 # Dump File Structure
 
-The dump file structure would look like this:
+The dump file structure looks like this:
 
 
 ```bash
