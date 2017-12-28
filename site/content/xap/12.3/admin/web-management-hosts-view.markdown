@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Hosts
+title:  Monitoring General Physical Resources
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 500
@@ -9,7 +9,7 @@ weight: 500
 {{%ssummary%}}{{%/ssummary%}}
 
 
-By clicking the `Hosts` tab at the top left, you will enter the hosts screen. This screen enables you to monitor the physical resources of your cluster. The physical resources include the hosts and virtual machines. Please refer to the image below and the call-outs in it for more details.
+Use the Hosts view to monitor the physical resources of your cluster. These  include the hosts and virtual machines. Please refer to the image below and the call-outs in it for more details.
 
 <br>
 

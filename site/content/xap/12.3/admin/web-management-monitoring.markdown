@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Monitoring
+title:  Using Grafana for Monitoring and Analytics
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 540

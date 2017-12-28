@@ -68,17 +68,9 @@ Note that some alert triggers define that an alert is raised each time a certain
 
 Since GigaSpaces XAP is working in a distributed environment, an alert is identified with a specific component (machine, JVM, Space, etc.).
 
-# Viewing Alerts (Web-UI)
+# Viewing Alerts 
 
-Alerts are visible in the Alerts View of the Web-UI Since 8.0.1. The Web-UI server utilizes the `<XAP Root>/config/alerts/alerts.xml` configuration file. These configurations apply to any client connecting to the Web-UI at the specified host and port.
-
-The alerts are grouped together by their 'type' (e.g. CPU, Memory, GC, etc.). When an alert is raised, it is aggregated with other consecutive alerts of the same 'type'. Previous alerts form the aggregation get "pushed" down (circled in red). A resolved alert "closes" the aggregation (circled in green). A new alert of the same 'type' will "open" a new aggregation.
-
-Sort the 'status' column in ascending order to show latest unresolved alerts.
-
-{{% align center%}}
-![alerts-view-web-ui.png](/attachment_files/alerts-view-web-ui.png)
-{{% /align%}}
+You can view alerts in the Web Management Console. For information, refer to [Viewing Alerts]({{%currentadmurl%}}/web-management-view-alerts.html) in the Administration Guide.
 
 # Listening for Alerts
 

@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Processing Units
+title:  Monitoring Processing Unit Resources
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 520
@@ -9,7 +9,7 @@ weight: 520
 {{%ssummary%}}{{%/ssummary%}}
 
 
-By clicking the `Processing Units` tab , you will enter the PU screen. This screen enables you to monitor the physical resources of your processing units.   Please refer to the image below and the call-outs in it for more details.
+Use the Processing Units view to monitor the physical resources of your processing units. Please refer to the image below and the call-outs in it for more details.
 
 <br>
 

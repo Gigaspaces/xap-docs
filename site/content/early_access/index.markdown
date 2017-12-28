@@ -15,6 +15,25 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/info%}}
 <hr/>
 
+# 12.3 M12 (Dec-31-2017)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m12/gigaspaces-insightedge-12.3.0-m12-b18912.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m12/gigaspaces-xap-12.3.0-m12-b18912.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m12/gigaspaces-xap.net-12.3.0-m12-b18912.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m12/gigaspaces-xap-open-12.3.0-m12-b18912.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-12800" %}}: Improved AbstractEventListenerContainer monitoring via public getter methods.
+- {{% jira id="GS-13224" %}}: Improve log message to include table name when initial load fails due to wrong column name.
+
+### Resolved Issues
+
+N/A
+
 # 12.3 M11 (Dec-24-2017)
 
 ## Download Links

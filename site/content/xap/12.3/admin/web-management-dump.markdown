@@ -1,9 +1,9 @@
 ---
 type: post123
-title:  Dump
+title:  Generating a Dump File
 categories: XAP123ADM, PRM
-parent: web-management-console.html
-weight: 600
+parent: web-management-common-view.html
+weight: 500
 ---
 
 

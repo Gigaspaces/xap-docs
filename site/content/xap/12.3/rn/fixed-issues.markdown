@@ -10,6 +10,8 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Improvements
 
+- {{% jira id="GS-12800" %}}: Improved AbstractEventListenerContainer monitoring via public getter methods.
+- {{% jira id="GS-13224" %}}: Improve log message to include table name when initial load fails due to wrong column name.
 - {{% jira id="GS-13452" %}}: Improve responsiveness of remote statistics gathering in Admin API.
 - {{% jira id="GS-13136" %}}: Make instance variables in DefaultHibernateSpaceDataSourceConfigurer protected.
 - {{% jira id="GS-13411" %}}: User-defined cache criteria for hot data in MemoryXtend.

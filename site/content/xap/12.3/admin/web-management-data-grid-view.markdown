@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Spaces
+title:  Investigating the Space
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 530
@@ -9,8 +9,7 @@ weight: 530
 {{% ssummary %}}{{% /ssummary %}}
 
 
-The `Spaces` view provides Space and Space instance navigation, for querying data and viewing class metadata.
-Select a "Space" or press the arrow to drill down into the Space instances of each Space (cluster).
+The Spaces view provides Space and Space instance navigation, for querying data and viewing class metadata. Select a Space or press the arrow to drill down into the Space instances of each Space (cluster).
 
 # Overview
 
