@@ -330,7 +330,7 @@ public SpaceDocument readProductBySQL(GigaSpace gigaSpace) {
 }
 ```
 
-{{% note %}}
+{{% note "Note"%}}
 Consider indexing properties used in queries to boost performance.
 {{% /note %}}
 
@@ -349,7 +349,7 @@ public SpaceDocument[] readProductBySQLNested(GigaSpace gigaSpace) {
 }
 ```
 
-## ID Based Query
+## ID-Based Query
 
 For example: Read a document of type **Product** whose ID is **hw-1234**:
 
@@ -372,11 +372,15 @@ public SpaceDocument[] readProductByMultipleIds(GigaSpace gigaSpace) {
 }
 ```
 
-{{%note%}}
-- All other `GigaSpace` query operations (readIfExists, readMultiple, take, takeIfExists, takeMultiple, count, clear) are supported for documents entries as well.
-- All other Id based operations (readIfExists, takeById, takeIfExistsById, takeByIds) are supported for documents as well.
+{{%note "Notes"%}}
+- All other `GigaSpace` query operations (`readIfExists`, `readMultiple`, `take`, `takeIfExists`, `takeMultiple`, `count`, and `clear`) are also supported for documents entries.
+- All other ID-based operations (`readIfExists`, `takeById`, `takeIfExistsById`, `takeByIds`) arealso supported for documents.
 - All overloads of those operations with timeout, transactions, modifiers etc. are supported for documents. The semantics is similar to POJOs.
 {{%/note%}}
+
+{{%warning "Important"%}}
+An ID-based query will not return results if the condition is on an auto-generated ID field _spaceId (generated for spaceDocument). Internal fields should not be queried because implementations are subject to change.
+{{%/warning%}}
 
 # Nested Properties
 
