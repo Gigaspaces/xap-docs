@@ -23,6 +23,11 @@ GigaSpaces guarantees backwards compatibility under the following conditions:
 - APIs - For two major versions going forward, and/or two years after a change in functionality.
 - Client-server compatibility - For two major versions (clients are guaranteed to work with servers running the next major version).
 - Server-server compatibility - For service packs on the same version only.
+
+{{%warning "Important"%}}
+Backwards compatibility is *not* guaranteed between server-client, where the server is running an older version and the client is running a newer version of the InsightEdge Platform or XAP.
+{{%/warning%}}
+
  
 ##  End-of-Life Policy
  

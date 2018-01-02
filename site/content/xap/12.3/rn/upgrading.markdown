@@ -14,3 +14,4 @@ As a best practice, when upgrading to the latest version, unzip the downloaded s
 
 This version of the InsightEdge Platform is backwards compatible to XAP version 11.0 (APIs and client-server). For more information, refer to the [Product Life Cycle and End-of-Life policy](http://www.gigaspaces.com/EOL) page.
 
+
