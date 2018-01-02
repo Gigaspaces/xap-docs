@@ -11,7 +11,7 @@ weight: 200
 
 # Secured Space
 
-A secured embedded Space protects access (to data) which is granted only to users with sufficient privileges. When a remote Space proxy connects to a secured Space, it must provide security credentials (usually username and password - see [Custom Security](./custom-security.html) for extensions).
+A secured embedded Space protects access (to data), which is granted only to users with sufficient privileges. When a remote Space proxy connects to a secured Space, it must provide security credentials (usually the username and password, as explained in [Custom Security](./custom-security.html) regarding extensions).
 
 {{%tabs%}}
 {{%tab "  Namespace "%}}
@@ -51,7 +51,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-An embedded Space may be configured with internal services (Space filters, Notify/Polling Containers, etc.) which must have privileges to operate on the embedded Space. These privileges are propagated by the security credentials provided when creating a Space.
+An embedded Space can be configured with internal services (Space filters, Notify/Polling containers, etc.), which must have privileges to operate on the embedded Space. These privileges are propagated by the security credentials provided when creating a Space.
 
 {{%tabs%}}
 {{%tab "  Namespace "%}}
@@ -81,8 +81,8 @@ An embedded Space may be configured with internal services (Space filters, Notif
 
 {{% /tab %}}
 {{%tab "  Code "%}}
-The security credentials can be either be supplied as an `UserDetails` object or in its simpler form of two Strings (username and password).
-These will be used to _implicitly_ create a `secured` Space, with security privileges being propagated to internal services.
+The security credentials can be either be supplied as a `UserDetails` object, or in its simpler form of two Strings (username and password).
+These are used to _implicitly_ create a secured Space, with security privileges being propagated to internal services.
 
 
 ```java
@@ -93,7 +93,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-An embedded Space with no internal services, can be simply configured as secured.
+An embedded Space with no internal services can be simply configured as secured.
 
 {{%tabs%}}
 {{%tab "  Namespace "%}}
@@ -137,14 +137,14 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-For security reasons, you may not want to expose the security credentials in your processing unit XML (pu.xml). These properties can be supplied as deploy time properties (bean level properties).
+For security reasons, you may not want to expose the security credentials in your Processing Unit XML (`pu.xml`). These properties can be supplied as deploy-time properties (bean-level properties).
 
 # Processing Unit
 
 
-A processing unit {{%currentjavanet "/the-processing-unit-overview.html"%}} by itself is not secured. It inherits its security from the managing GSM and GSC. These protect the processing unit from being restarted, relocated, destroyed, and undeployed.
+A Processing Unit {{%currentjavanet "/the-processing-unit-overview.html"%}} by itself is not secured. It inherits its security from the managing GSM and GSC. These protect the Processing Unit from being restarted, relocated, destroyed, and undeployed.
 
-A processing unit (for example a feeder application) may access a secured Space using a remote Space proxy.
+A Processing Unit (for example, a feeder application) may access a secured Space using a remote Space proxy.
 
 
 ```xml
@@ -153,7 +153,7 @@ A processing unit (for example a feeder application) may access a secured Space 
 </os-core:space-proxy>
 ```
 
-The `username` and `password` can also be supplied using a `pu.properties` file supplied during deployment. If these are supplied, they will be used to _implicitly_ connect to a `secured` Space, returning an authenticated proxy for this user.
+The `username` and `password` can also be supplied using a `pu.properties` file supplied during deployment. If these are supplied, they will be used to _implicitly_ connect to a secured Space, returning an authenticated proxy for this user.
 
 
 ```java
@@ -162,7 +162,7 @@ security.username=user
 security.password=password
 ```
 
-The `security.username` and `security.password` are constant property keys. If you would like to set your own property placeholders, e.g. $\{mySpace.username\} and $\{mySpace.password\}, you will need to use plain XML configuration. These properties would then need to be injected at deploy time, by some property resolver.
+ `security.username` and `security.password` are constant property keys. If you want to set your own property placeholders, such as `$\{mySpace.username\}` and `$\{mySpace.password\}`, you must use plain XML configuration. These properties have to be injected at deploy time, by some property resolver.
 
 
 ```xml
@@ -216,9 +216,7 @@ Property substitution is not supported for the nested `os-core:security` element
 
 # Local Cache
 
-
-
-The Local cache {{%currentjavanet "local-cache.html"%}} is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have **Read** privileges.
+The local cache {{%currentjavanet "local-cache.html"%}} is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have Read privileges.
 Security is enforced by the remote Space, and the proxy should be acquired by supplying the username and password.
 
 {{%tabs%}}
@@ -254,8 +252,6 @@ GigaSpace localCache = new GigaSpaceConfigurer(configurer.localCache()).gigaSpac
 {{% /tabs %}}
 
 # Local View
-
-
 
 
 {{%tabs%}}
@@ -298,15 +294,13 @@ GigaSpace localView = new GigaSpaceConfigurer(configurer.localView()).gigaSpace(
 
 # Space Filters
 
+Space Filters {{%currentjavanet "the-space-filters.html"%}} are interceptors inside the XAP Space that allow implementation of user-defined logic based on Space events. Some filters need to perform operations on the embedded Space. If secured, the filter needs sufficient privileges for its operations.
 
+The username and password supplied when creating a Space are used to _implicitly_ create a secured Space. The security privileges of the specified user are propagated to the filter. If the user has Read privileges, then the filter can perform a `space.read(..)` on its embedded Space.
 
-Space Filters {{%currentjavanet "the-space-filters.html"%}} are interceptors inside the XAP Space which allow implementation of user-defined logic based on Space events. Some filters need to perform operations on the embedded Space. If secured, the filter needs to have sufficient privileges for its operations.
+## Before-Authentication Operation
 
-The username and password supplied when creating a Space, will be used to _implicitly_ create a `secured` Space. The security privileges of the specified user will be propagated to the Filter. If the user has **Read** privileges, then the filter will be able to perform a `space.read(..)` on its embedded Space.
-
-## Before Authentication operation
-
-A filter can be registered for `before-authentication` events. Before a client tries to authenticate, any filter with the `before-authentication` operation-code will be invoked. The `SpaceContext` supplied as part of the call holds a `SecurityContext` that has the `UserDetails` object.
+A filter can be registered for `before-authentication` events. Before a client tries to authenticate, any filter with the `before-authentication` operation-code is invoked. The `SpaceContext` supplied as part of the call holds a `SecurityContext` that has the `UserDetails` object.
 
 {{%tabs%}}
 {{%tab "   Namespace "%}}
@@ -343,7 +337,7 @@ An example of a simple POJO filter using annotations:
 ```
 
 {{% note "Note" %}}
-The annotated method must have the `SpaceContext` as a parameter.
+The annotated method must have `SpaceContext` as a parameter.
 {{%/note%}}
 
 
@@ -365,7 +359,7 @@ public class SimpleFilter {
 
 {{% /tab %}}
 {{%tab "   Method listings "%}}
-The following Spring configuration XML shows how the filter can be configured, using explicit method listings. (In this case, annotations are not required.)
+The following Spring configuration XML shows how the filter can be configured using explicit method listings (in this case, annotations are not required).
 Note the `before-authentication` method adapter.
 
 
@@ -383,8 +377,8 @@ Note the `before-authentication` method adapter.
 {{% /tab %}}
 {{%tab "   Embedded-space operations "%}}
 
-_Implicitly_ create a `secured` Space, with security privileges being propagated to the filter.
-These privileges need to be sufficient for operations being perform by the filter on the embedded Space.
+_Implicitly_ create a secured Space, with security privileges that are propagated to the filter.
+These privileges should be sufficient for operations being performed by the filter on the embedded Space.
 
 
 ```xml
@@ -426,13 +420,13 @@ public class SimpleFilter {
 
 # Custom Access Control
 
-Custom Access control using Space Filters allows for access decisions based on user/role/data relationships. The `SpaceContext` filter invocation parameter holds the `SecurityContext` of the current operation. This context provides you with `UserDetails`, the `Authentication` and `AuditDetails`. Based on these, you can enforce custom access decisions (e.g. allow or disallow the operation).
+Custom Access control using Space Filters allows for access decisions based on user/role/data relationships. The `SpaceContext` filter invocation parameter holds the `SecurityContext` of the current operation. This context provides you with `UserDetails`, the `Authentication` and `AuditDetails`. Based on these, you can enforce custom access decisions (such as allow or disallow the operation).
 
 {{% note "Note" %}}
-The `SpaceContext` may be `null` in cases related to replication/recovery and filter operations such as `notify-trigger`. In these cases, there is no user context.
+The `SpaceContext` may be `null` when related to replication/recovery and filter operations, such as `notify-trigger`. In these cases, there is no user context.
 {{%/note%}}
 
-The filter can be declared just like any other filter, but note that the `priority` plays a role in the order of filter execution. Default priority is zero.
+The filter can be declared just like any other filter, but note that the `priority` plays a role in the order of filter execution. The default priority is zero.
 
 
 ```xml
@@ -499,11 +493,9 @@ public class CustomAccessControlFilter {
 
 # Task Execution over the Space
 
+Tasks {{%currentjavanet "task-execution-overview.html"%}} can be executed in a co-located, asynchronous manner within the Space (Processing Unit with an embedded Space). To execute a task, you must have Execute privileges. Execution can be restricted to certain tasks by applying 'Class-Filter'. There is no need to define specific privileges for operations being performed by the task on the Space.
 
-
-Tasks {{%currentjavanet "task-execution-overview.html"%}} can be executed in a collocated asynchronous manner within the Space (processing unit with an embedded Space). To execute a task, you must have **Execute** privileges. Execution can be restricted to certain tasks by applying the 'Class-Filter'. There is no need to define specific privileges for operations being performed by the task on the Space.
-
-Here is a simple implementation of a task that performs a 'count' operation on the space.
+The following is a simple implementation of a task that performs a 'count' operation on the Space.
 
 
 ```java
@@ -517,7 +509,7 @@ private static final class MyTask implements Task<Integer> {
 }
 ```
 
-While executed tasks are effective when collocated, you may require operations on the Cluster.
+While executed tasks are effective when co-located, you may require operations on the cluster.
 
 
 ```java
@@ -525,25 +517,21 @@ GigaSpace clustered = gigaSpace.getClustered();
 ```
 
 {{% info "Info"%}}
-Space operations performed from +within+ the task are guarded by a _temporary_ trust available throughout the life-cycle of the task. If you are trying to enforce custom access control, the `SecurityContext` will need to be extracted in a `before-execute` filter call.
+Space operations performed from *within* the task are guarded by a temporary trust available throughout the life-cycle of the task. If you are trying to enforce custom access control, the `SecurityContext` must be extracted in a `before-execute` filter call.
 {{% /info %}}
 
 # Executor-Based Remoting
 
-Executor Remoting {{%currentjavanet "executor-based-remoting.html" %}}allows you to use remote invocations of POJO services, with the Space as the transport layer using OpenSpaces Executors. To invoke a service method, you must have **Execute** privileges for class `org.openspaces.remoting.ExecutorRemotingTask`.
-
-
+Executor-based remoting {{%currentjavanet "executor-based-remoting.html" %}} allows you to use remote invocations of POJO services with the Space as the transport layer, using OpenSpaces Executors. To invoke a service method, you must have Execute privileges for class `org.openspaces.remoting.ExecutorRemotingTask`.
 
 # Event-Driven Remoting
 
 
-[Event Driven Remoting]({{%currentjavaurl%}}/event-driven-remoting.html) allows you to use remote invocations of POJO services, with the space as the transport layer using a polling container on the space side to process the invocations. Under the wires, event driven remoting uses the Space write and take capabilities. Thus, you must have **Write* and *Take** privileges (at both ends) for class `org.openspaces.remoting.EventDrivenSpaceRemotingEntry`.
-
-
+[Event-driven remoting]({{%currentjavaurl%}}/event-driven-remoting.html) allows you to use remote invocations of POJO services with the Space as the transport layer, using a polling container on the Space side to process the invocations. Under the wires, event-driven remoting uses the Space write and take capabilities. As such, you must have Write and Take privileges (at both ends) for class `org.openspaces.remoting.EventDrivenSpaceRemotingEntry`.
 
 # JDBC Driver
 
-GigaSpaces allows applications to connect using a [JDBC driver]({{%currentjavaurl%}}/jdbc-driver.html). A GigaSpaces JDBC driver accepts SQL statements, translates them to Space operations, and returns standard result sets. To acquire a connection to a remote secured space, provide the credentials (username and password) as parameters to the connection.
+XAP allows applications to connect using a [JDBC driver]({{%currentjavaurl%}}/jdbc-driver.html). A XAP JDBC driver accepts SQL statements, translates them into Space operations, and returns standard result sets. To acquire a connection to a remote secured Space, provide the credentials (username and password) as parameters to the connection.
 
 
 ```java
@@ -554,8 +542,6 @@ Statement st = conn.createStatement();
 ...
 ```
 
-
-
-{{% refer %}}
-An alternative way of querying the Space using SQL syntax is the [SQLQuery]({{%currentjavaurl%}}/query-sql.html) class, with a privileged GigaSpace proxy.
-{{%/refer%}}
+{{% note "Note"%}}
+An alternative method for querying the Space using SQL syntax is the [SQLQuery]({{%currentjavaurl%}}/query-sql.html) class, with a privileged GigaSpace proxy.
+{{%/note%}}
