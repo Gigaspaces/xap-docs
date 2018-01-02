@@ -175,14 +175,18 @@ The `security.username` and `security.password` are constant property keys. If y
         </bean>
     </property>
 </bean>
+```
 
-Using the CLI deploy command embed the username and password matching the placeholders given in the pu.xml:
+
+Using the CLI `deploy` command, embed the username and password matching the placeholders given in the `pu.xml`:
+
+```xml
 > gs deploy -properties embed://myusername=testing;mypassword=1234 myPU.jar
 ```
 
-## Protecting User/Password {{% exclamation %}}
+## Protecting User/Password 
 
-Of course, having the username and password exposed (in pu.xml/pu.properties) isn't that "secure". A preferred usage would be to supply the credentials **during deployment**. The _UI_, _CLI_ and _Admin API_ provide a comprehensive support for deploying a secured processing unit (see [Security Administration](./security-administration.html)).
+Leaving the username and password exposed (in pu.xml/pu.properties) isn't secure. A preferred implementation is to supply the credentials during deployment. The GigaSpaces Management Center, CLI, and Admin API administration tools provide comprehensive support for deploying a secured Processing Unit (refer to [Security Administration](./security-administration.html)).
 
 Here is how the CLI deploy command would look like:
 
@@ -191,9 +195,23 @@ Here is how the CLI deploy command would look like:
 <bean id="mySpace" class="org.openspaces.core.space.SpaceProxyFactoryBean">
     <property name="name" value="mySpace" />
 </bean>
+```
 
-Using the CLI deploy command supply username and password using the -user and -password.
+Using the CLI `deploy` command, supply the username and password using `-user` and `-password`:
+
+```xml
 > gs deploy -secured -user testing -password 1234 myPU.jar
+```
+
+Property substitution is not supported for the nested `os-core:security` element. If you don't want to add a Space property (and need to use property placeholders instead), you can pass the username and password as parameters:
+
+```xml
+<os-core:security credentials-provider="com.gigaspaces.security.directory.DefaultCredentialsProvider" /> 
+
+<bean id="com.gigaspaces.security.directory.DefaultCredentialsProvider" class="com.gigaspaces.security.directory.DefaultCredentialsProvider"> 
+<constructor-arg value="%{ims.username[default:%{SPACE_USERNAME}]}" /> 
+<constructor-arg value="%{ims.password[default:%{SPACE_PASSWORD}]}" /> 
+</bean> 
 ```
 
 # Local Cache
