@@ -1,69 +1,72 @@
 ---
 type: post
-title:  Product Lifecycle and End-of-Life Policy
+title:  Product Life Cycle and End-of-Life Policy
 categories: RELEASE_NOTES
 parent: none
 weight: 100000
 ---
 
-This page explains GigaSpaces’ product lifecycle's End-of-Life (EOL) policy relating to GigaSpaces' products and related third-party products, extended support, upgrade path, and [available assistance](http://www.gigaspaces.com/services-offering-overview). The page also provides a product support roadmap to assist GigaSpaces' customers with future planning. All customers should refer to the specific service list they purchased to determine the specific level of support to which they are entitled. 
+This page explains the life cycle and End-of-Life (EOL) policy for GigaSpaces' products and related third-party products, along with information about extended support, upgrading, and [available assistance](http://www.gigaspaces.com/services-offering-overview). The page also provides a product support roadmap to assist customers with future planning. All customers should refer to the specific service list they purchased to determine the specific level of support to which they are entitled. 
 
-#### GigaSpaces Product Lifecycle Policy
+# GigaSpaces Product Life Cycle Policy
 
-The common GigaSpaces  product lifecycle policy is based on the following guidelines (unless stated otherwise in your service contract):
+The GigaSpaces product life cycle policy is based on the following guidelines (unless stated otherwise in your service contract):
 
-- New policy change: For all versions, GigaSpaces provides technical product support for 2 years, starting from next upcoming public GA of the release of the relevant product version.
+- New policy change: For all versions, GigaSpaces provides technical product support for 2 years, starting from the next upcoming public GA of the release of the relevant product version.
 - Effective as of the official Support Discontinuance Date (2 years starting from next upcoming public GA) these versions will no longer be supported under a standard support agreement. Extended Support may be available for an additional limited period, for an extra fee. Please contact GigaSpaces' Customer Service for more information.
-- Maintenance releases (Service Packs) are scheduled to be publicly available every 6-8 weeks and are driven by customer feedback. The above, is the planned schedule however does not constitute a firm commitment to produce a release at every such interval.
+- Maintenance releases (service packs) are scheduled to be publicly available every 6-8 weeks and are driven by customer feedback. The above, is the planned schedule however does not constitute a firm commitment to produce a release at every such interval.
  
+## Backwards Compatibility 
+
+GigaSpaces guarantees backwards compatibility under the following conditions:
+
+- APIs - For two major versions going forward, and/or two years after a change in functionality.
+- Client-server compatibility - For two major versions (clients are guaranteed to work with servers running the next major version).
+- Server-server compatibility - For service packs on the same version only.
  
-####  End-of-Life Policy
+##  End-of-Life Policy
  
-GigaSpaces products reach the end of their Product Lifecycle for a number of reasons, including product evolution due to market requirements, and replacement by more advanced versions with richer functionality.
+GigaSpaces products may reach End of Life for a number of reasons, including product evolution due to market requirements, or replacement by more advanced versions with richer functionality.
 
-
-GigaSpaces recognizes that end-of-life milestones often have a broad impact on GigaSpaces' customers in their IT environment. With that in mind, we have put out a long-term end-of-life policy, which we publish in advance, to assist customers with the management of their transition to newer versions, and to help customers understand how GigaSpaces' Customer Service can help with the migration of applications.
+GigaSpaces recognizes that end-of-life milestones can have a signification impact on the IT environment of our customers. With this in mind, we have put out a long-term end-of-life policy that is published in advance, to assist customers in  managing the transition to a newer version, and to help customers understand how GigaSpaces' Customer Service can help with the migrating affected applications.
  
 
-#### Extended Support 
+## Extended Support 
  
-- Extended Support (beyond the Support Discontinuance Date) enables you to upgrade your systems to the most recent version, beyond the Support Discontinuance Date. Extended Support may be available for a limited period, for an extra fee. It includes telephone support and access to a web support portal.
-- During this time, temporary patches will be available, but service packs are not planned.
-- Extended Support and maintenance services for GigaSpaces products are given on the condition that the customer has already paid all the standard support and maintenance service fees owed up to the time Extended Support is required.
-- To extend your support beyond a release’s Support Discontinuance Date, please contact GigaSpaces' [Customer Support](mailto:support@gigaspaces.com).
+- Extended Support (beyond the Support Discontinuance Date) enables you to upgrade your systems to the most recent version after the Support Discontinuance Date. Extended Support may be available for a limited period for an extra fee. It includes telephone support and access to a web support portal.
+- During the Extended Support period, temporary patches are available but there are no planned service packs.
+- Extended Support and maintenance services for GigaSpaces products are provided on the condition that the customer has already paid all the standard support and maintenance service fees owed up to the time Extended Support is required.
+- To extend your support beyond a release’s Support Discontinuance Date, contact GigaSpaces [Customer Support](mailto:support@gigaspaces.com).
 
+# Upgrade Path and Assistance
 
-
-#### Upgrade Path and Assistance
-
-- Upgrading will ensure that you are leveraging all of the bug fixes and improvements of the most current version, and will ensure our ability to properly support you should you encounter any issues. Furthermore, GigaSpaces has made tremendous improvements in scalability, stability, performance, user experience, and functionality in version {{%latestxaprelease%}}. Upgrading your application to the latest {{%latestxaprelease%}} version and migrating to our latest best practices will ensure you leverage the product's technology to its fullest potential, minimizing deployment risks, while shortening project cycle times. GigaPro are modular consultancy and professional services designed to ensure smooth and effective deployment of GigaSpaces solutions.
 - The recommended upgrade path is to the latest GigaSpaces {{%latestxaprelease%}} series of editions. Please refer to this Upgrade Guide for more details.
-- Customers on annual subscription can upgrade to latest release as well.
+- Customers on annual subscriptions can also upgrade to the latest release.
+- Upgrading to the latest stable version provides access to all of the current bug fixes and improvements, and ensures our ability to properly support you should you encounter any issues. Furthermore, GigaSpaces has made tremendous improvements in scalability, stability, performance, user experience, and functionality in version {{%latestxaprelease%}}. Upgrading your application to the latest {{%latestxaprelease%}} version and migrating to our latest best practices will ensure that you leverage the product's technology to its fullest potential, minimizing deployment risks while shortening project cycle times. GigaPro are modular consultancy and professional services designed to ensure smooth and effective deployment of GigaSpaces solutions.
 
-
-Upon request, GigaSpaces' [Consulting Services](mailto:ps@gigaspaces.com) experts can offer you [GigaPro™ Upgrade Support Package](http://www.gigaspaces.com/services-offering-overview), which include the following services tailored to your needs:
+Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts can offer you [GigaPro™ Upgrade Support Package](http://www.gigaspaces.com/services-offering-overview), which include the following services tailored to your needs:
 
 {{%vbar%}}
 - Supporting the new version rollout process, tuning, and stability
 
-- Upgrade Assessment
+- Upgrade assessment
 
-- System Architecture Design
+- System architecture design
 
-- XAP Delta Core Training (Educational program as part of GigaSpaces University)
+- XAP delta core training (educational program as part of GigaSpaces University)
 
-- Assisted Development Services During Upgrade – up on demand
+- Assisted development services during upgrade – on demand
 
-- Code & System Review
+- Code and system review
 
-- Upgraded Production Environment Setup
+- Upgraded production environment setup
 
-- Extended Rollout Support
+- Extended rollout support
 {{%/vbar%}}
 
 
 
-#### Product Releases Plan & End of Life Retirement Calendar
+# Product Release Plan and End-of-Life Retirement Calendar
 
 
 |Product Release [1] |	GA Date | Last Maintenance Service Pack Release|Planned Next Maintenance Service Pack Release [2]|Support Discontinuance ("End of Life") [3]|
@@ -91,16 +94,16 @@ Upon request, GigaSpaces' [Consulting Services](mailto:ps@gigaspaces.com) expert
                          
         
 **[1] Product Releases** – GigaSpaces R4.x and R5.x refer to all editions including the Enterprise (EE), Caching (EDG) and Community editions. R6.x refers to all editions including the XAP, Caching (EDG) and Community editions.<br>
-**[2] Planned Maintenance Service Pack Release** – Planned dates for release of additional service packs for the specific GigaSpaces version. These dates are provided for planning purposes only, are subject to change at any time and are not to be considered commitments.<br>
-**[3] Release End of Life Retirement Date** – effective date of the standard support and service discontinuance. Extended Support might be available beyond this date. <br>
+**[2] Planned Maintenance Service Pack Release** – Planned dates for release of additional service packs for the specific product version. These dates are provided for planning purposes only, are subject to change at any time and are not to be considered commitments.<br>
+**[3] Release End-of-Life Retirement Date** – effective date of the standard support and service discontinuance. Extended Support might be available beyond this date. <br>
 **[4] Extended Support currently available**
 
-####  JVM & Third-Party End-Of-Life Policy
+#  JVM and Third-Party End-Of-Life Policy
  
-- Java SE 1.4 EOL – based on information made publicly available by Sun Microsystems, as of October 30th 2008, Java SE 1.4 SDK has reached its End of Service Life (EOSL).
-- Java SE 1.5 EOL – based on information made publicly available by Sun Microsystems, as of October 30th 2009, Java SE 1.5 SDK has reached its End of Service Life (EOSL).
-- Sun also ceased to support the J2SE 1.4 and 1.5 JVMs. In addition, the two other major JVM vendors, namely IBM and Oracle, announced their limited ability to support these JVMs in light of Sun's announcement. This in turn will limit GigaSpaces’ ability to provide support for applications running on these JVMs. However, we will continue to support GigaSpaces XAP editions up to 6.6 (for Java 1.4) and up to version 7.1 (for java 1.5) in these environments on a best-effort basis. Customers concerned about this EOL announcement are encouraged to contact their JDK vendor to explore the extended support entitlements beyond the stated EOL period.
-- GigaSpaces recommends that customers upgrade to a fully-supported environment, such as the latest GigaSpaces XAP {{%latestxaprelease%}} and the latest Java 1.8 SDK.
-- Please note that from version 7.0 onwards, GigaSpaces XAP will no longer support the Java 1.4 SDK, and will require the use of Java 1.5 SDK or higher.
-- Please note that from version 8.0 onwards, GigaSpaces XAP will no longer support the Java 1.5 SDK, and will require the use of Java 1.6 SDK or higher. For details about Java 1.4 & 1.5 SDK EOL, please refer to the following page:http://java.sun.com/products/archive/eol.policy.html
-- For more details please refer to the page which discusses the third-party products shipped with GigaSpaces.
+- Java SE 1.4 EOL – Based on information made publicly available by Sun Microsystems, as of October 30th 2008 Java SE 1.4 SDK has reached its End of Service Life (EOSL).
+- Java SE 1.5 EOL – Based on information made publicly available by Sun Microsystems, as of October 30th 2009 Java SE 1.5 SDK has reached its End of Service Life (EOSL).
+- Sun also ceased to support the J2SE 1.4 and 1.5 JVMs. In addition, the two other major JVM vendors, namely IBM and Oracle, announced their limited ability to support these JVMs in light of Sun's announcement. This in turn will limit GigaSpaces’ ability to provide support for applications running on these JVMs. However, we will continue to support XAP editions up to version 6.6 (for Java 1.4) and up to version 7.1 (for Java 1.5) in these environments on a best-effort basis. Customers concerned about this EOL announcement are encouraged to contact their JDK vendor to explore the extended support entitlements beyond the stated EOL period.
+- GigaSpaces recommends that customers upgrade to a fully-supported environment, such as the latest version of InsightEdge or XAP {{%latestxaprelease%}} and the latest Java 1.8 SDK.
+- From version 7.0 onwards, XAP no longer supports the Java 1.4 SDK, and requires Java 1.5 SDK or higher.
+- From version 8.0 onwards, XAP no longer supports the Java 1.5 SDK, and requires Java 1.6 SDK or higher. For details about Java 1.4 and 1.5 SDK EOL, refer to the following page: http://java.sun.com/products/archive/eol.policy.html
+- For more details, refer to the page that discusses the third-party products shipped with InsightEdge and XAP.
