@@ -179,9 +179,9 @@ Space metrics are reported with the following tags:
 | Metric | Description | Type |
 |:-------|:------------|:-----|
 | space_data_entries_total | Total number of entries in the Space. | Integer |
-| space_data_entries_{type-name} | Total number of entries in the Space of that data type. | Integer |
+| space_data_entries\_{type-name} | Total number of entries in the Space of that data type. | Integer |
 | space_data_notify_templates_total | Total number of notify templates in the Space. | Integer |
-| space_data_notify_templates_{type-name} | Total number of notify templates in the Space of that data type. | Integer |
+| space_data_notify_templates\_{type-name} | Total number of notify templates in the Space of that data type. | Integer |
 
 ## Operations
 
@@ -231,7 +231,7 @@ Space metrics are reported with the following tags:
 | space_blobstore_cache-miss  | Total of blobstore cache misses. | Long |
 | space_blobstore_hot-data-cache-miss  | Subgroup of cache misses - misses of hot data not found in cache. | Long |
 | space_blobstore_offheap_used-bytes  | Amount of used offheap memory, in bytes. | Long |
-| space_blobstore_offheap_{type_name}  | Amount and data type of used offheap memory, in bytes. | Long |
+| space_blobstore_offheap\_{type_name}  | Amount and data type of used offheap memory, in bytes. | Long |
 
 ## Connections
 
