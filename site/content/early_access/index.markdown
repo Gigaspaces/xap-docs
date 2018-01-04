@@ -15,6 +15,18 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/info%}}
 <hr/>
 
+# 12.3 M13 (Jan-07-2018)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m13/gigaspaces-insightedge-12.3.0-m13-b18913.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m13/gigaspaces-xap-12.3.0-m13-b18913.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m13/gigaspaces-xap.net-12.3.0-m13-b18913.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m13/gigaspaces-xap-open-12.3.0-m13-b18913.zip)\]
+
+## Changelog
+
+Features, feature enhancements, and bug fixes are currently in progress but were not completed within this milestone. 
+
 # 12.3 M12 (Dec-31-2017)
 
 ## Download Links
