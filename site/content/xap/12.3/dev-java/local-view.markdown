@@ -156,15 +156,15 @@ Batch settings can be configured using `LocalViewSpaceFactoryBean` for Spring, o
 </os-core:local-view>
 ```
 
-# Recovering From Disconnection
+# Monitoring The Local View
+
+### Maximum Disconnection Duration
 
 When the connection between a local view and remote master space is disrupted, the local view starts trying to reconnect with the remote space.
+As long as the disconnection duration is lower than the maximum disconnection duration, querying the local view will return a result, though not guaranteed to be in sync with the master space.
+If the disconnection duration exceeds the maximum disconnection duration, the local view cannot be queried.
 
-If the disconnection duration exceeds the **maximum disconnection duration**, the local view enters a **disconnected** state, wherein each operation throws an exception stating the view is disconnected.
-
-When the connection to the remote master space is restored, the local view reloads all its data from the master space (same as in the initialization process) before restoring the state to **connected**, ensuring the local view is consistent when it is accessed.
-
-The maximum disconnection duration can be configured using `LocalViewSpaceFactoryBean` for Spring, or using `LocalViewSpaceConfigurer` at runtime (default is 1 minute). For example:
+The `max-disconnection-duration` parameter determines the time par can be configured using `LocalViewSpaceFactoryBean` for Spring, or using `LocalViewSpaceConfigurer` at runtime (default is 1 minute). For example:
 
 
 ```xml
@@ -173,9 +173,90 @@ The maximum disconnection duration can be configured using `LocalViewSpaceFactor
 </os-core:local-view>
 ```
 
+### Recovering From Disconnection
+
+When the connection to the remote master space is restored, the local view reloads all its data from the master space (same as in the initialization process) before restoring the state to **active**, ensuring the local view is consistent when it is accessed.
+
 {{% info %}}
 When the synchronization is replication-based (default), the local view is resilient to failover, which means that if a primary space fails and a backup space replaces it within the maximum disconnection duration, the local view will remain intact during the failover process. When the synchronization is notification-based this is not guaranteed since notifications might be lost during the failover process.
 {{%/info%}}
+
+### Connection States
+
+The local view connection can be in the following states:
+- ACTIVE - indicates the local view is connected to the master space
+- DISCONNECTED - indicates the connection to the master space was disrupted. The local view will remain in this state as long as the disconnetion duration is lower than **maximum disconnection duration**.
+- INACTIVE - if the disconnection duration exceeds the maximum disconnection duration, the local view enters an inactive state, wherein each operation throws an exception stating the view is inactive.
+- CLOSED - indicates the local view is permanently closed. Operation on the view throws an exception stating the view is closed.
+
+### The Local View Monitor
+
+The `LocalViewMonitor` interface enables reading the current connection state of the local view. The code snippet below demonstrates how to get the monitor instance:
+
+```java
+// Initialize remote space configurer:
+GigaSpaceConfigurer gigaSpaceConfigurer = new GigaSpaceConfigurer("mySpace");
+
+// Initialize local view configurer
+LocalViewSpaceConfigurer localViewSpaceConfigurer = new LocalViewSpaceConfigurer(gigaSpaceConfigurer)
+	.maxDisconnectionDuration(1000*60*60)
+	.addViewQuery(new SQLQuery(com.example.Message1.class, "processed = true"))
+	.addViewQuery(new SQLQuery(com.example.Message2.class, "priority > 3"));
+
+// Creating the local view:
+GigaSpace localView = new GigaSpaceConfigurer(localViewSpaceConfigurer).gigaSpace();
+
+// Getting the local view monitor from the configurer - after space creation!
+LocalViewMonitor localViewMonitor = localViewSpaceConfigurer.getLocalViewMonitor();
+
+// Getting the local view connection state and printing it to console
+LocalViewConnectionState localViewConnectionState = localViewMonitor.getConnectionState();
+```
+
+#### Listening To Connection State Changes
+
+The `LocalViewConnectionStateListener` intaerface is a simple one method interface:
+
+```java
+public interface LocalViewConnectionStateListener{
+
+    void onConnectionStateChanged(LocalViewConnectionState previousState, LocalViewConnectionState currentState);
+}
+```
+
+Objects implementing this interface can register to the local view. On connection state changes, all registered listeners are notified, receviing the previous and current connection state.
+
+The following example shows how to add a simple listener to the local view:
+
+```java
+Class MySimpleListener implements LocalViewConnectionStateListener{
+
+    @Override
+    public void onConnectionStateChanged(LocalViewConnectionState previousState, LocalViewConnectionState currentState){
+        System.Out.println("Local view connection changed from " + previousState + " to " + currentState);
+    }
+}
+```
+
+```java
+GigaSpace localView = new GigaSpaceConfigurer(localViewSpaceConfigurer).gigaSpace();
+
+// Getting the local view monitor from the configurer - after space creation!
+LocalViewMonitor localViewMonitor = localViewSpaceConfigurer.getLocalViewMonitor();
+
+//The custom listener
+MySimpleListener mySimpleListener = new MySimpleListener();
+
+//Adding the listener to the local view
+localViewMonitor.addConnectionStateListener(mySimpleListener);
+
+//Removing the listener from the local view
+localViewMonitor.removeConnectionStateListener(mySimpleListener);
+```
+
+
+
+
 
 # Upgrading From Previous Versions
 
@@ -215,3 +296,5 @@ This properties can be configured on the space side and they will affect all the
 
 When a Local View contains complex objects (nested structure), it is recommended to perform a deep clone once these have been read to allow incoming updates to refresh the state of the cached objects (copy on read).
 The client application should use the cloned object as the original object returned back from the read operation holds a reference used by the local view.
+
+
