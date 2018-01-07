@@ -6,13 +6,13 @@ categories: EARLY_ACCESS
 weight:
 ---
 
-This page contains early access information for XAP and InsightEdge 12.3, which is scheduled for release in Q1 2018. Early access builds are intended for those who want to get involved in the development process and try out new stuff early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
+This page contains early access information for XAP and InsightEdge 12.3, which is scheduled for release in Q1 2018. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
 
-{{%plus%}} If you're just getting started with version 12.3, we recommend reading the [What's New](/xap/12.3/rn/whats-new.html) page in the general release notes.
+{{%infosign%}} If you're just getting started with version 12.3, we recommend reading the [What's New](/xap/12.3/rn/whats-new.html) page in the general release notes.
 
-{{%info "Disclaimer"%}}
+{{%tip "Disclaimer"%}}
 Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.2.0** - [Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.2/)
-{{%/info%}}
+{{%/tip%}}
 <hr/>
 
 # 12.3 M13 (Jan-07-2018)
