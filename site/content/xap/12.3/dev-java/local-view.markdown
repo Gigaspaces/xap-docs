@@ -172,7 +172,7 @@ Batch settings can be configured using `LocalViewSpaceFactoryBean` for Spring, o
 ```
 # Monitoring the Connection
 
-The local view requires a constant connection to the master Space in order to keep the data synchronized. Short, intermittent connections may occur that don't significantly affect data syncing. In this case, the client application can continue to read data from the local view. A lengthy disconnection means the data in the local view isn't synced with the master Space, so the local view doesn't accept operations from the client and instead throws an exception.
+The local view requires a constant connection to the master Space in order to keep the data synchronized. Short, intermittent disconnections may occur that don't significantly affect data syncing. In this case, the client application can continue to read data from the local view. A lengthy disconnection means the data in the local view isn't synced with the master Space, so the local view doesn't accept operations from the client and instead throws an exception.
 
 The `max-disconnection-duration` parameter defines for how long the local view can be disconnected from the master Space before the view is no longer viable.
 
@@ -206,13 +206,16 @@ When the synchronization is replication-based (default), the local view is resil
 {{%/info%}}
 
 
-## Viewing the Connection State
+## The Local View Monitor Interface
 
-XAP provides two ways of getting the connection state of the local view. You can launch the Local View Monitor, or you can set up a listener to receive any changes in the local view state.
+Through the `LocalViewMonitor` interface, XAP enables you to perform:
 
-### Local View Monitor
+- Reading the current connection state of the local view
+- Adding and removing listeners to connection state change
 
-The `LocalViewMonitor` interface enables reading the current connection state of the local view. The code snippet below demonstrates how to get the monitor instance:
+### Reading the Connection State
+
+The code snippet below demonstrates how to get the local view connection state:
 
 ```java
 // Initialize remote space configurer:
