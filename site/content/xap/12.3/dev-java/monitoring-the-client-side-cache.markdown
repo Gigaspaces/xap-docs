@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Monitoring Client Side Cache
+title:  Using JConsole to Monitor the Client-Side Cache Activity
 categories: XAP123, PRM
 parent: client-side-caching.html
 weight: 400
