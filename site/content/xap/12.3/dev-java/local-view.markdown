@@ -206,16 +206,16 @@ When the synchronization is replication-based (default), the local view is resil
 {{%/info%}}
 
 
-## The Local View Monitor Interface
+## Local View Monitor Interface
 
-Through the `LocalViewMonitor` interface, XAP enables you to perform:
+You can do the following using the `LocalViewMonitor` interface:
 
-- Reading the current connection state of the local view
-- Adding and removing listeners to connection state change
+- Read the current connection state of the local view.
+- Add and remove connection state listeners.
 
 ### Reading the Connection State
 
-The code snippet below demonstrates how to get the local view connection state:
+The code snippet below demonstrates how to use the Local View Monitor to read the local view connection state:
 
 ```java
 // Initialize remote space configurer:
@@ -237,7 +237,7 @@ LocalViewMonitor localViewMonitor = localViewSpaceConfigurer.getLocalViewMonitor
 LocalViewConnectionState localViewConnectionState = localViewMonitor.getConnectionState();
 ```
 
-###  Connection State Listener
+###  Adding a Connection State Listener to the Local View
 
 The `LocalViewConnectionStateListener` interface is a simple one-method interface:
 
