@@ -10,6 +10,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Improvements
 
+- {{% jira id="GS-13102" %}}: Added ability to monitor connection status for local views.
 - {{% jira id="GS-12800" %}}: Improved AbstractEventListenerContainer monitoring via public getter methods.
 - {{% jira id="GS-13224" %}}: Improve log message to include table name when initial load fails due to wrong column name.
 - {{% jira id="GS-13452" %}}: Improve responsiveness of remote statistics gathering in Admin API.
@@ -26,6 +27,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Resolved Issues
 
+- {{% jira id="GS-13461" %}}: Add missing xap-admin JAR for default XAP.NET application.
 - {{% jira id="GS-13453" %}}: Inefficient use of underlying data structure slows down iterator performance.
 - {{% jira id="GS-13284" %}}: In rare scenarios, a transactional Polling container may drop events.
 - {{% jira id="GS-13236" %}}: The Admin API blocks itself, becoming unresponsive and exploding memory usage.

@@ -15,6 +15,24 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3 M14 (Jan-14-2018)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m14/gigaspaces-insightedge-12.3.0-m14-b18914.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m14/gigaspaces-xap-12.3.0-m14-b18914.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m14/gigaspaces-xap.net-12.3.0-m14-b18914.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m14/gigaspaces-xap-open-12.3.0-m14-b18914.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13102" %}}: Added ability to monitor connection status for local views.
+
+### Resolved Issues
+
+- {{% jira id="GS-13461" %}}: Add missing xap-admin JAR for default XAP.NET application.
+
 # 12.3 M13 (Jan-07-2018)
 
 ## Download Links
