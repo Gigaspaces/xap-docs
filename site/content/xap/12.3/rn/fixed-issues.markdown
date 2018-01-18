@@ -10,6 +10,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Improvements
 
+- {{% jira id="GS-13463" %}}: Remove obsolete security algorithm to align with current standards.
 - {{% jira id="GS-13102" %}}: Added ability to monitor connection status for local views.
 - {{% jira id="GS-12800" %}}: Improved AbstractEventListenerContainer monitoring via public getter methods.
 - {{% jira id="GS-13224" %}}: Improve log message to include table name when initial load fails due to wrong column name.

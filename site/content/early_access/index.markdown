@@ -11,9 +11,27 @@ This page contains early access information for XAP and InsightEdge 12.3, which 
 {{%infosign%}} If you're just getting started with version 12.3, we recommend reading the [What's New](/xap/12.3/rn/whats-new.html) page in the general release notes.
 
 {{%tip "Disclaimer"%}}
-Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.2.0** - [Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.2/)
+Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.2.1** - [Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.2/)
 {{%/tip%}}
 <hr/>
+
+# 12.3 M15 (Jan-21-2018)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m15/gigaspaces-insightedge-12.3.0-m15-b18915.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m15/gigaspaces-xap-12.3.0-m15-b18915.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m15/gigaspaces-xap.net-12.3.0-m15-b18915.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m15/gigaspaces-xap-open-12.3.0-m15-b18915.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13463" %}}: Remove obsolete security algorithm to align with current standards.
+
+### Resolved Issues
+
+N/A
 
 # 12.3 M14 (Jan-14-2018)
 
