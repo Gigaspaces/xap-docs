@@ -26,5 +26,5 @@ To work with XAP interoperability, classes from the different platforms should m
 - The **same properties with the same names and matching types**.
 
 {{%refer%}}
-For information about XAP.NET, refer to the [interoperability]({{%currentneturl%}}/dotnet-java-interoperability.html) section in the XAP.NET guide.
+For information about XAP.NET, refer to the [interoperability]({{%currentneturl%}}/interoperability.html) section in the XAP.NET guide.
 {{%/refer%}}

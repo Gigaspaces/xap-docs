@@ -1270,7 +1270,7 @@ See the [Parent Child Relationship](./parent-child-relationship.html) for an exa
 
 ## Real World Example
 
-In the [Pet Clinic application](http://www.openspaces.org/display/DAE/GigaSpaces+PetClinic) that is based on the [Spring pet clinic sample](http://static.springsource.org/docs/petclinic.html), a Pet is only associated with an Owner. We can therefore store each Pet with its owner on the same partition. We can even embed the Pet object within the physical Owner entry.
+In the [Pet Clinic application](http://www.openspaces.org/display/DAE/GigaSpaces+PetClinic) that is based on the [Spring pet clinic sample](https://github.com/spring-projects/spring-petclinic), a Pet is only associated with an Owner. We can therefore store each Pet with its owner on the same partition. We can even embed the Pet object within the physical Owner entry.
 
 {{%align center%}}
 ![petclinic_class_model.gif](/attachment_files/petclinic_class_model.gif)

@@ -25,8 +25,8 @@ The interface includes the following main operations:
 {{%/column%}}
 {{%column width="45%" %}}
 {{%panel  "Change objects in space:"%}}
-[change](./change-api.html) one object in space{{<wbr>}}
-[changeMultiple](./change-api.html) objects in space {{<wbr>}}
+[change](./change-api-overview.html) one object in space{{<wbr>}}
+[changeMultiple](./change-api-overview.html) objects in space {{<wbr>}}
 {{%/panel%}}
 {{%/column%}}
 {{%/section%}}

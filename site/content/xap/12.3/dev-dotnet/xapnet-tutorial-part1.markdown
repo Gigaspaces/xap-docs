@@ -288,7 +288,7 @@ There are several other change operations available; 'increment', 'decrement', '
 
 
 {{%refer%}}
-[The Change API]({{%currentneturl%}}/change-api.html)
+[The Change API]({{%currentneturl%}}/change-api-overview.html)
 {{%/refer%}}
 
 

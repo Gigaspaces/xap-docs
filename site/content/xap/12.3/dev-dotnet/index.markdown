@@ -14,7 +14,7 @@ This guide introduces the key concepts for building XAP applications. The topics
 
 {{%fpanel%}}
 
-[Installation](./installation.html){{<wbr>}}
+[Installation](./installation-overview.html){{<wbr>}}
 This guide provides step by step instructions on how to download and install XAP on different operating systems for the supported languages.
 
 [PONO Support](./poco-overview.html){{<wbr>}}
