@@ -10,6 +10,10 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Improvements
 
+- {{% jira id="GS-13458" %}}: Upgrade Spring Framework to 4.3.13.
+- {{% jira id="GS-13457" %}}: Upgrade Spring Security to 4.2.3.
+- {{% jira id="GS-13464" %}}: Enhance gs-agent to Support running Web Management Console (--webui).
+- {{% jira id="GS-13473" %}}: Enhance CachePolicy configuration to use fluent syntax.
 - {{% jira id="GS-13463" %}}: Remove obsolete security algorithm to align with current standards.
 - {{% jira id="GS-13102" %}}: Added ability to monitor connection status for local views.
 - {{% jira id="GS-12800" %}}: Improved AbstractEventListenerContainer monitoring via public getter methods.

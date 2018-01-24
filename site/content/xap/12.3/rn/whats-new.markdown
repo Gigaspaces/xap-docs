@@ -18,6 +18,17 @@ In systems with MemoryXtend, XAP can store the values of indexed fields in off-h
 - Take with only indexed fields in query - backup optimization
 - Clear with only indexed fields in query - primary and backup instance optimization
 
+# Administration
+
+## GS-Agent Enhancement
+
+Users can now configure the gs-agent to launch the Web Management Console when deploying a Processing Unit, using the `--webui` command.
+
 # Tiered Storage Enhancement
 
 The custom initial load mechanism in MemoryXtend has been extended to provide full life cycle management of the blobstore cache, so that users can prioritize data availability throughout the application lifetime. Users can define a set of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk.
+
+# Third-Party Product Changes
+
+* [Spring Framework](https://projects.spring.io/spring-framework/) integration has been upgraded to `4.3`
+* [Spring Security](http://projects.spring.io/spring-security/) integration has been upgraded to `4.2.3`
