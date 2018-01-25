@@ -19,9 +19,9 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ## Download Links
 
-* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m15/gigaspaces-insightedge-12.3.0-m15-b18915.zip)\] 
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m16/gigaspaces-insightedge-12.3.0-m16-b18916.zip) | [InsightEdge Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m16/gigaspaces-insightedge-12.3.0-m16-b18916-open.zip)\] 
 
-* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m15/gigaspaces-xap-12.3.0-m15-b18915.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m15/gigaspaces-xap.net-12.3.0-m15-b18915.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m15/gigaspaces-xap-open-12.3.0-m15-b18915.zip)\]
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m16/gigaspaces-xap-12.3.0-m16-b18916.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m16/gigaspaces-xap.net-12.3.0-m16-b18916.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m16/gigaspaces-xap-open-12.3.0-m16-b18916.zip)\]
 
 ## Changelog
 

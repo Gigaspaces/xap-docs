@@ -22,7 +22,7 @@ In systems with MemoryXtend, XAP can store the values of indexed fields in off-h
 
 ## GS-Agent Enhancement
 
-Users can now configure the gs-agent to launch the Web Management Console when deploying a Processing Unit, using the `--webui` command.
+Users can now configure the gs-agent to launch the Web Management Console when deploying an InsightEdge or XAP environment, using the new `--webui` option.
 
 # Tiered Storage Enhancement
 
@@ -30,5 +30,5 @@ The custom initial load mechanism in MemoryXtend has been extended to provide fu
 
 # Third-Party Product Changes
 
-* [Spring Framework](https://projects.spring.io/spring-framework/) integration has been upgraded to `4.3`
+* [Spring Framework](https://projects.spring.io/spring-framework/) integration has been upgraded to `4.3.13`
 * [Spring Security](http://projects.spring.io/spring-security/) integration has been upgraded to `4.2.3`
