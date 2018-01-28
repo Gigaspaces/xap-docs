@@ -29,7 +29,7 @@ Early access builds are provided as is, and should not be used in production. Th
 
 - {{% jira id="GS-13458" %}}: Upgrade Spring Framework to 4.3.13.
 - {{% jira id="GS-13457" %}}: Upgrade Spring Security to 4.2.3.
-- {{% jira id="GS-13464" %}}: Enhance gs-agent to Support running Web Management Console (--webui).
+- {{% jira id="GS-13464" %}}: Enhance gs-agent to support running the Web Management Console (--webui).
 - {{% jira id="GS-13473" %}}: Enhance CachePolicy configuration to use fluent syntax.
 
 ### Resolved Issues
