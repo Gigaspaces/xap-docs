@@ -10,7 +10,7 @@ parent: the-gigaspace-interface-overview.html
 {{% ssummary %}}{{%/ssummary%}}
 
 
-XAP provides a simple space API using the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface for interacting with the space.
+XAP provides a simple Space API using the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface for interacting with the Space.
 
 
 The interface includes the following main operations:
@@ -73,7 +73,7 @@ The interface includes the following main operations:
 
 # Simpler API
 
-The `GigaSpace` interface provides a simpler space API by utilizing Java 5 generics, and allowing sensible defaults. Here are some examples of the space operations as defined within `GigaSpace`:
+The `GigaSpace` interface provides a simpler Space API by utilizing Java 5 generics, and allowing sensible defaults. Here are some examples of the Space operations as defined within `GigaSpace`:
 
 
 ```java
@@ -96,13 +96,11 @@ In the example above, the take operation can be performed without specifying a t
 
 # The Write Operation
 
-In order to write objects to the Space, you use the write method of the GigaSpace interface. The write method is used to write objects if these are introduced for the first time, or update them if these already exist in the space. In order to override these default semantics, you can use the overloaded write methods which accept update modifiers such as WriteModifiers.UPDATE_ONLY.
-
-
+In order to write objects to the Space, use the write method of the GigaSpace interface. The write method is used to write objects if these are introduced for the first time, or to update them if they already exist in the Space. In order to override the default semantics, use the overloaded write methods that accept update modifiers such as WriteModifiers.UPDATE_ONLY.
 
 ## POJO Example
 
-The following example writes an `Employee` object into the space:
+The following example writes an `Employee` object to the Space:
 
 
 ```java
@@ -115,7 +113,7 @@ The following example writes an `Employee` object into the space:
 
 ## SpaceDocument Example
 
-Here is an example how you create a SpaceDocument, register it with the space and then write it into the space:
+Here is an example how you create a SpaceDocument, register it with the Space, and then write it to the Space:
 
 
 ```java
@@ -152,7 +150,7 @@ Here is an example how you create a SpaceDocument, register it with the space an
 
 ## Time To Live
 
-To write an object into the space with a limited time to live you should specify [a lease value](./leases-automatic-expiration.html) (in millisecond). The object will expire automatically from the space.
+To write an object to the Space with a limited time to live, specify [a lease value](./leases-automatic-expiration.html) (in milliseconds). The object will expire automatically from the Space when the lease is finished.
 
 
 ```java
@@ -165,9 +163,7 @@ To write an object into the space with a limited time to live you should specify
 
 ## Write Multiple
 
-When writing a batch of objects into the space, these should be placed into an array to be used by the `GigaSpace.writeMultiple` operation. The returned array will include the corresponding `LeaseContext` object.
-
-
+When writing a batch of objects to the Space, these should be placed into an array to be used by the `GigaSpace.writeMultiple` operation. The returned array will include the corresponding `LeaseContext` object.
 
 ## Example
 
@@ -191,20 +187,18 @@ When writing a batch of objects into the space, these should be placed into an a
 
 **Here are a few important considerations when using the batch operation:**
 
--  should be performed with transactions - this allows the client to roll back the space to its initial state prior the operation was started, in case of a failure.
--  make sure `null` values are not part of the passed array.
--  you should verify that duplicated entries (with the same ID) do not appear as part of the passed array, since the identity of the object is determined based on its `ID` and not based on its reference. This is extremely important with an embedded space, since `writeMultiple` injects the ID value into the object after the write operation (when autogenerate=false).
+-  Should be performed with transactions - this allows the client to roll back the Space to its initial state prior to when the operation was started, in case of a failure.
+-  Make sure `null` values are not part of the passed array.
+-  Verify that duplicated entries (with the same ID) do not appear as part of the passed array, because the identity of the object is determined based on its `ID` and not based on its reference. This is extremely important with an embedded Space, because `writeMultiple` injects the ID value into the object after the write operation (when autogenerate=false).
 
-- Exception handling - the operation many throw the following Exceptions.
+- Exception handling - the operation many throw the following exceptions:
     - [WriteMultiplePartialFailureException]({{% api-javadoc %}}/org/openspaces/core/WriteMultiplePartialFailureException.html)
     - [WriteMultipleException]({{% api-javadoc %}}/org/openspaces/core/WriteMultipleException.html)
 
  
-
-
 ## Return Previous Value
 
-When updating an object which already exists in the space, in some scenarios it is useful to get the previous value of the object (before the update). This previous value is returned in result `LeaseContext.getObject()` when using the `RETURN_PREV_ON_UPDATE` modifier.
+When updating an object that already exists in the Space, in some scenarios it is useful to get the previous value of the object (before the update). This previous value is returned in result `LeaseContext.getObject()` when using the `RETURN_PREV_ON_UPDATE` modifier.
 
 
 
@@ -213,18 +207,18 @@ When updating an object which already exists in the space, in some scenarios it 
   MyData previousValue = lc.getObject();
 ```
 
-{{% note %}}
-Since in most scenarios the previous value is irrelevant, the default behavior is not to return it (i.e. `LeaseContext.getObject()` return null). The `RETURN_PREV_ON_UPDATE` modifier is used to indicate the previous value should be returned.
+{{% note "Note" %}}
+In most scenarios the previous value is irrelevant, therefore the default behavior is not to return it (i.e. `LeaseContext.getObject()` return null). The `RETURN_PREV_ON_UPDATE` modifier is used to indicate that the previous value should be returned.
 {{%/note%}}
 
 {{%anchor asynchronousWrite%}}
 
-## Asynchronous write
+## Asynchronous Write
 
-Asynchronous `write` operation can be implemented using a [Task](./task-execution-overview.html), where the `Task` implementation include a write operation. With this approach the `Task` is sent to the space and executed in an asynchronous manner. The write operation itself will be completed once both the primary and the backup will acknowledge the operation. This activity will be performed as a background activity from the client perspective.
+An asynchronous `write` operation can be implemented using a [Task](./task-execution-overview.html), where the `Task` implementation include a write operation. With this approach the `Task` is sent to the space and executed in an asynchronous manner. The write operation itself will be completed when both the primary and the backup acknowledge the operation. This activity is performed as a background activity from the client perspective.
 
 
-#### Example
+### Example
 
 
 ```java
@@ -233,17 +227,14 @@ Asynchronous `write` operation can be implemented using a [Task](./task-executio
   space.write(obj,WriteModifiers.ONE_WAY);
 ```
 
-
-
-
-{{%note%}}
-Writing an object into a space might generate [notifications](./notify-container-overview.html) to registered objects.
+{{%note "Note"%}}
+Writing an object to a Space may generate [notifications](./notify-container-overview.html) to registered objects.
 {{%/note%}}
 
  
 **Method summary**
 
-Writes a new object to the space, returning its LeaseContext.  
+Writes a new object to the Space, returning its LeaseContext.  
 
 
 ```java
@@ -253,7 +244,7 @@ Writes a new object to the space, returning its LeaseContext.
 
 ```
 
-Writes new objects to the space, returning its LeaseContexts.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#writeMultiple(T[]))
+Writes new objects to the Space, returning its LeaseContexts.[Java API]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#writeMultiple(T[]))
 
 ```java
 <T> LeaseContext<T>[] writeMultiple(T[] entries) throws DataAccessException
@@ -269,7 +260,7 @@ The write operations can be configured with different modifiers:
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |lease       |Time to live | Lease.FOREVER|milliseconds|
-|timeout     | The timeout of an update operation, in milliseconds. If the entry is locked by another transaction wait for the specified number of milliseconds for it to be released. | 0  |
+|timeout     | The timeout of an update operation, in milliseconds. If the entry is locked by another transaction, wait for the specified number of milliseconds for it to be released. | 0  |
 |[WriteModifiers]({{% api-javadoc %}}/com/gigaspaces/client/WriteModifiers.html)|Provides modifiers to customize the behavior of write operations | UPDATE_OR_WRITE  |
 |[LeaseContext]({{% api-javadoc %}}/com/j_spaces/core/LeaseContext.html) |LeaseContext is a return-value encapsulation of a write operation.| |
 
@@ -280,12 +271,10 @@ The write operations can be configured with different modifiers:
 
 # The Change Operation
 
-The [GigaSpace.change]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet]({{% api-javadoc %}}/index.html?com/gigaspaces/client/ChangeSet.html) allows updating existing objects in space, by specifying only the required change instead of passing the entire updated object.
-Thus reducing required network traffic between the client and the space, and the network traffic generated from replicating the changes between the space instances (e.g between the primary space instance and its backup).
+The [GigaSpace.change]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) and the [ChangeSet]({{% api-javadoc %}}/index.html?com/gigaspaces/client/ChangeSet.html) allows updating existing objects in a Space, by specifying only the required change instead of passing the entire updated object.
+This reduces the required network traffic between the client and the Space, and the network traffic generated from replicating the changes between the Space instances (e.g between the primary Space instance and its backup).
 
-
-
-Example:
+**Example**
 
 The following example demonstrates how to update the property 'firstName' of an object of type 'Person' with id 'myID'.
 
@@ -302,36 +291,35 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
 {{%/refer%}}
 
 
-
 {{%anchor read%}}
 
 # The Read Operation
 
 
-The  read operations query the space for an object that matches the criteria provided.
-If a match is found, a copy of the matching object is returned.
-If no match is found, null is returned. Passing a null reference as the template will match any object.
+Read operations query the Space for an object that matches the criteria provided. If a match is found, a copy of the matching object is returned. If no match is found, null is returned. Passing a null reference as the template will match any object.
 
-Any matching object can be returned. Successive read requests with the same template may or may not return equivalent objects, even if no intervening modifications have been made to the space.
-Each invocation of `read` may return a new object even if the same object is matched in the space.
-If you would like to read objects in the same order they have been written into the space you should perform the read objects in a [FIFO mode](./fifo-overview.html).
+Any matching object can be returned. Successive read requests with the same template may or may not return equivalent objects, even if no intervening modifications have been made to the Space.
 
-{{% note %}}
+Each invocation of `read` may return a new object even if the same object is matched in the Space.
+
+If you want to read objects in the same order that they were written to the Space, perform the read objects in [FIFO mode](./fifo-overview.html).
+
+{{% note "Note"%}}
 The `read` operation default timeout is `JavaSpace.NO_WAIT`.
 {{% /note %}}
 
 The read operation can be performed with the following options:
 
 - Template matching
-- By Id
+- By ID
 - By IdQuery
 - By SQLQuery
 
-To learn more about the different options refer to [Querying the Space](./querying-the-space.html)
+To learn more about the different options, refer to [Querying the Space](./querying-the-space.html)
 
-Examples:
+**Example**
 
-The following example writes an `Employee` object into the space and reads it back from the space :
+The following example writes an `Employee` object to the Space and reads it back from the Space:
 
 
 ```java
@@ -360,11 +348,11 @@ The following example writes an `Employee` object into the space and reads it ba
 
 {{%anchor readMultiple%}}
 
-## Read multiple
+## Read Multiple
 
-The GigaSpace interface provides simple way to perform bulk read operations. You may read a large amount of objects in one call.
+The GigaSpace interface provides simple way to perform bulk read operations. You can read a large amount of objects in one call.
 
-Examples:
+**Example**
 
 
 ```java
@@ -396,20 +384,22 @@ Examples:
 
 **Here are a few important considerations when using the batch operation:**
 
-- boosts the performance, since it perform multiple operations using one call. These methods returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, these batch operations can be up to 10 times faster than multiple single based operations.
-- should be handled with care, since they can return a large data set (potentially all the space data). This might cause an out of memory error in the space and client process. You should use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
-- **dos not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
-- Exception handling - operation many throw the following Exceptions. [ReadMultipleException]({{% api-javadoc %}}/org/openspaces/core/ReadMultipleException.html)
+- Boosts the performance, because it perform multiple operations using one call. These methods return the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, these batch operations can be up to 10 times faster than multiple single-based operations.
+- Should be handled with care, because they can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client process. Use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
+- **Does not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
+- Exception handling - operation may throw the following exceptions: [ReadMultipleException]({{% api-javadoc %}}/org/openspaces/core/ReadMultipleException.html)
  
 
 {{%anchor readIfExists%}}
 
-## Read if exists
-A readIfExists operation will return a matching object, or a null if there is currently no matching object in the space.
-If the only possible matches for the template have conflicting locks from one or more other transactions, the timeout value specifies how long the client is willing to wait for interfering transactions to settle before returning a value.
-If at the end of that time no value can be returned that would not interfere with transactional state, null is returned. Note that, due to the remote nature of the space, read and readIfExists may throw a RemoteException if the network or server fails prior to the timeout expiration.
+## ReadIfExists
 
-Example:
+A readIfExists operation will return a matching object, or a null if there is currently no matching object in the Space.
+
+If the only possible matches for the template have conflicting locks from one or more other transactions, the timeout value specifies how long the client is willing to wait for interfering transactions to settle before returning a value.
+If at the end of that time no value can be returned that would not interfere with transactional state, null is returned. Due to the remote nature of the Space, read and readIfExists may throw a RemoteException if the network or server fails prior to the timeout expiration.
+
+**Example**
 
 
 ```java
@@ -430,7 +420,7 @@ The GigaSpace interface supports asynchronous (non-blocking) read operations thr
 Alternatively, asyncRead also accept an implementation of [AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html), which will have its `AsyncFutureListener.onResult` method called when the result has been populated. This does not affect the return type of the `Future<T>`, but provides an additional mechanism for handling the asynchronous response.
 
 
-Example:
+**Example**
 
 
 ```java
@@ -452,7 +442,7 @@ Example:
  	}
 ```
 
-## Passing an AsyncFutureListener with Java 8 lambda syntax:
+## Passing an AsyncFutureListener with Java 8 Lambda Syntax
 
 
 ```java
@@ -481,7 +471,7 @@ Example:
 
 The read operations can be configured with different modifiers.
 
-Examples:
+**Example**
 
 ```java
     Employee template = new Employee();
@@ -496,14 +486,13 @@ Examples:
 | Modifier and Type | Description | Default | Unit|
 |:-----|:------------|:--------|:----|
 | T          | POJO, SpaceDocument|| |
-|timeout     | Time to wait for the response| 0  |  milliseconds |
+|timeout     | Time to wait for the response.| 0  |  milliseconds |
 |query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
-|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
-|[ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations | NONE  |  |
+|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows registering for a callback on an AsyncFuture, to be notified when a result arrives.||
+|[ReadModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ReadModifiers.html)|Provides modifiers to customize the behavior of read operations. | NONE  |  |
 
 
  
-
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
@@ -515,7 +504,7 @@ Read by template:
 .....
 ```
 
-Read by Id: 
+Read by ID: 
 
 ```java
 <T> T readById(Class<T> clazz, Object id) throws DataAccessException
@@ -542,7 +531,7 @@ Read multiple:
 ...
 ```
 
-Asynchronous Read: 
+Asynchronous read: 
 
 ```java
 <T> AsyncFuture<T> asyncRead(T template) throws DataAccessException
@@ -565,47 +554,42 @@ Read if exists:
 {{%/accordion%}}
 
 
-
-
-
-
-
-
 {{%anchor take%}}
 
 # The Take Operation
 
 
-The `take` operations behave exactly like the corresponding `read` operations, except that the matching object is **removed from the space on one atomic operation. Two `take` operations will never return** copies of the same object, although if two equivalent objects were in the space the two `take` operations could return equivalent objects.
+The `take` operations behave exactly like the corresponding `read` operations, except that the matching object is removed from the Space on one atomic operation. Two `take` operations will never return copies of the same object, although if two equivalent objects were in the Space, the two `take` operations could return equivalent objects.
 
+If a `take` returns a non-null value, then the object has been removed from the Space, possibly within a transaction. This modifies the claims to once-only retrieval; a take is considered to be successful only if all enclosing transactions commit successfully.
 
-
-If a `take` returns a non-null value, the object has been removed from the space, possibly within a transaction. This modifies the claims to once-only retrieval: A take is considered to be successful only if all enclosing transactions commit successfully.
 If a `RemoteException` is thrown, the take may or may not have been successful.
-If an `UnusableEntryException` is thrown, the take `removed` the unusable object from the space.
-If any other exception is thrown, the take did not occur, and no object was removed from the space.
+
+If an `UnusableEntryException` is thrown, the take `removed` the unusable object from the Space.
+
+If any other exception is thrown, the take did not occur, and no object was removed from the Space.
 
 
-{{%note%}}
-If you would like to take objects from the space in the same order they have been written into the space you should perform the take objects in a [FIFO mode](./fifo-support.html).
+{{%note "Note"%}}
+If you want to take objects from the Space in the same order they were written to the Space, perform the take objects in [FIFO mode](./fifo-support.html).
 
-Taking an object from the space might generate [notifications](./notify-container-overview.html) to registered objects/queries.
+Taking an object from the space may generate [notifications](./notify-container-overview.html) to registered objects/queries.
 {{%/note%}}
 
 The take operation can be performed with the following options:
 
 - Template matching
-- By Id
+- By ID
 - By IdQuery
 - By SQLQuery
 
 {{%refer%}}
-To learn more about the different options refer to [Querying the Space](./querying-the-space.html)
+To learn more about the different options, refer to [Querying the Space](./querying-the-space.html).
 {{%/refer%}}
 
-Examples:
+**Example**
 
-The following example writes an `Employee` object into the space and removes it from the space :
+The following example writes an `Employee` object to the Space and removes it from the Space:
 
 
 ```java
@@ -634,17 +618,17 @@ The following example writes an `Employee` object into the space and removes it 
 
 {{%anchor takeMultiple%}}
 
-## Take multiple
+## Take Multiple
 
 
 The GigaSpace interface provides simple way to perform bulk take operations. You may take large amount of objects in one call.
 
 
-{{% note %}}
-To remove a batch of objects without returning these back into the client use `GigaSpace.clear(SQLQuery)`;
+{{% note "Note"%}}
+To remove a batch of objects without returning them back into the client, use `GigaSpace.clear(SQLQuery)`;.
 {{%/note%}}
 
-Examples:
+**Example**
 
 
 ```java
@@ -677,21 +661,22 @@ Examples:
 
 **Here are a few important considerations when using the batch operation:**
 
--  boosts the performance, since it performs multiple operations using one call. This method returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, this batch operation can be up to 10 times faster than multiple single based operations.
--  should be handled with care, since it can return a large data set (potentially all the space data). This might cause an out of memory error in the space and client process. You should use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
--  should be performed with transactions - this allows the client to roll back the space to its initial state prior the operation was started, in case of a failure.
--  operation **dos not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
--  in the event of a take error, DataAccessException will wrap a TakeMultipleException, accessible via DataAccessException.getRootCause().
+-  Boosts the performance, because it performs multiple operations using one call. This method returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, this batch operation can be up to 10 times faster than multiple single-based operations.
+-  Should be handled with care, because it can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client processes. Use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
+-  Should be performed with transactions. This allows the client to roll back the Space to its initial state prior to when the operation was started, in case of a failure.
+-  Operation **dos not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
+-  In the event of a take error, DataAccessException will wrap a TakeMultipleException, accessible via DataAccessException.getRootCause().
  
 
 {{%anchor takeIfExists%}}
 
-## Take if exists
-A takeIfExists operation will return a matching object, or a null if there is currently no matching object in the space.
-If the only possible matches for the template have conflicting locks from one or more other transactions, the timeout value specifies how long the client is willing to wait for interfering transactions to settle before returning a value.
-If at the end of that time no value can be returned that would not interfere with transactional state, null is returned.
+## TakeIfExists
 
-Example:
+A takeIfExists operation will return a matching object, or a null if there is currently no matching object in the Space.
+
+If the only possible matches for the template have conflicting locks from one or more other transactions, the timeout value specifies how long the client is willing to wait for interfering transactions to settle before returning a value. If at the end of that time no value can be returned that would not interfere with transactional state, null is returned.
+
+**Example**
 
 
 ```java
@@ -713,7 +698,7 @@ The GigaSpace interface supports asynchronous (non-blocking) take operations thr
 Alternatively, asyncTake also accept an implementation of [AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html), which will have its `AsyncFutureListener.onResult` method called when the result has been populated. This does not affect the return type of the `Future<T>`, but provides an additional mechanism for handling the asynchronous response.
 
 
-Example:
+**Example**
 
 
 ```java
@@ -734,7 +719,7 @@ Example:
  	}
 ```
 
-## Passing an AsyncFutureListener with Java 8 lambda syntax:
+## Passing an AsyncFutureListener with Java 8 Lambda Syntax
 
 
 ```java
@@ -762,7 +747,7 @@ Example:
 
 The take operations can be configured with different modifiers.
 
-Examples:
+**Examples**
 
 ```java
 	Employee template = new Employee();
@@ -779,13 +764,13 @@ Examples:
 | Modifier and Type | Description | Default | Unit|
 |:-----|:------------|:--------|:----|
 | T          | POJO, SpaceDocument|| |
-|timeout     | Time to wait for the response| 0  |  milliseconds |
+|timeout     | Time to wait for the response.| 0  |  milliseconds |
 |query| [ISpaceQuery]({{% api-javadoc %}}/com/gigaspaces/query/ISpaceQuery.html)|      | |
-|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows to register for a callback on an AsyncFuture to be notified when a result arrives||
-|[TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations | NONE  |  |
+|[AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html) |Allows registering for a callback on an AsyncFuture to be notified when a result arrives.||
+|[TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)|Provides modifiers to customize the behavior of take operations. | NONE  |  |
 
  
-For further details on each of the available modifiers see: [TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html)
+For further details about each of the available modifiers, see [TakeModifiers]({{% api-javadoc %}}/com/gigaspaces/client/TakeModifiers.html).
  
 
 {{%accordion%}}
@@ -799,7 +784,7 @@ Take by template:
 .....
 ```
 
-Take by Id: 
+Take by ID: 
 
 ```java
 <T> T takeById(Class<T> clazz, Object id) throws DataAccessException
@@ -855,10 +840,10 @@ Take if exists:
 # The Clear Operation
 
 
-You can use `GigaSpace.clear` to remove objects from the space. When using the clear operation no object/objects are returned.
+You can use `GigaSpace.clear` to remove objects from the Space. When using the clear operation, no object/objects are returned.
 
 
-Examples:
+**Examples**
 
 
 ```java
@@ -887,7 +872,7 @@ Examples:
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Clears objects from space. 
+Clears objects from the Space. 
 
 
 ```java
@@ -905,20 +890,16 @@ void clear(ISpaceQuery<T> query) throws DataAccessException
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |query         | SQLQuery, IdQuery||
-|[ClearModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ClearModifiers.html)|Provides modifiers to customize the behavior of the clear operations | NONE  |
-
-
+|[ClearModifiers]({{% api-javadoc %}}/com/gigaspaces/client/ClearModifiers.html)|Provides modifiers to customize the behavior of the clear operations. | NONE  |
 
 
 {{%anchor count%}}
 
 # The Count Operation
 
+You can use `GigaSpace.count` to count objects in a Space.
 
-You can use `GigaSpace.count` to count objects in a space.
-
-
-Examples:
+**Examples**
 
 
 ```java
@@ -944,11 +925,10 @@ Examples:
 ```
 
 
-
 {{%accordion%}}
 {{%accord title="Method summary..."%}}
 
-Count objects in space. 
+Count objects in a Space. 
 
 
 ```java
@@ -966,7 +946,7 @@ int count(ISpaceQuery<T> query) throws DataAccessException
 |:-----|:------------|:-------- |
 |T          | POJO, SpaceDocument||
 |query         | SQLQuery, IdQuery||
-|[CountModifiers]({{% api-javadoc %}}/com/gigaspaces/client/CountModifiers.html)|Provides modifiers to customize the behavior of the count operations | NONE  |
+|[CountModifiers]({{% api-javadoc %}}/com/gigaspaces/client/CountModifiers.html)|Provides modifiers to customize the behavior of the count operations. | NONE  |
 
 
 
@@ -974,10 +954,10 @@ int count(ISpaceQuery<T> query) throws DataAccessException
 
 # Counters
 
-The `ISpaceProxy.Change` API allows you to increment or decrement an Numerical field within your Space object or Document. This change may operate on a numeric property only (byte,short,int,long,float,double) or their corresponding Boxed variation. To maintain a counter you should use the Change operation with the `ChangeSet` increment/decrement method that adds/subtract the provided numeric value to the existing counter.
+The `ISpaceProxy.Change` API allows you to increment or decrement an Numerical field within your Space object or Document. This change may operate on a numeric property only (byte, short, int, long, float, double) or their corresponding Boxed variation. To maintain a counter, use the Change operation with the `ChangeSet` increment/decrement method that adds/subtract the provided numeric value to the existing counter.
 
 
-Example:
+**Example**
 
 Incrementing a Counter done using the `ChangeSet().Increment` call:
 
@@ -1001,22 +981,19 @@ WordCount wordount = space.readById(WordCount.class , idQuery);
 int counterValue = wordount.getMycounter();
 ```
 
-
-
 {{%refer%}}
 [The Space Counters](./the-space-counters.html)
 {{%/refer%}}
-
 
 
 {{%anchor aggregators%}}
 
 # Aggregators
 
-There is no need to retrieve the entire data set from the space to the client side , iterate the result set and perform the aggregation. This would be an expensive activity as it might return large amount of data into the client application. The Aggregators allow you to perform the entire aggregation activity at the space side avoiding any data retrieval back to the client side.
+There is no need to retrieve the entire data set from the Space to the client side, iterate the result set and perform the aggregation. This would be an expensive activity as it might return large amounts of data to the client application. The Aggregators allow you to perform the entire aggregation activity on the Space side, avoiding any data retrieval back to the client side.
 
 
-Example:
+**Example**
 
 {{%tabs%}}
 {{%tab "  Application "%}}
@@ -1088,20 +1065,14 @@ public class Person {
 {{%/refer%}}
 
 
-
-
 # Async Extension
 
+When running with Java 8, it is possible to have an even simpler Space API with the `AsyncExtension`. AsyncExtension substituts the Space `AsyncFuture` with the Java8 `CompletableFuture` and thus can make the code more fluent.
+
+There is no need to retrieve the entire data set from the Space to the client side  iterate the result set and perform the aggregation. This would be an expensive activity as it might return a large amount of data to the client application. The `Aggregators` allow you to perform the entire aggregation activity on the Space side, avoiding any data retrieval back to the client side.
 
 
-When running with Java8, it is possible to have an even simpler Space API with the `AsyncExtension`.
-AsyncExtension substituts the Space `AsyncFuture` with the Java8 `CompletableFuture` and thus can make the code more fluent.
-
-There is no need to retrieve the entire data set from the Space to the client side , iterate the result set and perform the aggregation. This would be an expensive activity as it might return a large amount of data into the client application. The `Aggregators` allow you to perform the entire aggregation activity at the Space side avoiding any data retrieval back to the client side.
-
-
-
-Example:
+**Example**
 
 
 ```java
@@ -1112,11 +1083,6 @@ asyncRead(gigaSpace, template).thenAccept(value -> {
 })
 
 ```
-
-
-
-
-
 
 
 

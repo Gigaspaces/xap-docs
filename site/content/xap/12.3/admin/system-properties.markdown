@@ -118,7 +118,7 @@ Refer to [Change code without restarts]({{%currentjavaurl%}}/the-space-no-restar
 | com.gs.transport_protocol<br>.lrmi.threadpool.<br>queue-size | Regualr operations thread pool queue size |  | {{% fontsize 10 %}}2147483647 {{%/fontsize%}}  |   | Invo<br>cation | No | 
 | com.gs.transport_protocol<br>.lrmi.custom.threadpool.<br>queue-size | Custom operations thread pool queue size  |  | {{% fontsize 10 %}}2147483647{{% /fontsize%}}    |   | Invo<br>cation | No |
 | com.gs.transport_protocol<br>.lrmi.system-priority.<br>threadpool.queue-size | System operations thread pool queue size |  |  | {{% fontsize 10 %}}2147483647 {{%/fontsize %}}     |   | Invo<br>cation | No |
- 
+| com.gs.transport_protocol<br>.lrmi.throw-resource-not-available | Specifies whether to throw an exception if no resources are available | false |  | Boolean    |   
 
 {{%refer%}}
 Refer to [Tuning the communication protocol](./tuning-communication-protocol.html)

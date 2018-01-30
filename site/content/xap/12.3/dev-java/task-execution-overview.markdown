@@ -110,6 +110,11 @@ public interface AsyncResult<T> {
 }
 ```
 
+If there are no connections available for an asynchronous operation it will be blocked until a connection becomes available, which can affect system performance. If your environment is sensitive to this, you can use the `com.gs.transport_protocol.lrmi.throw-resource-not-available` Boolean property to configure the system behavior.
+
+If you set this property to true, a ResourceNotAvailableException is thrown instead of blocking until resources are available.
+
+
 # Task Routing
 
 When executing a single `Task`, there are several ways its routing can be controlled. Passing the routing information as a parameter to the execute command is the simplest approach:
