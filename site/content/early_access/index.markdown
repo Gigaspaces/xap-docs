@@ -25,7 +25,9 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ## Changelog
 
-Features such as the new Command Line Interface and support for InsightEdge and XAP in Microsoft Docker, along with other feature enhancements and bug fixes, are currently in progress but were not completed within this milestone.
+A new Command Line Interface and Docker image for XAP, along with other feature enhancements and bug fixes, are currently in progress but were not completed within this milestone.
+
+For a description of the new CLI and Docker image and evaluation details, go to the [What's New](/xap/12.3/rn/whats-new.html) page of the 12.3 early access release notes.
 
 # 12.3 M15 (Jan-21-2018)
 

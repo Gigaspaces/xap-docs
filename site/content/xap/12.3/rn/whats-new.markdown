@@ -24,7 +24,7 @@ In systems with MemoryXtend, XAP can store the values of indexed fields in off-h
 
 A new interactive Command Line Interface (CLI) based on the REST Manager API is planned for version 12.3. It is meant to replace the legacy GigaSpaces CLI, and supports both InsightEdge and XAP applications. This feature is still under construction, but is sufficiently mature for user evaluation. 
 
-We encourage users to begin working with the new CLI and give us feedback. You can run the new CLI from the **bin** folder, using the `xap --help` script. Commands that have not yet been fully implemented will generate an "under construction" message. The following is a partial list of the available functionality:
+We encourage users to begin working with the new CLI and give us feedback. You can run the new CLI via the `xap` script in the **bin** folder (use `--help` to get started). Commands that have not yet been fully implemented will generate an "under construction" message. The following is a partial list of the available functionality:
 
 - Deploy a Processing Unit or Space
 - List, create, kill, and restart containers (GSCs)
@@ -36,11 +36,11 @@ We encourage users to begin working with the new CLI and give us feedback. You c
 
 Users can now configure the gs-agent to launch the Web Management Console when deploying an InsightEdge or XAP environment, using the new `--webui` option.
 
-# GigaSpaces on Microsoft Docker
+# GigaSpaces on Docker Hub
 
 A Docker image for XAP has been published at [Docker Hub](https://hub.docker.com/r/gigaspaces/xap/). This feature is still under construction, but is sufficiently mature for user evaluation and feedback.
 
-To access the Docker image, follow the instructions at https://hub.docker.com/r/gigaspaces/xap/. Docker images for XAP open source and InsightEdge will be available soon.
+To access the Docker image, follow the instructions on the [GigaSpaces XAP](https://hub.docker.com/r/gigaspaces/xap/) page. Docker images for XAP open source and InsightEdge will be available soon.
 
 # Tiered Storage Enhancement
 
