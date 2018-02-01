@@ -15,26 +15,17 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
-# 12.3 M16 (Jan-28-2018)
+# 12.3 M17 (Feb-04-2018)
 
 ## Download Links
 
-* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m16/gigaspaces-insightedge-12.3.0-m16-b18916.zip) | [InsightEdge Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m16/gigaspaces-insightedge-12.3.0-m16-b18916-open.zip)\] 
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m17/gigaspaces-insightedge-12.3.0-m17-b18917.zip) | [InsightEdge Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m17/gigaspaces-insightedge-open-12.3.0-m17-b18917-open.zip)\] 
 
-* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m16/gigaspaces-xap-12.3.0-m16-b18916.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m16/gigaspaces-xap.net-12.3.0-m16-b18916.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m16/gigaspaces-xap-open-12.3.0-m16-b18916.zip)\]
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m17/gigaspaces-xap-12.3.0-m17-b18917.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m17/gigaspaces-xap.net-12.3.0-m17-b18917.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m17/gigaspaces-xap-open-12.3.0-m17-b18917.zip)\]
 
 ## Changelog
 
-### Features and Enhancements
-
-- {{% jira id="GS-13458" %}}: Upgrade Spring Framework to 4.3.13.
-- {{% jira id="GS-13457" %}}: Upgrade Spring Security to 4.2.3.
-- {{% jira id="GS-13464" %}}: Enhance gs-agent to support running the Web Management Console (--webui).
-- {{% jira id="GS-13473" %}}: Enhance CachePolicy configuration to use fluent syntax.
-
-### Resolved Issues
-
-N/A
+Features such as the new Command Line Interface and support for InsightEdge and XAP in Microsoft Docker, along with other feature enhancements and bug fixes, are currently in progress but were not completed within this milestone.
 
 # 12.3 M15 (Jan-21-2018)
 
