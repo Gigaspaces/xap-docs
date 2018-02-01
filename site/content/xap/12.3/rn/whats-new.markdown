@@ -22,16 +22,25 @@ In systems with MemoryXtend, XAP can store the values of indexed fields in off-h
 
 ## New Command Line Interface
 
-A new interactive Command Line Interface (CLI) based on the REST Manager API is now available. It is meant to replace the legacy GigaSpaces CLI, and supports both InsightEdge and XAP applications. The new CLI uses a fluent syntax command set and offers a wide range of administrative and maintenance capabilities.
+A new interactive Command Line Interface (CLI) based on the REST Manager API is planned for version 12.3. It is meant to replace the legacy GigaSpaces CLI, and supports both InsightEdge and XAP applications. This feature is still under construction, but is sufficiently mature for user evaluation. 
 
-{{%info "Incremental Release"%}}
-The new CLI currently offers a subset of the planned commands, with more introduced in each milestone. We encourage users to begin working with this administration tool and give us feedback during the early access stage.
-{{%/info%}}
+We encourage users to begin working with the new CLI and give us feedback. You can run the new CLI from the **bin** folder, using the `xap --help` script. Commands that have not yet been fully implemented will generate an "under construction" message. The following is a partial list of the available functionality:
 
+- Deploy a Processing Unit or Space
+- List, create, kill, and restart containers (GSCs)
+- List hosts
+- Start an agent on the current hosts
+- List Spaces and Space instances
 
 ## GS-Agent Enhancement
 
 Users can now configure the gs-agent to launch the Web Management Console when deploying an InsightEdge or XAP environment, using the new `--webui` option.
+
+# GigaSpaces on Microsoft Docker
+
+A Docker image for XAP has been published at [Docker Hub](https://hub.docker.com/r/gigaspaces/xap/). This feature is still under construction, but is sufficiently mature for user evaluation and feedback.
+
+To access the Docker image, follow the instructions at https://hub.docker.com/r/gigaspaces/xap/. Docker images for XAP open source and InsightEdge will be available soon.
 
 # Tiered Storage Enhancement
 
