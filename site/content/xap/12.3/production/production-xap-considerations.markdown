@@ -79,28 +79,28 @@ You may have a set of LUS/GSM managing GSCs associated to a specific group. To "
 
 ```bash
 export XAP_LOOKUP_GROUPS=GroupX
-gs-agent.sh --lus 1 
+gs-agent.sh --lus=1 
 ```
 {{%/accord%}}
 {{%accord  title="Step 2. Run gs-agent that will start GSCs with GroupX (4 GGCs with this example): "%}}
 
 ```bash
 export XAP_LOOKUP_GROUPS=GroupX
-gs-agent.sh --gsc 4
+gs-agent.sh --gsc=4
 ```
 {{%/accord%}}
 {{%accord  title="Step 3. Run gs-agent starting LUS/GSM with GroupY: "%}}
 
 ```bash
 export XAP_LOOKUP_GROUPS=GroupX
-gs-agent.sh --lus 1 --gsm 1 
+gs-agent.sh --lus=1 --gsm=1 
 ```
 {{%/accord%}}
 {{%accord  title="Step 4. Run gs-agent that will start GSCs with GroupY (2 GGCs with this example): "%}}
 
 ```bash
 export XAP_LOOKUP_GROUPS=GroupY
-gs-agent.sh --gsc 2
+gs-agent.sh --gsc=2
 ```
 {{%/accord%}}
 {{%accord   title="Step 5. Deploy a space into GroupX GSCs "%}}
@@ -134,7 +134,7 @@ You may have a set of LUS/GSM managing GSCs associated to a specific locator. To
 export XAP_LUS_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=8888
 export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
 export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
-gs-agent.sh --lus 1 --gsm 1 
+gs-agent.sh --lus=1 --gsm=1 
 ```
 {{%/accord%}}
 {{%accord   title="Step 2. Run gs-agent that will start GSCs using the lookup listening on port 8888 (4 GGCs with this example):"%}}
@@ -142,7 +142,7 @@ gs-agent.sh --lus 1 --gsm 1
 ```bash
 export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
 export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
-gs-agent.sh --gsc 4
+gs-agent.sh --gsc-4
 ```
 {{%/accord%}}
 {{%accord   title="Step 3. Run gs-agent starting LUS/GSM with a lookup service listening on port 9999:"%}}
@@ -151,7 +151,7 @@ gs-agent.sh --gsc 4
 export XAP_LUS_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=9999
 export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
 export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
-gs-agent.sh --lus 1 --gsm 1 
+gs-agent.sh --lus=1 --gsm=1 
 ```
 {{%/accord%}}
 {{%accord   title="Step 4. Run gs-agent that will start GSCs using the lookup listening on port 9999 (2 GGCs with this example):"%}}
@@ -160,7 +160,7 @@ gs-agent.sh --lus 1 --gsm 1
 ```bash
 export XAP_LOOKUP_LOCATORS=127.0.0.1:9999
 export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
-gs-agent.sh --gsc 2
+gs-agent.sh --gsc=2
 ```
 {{%/accord%}}
 {{%accord   title="Step 5. Deploy a space using lookup listening on port 8888:"%}}
@@ -208,7 +208,7 @@ To use zones when deploying your PU you should:
 
 ```bash
 export EXT_JAVA_OPTIONS=-Dcom.gs.zones=webZone ${EXT_JAVA_OPTIONS}
-gs-agent gsa.gsc 2
+gs-agent --gsc=2
 ```
 {{%/accord%}}
 {{%accord   title="Step 2. Deploy the PU using the `-zones` option. Example: "%}}
@@ -230,21 +230,21 @@ You may have a set of LUS/GSM managing multiple zones (recommended) or have a se
 {{%accord  title="Step 1. Run gs-agent on the machines you want to have the LUS/GSM:"%}}
 
 ```bash
-gs-agent.sh --lus 1 --gsm 1 
+gs-agent.sh --lus=1 --gsm=1 
 ```
 {{%/accord%}}
 {{%accord   title="Step 2. Run gs-agent that will start GSCs with zoneX (4 GGCs with this example):"%}}
 
 ```bash
 export EXT_JAVA_OPTIONS=-Dcom.gs.zones=zoneX ${EXT_JAVA_OPTIONS}
-gs-agent.sh --gsc 4
+gs-agent.sh --gsc=4
 ```
 {{%/accord%}}
 {{%accord   title="Step 3. Run gs-agent that will start GSCs with zoneY (2 GGCs with this example):"%}}
 
 ```bash
 export EXT_JAVA_OPTIONS=-Dcom.gs.zones=zoneY ${EXT_JAVA_OPTIONS}
-gs-agent.sh --gsc 2
+gs-agent.sh --gsc=2
 ```
 {{%/accord%}}
 {{%/accordion%}}

@@ -117,7 +117,7 @@ You should have **one GigaSpaces agent** running the ESM. No GSCs should be star
 rem Agent deployment that potentially can start management processes
 set XAP_LOOKUP_GROUPS=myGroup
 set XAP_HOME=d:\gigaspaces
-start cmd /c "%XAP_HOME%\bin\gs-agent.bat --global.esm 1 --global.gsm 2 --global.lus 2"
+start cmd /c "%XAP_HOME%\bin\gs-agent.bat --global.esm=1 --global.gsm=2 --global.lus=2"
 ```
 
 {{% /tab %}}
@@ -130,7 +130,7 @@ start cmd /c "%XAP_HOME%\bin\gs-agent.bat --global.esm 1 --global.gsm 2 --global
 
 export XAP_LOOKUP_GROUPS=myGroup
 export XAP_HOME=~/gigaspaces
-nohup ${XAP_HOME}/bin/gs-agent.sh --global.esm 1 --global.gsm 2 --global.lus 2 > /dev/null 2>&1 &
+nohup ${XAP_HOME}/bin/gs-agent.sh --global.esm=1 --global.gsm=2 --global.lus=2 > /dev/null 2>&1 &
 ```
 
 {{% /tab %}}

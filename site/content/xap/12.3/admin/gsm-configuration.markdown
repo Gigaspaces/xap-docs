@@ -32,7 +32,7 @@ The agent on these machines will be started using the following:
 
 
 ```bash
-gs-agent --gsm 1
+gs-agent --gsm=1
 ```
 
 `Machine B` and `Machine C` will not run a GSM. The agent on these machines will be started using the following:
@@ -60,7 +60,7 @@ All agents are started with the same command instructing them to maintain two gl
 
 
 ```bash
-gs-agent --global.gsm 2 
+gs-agent --global.gsm=2 
 ```
 
 Upon startup the agents will decide which ones will run a GSM and which won't.

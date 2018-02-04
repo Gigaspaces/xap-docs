@@ -45,7 +45,7 @@ Multicast is not used with replication , notification , monitoring or any client
 When multicast is disabled global lookup service should not be use. You should use only local lookup service configuration with the agent with the machines running the lookup service:
 
 ```bash
-gs-agent --lus 1 --gsm 1
+gs-agent --lus=1 --gsm=1
 ```
 
 Machines not running the lookup service should have their agent started using:

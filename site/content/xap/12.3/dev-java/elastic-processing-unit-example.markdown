@@ -53,7 +53,7 @@ The Data-Grid cluster:<br>
 # Starting the agent
 Management node (XAP-1)
 ```bash
-./gs-agent.sh --esm 1 --lus 1 --gsm 1
+./gs-agent.sh --esm=1 --lus=1 --gsm=1
 ```
 
 Other nodes (XAP-2, XAP-3 , XAP-4)
