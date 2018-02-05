@@ -19,21 +19,12 @@ A XAP web processing unit can use {{%exurl "Jetty" "http://www.eclipse.org/jetty
 
 
 **Dependencies**<br>
-In order to use this feature, include the `${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty-8.jar` file on your classpath or use maven dependencies:
+In order to use this feature, include the `${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty.jar` file on your classpath or use maven dependencies:
 
 ```xml
 <dependency>
     <groupId>org.gigaspaces</groupId>
-    <artifactId>xap-jetty-8</artifactId>
-    <version>{{%version maven-version%}}</version>
-</dependency>
-```
-
-or `${XAP_HOME}/lib/optional/jetty-9/xap-jetty/xap-jetty-9.jar`
-```xml
-<dependency>
-    <groupId>org.gigaspaces</groupId>
-    <artifactId>xap-jetty-9</artifactId>
+    <artifactId>xap-jetty</artifactId>
     <version>{{%version maven-version%}}</version>
 </dependency>
 ```
@@ -48,19 +39,7 @@ For more information on dependencies see [Maven Artifacts](../started/maven-arti
 
 {{%panel%}}
 
-XAP 12.0 ships with Jetty 8.1.8.v20121106. However, it is possible to use Jetty 9.3.7.v20160115.
-
-To install Jetty 9.3.7.v20160115 follow these steps:
-
-1. Rename `<XAPHOME>/lib/optional/jetty` to `<XAPHOME>/lib/optional/jetty-8`
-2. Rename `<XAPHOME>/lib/optional/jetty-9` to `<XAPHOME>/lib/optional/jetty`
-3. Copy the Jetty 9.3.7.v20160115 jars to `<XAPHOME>/lib/optional/jetty` directory from the following folders:
-   * `<Jetty>/lib/*.jar`
-   * `<Jetty>/lib/annotations/*.jar`
-   * `<Jetty>/lib/websocket/*.jar`
-   * `<Jetty>/lib/apache-jsp/*.jar`
-4. Also, Download cdi-api-2.0-EDR1.jar and place it at under the Jetty directory as well. The file could be downloaded from here: {{%exurl "cdi-api-2.0-EDR1" "http://central.maven.org/maven2/javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar"%}}
-5. With version 9 the connector configuration has [changed](#jetty9).
+XAP 12.3 ships with Jetty 9.2.24v20180105.
 
 {{%/panel%}}
 
@@ -113,7 +92,7 @@ The first part of the **jetty.plain.pu.xml** is the different deploy time proper
 All the above properties can be controlled during deployment (or by adding a **META-INF/spring/pu.properties** file). What they actually control (though very evident from the name) is explained in the following sections.
 
 {{% note %}}
-Controlling the size of the data a client can push to the server can be done using the `org.mortbay.jetty.Request.maxFormContentSize` property.
+Controlling the size of the data a client can push to the server can be done using the `org.eclipse.jetty.server.Request.maxFormContentSize` property.
 {{% /note %}}
 
 ## Port Numbers
@@ -149,43 +128,52 @@ You can find out at runtime which port jetty actually uses by calling `getServle
 
 
 ```xml
-<bean id="jettyHolder"
-	class="org.openspaces.pu.container.jee.jetty.holder.SharedJettyHolder">
-	<constructor-arg ref="jetty" />
+<bean id="jettyHolder" class="org.openspaces.pu.container.jee.jetty.holder.SharedJettyHolder">
+    <constructor-arg ref="jetty" />
 </bean>
 
 <bean id="jetty" class="org.eclipse.jetty.server.Server">
-	<property name="threadPool">
-		<bean class="org.eclipse.jetty.util.thread.QueuedThreadPool">
-			<property name="minThreads" value="${web.threadPool.minThreads}" />
-			<property name="maxThreads" value="${web.threadPool.maxThreads}" />
-		</bean>
-
-	</property>
-	<property name="connectors">
-		<list>
-			<bean class="org.eclipse.jetty.server.nio.SelectChannelConnector">
-				<property name="port" ref="port" />
-				<property name="maxIdleTime" value="${web.selector.maxIdleTime}" />
-				<property name="acceptors" value="${web.selector.acceptors}" />
-				<property name="statsOn" value="${web.statsOn}" />
-				<property name="confidentialPort" ref="confidentialPort" />
-				<property name="lowResourcesConnections" value="${web.selector.lowResourcesConnections}" />
-				<property name="lowResourcesMaxIdleTime" value="${web.selector.lowResourcesMaxIdleTime}" />
-				<property name="forwarded" value="${web.selector.forwarded}" />
-			</bean>
-		</list>
-	</property>
-	<property name="handler">
-		<bean class="org.eclipse.jetty.server.handler.HandlerCollection">
-			<property name="handlers">
-				<list>
-					<bean class="org.eclipse.jetty.server.handler.ContextHandlerCollection" />
-					<bean class="org.eclipse.jetty.server.handler.DefaultHandler" />
-				</list>
-			</property>
-		</bean>
-	</property>
+    <constructor-arg>
+        <bean class="org.eclipse.jetty.util.thread.QueuedThreadPool">
+            <property name="minThreads" value="${web.threadPool.minThreads}"/>
+            <property name="maxThreads" value="${web.threadPool.maxThreads}"/>
+        </bean>
+    </constructor-arg>
+    <property name="connectors">
+        <list>
+            <bean class="org.eclipse.jetty.server.ServerConnector">
+                <constructor-arg name="server" ref="jetty"/>
+                <constructor-arg name="executor"><null/></constructor-arg>
+                <constructor-arg name="scheduler"><null/></constructor-arg>
+                <constructor-arg name="bufferPool"><null/></constructor-arg>
+                <constructor-arg name="acceptors" value="${web.selector.acceptors}"/>
+                <constructor-arg name="selectors" value="${web.selector.selectors}"/>
+                <constructor-arg name="factories">
+                    <list>
+                        <bean class="org.eclipse.jetty.server.HttpConnectionFactory">
+                            <constructor-arg>
+                                <bean class="org.eclipse.jetty.server.HttpConfiguration">
+                                    <property name="securePort" ref="confidentialPort"/>
+                                </bean>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </constructor-arg>
+                <property name="port" ref="basePort"/>
+                <property name="idleTimeout" value="${web.selector.maxIdleTime}"/>
+            </bean>
+        </list>
+    </property>
+    <property name="handler">
+        <bean class="org.eclipse.jetty.server.handler.HandlerCollection">
+            <property name="handlers">
+                <list>
+                    <bean class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
+                    <bean class="org.eclipse.jetty.server.handler.DefaultHandler"/>
+                </list>
+            </property>
+        </bean>
+    </property>
 </bean>
 </beans>
 ```
@@ -207,16 +195,16 @@ The bean that is actually used (and expected to be defined) within the configura
  <property name="copyWebDir" value="${web.context.copyWebDir}" />
  <property name="parentLoaderPriority" value="${web.context.classLoader.parentFirst}" />
  <property name="configurationClasses">
- 	<list>
- 		<value>org.eclipse.jetty.webapp.WebInfConfiguration</value>
- 		<value>org.eclipse.jetty.webapp.WebXmlConfiguration</value>
- 		<value>org.eclipse.jetty.webapp.MetaInfConfiguration</value>
- 		<value>org.eclipse.jetty.webapp.FragmentConfiguration</value>
- 		<value>org.eclipse.jetty.plus.webapp.EnvConfiguration</value>
- 		<value>org.eclipse.jetty.plus.webapp.PlusConfiguration</value>
- 		<value>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</value>
- 		<value>org.eclipse.jetty.webapp.TagLibConfiguration</value>
- 	</list>
+    <list>
+        <value>org.eclipse.jetty.webapp.WebInfConfiguration</value>
+        <value>org.eclipse.jetty.webapp.WebXmlConfiguration</value>
+        <value>org.eclipse.jetty.webapp.MetaInfConfiguration</value>
+        <value>org.eclipse.jetty.webapp.FragmentConfiguration</value>
+        <value>org.eclipse.jetty.plus.webapp.EnvConfiguration</value>
+        <value>org.eclipse.jetty.plus.webapp.PlusConfiguration</value>
+        <value>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</value>
+        <value>org.eclipse.jetty.webapp.TagLibConfiguration</value>
+    </list>
  </property>
  </bean>
 ```
@@ -236,15 +224,15 @@ For example:
 
 ```xml
 <dependency>
-	<groupId>org.gigaspaces</groupId>
-	<artifactId>xap-openspaces</artifactId>
-	<version>{{%version "maven-version" %}}</version>
-	<exclusions>
-		<exclusion>
-			<groupId>org.eclipse.jetty.aggregate</groupId>
-			<artifactId>jetty-all</artifactId>
-		</exclusion>
-	<exclusions>
+    <groupId>org.gigaspaces</groupId>
+    <artifactId>xap-openspaces</artifactId>
+    <version>{{%version "maven-version" %}}</version>
+    <exclusions>
+        <exclusion>
+            <groupId>org.eclipse.jetty.aggregate</groupId>
+            <artifactId>jetty-all</artifactId>
+        </exclusion>
+    <exclusions>
 </dependency>
 ```
 
@@ -331,36 +319,46 @@ In case more than one GSC is running on the same machine, and a web application 
     <constructor-arg ref="jetty" />
 </bean>
 
-<bean id="jetty" class="org.mortbay.jetty.Server">
+<bean id="jetty" class="org.eclipse.jetty.server.Server">
 
-    <property name="threadPool">
-        <bean class="org.mortbay.thread.QueuedThreadPool">
+    <constructor-arg>
+        <bean class="org.eclipse.jetty.util.thread.QueuedThreadPool">
             <property name="minThreads" value="${web.threadPool.minThreads}"/>
             <property name="maxThreads" value="${web.threadPool.maxThreads}"/>
-            <property name="lowThreads" value="${web.threadPool.lowThreads}"/>
         </bean>
-    </property>
+    </constructor-arg>
 
     <property name="connectors">
         <list>
-            <bean class="org.mortbay.jetty.nio.SelectChannelConnector">
+            <bean class="org.eclipse.jetty.server.ServerConnector">
+                <constructor-arg name="server" ref="jetty"/>
+                <constructor-arg name="executor"><null/></constructor-arg>
+                <constructor-arg name="scheduler"><null/></constructor-arg>
+                <constructor-arg name="bufferPool"><null/></constructor-arg>
+                <constructor-arg name="acceptors" value="${web.selector.acceptors}"/>
+                <constructor-arg name="selectors" value="${web.selector.selectors}"/>
+                <constructor-arg name="factories">
+                    <list>
+                        <bean class="org.eclipse.jetty.server.HttpConnectionFactory">
+                            <constructor-arg>
+                                <bean class="org.eclipse.jetty.server.HttpConfiguration">
+                                    <property name="securePort" ref="confidentialPort"/>
+                                </bean>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </constructor-arg>
                 <property name="port" ref="port"/>
-                <property name="maxIdleTime" value="${web.selector.maxIdleTime}"/>
-                <property name="acceptors" value="${web.selector.acceptors}"/>
-                <property name="statsOn" value="false"/>
-                <property name="confidentialPort" ref="confidentialPort"/>
-                <property name="lowResourcesConnections" value="${web.selector.lowResourcesConnections}"/>
-                <property name="lowResourcesMaxIdleTime" value="${web.selector.lowResourcesMaxIdleTime}"/>
-                <property name="forwarded" value="${web.selector.forwarded}" />
+                <property name="idleTimeout" value="${web.selector.maxIdleTime}"/>
             </bean>
         </list>
     </property>
     <property name="handler">
-        <bean class="org.mortbay.jetty.handler.HandlerCollection">
+        <bean class="org.eclipse.jetty.server.handler.HandlerCollection">
             <property name="handlers">
                 <list>
-                    <bean class="org.mortbay.jetty.handler.ContextHandlerCollection"/>
-                    <bean class="org.mortbay.jetty.handler.DefaultHandler"/>
+                    <bean class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
+                    <bean class="org.eclipse.jetty.server.handler.DefaultHandler"/>
                 </list>
             </property>
         </bean>
@@ -386,22 +384,26 @@ this means that the first deployed web application in a shared mode will control
     <property name="separator" value="${web.context.separator}" />
 </bean>
 
-<bean id="webAppContext" class="org.mortbay.jetty.webapp.WebAppContext">
-    <property name="contextPath" ref="context" />
-    <property name="war" value="${jee.deployPath}" />
-    <property name="tempDirectory" value="${jee.deployPath}/WEB-INF/work" />
-    <property name="copyWebDir" value="${web.context.copyWebDir}" />
-    <property name="parentLoaderPriority" value="${web.context.classLoader.parentFirst}" />
-    <property name="configurationClasses">
-        <list>
-            <value>org.eclipse.jetty.webapp.WebInfConfiguration</value>
-            <!-- Enable JNDI configuration -->
-            <value>org.eclipse.jetty.plus.webapp.EnvConfiguration</value>
-            <value>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</value>
-            <value>org.eclipse.jetty.webapp.TagLibConfiguration</value>
-        </list>
-    </property>
-</bean>
+<bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext">
+        <property name="contextPath" ref="context"/>
+        <property name="war" value="${jee.deployPath}"/>
+        <property name="tempDirectory" value="${jee.deployPath}/WEB-INF/work"/>
+        <property name="copyWebDir" value="${web.context.copyWebDir}"/>
+        <property name="parentLoaderPriority" value="${web.context.classLoader.parentFirst}"/>
+        <property name="configurationClasses">
+            <list>
+                <value>org.eclipse.jetty.webapp.WebInfConfiguration</value>
+                <value>org.eclipse.jetty.webapp.WebXmlConfiguration</value>
+                <value>org.eclipse.jetty.webapp.MetaInfConfiguration</value>
+                <value>org.eclipse.jetty.webapp.FragmentConfiguration</value>
+                <value>org.eclipse.jetty.plus.webapp.EnvConfiguration</value>
+                <value>org.eclipse.jetty.plus.webapp.PlusConfiguration</value>
+                <value>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</value>
+                <value>org.eclipse.jetty.annotations.AnnotationConfiguration</value>
+            </list>
+        </property>
+        <property name="sessionHandler" ref="secureSessionHandler"/>
+    </bean>
 ```
 
 This `webAppContext` bean controls the actual web context that corresponds to the web application instance being deployed. Its context path is controlled by the `context` bean, represented by the `SharedContextFactory` class.
@@ -418,12 +420,12 @@ The second step (as per the link to jetty documentation) is to set the workerNam
 
 
 ```xml
-<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+<Configure class="oorg.eclipse.jetty.webapp.WebAppContext">
   <Get name="sessionHandler">
     <Get name="sessionManager">
       <Call name="setIdManager">
         <Arg>
-          <New class="org.mortbay.jetty.servlet.HashSessionIdManager">
+          <New class="org.eclipse.jetty.server.session.HashSessionIdManager">
             <Set name="WorkerName">${clusterInfo.name}${clusterInfo.runningNumberOffset1}</Set>
           </New>
         </Arg>
@@ -479,17 +481,42 @@ Web Applications running inside the Jetty container can use SSL. Here is an exam
 
 
 ```xml
+<bean id="sslHttpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
+    <constructor-arg ref="httpConfig"/>
+    <property name="customizers">
+        <list>
+            <bean class="org.eclipse.jetty.server.SecureRequestCustomizer"/>
+        </list>
+    </property>
+</bean>
+
+<bean id="sslContextFactory" class="org.eclipse.jetty.util.ssl.SslContextFactory">
+    <property name="keyStorePath" value="/path-to/keystore"/>
+    <property name="keyStorePassword" value="storepass"/>
+    <property name="keyManagerPassword" value="keypass"/>
+    <property name="trustStorePath" value="/path-to/keystore"/>
+    <property name="trustStorePassword" value="storepass"/>
+</bean>
+
 <property name="connectors">
      <list>
-         <bean class="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
-             <property name="port" value="${ssl.port}"/>
-             <property name="acceptors" value="${web.selector.acceptors}"/>
-             <property name="maxIdleTime" value="${web.selector.maxIdleTime}"/>
-             <property name="keystore" value="${ssl.keystore}"/>
-             <property name="password" value="${ssl.password}"/>
-             <property name="keyPassword" value="${ssl.keyPassword}"/>
-             <property name="truststore" value="${ssl.truststore}"/>
-             <property name="trustPassword" value="${ssl.trustPassword}"/>
+         <bean class="org.eclipse.jetty.server.ServerConnector">
+             <constructor-arg name="server" ref="jetty"/>
+             <constructor-arg name="factories">
+                <list>
+                    <bean class="org.eclipse.jetty.server.SslConnectionFactory">
+                        <constructor-arg index="0" ref="sslContextFactory" />
+                        <constructor-arg index="1" type="java.lang.String">
+                            <value>http/1.1</value>
+                        </constructor-arg>
+                    </bean>
+                    <bean class="org.eclipse.jetty.server.HttpConnectionFactory">
+                        <constructor-arg name="config" ref="sslHttpConfig"/>
+                    </bean>
+                </list>
+             </constructor-arg>
+             <property name="port" value="8444"/>
+             <property name="idleTimeout" value="${web.selector.maxIdleTime}"/>
          </bean>
     </list>
 </property>
@@ -573,188 +600,3 @@ AASLogin {
 ```
 
 Above configuration file should be passed as a JVM system property, `java.security.auth.login.config` for all the GSC's that host the web application instances (`-Djava.security.auth.login.config=\Dev\webapp-jaas\config\login.config`)
-
-{{%anchor jetty9%}}
-
-# Jetty 9
-
-To install Jetty 9.1.3.v20140225 follow these steps:
-
-1. Rename `<XAPHOME>/lib/optional/jetty` to `<XAPHOME>/lib/optional/jetty-8`
-2. Rename `<XAPHOME>/lib/optional/jetty-9` to `<XAPHOME>/lib/optional/jetty`
-3. Copy the Jetty 9.1.3.v20140225 distribution jar files to the `<XAPHOME>/lib/optional/jetty` directory.
-
-With this version the connector configuration has changed. Here is a complete example on how to configure `jetty.pu.xml` .
-
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd">
-
-    <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="ignoreUnresolvablePlaceholders" value="true"/>
-        <property name="properties">
-            <props>
-                <prop key="web.context">/${clusterInfo.name}</prop>
-                <prop key="web.context.classLoader.parentFirst">false</prop>
-                <prop key="web.context.copyWebDir">false</prop>
-                <prop key="web.context.unique">false</prop>
-                <prop key="web.context.separator">_</prop>
-                <prop key="web.port">8080</prop>
-                <prop key="web.sslPort">8444</prop>
-                <prop key="web.threadPool.minThreads">10</prop>
-                <prop key="web.threadPool.maxThreads">200</prop>
-                <prop key="web.selector.maxIdleTime">300000</prop>
-                <prop key="web.selector.acceptors">2</prop>
-                <prop key="web.selector.selectors">-1</prop>
-                <prop key="web.selector.lowResourcesConnections">20000</prop>
-                <prop key="web.selector.lowResourcesMaxIdleTime">5000</prop>
-                <prop key="web.selector.forwarded">true</prop>
-                <prop key="web.statsOn">false</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="port" class="org.openspaces.pu.container.jee.PortGenerator">
-        <property name="basePort" value="${web.port}"/>
-    </bean>
-
-    <bean id="confidentialPort" class="org.openspaces.pu.container.jee.PortGenerator">
-        <property name="basePort" value="${web.sslPort}"/>
-    </bean>
-
-    <bean id="context" class="org.openspaces.pu.container.jee.SharedContextFactory">
-        <property name="context" value="${web.context}"/>
-        <property name="unique" value="${web.context.unique}"/>
-        <property name="separator" value="${web.context.separator}"/>
-    </bean>
-
-    <bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext">
-        <property name="contextPath" ref="context"/>
-        <property name="war" value="${jee.deployPath}"/>
-        <property name="tempDirectory" value="${jee.deployPath}/WEB-INF/work"/>
-        <property name="copyWebDir" value="${web.context.copyWebDir}"/>
-        <property name="parentLoaderPriority" value="${web.context.classLoader.parentFirst}"/>
-        <property name="configurationClasses">
-            <list>
-                <value>org.eclipse.jetty.webapp.WebInfConfiguration</value>
-                <value>org.eclipse.jetty.webapp.WebXmlConfiguration</value>
-                <value>org.eclipse.jetty.webapp.MetaInfConfiguration</value>
-                <value>org.eclipse.jetty.webapp.FragmentConfiguration</value>
-                <value>org.eclipse.jetty.plus.webapp.EnvConfiguration</value>
-                <value>org.eclipse.jetty.plus.webapp.PlusConfiguration</value>
-                <value>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</value>
-                <value>org.eclipse.jetty.annotations.AnnotationConfiguration</value>
-            </list>
-        </property>
-        <property name="sessionHandler" ref="secureSessionHandler"/>
-    </bean>
-
-    <bean id="secureSessionHandler" class="org.eclipse.jetty.server.session.SessionHandler">
-        <property name="sessionManager" ref="sessionManager"/>
-    </bean>
-
-    <bean name="sessionManager" class="org.eclipse.jetty.server.session.HashSessionManager">
-        <property name="httpOnly" value="true"/>
-    </bean>
-
-    <bean id="jettyHolder" class="org.openspaces.pu.container.jee.jetty.holder.SharedJettyHolder">
-        <constructor-arg ref="jetty"/>
-    </bean>
-
-
-    <bean id="httpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
-        <property name="secureScheme" value="https" />
-        <property name="securePort" value="8444"/>
-    </bean>
-
-
-    <bean id="sslHttpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
-        <constructor-arg ref="httpConfig"/>
-        <property name="customizers">
-            <list>
-                <bean class="org.eclipse.jetty.server.SecureRequestCustomizer"/>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="sslContextFactory" class="org.eclipse.jetty.util.ssl.SslContextFactory">
-        <property name="keyStorePath" value="/path-to/keystore"/>
-        <property name="keyStorePassword" value="storepass"/>
-        <property name="keyManagerPassword" value="keypass"/>
-        <property name="trustStorePath"
-                  value="/path-to/keystore"/>
-        <property name="trustStorePassword" value="storepass"/>
-    </bean>
-
-
-    <bean id="jetty" class="org.eclipse.jetty.server.Server">
-
-        <constructor-arg>
-            <bean class="org.eclipse.jetty.util.thread.QueuedThreadPool">
-                <property name="minThreads" value="${web.threadPool.minThreads}"/>
-                <property name="maxThreads" value="${web.threadPool.maxThreads}"/>
-            </bean>
-        </constructor-arg>
-
-        <property name="connectors">
-            <list>
-                <bean class="org.eclipse.jetty.server.ServerConnector">
-                    <constructor-arg name="server" ref="jetty"/>
-                    <constructor-arg name="executor">
-                        <null/>
-                    </constructor-arg>
-                    <constructor-arg name="scheduler">
-                        <null/>
-                    </constructor-arg>
-                    <constructor-arg name="bufferPool">
-                        <null/>
-                    </constructor-arg>
-                    <constructor-arg name="acceptors" value="${web.selector.acceptors}"/>
-                    <constructor-arg name="selectors" value="${web.selector.selectors}"/>
-                    <constructor-arg name="factories">
-                        <list>
-                            <bean class="org.eclipse.jetty.server.HttpConnectionFactory">
-                                <constructor-arg name="config" ref="httpConfig"/>
-                            </bean>
-                        </list>
-                    </constructor-arg>
-                    <property name="port" value="8080"/>
-                    <property name="idleTimeout" value="${web.selector.maxIdleTime}"/>
-                </bean>
-
-                <bean class="org.eclipse.jetty.server.ServerConnector">
-                    <constructor-arg name="server" ref="jetty"/>
-                    <constructor-arg name="factories">
-                        <list>
-                            <bean class="org.eclipse.jetty.server.SslConnectionFactory">
-                                <constructor-arg index="0" ref="sslContextFactory" />
-                                <constructor-arg index="1" type="java.lang.String">
-                                    <value>http/1.1</value>
-                                </constructor-arg>
-                            </bean>
-                            <bean class="org.eclipse.jetty.server.HttpConnectionFactory">
-                                <constructor-arg name="config" ref="sslHttpConfig"></constructor-arg>
-                            </bean>
-                        </list>
-                    </constructor-arg>
-                    <property name="port" value="8444"/>
-                    <property name="idleTimeout" value="${web.selector.maxIdleTime}"/>
-                </bean>
-            </list>
-        </property>
-        <property name="handler">
-            <bean class="org.eclipse.jetty.server.handler.HandlerCollection">
-                <property name="handlers">
-                    <list>
-                        <bean class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
-                        <bean class="org.eclipse.jetty.server.handler.DefaultHandler"/>
-                    </list>
-                </property>
-            </bean>
-        </property>
-    </bean>
-</beans>
-```

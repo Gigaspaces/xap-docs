@@ -57,8 +57,7 @@ This section lists extension artifacts. The group Id for these artifacts is `org
 | xap-map 			    | ${XAP_HOME}/lib/optional/map/xap-map.jar | [Map API]({{%currentjavaurl%}}/map-api.html) |
 | xap-map-spring		| ${XAP_HOME}/lib/optional/map/xap-map-spring.jar | [Map API]({{%currentjavaurl%}}/map-api.html) |
 | xap-jms				| ${XAP_HOME}/lib/optional/jms/xap-jms.jar | [JMS]({{%currentjavaurl%}}/messaging-support.html) |
-| xap-jetty-8			| ${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty-8.jar | [Jetty PU Container]({{%currentjavaurl%}}/web-jetty-processing-unit-container.html) |
-| xap-jetty-9			| ${XAP_HOME}/lib/optional/jetty-9/xap-jetty/xap-jetty-9.jar | [Jetty PU Container]({{%currentjavaurl%}}/web-jetty-processing-unit-container.html) |
+| xap-jetty			| ${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty.jar | [Jetty PU Container]({{%currentjavaurl%}}/web-jetty-processing-unit-container.html) |
 | xap-mongodb			| ${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar | [MongoDB integration]({{%currentjavaurl%}}/mongodb.html) |
 | xap-spatial			| ${XAP_HOME}/lib/optional/spatial/xap-spatial.jar | [Geospatial Queries]({{%currentjavaurl%}}/query-geospatial.html) |
 | xap-full-text-search| ${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar | [Full Text Search]({{%currentjavaurl%}}/query-full-text-search.html) |
