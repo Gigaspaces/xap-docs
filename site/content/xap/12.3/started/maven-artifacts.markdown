@@ -8,11 +8,11 @@ weight: 50
 
 {{% ssummary%}}{{% /ssummary %}}
 
-XAP is Maven-friendly - it is built using maven and designed to be easily used by developers constructing XAP applications. In this page we'll explain how to use XAP with Maven.
+XAP is Maven-friendly. It is built using Maven and is designed to be easily used by developers constructing XAP applications. In this page we'll explain how to use XAP with Maven.
 
 # XAP Maven Repository
 
-Since XAP artifacts are currently not published in Maven Central Repo, you'll first need to configure a repository:
+XAP artifacts are not currently published in the Maven Central Repo, so you must first configure a repository:
 
 ```xml
 <repository>
@@ -23,7 +23,7 @@ Since XAP artifacts are currently not published in Maven Central Repo, you'll fi
 
 # XAP Artifacts
 
-The main dependency required to use XAP is `xap-openspaces`
+The main dependency required to use XAP is `xap-openspaces`.
 
 ```xml
 <dependency>
@@ -36,11 +36,11 @@ The main dependency required to use XAP is `xap-openspaces`
 
 ## Core Artifacts
 
-This section lists core artifacts. Note that you only need to add `xap-openspaces`, since all other core artifacts are its dependencies.
+This section lists the core artifacts. You only need to add `xap-openspaces`, because all the other core artifacts are its dependencies.
 
-The group Id for these artifacts is `org.gigaspaces`
+The group ID for these artifacts is `org.gigaspaces`.
 
-| Artifact Id	   | Location in product |
+| Artifact ID	   | Location in product |
 |------------------|---------------------|
 | xap-openspaces   | ${XAP_HOME}/lib/required/xap-openspaces.jar	|
 | xap-datagrid     | ${XAP_HOME}/lib/required/xap-datagrid.jar	|
@@ -48,11 +48,11 @@ The group Id for these artifacts is `org.gigaspaces`
 | xap-trove	       | ${XAP_HOME}/lib/required/xap-trove.jar		|
 | xap-asm		   | ${XAP_HOME}/lib/required/xap-asm.jar			|
 
-## Extension artifacts
+## Extension Artifacts
 
-This section lists extension artifacts. The group Id for these artifacts is `org.gigaspaces`
+This section lists extension artifacts. The group ID for these artifacts is `org.gigaspaces`.
 
-| Artifact Id	   | Location in product | Required For |
+| Artifact ID	   | Location in product | Required for |
 |------------------|---------------------|---|
 | xap-map 			    | ${XAP_HOME}/lib/optional/map/xap-map.jar | [Map API]({{%currentjavaurl%}}/map-api.html) |
 | xap-map-spring		| ${XAP_HOME}/lib/optional/map/xap-map-spring.jar | [Map API]({{%currentjavaurl%}}/map-api.html) |
@@ -64,9 +64,9 @@ This section lists extension artifacts. The group Id for these artifacts is `org
 
 ## Premium Extensions
 
-This section lists premium artifacts. The group Id for these artifacts is `com.gigaspaces`
+This section lists Premium artifacts. The group ID for these artifacts is `com.gigaspaces`.
 
-| Artifact Id	   | Location in product | Required For |
+| Artifact ID	   | Location in product | Required for |
 |------------------|---------------------|---|
 | xap-near-cache-spring | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar | [Client Side Caching]({{%currentjavaurl%}}/client-side-caching.html) |
 | xap-near-cache 		  | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar | [Client Side Caching]({{%currentjavaurl%}}/client-side-caching.html) |
@@ -76,9 +76,9 @@ This section lists premium artifacts. The group Id for these artifacts is `com.g
 
 ## Enterprise Extensions
 
-This section lists Enterprise artifacts. The group Id for these artifacts is `com.gigaspaces`
+This section lists Enterprise artifacts. The group ID for these artifacts is `com.gigaspaces`.
 
-| Artifact Id	   | Location in product | Required For |
+| Artifact ID	   | Location in product | Required for |
 |------------------|---------------------|---|
 | xap-mx-rocksdb | ${XAP_HOME}/lib/optional/memoryxtend/rocksdb/xap-mx-rocksdb.jar | [MemoryXtend - SSD]({{%currentadmurl%}}/memoryxtend-overview.html)
 | xap-wan-gateway-spring| ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar | [WAN Replication]({{%currentjavaurl%}}/multi-site-replication-overview.html) |
