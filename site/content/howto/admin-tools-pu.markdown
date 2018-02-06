@@ -7,7 +7,125 @@ parent: admin-tools-overview.html
 
 ................
  
-#  Deploying a Space 
+ 
+#  Container 
+
+## Create 
+
+**Parameters**
+
+|  Parameter  |  Description    | Required | Reference |
+|:-----|:-----|:----------------------------|:---------|
+| host   |  Host to create container on | Yes | | 
+
+**Options** 
+
+|  Option  |  Description    |  Reference |
+|:-----|:-----|:----------------------------|
+| --help      |  Display help information for this command    |  |
+| --memory=   |  Max JVM memory for the container    |  |
+| --zone=     |  Zone where the container should be deployed   |  |
+| --property=  | Additional System properties|  |
+
+
+{{%tabs%}}
+{{%tab "CLI"%}}
+
+```bash
+<XAP-HOME>/bin/xap container create myHost
+```
+{{%/tab%}}
+
+{{%tab "REST"%}}
+
+ 
+[REST Manager localhost](http://localhost:8090/v1/index.html#!/Containers/post_containers)
+ 
+{{%/tab%}}
+
+
+{{%tab "Web Console"%}}
+[Web Management Center](/xap/12.3/admin/web-management-common-view.html)
+{{%/tab%}} 
+
+{{%tab "Admin Console"%}}
+
+```bash
+ 
+```
+{{%/tab%}}
+
+{{%/tabs%}}
+ 
+## Kill 
+
+**Parameters**
+ 
+|  Parameter  |  Description    | Required | Reference |
+|:-----|:-----|:----------------------------|:---------|
+| containerId   |    | Yes | | 
+ 
+{{%tabs%}}
+{{%tab "CLI"%}}
+```bash
+<XAP-HOME>/bin/xap container kill containerId
+```
+{{%/tab%}}
+{{%tab "REST"%}}
+[REST Manager localhost](http://localhost:8090/v1/index.html#!/Containers/post_containers)
+{{%/tab%}}
+{{%tab "Web Console"%}}
+[Web Management Center](/xap/12.3/admin/web-management-common-view.html)
+{{%/tab%}} 
+{{%tab "Admin Console"%}}
+
+```bash
+```
+{{%/tab%}}
+{{%/tabs%}}
+ 
+## Restart
+
+**Parameters**
+ 
+|  Parameter  |  Description    | Required | Reference |
+|:-----|:-----|:----------------------------|:---------|
+| containerId   |    | Yes | | 
+ 
+{{%tabs%}}
+{{%tab "CLI"%}}
+```bash
+<XAP-HOME>/bin/xap container restart containerId
+```
+{{%/tab%}}
+{{%tab "REST"%}}
+[REST Manager localhost](http://localhost:8090/v1/index.html#!/Containers/post_containers)
+{{%/tab%}}
+{{%tab "Web Console"%}}
+[Web Management Center](/xap/12.3/admin/web-management-common-view.html)
+{{%/tab%}} 
+{{%tab "Admin Console"%}}
+
+```bash
+```
+{{%/tab%}}
+{{%/tabs%}}
+
+## List 
+
+
+## Info
+
+**Parameters**
+ 
+|  Parameter  |  Description    | Required | Reference |
+|:-----|:-----|:----------------------------|:---------|
+| containerId   |    | Yes | | 
+
+ 
+# Space
+
+## Deploying a Space 
 (automatically deploys a PU that contains only a Space)
 
 ##  Parameters
@@ -37,7 +155,7 @@ parent: admin-tools-overview.html
 {{%tab "REST"%}}
 
 ```bash
-<XAP-HOME>/bin/xap space deploy 
+ 
 ```
 {{%/tab%}}
 
@@ -49,7 +167,7 @@ parent: admin-tools-overview.html
 {{%tab "Admin Console"%}}
 
 ```bash
-<XAP-HOME>/bin/xap space deploy 
+ 
 ```
 {{%/tab%}}
 
