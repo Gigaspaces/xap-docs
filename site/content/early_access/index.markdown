@@ -31,8 +31,6 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ### Resolved Issues
 
-- {{% jira id="GS-13454" %}}: Elastic Processing Unit failed to fully deploy with service-limit=1 even when there were empty GSCs running.
-- {{% jira id="GS-13300" %}}: xxx.
 - {{% jira id="GS-13465" %}}: Use XapNetworkInfo.getHost() instead of InetAddress.getLocalHost().
 - {{% jira id="GS-13462" %}}: XAP Manager doesn't support com.gigaspaces.lib.opt.security system property for providing an alternative path for custom security JARs.
 
