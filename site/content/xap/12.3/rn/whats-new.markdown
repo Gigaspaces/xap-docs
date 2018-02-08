@@ -48,5 +48,6 @@ The custom initial load mechanism in MemoryXtend has been extended to provide fu
 
 # Third-Party Product Changes
 
+* [Jetty](http://www.eclipse.org/jetty/) package has been upgraded to `9.2.24`
 * [Spring Framework](https://projects.spring.io/spring-framework/) integration has been upgraded to `4.3.13`
 * [Spring Security](http://projects.spring.io/spring-security/) integration has been upgraded to `4.2.3`

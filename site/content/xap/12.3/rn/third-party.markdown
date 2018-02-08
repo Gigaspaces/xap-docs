@@ -44,7 +44,7 @@ For information about the applicable versions and license agreements regarding A
 |[Cassandra](http://cassandra.apache.org/)  | 1.1.6 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |Persistency | [Cassandra Integration](../dev-java/cassandra.html) |
 |[MongoDB](http://www.mongodb.org/)         | 3.2.0 | [Creative Commons](http://creativecommons.org/licenses/by-nc-sa/3.0/) | Persistency | [MongoDB Integration](../dev-java/mongodb.html) |
 |[InfluxDB](https://influxdata.com/) | 0.9 (As of 10.2.1, 0.8 for 10.2.0) | [MIT](https://influxdb.com/docs/v0.9/about/licenses.html) | Metrics | [InfluxDB](../admin/metrics-influxdb-reporter.html) |
-|[Jetty](http://eclipse.org/jetty/)         | 8.1.8, 9.1.3 | [Apache2](http://www.eclipse.org/jetty/licenses.html) | Web Container | [Jetty Processing Unit Container](../dev-java/web-jetty-processing-unit-container.html) |
+|[Jetty](http://eclipse.org/jetty/)         |  9.2.24 | [Apache2](http://www.eclipse.org/jetty/licenses.html) | Web Container | [Jetty Processing Unit Container](../dev-java/web-jetty-processing-unit-container.html) |
 |[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](../dev-java/messaging-support.html) |
 |[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](../dev-java/mule-esb.html) |
 |[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](http://svn.codehaus.org/groovy/trunk/groovy/groovy-core/LICENSE.txt) | Dynamic Scripting | [Dynamic Scripting Support](../dev-java/task-dynamic-language.html)|

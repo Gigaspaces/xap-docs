@@ -10,6 +10,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Improvements
 
+- {{% jira id="GS-13470" %}}: Upgrade packaged Jetty server to 9.2.24.
 - {{% jira id="GS-13458" %}}: Upgrade Spring Framework to 4.3.13.
 - {{% jira id="GS-13457" %}}: Upgrade Spring Security to 4.2.3.
 - {{% jira id="GS-13464" %}}: Enhance gs-agent to Support running Web Management Console (--webui).
@@ -32,6 +33,10 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Resolved Issues
 
+- {{% jira id="GS-13454" %}}: Elastic Processing Unit failed to fully deploy with service-limit=1 even when there were empty GSCs running.
+- {{% jira id="GS-13300" %}}: xxx.
+- {{% jira id="GS-13465" %}}: Use XapNetworkInfo.getHost() instead of InetAddress.getLocalHost().
+- {{% jira id="GS-13462" %}}: XAP Manager doesn't support com.gigaspaces.lib.opt.security system property for providing an alternative path for custom security JARs.
 - {{% jira id="GS-13461" %}}: Add missing xap-admin JAR for default XAP.NET application.
 - {{% jira id="GS-13453" %}}: Inefficient use of underlying data structure slows down iterator performance.
 - {{% jira id="GS-13284" %}}: In rare scenarios, a transactional Polling container may drop events.

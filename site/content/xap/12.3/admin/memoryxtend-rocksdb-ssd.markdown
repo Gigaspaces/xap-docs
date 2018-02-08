@@ -248,9 +248,12 @@ For information about XAP metrics and how to use them, refer to the [Metrics](./
 
 # Off-Heap Memory Usage
 
-XAP can store the values of indexed fields in the process native (off-heap) memory. This is done to avoid having to fetch data from the disk for queries that only need the index. This feature is on by default, and can be disabled by setting the `space-config.engine.blobstore_offheap_optimization_enabled` space property.
+XAP can store the values of indexed fields in the process native (off-heap) memory. This is done to avoid having to fetch data from the disk for queries that only need the index. This feature is off by default. To enable it, configure the  following Space properties:
 
-This optimization behavior is relevent for operations that don't need the un-indexed field values in order to execute. The current operations that benefit are:
+- `space-config.engine.blobstore.offheap.enabled` - Disabled (false) by default. 
+- `space-config.engine.blobstore.offheap.max_memory_size` - Amount of memory allocated to the off-heap memory, in bytes. Required if the previous property is set to "true". Sample values: `15MB`, `15mb`, `30b`, `4gb` 
+
+This optimization behavior is relevant for operations that don't need the un-indexed field values in order to execute. The current operations that benefit are:
 
 - Read with projection and only indexed fields in query and projection - primary instance optimization
 - Take with only indexed fields in query - backup optimization
@@ -259,6 +262,16 @@ This optimization behavior is relevent for operations that don't need the un-ind
 {{%note "Note"%}}
 This behavior increases the overall memory consumption of the Space by several bytes (depending on the indexed fields) per entry.
 {{%/note%}}
+
+Before any operation that requires memory allocation (write, update, and initial load), the off-heap memory manager checks how much of the allocated memory has been used. If the memory is full, an `OffHeapMemoryShortageException` is thrown. Read, take, and clear operations are always allowed.
+
+{{%warning "Important"%}}
+If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular [memory manager](../dev-java/memory-management-overview.html).
+{{%/warning%}}
+
+The amount of used off-heap memory can be tracked using the `space_blobstore_offheap_used-bytes` metric, as described on the [Metrics](./metrics-bundled.html#blobstore-operations) page. 
+
+When a Processing Unit is undeployed or a Space is killed, the off-heap memory manager erases the related data from the off-heap memory.
 
 See the following example:
 

@@ -3,7 +3,7 @@ type: post123
 title:  Deploying from Docker Hub
 categories: XAP123GS
 parent: none
-weight: 50
+weight: 400
 ---
 
 To run XAP using a Docker container, you need to pull and start a Docker image. The XAP Docker image utilizes GigaSpaces' XAP [command line interface (CLI)](https://docs.gigaspaces.com/xap/12.3/admin/command-line-interface.html "XAP CLI documentation").

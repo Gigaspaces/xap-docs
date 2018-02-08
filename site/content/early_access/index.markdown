@@ -11,15 +11,36 @@ This page contains early access information for XAP and InsightEdge 12.3, which 
 {{%infosign%}} If you're just getting started with version 12.3, we recommend reading the [What's New](/xap/12.3/rn/whats-new.html) page in the general release notes.
 
 {{%tip "Disclaimer"%}}
-Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.2.1** - [Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.2/)
+Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.2.1**. <br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.2/)
 {{%/tip%}}
 <hr/>
+
+# 12.3 M18 (Feb-11-2018)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m18/gigaspaces-insightedge-12.3.0-m18-b18918.zip) | [InsightEdge Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m18/gigaspaces-insightedge-open-12.3.0-m18-b18918.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m18/gigaspaces-xap-12.3.0-m18-b18918.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m18/gigaspaces-xap.net-12.3.0-m18-b18918.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m18/gigaspaces-xap-open-12.3.0-m18-b18918.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13470" %}}: Upgrade packaged Jetty server to 9.2.24.
+
+### Resolved Issues
+
+- {{% jira id="GS-13454" %}}: Elastic Processing Unit failed to fully deploy with service-limit=1 even when there were empty GSCs running.
+- {{% jira id="GS-13300" %}}: xxx.
+- {{% jira id="GS-13465" %}}: Use XapNetworkInfo.getHost() instead of InetAddress.getLocalHost().
+- {{% jira id="GS-13462" %}}: XAP Manager doesn't support com.gigaspaces.lib.opt.security system property for providing an alternative path for custom security JARs.
 
 # 12.3 M17 (Feb-04-2018)
 
 ## Download Links
 
-* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m17/gigaspaces-insightedge-12.3.0-m17-b18917.zip) | [InsightEdge Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m17/gigaspaces-insightedge-open-12.3.0-m17-b18917-open.zip)\] 
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m17/gigaspaces-insightedge-12.3.0-m17-b18917.zip) | [InsightEdge Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m17/gigaspaces-insightedge-open-12.3.0-m17-b18917.zip)\] 
 
 * \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m17/gigaspaces-xap-12.3.0-m17-b18917.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m17/gigaspaces-xap.net-12.3.0-m17-b18917.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m17/gigaspaces-xap-open-12.3.0-m17-b18917.zip)\]
 
@@ -28,6 +49,27 @@ Early access builds are provided as is, and should not be used in production. Th
 A new Command Line Interface and Docker image for XAP, along with other feature enhancements and bug fixes, are currently in progress but were not completed within this milestone.
 
 For a description of the new CLI and Docker image and evaluation details, go to the [What's New](/xap/12.3/rn/whats-new.html) page of the 12.3 early access release notes.
+
+# 12.3 M16 (Jan-28-2018)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m16/gigaspaces-insightedge-12.3.0-m16-b18916.zip) | [InsightEdge Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m16/gigaspaces-insightedge-12.3.0-m16-b18916-open.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m16/gigaspaces-xap-12.3.0-m16-b18916.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m16/gigaspaces-xap.net-12.3.0-m16-b18916.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m16/gigaspaces-xap-open-12.3.0-m16-b18916.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13458" %}}: Upgrade Spring Framework to 4.3.13.
+- {{% jira id="GS-13457" %}}: Upgrade Spring Security to 4.2.3.
+- {{% jira id="GS-13464" %}}: Enhance gs-agent to support running the Web Management Console (--webui).
+- {{% jira id="GS-13473" %}}: Enhance CachePolicy configuration to use fluent syntax.
+
+### Resolved Issues
+
+N/A
 
 # 12.3 M15 (Jan-21-2018)
 
