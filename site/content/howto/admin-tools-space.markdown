@@ -1,12 +1,9 @@
 ---
 type: post
 title:  Space 
-weight: 200
+weight: 300
 parent: admin-tools-overview.html
 ---
-
-................
- 
 
 
 # Deploying a Space 
@@ -22,10 +19,9 @@ parent: admin-tools-overview.html
 
 |  Option  |  Description    |  Reference |
 |:-----|:-----|:----------------------------|
-| --ha       |  Should backups be used for high availability | |
-| --help    |  Display help information for deploy    |  |
-| --partitions=\<partitions\>    |  Number of partitions    |  |
-| --requires-isolation   | if each instance should be provisioned in an isolated container|  |
+| ha       |  Should backups be used for high availability | |
+| partitions=\<partitions\>    |  Number of partitions    |  |
+| requires-isolation   | if each instance should be provisioned in an isolated container|  |
 
 
 {{%tabs%}}
@@ -66,10 +62,6 @@ Lists all spaces
 
 ## Options 
 
-|  Option  |  Description    |  Reference |
-|:-----|:-----|:----------------------------|
-| --help    |  Display help information for deploy    |  |
-
 
 {{%tabs%}}
 {{%tab "CLI"%}}
@@ -94,9 +86,8 @@ Lists all spaces
 
 |  Option  |  Description    |  Reference |
 |:-----|:-----|:----------------------------|
-| --help    |  Display help information for deploy    |  |
-|--operation-stats | Get space operation statistics | |
-|--type-stats      | Get space types statistics | |
+| operation-stats | Get space operation statistics | |
+| type-stats      | Get space types statistics | |
 
 
 {{%tabs%}}
@@ -123,10 +114,9 @@ Lists all spaces
 
 |  Option  |  Description    |  Reference |
 |:-----|:-----|:----------------------------|
-| --help    |  Display help information for deploy    |  |
-|--operation-stats | Get space operation statistics | |
-|--type-stats      | Get space types statistics | |
-|--replication-stats | Get replication statistics | |
+| operation-stats | Get space operation statistics | |
+| type-stats      | Get space types statistics | |
+| replication-stats | Get replication statistics | |
 
 
 {{%tabs%}}
@@ -155,11 +145,10 @@ Under construction
 
 |  Option  |  Description    |  Reference |
 |:-----|:-----|:----------------------------|
-| --help    |  Display help information for deploy    |  |
-|--ha | Should the space include backups for high availability | |
-|--instances=\<instances\>      | Which instances should be run (default is all) | |
-|--partitions=\<partitions\>      | Number of partitions in space | |
-|--version | DIsplay version information | |
+| ha | Should the space include backups for high availability | |
+| instances=\<instances\>      | Which instances should be run (default is all) | |
+| partitions=\<partitions\>      | Number of partitions in space | |
+| version | DIsplay version information | |
 
 
 {{%tabs%}}

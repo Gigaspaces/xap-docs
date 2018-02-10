@@ -1,30 +1,29 @@
 ---
 type: post
 title:  Container
-weight: 100
+weight: 200
 parent: admin-tools-overview.html
 ---
 
-................
+ 
  
  
 # Create 
 
-**Parameters**
+## Parameters
 
 |  Parameter  |  Description    | Required | Reference |
 |:-----|:-----|:----------------------------|:---------|
 | host   |  Host to create container on | Yes | | 
 
-**Options** 
+##  Options
 
 |  Option  |  Description    |  Reference |
 |:-----|:-----|:----------------------------|
-| --help      |  Display help information for this command    |  |
-| --memory=\<memory\>   |  Max JVM memory for the container    |  |
-| --zone=\<zone\>     |  Zone where the container should be deployed   |  |
-| --property=\<String=String\>  | Additional System properties|  |
-| --version   | Display version information | |
+| memory=\<memory\>   |  Max JVM memory for the container    |  |
+| zone=\<zone\>     |  Zone where the container should be deployed   |  |
+| property=\<String=String\>  | Additional System properties|  |
+| version   | Display version information | |
 
 
 {{%tabs%}}
@@ -35,12 +34,22 @@ parent: admin-tools-overview.html
 ```
 {{%/tab%}}
 {{%tab "REST"%}} 
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ \ 
+   "host": "string", \ 
+   "memory": "string", \ 
+   "zone": "string", \ 
+   "vmArguments": [ \ 
+     "string" \ 
+   ] \ 
+ }' 'http://localhost:8090/v1/containers'
+```
 {{%/tab%}}
 {{%/tabs%}}
  
 # Kill 
 
-**Parameters**
+## Parameters
  
 |  Parameter  |  Description    | Required | Reference |
 |:-----|:-----|:----------------------------|:---------|
@@ -49,16 +58,19 @@ parent: admin-tools-overview.html
 {{%tabs%}}
 {{%tab "CLI"%}}
 ```bash
-<XAP-HOME>/bin/xap container kill admin~4300
+<XAP-HOME>/bin/xap container kill container1
 ```
 {{%/tab%}}
 {{%tab "REST"%}}
+```bash
+curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v1/containers/container1'
+```
 {{%/tab%}}
 {{%/tabs%}}
  
 # Restart
 
-**Parameters**
+## Parameters
  
 |  Parameter  |  Description    | Required | Reference |
 |:-----|:-----|:----------------------------|:---------|
@@ -67,14 +79,18 @@ parent: admin-tools-overview.html
 {{%tabs%}}
 {{%tab "CLI"%}}
 ```bash
-<XAP-HOME>/bin/xap container restart admin~2712
+<XAP-HOME>/bin/xap container restart container1
 ```
 {{%/tab%}}
 {{%tab "REST"%}}
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/containers/container1/restart'
+```
 {{%/tab%}}
+
 {{%/tabs%}}
 
-## List 
+# List 
 
 {{%tabs%}}
 {{%tab "CLI"%}}
@@ -83,14 +99,17 @@ parent: admin-tools-overview.html
 ```
 {{%/tab%}}
 {{%tab "REST"%}}
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/containers'
+```
 {{%/tab%}}
 {{%/tabs%}}
 
 
 
-## Info
+# Info
 
-**Parameters**
+## Parameters
  
 |  Parameter  |  Description    | Required | Reference |
 |:-----|:-----|:----------------------------|:---------|
@@ -100,10 +119,13 @@ parent: admin-tools-overview.html
 {{%tabs%}}
 {{%tab "CLI"%}}
 ```bash
-<XAP-HOME>/bin/xap container info admin~2712
+<XAP-HOME>/bin/xap container info container1
 ```
 {{%/tab%}}
 {{%tab "REST"%}}
+```bash
+curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/containers/container1'
+```
 {{%/tab%}}
 {{%/tabs%}}
  
