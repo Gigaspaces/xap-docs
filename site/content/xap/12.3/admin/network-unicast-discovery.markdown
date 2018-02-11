@@ -103,18 +103,20 @@ For more information refer to [com.gs.multicast.discoveryPort system property](.
 
 # Discovery Intervals
 
-When a lookup service fails and is brought back online, a client (such as a GSC, space or a client with a space proxy) needs to re-discover and federate again. In order to make that happen, Jini unicast discovery must retry connections to the remote lookup service. The default unicast retry protocol provides a graduating approach, increasing the amount of time to wait before the next discovery attempts are made - upon each invocation, eventually reaching a maximum time interval over which discovery is re-tried. In this way, the network is not flooded with unicast discovery requests referencing a lookup service that may not be available for quite some time (if ever). The default time to wait between unicast retry attempts are:
+When a lookup service fails and is brought back online, a client (such as a GSC, space or a client with a space proxy) needs to re-discover and federate again.
+In order to make that happen, Jini unicast discovery must retry connections to the remote lookup service.
+The default unicast retry protocol provides a graduating approach, increasing the amount of time to wait before the next discovery attempts are made - upon each invocation, eventually reaching a maximum time interval over which discovery is re-tried.
+In this way, the network is not flooded with unicast discovery requests referencing a lookup service that may not be available for quite some time (if ever).
+The default time to wait between unicast retry attempts (in milliseconds) are:
 
 
 ```java
-long[] sleepTime = {5 * 1000, 10 * 1000, 20 * 1000,
-                                    30 * 1000, 60 * 1000,
-                                    2 * 60 * 1000, 4 * 60 * 1000,
-                                    8 * 60 * 1000, 15 * 60 * 1000};
+long[] sleepTime = {1000, 5000, 10000, 15000, 20000, 30000, 60000};
 ```
 
-You'll max out at 15 minutes between retries. Thats a big window.
 The retry logic only begins once the discovered lookup service is discarded.
+In the above configuration, the minimum retry interval is 1 second and the maximum is 1 minute.
+These settings are recommended for both short disconnections and recurring retry attempts when a lookup service is unreachable for a longer period.
 
 To tune the unicast retry intervals, the `com.gigaspaces.unicast.interval` system property is used to control the behavior of this LookupLocatorDiscovery utility. A comma separated list of values defining the intervals to wait between subsequent retries. Values are declared in milliseconds.
 
