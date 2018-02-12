@@ -83,12 +83,22 @@ The number of connections a client should open also depends on the size of the o
 
 ## Watchdog
 
-When reading from a {{%exurl "NIO SocketChannel" "http://download.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/nio/channels/SocketChannel.html"%}} and the connection between the client and server fails abnormally, no notification is generated. The most common example for such failure is disconnecting the network cable while performing the read operation. In this case the read operation is blocked for a long time, without ever knowing that the connection is closed. This can cause several problems such as exceeding the number of open sockets on the server or causing client read requests to hang.
+When reading from a {{%exurl "NIO SocketChannel" "http://download.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/nio/channels/SocketChannel.html"%}} and the connection between the client and server fails abnormally, no notification is generated. The most common example of this failure type is the network cable becoming disconnected while performing the read operation. In this case, the read operation is blocked for a long time, without ever knowing that the connection is closed. This can cause several problems, such as exceeding the number of open sockets on the server or causing client read requests to hang.
 
 Known solutions and problems they may have:
 
-1. TCP keep alive mechanism -- TCP has an option sending keep alive packets in order to detect such failures, but the keep alive interval can not be set for less than 2 hours, which is not very useful.
+1. TCP keep alive mechanism -- TCP has an option for sending keep alive packets in order to detect communication failures, and the default configuration is 2 hours. We recommend changing this value to several seconds.
 1. Read timeout -- the old Java IO package allows the execution of read operations with a user defined timeout. This does not work with NIO. You can still set the timeout on `channel.socket()`, but this only applies to reading from socket `InputStream` and not channel reads.
+
+{{% info "Example of TCP Keep Alive Behavior" %}}
+If the TCP is configured as follows: 
+
+- tcp_keepalive_time = 7200 (seconds) 
+- tcp_keepalive_intvl = 75 (seconds) 
+- tcp_keepalive_probes = 9 (number of probes) 
+
+This means that the keepalive process waits for two hours (7200 secs) for socket activity before sending the first keepalive probe, and then resends it every 75 seconds. If no ACK response is received for nine consecutive times, the connection is marked as broken.
+{{% /info %}}
 
 The watchdog network failure detection mechanism applies to the space proxy (client side) when interacting with a remote space and with space-space interaction (replication). The watchdog is efficient both in terms of memory and CPU consumption with minimal overhead.
 
