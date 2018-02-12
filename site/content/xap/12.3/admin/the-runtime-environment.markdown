@@ -241,7 +241,7 @@ In addition, within the `script` tag, you can add the following tags:
 
 # Advanced Configuration
 
-In some scenarios you'll need to have several 'flavours' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.
+In some scenarios you'll need to have several 'flavors' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.
 
 For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a zone called *Small*, and 1 'large' GSC (1024MB) in a zone called *Large*. To achieve this, we'll duplicate the default `gsc.xml` (which resides in `$XAP_HOME/config/gsa`) into `gsc_small.xml` and `gsc_large.xml`, and modify them to include an `environment` tag which sets `XAP_GSC_OPTIONS` to the required settings:
 
@@ -251,14 +251,13 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
 ```xml
 <process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always">
     <script enable="true" work-dir="${com.gs.home}/bin"
-            windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh">
-        <argument>start</argument>
-        <argument>"GSC"</argument>
-		<environment name="XAP_GSC_OPTIONS"> -Xms512m -Xmx512m -Dcom.gs.zones=Small</environment>
+            windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh">
+        <argument>services=GSC</argument>
+        <environment name="XAP_COMPONENT_OPTIONS">-Xms512m -Xmx512m -Dcom.gs.zones=Small</environment>
     </script>
     <vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot">
         <input-argument></input-argument>
-        <argument>com.gigaspaces.start.services="GSC"</argument>
+        <argument>services=GSC</argument>
     </vm>
     <restart-regex>.*java\.lang\.OutOfMemoryError.*</restart-regex>
 </process>
@@ -269,14 +268,13 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
 ```xml
 <process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always">
     <script enable="true" work-dir="${com.gs.home}/bin"
-            windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh">
-        <argument>start</argument>
-        <argument>"GSC"</argument>
-		<environment name="XAP_GSC_OPTIONS">-Xms1024m -Xmx1024m -Dcom.gs.zones=Large</environment>
+            windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh">
+        <argument>services=GSC</argument>
+        <environment name="XAP_COMPONENT_OPTIONS">-Xms1024m -Xmx1024m -Dcom.gs.zones=Large</environment>
     </script>
     <vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot">
         <input-argument></input-argument>
-        <argument>com.gigaspaces.start.services="GSC"</argument>
+        <argument>services=GSC</argument>
     </vm>
     <restart-regex>.*java\.lang\.OutOfMemoryError.*</restart-regex>
 </process>
