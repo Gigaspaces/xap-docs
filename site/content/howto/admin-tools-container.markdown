@@ -23,9 +23,7 @@ parent: admin-tools-overview.html
 | memory=\<memory\>   |  Max JVM memory for the container    |  |
 | zone=\<zone\>     |  Zone where the container should be deployed   |  |
 | property=\<String=String\>  | Additional System properties|  |
-| version   | Display version information | |
-
-
+ 
 {{%tabs%}}
 {{%tab "CLI"%}}
 
