@@ -13,7 +13,7 @@ Intro to new XAP CLI ......
 
 
 {{%align%}}
-![image](/attachment_files/admin/xap-client.png)
+![image](/attachment_files/admin/xap-cli.png)
 {{%/align%}}
 
 
