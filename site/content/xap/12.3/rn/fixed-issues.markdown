@@ -8,8 +8,10 @@ weight: 300
 
 This section lists the changes that were made in InsightEdge Platform 12.3.
 
-# Features and Improvements
+# Features and Enhancements
 
+- {{% jira id="GS-13480" %}}: Limit Lookup Locator Discovery interval to 1 minute instead of 1 hour.
+- {{% jira id="GS-13482" %}}: Change default of org.jini.rio.monitor.pendingRequestDelay to 1 minute instead of 10 minutes.
 - {{% jira id="GS-13470" %}}: Upgrade packaged Jetty server to 9.2.24.
 - {{% jira id="GS-13458" %}}: Upgrade Spring Framework to 4.3.13.
 - {{% jira id="GS-13457" %}}: Upgrade Spring Security to 4.2.3.
@@ -33,6 +35,10 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Resolved Issues
 
+- {{% jira id="GS-13484" %}}: Missing partition instance not provisioned after network disconnected and reconnected.
+- {{% jira id="GS-13483" %}}: Relocation listener is not called during failure to destroy instance.
+- {{% jira id="GS-13454" %}}: Elastic Processing Unit failed to fully deploy with service-limit=1 even when there were empty GSCs running.
+- {{% jira id="GS-13300" %}}: Eager Scale Strategy did not evenly redistribute partitions after a cluster node disconnected and reconnected.
 - {{% jira id="GS-13465" %}}: Use XapNetworkInfo.getHost() instead of InetAddress.getLocalHost().
 - {{% jira id="GS-13462" %}}: XAP Manager doesn't support com.gigaspaces.lib.opt.security system property for providing an alternative path for custom security JARs.
 - {{% jira id="GS-13461" %}}: Add missing xap-admin JAR for default XAP.NET application.

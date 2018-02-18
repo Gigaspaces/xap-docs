@@ -15,6 +15,28 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3 M19 (Feb-18-2018)
+
+## Download Links
+
+* \[[InsightEdge](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m19/gigaspaces-insightedge-12.3.0-m19-b18919.zip) | [InsightEdge Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m19/gigaspaces-insightedge-open-12.3.0-m19-b18919.zip)\] 
+
+* \[[XAP](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m19/gigaspaces-xap-12.3.0-m19-b18919.zip) | [XAP.NET x64](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m19/gigaspaces-xap.net-12.3.0-m19-b18919.msi) | [XAP Open Source](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m19/gigaspaces-xap-open-12.3.0-m19-b18919.zip)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13480" %}}: Limit Lookup Locator Discovery interval to 1 minute instead of 1 hour.
+- {{% jira id="GS-13482" %}}: Change default of org.jini.rio.monitor.pendingRequestDelay to 1 minute instead of 10 minutes.
+
+### Resolved Issues
+
+- {{% jira id="GS-13484" %}}: Missing partition instance not provisioned after network disconnected and reconnected.
+- {{% jira id="GS-13483" %}}: Relocation listener is not called during failure to destroy instance.
+- {{% jira id="GS-13454" %}}: Elastic Processing Unit failed to fully deploy with service-limit=1 even when there were empty GSCs running.
+- {{% jira id="GS-13300" %}}: Eager Scale Strategy did not evenly redistribute partitions after a cluster node disconnected and reconnected.
+
 # 12.3 M18 (Feb-11-2018)
 
 ## Download Links
