@@ -1,6 +1,6 @@
 ---
 type: post
-title:  PU
+title:  Processing Unit
 weight: 400
 parent: admin-tools-overview.html
 ---
@@ -172,7 +172,11 @@ Parameters
 ```
  
  
-# Quiesce 
+# Quiesce  
+
+## Description
+
+Sends a quiesce request to the GSM for the provided processing unit’s name.
 
 ## Parameters
   
@@ -180,7 +184,9 @@ Parameters
 |:-----|:-----|:----------------------------|
 | name   | Name of Processing  Unit |  Yes|
  
-  
+
+
+ 
 ## Example
 
 ```bash
