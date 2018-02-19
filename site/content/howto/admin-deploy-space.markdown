@@ -1,6 +1,6 @@
 ---
 type: post
-title:  Deploying a Space
+title:  Administering Spaces and Processing Units
 weight: 4
 parent: admin-tools-overview.html
 ---
@@ -91,8 +91,19 @@ TBD
 
 
 {{%tab "Administration API"%}}
+```java
+public void deploySpace(String spaceName)
+{
+    // create an admin instance to interact with the cluster
+    Admin admin = new AdminFactory().createAdmin();
 
-TBD
+	// locate a grid service manager and deploy a partioned data grid
+	// with 2 primaries and one backup for each primary
+    GridServiceManager mgr = admin.getGridServiceManagers().waitForAtLeastOne();
+
+    ProcessingUnit pu = mgr.deploy(new SpaceDeployment(spaceName).partitioned(2, 1));
+}
+```
 
 {{%/tab%}}
 
