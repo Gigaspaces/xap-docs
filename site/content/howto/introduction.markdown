@@ -1,7 +1,7 @@
 ---
 type: post123
 title:  Introduction
-weight: 100
+weight: 5
 ---
 
  {{% info "Info"%}}
