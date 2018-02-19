@@ -2,7 +2,7 @@
 type: post123
 title:  Frequently Asked Questions 
 categories:  XAP122GS
-weight: 600
+weight: 700
 ---
 
 # Upgrading 
