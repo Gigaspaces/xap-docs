@@ -17,7 +17,7 @@ parent: admin-spaces-pu.html
 ***Display Space Information***
 
 _Parameters:_<br> 
-name : The name of the Space , required
+name : The name of the Space.
 
 _Options:_<br>
 ---operation-stats : Displays Space operations statistics, (read, write, take etc)  <br>
@@ -48,6 +48,48 @@ _Options:_<br>
 ```
  
 {{%/tab%}}
+
+{{%tab "REST Manager API"%}}
+
+***Display Space Information***
+
+_Parameters:_<br>
+host URL: Host URL   where the REST Manager is running.<br>
+name : The name of the Space.
+
+ 
+Displays Space operations statistics, (read, write, take etc)  <br>
+  
+
+*Example:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/statistics/operations'
+```
+ 
+***Display Space instance information***
+
+_Parameters:_<br> 
+host URL: Host URL   where the REST Manager is running.<br>
+name : The name of the Space.<br>
+instanceId : The id of the Space instance to use.
+
+_Options:_<br>
+operation stats : Displays Space instance operations statistics, (read, write, take etc)  <br>
+type stats      : Displays Space instance object information.<br>
+replication stats: Display Space instance replication information.
+ 
+ 
+*Examples:*
+ 
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/operations'
+curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/replication'
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/types'
+```
+ 
+{{%/tab%}}
+
 
 {{%tab "Web Management Console"%}}
  

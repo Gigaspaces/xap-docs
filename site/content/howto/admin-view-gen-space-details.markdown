@@ -28,16 +28,43 @@ Lists all Spaces with the Name, Deployment name, Topology and InstanceId
 Lists all Space instances for a given Space with Id, Mode, PartionId, BackupId, HostId and ContainerId.
 
 _Parameters:_<br> 
-name : The name of the Space , required
+host URL: Host URL   where the REST Manager is running.<br>
+name : The name of the Space.
  
 *Example:*
  
 ```bash
 <XAP-HOME>/bin/xap space list-instances mySpace
 ```
-
-
 {{%/tab%}}
+
+
+{{%tab "REST Manager API"%}}
+***List all Spaces***<br>
+Lists all Spaces with the Name, Deployment name, Topology and InstanceId
+
+_Parameters:_<br> 
+host URL: Host URL   where the REST Manager is running, require.
+
+*Example:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces'
+```
+***List all Space instances***<br>
+Lists all Space instances for a given Space with Id, Mode, PartionId, BackupId, HostId and ContainerId.
+
+_Parameters:_<br> 
+host URL: Host URL   where the REST Manager is running.<br>
+name : The name of the Space.
+ 
+*Example:*
+ 
+```bash
+curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces/mySpace/instances'
+```
+{{%/tab%}}
+
 
 {{%tab "Web Management Console"%}}
  
