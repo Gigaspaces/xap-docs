@@ -9,7 +9,7 @@ weight: 70
 
 The XAP in-memory data grid engine is open source. GigaSpaces provides the developer community with a battle-tested and leading in-memory data grid that is capable of addressing mission critical use cases ranging from real-time analytics, to extreme transaction processing, internet of things (IOT) and high-performance computing. With the open source edition, anyone can test-drive the power of in-memory computing throughout any development and/or staging environment.
 
-For those that require enterprise-grade monitoring and management, security, high availability, multi-tiered data storage, and cross-data-center replication, we recommend downloading the InsightEdge Platform commercial edition and trying it out using the 90-day free trial license.
+For those that require enterprise-grade monitoring and management, security, high availability, multi-tiered data storage, and cross-data-center replication, we recommend downloading the InsightEdge Enterprise edition and trying it out using the 90-day free trial license.
 
 # What Parts of XAP are Open Source?
 

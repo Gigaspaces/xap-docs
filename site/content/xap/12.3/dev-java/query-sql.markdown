@@ -9,20 +9,20 @@ weight: 300
 {{%ssummary%}}{{%/ssummary%}}
 
 
-The `SQLQuery` class is used to query the space using SQL-like syntax. The query statement includes only the `WHERE` statement part - the selection aspect of a SQL statement is embedded in other parameters for a SQL query.
+The `SQLQuery` class is used to query the Space using SQL-like syntax. The query statement includes only the `WHERE` statement part - the selection aspect of a SQL statement is embedded in other parameters for a SQL query.
 
-{{% refer %}}
+{{% note "Note" %}}
 For the full documentation of the class's methods and constructors, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SQLQuery.html).
-{{% /refer %}}
+{{% /note %}}
 
 {{% info "Info"%}}
-The the XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Platform edition. For more information, refer to [In-Grid SQL Query](./sql-query-intro.html).
+The the XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to [In-Grid SQL Query](./sql-query-intro.html).
 {{% /info %}}
 
 
 # Examples
 
-An `SQLQuery` is composed from the **type** of entry to query and an **expression** in a SQL syntax.
+A `SQLQuery` is composed from the **type** of entry to query and an **expression** in a SQL syntax.
 
 For example, suppose we have a class called `MyClass` with an `Integer` property called **num** and a `String` property called **name**:
 
@@ -53,7 +53,7 @@ results = gigaSpace.readMultiple(new SQLQuery<MyClass>(MyClass.class, "num > 1 O
 
 # Supported Space Operations
 
-The following operations fully support GigaSpaces `SQLQuery`:
+The following operations fully support `SQLQuery`:
 
 - count
 - clear
@@ -62,19 +62,15 @@ The following operations fully support GigaSpaces `SQLQuery`:
 
 
 
-The following operations support`SQLQuery` only with Simple Queries:
+The following operations support`SQLQuery` only with simple queries:
 
 - snapshot
 - EventSession
 - GSIterator
 
-
-
-
-
 # Supported SQL Features
 
-#### SQLQuery supports the following:
+SQLQuery supports the following:
 
 - `AND` / `OR` operators to combine two or more conditions.
 - All basic logical operations to create conditions: `=, <>, <, >, >=, <=, like, NOT like, is null, is NOT null, IN`.
@@ -90,7 +86,7 @@ The following operations support`SQLQuery` only with Simple Queries:
 
 # Unsupported SQL Features
 
-#### SQLQuery does not support the following:
+SQLQuery does **not** support the following:
 
 - Multiple tables select - This is supported with the [JDBC API](./jdbc-driver.html).
 - DISTINCT - This is supported with the [JDBC API](./jdbc-driver.html).
@@ -104,23 +100,24 @@ The following operations support`SQLQuery` only with Simple Queries:
 - INNER JOIN
 
 
-# Comparing null values
-`SQLQuery` comparisons will evaluate the non-null values for a field. If you want to include objects with null values in a `SQLQuery` you will need to add another condition to your clause.
+# Comparing Null Values
+
+`SQLQuery` comparisons evaluate the non-null values for a field. If you want to include objects with null values in a `SQLQuery` you must add another condition to your clause.
  
-For example, if you have an object with a property named message of type `String`, which is set to `null` and you write it to the space, then you write a `SQLQuery` with the where clause is: 
+For example, if you have an object with a property named message of type `String` that is set to `null` and you write it to the Space, then write a `SQLQuery` with the where clause is: 
 `"message <> 'abcd'"`. 
 
-You may expect that the object with `message = null` gets returned in the query. However it doesn't, the comparison looks at only non-null values. To get the objects that are also null for message use: 
+You might expect that the object with `message = null` will be returned in the query. However it doesn't, as the comparison looks at only non-null values. To get the objects that are also null for message, use the following: 
 `"message <> 'abcd' or message = null"` to include objects whose message property is set to null. 
 
 
 # Indexing
 
-It is highly recommended to use indexes on relevant properties to increase performance when using equality , bigger / less than , BETWEEN, IN , LIKE , NOT LIKE, IS NULL statements. For more information see [Indexing](./indexing.html). The above supported query features can leverage indexes except for the `is NOT null` and `NOT IN` statement.
+It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE, or IS NULL statements. For more information, see [Indexing](./indexing.html). The above supported query features can leverage indexes except for the `is NOT null` and `NOT IN` statement.
 
 # Parameterized Queries
 
-In many cases developers prefer to separate the concrete values from the SQL criteria expression. In GigaSpaces' `SQLQuery` this can be done by placing a **'?'** symbol instead of the actual value in the expression. When executing the query, the conditions that includes **'?'** are replaced with corresponding parameter values supplied via the `setParameter`/`setParameters` methods, or  the `SQLQuery` constructor. For example:
+In many cases developers prefer to separate the concrete values from the SQL criteria expression. In `SQLQuery`, this can be done by placing a **'?'** symbol instead of the actual value in the expression. When executing the query, the conditions that include **'?'** are replaced with corresponding parameter values supplied via the `setParameter`/`setParameters` methods, or  the `SQLQuery` constructor. For example:
 
 
 ```java
@@ -138,9 +135,8 @@ query.setParameters(2, 3, "smith");
 SQLQuery<MyClass> query3 = new SQLQuery<MyClass>(MyClass.class,"num > ? or num < ? and name = ?", 2, 3, "smith");
 ```
 
-{{% note %}} 
+{{% info "Info"%}} 
 The number of **'?'** symbols in the expression string must match the number of parameters set on the query. For example, when using `IN` condition:
-{{%/note%}}
 
 
 ```java
@@ -151,10 +147,7 @@ query.setParameters("A", 1, 2, 3);
 SQLQuery<MyClass> query = new SQLQuery<MyClass>(MyClass.class,"name = 'A' AND num IN (1,2,3)");
 ```
 
-
 You can use the 'IN' condition with Java's `Collection` or primitive arrays. For example:
-
-
 
 ```java
 Collection<Integer> collection = new HashSet<Integer>();
@@ -166,13 +159,12 @@ SQLQuery<MyClass> query = new SQLQuery<MyClass>(MyClass.class,"name = ? AND num 
 query.setParameter(1,"A");
 query.setParameter(2,collection);
 ```
+{{%/info%}}
+
 
 {{% warning "Warning"%}}
 Parameter assignment to the `SQLQuery` instance is not thread-safe. If the query is intended to be executed on multiple threads which may change the parameters, it is recommended to use different `SQLQuery` instances. This has an analogue in JDBC, because `PreparedStatement` is not thread-safe either.
 {{%/warning%}}
-
-
-
 
 {{% anchor Nested Properties%}}
 
@@ -191,7 +183,7 @@ Some examples:
 ```
 
 {{%refer%}}
-For more information see [Query Nested Properties](./query-nested-properties.html).
+For more information, refer to [Query Nested Properties](./query-nested-properties.html).
 {{%/refer%}}
 
 # Enum Properties
@@ -213,7 +205,7 @@ public class Vehicle {
 ... = new SQLQuery<Vehicle>(Vehicle.class, "type = 'CAR'");
 ```
 
-{{% note%}} 
+{{% note "Note"%}} 
 When using an Enum string value, the value must be identical (case sensitive) to the name of the Enum value.
 {{%/note%}}
 
@@ -229,9 +221,9 @@ A `Date` property can be matched either using the Date instance value or its str
 ... = new SQLQuery<MyClass>(MyClass.class ,"birthday < '2020-12-20'");
 ```
 
-Specifying date and time values as strings is error prone since it requires configuring the date and time format properties and adhering to the selected format. It is recommended to simply use `Date` instance parameters.
+Specifying date and time values as strings is error prone because it requires configuring the date and time format properties, and adhering to the selected format. It is recommended to simply use `Date` instance parameters.
 
-When string representation is required, the following space properties should be used:
+When string representation is required, the following Space properties should be used:
 
 
 ```xml
@@ -256,28 +248,27 @@ For example:
 </beans>
 ```
 
-These space properties should be configured with a valid Java format pattern as defined in the {{%exurl "official Java language documentation" "http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.html"%}}.
+These Space properties should be configured with a valid Java format pattern, as defined in the {{%exurl "official Java language documentation" "http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.html"%}}.
 
-{{% note%}} 
-The `space-config.QueryProcessor.date_format` property used when your query include a String representing the date
-Date properties are often used for comparison (greater/less than). Consider using [extended indexing](./indexing.html) to boost performance.
+{{% note "Note"%}} 
+The `space-config.QueryProcessor.date_format` property used when your query includes a String representing the date. Date properties are often used for comparison (greater/less than). Consider using [extended indexing](./indexing.html) to boost performance.
 {{%/note%}}
 
-## sysdate
+## The Sysdate Property
 
-The `sysdate` value is evaluated differently when using the JDBC API vs when using it with `SQLQuery` API. When used with JDBC API it is evaluated using the space clock. When used with `SQLQuery` API it is evaluated using the client clock. If you have a partitioned space across multiple different machines and the clock across these machines is not synchronized you might not get the desired results. If you use JDBC API you should consider setting the date value as part of the SQL within the client side (since you  might write objects using the GigaSpace API). In this case , you should synchronize all the client machine time. In short - all the machines (client and server) clocks should be synchronized.
+The `sysdate` value is evaluated differently when using the JDBC API vs when using it with `SQLQuery` API. When used with JDBC API, it is evaluated using the Space clock. When used with `SQLQuery` API, it is evaluated using the client clock. If you have a partitioned Space across multiple different machines and the clock across these machines is not synchronized, you might not get the desired results. If you use the JDBC API, you should consider setting the date value as part of the SQL within the client side (because you might write objects using the GigaSpace API). In this case, you should synchronize all the client machine times. In short, all the machines (client and server) clocks should be synchronized.
 
-- On windows there is a {{%exurl "windows service" "http://technet.microsoft.com/en-us/library/cc773061%28WS.10%29.aspx"%}} that deals with clock synchronization.
-- On Linux there is a {{%exurl "daemon service" "http://www.brennan.id.au/09-Network_Time_Protocol.html#starting"%}} that deals with clock synchronization.
+- For Windows, there is a {{%exurl "windows service" "http://technet.microsoft.com/en-us/library/cc773061%28WS.10%29.aspx"%}} that deals with clock synchronization.
+- For Linux, there is a {{%exurl "daemon service" "http://www.brennan.id.au/09-Network_Time_Protocol.html#starting"%}} that deals with clock synchronization.
 
-{{% note %}}
-Internally dates are stored as a **TimeStamp**. This means that both time (hour/min/sec) and date (year/month/day) information are available for date range queries.
+{{% note "Note"%}}
+Internally, dates are stored as a **TimeStamp**. This means that both time (hour/min/sec) and date (year/month/day) information is available for date range queries.
 {{% /note %}}
 
 
 # Java 8 Dates
 
-XAP supports the `LocalDate`, `LocalTime` and `LocalDateTime` classes. The following Space properties need to be defined in order to use the classes in queries:
+XAP supports the `LocalDate`, `LocalTime` and `LocalDateTime` classes. The following Space properties must be defined in order to use the classes in queries:
 
 
 ```xml
@@ -474,15 +465,15 @@ public void testLocalDateTime() {
 {{%/accordion%}}
 
 
-{{%warning%}}
-Java 8's LocalDate, LocalTime, LocalDateTime are currently not interoperable with the .NET DateTime class. [.NET Interoperability]({{%currentneturl%}}/dotnet-java-interoperability.html#supported-types-for-matching-and-interoperability)
+{{%warning "Important"%}}
+Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable with the .NET DateTime class. [.NET Interoperability]({{%currentneturl%}}/dotnet-java-interoperability.html#supported-types-for-matching-and-interoperability)
 {{%/warning%}}
 
 # Aggregators
 
 {{%section%}}
 {{%column width="60%" %}}
-[Aggregators](./aggregators.html) allows you to perform aggregations (Average , Max , Min , Sum , Group By , Having) on a relatively large space objects data set. A query (SQLQuery or template) may be specified to determine the exact subset of space objects to iterate while performing the aggregation. Aggregators support single and compound based execution and a fully customized Aggregation.
+[Aggregators](./aggregators.html) allows you to perform aggregations (Average, Max, Min, Sum, Group By, Having) on a relatively large Space object data set. A query (SQLQuery or template) may be specified to determine the exact subset of Space objects to iterate while performing the aggregation. Aggregators support single and compound based execution and a fully customized Aggregation.
 
 {{%/column%}}
 {{%column width="40%" %}}
@@ -494,8 +485,8 @@ Java 8's LocalDate, LocalTime, LocalDateTime are currently not interoperable wit
 
 Blocking operations (i.e. `read` or `take` with `timeout` greater than `0`) are supported with the following restrictions:
 
-- Blocking operations on a partitioned space require a routing value (broadcast is not supported). For more information see [Routing](#routing).
-- Blocking operations on complex queries are not supported. For more information see [Simple Queries](#simple-vs-complex-queries) definition.
+- Blocking operations on a partitioned Space require a routing value (broadcast is not supported). For more information, see [Routing](#routing).
+- Blocking operations on complex queries are not supported. For more information, see [Simple Queries](#simple-vs-complex-queries) definition.
 
 
 ```java
@@ -507,7 +498,7 @@ MyClass result = space.take(new SQLQuery<MyClass>(MyClass.class ,"num > 500"), t
 
 # Routing
 
-When running on a partitioned space, it is important to understand how routing is determined for SQL queries.
+When running on a partitioned Space, it is important to understand how routing is determined for SQL queries.
 
 If the routing property is part of the criteria expression with an equality operand and without ORs, its value is used for routing.
 
@@ -527,7 +518,7 @@ SQLQuery<MyClass> query3 = new SQLQuery<MyClass>(MyClass.class,"num = 1 OR name=
 
 Note that in `query1` the `num` property is used both for routing and matching.
 
-In some scenarios we may want to execute the query on a specific partition without matching the routing property (e.g. blocking operation). This can be done via the `setRouting` method:
+In some scenarios, we may want to execute the query on a specific partition without matching the routing property (e.g. blocking operation). This can be done via the `setRouting` method:
 
 
 ```java
@@ -541,17 +532,16 @@ MyClass[] result = gigaspace.readMultiple(query);
 
 ## Compound Index
 
-When having an **AND** query or a template that use two or more fields for matching a [Compound Index](./indexing.html#Compound Indexing) may boost the query execution time. The Compound Index should be defined on multiple properties for a specific space class and will be used implicitly when a SQL Query or a [Template](./query-template-matching.html) will be using these properties.
+When having an **AND** query or a template that use two or more fields for matching, a [Compound Index](./indexing.html#Compound Indexing) may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a [Template](./query-template-matching.html) uses these properties.
 
 ## Re-using SQLQuery
 
-Constructing an `SQLQuery` instance is a relatively expensive operation. When possible, prefer using `SQLQuery.setParameters` and `SQLQuery.setParameter` to modify an existing query instead of creating a new one. However, remember that `SQLQuery` is not thread-safe.
-XAP reuses `SQLQuery` objects by using a bounded cache mechanism - when using `SQLQuery.setParameter` as descbired above,  the queries will be fetched from the cache without the penalty of recreation `SQLQuery` objects.
-The cache size can be modified by setting `com.gs.queryCache.cacheSize` system property to the desirable value (the default value is 1,000).
+Constructing an `SQLQuery` instance is a relatively expensive operation. When possible, use `SQLQuery.setParameters` and `SQLQuery.setParameter` to modify an existing query instead of creating a new one. However, remember that `SQLQuery` is not thread-safe.
+XAP reuses `SQLQuery` objects by using a bounded cache mechanism - when using `SQLQuery.setParameter` as described above,  the queries are fetched from the cache without the penalty of recreating `SQLQuery` objects. The cache size can be modified by setting the `com.gs.queryCache.cacheSize` system property to the required value (the default value is 1,000).
 
 ## Minimize OR usage
 
-When using the `OR` logical operator together with `AND` logical operator as part of your query you can speed up the query execution by minimizing the number of `OR` conditions in the query. For example:
+When using the `OR` logical operator together with the `AND` logical operator as part of your query, you can speed up the query execution by minimizing the number of `OR` conditions in the query. For example:
 
 
 ```java
@@ -569,12 +559,9 @@ OR
 
 ## Projecting Partial Results
 
-You can specify that the `SQLQuery` should contain only partial results which means that the returned object should only be populated with the projected properties.
+You can specify that the `SQLQuery` contain only partial results, which means that the returned object should only be populated with the projected properties.
 
-{{% refer %}}For details on how to use the projection API please refer to [Getting Partial Results Using Projection API](./query-partial-results.html){{% /refer %}}
-
-
-
+{{% refer %}}For details on how to use the projection API, refer to [Getting Partial Results Using Projection API](./query-partial-results.html){{% /refer %}}
 
 {{% anchor SimpleQueries %}}
 
@@ -611,14 +598,15 @@ The following are reserved keywords in the XAP SQL syntax:
  
 
 If a reserved word needs to be used as a property name it needs to be escaped using ``.<br>
-For example: if you need to query a property by the name of count, which is a reserved word, it can be done as following:
+For example: to query a property by the name of count, which is a reserved word, do the following:
 
 
 ```java
 new SQLQuery<MyData>(MyData.class, "`count` = 5")
 ```
 
-# Reserved Separators and Operators:
+# Reserved Separators and Operators
+
 := || ; . ROWTYPE ~ < <= >  >= => != <> \(+\) ( ) \* / + - ? \{ \}
  
 

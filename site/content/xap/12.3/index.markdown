@@ -12,7 +12,7 @@ The unified InsightEdge solution, a combination of the XAP in-memory data grid a
 
 The InsightEdge Platform provides extreme performance with ultra-low latency, high-throughput transactions and stream processing, due to the co-location of applications and analytics. All of this functionality is available in a cloud-native, infrastructure-agnostic deployment for hybrid cloud and on-premises environments. 
 
-The full InsightEdge Platform offers the following additional benefits:
+InsightEdge Enterprise offers the following additional benefits:
 
 * Multi-tiered data storage across RAM, SSD, and Storage-Class Memory (3DXPoint) 
 
@@ -32,7 +32,7 @@ InsightEdge is available in Java and .NET flavors, and offers several licensed e
 
 * XAP Enterprise - Builds on the XAP Premium edition, adding the MemoryXtend feature (supporting SSD/flash memory and Off-Heap RAM) and Multi-Site WAN Replication for geo-redundancy.
 
-* InsightEdge Platform - Offers the full functionality of InsightEdge and the XAP Enterprise edition, along with additional features such as full SQL-99 compatibility.
+* InsightEdge Enterprise - Offers the full functionality of InsightEdge and the XAP Enterprise edition, along with additional features such as full SQL-99 compatibility.
 
 When the trial period is over, you can continue to benefit from the open-source functionality, or contact GigaSpaces support to purchase a license for the edition that best suits your needs.
 

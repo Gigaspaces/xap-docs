@@ -15,7 +15,7 @@ This feature matrix provides a side-by-side comparison of the features available
     <th>InsightEdge Open Source</th>
     <th>XAP Premium</th>
     <th>XAP Enterprise</th>
-    <th>InsightEdge Platform</th>
+    <th>InsightEdge Enterprise</th>
   </tr>
   <tr>
     <td colspan="6"><i>In-Memory Data Grid</i></td>
