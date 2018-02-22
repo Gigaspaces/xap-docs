@@ -1,13 +1,10 @@
 ---
 type: post123
-title:  Asynchronous Replication, OSS
-categories: XAP123ADM
+title:  Asynchronous Replication
+categories: XAP123ADM, OSS
 parent: replication.html
 weight: 300
 ---
-
-{{% ssummary %}} {{% /ssummary %}}
-
 
 
 In asynchronous replication, operations are performed in the source space instance, and acknowledgement is immediately returned to the client. Operations are accumulated in the source space and sent asynchronously to the target space, after a defined period of time has elapsed, or after a defined number of operations have been performed (the first one of these that occurs). This replication type offers the highest performance at the cost of possible data lose of latest operations if the source space instance fails (sudden crash) while transferring the accumulated operations to the target space. Another problem is data coherency - the source and the target do not have identical data all the time.

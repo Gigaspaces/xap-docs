@@ -1,7 +1,7 @@
 ---
 type: post123
-title:  Replication Filters, OSS
-categories: XAP123ADM
+title:  Replication Filters
+categories: XAP123ADM, OSS
 parent: replication.html
 weight: 450
 ---

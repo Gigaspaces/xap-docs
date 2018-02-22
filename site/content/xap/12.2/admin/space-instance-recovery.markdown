@@ -1,7 +1,7 @@
 ---
 type: post122
-title:  Space Instance Recovery, OSS
-categories: XAP122ADM
+title:  Space Instance Recovery
+categories: XAP122ADM, OSS
 parent: replication.html
 weight: 400
 ---
