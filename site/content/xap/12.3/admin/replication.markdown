@@ -73,7 +73,7 @@ The table below shows a conceptual comparison between synchronous and asynchrono
 |:-------|:------------------------|:-------------------------|
 | Data loss | Each Space operation waits both the source and the target Space instances confirm that the operation is complete. | May occasionally lose some data (latest operations) if there is a failure at the source Space instance. |
 | Latency | Less tolerant of high network latency. | Highly tolerant of network latency, and can be used when the Space instances are located in different geographical sites (different cities). |
-| Performance Impact | Client applications must wait until each operation from the source and target Space instances is confirmed.{{<wbr>}}Performance is mainly dependent on the source Space instance resources (CPU/memory), target Space instance resources (CPU/memory), and network bandwidth and latency between the source and target Space instances. | Client application receives acknowledgement immediately after the source Space instances have processed incoming operations.{{<wbr>}}Performance is dependent mainly on source Space resources (CPU/memory). |
+| Performance Impact | Client applications must wait until each operation from the source and target Space instances is confirmed.<br>Performance is mainly dependent on the source Space instance resources (CPU/memory), target Space instance resources (CPU/memory), and network bandwidth and latency between the source and target Space instances. | Client application receives acknowledgement immediately after the source Space instances have processed incoming operations.<br>Performance is dependent mainly on source Space resources (CPU/memory). |
 | Data Integrity | Very accurate | Less accurate |
 
 ## Configuration

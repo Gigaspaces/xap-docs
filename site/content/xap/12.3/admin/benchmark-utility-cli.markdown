@@ -32,7 +32,7 @@ This print-out is displayed below:
 
 
 
-Option arguments in square brackets [] are required;{{<wbr>}}
+Option arguments in square brackets [] are required;<br>
 Option arguments in triangular brackets <> are optional.
 
 
@@ -51,13 +51,13 @@ Other possible values are:
 |pojo | Plain Java object|
 |uid | Object extends com.j_spaces.core.client.MetaDataEntry using the ClientUIDHandler.|
 |fifo | Object extends com.j_spaces.core.client.MetaDataEntry and sets FIFO=true.|
-|ser | Object implements net.jini.core.entry.Entry and java.io.Serializable interfaces. {{<wbr>}}Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
-|ext | Object implements net.jini.core.entry.Entry and java.io.Externalizable interfaces.{{<wbr>}}Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
-|pojo-ext | Plain Java object implements java.io.Externalizable interface.{{<wbr>}}Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
-|fifo-ext | Object extends com.j_spaces.core.client.MetaDataEntry implements java.io.Externalizable interface and sets FIFO=true.{{<wbr>}}Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
-|uid-ext | Object extends com.j_spaces.core.client.MetaDataEntry{{<wbr>}}implements java.io.Externalizable interface and using the ClientUIDHandler. Contains additional field with a complex list,{{<wbr>}}therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
-|mde-ext | Object extends com.j_spaces.core.client.MetaDataEntry implements java.io.Externalizable interface.{{<wbr>}}Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms |
-|jms | com.j_spaces.jms.GSSimpleMessageImpl, a basic JMS message which extends com.j_spaces.core.client.MetaDataEntry {{<wbr>}}implements java.io.Externalizable and javax.jms.Message interfaces.{{<wbr>}}For basic JMS send or sync/async receive, pass -write for JMS send, -take for JMS sync receive or -notify for JMS async receive.|
+|ser | Object implements net.jini.core.entry.Entry and java.io.Serializable interfaces. <br>Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
+|ext | Object implements net.jini.core.entry.Entry and java.io.Externalizable interfaces.<br>Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
+|pojo-ext | Plain Java object implements java.io.Externalizable interface.<br>Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
+|fifo-ext | Object extends com.j_spaces.core.client.MetaDataEntry implements java.io.Externalizable interface and sets FIFO=true.<br>Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
+|uid-ext | Object extends com.j_spaces.core.client.MetaDataEntry<br>implements java.io.Externalizable interface and using the ClientUIDHandler. Contains additional field with a complex list,<br>therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms|
+|mde-ext | Object extends com.j_spaces.core.client.MetaDataEntry implements java.io.Externalizable interface.<br>Contains additional field with a complex list, therefore should NOT be compared with the following objects: entry, pojo, uid, fifo, jms |
+|jms | com.j_spaces.jms.GSSimpleMessageImpl, a basic JMS message which extends com.j_spaces.core.client.MetaDataEntry <br>implements java.io.Externalizable and javax.jms.Message interfaces.<br>For basic JMS send or sync/async receive, pass -write for JMS send, -take for JMS sync receive or -notify for JMS async receive.|
 |-clean  |       Clean space before benchmark starts |
 |-url [url] |Connection url; If none provided the one defined as part of the script file will be used  |
 |-f [FileName] |dump results into file. Works with -showrate option. Default File name is BenchMarkResult`Date`_`Time`.|
@@ -145,38 +145,38 @@ Other possible values are:
 
 |Option | Example|
 |:------|:-----|
-|-f |-f resultsfile.xsl -showrate {{<wbr>}}dump results into resultsfile.xsl  |
-|-execute |-execute first    {{<wbr>}}will perform only write/put operations   |
-|-execute |-execute second    {{<wbr>}}will perform only read operations     |
-|-execute |-execute second -take {{<wbr>}}will perform only take operations |
-|-bench |-bench -map   {{<wbr>}}will perform put,put(update),get,remove with uid |
-|-bench |-bench      {{<wbr>}}will perform write,update,read,take with uid|
-|-lease |-i 1000 -lease 20000 -execute first {{<wbr>}}perform 1st operation with entry lease of 2 sec |
-|-t | -i 1000 -t 20000 -execute second {{<wbr>}}perform 2nd operation with timeout of 2 sec |
-|-s |-s 1000         {{<wbr>}}define 1K size entries each|
-|-content |-i 1000 -content -s 1000  {{<wbr>}}defines an entry with a changing content of 1K |
-|-tr |-i 1000 -tr 4   {{<wbr>}}will perform 1000 iterations by each of the 4 threads |
-|-rangefirst |-rangefirst 1000-2000  {{<wbr>}}will write/put ids/keys from 1000 to 2000 |
-|-rangesecond |-rangesecond 1000-2000 {{<wbr>}}will read/take/get/remove ids/keys from 1000 to 2000 |
-|-repeatfirst |-i 1000 -repeatfirst 10  {{<wbr>}}will write/put 10 times 1000 entries  |
-|-repeatsecond |-i 1000 -repeatsecond 10 {{<wbr>}}will read/get or take/remove 10 times 1000 entries |
-|-m |-m 100 -i 1000   {{<wbr>}}will use 10 batches of 100 to perform operations on 1000 entries.|
-|-rand |-i 1000 -rand  {{<wbr>}}will randomize second operation ids/keys from 0 to 1000 |
-|-rand |-i 10000 -rand 40000  {{<wbr>}}will randomize between ids/keys in the range of 0-40000|
-|-rand |-rangesecond 10000-25000 -rand   {{<wbr>}}will randomize between 10000-25000        |
-|-writerate |-i 100000 -writerate 50000 -tr 4  {{<wbr>}}4 threads will write 100000 entries each with a maximum TP rate of 50000 msg/sec |
-|-notify |-notify -i 1000 -tr 5  {{<wbr>}}will start 5 threads that will write and notify 1000 entries|
-|-parallel |-parallel -i 1000 -tr 5   {{<wbr>}}will start 5 parallel threads, each performing 1000 operations|
-|-clusteredoperation |-clusteredoperation -i 100000 {{<wbr>}} will write 100000 objects to entire cluster  |
-|-returnlease |-returnlease -i 100000  {{<wbr>}}will write 100000 objects with returning Lease object  |
-|-dtx-manager-url |-dtx 1000 dtx-manager-url thunder1:3733 {{<wbr>}}Use distributed transaction. Commit every 1000 operations. {{<wbr>}}Transaction Manager registered on LUS that is running on machine thunder1:3733 |
-|-cache |-cache     {{<wbr>}}will use local cache to remote space.|
-|-map |-map -all -i 1000  {{<wbr>}}will put/get/remove 1000 entries.|
-|-map |-map -cache -i 1000 -repeatsecond 4 {{<wbr>}}will put 1000 entries, first get from space, successive {{<wbr>}}gets from local cache. |
-|-target |-target rmi://host:port/container/space_name  {{<wbr>}}will perform second operation this target space |
-|-showrate |-showrate 10000{{<wbr>}}will show TP every 10000 iterations |
-|-showthreadrate |-showthreadrate 10000  {{<wbr>}}will show each thread-TP every 10000 iterations|
-|-stress |-map -all -stress 10     {{<wbr>}}will run 10 cycles of map api put/get/remove |
+|-f |-f resultsfile.xsl -showrate <br>dump results into resultsfile.xsl  |
+|-execute |-execute first    <br>will perform only write/put operations   |
+|-execute |-execute second    <br>will perform only read operations     |
+|-execute |-execute second -take <br>will perform only take operations |
+|-bench |-bench -map   <br>will perform put,put(update),get,remove with uid |
+|-bench |-bench      <br>will perform write,update,read,take with uid|
+|-lease |-i 1000 -lease 20000 -execute first <br>perform 1st operation with entry lease of 2 sec |
+|-t | -i 1000 -t 20000 -execute second <br>perform 2nd operation with timeout of 2 sec |
+|-s |-s 1000         <br>define 1K size entries each|
+|-content |-i 1000 -content -s 1000  <br>defines an entry with a changing content of 1K |
+|-tr |-i 1000 -tr 4   <br>will perform 1000 iterations by each of the 4 threads |
+|-rangefirst |-rangefirst 1000-2000  <br>will write/put ids/keys from 1000 to 2000 |
+|-rangesecond |-rangesecond 1000-2000 <br>will read/take/get/remove ids/keys from 1000 to 2000 |
+|-repeatfirst |-i 1000 -repeatfirst 10  <br>will write/put 10 times 1000 entries  |
+|-repeatsecond |-i 1000 -repeatsecond 10 <br>will read/get or take/remove 10 times 1000 entries |
+|-m |-m 100 -i 1000   <br>will use 10 batches of 100 to perform operations on 1000 entries.|
+|-rand |-i 1000 -rand  <br>will randomize second operation ids/keys from 0 to 1000 |
+|-rand |-i 10000 -rand 40000  <br>will randomize between ids/keys in the range of 0-40000|
+|-rand |-rangesecond 10000-25000 -rand   <br>will randomize between 10000-25000        |
+|-writerate |-i 100000 -writerate 50000 -tr 4  <br>4 threads will write 100000 entries each with a maximum TP rate of 50000 msg/sec |
+|-notify |-notify -i 1000 -tr 5  <br>will start 5 threads that will write and notify 1000 entries|
+|-parallel |-parallel -i 1000 -tr 5   <br>will start 5 parallel threads, each performing 1000 operations|
+|-clusteredoperation |-clusteredoperation -i 100000 <br> will write 100000 objects to entire cluster  |
+|-returnlease |-returnlease -i 100000  <br>will write 100000 objects with returning Lease object  |
+|-dtx-manager-url |-dtx 1000 dtx-manager-url thunder1:3733 <br>Use distributed transaction. Commit every 1000 operations. <br>Transaction Manager registered on LUS that is running on machine thunder1:3733 |
+|-cache |-cache     <br>will use local cache to remote space.|
+|-map |-map -all -i 1000  <br>will put/get/remove 1000 entries.|
+|-map |-map -cache -i 1000 -repeatsecond 4 <br>will put 1000 entries, first get from space, successive <br>gets from local cache. |
+|-target |-target rmi://host:port/container/space_name  <br>will perform second operation this target space |
+|-showrate |-showrate 10000<br>will show TP every 10000 iterations |
+|-showthreadrate |-showthreadrate 10000  <br>will show each thread-TP every 10000 iterations|
+|-stress |-map -all -stress 10     <br>will run 10 cycles of map api put/get/remove |
 
 
 

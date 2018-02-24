@@ -85,7 +85,7 @@ persistency mode [memory]
     - User permissions - Make sure you run the `gsInstnce.sh` script with a linux user that has permissions to write into the `<XAP root>/logs` folder.
     - `CLASSPATH` environment variable - Make sure the `CLASSPATH` environment variable is not specified. You might have some libraries specified as part of the `CLASSPATH` that cause GigaSpaces to fail.
     - `XAP_HOME` - environment variable - Make sure the `XAP_HOME` environment variable is not specified or pointing to a different GigaSpaces release folder. It might be you have some other GigaSpaces release installed on the same machine with `XAP_HOME` variable pointing to this release folder.
-1. Ping the space by running the `<XAP Root>\bin\gs.bat/sh` utility:{{<wbr>}}
+1. Ping the space by running the `<XAP Root>\bin\gs.bat/sh` utility:<br>
     `gs space ping -url jini://*/*/mySpace`
 
 {{% tip "Tip"%}}

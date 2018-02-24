@@ -195,7 +195,7 @@ The following example queries for a **Dealer** which contains a **Car** which co
 ```
 
 
-{{<wbr>}}
+<br>
 
 ## Multiple Conditions On Collection Items
 

@@ -12,16 +12,16 @@ GigaSpaces' InsightEdge, with the XAP In-Memory Data Grid, is a platform that sc
 
 {{% fpanel%}}
 
-[Platform Components](./overview.html){{% wbr%}}
+[Platform Components](./overview.html)<br>
 
-[Terminology](./terminology.html){{% wbr%}}
+[Terminology](./terminology.html)<br>
 
-[XAP Architecture](./product-architecture.html){{% wbr%}}
+[XAP Architecture](./product-architecture.html)<br>
 
-[Migrating from Java EE to XAP](./j2ee-vs-xap.html){{% wbr%}}
+[Migrating from Java EE to XAP](./j2ee-vs-xap.html)<br>
 
-[About Jini](./about-jini.html){{% wbr%}}
+[About Jini](./about-jini.html)<br>
 
-[What Edition Do I Need?](./feature-matrix.html){{% wbr%}}
+[What Edition Do I Need?](./feature-matrix.html)<br>
 
 {{% /fpanel%}}

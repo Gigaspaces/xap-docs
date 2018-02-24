@@ -139,7 +139,7 @@ Refer to [Tuning the communication protocol](./tuning-communication-protocol.htm
 # Threads Usage
 
 
-| Thread Name | Description | Configuration Parameters | Client{{<wbr>}}Server|
+| Thread Name | Description | Configuration Parameters | Client<br>Server|
 |:------------|:------------|:-------------------------|:-------------|
 |LRMI Selector Accept |Responsible for accepting incoming socket connections. |Single Thread|Server|
 |LRMI async Selector  |Client side, handles async invocation, i.e executors, asyncRead/take. |4 Threads|Server|
@@ -154,7 +154,7 @@ Refer to [Tuning the communication protocol](./tuning-communication-protocol.htm
 |TemplateExpirationManager-pool#|Responsible for sending response to waiting client when their template expires.| 16 threads max per space |Server|
 |SyncReplicationChannel SPACE_NAME|Runs per sync replication channel |Dynamically adjusted|Server|
 |CapabilityChannel  |  |  |Server|
-|ClassLoaderCache-{{<wbr>}}SelfCleaningTable |Used to clean up resources of class loaders once terminated (undeploy of processing unit) |Single Thread|Server|
+|ClassLoaderCache-<br>SelfCleaningTable |Used to clean up resources of class loaders once terminated (undeploy of processing unit) |Single Thread|Server|
 |TransactionTableHolder-SelfCleaningTable | Responsible for cleaning zombie local transactions that were abandoned by the user application without committing. Single thread per GSC |Single Thread per space |Server|
 |SLA Monitor Disk|Used by the Service Grid. SLA free disk space monitor|Single Thread|Server|
 |Memory:writer|Used by the Service Grid. SLA Memory monitor|Single Thread|Server| 
@@ -164,7 +164,7 @@ Refer to [Tuning the communication protocol](./tuning-communication-protocol.htm
 |JoinManager Task| Responsible to communicate with the lookup service|Single thread per client proxy| Client|
 |Liveness-detector| See the [Proxy Connectivity](./tuning-proxy-connectivity.html) for details.|Single thread per client proxy|Client|
 |Liveness-monitor| See the [Proxy Connectivity](./tuning-proxy-connectivity.html) for details.| Single thread per client proxy|Client|
-|LocalTransactionManagerImpl{{<wbr>}}$Reaper SPACE_NAME | A thread that reaps expired transactions entries and other objects| Single thread per space | Server|
+|LocalTransactionManagerImpl<br>$Reaper SPACE_NAME | A thread that reaps expired transactions entries and other objects| Single thread per space | Server|
 |GSPingManager| Used by the Service Grid| |Server|
 |LeaseManager$Reaper SPACE_NAME |See the [Lease Manager]({{%currentjavaurl%}}/leases-automatic-expiration.html#Lease Manager) for details |Single Thread per space| Server|
 |Cache PersistentGC|Responsible for backup activities (cleanup indexes)|Single Thread per space|Server|
@@ -223,7 +223,7 @@ Refer to [Messaging support]({{%currentjavaurl%}}/messaging-support.html)
 |-----|------|------|
 |com.gs.jmx.enabled | Enable / disable JMX support. | true |
 |com.gs.jmx.createJmxConnetor|Enable / disable the JMXConnector to connect remotely to the JMXServer with the supported protocol  (such as RMI, HTTP and so). |  false|
-|com.j_spaces.core.container.directory{{%wbr%}}_services.jndi.url |The network url and port for the JMXConnector| service:jmx:rmi:///jndi/{{%wbr%}}rmi://127.0.1.1:10098/jmxrmi|
+|com.j_spaces.core.container.directory<br>_services.jndi.url |The network url and port for the JMXConnector| service:jmx:rmi:///jndi/<br>rmi://127.0.1.1:10098/jmxrmi|
 
 {{%refer%}}
 Refer to [JMX Management](./space-jmx-management.html)
@@ -379,7 +379,7 @@ Refer to [Slow consumer](./slow-consumer.html)
 |  com.gs.cluster.livenessMonitorFrequency  | Defines the frequency in which liveness of 'live' members in a cluster is monitored. See [Viewing Clustered Space Status](./troubleshooting-viewing-clustered-space-status.html) for more details. |  10000 ms  |
 |  com.gs.cluster.livenessDetectorFrequency  | Defines the frequency in which liveness of members in a cluster is detected. See [Viewing Clustered Space Status](./troubleshooting-viewing-clustered-space-status.html) |  5000 ms |
 | <nobr> com.gs.cluster.cache-loader.external-data-source</nobr>  | Boolean property. Must be set to **true** when working with external data source | **false** |
-|  com.gs.cluster.cache-loader.central-data-source  | Boolean property. Must be set to **true** when the cluster uses external data source and{{% wbr %}}a central database to keep its data | **false** |
+|  com.gs.cluster.cache-loader.central-data-source  | Boolean property. Must be set to **true** when the cluster uses external data source and<br>a central database to keep its data | **false** |
 |  com.gs.cluster.url-protocol-prefix  | Used in clustered configuration to provide same prefix for all cluster members URL 0 i.e. **rmi:RMIRegistryMachineHostName**. | Not set by default |
 |  com.gs.clusterXML.debug  | Boolean value. If **true**, display cluster configuration when space started. | **False** |
 

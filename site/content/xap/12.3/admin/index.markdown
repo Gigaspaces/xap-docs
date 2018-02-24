@@ -14,58 +14,58 @@ The Administration Guide describes the GigaSpaces Management Center and Web Mana
 
 {{%fpanel%}}
 
-[GigaSpaces Management Center](./gigaspaces-management-center.html){{<wbr>}}
+[GigaSpaces Management Center](./gigaspaces-management-center.html)<br>
 GigaSpaces Management Center is a GUI that allows you to view spaces, containers, and clusters (and configure them), using the Space Browser tab. You can also deploy and manage services using the Deployments tab.
 
-[Web Management Console](./web-management-console.html){{<wbr>}}
+[Web Management Console](./web-management-console.html)<br>
 The web management console is a user interface where users can deploy, manage and monitor their Processing Units and Applications.
 
 [REST Manager API](./xap-manager-rest.html)<br>
 The XAP Manager provides a RESTful API for managing XAP environments.
 
-[Data Grid Clustering](./data-grid-clustering.html){{<wbr>}}
+[Data Grid Clustering](./data-grid-clustering.html)<br>
 Describes how in memory data grid clustering works. It also provides details of the failover, load-balancing, and replication facilities used.
 
-[Service Level Agreement (SLA)](./the-sla-overview.html){{<wbr>}}
+[Service Level Agreement (SLA)](./the-sla-overview.html)<br>
 The XAP runtime environment (Service Grid) provides Service Level Agreement driven capabilities.
 
-[MemoryXtend](./memoryxtend-overview.html){{<wbr>}}
+[MemoryXtend](./memoryxtend-overview.html)<br>
 This storage interface allows Blob/Block/external type storage to act as a natural memory space for the in memory data grid.
 
-[Logging](./logging-overview.html){{<wbr>}}
+[Logging](./logging-overview.html)<br>
 Explains how to configure logging with XAP. This includes formatting the log output, and selecting file names and rollover policies.
 
-[Administration Tools](./administration-tools.html){{<wbr>}}
+[Administration Tools](./administration-tools.html)<br>
 Explains the command line interface that is used to deploy, manage and monitor Processing Units and Applications.
 
-[The Service Grid](./runtime-configuration.html){{<wbr>}}
+[The Service Grid](./runtime-configuration.html)<br>
 Lists and explains the different runtime configuration parameters.
 
-[Network Configuration](./network.html){{<wbr>}}
+[Network Configuration](./network.html)<br>
 Explains how to configure the network in order for XAP to work properly.
 
-[Monitoring](./monitoring.html){{<wbr>}}
+[Monitoring](./monitoring.html)<br>
 Describes how to monitor XAP and your deployed application.
 
-[Metrics](./metrics-overview.html){{<wbr>}}
+[Metrics](./metrics-overview.html)<br>
 Describes the core metrics concepts, and how to configure metrics collection.
 
-[Performance Tuning](./tuning.html) {{<wbr>}}
+[Performance Tuning](./tuning.html) <br>
 Explains how to tune your XAP application. Covers topics like JVM tuning, thread usage and benchmarking.
 
-[Benchmarking](./benchmarking.html){{<wbr>}}
+[Benchmarking](./benchmarking.html)<br>
 Performance benchmarks with XAP's in memory data grid mainly involve testing latency and throughput.
 
-[Quiesce Mode](./quiescemode.html){{<wbr>}}
+[Quiesce Mode](./quiescemode.html)<br>
 Processing Units can be put into maintenance mode. When a Processing Unit is in maintenance mode, it rejects all data-related operations with an exception. This is useful when performing a safe shutdown or for a rolling system upgrade.
 
-[Security](../security/index.html){{<wbr>}}
+[Security](../security/index.html)<br>
 Explains GigaSpaces XAP security, where it fits in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements.
 
-[XAP as a Windows Service](./installation-windows-service.html){{<wbr>}}
+[XAP as a Windows Service](./installation-windows-service.html)<br>
 When using a Windows-based operating system for running GigaSpaces infrastructure, users may want to convert the Grid Service Agent into a Windows service.
 
-[Troubleshooting](./troubleshooting.html){{<wbr>}}
+[Troubleshooting](./troubleshooting.html)<br>
 Provides useful information on how to troubleshoot your XAP application.
 
 {{%/fpanel%}}

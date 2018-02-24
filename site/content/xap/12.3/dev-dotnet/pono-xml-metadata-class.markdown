@@ -151,7 +151,7 @@ Example:
 |Syntax     | inherit-indexes |
 |Argument   | boolean          |
 |Default    | true|
-|Description| Whether to use the class indexes list only, or to also include the superclass' indexes. {{<wbr>}}If the class does not define indexes, superclass indexes are used. {{<wbr>}}Options:{{<wbr>}}- `false` -- class indexes only.{{<wbr>}}- `true` -- class indexes and superclass indexes.|
+|Description| Whether to use the class indexes list only, or to also include the superclass' indexes. <br>If the class does not define indexes, superclass indexes are used. <br>Options:<br>- `false` -- class indexes only.<br>- `true` -- class indexes and superclass indexes.|
 
 Example:
 

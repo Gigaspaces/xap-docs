@@ -731,14 +731,14 @@ XAP provides a JDBC Driver, JPA API, MAP and Memcached API's.
 All XAP components can be wired and configured with the application using corresponding Spring Beans.
 
 **The GigaSpaces Spring Integration supports:**<br>
-- Spring Automatic Transaction Demarcation{{<wbr>}}
-- Spring Data{{<wbr>}}
-- Spring JMS{{<wbr>}}
-- Spring JPA{{<wbr>}}
-- Spring Hibernate{{<wbr>}}
-- Spring Remoting{{<wbr>}}
-- String Batch{{<wbr>}}
-- Spring Security{{<wbr>}}
+- Spring Automatic Transaction Demarcation<br>
+- Spring Data<br>
+- Spring JMS<br>
+- Spring JPA<br>
+- Spring Hibernate<br>
+- Spring Remoting<br>
+- String Batch<br>
+- Spring Security<br>
 - Mule
  
 

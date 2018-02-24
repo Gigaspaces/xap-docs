@@ -17,7 +17,7 @@ XAP comes with built in implementations of [Space Data Source](./space-data-sour
 ![CassMirrorNew.jpg](/attachment_files/CassMirrorNew.jpg)
 {{% /align%}}
 
-{{<wbr>}}
+<br>
 
 
 For further details about the persistency APIs used see [Space Persistency](./space-persistency-overview.html).

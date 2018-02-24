@@ -18,7 +18,7 @@ The [GigaSpaces API](./the-gigaspace-interface-overview.html) supports class lev
 XAP provides the ability to obtain and modify class metadata of objects stored in the Space [during runtime](./the-space-meta-data.html).
 {{%/refer%}}
 
-{{<wbr>}}
+<br>
 
 # Persistence
 
@@ -94,7 +94,7 @@ public class Person {
 |Syntax     | inheritIndexes |
 |Argument   | boolean          |
 |Default    | true|
-|Description| Whether to use the class indexes list only, or to also include the superclass' indexes. {{<wbr>}}If the class does not define indexes, superclass indexes are used. {{<wbr>}}Options:{{<wbr>}}- `false` -- class indexes only.{{<wbr>}}- `true` -- class indexes and superclass indexes.|
+|Description| Whether to use the class indexes list only, or to also include the superclass' indexes. <br>If the class does not define indexes, superclass indexes are used. <br>Options:<br>- `false` -- class indexes only.<br>- `true` -- class indexes and superclass indexes.|
 
 Example:
 

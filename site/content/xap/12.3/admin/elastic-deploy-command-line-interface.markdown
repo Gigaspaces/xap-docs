@@ -116,8 +116,8 @@ You can also use the [shared machine provisioning]({{%currentjavaurl%}}/elastic-
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| -timeout        | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to `5000` milliseconds (5 seconds).| -timeout \[timeoutValue\]|
-| -deploy-timeout | Timeout for deploy operation (in milliseconds),{{<wbr>}}otherwise blocks until all successful/failed deployment events arrive (default)" |-deploy-timeout \[timeoutValue\]|
+| -timeout        | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.<br>Defaults to `5000` milliseconds (5 seconds).| -timeout \[timeoutValue\]|
+| -deploy-timeout | Timeout for deploy operation (in milliseconds),<br>otherwise blocks until all successful/failed deployment events arrive (default)" |-deploy-timeout \[timeoutValue\]|
 | -h / -help      | Prints help | |
 | -secured        | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -secured \[true/false\]|
 | -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
@@ -151,7 +151,7 @@ gs> undeploy-application data-app
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| -timeout          | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.{{<wbr>}}Defaults to `5000` milliseconds (5 seconds).| -timeout \[timeoutValue\]|
+| -timeout          | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.<br>Defaults to `5000` milliseconds (5 seconds).| -timeout \[timeoutValue\]|
 | -undeploy-timeout | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |-undeploy-timeout \[timeoutValue\]|
 | -h / -help        | Prints help | |
 | -secured          | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -secured \[true/false\]|
@@ -212,22 +212,22 @@ gs> deploy-elastic-space -cmdargs "-Xms2g,-Xmx10g" -max-memory-capacity 20g mySp
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| Space Name {{<wbr>}} **mandatory** | The name of the space to be deployed.| |
-| -mcpc, -memory-capacity-per-container {{<wbr>}}**mandatory** | Specifies the the heap size per GSC. | -mcpc \[number\[m/g\]\] |
-| -mmc, -max-memory-capacity {{<wbr>}}**mandatory**(*) | Specifies an estimate of the maximum memory capacity for this processing unit.{{<wbr>}}(*)Either `-max-memory-capacity` or `-number-of-partitions` option must be provided. | -mcc \[number\[m/g\]\] |
-| -nop, -number-of-partitions {{<wbr>}}**mandatory**(*) | Defines the number of processing unit partitions.{{<wbr>}}(*)Either `-max-memory-capacity` or `-number-of-partitions` option must be provided. | -nop \[number\] |
-| -nobpp, -number-of-backups-per-partition | Specifies the number of backup processing unit instances per partition.{{<wbr>}}This is an advanced property. | `-nobpp \[number\] |
+| Space Name <br> **mandatory** | The name of the space to be deployed.| |
+| -mcpc, -memory-capacity-per-container <br>**mandatory** | Specifies the the heap size per GSC. | -mcpc \[number\[m/g\]\] |
+| -mmc, -max-memory-capacity <br>**mandatory**(*) | Specifies an estimate of the maximum memory capacity for this processing unit.<br>(*)Either `-max-memory-capacity` or `-number-of-partitions` option must be provided. | -mcc \[number\[m/g\]\] |
+| -nop, -number-of-partitions <br>**mandatory**(*) | Defines the number of processing unit partitions.<br>(*)Either `-max-memory-capacity` or `-number-of-partitions` option must be provided. | -nop \[number\] |
+| -nobpp, -number-of-backups-per-partition | Specifies the number of backup processing unit instances per partition.<br>This is an advanced property. | `-nobpp \[number\] |
 | -mnocc, -max-number-of-cpu-cores | Specifies an estimate for the maximum total number of cpu cores used by this processing unit. | -mnooc \[number\] |
-| -smd, -single-machine-deployment | Allows deployment of the processing unit on a single machine.{{<wbr>}}Defaults to `false`. | -smd \[true/false\] |
-| -ha, -highly-available | Specifies if each space partition has a backup instance.{{<wbr>}}True by default. | -ha \[true/false\] |
-| -secured | Deploys a secured processing unit (implicit when using -user/-password).{{<wbr>}}Defaults to `false`. | -secured \[true/false\] |
+| -smd, -single-machine-deployment | Allows deployment of the processing unit on a single machine.<br>Defaults to `false`. | -smd \[true/false\] |
+| -ha, -highly-available | Specifies if each space partition has a backup instance.<br>True by default. | -ha \[true/false\] |
+| -secured | Deploys a secured processing unit (implicit when using -user/-password).<br>Defaults to `false`. | -secured \[true/false\] |
 | -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
-| -dmp, -dedicated-machine-provisioning | Configure the server side bean that starts and stops machines automatically. | -dmp \[dedicated machine provisioning properties\] {{<wbr>}} [dedicated machine provisioning properties](#dedicated-machine-provisioning-properties) |
-| -smp, -shared-machine-provisioning | Configure the server side bean that starts and stops machines automatically.{{<wbr>}}The machines returned by the machine provisioner will be shared by other processing unit instances with the same sharingId. | -smd \[shared machine provisioning properties\] {{<wbr>}} [shared machine provisioning properties](#shared-machine-provisioning-properties) |
-| -scale | Enables the specified scale strategy, and disables all other scale strategies.{{<wbr>}}Defaults to `eager` scale strategy. | -scale \[scale properties\] {{<wbr>}} [scale properties](#scale-properties) |
-| -timeout | Timeout for deploy operation.{{<wbr>}}Defaults to `120` seconds. | -timeout \[timeout in seconds\] |
-| -uof, -undeploy-on-failure | Undeploy the processing unit if the deploy process is not completed within the timeout frame.{{<wbr>}}Defaults to `false`. | -uof \[true/false\] |
-| -cmdargs, -command-line-args | Adds the arguments as JVM level arguments when the process is executed using pure JVM. {{<wbr>}}Note the quotes in the value. | -cmdargs \["comma separated list of args"\] |
+| -dmp, -dedicated-machine-provisioning | Configure the server side bean that starts and stops machines automatically. | -dmp \[dedicated machine provisioning properties\] <br> [dedicated machine provisioning properties](#dedicated-machine-provisioning-properties) |
+| -smp, -shared-machine-provisioning | Configure the server side bean that starts and stops machines automatically.<br>The machines returned by the machine provisioner will be shared by other processing unit instances with the same sharingId. | -smd \[shared machine provisioning properties\] <br> [shared machine provisioning properties](#shared-machine-provisioning-properties) |
+| -scale | Enables the specified scale strategy, and disables all other scale strategies.<br>Defaults to `eager` scale strategy. | -scale \[scale properties\] <br> [scale properties](#scale-properties) |
+| -timeout | Timeout for deploy operation.<br>Defaults to `120` seconds. | -timeout \[timeout in seconds\] |
+| -uof, -undeploy-on-failure | Undeploy the processing unit if the deploy process is not completed within the timeout frame.<br>Defaults to `false`. | -uof \[true/false\] |
+| -cmdargs, -command-line-args | Adds the arguments as JVM level arguments when the process is executed using pure JVM. <br>Note the quotes in the value. | -cmdargs \["comma separated list of args"\] |
 | -ctxp, -context-properties | Defines a context deploy time property overriding any ${...} | -ctxp key1=value1 key2=value2 |
  
 
@@ -277,19 +277,19 @@ gs> deploy-elastic-pu -type stateful -memory-capacity-per-container 32m -number-
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| -type {{<wbr>}}**mandatory**          | Specifies the processing unit type.{{<wbr>}}Options are: `stateful`, `stateless`. | -type \[stateful/stateless\] |
-| -file {{<wbr>}}**mandatory**(*)       | Processing unit file path (processing unit jar/zip file or a directory).{{<wbr>}}(*)Either `-file` or `-puname` option must be provided. | -file /home/user/myprocessingunit.jar |
-| -puname {{<wbr>}}**mandatory**(*)     | Processing unit name (should exists under the [GS ROOT]/deploy directory).{{<wbr>}}(*)Either`-file` or `-puname` option must be provided. | -puname processor |
+| -type <br>**mandatory**          | Specifies the processing unit type.<br>Options are: `stateful`, `stateless`. | -type \[stateful/stateless\] |
+| -file <br>**mandatory**(*)       | Processing unit file path (processing unit jar/zip file or a directory).<br>(*)Either `-file` or `-puname` option must be provided. | -file /home/user/myprocessingunit.jar |
+| -puname <br>**mandatory**(*)     | Processing unit name (should exists under the [GS ROOT]/deploy directory).<br>(*)Either`-file` or `-puname` option must be provided. | -puname processor |
 | -name                                 | Overrides the Processing Unit's name | -name myProcessingUnitName |
-| -mcpc, -memory-capacity-per-container {{<wbr>}}**mandatory** | Specifies the the heap size per GSC. | -mcpc \[number\[m/g\]\] |
-| -secured                              | Deploys a secured processing unit (implicit when using -user/-password).{{<wbr>}}Defaults to `false`. | -secured \[true/false\] |
+| -mcpc, -memory-capacity-per-container <br>**mandatory** | Specifies the the heap size per GSC. | -mcpc \[number\[m/g\]\] |
+| -secured                              | Deploys a secured processing unit (implicit when using -user/-password).<br>Defaults to `false`. | -secured \[true/false\] |
 | -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html)| -user xxx -password yyyy|
-| -dmp, -dedicated-machine-provisioning | Configure the server side bean that starts and stops machines automatically. | -dmp \[dedicated machine provisioning properties\] {{<wbr>}} [dedicated machine provisioning properties](#dedicated-machine-provisioning-properties) |
-| -smp, -shared-machine-provisioning | Configure the server side bean that starts and stops machines automatically.{{<wbr>}}The machines returned by the machine provisioner will be shared by other processing unit instances with the same sharingId. | -smd \[shared machine provisioning properties\] {{<wbr>}} [shared machine provisioning properties](#shared-machine-provisioning-properties) |
-| -scale | Enables the specified scale strategy, and disables all other scale strategies.{{<wbr>}}Defaults to `eager` scale strategy. | -scale \[scale properties\] {{<wbr>}} [scale properties](#scale-properties) |
-| -timeout | Timeout for deploy operation.{{<wbr>}}Defaults to `120` seconds. | -timeout \[timeout in seconds\] |
-| -uof, -undeploy-on-failure | Undeploy the processing unit if the deploy process is not completed within the timeout frame.{{<wbr>}}Defaults to `false`. | -uof \[true/false\] |
-| -cmdargs, -command-line-args | Adds the arguments as JVM level arguments when the process is executed using pure JVM. {{<wbr>}}Note the quotes in the value. | -cmdargs \["comma separated list of args"\] |
+| -dmp, -dedicated-machine-provisioning | Configure the server side bean that starts and stops machines automatically. | -dmp \[dedicated machine provisioning properties\] <br> [dedicated machine provisioning properties](#dedicated-machine-provisioning-properties) |
+| -smp, -shared-machine-provisioning | Configure the server side bean that starts and stops machines automatically.<br>The machines returned by the machine provisioner will be shared by other processing unit instances with the same sharingId. | -smd \[shared machine provisioning properties\] <br> [shared machine provisioning properties](#shared-machine-provisioning-properties) |
+| -scale | Enables the specified scale strategy, and disables all other scale strategies.<br>Defaults to `eager` scale strategy. | -scale \[scale properties\] <br> [scale properties](#scale-properties) |
+| -timeout | Timeout for deploy operation.<br>Defaults to `120` seconds. | -timeout \[timeout in seconds\] |
+| -uof, -undeploy-on-failure | Undeploy the processing unit if the deploy process is not completed within the timeout frame.<br>Defaults to `false`. | -uof \[true/false\] |
+| -cmdargs, -command-line-args | Adds the arguments as JVM level arguments when the process is executed using pure JVM. <br>Note the quotes in the value. | -cmdargs \["comma separated list of args"\] |
 | -ctxp, -context-properties | Defines a context deploy time property overriding any ${...} | -ctxp key1=value1 key2=value2 |
  
 
@@ -298,12 +298,12 @@ The following options are supported with a `stateful` elastic PU only
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| -mmc, -max-memory-capacity {{<wbr>}}**mandatory**(*) | Specifies an estimate of the maximum memory capacity for this processing unit.{{<wbr>}}(*)Either `-max-memory-capacity` or `-number-of-partitions` option must be provided. | -mcc \[number\[m/g\]\] |
-| -nop, -number-of-partitions {{<wbr>}}**mandatory**(*) | Defines the number of processing unit partitions.{{<wbr>}}(*)Either `-max-memory-capacity` or `-number-of-partitions` option must be provided. | -nop \[number\] |
-| -nobpp, -number-of-backups-per-partition | Specifies the number of backup processing unit instances per partition.{{<wbr>}}This is an advanced property, default to 1 | -nobpp \[number\] |
+| -mmc, -max-memory-capacity <br>**mandatory**(*) | Specifies an estimate of the maximum memory capacity for this processing unit.<br>(*)Either `-max-memory-capacity` or `-number-of-partitions` option must be provided. | -mcc \[number\[m/g\]\] |
+| -nop, -number-of-partitions <br>**mandatory**(*) | Defines the number of processing unit partitions.<br>(*)Either `-max-memory-capacity` or `-number-of-partitions` option must be provided. | -nop \[number\] |
+| -nobpp, -number-of-backups-per-partition | Specifies the number of backup processing unit instances per partition.<br>This is an advanced property, default to 1 | -nobpp \[number\] |
 | -mnocc, -max-number-of-cpu-cores | Specifies an estimate for the maximum total number of cpu cores used by this processing unit. | -mnooc \[number\] |
-| -smd, -single-machine-deployment | Allows deployment of the processing unit on a single machine.{{<wbr>}}Defaults to `false`. | -smd \[true/false\] |
-| -ha, -highly-available | Specifies if each space partition has a backup instance.{{<wbr>}}True by default. | -ha \[true/false\] |
+| -smd, -single-machine-deployment | Allows deployment of the processing unit on a single machine.<br>Defaults to `false`. | -smd \[true/false\] |
+| -ha, -highly-available | Specifies if each space partition has a backup instance.<br>True by default. | -ha \[true/false\] |
 
 
 
@@ -384,16 +384,16 @@ gs> deploy-elastic-space -scale strategy=manual memory-capacity=128m mySpace
 
 |Syntax|Description|
 |:-----|:----------|
-| strategy=\[eager/manual\]{{<wbr>}}**mandatory** | Specifies the processing unit name. |
-| max-concurrent-relocations-per-machine=\[number\] | Specifies the number of processing unit instance relocations each machine can handle concurrently. {{<wbr>}}CLI's default is 1. |
-| <nobr>at-most-one-concurrent-relocation=\[true/false\]<nobr> | Limits the number of concurrent relocations for the entire cluster to 1. {{% wbr%}}* Notice this is an aggregated property across all machines. {{<wbr>}}CLI's default is true. |
+| strategy=\[eager/manual\]<br>**mandatory** | Specifies the processing unit name. |
+| max-concurrent-relocations-per-machine=\[number\] | Specifies the number of processing unit instance relocations each machine can handle concurrently. <br>CLI's default is 1. |
+| <nobr>at-most-one-concurrent-relocation=\[true/false\]<nobr> | Limits the number of concurrent relocations for the entire cluster to 1. <br>* Notice this is an aggregated property across all machines. <br>CLI's default is true. |
  
 
 The following options are supported with `manual` strategy only
 
 |Syntax|Description|
 |:-----|:----------|
-| number-of-cpu-cores=\[number\] | Specifies the number of CPU cores (as reported by the operating system). {{<wbr>}}This includes both real cores and hyper-threaded cores. |
+| number-of-cpu-cores=\[number\] | Specifies the number of CPU cores (as reported by the operating system). <br>This includes both real cores and hyper-threaded cores. |
 | memory-capacity=\[number\[m/g\]\] | Specifies the memory capacity (RAM). |
  
 
@@ -424,7 +424,7 @@ gs> scale -name myspace -memory-capacity 256m
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| -name {{<wbr>}}**mandatory** | Specifies the processing unit name. | -name \[processing unit name\] |
+| -name <br>**mandatory** | Specifies the processing unit name. | -name \[processing unit name\] |
 | -nocc, -number-of-cpu-cores | Specifies the number of CPU cores (as reported by the operating system). | -nocc \[number\] |
 | -mc, -memory-capacity | Specifies the memory capacity (RAM). | -mc \[number\[m/g\]\] |
 | <nobr>-mcrpm, -max-concurrent-relocations-per-machine<nobr> | Specifies the number of processing unit instance relocations each machine can handle concurrently | -mcrpm \[number\] |

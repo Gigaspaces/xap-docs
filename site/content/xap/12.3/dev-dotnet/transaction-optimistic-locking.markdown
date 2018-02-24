@@ -108,10 +108,10 @@ Suppose that you have two applications, Application_1 and Application_2, which a
 
 | Time | Action | Application\_1 | Application\_2 |
 |:-----|:-------|:---------------|:---------------|
-| `T=1` | Initial conditions: both applications read the object from the space. | Object A `VersionID=1`{{<wbr>}}`Value1=X`{{<wbr>}} `Value2=Y` | Object A{{<wbr>}}`VersionID=1`{{<wbr>}}`Value1=X`{{<wbr>}}`Value2=Y` |
-| `T=2` | Both modify the same objects. | Object A `VersionID=1`{{<wbr>}}`value1=X`{{<wbr>}}`Value2=Y_1` | Object A{{<wbr>}}`VersionID=1`{{<wbr>}}`value1=X_2`{{<wbr>}}`Value2=Y` |
-| `T=3` | Application_2 updates object A and commits - commit is successful. | Object A `VersionID=1`{{<wbr>}}`Value1=X`{{<wbr>}}`Value2=Y_1` | Object A{{<wbr>}}`VersionID=2`{{<wbr>}}`Value1=X_2`{{<wbr>}}`Value2=Y` |
-| `T=4` | Application_1 tries to update object A, but fails due to invalid Version ID. | Object A `VersionID=1`{{<wbr>}}`Value1=X`{{<wbr>}}`Value2=Y_1` | |
-| `T=5` | Application_1 refreshes object A (re-reads it). | Object A `VersionID=2`{{<wbr>}}`Value1=X_2`{{<wbr>}}`Value2=Y` | |
-| `T=6` | Application_1 updates object A again and commits - commit is successful. | Object A `VersionID=3`{{<wbr>}}`value1=X_2`{{<wbr>}}`Value2=Y_1` | |
+| `T=1` | Initial conditions: both applications read the object from the space. | Object A `VersionID=1`<br>`Value1=X`<br> `Value2=Y` | Object A<br>`VersionID=1`<br>`Value1=X`<br>`Value2=Y` |
+| `T=2` | Both modify the same objects. | Object A `VersionID=1`<br>`value1=X`<br>`Value2=Y_1` | Object A<br>`VersionID=1`<br>`value1=X_2`<br>`Value2=Y` |
+| `T=3` | Application_2 updates object A and commits - commit is successful. | Object A `VersionID=1`<br>`Value1=X`<br>`Value2=Y_1` | Object A<br>`VersionID=2`<br>`Value1=X_2`<br>`Value2=Y` |
+| `T=4` | Application_1 tries to update object A, but fails due to invalid Version ID. | Object A `VersionID=1`<br>`Value1=X`<br>`Value2=Y_1` | |
+| `T=5` | Application_1 refreshes object A (re-reads it). | Object A `VersionID=2`<br>`Value1=X_2`<br>`Value2=Y` | |
+| `T=6` | Application_1 updates object A again and commits - commit is successful. | Object A `VersionID=3`<br>`value1=X_2`<br>`Value2=Y_1` | |
 

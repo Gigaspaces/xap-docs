@@ -9,13 +9,13 @@ This section provides some hands-on examples to demonstrate the core concepts an
 
 {{%fpanel%}}
 
-[XAP Open-Source Functionality](xap-open-source.html){{<wbr>}}
+[XAP Open-Source Functionality](xap-open-source.html)<br>
 A summary of the features and functionality that are available in the XAP open-source edition.
 
-[Setting Up your IDE](xap-ide.html){{<wbr>}}
+[Setting Up your IDE](xap-ide.html)<br>
 Set up your IDE to enable working with XAP.
 
-[Maven](installation-maven-overview.html){{<wbr>}}
+[Maven](installation-maven-overview.html)<br>
 Install the XAP Maven plugin, so you can create and run a Processing Unit project.
   
 [XAP in 5 minutes](xap-in-5-minutes.html)<br>
@@ -24,7 +24,7 @@ This tutorial explains how to deploy and use a XAP [Data Grid](../overview/the-i
 [Interacting with the Space](xap-tutorial-part1.html)<br>
 In this part of the tutorial we will demonstrate how to create a Space and how you can interact with it. We will also demonstrate how you can improve your space search performance by using indexes and returning partial results.
  
-[Data Partitioning](data-partitioning.html){{<wbr>}}
+[Data Partitioning](data-partitioning.html)<br>
 An overview the the available data partition topologies available for the XAP in-memory data grid. 
 
 [Deploying a Space](xap-tutorial-part2.html)<br>

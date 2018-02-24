@@ -467,8 +467,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[ProcessingUnit]({{% api-javadoc %}}/org/openspaces/admin/pu/ProcessingUnit.html)|
 |Description     |Deployable Processing unit running one or more Processing Unit Instances. Managed by the Grid Service Manager.|
-|Main Operations |- Undeploy the Processing Unit{{<wbr>}}- Increase the number of Processing Unit instances (if allowed).{{<wbr>}}- Decrease the number of Processing Unit instances (if allowed).{{<wbr>}}- Get the deployment status of the Processing Unit.{{<wbr>}}- Get the managing Grid Service Manager.{{<wbr>}}- Get the list of backup Grid Service Managers.{{<wbr>}}- List all the currently running Processing Unit instances.{{<wbr>}}- Wait for X number of Processing Unit instances to be up.{{<wbr>}}- Get an embedded Space that the Processing Unit has.{{<wbr>}}- Wait for an embedded Space to be correlated (discovered) with the Processing Unit.|
-|Runtime Events  |- Register for Processing Unit instance additions and removal events.{{<wbr>}}- Register for Processing Unit instance provision attempts, failures, successes and pending events.{{<wbr>}}- Register for Managing Grid Service Manager change events.{{<wbr>}}- Register for Space correlation events.{{<wbr>}}- Register for deployment status change events.{{<wbr>}}- Register for backup Grid Service Manager change events.|
+|Main Operations |- Undeploy the Processing Unit<br>- Increase the number of Processing Unit instances (if allowed).<br>- Decrease the number of Processing Unit instances (if allowed).<br>- Get the deployment status of the Processing Unit.<br>- Get the managing Grid Service Manager.<br>- Get the list of backup Grid Service Managers.<br>- List all the currently running Processing Unit instances.<br>- Wait for X number of Processing Unit instances to be up.<br>- Get an embedded Space that the Processing Unit has.<br>- Wait for an embedded Space to be correlated (discovered) with the Processing Unit.|
+|Runtime Events  |- Register for Processing Unit instance additions and removal events.<br>- Register for Processing Unit instance provision attempts, failures, successes and pending events.<br>- Register for Managing Grid Service Manager change events.<br>- Register for Space correlation events.<br>- Register for deployment status change events.<br>- Register for backup Grid Service Manager change events.|
 
 
 {{%anchor ProcessingUnitInstanceLink%}}
@@ -477,7 +477,7 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[ProcessingUnitInstance]({{% api-javadoc %}}/org/openspaces/admin/pu/ProcessingUnitInstance.html)|
 |Description     |Actual instance of a Processing Unit running within a Grid Service Container.|
-|Main Operations |- Destroy itself (if SLA is breached, will be instantiated again).{{<wbr>}}- Decrease itself (destroying itself in the process). Will not attempt to create it again.{{<wbr>}}- Relocate itself to a different Grid Service Container.{{<wbr>}}- List all its inner services (such as event containers).{{<wbr>}}- Get the embedded Space instance running within it (if there is one).{{<wbr>}}- Get the JEE container details if it is a web Processing Unit.|
+|Main Operations |- Destroy itself (if SLA is breached, will be instantiated again).<br>- Decrease itself (destroying itself in the process). Will not attempt to create it again.<br>- Relocate itself to a different Grid Service Container.<br>- List all its inner services (such as event containers).<br>- Get the embedded Space instance running within it (if there is one).<br>- Get the JEE container details if it is a web Processing Unit.|
 |Runtime Events  | [Service Monitors](#servicemonitors)|
 
 
@@ -487,8 +487,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[ProcessingUnits]({{% api-javadoc %}}/org/openspaces/admin/pu/ProcessingUnits.html)|
 |Description     | Holds all the currently deployed Processing Units|
-|Main Operations |Get all the currently deployed Processing Units.{{<wbr>}}- Wait for (and return) a Processing by a specific name.|
-|Runtime Events  |- Register for Processing Unit deployments and undeployment events.{{<wbr>}}- Register for all Processing Unit instance addition and removal events (across all Processing Units).{{<wbr>}}- Register for all Processing Unit instance provision attempts, failures, success and pending events (across all Processing Units).{{<wbr>}}- Register for Managing Grid Service Manager change events on all Processing Units.{{<wbr>}}- Register for backup Grid Service Manager change events on all Processing Units.|
+|Main Operations |Get all the currently deployed Processing Units.<br>- Wait for (and return) a Processing by a specific name.|
+|Runtime Events  |- Register for Processing Unit deployments and undeployment events.<br>- Register for all Processing Unit instance addition and removal events (across all Processing Units).<br>- Register for all Processing Unit instance provision attempts, failures, success and pending events (across all Processing Units).<br>- Register for Managing Grid Service Manager change events on all Processing Units.<br>- Register for backup Grid Service Manager change events on all Processing Units.|
 
 
 {{%anchor SpaceLink%}}
@@ -497,8 +497,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[Space]({{% api-javadoc %}}/org/openspaces/admin/space/Space.html)|
 |Description     |Composed of one or more Space Instances to form a Space topology (cluster).|
-|Main Operations |- Get all the currently running Space Instances that are part of the Space.{{<wbr>}}- Wait for X number of Space instances to be up.{{<wbr>}}- Get aggregated Space statistics.{{<wbr>}}- Get a clustered [Space](./the-gigaspace-interface-overview.html) to perform Space operations.|
-|Runtime Events  |- Register for Space instance addition and removal events.{{<wbr>}}- Register for Space instance change mode events (for all Space instances that are part of the Space).{{<wbr>}}- Register for Space instance replication status change events (for all Space instances that are part of the Space).{{<wbr>}}- Register for aggregated Space statistics events (if monitoring).|
+|Main Operations |- Get all the currently running Space Instances that are part of the Space.<br>- Wait for X number of Space instances to be up.<br>- Get aggregated Space statistics.<br>- Get a clustered [Space](./the-gigaspace-interface-overview.html) to perform Space operations.|
+|Runtime Events  |- Register for Space instance addition and removal events.<br>- Register for Space instance change mode events (for all Space instances that are part of the Space).<br>- Register for Space instance replication status change events (for all Space instances that are part of the Space).<br>- Register for aggregated Space statistics events (if monitoring).|
 
 
 {{%anchor SpaceInstanceLink%}}
@@ -507,8 +507,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[SpaceInstance]({{% api-javadoc %}}/org/openspaces/admin/space/SpaceInstance.html)|
 |Description     |Actual instance of a Space that is part of a topology (cluster), usually running within a Processing Unit Instance.|
-|Main Operations |- Get its Space mode (primary or backup).{{<wbr>}}- Get its replication targets.{{<wbr>}}- Get a direct [Space](./the-gigaspace-interface-overview.html) to perform Space operations.{{<wbr>}}- Get Space instance statistics.|
-|Runtime Events  |- Register for replication status change events.{{<wbr>}}- Register for Space mode change events{{<wbr>}}- Register for Space instance statistics (if monitoring).|
+|Main Operations |- Get its Space mode (primary or backup).<br>- Get its replication targets.<br>- Get a direct [Space](./the-gigaspace-interface-overview.html) to perform Space operations.<br>- Get Space instance statistics.|
+|Runtime Events  |- Register for replication status change events.<br>- Register for Space mode change events<br>- Register for Space instance statistics (if monitoring).|
 
 
 {{%anchor SpacesLink%}}
@@ -517,8 +517,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[Spaces]({{% api-javadoc %}}/org/openspaces/admin/space/Spaces.html)|
 |Description     |Holds all the currently running Spaces.|
-|Main Operations |- Get all the currently running Spaces.{{<wbr>}}- Wait for (and return) a specific Space by name.|
-|Runtime Events |- Register for Space addition and removal events.{{<wbr>}}- Register for Space instance addition and removal events (across all Spaces).{{<wbr>}}- Register for Space instance mode change events (across all Space instances).{{<wbr>}}- Register for Space instance replication change events (across all Space Instances).{{<wbr>}}- Register for aggregated Space level statistics change events (across all Spaces, if monitoring).{{<wbr>}}- Register for Space instance statistics change events (across all Space Instances, if monitoring).|
+|Main Operations |- Get all the currently running Spaces.<br>- Wait for (and return) a specific Space by name.|
+|Runtime Events |- Register for Space addition and removal events.<br>- Register for Space instance addition and removal events (across all Spaces).<br>- Register for Space instance mode change events (across all Space instances).<br>- Register for Space instance replication change events (across all Space Instances).<br>- Register for aggregated Space level statistics change events (across all Spaces, if monitoring).<br>- Register for Space instance statistics change events (across all Space Instances, if monitoring).|
 
 
 {{%anchor VirtualMachineLink%}}
@@ -527,8 +527,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[VirtualMachine]({{% api-javadoc %}}/org/openspaces/admin/vm/VirtualMachine.html)|
 |Description     |A Virtual Machine (JVM) that is currently running at least one XAP component/service.|
-|Main Operations |- Get the Grid Service Agent (if it exists).{{<wbr>}}- Get the Grid Service Manager (if it exists).{{<wbr>}}- Get the Grid Service Container (if it exists).{{<wbr>}}- Get all the Processing Unit instances that are running within the Virtual Machine.{{<wbr>}}- Get all the Space instances that are running within the Virtual Machine.{{<wbr>}}- Get the details of the Virtual Machine (min/max memory, etc.).{{<wbr>}}- Get the statistics of the Virtual Machine (heap used), and so on).|
-|Runtime Events  |- Register for Processing Unit instance addition and removal events.{{<wbr>}}- Register for Space instance addition and removal events.{{<wbr>}}- Register for statistics change events (if monitoring).|
+|Main Operations |- Get the Grid Service Agent (if it exists).<br>- Get the Grid Service Manager (if it exists).<br>- Get the Grid Service Container (if it exists).<br>- Get all the Processing Unit instances that are running within the Virtual Machine.<br>- Get all the Space instances that are running within the Virtual Machine.<br>- Get the details of the Virtual Machine (min/max memory, etc.).<br>- Get the statistics of the Virtual Machine (heap used), and so on).|
+|Runtime Events  |- Register for Processing Unit instance addition and removal events.<br>- Register for Space instance addition and removal events.<br>- Register for statistics change events (if monitoring).|
 
 {{%anchor VirtualMachinesLink%}}
 
@@ -536,8 +536,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[VirtualMachines]({{% api-javadoc %}}/org/openspaces/admin/vm/VirtualMachines.html)|
 |Description     |Holds all the currently discovered Virtual Machines.|
-|Main Operations |- Get all the currently discovered Virtual Machines.{{<wbr>}}- Get aggregated Virtual Machine details.{{<wbr>}}- Get aggregated Virtual Machine statistics.|
-|Runtime Events  |- Register for Virtual Machine addition and removal events.{{<wbr>}}- Register for aggregated Virtual Machine statistics events (if monitoring).{{<wbr>}}- Register for Virtual Machine level statistics change events (across all Virtual Machines, if monitoring).|
+|Main Operations |- Get all the currently discovered Virtual Machines.<br>- Get aggregated Virtual Machine details.<br>- Get aggregated Virtual Machine statistics.|
+|Runtime Events  |- Register for Virtual Machine addition and removal events.<br>- Register for aggregated Virtual Machine statistics events (if monitoring).<br>- Register for Virtual Machine level statistics change events (across all Virtual Machines, if monitoring).|
 
 
 {{%anchor MachineLink%}}
@@ -546,8 +546,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[Machine]({{% api-javadoc %}}/org/openspaces/admin/machine/Machine.html)|
 |Description     |Actual Machine (identified by its host address) running one or more XAP components/services in one or more Virtual Machines. Associated with one operating system.|
-|Main Operations |- Get all the Grid Service Agents running on the Machine.{{<wbr>}}- Get all the Grid Service Containers running on the Machine.{{<wbr>}}- Get all the Grid Service Managers running on the Machine.{{<wbr>}}- Get all the Virtual Machines running on the Machine.{{<wbr>}}- Get all the Processing Unit instances running on the Machine.{{<wbr>}}- Get all the Space instances running on the Machine.{{<wbr>}}- Get the operating system the Machine is running on.|
-|Runtime Events  |- Register for Space instance addition and removal events from the Machine.{{<wbr>}}- Register for Processing Unit instance additions and removals events from the Machine.|
+|Main Operations |- Get all the Grid Service Agents running on the Machine.<br>- Get all the Grid Service Containers running on the Machine.<br>- Get all the Grid Service Managers running on the Machine.<br>- Get all the Virtual Machines running on the Machine.<br>- Get all the Processing Unit instances running on the Machine.<br>- Get all the Space instances running on the Machine.<br>- Get the operating system the Machine is running on.|
+|Runtime Events  |- Register for Space instance addition and removal events from the Machine.<br>- Register for Processing Unit instance additions and removals events from the Machine.|
 
 
 {{%anchor MachinesLink%}}
@@ -556,7 +556,7 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[Machines]({{% api-javadoc %}}/org/openspaces/admin/machine/Machines.html)|
 |Description     |Holds all the currently discovered Machines|
-|Main Operations |- Get all the currently running Machines.{{<wbr>}}- Wait for X number of Machines or be up.|
+|Main Operations |- Get all the currently running Machines.<br>- Wait for X number of Machines or be up.|
 |Runtime Events  |- Register for Machine addition and removal events.|
 
 
@@ -566,7 +566,7 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[OperatingSystem]({{% api-javadoc %}}/org/openspaces/admin/os/OperatingSystem.html)|
 |Description     |The operating system that XAP components/services are running on. Associated with one Machine.|
-|Main Operations |- Get the details of the operating system.{{<wbr>}}- Get the operating system statistics.|
+|Main Operations |- Get the details of the operating system.<br>- Get the operating system statistics.|
 |Runtime Events  |Register for statistics change events (if monitoring).|
 
 {{%anchor OperatingSystemsLink%}}
@@ -575,8 +575,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[OperatingSystems]({{% api-javadoc %}}/org/openspaces/admin/os/OperatingSystems.html)|
 |Description     |Holds all the currently discovered operating systems.|
-|Main Operations |- Get all the current operating systems.{{<wbr>}}- Get the aggregated operating system details.{{<wbr>}}- Get the aggregated operating system statistics.|
-|Runtime Events  |- Register for aggregated operating system statistics change events (if monitoring).{{<wbr>}}- Register for operating system level statistics change events (across all operating systems, if monitoring).|
+|Main Operations |- Get all the current operating systems.<br>- Get the aggregated operating system details.<br>- Get the aggregated operating system statistics.|
+|Runtime Events  |- Register for aggregated operating system statistics change events (if monitoring).<br>- Register for operating system level statistics change events (across all operating systems, if monitoring).|
 
 {{%anchor TransportLink%}}
 
@@ -584,7 +584,7 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[Transport]({{% api-javadoc %}}/org/openspaces/admin/transport/Transport.html)|
 |Description     |Communication layer that each XAP component/service uses.|
-|Main Operations |- Get the transport details (host, port).{{<wbr>}}- Get the transport statistics.|
+|Main Operations |- Get the transport details (host, port).<br>- Get the transport statistics.|
 |Runtime Events  |Register for transport statistics change events (if monitoring).|
 
 {{%anchor TransportsLink%}}
@@ -593,8 +593,8 @@ The Admin Domain Model has representation to all the XAP-level main actors. They
 |----|----|
 |Name            |[Transports]({{% api-javadoc %}}/org/openspaces/admin/transport/Transports.html)|
 |Description     |Holds all the currently discovered transports.|
-|Main Operations |- Get all the current transports.{{<wbr>}}- Get the aggregated transport details.{{<wbr>}}- Get the aggregated transport statistics.|
-|Runtime Events  |- Register for aggregated transport statistics change events (if monitoring).{{<wbr>}}- Register for transport level statistics change events (across all transports, if monitoring).|
+|Main Operations |- Get all the current transports.<br>- Get the aggregated transport details.<br>- Get the aggregated transport statistics.|
+|Runtime Events  |- Register for aggregated transport statistics change events (if monitoring).<br>- Register for transport level statistics change events (across all transports, if monitoring).|
 
 {{% note "Note"%}}
 The `Admin` functionality is designed to interact with a service grid deployment. For `StandaloneProcessingUnitContainer` and `IntegratedProcessingUnitContainer`, components such as `GridServiceAgent` and `GridServiceManager` are not started by default, therefore portions of the Admin functionality aren't available. 

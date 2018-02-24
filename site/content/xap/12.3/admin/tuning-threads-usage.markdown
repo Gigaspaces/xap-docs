@@ -21,7 +21,7 @@ All GigaSpaces threads running within the JVM use the **GS-** prefix as part of 
 {{%/note %}}
 
 
-| Thread Name | Description | Configuration Parameters | Client{{<wbr>}}Server|
+| Thread Name | Description | Configuration Parameters | Client<br>Server|
 |:------------|:------------|:-------------------------|:-------------|
 |LRMI Selector Accept |Responsible for accepting incoming socket connections. |Single Thread|Server|
 |LRMI async Selector  |Client side, handles async invocation, i.e executors, asyncRead/take. |4 Threads|Server|
@@ -36,7 +36,7 @@ All GigaSpaces threads running within the JVM use the **GS-** prefix as part of 
 |TemplateExpirationManager-pool#|Responsible for sending response to waiting client when their template expires.| 16 threads max per space |Server|
 |SyncReplicationChannel SPACE_NAME|Runs per sync replication channel |Dynamically adjusted|Server|
 |CapabilityChannel  |  |  |Server|
-|ClassLoaderCache-{{<wbr>}}SelfCleaningTable |Used to clean up resources of class loaders once terminated (undeploy of processing unit) |Single Thread|Server|
+|ClassLoaderCache-<br>SelfCleaningTable |Used to clean up resources of class loaders once terminated (undeploy of processing unit) |Single Thread|Server|
 |TransactionTableHolder-SelfCleaningTable | Responsible for cleaning zombie local transactions that were abandoned by the user application without committing. Single thread per GSC |Single Thread per space |Server|
 |SLA Monitor Disk|Used by the Service Grid. SLA free disk space monitor|Single Thread|Server|
 |Memory:writer|Used by the Service Grid. SLA Memory monitor|Single Thread|Server| 
@@ -46,7 +46,7 @@ All GigaSpaces threads running within the JVM use the **GS-** prefix as part of 
 |JoinManager Task| Responsible to communicate with the lookup service|Single thread per client proxy| Client|
 |Liveness-detector| See the [Proxy Connectivity](./tuning-proxy-connectivity.html) for details.|Single thread per client proxy|Client|
 |Liveness-monitor| See the [Proxy Connectivity](./tuning-proxy-connectivity.html) for details.| Single thread per client proxy|Client|
-|LocalTransactionManagerImpl{{<wbr>}}$Reaper SPACE_NAME | A thread that reaps expired transactions entries and other objects| Single thread per space | Server|
+|LocalTransactionManagerImpl<br>$Reaper SPACE_NAME | A thread that reaps expired transactions entries and other objects| Single thread per space | Server|
 |GSPingManager| Used by the Service Grid| |Server|
 |LeaseManager$Reaper SPACE_NAME |See the [Lease Manager]({{%currentjavaurl%}}/leases-automatic-expiration.html#Lease Manager) for details |Single Thread per space| Server|
 |Cache PersistentGC|Responsible for backup activities (cleanup indexes)|Single Thread per space|Server|

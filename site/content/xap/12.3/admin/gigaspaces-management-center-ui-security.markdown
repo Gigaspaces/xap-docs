@@ -153,7 +153,7 @@ The following table represents some of the actions that the UI disables when the
 | Provision PU | Deploy, Undeploy  |
 | Manage PU | Relocate, Restart PU, Add PU instance, Decrease PU Instance|
 | Manage Grid | Start/Restart/Terminate GSA agents, Open Administration UI for GSM/GSC|
-| Monitor PU | Viewing: Event Containers, Remote Services, Classes, Transactions, Statistics, Connections, PU details;{{<wbr>}}Space View: Statistics, Objects and Templates count; Objects count in Cluster Graph View;{{<wbr>}}Administration UI for PU Instance, Runtime Configuration Report|
+| Monitor PU | Viewing: Event Containers, Remote Services, Classes, Transactions, Statistics, Connections, PU details;<br>Space View: Statistics, Objects and Templates count; Objects count in Cluster Graph View;<br>Administration UI for PU Instance, Runtime Configuration Report|
 | Monitor JVM | Used memory in Spaces View, Launch JConsole|
 | Alter | Clean Space, Clean Cluster, Delete objects from Space|
 | Take | Clear objects from space |

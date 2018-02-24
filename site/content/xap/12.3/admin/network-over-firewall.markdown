@@ -64,9 +64,9 @@ As per IANA standards, port numbers are based on three ranges: System Ports (0-1
 
 | Component | Listeners |
 |:----------|:----------|
-| GSM | Lookup Service{{<wbr>}}LRMI Transport{{<wbr>}}Webster{{<wbr>}}JMX |
-| GSC | LRMI Transport {{<wbr>}}Webster {{<wbr>}}JMX |
-| Transaction Manager (Mahalo) | LRMI Transport {{<wbr>}}Webster {{<wbr>}}JMX |
+| GSM | Lookup Service<br>LRMI Transport<br>Webster<br>JMX |
+| GSC | LRMI Transport <br>Webster <br>JMX |
+| Transaction Manager (Mahalo) | LRMI Transport <br>Webster <br>JMX |
 
 ## Required Configuration Modifications
 

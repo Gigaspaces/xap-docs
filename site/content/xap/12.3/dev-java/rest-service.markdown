@@ -52,11 +52,11 @@ or
 
 | Attribute name | Use | Description |
 |:-----|:----------|:------|
-| port | required | The port which the rest service will be available on. {{<wbr>}}If there are multiple instances, the port for each instance will be port+runningNumber (starting from 0) |
+| port | required | The port which the rest service will be available on. <br>If there are multiple instances, the port for each instance will be port+runningNumber (starting from 0) |
 | giga-space | required* | Reference to GigaSpace |
 | space-name |  required* | Name of the Space that the rest should connect to. |
-| lookup-groups | optional | The lookup groups to be used when looking for the specified space. {{<wbr>}} A comma separated list of group names. {{<wbr>}}Use with space-name attribute only. |
-| lookup-locators | optional | The lookup locators to be used when looking for the specified space. {{<wbr>}} A comma separated list of host:port. {{<wbr>}}Use with space-name attribute only. |
+| lookup-groups | optional | The lookup groups to be used when looking for the specified space. <br> A comma separated list of group names. <br>Use with space-name attribute only. |
+| lookup-locators | optional | The lookup locators to be used when looking for the specified space. <br> A comma separated list of host:port. <br>Use with space-name attribute only. |
 
 *giga-space and space-name attributes can not be used together.
 
@@ -133,7 +133,7 @@ In order to do so, you will need to do the following:
 
 2. Edit the file that is located under src/main/webapp/WEB-INF/config.properties to include your space's properties
 
-3. Package the project using maven: `mvn package -P standalone-war` {{<wbr>}}This will run the unit tests and package the project to a war file located at target/RESTData.war
+3. Package the project using maven: `mvn package -P standalone-war` <br>This will run the unit tests and package the project to a war file located at target/RESTData.war
 
 4. Deploy the war file as a Web Processing Unit
 

@@ -22,32 +22,32 @@ A JMX manageable resource can be an application, an implementation of a service,
 
 # Opening JMX
 
-Step 1. The easiest way to open JConsole for a specific service is through the GigaSpaces Management Center: {{<wbr>}}
- - In the Deployments tab, right-click the GSC, GSM, or LookupService tree node, or {{<wbr>}}
- - In the Space Browser tab: {{<wbr>}}
- - In the Grid Tree, right-click the relevant [space container node]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Container Node), or {{<wbr>}}
+Step 1. The easiest way to open JConsole for a specific service is through the GigaSpaces Management Center: <br>
+ - In the Deployments tab, right-click the GSC, GSM, or LookupService tree node, or <br>
+ - In the Space Browser tab: <br>
+ - In the Grid Tree, right-click the relevant [space container node]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Container Node), or <br>
 
 {{% align center %}}
-![space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg](/attachment_files/space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg) {{<wbr>}}
+![space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg](/attachment_files/space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg) <br>
 {{% /align %}}
 
- - Right-click the relevant [space node]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Space Node) or clustered space node, or {{<wbr>}}
+ - Right-click the relevant [space node]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Space Node) or clustered space node, or <br>
 
 {{% align center %}}
-![space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg](/attachment_files/space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg) {{<wbr>}}
+![space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg](/attachment_files/space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg) <br>
 {{% /align%}}
 
- - Right-click the relevant space from the [space network view]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Spaces Network View): {{<wbr>}}
+ - Right-click the relevant space from the [space network view]({{%currentadmurl%}}/gigaspaces-browser-tree-panel-and-configuration-panel.html#Spaces Network View): <br>
 
 {{% align center %}}
-![space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg](/attachment_files/space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg)  {{<wbr>}}
+![space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg](/attachment_files/space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg)  <br>
 {{% /align%}}
 
-Step 2. Click **Launch JConsole**. {{<wbr>}}
-Step 3. This opens the JConsole (only if you are running JDK 1.5 and above) of the selected process.{{<wbr>}}
-Step 4. You can browse the various MBeans.{{<wbr>}}
-Step 5. Make sure you have a deployed space.   {{<wbr>}}
-Step 6. Open a console and type the following command: `jconsole`{{<wbr>}}
+Step 2. Click **Launch JConsole**. <br>
+Step 3. This opens the JConsole (only if you are running JDK 1.5 and above) of the selected process.<br>
+Step 4. You can browse the various MBeans.<br>
+Step 5. Make sure you have a deployed space.   <br>
+Step 6. Open a console and type the following command: `jconsole`<br>
 
 {{% note "Note"%}}
 By default, operations in the MBeans **Operations** tab that have XAP classes as their type are disabled. To enable these, type the following in your console:<br> 
@@ -63,7 +63,7 @@ Step 7. Connect to the MBean server (choose one of the following options):
 
     b. In the **JMX URL** text box, copy the URL in the log message displayed in your GigaSpaces Server,for example:
 
-    c. Press **Connect**. {{<wbr>}}
+    c. Press **Connect**. <br>
 
 {{% info "Info"%}}
  New JMXConnectionServer was successfully registered into the MBeanServer
@@ -71,7 +71,7 @@ Step 7. Connect to the MBean server (choose one of the following options):
 {{% /info %}}
 
 {{% align center %}}
-![space_JMX_4_space_JMX_IMG992.gif](/attachment_files/space_JMX_4_space_JMX_IMG992.gif)  {{<wbr>}}
+![space_JMX_4_space_JMX_IMG992.gif](/attachment_files/space_JMX_4_space_JMX_IMG992.gif)  <br>
 {{% /align%}}
 
 
@@ -85,14 +85,14 @@ Step 7. Connect to the MBean server (choose one of the following options):
     c. In the **Port** text box, copy the port value from the same JNDI URL text field in the container configuration.
 
 {{% align center %}}
-![space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg](/attachment_files/space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg){{<wbr>}}
+![space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg](/attachment_files/space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg)<br>
 {{% /align%}}
 
 {{% align center %}}
 ![space_JMX_6_jconsole_connect.jpg](/attachment_files/space_JMX_6_jconsole_connect.jpg)
 {{% /align%}}
 
-Step 8. Press **Connect**.{{<wbr>}}Here is a code example of implementing such an approach:{{<wbr>}}
+Step 8. Press **Connect**.<br>Here is a code example of implementing such an approach:<br>
 
 
 ```java
