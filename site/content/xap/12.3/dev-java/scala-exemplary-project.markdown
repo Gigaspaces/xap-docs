@@ -30,7 +30,7 @@ The project is based on a template project of `basic` type from the `XAP Maven p
 Please note that Scala is not required to build the project, since requried libraries will be downloaded by `maven`.
 
 ## Build and run steps
-1. Download {{%giturl "xap-scala" "https://github.com/Gigaspaces/xap-scala/archive/10.2.0_ga_build13800_07_28_2015.zip"%}} and unzip it.
+1. Download [xap-scala](https://github.com/Gigaspaces/xap-scala/archive/10.2.0_ga_build13800_07_28_2015.zip) and unzip it.
 2. From the project's main directory `$XAP_SCALA` run command `mvn clean install`
 3. From the project's main directory `$XAP_SCALA/example/gs-openspaces-scala-example` run command `mvn clean package` - necessary JAR files to deploy on a grid will be created.
 4. Start XAP Grid Service by running command: `$GS_HOME/bin/gs-agent.sh/bat`

@@ -9,7 +9,7 @@ weight: 620
 {{%warning "Important"%}}
 This is a reference implementation of integrating Cassandra with XAP for persistency and data reload. 
 GigaSpaces does not guarantee up-to-date upgrades or support of the target NoSQL store drivers. 
-We encourage users to extend the {{%giturl "open source implementation" "https://github.com/Gigaspaces/xap-cassandra"%}}to their liking or contact GigaSpaces Professional Services for guidance at [Consulting Services](mailto:ps@gigaspaces.com).
+We encourage users to extend the [open source implementation](https://github.com/Gigaspaces/xap-cassandra) to their liking or contact GigaSpaces Professional Services for guidance at [Consulting Services](mailto:ps@gigaspaces.com).
 {{%/warning%}}
 
 

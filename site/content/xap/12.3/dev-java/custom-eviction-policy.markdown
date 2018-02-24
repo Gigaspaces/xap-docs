@@ -125,7 +125,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 ## Eviction by Priority
 
-The {{%giturl "ClassBasedEvictionFIFOStrategy" "https://github.com/OpenSpaces/PrioritizedEvictionStrategy/blob/master/src/main/java/org/openspaces/eviction/singleorder/ClassBasedEvictionFIFOStrategy.java"%}} evicts entries first by priority. This means it goes through all the priority numbers in the space in descending order (priorities must be positive integers, which means priority 0 is the most valuable and should get evicted last). After selecting the least valuable priority available, it tries to evict objects that belong to this priority by FIFO (First In, First Out). Here, you can see the way entries are inserted into the strategy class's data structures with an index value which helps later with the order of eviction:
+The [ClassBasedEvictionFIFOStrategy](https://github.com/OpenSpaces/PrioritizedEvictionStrategy/blob/master/src/main/java/org/openspaces/eviction/singleorder/ClassBasedEvictionFIFOStrategy.java) evicts entries first by priority. This means it goes through all the priority numbers in the space in descending order (priorities must be positive integers, which means priority 0 is the most valuable and should get evicted last). After selecting the least valuable priority available, it tries to evict objects that belong to this priority by FIFO (First In, First Out). Here, you can see the way entries are inserted into the strategy class's data structures with an index value which helps later with the order of eviction:
 
 
 ```java

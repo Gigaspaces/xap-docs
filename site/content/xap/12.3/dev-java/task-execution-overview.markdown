@@ -634,7 +634,7 @@ The following [example](/sbp/map-reduce-pattern-executors-example.html) demonstr
 
 # Considerations
 
-If the Task `execute` method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as `Externalizable` for the returned value object or use libraries such as {{%giturl "kryo" "https://github.com/EsotericSoftware/kryo"%}}.
+If the Task `execute` method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as `Externalizable` for the returned value object or use libraries such as [kryo](https://github.com/EsotericSoftware/kryo).
 
 {{% refer %}}
 For more information, refer to [Custom Serialization](./custom-serialization.html).

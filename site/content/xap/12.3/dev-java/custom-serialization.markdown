@@ -299,5 +299,5 @@ public class KryoSerializers {
 {{%/tabs%}}
 
 {{%refer%}}
-You can find a complete example {{%giturl "here" "https://github.com/GigaSpaces-ProfessionalServices/kryo-serialization-example"%}}.
+You can find a complete example [here](https://github.com/GigaSpaces-ProfessionalServices/kryo-serialization-example)
 {{%/refer%}}

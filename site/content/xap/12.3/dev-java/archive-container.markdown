@@ -229,8 +229,8 @@ The archive operation is performed on the bean that implements the ArchiveOperta
 
 For a  real-world example consult the streaming big data example :
 
-- {{%giturl "Big-Data example spring xml file" "https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/processor/src/main/resources/META-INF/spring/pu.xml"%}}
-- {{%giturl "Custom Archive Container template and error handler" "https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/processor/src/main/java/org/openspaces/bigdata/processor/TweetArchiveFilter.java"%}}
+- [Big-Data example spring xml file](https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/processor/src/main/resources/META-INF/spring/pu.xml)
+- [Custom Archive Container template and error handler](https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/processor/src/main/java/org/openspaces/bigdata/processor/TweetArchiveFilter.java)
 
 # Primary/Backup
 
