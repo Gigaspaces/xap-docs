@@ -6,7 +6,7 @@ weight: 300
 parent: document-overview.html
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 XAP offers interoperability between documents and concrete objects via space - it is possible to write objects and read them as documents, and vice versa. This is usually useful in scenarios requiring reading and/or manipulating objects without loading the concrete .NET classes. This page describes how to do it.

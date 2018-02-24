@@ -6,7 +6,7 @@ parent: change-api-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 A custom change operation lets the user implement his own change operation in case the built-in operations (increment, add, remove, set, etc.) do not suffice. This is a very powerful capability but it must be used with extreme caution.

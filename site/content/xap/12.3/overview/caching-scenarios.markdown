@@ -6,7 +6,7 @@ parent: the-in-memory-data-grid.html
 weight: 200
 ---
 
-{{%  ssummary %}}  {{%  /ssummary %}}
+ 
 
 
 

@@ -6,7 +6,7 @@ parent:  tuning.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 # Check your Infrastructure First
 

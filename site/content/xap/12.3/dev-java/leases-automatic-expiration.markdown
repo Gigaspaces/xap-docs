@@ -6,7 +6,7 @@ weight: 1000
 parent: the-gigaspace-interface-overview.html
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+
 
 
 

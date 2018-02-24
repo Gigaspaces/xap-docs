@@ -1054,7 +1054,7 @@ For example, `concurrent-consumers` default value is documented in the method `S
 
 
 
-{{% include "/COM/notify-verses-polling.markdown" %}}
+ 
 
 # Notify vs. Polling Container
 

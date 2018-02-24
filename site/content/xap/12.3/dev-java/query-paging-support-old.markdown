@@ -6,7 +6,7 @@ parent: query-paging-support.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 The [IteratorBuilder]({{% api-javadoc %}}/org/openspaces/core/IteratorBuilder.html) with the [GSIterator]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/GSIterator.html)  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.

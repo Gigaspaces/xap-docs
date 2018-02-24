@@ -7,7 +7,7 @@ weight: 100
 ---
 
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 The Web Management Console has an out-of-the-box default configuration that can be used with any standard environment. However, when preparing for deployment, you may want to customize certain configuration options to suit your specific organization needs. 
 

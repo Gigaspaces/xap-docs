@@ -7,7 +7,7 @@ weight: 300
 ---
 
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 # Change and SpaceSynchronizationEndpoint
 

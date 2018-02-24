@@ -6,7 +6,7 @@ parent: none
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 This section provides the concepts used throught this security guide, and present the basic interfaces.
 

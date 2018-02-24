@@ -6,7 +6,7 @@ parent: pono-xml-metadata-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 
 All the properties are written automatically into the Space. If the property is a reference to another object, it has to be Serializable and it will be written into the Space as well. Only the properties which need special Space behavior need to be specified in the gs.xml file. Specify the properties which are id's, indexes or need exclusions, etc.

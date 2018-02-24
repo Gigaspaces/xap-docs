@@ -6,7 +6,7 @@ parent: working-with-clusters-gigaspaces-browser.html
 weight: 300
 ---
 
-{{% ssummary %}}A failover group defines failover between spaces in the cluster.{{% /ssummary %}}
+ 
 
 
 A group can define a failover policy, in which case clients of spaces belonging to the group receive and use a clustered proxy instead of a regular proxy. The failover policy of the group determines the failover behavior for the clustered proxy of any space in the group.

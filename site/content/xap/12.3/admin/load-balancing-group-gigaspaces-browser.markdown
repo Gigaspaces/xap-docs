@@ -6,7 +6,7 @@ parent: working-with-clusters-gigaspaces-browser.html
 weight: 400
 ---
 
-{{% ssummary %}}A load-balancing group defines load-balancing between spaces in the cluster.{{% /ssummary %}}
+ 
 
 
 A group can define a load-balancing policy. If it does, then any other group that contains at least one space belonging to this group cannot define a load-balancing policy. Thus, the load-balancing policy of the group determines the load-balancing behavior for the clustered proxy of any space member in the group.

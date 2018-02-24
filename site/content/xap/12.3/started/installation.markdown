@@ -6,7 +6,7 @@ parent: none
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 The GigaSpaces InsightEdge and XAP applications are 100% pure Java based, and therefore can run on any UNIX or Windows machine that supports Java.
 

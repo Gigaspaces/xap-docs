@@ -6,7 +6,7 @@ parent: jpa-api-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 Various options for mapping the identifier property of your JPA entities are provided.
 

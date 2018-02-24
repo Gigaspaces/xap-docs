@@ -6,7 +6,7 @@ parent: client-side-caching.html
 weight: 100
 ---
 
-{{% ssummary page %}}{{% /ssummary %}}
+ 
 
 A Local Cache is a client-side cache that maintains a subset of the master Space's data based on the client application's recent activity. The local cache is created empty, and whenever the client application executes a query the local cache first tries to fulfill it from the cache, otherwise it executes it on the master Space and caches the result locally for future queries.
 
@@ -267,7 +267,7 @@ The Client Local Cache eviction can be monitored by setting the client applicati
 The logging level of `com.gigaspaces.core.memorymanager` can be changed while the client application is running using JConsole.
 {{%/note%}}
 
-{{% include "/COM/jconsolejmapwarning.markdown" %}}
+ 
 
 # Local Cache Performance
 

@@ -6,7 +6,7 @@ parent: gigaspaces-management-center.html
 weight: 300
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 To edit a container's configuration, select a container node in the **Container Tree** panel on the left, then select the **Container Configuration** tab at the bottom of the Configuration panel.

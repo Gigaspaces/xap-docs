@@ -6,7 +6,7 @@ parent: space-persistency-overview.html
 weight: 600
 ---
 
-{{% ssummary  %}}  {{% /ssummary %}}
+ 
 
 The XAP Mirror Service provides reliable asynchronous persistency. This allows you to asynchronously delegate the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database, significantly reducing the performance overhead.
 

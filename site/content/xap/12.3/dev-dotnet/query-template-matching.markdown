@@ -6,7 +6,7 @@ parent: querying-the-space.html
 weight: 200
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+ 
 
 Template matching (a.k.a. Match by example) is a simple way to query the space - The template is a PONO of the desired entry type, and the properties which are set on the template (i.e. not null) are matched against the respective properties of entries of the same type in the space. Properties with null values are ignored (not matched).
 

@@ -6,7 +6,7 @@ parent: securing-xap-components.html
 weight: 400
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 XAP provides a generic network filter that also provides SSL support, through an SSL communication filter.
 

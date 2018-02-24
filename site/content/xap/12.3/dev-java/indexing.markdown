@@ -6,7 +6,7 @@ parent: indexing-overview.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 

@@ -693,7 +693,7 @@ There are several additional indexing options available. For example you can ind
 # Best Practice
 
 
-{{%vbar "When you code your space classes make sure:"%}}
+**When you code your space classes make sure:**
 
 - there are indexes for all relevant attributes including nested attributes you use for queries
 
@@ -716,7 +716,7 @@ There are several additional indexing options available. For example you can ind
 - no huge collections with many items
 
 - use change api instead of update , especially if collections are used.
-{{%/vbar%}}
+ 
 
 
 
@@ -730,7 +730,7 @@ XAP provides a JDBC Driver, JPA API, MAP and Memcached API's.
 # Spring Integration
 All XAP components can be wired and configured with the application using corresponding Spring Beans.
 
-{{%vbar "The GigaSpaces Spring Integration supports:"%}}
+**The GigaSpaces Spring Integration supports:**<br>
 - Spring Automatic Transaction Demarcation{{<wbr>}}
 - Spring Data{{<wbr>}}
 - Spring JMS{{<wbr>}}
@@ -740,7 +740,7 @@ All XAP components can be wired and configured with the application using corres
 - String Batch{{<wbr>}}
 - Spring Security{{<wbr>}}
 - Mule
-{{%/vbar%}}
+ 
 
 Lets look at a Spring configuration file that represents the creation of an embedded space:
 

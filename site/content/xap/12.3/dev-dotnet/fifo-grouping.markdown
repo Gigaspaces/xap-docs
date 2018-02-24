@@ -6,7 +6,7 @@ parent: fifo-overview.html
 weight: 200
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+ 
 
 
 

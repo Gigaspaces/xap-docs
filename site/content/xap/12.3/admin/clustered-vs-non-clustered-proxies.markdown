@@ -6,20 +6,20 @@ parent: data-grid-clustering.html
 weight: 200
 ---
 
-{{%ssummary%}} {{%/ssummary%}}
+ 
 
 
 
 When deploying a Processing Unit(PU) configured with an embedded [Space]({{%currentjavaurl%}}/the-space-configuration.html) with a clustered SLA or when running a remote clustered space, a clustered `GigaSpace` proxy is created.
 
-{{%vbar "A clustered proxy is a smart proxy that performs operations against the entire cluster when needed."%}}
+A clustered proxy is a smart proxy that performs operations against the entire cluster when needed.<br>
 - The `write` operation will be routed based on the routing field value to the relevant partition (using the routing field hashcode to calculate the the target partition).{{<wbr>}}
 - The `read` operation will do the same by routing the operation to the relevant partition.{{<wbr>}}
 - The `writeMultiple` will generate an entries bucket per partition for all entries that should be placed within the same partition and perform a parallel write to all relevant partitions.{{<wbr>}}
 - The `readMultiple` and `clear` operations will access all cluster partitions in a map-reduce fashion in case the query/template routing value is not specified.{{<wbr>}}
 - The `execute` operation will route the `Task` to the relevant partition based on the routing value.{{<wbr>}}
 - The `execute` operation will route the `DistributedTask` to all partitions if no routing value been specified or to a specific partitions in case a routing value been specified.
-{{%/vbar%}}
+ 
 
 Many times, especially when working with a PU that starts an embedded space, operations against the space should be performed directly on the cluster member without interacting with the other space cluster members (partitions). This is a core concept of the SBA and Processing Unit, where most if not all the operations should be performed in-memory without leaving the Processing Unit boundaries, when a Processing Unit starts an embedded space.
 

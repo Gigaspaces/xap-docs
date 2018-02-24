@@ -6,7 +6,7 @@ parent: transaction-overview.html
 weight: 400
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 

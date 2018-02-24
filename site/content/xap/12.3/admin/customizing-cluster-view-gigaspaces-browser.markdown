@@ -7,7 +7,7 @@ weight: 100
 
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 Changing cluster visualization behavior, refresh speed, and colors.
 

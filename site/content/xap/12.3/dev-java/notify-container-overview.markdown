@@ -971,7 +971,7 @@ When a network failure occurs and the Space can't communicate with the client, t
 </os-core:embedded-space>
 ```
 
-{{% include "/COM/notify-recovery.markdown" %}}
+ 
 
 
 # Triggering Notifications on Backup Instances
@@ -1228,7 +1228,7 @@ The default values for all of the notify container configuration parameters, suc
 For example, the `perform-take-on-notify` default value is documented in the method `SimpleNotifyEventListenerContainer.setPerformTakeOnNotify(boolean)`.
 
 
-{{% include "/COM/notify-verses-polling.markdown" %}}
+ 
 
 # Additional Resources
 

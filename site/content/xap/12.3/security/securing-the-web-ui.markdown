@@ -6,7 +6,7 @@ parent: security-administration.html
 weight: 300
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 # Enabling Security
 

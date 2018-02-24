@@ -6,7 +6,7 @@ parent: installation-maven-overview.html
 weight: 100
 ---
 
-{{% ssummary%}}{{% /ssummary %}}
+
 
 Maven is a tool used to automate and simplify the development cycle of any Java-based project. The XAP plugin for Maven utilizes Maven to simplify the development cycle of XAP-based applications. You can use this plugin to easily create, compile, package, run unit tests, execute and deploy Processing Units.
 
@@ -157,10 +157,10 @@ mvn xap:run
 
 | Argument | Description | Required | Properties | Example |
 |:---------|:------------|:---------|:-----------|:--------|
-| cluster | Cluster properties | No| * `schema` -- the cluster schema name{{<wbr>}}- `total_members` -- a list of the cluster members, separated by a comma{{<wbr>}}- `id` -- the cluster ID{{<wbr>}}- `backup_id` -- the backup ID | * `schema=partitioned`{{<wbr>}}- `total_members=1,1`{{<wbr>}}- `id=1`{{<wbr>}}- `backup_id=1` |
+| cluster | Cluster properties | No| * `schema` -- the cluster schema name<br>- `total_members` -- a list of the cluster members, separated by a comma<br>- `id` -- the cluster ID<br>- `backup_id` -- the backup ID | * `schema=partitioned`<br>- `total_members=1,1`<br>- `id=1`<br>- `backup_id=1` |
 | groups | Comma-delimited list of lookup group names | No | | group1,group2 |
 | locators | Comma-delimited list of Jini locators hosts | No | | jini://<hostname1>, jini://<hostname2> |
-| properties | Location of context-level properties | No | * `file` -- the properties file{{<wbr>}}- `embed` -- property definition | file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
+| properties | Location of context-level properties | No | * `file` -- the properties file<br>- `embed` -- property definition | file://config/context.properties{{<wbr>}}    embed://prop1=value1 |
 | module | The name of the Processing Unit module to run | No | | `feeder` |
 
 **Example:**

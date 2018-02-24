@@ -6,7 +6,7 @@ parent: none
 weight: 300
 ---
 
-{{%  ssummary %}} {{%  /ssummary %}}
+ 
 
 
 # Basic Components

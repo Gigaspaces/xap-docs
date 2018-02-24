@@ -51,7 +51,7 @@ The following diagram illustrates a deployed Processing Unit with 2 partitions a
 ![term_sba_artifacts.jpg](/attachment_files/term_sba_artifacts.jpg)
 {{%  /section %}}
 
-{{% vbar%}}
+ 
 **Legend**
 
 - JVM - Java process. Native OS process.
@@ -67,4 +67,4 @@ The following diagram illustrates a deployed Processing Unit with 2 partitions a
 - Standby Bean - Bean collocated with a backup instance.
 - Partition - Collection of primary and backup processing unit instances
 - [Polling container]({{% latestjavaurl%}}/polling-container-overview.html) - Execution queue. Consumes objects from the space.
-{{%  /vbar %}}
+ 

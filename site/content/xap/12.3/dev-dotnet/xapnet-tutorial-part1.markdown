@@ -747,7 +747,7 @@ There are several additional indexing options available. For example you can ind
 # Best Practice
 
 
-{{%vbar "When you code your Space classes make sure:"%}}
+**When you code your Space classes make sure:**
 
 - there are indexes for all relevant attributes including nested attributes you use for queries
 
@@ -768,6 +768,6 @@ There are several additional indexing options available. For example you can ind
 - no huge collections with many items
 
 - use change api instead of update , especially if collections are used.
-{{%/vbar%}}
+ 
 
 

@@ -6,7 +6,7 @@ parent: web-management-console.html
 weight: 500
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+
 
 
 Use the Hosts view to monitor the physical resources of your cluster. These  include the hosts and virtual machines. Please refer to the image below and the call-outs in it for more details.

@@ -6,7 +6,7 @@ parent: other-data-access-apis.html
 weight: 400
 ---
 
-{{% ssummary%}}{{% /ssummary %}}
+
 
 
 [Memcached](http://memcached.org/) is a popular caching protocol and server. The integration provided allows to use GigaSpaces as a memcached server (talking the memcached protocol) enhancing the memcached to provide high availability, write behind, and all the other features that come built in with the space.

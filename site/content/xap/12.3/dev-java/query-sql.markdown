@@ -6,7 +6,7 @@ parent: querying-the-space.html
 weight: 300
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+
 
 
 The `SQLQuery` class is used to query the Space using SQL-like syntax. The query statement includes only the `WHERE` statement part - the selection aspect of a SQL statement is embedded in other parameters for a SQL query.

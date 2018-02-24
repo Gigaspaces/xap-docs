@@ -6,7 +6,7 @@ parent: the-gigaspace-interface-overview.html
 weight: 800
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+ 
 
 
 A Space Filter is a special hook point inside the engine that enables integration with external systems, or implementation of user defined logic. There are two ways to implement such a filter and integrate it with the space, both of which are covered in this page.

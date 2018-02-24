@@ -6,7 +6,7 @@ parent: none
 weight: 500
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 Each Space/Processing Unit can have it's own security configuration. As such, you can have different security behaviors, but there is one common concept: all configurations are declared using properties (either located in a properties file or part of the components properties).

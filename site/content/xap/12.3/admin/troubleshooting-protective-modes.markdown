@@ -6,7 +6,7 @@ weight: 150
 parent: troubleshooting.html
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+
 The following guidelines are highly recommended to build robust and efficient applications as well as to avoid common mistakes. XAP was designed to be robust and to provide clear exceptions when the usage is wrong. Sometimes a plain validation is too harsh, as it might break backward-compatibility and prevent existing users from upgrading to the latest version. 
 
 For such cases the **Protective Mode** was introduced. The validation is on by default, but can be disabled using a system property. This protects new users from repeating old mistakes, and encourages existing users to fix their code (yet allows them to disable the protection if they choose so).

@@ -6,7 +6,7 @@ parent: none
 weight: 1100
 ---
 
-{{%  ssummary %}}{{%  /ssummary %}}
+ 
 
 
 Jini is a network architecture for the construction of distributed systems where scale, rate of change and complexity of interactions within and between networks are extremely important and cannot be satisfactorily addressed by existing technologies. Jini technology provides a flexible infrastructure for delivering services in a network, and for creating spontaneous interactions between clients that use these services regardless of their hardware or software implementations.

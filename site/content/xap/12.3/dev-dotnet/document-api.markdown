@@ -6,7 +6,7 @@ weight: 100
 parent: document-overview.html
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+ 
 
 The XAP document API exposes the space as {{%exurl "Document Store" "http://en.wikipedia.org/wiki/Document-oriented_database"%}}. A document, which is represented by the class `SpaceDocument`, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, `String`, `Date`, other documents, or collections thereof. Most importantly, the Space is aware of the internal structure of a document, and thus can index document properties at any nesting level and expose rich query semantics for retrieving documents.
 

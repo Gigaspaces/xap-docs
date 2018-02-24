@@ -6,7 +6,7 @@ parent: working-with-clusters-gigaspaces-browser.html
 weight: 500
 ---
 
-{{% ssummary %}}Common settings, sync/async replication, transmission policies, filters, recovery options.{{% /ssummary %}}
+ 
 
 
 

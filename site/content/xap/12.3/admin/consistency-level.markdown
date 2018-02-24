@@ -6,7 +6,7 @@ parent: data-grid-clustering.html
 weight: 300
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 

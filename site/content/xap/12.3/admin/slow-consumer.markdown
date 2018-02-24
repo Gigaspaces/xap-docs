@@ -6,7 +6,7 @@ parent:  tuning.html
 weight: 300
 ---
 
-{{% ssummary %}}  {{% /ssummary %}}
+ 
 
 The Space includes a special mechanism that detects clients that cannot consume the notifications sent fast enough - i.e. slow consumers.
 
@@ -60,7 +60,7 @@ When the LRMI thread pool queue size in the client side reached its limit (clien
 
 To enable and tune the slow consumer mechanism, you should configure the LRMI layer at the server side with the following JVM system properties:
 
-{{% include "/COM/xap/10.0/dev-java/config-slow-consumer-server.markdown" %}}
+ 
 
 | Property name | Description | Default   | Unit|
 |-----|-------|------|-----|
@@ -84,7 +84,7 @@ You should configure the following JVM system properties at the **client side**.
 When using FIFO notifications, the fifo notify queue should be limited as well for the same reasons
 {{%/info%}}
 
-{{% include "/COM/xap/10.0/dev-java/config-slow-consumer-client.markdown" %}}
+ 
 
 | Property name | Description | Default| Unit|
 |-----|-----|-----|------|

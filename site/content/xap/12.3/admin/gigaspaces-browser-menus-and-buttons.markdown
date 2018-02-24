@@ -6,7 +6,7 @@ parent: gigaspaces-management-center.html
 weight: 100
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 # File Menu
 

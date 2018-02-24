@@ -7,7 +7,7 @@ weight: 400
 ---
 
 
-{{% ssummary page %}} {{% /ssummary %}}
+ 
 
 A Processing Unit can implement the `ServiceDetailsProvider` and `ServiceMonitorsProvider` interfaces to expose information to calling APIs or to be viewable in the web-UI.
 

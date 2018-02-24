@@ -6,7 +6,7 @@ parent: messaging-support.html
 weight: 300
 ---
 
-{{% ssummary%}}  {{% /ssummary %}}
+ 
 
 
 JMS-space interoperability allows JMS applications to communicate with non-JMS applications using the space, without having to know or deal with the space API.

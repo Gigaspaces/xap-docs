@@ -10,7 +10,7 @@ weight: 100
 Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).
 {{% /note %}}
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 {{% anchor 1 %}}
 

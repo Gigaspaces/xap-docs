@@ -5,8 +5,7 @@ categories: XAP123ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 200
 ---
-
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 # Grid Tree Panel
 
@@ -95,7 +94,7 @@ You can right-click a row in the table to view options for a space. These are th
 ![space_network_view_spaceNodeSelected_6.5.jpg](/attachment_files/space_network_view_spaceNodeSelected_6.5.jpg)
 {{% /align %}}
 
-{{% include "/COM/jconsolejmapwarning.markdown" %}}
+ 
 
 You can choose to refresh the Space Network view periodically. Select the desired refresh rate from the **Refresh Rate** drop-down menu. To stop automatically refreshing the Space Network View, click the **Stop** button. When auto-refresh is running, a green blinking dot is displayed on the right side of the screen.
 

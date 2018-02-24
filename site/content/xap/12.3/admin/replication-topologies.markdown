@@ -6,7 +6,7 @@ parent: replication.html
 weight: 100
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 # Primary Backup Topology

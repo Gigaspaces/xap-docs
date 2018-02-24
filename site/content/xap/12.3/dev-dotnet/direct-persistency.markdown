@@ -6,8 +6,7 @@ parent: space-persistency-overview.html
 weight: 100
 ---
 
-
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 

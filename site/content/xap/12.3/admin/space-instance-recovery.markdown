@@ -6,7 +6,7 @@ parent: replication.html
 weight: 400
 ---
 
- {{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 
@@ -124,5 +124,5 @@ For further info and configuration options see [Distributed Databases]({{%curren
 
 If the recovery process fails, it is retried 3 times before failing.
 
-{{% include "/COM/notify-recovery.markdown" %}}
+ 
 

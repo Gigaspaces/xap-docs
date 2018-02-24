@@ -6,7 +6,7 @@ parent: logging-overview.html
 weight: 500
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 A backup policy can be configured to back up files. By default a `NullBackupPolicy` is configured, which does nothing. It can be replaced by a `DeleteBackupPolicy` to keep a backup of files for a specified period of time. The `BackupPolicy` interface allows custom implementations to be plugged-in.
 

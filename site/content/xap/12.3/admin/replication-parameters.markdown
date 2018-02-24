@@ -6,7 +6,7 @@ parent: replication.html
 weight: 700
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 # General Parameters
 

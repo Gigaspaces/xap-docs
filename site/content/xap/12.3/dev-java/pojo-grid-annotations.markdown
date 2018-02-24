@@ -6,7 +6,7 @@ parent: modeling-your-data.html
 weight: 140
 ---
 
-{{% ssummary %}}This section explains the different data grid metadata.{{% /ssummary %}}
+ 
 
 
 

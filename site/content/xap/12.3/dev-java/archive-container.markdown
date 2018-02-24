@@ -6,7 +6,7 @@ parent: space-persistency-overview.html
 weight: 610
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 {{%imagertext  "/attachment_files/archive-container.jpg"%}}
 The archive container is used to transfer historical data into Big-Data storage (for example Cassandra).

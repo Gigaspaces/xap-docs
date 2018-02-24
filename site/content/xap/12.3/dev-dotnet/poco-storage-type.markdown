@@ -6,7 +6,7 @@ parent: modeling-your-data.html
 weight: 400
 ---
 
-{{% ssummary   %}} {{% /ssummary %}}
+ 
 
 
 

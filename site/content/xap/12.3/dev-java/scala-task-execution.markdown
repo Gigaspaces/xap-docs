@@ -11,12 +11,12 @@ A wrapper around the `XAP` API provides some sugaring on top of the `GigaSpace#e
 
 # Usage
 
-{{%vbar%}}
+ 
 Import the following into scope to use the methods demonstrated below.
 
 import com.gigaspaces.async.AsyncResult
 import org.openspaces.scala.core.ScalaGigaSpacesImplicits.ScalaEnhancedGigaSpaceWrapper 
-{{%/vbar%}}
+ 
 
 Some examples:
 

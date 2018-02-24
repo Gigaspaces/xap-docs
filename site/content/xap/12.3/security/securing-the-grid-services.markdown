@@ -6,7 +6,7 @@ parent: securing-xap-components.html
 weight: 300
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 # Enabling Security
 

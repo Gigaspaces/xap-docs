@@ -6,7 +6,7 @@ parent: elastic-processing-unit-overview.html
 weight: 500
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 

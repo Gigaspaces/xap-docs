@@ -6,7 +6,7 @@ parent: metrics-overview.html
 weight: 250
 ---
 
-{{% ssummary %}}  {{% /ssummary %}}
+ 
 
 {{%exurl "CA APM" "http://www.ca.com/us/products/application-performance-management.aspx"%}} helps to monitor applications and react quickly when certain performance issues may occur. XAP provides many metrics like: processing units, spaces and machines that compose the grid. The metrics can be reported to Instroscope, so that its advanced features might be used to further analyze metrics data. XAP CA APM Introscope Reporter provides a way to send XAP related metrics to Introscope.
 

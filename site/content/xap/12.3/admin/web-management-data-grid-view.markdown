@@ -6,7 +6,7 @@ parent: web-management-console.html
 weight: 530
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 The Spaces view provides Space and Space instance navigation, for querying data and viewing class metadata. Select a Space or press the arrow to drill down into the Space instances of each Space (cluster).

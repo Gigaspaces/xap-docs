@@ -6,7 +6,7 @@ parent: querying-the-space.html
 weight: 700
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the [readMultiple]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#readMultiple-T-) overloads in `GigaSpace`. However, if there are lots of matching entries, you may encounter several problems:
 

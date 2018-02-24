@@ -6,7 +6,7 @@ parent: space-persistency-overview.html
 weight: 800
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 This sections covers advanced options related to Space Persistency.
 

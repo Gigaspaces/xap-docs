@@ -6,7 +6,7 @@ parent: administration-tools.html
 weight: 100
 ---
 
-{{%ssummary%}} {{%/ssummary%}}
+ 
 
 
 
@@ -122,7 +122,7 @@ JMX provides remote management capabilities for monitoring memory utilization, V
 For more details on monitoring and management using JMX, refer to the [JMX Management](./space-jmx-management.html) section.
 {{% /tip %}}
 
-{{% include "/COM/jconsolejmapwarning.markdown" %}}
+ 
 
 #### Options
 

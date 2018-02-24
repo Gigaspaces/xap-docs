@@ -236,7 +236,7 @@ Statistics
 {{%/column%}}
 {{%/section%}}
 
-{{%tryit "https://github.com/Gigaspaces/xapnet-tutorial"%}}
+ 
 
 ### Failover and Scalability
 One of our non functional requirements for our online payment system is that it is highly available and it can handle a large amount of concurrent transactions. This can be accomplish in a couple of ways. We can deploy the PU with multiple concurrent threads and or multiple PU instances on top of the grid.

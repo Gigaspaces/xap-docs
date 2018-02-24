@@ -7,7 +7,7 @@ parent: the-gigaspace-interface-overview.html
 ---
 
 
-{{% ssummary %}}{{%/ssummary%}}
+ 
 
 
 XAP provides a simple Space API using the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface for interacting with the Space.
@@ -1083,15 +1083,4 @@ asyncRead(gigaSpace, template).thenAccept(value -> {
 })
 
 ```
-
-
-
-{{% include "/COM/xap/10.2/dev-java/ops-write.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-change.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-read.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-take.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-clear.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-count.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-counters.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-aggregation.markdown" %}}
-{{% include "/COM/xap/10.2/dev-java/ops-async-extension.markdown" %}}
+ 

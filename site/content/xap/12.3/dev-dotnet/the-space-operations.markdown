@@ -7,7 +7,7 @@ parent: the-gigaspace-interface-overview.html
 ---
 
 
-{{% ssummary %}}{{%/ssummary%}}
+ 
 
 
 XAP provides a simple space API using the [ISpaceProxy]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceProxy.htm) interface for interacting with the space.
@@ -897,13 +897,4 @@ public class Person
 [Aggregators](./aggregators.html)
 {{%/refer%}}
 
-
-
-
-
-{{% include "/COM/xap/10.2/dev-dotnet/ops-write.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-read.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-take.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-clear.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-count.markdown" %}}
-{{% include "/COM/xap/10.2/dev-dotnet/ops-aggregation.markdown" %}}
+ 

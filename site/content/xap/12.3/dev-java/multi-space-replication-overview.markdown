@@ -86,7 +86,7 @@ Here we have specified a global bulk size of 1000 but have specifically overridd
 
 {{% refer %}}For more details about all the available configuration elements of the space gateway targets please refer to the [Configuring Space Gateway Targets](./configuring-space-gateway-targets.html) section.{{% /refer %}}
 
-{{% vbar %}}
+ 
 **Use the `partitioned` cluster schema**
 You should have the `partitioned` cluster schema used with the space to enable the replication to the Gateway.
 If you are not interested in having backups running but have the replication to the Gateway running, you should have ZERO as the number of backups. See below example of an sla.xml configuration you could use in such a case:
@@ -98,7 +98,7 @@ If you are not interested in having backups running but have the replication to 
 ```
 
 Note that when there are no backups running any failure of the primary might cause a loss of data.
-{{% /vbar %}}
+ 
 
 # Configuring and Deploying the Gateway
 

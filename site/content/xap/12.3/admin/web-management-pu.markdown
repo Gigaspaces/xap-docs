@@ -6,7 +6,7 @@ parent: web-management-console.html
 weight: 520
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+
 
 
 Use the Processing Units view to monitor the physical resources of your processing units. Please refer to the image below and the call-outs in it for more details.

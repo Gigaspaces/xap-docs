@@ -6,7 +6,7 @@ parent: network-multicast.html
 weight: 300
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 You can determine whether multicast is available with the following syntax:
 

@@ -7,7 +7,7 @@ weight: 100
 ---
 
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 Spring Security, historically also known as `Acegi` Security, provides a comprehensive security solution for handling authentication and authorization. Spring Security namespace provides directives for most common operations, allowing complete security configuration in just a few lines of XML.

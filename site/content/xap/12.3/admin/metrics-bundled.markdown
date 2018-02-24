@@ -6,7 +6,7 @@ parent: metrics-overview.html
 weight: 500
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 The following metrics are bundled with the product:
 

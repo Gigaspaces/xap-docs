@@ -6,7 +6,7 @@ parent: space-based-remoting-overview.html
 weight: 400
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 # RemotingService

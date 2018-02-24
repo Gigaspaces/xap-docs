@@ -6,7 +6,7 @@ parent: troubleshooting.html
 weight: 200
 ---
 
-{{% ssummary%}}{{% /ssummary %}}
+
 
 
 To perform a simple system testing you should use the `space-instance.bat` script on windows or `space-instance.sh` script on linux.

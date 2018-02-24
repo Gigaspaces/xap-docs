@@ -6,7 +6,7 @@ parent: the-gigaspace-interface-overview.html
 weight: 600
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 
 It is possible to subscribe to different space events and be notified of changes inside the space that match the event subscription. These notifications are pushed from the space to the proxy, unlike the opposite way, where the proxy executes queries on the space.

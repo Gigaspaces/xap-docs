@@ -7,7 +7,7 @@ weight: 400
 ---
 
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 
 With optimistic locking, you write your business logic allowing multiple users to read the same object at the same time, but allow only one user to update the object successfully. The assumption is that there will be a relatively large number of users trying to read the same object, but a low probability of having a small number of users trying to update the same object at the same time.

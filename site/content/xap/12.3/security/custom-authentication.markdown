@@ -7,7 +7,7 @@ weight: 200
 ---
 
 
-{{% ssummary %}}Customize authentication to meet your application requirements{{% /ssummary %}}
+ 
 
 
 

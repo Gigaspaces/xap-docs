@@ -6,7 +6,7 @@ parent: indexing-overview.html
 weight: 400
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 A Compound Index is a space index composed from several properties or nested properties (aka paths). Each property of a compound index is called a segment and each segment is described by its path. The benefit of using a compound index is shorter scanning of potential matching entries - which is equivalent to the intersection of all the entries having the values described by the segments. In other words - when having a set of objects within the space where:?
 Condition A : Field X = 10 - have a million matching objects. ?

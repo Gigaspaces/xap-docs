@@ -6,7 +6,7 @@ parent: client-side-caching.html
 weight: 200
 ---
 
-{{% ssummary %}}{{%/ssummary%}}
+ 
 
 
 A **Local View** is a Client Side Cache that maintains a subset of the master space's data. The Local View allows the client to read distributed data without performing any remote calls.

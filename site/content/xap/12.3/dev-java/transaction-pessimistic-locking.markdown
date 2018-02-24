@@ -6,7 +6,7 @@ parent: transaction-overview.html
 weight: 500
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+
 
 The pessimistic locking protocol provides data consistency in a multi user transactional environment. It should be used when there might be a large number of clients trying to read and update the same object(s) at the same time. This protocol utilize the system resources (CPU, network) in a very efficient manner both at the client and space server side.
 

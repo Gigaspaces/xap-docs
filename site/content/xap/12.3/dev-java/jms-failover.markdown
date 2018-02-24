@@ -6,7 +6,7 @@ parent: jms-advanced.html
 weight: 100
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+
 
 The JMS layer is responsible for handling space failover properly. The goal is to make failover transparent to the JMS client. In a primary-backup architecture, when the primary space fails, the backup space takes its place as the primary space. This switch should be transparent to the client application, so it won't know that failover ever occurred.
 

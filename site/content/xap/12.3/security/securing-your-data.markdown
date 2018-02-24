@@ -7,7 +7,7 @@ weight: 200
 ---
 
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 # Secured Space
 

@@ -721,4 +721,4 @@ public void ExceptionHandler(object sender, UserExceptionEventArgs<Data> e)
 The default values for all of the notify container configuration parameters, such as `perform-take-on-notify`, `ignore-event-on-null-take`, and others can be found in the API docs. Each property has a corresponding Default<property name> const field that sets the default value of the property.
 
 
-{{% include "/COM/notify-verses-polling.markdown" %}}
+ 

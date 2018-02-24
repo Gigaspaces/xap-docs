@@ -6,7 +6,7 @@ parent: xap-basics.html
 weight: 300
 ---
 
-{{% ssummary%}}{{% /ssummary %}}
+
 
 
 

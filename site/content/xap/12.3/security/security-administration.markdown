@@ -6,7 +6,7 @@ parent: none
 weight: 1000
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 Administration and monitoring XAP can be done using the following tools:
 

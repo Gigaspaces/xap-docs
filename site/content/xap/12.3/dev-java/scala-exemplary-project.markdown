@@ -6,7 +6,7 @@ parent: scala.html
 weight: 600
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 # Overview
 

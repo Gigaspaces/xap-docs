@@ -6,7 +6,7 @@ parent: fifo-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 The FIFO Grouping designed to allow efficient processing of events with partial ordering constraints. To better understand FIFO groups, let's first examine the constraints of total ordering, i.e. What it takes to process events in the exact order in which they arrive. There are two elements that effectively limit the scalability of processing events with total ordering:

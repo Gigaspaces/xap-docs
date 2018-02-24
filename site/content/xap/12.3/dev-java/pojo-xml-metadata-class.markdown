@@ -6,7 +6,7 @@ parent: pojo-xml-metadata-overview.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 

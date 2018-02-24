@@ -5,8 +5,7 @@ categories: XAP123ADM, PRM
 parent: network.html
 weight: 600
 ---
-
-{{% ssummary   %}} {{% /ssummary %}}
+ 
 
 In many scenarios, you need to set up XAP in environments which have a firewall running. This section&nbsp;provides&nbsp;XAPs configuration recommendations for several firewall topologies:
 
@@ -28,7 +27,7 @@ In many scenarios, you need to set up XAP in environments which have a firewall 
 - Same topology as above: All cluster components and clients communicate over **unicast only. Multicast traffic is prohibited**.
 - The firewall divides XAP cluster into zones. Some components (GSCs, GSM) are running in one firewall zone, while the rest of the components are running in another firewall zone/s. Only unicast traffic is allowed between firewall zones.
 
-{{% refer %}}To learn more about XAP port usage, refer to [How to Control the Used Ports](./network-ports.html).{{%/refer%}}
+To learn more about XAP port usage, refer to [How to Control the Used Ports](./network-ports.html). 
 
 # XAP Firewall Settings
 
@@ -42,11 +41,11 @@ Step 2: Specific listener ports of system components should be **statically set*
 
 Step 3: Necessary listener **port ranges** should be defined per each IP address, where the XAP server components reside.
 
-{{% vbar %}}
+ 
 Components such as GSM/Lookup Service, GSC, Mahalo use a single Webster (HTTPD service) and a single LRMI transport port per each component. Accordingly, the same quantity of Webster and LRMI ports should be planned per each IP address where those components reside.
 
 Port ranges should be chosen continuously, as Webster and LRMI port bindings are performed **sequentially*, beginning from the low port number -- each additional component started on the *same machine** opens sequentially higher Webster and LRMI ports, beginning from the low port in the defined port range.
-{{%/vbar%}}
+ 
 
 Step 4: **Firewall rules for incoming traffic** should include opening TCP port per each statically defined XAP component listener, for each IP address where XAP component is running (excluding JMX MBean server).<br>
 

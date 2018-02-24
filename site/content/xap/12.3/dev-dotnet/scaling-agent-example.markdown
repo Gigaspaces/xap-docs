@@ -8,7 +8,7 @@ weight: 200
 
 
 
-{{% ssummary %}}  {{% /ssummary %}}
+ 
 
 
 {{%folderopen%}}Example Root|`<XAP Root>\Examples\ScalingAgent`

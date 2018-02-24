@@ -6,7 +6,7 @@ parent:  tuning.html
 weight: 500
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 When a client connects to a data grid, the initial connection is actually a connection to a single member in the data grid, which is usually composed of multiple members (additional partitions, primary members vs. backup members, etc). That connection is implicitly wrapped in a proxy which implements the data grid API (write/read/take/etc), and contains an internal component called **Space Proxy Router** which communicates the executed operations from the proxy to the entire data grid.
@@ -29,7 +29,7 @@ The space proxy router has the following responsibilities:
 
  The space proxy router behavior is controlled using the following configuration properties, which can be specified as part of the [Space Component]({{%currentjavaurl%}}/the-space-configuration.html#proxy) or via API:
 
-{{% include "/COM/xap/10.0/dev-java/config-space-proxy-router.markdown" %}}
+ 
 
 | Property name | Description | Default   |
 |-----|-----|-------|

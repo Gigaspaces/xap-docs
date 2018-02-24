@@ -6,7 +6,7 @@ parent: none
 weight: 700
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 The Premium and Enterprise editions provide administration authorities for managing and monitoring the grid. 
 For example, a user may have a `Grid Authority` of type `Provision PU`, which allows it to deploy and un-deploy in the Grid.

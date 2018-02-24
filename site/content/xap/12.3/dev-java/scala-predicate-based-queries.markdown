@@ -7,7 +7,7 @@ weight: 300
 ---
 
 
-{{% ssummary  %}}{{% /ssummary %}}
+ 
 
 Support for predicate based queries on the `GigaSpace` proxy has been in added. This support is based on the new macros feature introduced in Scala 2.10.  Each predicate based query is transformed during compilation into an equivalent [SQLQuery](./query-sql.html).
 

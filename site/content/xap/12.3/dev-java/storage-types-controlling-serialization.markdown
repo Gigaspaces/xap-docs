@@ -7,7 +7,7 @@ weight: 500
 ---
 
 
-{{% ssummary %}} {{% /ssummary %}}
+
 
 # Available Storage Types
 

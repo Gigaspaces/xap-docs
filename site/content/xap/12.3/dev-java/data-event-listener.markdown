@@ -6,7 +6,7 @@ parent: event-processing.html
 weight: 400
 ---
 
-{{% ssummary  %}}{{%/ssummary%}}
+
 
 
 {{%imagertext  "/attachment_files/data_event.jpg"%}}

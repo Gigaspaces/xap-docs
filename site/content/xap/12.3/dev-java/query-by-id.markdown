@@ -7,7 +7,7 @@ weight: 100
 ---
 
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 The space can be queried for entries using [Template Matching](./query-template-matching.html) or [SQLQuery](./query-sql.html), but sometimes we know the exact id of the entry we need and prefer a faster solution. This is where id-based queries come handy.

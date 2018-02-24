@@ -6,7 +6,7 @@ parent: pojo-annotation-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 The [XAP API](./the-gigaspace-interface-overview.html) supports  field-level decorations with POJOs. These can be specified via annotations on the Space class source itself. The annotations are defined on the getter methods.

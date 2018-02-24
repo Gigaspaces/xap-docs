@@ -6,7 +6,7 @@ parent: security-administration.html
 weight: 250
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+
 
 The [Administration and Monitoring API]({{%currentjavaurl%}}/administration-and-monitoring-overview.html) provides a way to administer and monitor all on XAP services and components using a simple API. The API, amongst others, provides the ability to operate on the currently running GigaSpaces Agents, XAP Managers, XAP Containers, Lookup Services, Processing Units and Spaces.
 

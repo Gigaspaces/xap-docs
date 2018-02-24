@@ -6,7 +6,7 @@ parent: multi-site-replication-overview.html
 weight: 400
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 

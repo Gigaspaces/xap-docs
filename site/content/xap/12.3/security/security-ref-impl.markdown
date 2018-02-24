@@ -6,7 +6,7 @@ parent: none
 weight: 600
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 The reference implementation uses MongoDB as the storage for the UserDetails.
 It uses Morphia to abstract the UserDetailsDAO that is stored.

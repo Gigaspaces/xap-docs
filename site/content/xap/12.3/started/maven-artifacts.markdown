@@ -6,7 +6,7 @@ parent: installation-maven-overview.html
 weight: 50
 ---
 
-{{% ssummary%}}{{% /ssummary %}}
+
 
 XAP is Maven-friendly. It is built using Maven and is designed to be easily used by developers constructing XAP applications. In this page we'll explain how to use XAP with Maven.
 

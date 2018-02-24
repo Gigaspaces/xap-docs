@@ -6,7 +6,7 @@ parent: querying-the-space.html
 weight: 300
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 When executing a query operation on the space, there's an overhead incurred by translating the query to an internal representation (in object templates the properties values are extracted using reflection, in [SQLQuery](./query-sql.html) the expression string is parsed to an expression tree). If the same query is executed over and over again without modification, that overhead can be removed by using **prepared templates**.
 

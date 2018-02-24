@@ -6,7 +6,7 @@ parent: querying-the-space.html
 weight: 550
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+ 
 
 
 Free text search is required almost with every application.

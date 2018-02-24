@@ -135,7 +135,7 @@ To do this, connect to the JMX Bean of the Java logging facility via a monitorin
 1. Select the Operations tab.
 1. Type the logger's name and level for the arguments of the `setLoggerLevel()` method. For example, If you want to change `com.gigaspaces.exceptions.level` level to `WARNING`, use `setLoggerLevel(com.gigaspaces.exceptions, WARNING)`.
 
-{{% include "/COM/jconsolejmapwarning.markdown" %}}
+ 
 
 {{% note "Note"%}}
 You must use the logging level without the .level string, for example `com.gigaspaces.core.cluster.replication`, and set the value to `FINE`.

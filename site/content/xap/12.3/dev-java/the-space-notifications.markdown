@@ -6,7 +6,7 @@ weight: 700
 parent: the-gigaspace-interface-overview.html
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+
 
 Some of the space operations can generate notifications when they are executed. Notifications are also generated when working in clustered mode (schema) that includes a primary/backup schema. A listener can be defined to receive these notifications.
 

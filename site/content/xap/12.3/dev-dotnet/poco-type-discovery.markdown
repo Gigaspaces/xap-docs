@@ -6,7 +6,7 @@ parent: modeling-your-data.html
 weight: 500
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 When querying the space (read/take/notify), the space returns the results to the space proxy in an internal type-neutral format, which the space proxy automatically converts back to the relevant user objects. In general the result type is the same as the query type (e.g reading `SqlQuery<Person>` returns `Person` instances). However, since the space supports **type polymorphism**, the result may also be of a different subtype which extends the query type (e.g. reading `SqlQuery<Person>` can return a `Student` instance  which extends the `Person` type). Since the result is type-neutral, it contains the type name instead of the actual type, and it is up to the space proxy to resolve the concrete type from the type name. The space proxy first scans the loaded assemblies looking for the type by its name, and if the type is not found it searches the assemblies files in the current location for a matching type. The assemblies scan can be customized via configuration, as explained below.
 

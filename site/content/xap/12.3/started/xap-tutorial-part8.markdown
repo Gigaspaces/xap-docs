@@ -95,7 +95,6 @@ Web page display
 {{%/column%}}
 {{%/section%}}
 
-There are fully functional examples on GitHub available. {{%tryit "https://github.com/Gigaspaces/xap-tutorial"%}}
 
 
 
@@ -203,7 +202,7 @@ When deploying, include within the META-INF/spring/pu.properties file the jetty.
 
 ### Deploying with the Web Admin UI:
 
-There are fully functional examples on GitHub available.{{%tryit "https://github.com/Gigaspaces/xap-tutorial"%}}
+ 
 
 
 {{%section%}}

@@ -6,7 +6,7 @@ parent: none
 weight: 400
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 The users `UserDetails` are to be stored in some kind of storage. Usually this storage provides tooling for managing the user data. The `SecurityManager.authenticate(UserDetails userDetails)` method tries to authenticate the user by accessing this storage, populating the `Authentication` result with the user authorities. This is specific to how the user's details and authority privileges are stored.
 

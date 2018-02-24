@@ -5,8 +5,7 @@ categories: XAP123NET, PRM
 parent: transaction-overview.html
 weight: 300
 ---
-
-{{%ssummary%}}{{%/ssummary%}}
+ 
 
 XAP `ReadModifiers` class see [DotNetDoc]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ReadModifiers.htm) provides static methods and constants to decode read-type modifiers. The sets of modifiers are represented as integers with distinct bit positions representing different modifiers.
 

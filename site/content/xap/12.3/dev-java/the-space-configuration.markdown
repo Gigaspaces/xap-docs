@@ -6,7 +6,7 @@ weight: 200
 parent: the-gigaspace-interface-overview.html
 ---
 
-{{% ssummary %}}{{%/ssummary%}}
+ 
 
 When a client connects to a space, a proxy is created that holds a connection to the space. All client interaction is performed through this proxy.
 The proxy provides a simpler space API using the [GigaSpace]({{% api-javadoc %}}/index.html) interface.

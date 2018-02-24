@@ -6,7 +6,7 @@ parent: space-persistency-overview.html
 weight: 500
 ---
 
-{{% ssummary  %}} {{% /ssummary %}}
+ 
 
 The XAP Data-Grid includes special interceptor that allow users to pre-load the Data-Grid with data before it is available for clients access. This interceptor called **Initial Load** and has a default implementation that is using the [NHibernate Space Persistency](./hibernate-space-persistency.html) implementation to load data from a database directly into the Data-Grid instances.
 

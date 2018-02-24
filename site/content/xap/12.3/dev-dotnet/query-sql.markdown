@@ -6,7 +6,7 @@ parent: querying-the-space.html
 weight: 500
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+ 
 
 The `SqlQuery` class is used to query the space using SQL-like syntax. This query can be passed as a template to the Read, Take, ReadMultiple, TakeMultiple, Count and Clear operations, as well as a template when registering for notification.
 
@@ -42,7 +42,7 @@ This time instead of specifying the values directly in the expression we've used
 
 # Supported SQL Features
 
-{{%vbar "SqlQuery supports the following:"%}}
+SqlQuery supports the following:
 
 - `AND` / `OR` operators to combine two or more conditions.
 - All basic logical operations to create conditions: `=, <>, <,>, >=, <=, like, NOT like, is null, is NOT null, IN`.
@@ -53,7 +53,7 @@ This time instead of specifying the values directly in the expression we've used
 - `sysdate` - current system date and time.
 - `rownum` - limits the number of rows to select.
 - Sub queries.
-{{%/vbar%}}
+ 
 
 # Comparing null values
 `SQLQuery` comparisons will evaluate the non-null values for a field. If you want to include objects with null values in a `SQLQuery` you will need to add another condition to your clause.
@@ -148,7 +148,7 @@ The following features support only simple SQL queries
 
 
 
-{{%vbar "SqlQuery does not support the following:"%}}
+SqlQuery does not support the following:<br>
 - Multiple tables select.
 - `DISTINCT`
 - The SQL statements: VIEW, TRIGGERS, EXISTS, BETWEEN, NOT, CREATE USER, GRANT, REVOKE, SET PASSWORD, CONNECT USER, ON.
@@ -159,13 +159,13 @@ The following features support only simple SQL queries
 - `LEFT OUTER JOIN`
 - `RIGHT OUTER JOIN`
 - `INNER JOIN`
-{{%/vbar%}}
+ 
 
 ### Reserved Words
 
 
 
-{{%vbar "The following are reserved keywords in the GigaSpaces SQL syntax:"%}}
+The following are reserved keywords in the GigaSpaces SQL syntax:<br>
 alter add all and asc avg between by create call drop desc bit tinyint
  	 end from group in is like rlike max min not null or distinct
  	 order select substr sum sysdate upper where count delete varchar2 char
@@ -173,13 +173,13 @@ alter add all and asc avg between by create call drop desc bit tinyint
  	 update union values commit rollback uid using as date datetime time
  	 float real double number decimal numeric boolean integer
  	 varchar bigint long clob blob lob true false int timestamp longvarchar
-{{%/vbar%}}
+ 
 
 ### Reserved Separators and Operators:
 
 
 
-{{%vbar "Reserved syntax:"%}}
+**Reserved syntax:**<br>
 := || ; . ROWTYPE ~ < <= >  >= => != <> \(+\) ( ) \* / + - ? \{ \}
-{{%/vbar%}}
+ 
 

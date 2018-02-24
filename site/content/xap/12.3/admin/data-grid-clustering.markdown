@@ -11,7 +11,7 @@ parent: none
 XAP's data grid clustering, scalability and high availability are based on the following concepts:
 
 
-{{%vbar "Scalability"%}}
+**Scalability**
 
 - Data is segmented into [partitions](./data-partitioning.html). Each partition includes a primary instance and ZERO or more backup instances. A partition (primary or a backup) is hosted within a single [Grid Service Container (GSC)]({{%currentadmurl%}}/the-runtime-environment.html).
 - Data access is load balanced across the different partitions, using a routing field or a [routing value]({{%currentjavaurl%}}/routing-in-partitioned-spaces.html) specified as part of the Space object or as part of the read/execute request. This allows the application to control the data distribution in a transparent manner.
@@ -19,9 +19,9 @@ XAP's data grid clustering, scalability and high availability are based on the f
 - The maximum partition  size is the GSC heap size. XAP supports a large heap size (up to 100GB in RAM). A GSC may host multiple partitions (primary or backup instances).
 - A data grid may have an unlimited number of partitions. In reality, the number of partitions will be of the same magnitude as the number of GSCs or servers that are running the data grid. This allows the data grid to scale dynamically and re-balance itself across additional GSCs.
 - The number of data grid partitions is determined at deployment time. The number of GSCs hosting the data grid partitions is dynamic and may change during runtime. It can scale in an [elastic]({{%currentjavaurl%}}/elastic-processing-unit-overview.html) manner when using the ESM.
-{{%/vbar%}}
+ 
 
-{{%vbar "High Availability"%}}
+**High Availability**
 
 - Data has high availability using [synchronous replication](./synchronous-replication.html) to remote in-memory backups.
 - Backup instances are always running on physical machines other than the machines running primary instances.
@@ -32,7 +32,7 @@ XAP's data grid clustering, scalability and high availability are based on the f
 - Backup instances cannot be accessed by clients for read/write. This ensures total data consistency and prevents conflicts.
 - When a backup instance is not available, the primary instance logs all activities (on file or [overflow to disk](./controlling-the-replication-redo-log.html)) and sends them to the backup instance when it becomes available (only the delta). If If there is a long disconnection time, then a total recovery of the backup is conducted.
 - The transaction boundary is preserved when data is replicated from a primary instance to the backup instance, when persisting the data or when replicating the data to a remote site over the WAN ([WAN Gateway]({{%currentjavaurl%}}/multi-site-replication-overview.html)).
-{{%/vbar%}}
+ 
 
 # Consistency
 

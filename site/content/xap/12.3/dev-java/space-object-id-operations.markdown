@@ -6,7 +6,7 @@ parent: modeling-your-data.html
 weight: 100
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+
 
 # How Space Object ID is Generated?
 

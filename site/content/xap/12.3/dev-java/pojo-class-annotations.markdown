@@ -6,7 +6,7 @@ parent: pojo-annotation-overview.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 

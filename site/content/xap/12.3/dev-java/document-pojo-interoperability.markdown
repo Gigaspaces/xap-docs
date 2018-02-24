@@ -6,7 +6,7 @@ parent: document-overview.html
 weight: 300
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 XAP offers interoperability between documents and POJOs via the Space - it is possible to write POJOs and read them back as documents, and vice versa. This is usually useful in scenarios requiring reading and/or manipulating POJO objects without loading the concrete Java classes.

@@ -145,8 +145,7 @@ To allow the above, the client must set the `java.rmi.server.hostname` property 
 
 The `LRMI` configuration options set as system properties. They are listed below:
 
-
-{{% include "/COM/xap/10.0/dev-java/config-lrmi-transport.markdown" %}}
+ 
 
 | Property name | Description | Default   | Server Client  | Unit | Can be <br>over<br>ridden <br>at the client side|
 |----------------|------------|--------------|----------------------|-----|------------------------------------|
@@ -177,9 +176,9 @@ The `LRMI` configuration options set as system properties. They are listed below
 | com.gs.transport_protocol<br>.lrmi.system-priority.<br>threadpool.min-threads|This parameter specifies the minimum size of a thread pool used to control admin API calls| 1 |  Server| Threads|No|
 | com.gs.transport_protocol<br>.lrmi.system-priority.threadpool.max-threads | This parameter specifies the maximum size of a thread pool used to control admin API calls | 8 | Server | Threads|No|
 | com.gs.transport_protocol<br>.lrmi.custom.threadpool.<br>idle_timeout | Idle timeout | 300000 millisec     |   | Invo<br>cation | No |
-| com.gs.transport_protocol<br>.lrmi.threadpool.<br>queue-size | Regualr operations thread pool queue size |  | {{% fontsize 10 %}}2147483647 {{%/fontsize%}}  |   | Invo<br>cation | No | 
-| com.gs.transport_protocol<br>.lrmi.custom.threadpool.<br>queue-size | Custom operations thread pool queue size  |  | {{% fontsize 10 %}}2147483647{{% /fontsize%}}    |   | Invo<br>cation | No |
-| com.gs.transport_protocol<br>.lrmi.system-priority.<br>threadpool.queue-size | System operations thread pool queue size |  |  | {{% fontsize 10 %}}2147483647 {{%/fontsize %}}     |   | Invo<br>cation | No |
+| com.gs.transport_protocol<br>.lrmi.threadpool.<br>queue-size | Regualr operations thread pool queue size |  | 2147483647  |   | Invo<br>cation | No | 
+| com.gs.transport_protocol<br>.lrmi.custom.threadpool.<br>queue-size | Custom operations thread pool queue size  |  | 2147483647   |   | Invo<br>cation | No |
+| com.gs.transport_protocol<br>.lrmi.system-priority.<br>threadpool.queue-size | System operations thread pool queue size |  |  | 2147483647    |   | Invo<br>cation | No |
 
 {{% anchor 1%}}
 
@@ -286,7 +285,7 @@ Step 6: A new log level is defined.
 ![lrmi_log_jmx_console2.jpg](/attachment_files/lrmi_log_jmx_console2.jpg)
 {{% /align %}}
 
-{{% include "/COM/jconsolejmapwarning.markdown" %}}
+ 
 
 When LRMI logging is turned on, the space displays the following when started:
 

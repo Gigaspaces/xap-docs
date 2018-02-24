@@ -14,10 +14,10 @@ Here you will find everything you need to get started with with the InsightEdge 
 [Installation](installation.html)<br>
 This guide provides step by step instructions on how to download and install InsightEdge or XAP on different operating systems for the supported languages.
 
-[Product License](license-key.html){{<wbr>}}
+[Product License](license-key.html)<br>
 Describes how to apply the license for your edition.
 
-[Configuration](common-environment-variables.html){{<wbr>}}
+[Configuration](common-environment-variables.html)<br>
 Overview of common configuration tasks in InsightEdge and XAP.
 
 [InsightEdge Basics](insightedge-basics.html)<br>

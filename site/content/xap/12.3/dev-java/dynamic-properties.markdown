@@ -6,7 +6,7 @@ parent: pojo-overview.html
 weight: 200
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+
 
 
 POJO entries properties are bound by the schema of the POJO class definition, which means a property cannot be added without changing the class, and since changing the class requires restarting the space this can be a long and tiresome project.

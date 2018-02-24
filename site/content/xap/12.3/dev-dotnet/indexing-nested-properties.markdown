@@ -5,8 +5,7 @@ categories: XAP123NET, PRM
 parent: indexing-overview.html
 weight: 200
 ---
-
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 # Overview
 An index can be defined on a nested property to improve performance of nested queries - this is highly recommended.

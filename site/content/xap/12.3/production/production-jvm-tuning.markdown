@@ -178,7 +178,7 @@ To capture detailed information about garbage collection and how it is performin
 
 Modify the path and file names appropriately. You must use a different file name for each invocation in order to not overwrite the files from multiple processes.
 
-{{% include "/COM/jconsolejmapwarning.markdown" %}}
+ 
 
 ## Soft References LRU Policy
 

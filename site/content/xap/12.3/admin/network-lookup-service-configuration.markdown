@@ -6,13 +6,13 @@ parent: network.html
 weight: 400
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 Defining group names and unicast Locators for Jini Services; searching for available lookup services in the network.
 
 # Essential Guidelines
 
-{{% vbar %}}
+ 
 **It is essential to set the `groups` and `locators` system properties in the Java process which starts the Lookup Service or Mahalo services**. This is required in order to "tell" the Jini service which groups and locators it should join, and which to serve. If these properties are not set, the Lookup Service/Mahalo uses the Jini fallback values and that impact the SLA these services serve with.
 
 
@@ -22,7 +22,7 @@ Defining group names and unicast Locators for Jini Services; searching for avail
 
 
 **Jini groups vs. locators** - Jini groups are irrelevant when using unicast lookup discovery - they are relevant only when using multicast lookup discovery. If you have multiple spaces with the same name and you are using unicast lookup discovery, you might end up getting the wrong proxy.
-{{%/vbar%}}
+ 
 
 In such a case, make sure you have a different lookup group for each space, where each space is configured to use a specific lookup. A good practice is to have different space/service names.
 
@@ -60,7 +60,7 @@ To support co-existence of different XAP versions, the defaults below may change
 Adjusting the lookup services multicast settings can be done using the following system properties:
 
 
-{{% include "/COM/xap/10.0/dev-java/config-multicast.markdown" %}}
+ 
 
 | Property name | Description | Default |
 |-----|------|------|

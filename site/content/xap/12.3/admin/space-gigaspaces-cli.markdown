@@ -6,7 +6,7 @@ parent: administration-tools.html
 weight: 300
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+
 
 {{%refer "Interacting with a Secured Grid"%}}
 In order to interact with a secured grid you need to login first. See [(CLI) Security]({{%currentsecurl%}}/command-line-interface-cli-security.html).

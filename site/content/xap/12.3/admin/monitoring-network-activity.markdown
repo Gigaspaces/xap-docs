@@ -6,7 +6,7 @@ parent: monitoring.html
 weight: 100
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 {{% note "Note" %}}
 Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).

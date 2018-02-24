@@ -148,7 +148,7 @@ When applied to a Processing Unit that contains a Space with primary-backup sema
 
 The most common use of the `max-instances` parameter is for a Processing Unit that contains a Space with primary-backup semantics. Setting the value to `1` ensures that a primary and its backup(s) cannot be provisioned to the same JVM (GSC)/physical machine.
 
-{{% vbar "max-instances-per-vm"%}}
+**max-instances-per-vm**<br>
 The `max-instances-per-vm` defines the maximum number of instances per partition for a Processing Unit with an embedded Space. A partition may have a primary or backup instance. `max-instances-per-vm=1` means you won't have a primary and a backup of the same partition provisioned to the same GSC. (It is allowed to have multiple partitions with primary or backup instances provisioned to the same GSC.) You cannot limit the amount of instances from different partitions that a GSC may host.
 
 If you have enough GSCs (the number of partitions x2), you will have a single instance per GSC. If you don't have enough GSCs, the primary and backup instances of the different partitions will be distributed across all the existing GSCs, and the system tries to distribute the primary instances in an even manner across all the GSCs on all the machines. If you increase the amount of GSCs after the initial deployment, you must "rebalance" the system, meaning distribute all the primaries across all the GSCs.
@@ -158,7 +158,7 @@ The rebalance concept is based on the assumption that there are initially more p
 
 Example: Start with 4 GSCs and 20 partitions with backups (40 instances). Each GSC will initially host 10 instances, and can end up with 40 GSCs (after one or more rebalancing operations) where each GSC hosts a single instance. In this example,  the capacity of the data grid is increased to 10 times larger without downtime, while the amount of partitions remains the same.
 See the [capacity planning](/sbp/capacity-planning.html) section for more details.
-{{% /vbar %}}
+ 
 
 The following is an example of setting the `max-instances-per-vm` parameter:
 

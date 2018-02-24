@@ -6,7 +6,7 @@ parent: the-processing-unit-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}  {{% /ssummary %}}
+ 
 
 # Overview
 

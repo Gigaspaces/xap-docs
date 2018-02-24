@@ -6,7 +6,7 @@ parent: none
 weight: 400
 ---
 
-{{%  ssummary %}}{{%  /ssummary %}}
+ 
 
 GigaSpaces XAP is built from the following sub-systems:
 

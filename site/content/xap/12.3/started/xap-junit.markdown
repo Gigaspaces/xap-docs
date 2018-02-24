@@ -6,7 +6,7 @@ parent: xap-basics.html
 weight: 2000
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+
 
 When creating unit tests with XAP you will use an `Embedded Space` that is internally represented by the `IntegratedProcessingUnitContainer` class and a reference to this Space will be available through a class implementing the `GigaSpace` interface. This allows you to read / write objects to that Space just as you normally would in any XAP application.
 

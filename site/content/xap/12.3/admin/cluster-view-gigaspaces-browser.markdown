@@ -6,7 +6,7 @@ parent: working-with-clusters-gigaspaces-browser.html
 weight: 100
 ---
 
-{{% ssummary %}} {{% /ssummary %}}
+ 
 
 
 

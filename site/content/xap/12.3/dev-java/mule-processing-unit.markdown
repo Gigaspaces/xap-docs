@@ -7,7 +7,7 @@ weight: 200
 ---
 
 
-{{% ssummary  %}} {{% /ssummary %}}
+ 
 
 XAP allows to configure, package and deploy a [Processing Unit](./the-processing-unit-overview.html). The OpenSpaces Mule integration allows you to run a pure Mule application (with or without OpenSpaces special extension points and transports) as a Processing Unit.
 

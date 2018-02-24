@@ -6,14 +6,14 @@ parent: jpa-api-overview.html
 weight: 300
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 
 The XAP JPA relationships model is different than Relational Databases model. In GigaSpaces relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space. For instance, if an Author has a One-to-many relationship with Book, in Space all the Book instances relevant for a specific Author will reside
 within a Collection in Author.
 
-{{% vbar %}}
+ 
 When defining a One-to-one/One-to-many relationship the cascading type should be set to CascadeType.ALL using the relationship's annotation cascade attribute since no-cascading is unsupported.
 Setting cascading globally can also be done in orm.xml:
 
@@ -25,7 +25,7 @@ Setting cascading globally can also be done in orm.xml:
   </persistence-unit-defaults>
 </persistence-unit-metadata>
 ```
-{{% /vbar %}}
+ 
 
 {{%refer%}}
 Further information can be found on the [Modeling your data](/sbp/modeling-your-data.html) page.

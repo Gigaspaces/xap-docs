@@ -660,5 +660,4 @@ public void ExceptionHandler(object sender, UserExceptionEventArgs<Data> e)
 
 The default values for all of the polling container properties, such as `min-concurrent-consumers`, `receive-operation-handler`, `receive-timeout`, and others can be found in the API docs. Each property has a corresponding Default<property name> const field that sets the default value of the property.
 
-
-{{% include "/COM/notify-verses-polling.markdown" %}}
+ 

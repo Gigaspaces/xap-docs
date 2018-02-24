@@ -6,7 +6,7 @@ parent: pojo-xml-metadata-overview.html
 weight: 200
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 
 All the properties are written automatically into space. If the field is a reference to another object, it has to be Serializable and it will be written into space as well. Only the fields which need special space behavior need to be specified in the gs.xml file. Specify the fields which are id's, indexes or need exclusions, etc.

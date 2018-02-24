@@ -6,7 +6,7 @@ parent: the-processing-unit-overview.html
 weight: 300
 ---
 
-{{% ssummary %}}  {{% /ssummary %}}
+ 
 
 One of the core concepts of GigaSpaces processing units is the fact that the clustering topology of the processing unit is determined at deployment time. Therefore, when building a processing unit, there is almost no need to be aware of the actual clustering topology with which the processing unit is deployed.
 However, in some cases you may want your processing unit to be aware of it.

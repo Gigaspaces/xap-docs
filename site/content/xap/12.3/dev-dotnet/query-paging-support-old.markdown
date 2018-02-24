@@ -6,7 +6,7 @@ parent: query-paging-support.html
 weight: 100
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+ 
 
 The [ISpaceIterator]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceIterator_1.htm) with the [SpaceIteratorConfig]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_SpaceIteratorConfig.htm)  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.
 

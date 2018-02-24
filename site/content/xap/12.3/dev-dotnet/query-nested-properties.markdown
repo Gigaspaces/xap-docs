@@ -6,7 +6,7 @@ parent: querying-the-space.html
 weight: 400
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
+ 
 
 The [SQL Query](./query-sql.html) page shows how to express complex queries on flat space entries (entries which are composed of scalar types like integers and strings), but in reality space entries are often composed of more complex types.
 For example, a **Person** class may have:
@@ -273,10 +273,10 @@ For more information see the [Collection Indexing](./indexing.html#Collection In
 
 # Limitations
 
-{{%vbar%}}
+ 
 - The SQLQuery syntax for Nested Properties does not support the `IN` operation.
 - The type of the nested object must be a class - querying interfaces is not supported.
 - Nested properties' classes should be `Serializable`, otherwise the entry will not be accessible from remote clients.
 - Arrays are supported as well, except for arrays of primitive types (int, bool, etc.) which are are not supported - use the equivalent nullable type (int?, bool?, etc.) instead.
 
-{{%/vbar%}}
+ 

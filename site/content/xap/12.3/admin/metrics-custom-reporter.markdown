@@ -6,7 +6,7 @@ parent: metrics-overview.html
 weight: 300
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
+
 
 This page demonstrates how to implement and use a custom metric reporter. For demonstration purposes we'll show a reporter which writes metrics to a text file.
 
