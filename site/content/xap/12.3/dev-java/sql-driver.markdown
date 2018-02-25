@@ -19,7 +19,7 @@ Include all jar files from the `<XAP-HOME>\insightedge\lib\jdbc` and `<XAP-HOME>
 
 # Usage
 
-The driver can query either [POJO's]({{%currentjavaurl%}}/pojo-overview.html) or [Space Documents]({{%currentjavaurl%}}/document-overview.html).
+The driver can query either [POJO's](./pojo-overview.html) or [Space Documents](./document-overview.html).
 
 
 ## POJO support
@@ -220,7 +220,7 @@ Category :Aviation
 {{%/tabs%}}
 
 {{%refer%}}
-For more information about SpaceDocuments see the [Document API]({{%currentjavaurl%}}/document-api.html)
+For more information about SpaceDocuments see the [Document API](./document-api.html)
 {{%/refer%}}
 
  
@@ -230,7 +230,7 @@ For more information about SpaceDocuments see the [Document API]({{%currentjavau
 In order to connect to the space with JDBC driver you need to specify jdbc connection URL. The general format of the URL is:
 `jdbc:xap:url=<space_url>;<url_properties>`
 
-The `space_url` is mandatory. See the Space URL configuration [page]({{%currentjavaurl%}}/the-space-configuration.html). Other parameters are optional.
+The `space_url` is mandatory. See the Space URL configuration [page](./the-space-configuration.html). Other parameters are optional.
 
 The following url_properties are available:
 
@@ -341,7 +341,7 @@ In case of space documents the table name is equal to document name. The table n
 # Indexing 
 
 {{%refer%}}
-The performance of queries can be greatly improved by indexing. For more information about indexing see [Indexing]({{%currentjavaurl%}}/indexing-overview.html)
+The performance of queries can be greatly improved by indexing. For more information about indexing see [Indexing](./indexing-overview.html)
 {{%/refer%}}
  
 # Logging 
@@ -388,7 +388,7 @@ SELECT sales FROM Orders WHERE orderId = 100
 This query will create an XAP SQLQuery and will push predicate and projection down to the XAP side so only a small result subset will be loaded on the client side.
 
 {{%refer%}}
-See more about [SQLQuery]({{%currentjavaurl%}}/query-sql.html)
+See more about [SQLQuery](./query-sql.html)
 {{%/refer%}}
 
 
@@ -403,7 +403,7 @@ SELECT category, sum(profit) FROM Orders ORDER BY category
 This query will use the XAP aggregation API and push the aggregation fields and the projections down to data grid. All the calculation will be made on the server side.
 
 {{%refer%}}
-See more about [Aggregation API]({{%currentjavaurl%}}/aggregators.html)
+See more about [Aggregation API](./aggregators.html)
 {{%/refer%}}
 
 

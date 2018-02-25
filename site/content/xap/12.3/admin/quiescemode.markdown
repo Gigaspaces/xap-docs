@@ -10,7 +10,7 @@ weight: 1200
 
 This feature adds support for "Quiesce state" (or maintenance mode) for a Processing Unit. If a space is **quiesced**, it rejects all data-related operations with an exception, allowing the user to perform maintenance operations.
 
-The XAP [Polling Container]({{%currentjavaurl%}}/polling-container-overview.html) and [Notify Container]({{%currentjavaurl%}}/notify-container-overview.html) are also aware of the Space's quiesce state, and handle quiesce state changed events by implementing [QuiesceStateChangedListener](#listener). 
+The XAP [Polling Container](../dev-java/polling-container-overview.html) and [Notify Container](../dev-java/notify-container-overview.html) are also aware of the Space's quiesce state, and handle quiesce state changed events by implementing [QuiesceStateChangedListener](#listener). 
 
 In addition to the XAP event containers mentioned above, a user-defined Bean can also handle quiesce state changed events by implementing [QuiesceStateChangedListener](#listener). 
 
@@ -77,7 +77,7 @@ The following limitations and open issues apply to Quiesce mode:
 
 - The Processing Unit should be **intact** before triggering a quiesce request.
 - Although Quiesce handles the Processing Unit restart, it is not resilient regarding sudden network disconnections (in XAP grid component machines). Therefore, under rare conditions the quiesce request must be repeated manually by the user. 
-- Quiesce state changed events are propagated only to the components (beans) that are located within the Processing Unit context file ([pu.xml]({{%currentjavaurl%}}/configuring-processing-unit-elements.html)), therefore custom components are not aware of quiesce state changed events (even if the component implements [QuiesceStateChangedListener](#listener)).
+- Quiesce state changed events are propagated only to the components (beans) that are located within the Processing Unit context file ([pu.xml](../dev-java/configuring-processing-unit-elements.html)), therefore custom components are not aware of quiesce state changed events (even if the component implements [QuiesceStateChangedListener](#listener)).
 - Replication of the Quiesce state between primary and backup GSM is not yet supported. GSM failover may result in losing the quiesce state of the system. If this happens, you must repeat the quiesce request  in order to re-inform the GSM about the current quiesce state.
 
  

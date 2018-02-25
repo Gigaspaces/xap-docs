@@ -99,7 +99,7 @@ The result is a `GigaSpace` instance, which is a proxy to the `myGrid` data grid
 
 
 {{%refer%}}
-For more information on the `SpaceProxyConfigurer` and `GigaSpaceConfigurer` see [SpaceURL]({{%currentjavaurl%}}/the-space-configuration.html)
+For more information on the `SpaceProxyConfigurer` and `GigaSpaceConfigurer` see [SpaceURL](../dev-java/the-space-configuration.html)
 {{%/refer%}}
 
 

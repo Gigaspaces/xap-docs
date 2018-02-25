@@ -8,7 +8,7 @@ weight: 200
 
 
 
-When running in `ALL_IN_CACHE` cache policy mode, the space uses only the available physical memory. When running in a persistent space mode and having [Space Persistency]({{%currentjavaurl%}}/space-persistency-overview.html) defined, the space data is backed with the underlying database, but the overall capacity of the space does not exceed the capacity of the available physical memory.
+When running in `ALL_IN_CACHE` cache policy mode, the space uses only the available physical memory. When running in a persistent space mode and having [Space Persistency](./space-persistency-overview.html) defined, the space data is backed with the underlying database, but the overall capacity of the space does not exceed the capacity of the available physical memory.
 
 {{% note "Note"%}}
 When using All IN CACHE, the **cache size** parameter is ignored.

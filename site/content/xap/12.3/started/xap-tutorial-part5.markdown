@@ -39,18 +39,18 @@ This type of PU's includes both business logic and a space. Typically, the busin
 #### Elastic Processing Unit (EPU)
 An Elastic Processing Unit (EPU) is a Processing Unit with additional capabilities that simplify its deployment across multiple machines. Containers and machine resources such as Memory and CPU are automatically provisioned based on Memory and CPU requirements. When a machine failure occurs, or when scale requirements change, new machines are provisioned and the Processing Unit deployment distribution is balanced automatically. The PU scale is triggered by modifying the requirements through an API call. From that point in time the EPU continuously maintains the specified capacity (indefinitely, or until the next scale trigger).
 
-{{%refer%}}[Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html){{%/refer%}}
+{{%refer%}}[Elastic Processing Unit](../dev-java/elastic-processing-unit-overview.html){{%/refer%}}
 
 
 #### Web PU
 XAP allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the Service Grid Processing Unit Container. The web application itself is a pure, JEE based, web application. The application can be the most generic web application, and automatically make use of the Service Grid features. The web application can define a Space (either embedded or remote) very easily (either using Spring or not).The web container used behind the scenes is Jetty.
 
-{{%refer%}}[Web Application Support]({{%currentjavaurl%}}/web-application-overview.html){{%/refer%}}
+{{%refer%}}[Web Application Support](../dev-java/web-application-overview.html){{%/refer%}}
 
 #### Mule PU
 XAP's Mule integration allows you to run a pure Mule application (with or without XAP special extension points and transports) as a PU.
 
-{{%refer%}}[Mule Processing Unit]({{%currentjavaurl%}}/mule-processing-unit.html){{%/refer%}}
+{{%refer%}}[Mule Processing Unit](../dev-java/mule-processing-unit.html){{%/refer%}}
 
 
 
@@ -149,7 +149,7 @@ Here is an example of a pu.xml file:
 </beans>
 ```
 
-{{%refer%}}[Processing Unit Configuration]({{%currentjavaurl%}}/configuring-processing-unit-elements.html){{%/refer%}}
+{{%refer%}}[Processing Unit Configuration](../dev-java/configuring-processing-unit-elements.html){{%/refer%}}
 
 
 
