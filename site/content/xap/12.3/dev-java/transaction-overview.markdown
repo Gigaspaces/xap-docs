@@ -490,5 +490,5 @@ The following table describes the mapping between the {{%exurl "Spring Transacti
 # Viewing Transactions
 
 {{%refer%}}
-You can view and inspect ongoing Space transactions with the [GigaSpaces Management Center]({{%currentadmurl%}}/gigaspaces-browser-transaction-view.html).
+You can view and inspect ongoing Space transactions with the [GigaSpaces Management Center](../admin/gigaspaces-browser-transaction-view.html).
 {{%/refer%}}

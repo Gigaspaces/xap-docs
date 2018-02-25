@@ -13,7 +13,7 @@ XAP's data grid clustering, scalability and high availability are based on the f
 
 **Scalability**
 
-- Data is segmented into [partitions](./data-partitioning.html). Each partition includes a primary instance and ZERO or more backup instances. A partition (primary or a backup) is hosted within a single [Grid Service Container (GSC)]({{%currentadmurl%}}/the-runtime-environment.html).
+- Data is segmented into [partitions](./data-partitioning.html). Each partition includes a primary instance and ZERO or more backup instances. A partition (primary or a backup) is hosted within a single [Grid Service Container (GSC)](./the-runtime-environment.html).
 - Data access is load balanced across the different partitions, using a routing field or a [routing value](../dev-java/routing-in-partitioned-spaces.html) specified as part of the Space object or as part of the read/execute request. This allows the application to control the data distribution in a transparent manner.
 - Some operations, such as batch read or [execute](../dev-java/task-execution-overview.html), support [map-reduce](../dev-java/space-based-remoting-overview.html) behavior. This allows the application to access multiple partitions in parallel.
 - The maximum partition  size is the GSC heap size. XAP supports a large heap size (up to 100GB in RAM). A GSC may host multiple partitions (primary or backup instances).

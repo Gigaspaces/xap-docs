@@ -110,7 +110,7 @@ By default, the change result will only contain the number of entries which were
 
 # Change and Replication Filters
 
-When using [Replication Filter]({{%currentadmurl%}}/cluster-replication-filters.html), one can extract the `DataSyncChangeSet` from the `IReplicationFilterEntry` in the same way as extracting it from a `DataSyncOperation` by using the
+When using [Replication Filter](../admin/cluster-replication-filters.html), one can extract the `DataSyncChangeSet` from the `IReplicationFilterEntry` in the same way as extracting it from a `DataSyncOperation` by using the
 `ChangeDataSyncOperation` class in the following way:
 
 

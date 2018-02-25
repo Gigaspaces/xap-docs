@@ -36,7 +36,7 @@ The following parameters can be defined:
 | [Properties String](#url properties) | (Optional) named value list of special properties. |
 
 {{% note %}}
-Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html) section for details on how to enable multicast.
+Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the [How to Configure Multicast](../admin/network-multicast.html) section for details on how to enable multicast.
 {{%/note%}}
 
 ### Examples
@@ -105,7 +105,7 @@ The following are optional property string values:
 |create | Creates a new space using the container's default parameters. New spaces use the default space configuration file. Example: `java://localhost:10098/containerName`<br>`/mySpaces?create=true` | |
 |fifo | Indicates that all take/write operations be conducted in FIFO mode. Default is false. Example: `jini://localhost:10098/containerName`<br>`/mySpaces?fifo=true` | `false` |
 |groups | The Jini Lookup Service group to find container or space using multicast. Example: `jini://*/containerName/spaceName?groups=grid`<br>{{<infosign>}} The default value of the `XAP_LOOKUP_GROUPS` variable is the GigaSpaces version number, preceded by `XAP`. For example, in GigaSpaces XAP 6.0 the default lookup group is `XAP6.0`. This is the lookup group which the space and Jini Transaction Manager register with, and which clients use by default to connect to the space.<br>{{% exclamation %}} Jini groups are irrelevant when using unicast lookup discovery -- they are relevant only when using multicast lookup discovery. If you have multiple spaces with the same name and you are using unicast lookup discovery, you might end up getting the wrong proxy. In such a case, make sure you have a different lookup for each space, where each space is configured to use a specific lookup. A good practice is to have different space names. | `Group name` |
-|locators | Instructs the started space or a client to locate the Jini Lookup Service on specific host name and port. For more details please refer to [How to Configure Unicast Discovery]({{%currentadmurl%}}/network-unicast-discovery.html#HowtoConfigureUnicastDiscovery-Configuringthelookuplocatorsproperty) page. | |
+|locators | Instructs the started space or a client to locate the Jini Lookup Service on specific host name and port. For more details please refer to [How to Configure Unicast Discovery](../admin/network-unicast-discovery.html#HowtoConfigureUnicastDiscovery-Configuringthelookuplocatorsproperty) page. | |
 |updateMode | Push or pull update mode. Example: <br>`jini://localhost:10098/containerName /mySpaces?useLocalCache&updateMode=1` | `UPDATE_`<br> `MODE`<br> `_PULL`<br> `= 1` <br> `UPDATE_`<br> `MODE`<br> `_PUSH`<br> `= 2` |
 |security<br> Manager | When false, `SpaceFinder` will not initialize RMISecurityManager. Default is `true`. Example: `jini://localhost:10098/containerName`<br> `/mySpaces?securityManager=false` | |
 |useLocalCache | Turn Master-Local Space mode.By default Master-Local mode is turned off. To enable master local have the `useLocalCache` as part of the URL |  |

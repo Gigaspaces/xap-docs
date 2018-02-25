@@ -270,7 +270,7 @@ The `list` command uses the lookup service to extract the information regarding 
 
 A service's entry in the lookup is leased and kept until the next renewal attempt fails. If the service is not properly shutdown, i.e. abruptly terminated, it doesn't un register itself from the lookup service. Thus, attempts to call `list` will still display the service until its lease expires.
 
-For defaults and configuration options, refer to [Jini Lookup Service configuration]({{%currentadmurl%}}/network-lookup-service-configuration.html) settings for `minMaxServiceLease` property.
+For defaults and configuration options, refer to [Jini Lookup Service configuration](./network-lookup-service-configuration.html) settings for `minMaxServiceLease` property.
 
 
 # login
@@ -376,7 +376,7 @@ The `set` command sets the Service Grid system environment variables.
 
 {{% refer %}}
 Make sure your network and machines running GigaSpaces are configured to have multicast enabled.
-See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html) section for details on how to enable multicast.
+See the [How to Configure Multicast](./network-multicast.html) section for details on how to enable multicast.
 {{% /refer %}}
 
 {{%accordion%}}

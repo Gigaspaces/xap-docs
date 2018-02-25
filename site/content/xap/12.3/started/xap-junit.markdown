@@ -157,7 +157,7 @@ public class ClusterTest {
 
 <br>
 
-You can verify that the 4 partitions exists by starting the [Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html)
+You can verify that the 4 partitions exists by starting the [Management Center](../admin/gigaspaces-management-center.html)
 
 
 #  Lookup Service

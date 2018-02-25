@@ -71,7 +71,7 @@ This section lists Premium artifacts. The group ID for these artifacts is `com.g
 | xap-near-cache-spring | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar | [Client Side Caching](../dev-java/client-side-caching.html) |
 | xap-near-cache 		  | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar | [Client Side Caching](../dev-java/client-side-caching.html) |
 | xap-security		  | ${XAP_HOME}/lib/optional/security/xap-security.jar | [Security](../security/) |
-| xap-zookeeper		  | ${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar | [Consistency-biased leader election]({{%currentadmurl%}}/leader-election-consistency-biased.html) |
+| xap-zookeeper		  | ${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar | [Consistency-biased leader election](../admin/leader-election-consistency-biased.html) |
 | xap-admin 			  | ${XAP_HOME}/lib/platform/service-grid/xap-admin.jar | [Admin API](../dev-java/administration-and-monitoring-overview.html)|
 
 ## Enterprise Extensions
@@ -80,6 +80,6 @@ This section lists Enterprise artifacts. The group ID for these artifacts is `co
 
 | Artifact ID	   | Location in product | Required for |
 |------------------|---------------------|---|
-| xap-mx-rocksdb | ${XAP_HOME}/lib/optional/memoryxtend/rocksdb/xap-mx-rocksdb.jar | [MemoryXtend - SSD]({{%currentadmurl%}}/memoryxtend-overview.html)
+| xap-mx-rocksdb | ${XAP_HOME}/lib/optional/memoryxtend/rocksdb/xap-mx-rocksdb.jar | [MemoryXtend - SSD](../admin/memoryxtend-overview.html)
 | xap-wan-gateway-spring| ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar | [WAN Replication](../dev-java/multi-site-replication-overview.html) |
 | xap-wan-gateway		  | ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar | [WAN Replication](../dev-java/multi-site-replication-overview.html) |

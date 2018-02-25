@@ -169,7 +169,7 @@ numberOfPartitions X ( 1 + numberOfBackupsPerPartition ) X memoryCapacityPerCont
 ```
 
 - During relocation of a specific instance, primary election takes place. For a few seconds, operations on that partition and operations on the whole cluster is denied. Internally, the client proxy retries the operation until the primary election takes place and masks the failure, but the delay exists.
-This delay can be reduced by modifying configuration settings as explained in [Failure Detection]({{%currentadmurl%}}/troubleshooting-failure-detection.html). Overriding the default value of these context properties is achieved with the [addContextProperty]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.html) deployment property. For example:
+This delay can be reduced by modifying configuration settings as explained in [Failure Detection](../admin/troubleshooting-failure-detection.html). Overriding the default value of these context properties is achieved with the [addContextProperty]({{% api-javadoc %}}/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.html) deployment property. For example:
 
 
 ```java

@@ -42,7 +42,7 @@ The defaults of these configurations are:
 | com.gigaspaces.security.audit.level | Audit level of interest; default is OFF |
 | com.gigaspaces.security.audit.handler | The Audit `java.util.logging.Handler` implementation accepting an `AuditLogRecord`; default is `AuditHandler` |
 
-The `AuditHandler` is a declarable extension to the default GigaSpaces logging `Handler` (see [GigaSpaces Logging]({{%currentadmurl%}}/logging-overview.html)). As such, it accepts properties that configure the handler - amongst others are the logging message **formatter** and the **filename-pattern**.
+The `AuditHandler` is a declarable extension to the default GigaSpaces logging `Handler` (see [GigaSpaces Logging](../admin/logging-overview.html)). As such, it accepts properties that configure the handler - amongst others are the logging message **formatter** and the **filename-pattern**.
 
 
 ```bash

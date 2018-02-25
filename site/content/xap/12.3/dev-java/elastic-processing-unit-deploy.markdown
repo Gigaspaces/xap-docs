@@ -340,7 +340,7 @@ ProcessingUnit pu = gsm.deploy(
 # Command Line Deploy
 
 {{%refer%}}
-An Elastic Processing Unit can also be deployed with the [Command Line Interface]({{%currentadmurl%}}/elastic-deploy-command-line-interface.html).
+An Elastic Processing Unit can also be deployed with the [Command Line Interface](../admin/elastic-deploy-command-line-interface.html).
 {{%/refer%}}
 
 # Hot Deploy

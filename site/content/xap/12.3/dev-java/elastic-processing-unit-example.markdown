@@ -91,7 +91,7 @@ The following command will start a stateful elastic PU with 8 partitions:
 ./gs.sh deploy-elastic-pu -type stateful -ha true -memory-capacity-per-container 500m -number-of-partitions 8 -puname offheap-space
 ```
 
-You can see now in the [Web Management Console]({{%currentadmurl%}}/web-management-console.html) that all machines and partitions are up and running: 
+You can see now in the [Web Management Console](../admin/web-management-console.html) that all machines and partitions are up and running: 
 
 ![image](/attachment_files/epu/example3.png)
 

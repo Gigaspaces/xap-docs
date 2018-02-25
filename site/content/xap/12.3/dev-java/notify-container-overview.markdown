@@ -951,7 +951,7 @@ public class MyLeaseListener implements LeaseListener {
 {{% /tabs %}}
 
 {{% note "Note"%}}
-To ensure that the client application reconnects automatically to the Space cluster after it is restarted, you may have to change the default configuration. Refer to [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html) for details.
+To ensure that the client application reconnects automatically to the Space cluster after it is restarted, you may have to change the default configuration. Refer to [Proxy Connectivity](../admin/tuning-proxy-connectivity.html) for details.
 {{% /note %}}
 
 For more information, see [Auto Renew](./session-based-messaging-api.html#disconnections).

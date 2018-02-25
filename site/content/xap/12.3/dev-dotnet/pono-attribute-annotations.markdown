@@ -68,7 +68,7 @@ public class Employee {
 ```
 
 {{%refer%}}
-[Data Partitioning]({{%currentadmurl%}}/data-partitioning.html)
+[Data Partitioning](../admin/data-partitioning.html)
 {{%/refer%}}
 
 

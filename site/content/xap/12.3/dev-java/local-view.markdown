@@ -128,10 +128,10 @@ If the JVM running client X's available memory exceeds the `write_only_block_per
 
 # Synchronization
 
-The local view uses [replication]({{%currentadmurl%}}/replication.html) instead of [notifications](./session-based-messaging-api.html) to synchronize with the master Space, because replication provides higher reliability than notification. In general, this is an implementation detail that should not concern the user, except for the following cases:
+The local view uses [replication](../admin/replication.html) instead of [notifications](./session-based-messaging-api.html) to synchronize with the master Space, because replication provides higher reliability than notification. In general, this is an implementation detail that should not concern the user, except for the following cases:
 
 - Using a view query on a type/class configured to be [non-replicable](./modeling-your-data.html).
-- Using a cluster with an [Active-Active]({{%currentadmurl%}}/replication-topologies.html) topology, or a non-clustered Space.
+- Using a cluster with an [Active-Active](../admin/replication-topologies.html) topology, or a non-clustered Space.
 
 In these cases, the local view automatically reverts to notification-based synchronization.
 

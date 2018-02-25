@@ -1004,7 +1004,7 @@ public interface RemoteResultReducer<T, Y> {
 
 In case of a Primary Backup clusters and Partitioned Sync2Backup clusters, when there is failure of primary space partition, remoting request is transparently forwarded to the backup.
 
-Executor proxy is aware of each partition in the cluster and connection with the failed primary partition will get interrupted/disconnected in case of a failure. Proxy recognizes failure and redirects the request to the backup partition. When the backup becomes ready (any warmup code that needs to run and is ready to accept operations), it will accept this request and process the request. All of this failover behavior is done within the GigaSpaces proxy code and client does not need any extra logic. For more information refer to [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html).
+Executor proxy is aware of each partition in the cluster and connection with the failed primary partition will get interrupted/disconnected in case of a failure. Proxy recognizes failure and redirects the request to the backup partition. When the backup becomes ready (any warmup code that needs to run and is ready to accept operations), it will accept this request and process the request. All of this failover behavior is done within the GigaSpaces proxy code and client does not need any extra logic. For more information refer to [Proxy Connectivity](../admin/tuning-proxy-connectivity.html).
 
 If the backup space does not become ready to accept requests within the configured number of retries, execute request will fail with an Exception. In case of a broadcast request, `SpaceRemotingResult` for failed partition will have an exception. Following example shows how to inspect for exceptions in Reducer,
 

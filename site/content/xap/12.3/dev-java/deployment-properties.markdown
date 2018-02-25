@@ -80,7 +80,7 @@ If you would like your properties to be configured in a dedicated file this can 
 - Including a `pu.properties` file in the processing unit. This file can be placed under the root of the processing unit or under the `META-INF/spring` directory (This is also described [here](./the-processing-unit-structure-and-configuration.html)). The values of this file will be loaded and injected automatically to the processing unit instances at deployment time.
 
 - External `.properties` file. The file can have any name, as long as it's accessible to the deployment tool (UI, CLI, etc.) or specified when [running the processing unit within your IDE](../started/xap-debug.html) or in [standalone mode](./running-in-standalone-mode.html).
-When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html) or [running within the IDE](../started/xap-debug.html), you specify the location of the file using `-properties <location>` as a command line argument with the CLI or a program argument within the IDE.
+When deploying through the [CLI](../admin/command-line-interface.html) or [running within the IDE](../started/xap-debug.html), you specify the location of the file using `-properties <location>` as a command line argument with the CLI or a program argument within the IDE.
 
 
 ```java
@@ -94,7 +94,7 @@ The following is an example of a `.properties` file that can be used with the sa
 When deploying via the UI, the file can be loaded into the deployment wizard by clicking "Next" in the first screen of the wizard and then "Load Properties", locating the properties file on your local disk. This will load all the property place holders that are in the file.
 
 - Direct property injection. This can also be done via one of the deployment tools (UI, CLI) or specified when [running the processing unit within your IDE](../started/xap-debug.html).
-When deploying through the [CLI]({{%currentadmurl%}}/command-line-interface.html) or [running within the IDE](../started/xap-debug.html), you specify property values by using the following syntax:
+When deploying through the [CLI](../admin/command-line-interface.html) or [running within the IDE](../started/xap-debug.html), you specify property values by using the following syntax:
 
 
 ```java
@@ -105,7 +105,7 @@ This can be specified as part of the command line arguments or as a program argu
 When deploying via the UI, click "Next" in the first screen of the deployment wizard and then "+" to add properties. Any property you specify here will be injected to the appropriate property place holder (if such exists) and will override the `pu.properties` within the processing unit.
 
 {{% note "Property Injection for SLA Definitions "%}}
-From version 7.0 onwards, the processing unit's [SLA definitions]({{%currentadmurl%}}/the-sla-overview.html)  can be defined in a separate `sla.xml` file (unlike previous release in which they could only have been defined in the `pu.xml` file). As you may recall, the SLA definition are expressed via the `<os-sla:sla>` XML element in either the `pu.xml` of the `sla.xml` files.
+From version 7.0 onwards, the processing unit's [SLA definitions](../admin/the-sla-overview.html)  can be defined in a separate `sla.xml` file (unlike previous release in which they could only have been defined in the `pu.xml` file). As you may recall, the SLA definition are expressed via the `<os-sla:sla>` XML element in either the `pu.xml` of the `sla.xml` files.
 
 You should note however that property injection, as described in this page, and any external jars imports, is only available for SLA definitions expressed in a separate `sla.xml` file, and will not be applied to the `<os-sla:sla>` element if it is part of the `pu.xml` file.
 

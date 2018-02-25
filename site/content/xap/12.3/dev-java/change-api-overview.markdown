@@ -393,7 +393,7 @@ For more information on how to implement this, refer to the [Advanced Implementa
 
 # Replication Filter
 
-Change passes through the [Replication Filter]({{%currentadmurl%}}/cluster-replication-filters.html) like other operations, and can be discarded on the replication level, for example.
+Change passes through the [Replication Filter](../admin/cluster-replication-filters.html) like other operations, and can be discarded on the replication level, for example.
 
 {{% refer %}}For more information on how to handle change in replication filters, refer to the [Advanced Implementations](./change-api-advanced.html) topic.{{% /refer %}}
 

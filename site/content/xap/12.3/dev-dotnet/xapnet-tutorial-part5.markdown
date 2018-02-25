@@ -86,7 +86,7 @@ A sample SLA definition is shown below:
 ```
 
 {{%refer%}}
-[SLA Overview]({{%currentadmurl%}}/the-sla-overview.html)
+[SLA Overview](../admin/the-sla-overview.html)
 {{%/refer%}}
 
 
@@ -270,7 +270,7 @@ Deploying with the command line options will override the sla definitions
 
 
 {{%refer%}}
-[Deploy Command Line Interface]({{%currentadmurl%}}/deploy-command-line-interface.html)
+[Deploy Command Line Interface](../admin/deploy-command-line-interface.html)
 {{%/refer%}}
 
 

@@ -198,7 +198,7 @@ com.gigaspaces.client.cluster.liveness.level = INFO
 
 The GigaSpaces Client can be another component or application that connects to a GigaSpaces cluster.
 Liveness check is functionality that runs inside a GigaSpaces proxy (usually held by a client connecting to a Space) to keep track of the cluster members.
-Additional information about the GigaSpaces proxy can be found [here]({{%currentadmurl%}}/tuning-proxy-connectivity.html).
+Additional information about the GigaSpaces proxy can be found [here](./tuning-proxy-connectivity.html).
 
 ##  .NET API
 
@@ -587,7 +587,7 @@ com.gigaspaces.admin.cli.level = INFO
 com.gigaspaces.jmx.level = INFO
 ```
 
-These loggers correspond to the XAP Management Center. Additional information regarding the user interface is available [here]({{%currentadmurl%}}/gigaspaces-management-center.html).
+These loggers correspond to the XAP Management Center. Additional information regarding the user interface is available [here](./gigaspaces-management-center.html).
  
 
 #  Persistence

@@ -25,7 +25,7 @@ Here is an example of how this configuration should look:
 </os-gateway:targets>
 ```
 
-Each configuration can be configured for all gateways or specifically per each gateway as seen in the above example, max-redo-log-capacity is configured for all gateways while bulk-size is specifically overridden in the configuration of HONGKONG gateway target. A recommended reading regarding the replication redo-log is [Controlling the Replication Redo Log]({{%currentadmurl%}}/controlling-the-replication-redo-log.html).
+Each configuration can be configured for all gateways or specifically per each gateway as seen in the above example, max-redo-log-capacity is configured for all gateways while bulk-size is specifically overridden in the configuration of HONGKONG gateway target. A recommended reading regarding the replication redo-log is [Controlling the Replication Redo Log](../admin/controlling-the-replication-redo-log.html).
 
 # Configurable Parameters
 

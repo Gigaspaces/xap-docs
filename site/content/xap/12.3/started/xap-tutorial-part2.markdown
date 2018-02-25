@@ -71,7 +71,7 @@ The GSA is a process manager that can spawn and manage service grid processes (O
 
 When you execute the gs-agent command above without any arguments, 1 GSA, 1 GSM, 1 LUS and 2 GSC's will be started. The gs-agent command takes several different parameters as arguments.
 
-{{%refer%}}[Scripts]({{%currentadmurl%}}/scripts.html){{%/refer%}}
+{{%refer%}}[Scripts](../admin/scripts.html){{%/refer%}}
  
  
 # Connecting to a Data Grid
@@ -193,7 +193,7 @@ After you execute the above command, open a browser and go to  `http://your_host
    
 
 {{%refer%}}
-[Web Management Console]({{%currentadmurl%}}/web-management-console.html)
+[Web Management Console](../admin/web-management-console.html)
 {{%/refer%}}
 
  

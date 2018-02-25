@@ -29,7 +29,7 @@ JDBC support in XAP is centered around the Space-Based Architecture - its main m
 XAP is not a full-fledged relational database and it does not support the full SQL92 standard (see [JDBC Supported Features](#supported-features)). However, the existing SQL support is extremely useful for applications that need to execute queries on a Space for real-time queries.
 
 {{% info "Info" %}}
-You can use the [SQL Command Line]({{%currentadmurl%}}/space-gigaspaces-cli.html) to query and fetch data from the IMDG. The SQL Command Line using the XAP JDBC Driver when accessing the IMDG.
+You can use the [SQL Command Line](../admin/space-gigaspaces-cli.html) to query and fetch data from the IMDG. The SQL Command Line using the XAP JDBC Driver when accessing the IMDG.
 {{% /info %}}
 
 ## Using Existing SQL Code and Porting to External Systems

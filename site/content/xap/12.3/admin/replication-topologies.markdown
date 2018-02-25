@@ -30,4 +30,4 @@ This topology consists of a group of space instances that are part of the same r
 
 ## Load Balancing
 
-Since all the space instances hold the same data, there are multiple load balancing strategies the space proxy can choose from. By default a **sticky** strategy is used, i.e. all operations are performed on the same space instance. For more information on load balance strategy selection and configuration, see [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html#Load balancing).
+Since all the space instances hold the same data, there are multiple load balancing strategies the space proxy can choose from. By default a **sticky** strategy is used, i.e. all operations are performed on the same space instance. For more information on load balance strategy selection and configuration, see [Proxy Connectivity](./tuning-proxy-connectivity.html#Load balancing).

@@ -51,8 +51,8 @@ The IMDG Mirror replication settings includes the following options:
 | cluster-config.mirror-service.interval-millis | The replication frequency - Replication will happen every `interval-millis` milliseconds | 2000 |
 | cluster-config.mirror-service.interval-opers | The replication buffer size - Replication will happen every `interval-opers` operations. | 100 |
 | cluster-config.groups.group.repl-policy.repl-original-state | The replication reconciliation mode - This settings should be enabled to ensure that write/take operations or multiple updates for the same space object will be sent to the mirror and not will be discarded when sent within the same batch. | true |
-| cluster-config.mirror-service.on-redo-log-capacity-exceeded | Available options:<br>block-operations - all cluster operations that need to be replicated (write/update/take) are blocked until the redo log size decreases below the capacity. (Users get RedoLogCapacityExceededException exceptions while trying to execute these operations.)<br>drop-oldest - the oldest packet in the redo log is dropped.<br>See the [Controlling the Replication Redo Log]({{%currentadmurl%}}/controlling-the-replication-redo-log.html) for details. | block-operations |
-| cluster-config.mirror-service.redo-log-capacity | Specifies the total capacity of replication packets the redo log can hold for a mirror service replication target.<br>See the [Controlling the Replication Redo Log]({{%currentadmurl%}}/controlling-the-replication-redo-log.html) for details. | 1000000 |
+| cluster-config.mirror-service.on-redo-log-capacity-exceeded | Available options:<br>block-operations - all cluster operations that need to be replicated (write/update/take) are blocked until the redo log size decreases below the capacity. (Users get RedoLogCapacityExceededException exceptions while trying to execute these operations.)<br>drop-oldest - the oldest packet in the redo log is dropped.<br>See the [Controlling the Replication Redo Log](../admin/controlling-the-replication-redo-log.html) for details. | block-operations |
+| cluster-config.mirror-service.redo-log-capacity | Specifies the total capacity of replication packets the redo log can hold for a mirror service replication target.<br>See the [Controlling the Replication Redo Log](../admin/controlling-the-replication-redo-log.html) for details. | 1000000 |
 |cluster-config.groups.group.repl-policy.async-replication.async-channel-shutdown-timeout | Determines how long (in ms) the primary space will wait before replicating all existing redo log data into its targets before shutting down. | 300000 ms |
 
 {{% note %}}
@@ -231,7 +231,7 @@ See com.gigaspaces.sync.DataSyncOperation for more details.
 
 The activity of the mirror service can be monitored using the [Administration and monitoring API](./administration-and-monitoring-overview.html#AdministrationandMonitoringAPI-MonitoringtheMirrorService). This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.
 
-You may view Mirror and its replication statistics via the [GigaSpaces Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html). Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.
+You may view Mirror and its replication statistics via the [GigaSpaces Management Center](../admin/gigaspaces-management-center.html). Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.
 
 
 ![image](/attachment_files/mirror_ui_stats.jpg)

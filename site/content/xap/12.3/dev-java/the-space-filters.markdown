@@ -254,7 +254,7 @@ Accessing a space within a space filter can cause a cycle construction exception
 
 # Space Replication Filters
 
-The `UrlSpaceFactoryBean` allows you to configure [Cluster Replication Filters]({{%currentadmurl%}}/cluster-replication-filters.html). It uses the space support for a `ReplicationFilterProvider` which is a wrapper for an `IReplicationFilter` implementation and its characteristics (such as `activeWhenBackup`). This allows you to provide space replication filters without changing the space schema.
+The `UrlSpaceFactoryBean` allows you to configure [Cluster Replication Filters](../admin/cluster-replication-filters.html). It uses the space support for a `ReplicationFilterProvider` which is a wrapper for an `IReplicationFilter` implementation and its characteristics (such as `activeWhenBackup`). This allows you to provide space replication filters without changing the space schema.
 
 {{% note %}}
 Space replication filters can only be used with embedded spaces.

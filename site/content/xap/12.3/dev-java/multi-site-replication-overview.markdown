@@ -698,7 +698,7 @@ The [Multi-Master running example](/sbp/wan-replication-gateway.html) topic incl
 
 # Filtering Replication Between Gateways
 
-On occasion, there may be data that should not be replicated between sites but should still be replicated locally to the backup or a mirror service. If this is the case, it isn't suitable to specify that the object should not be replicated. A replication channel to a gateway is like any other replication channel, so a custom [Replication Filter]({{%currentadmurl%}}/cluster-replication-filters.html) at the source Space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name, in order to identify that the replication filter is called for the correct outgoing replication to the gateway.
+On occasion, there may be data that should not be replicated between sites but should still be replicated locally to the backup or a mirror service. If this is the case, it isn't suitable to specify that the object should not be replicated. A replication channel to a gateway is like any other replication channel, so a custom [Replication Filter](../admin/cluster-replication-filters.html) at the source Space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name, in order to identify that the replication filter is called for the correct outgoing replication to the gateway.
 
 {{% refer %}}For full details and an example, refer to [Replication Gateway Filtering](./replication-gateway-filtering.html).{{% /refer %}}
 

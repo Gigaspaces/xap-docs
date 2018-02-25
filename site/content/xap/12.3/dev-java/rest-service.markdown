@@ -20,7 +20,7 @@ The REST service is not supported with embedded space thus we recommend using it
 
 ## Deploy via CLI
 {{%refer%}} 
-See full instructions [here]({{%currentadmurl%}}/rest-deploy-command-line-interface.html) 
+See full instructions [here](../admin/rest-deploy-command-line-interface.html) 
 {{%/refer%}}
 
  

@@ -119,7 +119,7 @@ Custom change operation lets you run custom code on the space, hence the space s
 
 # Custom Operation and Space Integration Points
 
-Using a custom operation with a [Replication Filter]({{%currentadmurl%}}/cluster-replication-filters.html), [Space Filter](./the-space-filters.html) and [Space Synchronization Endpoint](./space-synchronization-endpoint-api.html) is supported
+Using a custom operation with a [Replication Filter](../admin/cluster-replication-filters.html), [Space Filter](./the-space-filters.html) and [Space Synchronization Endpoint](./space-synchronization-endpoint-api.html) is supported
 and behaves the same as the built-in operations. You can get a reference to the instance of the `CustomChangeOperation` by checking its name (or `instanceof`) and casting to the specific type.
 
 

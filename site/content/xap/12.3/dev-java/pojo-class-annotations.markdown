@@ -158,7 +158,7 @@ public class Person {
 
 
 {{%refer%}}
-[Replication]({{%currentadmurl%}}/replication.html)
+[Replication](../admin/replication.html)
 {{%/refer%}}
 
 
@@ -218,7 +218,7 @@ public class Person {
 ```
 
 {{%refer%}}
-[Memoryxtend]({{%currentadmurl%}}/memoryxtend-overview.html)
+[Memoryxtend](../admin/memoryxtend-overview.html)
 {{%/refer%}}
 
 

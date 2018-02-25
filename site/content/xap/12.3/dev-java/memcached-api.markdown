@@ -11,7 +11,7 @@ weight: 400
 
 [Memcached](http://memcached.org/) is a popular caching protocol and server. The integration provided allows to use GigaSpaces as a memcached server (talking the memcached protocol) enhancing the memcached to provide high availability, write behind, and all the other features that come built in with the space.
 
-The memcached support is provided as a template deployment (similar to how basic data grid deployment works), allowing to easily issue commands to deploy a memcached cluster using the CLI, Admin API, or the UI. See "[The Runtime Environment]({{%currentadmurl%}}/the-runtime-environment.html)" for an explanation of the moving parts and components in a GigaSpaces XAP server instance.
+The memcached support is provided as a template deployment (similar to how basic data grid deployment works), allowing to easily issue commands to deploy a memcached cluster using the CLI, Admin API, or the UI. See "[The Runtime Environment](../admin/the-runtime-environment.html)" for an explanation of the moving parts and components in a GigaSpaces XAP server instance.
 
 # Why Use Memcached?
 

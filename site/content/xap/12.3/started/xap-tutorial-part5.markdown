@@ -174,7 +174,7 @@ A sample SLA definition is shown below:
 </beans>
 ```
 
-{{%refer%}}[SLA Overview]({{%currentadmurl%}}/the-sla-overview.html){{%/refer%}}
+{{%refer%}}[SLA Overview](../admin/the-sla-overview.html){{%/refer%}}
 
 
 
@@ -435,6 +435,6 @@ With a stateless PU
 ./gs.sh deploy -cluster total_members=4 -max-instances-per-machine 2 eventPU.jar
 ```
 
-{{%refer%}}[Deploy Command Line Interface]({{%currentadmurl%}}/deploy-command-line-interface.html){{%/refer%}}
+{{%refer%}}[Deploy Command Line Interface](../admin/deploy-command-line-interface.html){{%/refer%}}
 
 

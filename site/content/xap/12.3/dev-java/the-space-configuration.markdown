@@ -36,7 +36,7 @@ The following parameters can be defined:
 | [Properties String](#url-properties) | (Optional) named value list of special properties. |
 
 {{% refer %}}
-Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the [How to Configure Multicast]({{%currentadmurl%}}/network-multicast.html) section for details on how to enable multicast.
+Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the [How to Configure Multicast](../admin/network-multicast.html) section for details on how to enable multicast.
 {{%/refer%}}
 
 ### Examples
@@ -109,7 +109,7 @@ The following are optional property string values:
 |`create` | Creates a new space using the container's default parameters. New spaces use the default space configuration file. Example: `java://localhost:10098/containerName`<br>`/mySpaces?create=true` | |
 |`fifo` | Indicates that all take/write operations be conducted in FIFO mode. Default is false. Example: `jini://localhost:10098/containerName`<br>`/mySpaces?fifo=true` | `false` |
 |`groups` | The Jini Lookup Service group to find container or space using multicast. Example: `jini://*/containerName/spaceName?groups=grid`<br>{{<infosign>}} The default value of the `XAP_LOOKUP_GROUPS` variable is the GigaSpaces version number, preceded by `XAP`. For example, in GigaSpaces XAP 6.0 the default lookup group is `XAP6.0`. This is the lookup group which the space and Jini Transaction Manager register with, and which clients use by default to connect to the space.<br>{{% exclamation %}} Jini groups are irrelevant when using unicast lookup discovery -- they are relevant only when using multicast lookup discovery. If you have multiple spaces with the same name and you are using unicast lookup discovery, you might end up getting the wrong proxy. In such a case, make sure you have a different lookup for each space, where each space is configured to use a specific lookup. A good practice is to have different space names. | `Group name` |
-|`locators` | Instructs the started space or a client to locate the Jini Lookup Service on specific host name and port. For more details please refer to [How to Configure Unicast Discovery]({{%currentadmurl%}}/network-unicast-discovery.html#HowtoConfigureUnicastDiscovery-Configuringthelookuplocatorsproperty) page. | |
+|`locators` | Instructs the started space or a client to locate the Jini Lookup Service on specific host name and port. For more details please refer to [How to Configure Unicast Discovery](../admin/network-unicast-discovery.html#HowtoConfigureUnicastDiscovery-Configuringthelookuplocatorsproperty) page. | |
 |`updateMode` | Push or pull update mode. Example: <br>`jini://localhost:10098/containerName /mySpaces?useLocalCache&updateMode=1` | `UPDATE_`<br> `MODE`<br> `_PULL`<br> `= 1` <br> `UPDATE_`<br> `MODE`<br> `_PUSH`<br> `= 2` |
 |`security`<br> `Manager` | When false, `SpaceFinder` will not initialize RMISecurityManager. Default is `true`. Example: `jini://localhost:10098/containerName`<br> `/mySpaces?securityManager=false` | |
 |`useLocalCache` | Turn Master-Local Space mode.By default Master-Local mode is turned off. To enable master local have the `useLocalCache` as part of the URL |  |
@@ -247,9 +247,9 @@ The general properties are used to override various components such as the space
 Popular overrides:
 
 - [Memory Manager Settings](./memory-management-overview.html#Memory Manager Parameters)
-- [Replication Settings]({{%currentadmurl%}}/replication-parameters.html)
-- [Replication Redo-log Settings]({{%currentadmurl%}}/controlling-the-replication-redo-log.html#Redo Log Capacity Configuration)
-- [Proxy Connectivity Settings]({{%currentadmurl%}}/tuning-proxy-connectivity.html#Configuration)
+- [Replication Settings](../admin/replication-parameters.html)
+- [Replication Redo-log Settings](../admin/controlling-the-replication-redo-log.html#Redo Log Capacity Configuration)
+- [Proxy Connectivity Settings](../admin/tuning-proxy-connectivity.html#Configuration)
 - [Persistency Settings](./space-persistency-advanced-topics.html#Properties)
 
 
@@ -313,7 +313,7 @@ The `GigaSpace` Bean can have the following elements:
 |Element|Description|Required|Default Value|
 |:------|:----------|:-------|:------------|
 |space|This can be an embedded space , remote space , local view or local cache. |YES| |
-|clustered|Boolean. [Cluster flag]({{%currentadmurl%}}/clustered-vs-non-clustered-proxies.html). Controlling if this GigaSpace will work with a clustered view of the space or directly with a cluster member. By default if this flag is not set it will be set automatically by this factory. It will be set to true if the space is an embedded one AND the space is not a local cache proxy. It will be set to false otherwise (i.e. the space is not an embedded space OR the space is a local cache proxy)| NO | true for remote proxy , false for embedded proxy|
+|clustered|Boolean. [Cluster flag](../admin/clustered-vs-non-clustered-proxies.html). Controlling if this GigaSpace will work with a clustered view of the space or directly with a cluster member. By default if this flag is not set it will be set automatically by this factory. It will be set to true if the space is an embedded one AND the space is not a local cache proxy. It will be set to false otherwise (i.e. the space is not an embedded space OR the space is a local cache proxy)| NO | true for remote proxy , false for embedded proxy|
 |default-read-timeout|Numerical Value. Sets the default read timeout for `read(Object)` and `readIfExists(Object)` operations.|NO| 0 (NO_WAIT). TimeUnit:millsec|
 |<nobr>default-take-timeout</nobr>|Numerical Value. Sets the default take timeout for `take(Object)` and `takeIfExists(Object)` operations.|NO| 0 (NO_WAIT). TimeUnit:millsec|
 |default-write-lease| Numerical Value. Sets the default [space object lease](./leases-automatic-expiration.html) (TTL) for `write(Object)` operation. |NO| FOREVER. TimeUnit:millsec|
@@ -564,5 +564,5 @@ Batch operations many throw the following Exceptions. Make sure you catch these 
 - The variable represents a remote or embedded space proxy (for a single space or clustered) and **should be constructed only** once throughout the lifetime of the application process.
 - You should treat the variable as a singleton to be shared across multiple different threads within your application.
 - The interface is thread safe and there is no need to create a GigaSpace variable per application thread.
-- In case the space has been fully terminated (no backup or primary instances running any more) the client space proxy will try to reconnect to the space up to a predefined timeout based on the [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html) settings. If it fails to reconnect, an error will be displayed.
+- In case the space has been fully terminated (no backup or primary instances running any more) the client space proxy will try to reconnect to the space up to a predefined timeout based on the [Proxy Connectivity](../admin/tuning-proxy-connectivity.html) settings. If it fails to reconnect, an error will be displayed.
 - Within a single Processing Unit (or Spring application context), several GigaSpace instances can be defined, each with different characteristics, all will be interacting with the same remote space.

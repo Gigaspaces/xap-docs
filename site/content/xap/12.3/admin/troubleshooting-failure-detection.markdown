@@ -95,7 +95,7 @@ The following parameters in the cluster schema active election  block regard fai
 
 ### Proxy Connectivity
 
-The [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html) defines the settings in which the system checks the liveness of space members.
+The [Proxy Connectivity](./tuning-proxy-connectivity.html) defines the settings in which the system checks the liveness of space members.
 
 ### Watchdog Parameters
 

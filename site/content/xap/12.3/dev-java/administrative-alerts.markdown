@@ -12,7 +12,7 @@ parent: administration-and-monitoring-overview.html
 The alert mechanism provides the ability to receive alerts on various problematic conditions at runtime by using the [Administration and Monitoring API](./administration-and-monitoring-overview.html). The alerts give indication for the "health state" of the system.
 
 {{% note "Runtime Model "%}}
-The alerts rules are running within the `Admin` instance which the user created. GigaSpaces does not run an alert service that is running behind the scenes. If you would like to register for alerts in your production system, the recommended way to do it is to deploy your alert listener to the GigaSpaces [The Runtime Environment]({{%currentadmurl%}}/the-runtime-environment.html) in the form of a [processing unit](./the-processing-unit-structure-and-configuration.html).
+The alerts rules are running within the `Admin` instance which the user created. GigaSpaces does not run an alert service that is running behind the scenes. If you would like to register for alerts in your production system, the recommended way to do it is to deploy your alert listener to the GigaSpaces [The Runtime Environment](../admin/the-runtime-environment.html) in the form of a [processing unit](./the-processing-unit-structure-and-configuration.html).
 {{% /note %}}
 
 The [Administration and Monitoring API](./administration-and-monitoring-overview.html) provides events and statistics on top of which 'rules' can be applied to trigger an alert when required.
@@ -70,7 +70,7 @@ Since GigaSpaces XAP is working in a distributed environment, an alert is identi
 
 # Viewing Alerts 
 
-You can view alerts in the Web Management Console. For information, refer to [Viewing Alerts]({{%currentadmurl%}}/web-management-view-alerts.html) in the Administration Guide.
+You can view alerts in the Web Management Console. For information, refer to [Viewing Alerts](../admin/web-management-view-alerts.html) in the Administration Guide.
 
 # Listening for Alerts
 

@@ -92,7 +92,7 @@ public class AdminTest {
 # Custom Properties in the Web Based Dashboard
 
 
-For the service monitors to be shown in the [web based dashboard]({{%currentadmurl%}}/web-management-console.html), a bean class which is declared in your [processing unit's `pu.xml`](./configuring-processing-unit-elements.html) should extend one or both of the `CustomServiceDetails` and `CustomServiceMonitors` interfaces. The system will expose the data provided by these interface via the admin API and the web based dashboard.
+For the service monitors to be shown in the [web based dashboard](../admin/web-management-console.html), a bean class which is declared in your [processing unit's `pu.xml`](./configuring-processing-unit-elements.html) should extend one or both of the `CustomServiceDetails` and `CustomServiceMonitors` interfaces. The system will expose the data provided by these interface via the admin API and the web based dashboard.
 `CustomServiceDetails` and `CustomServiceMonitors` must have same id. Both of them must have default constructor.
 
 The `String` keys of the `ServiceMonitors.getMonitors()` `Map` are shown in the web based dashboard as custom properties (e.g. "successfully processed", "failed to process", "pending processing").

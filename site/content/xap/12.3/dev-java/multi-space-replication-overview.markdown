@@ -539,7 +539,7 @@ In the above we have configured both LONDON and NEWYORK at the sources of the si
 
 # Filtering Replication Between Gateways
 
-In some cases, there can be data that should not be replicated between the spaces but should still be replicated locally to the backup or a mirror service. Hence, specifying the object is not replicated does not fit. Since a replication channel to a gateway is like any other replication channel, a custom [Replication Filter]({{%currentadmurl%}}/cluster-replication-filters.html) at the source space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name in order to identify that the replication filter is called for the correct outgoing replication to the gateway.
+In some cases, there can be data that should not be replicated between the spaces but should still be replicated locally to the backup or a mirror service. Hence, specifying the object is not replicated does not fit. Since a replication channel to a gateway is like any other replication channel, a custom [Replication Filter](../admin/cluster-replication-filters.html) at the source space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name in order to identify that the replication filter is called for the correct outgoing replication to the gateway.
 
 
 {{% refer %}}For full details and example please refer to [Replication Gateway Filtering](./replication-gateway-filtering.html){{% /refer %}}

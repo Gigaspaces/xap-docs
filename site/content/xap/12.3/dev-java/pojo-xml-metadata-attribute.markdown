@@ -290,7 +290,7 @@ Example:
 
 
 {{%refer%}}
-[FIFO]({{%currentadmurl%}}/data-partitioning.html)
+[FIFO](../admin/data-partitioning.html)
 {{%/refer%}}
 
 

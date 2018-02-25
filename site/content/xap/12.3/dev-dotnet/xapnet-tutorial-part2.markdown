@@ -43,7 +43,7 @@ When you execute the gs-agent command above without any arguments, 1 GSA, 1 GSM,
 
 
 {{%refer%}}
-[Scripts]({{%currentadmurl%}}/scripts.html)
+[Scripts](../admin/scripts.html)
 {{%/refer%}}
 
 
@@ -188,6 +188,6 @@ The Admin UI console has many more features which we will introduce you to throu
 
 
 {{%refer%}}
-[Web Management Console]({{%currentadmurl%}}/web-management-console.html)
+[Web Management Console](../admin/web-management-console.html)
 {{%/refer%}}
 

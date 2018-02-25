@@ -366,7 +366,7 @@ com.gigaspaces.jdbc.level = FINE
 ```
 
 {{%refer%}}
-For more information on how to set logging levels see [Logging configuration]({{%currentadmurl%}}/logging-overview.html)
+For more information on how to set logging levels see [Logging configuration](../admin/logging-overview.html)
 {{%/refer%}}
 
 

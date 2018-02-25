@@ -13,10 +13,10 @@ The product directory structure as follows:
 - **NET v4.0** -- Contains XAP.NET for .NET 4.0 (or later)
     - **Bin** -- Contains binaries (Executables and dll files) of the product.
         - **GigaSpaces.Core.dll** -- Main XAP.NET library. All XAP.NET applications reference this assembly.
-        - **Gs-Agent.exe** - Starts a local [Service Grid Agent]({{%currentadmurl%}}/the-runtime-environment.html).
+        - **Gs-Agent.exe** - Starts a local [Service Grid Agent](../admin/the-runtime-environment.html).
         - **Gs-cli.exe** -- Command Line Interface for XAP administration.
-        - **Gs-webui.exe** -- [Web Management Console]({{%currentadmurl%}}/web-management-console.html).
-        - **Gs-ui.exe** -- Standalone [Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html).
+        - **Gs-webui.exe** -- [Web Management Console](../admin/web-management-console.html).
+        - **Gs-ui.exe** -- Standalone [Management Center](../admin/gigaspaces-management-center.html).
         - **ServicesManager.exe** - [GigaSpaces Services Manager](./gigaspaces-services-manager.html).
     - **Config** -- Contains configuration files.
         - **Settings.xml** - Main product settings file.

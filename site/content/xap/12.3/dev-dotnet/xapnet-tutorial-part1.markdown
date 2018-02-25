@@ -114,7 +114,7 @@ Partitioning is used when the total number of objects is too big to be stored in
 
 
 {{%refer%}}
-[Data Partitioning]({{%currentadmurl%}}/data-partitioning.html)
+[Data Partitioning](../admin/data-partitioning.html)
 {{%/refer%}}
 
 

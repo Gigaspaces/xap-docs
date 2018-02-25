@@ -87,7 +87,7 @@ Example:
 ```
 
 {{%refer%}}
-[Replication]({{%currentadmurl%}}/replication.html)
+[Replication](../admin/replication.html)
 {{%/refer%}}
 
 

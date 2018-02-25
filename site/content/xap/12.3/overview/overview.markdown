@@ -39,7 +39,7 @@ The following is a brief overview of some XAP data grid capabilities.
 **Memory and Storage**
 
 - [RAM](../dev-java/memory-management-overview.html)
-- [SSD/Flash]({{%currentadmurl%}}/memoryxtend-rocksdb-ssd.html)
+- [SSD/Flash](../admin/memoryxtend-rocksdb-ssd.html)
 
 
 **Data Replication and Persistence**
@@ -70,7 +70,7 @@ A Processing Unit package structure is defined, based on the technology:
 
 The services will usually operate on data that is stored within the same space partition, providing memory access within the same process address space. This mode of interaction allows the minimal latency possible, as data is accessed by reference, as opposed to serialization required for out-of-process communication.
 
-Process units can be deployed through the GigaSpaces [Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html), [Web UI]({{%currentadmurl%}}/web-management-console.html), [Command Line Interface]({{%currentadmurl%}}/deploy-command-line-interface.html) and [REST Management API]({{%currentadmurl%}}/xap-manager-rest.html).
+Process units can be deployed through the GigaSpaces [Management Center](../admin/gigaspaces-management-center.html), [Web UI](../admin/web-management-console.html), [Command Line Interface](../admin/deploy-command-line-interface.html) and [REST Management API](../admin/xap-manager-rest.html).
 
 
 # Analytics and Big Data
@@ -95,16 +95,16 @@ All components and applications in the platform are managed, deployed, and monit
 
 # REST Orchestration
 
-In addition to the management center, and web and command line interfaces, GigaSpaces provides a [grid management API]({{%currentadmurl%}}/xap-manager-rest.html) interface exposed through the standard HTTP REST protocol. This REST interface can be called from your custom management and administration scripts to support different deployment and provisioning lifecycle operations. In addition, the REST management API provides a [plug-in provider]({{%currentadmurl%}}/xap-manager-rest-pluggable.html) to implement your own orchestration/integration endpoints.
+In addition to the management center, and web and command line interfaces, GigaSpaces provides a [grid management API](../admin/xap-manager-rest.html) interface exposed through the standard HTTP REST protocol. This REST interface can be called from your custom management and administration scripts to support different deployment and provisioning lifecycle operations. In addition, the REST management API provides a [plug-in provider](../admin/xap-manager-rest-pluggable.html) to implement your own orchestration/integration endpoints.
 
 # Management and Monitoring
 
 GigaSpaces provides several components for monitoring and troubleshooting your XAP or InsightEdge Enterprise deployments. These include:
 
-- [Management Center]({{%currentadmurl%}}/gigaspaces-management-center.html)
-- [Web Management Console]({{%currentadmurl%}}/web-management-console.html)
-- [Command Line Interface]({{%currentadmurl%}}/deploy-command-line-interface.html)
-- [Metrics Reporting and Integration]({{%currentadmurl%}}/metrics-overview.html)
+- [Management Center](../admin/gigaspaces-management-center.html)
+- [Web Management Console](../admin/web-management-console.html)
+- [Command Line Interface](../admin/deploy-command-line-interface.html)
+- [Metrics Reporting and Integration](../admin/metrics-overview.html)
 - [Administrative Alerts]({{% latestjavaurl%}}/administrative-alerts.html)
 
 

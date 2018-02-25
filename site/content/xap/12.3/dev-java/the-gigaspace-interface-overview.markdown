@@ -72,7 +72,7 @@ The Embedded space can be used in a distributed architecture such as the replica
 ![replicated-space1.jpg](/attachment_files/replicated-space1.jpg)
 {{%/align%}}
 
-A simple way to use the embedded Space in a clustered architecture is by deploying a [clustered Space]({{%currentadmurl%}}/data-grid-clustering.html), or packaging your application as a [Processing Unit](./the-processing-unit-overview.html) and deploying it using the relevant SLA.
+A simple way to use the embedded Space in a clustered architecture is by deploying a [clustered Space](../admin/data-grid-clustering.html), or packaging your application as a [Processing Unit](./the-processing-unit-overview.html) and deploying it using the relevant SLA.
 
 # Remote Space
 
@@ -125,7 +125,7 @@ A full description of the Space URL Properties is available [here.](./the-space-
 
 ## Reconnection
 
-When working with a **remote Space**, the Space may become unavailable (due to network problems, Processing Unit relocation, etc.). For information on how such disruptions are handled and configured, refer to [Proxy Connectivity]({{%currentadmurl%}}/tuning-proxy-connectivity.html).
+When working with a **remote Space**, the Space may become unavailable (due to network problems, Processing Unit relocation, etc.). For information on how such disruptions are handled and configured, refer to [Proxy Connectivity](../admin/tuning-proxy-connectivity.html).
 
 # Local Cache
 
@@ -281,7 +281,7 @@ When using LocalCache and LocalView. you need to call the `destroy()` method on 
 
 ## Communication Resources
 
-All communication-related resources in XAP are shared between all the XAP components at the Java classloader level. If you're using the [XAP service grid]({{%currentadmurl%}}/the-runtime-environment.html) to run your XAP application, you do not need to handle the cleanup of communication resources explicitly.
+All communication-related resources in XAP are shared between all the XAP components at the Java classloader level. If you're using the [XAP service grid](../admin/the-runtime-environment.html) to run your XAP application, you do not need to handle the cleanup of communication resources explicitly.
 
 If your application runs in a standalone environment or another hosted environment (such as a JEE application server), you must explicitly clean up those resources. You have to shut down these resources explicitly when your application no longer uses the XAP components (for example, when it is undeployed from the application server). This is done by calling the static [shutdown()]({{% api-javadoc %}}/com/gigaspaces/lrmi/LRMIManager.html) method on the LRMIManager.
 

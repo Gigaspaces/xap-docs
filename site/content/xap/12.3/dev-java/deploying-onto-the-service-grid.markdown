@@ -10,11 +10,11 @@ weight: 300
 
 
 
-Deploying your processing unit to the [service grid]({{%currentadmurl%}}/the-runtime-environment.html) is the preferred way to run in your production environment. The service grid provides the following main benefits to every processing unit deployed onto it:
+Deploying your processing unit to the [service grid](../admin/the-runtime-environment.html) is the preferred way to run in your production environment. The service grid provides the following main benefits to every processing unit deployed onto it:
 
-- Automatic distribution and provisioning of the processing unit instances: When deploying to the [service grid]({{%currentadmurl%}}/the-runtime-environment.html) the [GigaSpaces Manager](../overview/the-runtime-environment.html#gsm) identifies the relevant [GigaSpaces Containers](../overview/the-runtime-environment.html#gsc) and takes care of distributing the processing unit binaries to them. You do not need to manually install the processing unit anywhere on the cluster - only into the service grid.
+- Automatic distribution and provisioning of the processing unit instances: When deploying to the [service grid](../admin/the-runtime-environment.html) the [GigaSpaces Manager](../overview/the-runtime-environment.html#gsm) identifies the relevant [GigaSpaces Containers](../overview/the-runtime-environment.html#gsc) and takes care of distributing the processing unit binaries to them. You do not need to manually install the processing unit anywhere on the cluster - only into the service grid.
 
-- SLA enforcement: The [GigaSpaces Manager](../overview/the-runtime-environment.html#gsm) is also responsible for enforcing your processing unit's [Service Level Agreement]({{%currentadmurl%}}/the-sla-overview.html), or SLA. At deployment time, it will create a specified number of processing unit instances (based on the SLA) and provision them to the running containers while enforcing all the [deployment requirements]({{%currentadmurl%}}/the-sla-overview.html), such as memory and CPU utilization, or specific deployment zones. At runtime, it will monitor the processing unit instances, and if any of them fail to fulfill the SLA or become unavailable it will re-instantiate the processing unit automatically on another container.
+- SLA enforcement: The [GigaSpaces Manager](../overview/the-runtime-environment.html#gsm) is also responsible for enforcing your processing unit's [Service Level Agreement](../admin/the-sla-overview.html), or SLA. At deployment time, it will create a specified number of processing unit instances (based on the SLA) and provision them to the running containers while enforcing all the [deployment requirements](../admin/the-sla-overview.html), such as memory and CPU utilization, or specific deployment zones. At runtime, it will monitor the processing unit instances, and if any of them fail to fulfill the SLA or become unavailable it will re-instantiate the processing unit automatically on another container.
 
 - Automatic machine provisioning and dynamic SLA enforcement: Elastic Processing Units are a new type of [Processing Unit](./the-processing-unit-overview.html). Elastic PUs provision machines and start [GigaSpaces Containers](../overview/the-runtime-environment.html#gsc) automatically based on the processing units' Memory and CPU requirements. When the available machines do not meet the requirements, the manager provisions new machines and balances the Processing Unit deployment across machines. This also occurs when a machine fails, or when the requirements changes while the application is running.
 
@@ -24,7 +24,7 @@ You can use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to
 
 # The Deployment Process
 
-Once built according to the processing unit [directory structure](./the-processing-unit-structure-and-configuration.html), the processing unit can be deployed via the various deployment tools available in GigaSpaces XAP ([UI]({{%currentadmurl%}}/gigaspaces-management-center.html), [CLI]({{%currentadmurl%}}/deploy-command-line-interface.html), Ant, [Maven](../started/installation-maven-overview.html) or the [Admin API](./administration-and-monitoring-overview.html)).
+Once built according to the processing unit [directory structure](./the-processing-unit-structure-and-configuration.html), the processing unit can be deployed via the various deployment tools available in GigaSpaces XAP ([UI](../admin/gigaspaces-management-center.html), [CLI](../admin/deploy-command-line-interface.html), Ant, [Maven](../started/installation-maven-overview.html) or the [Admin API](./administration-and-monitoring-overview.html)).
 
 After you [package](./the-processing-unit-overview.html) the processing unit and deploy it via one of the deployment tools, the deployment tool uploads it to all the running [GSMs](../overview/the-runtime-environment.html#gsm), where it is extracted and provisioned to the [GSCs](../overview/the-runtime-environment.html#gsc).
 
@@ -62,7 +62,7 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
 {{%tab "  Ant "%}}
 Deploying with Ant is based on the `org.openspaces.pu.container.servicegrid.deploy.Deploy` class (in fact, all of the deployment tools use this class although it is not exposed directly to the end user).
 
-In the below example we create an Ant macro using this class and use it to deploy our processing unit. The deploy class is executable via its `main()` method, and can accept various parameters to control the deployment process. These parameters are identical to these of the `deploy` CLI command, for a complete list of the available parameters please consult the [deploy CLI reference documentation.]({{%currentadmurl%}}/deploy-command-line-interface.html).
+In the below example we create an Ant macro using this class and use it to deploy our processing unit. The deploy class is executable via its `main()` method, and can accept various parameters to control the deployment process. These parameters are identical to these of the `deploy` CLI command, for a complete list of the available parameters please consult the [deploy CLI reference documentation.](../admin/deploy-command-line-interface.html).
 
 
 ```xml
@@ -85,7 +85,7 @@ In the below example we create an Ant macro using this class and use it to deplo
 
 {{% /tab %}}
 {{%tab "  GigaSpaces CLI "%}}
-Deploying via the CLI is based on the `deploy` command. This command accepts various parameters to control the deployment process. These parameters are documented in full in the [deploy CLI reference documentation.]({{%currentadmurl%}}/deploy-command-line-interface.html).
+Deploying via the CLI is based on the `deploy` command. This command accepts various parameters to control the deployment process. These parameters are documented in full in the [deploy CLI reference documentation.](../admin/deploy-command-line-interface.html).
 
 
 ```java
@@ -625,7 +625,7 @@ A compound listener (implements several interfaces) can be registered using the 
 
 # Monitoring Processing Unit instance Fault-detection
 
-Using the member-alive-indicator (see [Monitoring the Liveness of Processing Unit Instances]({{%currentadmurl%}}/the-sla-overview.html)  ) the Grid Service Manager (GSM) actively monitors each processing unit instance. When an "is alive" check fails, it **suspects** that the processing unit instance is no longer alive, and retries to contact it (using the configured retries and timeouts in pu.xml under `os-sla:member-alive-indicator`). When all retries fail, the GSM reports that it **detected** a failure and tries to re-deploy it on an available Grid Service Container (GSC).
+Using the member-alive-indicator (see [Monitoring the Liveness of Processing Unit Instances](../admin/the-sla-overview.html)  ) the Grid Service Manager (GSM) actively monitors each processing unit instance. When an "is alive" check fails, it **suspects** that the processing unit instance is no longer alive, and retries to contact it (using the configured retries and timeouts in pu.xml under `os-sla:member-alive-indicator`). When all retries fail, the GSM reports that it **detected** a failure and tries to re-deploy it on an available Grid Service Container (GSC).
 
 These member-alive-indicator transitions are reflected using the Admin API `MemberAliveIndicatorStatus`. Use the API to register for status changed events, and better visibility of GSM decisions based on the fault-detection mechanism. An alert is fired upon a fault- detection trigger, also visible in Web User Interface.
 

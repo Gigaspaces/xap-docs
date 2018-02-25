@@ -115,7 +115,7 @@ export XAP_GSC_OPTIONS=-Dcom.gs.zones="B"
 ### Deploy the PU
 
 {{%refer%}}
-Deploy your PU from CLI or UI. [See CLI example]({{%currentadmurl%}}/deploy-command-line-interface.html#deploy-pu).
+Deploy your PU from CLI or UI. [See CLI example](./deploy-command-line-interface.html#deploy-pu).
 {{%/refer%}}
 
 When deployed all primary instances will be allocated in zone `A` and backups in zone `B`. If primary fails the order will be restored by using restart.
