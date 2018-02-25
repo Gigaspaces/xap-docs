@@ -19,7 +19,7 @@ Once the connection between all instances of a given partition and all lookup se
 The primary resolution may involves few steps. Each tries to calculate the most recent primary and its data consistency level. If the first step can't determine who is primary (tie) the second step executed (tie break). If the second step can't determine who is primary the third one is executed (second tie break). Once a primary is elected the other instance moved into a backup mode and recover its entire data from the existing primary.
 
 {{% refer %}}
-Data resolution occurs between two different clusters using the WAN gateway as a replication channel. In this case a [conflict resolution](../dev-java/multi-site-conflict-resolution.html) is executed.
+Data resolution occurs between two different clusters using the WAN gateway as a replication channel. In this case a [conflict resolution]({{%currentjavaurl%}}/multi-site-conflict-resolution.html) is executed.
 {{% /refer %}}
 
 # Primary Resolution

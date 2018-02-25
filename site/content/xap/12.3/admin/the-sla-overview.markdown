@@ -23,7 +23,7 @@ The SLA contains the deployment criteria in terms of clustering topology (if it 
 
 -  Embed the SLA definitions within the Processing Unit's `pu.xml` file.
 
--  Provide a separate XML file with the SLA definitions to the GSM at deployment time via one of the [deployment tools](../dev-java/deploying-onto-the-service-grid.html).
+-  Provide a separate XML file with the SLA definitions to the GSM at deployment time via one of the [deployment tools]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html).
 
 - Use the deployment tools themselves to provide/override the Processing Unit's SLA (see below). For example, the GUI deployment dialog enables you to type in various SLA definitions, such as the number of instances, number of backups, and Space topology.
 
@@ -75,7 +75,7 @@ It is up to the developer to configure the SLA correctly. Trying to deploy a Pro
 {{%/note%}}
 
 {{% info "Info"%}}
-In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the [Administration and Monitoring API](../dev-java/administration-and-monitoring-overview.html) which supports the above and and much more.
+In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the [Administration and Monitoring API]({{%currentjavaurl%}}/administration-and-monitoring-overview.html) which supports the above and and much more.
 {{% /info %}}
 
 # Defining the Space Cluster Topology

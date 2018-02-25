@@ -57,7 +57,7 @@ There are three ways to retrieve the LRMI monitoring details, all of which requi
 
 ## Using Dump
 
-When generating a [Dump](../dev-java/dump.html) and the LRMI monitoring is enabled if the network dump is selected then the dump will include the LRMI monitoring details. When generating the dump it should include the `Network Dump` in it in order to contain the LRMI monitoring details. In the generated dump the 'network.txt' file will include, among other things, the LRMI monitoring details and it will look similar to this:
+When generating a [Dump]({{%currentjavaurl%}}/dump.html) and the LRMI monitoring is enabled if the network dump is selected then the dump will include the LRMI monitoring details. When generating the dump it should include the `Network Dump` in it in order to contain the LRMI monitoring details. In the generated dump the 'network.txt' file will include, among other things, the LRMI monitoring details and it will look similar to this:
 
 
 ```bash

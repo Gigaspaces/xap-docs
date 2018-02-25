@@ -14,7 +14,7 @@ The `<XAP root>/bin` folder includes the following scripts that can be used to m
 
 **Open-Source Scripts**
 
-- **setenv** - Used by all scripts to configure and load [Common Environment Variables](../dev-java/common-environment-variables.html).
+- **setenv** - Used by all scripts to configure and load [Common Environment Variables]({{%currentjavaurl%}}/common-environment-variables.html).
 
 **Additional Scripts**
 
@@ -43,7 +43,7 @@ The scripts listed below are available in the licensed editions of the GigaSpace
 - **gsc** - starts an instance of the [GSC](../overview/the-runtime-environment.html#gsc).
 - **gsm** - starts an instance of the [GSM](../overview/the-runtime-environment.html#gsm) and [LUS](../overview/the-runtime-environment.html#lus).
 - **gsm_nolus** - starts an instance of the [GSM](../overview/the-runtime-environment.html#gsm).
-- **esm** - starts an instance of the [ESM](../dev-java/elastic-processing-unit-overview.html).
+- **esm** - starts an instance of the [ESM]({{%currentjavaurl%}}/elastic-processing-unit-overview.html).
 - **startJiniTX_Mahalo** - starts an instance of the Distributed transaction manager.
 
 # Processing Units
@@ -57,7 +57,7 @@ The scripts listed below are available in the licensed editions of the GigaSpace
 
 The script listed below is available in the licensed editions of the GigaSpaces applications.
 
-- **gs-memcached** - starts standalone, un managed instance of [Memcached API](../dev-java/memcached-api.html) listener.
+- **gs-memcached** - starts standalone, un managed instance of [Memcached API]({{%currentjavaurl%}}/memcached-api.html) listener.
 
 # Misc
 

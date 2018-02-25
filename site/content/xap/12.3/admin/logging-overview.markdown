@@ -283,8 +283,8 @@ com.gigaspaces.core.classloadercleaner.level = INFO
 com.gigaspaces.core.classloadercache.level = INFO
 ```
 
-XAP applications run as part of a XAP runtime container, and are packaged using the structure described [here](../dev-java/the-processing-unit-structure-and-configuration.html).
-Application JARs/classes are packaged in different folders, and some of the classes may be loaded as part of GigaSpaces containers (GSCs). There are multiple class loaders involved when an application is running. More information about the class loaders and their hierarchy can be found [here](../dev-java/the-processing-unit-structure-and-configuration.html).
+XAP applications run as part of a XAP runtime container, and are packaged using the structure described [here]({{%currentjavaurl%}}/the-processing-unit-structure-and-configuration.html).
+Application JARs/classes are packaged in different folders, and some of the classes may be loaded as part of GigaSpaces containers (GSCs). There are multiple class loaders involved when an application is running. More information about the class loaders and their hierarchy can be found [here]({{%currentjavaurl%}}/the-processing-unit-structure-and-configuration.html).
  
 ## Space
 
@@ -322,7 +322,7 @@ com.gigaspaces.persistent.shared_iterator.level = INFO
 org.hibernate.level = WARNING
 ```
 
-The GigaSpaces persistence options are explained here {{%currentjavanet "space-persistency-overview.html"%}}. One of the packaged External Data Source implementations uses Hibernate. It is called Hibernate External Data Source, which is described [here](../dev-java/hibernate-space-persistency.html).
+The GigaSpaces persistence options are explained here {{%currentjavanet "space-persistency-overview.html"%}}. One of the packaged External Data Source implementations uses Hibernate. It is called Hibernate External Data Source, which is described [here]({{%currentjavaurl%}}/hibernate-space-persistency.html).
 
 ### Query
 
@@ -349,8 +349,8 @@ More information about the LRU policy and eviction behavior is available [here](
 com.gigaspaces.core.notify.level = INFO
 ```
 
-The Notification mechanism can be used to identify events related to Space data (write, update, take, etc). Notifications are typically used with a [Notify Container](../dev-java/notify-container-overview.html).
-Notifications can also be used via Session-based messaging, which is discussed in detail [here](../dev-java/session-based-messaging-api.html).
+The Notification mechanism can be used to identify events related to Space data (write, update, take, etc). Notifications are typically used with a [Notify Container]({{%currentjavaurl%}}/notify-container-overview.html).
+Notifications can also be used via Session-based messaging, which is discussed in detail [here]({{%currentjavaurl%}}/session-based-messaging-api.html).
 
 ### FIFO
 
@@ -399,7 +399,7 @@ When there are multiple instances (primary/backup(s)), an Active-Election proces
 com.gigaspaces.pojo.level = INFO
 ```
 
-This logger corresponds to XAP POJO support. More information is available [here](../dev-java/pojo-overview.html).
+This logger corresponds to XAP POJO support. More information is available [here]({{%currentjavaurl%}}/pojo-overview.html).
 
 ### XA Manager
 
@@ -439,7 +439,7 @@ The SpaceURL and its constraints are explained here {{%currentjavanet "the-space
 com.gigaspaces.worker.multicast.level = INFO
 ```
 
-Space notifications support multicast mode, and this logger corresponds to multicast [functionality](../dev-java/session-based-messaging-api.html#AdvancedOptions).
+Space notifications support multicast mode, and this logger corresponds to multicast [functionality]({{%currentjavaurl%}}/session-based-messaging-api.html#AdvancedOptions).
 
 #  Runtime
 
@@ -507,7 +507,7 @@ The GigaSpaces Container (GSC) is the runtime environment for GigaSpaces applica
 org.openspaces.grid.esm.level = INFO
 ```
 
-The Elastic Service Manager (ESM) is an implementation of the Elastic Middleware Services. It is built on top of the existing administrative API exposed by the GigaSpaces components. See the [Elastic Service Manager](../dev-java/elastic-processing-unit-overview.html) page for more details.
+The Elastic Service Manager (ESM) is an implementation of the Elastic Middleware Services. It is built on top of the existing administrative API exposed by the GigaSpaces components. See the [Elastic Service Manager]({{%currentjavaurl%}}/elastic-processing-unit-overview.html) page for more details.
 
 
 ## GSA
@@ -558,7 +558,7 @@ web.level = INFO
 org.mortbay.level = WARNING
 ```
 
-XAP uses a Jetty container to provide support for Web applications. These loggers correspond to the Web Container. More information about GigaSpaces Web Application support is available [here](../dev-java/web-jetty-processing-unit-container.html).
+XAP uses a Jetty container to provide support for Web applications. These loggers correspond to the Web Container. More information about GigaSpaces Web Application support is available [here]({{%currentjavaurl%}}/web-jetty-processing-unit-container.html).
  
 #  Mule Integration
 
@@ -570,7 +570,7 @@ org.mule.RegistryContext.level = INFO
 org.openspaces.esb.mule.level = WARNING
 ```
 
-These loggers correspond to the Mule integration. More information about Mule integration is available in the [Mule ESB](../dev-java/mule-esb.html) and [Mule Processing Unit](../dev-java/mule-processing-unit.html) topics.
+These loggers correspond to the Mule integration. More information about Mule integration is available in the [Mule ESB]({{%currentjavaurl%}}/mule-esb.html) and [Mule Processing Unit]({{%currentjavaurl%}}/mule-processing-unit.html) topics.
  
 
 #  Management

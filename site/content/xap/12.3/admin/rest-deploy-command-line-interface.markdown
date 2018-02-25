@@ -27,7 +27,7 @@ gs> deploy-rest -spacename [space name] -port [port number]
 
 ## Description
 
-Deploys a [Rest Processing Unit](../dev-java/rest-service-overview.html), which starts an embedded jetty and enables interactions with the provided `spacename`.
+Deploys a [Rest Processing Unit]({{%currentjavaurl%}}/rest-service-overview.html), which starts an embedded jetty and enables interactions with the provided `spacename`.
 
 The processing unit's name will be `spacename`-rest unless the -puname [name] option is provided.
 

@@ -10,7 +10,7 @@ This section describes the available XAP runtime configuration parameters.
 
 {{% anchor GSRuntimeEnv %}}
 
-The basic unit of deployment in the GigaSpaces XAP platform is the [Processing Unit](../dev-java/the-processing-unit-overview.html).
+The basic unit of deployment in the GigaSpaces XAP platform is the [Processing Unit]({{% currentjavaurl%}}/the-processing-unit-overview.html).
 
 After is it packaged, a Processing Unit is deployed to the XAP runtime environment, which is called the *Service Grid*. The Service Grid is responsible for materializing the Processing Unit's configuration, provisioning its instances to the runtime infrastructure, and making sure the instances continue to run properly over time.
 
@@ -38,7 +38,7 @@ In previous XAP versions, the Grid Service Manager and Lookup Service were stand
 For backward compatibility and to simplify the upgrade process, you can still start the LUS and GSM independently. However, future releases may include additional new features and functionality that will require using the XAP Manager.
 {{%  /info %}}
 
-All of the above components are fully manageable from management interfaces such as the [XAP Management Center](gigaspaces-management-center.html), the command line interface, and the [Admin API](../dev-java/administration-and-monitoring-overview.html).
+All of the above components are fully manageable from management interfaces such as the [XAP Management Center](gigaspaces-management-center.html), the command line interface, and the [Admin API]({{% currentjavaurl%}}/administration-and-monitoring-overview.html).
 
 {{% align center%}}
 [comment]: <> (![gs_runtime.jpg](/attachment_files/gs_runtime.jpg))
@@ -82,7 +82,7 @@ The Grid Service Agent (gs-agent) is a process manager that can spawn and manage
 
 Usually, each machine runs a single gs-agent. If you are setting up multiple Service Grids separated by [Lookup Groups or Locators](#lus), you will probably start a gs-agent per machine, per group.
 
-The gs-agent exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API](../dev-java/administration-and-monitoring-overview.html) or the XAP Management Center.
+The gs-agent exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API]({{% currentjavaurl%}}/administration-and-monitoring-overview.html) or the XAP Management Center.
 
 # High Availability
 

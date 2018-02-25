@@ -28,7 +28,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("xapTutor
 
 You can configure the Space connection with several options.
 
-{{%refer%}}[The Space Configuration](../dev-java/the-space-configuration.html){{%/refer%}}
+{{%refer%}}[The Space Configuration]({{%currentjavaurl%}}/the-space-configuration.html){{%/refer%}}
 
 
 When a client connects to a space, a proxy is created that holds a connection which implements the space API. All client interaction is performed through this proxy.
@@ -42,7 +42,7 @@ In both cases, updates are performed (objects are added/updated/removed) on the 
 
 These two scenarios are only applicable for remote clients.
 
-{{%refer%}}[Client Side Caching](../dev-java/client-side-caching.html){{%/refer%}}
+{{%refer%}}[Client Side Caching]({{%currentjavaurl%}}/client-side-caching.html){{%/refer%}}
 
 
 
@@ -93,7 +93,7 @@ The space generates a unique identifier (UID) for every object in one of the fol
 ## Compound SpaceId
 You might need to construct a space id that will be comprised from a user defined class rather than using a Numeric or String type field. In such a case your user defined class used as the SpaceId data type must implement the toString , hashCode and equals methods. The compound ID class must implement a toString method that return a unique String for each ID.
 
-{{%refer%}}[The Space Object Id](../dev-java/space-object-id-operations.html){{%/refer%}}
+{{%refer%}}[The Space Object Id]({{%currentjavaurl%}}/space-object-id-operations.html){{%/refer%}}
 
 
 ## Defining Routing
@@ -106,7 +106,7 @@ The routing attribute can be explicitly set using the @SpaceRouting annotation f
 
 {{%/info%}}
 
-{{%refer%}}[Routing in partitioned Space](../dev-java/routing-in-partitioned-spaces.html){{%/refer%}}
+{{%refer%}}[Routing in partitioned Space]({{%currentjavaurl%}}/routing-in-partitioned-spaces.html){{%/refer%}}
 
 # Space Document
 
@@ -157,7 +157,7 @@ It is possible to write a POJO to the space and read it back as a document, and 
 
 {{%/info%}}
 
-{{%refer%}}[Document POJO Interoperability](../dev-java/document-pojo-interoperability.html){{%/refer%}}
+{{%refer%}}[Document POJO Interoperability]({{%currentjavaurl%}}/document-pojo-interoperability.html){{%/refer%}}
 
 # Interacting with the Space
 
@@ -220,7 +220,7 @@ public void writeOnlyWithLease() {
 
 In this example, we are writing an object to the space with zero delay, 10 seconds to live and write only if the object does not already exist in the space. If the object already exists, an exception will be thrown.
 
-{{%refer%}}[The Space Operations](../dev-java/the-space-operations.html){{%/refer%}}
+{{%refer%}}[The Space Operations]({{%currentjavaurl%}}/the-space-operations.html){{%/refer%}}
 
 
 ## Updating an object in space
@@ -247,7 +247,7 @@ public void ChangeSet() {
 
 There are several other change operations available; 'increment', 'decrement', 'addToCollection', 'removeFromCollection' etc.
 
-{{%refer%}}[The Change API](../dev-java/change-api-overview.html){{%/refer%}}
+{{%refer%}}[The Change API]({{%currentjavaurl%}}/change-api-overview.html){{%/refer%}}
 
 # Querying the Space
 
@@ -327,7 +327,7 @@ public User[] sqlFindUsersByNameAndIds() {
 }
 ```
 
-{{%refer%}}[SQL Query](../dev-java/query-sql.html){{%/refer%}}
+{{%refer%}}[SQL Query]({{%currentjavaurl%}}/query-sql.html){{%/refer%}}
 
 ## Parameterized Queries
 You can separate the values for the SQL criteria expression by placing a '?' symbol instead of the actual value in the expression. When executing the query, the conditions that includes '?' are replaced with the corresponding parameter values supplied via the setParameter  method.
@@ -375,7 +375,7 @@ public User[] findUsersByGroup() {
 
 There are several additional query options available. For example you can query Nested Maps by key,query with Regular Expression, Enum attributes and others.
 
-{{%refer%}}[Query Netsed Properties](../dev-java/query-nested-properties.html){{%/refer%}}
+{{%refer%}}[Query Netsed Properties]({{%currentjavaurl%}}/query-nested-properties.html){{%/refer%}}
 
 
 ## Query returning partial results
@@ -394,7 +394,7 @@ public User[] findUsersByNameAndProjection() {
 }
 ```
 
-{{%refer%}}[Query Partial results](../dev-java/query-partial-results.html){{%/refer%}}
+{{%refer%}}[Query Partial results]({{%currentjavaurl%}}/query-partial-results.html){{%/refer%}}
 
 
 ## Document Queries
@@ -421,7 +421,7 @@ public SpaceDocument[] readProductsBySQL() {
 }
 ```
 
-{{%refer%}}[The Document API](../dev-java/document-api.html){{%/refer%}}
+{{%refer%}}[The Document API]({{%currentjavaurl%}}/document-api.html){{%/refer%}}
 
 
 ##  Geospatial Query  
@@ -507,7 +507,7 @@ XAP supports the following shapes:
 
 ### Queries
 
-Spatial queries are available through the `spatial:` extension to the [SQL query syntax](../dev-java/query-sql.html). The following operations are supported:
+Spatial queries are available through the `spatial:` extension to the [SQL query syntax]({{%currentjavaurl%}}/query-sql.html). The following operations are supported:
 
 |  Query   |  Description   |
 |:-----|:-------|
@@ -517,7 +517,7 @@ Spatial queries are available through the `spatial:` extension to the [SQL query
 
 
 {{%refer%}}
-[Geospatial Queries](../dev-java/query-geospatial.html)
+[Geospatial Queries]({{%currentjavaurl%}}/query-geospatial.html)
 {{%/refer%}}
 
 
@@ -580,7 +580,7 @@ public void clearAllObjectInSpace() {
 ```
 
 
-{{%refer%}}[The Space Operations](../dev-java/the-space-operations.html){{%/refer%}}
+{{%refer%}}[The Space Operations]({{%currentjavaurl%}}/the-space-operations.html){{%/refer%}}
 
 
 ## Aggregation
@@ -611,7 +611,7 @@ Person youngestPersonInSpace = minEntry(space, query, "age");
 
 XAP also supports, `Compound`, `Embedded Fields` and `Group` Aggregation.
 
-{{%refer%}}[Aggregators](../dev-java/aggregators.html){{%/refer%}}
+{{%refer%}}[Aggregators]({{%currentjavaurl%}}/aggregators.html){{%/refer%}}
 
 
 # Indexing
@@ -687,7 +687,7 @@ SQLQuery<User> query = new SQLQuery<User>(User.class,"name = 'John Doe' AND cred
 
 There are several additional indexing options available. For example you can index nested attributes, Nested Maps, Collections, nested attributes within a Collection, free text search and others.
 
-{{%refer%}}[Indexing](../dev-java/indexing-overview.html){{%/refer%}}
+{{%refer%}}[Indexing]({{%currentjavaurl%}}/indexing-overview.html){{%/refer%}}
 
 
 # Best Practice
@@ -723,7 +723,7 @@ There are several additional indexing options available. For example you can ind
 # Other Data Access API's
 XAP provides a JDBC Driver, JPA API, MAP and Memcached API's.
 
-{{%refer%}}[Other Data Access API's](../dev-java/other-data-access-apis.html){{%/refer%}}
+{{%refer%}}[Other Data Access API's]({{%currentjavaurl%}}/other-data-access-apis.html){{%/refer%}}
 
 
 

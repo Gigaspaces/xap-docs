@@ -27,7 +27,7 @@ gs> deploy-application [-user xxx -password yyy] [-secured true/false] applicati
 
 ## Description
 
-Deploys an [application](../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies), which deploys one or more processing units in dependency order onto the service grid.
+Deploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies), which deploys one or more processing units in dependency order onto the service grid.
 
 
 ## Options
@@ -98,7 +98,7 @@ gs> undeploy-application application_name
 
 ## Description
 
-Undeploys an [application](../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
+Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
 
 
 
@@ -139,7 +139,7 @@ The `deploy` command replaces the `pudeploy` command and is identical to it in t
 
 ## Description
 
-A Processing Unit can be easily deployed onto the Service Grid. In order to deploy a Processing Unit, the Processing Unit must follow the [processing unit directory structure](../dev-java/the-processing-unit-structure-and-configuration.html).
+A Processing Unit can be easily deployed onto the Service Grid. In order to deploy a Processing Unit, the Processing Unit must follow the [processing unit directory structure]({{%currentjavaurl%}}/the-processing-unit-structure-and-configuration.html).
 Before deploying the processing unit you will need to jar it and then specify that jar file as the parameter to the `deploy` command. The deployment process will upload the jar file to all the GSMs it finds and unpack it under the `deploy` directory. It will then issue the deploy command.
 
 {{% tip %}}
@@ -161,9 +161,9 @@ Property files and other resources should be jared and placed within any of the 
 
 |Option|Description|Value Format|
 |:-----|:----------|:-----------|
-| Processing Unit Location/Name -- **mandatory** | The location of the processing unit directory or jar file on your file system (see [this page](../dev-java/deploying-onto-the-service-grid.html)).<br>If you are using a few options in the `deploy` command, pass this option as the **last parameter**.<br>For example: `gs> deploy hello-world.jar`<br>(`hello-world.jar` is the processing jar file). | |
+| Processing Unit Location/Name -- **mandatory** | The location of the processing unit directory or jar file on your file system (see [this page]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html)).<br>If you are using a few options in the `deploy` command, pass this option as the **last parameter**.<br>For example: `gs> deploy hello-world.jar`<br>(`hello-world.jar` is the processing jar file). | |
 | -cluster |Allows you to control the clustering characteristics of the processing unit.<br>The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists).<br>The following options are available (used automatically by any embedded space included in the Processing Unit):<br>- `schema` -- the cluster schema used by the Processing Unit.<br>- `total_members` -- the number of instances, optionally followed by the number of backups<br>(number of backups is required only if the `partitioned` schema is used). | `-cluster schema=[schema name]`<br>`total_members=`<br>`numberOfInstances[,numberOfBackups]` |
-| -properties | Allows you to control [deployment properties](../dev-java/deployment-properties.html). | `-properties [bean name] location` |
+| -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | -properties embed | Direct property injection | -properties embed://user=admin|
 | -sla | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
 | -zones | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1 zoneName2 ... ]` |
@@ -254,7 +254,7 @@ gs> undeploy-application application_name
 
 ## Description
 
-Undeploys an [application](../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
+Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
 
 
 ## Options
@@ -298,7 +298,7 @@ gs> deploy-memcached [-sla ...] [-cluster ...] [-properties ...] [-user xxx -pas
 |:-----|:----------|:-----------|
 | space_url | The url of the space, can be embedded, eg: `/./myMemcachedSpace`, or remote eg: `jini://*/*/myMemcachedSpace` | |
 | -cluster |Allows you to control the clustering characteristics of the processing unit. <br>The cluster option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such exists). <br>The following options are available (used automatically by any embedded space included in the Processing Unit):<br>- `schema` -- the cluster schema used by the Processing Unit.<br>- `total_members` -- the number of instances, optionally followed by the number of backups <br>(number of backups is required only if the `partitioned` schema is used). | `-cluster schema=[schema name]`<br> `total_members=numberOfInstances[,numberOfBackups]` |
-| -properties | Allows you to control [deployment properties](../dev-java/deployment-properties.html). | `-properties [bean name] location` |
+| -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | -sla | Allows you to specify a link (defaults to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
 | -zones | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
 | -timeout | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.<br>Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
@@ -347,7 +347,7 @@ A Space only Processing Unit can be easily deployed onto the Service Grid.
 |:-----|:----------|:-----------|
 | Space Name -- **mandatory** | The name of the space to be deployed.| |
 | -cluster |Allows you to control the clustering characteristics of the space.<br>The following options are available (used automatically by any embedded space included in the Processing Unit):<br>- `schema` -- the cluster schema used by the Processing Unit.<br>- `total_members` -- the number of instances, optionally followed by the number of backups <br>  (number of backups is required only if the `partitioned` schema is used). | `-cluster schema=[schema name]`<br>`total_members=numberOfInstances[,numberOfBackups]` |
-| -properties | Allows you to control [deployment properties](../dev-java/deployment-properties.html). | `-properties [bean name] location` |
+| -properties | Allows you to control [deployment properties]({{%currentjavaurl%}}/deployment-properties.html). | `-properties [bean name] location` |
 | -sla | Allows you to specify a link (default to file-system) to a Spring XML configuration, holding the SLA definition. | `-sla [slaLocation]` |
 | -zones | Allows you to specify a list of deployment zones that are to restrict that the deployment to specific GSCs. | `-zones [zoneName1, zoneName2 ... ]` |
 | -max-instances-per-vm | Allows you to set the SLA number of instances per VM | |

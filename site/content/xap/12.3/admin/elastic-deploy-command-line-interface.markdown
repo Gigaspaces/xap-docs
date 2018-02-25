@@ -23,7 +23,7 @@ gs> deploy-application [-user xxx -password yyy] [-secured true/false] applicati
 
 ## Description
 
-Deploys an [application](../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies), which deploys one or more processing units in dependency order onto the service grid.
+Deploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies), which deploys one or more processing units in dependency order onto the service grid.
 
 {{% note %}}
 Deploying an application that is a mixture of elastic and non-elastic spaces/processing units may end with the non-elastic spaces/processing units deployed on GSCs which are shared with elastic spaces/processing units that the ESM has started.
@@ -85,7 +85,7 @@ application.xml file describes the application dependencies:
 </beans>
 ```
 
-A [dedicated machine provisioning](../dev-java/elastic-processing-unit-provisioning.html) config can be provided to elastic space/pu element:
+A [dedicated machine provisioning]({{%currentjavaurl%}}/elastic-processing-unit-provisioning.html) config can be provided to elastic space/pu element:
 
 
 ```xml
@@ -96,7 +96,7 @@ A [dedicated machine provisioning](../dev-java/elastic-processing-unit-provision
 </os-admin:elastic-space>
 ```
 
-You can also use the [shared machine provisioning](../dev-java/elastic-processing-unit-provisioning.html#shared-machine-provisioning) config that allows two processing units to share the same machine:
+You can also use the [shared machine provisioning]({{%currentjavaurl%}}/elastic-processing-unit-provisioning.html#shared-machine-provisioning) config that allows two processing units to share the same machine:
 
 
 ```xml
@@ -136,7 +136,7 @@ gs> undeploy-application application_name
 
 ## Description
 
-Undeploys an [application](../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
+Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
 
 
 ## Example

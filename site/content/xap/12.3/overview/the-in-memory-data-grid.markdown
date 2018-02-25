@@ -225,7 +225,7 @@ With asynchronous replication, this replication is done in a separate thread, an
 
 The space is an in-memory data grid. As such its capacity is limited to the sum of the memory capacity of all the JVMs on which the space instances run.
 In many cases, you have to deal with larger portions of data, or load a subset of a larger data set, which resides in an external data source such as a relational database, into the space.
-The space supports many [persistency options](../dev-java/space-persistency-overview.html), allowing you to easily configure how it interacts with an external relational database, or a more exotic source of data.
+The space supports many [persistency options]({{%currentjavaurl%}}/space-persistency-overview.html), allowing you to easily configure how it interacts with an external relational database, or a more exotic source of data.
 It supports the following options, from which you can choose:
 
 - Cache warm-up: load data from an external data source on startup.

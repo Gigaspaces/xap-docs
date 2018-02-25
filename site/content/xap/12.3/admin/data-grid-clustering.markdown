@@ -14,24 +14,24 @@ XAP's data grid clustering, scalability and high availability are based on the f
 **Scalability**
 
 - Data is segmented into [partitions](./data-partitioning.html). Each partition includes a primary instance and ZERO or more backup instances. A partition (primary or a backup) is hosted within a single [Grid Service Container (GSC)]({{%currentadmurl%}}/the-runtime-environment.html).
-- Data access is load balanced across the different partitions, using a routing field or a [routing value](../dev-java/routing-in-partitioned-spaces.html) specified as part of the Space object or as part of the read/execute request. This allows the application to control the data distribution in a transparent manner.
-- Some operations, such as batch read or [execute](../dev-java/task-execution-overview.html), support [map-reduce](../dev-java/space-based-remoting-overview.html) behavior. This allows the application to access multiple partitions in parallel.
+- Data access is load balanced across the different partitions, using a routing field or a [routing value]({{%currentjavaurl%}}/routing-in-partitioned-spaces.html) specified as part of the Space object or as part of the read/execute request. This allows the application to control the data distribution in a transparent manner.
+- Some operations, such as batch read or [execute]({{%currentjavaurl%}}/task-execution-overview.html), support [map-reduce]({{%currentjavaurl%}}/space-based-remoting-overview.html) behavior. This allows the application to access multiple partitions in parallel.
 - The maximum partition  size is the GSC heap size. XAP supports a large heap size (up to 100GB in RAM). A GSC may host multiple partitions (primary or backup instances).
 - A data grid may have an unlimited number of partitions. In reality, the number of partitions will be of the same magnitude as the number of GSCs or servers that are running the data grid. This allows the data grid to scale dynamically and re-balance itself across additional GSCs.
-- The number of data grid partitions is determined at deployment time. The number of GSCs hosting the data grid partitions is dynamic and may change during runtime. It can scale in an [elastic](../dev-java/elastic-processing-unit-overview.html) manner when using the ESM.
+- The number of data grid partitions is determined at deployment time. The number of GSCs hosting the data grid partitions is dynamic and may change during runtime. It can scale in an [elastic]({{%currentjavaurl%}}/elastic-processing-unit-overview.html) manner when using the ESM.
  
 
 **High Availability**
 
 - Data has high availability using [synchronous replication](./synchronous-replication.html) to remote in-memory backups.
 - Backup instances are always running on physical machines other than the machines running primary instances.
-- Persistency to database/disk is done in a reliable [asynchronous manner](../dev-java/asynchronous-persistency-with-the-mirror.html).
+- Persistency to database/disk is done in a reliable [asynchronous manner]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html).
 - When an instance of the system [fails](./failover.html), a new one is recreated on the fly on an available machine. If the failed instance is a primary, the existing backup becomes the new primary and a another backup is created.
 - You can have more than one backup copy per partition.
-- Backup can be on the LAN or WAN. For remote WAN, a special replication module called the [replication Gateway](../dev-java/multi-site-replication-overview.html ) is provided.
+- Backup can be on the LAN or WAN. For remote WAN, a special replication module called the [replication Gateway]({{%currentjavaurl%}}/multi-site-replication-overview.html ) is provided.
 - Backup instances cannot be accessed by clients for read/write. This ensures total data consistency and prevents conflicts.
 - When a backup instance is not available, the primary instance logs all activities (on file or [overflow to disk](./controlling-the-replication-redo-log.html)) and sends them to the backup instance when it becomes available (only the delta). If If there is a long disconnection time, then a total recovery of the backup is conducted.
-- The transaction boundary is preserved when data is replicated from a primary instance to the backup instance, when persisting the data or when replicating the data to a remote site over the WAN ([WAN Gateway](../dev-java/multi-site-replication-overview.html)).
+- The transaction boundary is preserved when data is replicated from a primary instance to the backup instance, when persisting the data or when replicating the data to a remote site over the WAN ([WAN Gateway]({{%currentjavaurl%}}/multi-site-replication-overview.html)).
  
 
 # Consistency

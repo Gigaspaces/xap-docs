@@ -17,7 +17,7 @@ The word "multicast" is typically used to refer to IP Multicast, the implementat
 
 XAP uses multicast in the following cases:
 
-- [When deploying to the service grid](../dev-java/deploying-onto-the-service-grid.html) XAP uses multicast to discover the [Lookup Service](./network-lookup-service-configuration.html ), and register their proxies.
+- [When deploying to the service grid]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html) XAP uses multicast to discover the [Lookup Service](./network-lookup-service-configuration.html ), and register their proxies.
 - Clients use multicast to discover the [Lookup Service](./network-lookup-service-configuration.html ) and look up a matching service proxy (such as the space).
 
 **What should I do in order to determine if multicast is enabled on my environment?**<br>

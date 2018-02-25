@@ -74,7 +74,7 @@ If there are other space instances in the same replication group, they don't rep
 
 Primary and Backup space instances use the same database to stored their data. The space is the system of record. The data is usually persisted through the Mirror service.
 Which data is recovered depends on the space caching policy.
-There is special handling for [Transient Entries](../dev-java/transient-entries.html) (`persist=false`), since they can't be persisted - they are always recovered from the primary.
+There is special handling for [Transient Entries]({{%currentjavaurl%}}/transient-entries.html) (`persist=false`), since they can't be persisted - they are always recovered from the primary.
 
 ### All In Cache Policy
 
@@ -118,7 +118,7 @@ With this scenario:
 1. If the database is empty --> target space instance recovers everything from the source.
 1. If database has data --> recover persistent objects from the database + recover transient objects from the source.
 
-For further info and configuration options see [Distributed Databases](../dev-java/direct-persistency.html#Distributed Databases)
+For further info and configuration options see [Distributed Databases]({{%currentjavaurl%}}/direct-persistency.html#Distributed Databases)
 
 ## Space Instance Recovery Failure Handling
 

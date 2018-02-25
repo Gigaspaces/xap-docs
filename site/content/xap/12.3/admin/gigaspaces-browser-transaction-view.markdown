@@ -28,7 +28,7 @@ The Transactions view allows you to view all of the transactions that are curren
 {{% /align %}}
 
 {{% refer %}}
-For details on transactions, refer to the [Transaction Management](../dev-java/transaction-overview.html) section.
+For details on transactions, refer to the [Transaction Management]({{%currentjavaurl%}}/transaction-overview.html) section.
 {{% /refer %}}
 
 {{% anchor 2 %}}

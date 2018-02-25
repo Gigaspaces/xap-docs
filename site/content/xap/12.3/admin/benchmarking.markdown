@@ -15,7 +15,7 @@ Benchmarks should test simple and complex queries, because GigaSpaces applicatio
 
 Another dimension for these tests is concurrency, which measures how the system scales as a function of the amount of concurrent remote users or co-located threads accessing the system.
 
-Grid size (the topology) is also a factor. This measures how the system scales as a function of the number of data-grid nodes leveraging the [In-Memory-Map-Reduce API](../dev-java/task-execution-overview.html). The [client side caching](../dev-java/client-side-caching.html) component, which is viable in many scenarios, should also be tested (read-mostly scenarios). The performance benchmark matrix is extensive, and requires a benchmark tool to support all of the options/scenarios.
+Grid size (the topology) is also a factor. This measures how the system scales as a function of the number of data-grid nodes leveraging the [In-Memory-Map-Reduce API]({{%currentjavaurl%}}/task-execution-overview.html). The [client side caching]({{%currentjavaurl%}}/client-side-caching.html) component, which is viable in many scenarios, should also be tested (read-mostly scenarios). The performance benchmark matrix is extensive, and requires a benchmark tool to support all of the options/scenarios.
 
 # Results
 

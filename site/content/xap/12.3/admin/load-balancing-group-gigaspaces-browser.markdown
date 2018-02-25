@@ -14,6 +14,6 @@ If a group defines a load-balancing policy, it is called a load-balancing group 
 If a space belongs to a failover group and a load-balancing group, it must be the same group. If there is a space failure in the group, load-balancing will continue among the space members in the group (as long as there is at least one live space in the group) according to the load-balancing policy.
 
 {{% refer %}}
-For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit](../dev-java/elastic-processing-unit-overview.html) section.
+For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html) section.
 {{% /refer %}}
 

@@ -144,7 +144,7 @@ GigaSpace gigaSpace = (GigaSpace) getServletContext().getAttribute("xapTutorialS
 ```
 
 
-{{%refer%}}[Web Application Support](../dev-java/web-application-overview.html){{%/refer%}}
+{{%refer%}}[Web Application Support]({{%currentjavaurl%}}/web-application-overview.html){{%/refer%}}
 
 
 # Jetty Instance
@@ -160,7 +160,7 @@ Jetty itself is configured using Spring, and allows you to control all aspects o
 {{%/column%}}
 {{%/section%}}
 
-{{%refer%}}[Web Application Support](../dev-java/web-application-overview.html){{%/refer%}}
+{{%refer%}}[Web Application Support]({{%currentjavaurl%}}/web-application-overview.html){{%/refer%}}
 
 
 
@@ -259,7 +259,7 @@ Inspect session
 {{%/section%}}
 
 
-{{%refer%}}[HTTP Session Management](../dev-java/http-session-management.html){{%/refer%}}
+{{%refer%}}[HTTP Session Management]({{%currentjavaurl%}}/http-session-management.html){{%/refer%}}
 
  
 
@@ -282,7 +282,7 @@ The integration dynamically creates and updates the mod_proxy_balancer configura
 
  
  
-{{%refer%}}[Apache Load balancer Agent](../dev-java/apache-load-balancer-agent.html){{%/refer%}}
+{{%refer%}}[Apache Load balancer Agent]({{%currentjavaurl%}}/apache-load-balancer-agent.html){{%/refer%}}
 
 
 

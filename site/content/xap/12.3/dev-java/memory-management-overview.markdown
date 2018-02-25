@@ -30,7 +30,7 @@ The space supports the following two cache eviction policies:
 - [ALL IN CACHE Policy](./all-in-cache-cache-policy.html) (code 1) - Assumes the JVM hosting the Space instance has enough heap to hold all data in memory.
 - [LRU Cache Policy](./lru-cache-policy.html) (code 0) - Assumes the JVM hosting the Space instance does not have enough heap to hold all data in memory.
 
-By default, the ALL IN CACHE policy is used for an in-memory data grid, and LRU Cache policy is used for a persistent Space with [Space Persistency](./space-persistency-overview.html) enabled.
+By default, the ALL IN CACHE policy is used for an in-memory data grid, and LRU Cache policy is used for a persistent Space with [Space Persistency]({{%currentjavaurl%}}/space-persistency-overview.html) enabled.
 
 These policies are defined via the the `space-config.engine.cache_policy` property. The following example describes how it is configured:
 
@@ -110,7 +110,7 @@ LRU eviction can be costly, therefore it is done asynchronously by the memory ma
 
 # Explicit Eviction of Objects from the Space
 
-Objects can be evicted explicitly from the Space by calling a `takeMultiple` or `clear` operation on [the GigaSpace interface](./the-gigaspace-interface-overview.html), combined with the [TakeModifiers.EVICT_ONLY]({{% api-javadoc %}}/com/j_spaces/core/client/TakeModifiers.html) modifier. The `clear` operation only returns the number of objects actually evicted from the Space. The `takeMultiple` operation returns the actual objects that were evicted. See the following usage example:
+Objects can be evicted explicitly from the Space by calling a `takeMultiple` or `clear` operation on [the GigaSpace interface]({{%currentjavaurl%}}/the-gigaspace-interface-overview.html), combined with the [TakeModifiers.EVICT_ONLY]({{% api-javadoc %}}/com/j_spaces/core/client/TakeModifiers.html) modifier. The `clear` operation only returns the number of objects actually evicted from the Space. The `takeMultiple` operation returns the actual objects that were evicted. See the following usage example:
 
 {{%tabs%}}
 {{%tab "  Using clear "%}}
@@ -151,7 +151,7 @@ Note the following important information about the `TakeModifiers.EVICT_ONLY` mo
 
 The overall Space capacity is not necessarily limited to the capacity of its physical memory. Currently, there are two options for exceeding this limit:
 
-- **Using an LRU and [Space Persistency](./space-persistency-overview.html)** - in this mode, all the Space data is kept in the database so the Space capacity is dependent on database capacity rather than the memory capacity. The Space maintains (in memory) a partial image of the persistent view in an LRU basis.
+- **Using an LRU and [Space Persistency]({{%currentjavaurl%}}/space-persistency-overview.html)** - in this mode, all the Space data is kept in the database so the Space capacity is dependent on database capacity rather than the memory capacity. The Space maintains (in memory) a partial image of the persistent view in an LRU basis.
 - **Using [Partitioned Space](../overview/terminology.html)** - in this mode, the Space utilizes the physical memory of multiple JVMs. This means the application using the Space is able to access all the Space instances transparently, as if they were a single Space with a higher memory capacity.
 
 # Memory Manager Parameters
