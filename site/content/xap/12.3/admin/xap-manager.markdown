@@ -6,7 +6,7 @@ parent: runtime-configuration.html
 weight: 250
 ---
 
-The XAP Manager (or simply The Manager) is a component which stacks together the [LUS]({{%currentoverviewurl%}}/the-runtime-environment.html#lus) and [GSM]({{%currentoverviewurl%}}/the-runtime-environment.html#gsm) 
+The XAP Manager (or simply The Manager) is a component which stacks together the [LUS](../overview/the-runtime-environment.html#lus) and [GSM](../overview/the-runtime-environment.html#gsm) 
 along with {{%exurl "Apache ZooKeeper""http://zookeeper.apache.org/"%}} and an embedded web application which hosts an admin instance with a [RESTful management API](xap-manager-rest.html) on top of it.
 
 In addition to simplifying setup and management, the Manager also provides the following benefits:
