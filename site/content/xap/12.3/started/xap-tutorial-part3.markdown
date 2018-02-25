@@ -31,7 +31,7 @@ Task execution comes in two flavors:
 - Java Tasks - In this mode you can pass Java code from the client to the cluster to be executed on the data grid nodes. The code is dynamically introduced to the server nodes classpath.
 - Dynamic language tasks - Tasks can be defined using one of the dynamic languages supported by the JVM (JSR-223) and be compiled and executed on the fly. In this part of the tutorial we will not cover Dynamic language tasks.
 
-{{%refer%}}[Dynamic Language Tasks]({{%currentjavaurl%}}/task-dynamic-language.html){{%/refer%}}
+{{%refer%}}[Dynamic Language Tasks](../dev-java/task-dynamic-language.html){{%/refer%}}
 
 
 Java Tasks can be more efficient in terms of performance and tend to be more type-safe then dynamic tasks. Dynamic tasks on the other hand can be changed more frequently without causing class version conflicts and are more concise given the nature of dynamic languages..
@@ -132,7 +132,7 @@ public void executeTaskWithRouting() throws InterruptedException, ExecutionExcep
 
 There are other options available for task routing
 .
-{{%refer%}}[Task Execution over the Space]({{%currentjavaurl%}}/task-execution-overview.html){{%/refer%}}
+{{%refer%}}[Task Execution over the Space](../dev-java/task-execution-overview.html){{%/refer%}}
 
 
 
@@ -197,7 +197,7 @@ AsyncFuture<List<Merchant>> result = space.execute(task,1,2,3);
 XAP provides out of the box Aggregator Tasks.
 
 {{%refer%}}
-[Aggregators]({{%currentjavaurl%}}/aggregators.html)
+[Aggregators](../dev-java/aggregators.html)
 {{%/refer%}}
 
 
@@ -205,7 +205,7 @@ XAP provides out of the box Aggregator Tasks.
 The executor builder allows to combine several task executions (both distributed ones and non distributed ones) into a seemingly single execution (with a reduce phase).
 
 {{%refer%}}
-[Task Execution over the Space]({{%currentjavaurl%}}/task-execution-overview.html)
+[Task Execution over the Space](../dev-java/task-execution-overview.html)
 {{%/refer%}}
 
 
@@ -290,5 +290,5 @@ public class RemoteService {
 }
 ```
 
-{{%refer%}}[Space Based Remoting]({{%currentjavaurl%}}/space-based-remoting-overview.html){{%/refer%}}
+{{%refer%}}[Space Based Remoting](../dev-java/space-based-remoting-overview.html){{%/refer%}}
 

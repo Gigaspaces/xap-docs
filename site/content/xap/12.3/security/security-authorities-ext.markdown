@@ -25,7 +25,7 @@ In distributed systems, it may be confusing as to which service is performing th
 
 
 {{% note "Note"%}}
-When deploying an [elastic processing unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html), the *Provision PU* privilege is not enough - *Manage PU* and *Manage Grid* are required as well, since an elastic PU requires scaling and grid management.
+When deploying an [elastic processing unit](../dev-java/elastic-processing-unit-overview.html), the *Provision PU* privilege is not enough - *Manage PU* and *Manage Grid* are required as well, since an elastic PU requires scaling and grid management.
 {{%/note%}}
 
 # Monitor Authority

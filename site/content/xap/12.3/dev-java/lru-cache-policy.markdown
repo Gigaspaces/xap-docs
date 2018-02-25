@@ -44,7 +44,7 @@ The eviction activity running with the LRU policy is performed independently by 
 
 The `MEMORY_ONLY_SEARCH` modifier may be used to instruct the space to limit the query / template matching performed with read/take/clear/change operations to the data stored only in memory and not the space's backend persistence store (database). This give you the flexibility of minimizing the database load in cases where this modifier can be applied. 
 
-This is very useful When running with the `LRU` cache policy and deploying a [Polling Container]({{%currentjavaurl%}}/polling-container-overview.html). By default in such case, all `read`, `take` and `clear` operations will be conducted **both** against the space and the underlying persistent store. By using the `UseMemoryOnlySearch` Polling Container property, the operations invoked by the polling container will **only access the space** when conducting the search, without interacting with the persistent store.
+This is very useful When running with the `LRU` cache policy and deploying a [Polling Container](./polling-container-overview.html). By default in such case, all `read`, `take` and `clear` operations will be conducted **both** against the space and the underlying persistent store. By using the `UseMemoryOnlySearch` Polling Container property, the operations invoked by the polling container will **only access the space** when conducting the search, without interacting with the persistent store.
 
 Here's a polling container example using the `MEMORY_ONLY_SEARCH` modifier:
 
@@ -219,7 +219,7 @@ When setting the `space-config.engine.lruTouchThreshold` value as **100**, it tu
 
 # Reloading Data
 
-When a persistent space (using [Space Persistency]({{%currentjavaurl%}}/space-persistency-overview.html)), running in **LRU cache policy mode**, is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the `space-config.engine.cache_size` value.
+When a persistent space (using [Space Persistency](./space-persistency-overview.html)), running in **LRU cache policy mode**, is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the `space-config.engine.cache_size` value.
 
 When the `space-config.engine.memory_usage` is `true` (evicting data from the space, based on free heap size), is it recommended to have a large value for the `space-config.engine.cache_size` property. This instructs the space engine to ignore the amount of space objects when launching the eviction mechanism. This ensures that the eviction is based only on heap size free memory.
 

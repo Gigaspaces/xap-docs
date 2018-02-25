@@ -120,7 +120,7 @@ The following example shows how to do this using the XAP CLI:
 The above command deploys the Web Management Console to the XAP runtime environment, listening on port 80 with the root context path.
 
 {{%refer%}}
-For more information about XAP's web application support, refer to the [Web Application Support]({{%currentjavaurl%}}/web-application-overview.html) section in the Developer Guide.
+For more information about XAP's web application support, refer to the [Web Application Support](../dev-java/web-application-overview.html) section in the Developer Guide.
 {{%/refer%}}
 
 ## Third-Party JEE Servlet Container

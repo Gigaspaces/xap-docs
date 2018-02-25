@@ -54,13 +54,13 @@ This section lists extension artifacts. The group ID for these artifacts is `org
 
 | Artifact ID	   | Location in product | Required for |
 |------------------|---------------------|---|
-| xap-map 			    | ${XAP_HOME}/lib/optional/map/xap-map.jar | [Map API]({{%currentjavaurl%}}/map-api.html) |
-| xap-map-spring		| ${XAP_HOME}/lib/optional/map/xap-map-spring.jar | [Map API]({{%currentjavaurl%}}/map-api.html) |
-| xap-jms				| ${XAP_HOME}/lib/optional/jms/xap-jms.jar | [JMS]({{%currentjavaurl%}}/messaging-support.html) |
-| xap-jetty			| ${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty.jar | [Jetty PU Container]({{%currentjavaurl%}}/web-jetty-processing-unit-container.html) |
-| xap-mongodb			| ${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar | [MongoDB integration]({{%currentjavaurl%}}/mongodb.html) |
-| xap-spatial			| ${XAP_HOME}/lib/optional/spatial/xap-spatial.jar | [Geospatial Queries]({{%currentjavaurl%}}/query-geospatial.html) |
-| xap-full-text-search| ${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar | [Full Text Search]({{%currentjavaurl%}}/query-full-text-search.html) |
+| xap-map 			    | ${XAP_HOME}/lib/optional/map/xap-map.jar | [Map API](../dev-java/map-api.html) |
+| xap-map-spring		| ${XAP_HOME}/lib/optional/map/xap-map-spring.jar | [Map API](../dev-java/map-api.html) |
+| xap-jms				| ${XAP_HOME}/lib/optional/jms/xap-jms.jar | [JMS](../dev-java/messaging-support.html) |
+| xap-jetty			| ${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty.jar | [Jetty PU Container](../dev-java/web-jetty-processing-unit-container.html) |
+| xap-mongodb			| ${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar | [MongoDB integration](../dev-java/mongodb.html) |
+| xap-spatial			| ${XAP_HOME}/lib/optional/spatial/xap-spatial.jar | [Geospatial Queries](../dev-java/query-geospatial.html) |
+| xap-full-text-search| ${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar | [Full Text Search](../dev-java/query-full-text-search.html) |
 
 ## Premium Extensions
 
@@ -68,11 +68,11 @@ This section lists Premium artifacts. The group ID for these artifacts is `com.g
 
 | Artifact ID	   | Location in product | Required for |
 |------------------|---------------------|---|
-| xap-near-cache-spring | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar | [Client Side Caching]({{%currentjavaurl%}}/client-side-caching.html) |
-| xap-near-cache 		  | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar | [Client Side Caching]({{%currentjavaurl%}}/client-side-caching.html) |
+| xap-near-cache-spring | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar | [Client Side Caching](../dev-java/client-side-caching.html) |
+| xap-near-cache 		  | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar | [Client Side Caching](../dev-java/client-side-caching.html) |
 | xap-security		  | ${XAP_HOME}/lib/optional/security/xap-security.jar | [Security](../security/) |
 | xap-zookeeper		  | ${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar | [Consistency-biased leader election]({{%currentadmurl%}}/leader-election-consistency-biased.html) |
-| xap-admin 			  | ${XAP_HOME}/lib/platform/service-grid/xap-admin.jar | [Admin API]({{%currentjavaurl%}}/administration-and-monitoring-overview.html)|
+| xap-admin 			  | ${XAP_HOME}/lib/platform/service-grid/xap-admin.jar | [Admin API](../dev-java/administration-and-monitoring-overview.html)|
 
 ## Enterprise Extensions
 
@@ -81,5 +81,5 @@ This section lists Enterprise artifacts. The group ID for these artifacts is `co
 | Artifact ID	   | Location in product | Required for |
 |------------------|---------------------|---|
 | xap-mx-rocksdb | ${XAP_HOME}/lib/optional/memoryxtend/rocksdb/xap-mx-rocksdb.jar | [MemoryXtend - SSD]({{%currentadmurl%}}/memoryxtend-overview.html)
-| xap-wan-gateway-spring| ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar | [WAN Replication]({{%currentjavaurl%}}/multi-site-replication-overview.html) |
-| xap-wan-gateway		  | ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar | [WAN Replication]({{%currentjavaurl%}}/multi-site-replication-overview.html) |
+| xap-wan-gateway-spring| ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar | [WAN Replication](../dev-java/multi-site-replication-overview.html) |
+| xap-wan-gateway		  | ${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar | [WAN Replication](../dev-java/multi-site-replication-overview.html) |

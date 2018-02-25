@@ -152,7 +152,7 @@ In the **Txn Manager URL** text box, specify the host name and port in which you
 
 - You can choose how many operations are performed before a transaction is committed. Default is **Commit every 1 operation**, meaning the transaction is committed after every single operation.
 
-{{% refer %}}For more details on transactions, refer to [Transaction Manager]({{%currentjavaurl%}}/transaction-overview.html).{{% /refer %}}
+{{% refer %}}For more details on transactions, refer to [Transaction Manager](../dev-java/transaction-overview.html).{{% /refer %}}
 
 ## Master-Local
 

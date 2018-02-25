@@ -143,7 +143,7 @@ When a conflict happens you may observe the following messages in the logs:
 - Replication detected illegal take operation on entry uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry class name wasn't replicated. Ignoring the illegal operation. 
 
 {{% refer %}}
-This conflict resolution does not cover replication over WAN when using the WAN Gateway. This has a different [Conflict resolution mechanism]({{%currentjavaurl%}}/multi-site-conflict-resolution.html).
+This conflict resolution does not cover replication over WAN when using the WAN Gateway. This has a different [Conflict resolution mechanism](../dev-java/multi-site-conflict-resolution.html).
 {{%/refer%}}
 
 #   Optimizations
@@ -154,7 +154,7 @@ For example the take operation only replicates the object ID to minimize the net
 Additional optimizations that can affect the replication performance is the update operation. Regular object updates replicate the whole object state - all the properties even those that were not changed. This can be optimized by using `WriteModifier.PARTIAL_UPDATE` modifier when performing the object update. When this modifier is used, the replication will replicate only the changed properties and not the whole object.
 
 {{% refer %}}
-When mirror is used additional settings are required to support the partial update. See [Optimizing the Mirror Activity]({{%currentjavaurl%}}/asynchronous-persistency-with-the-mirror.html#Optimizing the Mirror Activity).
+When mirror is used additional settings are required to support the partial update. See [Optimizing the Mirror Activity](../dev-java/asynchronous-persistency-with-the-mirror.html#Optimizing the Mirror Activity).
 {{%/refer%}}
 
 #   Filters

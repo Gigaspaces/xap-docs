@@ -527,11 +527,11 @@ Executor-based remoting {{%currentjavanet "executor-based-remoting.html" %}} all
 # Event-Driven Remoting
 
 
-[Event-driven remoting]({{%currentjavaurl%}}/event-driven-remoting.html) allows you to use remote invocations of POJO services with the Space as the transport layer, using a polling container on the Space side to process the invocations. Under the wires, event-driven remoting uses the Space write and take capabilities. As such, you must have Write and Take privileges (at both ends) for class `org.openspaces.remoting.EventDrivenSpaceRemotingEntry`.
+[Event-driven remoting](../dev-java/event-driven-remoting.html) allows you to use remote invocations of POJO services with the Space as the transport layer, using a polling container on the Space side to process the invocations. Under the wires, event-driven remoting uses the Space write and take capabilities. As such, you must have Write and Take privileges (at both ends) for class `org.openspaces.remoting.EventDrivenSpaceRemotingEntry`.
 
 # JDBC Driver
 
-XAP allows applications to connect using a [JDBC driver]({{%currentjavaurl%}}/jdbc-driver.html). A XAP JDBC driver accepts SQL statements, translates them into Space operations, and returns standard result sets. To acquire a connection to a remote secured Space, provide the credentials (username and password) as parameters to the connection.
+XAP allows applications to connect using a [JDBC driver](../dev-java/jdbc-driver.html). A XAP JDBC driver accepts SQL statements, translates them into Space operations, and returns standard result sets. To acquire a connection to a remote secured Space, provide the credentials (username and password) as parameters to the connection.
 
 
 ```java
@@ -543,5 +543,5 @@ Statement st = conn.createStatement();
 ```
 
 {{% note "Note"%}}
-An alternative method for querying the Space using SQL syntax is the [SQLQuery]({{%currentjavaurl%}}/query-sql.html) class, with a privileged GigaSpace proxy.
+An alternative method for querying the Space using SQL syntax is the [SQLQuery](../dev-java/query-sql.html) class, with a privileged GigaSpace proxy.
 {{%/note%}}

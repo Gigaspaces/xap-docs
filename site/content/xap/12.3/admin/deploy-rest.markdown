@@ -18,7 +18,7 @@ curl -X POST [name] [resource jar/war/zip file / directory location / name] [url
 
 ## Description
 
-A resource (Processing Unit) can be easily deployed onto the Service Grid. In order to deploy a resource, the Processing Unit must follow the [processing unit directory structure]({{%currentjavaurl%}}/the-processing-unit-structure-and-configuration.html).
+A resource (Processing Unit) can be easily deployed onto the Service Grid. In order to deploy a resource, the Processing Unit must follow the [processing unit directory structure](../dev-java/the-processing-unit-structure-and-configuration.html).
 Before deploying the processing unit you will need to jar it and then specify that jar file as the resource to the `POST` command. The deployment process will upload the jar file to all the GSMs it finds and unpack it under the `deploy` directory. It will then issue the deploy command.
  
 
@@ -110,7 +110,7 @@ curl -X DELETE [url]/deployments/resource_name
 
 ## Description
 
-Undeploys an [application]({{%currentjavaurl%}}/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
+Undeploys an [application](../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
 
 Example:
 

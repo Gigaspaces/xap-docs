@@ -273,7 +273,7 @@ You can use `com.gigaspaces.lib.platform.ext` and the `com.gs.pu-common` to decr
 
 ## User PU Application Libraries
 
-A [Processing Unit]({{%currentjavaurl%}}/the-processing-unit-structure-and-configuration.html) JAR file, or a [Web Application]({{%currentjavaurl%}}/web-jetty-processing-unit-container.html) WAR file should include (within its lib folder) all the necessary JARs required for the application. Resource files should be placed within one of the JAR files within the PU JAR, located under the lib folder. In addition, the PU JAR should include the pu.xml within the `META-INF\spring` folder.
+A [Processing Unit](../dev-java/the-processing-unit-structure-and-configuration.html) JAR file, or a [Web Application](../dev-java/web-jetty-processing-unit-container.html) WAR file should include (within its lib folder) all the necessary JARs required for the application. Resource files should be placed within one of the JAR files within the PU JAR, located under the lib folder. In addition, the PU JAR should include the pu.xml within the `META-INF\spring` folder.
 In order to close LRMI threads when closing application, use:LRMIManager.shutdown().
 
 ## Data Grid PU Libraries
@@ -363,14 +363,14 @@ The logical partitions may initially run on certain containers, and later get re
 ![rebalance_util.jpg](/attachment_files/sbp/rebalance_util.jpg)
 {{%/align%}}
 
-The Elastic Service Manager (ESM) component is responsible for scaling the IMDG during runtime, and is used with the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html):
+The Elastic Service Manager (ESM) component is responsible for scaling the IMDG during runtime, and is used with the [Elastic Processing Unit](../dev-java/elastic-processing-unit-overview.html):
 
 {{%align "center"%}}
 ![flow.gif](/attachment_files/sbp/flow.gif)
 {{%/align%}}
 
 {{% tip "Tip"%}}
-When using the [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html), instances will be continuously rebalanced across all available machines.
+When using the [Elastic Processing Unit](../dev-java/elastic-processing-unit-overview.html), instances will be continuously rebalanced across all available machines.
 {{% /tip %}}
 
 # Log Files
