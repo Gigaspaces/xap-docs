@@ -57,7 +57,7 @@ Here are the available parameters for an embedded space:
 |filter-provider|||
 |replication-filter-provider|||
 |space-replication-filter|Filter replication data between sites|[Multi Site WAN Replication](./replication-gateway-filtering.html)|
-|security |Accessing a secured space with username and password |[Secured Space]({{%currentsecurl%}}/securing-your-data.html)|
+|security |Accessing a secured space with username and password |[Secured Space](../security/securing-your-data.html)|
 |properties|||
 
 # Remote Space
@@ -86,7 +86,7 @@ Here are the available parameters for a remote space:
 
 |   Property | Description |  See Also |
 |--------|-------------|-----------|
-|security | Accessing a secured space with username and password  |[Secured Space]({{%currentsecurl%}}/securing-your-data.html#processing-unit)|
+|security | Accessing a secured space with username and password  |[Secured Space](../security/securing-your-data.html#processing-unit)|
 |properties | | |
  
 

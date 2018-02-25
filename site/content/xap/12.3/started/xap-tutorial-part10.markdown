@@ -82,7 +82,7 @@ Note that the monitoring is secured only by the 'tooling' (CLI/UI).
 |Monitor PU	 |Monitoring of Processing Units (classes, connections, statistics, etc.)|
 {{%/indent%}}
 
-{{%refer%}}For more information about role-based security, refer to [Security Authorities]({{%currentsecurl%}}/security-authorities.html).{{%/refer%}}
+{{%refer%}}For more information about role-based security, refer to [Security Authorities](../security/security-authorities.html).{{%/refer%}}
 
 
 # Managing Roles
@@ -273,7 +273,7 @@ public void setupSpace()
 
 
 
-{{%refer%}}[Securing Your Data]({{%currentsecurl%}}/securing-your-data.html){{%/refer%}}
+{{%refer%}}[Securing Your Data](../security/securing-your-data.html){{%/refer%}}
 
 
 ## Grid Security
@@ -287,13 +287,13 @@ Grid Security is enabled in XAP by setting a global system property. This system
 
 This property affects the GSA, GSM, GSC and standalone PU instances with a space.
 
-{{%refer%}}[Securing Grid Services]({{%currentsecurl%}}/securing-the-grid-services.html){{%/refer%}}
+{{%refer%}}[Securing Grid Services](../security/securing-the-grid-services.html){{%/refer%}}
 
 
 ## Transport Security
 The transport layer can be secured using an SSL communication filter.
 
-{{%refer%}}[Securing the Transport Layer]({{%currentsecurl%}}/securing-the-transport-layer-using-ssl.html){{%/refer%}}
+{{%refer%}}[Securing the Transport Layer](../security/securing-the-transport-layer-using-ssl.html){{%/refer%}}
 
 
 {{%info%}}This concludes this tutorial. For more detailed information of the XAP platform and its API please consult the [Programmers Guide]({{%currentjavaurl%}}) {{%/info%}}

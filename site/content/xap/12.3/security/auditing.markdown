@@ -98,7 +98,7 @@ FINE: Access granted; user [reader] at host [some-pc.gspaces.com/192.168.10.172]
 {{%refer%}}
 
 You can see that for each write operation an audit `FINE` log message is created with the classname. There is no data in the audit details.
-If you need the data to be audited, you can apply a [filter]({{%currentsecurl%}}/securing-your-data.html#space-filters)  to achieve this.
+If you need the data to be audited, you can apply a [filter](../security/securing-your-data.html#space-filters)  to achieve this.
 {{%/refer%}}
 
 

@@ -211,7 +211,7 @@ The grid components are secured using the `Security Administration`.
 
 
 {{%refer%}}
-For more information, refer to [Security Administration]({{%currentsecurl%}}/security-administration.html).
+For more information, refer to [Security Administration](../security/security-administration.html).
 {{%/refer%}}
 
 

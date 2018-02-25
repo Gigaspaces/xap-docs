@@ -365,7 +365,7 @@ The following is an example of how to define security with an embedded Space. In
 You can configure the Space to be secured using deploy-time properties (bean-level properties), without declaring the security element. The `security.username` and `security.password` can be provided, and the Spaces defined within the Processing Unit are automatically secured.
 
 {{%refer%}}
-For more information about how to secure XAP components, refer to the [Security]({{%currentsecurl%}}/) section of the Administrator guide.
+For more information about how to secure XAP components, refer to the [Security](../security/) section of the Administrator guide.
 {{%/refer%}}
 
 # Persistency

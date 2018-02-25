@@ -110,4 +110,4 @@ GigaSpaces provides several components for monitoring and troubleshooting your X
 
 # Security and Auditing
 
-GigaSpaces provides security features that allow the administrators to implement security controls across any component. Security management in GigaSpaces consists of security controls to access the entire platform stack, from [SSL encryption of data traffic]({{%currentsecurl%}}/securing-the-transport-layer-using-ssl.html) to [role-based authentication/authorization]({{%currentsecurl%}}/securing-xap-components.html) for deployment, data access and provisioning.
+GigaSpaces provides security features that allow the administrators to implement security controls across any component. Security management in GigaSpaces consists of security controls to access the entire platform stack, from [SSL encryption of data traffic](../security/securing-the-transport-layer-using-ssl.html) to [role-based authentication/authorization](../security/securing-xap-components.html) for deployment, data access and provisioning.
