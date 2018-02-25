@@ -171,7 +171,7 @@ public void executeDistributedTaskAsync()
 ```
 
 {{%refer%}}
-[Task Execution over the Space]({{%currentneturl%}}/task-execution-overview.html)
+[Task Execution over the Space](../dev-dotnet/task-execution-overview.html)
 {{%/refer%}}
 
 

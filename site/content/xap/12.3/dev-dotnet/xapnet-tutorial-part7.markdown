@@ -36,7 +36,7 @@ When running in direct persistency mode the IMDG interacts with the data source 
 
 
 {{%refer%}}
-[Direct Persistence]({{%currentneturl%}}/direct-persistency.html)
+[Direct Persistence](../dev-dotnet/direct-persistency.html)
 {{%/refer%}}
 
 
@@ -57,7 +57,7 @@ The XAP Mirror Service provides reliable asynchronous persistency. This allows y
 
 
 {{%refer%}}
-[Async Persistence with the mirror]({{%currentneturl%}}/asynchronous-persistency-with-the-mirror.html)
+[Async Persistence with the mirror](../dev-dotnet/asynchronous-persistency-with-the-mirror.html)
 {{%/refer%}}
 
 
@@ -198,7 +198,7 @@ Before using the `ExternalDataSource.NHibernate` practice, compile it by calling
 
 
 {{%refer%}}
-[Hibernate Persistence]({{%currentneturl%}}/hibernate-space-persistency.html)
+[Hibernate Persistence](../dev-dotnet/hibernate-space-persistency.html)
 {{%/refer%}}
 
 

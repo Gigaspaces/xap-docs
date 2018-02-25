@@ -32,7 +32,7 @@ ISpaceProxy spaceProxy = new SpaceProxyFactory("xapTutorialSpace").Create();
 You can configure the Space URL with several options.
 
 {{%refer%}}
-[The Space Configuration]({{%currentneturl%}}/the-space-configuration.html)
+[The Space Configuration](../dev-dotnet/the-space-configuration.html)
 {{%/refer%}}
 
 When a client connects to a Space, a proxy is created that holds a connection which implements the Space API. All client interaction is performed through this proxy.
@@ -47,7 +47,7 @@ In both cases, updates are performed (objects are added/updated/removed) on the 
 These two scenarios are only applicable for remote clients.
 
 {{%refer%}}
-[Client Side Caching]({{%currentneturl%}}/client-side-caching.html)
+[Client Side Caching](../dev-dotnet/client-side-caching.html)
 {{%/refer%}}
 
 
@@ -100,7 +100,7 @@ The Space generates a unique identifier (UID) for every object in one of the fol
 
 
 {{%refer%}}
-[Space Object Id]({{%currentneturl%}}/poco-object-id.html)
+[Space Object Id](../dev-dotnet/poco-object-id.html)
 {{%/refer%}}
 
 
@@ -184,7 +184,7 @@ Only properties with special roles like ID and Routing are part of the schema de
 
 
 {{%refer%}}
-[Document Object Interoperability]({{%currentneturl%}}/document-object-interoperability.html)
+[Document Object Interoperability](../dev-dotnet/document-object-interoperability.html)
 {{%/refer%}}
 
 
@@ -255,7 +255,7 @@ In this example, we are writing an object to the Space with zero delay, 10 secon
 
 
 {{%refer%}}
-[The Space Operations]({{%currentneturl%}}/the-space-operations.html)
+[The Space Operations](../dev-dotnet/the-space-operations.html)
 {{%/refer%}}
 
 
@@ -288,7 +288,7 @@ There are several other change operations available; 'increment', 'decrement', '
 
 
 {{%refer%}}
-[The Change API]({{%currentneturl%}}/change-api-overview.html)
+[The Change API](../dev-dotnet/change-api-overview.html)
 {{%/refer%}}
 
 
@@ -414,7 +414,7 @@ By default, nested objects are kept in a binary form inside the Space. In order 
 
 
 {{%refer%}}
-[Object Storage Types]({{%currentneturl%}}/poco-storage-type.html)
+[Object Storage Types](../dev-dotnet/poco-storage-type.html)
 {{%/refer%}}
 
 
@@ -478,7 +478,7 @@ There are several additional query options available. For example you can query 
 
 
 {{%refer%}}
-[SQL Query]({{%currentneturl%}}/query-sql.html)
+[SQL Query](../dev-dotnet/query-sql.html)
 {{%/refer%}}
 
 
@@ -529,7 +529,7 @@ public SpaceDocument[] readProductsBySQL() {
 
 
 {{%refer%}}
-[The Document API]({{%currentneturl%}}/document-api.html)
+[The Document API](../dev-dotnet/document-api.html)
 {{%/refer%}}
 
 
@@ -553,7 +553,7 @@ using GigaSpaces.Core.Linq;
 ```
 
 {{%refer%}}
-[LINQ Query]({{%currentneturl%}}/query-linq.html)
+[LINQ Query](../dev-dotnet/query-linq.html)
 {{%/refer%}}
 
 
@@ -643,7 +643,7 @@ Person youngestPersonInSpace = queryable.MinEntry(p => p.Age);
 XAP also supports, `Compound` and `Embedded Fields`   Aggregation.
 
 {{%refer%}}
-[Aggregators]({{%currentneturl%}}/aggregators.html)
+[Aggregators](../dev-dotnet/aggregators.html)
 {{%/refer%}}
 
 
@@ -738,7 +738,7 @@ SqlQuery<User> query = new SqlQuery<User>("Name = 'John Dow' AND CreditLimit > 1
 There are several additional indexing options available. For example you can index nested attributes, Nested Dictionaries, Collections, nested attributes within a Collection, free text search and others.
 
 {{%refer%}}
-[Indexing Objects]({{%currentneturl%}}/indexing.html)
+[Indexing Objects](../dev-dotnet/indexing.html)
 {{%/refer%}}
 
 
