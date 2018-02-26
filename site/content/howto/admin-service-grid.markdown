@@ -1,7 +1,7 @@
 ---
 type: post
-title:  Administering Spaces and Processing Units
-weight: 100
+title:  Administering the Service Grid
+weight: 200
 parent: admin-tools-overview.html
 ---
  

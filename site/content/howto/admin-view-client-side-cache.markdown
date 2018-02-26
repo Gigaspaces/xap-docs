@@ -1,0 +1,13 @@
+---
+type: post
+title:  Viewing Client side Cache Details
+weight: 1400
+parent: admin-spaces-pu.html
+---
+ 
+ 
+{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+
+ 
+
+  
