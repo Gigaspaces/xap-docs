@@ -17,25 +17,23 @@ The interface includes the following main operations:
 
 {{%section%}}
 {{%column width="50%" %}}
-{{%panel  "Write objects into the Space:"%}}
+**Write objects into the Space:**<br>
 [write](#write) one object into the space<br>
 [writeMultiple](#writeMultiple) objects into the Space<br>
 [asynchronous write](#asynchronousWrite) to the Space
-{{%/panel%}}
 {{%/column%}}
 {{%column width="50%" %}}
-{{%panel  "Change objects in Space:"%}}
+**Change objects in Space:**<br>
 [change](#change) one object in Space<br>
 		  [changeMultiple](./change-api-overview.html) objects in Space <br>
 [asynchronous change](./change-api-overview.html) of objects
-{{%/panel%}}
 {{%/column%}}
 {{%/section%}}
 
 
 {{%section%}}
 {{%column width="50%" %}}
-{{%panel  "Reading objects from the Space:"%}}
+**Reading objects from the Space:**<br>
 [readById](#read) from the Space<br>
 [readByIds](#readMultiple) from the Space<br>
 [read](#read) object by template from the Space<br>
@@ -43,10 +41,9 @@ The interface includes the following main operations:
 [read asynchronous](#asynchronousRead) from the Space <br>
 [read if exists](#readIfExists) <br>
 [read if exists by id](#readIfExists)
-{{%/panel%}}
 {{%/column%}}
 {{%column width="50%" %}}
-{{%panel  "Removing objects from the Space:"%}}
+**Removing objects from the Space:**<br>
 [take](#take) object by template from Space<br>
 [takeById](#take) object by id from Space<br>
 [takeByIds](#takeMultiple) objects by ids from Space<br>
@@ -54,17 +51,15 @@ The interface includes the following main operations:
 [take asynchronous](#asynchronousTake)<br>
 [take if exists](#takeIfExists)<br>
 [clear](#clear) objects in Space
-{{%/panel%}}
 {{%/column%}}
 {{%/section%}}
 
 {{%section%}}
 {{%column width="50%" %}}
-{{%panel  "Other operations:"%}}
+**Other operations:**<br>
 [aggregation](#aggregators)  across the Space<br>
 [count](#count) objects in Space<br>
 [counters](#counters) increment and decrement
-{{%/panel%}}
 {{%column width="50%" %}}
 {{%/column%}}
 {{%/column%}}

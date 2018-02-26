@@ -10,7 +10,7 @@ weight: 200
 This section lists helpful recommendations for tuning your application when using XAP to boost its performance, and improving its scalability.
 
 
-{{%panel%}}
+ 
 
 - [Better Data Model](#1)
 - [Use readById](#2)
@@ -34,7 +34,7 @@ This section lists helpful recommendations for tuning your application when usin
 - [Determine Database Connection Pools](#20)
 - [Benchmarking Your Tuning](#21)
 
-{{%/panel%}}
+ 
 
 
 {{%anchor 1%}}

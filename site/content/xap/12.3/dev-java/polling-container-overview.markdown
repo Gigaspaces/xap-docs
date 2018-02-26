@@ -560,17 +560,17 @@ When working with a partitioned cluster and configuring the remote polling conta
 {{% column width="50%" %}}
 **Step 1**: Master sends requests to be processed by the workers implemented using the polling container.
 
-{{% indent %}}
+ 
 ![master_worker_rr1.jpg](/attachment_files/master_worker_rr1.jpg)
-{{% /indent %}}
+ 
 
 {{% /column %}}
 {{% column width="50%" %}}
 **Step 2**: Workers generate results that are consumed by the Master.
 
-{{% indent %}}
+ 
 ![master_worker_rr2.jpg](/attachment_files/master_worker_rr2.jpg)
-{{% /indent %}}
+ 
 
 {{% /column %}}
 {{% /section %}}

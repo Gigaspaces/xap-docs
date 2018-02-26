@@ -45,20 +45,20 @@ The System Authority consists of two privileges:
 ## Grid Authority
 The Grid Authority consists of privileges for managing the Grid and its Services (GSMs, GSCs, Processing Units).
 
-{{%indent%}}
+ 
 
 |   |    |
 |----|----|
 |Provision PU	 |Deploy, Un-deploy of processing units|
 |Manage PU	 |Scale up/down, Relocate, Restart PU instance, Destroy PU instance|
 |Manage Grid    |Start, Terminate, Restart of GSC/GSM/LUS via GSA|
-{{%/indent%}}
+ 
 
 
 ## Space Authority
 The Space Authority consists of privileges for operations on space data.
 
-{{%indent%}}
+ 
 
 |   |    |
 |----|----|
@@ -68,19 +68,19 @@ The Space Authority consists of privileges for operations on space data.
 |Take	  |Take and Clear operations|
 |Alter	  |Register type descriptor, Clean and Drop-Class operations|
 |Execute |Execute tasks|
-{{%/indent%}}
+ 
 
 ## Monitoring Authority
 The Monitor Authority consists of privileges for monitoring the Grid and its Processing Units.
 Note that the monitoring is secured only by the 'tooling' (CLI/UI).
 
-{{%indent%}}
+ 
 
 |   |    |
 |----|----|
 |Monitor JVM	 |Monitoring of JVM statistics|
 |Monitor PU	 |Monitoring of Processing Units (classes, connections, statistics, etc.)|
-{{%/indent%}}
+ 
 
 {{%refer%}}For more information about role-based security, refer to [Security Authorities](../security/security-authorities.html).{{%/refer%}}
 
