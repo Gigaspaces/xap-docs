@@ -1,72 +1,69 @@
 ---
 type: post
-title:  Viewing General Space Details
-weight: 200
+title:  Viewing General PU Details
+weight: 500
 parent: admin-spaces-pu.html
 ---
  
  
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
-**To view the general Space details:**
+**To view the general PU details:**
 
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-***List all Spaces***<br>
-Lists all Spaces with the Name, Deployment name, Topology and InstanceId
+***List all PU's***<br>
+Lists all Pu's with the Name, Deployment name, Topology and InstanceId
 
 *Example:*
 
 ```bash
-<XAP-HOME>/bin/xap space list
+<XAP-HOME>/bin/xap pu list
 ```
 
 
-***List all Space instances***<br>
-Lists all Space instances for a given Space with Id, Mode, PartionId, BackupId, HostId and ContainerId.
+***List all PU instances***<br>
+Lists all PU instances for a given PU with Id, Mode, PartionId, BackupId, HostId and ContainerId.
 
 _Parameters:_<br> 
 
-- host URL: Host URL   where the REST Manager is running.<br>
-- name : The name of the Space.
+- name : The name of the PU.
  
 *Example:*
  
 ```bash
 <XAP-HOME>/bin/xap space list-instances mySpace
 ```
-
 {{%/tab%}}
 
 
 {{%tab "REST Manager API"%}}
-***List all Spaces***<br>
-Lists all Spaces with the Name, Deployment name, Topology and InstanceId
+***List all PU's***<br>
+Lists all PU's with the Name, Deployment name, Topology and InstanceId
 
 _Parameters:_<br> 
 
-- host URL: Host URL   where the REST Manager is running.
+- host URL: Host URL   where the REST Manager is running, require.
 
 *Example:*
 
 ```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces'
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/deployments'
 ```
-
-***List all Space instances***<br>
-Lists all Space instances for a given Space with Id, Mode, PartionId, BackupId, HostId and ContainerId.
+***List all PU instances***<br>
+Lists all PU instances for a given Space with Id, Mode, PartionId, BackupId, HostId and ContainerId.
 
 _Parameters:_<br> 
 
 - host URL: Host URL   where the REST Manager is running.<br>
-- name : The name of the Space.
+- name : The name of the PU.
  
 *Example:*
  
 ```bash
-curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces/mySpace/instances'
+curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myPu'
 ```
 {{%/tab%}}
 

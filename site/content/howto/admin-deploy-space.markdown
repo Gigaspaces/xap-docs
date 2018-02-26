@@ -19,12 +19,14 @@ In order to deploy a Space, you must first have a service grid up and running. D
 {{%tab "Command Line Interface"%}}
 
 _Parameters:_<br>
-name : The name of the Space.
+
+- name : The name of the Space.
 
 _Options:_<br>
----ha         : Should backups be used for high availability<br>
----partitions=\<partitions\>    : Number of partitions<br> 
----requires-isolation   :  Each instance should be provisioned in an isolated container 
+
+- ---ha         : Should backups be used for high availability<br>
+- ---partitions=\<partitions\>    : Number of partitions<br> 
+- ---requires-isolation   :  Each instance should be provisioned in an isolated container 
 
 *Example:*<br>
 This example deploys a Space named **mySpace** with high availability and 5 partitions. 
@@ -39,12 +41,14 @@ This example deploys a Space named **mySpace** with high availability and 5 part
 {{%tab "REST Manager API"%}}
 
 _Parameters:_<br>
-name : The name of the Space.
+
+- name : The name of the Space.
 
 _Options:_<br>
-backups=true/false         : Should backups be used for high availability.<br>
-partitions=\<partitions\>    : Number of partitions.<br> 
-requiresIsolation=true/false  :  Each instance should be provisioned in an isolated container.
+
+- backups=true/false         : Should backups be used for high availability.
+- partitions=\<partitions\>    : Number of partitions.
+- requiresIsolation=true/false  :  Each instance should be provisioned in an isolated container.
 
 *Example:*<br>
 This example deploys a Space named **mySpace** with high availability and 3 partitions. 

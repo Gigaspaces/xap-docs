@@ -17,11 +17,13 @@ parent: admin-spaces-pu.html
 ***Display Space Information***
 
 _Parameters:_<br> 
-name : The name of the Space.
+
+- name : The name of the Space.
 
 _Options:_<br>
----operation-stats : Displays Space operations statistics, (read, write, take etc)  <br>
----type-stats      : Displays Space object information.
+
+- ---operation-stats : Displays Space operations statistics, (read, write, take etc)  <br>
+- ---type-stats      : Displays Space object information.
  
 
 *Example:*
@@ -36,9 +38,10 @@ _Parameters:_<br>
 instanceId : The id of the Space instance to use.
 
 _Options:_<br>
----operation-stats : Displays Space instance operations statistics, (read, write, take etc)  <br>
----type-stats      : Displays Space instance object information.<br>
----replication-stats: Display Space instance replication information.
+
+- ---operation-stats : Displays Space instance operations statistics, (read, write, take etc)  <br>
+- ---type-stats      : Displays Space instance object information.<br>
+- ---replication-stats: Display Space instance replication information.
  
  
 *Example:*
@@ -54,8 +57,9 @@ _Options:_<br>
 ***Display Space Information***
 
 _Parameters:_<br>
-host URL: Host URL   where the REST Manager is running.<br>
-name : The name of the Space.
+
+- host URL: Host URL   where the REST Manager is running.<br>
+- name : The name of the Space.
 
  
 Displays Space operations statistics, (read, write, take etc)  <br>
@@ -70,14 +74,16 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces
 ***Display Space instance information***
 
 _Parameters:_<br> 
-host URL: Host URL   where the REST Manager is running.<br>
-name : The name of the Space.<br>
-instanceId : The id of the Space instance to use.
+
+- host URL: Host URL where the REST Manager is running.<br>
+- name : The name of the Space.<br>
+- instanceId : The id of the Space instance to use.
 
 _Options:_<br>
-operation stats : Displays Space instance operations statistics, (read, write, take etc)  <br>
-type stats      : Displays Space instance object information.<br>
-replication stats: Display Space instance replication information.
+
+- operations : Displays Space instance operations statistics, (read, write, take etc)  <br>
+- types     : Displays Space instance object information.<br>
+- replication: Display Space instance replication information.
  
  
 *Examples:*
