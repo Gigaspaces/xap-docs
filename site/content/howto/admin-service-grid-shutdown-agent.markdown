@@ -1,15 +1,16 @@
 ---
 type: post
-title:  Viewing PU Configuration
-weight: 800
-parent: admin-spaces-pu.html
+title: Shutting down the GS-Agent 
+weight: 1000
+parent: admin-service-grid.html
 ---
  
- 
+  
+
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
+<br>
  
-
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 TBD
@@ -35,5 +36,3 @@ TBD
 {{%/tab%}}
 
 {{% /tabs %}}
-
-  

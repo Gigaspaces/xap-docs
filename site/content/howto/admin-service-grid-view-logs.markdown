@@ -1,25 +1,17 @@
 ---
 type: post
-title:  Viewing PU Configuration
-weight: 800
-parent: admin-spaces-pu.html
+title: Viewing Logs
+weight: 600
+parent: admin-service-grid.html
 ---
  
- 
+  
+
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
+<br>
  
-
 {{%tabs%}}
-{{%tab "Command Line Interface"%}}
-TBD
-{{%/tab%}}
-
-{{%tab "REST Manager API"%}}
-TBD
-{{%/tab%}}
-
-
 {{%tab "Web Management Console"%}}
 TBD
 {{%/tab%}}
@@ -35,5 +27,3 @@ TBD
 {{%/tab%}}
 
 {{% /tabs %}}
-
-  

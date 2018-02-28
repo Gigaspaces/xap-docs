@@ -10,4 +10,22 @@ parent: admin-spaces-pu.html
 
  
 
+{{%tabs%}}
+
+{{%tab "Web Management Console"%}}
+TBD
+{{%/tab%}}
+
+
+{{%tab "GigaSpaces Management Console"%}}
+TBD
+{{%/tab%}}
+
+
+{{%tab "Administration API"%}}
+TBD
+{{%/tab%}}
+
+{{% /tabs %}}
+
   

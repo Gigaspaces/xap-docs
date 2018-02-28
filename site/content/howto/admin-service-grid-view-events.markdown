@@ -1,24 +1,17 @@
 ---
 type: post
-title:  Viewing PU Configuration
+title: Viewing Events
 weight: 800
-parent: admin-spaces-pu.html
+parent: admin-service-grid.html
 ---
  
- 
+  
+
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
+<br>
  
-
 {{%tabs%}}
-{{%tab "Command Line Interface"%}}
-TBD
-{{%/tab%}}
-
-{{%tab "REST Manager API"%}}
-TBD
-{{%/tab%}}
-
 
 {{%tab "Web Management Console"%}}
 TBD
@@ -35,5 +28,3 @@ TBD
 {{%/tab%}}
 
 {{% /tabs %}}
-
-  
