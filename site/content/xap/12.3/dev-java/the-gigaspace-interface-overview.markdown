@@ -256,27 +256,27 @@ There are two types of resources associated with Space instances and Space clien
 
 ## Thread and Memory Resources
 
-If your Space client or embedded Space are running within a Spring-enabled environment (such as the XAP service grid or a standalone Spring application), and are configured in a Spring application context, these resources will be cleaned up automatically when the Spring application context is destroyed. However, if you start the Space client or Space instance programmatically, you must call the `UrlSpaceConfigurer destroy()` method when your application no longer uses the Space instance/Space client.
+If your Space client or embedded Space are running within a Spring-enabled environment (such as the XAP service grid or a standalone Spring application), and are configured in a Spring application context, these resources will be cleaned up automatically when the Spring application context is destroyed. However, if you start the Space client or Space instance programmatically, you must call the `SpaceConfigurer close()` method when your application no longer uses the Space instance/Space client.
 
 Example:
 
 
 ```java
-SpaceProxyConfigurer urlConfigurer = new SpaceProxyConfigurer("space");
+SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space");
  //....
-urlConfigurer.destroy();
+spaceProxyConfigurer.close();
 
 // Local cache
 LocalCacheSpaceConfigurer localCacheConfigurer = new LocalCacheSpaceConfigurer(urlConfigurer);
-localCacheConfigurer.destroy();
+localCacheConfigurer.close();
 
 // Local view
 LocalViewSpaceConfigurer localViewConfigurer = new LocalViewSpaceConfigurer(urlConfigurer);
-localViewConfigurer.destroy();
+localViewConfigurer.close();
 ```
 
 {{%note "Local View and Cache"%}}
-When using LocalCache and LocalView. you need to call the `destroy()` method on their respective configurer.
+When using LocalCache and LocalView. you need to call the `close()` method on their respective configurer.
 {{%/note%}}
 
 ## Communication Resources
@@ -291,9 +291,9 @@ Example:
 
 
 ```java
-SpaceProxyConfigurer urlConfigurer = new SpaceProxyConfigurer("space");
+SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space");
  //....
-urlConfigurer.destroy();
+spaeProxyConfigurer.close();
 
 LRMIManager.shutdown();
 ```
