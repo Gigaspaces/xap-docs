@@ -12,7 +12,7 @@ Draft documentation is available, and may not completely describe the product up
 
 # Performance Improvement
 
-In systems with MemoryXtend, XAP can store the values of indexed fields in off-heap memory, to avoid having to fetch data from disk for queries that only need the index. This feature can optimize performance by up to 50% for the following operations:
+In systems with MemoryXtend, the platform can store the values of indexed fields in off-heap memory, to avoid having to fetch data from disk (SSD or HD) for queries that only need the index. This feature can optimize performance by up to 50% for the following operations:
 
 - Read with projection and only indexed fields in query and projection - primary instance optimization
 - Take with only indexed fields in query - backup optimization
@@ -44,7 +44,7 @@ To access the Docker image, follow the instructions on the [GigaSpaces XAP](http
 
 # Tiered Storage Enhancement
 
-The custom initial load mechanism in MemoryXtend has been extended to provide full life cycle management of the blobstore cache, so that users can prioritize data availability throughout the application lifetime. Users can define a set of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk.
+The custom initial load mechanism in MemoryXtend has been extended to provide full life cycle management of the blobstore cache, so that users can prioritize data availability throughout the application lifetime. Users can define a set of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk (SSD or HD).
 
 # Third-Party Product Changes
 
