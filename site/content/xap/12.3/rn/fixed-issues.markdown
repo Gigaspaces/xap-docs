@@ -10,6 +10,9 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Enhancements
 
+- {{% jira id="GS-13400" %}}: Replication redolog compaction for mirror target.
+- {{% jira id="GS-13477" %}}: Created v2 of XAP Manager REST API.
+- {{% jira id="GS-13491" %}}: Renamed /deployments to /pus in v2 of XAP Manager REST API.
 - {{% jira id="GS-13480" %}}: Limit Lookup Locator Discovery interval to 1 minute instead of 1 hour.
 - {{% jira id="GS-13482" %}}: Change default of org.jini.rio.monitor.pendingRequestDelay to 1 minute instead of 10 minutes.
 - {{% jira id="GS-13470" %}}: Upgrade packaged Jetty server to 9.2.24.
@@ -35,6 +38,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Resolved Issues
 
+- {{% jira id="GS-12946" %}}: Loop of restarts of pu instance in same container cause memory leak.
 - {{% jira id="GS-13484" %}}: Missing partition instance not provisioned after network disconnected and reconnected.
 - {{% jira id="GS-13483" %}}: Relocation listener is not called during failure to destroy instance.
 - {{% jira id="GS-13454" %}}: Elastic Processing Unit failed to fully deploy with service-limit=1 even when there were empty GSCs running.
