@@ -1,8 +1,8 @@
 ---
 type: post
 title:  Service Grid
-weight: 1100
-parent: admin-service-grid.html
+weight: 300
+parent: admin-tools-overview.html
 ---
 
 A processing unit is deployed onto the XAP runtime environment, which is called the [Service Grid](../overview/the-runtime-environment.html). It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.

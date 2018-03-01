@@ -8,6 +8,8 @@ parent: admin-spaces-pu.html
  
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
+<br>
+
 **To view the general Space details:**
 
 
@@ -29,7 +31,6 @@ Lists all Space instances for a given Space with Id, Mode, PartionId, BackupId, 
 
 _Parameters:_<br> 
 
-- host URL: Host URL   where the REST Manager is running.<br>
 - name : The name of the Space.
  
 *Example:*

@@ -1,20 +1,32 @@
 ---
 type: post
-title:  Viewing Data Types
+title: Service Grid Security
 weight: 1100
-parent: admin-spaces-pu.html
+parent: admin-service-grid.html
 ---
  
- 
+  
+
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
+<br>
  
-**To view Space Data Types:**
-
-  
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
-N/A
+
+***Securing the Service Grid***<br>
+
+_Parameters:_
+
+- ---username:<br>
+- ---password:
+
+*Example:*
+
+```bash
+<XAP-HOME>/bin/xap --uesrname=someone password=somewhere ...... additional parameters and options
+```
+
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
@@ -35,4 +47,5 @@ TBD
 {{%tab "Administration API"%}}
 TBD
 {{%/tab%}}
+
 {{% /tabs %}}

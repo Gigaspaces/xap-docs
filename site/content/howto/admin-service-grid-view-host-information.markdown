@@ -9,22 +9,52 @@ parent: admin-service-grid.html
 
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
+
+{{%warning%}}
+This section was under construction while documenting
+{{%/warning%}}
+
 <br>
- 
+
+# To get host information
+
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
-TBD
+
+_Parameters:_<br> 
+
+ 
+ 
+_Options:_<br>
+ 
+ 
+*Example:*<br>
+
+```bash
+ 
+```
 {{%/tab%}}
 
+
 {{%tab "REST Manager API"%}}
-TBD
+
+_Parameters:_<br>
+
+ 
+
+_Options:_<br>
+
+ 
+*Example:*<br>
+ 
+```bash
+```
 {{%/tab%}}
 
 
 {{%tab "Web Management Console"%}}
-TBD
+TBD 
 {{%/tab%}}
-
 
 {{%tab "GigaSpaces Management Console"%}}
 TBD
@@ -36,3 +66,4 @@ TBD
 {{%/tab%}}
 
 {{% /tabs %}}
+

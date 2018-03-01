@@ -13,6 +13,14 @@ parent: admin-service-grid.html
  
 {{%tabs%}}
 
+{{%tab "Command Line Interface"%}}
+N/A
+{{%/tab%}}
+
+{{%tab "REST Manager API"%}}
+N/A
+{{%/tab%}}
+
 {{%tab "Web Management Console"%}}
 TBD
 {{%/tab%}}

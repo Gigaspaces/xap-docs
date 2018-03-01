@@ -15,28 +15,50 @@ parent: admin-spaces-pu.html
  
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
-TBD
+
+_Parameters:_<br> 
+
+- name : The name of the Pu to undeploy.
+
+_Options:_<br>
+
+- ---keep-file: Keep the undeployed file for future use.
+- ---version: Display version information.
+
+*Example:*
+
+```bash
+<XAP-HOME>/bin/xap pu undeploy myPu 
+```
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-TBD
+
+_Parameters:_<br>
+
+- name : The name of the Pu to undeploy.
+
+_Options:_<br>
+
+- ---keep-file: Keep the undeployed file for future use.
+ 
+ 
+*Example:*
+
+```bash
+curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myPu'
+```
 {{%/tab%}}
 
 
 {{%tab "Web Management Console"%}}
-TBD
 {{%/tab%}}
-
-
 {{%tab "GigaSpaces Management Console"%}}
 TBD
 {{%/tab%}}
-
-
 {{%tab "Administration API"%}}
 TBD
 {{%/tab%}}
-
 {{% /tabs %}}
 
   

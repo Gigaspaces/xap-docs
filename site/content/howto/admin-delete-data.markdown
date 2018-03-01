@@ -11,10 +11,18 @@ parent: admin-spaces-pu.html
 <br>
  
 {{%tabs%}}
+{{%tab "Command Line Interface"%}}
+N/A
+{{%/tab%}}
+
+{{%tab "REST Manager API"%}}
+N/A
+{{%/tab%}}
+
+ 
 {{%tab "Web Management Console"%}}
 TBD
 {{%/tab%}}
-
 
 {{%tab "GigaSpaces Management Console"%}}
 TBD

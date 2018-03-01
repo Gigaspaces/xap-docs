@@ -10,14 +10,64 @@ parent: admin-service-grid.html
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
 <br>
- 
+**To view the general Container details:**
+
+
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
-TBD
+
+***List all Containers***<br>
+
+_Parameters:_
+
+*Example:*
+
+```bash
+<XAP-HOME>/bin/xap container list
+```
+
+
+***List Container information***<br>
+
+_Parameters:_
+
+- containerId : The Id  of the Container.
+ 
+*Example:*
+ 
+```bash
+<XAP-HOME>/bin/xap container info  containerId
+```
+
 {{%/tab%}}
 
+
 {{%tab "REST Manager API"%}}
-TBD
+***List all Containers***<br>
+ 
+
+_Parameters:_
+
+
+*Example:*
+
+```bash
+curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/containers'
+```
+
+***List Container information***<br>
+ 
+
+_Parameters:_<br> 
+
+- containerId : The Id  of the Container.
+ 
+ 
+*Example:*
+ 
+```bash
+curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/containers/conatinerId'
+```
 {{%/tab%}}
 
 
@@ -36,3 +86,4 @@ TBD
 {{%/tab%}}
 
 {{% /tabs %}}
+

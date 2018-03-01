@@ -13,11 +13,11 @@ parent: admin-spaces-pu.html
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
-TBD
+N/A
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-TBD
+N/A
 {{%/tab%}}
 
 
