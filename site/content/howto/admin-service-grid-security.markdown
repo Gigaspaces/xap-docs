@@ -30,7 +30,9 @@ _Parameters:_
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-N/A
+
+See securing the Service Grid property `-Dcom.gs.security.enabled=true`
+
 {{%/tab%}}
 
 
