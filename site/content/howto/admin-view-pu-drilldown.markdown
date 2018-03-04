@@ -6,7 +6,7 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+{{% bgcolor yellow %}}Not necessary -- there is a topic on viewing the deployed PU (so all the general PU information should be described there), and a topic on viewing the PU configuration. that's it, just the two.{{% /bgcolor %}}
 
  
 {{%tabs%}}

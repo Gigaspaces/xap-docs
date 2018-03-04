@@ -65,7 +65,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 2. In the Space Deployment dialog box, do the following:
 
 	<ol type="a">
-		<li>In the <b>Space name</b> box, type a name for the Space</li>
+		<li>In the <b>Space name</b> box, type a name for the Space.</li>
 		<li>(Optional) If you want this Space to be secure, do the following In the <b>User Login Details</b> area:
 		<ul>
 			<li>Select <b>Secured Space</b>.</li>
@@ -107,7 +107,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
+{{%tab "GigaSpaces Management Center"%}}
 
 TBD
 

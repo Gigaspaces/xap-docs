@@ -1,6 +1,6 @@
 ---
 type: post
-title:  Viewing General PU Details
+title:  Viewing the Deployed Processing Units
 weight: 500
 parent: admin-spaces-pu.html
 ---
@@ -8,7 +8,7 @@ parent: admin-spaces-pu.html
  
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
-**To view the general PU details:**
+**To view information about the deployed Processing Units:**
 
 
 {{%tabs%}}
@@ -70,7 +70,7 @@ curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/
 
 {{%tab "Web Management Console"%}}
  
-You can see the following high-level Space details in the main Spaces view:
+You can see the following Processing Unit details in the main Processing Units view:
 
 <table>
   <tr>
@@ -78,97 +78,57 @@ You can see the following high-level Space details in the main Spaces view:
     <th>Description</th>
   </tr>
   <tr>
-    <td>Space</td>
-    <td>Name of the Space</td>
+    <td>Name</td>
+    <td>Name of the Processing Unit. Expand the Processing Unit node to view the name of the Processing Unit instance, and below that the Space name.</td>
   </tr>
   <tr>
-    <td>Processing Unit</td>
-    <td>Name of the associated Processing Unit</td>
+    <td>Status</td>
+    <td>Current status of the Processing Unit:
+	<ul>
+			<li><b>Intact</b> - the Processing Unit was successfully deployed and is operating normally.</li>
+			<li><b>Scheduled</b> - the Processing Unit was not yet successfully deployed, but an additional attempt will be made.</li>
+			<li><b>Compromised</b> - the Processing Unit is no longer intact, but has not yet completed the undeploy process.</li>
+			<li><b>Broken</b> - the Processing Unit could not be deployed.</li>
+		</ul>
+	</td>
+  </tr>
+  <tr>
+    <td>Type</td>
+    <td>Indicates whether the Processing Unit is stateful or stateless.</td>
+  </tr>
+  <tr>
+    <td>Host Name</td>
+    <td>Name of the machine hosting the Processing Unit instance.</td>
+  </tr>
+  <tr>
+    <td>PID</td>
+    <td>Process ID of the Processing Unit instance.</td>
   </tr>
   <tr>
     <td>Application</td>
-    <td>Name of the client application using the Space</td>
+    <td>Client application that is running, if applicable.</td>
   </tr>
   <tr>
-    <td>Actual Instances</td>
-    <td>Number of Space instances in the cluster</td>
+    <td>Zones</td>
+    <td>If configured, the zone where the Processing Unit is located.</td>
   </tr>
   <tr>
-    <td>SLA</td>
-    <td>Space cluster topology</td>
+    <td>CPU</td>
+    <td>Amount of CPU resources being used by the Processing Unit instance, in percent.</td>
   </tr>
   <tr>
-    <td>Total Memory (MB)</td>
-    <td>Total amount of memory allocated to this Space</td>
-  </tr>
-  <tr>
-    <td>Entries</td>
-    <td>Number of data entries to the Space</td>
-  </tr>
-  <tr>
-    <td>Notify Templates</td>
-    <td>Number of Notify templates for this Space</td>
-  </tr>
-  <tr>
-    <td>Connections</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Active Transactions</td>
-    <td></td>
+    <td>Used Heap</td>
+    <td>Amount of JVM heap being used by the Processing Unit instance, in MB (% of allocated heap).</td>
   </tr>
 </table>
 
 
-Click the arrow in the right-hand column of the space entry to drill through to the following additional details:
-
-<table>
-  <tr>
-    <th>Item</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>Space Instance Name</td>
-    <td>Name of the Space instance in the cluster</td>
-  </tr>
-  <tr>
-    <td>PU Instance Name</td>
-    <td>Name of the Processing Unit instance where the Space instance is located</td>
-  </tr>
-  <tr>
-    <td>PID</td>
-    <td>Process ID of the Space instance</td>
-  </tr>
-  <tr>
-    <td>Host IP</td>
-    <td>IP address of the host machine</td>
-  </tr>
-  <tr>
-    <td>Total Memory (MB)</td>
-    <td>Total amount of memory allocated to this Space instance</td>
-  </tr>
-  <tr>
-    <td>Entries</td>
-    <td>Number of data entries to the Space instance</td>
-  </tr>
-  <tr>
-    <td>Notify Templates</td>
-    <td>Number of Notify templates for this Space instance</td>
-  </tr>
-  <tr>
-    <td>Connections</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Active Transactions</td>
-    <td></td>
-  </tr>
-</table> 
+If the Space is highlighted, you can click the **Actions** icon and drill through to the Spaces view to see the Space details.
 
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
+{{%tab "GigaSpaces Management Center"%}}
 
 TBD
 

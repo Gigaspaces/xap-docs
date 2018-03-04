@@ -22,7 +22,7 @@ In systems with MemoryXtend, the platform can store the values of indexed fields
 
 ## New Command Line Interface
 
-A new interactive Command Line Interface (CLI) based on the REST Manager API is planned for version 12.3. It is meant to replace the legacy GigaSpaces CLI, and supports both InsightEdge and XAP applications. This feature is still under construction, but is sufficiently mature for user evaluation. 
+A new interactive Command Line Interface (CLI) based on the XAP Manager's REST API is planned for version 12.3. It is meant to replace the legacy GigaSpaces CLI, and supports both InsightEdge and XAP applications. This feature is still under construction, but is sufficiently mature for user evaluation. 
 
 We encourage users to begin working with the new CLI and give us feedback. You can run the new CLI via the `xap` script in the **bin** folder (use `--help` to get started). Commands that have not yet been fully implemented will generate an "under construction" message. The following is a partial list of the available functionality:
 
@@ -35,6 +35,10 @@ We encourage users to begin working with the new CLI and give us feedback. You c
 ## GS-Agent Enhancement
 
 Users can now configure the gs-agent to launch the Web Management Console when deploying an InsightEdge or XAP environment, using the new `--webui` option.
+
+## XAP Manager
+
+Version 2 of the REST API (on which the XAP Manager is based) is now available, and is supported by the new Command Line Interface and the Administration API.  
 
 # GigaSpaces on Docker Hub
 

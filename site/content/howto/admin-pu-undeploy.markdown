@@ -1,6 +1,6 @@
 ---
 type: post
-title:  Undeploying a PU
+title:  Undeploying a Processing Unit
 weight: 900
 parent: admin-spaces-pu.html
 ---
@@ -12,6 +12,8 @@ parent: admin-spaces-pu.html
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
 <br>
+
+**To undeploy a Processing Unit:**
  
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -52,8 +54,21 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v1/deploymen
 
 
 {{%tab "Web Management Console"%}}
+
+1. In the Processing Units view, highlight the Processing Unit to undeploy.
+1. Click the **Actions** icon and select **Undeploy** from the menu.
+1. Confirm that you want to undeploy the Processing Unit.
+
+When the Processing Unit is undeployed successfully, it no longer appears in the Processing Units view. 
+
+{{% note "Note"%}}
+You can confirm that the Processing Unit was undeployed by viewing the list of events from the toolbar. If you redeploy the same Processing Unit, all of the deploy and undeploy events appear in the event list for that Processing Unit that is displayed in the Events tab on the side of the view.
+{{% /note %}}
+
+
 {{%/tab%}}
-{{%tab "GigaSpaces Management Console"%}}
+
+{{%tab "GigaSpaces Management Center"%}}
 TBD
 {{%/tab%}}
 {{%tab "Administration API"%}}
