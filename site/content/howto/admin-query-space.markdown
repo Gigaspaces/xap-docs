@@ -24,10 +24,16 @@ N/A
 
 {{%tab "Web Management Console"%}}
 
+The Query editor supports SQL queries. For example, to query a specific class:
+
+	SELECT * FROM my.company.com.MyPojo WHERE rownum < 1000
+
 1. In the Spaces view, highlight the Space or the Space instance you want to query.
 1. Display the Queries pane in the lower area of the view.
 1. Type a query, or click a data type from the Types pane.
 1. Click **Execute Query**.
+
+	The query is executed against the selected Space or Space instance. If there are too many results to display on a single web page, you can navigate using the paging controls at the bottom of the table. Paging is static (results are fetched once per execute request).
 1. If you have tried to run multiple queries, you can navigate between them using the **Go Back**/**Go Forward** buttons, or select a query from the dropdown lists next to these buttons.
 1. To export the results of a query:
 

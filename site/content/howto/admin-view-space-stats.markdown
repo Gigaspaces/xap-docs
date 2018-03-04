@@ -10,7 +10,7 @@ parent: admin-spaces-pu.html
 
 <br>
 
-**To view Space Statistics:**
+**To view Space statistics:**
 
   
 {{%tabs%}}
@@ -100,11 +100,21 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces
 
 
 {{%tab "Web Management Console"%}}
-TBD
+
+1. In the Spaces view, highlight the Space or the Space instance you want to investigate.
+1. Display the Statistics pane in the lower area of the view.
+1. The throughput statistics timeline only shows information that is collected in real time. Click Stop to stop it, and Start to start it running again.
+1. To see the exact value of a specific operation for a specific point in time, hover the mouse over the graph for that time. The information is displayed in a tooltip.
+1. The Operations Count graph displays a rough estimate of the number of various operations to the Space (or Space instance). To see the exact number of a particular operation, hover the mouse over the relevant graph bar. The exact number of operations is shown in a tooltip.
+
+ {{% note "Note"%}}
+ The statistics function doesn’t save past events. If you stop the timeline for a length of time, you will essentially lose the statistics that might have been gathered during that time. When you start the timeline again, it jumps to the current time.
+ {{% /note %}}
+
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
+{{%tab "GigaSpaces Management Center"%}}
 TBD
 {{%/tab%}}
 

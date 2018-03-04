@@ -1,6 +1,6 @@
 ---
 type: post
-title:  Viewing Client side Cache Details
+title:  Viewing Client-Side Cache Details
 weight: 1400
 parent: admin-spaces-pu.html
 ---
@@ -8,7 +8,7 @@ parent: admin-spaces-pu.html
  
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
- 
+**To view the client-side cache details:**
 
 {{%tabs%}}
 
@@ -21,11 +21,93 @@ N/A
 {{%/tab%}}
 
 {{%tab "Web Management Console"%}}
-TBD
+
+1. In the Spaces view, highlight the Space or Space instance for which you want to see the client-side cache details.
+1. Display the Client-Side Caches pane in the lower area of the view.
+1. You can view the following information:
+
+* If you have one or more local cache(s) configured:
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>ID</td>
+    <td>ID of the local cache.</td>
+  </tr>
+  <tr>
+    <td>PID</td>
+    <td>Process ID of the master Space using the local cache instance.</td>
+  </tr>
+  <tr>
+    <td>Host</td>
+    <td>Machine hosting the local cache instance.</td>
+  </tr>
+  <tr>
+    <td>Version</td>
+    <td>Version of the data object that is stored the local cache.</td>
+  </tr>
+</table>
+
+
+* If you have one or more local views configured:
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Host</td>
+    <td>Machine hosting the local view.</td>
+  </tr>
+  <tr>
+    <td>PID</td>
+    <td>Process ID of the master Space using the local view.</td>
+  </tr>
+  <tr>
+    <td>Version</td>
+    <td>Version of the data object that is stored in the local view.</td>
+  </tr>
+  <tr>
+    <td>Channel State</td>
+    <td>Connection state of the network channel between the local view and the master Space:
+	<ul>
+		<li><b>Active</b> - The local view is connected to the master Space and the data is in sync.</li>
+		<li><b>Disconnected</b> - The connection to the master Space was briefly disrupted.</li>
+		<li><b>Inactive</b> - The connection to the master Space was disrupted long enough for the local view to become inactive and start throwing exceptions.</li>
+		<li><b>Closed</b> - The local view is permanently closed.</li>
+	</ul>
+ </td>
+  </tr>
+  <tr>
+    <td>Redo Log Retain. Size</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Send Bytes TP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Send Packets/Sec</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Templates</td>
+    <td></td>
+  </tr>
+</table>
+
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
+{{%tab "GigaSpaces Management Center"%}}
 TBD
 {{%/tab%}}
 

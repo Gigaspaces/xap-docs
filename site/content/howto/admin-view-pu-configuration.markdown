@@ -60,11 +60,13 @@ The Config tab displays the general Processing Unit parameters as they were defi
   <tr>
     <td>Deployment Status</td>
     <td>Current status of the Processing Unit:
-Intact - the Processing Unit was successfully deployed and is operating normally.
-Scheduled - the Processing Unit has not yet been successfully deployed, but the attempt is in progress. 
-Compromised - the Processing Unit is no longer intact, but has not yet completed the undeploy process.
-Broken - the Processing Unit could not be deployed.</td>
-  </tr>
+	<ul>
+			<li><b>Intact</b> - the Processing Unit was successfully deployed and is operating normally.</li>
+			<li><b>Scheduled</b> - the Processing Unit was not yet successfully deployed, but an additional attempt will be made.</li>
+			<li><b>Compromised</b> - the Processing Unit is no longer intact, but has not yet completed the undeploy process.</li>
+			<li><b>Broken</b> - the Processing Unit could not be deployed.</li>
+		</ul>
+	  </tr>
   <tr>
     <td>Planned Instances</td>
     <td>How many Processing Unit instances should be deployed in total, based on the number of instances and number of backups configured in the sla.xml file.</td>
