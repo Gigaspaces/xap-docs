@@ -32,10 +32,6 @@ In addition to the scripts described [here](./scripts.html), the `bin` folder co
 
 If you need to start the [Service Grid](../overview/the-runtime-environment.html) components manually instead of via the [gs-agent](../overview/the-runtime-environment.html#gsa), use the following scripts.
 
-**Open-Source Scripts**
-
-- **lookup-service** - starts an instance of the [LUS](../overview/the-runtime-environment.html#lus).
-
 **Additional Scripts**
 
 The scripts listed below are available in the licensed editions of the GigaSpaces applications.
@@ -47,11 +43,6 @@ The scripts listed below are available in the licensed editions of the GigaSpace
 - **startJiniTX_Mahalo** - starts an instance of the Distributed transaction manager.
 
 # Processing Units
-
-**Open-Source Scripts**
-
-- **pu-instance** - starts a standalone, un managed instance of a processing unit.
-- **space-instance** - starts a standalone, un managed instance of a space. Used usually in development.
 
 **Additional Scripts**
 
