@@ -47,7 +47,9 @@ The Query editor supports SQL queries. For example, to query a specific class:
 
 
 {{%tab "GigaSpaces Management Center"%}}
-TBD
+
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
+
 {{%/tab%}}
 
 

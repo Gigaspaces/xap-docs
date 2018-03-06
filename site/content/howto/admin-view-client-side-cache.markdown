@@ -61,7 +61,7 @@ N/A
   </tr>
   <tr>
     <td>Name</td>
-    <td></td>
+    <td>Identifier of the local view.</td>
   </tr>
   <tr>
     <td>Host</td>
@@ -88,19 +88,19 @@ N/A
   </tr>
   <tr>
     <td>Redo Log Retain. Size</td>
-    <td></td>
+    <td>Size of the redo log (number of packets).</td>
   </tr>
   <tr>
     <td>Send Bytes TP</td>
-    <td></td>
+    <td>Throughput of the sent bytes, in KB per second.</td>
   </tr>
   <tr>
     <td>Send Packets/Sec</td>
-    <td></td>
+    <td>Rate of packet throughput per second.</td>
   </tr>
   <tr>
     <td>Templates</td>
-    <td></td>
+    <td>How many templates are associated with this local view.</td>
   </tr>
 </table>
 
@@ -108,7 +108,9 @@ N/A
 
 
 {{%tab "GigaSpaces Management Center"%}}
-TBD
+
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
+
 {{%/tab%}}
 
 

@@ -62,14 +62,16 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v1/deploymen
 When the Processing Unit is undeployed successfully, it no longer appears in the Processing Units view. 
 
 {{% note "Note"%}}
-You can confirm that the Processing Unit was undeployed by viewing the list of events from the toolbar. If you redeploy the same Processing Unit, all of the deploy and undeploy events appear in the event list for that Processing Unit that is displayed in the Events tab on the side of the view.
+You can confirm that the Processing Unit was undeployed by viewing the list of events from the toolbar. If you redeploy the same Processing Unit, all of the deploy and undeploy events appear in the event list for the Processing Unit that is displayed in the Events tab on the side of the view.
 {{% /note %}}
 
 
 {{%/tab%}}
 
 {{%tab "GigaSpaces Management Center"%}}
-TBD
+
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
+
 {{%/tab%}}
 {{%tab "Administration API"%}}
 TBD

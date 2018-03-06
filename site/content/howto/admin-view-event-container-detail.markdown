@@ -25,10 +25,11 @@ TBD
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
-TBD
-{{%/tab%}}
+{{%tab "GigaSpaces Management Center"%}}
 
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
+
+{{%/tab%}}
 
 {{%tab "Administration API"%}}
 TBD

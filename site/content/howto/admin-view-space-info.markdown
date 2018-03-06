@@ -200,9 +200,9 @@ If you have a system with Memory Xtend, you can also see the following informati
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
+{{%tab "GigaSpaces Management Center"%}}
 
-TBD
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 
 {{%/tab%}}
 

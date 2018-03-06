@@ -50,6 +50,21 @@ To access the Docker image, follow the instructions on the [GigaSpaces XAP](http
 
 The custom initial load mechanism in MemoryXtend has been extended to provide full life cycle management of the blobstore cache, so that users can prioritize data availability throughout the application lifetime. Users can define a set of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk (SSD or HD).
 
+# Indexing
+
+Three new index types have been introduced for both Java and .NET environments. The new index types enable users to opt for limited indexing that requires a smaller memory footprint. The new index types are:
+
+- EQUAL - Performs matching by equality, and may be used instead of the BASIC indexing option.
+- ORDERED - Performs ordered matching.
+- EQUAL_AND_ORDERED - Performs both matching by equality and ordered matching, and may be used instead of the EXTENDED indexing option.
+
+# Deprecated Features and Functionality
+
+The following functionality is deprecated as of this release:
+
+- V1 of the XAP Manager REST API
+- BASIC and EXTENDED index types 
+
 # Third-Party Product Changes
 
 * [Jetty](http://www.eclipse.org/jetty/) package has been upgraded to `9.2.24`

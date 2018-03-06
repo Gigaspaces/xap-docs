@@ -103,7 +103,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces
 
 1. In the Spaces view, highlight the Space or the Space instance you want to investigate.
 1. Display the Statistics pane in the lower area of the view.
-1. The throughput statistics timeline only shows information that is collected in real time. Click Stop to stop it, and Start to start it running again.
+1. The throughput statistics timeline only shows information that is collected in real time. Click **Stop** to stop it, and **Start** to start it running again.
 1. To see the exact value of a specific operation for a specific point in time, hover the mouse over the graph for that time. The information is displayed in a tooltip.
 1. The Operations Count graph displays a rough estimate of the number of various operations to the Space (or Space instance). To see the exact number of a particular operation, hover the mouse over the relevant graph bar. The exact number of operations is shown in a tooltip.
 
@@ -115,7 +115,9 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces
 
 
 {{%tab "GigaSpaces Management Center"%}}
-TBD
+
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
+
 {{%/tab%}}
 
 

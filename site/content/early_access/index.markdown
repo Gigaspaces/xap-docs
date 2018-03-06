@@ -15,18 +15,20 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
-# 12.3 M21 (Mar-04-2018)
+# 12.3 M22 (Mar-06-2018)
 
 ## Download Links
 
-* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m21/gigaspaces-insightedge-open-12.3.0-m21-b18921.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m21/gigaspaces-insightedge-12.3.0-m21-b18921.zip)\] 
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m22/gigaspaces-insightedge-open-12.3.0-m22-b18922.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-m22/gigaspaces-insightedge-12.3.0-m22-b18922.zip)\] 
 
-* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m21/gigaspaces-xap-open-12.3.0-m21-b18921.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m21/gigaspaces-xap-12.3.0-m21-b18921.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m21/gigaspaces-xap.net-12.3.0-m21-b18921.msi)\]
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-m22/gigaspaces-xap-open-12.3.0-m22-b18922.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m22/gigaspaces-xap-12.3.0-m22-b18922.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-m22/gigaspaces-xap.net-12.3.0-m22-b18922.msi)\]
 
 ## Changelog
 
 ### Features and Enhancements
 
+- {{% jira id="GS-13490" %}}: Revise Space index types to provide option for reduced memory footprint.
+- {{% jira id="GS-13489" %}}: Reduce @SpaceId(autogenerate=false) memory footprint.
 - {{% jira id="GS-13400" %}}: Replication redolog compaction for mirror target.
 - {{% jira id="GS-13477" %}}: Created v2 of XAP Manager REST API.
 - {{% jira id="GS-13491" %}}: Renamed /deployments to /pus in v2 of XAP Manager REST API.
@@ -34,6 +36,10 @@ Early access builds are provided as is, and should not be used in production. Th
 ### Resolved Issues
 
 - {{% jira id="GS-12946" %}}: Loop of restarts of pu instance in same container cause memory leak.
+
+# 12.3 M21 (Skipped)
+
+M21 was not a candidate for early access.
 
 # 12.3 M20 (Feb-25-2018)
 

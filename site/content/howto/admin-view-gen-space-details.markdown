@@ -172,9 +172,9 @@ Click the arrow in the right-hand column of the space entry to drill through to 
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
+{{%tab "GigaSpaces Management Center"%}}
 
-TBD
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 
 {{%/tab%}}
 

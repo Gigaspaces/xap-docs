@@ -130,7 +130,7 @@ If the Space is highlighted, you can click the **Actions** icon and drill throug
 
 {{%tab "GigaSpaces Management Center"%}}
 
-TBD
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 
 {{%/tab%}}
 
