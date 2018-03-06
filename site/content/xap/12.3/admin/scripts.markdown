@@ -10,7 +10,7 @@ weight: 50
 Some of the features described here are part of the open source edition, while others are only available with the commercial (licensed) editions.
 {{% /note %}}
 
-The `<XAP root>/bin` folder includes the following scripts that can be used to manage and monitor [GigaSpaces Runtime](./the-runtime-environment.html) components and applications. 
+The `<XAP root>/bin` folder includes the following scripts that can be used to manage and monitor [GigaSpaces runtime](./the-runtime-environment.html) components and applications. 
 
 **Open-Source Scripts**
 
@@ -30,11 +30,7 @@ In addition to the scripts described [here](./scripts.html), the `bin` folder co
 
 # Service Grid Scripts
 
-If you need to start the [Service Grid](../overview/the-runtime-environment.html) components manually instead of via the [gs-agent](../overview/the-runtime-environment.html#gsa), use the following scripts.
-
-**Additional Scripts**
-
-The scripts listed below are available in the licensed editions of the GigaSpaces applications.
+If you need to start the [Service Grid](../overview/the-runtime-environment.html) components manually instead of via the [gs-agent](../overview/the-runtime-environment.html#gsa), use the following scripts, which are available in the licensed editions of the GigaSpaces applications.
 
 - **gsc** - starts an instance of the [GSC](../overview/the-runtime-environment.html#gsc).
 - **gsm** - starts an instance of the [GSM](../overview/the-runtime-environment.html#gsm) and [LUS](../overview/the-runtime-environment.html#lus).
@@ -44,11 +40,9 @@ The scripts listed below are available in the licensed editions of the GigaSpace
 
 # Processing Units
 
-**Additional Scripts**
-
 The script listed below is available in the licensed editions of the GigaSpaces applications.
 
-- **gs-memcached** - starts standalone, un managed instance of [Memcached API](../dev-java/memcached-api.html) listener.
+- **gs-memcached** - starts a standalone, unmanaged instance of [Memcached API](../dev-java/memcached-api.html) listener.
 
 # Misc
 
@@ -57,7 +51,7 @@ The scripts listed below are available in the licensed editions of the GigaSpace
 - **lookupbrowser** - Used with for special debug scenarios to inspect the lookup service.
 - **platform-info** - prints GigaSpaces version info (Use the command line [version](./command-line-interface.html) instead).
 
-This section explains how to start a light version of the GigaSpaces server, which loads a container and one space, using the `space-instance` script. The `space-instance` (which calls [SpaceFinder]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SpaceFinder.html)) starts by default embedded Reggie and Webster services.
+This section explains how to start a light version of the GigaSpaces server, which loads a container and one Space, using the `space-instance` script. The `space-instance` (which calls [SpaceFinder]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SpaceFinder.html)) starts embedded Reggie and Webster services by default.
 
 # Starting Embedded Mahalo
 
@@ -90,7 +84,7 @@ XAP supports space monitoring and management using JMX - The Java Management Ext
 {{% /note %}}
 
 {{% note "Note"%}}
-When running `space-instance`, the Jini Lookup Service runs implicitly. When having many Jini Lookup Services running across the network, the spaces and clients might be overloaded since they publish themselves into the Lookup Service, or are trying to get updates about newly registered services.
+When running `space-instance`, the Jini Lookup Service runs implicitly. When having many Jini Lookup Services running across the network, the Spaces and clients might be overloaded because they publish themselves into the Lookup Service, or are trying to get updates about newly registered services.
 A good practice is to have two Lookup Services running using the `lookup-service` command located in the `<XAP Root>\bin` directory, or the GSM command located in the `<XAP Root>\bin` folder. This ensures no single point of failure for the Lookup Service.
 {{% /note %}}
 
@@ -115,9 +109,9 @@ You can use three arguments. All arguments must be enclosed by quotes (`" "`). I
 
 | Argument | Description |
 |:---------|:------------|
-| <nobr>Argument 1 <nobr>| Defines a space URL. The value is set into the `SPACE_URL` variable. If no value is passed for this argument, the space URL defined in the `space-instance` script is used. |
-| Argument 2 | Defines a path which will be appended to the beginning of the used classpath. The value you define is set into the `APPEND_TO_CLASSPATH_ARG` variable. If no value is passed, the classpath defined in the `space-instance` script is used. |
-| Argument 3 | Defines additional command line arguments such as system properties. The value is set into the `APPEND_ADDITIONAL_ARG` variable. |
+| <nobr>Argument 1 <nobr>| Defines a Space URL. The value is set into the `SPACE_URL` variable. If no value is passed for this argument, the Space URL defined in the `space-instance` script is used. |
+| Argument 2 | Defines a path that will be appended to the beginning of the used classpath. The value you define is set into the `APPEND_TO_CLASSPATH_ARG` variable. If no value is passed, the classpath defined in the `space-instance` script is used. |
+| Argument 3 | Defines additional command line arguments, such as system properties. The value is set into the `APPEND_ADDITIONAL_ARG` variable. |
 
 If you are using the third and/or second argument only, **you must use empty quote signs for the argument or arguments that come before the one you are using**. For example:
 

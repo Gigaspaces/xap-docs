@@ -6,7 +6,9 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}<br>
+
+{{% bgcolor orange %}}**move the "-type-stats" command and explanation to the Viewing Data Types topic**{{% /bgcolor %}}
 
 <br>
 

@@ -6,7 +6,9 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}<br>
+
+{{% bgcolor orange %}}**the --replication-stats command _might_ belong here but the rest don't. If the updated CLI doesn't contain parallel commands, you can say as much in the topic. Need to make sure the information is paralleled as much as possible. Where information is NOT parallel, explain in the intro text why you would prefer one tool over another to perform this particular task (and give an example).**{{% /bgcolor %}}
 
 **To view Space information:**
 
