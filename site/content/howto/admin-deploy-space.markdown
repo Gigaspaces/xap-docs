@@ -13,10 +13,16 @@ As part of evaluating XAP or InsightEdge, or as part of working with the product
 In order to deploy a Space, you must first have a service grid up and running. Deploying a Space using an administration tool (such as the Web Management Console) creates a Processing Unit that contains only a Space, without any application components.
 {{%/note%}}
 
-**To deploy a Space**
+{{% bgcolor yellow %}}Short description of what info is available per admin tool, i.e. which tool to use depending on what you want to achieve.{{% /bgcolor %}}
+
+**To deploy a Space:**
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
+
+Type `ie deploy space` or `xap deploy space`. The following parameters and options are displayed:
+
+{{% bgcolor yellow %}}Present the parameters and options in a table. Indicate what is optional and what is required. What happens if you only provide a name but don't add any of the options? What is the default configuration of the new Space?{{% /bgcolor %}}
 
 _Parameters:_<br>
 

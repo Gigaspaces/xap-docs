@@ -1,6 +1,6 @@
 ---
 type: post
-title:  Viewing Space Information
+title:  Viewing Space Configuration Information
 weight: 300
 parent: admin-spaces-pu.html
 ---

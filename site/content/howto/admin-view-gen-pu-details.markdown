@@ -6,7 +6,7 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+{{% bgcolor yellow %}}write intro for this topic. Include a short description of what info is available per admin tool, i.e. which tool to use depending on what you want to achieve. Also explain the difference between the info that you see for this task, vs. the info that you see in the next task (Viewing Space Information).{{% /bgcolor %}}
 
 **To view information about the deployed Processing Units:**
 
@@ -14,28 +14,39 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-***List all PU's***<br>
-Lists all Pu's with the Name, Deployment name, Topology and InstanceId
+**Processing Unit**
 
-*Example:*
+`pu list`
+
+This command lists all the Processing Units in a table with the name, deployment name, topology and InstanceId information.
+
+*Input Example:*
 
 ```bash
 <XAP-HOME>/bin/xap pu list
 ```
 
+*Output Example*
 
-***List all PU instances***<br>
-Lists all PU instances for a given PU with Id, Mode, PartionId, BackupId, HostId and ContainerId.
+{{% bgcolor yellow %}}Text capture of table with list of Processing Units.{{% /bgcolor %}}
 
-_Parameters:_<br> 
+**Processing Unit instance**
 
-- name : The name of the PU.
+`pu list-instances <Processing Unit name>`
  
-*Example:*
+This command lists all of the instances for a given Processing Unit, along with the ID, Mode, PartionId, BackupId, HostId and ContainerId information. 
+
+ 
+*Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap space list-instances mySpace
+<XAP-HOME>/bin/xap pu list-instances mySpace
 ```
+
+*Output Example*
+
+{{% bgcolor yellow %}}Text capture of table with list of Processing Unit instances.{{% /bgcolor %}}
+
 {{%/tab%}}
 
 
