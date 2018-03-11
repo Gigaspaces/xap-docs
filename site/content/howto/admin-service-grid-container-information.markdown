@@ -1,7 +1,7 @@
 ---
 type: post
 title: Viewing Container Information
-weight: 500
+weight: 200
 parent: admin-service-grid.html
 ---
  
@@ -72,12 +72,71 @@ curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/containers/c
 
 
 {{%tab "Web Management Console"%}}
-TBD
+
+The Hosts view provides general overview of the containers that are running in the XAP environment. 
+
+{{%note "Note"%}}
+For a description of the other information displayed in the Hosts view, see the [Viewing Host Information](/admin-service-grid-view-host-information.html) topic.
+{{%/note%}}
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td colspan="2"><i>Grid Service Container</i></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>Name of the GSC.</td>
+  </tr>
+  <tr>
+    <td>CPU</td>
+    <td>Indicator of how much CPU is being used, in %.</td>
+  </tr>
+  <tr>
+    <td>Used Heap (MB)</td>
+    <td>Indicator of how much heap memory the GSC is utilizing, in both MB and %.</td>
+  </tr>
+  <tr>
+    <td>Threads</td>
+    <td>How many threads the GSC has open.</td>
+  </tr>
+  <tr>
+    <td>Processing Units</td>
+    <td>Processing Units and number of Processing Unit instances being hosted by the GSC.</td>
+  </tr>
+  <tr>
+    <td>Primaries & Backups</td>
+    <td>Processing Unit instances being hosted by the GSC, according to primary and backup status.</td>
+  </tr>
+  <tr>
+    <td colspan="2"><i>Grid Service Manager/Lookup Service</i></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>Name of the container.</td>
+  </tr>
+  <tr>
+    <td>CPU</td>
+    <td>Indicator of how much CPU is being used, in %.</td>
+  </tr>
+  <tr>
+    <td>Used Heap (MB)</td>
+    <td>Indicator of how much heap memory the container is utilizing, in both MB and %.</td>
+  </tr>
+</table>
+
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
-TBD
+{{%tab "GigaSpaces Management Center"%}}
+
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
+
 {{%/tab%}}
 
 

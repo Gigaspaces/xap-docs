@@ -10,17 +10,17 @@ parent: admin-spaces-pu.html
 
 # Interacting with Space Data
 
-The Web Management Console supports SQL queries, enabling users to perform actions on the data objects in the Space. For example, to query a specific class:
-
-```
-SELECT * FROM my.company.com.MyPojo WHERE rownum < 1000
-```
-
 {{% note "Note"%}}
 This functionality is not available in the Command Line Interface, REST Manager API, or Administration API.
 {{% /note %}}
 
 ## Querying a Space
+
+The Web Management Console and GigaSpaces Management Center support SQL queries, enabling users to perform actions on the data objects in the Space. For example, to query a specific class:
+
+```
+SELECT * FROM my.company.com.MyPojo WHERE rownum < 1000
+```
 
 **To query a Space:**
 
@@ -30,7 +30,7 @@ This functionality is not available in the Command Line Interface, REST Manager 
 1. In the Spaces view, highlight the Space or the Space instance you want to query.
 1. Display the Queries pane in the lower area of the view.
 1. Type a query, or click a data type from the Types pane.
-1. Click **Execute Query**.
+1. Click <b>Execute Query</b>.
 
 	The query is executed against the selected Space or Space instance. If there are too many results to display on a single web page, you can navigate using the paging controls at the bottom of the table. Paging is static (results are fetched once per execute request).
 1. If you have tried to run multiple queries, you can navigate between them using the **Go Back**/**Go Forward** buttons, or select a query from the dropdown lists next to these buttons.
@@ -53,6 +53,8 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 {{% /tabs %}}
 
 ## Deleting Data from a Space
+
+You can clear data from a Space using SQL queries, or via the user interface.
 
 **To delete (clear) data from a Space:**
 
@@ -118,8 +120,8 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 {{%tab "Web Management Console"%}}
 
 1. In the Processing Units view, highlight the Processing Unit you want to quiesce.
-1. Click the **Actions **icon, and select **Quiesce **from the menu.
-1. (Optional) If you want helpful information to appear in the log, type some descriptive text in the **Description **box (for example: "offline for maintenance").
+1. Click the **Actions** icon, and select **Quiesce** from the menu.
+1. (Optional) If you want helpful information to appear in the log, type some descriptive text in the **Description** box (for example: "offline for maintenance").
 1. Click **OK**.
 
 The Quiesce Progress window displays the result of the Quiesce process (for example, "Quiesce completed successfully"), and a token that the administrator can use to perform actions on the Processing Unit while it is in quiesced state. It is recommended to copy this token from the window before clicking **OK**.
@@ -182,8 +184,8 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 {{%tab "Web Management Console"%}}
 
 1. In the Processing Units view, highlight the Processing Unit you want to unquiesce.
-1. Click the **Actions **icon, and select **Unquiesce **from the menu.
-1. Click **Yes **in the confirmation message.
+1. Click the **Actions** icon, and select **Unquiesce** from the menu.
+1. Click **Yes** in the confirmation message.
 
 When the Processing Unit is available again, the status in the Processing Unit view changes to Intact.
 
@@ -226,8 +228,8 @@ N/A
 {{%tab "Web Management Console"%}}
 
 1. In the Processing Units view, highlight the Processing Unit instance you want to restart.
-1. Click the **Actions **icon, and select **Restart **from the menu.
-1. Click **Yes **in the confirmation message.
+1. Click the **Actions** icon, and select **Restart** from the menu.
+1. Click **Yes** in the confirmation message.
 
 The Processing Unit instance is not visible in the Processing Unit view until it has finished restarting. This can take several seconds.
 
@@ -294,9 +296,9 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 {{%tab "Web Management Console"%}}
 
 1. In the Processing Units view, highlight the Processing Unit instance you want to relocate.
-1. Click the **Actions **icon, and select **Relcate **from the menu.
+1. Click the **Actions** icon, and select **Relocate** from the menu.
 1. Highlight the host where you want to move the instance, and click **Select**.
-1. Click **Yes **in the confirmation message.
+1. Click **Yes** in the confirmation message.
 
 The Processing Unit state is Scheduled in the Processing Unit view until the instance is relocated and initiated. This can take several seconds.
 
