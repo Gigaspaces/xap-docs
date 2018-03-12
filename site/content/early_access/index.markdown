@@ -15,6 +15,24 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3 RC1 (Mar-12-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-rc1/gigaspaces-insightedge-open-12.3.0-rc1-b18923.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-rc1/gigaspaces-insightedge-12.3.0-rc1-b18923.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-rc1/gigaspaces-xap-open-12.3.0-rc1-b18923.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-rc1/gigaspaces-xap-12.3.0-rc1-b18923.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-rc1/gigaspaces-xap.net-12.3.0-rc1-b18923.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-134561" %}}: Upgrade Apache Zookeeper to 3.4.10.
+
+### Resolved Issues
+
+N/A
+
 # 12.3 M22 (Mar-06-2018)
 
 ## Download Links

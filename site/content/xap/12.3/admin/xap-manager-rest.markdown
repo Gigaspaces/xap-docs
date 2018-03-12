@@ -29,10 +29,10 @@ After the XAP Manager has started, browse to {{%exurl "localhost:8090""http://lo
 You must start a XAP Manager to access the REST Manager API. You can also start a cluster of XAP Managers to ensure high availability. To learn more about the XAP Manager, refer to [XAP Manager](xap-manager.html).
 {{%/info%}}
 
-The REST Manager API was built with {{%exurl "Swagger" "http://swagger.io/"%}}. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the `Try it out!` button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the `curl` command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self explanatory. You can also download the `yaml` specification and use Swagger's `Online Editor` to generate a client in your favourite language.
+The REST Manager API was built with {{%exurl "Swagger" "http://swagger.io/"%}}. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the `Try it out!` button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the `curl` command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self explanatory. You can also download the `yaml` specification and use Swagger's `Online Editor` to generate a client in your favorite language.
 
 
-![image](/attachment_files/rest-admin/rest-admin-1.png)
+![image](/attachment_files/rest-admin/rest-admin-2.png)
 
 
 # Long-Running Operations
@@ -76,18 +76,18 @@ You can perform a wide variety of operations on all of the environment component
 You must start a XAP Manager to access the pages using the links below.
 {{%/info%}}
 
-- Hosts - See the {{%exurl "Host Operations" "http://localhost:8090/v1/index.html#/Hosts"%}} page.
-- Containers - See the {{%exurl "Container Operations" "http://localhost:8090/v1/index.html#/Containers"%}} page.
-- Spaces - See the {{%exurl "Space Operations" "http://localhost:8090/v1/index.html#/Spaces"%}} page.
-- Deployments - See the {{%exurl "Deployment Operations" "http://localhost:8090/v1/index.html#/Deployments"%}} page.
-- Requests - See the {{%exurl "Request Operations" "http://localhost:8090/v1/index.html#/Requests"%}} page.
-- Information - See the {{%exurl "Information Operations" "http://localhost:8090/v1/index.html#/Information"%}} page.
-- Spark - See the {{%exurl "Spark" "http://localhost:8090/v1/index.html#/Spark"%}} page.
+- Containers - See the {{%exurl "Containers"  "http://localhost:8090/v2/index.html#/Containers"%}} page.
+- Hosts - See the {{%exurl "Hosts"  "http://localhost:8090/v2/index.html#/Hosts"%}} page.
+- Information - See the {{%exurl "Information"  "http://localhost:8090/v2/index.html#/Information"%}} page.
+- Processing Units - See the {{%exurl "Processing Units"  "http://localhost:8090/v2/index.html#/Processing_Units"%}} page.
+- Requests - See the {{%exurl "Requests"  "http://localhost:8090/v2/index.html#/Requests"%}} page.
+- Spaces - See the {{%exurl "Spaces"  "http://localhost:8090/v2/index.html#/Spaces"%}} page.
+- Spark - See the {{%exurl "Spark" "http://localhost:8090/v2/index.html#/Spark"%}} page.
 
  
 # Online Editor
 
-You can download the `yaml` configuration file from  {{%exurl "http://localhost:8090/v1/xap-manager-api.yaml""http://localhost:8090/v1/xap-manager-api.yaml"%}} 
+You can download the `yaml` configuration file from  {{%exurl "http://localhost:8090/v2/xap-manager-api.yaml""http://localhost:8090/v2/xap-manager-api.yaml"%}} 
 and import or copy and past the yaml content into the {{%exurl "Swagger Editor""http://editor.swagger.io/#!/"%}}.
 
 ![image](/attachment_files/rest-admin/swagger-ui.png)
