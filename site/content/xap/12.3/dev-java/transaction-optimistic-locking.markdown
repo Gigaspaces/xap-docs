@@ -20,7 +20,7 @@ The problem is that while the customer details object is away from the space ser
 
 For optimistic locking to work effectively, you must be able to detect these update-update conflicts, and to make the client aware of them, so they can be dealt with appropriately.
 
-{{% note "Optimistic locking protocol"%}}
+{{% note "Optimistic Locking Protocol"%}}
 
 - Is best suited for environments with many read-only transactions, few read-update transactions, and a relatively low volume of objects that are changed.
 - Is more suitable for real-time systems than pessimistic locking, because the space runs best with short term transactions.
@@ -77,7 +77,7 @@ Use a transactional with your write operation. You **must** use a transaction wh
 - if the Version ID of the updated object is the same as the Version ID of the corresponding object within the space, it is incremented by 1, and the object is updated within the space successfully.
 - if the Version ID of the updated object is different than the Version ID of the corresponding object within the space, the object is not updated within the space - i.e. the operation fails. In this case, a `SpaceOptimisticLockingFailureException` is thrown.
 
-{{% note %}}
+{{% note "Note"%}}
 It is recommended that you call the update operation just before the commit operation. This minimizes the time the object is locked under a transaction.
 {{% /note %}}
 
@@ -132,7 +132,7 @@ public class Employee
 	public Integer getEmployeeID(){	return employeeID;}
 	public  void setEmployeeID(Integer employeeID){	this.employeeID = employeeID;}
 
-	@SpaceIndex (type=SpaceIndexType.BASIC)
+	@SpaceIndex (type=SpaceIndexType.EQUAL)
 	private String getFirstName(){return firstName;}
 	public void setFirstName(String firstName)	{this.firstName = firstName;	}
 
@@ -348,7 +348,7 @@ while (true)
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% note %}}
+{{% note "Note"%}}
 When there are more than 2 clients (or 2 threads within the same client) that might update space objects at the same time, before re-reading the space objects, you should have a short sleep with a random duration. This allows one of the threads to complete the update successfully. Without such a sleep, you might have a contention with the update activity.
 {{% /note %}}
 

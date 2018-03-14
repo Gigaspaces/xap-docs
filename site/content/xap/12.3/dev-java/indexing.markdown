@@ -16,9 +16,15 @@ The index type is determined by the `SpaceIndexType` enumeration. The index type
 
 **NONE** - No indexing is used.
 
-**BASIC** - Basic index is used - this speeds up equality matches (equal to/not equal to).
+**EQUAL** - performs equality matching (equal to/not equal to).
 
-**EXTENDED** - Extended index - this speeds up comparison matches (bigger than/less than).
+**ORDERED** - performs ordered matching (bigger than/less than).
+
+**EQUAL_AND_ORDERED** - performs both equality and ordered matching, and uses a larger memory footprint than the other indexing types.
+
+{{%note "Note"%}}
+The **BASIC** and **EXTENDED** index types have been deprecated as of version 12.3. 
+{{%/note%}}
 
 # Indexing at Design Time
 
@@ -37,15 +43,15 @@ public class Person
     private Integer age;
 
     ...
-    @SpaceIndex(type=SpaceIndexType.BASIC)
+    @SpaceIndex(type=SpaceIndexType.EQUAL)
     public String getFirstName() {return firstName;}
     public void setFirstName(String firstName) {this.firstName = firstName;}
 
-    @SpaceIndex(type=SpaceIndexType.BASIC)
+    @SpaceIndex(type=SpaceIndexType.EQUAL)
     public String getLastName() {return lastName;}
     public void setLastName(String name) {this.lastName = name;}
 
-    @SpaceIndex(type=SpaceIndexType.EXTENDED)
+    @SpaceIndex(type=SpaceIndexType.ORDERED)
     public Integer getAge() {return age;}
     public void setAge(Integer age) {this.age = age;}
 }
@@ -59,13 +65,13 @@ public class Person
 <gigaspaces-mapping>
     <class name="com.gigaspaces.examples.Person" persist="false" replicate="false" fifo="false" >
         <property name="lastName">
-            <index type="BASIC"/>
+            <index type="EQUAL"/>
         </property>
         <property name="firstName">
-            <index type="BASIC"/>
+            <index type="EQUAL"/>
         </property>
         <property name="age">
-             <index type="EXTENDED"/>
+             <index type="ORDERED"/>
         </property>
     </class>
 </gigaspaces-mapping>

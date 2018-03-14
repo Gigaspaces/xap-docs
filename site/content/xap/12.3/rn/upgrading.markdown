@@ -16,3 +16,7 @@ This version of the InsightEdge Platform is backwards compatible to XAP version 
 
 For information about product changes that may affect your upgrade process, refer to the sections on Upgrading from a Previous Version for XAP [12.2](/xap/12.2/rn/upgrading.html), [12.1](/release_notes/121upgrading.html), [12.0](/release_notes/120upgrading.html), and [11.0](/release_notes/110upgrading.html). 
 
+# REST Manager API
+
+V2 of the REST Manager API was released in this version. As a result, V1 has been deprecated. While V1 is still supported, we encourage upgrading to the latest version of the InsightEdge platform in order to benefit from the the changes and improvements available with V2, and to ensure forward compatibility in client applications.
+

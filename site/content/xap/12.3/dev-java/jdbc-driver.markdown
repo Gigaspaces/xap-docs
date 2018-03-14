@@ -453,7 +453,7 @@ public class MyClass {
 	HashMap<String, MyData> map; // a map within the space object
 	MyData data; // an object within the space object
 
-	@SpaceIndex (type=SpaceIndexType.BASIC)
+	@SpaceIndex (type=SpaceIndexType.EQUAL)
 	public Integer getNum() {
 		return num;
 	}
@@ -461,7 +461,7 @@ public class MyClass {
 		this.num = num;
 	}
 
-	@SpaceIndex (type=SpaceIndexType.BASIC)
+	@SpaceIndex (type=SpaceIndexType.EQUAL)
 	public String getStr() {
 		return str;
 	}
@@ -478,8 +478,8 @@ public class MyClass {
 		this.id = id;
 	}
 
-	@SpaceIndexes({@SpaceIndex(path="key1" , type = SpaceIndexType.BASIC),
-			@SpaceIndex(path="key2" , type = SpaceIndexType.BASIC)})
+	@SpaceIndexes({@SpaceIndex(path="key1" , type = SpaceIndexType.EQUAL),
+			@SpaceIndex(path="key2" , type = SpaceIndexType.EQUAL)})
 	public HashMap<String, MyData> getMap() {
 		return map;
 	}
@@ -487,8 +487,8 @@ public class MyClass {
 		this.map = map;
 	}
 
-	@SpaceIndexes({@SpaceIndex(path="data1" , type = SpaceIndexType.BASIC),
-			@SpaceIndex(path="data2" , type = SpaceIndexType.BASIC)})
+	@SpaceIndexes({@SpaceIndex(path="data1" , type = SpaceIndexType.EQUAL),
+			@SpaceIndex(path="data2" , type = SpaceIndexType.EQUAL)})
 	public MyData getData() {
 		return data;
 	}

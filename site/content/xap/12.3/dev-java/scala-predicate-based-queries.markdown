@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Predicate Based Queries
+title:  Predicate-Based Queries
 categories: XAP123, OSS
 parent: scala.html
 weight: 300
@@ -44,7 +44,7 @@ case class Person @SpaceClassConstructor() (
 
   @BeanProperty
   @SpaceProperty(nullValue = "-1")
-  @SpaceIndex(`type` = SpaceIndexType.EXTENDED)
+  @SpaceIndex(`type` = SpaceIndexType.ORDERED)
   height: Int = -1,
 
   @BeanProperty

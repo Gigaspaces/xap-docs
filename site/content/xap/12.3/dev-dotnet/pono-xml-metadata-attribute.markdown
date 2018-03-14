@@ -9,7 +9,7 @@ weight: 200
  
 
 
-All the properties are written automatically into the Space. If the property is a reference to another object, it has to be Serializable and it will be written into the Space as well. Only the properties which need special Space behavior need to be specified in the gs.xml file. Specify the properties which are id's, indexes or need exclusions, etc.
+All the properties are written automatically into the Space. If the property is a reference to another object, it has to be Serializable and it will be written into the Space as well. Only the properties that need special Space behavior need to be specified in the gs.xml file. Specify the properties that are IDs, indexes or need exclusions, etc.
 
 
 # Property
@@ -20,7 +20,7 @@ All the properties are written automatically into the Space. If the property is 
 |Argument   |  name of the attribute          |
 |Description| contains mapping info for a property of a class |
 
-Example:
+**Example**
 
 
 ```xml
@@ -37,9 +37,9 @@ Example:
 |           |                 |
 |-----------|-----------------|
 |Syntax     | null-value |
-|Description| Specifies that an attribute value be treated as `null` when the object is written to the space and no value is assigned to the attribute. (where `-1` functions as a `null` value in case of an int)|
+|Description| Specifies that an attribute value be treated as `null` when the object is written to the Space and no value is assigned to the attribute. (where `-1` functions as a `null` value in case of an int)|
 
-Example:
+**Example**
 
 
 ```xml
@@ -74,9 +74,6 @@ Example:
 
 
 
-
-
-
 ### SpaceStorageType
 
 |           |                 |
@@ -84,7 +81,7 @@ Example:
 |Syntax     | storage-type|
 |Argument   | [StorageType]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_Metadata_StorageType.htm)          |
 |Default    | object |
-|Description| This tag is used to specify how the property is stored in the space. |
+|Description| This tag is used to specify how the property is stored in the Space. |
 
 Example:
 
@@ -117,13 +114,13 @@ Example:
 <gigaspaces-mapping>
     <class name="Model.Person" persist="false" replicate="false" >
         <property name="LastName">
-            <index type="basic"/>
+            <index type="equal"/>
         </property>
         <property name="FirstName">
-            <index type="basic"/>
+            <index type="equal"/>
         </property>
         <property name="Age">
-             <index type="extended"/>
+             <index type="ordered"/>
         </property>
     </class>
 </gigaspaces-mapping>
@@ -148,8 +145,8 @@ Example:
 <gigaspaces-mapping>
     <class name="Model.Person"  >
         <property name="PersonalInfo">
-		    <index path="SocialSecurity" type = "extended"/>
-		    <index path="Address.zipCode" type = "basic"/>
+		    <index path="SocialSecurity" type = "ordered"/>
+		    <index path="Address.zipCode" type = "equal"/>
 		</property>
     </class>
 </gigaspaces-mapping>
@@ -178,13 +175,13 @@ Example:
 <gigaspaces-mapping>
     <class name="Model.Person" persist="false" replicate="false" >
         <property name="LastName">
-            <index type="BASIC" unique="true"/>
+            <index type="	EQUAL" unique="true"/>
         </property>
         <property name="FirstName">
-            <index type="BASIC"/>
+            <index type="EQUAL"/>
         </property>
         <property name="Age">
-             <index type="EXTENDED"/>
+             <index type="ORDERED"/>
         </property>
     </class>
 </gigaspaces-mapping>
@@ -235,7 +232,7 @@ Example:
 |Syntax     | id name|
 |Argument   | auto-generate |
 |Default    | false |
-|Description| Defines whether this field value is used when generating the Object ID. The field value should be unique -- i.e., no multiple objects with the same value should be written into the space (each object should have a different field value). When writing an object into the space with an existing `id` field value, an `EntryAlreadyInSpaceException` is thrown. The Object ID is created, based on the `id` field value.<br>Specifies if the object ID is generated automatically by the space when written into the space. If `false`, the field is indexed automatically, and if `true`, the field isn't indexed. If `autoGenerate` is declared as `false`, the field is indexed automatically. If `autoGenerate` is declared as `true`,the field isn't indexed. If `autoGenerate` is `true`, the field must be of the type `String`. |
+|Description| Defines whether this field value is used when generating the Object ID. The field value should be unique -- i.e., no multiple objects with the same value should be written into the Space (each object should have a different field value). When writing an object into the Space with an existing `id` field value, an `EntryAlreadyInSpaceException` is thrown. The Object ID is created, based on the `id` field value.<br>Specifies if the object ID is generated automatically by the Space when written into the Space. If `false`, the field is indexed automatically, and if `true`, the field isn't indexed. If `autoGenerate` is declared as `false`, the field is indexed automatically. If `autoGenerate` is declared as `true`,the field isn't indexed. If `autoGenerate` is `true`, the field must be of the type `String`. |
 
 Example:
 
@@ -262,7 +259,7 @@ Example:
 |           |                 |
 |-----------|-----------------|
 |Syntax     | routing name|
-|Description| The `routing` tag specifies a get method for the field to be used to calculate the target space for the space operation (read , write...). The `routing` field value hash code is used to calculate the target space when the Space is running in **partitioned mode**.<br>The field value hash code is used to calculate the target space when the space is running in **partitioned mode**. |
+|Description| The `routing` tag specifies a get method for the field to be used to calculate the target Space for the Space operation (read , write...). The `routing` field value hash code is used to calculate the target Space when the Space is running in **partitioned mode**.<br>The field value hash code is used to calculate the target Space when the Space is running in **partitioned mode**. |
 
 Example:
 
@@ -311,9 +308,9 @@ Example:
 |-----------|-----------------|
 |Syntax     | persist name|
 |Description| This specifies a getter method for holding the persistency mode of the object overriding the class level persist declaration. This field should be of the boolean data type.<br>If the persist class level annotation is true, all objects of this class type will be persisted into the underlying data store (Mirror, ExternalDataSource, Storage Adapter).|
-|Note       | When using this option, you must have the space class level `persist` decoration specified.|
+|Note       | When using this option, you must have the Space class level `persist` decoration specified.|
 
-Example:
+**Example**
 
 
 ```xml
@@ -364,8 +361,8 @@ Example:
 |           |                 |
 |-----------|-----------------|
 |Syntax     |  exclude name|
-|Description| When this tag is specified the property is not written into the space.|
-|Note | - When `include-properties` is defined as `implicit`, `exclude` should   be used. This is because `implicit` instructs the system to take all POJO fields into account.<br>- When `include-properties` is defined as `explicit`, there is no need to use `exclude`.<br>- `exclude` can still be used, even if `include-properties` is not defined.  |
+|Description| When this tag is specified the property is not written into the Space.|
+|Note | - When `include-properties` is defined as `implicit`, `exclude` should   be used. This is because `implicit` instructs the system to take all PONO fields into account.<br>- When `include-properties` is defined as `explicit`, there is no need to use `exclude`.<br>- `exclude` can still be used, even if `include-properties` is not defined.  |
 
 Example:
 
@@ -390,9 +387,9 @@ Example:
 |           |                 |
 |-----------|-----------------|
 |Syntax     |  lease-expiration name|
-|Description|This tag specifies the property for holding the timestamp of when the instance's lease expires. This property should not be populated by the user code. The space will populate this property automatically based on the lease time given by the user when writing the object. When using an external data source, you can choose to persist this value to the database. Subsequently, when data is reloaded from the external data source (at startup time for example), the space will filter out instances whose lease expiration timestamp has already passed. This field should be a `long` data type.|
+|Description|This tag specifies the property for holding the timestamp of when the instance's lease expires. This property should not be populated by the user code. The Space will populate this property automatically based on the lease time given by the user when writing the object. When using an external data source, you can choose to persist this value to the database. Subsequently, when data is reloaded from the external data source (at startup time for example), the Space will filter out instances whose lease expiration timestamp has already passed. This field should be a `long` data type.|
 
-Example:
+**Example**
 
 
 ```xml
@@ -421,9 +418,9 @@ Example:
 |Syntax     | fifo-grouping-property name path|
 |Argument   | path          |
 |Description| This tag is used to define a space FIFO grouping property. |
-|Note | If defined, the `TakeModifiers.FIFO_GROUPING_POLL` or `ReadModifiers.FIFO_GROUPING_POLL` modifiers can be used to return all space entries that match the selection template in FIFO order. Different values of the FG property define groups of space entries that match each value. FIFO ordering exists within each group and not between different groups. |
+|Note | If defined, the `TakeModifiers.FIFO_GROUPING_POLL` or `ReadModifiers.FIFO_GROUPING_POLL` modifiers can be used to return all space entries that match the selection template in FIFO order. Different values of the FG property define groups of Space entries that match each value. FIFO ordering exists within each group and not between different groups. |
 
-Example:
+**Example**
 
 
 ```xml
@@ -446,7 +443,7 @@ Example:
 |-----------|-----------------|
 |Syntax     | dynamic-properties name|
 |Description| Allows adding properties freely to a class without worrying about the schema.|
-|Note|**Only one property per class can be declared as `dynamic-properties`.**|
+|Note|Only one property per class can be declared as `dynamic-properties`.|
 
 Example:
 

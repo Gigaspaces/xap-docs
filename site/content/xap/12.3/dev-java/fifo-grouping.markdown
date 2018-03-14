@@ -252,7 +252,7 @@ pollingEventListenerContainer.start();
 
 # SpaceIndex
 
-Declaring both `spaceFifoGroupingProperty` or `SpaceFifoGroupingIndex` and `spaceIndex` (type `BASIC` or `Extended`) with the same path will yield one index with the `spaceIndex` type. Declaring only `spaceFifoGroupingProperty` or `spaceFifoGroupingIndex` will yield one index, type `BASIC`.
+Declaring both `spaceFifoGroupingProperty` or `SpaceFifoGroupingIndex` and `spaceIndex` (type `EQUAL` or `ORDERED`) with the same path will yield one index with the `spaceIndex` type. Declaring only `spaceFifoGroupingProperty` or `spaceFifoGroupingIndex` will yield one index, type `EQUAL`.
 
 # Inheritance
 
@@ -260,7 +260,7 @@ All property's FG declarations (both `SpaceFifoGroupingProeprty` and `SpaceFifoG
 
 - Overriding of `SpaceFifoGroupingProperty` is not allowed.
 - Overriding of `SpaceFifoGroupingIndex` is allowed in order to add more FG indexes.
-For example, declaring `SpaceFifoGroupingIndex(path="a")`, overriding in subclass and declaring `SpaceFifoGroupingIndex(path="b")` will yield two FG indexes: property a index and property b index (both of type `BASIC` if no `SpaceIndex` with `Extended` type was declared).
+For example, declaring `SpaceFifoGroupingIndex(path="a")`, overriding in subclass and declaring `SpaceFifoGroupingIndex(path="b")` will yield two FG indexes: property a index and property b index (both of type `EQUAL` if no `SpaceIndex` with `ORDERED` type was declared).
 
 # Considerations
 

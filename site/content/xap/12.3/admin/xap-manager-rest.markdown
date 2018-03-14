@@ -76,7 +76,8 @@ You can perform a wide variety of operations on all of the environment component
 You must start a XAP Manager to access the pages using the links below.
 {{%/info%}}
 
-- Containers - See the {{%exurl "Containers"  "http://localhost:8090/v2/index.html#/Containers"%}} page.
+- Containers - {{%version rest-version%}} See {{%version rest-version%}}
+the {{%exurl "Containers"  "http://localhost:8090/{{%version rest-version%}}/index.html#/Containers"%}} page.
 - Hosts - See the {{%exurl "Hosts"  "http://localhost:8090/v2/index.html#/Hosts"%}} page.
 - Information - See the {{%exurl "Information"  "http://localhost:8090/v2/index.html#/Information"%}} page.
 - Processing Units - See the {{%exurl "Processing Units"  "http://localhost:8090/v2/index.html#/Processing_Units"%}} page.

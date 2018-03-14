@@ -1,16 +1,16 @@
 ---
 type: post123
-title:  Data Type Meta Data
+title:  Data Type Metadata
 categories: XAP123, OSS
 weight: 1100
 parent: the-gigaspace-interface-overview.html
 ---
 
 
-XAP provides the ability to obtain and modify class meta data of objects stored in the Space during runtime.
+XAP provides the ability to obtain and modify class metadata of objects stored in the Space during runtime.
 
 
-# Meta data discovery
+# Metadata Discovery
 
 The actual class names are discovered with the **Admin interface**  through the `Space` interface.
  
@@ -29,7 +29,7 @@ String SpaceClassNames[] = space.getRuntimeDetails().getClassNames();
 ```
 
 {{%refer%}}
-For  detailed information on the `AdminFactory` consult [AdminFactory](./administration-and-monitoring-overview.html)
+For  detailed information on the `AdminFactory` see [AdminFactory](./administration-and-monitoring-overview.html).
 {{%/refer%}}
 
 The `GigaSpaceTypeManager` is retrieved from the Space instance and will give us the detailed information for each class:
@@ -41,7 +41,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer(spaceName
 GigaSpaceTypeManager gigaSpaceTypeManager = gigaSpace.getTypeManager();
 ```
 
-We can iterate over all classes that are present in the Space and obtain their meta data:
+We can iterate over all classes that are present in the Space and obtain their metadata:
 
 ```java
 for (int j = 0; j < SpaceClassNames.length; j++) {
@@ -56,9 +56,9 @@ for (int j = 0; j < SpaceClassNames.length; j++) {
 
 
 
-#### Example
+**Example**
 
-Lets assume that we have an abstract super class **Entity** and two sub classes, **Bank** and **Supplier**.
+Lets assume that we have an abstract super class **Entity** and two sub-classes, **Bank** and **Supplier**.
  
 
 {{%tabs%}}
@@ -168,7 +168,7 @@ public enum ESupplierType {
 
 {{%/tabs%}}
 
-Here is an example that uses the `GigaSpaceTypeManager` to explore the Space for meta data:
+Here is an example that uses the `GigaSpaceTypeManager` to explore the Space for metadata:
 
 ```java
 @Test
@@ -250,7 +250,7 @@ Properties:
 Meta Data       :xap.sandbox.type.Bank
 Super Type Name :xap.sandbox.type.Entity
 Id Property Name:id
-Indexes         :{id=SpaceIndex[name=id, type=BASIC, unique=true], swift=SpaceIndex[name=swift, type=BASIC, unique=false]}
+Indexes         :{id=SpaceIndex[name=id, type=EQUAL, unique=true], swift=SpaceIndex[name=swift, type=EQUAL, unique=false]}
 Properties:
   Name:contact Type:java.lang.String Storage Type:OBJECT
   Name:emailAddress Type:java.lang.String Storage Type:OBJECT
@@ -262,7 +262,7 @@ Properties:
 Meta Data       :xap.sandbox.type.Entity
 Super Type Name :java.lang.Object
 Id Property Name:id
-Indexes         :{id=SpaceIndex[name=id, type=BASIC, unique=true]}
+Indexes         :{id=SpaceIndex[name=id, type=EQUAL, unique=true]}
 Properties:
   Name:contact Type:java.lang.String Storage Type:OBJECT
   Name:emailAddress Type:java.lang.String Storage Type:OBJECT
@@ -271,7 +271,7 @@ Properties:
 Meta Data       :xap.sandbox.type.Supplier
 Super Type Name :xap.sandbox.type.Entity
 Id Property Name:id
-Indexes         :{id=SpaceIndex[name=id, type=BASIC, unique=true]}
+Indexes         :{id=SpaceIndex[name=id, type=EQUAL, unique=true]}
 Properties:
   Name:contact Type:java.lang.String Storage Type:OBJECT
   Name:emailAddress Type:java.lang.String Storage Type:OBJECT
@@ -280,10 +280,10 @@ Properties:
   Name:number Type:java.lang.Integer Storage Type:OBJECT
 ```
 
-All information per class (super, sub and embedded class), properties, indexes, ID's etc is displayed.
+All information per class (super, sub and embedded class), properties, indexes, IDs etc. is displayed.
 
 
-# Modifying existing classes
+# Modifying Existing Classes
 
 It is possible to modify existing classes in the Space. For example, we can add indexes during runtime.
 
@@ -291,10 +291,10 @@ Lets take our example **Bank**, we want to add an additional index for the colum
 
 
 {{%tabs%}}
-{{%tab "Basic Index"%}}
+{{%tab "Equal Index"%}}
 ```java
 AsyncFuture<AddTypeIndexesResult> asyncAddIndex = gigaSpace.getTypeManager().asyncAddIndex("xap.sandbox.type.Bank",
-				   SpaceIndexFactory.createPropertyIndex("iban", SpaceIndexType.BASIC));
+				   SpaceIndexFactory.createPropertyIndex("iban", SpaceIndexType.EQUAL));
 ```
 {{%/tab%}}
 
@@ -304,7 +304,7 @@ AsyncFuture<AddTypeIndexesResult> asyncAddIndex = gigaSpace.getTypeManager().asy
 Meta Data :xap.sandbox.type.Bank
 Super Type Name :xap.sandbox.type.Entity
 Id Property Name:id
-Indexes :{id=SpaceIndex[name=id, type=BASIC, unique=true], swift=SpaceIndex[name=swift, type=BASIC, unique=false], iban=SpaceIndex[name=iban, type=BASIC, unique=false]}
+Indexes :{id=SpaceIndex[name=id, type=EQUAL, unique=true], swift=SpaceIndex[name=swift, type=EQUAL, unique=false], iban=SpaceIndex[name=iban, type=EQUAL, unique=false]}
 Properties:
  Name:contact Type:java.lang.String Storage Type:OBJECT
  Name:emailAddress Type:java.lang.String Storage Type:OBJECT
@@ -331,7 +331,7 @@ AsyncFuture<AddTypeIndexesResult> indexesResultAsyncFuture = gigaSpace.getTypeMa
 Meta Data :xap.sandbox.type.Supplier
 Super Type Name :xap.sandbox.type.Entity
 Id Property Name:id
-Indexes :{number+category=SpaceIndex[name=number+category, type=BASIC, unique=false], id=SpaceIndex[name=id, type=BASIC, unique=true]}
+Indexes :{number+category=SpaceIndex[name=number+category, type=EQUAL, unique=false], id=SpaceIndex[name=id, type=EQUAL, unique=true]}
 Properties:
  Name:contact Type:java.lang.String Storage Type:OBJECT
  Name:emailAddress Type:java.lang.String Storage Type:OBJECT
@@ -342,7 +342,7 @@ Properties:
 {{%/tab%}}
 {{%/tabs%}}
 
-{{%note%}}
+{{%note "Note"%}}
 Removing an index or changing an index type is currently not supported.
 {{%/note%}}
 
@@ -357,7 +357,7 @@ New `SpaceDocuments` can be introduced during runtime:
 ```java
 // Create type descriptor:
 SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")
-		.addPropertyIndex("name", SpaceIndexType.BASIC)
+		.addPropertyIndex("name", SpaceIndexType.EQUAL)
 // ... Other type settings
 		.documentWrapperClass(Document.class).create();
 
@@ -370,7 +370,7 @@ gigaSpace.getTypeManager().registerTypeDescriptor(typeDescriptor);
 Meta Data :Product
 Super Type Name :java.lang.Object
 Id Property Name:_spaceId
-Indexes :{name=SpaceIndex[name=name, type=BASIC, unique=false]}
+Indexes :{name=SpaceIndex[name=name, type=EQUAL, unique=false]}
 Document Wrapper :class xap.sandbox.type.Document
 Properties:
  Name:_spaceId Type:java.lang.Object Storage Type:OBJECT

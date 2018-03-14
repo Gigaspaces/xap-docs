@@ -7,9 +7,9 @@ weight: 500
 ---
 
 
-Unique constraints can be defined for an attribute or attributes of a space class. This will ensure that only one instance of the space class exists in the space with the specific attribute value. These indexes are applicable to all types of index; Basic, Extended, Compound and Collection indices.
+Unique constraints can be defined for an attribute or attributes of a space class. This will ensure that only one instance of the space class exists in the space with the specific attribute value. These indexes are applicable to all types of index; Equal, Ordered, Equal-and-Ordered, Compound, and Collection indexes.
 
-{{%note%}}
+{{%note "Note"%}}
 The uniqueness is enforced per partition and not over the whole cluster.
 {{%/note%}}
 
@@ -45,13 +45,13 @@ public class Person
 {
 
     ...
-    [SpaceIndex(Type=SpaceIndexType.Basic)]
+    [SpaceIndex(Type=SpaceIndexType.Equal)]
     public String FirstName{ get; set;}
 
-    [SpaceIndex(Type=SpaceIndexType.Basic, Unique=true)]
+    [SpaceIndex(Type=SpaceIndexType.Equal, Unique=true)]
     public String LastName{ get; set; }
 
-    [SpaceIndex(Type=SpaceIndexType.Extended)]
+    [SpaceIndex(Type=SpaceIndexType.Ordered)]
     public int? Age{ get; set; }
 }
 ```
@@ -64,13 +64,13 @@ public class Person
     <class name="Gigaspaces.Examples.Person"
         persist="false" replicate="false" fifo="false" >
         <property name="lastName">
-            <index type="BASIC" unique="true"/>
+            <index type="EQUAL" unique="true"/>
         </property>
         <property name="firstName">
-            <index type="BASIC"/>
+            <index type="EQUAL"/>
         </property>
         <property name="age">
-             <index type="EXTENDED"/>
+             <index type="ORDERED"/>
         </property>
     </class>
 </gigaspaces-mapping>
@@ -83,5 +83,5 @@ public class Person
 
 *	Supported only with `ALL_IN_CACHE` cache policy, not supported with LRU and other evict able cache policies
 *	Not supported for local-cache/local-view since its only per-partition enforcement
-*	Currently not supported for dynamic (on-the-fly) indices.
+*	Currently not supported for dynamic (on-the-fly) indexes.
 

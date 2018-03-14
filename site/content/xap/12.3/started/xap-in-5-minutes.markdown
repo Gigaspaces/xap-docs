@@ -135,7 +135,7 @@ public class Person {
 Note that we've annotated the `ssn` property's getter with a custom XAP annotation `@SpaceId` to mark it as the entry's ID.
 
  
-## Interacting with the grid
+## Interacting with the Grid
 
 Now that we have a `GigaSpace` instance connected to our grid and a POJO which can be stored, we can store entries in the grid using the `write()` method and read them using various `read()` methods:
 
@@ -236,7 +236,7 @@ public class Person {
         this.ssn = ssn;
     }
 
-    @SpaceIndex(type=SpaceIndexType.BASIC)
+    @SpaceIndex(type=SpaceIndexType.EQUAL)
     public String getFirstName() {
         return firstName;
     }

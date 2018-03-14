@@ -18,7 +18,7 @@ Here is an overview of the most commonly used POJO annotations:
 
 - `@SpaceId`: The identifier property of the POJO. This property uniquely identifies the POJO within the Space, and is similar to a primary key in a database. You can choose between an application-generated ID (`autoGenerate=false`), and an automatically generated ID (`autoGenerate=true`).
 
-- `@SpaceProperty`: Defines various attributes related to a POJO property - the null value if you are using a primitive property (e.g. `nullValue=-1`), and whether they should be indexed for faster querying (`index=BASIC`).
+- `@SpaceProperty`: Defines various attributes related to a POJO property - the null value if you are using a primitive property (e.g. `nullValue=-1`), and whether they should be indexed for faster querying (`index=EQUAL`).
 
 - `@SpaceVersion`: Optional. The version property of the POJO. Defines a property to be used to indicate the version of the instance (used to implement optimistic locking).
 
@@ -64,7 +64,7 @@ public class Person {
 
     public void setId(Integer id) {  this.id = id; }
 
-    @SpaceIndex(type=SpaceIndexType.BASIC)
+    @SpaceIndex(type=SpaceIndexType.EQUAL)
     public String getLastName() { return lastName; }
 
     public void setLastName(String lastName) { this.lastName = lastName; }
@@ -119,7 +119,7 @@ For example, index lists aren't maintained because the Space is unaware of the m
 Non-indexed fields that are not used for queries should be placed within a user-defined class (payload object), and have their getter and setter placed within the payload class. This improves the read/write performance because these fields aren't introduced to the Space class model.
 
 {{% note "Indexing"%}}
-[Indexing](./indexing-overview.html) is **critical** for good performance over large Spaces. Don't forget to index properly with the @SpaceIndex(type=SpaceIndexType.BASIC) or @SpaceIndex(type=SpaceIndexType.EXTENDED) annotation, or use the gs.xml equivalent.
+[Indexing](./indexing-overview.html) is **critical** for good performance over large Spaces. Don't forget to index properly with the @SpaceIndex(type=SpaceIndexType.EQUAL) or @SpaceIndex(type=SpaceIndexType.ORDERED) annotation, or use the gs.xml equivalent.
 {{% /note %}}
 
 # Jini Entry

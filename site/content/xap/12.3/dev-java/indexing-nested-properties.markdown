@@ -28,8 +28,8 @@ public class Person {
     //getter and setter methods
     ...
 
-    // this defines and EXTENDED index on the personalInfo.socialSecurity property
-    @SpaceIndex(path = "socialSecurity", type = SpaceIndexType.EXTENDED)
+    // this defines and ORDERED index on the personalInfo.socialSecurity property
+    @SpaceIndex(path = "socialSecurity", type = SpaceIndexType.ORDERED)
     public Info getPersonalInfo() {
          return personalInfo;
     }
@@ -67,15 +67,15 @@ public static class Person {
 	...
 
 	// this defines several indexes on the same personalInfo property
-	 @SpaceIndexes( { @SpaceIndex(path = "socialSecurity", type = SpaceIndexType.EXTENDED),
-			  @SpaceIndex(path = "address.zipCode", type = SpaceIndexType.BASIC)})
+	 @SpaceIndexes( { @SpaceIndex(path = "socialSecurity", type = SpaceIndexType.ORDERED),
+			  @SpaceIndex(path = "address.zipCode", type = SpaceIndexType.EQUAL)})
 	public Info getPersonalInfo() {
 		 return personalInfo;
 	}
 
 	// this defines indexes on map keys
-	@SpaceIndexes(	{@SpaceIndex(path="key1" , type = SpaceIndexType.BASIC),
-			@SpaceIndex(path="key2" , type = SpaceIndexType.BASIC)})
+	@SpaceIndexes(	{@SpaceIndex(path="key1" , type = SpaceIndexType.EQUAL),
+			@SpaceIndex(path="key2" , type = SpaceIndexType.EQUAL)})
 	public HashMap<String, String> getMap() {
 		return map;
 	}
@@ -108,8 +108,8 @@ public static class Address implements Serializable {
 <gigaspaces-mapping>
     <class name="com.gigaspaces.examples.Person"  >
          <property name="personalInfo">
-		<index path="socialSecurity" type = "extended"/>
-		<index path="address.zipCode" type = "basic"/>
+		<index path="socialSecurity" type = "ordered"/>
+		<index path="address.zipCode" type = "equal"/>
 	</property>
     </class>
 </gigaspaces-mapping>
@@ -132,7 +132,7 @@ SQLQuery<Person> query = new SQLQuery<Person>(Person.class,
 
 
 
-{{% note "Map based nested properties "%}}
-Note that the same indexing techniques above are also applicable to Map-based nested properties, which means that in the example above the `Info` and `Address` classes could be replaced with a `java.util.Map<String,Object>`, with the map keys representing the property names.
+{{% note "Map-Based Nested Properties "%}}
+The same indexing techniques above are also applicable to Map-based nested properties, which means that in the example above the `Info` and `Address` classes could be replaced with a `java.util.Map<String,Object>`, with the map keys representing the property names.
 {{% /note %}}
 

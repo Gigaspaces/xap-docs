@@ -248,7 +248,7 @@ public class CounterData extends SpaceDocument{
 		        // ... Other type settings
 		        .documentWrapperClass(CounterData.class)
 		        .addFixedProperty("id", String.class)
-		        .idProperty("id" ,false , SpaceIndexType.BASIC)
+		        .idProperty("id" ,false , SpaceIndexType.EQUAL)
 		        .create();
 		    // Register type:
 		    gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);

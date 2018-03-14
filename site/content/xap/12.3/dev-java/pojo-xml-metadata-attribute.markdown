@@ -9,7 +9,7 @@ weight: 200
 
 
 
-All the properties are written automatically into space. If the field is a reference to another object, it has to be Serializable and it will be written into space as well. Only the fields which need special space behavior need to be specified in the gs.xml file. Specify the fields which are id's, indexes or need exclusions, etc.
+All the properties are written automatically into Space. If the field is a reference to another object, it has to be Serializable and it will be written into Space as well. Only the fields that need special space behavior need to be specified in the gs.xml file. Specify the fields that are IDs, indexes or need exclusions, etc.
 
 
 
@@ -77,10 +77,6 @@ Example:
 ```
 
 
-
-
-
-
 ### SpaceStorageType
 
 | | |
@@ -123,13 +119,13 @@ Example:
 <gigaspaces-mapping>
     <class name="model.Person" persist="false" replicate="false" >
         <property name="lastName">
-            <index type="basic"/>
+            <index type="equal"/>
         </property>
         <property name="firstName">
-            <index type="basic"/>
+            <index type="equal"/>
         </property>
         <property name="age">
-             <index type="extended"/>
+             <index type="ordered"/>
         </property>
     </class>
 </gigaspaces-mapping>
@@ -139,7 +135,6 @@ Example:
 {{%refer%}}
 [Indexing Space Objects](./indexing.html)
 {{%/refer%}}
-
 
 
 ### SpaceIndex Path
@@ -157,8 +152,8 @@ Example:
 <gigaspaces-mapping>
     <class name="model.Person"  >
         <property name="personalInfo">
-		    <index path="socialSecurity" type = "extended"/>
-		    <index path="address.zipCode" type = "basic"/>
+		    <index path="socialSecurity" type = "ordered"/>
+		    <index path="address.zipCode" type = "equal"/>
 		</property>
     </class>
 </gigaspaces-mapping>
@@ -170,14 +165,13 @@ Example:
 {{%/refer%}}
 
 
-
 ### Unique Index
 
 | | |
 |----|----|
 |Syntax     |  index type unique|
 |Argument   |  [SpaceIndexType]({{% api-javadoc %}}/com/gigaspaces/metadata/index/SpaceIndexType.html) |
-|Description| Unique constraints can be defined for an attribute or attributes of a space class. |
+|Description| Unique constraints can be defined for an attribute or attributes of a Space class. |
 |Note |   The uniqueness is enforced per partition and not over the whole cluster. |
 
 Example:
@@ -187,13 +181,13 @@ Example:
 <gigaspaces-mapping>
     <class name="model.Person" persist="false" replicate="false" >
         <property name="lastName">
-            <index type="BASIC" unique="true"/>
+            <index type="EQUAL" unique="true"/>
         </property>
         <property name="firstName">
-            <index type="BASIC"/>
+            <index type="EQUAL"/>
         </property>
         <property name="age">
-             <index type="EXTENDED"/>
+             <index type="ORDERED"/>
         </property>
     </class>
 </gigaspaces-mapping>
@@ -270,7 +264,7 @@ Example:
 | | |
 |----|----|
 |Syntax     | routing  |
-|Description| The `routing` tag specifies a get method for the field to be used to calculate the target space for the space operation (read , write...). The `routing` field value hash code is used to calculate the target space when the Space is running in **partitioned mode**.<br>The field value hash code is used to calculate the target space when the space is running in **partitioned mode**. |
+|Description| The `routing` tag specifies a get method for the field to be used to calculate the target Space for the Space operation (read , write...). The `routing` field value hash code is used to calculate the target Space when the Space is running in **partitioned mode**.<br>The field value hash code is used to calculate the target Space when the Space is running in **partitioned mode**. |
 
 Example:
 

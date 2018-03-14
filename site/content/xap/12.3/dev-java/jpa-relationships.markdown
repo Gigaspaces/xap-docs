@@ -10,9 +10,7 @@ weight: 300
 
 
 
-The XAP JPA relationships model is different than Relational Databases model. In GigaSpaces relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space. For instance, if an Author has a One-to-many relationship with Book, in Space all the Book instances relevant for a specific Author will reside
-within a Collection in Author.
-
+The XAP JPA relationships model is different than Relational Databases model. In XAP relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space. For instance, if an Author has a One-to-many relationship with Book, in Space all the Book instances relevant for a specific Author will reside within a Collection in Author.
  
 When defining a One-to-one/One-to-many relationship the cascading type should be set to CascadeType.ALL using the relationship's annotation cascade attribute since no-cascading is unsupported.
 Setting cascading globally can also be done in orm.xml:
@@ -92,11 +90,11 @@ public class Store {
 
 We created an Embeddable Address object and used it as a property in our Store object.
 
-{{% tip %}}
-Please note that Embeddable classes must be Serializable since they're transferred over the network.
+{{% tip "Tip"%}}
+Embeddable classes must be Serializable because they are transferred over the network.
 {{% /tip %}}
 
-It's possible to query a Store entity by an Address property in the following way:
+It is possible to query a Store entity by an Address property in the following way:
 
 
 ```java
@@ -105,9 +103,9 @@ Query query = em.createQuery("SELECT store FROM com.gigaspaces.objects.Store sto
 List<Store> result = (List<Store>) query.getResultList();
 ```
 
-# One-to-one
+# One-to-One
 
-GigaSpaces JPA One-to-one relationship is very similar to an embedded relationship except for the fact that when querying
+The JPA One-to-one relationship is very similar to an embedded relationship except for the fact that when querying
 the owner entity it is possible to use an Inner Join.
 
 As with Embeddable classes, owned entities in a relationship should always be Serializable since they are transferred over the network.
@@ -136,7 +134,7 @@ public class Order {
   }
 
   @OneToOne(cascade = CascadeType.ALL)
-  @SpaceIndex(path = "sum", type = SpaceIndexType.EXTENDED) // Invoice.sum is indexed
+  @SpaceIndex(path = "sum", type = SpaceIndexType.ORDERED) // Invoice.sum is indexed
   public Invoice getInvoice() {
     return this.invoice;
   }
@@ -170,7 +168,7 @@ public class Invoice implements Serializable {
 }
 ```
 
-For One-to-one relationship we can use an Inner Join for querying:
+For one-to-one relationship we can use an Inner Join for querying:
 
 
 ```java
@@ -179,15 +177,15 @@ Query query = em.createQuery("SELECT order FROM com.gigaspaces.objects.Order ord
 List<Order> orders = (List<Order>) query.getResultList();
 ```
 
-{{% tip %}}
-We defined an extended index on Invoice.sum and therefore the above query takes advantage of the defined index.
+{{% tip "Tip"%}}
+We defined an ordered index on Invoice.sum and therefore the above query takes advantage of the defined index.
 {{% /tip %}}
 
-# One-to-many
+# One-to-Many
 
-GigaSpaces JPA One-to-many relationship means that the owner of the relationship stores the owned entities in a collection within itself.
+The JPA one-to-many relationship means that the owner of the relationship stores the owned entities in a collection within itself.
 
-As with One-to-one, owned entities in a relationship should always be Serializable since they are transferred over the network.
+As with one-to-one, owned entities in a relationship should always be Serializable because they are transferred over the network.
 
 Lets examine the following example:
 
@@ -255,22 +253,22 @@ Query query = em.createQuery("SELECT author FROM com.gigaspaces.objects.Author a
 Author result = (Author) query.getSingleResult();
 ```
 
-{{% tip %}}
+{{% tip "Tip"%}}
 We defined an index on Book.id and therefore the above query takes advantage of the defined index.
 {{% /tip %}}
 
 # Limitations
 
-### Working with embedded entities limitations
+### Working with Embedded Entities
 
 When working with embedded entities its not possible to call JPA methods on owned entities.
 
-### Owned many-to-many relationship
+### Owned Many-to-Many Relationship
 
-Owned many-to-many relationship is not supported since GigaSpaces data model doesn't permit it.
-It is possible to implement such a relation by explicitly setting the Ids for each of the relationship participants.
+Owned many-to-many relationship is not supported because the XAP data model doesn't permit it.
+It is possible to implement such a relation by explicitly setting the IDs for each of the relationship participants.
 
-### Unowned relationships
+### Unowned Relationships
 
-Unowned relationships where each part of the relation is represented as a Data Type in space is not supported.
+Unowned relationships where each part of the relation is represented as a Data Type in Space is not supported.
 

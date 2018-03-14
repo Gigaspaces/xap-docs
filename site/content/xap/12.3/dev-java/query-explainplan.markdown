@@ -18,23 +18,27 @@ For detailed information how to assign index consult [indexing](./indexing.html#
 
 ##  Index Information
 
- - Indices that the space considered using and the selected index at each stage of the query.
+ - Indexes that the space considered using and the selected index at each stage of the query.
  - Each cluster node may produce a different result.
- - Information breakdown by Pojo  type.
+ - Information breakdown by Pojo type.
 
 ##  Scanning Information
 
  - Number of entries the space scanned in order to find the matching entries and how many entries were matched.
  - Each cluster node may produce a different result.
- - Information breakdown by Pojo  type.
+ - Information breakdown by Pojo type.
 
 
 # Index Types
 The index type is determined by the SpaceIndexType enumeration. The index types are:
 
-**NONE** - No indexing is used.<br>
-**BASIC** - Basic index is used - this speeds up equality matches (equal to/not equal to).<br>
-**EXTENDED** - Extended index - this speeds up comparison matches (bigger than/less than).
+**NONE** - No indexing is used.
+
+**EQUAL** - performs equality matching (equal to/not equal to).
+
+**ORDERED** - performs ordered matching (bigger than/less than).
+
+**EQUAL_AND_ORDERED** - performs both equality and ordered matching, and uses a larger memory footprint than the other indexing types.
 
 
 # Usage 
@@ -164,9 +168,9 @@ Detailed Execution Information:
 		Index scan report:
 			MATCH
 				Inspected: 
-					[@1] EQ(country, USA), size=1000, type=BASIC
-					[@2] EQ(gender, M), size=1000, type=BASIC
-				Selected: [@1] EQ(country, USA), size=1000, type=BASIC
+					[@1] EQ(country, USA), size=1000, type=EQUAL
+					[@2] EQ(gender, M), size=1000, type=EQUAL
+				Selected: [@1] EQ(country, USA), size=1000, type=EQUAL
 *************************************************************
 ```
 {{%/tab%}}
@@ -210,17 +214,17 @@ Detailed Execution Information:
 		Index scan report:
 			AND
 				Inspected: 
-					[@1] EQ(gender, M), size=1000, type=BASIC
-					[@2] GT(age, 30), size=unknown, type=BASIC, UNUSABLE
-				Selected: [@1] EQ(gender, M), size=1000, type=BASIC
+					[@1] EQ(gender, M), size=1000, type=EQUAL
+					[@2] GT(age, 30), size=unknown, type=EQUAL, UNUSABLE
+				Selected: [@1] EQ(gender, M), size=1000, type=EQUAL
 			AND
 				Inspected: 
-					[@3] EQ(country, USA), size=1000, type=BASIC
-				Selected: [@3] EQ(country, USA), size=1000, type=BASIC
+					[@3] EQ(country, USA), size=1000, type=EQUAL
+				Selected: [@3] EQ(country, USA), size=1000, type=EQUAL
 			OR
 				Inspected: 
-					[@3] EQ(country, USA), size=1000, type=BASIC
-					[@1] EQ(gender, M), size=1000, type=BASIC
+					[@3] EQ(country, USA), size=1000, type=EQUAL
+					[@1] EQ(gender, M), size=1000, type=EQUAL
 				Selected: [@4] Union [@3, @1]
 ************************************************************* 
 ```

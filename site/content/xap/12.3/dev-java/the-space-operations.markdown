@@ -133,8 +133,8 @@ Here is an example how you create a SpaceDocument, register it with the Space, a
      SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder(
 		"Product").idProperty("CatalogNumber")
 		.routingProperty("Category")
-		.addPropertyIndex("Name", SpaceIndexType.BASIC)
-		.addPropertyIndex("Price", SpaceIndexType.EXTENDED).create();
+		.addPropertyIndex("Name", SpaceIndexType.EQUAL)
+		.addPropertyIndex("Price", SpaceIndexType.ORDERED).create();
      // Register type:
      space.getTypeManager().registerTypeDescriptor(typeDescriptor);
 

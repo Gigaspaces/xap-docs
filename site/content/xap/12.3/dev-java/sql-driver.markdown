@@ -194,8 +194,8 @@ public class DocumentTest {
 		SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")
 				.idProperty("CatalogNumber")
 				.routingProperty("Category")
-				.addPropertyIndex("Name", SpaceIndexType.BASIC)
-				.addPropertyIndex("Price", SpaceIndexType.EXTENDED).create();
+				.addPropertyIndex("Name", SpaceIndexType.EQUAL)
+				.addPropertyIndex("Price", SpaceIndexType.ORDERED).create();
 		// Register type:
 		gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);
 	}

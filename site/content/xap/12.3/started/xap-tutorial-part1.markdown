@@ -143,8 +143,8 @@ public void registerProductType(GigaSpace space) {
      SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder(
 		"Product").idProperty("CatalogNumber")
 		.routingProperty("Category")
-		.addPropertyIndex("Name", SpaceIndexType.BASIC)
-		.addPropertyIndex("Price", SpaceIndexType.EXTENDED).create();
+		.addPropertyIndex("Name", SpaceIndexType.EQUAL)
+		.addPropertyIndex("Price", SpaceIndexType.ORDERED).create();
      // Register type:
      space.getTypeManager().registerTypeDescriptor(typeDescriptor);
 }
@@ -621,11 +621,12 @@ To improve performance, it is possible to index one or more attributes for an ob
 ## Inheritance
 By default, an attribute's index is inherited in sub classes (i.e. if an attribute is indexed in a super class, it is also indexed in a sub class). If you need to change the index type of an attribute in a subclass you can override the attribute and annotate it with @SpaceIndex using the requested index type (to disable indexing use NONE).
 
-## Basic Index
-There are two basic index types provide:
+## Space Index
+There are three Space index types provided:
 
-- BASIC    index - this speeds up equality matching (equal to/not equal to).
-- EXTENDED index - this speeds up comparison matching (bigger than/less than).
+- **EQUAL** - performs equality matching (equal to/not equal to).
+- **ORDERED** - performs ordered matching (bigger than/less than).
+- **EQUAL_AND_ORDERED** - performs both equality and ordered matching, and uses a larger memory footprint than the other indexing types.
 
 Here is an example how you can define indexes:
 
@@ -651,12 +652,12 @@ public class User {
 		return id;
 	}
 
-	@SpaceIndex(type = SpaceIndexType.BASIC)
+	@SpaceIndex(type = SpaceIndexType.EQUAL)
 	public String getName() {
 		return name;
 	}
 
-	@SpaceIndex(type = SpaceIndexType.EXTENDED)
+	@SpaceIndex(type = SpaceIndexType.ORDERED)
 	public Double getCreditLimit() {
 		return creditLimit;
 	}
@@ -697,7 +698,7 @@ There are several additional indexing options available. For example you can ind
 
 - there are indexes for all relevant attributes including nested attributes you use for queries
 
-- numeric attribute queried with between / greater / less than should have an extended index.
+- numeric attribute queried with between / greater / less than should have an ordered index.
 
 - compound indexes should be used for attributes queried using AND query
 
@@ -721,7 +722,7 @@ There are several additional indexing options available. For example you can ind
 
 
 # Other Data Access API's
-XAP provides a JDBC Driver, JPA API, MAP and Memcached API's.
+XAP provides a JDBC Driver, JPA API, MAP and Memcached APIs.
 
 {{%refer%}}[Other Data Access API's](../dev-java/other-data-access-apis.html){{%/refer%}}
 

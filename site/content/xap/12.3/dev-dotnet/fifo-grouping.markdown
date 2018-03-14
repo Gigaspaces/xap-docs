@@ -255,8 +255,8 @@ public FlightReservationProcessData(IEventListenerContainer<FlightReservation> s
 
 # SpaceIndex Attribute
 
-Declaring both `SpaceFifoGroupingProperty` or `SpaceFifoGroupingIndex` and `SpaceIndex` (type `BASIC` or `Extended`) with the same path will yield one index with the `SpaceIndex` type.
-Declaring only `SpaceFifoGroupingProperty` or `SpaceFifoGroupingIndex` will yield one index, type `BASIC`.
+Declaring both `SpaceFifoGroupingProperty` or `SpaceFifoGroupingIndex` and `SpaceIndex` (type `EQUAL`, `ORDERED` or `EQUAL_AND_ORDERED`) with the same path will yield one index with the `SpaceIndex` type.
+Declaring only `SpaceFifoGroupingProperty` or `SpaceFifoGroupingIndex` will yield one index, type `EQUAL`.
 
 # Inheritance
 
@@ -264,7 +264,7 @@ All property's FG declarations (both `SpaceFifoGroupingProeprty` and `SpaceFifoG
 
 - Overriding of `SpaceFifoGroupingProperty` is not allowed.
 - Overriding of `SpaceFifoGroupingIndex` is allowed in order to add more FG indexes.
-For example, declaring `SpaceFifoGroupingIndex(Path="a")`, overriding in subclass and declaring `SpaceFifoGroupingIndex(Path="b")` will yield two FG indexes: property a index and property b index (both of type `BASIC` if no `SpaceIndex` with `Extended` type was declared).
+For example, declaring `SpaceFifoGroupingIndex(Path="a")`, overriding in subclass and declaring `SpaceFifoGroupingIndex(Path="b")` will yield two FG indexes: property a index and property b index (both of type `EQUAL` if no `SpaceIndex` with `ORDERED` or `EQUAL_AND_ORDERED` type was declared).
 
 # Considerations
 

@@ -162,7 +162,7 @@ query.setParameter(2,collection);
 {{%/info%}}
 
 
-{{% warning "Warning"%}}
+{{% warning "Important"%}}
 Parameter assignment to the `SQLQuery` instance is not thread-safe. If the query is intended to be executed on multiple threads which may change the parameters, it is recommended to use different `SQLQuery` instances. This has an analogue in JDBC, because `PreparedStatement` is not thread-safe either.
 {{%/warning%}}
 
@@ -251,7 +251,7 @@ For example:
 These Space properties should be configured with a valid Java format pattern, as defined in the {{%exurl "official Java language documentation" "http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.html"%}}.
 
 {{% note "Note"%}} 
-The `space-config.QueryProcessor.date_format` property used when your query includes a String representing the date. Date properties are often used for comparison (greater/less than). Consider using [extended indexing](./indexing.html) to boost performance.
+The `space-config.QueryProcessor.date_format` property used when your query includes a String representing the date. Date properties are often used for comparison (greater/less than). Consider using [ordered indexing](./indexing.html) to boost performance.
 {{%/note%}}
 
 ## The Sysdate Property

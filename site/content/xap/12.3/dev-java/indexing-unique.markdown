@@ -7,7 +7,7 @@ weight: 700
 ---
 
 
-Unique constraints can be defined for an attribute or attributes of a space class. This will ensure that only one instance of the space class exists in the space with the specific attribute value. These indexes are applicable to all types of index; Basic, Extended, Compound and Collection indices.
+Unique constraints can be defined for an attribute or attributes of a space class. This will ensure that only one instance of the space class exists in the space with the specific attribute value. These indexes are applicable to all types of index; Equal, Ordered, Equal-and-Ordered, Compound, and Collection indexes.
 
 {{%note%}}
 The uniqueness is enforced per partition and not over the whole cluster.
@@ -44,13 +44,13 @@ Example:
 @SpaceClass
 public class Person
 {
-  @SpaceIndex(type=SpaceIndexType.BASIC, unique = true)
+  @SpaceIndex(type=SpaceIndexType.EQUAL, unique = true)
   private String lastName;
 
-  @SpaceIndex(type=SpaceIndexType.BASIC)
+  @SpaceIndex(type=SpaceIndexType.EQUAL)
   private String firstName;
 
-  @SpaceIndex(type=SpaceIndexType.EXTENDED)
+  @SpaceIndex(type=SpaceIndexType.ORDERED)
   private Integer age;
  .
  .
@@ -64,13 +64,13 @@ public class Person
 <gigaspaces-mapping>
     <class name="com.gigaspaces.examples.Person" persist="false" replicate="false" fifo="false" >
         <property name="lastName">
-            <index type="BASIC" unique="true"/>
+            <index type="EQUAL" unique="true"/>
         </property>
         <property name="firstName">
-            <index type="BASIC"/>
+            <index type="EQUAL"/>
         </property>
         <property name="age">
-             <index type="EXTENDED"/>
+             <index type="ORDERED"/>
         </property>
     </class>
 </gigaspaces-mapping>
@@ -82,5 +82,5 @@ public class Person
 
 *	Supported only for ALL_IN_CACHE cache policy, not supported for LRU and other evictable cache policies
 *	Not supported for local-cache/local-view since its only per-partition enforcement
-*	Currently not supported for dynamic (on-the-fly) indices.
+*	Currently not supported for dynamic (on-the-fly) indexes.
 

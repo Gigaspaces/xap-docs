@@ -141,12 +141,12 @@ public class User {
 		return id;
 	}
 
-	@SpaceIndex(type = SpaceIndexType.BASIC)
+	@SpaceIndex(type = SpaceIndexType.EQUAL)
 	public String getName() {
 		return name;
 	}
 
-	@SpaceIndex(type = SpaceIndexType.EXTENDED)
+	@SpaceIndex(type = SpaceIndexType.ORDERED)
 	public Double getCreditLimit() {
 		return creditLimit;
 	}
@@ -291,13 +291,13 @@ Example:
 @SpaceClass
 public class Person
 {
-  @SpaceIndex(type=SpaceIndexType.BASIC, unique = true)
+  @SpaceIndex(type=SpaceIndexType.EQUAL, unique = true)
   private String lastName;
 
-  @SpaceIndex(type=SpaceIndexType.BASIC)
+  @SpaceIndex(type=SpaceIndexType.EQUAL)
   private String firstName;
 
-  @SpaceIndex(type=SpaceIndexType.EXTENDED)
+  @SpaceIndex(type=SpaceIndexType.ORDERED)
   private Integer age;
  .
  .
@@ -331,8 +331,8 @@ public class Person {
     //getter and setter methods
     ...
 
-    // this defines and EXTENDED index on the personalInfo.socialSecurity property
-    @SpaceIndex(path = "socialSecurity", type = SpaceIndexType.EXTENDED)
+    // this defines and ORDERED index on the personalInfo.socialSecurity property
+    @SpaceIndex(path = "socialSecurity", type = SpaceIndexType.ORDERED)
     public Info getPersonalInfo() {
          return personalInfo;
     }

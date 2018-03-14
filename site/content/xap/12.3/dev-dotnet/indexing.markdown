@@ -10,12 +10,17 @@ weight: 100
 
 The index type is determined by the `SpaceIndexType` enumeration. The index types are:
 
-`NONE` - No indexing is used.
+**NONE** - No indexing is used.
 
-`BASIC` - Basic index is used - this speeds up equality matches (equal to/not equal to).
+**EQUAL** - performs equality matching (equal to/not equal to).
 
-`EXTENDED` - Extended index - this speeds up comparison matches (bigger than/less than).
+**ORDERED** - performs ordered matching (bigger than/less than).
 
+**EQUAL_AND_ORDERED** - performs both equality and ordered matching, and uses a larger memory footprint than the other indexing types.
+
+{{%note "Note"%}}
+The **BASIC** and **EXTENDED** index types have been deprecated as of version 12.3. 
+{{%/note%}}
 
 # Indexing at Design Time
 
@@ -31,13 +36,13 @@ Specifying which properties of a class are indexed is done using attributes or `
 public class Person
 {
     ...
-    [SpaceIndex(Type=SpaceIndexType.Basic)]
+    [SpaceIndex(Type=SpaceIndexType.Equal)]
     public String FirstName{ get; set;}
 
-    [SpaceIndex(Type=SpaceIndexType.Basic)]
+    [SpaceIndex(Type=SpaceIndexType.Equal)]
     public String LastName{ get; set; }
 
-    [SpaceIndex(Type=SpaceIndexType.Extended)]
+    [SpaceIndex(Type=SpaceIndexType.Ordered)]
     public int? Age{ get; set; }
 }
 ```
@@ -52,13 +57,13 @@ public class Person
     <class name="Gigaspaces.Examples.Person"
         persist="false" replicate="false" fifo="false" >
         <property name="lastName">
-            <index type="BASIC"/>
+            <index type="EQUAL"/>
         </property>
         <property name="firstName">
-            <index type="BASIC"/>
+            <index type="EQUAL"/>
         </property>
         <property name="age">
-             <index type="EXTENDED"/>
+             <index type="ORDERED"/>
         </property>
     </class>
 </gigaspaces-mapping>

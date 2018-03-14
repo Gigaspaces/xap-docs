@@ -55,8 +55,8 @@ The following is an example of how to introduce a new document type:
       <os-core:space-type type-name="Product" >
 		<os-core:id property="CatalogNumber"/>
 		<os-core:routing property="Category"/>
-		<os-core:basic-index path="Name"/>
-		<os-core:extended-index path="Price"/>
+		<os-core:equal-index path="Name"/>
+		<os-core:ordered-index path="Price"/>
       </os-core:space-type>
 </os-core:embedded-space>
 <os-core:giga-space id="gigaSpace" space="space"/>
@@ -95,10 +95,10 @@ The following is an example of how to introduce a new document type:
         </property>
         <property name="indexes">
              <list>
-   		 <bean class="org.openspaces.core.config.BasicIndex">
+   		 <bean class="org.openspaces.core.config.EqualIndex">
            	       <property name="path" value="Name"></property>
                  </bean>
-                 <bean class="org.openspaces.core.config.ExtendedIndex">
+                 <bean class="org.openspaces.core.config.OrderedIndex">
            	       <property name="path" value="Price"></property>
                  </bean>
    	      </list>
@@ -116,8 +116,8 @@ public void registerProductType(GigaSpace gigaspace) {
     SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")
         .idProperty("CatalogNumber")
         .routingProperty("Category")
-        .addPropertyIndex("Name", SpaceIndexType.BASIC)
-        .addPropertyIndex("Price", SpaceIndexType.EXTENDED)
+        .addPropertyIndex("Name", SpaceIndexType.EQUAL)
+        .addPropertyIndex("Price", SpaceIndexType.ORDERED)
         .create();
     // Register type:
     gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);
@@ -237,7 +237,7 @@ public class ConvertJSONTODocument {
 	    SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder(PRODUCT_TYPE_NAME)
 	                .idProperty("id")
 	                .routingProperty("location")
-	                .addPropertyIndex("processed", SpaceIndexType.BASIC)
+	                .addPropertyIndex("processed", SpaceIndexType.EQUAL)
 	                .create();
 
 	    gigaSpace.getTypeManager().registerTypeDescriptor(typeDescriptor);
@@ -360,7 +360,7 @@ public SpaceDocument readProductById(GigaSpace gigaSpace) {
 }
 ```
 
-Queries by multiple Ids are supported. For example:
+Queries by multiple IDs are supported. For example:
 
 
 ```java
@@ -386,11 +386,11 @@ An ID-based query will not return results if the condition is on an auto-generat
 
 The `Document` properties values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as `DocumentProperties`). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot ('.') notation to describe paths, as shown above.
 
-{{% note "Note"%}} It's highly recommended to use `DocumentProperties` for nested documents since it contains performance and memory footprint optimizations which are tailored for GigaSpaces usage.
+{{% note "Note"%}} It's highly recommended to use `DocumentProperties` for nested documents because it contains performance and memory footprint optimizations that are tailored for GigaSpaces usage.
 
-- While it's possible to use  `SpaceDocument` as a property, it is probably a mistake, since it contains extra information which is not relevant for nested properties (type name, version, etc.).
+- While it is possible to use  `SpaceDocument` as a property, it is probably a mistake, because it contains extra information that is not relevant for nested properties (type name, version, etc.).
 
-- Changing nested properties in an embedded space is not safe.
+- Changing nested properties in an embedded Space is not safe.
 {{%/note%}}
 
 # Document Hierarchy
@@ -481,7 +481,7 @@ Here is an example:
 
 Properties and nested paths can be [indexed](./indexing.html) to boost queries performance. In the type registration sample above the **Name** and **Price** properties are indexed.
 
-Since the schema is flexible and new properties might be added after the type has been registered, it is possible to add indexes dynamically as well.
+The schema is flexible and new properties may be added after the type has been registered, therefore it is possible to add indexes dynamically as well.
 
 {{%refer%}}
 For more information about indexing, see the [Indexing](./indexing.html) page.
@@ -508,8 +508,8 @@ Here is a simple example of a polling event container configuration using a `Doc
       <os-core:space-type type-name="Product" >
 		<os-core:id property="CatalogNumber"/>
 		<os-core:routing property="Category"/>
-		<os-core:basic-index path="Name"/>
-		<os-core:extended-index path="Price"/>
+		<os-core:equal-index path="Name"/>
+		<os-core:ordered-index path="Price"/>
       </os-core:space-type>
 </os-core:embedded-space>
 
@@ -544,8 +544,8 @@ public class SimpleListener {
   <os-core:space-type type-name="Product" >
 		<os-core:id property="CatalogNumber"/>
 		<os-core:routing property="Category"/>
-		<os-core:basic-index path="Name"/>
-		<os-core:extended-index path="Price"/>
+		<os-core:equal-index path="Name"/>
+		<os-core:ordered-index path="Price"/>
       </os-core:space-type>
 </os-core:embedded-space>
 
@@ -876,7 +876,7 @@ Pojos can be persisted via document EDS as well, in the same way.
 
 ## Transient Document
 
-When using a persistent space, there are situations where not all SpaceDocuments need to be persisted. You can specify the document to be transient by invoking the `setTransient()` method.
+When using a persistent Apace, there are situations where not all SpaceDocuments need to be persisted. You can specify the document to be transient by invoking the `setTransient()` method.
 
 ```java
    SpaceDocument doc = new SpaceDocument("Entity");
@@ -887,16 +887,16 @@ When using a persistent space, there are situations where not all SpaceDocuments
 
 # Space Filters
 
-Space Filter are supported for space documents.
+Space Filter are supported for Space documents.
 
 {{%refer%}}
-If you intend to use space filters in a mixed POJO-Document environment, please refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
+If you intend to use Space filters in a mixed POJO-Document environment, refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
 {{%/refer%}}
 
 # Replication Filters
 
-Space Replication Filter are supported for space documents.
+Space Replication Filter are supported for Space documents.
 
 {{%refer%}}
-If you intend to use space replication filters in a mixed POJO-Document environment, please refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
+If you intend to use Space replication filters in a mixed POJO-Document environment, refer to [Document-POJO Interoperability](./document-pojo-interoperability.html).
 {{%/refer%}}
