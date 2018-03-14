@@ -20,47 +20,56 @@ In order to deploy a Space, you must first have a service grid up and running. D
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-Type  `xap deploy space`. The following parameters and options are displayed:
+**Command** 
 
-```xml
-Deploys a new space
-Usage: deploy [--ha] [--help] [--requires-isolation]
-              [--partitions=<partitions>] <name>
+`xap space deploy`
 
-Description: 
-Parameters:
-      <name>                     Space name
+**Description** 
 
-Options:
-      --ha                       Should backups be used for high availability
-      --help                     display this help message
-      --partitions=<partitions>  Number of partitions
-      --requires-isolation       if each instance should be provisioned in an
-                                 isolated container
-```
+Deploys a Space in a stateful Processing Unit.
 
-<b>Parameters:</b>
+**Parameters and Options**
 
-| Parameter     | Description       |   Required     |
-|------|-------------------|----------------|
-| name | The name of the Space | Yes |
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Comment</th>
+  </tr>
+   <tr>
+    <td>Parameter</td>
+    <td>&lt;name&gt;</td>
+    <td>Provide the name of the Space you are deploying.</td>
+    <td>If you run the command without defining any options, a non-clustered Space is deployed.</td>
+  </tr>
+  <tr>
+    <td>Option</td>
+    <td>--ha</td>
+    <td>High availability. Adds a single backup partition per primary partition.</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Option</td>
+    <td>--partitions</td>
+    <td>Define how many primary partitions the Space should contain, using the syntax <code>--partitions=n</code>.</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Option</td>
+    <td>--requires-isolation</td>
+    <td>If this Space should not share a container, adding this option provisions the Space in a dedicated container.</td>
+    <td></td>
+  </tr>
+</table>
 
-<b>Options:</b>
 
-| Option     | Description       |
-|------|-------------------|
-| ha         |Should backups be used for high availability|
-| partitions=\<partitions\>    | Number of partitions |
-|requires-isolation   | Each instance should be provisioned in an isolated container |
-
-If you run the command without any options, a Space is deployed with a single partition and no backup.
-
-<b>Example:</b>
+<b>Example</b>
 
 This example deploys a Space named **mySpace** with high availability and 5 partitions. 
 
 ```bash
-<XAP-HOME>/bin/xap space deploy --ha --partitions=5 mySpace
+xap space deploy --ha --partitions=5 mySpace
 ```
 
 {{%/tab%}}
@@ -68,25 +77,23 @@ This example deploys a Space named **mySpace** with high availability and 5 part
 
 {{%tab "REST Manager API"%}}
 
-<b>Parameters:</b>
+**Path**
 
-| Parameter     | Description       |   Required     |
+`POST /spaces`
+
+**Options**
+
+| Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| name | The name of the Space | Yes |
+| name | Provide the name of the Space you are deploying. | Yes |
+| ha         |High availability. Adds a single backup partition per primary partition. | No |
+| partitions=\<partitions\>    | Define how many primary partitions the Space should contain, using the syntax `--partitions=n`. | No |
+|requiresIsolation   | If this Space should not share a container, adding this option provisions the Space in a dedicated container. | No |
 
-<b>Options:</b>
 
-| Option     | Description       |
-|------|-------------------|
-| ha         |Should backups be used for high availability|
-| partitions=\<partitions\>    | Number of partitions |
-|requiresIsolation   | Each instance should be provisioned in an isolated container |
+If you run the command without defining any options, a non-clustered Space is deployed.
 
-If you run the command without any options, a Space is deployed with a single partition and no backup.
-
- 
-
-<b>Example:</b>
+**Example**
 
 This example deploys a Space named **mySpace** with high availability, 3 partitions and isolation. 
 

@@ -16,36 +16,53 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**Space**
+### Space
 
-Type `ie space list` or `xap space list`. The Spaces are listed with the name, deployment name, topology, and InstanceId.
+**Command** 
 
-*Example:*
+`xap space list`
 
-{{% bgcolor yellow %}}Not sure we need the syntax example. Add a text capture of the list of Spaces.{{% /bgcolor %}}
+**Description** 
 
-```bash
-<XAP-HOME>/bin/xap space list
-```
+The Spaces are listed with the name, deployment name, topology, number of instances, and InstanceId.
+
+![image](/attachment_files/admin/CLI-xap-space-list.png)
+
+**Parameters and Options**
+
+None.
 
 
-**Space instance**
+### Space Instance
 
-Type `ie space list-instance` or `xap space list-instance`. The following parameter is displayed: 
+**Command**
 
-_Parameters:_<br> 
+`xap space list-instance`
 
-- name : The name of the Space.
- 
-Type `ie space list-instance <name>` or `xap space list-instance <name>`  The Space instances for the given Space are listed with ID, Mode, PartionId, BackupId, HostId, and ContainerId.
- 
- *Example:*
- 
- {{% bgcolor yellow %}}Not sure we need the syntax example. Add a text capture of the list of Space instances.{{% /bgcolor %}}
- 
-```bash
-<XAP-HOME>/bin/xap space list-instances mySpace
-```
+**Description**
+
+The Space instances for the given Space are listed with ID, Mode, PartionId, BackupId, HostId, and ContainerId.
+
+*screen cap here*
+
+**Parameters and Options**
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Comment</th>
+  </tr>
+   <tr>
+    <td>Parameter</td>
+    <td>&lt;name&gt;</td>
+    <td>Provide the name of the Space for which you want to see the list of instances.</td>
+    <td></td>
+  </tr>
+  <tr>
+</table>
+
 
 {{%/tab%}}
 
