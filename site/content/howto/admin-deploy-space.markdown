@@ -20,21 +20,43 @@ In order to deploy a Space, you must first have a service grid up and running. D
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-Type `ie deploy space` or `xap deploy space`. The following parameters and options are displayed:
+Type  `xap deploy space`. The following parameters and options are displayed:
 
-{{% bgcolor yellow %}}Present the parameters and options in a table. Indicate what is optional and what is required. What happens if you only provide a name but don't add any of the options? What is the default configuration of the new Space?{{% /bgcolor %}}
+```xml
+Deploys a new space
+Usage: deploy [--ha] [--help] [--requires-isolation]
+              [--partitions=<partitions>] <name>
 
-_Parameters:_<br>
+Description: 
+Parameters:
+      <name>                     Space name
 
-- name : The name of the Space.
+Options:
+      --ha                       Should backups be used for high availability
+      --help                     display this help message
+      --partitions=<partitions>  Number of partitions
+      --requires-isolation       if each instance should be provisioned in an
+                                 isolated container
+```
 
-_Options:_<br>
+<b>Parameters:</b>
 
-- ---ha         : Should backups be used for high availability<br>
-- ---partitions=\<partitions\>    : Number of partitions<br> 
-- ---requires-isolation   :  Each instance should be provisioned in an isolated container 
+| Parameter     | Description       |   Required     |
+|------|-------------------|----------------|
+| name | The name of the Space | Yes |
 
-*Example:*<br>
+<b>Options:</b>
+
+| Option     | Description       |
+|------|-------------------|
+| ha         |Should backups be used for high availability|
+| partitions=\<partitions\>    | Number of partitions |
+|requires-isolation   | Each instance should be provisioned in an isolated container |
+
+If you run the command without any options, a Space is deployed with a single partition and no backup.
+
+<b>Example:</b>
+
 This example deploys a Space named **mySpace** with high availability and 5 partitions. 
 
 ```bash
@@ -46,21 +68,30 @@ This example deploys a Space named **mySpace** with high availability and 5 part
 
 {{%tab "REST Manager API"%}}
 
-_Parameters:_<br>
+<b>Parameters:</b>
 
-- name : The name of the Space.
+| Parameter     | Description       |   Required     |
+|------|-------------------|----------------|
+| name | The name of the Space | Yes |
 
-_Options:_<br>
+<b>Options:</b>
 
-- backups=true/false         : Should backups be used for high availability.
-- partitions=\<partitions\>    : Number of partitions.
-- requiresIsolation=true/false  :  Each instance should be provisioned in an isolated container.
+| Option     | Description       |
+|------|-------------------|
+| ha         |Should backups be used for high availability|
+| partitions=\<partitions\>    | Number of partitions |
+|requiresIsolation   | Each instance should be provisioned in an isolated container |
 
-*Example:*<br>
-This example deploys a Space named **mySpace** with high availability and 3 partitions. 
+If you run the command without any options, a Space is deployed with a single partition and no backup.
+
+ 
+
+<b>Example:</b>
+
+This example deploys a Space named **mySpace** with high availability, 3 partitions and isolation. 
 
 ```bash
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces?name=mySpace&partitions=3&backups=true&requiresIsolation=true'
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/spaces?name=mySpace&partitions=3&backups=true&requiresIsolation=true'
 ```
 {{%/tab%}}
 
