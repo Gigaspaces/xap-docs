@@ -7,7 +7,7 @@ parent: admin-spaces-pu.html
  
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 <br> 
 
 # To deploy a PU
@@ -15,26 +15,30 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+**Command**
 
-- name : Name of the processing unit to deploy<br>
-- \[file\]:Path to processing unit file (.jar or .zip)  
+`xap pu deploy`
+
+**Description**
+
+**Parameters and Options**
+
+|Item | Name| Description | Comment |
+|:----|:----|:------------|:--------|
+|Parameter | \<name\> |Name of the processing unit to deploy||
+|Parameter | \[file\] |Path to processing unit file (.jar or .zip) |  |
+|Option    | backups=\<backups\> |Number of backups per partition.| |
+|Option    | instances=\<instances\> |Number of instances.| |
+|Option    | max-instances-per-machine=\<maxInstancesPerMachine\>|Determines maximum number of instances in same machine.| |
+|Option    | max-instances-per-vm=\<maxInstancesPerVM\>| Determines maximum number of instances in same VM. ||
+|Option    |partitions=\<partitions\> | Number of partitions. ||
+|Option    |property=\<String,String\>|Context properties.||
+|Option    |schema=\<schema\>|Cluster schema.||
+|Option    |version | Display version information.||
+|Option    |zones=\<zones\>| Which zones can host this processing unit.||
+
  
-
-_Options:_<br>
-
-- ---backups=\<backups\>:Number of backups per partition.<br>
-- ---instances=\<instances\>:Number of instances.<br>
-- ---max-instances-per-machine=\<maxInstancesPerMachine\> : Determines maximum number of instances in same machine.<br>
-- ---max-instances-per-vm=\<maxInstancesPerVM\> : Determines maximum number of instances in same VM.<br>
-- ---partitions=\<partitions\>:Number of partitions.<br>
-- ---property=\<String,String>\>:Context properties.<br>
-- ---schema=\<schema\>:Cluster schema.<br>
-- ---version:Display version information.<br>
-- ---zones=\<zones\>:Which zones can host this processing unit.
-
- 
-*Example:*<br>
+**Example:**
 
 This example deploys a PU named **myPu** with 2 partitions using the mypu.jar file.
 
@@ -46,26 +50,29 @@ This example deploys a PU named **myPu** with 2 partitions using the mypu.jar fi
 
 {{%tab "REST Manager API"%}}
 
-_Parameters:_<br>
+**Path**
 
-- name: name of the processing unit.<br>
-- resource: File/Path to processing unit file (.jar or .zip)
+POST / deployments
 
-_Options:_<br>
 
-- topology <br>
-    schema:partitioned <br> 
-	instances: <br> 
-	partitions: <br>
-	backupsPerPartition: <br> 
-	
-- sla<br>
-	requiresIsolation: <br> 
-	zones: <br>
-	
-- contextProperties 
+**Description**
+
+
+**Options**
+
+| Option | Description | Required |
+|:-------|:------------|:---------|
+|name | Name of the processing unit.| Yes |
+|resource|File/Path to processing unit file (.jar or .zip) | Yes|
+|schema | Type of schema to use | No| 
+|instances |  | No|
+|partitions|  | No|
+|backupsPerPartition| | No| 
+|requiresIsolation| | No|
+|zones| | No|
+|contextProperties  | | No|
  
-*Example:*<br>
+**Example:**
  
 
 ```bash

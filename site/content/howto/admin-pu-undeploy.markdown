@@ -18,16 +18,20 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+**Command**
 
-- name : The name of the Pu to undeploy.
+`xap pu undeploy` 
 
-_Options:_<br>
+**Description**
 
-- ---keep-file: Keep the undeployed file for future use.
-- ---version: Display version information.
 
-*Example:*
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter |name | The name of the Pu to undeploy||
+|Option | keep-file | Keep the undeployed file for future use.||
+|version | Display version information. ||
+
+**Example:**
 
 ```bash
 <XAP-HOME>/bin/xap pu undeploy myPu 
@@ -35,20 +39,25 @@ _Options:_<br>
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
+ 
+**Path**
 
-_Parameters:_<br>
+DELETE / deployments
 
-- name : The name of the Pu to undeploy.
+**Description**
 
-_Options:_<br>
+**Options**
 
-- ---keep-file: Keep the undeployed file for future use.
+|  Option | Description | Required |
+|:------|:------------|:--------|
+|name | The name of the Pu to undeploy| Yes|
+|keep-file | Keep the undeployed file for future use.|No|
  
  
 *Example:*
 
 ```bash
-curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myPu'
+curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/deployments/myPu'
 ```
 {{%/tab%}}
 
