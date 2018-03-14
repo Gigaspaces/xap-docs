@@ -57,7 +57,7 @@ The Space instances for the given Space are listed with ID, Mode, PartionId, Bac
    <tr>
     <td>Parameter</td>
     <td>&lt;name&gt;</td>
-    <td>Provide the name of the Space for which you want to see the list of instances.</td>
+    <td>Provide the name of the Space instance for which you want to see the runtime information, using the InstanceId. For example, <code>mySpace-space~2_1</code>.</td>
     <td></td>
   </tr>
   <tr>
