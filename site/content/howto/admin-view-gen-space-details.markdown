@@ -68,8 +68,46 @@ The Space instances for the given Space are listed with ID, Mode, PartionId, Bac
 
 
 {{%tab "REST Manager API"%}}
-***List all Spaces***<br>
-Lists all Spaces with the Name, Deployment name, Topology and InstanceId
+
+### All Spaces
+
+**Path**
+
+`GET /spaces`
+
+**Description**
+
+The Spaces are listed with the name, deployment name, topology, number of instances, and InstanceId.
+
+**Options**
+
+None
+
+**Example**
+
+*give example*
+
+### Specific Space
+
+**Path**
+
+`GET /spaces/{id}`
+
+**Description**
+
+The given Space is listed with the name, deployment name, topology, number of instances, and InstanceId.
+
+**Options**
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| id | Provide the name of the Space for which you want to see the runtime details. | Yes |
+
+**Example**
+
+*give example*
+
+{{% bgcolor yellow %}}not sure what this REST API is for.{{% /bgcolor %}}
 
 _Parameters:_<br> 
 
@@ -81,8 +119,27 @@ _Parameters:_<br>
 curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces'
 ```
 
-***List all Space instances***<br>
-Lists all Space instances for a given Space with Id, Mode, PartionId, BackupId, HostId and ContainerId.
+### All Space Instances
+
+**Path**
+
+`GET /spaces/{id}/instances~
+
+**Description**
+
+The Space instances for the given Space are listed with ID, Mode, PartionId, BackupId, HostId, and ContainerId.
+
+**Options**
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| id | Provide the name of the Space for which you want to see the list of Space instances and their runtime details. | Yes |
+
+**Example**
+
+*give example*
+
+{{% bgcolor yellow %}}not sure what this REST API is for.{{% /bgcolor %}}
 
 _Parameters:_<br> 
 
@@ -94,6 +151,29 @@ _Parameters:_<br>
 ```bash
 curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces/mySpace/instances'
 ```
+
+### Specific Space Instance
+
+**Path**
+
+`GET GET /spaces/{id}/instances/{instanceId}
+
+**Description**
+
+The given Space instances is listed with ID, Mode, PartionId, BackupId, HostId, and ContainerId.
+
+**Options**
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| id | Provide the name of the Space for which you want to see the specific Space instance. | Yes |
+| instanceId | Provide the name of the Space instance for which you want to see the runtime details. | Yes |
+
+**Example**
+
+*give example*
+
+
 {{%/tab%}}
 
 

@@ -81,6 +81,10 @@ xap space deploy --ha --partitions=5 mySpace
 
 `POST /spaces`
 
+**Description** 
+
+Deploys a Space in a stateful Processing Unit.
+
 **Options**
 
 | Option     | Description       |   Required     |

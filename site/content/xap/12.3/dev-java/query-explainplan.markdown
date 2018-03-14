@@ -238,7 +238,7 @@ Detailed Execution Information:
  
  - Supported via the Java API. Not supported via the .NET API.
  - Supported operations: Read, ReadMultiple, TakeMultiple , count
- - Supported index types: Basic and Extended. Compund , Unique , Collection , Geospatial index are not supported. 
+ - Supported index types: Equal, Ordered, and Equal-and-Ordered. **Unsupported index types: Compound, Unique, Collection, and Geospatial.**
  - Supported query type : Basic.
  - Not Supported:
  	- Off-Heap 
