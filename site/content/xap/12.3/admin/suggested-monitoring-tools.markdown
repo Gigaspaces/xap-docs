@@ -1,9 +1,9 @@
 ---
 type: post123
-title:  Monitoring Tools
+title:  External Monitoring Tools
 categories: XAP123ADM, OSS
 parent: monitoring.html
-weight: 300
+weight: 400
 ---
 
 
