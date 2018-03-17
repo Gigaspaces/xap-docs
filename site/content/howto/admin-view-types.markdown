@@ -14,7 +14,62 @@ parent: admin-spaces-pu.html
   
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
-N/A
+
+**To view Space data types:**
+
+*Command:*
+
+`xap space info --type-stats <space name>`
+ 
+*Description:*
+
+This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+ 
+*Input Example:*
+ 
+```bash
+<XAP-HOME>/bin/xap space info --type-stats alertSpace
+```
+ 
+*Output Example:*
+  
+![image](/attachment_files/admin/cli-xap-space-types.png)
+
+*Parameters and Options:*
+
+|Item | Name| Description | Comment |
+|:----|:----|:------------|:--------|
+|Parameter | \<name\> |Name of the Space to display the statistics for ||
+ 
+ 
+
+**Display Space Types for Instance**
+
+*Command:*
+
+`xap space info-instance --type-stats <space ID>`
+ 
+*Description:*
+
+This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+ 
+*Input Example:*
+ 
+```bash
+<XAP-HOME>/bin/xap space info-instance --operation-stats alertSpace~1
+```
+ 
+*Output Example:*
+  
+![image](/attachment_files/admin/cli-xap-space-types-instance.png)
+
+*Parameters and Options:*
+
+|Item | Name| Description | Comment |
+|:----|:----|:------------|:--------|
+|Parameter | \<spaceId\> |Id of the Space to display the statistics for ||
+ 
+ 
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}

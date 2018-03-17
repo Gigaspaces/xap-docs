@@ -20,15 +20,15 @@ In order to deploy a Space, you must first have a service grid up and running. D
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**Command** 
+*Command:* 
 
 `xap space deploy`
 
-**Description** 
+*Description:* 
 
 Deploys a Space in a stateful Processing Unit.
 
-**Parameters and Options**
+*Parameters and Options:*
 
 <table>
   <tr>
@@ -64,12 +64,12 @@ Deploys a Space in a stateful Processing Unit.
 </table>
 
 
-<b>Example</b>
+*Input Example:*
 
 This example deploys a Space named **mySpace** with high availability and 5 partitions. 
 
 ```bash
-xap space deploy --ha --partitions=5 mySpace
+<XAP-HOME>/bin/xap space deploy --ha --partitions=5 mySpace
 ```
 
 {{%/tab%}}

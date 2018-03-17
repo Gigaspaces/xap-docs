@@ -15,43 +15,7 @@ parent: admin-spaces-pu.html
   
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
-
-***Display Space Information***
-
-_Parameters:_<br> 
-
-- name : The name of the Space.
-
-_Options:_<br>
-
-- ---operation-stats : Displays Space operations statistics, (read, write, take etc)  <br>
-- ---type-stats      : Displays Space object information.
- 
-
-*Example:*
-
-```bash
-<XAP-HOME>/bin/xap space info --type-stats mySpace
-```
- 
-***Display Space instance information***
-
-_Parameters:_<br> 
-instanceId : The id of the Space instance to use.
-
-_Options:_<br>
-
-- ---operation-stats : Displays Space instance operations statistics, (read, write, take etc)  <br>
-- ---type-stats      : Displays Space instance object information.<br>
-- ---replication-stats: Display Space instance replication information.
- 
- 
-*Example:*
- 
-```bash
-<XAP-HOME>/bin/xap space info-instances --replication-stats mySpace~1
-```
- 
+N/A
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}

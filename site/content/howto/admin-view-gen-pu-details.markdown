@@ -16,7 +16,11 @@ parent: admin-spaces-pu.html
 
 **Processing Unit**
 
-`pu list`
+*Command:*
+
+`xap pu list`
+
+*Description:*
 
 This command lists all the Processing Units in a table with the name, deployment name, topology and InstanceId information.
 
@@ -26,26 +30,54 @@ This command lists all the Processing Units in a table with the name, deployment
 <XAP-HOME>/bin/xap pu list
 ```
 
-*Output Example*
+*Output Example:*
 
-{{% bgcolor yellow %}}Text capture of table with list of Processing Units.{{% /bgcolor %}}
+![image](/attachment_files/admin/cli-xap-pu-list.png)
+
+*Parameters and Options:*
+
+None.
 
 **Processing Unit instance**
 
-`pu list-instances <Processing Unit name>`
+*Command:*
+
+`xap pu list-instances <Processing Unit name>`
  
+*Description:*
+
 This command lists all of the instances for a given Processing Unit, along with the ID, Mode, PartionId, BackupId, HostId and ContainerId information. 
 
  
 *Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap pu list-instances mySpace
+<XAP-HOME>/bin/xap pu list-instances alertSpace
 ```
 
-*Output Example*
+*Output Example:*
 
-{{% bgcolor yellow %}}Text capture of table with list of Processing Unit instances.{{% /bgcolor %}}
+![image](/attachment_files/admin/cli-xap-pu-list-instances.png)
+
+
+*Parameters and Options:*
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Comment</th>
+  </tr>
+   <tr>
+    <td>Parameter</td>
+    <td>&lt;name&gt;</td>
+    <td>Provide the name of the Processing Unit instance for which you want to see the runtime information, using the InstanceId. For example, <code>alertSpace_1~</code>.</td>
+    <td></td>
+  </tr>
+  <tr>
+</table>
+
 
 {{%/tab%}}
 

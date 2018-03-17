@@ -16,36 +16,53 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-### Space
+**Space**
 
-**Command** 
+*Command:*
 
 `xap space list`
+ 
+*Description:*
 
-**Description** 
+This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+ 
+*Input Example:*
+ 
+```bash
+<XAP-HOME>/bin/xap space list
+```
+ 
+*Output Example:*
+  
+![image](/attachment_files/admin/cli-xap-space-list.png)
 
-The Spaces are listed with the name, deployment name, topology, number of instances, and InstanceId.
-
-![image](/attachment_files/admin/CLI-xap-space-list.png)
-
-**Parameters and Options**
+*Parameters and Options:*
 
 None.
 
 
-### Space Instance
+**Space Instance**
 
-**Command**
+*Command:*
 
-`xap space list-instance`
+`xap space list-instances <space-name>`
 
-**Description**
+*Description:*
 
-The Space instances for the given Space are listed with ID, Mode, PartionId, BackupId, HostId, and ContainerId.
+The Space instances for the given Space are listed with ID, Mode, HostId, and ContainerId.
 
-*screen cap here*
+*Input Example:*
+ 
+```bash
+<XAP-HOME>/bin/xap space list-instances alertSpace 
+```
 
-**Parameters and Options**
+
+*Output Example:*
+
+![image](/attachment_files/admin/cli-xap-space-instances-list.png)
+
+*Parameters and Options:*
 
 <table>
   <tr>
@@ -75,17 +92,16 @@ The Space instances for the given Space are listed with ID, Mode, PartionId, Bac
 
 `GET /spaces`
 
-**Description**
+*Description*
 
 The Spaces are listed with the name, deployment name, topology, number of instances, and InstanceId.
 
-**Options**
+*Parameters and Options*
 
 None
 
 **Example**
 
-*give example*
 
 ### Specific Space
 

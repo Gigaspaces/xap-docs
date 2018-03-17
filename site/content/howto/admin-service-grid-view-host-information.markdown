@@ -9,11 +9,7 @@ parent: admin-service-grid.html
 
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
-
-{{%warning%}}
-This section was under construction while documenting
-{{%/warning%}}
-
+ 
 <br>
 
 **To view host information:**
@@ -21,18 +17,114 @@ This section was under construction while documenting
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+**List all Hosts**
 
+*Command:*
+
+`xap host list`  
+
+*Description:*
  
- 
-_Options:_<br>
- 
- 
-*Example:*<br>
+Lists all host machines.
+
+*Input Example:*
 
 ```bash
- 
+<XAP-HOME>/bin/xap host list 
 ```
+
+*Output Example:*
+
+![image](/attachment_files/admin/cli-xap-host-list.png)
+
+*Parameters and Options:*
+
+None
+
+
+**List Containers per host**
+
+*Command:*
+
+`xap host info --containers <host name>`  
+
+*Description:*
+ 
+Lists all containers on a host machines.
+
+*Input Example:*
+
+```bash
+<XAP-HOME>/bin/xap host info --containers localhost 
+```
+
+*Output Example:*
+
+![image](/attachment_files/admin/cli-xap-host-containers.png)
+
+ 
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | host name |Name of the host | |
+
+
+**List Operating System Information**
+
+*Command:*
+
+`xap host info --os <host name>`  
+
+*Description:*
+ 
+Lists all Operating System details for a host machines.
+
+*Input Example:*
+
+```bash
+<XAP-HOME>/bin/xap host info --os localhost 
+```
+
+*Output Example:*
+
+![image](/attachment_files/admin/cli-xap-host-os.png)
+
+ 
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | host name |Name of the host | |
+
+
+**List Operating System Statistics**
+
+*Command:*
+
+`xap host info --os-stats <host name>`  
+
+*Description:*
+ 
+Lists all Operating System Statistics for a host machines.
+
+*Input Example:*
+
+```bash
+<XAP-HOME>/bin/xap host info --os-stats localhost 
+```
+
+*Output Example:*
+
+![image](/attachment_files/admin/cli-xap-host-os-stats.png)
+
+ 
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | host name |Name of the host | |
+
 {{%/tab%}}
 
 

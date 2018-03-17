@@ -6,6 +6,7 @@ parent: admin-spaces-pu.html
 ---
  
  
+{{% bgcolor yellow %}}write intro for this topic. Include a short description of what info is available per admin tool, i.e. which tool to use depending on what you want to achieve. Also explain the difference between the info that you see for this task, vs. the info that you see in the next task (Viewing Space Information).{{% /bgcolor %}}
  
  
 <br> 
@@ -15,13 +16,15 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**Command**
+*Command:*
 
 `xap pu deploy`
 
-**Description**
+*Description:*
 
-**Parameters and Options**
+Deploys a Processing Unit to the data grid.
+
+*Parameters and Options:*
 
 |Item | Name| Description | Comment |
 |:----|:----|:------------|:--------|
@@ -38,7 +41,7 @@ parent: admin-spaces-pu.html
 |Option    |zones=\<zones\>| Which zones can host this processing unit.||
 
  
-**Example:**
+*Input Example:*
 
 This example deploys a PU named **myPu** with 2 partitions using the mypu.jar file.
 

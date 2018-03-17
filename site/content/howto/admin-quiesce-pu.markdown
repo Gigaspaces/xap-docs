@@ -88,17 +88,27 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+*Command:*
 
-- name : The name of the Pu.
-- description: Quiesce description.
-  
+`xap pu quiesce <pu name>`
 
-*Example:*
+*Description:*
+ 
+Putting a Processing Unit into maintunence  mode.
+
+*Input Example:*
 
 ```bash
 <XAP-HOME>/bin/xap pu quiesce  myPu startingUpdate
 ```
+
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter |name | The name of the Pu to quiesce||
+|Option | comment | Quiesce description .||
+
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
@@ -154,16 +164,27 @@ TBD
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+*Command:*
 
-- name : The name of the Pu.
-  
+`xap pu unquiesce <pu name>`
 
-*Example:*
+*Description:*
+ 
+Unquiesce a Processing Unit.
+
+*Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu unquiesce  myPu 
+<XAP-HOME>/bin/xap pu unquiesce  myPu  
 ```
+
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter |name | The name of the Pu to unquiesce||
+ 
+ 
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
@@ -259,22 +280,27 @@ TBD
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+*Command:*
 
-- id :Id of Processing unit instance to relocate.
-- targetContainerId:  Target container for relocation.
+`xap pu relocate <pu instanceId> <targetContainerId>`
+
+*Description:*
  
-_Options:_<br>
+Relocating a Processing Unit Instance to another container.
 
-- ---version:
-- ---help:
-
-
-*Example:*
+*Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu replace myPu~1 myContainer~1
+<XAP-HOME>/bin/xap pu relocate  myPu~1 container~1 
 ```
+
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter |instanceId | Id of Processing unit instance to relocate||
+|Parameter |targetContainerId | Id of  Target container for relocation||
+ 
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
@@ -309,6 +335,116 @@ The Processing Unit state is Scheduled in the Processing Unit view until the ins
 
 Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 
+{{%/tab%}}
+
+
+{{%tab "Administration API"%}}
+TBD
+{{%/tab%}}
+
+{{% /tabs %}}
+
+
+#  Incrementing a Processing Unit
+
+{{% bgcolor yellow %}}write intro {{% /bgcolor %}}
+
+**To increment a Processing Unit:**
+
+
+{{%tabs%}}
+{{%tab "Command Line Interface"%}}
+
+*Command:*
+
+`xap pu increment <name>` 
+
+*Description:*
+ 
+Increment a Processing Unit Instances.
+
+*Input Example:*
+
+```bash
+<XAP-HOME>/bin/xap pu increment  myPu 
+```
+
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | name | The name of the stateless Processing unit to increment||
+ 
+ 
+{{%/tab%}}
+
+{{%tab "REST Manager API"%}}
+ 
+{{%/tab%}}
+
+
+{{%tab "Web Management Console"%}}
+ 
+{{%/tab%}}
+
+
+{{%tab "GigaSpaces Management Center"%}}
+ 
+{{%/tab%}}
+
+
+{{%tab "Administration API"%}}
+TBD
+{{%/tab%}}
+
+{{% /tabs %}}
+
+#  Decrement a Processing Units instances
+
+{{% bgcolor yellow %}}write intro {{% /bgcolor %}}
+
+**To decrement a Processing Unit:**
+
+
+{{%tabs%}}
+{{%tab "Command Line Interface"%}}
+
+*Command:*
+
+`xap pu decrement <name> <instanceId>`  
+
+*Description:*
+ 
+Decrement a stateless Processing Unit Instances.
+
+*Input Example:*
+
+```bash
+<XAP-HOME>/bin/xap pu decrement myPu myPu~3 
+```
+
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | name | The name of the stateless Processing unit to decrement||
+|Parameter | instanceId | The Id of Processing unit instance to decrement||
+ 
+ 
+{{%/tab%}}
+
+{{%tab "REST Manager API"%}}
+ 
+{{%/tab%}}
+
+
+{{%tab "Web Management Console"%}}
+ 
+{{%/tab%}}
+
+
+{{%tab "GigaSpaces Management Center"%}}
+ 
 {{%/tab%}}
 
 

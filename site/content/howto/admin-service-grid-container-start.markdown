@@ -20,22 +20,30 @@ parent: admin-service-grid.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+*Command:*
 
-- host : Name of the host unit to create the container.
+`xap container create <host>`  
+
+*Description:*
  
+Starting a container.
 
-_Options:_<br>
-
-- ---memory:\<memory\>:Container's JVM max memory.<br>
-- ---zone=\<zone name\>:Container's zone.<br>
-- ---property=\<String=String\>: Additional System properties.
- 
-*Example:*<br>
+*Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container create myHost myContainer
+<XAP-HOME>/bin/xap container start myHost 
 ```
+
+ 
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | host | Host where to create the container| |
+|Option    |  ---memory:\<memory\> | Container's JVM max memory.|
+|Option    | ---zone=\<zone name\> | Container's zone.|
+|Option    |---property=\<String=String\> | Additional System properties.|
+ 
 {{%/tab%}}
 
 
@@ -100,18 +108,28 @@ TBD
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+*Command:*
 
-- containerId : Id of the container.
+`xap container kill <containerId>`  
+
+*Description:*
  
-_Options:_<br>
- 
- 
-*Example:*<br>
+Stopping a container.
+
+*Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container kill myContainerId
+<XAP-HOME>/bin/xap container kill containerId
 ```
+
+ 
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | containerId | Container ID to be stopped| |
+ 
+ 
 {{%/tab%}}
 
 
@@ -173,18 +191,27 @@ TBD
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-_Parameters:_<br> 
+*Command:*
 
-- containerId : Id of the container.
+`xap container restart <containerId>`  
+
+*Description:*
  
-_Options:_<br>
- 
- 
-*Example:*<br>
+Restarting a container.
+
+*Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container restart myContainerId
+<XAP-HOME>/bin/xap container restart containerId
 ```
+
+ 
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | containerId | Container ID to restart| |
+ 
 {{%/tab%}}
 
 

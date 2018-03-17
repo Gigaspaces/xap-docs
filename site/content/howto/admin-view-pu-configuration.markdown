@@ -15,32 +15,63 @@ parent: admin-spaces-pu.html
 
 ***Display PU Information***
 
-_Parameters:_<br> 
+*Command:*
 
-- name : The name of the Space.
+`xap pu info <pu name>`
+
+*Description:*
+
+Display detailed information for the given Processing Unit.
   
-
-*Example:*
+*Input Example:*
 
 ```bash
 <XAP-HOME>/bin/xap pu info  myPu
 ```
  
+*Output Example:*
+
+![image](/attachment_files/admin/cli-xap-pu-info.png)
+ 
+ 
+*Parameters and Options:*
+
+|Item | Name| Description | Comment |
+|:----|:----|:------------|:--------|
+|Parameter | \<name\> |Name of the processing unit to display details||
+ 
+
+
+**Display PU instance information**
+
+*Command:*
+
+`xap pu info-instance <pu name> <instanceId>`
+
+*Description:*
+
+Display detailed information for the given Processing Unit instance.
   
-***Display PU instance information***
+*Input Example:*
 
-_Parameters:_<br> 
-
-- name: Name of PU
-- instanceId : The id of the PU instance to use.
-
- 
-*Example:*
- 
 ```bash
-<XAP-HOME>/bin/xap pu info-instances myPu myPu~1
+<XAP-HOME>/bin/xap pu info-instance alertSpace alertSpace~1
 ```
  
+*Output Example:*
+
+![image](/attachment_files/admin/cli-xap-pu-info-instance.png)
+ 
+ 
+*Parameters and Options:*
+
+|Item | Name| Description | Comment |
+|:----|:----|:------------|:--------|
+|Parameter | \<name\> |Name of the processing unit to display details||
+|Parameter | \<instanceId\> |Instance Id of the processing unit to display details||
+ 
+
+
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}

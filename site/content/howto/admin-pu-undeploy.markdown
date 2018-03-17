@@ -18,24 +18,29 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**Command**
+*Command:*
 
-`xap pu undeploy` 
+`xap pu undeploy <pu name>` 
 
-**Description**
+*Description:*
 
+Undeploys a Processing Unit.
+
+
+
+*Input Example:*
+
+```bash
+<XAP-HOME>/bin/xap pu undeploy myPu 
+```
+
+*Parameters and Options:*
 
 | Item | Name | Description | Comment |
 |:-----|:------|:------------|:--------|
 |Parameter |name | The name of the Pu to undeploy||
 |Option | keep-file | Keep the undeployed file for future use.||
-|version | Display version information. ||
 
-**Example:**
-
-```bash
-<XAP-HOME>/bin/xap pu undeploy myPu 
-```
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}

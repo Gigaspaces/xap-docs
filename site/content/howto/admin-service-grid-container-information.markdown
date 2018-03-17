@@ -18,26 +18,58 @@ parent: admin-service-grid.html
 
 ***List all Containers***<br>
 
-_Parameters:_
 
-*Example:*
+*Command:*
+
+`xap container list`  
+
+*Description:*
+ 
+Lists all containers.
+
+*Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container list
+<XAP-HOME>/bin/xap container list 
 ```
 
+*Output Example:*
 
-***List Container information***<br>
+![image](/attachment_files/admin/cli-xap-container-list.png)
 
-_Parameters:_
+*Parameters and Options:*
 
-- containerId : The Id  of the Container.
+None
+
+**List Containers Information**
+
+
+*Command:*
+
+`xap container info <containerId>`  
+
+*Description:*
  
-*Example:*
- 
+Display container information.
+
+*Input Example:*
+
 ```bash
-<XAP-HOME>/bin/xap container info  containerId
+<XAP-HOME>/bin/xap container info admin~22200 
 ```
+
+*Output Example:*
+
+![image](/attachment_files/admin/cli-xap-container-info.png)
+
+*Parameters and Options:*
+
+| Item | Name | Description | Comment |
+|:-----|:------|:------------|:--------|
+|Parameter | containerId | The Id of the container||
+ 
+ 
+
 
 {{%/tab%}}
 

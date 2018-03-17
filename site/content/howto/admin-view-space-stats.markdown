@@ -8,51 +8,69 @@ parent: admin-spaces-pu.html
  
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}<br>
 
-{{% bgcolor orange %}}**move the "-type-stats" command and explanation to the Viewing Data Types topic**{{% /bgcolor %}}
-
 <br>
 
 **To view Space statistics:**
 
-  
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-***Display Space Statistics***
+**Display Space Statistics**
 
-_Parameters:_<br> 
+*Command:*
 
-- name : The name of the Space.
-
-_Options:_<br>
-
-- ---operation-stats : Displays Space operations statistics, (read, write, take etc)  <br>
-- ---type-stats      : Displays Space object information.
+`xap space info --operation-stats <space name>`
  
+*Description:*
 
-*Example:*
-
-```bash
-<XAP-HOME>/bin/xap space info --type-stats mySpace
-```
+This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
  
-***Display Space Instance Statistics***
-
-_Parameters:_<br> 
-instanceId : The id of the Space instance to use.
-
-_Options:_<br>
-
-- ---operation-stats : Displays Space instance operations statistics, (read, write, take etc)  <br>
-- ---type-stats      : Displays Space instance object information.<br>
-- ---replication-stats: Display Space instance replication information.
- 
- 
-*Example:*
+*Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap space info-instances --replication-stats mySpace~1
+<XAP-HOME>/bin/xap space info --operation-stats alertSpace
 ```
+ 
+*Output Example:*
+  
+![image](/attachment_files/admin/cli-xap-space-stats.png)
+
+*Parameters and Options:*
+
+|Item | Name| Description | Comment |
+|:----|:----|:------------|:--------|
+|Parameter | \<name\> |Name of the Space to display the statistics for ||
+ 
+ 
+
+**Display Space Instance Statistics**
+
+*Command:*
+
+`xap space info-instance --operation-stats <space ID>`
+ 
+*Description:*
+
+This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+ 
+*Input Example:*
+ 
+```bash
+<XAP-HOME>/bin/xap space info-instance --operation-stats alertSpace~1
+```
+ 
+*Output Example:*
+  
+![image](/attachment_files/admin/cli-xap-space-stats-instance.png)
+
+*Parameters and Options:*
+
+|Item | Name| Description | Comment |
+|:----|:----|:------------|:--------|
+|Parameter | \<spaceId\> |Id of the Space to display the statistics for ||
+ 
+ 
+ 
  
 {{%/tab%}}
 
