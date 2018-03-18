@@ -10,7 +10,9 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Enhancements
 
-- {{% jira id="GS-134561" %}}: Upgrade Apache Zookeeper to 3.4.10.
+- {{% jira id="GS-13488" %}}: New MemoryXtend storage driver for off-heap memory.
+- {{% jira id="GS-13500" %}}: When killing an external process, avoid SIGKILL on systems which do not support it (Windows).
+- {{% jira id="GS-13456" %}}: Upgrade Apache Zookeeper to 3.4.10.
 - {{% jira id="GS-13400" %}}: Replication redolog compaction for mirror target.
 - {{% jira id="GS-13477" %}}: Created v2 of XAP Manager REST API.
 - {{% jira id="GS-13491" %}}: Renamed /deployments to /pus in v2 of XAP Manager REST API.
