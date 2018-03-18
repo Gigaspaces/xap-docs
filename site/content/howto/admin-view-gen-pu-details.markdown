@@ -217,6 +217,44 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/al
 |------|-------------------|----------------|
 | pu name | Provide the name of the Processing Unit for which you want to see the runtime details. | Yes |
 
+
+**Processing Unit Instance**
+
+*Path*
+
+`GET /pus/{id}/instances/{instanceId`
+
+*Description:*
+
+The given Processing Unit Instance is listed with the name, deployment name, topology, number of instances, and InstanceId.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/alertPu/instances/alertPu~1'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "id": "alertPu~1",
+  "processingUnitName": "alertPu",
+  "hostId": "admin",
+  "containerId": "admin~13972",
+  "partitionId": 0,
+  "backupId": 0
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| pu name | Provide the name of the Processing Unit for which you want to see the runtime details. | Yes |
+| instanceId | Provide the instanceId of the Processing Unit for which you want to see the runtime details. | Yes |
+
+  
  
 {{%/tab%}}
 

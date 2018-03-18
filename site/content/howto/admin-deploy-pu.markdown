@@ -53,52 +53,48 @@ This example deploys a PU named **myPu** with 2 partitions using the mypu.jar fi
 
 {{%tab "REST Manager API"%}}
 
-**Path**
+*Path*
 
-POST / deployments
-
-
-**Description**
+`POST /pus`
 
 
-**Options**
+*Description:*
+
+Deploys a Processing Unit onto the Service Grid.
+
+*Example:*
+ 
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ \ 
+    "name": "myPu", \ 
+    "resource": "myPu.jar", \ 
+    "sla": { \ 
+      "requiresIsolation": true, \ 
+      "zones": [ \ 
+        "string" \ 
+      ], \ 
+      "maxInstancesPerVM": 1, \ 
+      "maxInstancesPerMachine": 1 \ 
+    }, \ 
+    "contextProperties": {} \ 
+  }' 'http://localhost:8090/v1/deployments'
+```
+
+*Options:*
 
 | Option | Description | Required |
 |:-------|:------------|:---------|
 |name | Name of the processing unit.| Yes |
 |resource|File/Path to processing unit file (.jar or .zip) | Yes|
 |schema | Type of schema to use | No| 
-|instances |  | No|
-|partitions|  | No|
-|backupsPerPartition| | No| 
-|requiresIsolation| | No|
-|zones| | No|
-|contextProperties  | | No|
- 
-**Example:**
+|instances | Number of instances to deploy | No|
+|partitions| Number of partitions | No|
+|backupsPerPartition|Number of backups per partition. | No| 
+|requiresIsolation| Requires isolation | No|
+|zones|Which zones can host this processing unit. | No|
+|contextProperties  |Context properties. | No|
  
 
-```bash
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ \ 
-    "name": "string", \ 
-    "resource": "string", \ 
-    "topology": { \ 
-      "schema": "partitioned", \ 
-      "instances": 0, \ 
-      "partitions": 0, \ 
-      "backupsPerPartition": 0 \ 
-    }, \ 
-    "sla": { \ 
-      "requiresIsolation": true, \ 
-      "zones": [ \ 
-        "string" \ 
-      ], \ 
-      "maxInstancesPerVM": 0, \ 
-      "maxInstancesPerMachine": 0 \ 
-    }, \ 
-    "contextProperties": {} \ 
-  }' 'http://localhost:8090/v1/deployments'
-```
 {{%/tab%}}
 
 

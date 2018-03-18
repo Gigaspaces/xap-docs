@@ -413,7 +413,27 @@ Increment a Processing Unit Instances.
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
- 
+
+*Path*
+
+`POST /pus/{id}/instances`
+
+*Description:*
+
+Increment the processing unit's instances
+
+*Example Request:*
+
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/instances' 
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| pu name | Provide the name of the Processing Unit to increment. | Yes |
+
 {{%/tab%}}
 
 
@@ -468,7 +488,26 @@ Decrement a stateless Processing Unit Instances.
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
- 
+*Path*
+
+`DELETE /pus/{id}/instances/{instanceId}`
+
+*Description:*
+
+Delete the processing unit instance.
+
+*Example Request:*
+
+```bash
+curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/instances/myPu~1'
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| pu name | Provide the name of the Processing Unit to delete. | Yes |
+| instanceId | Provide the instance Id of the Processing Unit to delete. | Yes |
 {{%/tab%}}
 
 
