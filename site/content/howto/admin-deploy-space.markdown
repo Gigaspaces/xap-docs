@@ -77,15 +77,25 @@ This example deploys a Space named **mySpace** with high availability and 5 part
 
 {{%tab "REST Manager API"%}}
 
-**Path**
+*Path*
 
 `POST /spaces`
 
-**Description** 
+*Description:* 
 
 Deploys a Space in a stateful Processing Unit.
 
-**Options**
+If you run the command without defining any options, a non-clustered Space is deployed.
+
+*Example Request:*
+
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/spaces?name=mySpace&partitions=3&backups=true&requiresIsolation=true'
+```
+This example deploys a Space named **mySpace** with high availability, 3 partitions and isolation. 
+
+
+*Options:*
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
@@ -94,16 +104,6 @@ Deploys a Space in a stateful Processing Unit.
 | partitions=\<partitions\>    | Define how many primary partitions the Space should contain, using the syntax `--partitions=n`. | No |
 |requiresIsolation   | If this Space should not share a container, adding this option provisions the Space in a dedicated container. | No |
 
-
-If you run the command without defining any options, a non-clustered Space is deployed.
-
-**Example**
-
-This example deploys a Space named **mySpace** with high availability, 3 partitions and isolation. 
-
-```bash
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/spaces?name=mySpace&partitions=3&backups=true&requiresIsolation=true'
-```
 {{%/tab%}}
 
 

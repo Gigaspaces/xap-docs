@@ -86,110 +86,139 @@ The Space instances for the given Space are listed with ID, Mode, HostId, and Co
 
 {{%tab "REST Manager API"%}}
 
-### All Spaces
+**All Spaces**
 
-**Path**
+*Path*
 
 `GET /spaces`
 
-*Description*
+*Description:*
 
 The Spaces are listed with the name, deployment name, topology, number of instances, and InstanceId.
 
-*Parameters and Options*
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces'
+```
+
+
+*Example Response:*
+
+```bash
+[
+  {
+    "name": "monitorSpace",
+    "processingUnitName": "monitorSpace",
+    "topology": {
+      "instances": 1
+    },
+    "instancesIds": [
+      "monitorSpace~1"
+    ]
+  },
+  {
+    "name": "alertSpace",
+    "processingUnitName": "alertSpace",
+    "topology": {
+      "instances": 1
+    },
+    "instancesIds": [
+      "alertSpace~1"
+    ]
+  },
+  {
+    "name": "mySpace",
+    "processingUnitName": "mySpace",
+    "topology": {
+      "instances": 1
+    },
+    "instancesIds": [
+      "mySpace~1"
+    ]
+  }
+]
+```
+
+*Options:*
 
 None
 
-**Example**
+**Specific Space**
 
+*Path*
 
-### Specific Space
+`GET /spaces/{id}/instances`
 
-**Path**
-
-`GET /spaces/{id}`
-
-**Description**
+*Description:*
 
 The given Space is listed with the name, deployment name, topology, number of instances, and InstanceId.
 
-**Options**
-
-| Option     | Description       |   Required     |
-|------|-------------------|----------------|
-| id | Provide the name of the Space for which you want to see the runtime details. | Yes |
-
-**Example**
-
-*give example*
-
-{{% bgcolor yellow %}}not sure what this REST API is for.{{% /bgcolor %}}
-
-_Parameters:_<br> 
-
-- host URL: Host URL   where the REST Manager is running.
-
-*Example:*
+*Example Request:*
 
 ```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces'
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces/alertSpace/instances'
 ```
-
-### All Space Instances
-
-**Path**
-
-`GET /spaces/{id}/instances~
-
-**Description**
-
-The Space instances for the given Space are listed with ID, Mode, PartionId, BackupId, HostId, and ContainerId.
-
-**Options**
-
-| Option     | Description       |   Required     |
-|------|-------------------|----------------|
-| id | Provide the name of the Space for which you want to see the list of Space instances and their runtime details. | Yes |
-
-**Example**
-
-*give example*
-
-{{% bgcolor yellow %}}not sure what this REST API is for.{{% /bgcolor %}}
-
-_Parameters:_<br> 
-
-- host URL: Host URL   where the REST Manager is running.<br>
-- name : The name of the Space.
  
-*Example:*
- 
+*Example Response:*
+
 ```bash
-curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces/mySpace/instances'
+[
+  {
+    "id": "alertSpace~1",
+    "mode": "PRIMARY",
+    "partitionId": 0,
+    "backupId": 0,
+    "hostId": "admin",
+    "containerId": "admin~13972"
+  }
+] 
 ```
 
-### Specific Space Instance
-
-**Path**
-
-`GET GET /spaces/{id}/instances/{instanceId}
-
-**Description**
-
-The given Space instances is listed with ID, Mode, PartionId, BackupId, HostId, and ContainerId.
-
-**Options**
+*Options:*
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| id | Provide the name of the Space for which you want to see the specific Space instance. | Yes |
-| instanceId | Provide the name of the Space instance for which you want to see the runtime details. | Yes |
+| space name | Provide the name of the Space for which you want to see the runtime details. | Yes |
 
-**Example**
+ 
+**Specific Space Instance**
 
-*give example*
+*Path*
 
+`GET /spaces/{id}/instances{instanceId}`
 
+*Description:*
+
+The given Space instance is listed with the name, deployment name, topology, number of instances, and InstanceId.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces/alertSpace/instances/alertSpace~1'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "id": "alertSpace~1",
+  "mode": "PRIMARY",
+  "partitionId": 0,
+  "backupId": 0,
+  "hostId": "admin",
+  "containerId": "admin~13972"
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| space name | Provide the name of the Space for which you want to see the runtime details. | Yes |
+| space Id | Provide the ID of the Space for which you want to see the runtime details. | Yes |
+
+  
 {{%/tab%}}
 
 

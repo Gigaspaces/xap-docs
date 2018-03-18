@@ -7,9 +7,7 @@ parent: admin-spaces-pu.html
  
  
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}<br>
-
-{{% bgcolor orange %}}**it seems that for the CLI and REST API, this is partly the --info command, and partly information that the user can see via jconsole (which isn't supported in the new CLI and should be run directly by the user).<br>If the updated CLI doesn't contain parallel commands, you can say as much in the topic. Need to make sure the information is paralleled as much as possible. Where information is NOT parallel, explain in the intro text why you would prefer one tool over another to perform this particular task (and give an example).**{{% /bgcolor %}}
-
+ 
 **To view Space information:**
 
   
@@ -19,47 +17,7 @@ N/A
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-
-***Display Space Information***
-
-_Parameters:_<br>
-
-- host URL: Host URL   where the REST Manager is running.<br>
-- name : The name of the Space.
-
- 
-Displays Space operations statistics, (read, write, take etc)  <br>
-  
-
-*Example:*
-
-```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/statistics/operations'
-```
- 
-***Display Space instance information***
-
-_Parameters:_<br> 
-
-- host URL: Host URL where the REST Manager is running.<br>
-- name : The name of the Space.<br>
-- instanceId : The id of the Space instance to use.
-
-_Options:_<br>
-
-- operations : Displays Space instance operations statistics, (read, write, take etc)  <br>
-- types     : Displays Space instance object information.<br>
-- replication: Display Space instance replication information.
- 
- 
-*Examples:*
- 
-```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/operations'
-curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/replication'
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/types'
-```
- 
+N/A
 {{%/tab%}}
 
 
