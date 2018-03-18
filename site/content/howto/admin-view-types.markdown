@@ -69,12 +69,80 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 |:----|:----|:------------|:--------|
 |Parameter | \<spaceId\> |Id of the Space to display the statistics for ||
  
- 
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-N/A
+
+**To view Space data types:**
+
+*Path*
+
+`GET /spaces/{id}/statistics/types`
+
+*Description:*
+
+The entries in the entries in the Space are listed.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces/alertSpace/statistics/types'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "java.lang.Object": {
+    "entries": 0,
+    "notifyTemplates": 0
+  }
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| space name | Provide the name of the Space for which you want to see the details. | Yes |
+
+**To view Space Instance data types:**
+
+*Path*
+
+`GET /spaces/{id}/instances/{instanceId}/statistics/types`
+
+*Description:*
+
+The entries in the entries in the Space Instance are listed.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces/alertSpace/instances/alertSpace~1/statistics/types'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "java.lang.Object": {
+    "entries": 0,
+    "notifyTemplates": 0
+  }
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| space name | Provide the name of the Space for which you want to see the runtime details. | Yes |
+| instanceId| Provide the instance Id of the Space for which you want to see the runtime details. | Yes |
+
+
 {{%/tab%}}
+ 
 
 
 {{%tab "Web Management Console"%}}
@@ -143,7 +211,7 @@ N/A
 1. To filter the data type table, type an alphanumeric value in the **Filter** box. 
 
 {{%/tab%}}
-
+ 
 
 {{%tab "GigaSpaces Management Center"%}}
 

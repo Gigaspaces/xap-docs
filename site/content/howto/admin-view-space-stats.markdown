@@ -76,45 +76,114 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 {{%tab "REST Manager API"%}}
 
-***Display Space Statistics***
-
-_Parameters:_<br>
-
-- host URL: Host URL   where the REST Manager is running.<br>
-- name : The name of the Space.
-
  
-Displays Space operations statistics, (read, write, take etc)  <br>
-  
+**To view Space operations:**
 
-*Example:*
+*Path*
+
+`GET /spaces/{id}/statistics/operations`
+
+*Description:*
+
+Display the Space operations statistics.
+
+*Example Request:*
 
 ```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/statistics/operations'
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces/alertSpace/statistics/operations'
 ```
  
-***Display Space Instance Statistics***
+*Example Response:*
 
-_Parameters:_<br> 
-
-- host URL: Host URL where the REST Manager is running.<br>
-- name : The name of the Space.<br>
-- instanceId : The id of the Space instance to use.
-
-_Options:_<br>
-
-- operations : Displays Space instance operations statistics, (read, write, take etc)  <br>
-- types     : Displays Space instance object information.<br>
-- replication: Display Space instance replication information.
- 
- 
-*Examples:*
- 
 ```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/operations'
-curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/replication'
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/spaces/mySpace/instances/mySpace~1/statistics/types'
+{
+  "size": 1,
+  "timestamp": 1521368755460,
+  "writeCount": 0,
+  "writePerSecond": 0.00026335180482892404,
+  "readCount": 0,
+  "readPerSecond": 0.0005267036096578481,
+  "takeCount": 0,
+  "takePerSecond": 0.0005267036096578481,
+  "updateCount": 0,
+  "updatePerSecond": 0.00026335180482892404,
+  "changeCount": 0,
+  "changePerSecond": 0,
+  "notifyRegistrationCount": 0,
+  "notifyRegistrationPerSecond": 0.00026335180482892404,
+  "notifyTriggerCount": 0,
+  "notifyTriggerPerSecond": 0.00026335180482892404,
+  "notifyAckCount": 0,
+  "notifyAckPerSecond": 0.00026335180482892404,
+  "executeCount": 0,
+  "executesPerSecond": 0.00026335180482892404,
+  "objectCount": 0,
+  "notifyTemplateCount": 0,
+  "activeConnectionCount": 0,
+  "activeTransactionCount": 0
+}
+}
 ```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| space name | Provide the name of the Space for which you want to see the details. | Yes |
+
+**To view Space Instance data types:**
+
+*Path*
+
+`GET /spaces/{id}/instances/{instanceId}/statistics/operations`
+
+*Description:*
+
+Display the Space Instance operations statistics.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces/alertSpace/instances/alertSpace~1/statistics/operations'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "adminTimestamp": 1521368888174,
+  "timestamp": 1521368888174,
+  "writeCount": 0,
+  "writePerSecond": 0,
+  "readCount": 0,
+  "readPerSecond": 0,
+  "takeCount": 0,
+  "takePerSecond": 0,
+  "updateCount": 0,
+  "updatePerSecond": 0,
+  "changeCount": 0,
+  "changePerSecond": 0,
+  "notifyRegistrationCount": 0,
+  "notifyRegistrationPerSecond": 0,
+  "notifyTriggerCount": 0,
+  "notifyTriggerPerSecond": 0,
+  "notifyAckCount": 0,
+  "notifyAckPerSecond": 0,
+  "executeCount": 0,
+  "executesPerSecond": 0,
+  "objectCount": 0,
+  "notifyTemplateCount": 0,
+  "activeConnectionCount": 0,
+  "activeTransactionCount": 0
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| space name | Provide the name of the Space for which you want to see the runtime details. | Yes |
+| instanceId| Provide the instance Id of the Space for which you want to see the runtime details. | Yes |
  
 {{%/tab%}}
 
