@@ -15,6 +15,25 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3 RC2 (Mar-18-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-rc2/gigaspaces-insightedge-open-12.3.0-rc2-b18924.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.0/12.3.0-rc2/gigaspaces-insightedge-12.3.0-rc2-b18924.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.0/12.3.0-rc2/gigaspaces-xap-open-12.3.0-rc2-b18924.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-rc2/gigaspaces-xap-12.3.0-rc2-b18924.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.0/12.3.0-rc2/gigaspaces-xap.net-12.3.0-rc2-b18924.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13488" %}}: New MemoryXtend storage driver for off-heap memory.
+- {{% jira id="GS-13500" %}}: When killing an external process, avoid SIGKILL on systems which do not support it (Windows).
+
+### Resolved Issues
+
+N/A
+
 # 12.3 RC1 (Mar-12-2018)
 
 ## Download Links
@@ -27,7 +46,7 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ### Features and Enhancements
 
-- {{% jira id="GS-134561" %}}: Upgrade Apache Zookeeper to 3.4.10.
+- {{% jira id="GS-13456" %}}: Upgrade Apache Zookeeper to 3.4.10.
 
 ### Resolved Issues
 

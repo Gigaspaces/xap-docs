@@ -4,6 +4,11 @@ title:  Administering the Service Grid
 weight: 200
 parent: admin-tools-overview.html
 ---
- 
- {{% bgcolor yellow %}}This is an intro topic about why the user might have to do administration and maintenance tasks for Spaces and Processing Units. Need to write some introductory text (might be best to copy from existing content from original administration section(s), and maybe provide links to the sub-topics.{{% /bgcolor %}}
 
+The service grid, or runtime environment, is responsible for materializing the Processing Unit’s configuration, provisioning its instances to the runtime infrastructure, and making sure the instances continue to run properly over time. Administrators need to monitor the service grid to ensure that processes are running smoothly and to troubleshoot problematic behavior. The administration tools enable users to do the following:
+
+- Monitor physical and virtual (host) resources
+- View and manage containers
+- View activity and event logs
+- Generate dump files for investigation
+- Start and stop Grid Service Agents
