@@ -48,32 +48,33 @@ Starting a container.
 
 
 {{%tab "REST Manager API"%}}
-
-_Parameters:_<br>
-
-- host: Name of the host unit to create the container.
  
+*Path*
 
-_Options:_<br>
+`POST /containers`
 
-- memory : Container's JVM max memory.<br>
-- zone:Container's zone.<br>
-- vmArguments: Additional System properties.
- 
- 
-*Example:*<br>
- 
+*Description:*
+
+Deploy a container (GSC).
+
+*Example Request:*
 
 ```bash
 curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ \ 
-   "host": "string", \ 
-   "memory": "string", \ 
-   "zone": "string", \ 
-   "vmArguments": [ \ 
-     "string" \ 
-   ] \ 
- }' 'http://localhost:8090/v1/containers'
+   "host": "myHost", \ 
+   "memory": "12g", \ 
+   "zone": "green", \ 
+ }' 'http://localhost:8090/v2/containers'
 ```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| memory | Container's JVM max memory.| No |
+| zone |Container's zone.| No |
+|vmArguments | Additional System properties.|
+ 
 {{%/tab%}}
 
 
@@ -135,18 +136,26 @@ Stopping a container.
 
 {{%tab "REST Manager API"%}}
 
-_Parameters:_<br>
+*Path*
 
-- containerId : Id of the container. 
+`DELETE /containers/{id}`
 
-_Options:_<br>
+*Description:*
 
- 
-*Example:*<br>
- 
+Stop a container (GSC).
+
+*Example Request:*
+
 ```bash
-curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v1/containers/containerId'
+curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/containers/admin~13972'
 ```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| containerId | Id of the container | Yes |
+ 
 {{%/tab%}}
 
 
@@ -216,19 +225,26 @@ Restarting a container.
 
 
 {{%tab "REST Manager API"%}}
+*Path*
 
-_Parameters:_<br>
+`DELETE /containers/{id}/restart`
 
-- containerId : Id of the container. 
+*Description:*
 
-_Options:_<br>
+restart a container (GSC).
 
- 
-*Example:*<br>
- 
+*Example Request:*
+
 ```bash
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/containers/containerId/restart'
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/containers/admin~13972/restart'
 ```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| containerId | Id of the container | Yes |
+ 
 {{%/tab%}}
 
 
