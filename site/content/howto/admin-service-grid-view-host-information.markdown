@@ -130,17 +130,198 @@ Lists all Operating System Statistics for a host machines.
 
 {{%tab "REST Manager API"%}}
 
-_Parameters:_<br>
+**To view all hosts**
 
- 
+*Path*
 
-_Options:_<br>
+`GET /hosts`
 
- 
-*Example:*<br>
- 
+*Description:*
+
+List all hosts.
+
+*Example Request:*
+
 ```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts'
 ```
+ 
+*Example Response:*
+
+```bash
+[
+  {
+    "name": "admin",
+    "address": "172.20.3.93",
+    "containers": [
+      "admin~13972"
+    ]
+  }
+]
+```
+
+*Options:*
+
+None.
+
+
+**To view host specific information**
+
+*Path*
+
+`GET /hosts{id}`
+
+*Description:*
+
+List host information.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "name": "admin",
+  "address": "172.20.3.93",
+  "containers": [
+    "admin~13972"
+  ]
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| host name | Provide the host name  for which you want to see the details. | Yes |
+
+**To view host containers**
+
+*Path*
+
+`GET /hosts{id}/containers`
+
+*Description:*
+
+List host container information.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/containers'
+```
+ 
+*Example Response:*
+
+```bash
+[
+  {
+    "id": "admin~13972",
+    "pid": 13972,
+    "zones": [],
+    "instances": [
+      "alertSpace~1",
+      "monitorSpace~1"
+    ]
+  }
+]
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| host name | Provide the host name  for which you want to see the details. | Yes |
+
+
+**To view host os details**
+
+*Path*
+
+`GET /hosts{id}/details/os`
+
+*Description:*
+
+List host  detail information.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/details/os'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "id": "172.20.3.93",
+  "name": "Win32",
+  "timeDelta": 0,
+  "currentTimeInMillis": 1521375407792,
+  "arch": "x64",
+  "version": "6.3",
+  "availableProcessors": 8,
+  "totalSwapSpaceSizeInBytes": 45535817728,
+  "totalPhysicalMemorySizeInBytes": 34261528576,
+  "hostName": "admin",
+  "hostAddress": "172.20.3.93",
+  "vendor": "Microsoft",
+  "vendorCodeName": "Vienna",
+  "vendorName": "Windows 7",
+  "vendorVersion": "7"
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| host name | Provide the host name  for which you want to see the details. | Yes |
+
+**To view host statistics details**
+
+*Path*
+
+`GET /hosts{id}/statistcics/os`
+
+*Description:*
+
+List host statistics detail information.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/statistics/os'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "timestamp": 1521375496115,
+  "adminTimestamp": 1521375496115,
+  "freeSwapSpaceSizeInBytes": 28697755648,
+  "freePhysicalMemorySizeInBytes": 19815034880,
+  "actualFreePhysicalMemorySizeInBytes": 20070580224,
+  "physicalMemoryUsedPerc": 42.165350748885395,
+  "cpuPerc": 0.06905130613591937,
+  "cpuPercFormatted": "6.9%",
+  "actualMemoryUsed": 14446493696
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| host name | Provide the host name  for which you want to see the details. | Yes |
+
+
+
 {{%/tab%}}
 
 
