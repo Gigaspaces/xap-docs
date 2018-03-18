@@ -83,31 +83,141 @@ This command lists all of the instances for a given Processing Unit, along with 
 
 
 {{%tab "REST Manager API"%}}
-***List all PU's***<br>
-Lists all PU's with the Name, Deployment name, Topology and InstanceId
 
-_Parameters:_<br> 
+**All Processing Units**
 
-- host URL: Host URL   where the REST Manager is running, require.
+*Path*
 
-*Example:*
+`GET /pus`
+
+*Description:*
+
+The Processing Units are listed with the name, deployment name, topology, number of instances, and InstanceId.
+
+*Example Request:*
 
 ```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/deployments'
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus'
 ```
-***List all PU instances***<br>
-Lists all PU instances for a given Space with Id, Mode, PartionId, BackupId, HostId and ContainerId.
 
-_Parameters:_<br> 
 
-- host URL: Host URL   where the REST Manager is running.<br>
-- name : The name of the PU.
- 
-*Example:*
- 
+*Example Response:*
+
 ```bash
-curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myPu'
+[
+  {
+    "name": "monitorSpace",
+    "processingUnitType": "stateful",
+    "resource": "datagrid",
+    "topology": {
+      "instances": 1
+    },
+    "sla": {
+      "requiresIsolation": false,
+      "zones": [],
+      "maxInstancesPerVM": 0,
+      "maxInstancesPerMachine": 0
+    },
+    "spaces": [
+      "monitorSpace"
+    ],
+    "scalable": false,
+    "status": "intact",
+    "quiesceDetails": {
+      "quiesced": false,
+      "description": "initial"
+    },
+    "instances": [
+      "monitorSpace~1"
+    ]
+  },
+  {
+    "name": "alertSpace",
+    "processingUnitType": "stateful",
+    "resource": "datagrid",
+    "topology": {
+      "instances": 1
+    },
+    "sla": {
+      "requiresIsolation": false,
+      "zones": [],
+      "maxInstancesPerVM": 0,
+      "maxInstancesPerMachine": 0
+    },
+    "spaces": [
+      "alertSpace"
+    ],
+    "scalable": false,
+    "status": "intact",
+    "quiesceDetails": {
+      "quiesced": false,
+      "description": "initial"
+    },
+    "instances": [
+      "alertSpace~1"
+    ]
+  }
+]
 ```
+
+*Options:*
+
+None
+
+**Specific Processing Unit**
+
+*Path*
+
+`GET /pus/{id}`
+
+*Description:*
+
+The given Processing Unit is listed with the name, deployment name, topology, number of instances, and InstanceId.
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/alertSpace'
+```
+ 
+*Example Response:*
+
+```bash
+{
+  "name": "alertSpace",
+  "processingUnitType": "stateful",
+  "resource": "datagrid",
+  "topology": {
+    "instances": 1
+  },
+  "sla": {
+    "requiresIsolation": false,
+    "zones": [],
+    "maxInstancesPerVM": 0,
+    "maxInstancesPerMachine": 0
+  },
+  "spaces": [
+    "alertSpace"
+  ],
+  "scalable": false,
+  "status": "intact",
+  "quiesceDetails": {
+    "quiesced": false,
+    "description": "initial"
+  },
+  "instances": [
+    "alertSpace~1"
+  ]
+}
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| pu name | Provide the name of the Processing Unit for which you want to see the runtime details. | Yes |
+
+ 
 {{%/tab%}}
 
 

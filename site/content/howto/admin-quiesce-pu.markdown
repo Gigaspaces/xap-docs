@@ -94,7 +94,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 *Description:*
  
-Putting a Processing Unit into maintunence  mode.
+Putting a Processing Unit into maintenance  mode.
 
 *Input Example:*
 
@@ -113,17 +113,28 @@ Putting a Processing Unit into maintunence  mode.
 
 {{%tab "REST Manager API"%}}
 
-_Parameters:_<br>
+*Path*
 
-- name : The name of the Pu.
-- description: Quiesce description.
+`POST /pus/{id}/quiesce`
 
- 
-*Example:*
+*Description:*
+
+Putting a Processing Unit into maintenance mode.
+
+*Example Request:*
 
 ```bash
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myPu/quiesce?description=ready%20for%20update'
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/quiesce'
 ```
+ 
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| pu name | Provide the name of the Processing Unit you want to quiesce. | Yes |
+| pdescription | Provide a description why you are quiescing. | No|
+
 {{%/tab%}}
 
 
@@ -189,16 +200,28 @@ Unquiesce a Processing Unit.
 
 {{%tab "REST Manager API"%}}
 
-_Parameters:_<br>
+*Path*
 
-- name : The name of the Pu.
+`POST /pus/{id}/unquiesce`
 
- 
-*Example:*
+*Description:*
+
+Unquiesce a Processing Unit
+
+*Example Request:*
 
 ```bash
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myPu/unquiesce'
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/unquiesce'
 ```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| pu name | Provide the name of the Processing Unit you want to unquiesce. | Yes |
+ 
+
+
 {{%/tab%}}
 
 
@@ -304,18 +327,29 @@ Relocating a Processing Unit Instance to another container.
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
+*Path*
 
-_Parameters:_<br>
+`POST /pus/{id}/instances/{instanceId}/relocate`
 
-- name : The name of the Pu.
-- description: Quiesce description.
+*Description:*
 
- 
-*Example:*
+Relocate a Processing Unit
+
+*Example Request:*
 
 ```bash
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/mySpace~%601/instances/myContainer1/relocate'
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/alertSpace/instances/instance1/relocate?containerId=container2' 
 ```
+
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| pu name | Provide the name of the Processing Unit you want to relocate. | Yes |
+| pu instaceId | Provide the instanceId of the Processing Unit you want to relocate. | Yes |
+| targetContainerId  | Id of  Target container to relocate to | Yes|
+
 {{%/tab%}}
 
 

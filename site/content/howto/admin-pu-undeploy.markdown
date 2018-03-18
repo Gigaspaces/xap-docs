@@ -5,10 +5,6 @@ weight: 900
 parent: admin-spaces-pu.html
 ---
  
- 
- 
-
- 
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
 <br>
@@ -45,25 +41,29 @@ Undeploys a Processing Unit.
 
 {{%tab "REST Manager API"%}}
  
-**Path**
+*Path*
 
-DELETE / deployments
+`DELETE DELETE /pus/{id}`
 
-**Description**
+*Description:* 
 
-**Options**
+Un Deploys a Processing Unit.
 
-|  Option | Description | Required |
-|:------|:------------|:--------|
-|name | The name of the Pu to undeploy| Yes|
-|keep-file | Keep the undeployed file for future use.|No|
- 
- 
-*Example:*
+*Example Request:*
 
 ```bash
-curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/deployments/myPu'
+curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPU'
 ```
+This example undeploys a Processing Unit  named **myPU**. 
+
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| name | Provide the name of the PU you are un deploying. | Yes |
+ 
+
 {{%/tab%}}
 
 
