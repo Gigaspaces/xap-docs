@@ -1,7 +1,7 @@
 ---
 type: post
 title:  Administering InsightEdge
-weight: 300
+weight: 400
 parent: admin-tools-overview.html
 ---
  
@@ -13,5 +13,4 @@ In addition to monitoring and maintaining the XAP core, there are administration
 - Updating InsightEdge application files
 - Terminating an Apache Spark job
 - Deleting an InsightEdge application
-
 

@@ -30,9 +30,9 @@ The Logs tab is available in the Hosts and Processing Units views. You can displ
 
 1. In the relevant view, highlight the component you want to investigate.
 1. Click the Logs tab on the right side of the page.
-1. To turn logging off click the **Pause **icon, and to turn logging on click the **Play **icon.
-1. To filter the logs, use the **Log Level** box to select the desired log level and/or type specific text in the **Find **box, and then click the **Search **icon.
-1. To expand the log window, click the **Expand **icon in the upper right corner.
+1. To turn logging off click the **Pause** icon, and to turn logging on click the **Play** icon.
+1. To filter the logs, use the **Log Level** box to select the desired log level and/or type specific text in the **Find** box, and then click the **Search** icon.
+1. To expand the log window, click the **Expand** icon in the upper right corner.
 
 {{%/tab%}}
 

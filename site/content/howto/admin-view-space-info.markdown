@@ -119,8 +119,45 @@ This information is also available in the Config tab of the associated Processin
 
 If you have a system with Memory Xtend, you can also see the following information about the blobstore:
 
-??? 
-
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Description</th>
+  </tr>
+    <tr>
+    <td>External Storage Path</td>
+    <td>Location where cold data is stored on disk (SSD or HDD).</td>
+  </tr>
+  <tr>
+    <td>Off-Heap Cache Threshold</td>
+    <td>(RocksDB storage driver only) Amount of off-heap memory allocated for caching.</td>
+  </tr>
+  <tr>
+    <td>External Storage Cache Size</td>
+    <td>Amount of memory allocated on the disk (SSD or HDD), in MB.</td>
+  </tr>
+  <tr>
+    <td>Mapping Dir</td>
+    <td>Pointer to the location of the mapping directory for the external storage path.</td>
+  </tr>
+  <tr>
+    <td>Space Cache Size</td>
+    <td>Maximum number of data objects that can be stored in the blobstore before the application begins evicting.</td>
+  </tr>
+   <tr>
+    <td>Memory Xtend Add-On Type</td>
+    <td>Storage driver that was implemented.</td>
+  </tr>
+  <tr>
+    <td>Persistent</td>
+    <td>Indicates whether the blobstore is persistent (true/false).</td>
+  </tr>
+  <tr>
+    <td>Off-Heap Threshold</td>
+    <td>(Off-heap storage driver only) Amount of off-heap memory allocated for the blobstore.</td>
+  </tr>
+</table>  
+ 
 {{%/tab%}}
 
 

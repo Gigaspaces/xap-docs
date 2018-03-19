@@ -80,7 +80,17 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 {{%tab "Web Management Console"%}}
 
-Not supported in this tool.
+1. In the Hosts view, click the Actions icon for the Grid Service Agent where you want to start a container.
+1. Select the relevant container that you want to start:
+	- StartGSM - to start a Grid Service Manager
+	- StartGSC - to start a Grid Service Container
+	- Start Lookup - to start a Lookup Service (LUS)
+	
+	The container is started.
+
+{{%note "Note"%}}
+If you try to start a global container that is already running under this Grid Service Agent, you get a notification message and the container isn't started.
+{{%/note%}}
  
 {{%/tab%}}
 

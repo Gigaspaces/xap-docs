@@ -252,8 +252,16 @@ You can see the following high-level Space details in the main Spaces view:
     <td>Space cluster topology (number of instances, number of backups).</td>
   </tr>
   <tr>
-    <td>Total Memory (MB)</td>
+    <td>Used Heap (MB)</td>
     <td>Amount of memory currently being used, in MB and as a percentage of the total memory allocated to this Space.</td>
+  </tr>
+  <tr>
+    <td>Used Off-Heap Cache (MB)</td>
+    <td>(RocksDB storage driver only) Amount of off-heap memory currently being used for caching, in MB and as a percentage of the total off-heap memory allocated.</td>
+  </tr>
+  <tr>
+    <td>Used Off-Heap (MB)</td>
+    <td>(Off-heap storage driver only) Amount of off-heap memory currently being used, in MB and as a percentage of the total memory allocated for the blobstore.</td>
   </tr>
   <tr>
     <td>Entries</td>

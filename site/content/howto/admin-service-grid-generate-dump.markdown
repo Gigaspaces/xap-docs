@@ -42,7 +42,7 @@ The Web Management Console supports generating the following types of dump files
 
 	OR
 
-1. In one one the console views, click the **Actions **icon for the required component and select **Generate dump**.
+1. In one one the console views, click the **Actions** icon for the required component and select **Generate dump**.
 1. If you selected **Generate Overview**, either open or save the zip file that was generated.
 1. If you selected any other dump file type, do the following:
 
@@ -52,7 +52,7 @@ The Web Management Console supports generating the following types of dump files
 		<ul>
 			<li><b>JVM Thread Dump</b> - container state and thread information per container.</li>
 			<li><b>Network Dump</b> - network statistics per container.</li>
-			<li><b>Log Dump</b> - log files for all services or only live services (If the **Only Live Services Log Dump** is checked)</li>
+			<li><b>Log Dump</b> - log files for all services or only live services (If the <b>Only Live Services Log Dump</b> option is checked)</li>
 			<li><b>Processing Unit Dump</b> - pu.xml file per Processing Unit, event container information per Processing Unit instance, and a summary file per Space.</li>
 			<li><b>JVM Heap Dump</b> - binary heap dump file.</li>
 		</ul>
