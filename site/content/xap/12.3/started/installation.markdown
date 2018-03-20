@@ -15,7 +15,7 @@ The GigaSpaces InsightEdge and XAP applications are 100% pure Java based, and th
 Before installing InsightEdge or XAP, do the following:
 
 - Review the [Supported Platforms](../rn/supported-platforms.html) section of the release notes.
-- Make sure that {{%exurl "Java" "http://java.sun.com/javase/downloads/index.jsp"%}} is installed (minimum: Java 7, recommended: Java 8).
+- Make sure that {{%exurl "Java" "http://java.sun.com/javase/downloads/index.jsp"%}} is installed (Java 8 or higher).
 
 InsightEdge/XAP locates Java via the standard `JAVA_HOME` or `PATH` environment variables.
 

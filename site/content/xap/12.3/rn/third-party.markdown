@@ -11,7 +11,7 @@ This page list all the third-party libraries shipped with InsightEdge and XAP on
 
 {{%tabs%}}
 
-{{%tab "  Core "%}}
+{{%tab "  XAP Core "%}}
 
 
 | Product | Version | License | Required | Component |
@@ -28,8 +28,19 @@ This page list all the third-party libraries shipped with InsightEdge and XAP on
 | [Ant](http://ant.apache.org/) | 1.9.4 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | No | Examples |
 |[Apache Zookeeper](https://zookeeper.apache.org/) | 3.4.10 | [Apache2](https://www.apache.org/licenses/LICENSE-2.0.html) | No | XAP Manager |
 
+{{% /tab %}}
+
+{{%tab "  InsightEdge Core "%}}
+
+
+| Product | Version | License |
+|:--------|:--------|:--------|
+| [Apache Spark](https://spark.apache.org/) | 2.2 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
+| [Apache Zeppelin](https://zeppelin.apache.org/) | 0.7.2 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
+| [Apache Calcite](https://calcite.apache.org/) | 1.11.0 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | 
+
 {{%note "Note"%}}
-For information about the applicable versions and license agreements regarding Apache Spark, refer to [Apache2](https://www.apache.org/licenses/LICENSE-2.0.html).
+The InsightEdge platform is packaged with Apache Spark, which contains additional dependencies. For information about these dependencies, see Apache's [Third-Party Project](https://spark.apache.org/third-party-projects.html) page.
 {{% /note %}}
 
 {{% /tab %}}
@@ -51,7 +62,7 @@ For information about the applicable versions and license agreements regarding A
 |[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](../dev-java/scala.html) |
 |[snmp4j](http://www.snmp4j.org/)           | 1.11.2 | [Apache2](http://www.snmp4j.org/LICENSE-2_0.txt) | SNMP | [SNMP Connectivity via Alert Logging Gateway](../dev-java/snmp-connectivity-via-alert-logging-gateway.html) |
 |[log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SNMP | [SNMP Connectivity via Alert Logging Gateway](../dev-java/snmp-connectivity-via-alert-logging-gateway.html)  |
-|[Apache Calcite](https://calcite.apache.org/) | 1.11.0 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SQL-99 | [In-Grid SQL Query](../dev-java/sql-query-intro.html)  |
+
 
 {{% /tab %}}
 

@@ -199,7 +199,7 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 <br/>
 
 # System Requirements
-- Java 7 (or later)
+- Java 8 (or later)
 - Linux, Mac OS X, or Microsoft Windows operating system
 - Read/Write permissions to mounted devices/partitions (required for MemoryXtend over flash/SSD)
 
