@@ -164,20 +164,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-```java
-public void deploySpace(String spaceName)
-{
-    // create an admin instance to interact with the cluster
-    Admin admin = new AdminFactory().createAdmin();
-
-	// locate a grid service manager and deploy a partioned data grid
-	// with 2 primaries and one backup for each primary
-    GridServiceManager mgr = admin.getGridServiceManagers().waitForAtLeastOne();
-
-    ProcessingUnit pu = mgr.deploy(new SpaceDeployment(spaceName).partitioned(2, 1));
-}
-```
-
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

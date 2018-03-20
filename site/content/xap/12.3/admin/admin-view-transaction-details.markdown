@@ -99,12 +99,12 @@ Transaction information is only available for Space instances that are in primar
 
 
 {{%tab "GigaSpaces Management Center"%}}
-TBD
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 {{%/tab%}}
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

@@ -72,7 +72,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

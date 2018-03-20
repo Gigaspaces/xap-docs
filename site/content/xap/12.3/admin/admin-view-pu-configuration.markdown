@@ -47,7 +47,7 @@ Display detailed information for the given Processing Unit.
 
 *Command:*
 
-`xap pu info-instance <pu name> <instanceId>`
+`xap pu info-instance <instanceId>`
 
 *Description:*
 
@@ -56,7 +56,7 @@ Display detailed information for the given Processing Unit instance.
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu info-instance alertSpace alertSpace~1
+<XAP-HOME>/bin/xap pu info-instance alertSpace~1
 ```
  
 *Output Example:*
@@ -68,7 +68,6 @@ Display detailed information for the given Processing Unit instance.
 
 |Item | Name| Description | Comment |
 |:----|:----|:------------|:--------|
-|Parameter | \<name\> |Name of the processing unit to display details||
 |Parameter | \<instanceId\> |Instance Id of the processing unit to display details||
  
 
@@ -282,7 +281,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

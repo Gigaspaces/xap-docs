@@ -159,7 +159,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -245,7 +245,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -289,7 +289,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -374,7 +374,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -444,12 +444,13 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 
 {{%tab "GigaSpaces Management Center"%}}
- 
+
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 {{%/tab%}}
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -518,12 +519,12 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/
 
 
 {{%tab "GigaSpaces Management Center"%}}
- 
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 {{%/tab%}}
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
