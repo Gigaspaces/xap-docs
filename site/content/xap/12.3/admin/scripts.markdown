@@ -2,7 +2,7 @@
 type: post123
 title:  Scripts
 categories: XAP123ADM, OSS
-parent: administration-tools.html
+parent: admin-legacy-tools.html
 weight: 50
 ---
 

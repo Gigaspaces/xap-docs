@@ -1,6 +1,7 @@
 ---
-type: post
-title:  Legacy Administration Tools
+type: post123
+title:  Legacy Tools
+categories: XAP123ADM,PRM
 weight: 600
 parent: admin-tools.html
 ---

@@ -1,8 +1,8 @@
 ---
 type: post123
-title:  Command Line Interface
+title:  GigaSpaces CLI
 categories: XAP123ADM, PRM
-parent: administration-tools.html
+parent: admin-legacy-tools.html
 weight: 100
 ---
 

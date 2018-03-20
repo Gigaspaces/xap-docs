@@ -1,8 +1,9 @@
 ---
 type: post123
 title:  Cluster Setup for InsightEdge
-categories: XAP123ADM, IEE
-weight: 50
+categories: XAP123ADM,PRM
+weight: 100
+parent: admin-insightedge.html
 ---
 
 In this tutorial, you will learn how to install and run the InsightEdge on a cluster.

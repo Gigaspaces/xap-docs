@@ -1,14 +1,12 @@
 ---
 type: post123
 title:  GigaSpaces Management Center
-categories: XAP123ADM, PRM
-parent: admin-legacy-tools.html
-weight: 300
+categories: XAP123ADM,PRM
+weight: 400
+parent: admin-tools.html
 ---
 
-
 # Overview
-
 
 The GigaSpaces Management Center is a user interface that allows you to do the following:
 
@@ -22,5 +20,3 @@ The GigaSpaces Management Center is a user interface that allows you to do the f
 We recommend running the GigaSpaces Management Center on the **same network subnet** where the XAP data grid and other GigaSpaces runtime components are running. The GigaSpaces Management Center communicates with the data grid, GSCs, GSM, GSA, and LUS continuously, so it should have fast connectivity with these components. High-latency connectivity will affect the responsiveness of the  interface and its initial bootstrap time. In production environments, use a remote desktop products such as [VNC](http://www.realvnc.com/products/free/4.1/index.html) or [No Machine](http://www.nomachine.com). Run the GigaSpaces Management Center on the **same** network subnet as the data grid and the other XAP runtime components, and run the remote access application on the client side to access the remote machines desktop from the administrator machine desktop.
 
 With relatively large amount of GSCs, Services or data grid partitions (over 20 units), we also recommend increasing the heap size of the GigaSpaces Management Center to 1G (-Xmx1g).
-
-

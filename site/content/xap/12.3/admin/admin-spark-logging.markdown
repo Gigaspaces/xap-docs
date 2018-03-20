@@ -1,8 +1,9 @@
 ---
 type: post123
 title:  Spark Logging for InsightEdge
-categories: XAP123ADM, IEE
-weight: 75
+categories: XAP123ADM,PRM
+weight: 200
+parent: admin-insightedge.html
 ---
 
 

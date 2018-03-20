@@ -1,8 +1,8 @@
 ---
 type: post123
-title:  Deploying REST service with Command Line
+title:  Deploying REST Service with Command Line
 categories: XAP123ADM, PRM
-parent: administration-tools.html
+parent: command-line-interface.html
 weight: 260
 ---
 

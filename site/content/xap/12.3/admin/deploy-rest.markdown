@@ -2,8 +2,8 @@
 type: post123
 title:  Deploy with REST
 categories: XAP123ADM, PRM
-parent: administration-tools.html
-weight: 220
+parent: xap-manager-rest.html
+weight: 100
 ---
 
   

@@ -2,7 +2,7 @@
 type: post123
 title:  Deploy with Command Line
 categories: XAP123ADM, PRM
-parent: administration-tools.html
+parent: command-line-interface.html
 weight: 200
 ---
 
