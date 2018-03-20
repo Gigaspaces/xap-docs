@@ -14,14 +14,17 @@ The Administration Guide describes the GigaSpaces Management Center and Web Mana
 
 {{%fpanel%}}
 
-[GigaSpaces Management Center](./gigaspaces-management-center.html)<br>
-GigaSpaces Management Center is a GUI that allows you to view spaces, containers, and clusters (and configure them), using the Space Browser tab. You can also deploy and manage services using the Deployments tab.
+[Administration Tools](./admin-tools.html)<br>
+Describes the various administration tools that GigaSpaces provides to configure, monitor, and maintain XAP- and InsightEdge-based applications.
 
-[Web Management Console](./web-management-console.html)<br>
-The web management console is a user interface where users can deploy, manage and monitor their Processing Units and Applications.
+[Administering Spaces and Processing Units](./admin-spaces-pu.html)<br>
+Tasks that users may perform on the Space and Processing Unit components in the system as part of setting up and running the system, such as deploying a Space or Processing Unit, viewing runtime and configuration information, and viewing system statistics and container information.
 
-[REST Manager API](./xap-manager-rest.html)<br>
-The XAP Manager provides a RESTful API for managing XAP environments.
+[Administering the Service Grid](./admin-service-grid.html)<br>
+Tasks that users may perform on the service grid as part of monitoring and managing the system, such as viewing host resources, managing containers, viewing logs and events, and generating dump files for analysis.
+
+[Administering InsightEdge](.//admin-insightedge.html)<br>
+Provides information about clustering and logging for InsightEdge, along with tasks that users may perform when configuring and managing Spark-based applications.
 
 [Data Grid Clustering](./data-grid-clustering.html)<br>
 Describes how in memory data grid clustering works. It also provides details of the failover, load-balancing, and replication facilities used.
@@ -34,9 +37,6 @@ This storage interface allows Blob/Block/external type storage to act as a natur
 
 [Logging](./logging-overview.html)<br>
 Explains how to configure logging with XAP. This includes formatting the log output, and selecting file names and rollover policies.
-
-[Administration Tools](./administration-tools.html)<br>
-Explains the command line interface that is used to deploy, manage and monitor Processing Units and Applications.
 
 [The Service Grid](./runtime-configuration.html)<br>
 Lists and explains the different runtime configuration parameters.
