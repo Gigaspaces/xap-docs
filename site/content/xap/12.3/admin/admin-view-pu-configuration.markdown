@@ -47,7 +47,7 @@ Display detailed information for the given Processing Unit.
 
 *Command:*
 
-`xap pu info-instance <instanceId>`
+`xap pu info-instance <instance ID>`
 
 *Description:*
 
@@ -68,7 +68,7 @@ Display detailed information for the given Processing Unit instance.
 
 |Item | Name| Description | Comment |
 |:----|:----|:------------|:--------|
-|Parameter | \<instanceId\> |Instance Id of the processing unit to display details||
+|Parameter | \<instance ID\> |Instance ID of the processing unit to display details||
  
 
 

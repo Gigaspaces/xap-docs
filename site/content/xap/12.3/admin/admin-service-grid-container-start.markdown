@@ -122,7 +122,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Command:*
 
-`xap container kill <containerId>`  
+`xap container kill <container ID>`
 
 *Description:*
  
@@ -131,7 +131,7 @@ Stopping a container.
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container kill containerId
+<XAP-HOME>/bin/xap container kill admin~22200
 ```
 
  
@@ -139,7 +139,7 @@ Stopping a container.
 
 | Item | Name | Description | Comment |
 |:-----|:------|:------------|:--------|
-|Parameter | containerId | Container ID to be stopped| |
+|Parameter | \<container\> ID | ID of the container to kill| |
  
  
 {{%/tab%}}
@@ -213,7 +213,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Command:*
 
-`xap container restart <containerId>`  
+`xap container restart <container ID>`
 
 *Description:*
  
@@ -230,7 +230,7 @@ Restarting a container.
 
 | Item | Name | Description | Comment |
 |:-----|:------|:------------|:--------|
-|Parameter | containerId | Container ID to restart| |
+|Parameter | \<container ID\> | ID of the container to restart| |
  
 {{%/tab%}}
 

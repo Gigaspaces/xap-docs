@@ -47,7 +47,7 @@ None
 
 *Command:*
 
-`xap container info <containerId>`  
+`xap container info <container ID>`
 
 *Description:*
  
@@ -67,7 +67,7 @@ Display container information.
 
 | Item | Name | Description | Comment |
 |:-----|:------|:------------|:--------|
-|Parameter | containerId | The Id of the container||
+|Parameter | \<container ID\> | The ID of container to get information from||
  
  
 

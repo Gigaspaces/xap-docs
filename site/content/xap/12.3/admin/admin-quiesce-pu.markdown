@@ -306,7 +306,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Command:*
 
-`xap pu relocate <pu instanceId> <targetContainerId>`
+`xap pu relocate <pu instance ID> [<container ID>]`
 
 *Description:*
  
@@ -322,8 +322,8 @@ Relocating a Processing Unit Instance to another container.
 
 | Item | Name | Description | Comment |
 |:-----|:------|:------------|:--------|
-|Parameter |instanceId | Id of Processing unit instance to relocate||
-|Parameter |targetContainerId | Id of  Target container for relocation||
+|Parameter | \<instance ID\> | ID of Processing unit instance to relocate||
+|Parameter | [\<container ID\>] | ID of  target container for relocation| Any available container if target is not specified |
  
 {{%/tab%}}
 
@@ -348,7 +348,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
 | pu name | Provide the name of the Processing Unit you want to relocate. | Yes |
-| pu instaceId | Provide the instanceId of the Processing Unit you want to relocate. | Yes |
+| pu instanceId | Provide the instanceId of the Processing Unit you want to relocate. | Yes |
 | targetContainerId  | Id of  Target container to relocate to | Yes|
 
 {{%/tab%}}
@@ -467,7 +467,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Command:*
 
-`xap pu decrement <name> <instanceId>`  
+`xap pu decrement <name> <instance ID>`
 
 *Description:*
  
@@ -483,8 +483,8 @@ Decrement a stateless Processing Unit Instances.
 
 | Item | Name | Description | Comment |
 |:-----|:------|:------------|:--------|
-|Parameter | name | The name of the stateless Processing unit to decrement||
-|Parameter | instanceId | The Id of Processing unit instance to decrement||
+|Parameter | \<name\> | The name of the stateless Processing unit to decrement||
+|Parameter | \<instance ID\> | The ID of Processing unit instance to decrement||
  
  
 {{%/tab%}}
