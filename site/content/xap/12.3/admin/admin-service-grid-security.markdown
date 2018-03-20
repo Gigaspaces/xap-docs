@@ -2,7 +2,7 @@
 type: post123
 title: Securing the Service Grid
 categories: XAP123ADM,PRM
-weight: 800
+weight: 900
 parent: admin-service-grid.html
 ---
  
