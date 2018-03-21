@@ -24,7 +24,7 @@ N/A
 
 {{%tab "Web Management Console"%}}
 
-You can view alerts in the Web Management Console Alerts panel, displayed in XAP Alert groups (according to correlation key). Alerts are grouped together by type, such as CPU, Memory, etc. When an alert is triggered, it is aggregated with other consecutive alerts of the same type. Previous alerts from the aggregation get “pushed” down. A resolved alert “closes” the aggregation. A new alert of the same type triggers a new aggregation. You can sort the on ‘status’ column in ascending order to show the latest unresolved alerts.
+You can view alerts in the Web Management Console Alerts panel, displayed in XAP Alert groups (according to correlation key). Alerts are grouped together by type, such as CPU, Memory, etc. When an alert is triggered, it is aggregated with other consecutive alerts of the same type. Previous alerts from the aggregation get pushed down. A resolved alert closes the aggregation. A new alert of the same type triggers a new aggregation. You can sort the on **Status** column in ascending order to show the latest unresolved alerts.
 
 From the menu bar, click **Alerts**. The list of alerts in the system is displayed with the following details: 
 
@@ -35,7 +35,7 @@ From the menu bar, click **Alerts**. The list of alerts in the system is display
   </tr>
   <tr>
     <td>Status</td>
-    <td>Severity of the alert (Warning, Severe). Expand the top-level alert to see the recurrences of the alert and if/when it was resolved. A green "v" indicates an alert than has been resolved.<td>
+    <td>Severity of the alert (Warning, Severe). Expand the top-level alert to see the recurrences of the alert and if/when it was resolved. A green check mark indicates an alert than has been resolved.<td>
   </tr>
   <tr>
     <td>Type</td>
