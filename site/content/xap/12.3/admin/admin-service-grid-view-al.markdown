@@ -1,12 +1,11 @@
 ---
-type: post
+type: post123
 title: Viewing Alerts
-weight: 700
+categories: XAP123ADM,PRM
+weight: 501
 parent: admin-service-grid.html
 ---
  
-  
-
 {{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
 <br>
@@ -72,7 +71,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-TBD
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
