@@ -81,11 +81,11 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 {{%tab "Web Management Console"%}}
 
-1. In the Hosts view, click the Actions icon for the Grid Service Agent where you want to start a container.
-1. Select the relevant container that you want to start:
-	- StartGSM - to start a Grid Service Manager
-	- StartGSC - to start a Grid Service Container
-	- Start Lookup - to start a Lookup Service (LUS)
+1. In the Hosts view, click the **Actions** icon for the Grid Service Agent where you want to start a container.
+1. Select the relevant option:
+	- **StartGSM** - to start a Grid Service Manager
+	- **StartGSC** - to start a Grid Service Container
+	- **Start Lookup** - to start a Lookup Service (LUS)
 	
 	The container is started.
 
@@ -103,7 +103,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -193,7 +193,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -278,7 +278,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

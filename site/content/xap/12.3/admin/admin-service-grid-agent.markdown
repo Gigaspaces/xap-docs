@@ -48,17 +48,25 @@ N/A
 
 
 {{%tab "Web Management Console"%}}
-TBD
+
+You can stop a Grid Service Agent via the Web Management Console.
+
+1. In the Hosts view, click the **Action** icon for the Grid Service Agent that you want to stop.
+1. Click **Shutdown**.
+1. Click **Yes** in the confirmation message. The associated containers will shut down along with the Grid Service Agent.
+
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
-TBD
+{{%tab "GigaSpaces Management Center"%}}
+
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
+
 {{%/tab%}}
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
