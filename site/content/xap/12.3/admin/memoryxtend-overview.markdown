@@ -7,32 +7,31 @@ weight: 430
 ---
 
 
-In a traditional deployment, all XAP entries are stored in JVM heaps to provide the fastest performance possible. However, as data grows in size and numbers, the following issues become noticable:
+In a traditional deployment, all XAP entries are stored in JVM heaps to provide the fastest performance possible. However, as data grows in size and numbers, the following issues become noticeable:
 
 - **Price** - While RAM performs much better than a magnetic hard drive, it is also much more expensive. As SSD gains in popularity, we see new scenarios where storing part of the data in SSD and part in RAM provides great business value.
 - **Garbage Collection** - The bigger the JVM heaps get, the harder the garbage collector works. Storing some of the data off-heap (i.e. in the native heap instead of the managed JVM heap) and managing it manually allows using a smaller JVM heap and relieves the pressure on the garbage collector.
 
-The BlobStore Storage Model, or MemoryXtend, allows an external storage medium (one that does not reside on the JVM heap) to store the in-memory data grid data. This section describes the general architecture and functionality of the MemoryXtend storage model and its off-heap RAM and SSD implementations.
+The MemoryXtend (blobstore) storage model allows an external storage medium (one that does not reside on the JVM heap) to store the Space data. This section describes the general MemoryXtend architecture and functionality, and its off-heap RAM and hSSD implementations.
 
 # Implementation
 
-In MemoryXtend, space entries are stored in the "blobstore" (a wrapper around SSD/flash storage or direct memory buffer regions), while the indexes are stored in the managed JVM heap. This allows queries that leverage indexes to minimize off-heap penalty, because most of the work is done in-memory and only matched entries are loaded from the off-heap storage. 
+MemoryXtend is designed as a pluggable architecture, supporting multiple implementations of off-heap storage (also called blobstore). Space entries are stored in the blobstore (a wrapper around SSD/HDD storage or direct memory buffer regions), while the indexes are stored in the managed JVM heap. This allows queries that leverage indexes to minimize off-heap penalty, because most of the work is done in-memory and only matched entries are loaded from the off-heap storage. 
 
 In addition, MemoryXtend uses an LRU cache for data entries, so entries that are read frequently can be retrieved directly from the in-memory storage.
-
 
 {{%align center%}}
 ![memstorage](/attachment_files/blobstore/xap-memoryxtend-howitworks.png)
 {{%/align%}}
 
-MemoryXtend is designed as a pluggable architecture, supporting multiple implementations of off-heap storage (also called blobstore). XAP provides two options for a blobstore:
+MemoryXtend offers the following storage driver options:
 
-* [MemoryXtend for SSD](./memoryxtend-rocksdb-ssd.html) - For storing data on SSD (or any other disk device).
-* [MemoryXtend for Off-Heap Memory](./memoryxtend-ohr.html) - For storing data on Off-Heap Memory (also known as native heap).
+* [MemoryXtend for Disk (SSD/HDD Storage](./memoryxtend-rocksdb-ssd.html) - For storing data on SSD or any other disk device.
+* [MemoryXtend for Off-Heap Memory](./memoryxtend-ohr.html) - For storing data in off-heap memory (also known as native heap).
 
 # Class-Level Settings
 
-When MemoryXtend is configured for a Space, all entries stored in that Space are stored using the MemoryXtend settings. This is somewhat slower than entries stored in-memory, in the traditional XAP storage mechanism. In some scenarios, it makes sense to use MemoryXtend for some classes but not for others. For example, a user may have a limited amount of `Customer` entries, but a lot of `Order` entries, and therefore may want to disable MemoryXtend for the `Customer` entries. This can be done via the Space class metadata. For example:
+When MemoryXtend is configured for a Space, all entries stored in that Space are stored using the MemoryXtend settings. This is somewhat slower than entries stored in-memory with the traditional XAP storage mechanism. In certain scenarios, it makes sense to use MemoryXtend for some classes but not for others. For example, a user may have a limited amount of `Customer` entries, but a lot of `Order` entries, and therefore may want to disable MemoryXtend for the `Customer` entries. This can be done via the Space class metadata. For example:
 
 {{%tabs%}}
 {{%tab "Annotation"%}}
@@ -56,9 +55,9 @@ public class Customer {
 
 # Persistence and Recovery
 
-When using a cluster with backups for high availability, if one of the nodes fails and restarts, it automatically locates the primary node and copies all the data from it so it can serve as a backup again. This process is called **Recovery**. The more data in the Space, the longer recovery takes, and if MemoryXtend is used this is no longer a RAM-only process. The primary Space must iterate thtough its MemoryXtend instance to fetch all the data for the backup node performing the recovery.
+When using a cluster with backups for high availability, if one of the nodes fails and restarts, it automatically locates the primary node and copies all the data from it so it can serve as a backup again. This process is called *recovery*. The more data in the Space, the longer recovery takes, and if MemoryXtend is used this is no longer a RAM-only process. The primary Space must iterate through its MemoryXtend instance to fetch all the data for the backup node performing the recovery.
 
-However, when using a MemoryXtend add-on that is based on non-volatile technology (for example, SSD), the backup can use the persisted data for the recovery process, and instead of recovering *everything* from the primary, it can recover only the delta that it missed while it was down. In addition, the backup can rebuild the indexes for the persisted data without intervention or assistance from the primary instance.
+However, when using a MemoryXtend storage driver is based on non-volatile technology (for example, SSD), the backup can use the persisted data for the recovery process, and instead of recovering everything from the primary, it can recover only the delta that it missed while it was down. In addition, the backup can rebuild the indexes for the persisted data without intervention or assistance from the primary instance.
 
 Persistency is disabled by default, and must be explicitly enabled. For example:
 
@@ -72,14 +71,14 @@ In addition, persistency requires the settings described in the sections below.
 
 ## Machine-Instance Affinity
 
-If a GSC or a machine running a GSC restarts, there is no guarantee the XAP instance running within the GSC will be provisioned to the same machine where it was running before. When MemoryXtend is used in a non-persitent manner, this will not introduce a problem as the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, you must ensure that the instance is provisioned on the same machine where it was located before, so it can recover from the correct device, which is usually local to the machine.
+If a GSC or a machine running a GSC restarts, there is no guarantee the XAP instance running within the GSC will be provisioned to the same machine where it was running before. When MemoryXtend is used in a non-persistent manner, this isn't problematic because the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, you must ensure that the instance is provisioned on the same machine where it was located before, so it can recover from the correct device, which is usually local to the machine.
  
-{{% note "Central Storage"%}}
+{{% info "Info"%}}
 Central Storage mode allows you to use MemoryXtend without configuring the Machine-Instance Affinity.
-{{% /note %}}
+{{% /info %}}
 
 
-To ensure that the Service Grid deploys the XAP instances on the correct machines, use [Instance level SLA](./the-sla-overview.html). For example:
+To ensure that the Service Grid deploys the XAP instances on the correct machines, use [instance-level SLA](./the-sla-overview.html). For example:
 
 {{%tabs%}}
 {{%tab "Partitioned with a backup SLA"%}}
@@ -131,20 +130,20 @@ Make sure you provide the `sla.xml` location at deploy time (`-sla` deploy comma
 
 ## Last Primary
 
-When a Space instance starts as part of a primary-backup cluster, it undergoes a process called **Active Election** to determine if it should be a primary or a backup instance. Generally speaking, the first instance that is loaded is the primary, and the rest are backups. If a persistent system is restarted in an orderly manner (meaning all the data was flushed to both the primary and backup instances before shutting down), it doesn't matter which instance becomes primary, because they are all identical. However, if both the primary and backup instances crash unexpectedly for some reason and then restart, it is important to ensure that the last instance that was primary before the crash is elected primary again, because it holds a more accurate version of the data.
+When a Space instance starts as part of a primary-backup cluster, it undergoes a process called *active election* to determine if it should be a primary or a backup instance. Generally speaking, the first instance that is loaded is the primary, and the rest are backups. If a persistent system is restarted in an orderly manner (meaning all the data was flushed to both the primary and backup instances before shutting down), it doesn't matter which instance becomes primary, because they are all identical. However, if both the primary and backup instances crash unexpectedly for some reason and then restart, it is important to ensure that the last instance that was primary before the crash is elected primary again, because it holds a more accurate version of the data.
   
-To overcome this problem, the Space can be configured with an **Attribute Store** that is updated whenever a new primary Space is elected. When the system restarts, instead of electing the first available instance, the system will wait for the last primary Space to become available and re-elect it. If the last primary Space cannot be restarted, the user can manually remove the last primary entry from the attribute store. This will allow a backup Space to become the primary.
+To overcome this problem, the Space can be configured with an *attribute store* that is updated whenever a new primary Space is elected. When the system restarts, instead of electing the first available instance, the system will wait for the last primary Space to become available and re-elect it. If the last primary Space cannot be restarted, the user can manually remove the last primary entry from the attribute store. This will allow a backup Space to become the primary.
 
 XAP is bundled with two implementations:
  
 * File-based implementation of an attribute store, which can be used in conjunction with an NFS file system to maintain the last primary.
-* Storing the last primary automatically in Apache Zookeeper 
+* Storing the last primary automatically in Apache Zookeeper.
  
 
-The following examples demonstrate how to configure a persistent SSD RocksDB add-on with such an attribute store:
+The following examples demonstrate how to configure a persistent disk-based storage driver with such an attribute store:
  
 {{%tabs%}}
-{{%tab "File based"%}}
+{{%tab "File-based"%}}
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -170,7 +169,7 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 </beans>
 ```
 {{% /tab %}}
-{{%tab "Zookeeper based"%}}
+{{%tab "Zookeeper -based"%}}
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -200,21 +199,15 @@ The following examples demonstrate how to configure a persistent SSD RocksDB add
 <br/>
 <br/>
 
-# System Requirements
-- Java 8 (or later)
-- Linux, Mac OS X, or Microsoft Windows operating system
-- Read/Write permissions to mounted devices/partitions (required for MemoryXtend over flash/SSD)
-
-
 
 # Supported XAP APIs
 
-All XAP APIs are supported with the blobstore configuration. This includes the Space (POJO and Document), JDBC, JPA, JMS, and Map APIs. In addition, all co-located business logic functionality (Event Containers, Task Executors, Remoting Services, Aggregators, etc.) are fully supported. 
+All XAP APIs are supported with the blobstore configuration. This includes the Space (POJO and Document), JDBC, JPA, JMS, and Map APIs. In addition, all co-located business logic functionality (event containers, task executors, remoting services, aggregators, etc.) are fully supported. 
 
 
 # Limitations
 
 - MemoryXtend and [Direct Persistency](../dev-java/direct-persistency.html) configuration is not supported.
-- MemoryXtend only is only supported with the ALL_IN_CACHE space policy. LRU and other evictable cache policies are not supported. 
+- MemoryXtend only is only supported with the Space caching policy set to ALL_IN_CACHE. LRU and other cache policies that use eviction are not supported. 
 - MemoryXtend is not supported with the `ESM`.
 

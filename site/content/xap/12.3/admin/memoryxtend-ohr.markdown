@@ -9,10 +9,10 @@ weight: 300
 
 # Introduction
 
-The MemoryXtend off-heap Storage driver stores space objects in RAM, outside the Java heap. This has two benefits:
+The MemoryXtend off-heap storage driver stores Space objects in RAM, outside the Java heap. This has two benefits:
 
-* Better RAM utilization - Objects are stored off-heap in serialized form, which consumes less memory than the same object would use in a Java Heap
-* Reduced GC activity - As less data is stored on the Java heap, the Garbage Collector's work becomes easier, yielding more deterministic behavior with lower chance having stop-the world pauses.
+* Better RAM utilization - Objects are stored off-heap in serialized form, which consumes less memory than the same object would use in a Java heap.
+* Reduced GC activity - As less data is stored on the Java heap, the Garbage Collector's work becomes easier, yielding more deterministic behavior with lower chance of experiencing stop-the world pauses.
 
 <br>
 
@@ -22,7 +22,7 @@ The MemoryXtend off-heap Storage driver stores space objects in RAM, outside the
 
 # Configuration
 
-Creating a space with off-heap storage add-on can be done via `pu.xml` or code. For example, to create a space called 'mySpace' which can use up to 20GB of off-heap RAM:
+Creating a Space with the off-heap storage driver can be done via `pu.xml` or code. For example, to create a Space called 'mySpace' that can use up to 20GB of off-heap RAM:
 
 {{%tabs%}}
 {{%tab "pu.xml"%}}
@@ -47,7 +47,7 @@ Creating a space with off-heap storage add-on can be done via `pu.xml` or code. 
 </beans>
 ```
 {{% /tab %}}
-{{%tab "Code"%}}
+{{%tab "Java Code"%}}
 
 ```java
 // Create off-heap storage driver:
@@ -68,11 +68,11 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 {{% /tabs %}}
 
 <br/>
-Note that the  general [MemoryXtend configuration options](./memoryxtend-overview.html#configuration) applies as well - for example, you can configure MemoryXtend to cache some data on-heap for faster access.
+Note that the  general [MemoryXtend configuration options](./memoryxtend-overview.html#configuration) also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.
 
 ## Memory Threshold
 
-In order to use off-heap storage, you'll need to define the amount of memory you'd like to allocate, e.g. `20g`. You can use the following sizing units:
+In order to use off-heap storage, you must define the amount of memory to allocate, for example. `20g`. Use the following sizing units:
 
 * `b` - Bytes
 * `k`, `kb` - KiloBytes
@@ -91,5 +91,5 @@ The amount of used off-heap memory can be tracked using the following:
 
 * Metrics - The `space_blobstore_off-heap_used-bytes_total` metric, as described on the [Metrics](./metrics-bundled.html#blobstore-operations) page.
 * Admin API - Thru [SpaceInstanceStatistics.getBlobStoreStatistics()]({{% api-javadoc %}}/index.html?org/openspaces/admin/space/SpaceInstanceStatistics.html#getBlobStoreStatistics)
-* Web Management Console - In the space instances view, right-click any of the columns in the table and add the 'used off-heap' column.
+* Web Management Console - In the Space instances view, right-click any of the columns in the table and add the **Used Off-Heap** column.
 
