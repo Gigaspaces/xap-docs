@@ -230,8 +230,10 @@ Space metrics are reported with the following tags:
 | space_blobstore_cache-hit | Blobstore cache hits. | Long |
 | space_blobstore_cache-miss  | Total of blobstore cache misses. | Long |
 | space_blobstore_hot-data-cache-miss  | Subgroup of cache misses - misses of hot data not found in cache. | Long |
-| space_blobstore_offheap_used-bytes  | Amount of used offheap memory, in bytes. | Long |
-| space_blobstore_offheap\_{type_name}  | Amount and data type of used offheap memory, in bytes. | Long |
+| space_blobstore_off-heap_used-bytes_total | Total used off-heap memory, in bytes. | Long |
+| space_blobstore_off-heap_used-bytes\_{type_name} | Used off-heap memory per type, in bytes. | Long |
+| space_blobstore_off-heap-cache_used-bytes_total | Total used off-heap memory for caching, in bytes. | Long |
+| space_blobstore_off-heap-cache_used-bytes\_{type_name} | Used off-heap memory for caching per type, in bytes. | Long |
 
 ## Connections
 

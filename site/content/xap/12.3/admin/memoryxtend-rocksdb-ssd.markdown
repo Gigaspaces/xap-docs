@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  MemoryXtend for Flash/SSD
+title:  MemoryXtend for SSD
 categories: XAP123ADM, ENT
 parent: memoryxtend-overview.html
 weight: 200
@@ -8,12 +8,12 @@ weight: 200
 
 # Introduction
 
-XAP MemoryXtend for Flash/SSD delivers built-in, high-speed persistence that leverages local or attached SSD devices and all-flash-arrays (AFA). It delivers low latency write and read performance, as well as fast data recovery.  XAP MemoryXtend for Flash/SSD is based on {{%exurl "RocksDB""http://rocksdb.org/"%}}, which is a persistent key/value store optimized for fast storage environments. 
+XAP MemoryXtend for SSD delivers built-in, high-speed persistence that leverages local or attached SSD devices, all-flash-arrays (AFA), or any other disk. It delivers low latency write and read performance, as well as fast data recovery.  XAP MemoryXtend for SSD is based on {{%exurl "RocksDB""http://rocksdb.org/"%}}, which is a persistent key/value store optimized for fast storage environments. 
 
 
 # Architecture and Components
 
-When configured for Flash/SSD, the MemoryXtend architecture tiers the storage of each Space partition instance across two components: a Space partition instance (managed JVM heap) and an embedded key/value store (the blobstore) as shown in the diagram below. 
+When configured for SSD, the MemoryXtend architecture tiers the storage of each Space partition instance across two components: a Space partition instance (managed JVM heap) and an embedded key/value store (the blobstore) as shown in the diagram below. 
 
 {{%align center%}}
 ![image](/attachment_files/blobstore/memoryxtend-rocksdb-architecture.png)
@@ -51,10 +51,10 @@ Any existing XAP Space can be configured to integrate a blobstore with it. As wi
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
        http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
 
-    <blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
+    <blob-store:rocksdb-blob-store id="rocksDbBlobstore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
 
     <os-core:embedded-space id="space" space-name="mySpace" >
-        <os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/>
+        <os-core:blob-store-data-policy blob-store-handler="rocksDbBlobstore" persistent="true"/>
     </os-core:embedded-space>
 
     <os-core:giga-space id="gigaSpace" space="space"/>
@@ -70,13 +70,13 @@ Any existing XAP Space can be configured to integrate a blobstore with it. As wi
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd">
 
-    <bean id="blobstoreid" class="com.gigaspaces.blobstore.rocksdb.config.RocksDBBlobStoreDataPolicyFactoryBean">
+    <bean id="rocksDbBlobstore" class="com.gigaspaces.blobstore.rocksdb.config.RocksDBBlobStoreDataPolicyFactoryBean">
         <property name="paths" value="[/mnt/db1,/mnt/db2]"/>
         <property name="mappingDir" value="/tmp/mapping"/>
     </bean>
 
     <os-core:embedded-space id="space" space-name="mySpace">
-        <os-core:blob-store-data-policy blob-store-handler="blobstoreid" persistent="true"/>
+        <os-core:blob-store-data-policy blob-store-handler="rocksDbBlobstore" persistent="true"/>
     </os-core:embedded-space>
 
     <os-core:giga-space id="gigaSpace" space="space"/>
@@ -86,18 +86,16 @@ Any existing XAP Space can be configured to integrate a blobstore with it. As wi
 {{%tab "Code"%}}
 
 ```java
-RocksDBBlobStoreConfigurer rocksDbConfigurer = new RocksDBBlobStoreConfigurer();
-rocksDbConfigurer.setPaths("[/mnt/db1,/mnt/db2]");
-rocksDbConfigurer.setMappingDir("/tmp/mapping");
-
-BlobStoreDataCachePolicy blobStorePolicy = new BlobStoreDataCachePolicy();
-blobStorePolicy.setBlobStoreHandler(rocksDbConfigurer.create());
-blobStorePolicy.setPersistent(true);
-
-
-EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
-spaceConfigurer.cachePolicy(blobStorePolicy);
-
+// Create RocksDB storage driver:
+BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer()
+        .setPaths("[/mnt/db1,/mnt/db2]")
+        .setMappingDir("/tmp/mapping")
+        .create();
+// Create space with that storage driver:
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(true));
 GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 ```
 {{% /tab %}}
@@ -123,7 +121,7 @@ As mentioned above, MemoryXtend comes with a built-in, LRU-based data cache that
 | <nobr>cache-entries-percentage</nobr> | The cache size is determined based on the percentage of the GSC JVM max memory(-Xmx). If `-Xmx` is not specified, the default cache size is `10000` objects. | 20% | optional |
 | avg-object-size-KB |  Average object size, in KB. `avg-object-size-bytes` and `avg-object-size-KB` cannot be used together. | 5 | optional |
 | avg-object-size-bytes |  Average object size, in bytes. `avg-object-size-bytes` and `avg-object-size-KB` cannot be used together. | 5000 | optional |
-| persistent |  Data is written to flash memory, and the Space performs recovery from the flash memory if needed. |  | required |
+| persistent |  Data is written to external storage, and the Space performs recovery from the external storage if needed. |  | required |
 | blob-store-cache-query | One or more SQL queries that determine which objects will be stored in cache. |  | optional |
 
 **Calculating cache-entries-percentage**
@@ -227,7 +225,7 @@ Entries inserted to blobstore cache: 80.
 
 #### Lazy Load
 
-If no custom queries are defined, the **lazy load** approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on flash memory exceeds what can fit into memory.
+If no custom queries are defined, the **lazy load** approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on SSD exceeds what can fit into memory.
 
 #### Blob Store Cache Metrics
 
@@ -246,32 +244,38 @@ Total cache misses = hot data cache misses + cold data cache misses.
 By modifying the custom queries, the cache efficiency (maximizing hits and minimizing misses) can be improved. To keep track of the cache efficiency, key metrics are measured and stored, including hits, total misses, and hot data misses.
 For information about XAP metrics and how to use them, refer to the [Metrics](./metrics-overview.html) section of this guide.
 
-# Off-Heap Memory Usage
+# Off-Heap Cache
 
-XAP can store the values of indexed fields in the process native (off-heap) memory. This is done to avoid having to fetch data from the disk for queries that only need the index. This feature is off by default. To enable it, configure the  following Space properties:
-
-- `space-config.engine.blobstore.offheap.enabled` - Disabled (false) by default. 
-- `space-config.engine.blobstore.offheap.max_memory_size` - Amount of memory allocated to the off-heap memory, in bytes. Required if the previous property is set to "true". Sample values: `15MB`, `15mb`, `30b`, `4gb` 
-
-This optimization behavior is relevant for operations that don't need the un-indexed field values in order to execute. The current operations that benefit are:
+XAP can cache the values of indexed fields in the process native (off-heap) memory. This optimizes operations that require only indexed values in order to execute, by fetching the data from off-heap instead of disk. The operations that benefit from this optimization are:
 
 - Read with projection and only indexed fields in query and projection - primary instance optimization
 - Take with only indexed fields in query - backup optimization
 - Clear with only indexed fields in query - primary and backup instance optimization
 
 {{%note "Note"%}}
-This behavior increases the overall memory consumption of the Space by several bytes (depending on the indexed fields) per entry.
+This feature increases the overall memory consumption of the Space by several bytes (depending on the indexed fields) per entry.
 {{%/note%}}
 
-Before any operation that requires memory allocation (write, update, and initial load), the off-heap memory manager checks how much of the allocated memory has been used. If the memory is full, an `OffHeapMemoryShortageException` is thrown. Read, take, and clear operations are always allowed.
+This feature is off by default. To enable it, simply set the `off-heap-cache-memory-threshold` property in `rocksdb-blob-store` to the amount of memory you'd like to allocate for off-heap caching, e.g. `20m`. You can use the following sizing units:
+
+* `b` - Bytes
+* `k`, `kb` - KiloBytes
+* `m`, `mb` - MegaBytes
+* `g`, `gb` - GigaBytes
+
+Before any operation that requires memory allocation (write, update, and initial load), the memory manager checks how much of the allocated memory has been used. If the threshold has been breached, an `OffHeapMemoryShortageException` is thrown. Read, take, and clear operations are always allowed.
 
 {{%warning "Important"%}}
 If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular [memory manager](../dev-java/memory-management-overview.html).
 {{%/warning%}}
 
-The amount of used off-heap memory can be tracked using the `space_blobstore_offheap_used-bytes` metric, as described on the [Metrics](./metrics-bundled.html#blobstore-operations) page. 
+The amount of used off-heap memory can be tracked using the following:
 
-When a Processing Unit is undeployed or a Space is killed, the off-heap memory manager erases the related data from the off-heap memory.
+* Metrics - The `space_blobstore_off-heap-cache_used-bytes_total` metric, as described on the [Metrics](./metrics-bundled.html#blobstore-operations) page.
+* Admin API - Thru [SpaceInstanceStatistics.getBlobStoreStatistics()]({{% api-javadoc %}}/index.html?org/openspaces/admin/space/SpaceInstanceStatistics.html#getBlobStoreStatistics)
+* Web Management Console - In the space instances view, right-click any of the columns in the table and add the 'used off-heap caching' column.
+
+When a Processing Unit is undeployed or a Space is killed, the off-heap memory manager frees the allocated off-heap memory.
 
 See the following example:
 
