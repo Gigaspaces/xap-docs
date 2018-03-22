@@ -24,9 +24,9 @@ N/A
 
 {{%tab "Web Management Console"%}}
 
-You can view alerts in the Web Management Console Alerts panel, displayed in XAP Alert groups (according to correlation key). Alerts are grouped together by type, such as CPU, Memory, etc. When an alert is triggered, it is aggregated with other consecutive alerts of the same type. Previous alerts from the aggregation get pushed down. A resolved alert closes the aggregation. A new alert of the same type triggers a new aggregation. You can sort the on **Status** column in ascending order to show the latest unresolved alerts.
+You can view alerts in the Web Management Console Alerts panel, displayed in XAP Alert groups (according to correlation key). Alerts are grouped together by type, such as CPU, Memory, etc. When an alert is triggered, it is aggregated with other consecutive alerts of the same type. A resolved alert closes the aggregation. A new alert of the same type triggers a new aggregation. You can sort the on **Status** column in ascending order to show the latest unresolved alerts.
 
-From the menu bar, click **Alerts**. The list of alerts in the system is displayed with the following details: 
+* From the menu bar, click **Alerts**. The list of alerts in the system is displayed with the following details: 
 
 <table>
   <tr>
@@ -56,6 +56,8 @@ From the menu bar, click **Alerts**. The list of alerts in the system is display
 </table>  
 
 The Alert number displayed in the menu bar indicates the amount of currently active alerts.
+
+You can generate a dump file for the alert's related grid components by clicking the **Action** icon in the relevant line of the alert list. See [Generating Dump Files](./admin-service-grid-generate-dump.html) for information on how to define the dump file contents.
 
 {{%info "Info"%}}
 The Web-UI server utilizes the `<XAP Root>/config/alerts/alerts.xml` configuration file. These configurations apply to any client connecting to the Web-UI at the specified host and port.
