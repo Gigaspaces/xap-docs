@@ -53,6 +53,125 @@ public class Customer {
 {{%/tab%}}
 {{%/tabs%}}
 
+# On-Heap Cache
+
+MemoryXtend comes with a built-in, LRU-based cache that stores objects on-heap for faster access. The following table describes the blobstore cache configuration options.
+
+| Property               | Description                                               | Default | Use |
+|:-----------------------|:----------------------------------------------------------|:--------|:--------|
+| <nobr>cache-entries-percentage</nobr> | The cache size is determined based on the percentage of the GSC JVM max memory(-Xmx). If `-Xmx` is not specified, the default cache size is `10000` objects. | 20% | optional |
+| avg-object-size-KB |  Average object size, in KB. `avg-object-size-bytes` and `avg-object-size-KB` cannot be used together. | 5 | optional |
+| avg-object-size-bytes |  Average object size, in bytes. `avg-object-size-bytes` and `avg-object-size-KB` cannot be used together. | 5000 | optional |
+| persistent |  Data is written to external storage, and the Space performs recovery from the external storage if needed. |  | required |
+| blob-store-cache-query | One or more SQL queries that determine which objects will be stored in cache. |  | optional |
+
+## Default Cache - LRU
+
+By default the cache uses an LRU strategy to cache and evict entries. The cache size is controlled by two settings:
+
+* Cache Entries Percentage - determines how much RAM out of the JVM heap should be used for caching (in percentage)
+* Average object size - determines the average entry object size in RAM, either in bytes or kilobytes.
+
+These settings determine the maximum number of objects in cache, according to the following calculation:
+
+`Number of objects = ((GSC Xmx) * (cache-entries-percentage/100))/average-object-size-bytes`
+
+Once that number is reached, adding an entry to the cache will automatically evict the least recently used one.
+
+For example, On a 10GB GSC, if we set a cache entries percentage to 20, and an average object size of 2KB (the default): 
+
+10GB * 20% / 2KB = ((10 * 1024 * 1024 * 1024) * 0.2) / (2 * 1024) = **1,048,576**
+
+## User-Defined Cache
+
+The `blob-store-cache-query` option enables customizing the cache contents. You can define a set of SQL queries, so that only objects that fit the queries:
+
+- Are pre-loaded into the JVM heap upon data grid initialization/restart.
+- Are stored in the JVM heap after Space operations.
+
+This guarantees that any subsequent read requests will hit RAM, providing predictable latency (and avoiding cache misses). This customization is useful when read latencies for specific class types (such as hot data, current day stocks) must be predictable.
+
+The SQL queries are static and cannot be changed dynamically. To update them, make the necessary modifications and then restart the application.
+
+**Example**
+
+In this example, an online trading platform defines the following criteria for "hot" data:
+
+- `Stock` instances where the price > 1000
+- `Trade` instances with volume > 10000
+- `Account` instances with platinum rating
+
+{{%tabs%}}
+{{%tab "Java Code"%}}
+
+```java
+BlobStoreStorageHandler blobStore = ...;
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+    .cachePolicy(new BlobStoreDataCachePolicy()
+        .setBlobStoreHandler(blobStore)
+        .setPersistent(true)
+        .addCacheQuery(new SQLQuery(Stock.class, "price > 1000"))
+        .addCacheQuery(new SQLQuery(Trade.class, "volume > 10000"))
+        .addCacheQuery(new SQLQuery(Account.class, "rating = 'platinum'")));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+```
+{{%/tab%}}
+{{%tab "pu.xml"%}}
+
+```xml
+<blob-store:rocksdb-blob-store id="myBlobStore" paths="[/tmp/rocksdb]" mapping-dir="/tmp/mapping"/>
+
+<os-core:embedded-space id="space" name="mySpace">
+    <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
+        <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="price > 1000"/>
+        <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="volume > 10000"/>
+        <os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Account" where="rating = 'platinum'"/>
+    </os-core:blob-store-data-policy>
+</os-core:embedded-space>
+
+     <os-core:giga-space id="gigaSpace" space="space"/>
+ ```
+ {{%/tab%}}
+
+{{%/tabs%}}
+
+When the `com.gigaspaces.cache` logging is turned on, the following output is generated:
+
+```bash
+2016-12-26 07:57:56,378  INFO [com.gigaspaces.cache] - BlobStore internal cache recovery:
+blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE price > 1000, SELECT * FROM com.gigaspaces.blobstore.rocksdb.Trade WHERE volume > 10000, SELECT * FROM com.gigaspaces.blobstore.rocksdb.Account WHERE rating = 'platinum'].
+Entries inserted to blobstore cache: 80.
+```
+
+## Cache Metrics
+
+The concept of cache *hit* and cache *miss* is very important for cache analysis. A hit occurs when querying data that is stored in the cache. A miss occurs when querying data that is stored on disk.
+
+Custom caching distinguishes between hot data (that fits the custom queries) and cold data. Hot data is stored in cache and on disk, while cold data is stored only on disk.
+
+Ideally, all hot data would be found in cache. However, the cache size is limited, and likely isn't able to store all the hot data. This means that data can exist in one of three states:
+
+- Hot data *and* found in cache. Querying this data will result in a **_cache hit_**.
+- Hot data *not* found in cache (because cache is full). Querying this data will result in a **_hot data cache miss_**.
+- Cold data that is stored only on disk. Querying this data will result in a **_cold data cache miss_**.
+
+Total cache misses = hot data cache misses + cold data cache misses.
+
+By modifying the custom queries, the cache efficiency (maximizing hits and minimizing misses) can be improved. To keep track of the cache efficiency, key metrics are measured and stored, including hits, total misses, and hot data misses.
+For information about XAP metrics and how to use them, refer to the [Metrics](./metrics-overview.html) section of this guide.
+
+## Data Recovery on Restart
+
+The MemoryXtend architecture allows for data persisted on the blobstore to be available for the data grid upon restart. To enable this, you have to enable the `persistent` option in the blobstore policy.
+
+```xml
+  <os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore">
+```
+
+## Lazy Load
+
+If no custom queries are defined, the *lazy load* approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on disk exceeds what can fit into memory.
+
 # Persistence and Recovery
 
 When using a cluster with backups for high availability, if one of the nodes fails and restarts, it automatically locates the primary node and copies all the data from it so it can serve as a backup again. This process is called *recovery*. The more data in the Space, the longer recovery takes, and if MemoryXtend is used this is no longer a RAM-only process. The primary Space must iterate through its MemoryXtend instance to fetch all the data for the backup node performing the recovery.

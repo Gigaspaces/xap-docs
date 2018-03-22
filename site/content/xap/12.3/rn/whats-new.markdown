@@ -6,15 +6,24 @@ parent: none
 weight: 100
 ---
 
-This section describes product changes, along with new features and functionality for the early access version of the InsightEdge platform release 12.3.
+This section describes product changes, along with new features and functionality for InsightEdge platform release 12.3.
 
-Draft documentation is available, and may not completely describe the product updates as it is still in progress. For additional details about the available features and enhancements in this version, refer to the  [Early Access](/early_access/index.html) description.
+# Tiered Storage (MemoryXtend)
 
-{{%info "Info"%}}
-The InsightEdge platform supports Apache Spark version 2.3. Due to lack of support for Apache Spark version 2.3 in the current Apache Zeppelin version, InsightEdge is packaged with Apache Spark 2.2. Customers that do not use Apache Zeppelin and have their own Apache Spark implementation can use version 2.3 with GigaSpaces products.
-{{%/info%}}
+## User controlled cache
 
-# Performance Improvement
+The LRU on-heap cache has been enhanced to accept user-defined criteria to control which data should be cached, so that users can prioritize data availability. Users can define a set of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk (SSD or HD). This is an evolution of an existing API from previous versions, which controlled what data should be cached during initial load - that policy now affects the entire application lifetime of the grid.
+
+{{<infosign>}} For more information see [User-Defined Cache](../admin/memoryxtend-overview.html#user-defined-cache)
+
+## Off-Heap Storage Driver
+
+In addition to the existing SSD/Disk storage driver, we're introducting a new storage driver for **Off-Heap RAM**. This allows users to store data on RAM outside the JVM heap, which is faster than SSD access, and consumes less memory than On-Heap objects.
+
+{{<infosign>}} For more information see [MemoryXtend for Off-Heap RAM](../admin/memoryxtend-ohr.html)
+
+
+## Off-Heap Caching for SSD Storage Driver
 
 In systems with MemoryXtend, the platform can store the values of indexed fields in off-heap memory, to avoid having to fetch data from disk (SSD or HD) for queries that only need the index. This feature can optimize performance by up to 50% for the following operations:
 
@@ -22,56 +31,64 @@ In systems with MemoryXtend, the platform can store the values of indexed fields
 - Take with only indexed fields in query - backup optimization
 - Clear with only indexed fields in query - primary and backup instance optimization
 
-# Administration
+{{<infosign>}} For more information see [Off-Heap Cache](../admin/memoryxtend-rocksdb-ssd.html#off-heap-cache)
 
-## New Command Line Interface
+# New Command Line Interface
 
-A new interactive Command Line Interface (CLI) based on the XAP Manager's REST API is planned for version 12.3. It is meant to replace the legacy GigaSpaces CLI, and supports both InsightEdge and XAP applications. This feature is still under construction, but is sufficiently mature for user evaluation. 
+A new Command Line Interface (CLI) is now available, which supports both InsightEdge and XAP applications. The new command line interface unifies the user experience across InsightEdge and XAP, and is based on the recent addition of Manager REST API, enabling you to manage remote or cloud-based environment as easily as managing your local machine. In addition, it provides modern syntax and user-friendly command structure and help screens to guide you thru learning it.
 
-We encourage users to begin working with the new CLI and give us feedback. You can run the new CLI via the `xap` script in the **bin** folder (use `--help` to get started). Commands that have not yet been fully implemented will generate an "under construction" message. The following is a partial list of the available functionality:
+To get started with the new CLI simply navigate to the **bin** folder and run `insightedge --help` or `xap --help` (according to the product your're using).
 
-- Deploy a Processing Unit or Space
+The following is a partial list of the available functionality:
+
+- Start and stop an agent (gs-agent) on the current host.
+- Deploy and manage a Processing Unit or Space
 - List, create, kill, and restart containers (GSCs)
 - List hosts
-- Start an agent on the current hosts
 - List Spaces and Space instances
 
-## Grid Service Agent Enhancement
+The previous GigaSpaces CLI is still provided and supported, but will be removed in future versions. We encourage you to give the new CLI a try, and tell us if you're missing anything or have an idea on how to improve it.
 
-Users can now configure the Grid Service Agent to launch the Web Management Console when deploying an InsightEdge or XAP environment, using the new `--webui` option.
+{{<infosign>}} For more information see [Command Line Interface](../admin/admin-interactive-cli.html)
 
-## XAP Manager
+# Docker Support
 
-Version 2 of the REST Manager API (on which the XAP Manager is based) is now available, and is supported by the new Command Line Interface and the Administration API.  
+Starting 12.3 we're providing official [Docker](https://www.docker.com) images for InsightEdge and XAP (both open source and enterprise).
 
-# GigaSpaces on Docker Hub
+The docker images are available at [Docker Hub](https://hub.docker.com/r/gigaspaces/), and their corresponding docker files are available at [GitHub](https://github.com/gigaspaces/docker).
 
-A Docker image for XAP has been published at [Docker Hub](https://hub.docker.com/r/gigaspaces/xap/). This feature is still under construction, but is sufficiently mature for user evaluation and feedback.
+The docker images takes advantage of the new Command Line Interface and REST API, which makes it seamless to work with docker on your local machine, within your enterprise network or on the cloud.
 
-To access the Docker image, follow the instructions on the [GigaSpaces XAP](https://hub.docker.com/r/gigaspaces/xap/) page. Docker images for XAP open source and InsightEdge will be available soon.
+{{<infosign>}} For more information see [Deploying From Docker Hub](../started/docker-deployment-xap.html)
 
-# Tiered Storage Enhancement
+# Memory Footprint
 
-The custom initial load mechanism in MemoryXtend has been extended to provide full life cycle management of the blobstore cache, so that users can prioritize data availability throughout the application lifetime. Users can define a set of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk (SSD or HD).
+New index types have been introduced, to offer users additional indexing options that requires a smaller memory footprint. The new index types are:
 
-# Indexing
+- `EQUAL` - Performs matching by equality, and should be used instead of the BASIC indexing option.
+- `ORDERED` - Performs ordered matching.
+- `EQUAL_AND_ORDERED` - Performs both matching by equality and ordered matching, and should be used instead of the `EXTENDED` indexing option.
 
-Three new index types have been introduced for both Java and .NET environments. The new index types enable users to opt for limited indexing that requires a smaller memory footprint. The new index types are:
+The new `ORDERED` index consumes less memory than `EQUAL_AND_ORDERED`, at the cost of matching equality less efficiently. When optimizing for ordered queries alone, this index should be preferred. When optimizing for both ordered and equality queries, there's a performance-vs-footprint tradeoff between `ORDERED` and `EQUAL_AND_ORDERED`, which you should consider according to your use-case.
 
-- EQUAL - Performs matching by equality, and may be used instead of the BASIC indexing option.
-- ORDERED - Performs ordered matching.
-- EQUAL_AND_ORDERED - Performs both matching by equality and ordered matching, and may be used instead of the EXTENDED indexing option.
-
-# Deprecated Features and Functionality
-
-The following functionality is deprecated as of this release:
-
-- V1 of the XAP Manager REST API
-- BASIC and EXTENDED index types 
+{{<infosign>}} For more information see [Index Types](../dev-java/indexing.html#index-types)
 
 # Third-Party Product Changes
+
+{{%info "Spark 2.3 Support"%}}
+The InsightEdge platform supports Apache Spark version 2.3. Due to lack of support for Apache Spark version 2.3 in the current Apache Zeppelin version, InsightEdge is packaged with Apache Spark 2.2. Customers that do not use Apache Zeppelin and have their own Apache Spark implementation can use version 2.3 with GigaSpaces products.
+{{%/info%}}
 
 * [Apache Zookeeper](https://zookeeper.apache.org/) has been upgraded to `3.4.10`
 * [Jetty](http://www.eclipse.org/jetty/) package has been upgraded to `9.2.24`
 * [Spring Framework](https://projects.spring.io/spring-framework/) integration has been upgraded to `4.3.13`
 * [Spring Security](http://projects.spring.io/spring-security/) integration has been upgraded to `4.2.3`
+
+# End-Of-Life and Deprecated Features and Functionality
+
+The following functionality is deprecated as of this release:
+
+- V1 of the XAP Manager REST API (use the new V2 instead)
+- `BASIC` and `EXTENDED` index types (use `EQUAL` | `ORDERED` | `EQUAL_AND_ORDERED` instead)
+
+In addition, Java 7 is no longer supported - the minimum supported Java version is now Java 8.
