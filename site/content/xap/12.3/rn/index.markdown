@@ -6,9 +6,9 @@ parent: none
 weight: 800
 ---
 
-## Early Access for InsightEdge and XAP Version 12.3
+## InsightEdge Version 12.3
 
-These release notes provide information about product changes, updates, resolved issues, and more for the early access version of InsightEdge Platform and XAP release 12.3. Refer to the topics listed below for details.
+These release notes provide information about product changes, updates, resolved issues, and more for the InsightEdge platform release 12.3. Refer to the topics listed below for details.
 
 {{%fpanel%}}
 
