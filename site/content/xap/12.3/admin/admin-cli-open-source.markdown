@@ -8,31 +8,96 @@ parent: none
  
 The Command Line Interface tool can be used to perform minimal administration tasks for open source XAP and InsightEdge editions.
 
+<br>
 
-{{%tabs%}}
-{{%tab "XAP"%}}
+# XAP 
 
-help
+## Demo
 
-version
+*Command:* 
 
-pu (run)
+`xap demo`
 
-space (run)
+*Description:* 
 
-demo
+Run a Space in high availability mode (2 primaries with 1 backup each)
 
-{{%/tab%}}
+*Parameters and Options:*
+
+None.
+ 
+*Input Example:*
+
+```bash
+<XAP-HOME>/bin/xap demo
+``` 
 
 
-{{%tab "InsightEdge"%}}
+## Deploy a Space
 
-help
+*Command:* 
 
-version
+`xap space run`
 
-demo
+*Description:* 
 
-{{%/tab%}}
+Deploys a Space in a stateful Processing Unit.
 
-{{% /tabs %}}
+*Parameters and Options:*
+
+
+| Item | Name | Description |
+|:-----|:-----|:------------|
+| Parameter | name | Name of the Space |
+| Option    | ---ha | High availability adding a backup per partition. |
+| Option    | ---instances=\<instances\> | Number of instances to run.|
+| Option    | ---lus| Start a lookup service. |
+|Option     | ---partitions=\<partitions\> |Number of partitions to use.|
+ 
+
+*Input Example:*
+
+This example deploys a Space named **mySpace** with high availability and 5 partitions. 
+
+```bash
+<XAP-HOME>/bin/xap space run --ha --partitions=5 mySpace
+```
+
+  
+
+
+## Processing Unit
+
+
+*Command:* 
+
+`xap pu run`
+
+*Description:* 
+
+Deploys a Processing Unit onto the Service Grid.
+
+*Parameters and Options:*
+
+
+| Item | Name | Description |
+|:-----|:-----|:------------|
+| Parameter | path | 
+Relative/absolute path of a Processing Unit directory or archive file.|
+| Option    | ---ha | High availability adding a backup per partition. |
+| Option    | ---instances=\<instances\> | Number of instances to run.|
+| Option    | ---lus| Start a lookup service. |
+| Option    | ---partitions=\<partitions\> |Number of partitions to use.|
+ 
+
+*Input Example:*
+
+This example deploys a Space named **mySpace** with high availability and 5 partitions. 
+
+```bash
+<XAP-HOME>/bin/xap pu run --ha --partitions=5 myPu
+```
+
+
+# Insightedge
+
