@@ -7,7 +7,8 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+**To view the event container details:**
+<br>
 
  
 

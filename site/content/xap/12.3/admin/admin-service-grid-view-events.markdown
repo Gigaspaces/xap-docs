@@ -8,11 +8,12 @@ parent: admin-service-grid.html
  
   
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 
-<br>
+ 
 
 **To view events:**
+<br>
  
 {{%tabs%}}
 

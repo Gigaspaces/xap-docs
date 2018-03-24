@@ -7,12 +7,12 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic. Include a short description of what info is available per admin tool, i.e. which tool to use depending on what you want to achieve. Also explain the difference between the info that you see for this task, vs. the info that you see in the next task (Viewing Space Information).{{% /bgcolor %}}
-
-<br>
+ 
+ 
 
 **To view the Space runtime information:**
 
+<br>
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -70,7 +70,6 @@ The Space instances for the given Space are listed with ID, Mode, HostId, and Co
     <th>Item</th>
     <th>Name</th>
     <th>Description</th>
-    <th>Comment</th>
   </tr>
    <tr>
     <td>Parameter</td>

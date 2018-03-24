@@ -8,8 +8,8 @@ parent: admin-service-grid.html
  
   
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
-
+ 
+**To start a Service Grid Agent:**
 <br>
  
  
@@ -32,13 +32,14 @@ Run a Grid Service Agent on the current host.
 
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Option | --auto | Start the Manager on the localhost o||
-|Option | --gsc  |  ||
-|Option | --containers  |  ||
-|Option | --manager  |  ||
-|Option | --webui  |  ||
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Option | ---auto |  Start the Manager on the localhost (or on a host from the cluster of Managers) and start the Web Management Console|
+|Option | ---gsc  |  |
+|Option | ---containers=\<number\>  | Specify the number of containers to start(default is 0) |
+|Option | ---manager  | Run one instance of the Manager from the cluster of Managers |
+|Option | ---webui  | Start the Web Management Console |
+|Option | <nobr>---custome=\<String, Integer\><nobr>| Specify which custom service to run by the agent (for example: --custom=global.lus=1)|
  
 {{%/tab%}}
 

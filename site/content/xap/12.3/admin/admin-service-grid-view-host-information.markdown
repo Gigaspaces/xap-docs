@@ -8,12 +8,13 @@ parent: admin-service-grid.html
  
   
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 
  
-<br>
+ 
 
 **To view host information:**
+<br>
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -66,9 +67,9 @@ Lists all containers on a host machines.
  
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | host name |Name of the host | |
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | host name |Name of the host |
 
 
 **List Operating System Information**
@@ -94,9 +95,9 @@ Lists all Operating System details for a host machines.
  
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | host name |Name of the host | |
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | host name |Name of the host |
 
 
 **List Operating System Statistics**
@@ -122,9 +123,9 @@ Lists all Operating System Statistics for a host machines.
  
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | host name |Name of the host | |
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | host name |Name of the host |
 
 {{%/tab%}}
 

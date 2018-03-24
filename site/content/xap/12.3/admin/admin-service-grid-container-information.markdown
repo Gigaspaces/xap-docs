@@ -8,11 +8,11 @@ parent: admin-service-grid.html
  
   
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 
-<br>
+
 **To view the general Container details:**
-
+<br>
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -65,9 +65,9 @@ Display container information.
 
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | \<container ID\> | The ID of container to get information from||
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | \<container ID\> | The ID of container to get information from|
  
  
 

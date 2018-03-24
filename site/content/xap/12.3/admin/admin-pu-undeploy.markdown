@@ -6,11 +6,10 @@ weight: 700
 parent: admin-spaces-pu.html
 ---
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
-<br>
+**Removing a Processing Unit from the Service Grid**.
 
-**To undeploy a Processing Unit:**
+<br> 
  
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -18,12 +17,6 @@ parent: admin-spaces-pu.html
 *Command:*
 
 `xap pu undeploy <pu name>` 
-
-*Description:*
-
-Undeploys a Processing Unit.
-
-
 
 *Input Example:*
 
@@ -33,10 +26,10 @@ Undeploys a Processing Unit.
 
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter |name | The name of the Pu to undeploy||
-|Option | keep-file | Keep the undeployed file for future use.||
+| Item | Name | Description |
+|:-----|:------|:-----------|
+|Parameter |name | The name of the Pu to undeploy|
+|Option | keep-file | Keep the undeployed file for future use.|
 
 {{%/tab%}}
 
@@ -45,10 +38,6 @@ Undeploys a Processing Unit.
 *Path*
 
 `DELETE DELETE /pus/{id}`
-
-*Description:* 
-
-Un Deploys a Processing Unit.
 
 *Example Request:*
 

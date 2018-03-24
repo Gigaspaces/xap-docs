@@ -5,9 +5,6 @@ categories: XAP123ADM,PRM
 weight: 1400
 parent: admin-spaces-pu.html
 ---
- 
- 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
 
 # Interacting with Space Data
 
@@ -82,7 +79,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 # Quiescing a Processing Unit 
 
-{{% bgcolor yellow %}}write intro {{% /bgcolor %}}
+ 
 
 **To quiesce a Processing Unit:**
 
@@ -105,10 +102,10 @@ Putting a Processing Unit into maintenance  mode.
 
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter |name | The name of the Pu to quiesce||
-|Option | comment | Quiesce description .||
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter |name | The name of the Pu to quiesce|
+|Option | comment | Quiesce description .|
 
 {{%/tab%}}
 
@@ -169,7 +166,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 # Unquiescing a Processing Unit
 
-{{% bgcolor yellow %}}write intro{{% /bgcolor %}}
+ 
 
 **To unquiesce a Processing Unit:**
 
@@ -192,9 +189,9 @@ Unquiesce a Processing Unit.
 
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter |name | The name of the Pu to unquiesce||
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter |name | The name of the Pu to unquiesce|
  
  
 {{%/tab%}}
@@ -253,9 +250,9 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 # Restarting a Processing Unit
 
-{{% bgcolor yellow %}}write intro {{% /bgcolor %}}
+ 
 
-<br>
+ 
 
 **To restart a Processing Unit:**
 
@@ -296,7 +293,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 #  Relocating a Processing Unit
 
-{{% bgcolor yellow %}}write intro {{% /bgcolor %}}
+ 
 
 **To relocate a Processing Unit:**
 
@@ -320,9 +317,9 @@ Relocating a Processing Unit Instance to another container.
 
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | \<instance ID\> | ID of Processing unit instance to relocate||
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | \<instance ID\> | ID of Processing unit instance to relocate|
 |Parameter | [\<container ID\>] | ID of  target container for relocation| Any available container if target is not specified |
  
 {{%/tab%}}
@@ -382,7 +379,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 #  Incrementing a Processing Unit
 
-{{% bgcolor yellow %}}write intro {{% /bgcolor %}}
+ 
 
 **To increment a Processing Unit:**
 
@@ -406,9 +403,9 @@ Increment a Processing Unit Instances.
 
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | name | The name of the stateless Processing unit to increment||
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | name | The name of the stateless Processing unit to increment|
  
  
 {{%/tab%}}
@@ -457,7 +454,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 #  Decrement a Processing Units instances
 
-{{% bgcolor yellow %}}write intro {{% /bgcolor %}}
+ 
 
 **To decrement a Processing Unit:**
 
@@ -481,10 +478,10 @@ Decrement a stateless Processing Unit Instances.
 
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | \<name\> | The name of the stateless Processing unit to decrement||
-|Parameter | \<instance ID\> | The ID of Processing unit instance to decrement||
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | \<name\> | The name of the stateless Processing unit to decrement|
+|Parameter | \<instance ID\> | The ID of Processing unit instance to decrement|
  
  
 {{%/tab%}}

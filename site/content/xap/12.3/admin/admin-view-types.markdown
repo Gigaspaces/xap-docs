@@ -7,7 +7,7 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 
  
 **To view data types in the Space:**
@@ -38,9 +38,9 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 *Parameters and Options:*
 
-|Item | Name| Description | Comment |
-|:----|:----|:------------|:--------|
-|Parameter | \<name\> |Name of the Space to display the statistics for ||
+|Item | Name| Description |
+|:----|:----|:------------|
+|Parameter | \<name\> |Name of the Space to display the statistics for |
  
  
 
@@ -66,9 +66,9 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 *Parameters and Options:*
 
-|Item | Name| Description | Comment |
-|:----|:----|:------------|:--------|
-|Parameter | \<spaceId\> |Id of the Space to display the statistics for ||
+|Item | Name| Description |
+|:----|:----|:------------| 
+|Parameter | \<spaceId\> |Id of the Space to display the statistics for |
  
 {{%/tab%}}
 

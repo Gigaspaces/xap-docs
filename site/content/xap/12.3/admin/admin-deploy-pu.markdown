@@ -7,12 +7,9 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic. Include a short description of what info is available per admin tool, i.e. which tool to use depending on what you want to achieve. Also explain the difference between the info that you see for this task, vs. the info that you see in the next task (Viewing Space Information).{{% /bgcolor %}}
  
+**Deploying a Processing Unit onto the Service Grid.**
  
-<br> 
-
-# To deploy a PU
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -23,23 +20,23 @@ parent: admin-spaces-pu.html
 
 *Description:*
 
-Deploys a Processing Unit to the data grid.
+Deploys a Processing Unit to the Service Grid.
 
 *Parameters and Options:*
 
-|Item | Name| Description | Comment |
-|:----|:----|:------------|:--------|
-|Parameter | \<name\> |Name of the processing unit to deploy||
-|Parameter | \[file\] |Path to processing unit file (.jar or .zip) |  |
-|Option    | backups=\<backups\> |Number of backups per partition.| |
-|Option    | instances=\<instances\> |Number of instances.| |
-|Option    | max-instances-per-machine=\<maxInstancesPerMachine\>|Determines maximum number of instances in same machine.| |
-|Option    | max-instances-per-vm=\<maxInstancesPerVM\>| Determines maximum number of instances in same VM. ||
-|Option    |partitions=\<partitions\> | Number of partitions. ||
-|Option    |property=\<String,String\>|Context properties.||
-|Option    |schema=\<schema\>|Cluster schema.||
-|Option    |version | Display version information.||
-|Option    |zones=\<zones\>| Which zones can host this processing unit.||
+|Item | Name| Description |
+|:----|:----|:------------|
+|Parameter | \<name\> |Name of the processing unit to deploy|
+|Parameter | \[file\] |Path to processing unit file (.jar or .zip) |
+|Option    | backups=\<backups\> |Number of backups per partition.|
+|Option    | instances=\<instances\> |Number of instances.|
+|Option    | max-instances-per-machine=\<maxInstancesPerMachine\>|Determines maximum number of instances in same machine.|
+|Option    | max-instances-per-vm=\<maxInstancesPerVM\>| Determines maximum number of instances in same VM. |
+|Option    |partitions=\<partitions\> | Number of partitions. |
+|Option    |property=\<String,String\>|Context properties.|
+|Option    |schema=\<schema\>|Cluster schema.|
+|Option    |version | Display version information.|
+|Option    |zones=\<zones\>| Which zones can host this processing unit.|
 
  
 *Input Example:*

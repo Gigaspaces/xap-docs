@@ -8,13 +8,13 @@ parent: admin-service-grid.html
  
   
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 
-<br>
+ 
  
 # Starting a Container
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 
 **To start a container:**
 
@@ -38,9 +38,9 @@ Starting a container.
  
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | host | Host where to create the container| |
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | host | Host where to create the container|
 |Option    |  ---memory:\<memory\> | Container's JVM max memory.|
 |Option    | ---zone=\<zone name\> | Container's zone.|
 |Option    |---property=\<String=String\> | Additional System properties.|
@@ -111,9 +111,9 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
  
 # Terminating a Container
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 
-<br>
+ 
 
 **To terminate a container:**
 
@@ -137,9 +137,9 @@ Stopping a container.
  
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | \<container\> ID | ID of the container to kill| |
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | \<container\> ID | ID of the container to kill|
  
  
 {{%/tab%}}
@@ -202,10 +202,6 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 # Restarting a Container
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
-
-<br>
-
 **To restart a container:**
 
 {{%tabs%}}
@@ -228,9 +224,9 @@ Restarting a container.
  
 *Parameters and Options:*
 
-| Item | Name | Description | Comment |
-|:-----|:------|:------------|:--------|
-|Parameter | \<container ID\> | ID of the container to restart| |
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter | \<container ID\> | ID of the container to restart|
  
 {{%/tab%}}
 

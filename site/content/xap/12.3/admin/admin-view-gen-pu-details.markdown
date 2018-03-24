@@ -7,10 +7,8 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic. Include a short description of what info is available per admin tool, i.e. which tool to use depending on what you want to achieve. Also explain the difference between the info that you see for this task, vs. the info that you see in the next task (Viewing Space Information).{{% /bgcolor %}}
-
 **To view information about the deployed Processing Units:**
-
+<br>
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -68,7 +66,6 @@ This command lists all of the instances for a given Processing Unit, along with 
     <th>Item</th>
     <th>Name</th>
     <th>Description</th>
-    <th>Comment</th>
   </tr>
    <tr>
     <td>Parameter</td>

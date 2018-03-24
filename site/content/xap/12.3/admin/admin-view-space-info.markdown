@@ -7,10 +7,11 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}<br>
+ 
  
 **To view Space information:**
 
+<br>
   
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}

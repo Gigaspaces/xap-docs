@@ -7,26 +7,32 @@ parent: admin-service-grid.html
 ---
  
   
-
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+**Accessing a secured Service Grid:**
+ 
 
 <br>
  
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-***Securing the Service Grid***<br>
 
-_Parameters:_
+*Command:*
 
-- ---username:<br>
-- ---password:
+`xap undeploy <pu name> --username=user --password=password` 
+
 
 *Example:*
 
 ```bash
-<XAP-HOME>/bin/xap --uesrname=someone password=somewhere ...... additional parameters and options
+<XAP-HOME>/bin/xap --uesrname=user password=password ...... additional parameters and options
 ```
+
+*Parameters and Options:*
+
+| Item | Name | Description |
+|:-----|:------|:-----------|
+|Option |username | The user name. |
+|Option | password | The password.|
 
 {{%/tab%}}
 

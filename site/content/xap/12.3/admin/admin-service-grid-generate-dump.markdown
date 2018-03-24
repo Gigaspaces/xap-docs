@@ -6,10 +6,7 @@ weight: 700
 parent: admin-service-grid.html
 ---
  
-  
-
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
-
+**To generate dump files:**
 <br>
  
 {{%tabs%}}

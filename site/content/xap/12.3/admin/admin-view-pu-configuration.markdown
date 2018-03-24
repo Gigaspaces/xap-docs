@@ -7,14 +7,14 @@ parent: admin-spaces-pu.html
 ---
  
  
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+**Display Processing Unit Information:**
 
  
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-***Display PU Information***
+**Display PU Information**
 
 *Command:*
 
@@ -37,9 +37,9 @@ Display detailed information for the given Processing Unit.
  
 *Parameters and Options:*
 
-|Item | Name| Description | Comment |
-|:----|:----|:------------|:--------|
-|Parameter | \<name\> |Name of the processing unit to display details||
+|Item | Name| Description |
+|:----|:----|:------------|
+|Parameter | \<name\> |Name of the processing unit to display details|
  
 
 
@@ -66,9 +66,9 @@ Display detailed information for the given Processing Unit instance.
  
 *Parameters and Options:*
 
-|Item | Name| Description | Comment |
-|:----|:----|:------------|:--------|
-|Parameter | \<instance ID\> |Instance ID of the processing unit to display details||
+|Item | Name| Description |
+|:----|:----|:------------|
+|Parameter | \<instance ID\> |Instance ID of the processing unit to display details|
  
 
 
