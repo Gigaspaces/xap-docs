@@ -82,8 +82,7 @@ Deploys a Processing Unit onto the Service Grid.
 
 | Item | Name | Description |
 |:-----|:-----|:------------|
-| Parameter | path | 
-Relative/absolute path of a Processing Unit directory or archive file.|
+| Parameter | path | Relative/absolute path of a Processing Unit directory or archive file.|
 | Option    | ---ha | High availability adding a backup per partition. |
 | Option    | ---instances=\<instances\> | Number of instances to run.|
 | Option    | ---lus| Start a lookup service. |

@@ -6,9 +6,8 @@ weight: 700
 parent: admin-insightedge.html
 ---
  
-  
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+**To terminate a Spark Job:** 
 
 <br>
  
@@ -19,7 +18,29 @@ N/A
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-N/A
+
+*Path*
+
+`DELETE /spark/applications/{id}`
+
+*Description:*
+
+Terminating a Spark Job.
+
+*Example Request:*
+
+```bash
+curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/spark/applications/application1'
+```
+ 
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| id | Spark driver id | Yes  |
+ 
+
+ 
 {{%/tab%}}
 
 {{% /tabs %}}

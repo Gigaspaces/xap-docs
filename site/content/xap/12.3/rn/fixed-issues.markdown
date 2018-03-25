@@ -10,8 +10,12 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Features and Enhancements
 
+- {{% jira id="GS-13438" %}}: Unified Command Line Interface.
 - {{% jira id="GS-13488" %}}: New MemoryXtend storage driver for off-heap memory.
 - {{% jira id="GS-13500" %}}: When killing an external process, avoid SIGKILL on systems which do not support it (Windows).
+- {{% jira id="GS-13474" %}}: Docker Images for InsightEdge and XAP.
+- {{% jira id="GS-13490" %}}: Revise Space index types to provide option for reduced memory footprint.
+- {{% jira id="GS-13489" %}}: Reduce @SpaceId(autogenerate=false) memory footprint.
 - {{% jira id="GS-13456" %}}: Upgrade Apache Zookeeper to 3.4.10.
 - {{% jira id="GS-13400" %}}: Replication redolog compaction for mirror target.
 - {{% jira id="GS-13477" %}}: Created v2 of XAP Manager REST API.
@@ -41,7 +45,7 @@ This section lists the changes that were made in InsightEdge Platform 12.3.
 
 # Resolved Issues
 
-- {{% jira id="GS-12946" %}}: Loop of restarts of pu instance in same container cause memory leak.
+- {{% jira id="GS-12946" %}}: Loop of restarts of PU instance in same container cause memory leak.
 - {{% jira id="GS-13484" %}}: Missing partition instance not provisioned after network disconnected and reconnected.
 - {{% jira id="GS-13483" %}}: Relocation listener is not called during failure to destroy instance.
 - {{% jira id="GS-13454" %}}: Elastic Processing Unit failed to fully deploy with service-limit=1 even when there were empty GSCs running.
