@@ -57,7 +57,7 @@ Starting with this version, official [Docker](https://www.docker.com) images for
 
 The Docker images leverage the new Command Line Interface and REST Manager API, which provides a seamless experience whether you work with Docker on your local machine, within your enterprise network, or in the cloud.
 
-{{<infosign>}} For more information, see [Deploying From Docker Hub](../started/docker-deployment-xap.html)
+{{<infosign>}} For more information, see [GigaSpaces Docker Hub Repo](https://hub.docker.com/r/gigaspaces/)
 
 # Memory Footprint
 

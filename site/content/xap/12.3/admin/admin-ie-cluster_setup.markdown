@@ -8,8 +8,6 @@ parent: admin-insightedge.html
 
 In this tutorial, you will learn how to install and run the InsightEdge on a cluster.
 
-Please refer to [InsightEdge Script](../started/insightedge-script.html) page for more info about the commands that will be used in this page.
-
 # Starting the whole cluster
 
 Your cluster should consist of one master and a bunch of slaves:
@@ -23,7 +21,7 @@ The master nodes start XAP Manager along with Zookeeper for high availability. T
 In addition, it is recommended to set the XAP_LOOKUP_GROUPS property that is used for discovering XAP component across the network.
 Please refer to the [Environment Variables](../started/common-environment-variables.html) page for more advanced configurations.
 
-These configuration can be set in the `<XAP_HOME>/bin/setenv-overrides.sh/bar` file.
+These configuration can be set in the `<XAP_HOME>/bin/setenv-overrides.sh/bat` file.
 
 ## Starting Master Nodes
 
@@ -32,7 +30,7 @@ Master nodes are consisted of XAP Manager and a Spark Master.
 On each Master node run the following:
 
 ```bash
-insightedge run --master
+insightedge host run-agent --auto
 ```
 
 ## Starting Worker Nodes
@@ -44,7 +42,7 @@ On each Worker node run the following:
 Use `--containers=n` if you wish to have XAP containers on the specific machine. If not specified, no XAP containers will be started
 
 ```bash
-insightedge run --worker [--containers=n]
+insightedge host run-agent --spark-worker [--containers=n]
 ```
 
 After installation you can verify that Spark slaves are up and running on the Spark master web UI at `http://your-master-ip-here:8080`.
@@ -53,5 +51,5 @@ After installation you can verify that Spark slaves are up and running on the Sp
 
 ```bash
 #   topology 2,1 starts 2 primary partitions with 1 backup partition for each primary
-insightedge deploy-space --partitions=2 --backups insightedge-space
+insightedge space deploy --partitions=2 --ha insightedge-space
 ```

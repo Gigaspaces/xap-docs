@@ -35,6 +35,7 @@ The following list describes XAP-related environment variables:
 |:----------------------|:-----------------------------------------------------|:------------|
 |  JAVA_HOME            | The directory in which Java is installed             | |
 |  XAP_HOME             | The GigaSpaces XAP home directory                    | Automatically set via the folder structure |
+|  XAP_LICENSE          | License key (for premium and enterprise)             | |
 |  XAP_LOOKUP_GROUPS    | Lookup Service groups used for multicast discovery   | {{%version "default-lookup-group"%}} |
 |  XAP_LOOKUP_LOCATORS  | Lookup Service Locators used for unicast discovery   | |
 |  XAP_NIC_ADDRESS      | The network interface card which will be used by XAP | Automatically set to the host name |

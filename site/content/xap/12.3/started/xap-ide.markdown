@@ -10,7 +10,7 @@ weight: 200
 Follow these steps to prepare your development environment:
 
 
-- **Ensure you have a JDK installed** - you will need version 7 or higher, latest Java 8 is recommended.
+- **Ensure you have a JDK installed** - you will need Java 8 or higher, latest update is recommended.
 
 #### Checking your JDK version
 
@@ -22,7 +22,7 @@ To check your installed Java version:
 
 
 ```java
-JAVA_HOME=C:\jdk1.6
+JAVA_HOME=C:\jdk1.8
 ```
 
 To check the JDK version, run `%JAVA_HOME%\bin\java \-version`. A response like this from `Java` indicates you have a valid JDK installed:
