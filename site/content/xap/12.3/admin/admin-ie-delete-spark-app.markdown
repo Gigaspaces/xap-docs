@@ -7,8 +7,8 @@ parent: admin-insightedge.html
 ---
  
   
-
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+**To delete a Spark Application:** 
+ 
 
 <br>
  
@@ -19,7 +19,28 @@ N/A
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-N/A
+
+*Path*
+
+`DELETE /spark/applications/{id}`
+
+*Description:*
+
+Deletes the spark application resource by name.
+
+*Example Request:*
+
+```bash
+curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/spark/applications/resources/app1'
+```
+ 
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| id | Spark driver id | Yes  |
+ 
+
 {{%/tab%}}
 
 {{% /tabs %}}
