@@ -1,13 +1,13 @@
 ---
 type: post123
-title: Securing the Service Grid
+title: Accessing a Secured Service Grid
 categories: XAP123ADM,PRM
 weight: 900
 parent: admin-service-grid.html
 ---
  
   
-**Accessing a secured Service Grid:**
+**To access a secured service grid:**
  
 
 <br>
@@ -44,7 +44,9 @@ See securing the Service Grid property `-Dcom.gs.security.enabled=true`
 
 
 {{%tab "Web Management Console"%}}
-TBD
+
+See the [Security](./tools-web-ui.html#security) paragraph of the [Web Management Console](./tools-web-ui.html) topic for information on how to configure the tool to access a secured service grid.
+
 {{%/tab%}}
 
 

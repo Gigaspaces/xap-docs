@@ -273,11 +273,11 @@ You can see the following high-level Space details in the main Spaces view:
   </tr>
   <tr>
     <td>Connections</td>
-    <td></td>
+    <td>Number of currently connected clients.</td>
   </tr>
   <tr>
     <td>Active Transactions</td>
-    <td></td>
+    <td>Number of transactions that are now active.</td>
   </tr>
 </table>
 
@@ -319,11 +319,11 @@ Click the arrow in the right-hand column of the space entry to drill through to 
   </tr>
   <tr>
     <td>Connections</td>
-    <td></td>
+    <td>Number of currently connected clients.</td>
   </tr>
   <tr>
     <td>Active Transactions</td>
-    <td></td>
+    <td>Number of transactions that are now active.</td>
   </tr>
 </table> 
 

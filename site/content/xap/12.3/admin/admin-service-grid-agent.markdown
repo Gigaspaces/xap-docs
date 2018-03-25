@@ -9,7 +9,7 @@ parent: admin-service-grid.html
   
 
  
-**To start a Service Grid Agent:**
+**To start a Grid Service Agent:**
 <br>
  
  
@@ -45,6 +45,43 @@ Run a Grid Service Agent on the current host.
 
 {{%tab "REST Manager API"%}}
 N/A
+{{%/tab%}}
+
+
+{{%tab "Web Management Console"%}}
+
+N/A
+
+{{%/tab%}}
+
+
+{{%tab "GigaSpaces Management Center"%}}
+
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
+
+{{%/tab%}}
+
+
+{{%tab "Administration API"%}}
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
+{{%/tab%}}
+
+{{% /tabs %}}
+
+
+**To stop a Grid Service Agent:**
+
+{{%tabs%}}
+{{%tab "Command Line Interface"%}}
+
+TBD
+ 
+{{%/tab%}}
+
+{{%tab "REST Manager API"%}}
+
+N/A
+
 {{%/tab%}}
 
 

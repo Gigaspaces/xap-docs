@@ -143,11 +143,11 @@ N/A
 	</tr>
 	<tr>
 		<td>Comm. Type</td>
-		<td></td>
+		<td>N/A</td>
 	</tr>
 	<tr>
 		<td>Take On Notify</td>
-		<td></td>
+		<td>N/A</td>
 	</tr>
 	<tr>
 		<td>FIFO</td>

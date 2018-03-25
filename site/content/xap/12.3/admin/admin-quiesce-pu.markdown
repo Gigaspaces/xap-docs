@@ -436,6 +436,8 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 
 {{%tab "Web Management Console"%}}
+
+N/A
  
 {{%/tab%}}
 
@@ -511,6 +513,8 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/
 
 
 {{%tab "Web Management Console"%}}
+
+N/A
  
 {{%/tab%}}
 

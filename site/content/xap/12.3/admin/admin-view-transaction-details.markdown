@@ -61,7 +61,7 @@ Transaction information is only available for Space instances that are in primar
 	</tr>
 	<tr>
 		<td>Timeout</td>
-		<td></td>
+		<td>Length of time after which the transaction expires.</td>
 	</tr>
 	<tr>
 		<td>Locked Objects</td>
@@ -70,7 +70,7 @@ Transaction information is only available for Space instances that are in primar
 	</table>
 
 
-* Per individual transaction (when drilling down):
+* Per individual transaction (when drilling down), when a transaction is blocked:
 
 	<table>
 	<tr>
@@ -79,19 +79,19 @@ Transaction information is only available for Space instances that are in primar
 	</tr>
 	<tr>
 		<td>UID</td>
-		<td></td>
+		<td>ID of the data entry in the Space that is blocked.</td>
 	</tr>
 	<tr>
 		<td>Class Name</td>
-		<td></td>
+		<td>Type of data entry.</td>
 	</tr>
 	<tr>
 		<td>Operation Code</td>
-		<td></td>
+		<td>Data operation that was being peformed when the transaction became blocked.</td>
 	</tr>
 	<tr>
 		<td>Lock Type</td>
-		<td></td>
+		<td>Type of lock on the transaction.</td>
 	</tr>
 	</table>
 
