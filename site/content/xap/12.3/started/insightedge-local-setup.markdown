@@ -38,28 +38,14 @@ This will start the following components on your machine:
     * XAP Manager at {{%exurl "localhost:8090""http://localhost:8090"%}}
     * A Space called `insightedge-space` with 2 partitions
 
-## Starting Only Data Grid
 
-If you wish to start only the data grid (e.g. you're spark master url is `local[*]`, or you prefer to use an existing Spark cluster), run the following:
-
-First, start a local XAP manager with two containers on your machine by running the following command from the `<XAP_HOME>/bin` directory:
-
-```bash
-./gs-agent.sh --manager-local --gsc=2
-```
-
-Next, deploy a space called `insightedge-space` with 2 partitions by running the following command from the `<XAP_HOME>/insightedge/bin` directory:
-
-```bash
-insightedge deploy-space --partitions=2 insightedge-space
-```
 
 # Stopping Local Environment
 
 To stop the environment, you can use `shutdown` mode that sends kill signal to all relevant processes:
 
 ```bash
-insightedge shutdown
+insightedge host kill-agent
 ```
 
 # What's Next?

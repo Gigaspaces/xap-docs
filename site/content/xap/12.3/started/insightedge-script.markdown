@@ -12,36 +12,48 @@ The `insightedge` script facilitates getting started with InsightEdge. It wraps 
 
 # Usage
 
-The script is located under `<XAP Home>/insightedge/bin` folder.
+The script is located under `<XAP Home>/bin` folder.
 
 ```
 > ./insightedge help
-   _____           _       _     _   ______    _
-  |_   _|         (_)     | |   | | |  ____|  | |
+
+    _____ _              _____
+   / ____(_)            / ____|
+  | |  __ _  __ _  __ _| (___  _ __   __ _  ___ ___  ___
+  | | |_ | |/ _` |/ _` |\___ \| '_ \ / _` |/ __/ _ \/ __|
+  | |__| | | (_| | (_| |____) | |_) | (_| | (_|  __/\__ \
+   \_____|_|\__, |\__,_|_____/| .__/ \__,_|\___\___||___/
+   _____     __/ | _       _  | |_   ______    _
+  |_   _|   |___/ (_)     | | |_| | |  ____|  | |
     | |  _ __  ___ _  __ _| |__ | |_| |__   __| | __ _  ___
     | | | '_ \/ __| |/ _` | '_ \| __|  __| / _` |/ _` |/ _ \
    _| |_| | | \__ \ | (_| | | | | |_| |___| (_| | (_| |  __/
   |_____|_| |_|___/_|\__, |_| |_|\__|______\__,_|\__, |\___|
                       __/ |                       __/ |
-                     |___/                       |___/   version: 12.2.0
+                     |___/                       |___/
 
+  Usage: insightedge [global-options] command [options] [parameters]
 
-Usage: ./insightedge [command] [args]
-Available commands:
-  demo
-      Starts a demo environment on the local host
-  run --master
-      Runs Spark Master and XAP Manager
-  run --worker [--containers=n]
-      Runs Spark Worker and n XAP Containers (default n=zero)
-  run --zeppelin
-      Runs Apache Zeppelin
-  deploy-space [--partitions=x [--backups]] <space-name>
-      Deploys a space with the specified name and partitions/backups (Optional)
-  undeploy <space-name>
-      Undeploys space with the specified name
-  shutdown
-      Shuts down InsightEdge environment on the local host
+  Description:
+  Options:
+        --help                  Show the help information for this command
+        --password=<password>   Password for secured environments
+        --server=<server>       Name or IP address of the Manager server to
+                                  connect to
+        --timeout=<timeout>     Change the default timeout (60 sec) for the
+                                  specified operation
+        --username=<username>   Username for secured environments
+  Commands:
+    version    Platform version
+    pu         List of available commands for Processing Unit operations
+    space      List of available commands for Space operations
+    demo       Run Spark in standalone mode (Master, Worker and Zeppelin) and
+                 deploy a Space in high availability mode (2 primaries with
+                 backup each).
+    host       List of available commands for local host operations
+    container  List of available commands for container operations
+    info       Platform environment information
+
 
 ```
 
@@ -67,14 +79,16 @@ insightedge demo
 
 The run command allows to start three components separately: InsightEdge Master, InsightEdge Worker and Zeppelin.
 
-Since XAP Manager is started, you must configure the XAP_MANAGER_SERVERS environment variable in every InsightEdge node. Please refer to the [XAP Manager](../admin/xap-manager.html) section.
+Since XAP Manager is started, you must configure the XAP_MANAGER_SERVERS  and SPARK_LOCAL_IP environment variables in every InsightEdge node. Please refer to the [XAP Manager](../admin/xap-manager.html) section.
 
 ## Running InsightEdge Master
 
+Update the environment variable in setenv-overrides.sh XAP_MANAGER_SERVERS=localhost,
 The command will start XAP Manager and Spark Master.
 
+
 ```bash
-insightedge run --master
+./insightedge host run-agent --manager --spark-master
 ```
 
 ## Running InsightEdge Worker
@@ -82,7 +96,7 @@ insightedge run --master
 The command allows starting XAP Containers and Spark Worker. If the optional `--containers=n` option is not specified, no XAP Containers will be started.
 
 ```bash
-insightedge run --worker [--containers=n]
+./insightedge host run-agent --spark-worker [--containers=n]
 ```
 
 ## Running Apache Zeppelin
@@ -90,7 +104,7 @@ insightedge run --worker [--containers=n]
 The command will start Zeppelin on the local machine. It will be accessible at {{%exurl "http://localhost:9090""http://localhost:9090"%}}
 
 ```bash
-insightedge run --zeppelin
+./insightedge host run-agent --zeppelin
 ```
 
 ## The `deploy-space` Command
@@ -102,7 +116,7 @@ Otherwise, it will deploy a partitioned space with n partitions without backups.
 If you wish to have backups, you can use the `--backups` option.
 
 ```bash
-insightedge deploy-space [--partitions=x [--backups]] <space-name>
+./insightedge  space deploy  [--partitions=x [--backups]] <space-name>
 ```
 
 ## The `undeploy` Command
@@ -110,7 +124,7 @@ insightedge deploy-space [--partitions=x [--backups]] <space-name>
 This command enables you to undeploy an already deployed space.
 
 ```bash
-insightedge undeploy <space-name>
+./insightedge pu undeploy <space-name>
 ```
 
 ## The `shutdown` Command
@@ -120,7 +134,7 @@ The shutdown command kills all components that are started via the insightedge s
 If you have deployed a space to one or more components, the space will be destroyed.
 
 ```bash
-insightedge shutdown
+insightedge host kill-agent --all
 ```
 
 # Configuration
