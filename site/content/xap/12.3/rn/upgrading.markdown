@@ -20,3 +20,6 @@ For information about product changes that may affect your upgrade process, refe
 
 V2 of the REST Manager API was released in this version. As a result, V1 has been deprecated. While V1 is still supported, we encourage upgrading to the latest version of the InsightEdge platform in order to benefit from the the changes and improvements available with V2, and to ensure forward compatibility in client applications.
 
+# New Command Line Interface
+
+A new Command Line Interface (CLI) was introduced in this version that supports both XAP and InsightEdge environments. While the old version is still supported, it will be deprecated in the future and we encourage working with the new version. 

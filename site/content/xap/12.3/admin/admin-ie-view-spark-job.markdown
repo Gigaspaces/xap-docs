@@ -7,9 +7,7 @@ parent: admin-insightedge.html
 ---
  
   
-
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
-
+**To view the Spark Job Status:** 
 <br>
  
 {{%tabs%}}
@@ -19,7 +17,33 @@ N/A
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-N/A
+
+
+*Path*
+
+`GET /spark/applications/{id}`
+
+*Description:*
+
+
+*Example Request:*
+
+```bash
+curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v2/spark/applications/application1'
+```
+ 
+*Example Response:*
+
+```bash
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| id | The id of the Spark driver.| Yes |
+
+ 
 {{%/tab%}}
 
 {{% /tabs %}}

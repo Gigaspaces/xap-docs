@@ -8,7 +8,7 @@ parent: admin-insightedge.html
  
   
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+ 
 
 <br>
  
