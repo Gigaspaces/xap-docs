@@ -49,7 +49,7 @@ The following is a partial list of the available functionality:
 
 The previous GigaSpaces CLI is still provided and supported, but will be removed in future versions. We encourage users to try the new CLI, and welcome feedback and requests for improvements.
 
-{{<infosign>}} For more information, see [Command Line Interface](../admin/admin-interactive-cli.html)
+{{<infosign>}} For more information, see [Command Line Interface](../admin/tools-cli.html)
 
 # Docker Support
 
