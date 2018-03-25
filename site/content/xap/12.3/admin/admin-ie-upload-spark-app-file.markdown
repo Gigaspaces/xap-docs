@@ -8,7 +8,7 @@ parent: admin-insightedge.html
  
   
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+**To upload a Spark Application:** 
 
 <br>
  
@@ -19,7 +19,45 @@ N/A
 {{%/tab%}}
 
 {{%tab "REST Manager API"%}}
-N/A
+
+*Path*
+
+`POST /spark/applications`
+
+*Description:*
+
+Submitting a Spark Application
+
+*Example Request:*
+
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ \ 
+   "mainClass": "string", \ 
+   "applicationJar": "string", \ 
+   "applicationArguments": [ \ 
+     "string" \ 
+   ], \ 
+   "name": "string", \ 
+   "sparkProperties": {} \ 
+ }' 'http://localhost:8090/v2/spark/applications'
+```
+ 
+*Example Response:*
+
+```bash
+```
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| mainClass |  |   |
+| applicationJar |  | Yes |
+| applicationArguments |  |   |
+| name | |  |
+| sparkProperties |  |   |
+
+ 
 {{%/tab%}}
 
 {{% /tabs %}}
