@@ -107,7 +107,7 @@ public class DataProcessor {
 
 ### The GigaSpace Core Middleware Component
 
-The [GigaSpace]({{%latestjavaurl%}}/the-gigaspace-interface.html) component is a POJO driven abstraction of the JavaSpaces specification. JavaSpaces is a service specification. It provides a distributed object exchange/coordination mechanism (which might or might not be persistent) for Java objects. It can be used to store the system state and implement distributed algorithms. In a space, all communication partners (peers) communicate by sharing states. It is an implementation of the [Tuple spaces idea](/product_overview/concepts.html#tuple).
+The [GigaSpace]({{%latestjavaurl%}}/the-gigaspace-interface-overview.html) component is a POJO driven abstraction of the JavaSpaces specification. JavaSpaces is a service specification. It provides a distributed object exchange/coordination mechanism (which might or might not be persistent) for Java objects. It can be used to store the system state and implement distributed algorithms. In a space, all communication partners (peers) communicate by sharing states. It is an implementation of the [Tuple spaces idea](/product_overview/concepts.html#tuple).
 
 JavaSpaces is used when someone wants to achieve scalability and availability, while reducing the complexity of the overall system. Processes perform simple operations to write new objects into a space, take objects from a space, or read (make a copy of) objects from a space.
 

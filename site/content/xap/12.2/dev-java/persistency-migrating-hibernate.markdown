@@ -10,7 +10,7 @@ weight: 900
 
 To benefit from data caching and other capabilities, it is worthwhile to migrate a legacy application that uses the Hibernate API, to the GigaSpace or GigaMap API. In such cases, these applications can benefit from the ability to scale when using the GigaSpaces Data Grid. This is achieved by partitioning the data across different spaces running on different machines, and having the business logic colocated with each partition. This allows the space and the business logic to run in same memory address, eliminating remote calls when accessing the data.
 
-The following tables show the correspondence between the Hibernate basic API methods to [GigaSpaces API](./the-gigaspace-interface.html) and the [GigaMap API](./map-api.html) methods.
+The following tables show the correspondence between the Hibernate basic API methods to [GigaSpaces API](./the-gigaspace-interface-overview.html) and the [GigaMap API](./map-api.html) methods.
 
 
 | org.hibernate.Session Method | XAP Method| XAP Method|

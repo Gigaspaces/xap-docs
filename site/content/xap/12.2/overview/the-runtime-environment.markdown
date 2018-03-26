@@ -110,7 +110,7 @@ The Grid Service Agent (GSA) is a process manager that can spawn and manage Serv
 
 Usually, a single GSA is run per machine. If you're setting up multiple Service Grids separated by [Lookup Groups or Locators](#lus), you'll probably start a GSA per machine per group.
 
-The GSA exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API]({{% latestjavaurl%}}/administration-and-monitoring-api.html) or the GigaSpaces UI.
+The GSA exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API](../dev-java/administration-and-monitoring-api.html) or the GigaSpaces UI.
 
 ## Process Management
 
@@ -122,8 +122,8 @@ Global processes take into account the number of process types [Grid Service Man
 
 # Optional Components
 
-* The Elastic Service Manager (ESM) manages the [Elastic Processing Unit]({{<latestjavaurl>}}/elastic-processing-unit.html) together with the GSM.
+* The Elastic Service Manager (ESM) manages the [Elastic Processing Unit](../dev-java/elastic-processing-unit-overview.html) together with the GSM.
 
-* The [Apache Load Balancer Agent]({{<latestjavaurl>}}/apache-load-balancer-agent.html) is used when deploying web applications.
+* The [Apache Load Balancer Agent](../dev-java/apache-load-balancer-agent.html) is used when deploying web applications.
 
-* The Transaction Manager (TXM) is an optional component. When executing transactions that spans multiple space partitions you should use the Jini Transaction Manager or the Distributed Transaction Manager. See the [Transaction Management]({{% latestjavaurl%}}/transaction-management.html) section for details.
+* The Transaction Manager (TXM) is an optional component. When executing transactions that spans multiple space partitions you should use the Jini Transaction Manager or the Distributed Transaction Manager. See the [Transaction Management](../dev/java/transaction-management.html) section for details.

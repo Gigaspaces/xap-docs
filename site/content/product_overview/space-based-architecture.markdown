@@ -63,6 +63,6 @@ Once a [Processing Unit library]({{% latestjavaurl%}}/the-processing-unit-struct
 - Backup Instance - standby space partition.
 - Standby Bean - Bean collocated with a backup instance.
 - Partition - Collection of primary and backup processing unit instances
-- [Polling container]({{% latestjavaurl%}}/polling-container.html) - Execution queue. Consumes objects from the space.
+- [Polling container]({{% latestjavaurl%}}/polling-container-overview.html) - Execution queue. Consumes objects from the space.
 {{%  /vbar %}}
 

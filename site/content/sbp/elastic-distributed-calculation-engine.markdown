@@ -106,7 +106,7 @@ The Trade Space class stores the following items:
 
 ## Elasticity
 
-The [Elastic Processing Unit]({{%latestjavaurl%}}/elastic-processing-unit.html) is used to deploy the data/compute grid and scale it dynamically. This allows you to increase the capacity of the data grid and leverage additional CPU resources for the calculation activity. With this demo, the user changes the capacity using a scale command that instructs the data/compute grid to increase its capacity (this in turn starts additional containers and re balances the data/compute grid) or decrease its capacity (by terminating containers and re balancing).
+The [Elastic Processing Unit]({{%latestjavaurl%}}/elastic-processing-unit-overview.html) is used to deploy the data/compute grid and scale it dynamically. This allows you to increase the capacity of the data grid and leverage additional CPU resources for the calculation activity. With this demo, the user changes the capacity using a scale command that instructs the data/compute grid to increase its capacity (this in turn starts additional containers and re balances the data/compute grid) or decrease its capacity (by terminating containers and re balancing).
 
 
 # Remote Calculations

@@ -103,7 +103,7 @@ Deploying via the CLI is based on the `deploy` command. This command accepts var
 
 # Elastic Processing Unit Deployment using the Admin API
 
-When deploying a partitioned Processing Unit or a partitioned Space it is recommended to use the new [Elastic Processing Unit](./elastic-processing-unit.html). This can be done via the [Admin API](./administration-and-monitoring-api.html). The following example shows how to deploy a processing unit as an Elastic PU.
+When deploying a partitioned Processing Unit or a partitioned Space it is recommended to use the new [Elastic Processing Unit](./elastic-processing-unit-overview.html). This can be done via the [Admin API](./administration-and-monitoring-api.html). The following example shows how to deploy a processing unit as an Elastic PU.
 
 ## Step 1 - Start a GigaSpaces agent on each machine:
 

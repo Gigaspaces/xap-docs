@@ -421,7 +421,7 @@ To enable the declarative transaction management:
 </beans>
 ```
 
-Note that you can also annotate beans exposed via [space based remoting](./space-based-remoting.html). If you include the `<tx:annotation-driven>` element in your `pu.xml` file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.
+Note that you can also annotate beans exposed via [space based remoting](./space-based-remoting-overview.html). If you include the `<tx:annotation-driven>` element in your `pu.xml` file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.
 
 # Programmatic Transaction Management
 

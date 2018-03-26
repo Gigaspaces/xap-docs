@@ -263,7 +263,7 @@ The space supports a number of APIs to allow for maximum flexibility to space cl
 The code space API is also supported in [.NET]({{<latestneturl>}}/). This allows clients to access the space via these languages. It also supports [interoperability]({{<latestjavaurl>}}/interoperability.html) between languages, so in effect you can write an object to the space using one language, and read it with another, say Java
 {{%  /info %}}
 
-- The [JPA API]({{<latestjavaurl>}}/jpa-api.html) allows you to use JPA annotations and execute JPQL queries on the space
+- The [JPA API]({{<latestjavaurl>}}/jpa-api-overview.html) allows you to use JPA annotations and execute JPQL queries on the space
 - The [Document API]({{<latestjavaurl>}}/document-api.html) allows you to develop your application in a schema-less manner. Using map-like objects, you can add attributes to data types in runtime.
 - The [Map API]({{<latestjavaurl>}}/map-api.html) allows you to access entries using a key/value approach. This is only recommended for specific scenarios where you only retrieve objects based on their IDs and would settle for the Map interface which is very limited in functionality compared to the core Space API. This API supports transactions.
 - The [JDBC API]({{<latestjavaurl>}}/jdbc-driver.html) allows you to access the space in a similar way to how you would access a relational database (note that it has a number of limitations).

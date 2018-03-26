@@ -44,7 +44,7 @@ To achieve these goals, Open Spaces adds the following components to the Spring 
 - [SLA-Driven Container](./service-grid.html#gsc) -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
 - [In-Memory Data Grid](./the-in-memory-data-grid.html) -- provides in-memory distributed data storage.
 - [Declarative Event Containers]({{% latestjavaurl%}}/messaging-support.html) -- for triggering events from the space into POJOs in pull or push mode.
-- [Remoting]({{% latestjavaurl%}}/space-based-remoting.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
+- [Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
 - [Declarative transaction support]({{% latestjavaurl%}}/transaction-management.html) for GigaSpaces In-Memory Data Grid.
 
 

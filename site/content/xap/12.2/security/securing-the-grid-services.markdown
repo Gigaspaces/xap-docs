@@ -41,7 +41,7 @@ The [XAP Manager](../admin/xap-manager.html) is a component which stacks togethe
 
 ## Elastic Processing Units
 
-When an [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html) is deployed, the GSM performs the initial provisioning and the *ESM* monitors it to ensure the elastic requirements are met. This means that when the service grid is secured, the ESM requires credentials with *Manage PU* and *Manage Grid* permissions to monitor and manage the elastic processing units. This is done using the `com.gs.esm.username` and `com.gs.esm.password` system properties.
+When an [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html) is deployed, the GSM performs the initial provisioning and the *ESM* monitors it to ensure the elastic requirements are met. This means that when the service grid is secured, the ESM requires credentials with *Manage PU* and *Manage Grid* permissions to monitor and manage the elastic processing units. This is done using the `com.gs.esm.username` and `com.gs.esm.password` system properties.
 
 
 # Grid Service Container

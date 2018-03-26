@@ -107,7 +107,7 @@ The Spring framework provides very elegant abstractions, which makes it very eas
 
 ## Jetty Web Container
 
-Jetty is a very popular web container, which provides support for JEE [web container]({{% latestjavaurl%}}/web-application-support.html) specification services such as: Servlet, JavaServer Pages, JavaServer Faces, and others.
+Jetty is a very popular web container, which provides support for JEE [web container]({{% latestjavaurl%}}/web-application-support-overview.html) specification services such as: Servlet, JavaServer Pages, JavaServer Faces, and others.
 
 The integration with the [Jetty web container]({{% latestjavaurl%}}/web-jetty-processing-unit-container.html) allows you to run JEE web applications (.war files) in GigaSpaces XAP.
 

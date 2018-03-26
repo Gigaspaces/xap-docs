@@ -13,7 +13,7 @@ From a design and implementation perspective, XAP shares a lot of patterns with 
 
 |Component|JEE|XAP|
 |:--------|:---|:--|
-|Persistency|JPA|[Hibernate]({{% latestjavaurl%}}/hibernate-space-persistency.html), [JPA]({{% latestjavaurl%}}/jpa-api.html)|
+|Persistency|JPA|[Hibernate]({{% latestjavaurl%}}/hibernate-space-persistency.html), [JPA]({{% latestjavaurl%}}/jpa-api-overview.html)|
 |Messaging|JMS,MDB|[JMS]({{%latestjavaurl%}}/messaging-support.html)<br>Polling Container {{%latestjavanet%}} <br>Notify Container {{% latestjavanet %}}<br> [Native Messaging API]({{% latestjavaurl%}}/session-based-messaging-api.html), MDB {{%  star %}} |
 |Security|JAAS, SSL|[Spring Security]({{%latestsecurl%}}/spring-security-bridge.html), [SSL]({{% latestsecurl%}}/securing-the-transport-layer-using-ssl.html)|
 |Web Session Management|HttpSession|[Global HttpSession sharing]({{% latestjavaurl%}}/global-http-session-sharing-overview.html)|

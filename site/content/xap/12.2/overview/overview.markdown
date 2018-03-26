@@ -29,7 +29,7 @@ The following is a brief overview of some XAP data grid capabilities.
 
 - [Grid SQL]({{% latestjavaurl%}}/query-sql.html)
 - [Event Processing]({{% latestjavaurl%}}/event-processing.html)
-- [RPC and Remoting]({{% latestjavaurl%}}/space-based-remoting.html)
+- [RPC and Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html)
 - [Map/Reduce]({{% latestjavaurl%}}/task-execution-overview.html)
 - [Aggregators]({{% latestjavaurl%}}/aggregators.html)
 - [Transaction Management]({{% latestjavaurl%}}/transaction-overview.html)
@@ -58,13 +58,13 @@ A module in SBA is called a [Processing Unit]({{% latestjavaurl%}}/the-processin
 
 - [Java Processing Unit]({{% latestjavaurl%}}/the-processing-unit-overview.html) - has code components in Java, and may contain a space component.
 - [.NET Processing Unit]({{% latestneturl%}}/the-processing-unit-overview.html) -  has its code components in .NET, and may contain a space component.
-- [Web Processing Unit]({{% latestjavaurl%}}/web-application-support.html) - contains web applications. This Processing Unit can be packaged as a standard JEE WAR (Web Archive) file, and may contain a space component.
+- [Web Processing Unit]({{% latestjavaurl%}}/web-application-support-overview.html) - contains web applications. This Processing Unit can be packaged as a standard JEE WAR (Web Archive) file, and may contain a space component.
 
 A Processing Unit package structure is defined, based on the technology:
 
 - A [Java Processing Unit]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html) is packaged usually as a JAR file, modeled after the Spring DI structure. The package can also be within a file structure based on the same structure.
 - A .NET Processing Unit is packaged as a directory structure. For more information, refer to the [XAP.NET Guide]({{% latestneturl%}}/the-processing-unit-overview.html).
-- A [Web Processing Unit]({{% latestjavaurl%}}/web-application-support.html#deployment) is packaged as a standard JEE WAR file.
+- A [Web Processing Unit]({{% latestjavaurl%}}/web-application-support-overview.html#deployment) is packaged as a standard JEE WAR file.
 
 The services will usually operate on data that is stored within the same space partition, providing memory access within the same process address space. This mode of interaction allows the minimal latency possible, as data is accessed by reference, as opposed to serialization required for out-of-process communication.
 

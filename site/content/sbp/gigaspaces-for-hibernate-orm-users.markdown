@@ -70,7 +70,7 @@ To learn how to do this, see [How to Switch Your Second-Level Cache Provider to 
 
 ## Step 2: Scaling Up Your Database by Adding a Data Grid
 
-If you need to scale up your database, you can use GigaSpaces as an In-Memory Data Grid. Your application communicates with the Data Grid using [The GigaSpace Interface]({{%latestjavaurl%}}/the-gigaspace-interface.html) or the [Map API]({{%latestjavaurl%}}/map-api.html) interfaces. On the back-end, GigaSpaces persists the data to your existing database using your existing Hibernate O/R mapping in [asynchronous manner]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html).
+If you need to scale up your database, you can use GigaSpaces as an In-Memory Data Grid. Your application communicates with the Data Grid using [The GigaSpace Interface]({{%latestjavaurl%}}/the-gigaspace-interface-overview.html) or the [Map API]({{%latestjavaurl%}}/map-api.html) interfaces. On the back-end, GigaSpaces persists the data to your existing database using your existing Hibernate O/R mapping in [asynchronous manner]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html).
 
 ![Hibernate DataGrid.jpg](/attachment_files/Hibernate DataGrid.jpg)
 
@@ -350,7 +350,7 @@ This topology requires XAP Premium Edition.
 - For the application components that are read/write (up to 50% write/remove/update) you should have the hibernate 2nd local cache to use a remote partitioned space topology.
 - For the application components that are read mostly (above 50% read) you should have the hibernate 2nd local cache to use a master [local cache]({{%latestjavaurl%}}/local-cache.html)/[local view]({{%latestjavaurl%}}/local-view.html) with remote partitioned space topology.
 - The embedded replicated cache topology is recommended only when having few client applications (up to 3) where the total amount of data can be accommodated within a single JVM and the application is 50% read/write.
-- For the application components that are write mostly (above 50% write/remove/update), you should **not use hibernate API directly** , but move into the [GigaSpace  Interface]({{%latestjavaurl%}}/the-gigaspace-interface.html) and use the [Mirror service]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html) (if you still want to persist the data). In this case you can leverage [SQLQuery]({{%latestjavaurl%}}/query-sql.html) or [Task Executors]({{%latestjavaurl%}}/task-execution-over-the-space.html) for complex distributed activities. In this case you should use remote partitioned space topology.
+- For the application components that are write mostly (above 50% write/remove/update), you should **not use hibernate API directly** , but move into the [GigaSpace  Interface]({{%latestjavaurl%}}/the-gigaspace-interface-overview.html) and use the [Mirror service]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html) (if you still want to persist the data). In this case you can leverage [SQLQuery]({{%latestjavaurl%}}/query-sql.html) or [Task Executors]({{%latestjavaurl%}}/task-execution-over-the-space.html) for complex distributed activities. In this case you should use remote partitioned space topology.
 
 {{% tip %}}
 See the [Moving from Hibernate to Space](/sbp/moving-from-hibernate-to-space.html) best practice for step by step instructions moving from Hibernate based application to GigaSpaces Data-Grid as the data access layer.

@@ -488,7 +488,7 @@ The Admin Domain Model has representation to all GigaSpaces level main actors. T
 |----|----|
 |Name            | [Space]({{% api-javadoc %}}/org/openspaces/admin/space/Space.html)|
 |Description     | Composed of one or more Space Instances to form a Space topology (cluster)|
-|Main Operations | Get all the currently running Space Instance that are part of the Space.{{<wbr>}}- Wait for X number of Space Instances to be up.{{<wbr>}}- Get aggregated Space statistics.{{<wbr>}}- Get a clustered [GigaSpace](./the-gigaspace-interface.html) to perform Space operations.|
+|Main Operations | Get all the currently running Space Instance that are part of the Space.{{<wbr>}}- Wait for X number of Space Instances to be up.{{<wbr>}}- Get aggregated Space statistics.{{<wbr>}}- Get a clustered [GigaSpace](./the-gigaspace-interface-overview.html) to perform Space operations.|
 |Runtime Events  | Register for Space Instance additions and removals events.{{<wbr>}}- Register for Space Instance change mode events (for all Space Instances that are part of the Space).{{<wbr>}}- Register for Space Instance replication status change events (for all Space Instances that are part of the Space).{{<wbr>}}- Register for aggregated Space statistics events (if monitoring).|
 
 
@@ -498,7 +498,7 @@ The Admin Domain Model has representation to all GigaSpaces level main actors. T
 |----|----|
 |Name            |[SpaceInstance]({{% api-javadoc %}}/org/openspaces/admin/space/SpaceInstance.html)|
 |Description     |An actual instance of a Space that is part of a topology (cluster), usually running within a Processing Unit Instance|
-|Main Operations | Get its Space Mode (primary or backup).{{<wbr>}}- Get its replication targets.{{<wbr>}}- Get a direct [GigaSpace](./the-gigaspace-interface.html) to perform Space operations.{{<wbr>}}- Get Space Instance statistics.|
+|Main Operations | Get its Space Mode (primary or backup).{{<wbr>}}- Get its replication targets.{{<wbr>}}- Get a direct [GigaSpace](./the-gigaspace-interface-overview.html) to perform Space operations.{{<wbr>}}- Get Space Instance statistics.|
 |Runtime Events  |Register for replication status change events.{{<wbr>}}- Register for Space Mode change events{{<wbr>}}- Register for Space Instance statistics (if monitoring).|
 
 

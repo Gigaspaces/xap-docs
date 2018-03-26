@@ -46,7 +46,7 @@ All of the above components are fully manageable from the GigaSpaces management 
 
 # Optional Components
 
-* The Elastic Service Manager (ESM) manages the [Elastic Processing Unit]({{<latestjavaurl>}}/elastic-processing-unit.html) together with the GSM.
+* The Elastic Service Manager (ESM) manages the [Elastic Processing Unit]({{<latestjavaurl>}}/elastic-processing-unit-overview.html) together with the GSM.
 
 * The [Apache Load Balancer Agent]({{<latestjavaurl>}}/apache-load-balancer-agent.html) is used when deploying web applications.
 

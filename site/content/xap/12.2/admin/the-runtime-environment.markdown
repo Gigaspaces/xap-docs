@@ -205,7 +205,7 @@ The following are the process types that come out of the box:
 |gsm|Defines a [Grid Service Manager](../overview/the-runtime-environment.html#gsm)|gsm.xml|
 |lus|Defines a [Lookup Service](../overview/the-runtime-environment.html#lus)| lus.xml|
 |gsm_lus|Defines a [Grid Service Manager](../overview/the-runtime-environment.html#gs) and [Lookup Service](../overview/the-runtime-environment.html#lus) within the same JVM|gsm_lus.xml|
-|esm|Defines an Elastic Service Manager which is required for deploying [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit.html)|esm.xml|
+|esm|Defines an Elastic Service Manager which is required for deploying [Elastic Processing Unit]({{%currentjavaurl%}}/elastic-processing-unit-overview.html)|esm.xml|
 
 Here is an example of the `gsc.xml` configuration file:
 

@@ -142,7 +142,7 @@ pollingEventListenerContainer.destroy();
  **EventDriven** , **@Polling** , **@Notify** cannot be placed on interface classes. You should place these on the implementation class.
 {{% /note %}}
 
-The example above performs single take operations (see below) using the provided template (a `Data` object with its processed flag set to `false`). If the take operation succeeds (a value is returned), the `SimpleListener` is invoked. The operations are performed on the configured [GigaSpace](./the-gigaspace-interface.html) bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
+The example above performs single take operations (see below) using the provided template (a `Data` object with its processed flag set to `false`). If the take operation succeeds (a value is returned), the `SimpleListener` is invoked. The operations are performed on the configured [GigaSpace](./the-gigaspace-interface-overview.html) bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
 
 # Primary/Backup
 
@@ -558,7 +558,7 @@ public class SimpleListener {
 
 ## Non-Blocking Receive Handler
 
-When working with a partitioned cluster and configuring the remote polling container to work against the [whole cluster](./the-gigaspace-interface.html#Clustered Flag), blocking operations (take with a timeout>0) are not allowed (when the routing field is not set on the template or SQLQuery). The default receive operation handlers support performing the receive operation in a non-blocking manner, by sleeping between non-blocking operations. For example, the `SingleTakeReceiveOperationHandler` performs a non-blocking take operation against the space and then sleeps for a configurable amount of time. A classic scenario where the Non-Blocking mode would be used is the [Master-Worker Pattern](/sbp/master-worker-pattern.html).
+When working with a partitioned cluster and configuring the remote polling container to work against the [whole cluster](./the-gigaspace-interface-overview.html#Clustered Flag), blocking operations (take with a timeout>0) are not allowed (when the routing field is not set on the template or SQLQuery). The default receive operation handlers support performing the receive operation in a non-blocking manner, by sleeping between non-blocking operations. For example, the `SingleTakeReceiveOperationHandler` performs a non-blocking take operation against the space and then sleeps for a configurable amount of time. A classic scenario where the Non-Blocking mode would be used is the [Master-Worker Pattern](/sbp/master-worker-pattern.html).
 
 {{% section %}}
 {{% column width="50%" %}}

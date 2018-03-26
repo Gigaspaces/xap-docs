@@ -446,7 +446,7 @@ public interface UserDAO {
 ```
 
 # The DAO Implementation
-The DAO implementation should be modified to use the [GigaSpace interface]({{%latestjavaurl%}}/the-gigaspace-interface.html) to access the data grid instead of using the `HibernateTemplate` that is accessing the database. The `GigaSpace` interface similar methods to the `HibernateTemplate` to write and [Query]({{%latestjavaurl%}}/query-sql.html) for objects.
+The DAO implementation should be modified to use the [GigaSpace interface]({{%latestjavaurl%}}/the-gigaspace-interface-overview.html) to access the data grid instead of using the `HibernateTemplate` that is accessing the database. The `GigaSpace` interface similar methods to the `HibernateTemplate` to write and [Query]({{%latestjavaurl%}}/query-sql.html) for objects.
 
 {{%tabs%}}
 

@@ -20,8 +20,8 @@ From a design and implementation perspective, XAP shares a lot of patterns with 
 |Transaction Management|JTA|[Spring Transaction via Jini Transaction Manager]({{% latestjavaurl%}}/transaction-management.html)|
 |Data Access|JDBC , Session Bean (Stateless or Stateful), Entity Bean|[JDBC]({{% latestjavaurl%}}/jdbc-driver.html), [Space]({{% latestjavaurl%}}/the-gigaspace-interface.html), [JPA]({{% latestjavaurl%}}/jpa-api.html) , Session Bean(Stateless or Stateful) {{%  star %}}, Entity Bean {{%  star %}}|
 |Remoting|EJB, IIOP, RMI|[Spring remoting over LRMI]({{% latestjavaurl%}}/executor-based-remoting.html) , EJB {{%  star %}}|
-|Web|Servlet, JSP | [Servlet, JSP via Jetty]({{% latestjavaurl%}}/web-application-support.html)|
-|Packaging and deployment|EAR , war|[jar]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html), [war]({{% latestjavaurl%}}/web-application-support.html) , EAR {{%  star %}}|
+|Web|Servlet, JSP | [Servlet, JSP via Jetty]({{% latestjavaurl%}}/web-application-support-overview.html)|
+|Packaging and deployment|EAR , war|[jar]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html), [war]({{% latestjavaurl%}}/web-application-support-overview.html) , EAR {{%  star %}}|
 |Contexts and Dependency Injection|JSR 299|Spring IOC|
 |System Management|JMX|[JMX]({{% latestjavaurl%}}/snmp-connectivity-via-alert-logging-gateway.html) , [SNMP]({{% latestjavaurl%}}/snmp-connectivity-via-alert-logging-gateway.html), [Native Admin API]({{% latestjavaurl%}}/administration-and-monitoring-api.html)|
 |Java Naming and Directory Service|JNDI|[Jini Lookup Service](./about-jini.html)|

@@ -35,7 +35,7 @@ Microservices deployment on a Cloud environment is very popular. As the Cloud is
 # Communication
 Microservices communicate with each other through language and platform-agnostic application programming interfaces (APIs). With XAP , microservices may use the following options:
 - Proactive communication - In this case microservices sharing their state by writing it into the space. This data is available for other microservices by proactively reading it. For faster data sharing , microservices can run a [client side cache]({{%latestjavaurl%}}/client-side-caching.html) that will store frequently used data.
-- Reactive communication - In this case microservices [registering]({{%latestjavaurl%}}/notify-container.html) for specific data they are interested with. When the desired data is written into the space by microservices, the registered microservices receiving notification with the interested data.
+- Reactive communication - In this case microservices [registering]({{%latestjavaurl%}}/notify-container-overview.html) for specific data they are interested with. When the desired data is written into the space by microservices, the registered microservices receiving notification with the interested data.
 
 In both cases the microservices are is loosely coupled with each other avoiding synchronous and blocking-calls whenever possible.
 

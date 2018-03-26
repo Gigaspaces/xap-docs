@@ -168,7 +168,7 @@ Here's an example of how this can be done using the GS CLI:
 
 The above command will deploy the management console web application to the GigaSpaces runtime environment, listening on port 80 with the root context path.
 
-For more details on XAP's web application support, please refer to [this page]({{%currentjavaurl%}}/web-application-support.html).
+For more details on XAP's web application support, please refer to [this page](../dev-java/web-application-support-overview.html).
 
 ## Deploying  to a 3rd Party JEE Servlet Container
 

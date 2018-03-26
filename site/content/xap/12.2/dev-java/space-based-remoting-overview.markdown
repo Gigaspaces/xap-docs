@@ -14,7 +14,7 @@ Remoting allows you to use remote invocations of POJO services, with the space a
 
 {{%fpanel%}}
 
-[Overview](./space-based-remoting.html){{<wbr>}}
+[Overview](./space-based-remoting-overview.html){{<wbr>}}
 Remoting services overview.
 
 [Executor based remoting](./executor-based-remoting.html){{<wbr>}}

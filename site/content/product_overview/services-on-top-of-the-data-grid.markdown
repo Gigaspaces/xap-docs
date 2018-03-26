@@ -49,13 +49,13 @@ The Space's Messaging and Events support provides messaging handlers that simpli
 ### Notify Container
 
 
-The Notify Container {{% latestjavanet "notify-container.html" %}}  is the equivalent of a publish/subscribe messaging. Uses the space.notify() API as the underlying event delivery mechanism. With this method the listener doesn't hold a connection to the space. The event handler is triggered by the space as soon as matching event arrived. Notify will call ALL matched subscribers at the same time.
+The Notify Container {{% latestjavanet "notify-container-overview.html" %}}  is the equivalent of a publish/subscribe messaging. Uses the space.notify() API as the underlying event delivery mechanism. With this method the listener doesn't hold a connection to the space. The event handler is triggered by the space as soon as matching event arrived. Notify will call ALL matched subscribers at the same time.
 
 
 
 ### Polling Container
 
-The Polling Container {{% latestjavanet "polling-container.html" %}}  is the equivalent of a point to point communication. It uses the space.take() API as the underlying event delivery mechanism. Unlike the notify container the Polling container blocks contentiously on space connection until a matching event arrives. Polling containers ensures that one and only one listener will be triggered per event even if there are more then one listener that matches that event.
+The Polling Container {{% latestjavanet "polling-container-overview.html" %}}  is the equivalent of a point to point communication. It uses the space.take() API as the underlying event delivery mechanism. Unlike the notify container the Polling container blocks contentiously on space connection until a matching event arrives. Polling containers ensures that one and only one listener will be triggered per event even if there are more then one listener that matches that event.
 
 
 You should use the notify container for one to many or many to many relationship and polling container for one to one or many to one relationship.

@@ -164,7 +164,7 @@ Information is divided into partitions when it is accessed into the cluster, usi
 For example, when writing one million orders into a space, the orders are (and should be) divided across the partitions in the cluster. The routing that specifies which order instance should be stored in which partition, is decided based on a property of the order itself. The application developer provides hints to the clustered proxy by suggesting a particular property within the entry. The clustered proxy decides, based on the hash-code of the property module, the size of the cluster.
 
 {{%  refer %}}
-For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{% latestjavaurl%}}/elastic-processing-unit.html) section.
+For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{% latestjavaurl%}}/elastic-processing-unit-overview.html) section.
 {{%  /refer %}}
 
  

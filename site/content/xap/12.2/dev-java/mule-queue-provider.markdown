@@ -117,7 +117,7 @@ For further information see {{%exurl "Mulesoft" "https://developer.mulesoft.com/
 
 # Transaction Support
 
-Operations performed on the Space when working with a virtualized queue are all performed using the `GigaSpace` bean. The `GigaSpace` bean supports [declarative transactions](./the-gigaspace-interface.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions) when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as due to its built-in transaction management strategy, which allows you to use OpenSpaces with [different transaction managers](./transaction-management.html), including XA.
+Operations performed on the Space when working with a virtualized queue are all performed using the `GigaSpace` bean. The `GigaSpace` bean supports [declarative transactions](./the-gigaspace-interface-overview.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions) when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as due to its built-in transaction management strategy, which allows you to use OpenSpaces with [different transaction managers](./transaction-management.html), including XA.
 
 Here is an example of how to configure working with queues using the Distributed Transaction Manager:
 

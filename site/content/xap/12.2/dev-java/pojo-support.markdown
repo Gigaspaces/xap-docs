@@ -110,7 +110,7 @@ When using a POJO as a space domain class, follow these guidelines:
 
 
 
-- A POJO class must implement the `Serializable`  interface if used as a parameter for a remote call ([Space Based Remoting](./space-based-remoting.html)).
+- A POJO class must implement the `Serializable`  interface if used as a parameter for a remote call ([Space Based Remoting](./sspace-based-remoting-overview.html)).
 
 
 

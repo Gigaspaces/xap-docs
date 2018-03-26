@@ -68,7 +68,7 @@ The [mirror service]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirro
 
 The feeder, web servlet, monitor, messaging and mirror are deployed as [Processing Units (PUs)](./a-typical-sba-application.html).
 
-The event processing engine is deployed as an [_Elastic_ PU]({{%latestjavaurl%}}/elastic-processing-unit.html) with [replication]({{%latestadmurl%}}/replication.html).  The elasticity enables the grid to scale up or down based on user-defined metrics.  In this case, we use the number of trade objects in the space, which is counted by the monitor PU.  When this exceeds 50, memory capacity is increased through the [admin API]({{%latestsecurl%}}/administration-and-monitoring-api-security.html).  This causes new [processing containers](/product_overview/service-grid.html#gsc) to be provisioned and the Elastic PUs to be rebalanced across the new nodes.  Scaling down is the reverse process.
+The event processing engine is deployed as an [_Elastic_ PU]({{%latestjavaurl%}}/elastic-processing-unit-overview.html) with [replication]({{%latestadmurl%}}/replication.html).  The elasticity enables the grid to scale up or down based on user-defined metrics.  In this case, we use the number of trade objects in the space, which is counted by the monitor PU.  When this exceeds 50, memory capacity is increased through the [admin API]({{%latestsecurl%}}/administration-and-monitoring-api-security.html).  This causes new [processing containers](/product_overview/service-grid.html#gsc) to be provisioned and the Elastic PUs to be rebalanced across the new nodes.  Scaling down is the reverse process.
 
 You can step through the demo code in your favorite IDE by deploying the target processing unit(s) in an [Integrated Processing Unit Container]({{%latestjavaurl%}}/deploying-and-running-the-processing-unit.html).
 
@@ -139,7 +139,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
         );
 ```
 
-Click [here]({{%latestjavaurl%}}/elastic-processing-unit.html#ElasticProcessingUnit-MaximumMemoryCapacity) to see how the number of processing containers is dynamically calculated based on the amount of memory.
+Click [here]({{%latestjavaurl%}}/elastic-processing-unit-overview.html#ElasticProcessingUnit-MaximumMemoryCapacity) to see how the number of processing containers is dynamically calculated based on the amount of memory.
 
 ## Space Document
 A [document store]({{%latestjavaurl%}}/document-api.html) is used for saving matched deals.  This document contains the following items:

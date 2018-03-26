@@ -40,7 +40,7 @@ To achieve these goals, OpenSpaces adds the following components to the Spring d
 - [SLA-Driven Container](./the-runtime-environment.html#gsc) -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
 - [In-Memory Data Grid](./the-in-memory-data-grid.html) -- provides in-memory distributed data storage.
 - [Declarative Event Containers]({{% latestjavaurl%}}/messaging-support.html) -- for triggering events from the space into POJOs in pull or push mode.
-- [Remoting]({{% latestjavaurl%}}/space-based-remoting.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
+- [Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
 - [Declarative transaction support]({{% latestjavaurl%}}/transaction-management.html) for GigaSpaces In-Memory Data Grid.
 
 
@@ -273,7 +273,7 @@ The code space API is also supported in [.NET]({{<latestneturl>}}/). This allows
 Building on top of the core API, the Space also provides higher level services  onto the application. These services, along with the space's basic capabilities, provide the full stack of middleware features that you can build your application with.
 [The Task Execution API]({{% latestjavaurl%}}/task-execution-over-the-space.html) allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
 [Event containers]({{% latestjavaurl%}}/messaging-support.html) use the core API's operations and abstract your code from all the low level details involved in handling the event, such as event registration with the space, transaction initiation, etc. This has the benefit of abstracting your code from the lower level API and allows it to focus on your business logic and the application behavior.
-[Space-Based Remoting]({{% latestjavaurl%}}/space-based-remoting.html) allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.
+[Space-Based Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html) allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.
 
 # Spring Integration
 

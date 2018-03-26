@@ -21,7 +21,7 @@ GigaSpaces XAP can be used as a self contained application platform in which cas
 Embedding GigaSpaces cluster can be as simple as starting the [GigaSpaces Agent](/product_overview/service-grid.html#gsa) in each machine.
 The agent is responsible for bootstrapping the GigaSpaces cluster environment implicitly. The agent uses a peer to peer communication between themselves to ensure that the environment is up and running also in an  event of a failure.
 
-Once the agent get started you can start using the [GigaSpaces Elastic middleware]({{%latestjavaurl%}}/elastic-processing-unit.html) directly from your application.
+Once the agent get started you can start using the [GigaSpaces Elastic middleware]({{%latestjavaurl%}}/elastic-processing-unit-overview.html) directly from your application.
 The Elastic Middleware automatically provision itself on the GigaSpaces cluster based on the capacity and other SLA requirements.
 
 The following example shows how to embed GigaSpaces Data Grid using this model.

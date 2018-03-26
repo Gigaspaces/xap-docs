@@ -37,7 +37,7 @@ You can use the `clustered` property to control this behavior or use the API to 
 You may use Spring based configuration or API to create a Clustered Proxy.
 
 ## Using Spring
-When using a Spring based `pu.xml` to construct the [GigaSpace]({{%currentjavaurl%}}/the-gigaspace-interface.html) bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered `GigaSpace` bean:
+When using a Spring based `pu.xml` to construct the [GigaSpace]({{%currentjavaurl%}}/the-gigaspace-interface-overview.html) bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered `GigaSpace` bean:
 
 ```xml
 <os-core:embedded-space id="space" space-name="mySpace"/>

@@ -62,7 +62,7 @@ A partitioned cluster with one primary and one backup for each partition:
 {{% /align %}}
 
 {{% refer %}}
-For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{%latestjavaurl%}}/elastic-processing-unit.html) section.
+For details about scaling a running space cluster **in runtime** see the [Elastic Processing Unit]({{%latestjavaurl%}}/elastic-processing-unit-overview.html) section.
 {{% /refer %}}
 
 The Space cluster is typically accessed from a remote JVM. Alternatively, applications that are collocated on the same JVM with a Space instance can access that instance locally without being exposed to the other instances (this is useful for implementing [SBA applications](./a-typical-sba-application.html)).
@@ -186,7 +186,7 @@ Refer to the [admin API documentation]({{%latestjavaurl%}}/administration-and-mo
 
 ## Deploying a Space Using the Elastic PU API
 
-The [Elastic PU]({{%latestjavaurl%}}/elastic-processing-unit.html) allows you to deploy a space that elastically scale to increase its capacity dynamically.
+The [Elastic PU]({{%latestjavaurl%}}/elastic-processing-unit-overview.html) allows you to deploy a space that elastically scale to increase its capacity dynamically.
 
 
 ```java

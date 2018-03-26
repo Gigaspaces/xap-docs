@@ -507,7 +507,7 @@ The GigaSpaces Container (GSC) is the runtime environment for GigaSpaces applica
 org.openspaces.grid.esm.level = INFO
 ```
 
-The Elastic Service Manager (ESM) is an implementation of the Elastic Middleware Services. It is built on top of the existing administrative API exposed by the GigaSpaces components. See the [Elastic Service Manager]({{%currentjavaurl%}}/elastic-processing-unit.html) page for more details.
+The Elastic Service Manager (ESM) is an implementation of the Elastic Middleware Services. It is built on top of the existing administrative API exposed by the GigaSpaces components. See the [Elastic Service Manager]({{%currentjavaurl%}}/elastic-processing-unit-overview.html) page for more details.
 
 
 ## GSA

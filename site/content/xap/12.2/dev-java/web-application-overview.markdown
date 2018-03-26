@@ -15,7 +15,7 @@ XAP's integration with the Service Grid allows you to deploy web applications (p
 
 {{%fpanel%}}
 
-[Overview](./web-application-support.html){{<wbr>}}
+[Overview](./web-application-support-overview.html){{<wbr>}}
 Allows you to deploy a web application (WAR) into the Service Grid.
 
 [Jetty Processing Unit Container](./web-jetty-processing-unit-container.html){{<wbr>}}

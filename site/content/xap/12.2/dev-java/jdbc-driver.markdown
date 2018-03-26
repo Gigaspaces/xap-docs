@@ -26,7 +26,7 @@ An alternative way of querying the space using SQL syntax is the [SQLQuery](./qu
 
 
 
-JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the space, beyond the template matching provided by the [The GigaSpace Interface](./the-gigaspace-interface.html).
+JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the space, beyond the template matching provided by the [The GigaSpace Interface](./the-gigaspace-interface-overview.html).
 
 XAP is not a full-fledged relational database and it does not support the full SQL92 standard (see [JDBC Supported Features](#supported-features)). However, the existing SQL support is extremely useful for applications that need to execute queries on a space for real-time queries.
 

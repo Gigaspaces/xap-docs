@@ -37,7 +37,7 @@ The mirroring service is one-way only - from the space cluster to the database o
 
 ### Data Source Integration
 
-GigaSpaces XAP provides two extension points (`SpaceDataSource`/`SpaceSynchronizationEndpoint` to data source integration. GigaSpaces provides a built-in [Hibernate]({{% latestjavaurl%}}/hibernate-space-persistency.html) implementation of these extensions. For implementation details please refer to [Space Persistency APIs Implementation ]({{% latestjavaurl%}}/space-persistency.html) in the Programmer's Guide.
+GigaSpaces XAP provides two extension points (`SpaceDataSource`/`SpaceSynchronizationEndpoint` to data source integration. GigaSpaces provides a built-in [Hibernate]({{% latestjavaurl%}}/hibernate-space-persistency.html) implementation of these extensions. For implementation details please refer to [Space Persistency APIs Implementation ]({{% latestjavaurl%}}/space-persistency-overview.html) in the Programmer's Guide.
 
 These extension points are used by the space to store and retrieve data from data sources (e.g. databases).
 
@@ -78,7 +78,7 @@ The space can be used as a [Hibernate second level cache](/sbp/gigaspaces-for-hi
 
 # Caching policies
 
-[Space Persistency]({{% latestjavaurl%}}/space-persistency.html) supports the **All In Cache** and **LRU** [Cache policies]({{% latestadmurl%}}/memory-management-overview.html).
+[Space Persistency]({{% latestjavaurl%}}/space-persistency-overview.html) supports the **All In Cache** and **LRU** [Cache policies]({{% latestadmurl%}}/memory-management-overview.html).
 
 ## All In Cache Policy
 
@@ -118,7 +118,7 @@ In both cases (ALL_IN_CACHE and LRU cache policy), you can [customize the data l
 
 # Space Persistency
 
-The space can load data from data sources, store data into data sources, and persist data into a relational data source or any other media via a custom [SpaceSynchronizationEndpoint]({{% latestjavaurl%}}/space-synchronization-endpoint-api.html) implementation. [Space Persistency]({{% latestjavaurl%}}/space-persistency.html) a built-in implementation using [Hibernate]({{% latestjavaurl%}}/hibernate-space-persistency.html), to store data in an existing data source and in the space. Data is loaded from the data source during space initialization (via the `SpaceDataSource` implementation), and from then onwards the application works with the space directly. Meanwhile, the data source is constantly updated with all the changes made in the space (via the `SpaceSynchronizationEndpoint` implementation). This is the recommended model.
+The space can load data from data sources, store data into data sources, and persist data into a relational data source or any other media via a custom [SpaceSynchronizationEndpoint]({{% latestjavaurl%}}/space-synchronization-endpoint-api.html) implementation. [Space Persistency]({{% latestjavaurl%}}/space-persistency-overview.html) a built-in implementation using [Hibernate]({{% latestjavaurl%}}/hibernate-space-persistency.html), to store data in an existing data source and in the space. Data is loaded from the data source during space initialization (via the `SpaceDataSource` implementation), and from then onwards the application works with the space directly. Meanwhile, the data source is constantly updated with all the changes made in the space (via the `SpaceSynchronizationEndpoint` implementation). This is the recommended model.
 
 The [Hibernate Space Persistency]({{% latestjavaurl%}}/hibernate-space-persistency.html) support RDBMS. The [Cassandra Space Persistency]({{% latestjavaurl%}}/cassandra-space-persistency.html) allows applications to leverage NoSQL Cassandra DB having a distributed database infrastructure as an alternative to RDBMS.
 
