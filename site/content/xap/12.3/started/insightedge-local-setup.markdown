@@ -18,9 +18,9 @@ Before running InsightEdge, verify that you have the following installed in your
 
 # Starting the Local Environment
 
-The InsightEdge environment consists of Spark and the XAP Data Grid.
+The InsightEdge environment consists of Spark and the XAP data grid. You can use the Command Line Interface tool to start InsightEdge as described below. 
 
-## Starting Full Environment
+## Starting a Complete Environment
 
 To start a complete InsightEdge environment on your local machine, run the following command from the `$XAP_HOME/bin` directory:
 
@@ -31,22 +31,22 @@ insightedge host run-agent --auto gsc=2
 This will start the following components on your machine:
 
 * Spark Master UI at {{%exurl "localhost:8080""http://localhost:8080"%}}
-   * Url for submitting spark jobs: `spark://127.0.0.1:7077`
+   * URL for submitting spark jobs: `spark://127.0.0.1:7077`
 * Spark Worker UI at {{%exurl "localhost:8081""http://localhost:8081"%}}
 * Zeppelin UI at {{%exurl "localhost:9090""http://localhost:9090"%}}
-* XAP Service grid:
+* XAP service grid:
     * XAP Manager at {{%exurl "localhost:8090""http://localhost:8090"%}}
 	* 2 Grid Service Containers (GSCs)
 	
-Then run the following command to deploy a space called `insightedge-space` with 2 partitions on those GSCs:
+Then run the following command to deploy a Space called `insightedge-space` with 2 partitions on those GSCs:
 
 ```bash
 insightedge space deploy --partitions=2 insightedge-space
 ```
 
-# Stopping Local Environment
+# Stopping the Local Environment
 
-To stop the environment, you can use `kill-agent` command that sends kill signal to all relevant processes:
+To stop the local environment, use the `kill-agent` command that sends a kill signal to all relevant processes:
 
 ```bash
 insightedge host kill-agent
@@ -54,8 +54,8 @@ insightedge host kill-agent
 
 # What's Next?
 
-* To get started with the Apache Zeppelin Web Notebook, see [Web notebook](insightedge-zeppelin.html).
-* To run the examples on your local InsightEdge environment, see [Running the examples](insightedge-examples.html)
+* To get started with the Apache Zeppelin Web Notebook, see [Web Notebook](insightedge-zeppelin.html).
+* To run the examples on your local InsightEdge environment, see [Running the Examples](insightedge-examples.html)
 * To create your first InsightEdge application, see [Developing Your First Application](insightedge-first-app.html)
-* To learn more on the `insightedge` script, use the `--help` option
-* To setup a cluster on a set of machines, see [Cluster Setup For InsightEdge](../admin/cluster_setup.html)
+* To learn more about the `insightedge` CLI script, use the `--help` option
+* To set up a cluster on a set of machines, see [Cluster Setup For InsightEdge](../admin/cluster_setup.html)

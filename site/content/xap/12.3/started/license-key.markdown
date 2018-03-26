@@ -21,9 +21,9 @@ After you download an InsightEdge or XAP commercial edition from the {{%exurl "D
 Product=InsightEdge;Version={{%version xap-version%}};Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2017-Sep-30;Hash=PNXrPIPANOOddPNQFdQQ
 ```
 
-If you're using the [Docker images](https://hub.docker.com/u/gigaspaces/) for evaluation, add the `-e XAP_LICENSE=...` option to the docker run command using the license key in the email.
+If you're using [Docker images](https://hub.docker.com/u/gigaspaces/) for evaluation, add the `-e XAP_LICENSE=...` option to the Docker run command, using the license key in the email.
 
-The same evaluation license is used for both InsightEdge and XAP downloaders, enabling you to evaluate the full InsightEdge Enterprise edition, which contains all available features for all the commercial editions.
+The same evaluation license is used for both InsightEdge and XAP downloaders, enabling you to evaluate the full InsightEdge Enterprise edition, which contains all of the available features for all commercial editions.
 
 {{% note "Note"%}}
 If you are using XAP.NET, the `xap-license.txt` file is located at `<XAP_HOME>\Runtime\xap-license.txt`.<br>

@@ -35,12 +35,12 @@ The following list describes XAP-related environment variables:
 |:----------------------|:-----------------------------------------------------|:------------|
 |  JAVA_HOME            | The directory in which Java is installed             | |
 |  XAP_HOME             | The GigaSpaces XAP home directory                    | Automatically set via the folder structure |
-|  XAP_LICENSE          | License key (for premium and enterprise)             | |
+|  XAP_LICENSE          | License key (for Premium and Enterprise editions)             | |
 |  XAP_LOOKUP_GROUPS    | Lookup Service groups used for multicast discovery   | {{%version "default-lookup-group"%}} |
 |  XAP_LOOKUP_LOCATORS  | Lookup Service Locators used for unicast discovery   | |
 |  XAP_NIC_ADDRESS      | The network interface card which will be used by XAP | Automatically set to the host name |
 |  XAP_SECURITY_POLICY  | The default policy file.|XAP_HOME/policy/policy.all  | |
-|  XAP_LOGS_CONFIG_FILE | The location of XAP logging configuration            | XAP_HOME/config/log/xap_logging.properties |
+|  XAP_LOGS_CONFIG_FILE | The location of the XAP logging configuration        | XAP_HOME/config/log/xap_logging.properties |
 |  XAP_MANAGER_OPTIONS  | Java options for the XAP Manager                     | |
 |  XAP_GSC_OPTIONS      | Java options for the Grid Service Container (GSC)    | |
 |  XAP_GSM_OPTIONS      | Java options for the Grid Service Manager (GSM) 	{{%exclamation%}}      | |
@@ -50,7 +50,7 @@ The following list describes XAP-related environment variables:
 |  XAP_GUI_OPTIONS      | Java options for the GigaSpaces Management Center    | |
 |  XAP_WEBUI_OPTIONS    | Java options for the Web Management Console          | |
 
-{{%exclamation%}} When running in ./gs-agent --manager configuration, this environment variable is ignored. 
+{{%exclamation%}} When running in `./gs-agent --manager` configuration, this environment variable is ignored. 
 
 
 # InsightEdge Environment Variables
@@ -59,17 +59,17 @@ The following list describes InsightEdge-related environment variables:
 
 |Name                       |Description                                            |Default Value|
 |:--------------------------|:------------------------------------------------------|:------------|
-| SPARK_HOME                | The directory in which Spark is installed             | `XAP_HOME/insightedge` |
+| SPARK_HOME                | The directory where Spark is installed                | `XAP_HOME/insightedge` |
 | INSIGHTEDGE_CLASSPATH_EXT | Extra classpath to append to InsightEdge components   | |
 | INSIGHTEDGE_SPACE_NAME    | Space name to use in InsightEdge scripts and examples | `insightedge-space`    |
 
-In addition, you can use standard Spark environment variables as well - The InsightEdge platform loads spark components in a manner which preserves their usage. For example, set `SPARK_MASTER_PORT` to override the default `7077` port.
+In addition, you can also use standard Spark environment variables. The InsightEdge platform loads Spark components in a manner which preserves their usage. For example, set `SPARK_MASTER_PORT` to override the default `7077` port.
 
-# Upgrading From Previous Versions
+# Upgrading from Previous Versions
 
-In previous versions, environment variable names were inconsistent, which occasionally led to confusion. Starting with XAP 11.0, all XAP related environment variables have been renamed to have a `XAP_` prefix, so they're easier to identify. The following table maps the pre-11.0 names to the new names:
+In previous versions, environment variable names were inconsistent, which occasionally led to confusion. Starting with XAP 11.0, all XAP-related environment variables have been renamed with a `XAP_` prefix, so they're easier to identify. The following table maps the pre-11.0 names to the current names:
 
-|Name before 11.0|Name in 12.0|
+|Name before 11.0|Name in 12.0 and higher|
 |:---|:----------|
 |  JSHOMEDIR  |  XAP_HOME  |
 |  LOOKUPGROUPS  |  XAP_LOOKUP_GROUPS  |
@@ -85,9 +85,8 @@ In previous versions, environment variable names were inconsistent, which occasi
 
 {{%anchor extension %}}
 
-{{%note "Note"%}}
+{{%info "Info"%}}
  If you'd rather postpone or avoid changing your scripts to the new names, you can use the new `setenv-overrides` script to map the corresponding values. For example, suppose in the past you've needed to override the default lookup groups and the GSC options. If you've followed the best practices, you probably created a custom script to set those environment variables before calling the original script, something like:
-{{%/note%}}
 
 
 {{%tabs%}}
@@ -124,3 +123,5 @@ set XAP_GSC_OPTIONS=%GSC_JAVA_OPTIONS%
 ```
 {{%/tab%}}
 {{%/tabs%}}
+
+{{%/info%}}
