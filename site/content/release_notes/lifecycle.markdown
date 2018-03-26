@@ -95,9 +95,10 @@ Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts
 |10.1 b12600     |March 2015	|10.1.1 b12800 in April 2015	       |No Plans|July 2017	 |
 |10.2 b13800     |July 2015	    |10.2.1 b14000 in Nov. 2015	       |No Plans|April 2018 |	 
 |11.0 b14800     |April 2016	| 	                                   |No Plans|January 2019 |     
-|12.0 b16000     |<nobr>January 2017<nobr> |                           |No Plans|March 2019  |            
-|12.1 b17100     |March 2017	|12.1.1 b17100 in June 2017           |No Plans| September 2019 |
-|12.2 b18000     |Sept. 2017	|12.2.1 b18100 in Nov. 2017                                    |No Plans|  |
+|12.0 b16000     |<nobr>January 2017<nobr> |12.0.1 b16600 in Sep. 2016 |No Plans|March 2019  |            
+|12.1 b17100     |March 2017	|12.1.1 b17100 in June 2017            |No Plans| September 2019 |
+|12.2 b18000     |Sept. 2017	|12.2.1 b18100 in Nov. 2017            |No Plans| March 2020 |
+|12.3 b19000     |March 2018	|                                      |No Plans|  |
                          
         
 **[1] Product Releases** – GigaSpaces R4.x and R5.x refer to all editions including the Enterprise (EE), Caching (EDG) and Community editions. R6.x refers to all editions including the XAP, Caching (EDG) and Community editions.<br>
