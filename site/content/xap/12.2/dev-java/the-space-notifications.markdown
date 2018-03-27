@@ -40,7 +40,7 @@ public class EmployeeListener {
 	}
 
 	@SpaceDataEvent
-	public Employee eventListener(Empoyee event) {
+	public Employee eventListener(Employee event) {
 		// process Employee
 		System.out.println("Notifier Received an Employee");
 		return null;
