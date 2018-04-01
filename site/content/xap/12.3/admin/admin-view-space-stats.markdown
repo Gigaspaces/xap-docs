@@ -31,7 +31,7 @@ This command shows Space operations statistics (Object count, write/read/take/ex
 *Input Example:*
  
 ```bash
-xap space info --operation-stats mySpace
+<XAP-HOME>/bin/xap space info --operation-stats mySpace
 ```
  
 *Output Example:*

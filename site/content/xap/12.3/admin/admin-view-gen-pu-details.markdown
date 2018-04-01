@@ -26,7 +26,7 @@ This command lists all the Processing Units in a table with the name, deployment
 *Input Example:*
 
 ```bash
-xap pu list
+<XAP-HOME>/bin/xap pu list
 ```
 
 *Output Example:*
@@ -51,7 +51,7 @@ This command lists all of the instances for a given Processing Unit, along with 
 *Input Example:*
  
 ```bash
-xap pu list-instances data-feeder
+<XAP-HOME>/bin/xap pu list-instances data-feeder
 ```
 
 *Output Example:*

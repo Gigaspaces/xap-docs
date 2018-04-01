@@ -97,7 +97,7 @@ Disable a running Processing Unit for maintenance.
 *Input Example:*
 
 ```bash
-xap pu quiesce  myPu --description="start friday maintenance"
+<XAP-HOME>/bin/xap pu quiesce  myPu --description="start friday maintenance"
 ```
 
 *Parameters and Options:*
@@ -184,7 +184,7 @@ Enable a quiesced Processing Unit.
 *Input Example:*
 
 ```bash
-xap pu unquiesce  myPu
+<XAP-HOME>/bin/xap pu unquiesce  myPu
 ```
 
 *Parameters and Options:*
@@ -315,7 +315,7 @@ Relocate a Processing Unit Instance to another container. If container ID is not
 *Input Example:*
 
 ```bash
-xap pu relocate  myPu~1 container~1
+<XAP-HOME>/bin/xap pu relocate  myPu~1 container~1
 ```
 
 *Parameters and Options:*
@@ -401,7 +401,7 @@ Add one instance to the specified **stateless** Processing Unit.
 *Input Example:*
 
 ```bash
-xap pu increment  myPu
+<XAP-HOME>/bin/xap pu increment  myPu
 ```
 
 *Parameters and Options:*
@@ -478,7 +478,7 @@ Remove one instance from the specified **stateless** Processing Unit
 *Input Example:*
 
 ```bash
-xap pu decrement myPu myPu~3
+<XAP-HOME>/bin/xap pu decrement myPu myPu~3
 ```
 
 *Parameters and Options:*

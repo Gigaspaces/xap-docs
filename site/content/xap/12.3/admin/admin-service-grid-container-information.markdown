@@ -26,12 +26,12 @@ parent: admin-service-grid.html
 
 *Description:*
  
-Lists all containers.
+Lists all containers on current host.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container list 
+<XAP-HOME>/bin/xap container list
 ```
 
 *Output Example:*
@@ -51,12 +51,12 @@ None
 
 *Description:*
  
-Display container information.
+Show information for the specified container.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container info admin~22200 
+<XAP-HOME>/bin/xap container info admin~22200
 ```
 
 *Output Example:*
@@ -67,7 +67,7 @@ Display container information.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | \<container ID\> | The ID of container to get information from|
+|Parameter | container ID | The ID of container to get information from|
  
  
 

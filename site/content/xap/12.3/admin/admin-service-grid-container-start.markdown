@@ -32,7 +32,7 @@ Starting a container.
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container start myHost 
+<XAP-HOME>/bin/xap container start myHost
 ```
 
  
@@ -40,7 +40,7 @@ Starting a container.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | host | Host where to create the container|
+|Parameter | host | Host name to create container on.|
 |Option    |  ---memory:\<memory\> | Container's JVM max memory.|
 |Option    | ---zone=\<zone name\> | Container's zone.|
 |Option    |---property=\<String=String\> | Additional System properties.|
@@ -126,7 +126,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Stopping a container.
+Kill (stop) the specified container.
 
 *Input Example:*
 
@@ -139,7 +139,7 @@ Stopping a container.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | \<container\> ID | ID of the container to kill|
+|Parameter | container ID | ID of the container to kill|
  
  
 {{%/tab%}}
@@ -213,12 +213,12 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Restarting a container.
+Restart the specified container.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap container restart containerId
+<XAP-HOME>/bin/xap container restart admin~11100
 ```
 
  
@@ -226,7 +226,7 @@ Restarting a container.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | \<container ID\> | ID of the container to restart|
+|Parameter | container ID | ID of the container to restart|
  
 {{%/tab%}}
 

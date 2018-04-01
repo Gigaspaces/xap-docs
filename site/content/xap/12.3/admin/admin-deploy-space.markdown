@@ -72,7 +72,7 @@ Two instances for the first parition (mySpace~1_1,mySpace~1_2) and two for the s
 Note that you need to have containers running (refer to  [Starting a Container](./admin-service-grid-container-start.html) )
 
 ```bash
-xap space deploy --ha --partitions=2 mySpace
+<XAP-HOME>/bin/xap space deploy --ha --partitions=2 mySpace
 ```
 
 {{%/tab%}}

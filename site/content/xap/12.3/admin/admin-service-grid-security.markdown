@@ -8,7 +8,10 @@ parent: admin-service-grid.html
  
   
 **To access a secured service grid:**
- 
+
+When security is in place, the administration tools require credentials to securely access and operate the secured components.
+Access is granted to authenticated users, while operations are restricted based on the granted permission.
+For more information, refer to the [Getting Started - Security](../started/xap-tutorial-part10.html) section.
 
 <br>
  
@@ -18,13 +21,13 @@ parent: admin-service-grid.html
 
 *Command:*
 
-`xap undeploy <pu name> --username=user --password=password` 
+`xap --username=<user name> --password=<password> <command>`
 
 
 *Example:*
 
 ```bash
-<XAP-HOME>/bin/xap --uesrname=user password=password ...... additional parameters and options
+<XAP-HOME>/bin/xap --username=user --password=pass  host list
 ```
 
 *Parameters and Options:*
@@ -38,7 +41,7 @@ parent: admin-service-grid.html
 
 {{%tab "REST Manager API"%}}
 
-See securing the Service Grid property `-Dcom.gs.security.enabled=true`
+See section on [REST Manager API security](../security/securing-the-REST-manager.html)
 
 {{%/tab%}}
 

@@ -27,7 +27,7 @@ These configuration parameters can be set in the `<XAP_HOME>/bin/setenv-override
 Master nodes consist of a XAP Manager and a Spark master. On each master node, run the following:
 
 ```bash
-insightedge host run-agent --auto
+<XAP-HOME>/bin/insightedge host run-agent --auto
 ```
 
 ## Starting Slave Nodes
@@ -37,7 +37,7 @@ Slave nodes consist of XAP containers and a Spark worker. On each slave node, ru
 Use `--containers=n` to put XAP containers on a specific machine. If not specified, no XAP containers will be started.
 
 ```bash
-insightedge host run-agent --spark-worker [--containers=n]
+<XAP-HOME>/bin/insightedge host run-agent --spark-worker [--containers=n]
 ```
 
 After installation, you can verify that the Spark workers are up and running using the Spark master web UI at `http://your-master-ip-here:8080`.
@@ -46,5 +46,5 @@ After installation, you can verify that the Spark workers are up and running usi
 
 ```bash
 #   topology 2,1 starts 2 primary partitions with 1 backup partition for each primary
-insightedge space deploy --partitions=2 --ha insightedge-space
+<XAP-HOME>/bin/insightedge space deploy --partitions=2 --ha insightedge-space
 ```

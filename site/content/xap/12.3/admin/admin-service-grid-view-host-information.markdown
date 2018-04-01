@@ -7,11 +7,9 @@ parent: admin-service-grid.html
 ---
  
   
+A host is discovered by having a [Grid Service Agent](./admin-service-grid-agent.html) running on it.
 
- 
-
- 
- 
+<br>
 
 **To view host information:**
 <br>
@@ -32,7 +30,7 @@ Lists all host machines.
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap host list 
+<XAP-HOME>/bin/xap host list
 ```
 
 *Output Example:*
@@ -48,16 +46,16 @@ None
 
 *Command:*
 
-`xap host info --containers <host name>`  
+`xap host info --containers <name>`
 
 *Description:*
  
-Lists all containers on a host machines.
+Lists all containers on a host machine.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap host info --containers localhost 
+<XAP-HOME>/bin/xap host info --containers localhost
 ```
 
 *Output Example:*
@@ -69,23 +67,23 @@ Lists all containers on a host machines.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | host name |Name of the host |
+|Parameter | name | Name (or IP address) of the host |
 
 
 **List Operating System Information**
 
 *Command:*
 
-`xap host info --os <host name>`  
+`xap host info --os <name>`
 
 *Description:*
  
-Lists all Operating System details for a host machines.
+Lists all Operating System details for a host machine.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap host info --os localhost 
+<XAP-HOME>/bin/xap host info --os localhost
 ```
 
 *Output Example:*
@@ -97,23 +95,23 @@ Lists all Operating System details for a host machines.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | host name |Name of the host |
+|Parameter | name | Name (or IP address) of the host  |
 
 
 **List Operating System Statistics**
 
 *Command:*
 
-`xap host info --os-stats <host name>`  
+`xap host info --os-stats <name>`
 
 *Description:*
  
-Lists all Operating System Statistics for a host machines.
+Lists all Operating System Statistics for a host machine.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap host info --os-stats localhost 
+<XAP-HOME>/bin/xap host info --os-stats localhost
 ```
 
 *Output Example:*
@@ -125,7 +123,7 @@ Lists all Operating System Statistics for a host machines.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | host name |Name of the host |
+|Parameter | name | Name (or IP address) of the host  |
 
 {{%/tab%}}
 

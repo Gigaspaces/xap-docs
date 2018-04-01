@@ -21,7 +21,7 @@ parent: admin-spaces-pu.html
 *Input Example:*
 
 ```bash
-xap pu undeploy myPu
+<XAP-HOME>/bin/xap pu undeploy myPu
 ```
 
 *Parameters and Options:*

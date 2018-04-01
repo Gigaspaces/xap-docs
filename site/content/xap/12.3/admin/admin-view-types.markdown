@@ -57,7 +57,7 @@ This command shows information for the specified Space instance details and data
 *Input Example:*
  
 ```bash
-xap space info-instance --type-stats mySpace~1_1
+<XAP-HOME>/bin/xap space info-instance --type-stats mySpace~1_1
 ```
  
 *Output Example:*

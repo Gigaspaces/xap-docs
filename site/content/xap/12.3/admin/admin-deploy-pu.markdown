@@ -44,7 +44,7 @@ Deploys a Processing Unit to the Service Grid.
 This example deploys a PU named **myPu** with 2 partitions using the mypu.jar file.
 
 ```bash
-xap pu deploy --partitions=2  myPu  mypu.jar
+<XAP-HOME>/bin/xap pu deploy --partitions=2  myPu  mypu.jar
 ```
 {{%/tab%}}
 

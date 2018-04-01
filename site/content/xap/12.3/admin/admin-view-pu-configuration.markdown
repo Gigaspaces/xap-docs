@@ -56,7 +56,7 @@ Display detailed information for the given Processing Unit instance.
 *Input Example:*
 
 ```bash
-xap pu info-instance mySpace~1_1
+<XAP-HOME>/bin/xap pu info-instance mySpace~1_1
 ```
  
 *Output Example:*

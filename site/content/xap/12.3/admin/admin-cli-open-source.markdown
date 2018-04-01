@@ -29,7 +29,7 @@ None.
 *Input Example:*
 
 ```bash
-xap demo
+<XAP-HOME>/bin/xap demo
 ``` 
 
 
@@ -61,15 +61,15 @@ This example runs a Space named **mySpace** with high availability and 2 partiti
 This will start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).
 
 ```bash
-xap space run --lus --partitions=2 --ha mySpace
+<XAP-HOME>/bin/xap space run --lus --partitions=2 --ha mySpace
 ```
 
 To run instances separately, run each of the following commands on different hosts (note that --lus is specified for discovery):
 ```bash
-xap space run --lus --partitions=2 --ha --instances=1_1 mySpace
-xap space run --partitions=2 --ha --instances=1_2 mySpace
-xap space run --lus --partitions=2 --ha --instances=2_1 mySpace
-xap space run --partitions=2 --ha --instances=2_2 mySpace
+<XAP-HOME>/bin/xap space run --lus --partitions=2 --ha --instances=1_1 mySpace
+<XAP-HOME>/bin/xap space run --partitions=2 --ha --instances=1_2 mySpace
+<XAP-HOME>/bin/xap space run --lus --partitions=2 --ha --instances=2_1 mySpace
+<XAP-HOME>/bin/xap space run --partitions=2 --ha --instances=2_2 mySpace
 ```
 
 ## Processing Unit
@@ -99,7 +99,7 @@ Run a standalone Processing Unit
 This example deploys a Space named **mySpace** with high availability and 5 partitions. 
 
 ```bash
-xap pu run --lus --ha --partitions=2 myPu.jar
+<XAP-HOME>/bin/xap pu run --lus --ha --partitions=2 myPu.jar
 ```
 
 
@@ -122,5 +122,5 @@ None.
 *Input Example:*
 
 ```bash
-insightedge demo
+<XAP-HOME>/bin/insightedge demo
 ```

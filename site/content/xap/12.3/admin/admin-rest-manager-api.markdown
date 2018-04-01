@@ -13,12 +13,12 @@ To begin, start a standalone XAP Manager on your machine using the following com
 {{%tabs%}}
 {{%tab Unix%}}
 ```bash
-./gs-agent.sh --manager-local
+<XAP-HOME>/bin/gs-agent.sh --manager-local
 ```
 {{%/tab%}}
 {{%tab Windows%}}
 ```bash
-gs-agent.bat --manager-local
+<XAP-HOME>\bin\gs-agent.bat --manager-local
 ```
 {{%/tab%}}
 {{%/tabs%}}

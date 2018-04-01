@@ -12,9 +12,12 @@ parent: admin-service-grid.html
 
 **To view alerts:**
 <br>
- 
+
+_Not yet available when using the **Command Line Interface** or the **REST Manager API** administration tools._
+
 {{%tabs%}}
 
+<!--
 {{%tab "Command Line Interface"%}}
 N/A
 {{%/tab%}}
@@ -22,6 +25,7 @@ N/A
 {{%tab "REST Manager API"%}}
 N/A
 {{%/tab%}}
+-->
 
 {{%tab "Web Management Console"%}}
 

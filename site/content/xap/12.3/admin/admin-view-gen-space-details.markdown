@@ -30,7 +30,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 *Input Example:*
  
 ```bash
-xap space list
+<XAP-HOME>/bin/xap space list
 ```
  
 *Output Example:*
@@ -55,7 +55,7 @@ The Space instances for the given Space are listed with ID, Mode, HostId, and Co
 *Input Example:*
  
 ```bash
-xap space list-instances mySpace
+<XAP-HOME>/bin/xap space list-instances mySpace
 ```
 
 
