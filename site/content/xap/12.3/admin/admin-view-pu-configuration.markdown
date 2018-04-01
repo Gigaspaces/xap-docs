@@ -18,7 +18,7 @@ parent: admin-spaces-pu.html
 
 *Command:*
 
-`xap pu info <pu name>`
+`xap pu info <name>`
 
 *Description:*
 
@@ -39,7 +39,7 @@ Display detailed information for the given Processing Unit.
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | \<name\> |Name of the processing unit to display details|
+|Parameter | name |Name of the processing unit to display details|
  
 
 
@@ -56,7 +56,7 @@ Display detailed information for the given Processing Unit instance.
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu info-instance alertSpace~1
+xap pu info-instance mySpace~1_1
 ```
  
 *Output Example:*

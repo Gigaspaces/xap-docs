@@ -16,12 +16,12 @@ parent: admin-spaces-pu.html
 
 *Command:*
 
-`xap pu undeploy <pu name>` 
+`xap pu undeploy <name>`
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu undeploy myPu 
+xap pu undeploy myPu
 ```
 
 *Parameters and Options:*

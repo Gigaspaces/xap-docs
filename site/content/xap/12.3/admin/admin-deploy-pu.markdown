@@ -26,15 +26,15 @@ Deploys a Processing Unit to the Service Grid.
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | \<name\> |Name of the processing unit to deploy|
-|Parameter | \[file\] |Path to processing unit file (.jar or .zip) |
+|Parameter | name |Name of the processing unit to deploy|
+|Parameter | file |Path to processing unit file (.jar or .zip) |
 |Option    | backups=\<backups\> |Number of backups per partition.|
 |Option    | instances=\<instances\> |Number of instances.|
-|Option    | max-instances-per-machine=\<maxInstancesPerMachine\>|Determines maximum number of instances in same machine.|
-|Option    | max-instances-per-vm=\<maxInstancesPerVM\>| Determines maximum number of instances in same VM. |
+|Option    | max-instances-per-machine=\<maxInstancesPerMachine\>|Determines maximum number of instances in same machine (from each partition).|
+|Option    | max-instances-per-vm=\<maxInstancesPerVM\>| Determines maximum number of instances in same VM (from each partition). |
 |Option    |partitions=\<partitions\> | Number of partitions. |
 |Option    |property=\<String,String\>|Context properties.|
-|Option    |schema=\<schema\>|Cluster schema.|
+|Option    |schema=\<schema\>|Cluster schema (partitioned, sync_replicated, async_replicated).|
 |Option    |version | Display version information.|
 |Option    |zones=\<zones\>| Which zones can host this processing unit.|
 
@@ -44,7 +44,7 @@ Deploys a Processing Unit to the Service Grid.
 This example deploys a PU named **myPu** with 2 partitions using the mypu.jar file.
 
 ```bash
-<XAP-HOME>/bin/xap pu deploy --partitions=2  myPu  mypu.jar
+xap pu deploy --partitions=2  myPu  mypu.jar
 ```
 {{%/tab%}}
 

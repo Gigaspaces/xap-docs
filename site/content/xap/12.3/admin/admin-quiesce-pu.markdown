@@ -88,24 +88,24 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 *Command:*
 
-`xap pu quiesce <pu name>`
+`xap pu quiesce <name>`
 
 *Description:*
  
-Putting a Processing Unit into maintenance  mode.
+Disable a running Processing Unit for maintenance.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu quiesce  myPu startingUpdate
+xap pu quiesce  myPu --description="start friday maintenance"
 ```
 
 *Parameters and Options:*
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter |name | The name of the Pu to quiesce|
-|Option | comment | Quiesce description .|
+|Parameter |name | The name of the Processing Unit to disable|
+|Option | description | Reason for disabling the Processing Unit (for auditing purposes).|
 
 {{%/tab%}}
 
@@ -179,19 +179,19 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Unquiesce a Processing Unit.
+Enable a quiesced Processing Unit.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu unquiesce  myPu  
+xap pu unquiesce  myPu
 ```
 
 *Parameters and Options:*
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter |name | The name of the Pu to unquiesce|
+|Parameter |name | The name of the quiesced Processing Unit to enable|
  
  
 {{%/tab%}}
@@ -256,8 +256,11 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 **To restart a Processing Unit:**
 
+_Not yet available when using the **Command Line Interface** or the **REST Manager API** administration tools._
 
 {{%tabs%}}
+
+<!--
 {{%tab "Command Line Interface"%}}
 N/A
 {{%/tab%}}
@@ -265,7 +268,7 @@ N/A
 {{%tab "REST Manager API"%}}
 N/A
 {{%/tab%}}
-
+-->
 
 {{%tab "Web Management Console"%}}
 
@@ -303,24 +306,24 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Command:*
 
-`xap pu relocate <pu instance ID> [<container ID>]`
+`xap pu relocate <instance ID> [<container ID>]`
 
 *Description:*
  
-Relocating a Processing Unit Instance to another container.
+Relocate a Processing Unit Instance to another container. If container ID is not specified, will relocate to any available container.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu relocate  myPu~1 container~1 
+xap pu relocate  myPu~1 container~1
 ```
 
 *Parameters and Options:*
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | \<instance ID\> | ID of Processing unit instance to relocate|
-|Parameter | [\<container ID\>] | ID of  target container for relocation| Any available container if target is not specified |
+|Parameter | instance ID | ID of Processing unit instance to relocate|
+|Parameter | [container ID] | The ID of the container to relocate to| Any available container if target is not specified |
  
 {{%/tab%}}
 
@@ -392,13 +395,13 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 `xap pu increment <name>` 
 
 *Description:*
- 
-Increment a Processing Unit Instances.
+
+Add one instance to the specified **stateless** Processing Unit.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu increment  myPu 
+xap pu increment  myPu
 ```
 
 *Parameters and Options:*
@@ -470,20 +473,20 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Decrement a stateless Processing Unit Instances.
+Remove one instance from the specified **stateless** Processing Unit
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu decrement myPu myPu~3 
+xap pu decrement myPu myPu~3
 ```
 
 *Parameters and Options:*
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | \<name\> | The name of the stateless Processing unit to decrement|
-|Parameter | \<instance ID\> | The ID of Processing unit instance to decrement|
+|Parameter | name | The name of the stateless Processing unit to decrement|
+|Parameter | instance ID | The ID of Processing unit instance to decrement|
  
  
 {{%/tab%}}

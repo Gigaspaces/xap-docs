@@ -20,16 +20,16 @@ parent: admin-spaces-pu.html
 
 *Command:*
 
-`xap space info --type-stats <space name>`
+`xap space info --type-stats <name>`
  
 *Description:*
 
-This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+This command shows Space data types statistics for the specified Space name (Entry class, number of entries, notify templates).
  
 *Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap space info --type-stats alertSpace
+<XAP-HOME>/bin/xap space info --type-stats mySpace
 ```
  
 *Output Example:*
@@ -48,16 +48,16 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 *Command:*
 
-`xap space info-instance --type-stats <space ID>`
+`xap space info-instance --type-stats <instance ID>`
  
 *Description:*
 
-This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+This command shows information for the specified Space instance details and data type statistics: Entry class, number of entries, notify templates.
  
 *Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap space info-instance --operation-stats alertSpace~1
+xap space info-instance --type-stats mySpace~1_1
 ```
  
 *Output Example:*
@@ -68,7 +68,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 |Item | Name| Description |
 |:----|:----|:------------| 
-|Parameter | \<spaceId\> |Id of the Space to display the statistics for |
+|Parameter | instance ID |ID of the Space instance to display the statistics for |
  
 {{%/tab%}}
 

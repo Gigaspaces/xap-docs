@@ -11,7 +11,8 @@ parent: admin-spaces-pu.html
 As part of evaluating XAP or InsightEdge, or as part of working with the products in a lab environment, you’ll want to deploy a data grid, also known as a Space. After you’ve deployed the Space, you can perform Space-related activities, such as adding data objects, viewing information about the Space configuration, querying the data in the Space, and viewing logs and alerts. 
 
 {{%note "Note"%}}
-In order to deploy a Space, you must first have a service grid up and running. Deploying a Space using an administration tool (such as the Web Management Console) creates a Processing Unit that contains only a Space, without any application components.
+In order to deploy a Space, you must first have a [service grid up and running](./admin-service-grid.html).
+Deploying a Space creates a Processing Unit that contains only a Space, without any application components.
 {{%/note%}}
 
 
@@ -39,9 +40,15 @@ Deploys a Space in a stateful Processing Unit.
   </tr>
    <tr>
     <td>Parameter</td>
-    <td>&lt;name&gt;</td>
+    <td>name</td>
     <td>Provide the name of the Space you are deploying.</td>
     <td>If you run the command without defining any options, a non-clustered Space is deployed.</td>
+  </tr>
+  <tr>
+    <td>Option</td>
+    <td nowrap>--partitions</td>
+    <td>Define how many primary partitions the Space should contain, using the syntax <code>--partitions=n</code>.</td>
+    <td></td>
   </tr>
   <tr>
     <td>Option</td>
@@ -51,13 +58,7 @@ Deploys a Space in a stateful Processing Unit.
   </tr>
   <tr>
     <td>Option</td>
-    <td>--partitions</td>
-    <td>Define how many primary partitions the Space should contain, using the syntax <code>--partitions=n</code>.</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Option</td>
-    <td>--requires-isolation</td>
+    <td nowrap>--requires-isolation</td>
     <td>If this Space should not share a container, adding this option provisions the Space in a dedicated container.</td>
     <td></td>
   </tr>
@@ -66,10 +67,12 @@ Deploys a Space in a stateful Processing Unit.
 
 *Input Example:*
 
-This example deploys a Space named **mySpace** with high availability and 5 partitions. 
+This example deploys a Space named **mySpace** with high availability and 2 partitions.
+Two instances for the first parition (mySpace~1_1,mySpace~1_2) and two for the second partition (mySpace~2_1,mySpace~2_2).
+Note that you need to have containers running (refer to  [Starting a Container](./admin-service-grid-container-start.html) )
 
 ```bash
-<XAP-HOME>/bin/xap space deploy --ha --partitions=5 mySpace
+xap space deploy --ha --partitions=2 mySpace
 ```
 
 {{%/tab%}}

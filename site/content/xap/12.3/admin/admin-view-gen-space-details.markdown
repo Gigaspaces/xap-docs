@@ -30,7 +30,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 *Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap space list
+xap space list
 ```
  
 *Output Example:*
@@ -46,7 +46,7 @@ None.
 
 *Command:*
 
-`xap space list-instances <space-name>`
+`xap space list-instances <name>`
 
 *Description:*
 
@@ -55,7 +55,7 @@ The Space instances for the given Space are listed with ID, Mode, HostId, and Co
 *Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap space list-instances alertSpace 
+xap space list-instances mySpace
 ```
 
 
@@ -73,8 +73,8 @@ The Space instances for the given Space are listed with ID, Mode, HostId, and Co
   </tr>
    <tr>
     <td>Parameter</td>
-    <td>&lt;name&gt;</td>
-    <td>Provide the name of the Space instance for which you want to see the runtime information, using the InstanceId. For example, <code>mySpace-space~2_1</code>.</td>
+    <td>name</td>
+    <td>Provide the name of the Space for which to list the instances</td>
     <td></td>
   </tr>
   <tr>

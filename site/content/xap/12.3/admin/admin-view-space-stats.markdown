@@ -22,16 +22,16 @@ parent: admin-spaces-pu.html
 
 *Command:*
 
-`xap space info --operation-stats <space name>`
+`xap space info --operation-stats <name>`
  
 *Description:*
 
-This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+This command shows Space operations statistics (Object count, write/read/take/execute statistics count, etc.)
  
 *Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap space info --operation-stats alertSpace
+xap space info --operation-stats mySpace
 ```
  
 *Output Example:*
@@ -42,7 +42,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | \<name\> |Name of the Space to display the statistics for |
+|Parameter | name |Name of the Space to display the statistics for |
  
  
 
@@ -50,7 +50,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 *Command:*
 
-`xap space info-instance --operation-stats <space ID>`
+`xap space info-instance --operation-stats <instance ID>`
  
 *Description:*
 
@@ -59,7 +59,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 *Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap space info-instance --operation-stats alertSpace~1
+<XAP-HOME>/bin/xap space info-instance --operation-stats mySpace~1_2
 ```
  
 *Output Example:*
@@ -70,7 +70,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | \<spaceId\> |Id of the Space to display the statistics for |
+|Parameter | instance ID |ID of the Space instance to display the statistics for |
  
  
  

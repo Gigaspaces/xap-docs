@@ -21,12 +21,12 @@ parent: admin-spaces-pu.html
 
 *Description:*
 
-This command lists all the Processing Units in a table with the name, deployment name, topology and InstanceId information.
+This command lists all the Processing Units in a table with the name, deployment name, topology, status, instance count and additional information.
 
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu list
+xap pu list
 ```
 
 *Output Example:*
@@ -41,17 +41,17 @@ None.
 
 *Command:*
 
-`xap pu list-instances <Processing Unit name>`
+`xap pu list-instances <name>`
  
 *Description:*
 
-This command lists all of the instances for a given Processing Unit, along with the ID, Mode, PartionId, BackupId, HostId and ContainerId information. 
+This command lists all of the instances for a given Processing Unit, along with the Instance ID, Host ID, and Container ID information.
 
  
 *Input Example:*
  
 ```bash
-<XAP-HOME>/bin/xap pu list-instances alertSpace
+xap pu list-instances data-feeder
 ```
 
 *Output Example:*
@@ -69,8 +69,8 @@ This command lists all of the instances for a given Processing Unit, along with 
   </tr>
    <tr>
     <td>Parameter</td>
-    <td>&lt;name&gt;</td>
-    <td>Provide the name of the Processing Unit instance for which you want to see the runtime information, using the InstanceId. For example, <code>alertSpace_1~</code>.</td>
+    <td>name</td>
+    <td>Name of Processing Unit to list instances for.</td>
     <td></td>
   </tr>
   <tr>
