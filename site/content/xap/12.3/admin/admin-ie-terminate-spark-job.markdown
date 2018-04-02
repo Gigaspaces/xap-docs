@@ -9,13 +9,17 @@ parent: admin-insightedge.html
 
 **To terminate a Spark Job:** 
 
+_Not yet available when using the **Command Line Interface**._
+
 <br>
  
 {{%tabs%}}
 
+<!--
 {{%tab "Command Line Interface"%}}
 N/A
 {{%/tab%}}
+-->
 
 {{%tab "REST Manager API"%}}
 

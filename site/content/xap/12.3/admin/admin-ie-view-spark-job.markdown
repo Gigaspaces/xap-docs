@@ -7,14 +7,18 @@ parent: admin-insightedge.html
 ---
  
   
-**To view the Spark Job Status:** 
+**To view the Spark Job Status:**
+
+_Not yet available when using the **Command Line Interface**._
 <br>
  
 {{%tabs%}}
 
+<!--
 {{%tab "Command Line Interface"%}}
 N/A
 {{%/tab%}}
+-->
 
 {{%tab "REST Manager API"%}}
 

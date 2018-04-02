@@ -10,54 +10,43 @@ parent: admin-insightedge.html
 
 **To upload a Spark Application:** 
 
+_Not yet available when using the **Command Line Interface**._
+
 <br>
  
 {{%tabs%}}
 
+<!--
 {{%tab "Command Line Interface"%}}
 N/A
 {{%/tab%}}
+-->
 
 {{%tab "REST Manager API"%}}
 
 *Path*
 
-`POST /spark/applications`
+`POST /spark/applications/resources`
 
 *Description:*
 
-Submitting a Spark Application
+Upload a Spark Application resource file.
+For example, you can try uploading the example application file: `<XAP-ROOT>/insightedge/examples/jars/insightedge-examples.jar`
 
 *Example Request:*
 
 ```bash
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ \ 
-   "mainClass": "string", \ 
-   "applicationJar": "string", \ 
-   "applicationArguments": [ \ 
-     "string" \ 
-   ], \ 
-   "name": "string", \ 
-   "sparkProperties": {} \ 
- }' 'http://localhost:8090/v2/spark/applications'
+curl -X PUT --form file=@<XAP-HOME>/insightedge/examples/jars/insightedge-examples.jar http://localhost:8090/v2/spark/applications/resources
 ```
  
 *Example Response:*
 
+A URL to the uploaded application resource file
+
 ```bash
+http://localhost:8090/v2/spark-applications/insightedge-examples.jar
 ```
 
-*Options:*
-
-| Option     | Description       |   Required     |
-|------|-------------------|----------------|
-| mainClass |  |   |
-| applicationJar |  | Yes |
-| applicationArguments |  |   |
-| name | |  |
-| sparkProperties |  |   |
-
- 
 {{%/tab%}}
 
 {{% /tabs %}}

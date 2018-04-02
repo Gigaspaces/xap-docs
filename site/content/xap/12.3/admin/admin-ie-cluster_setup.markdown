@@ -22,12 +22,29 @@ In addition, it is recommended to set the `XAP_LOOKUP_GROUPS` property that is u
 
 These configuration parameters can be set in the `<XAP_HOME>/bin/setenv-overrides.sh/bat` file.
 
+## Starting locally
+
+The run-agent command automatically resolves which service to run on the current host.
+The resolution is based on the `XAP_MANAGER_SERVERS` environment variable, but when undefined it will use localhost as the server IP.
+
+```bash
+<XAP-HOME>/bin/insightedge host run-agent --auto
+```
+
+This command will run a XAP Manager, Web Management Console, Spark master, Spark worker and the Zeppelin interpreter.
+
+REST URL - http://localhost:8090
+Web Management Console - http://localhost:8099
+Spark master - http://localhost:8080/
+Spark worker - http://localhost:8081/
+
+
 ## Starting Master Nodes
 
 Master nodes consist of a XAP Manager and a Spark master. On each master node, run the following:
 
 ```bash
-<XAP-HOME>/bin/insightedge host run-agent --auto
+<XAP-HOME>/bin/insightedge host run-agent --manager --spark-master
 ```
 
 ## Starting Slave Nodes
