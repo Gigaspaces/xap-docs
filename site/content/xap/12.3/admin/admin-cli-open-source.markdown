@@ -6,13 +6,12 @@ weight: 80
 parent: none
 ---
  
-The Command Line Interface tool can be used to perform minimal administration tasks for open source XAP and InsightEdge editions.
+The Command Line Interface tool can be used to perform minimal administration tasks for open source XAP and InsightEdge editions. The available commands are described below.
 
-<br>
+{{%tabs%}}
+{{%tab "XAP Open Source"%}}
 
-# XAP Open Source Edition
-
-## Demo
+## Run XAP in Demo Mode
 
 *Command:* 
 
@@ -20,7 +19,7 @@ The Command Line Interface tool can be used to perform minimal administration ta
 
 *Description:* 
 
-Run a Space in high availability mode (2 primaries with 1 backup each)
+Runs a Space in high availability mode (2 primaries with 1 backup each).
 
 *Parameters and Options:*
 
@@ -33,7 +32,7 @@ None.
 ``` 
 
 
-## Run a standalone Space
+## Run a Standalone Space
 
 *Command:* 
 
@@ -41,30 +40,30 @@ None.
 
 *Description:* 
 
-Run a standalone Space in a stateful Processing Unit.
+Runs a standalone Space in a stateful Processing Unit.
 
 *Parameters and Options:*
 
 
 | Item | Name | Description |
 |:-----|:-----|:------------|
-| Parameter | name | Name of the Space |
+| Parameter | name | Name of the Space. |
 | Option    | ---lus| Start a lookup service. |
 | Option    | ---partitions=\<partitions\> |Number of partitions to use.|
-| Option    | ---ha | High availability adding a backup per partition. |
+| Option    | ---ha | Run the Space with high availability (adding a backup per partition). |
 | Option    | ---instances=1_1,1_2 | Specify one or more instances to run. If no instances are specified, runs all instances.|
  
 
 *Input Example:*
 
-This example runs a Space named **mySpace** with high availability and 2 partitions.
-This will start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).
+This example runs a Space named **mySpace** with high availability and 2 partitions. The CLI commands start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).
 
 ```bash
 <XAP-HOME>/bin/xap space run --lus --partitions=2 --ha mySpace
 ```
 
 To run instances separately, run each of the following commands on different hosts (note that --lus is specified for discovery):
+
 ```bash
 <XAP-HOME>/bin/xap space run --lus --partitions=2 --ha --instances=1_1 mySpace
 <XAP-HOME>/bin/xap space run --partitions=2 --ha --instances=1_2 mySpace
@@ -72,7 +71,7 @@ To run instances separately, run each of the following commands on different hos
 <XAP-HOME>/bin/xap space run --partitions=2 --ha --instances=2_2 mySpace
 ```
 
-## Processing Unit
+## Run a Standalone Processing Unit
 
 *Command:* 
 
@@ -80,7 +79,7 @@ To run instances separately, run each of the following commands on different hos
 
 *Description:* 
 
-Run a standalone Processing Unit
+Runs a standalone Processing Unit.
 
 *Parameters and Options:*
 
@@ -96,16 +95,17 @@ Run a standalone Processing Unit
 
 *Input Example:*
 
-This example deploys a Space named **mySpace** with high availability and 5 partitions. 
+This example deploys a Processing Unit that contains a Space named **mySpace** with high availability and 2 partitions. 
 
 ```bash
 <XAP-HOME>/bin/xap pu run --lus --ha --partitions=2 myPu.jar
 ```
 
+{{%/tab%}}
 
-# InsightEdge Open Source Edition
+{{%tab "InsightEdge Open Source"%}}
 
-## Demo
+## Run InsightEdge in Demo Mode
 
 *Command:*
 
@@ -113,7 +113,7 @@ This example deploys a Space named **mySpace** with high availability and 5 part
 
 *Description:*
 
-Run Spark in standalone mode (Master, Worker and Zeppelin) and run a Space in high availability mode (2 primaries with backup each).
+Run Spark in standalone mode (master, worker and Apache Zeppelin), and run a Space in high availability mode (2 primaries with 1 backup each).
 
 *Parameters and Options:*
 
@@ -124,3 +124,7 @@ None.
 ```bash
 <XAP-HOME>/bin/insightedge demo
 ```
+
+{{%/tab%}}
+
+{{% /tabs %}}

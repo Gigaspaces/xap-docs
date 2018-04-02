@@ -11,12 +11,11 @@ parent: admin-spaces-pu.html
 As part of evaluating XAP or InsightEdge, or as part of working with the products in a lab environment, you’ll want to deploy a data grid, also known as a Space. After you’ve deployed the Space, you can perform Space-related activities, such as adding data objects, viewing information about the Space configuration, querying the data in the Space, and viewing logs and alerts. 
 
 {{%note "Note"%}}
-In order to deploy a Space, you must first have a [service grid up and running](./admin-service-grid.html).
-Deploying a Space creates a Processing Unit that contains only a Space, without any application components.
+In order to deploy a Space, you must first have a [service grid](./admin-service-grid.html)  up and running. Deploying a Space creates a Processing Unit that contains only a Space, without any application components.
 {{%/note%}}
 
 
-**Deploying a Space onto the Service Grid**
+**To deploy a Space to the service grid:**
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -28,6 +27,11 @@ Deploying a Space creates a Processing Unit that contains only a Space, without 
 *Description:* 
 
 Deploys a Space in a stateful Processing Unit.
+
+{{%note "Note"%}}
+Before deploying a Space, you must start a container (refer to [Starting a Container](./admin-service-grid-container-start.html)).
+{{%/note%}}
+
 
 *Parameters and Options:*
 
@@ -67,9 +71,8 @@ Deploys a Space in a stateful Processing Unit.
 
 *Input Example:*
 
-This example deploys a Space named **mySpace** with high availability and 2 partitions.
-Two instances for the first parition (mySpace~1_1,mySpace~1_2) and two for the second partition (mySpace~2_1,mySpace~2_2).
-Note that you need to have containers running (refer to  [Starting a Container](./admin-service-grid-container-start.html) )
+This example deploys a Space named **mySpace** with high availability and two partitions, two instances for the first parition (mySpace~1_1,mySpace~1_2) and two for the second partition (mySpace~2_1,mySpace~2_2). For this example, you must start at least 2 containers.
+
 
 ```bash
 <XAP-HOME>/bin/xap space deploy --ha --partitions=2 mySpace
@@ -86,16 +89,14 @@ Note that you need to have containers running (refer to  [Starting a Container](
 
 *Description:* 
 
-Deploys a Space in a stateful Processing Unit.
-
-If you run the command without defining any options, a non-clustered Space is deployed.
+Deploys a Space in a stateful Processing Unit. If you run the command without defining any options, a non-clustered Space is deployed.
 
 *Example Request:*
 
 ```bash
 curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/spaces?name=mySpace&partitions=3&backups=true&requiresIsolation=true'
 ```
-This example deploys a Space named **mySpace** with high availability, 3 partitions and isolation. 
+This example deploys a Space named **mySpace** with high availability, three partitions and isolation. 
 
 
 *Options:*
@@ -113,7 +114,7 @@ This example deploys a Space named **mySpace** with high availability, 3 partiti
 {{%tab "Web Management Console"%}}
 
 1. From the Deploy menu on the menu bar, select **Space**.
-2. In the Space Deployment dialog box, do the following:
+1. In the Space Deployment dialog box, do the following:
 
 	<ol type="a">
 		<li>In the <b>Space name</b> box, type a name for the Space.</li>
@@ -166,7 +167,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

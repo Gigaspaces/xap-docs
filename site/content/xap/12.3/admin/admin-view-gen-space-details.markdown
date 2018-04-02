@@ -25,7 +25,7 @@ parent: admin-spaces-pu.html
  
 *Description:*
 
-This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+This command lists all the Spaces in a table with their Space name, Processing Unit name, cluster topology, number of actual/planned Space instances, and Instance ID.
  
 *Input Example:*
  
@@ -50,7 +50,7 @@ None.
 
 *Description:*
 
-The Space instances for the given Space are listed with ID, Mode, HostId, and ContainerId.
+The Space instances for the given Space are listed with their Instance ID, Mode, Host ID, and Container ID.
 
 *Input Example:*
  
@@ -74,7 +74,7 @@ The Space instances for the given Space are listed with ID, Mode, HostId, and Co
    <tr>
     <td>Parameter</td>
     <td>name</td>
-    <td>Provide the name of the Space for which to list the instances</td>
+    <td>Provide the name of the Space for which to list the instances.</td>
     <td></td>
   </tr>
   <tr>
@@ -94,7 +94,7 @@ The Space instances for the given Space are listed with ID, Mode, HostId, and Co
 
 *Description:*
 
-The Spaces are listed with the name, deployment name, topology, number of instances, and InstanceId.
+The Spaces are listed with the Space name, Processing Unit name, cluster topology, number of Space instances, and Instance IDs.
 
 *Example Request:*
 
@@ -152,7 +152,7 @@ None
 
 *Description:*
 
-The given Space is listed with the name, deployment name, topology, number of instances, and InstanceId.
+The given Space is listed with the Space name, Processing Unit name, cluster topology, number of Space instances, and Instance ID.
 
 *Example Request:*
 
@@ -190,7 +190,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces
 
 *Description:*
 
-The given Space instance is listed with the name, deployment name, topology, number of instances, and InstanceId.
+The given Space instance is listed with the Instance ID, Mode, Partition ID, Backup ID, Host ID, and Container ID.
 
 *Example Request:*
 
@@ -282,7 +282,7 @@ You can see the following high-level Space details in the main Spaces view:
 </table>
 
 
-Click the arrow in the right-hand column of the space entry to drill through to the following additional details:
+Click the arrow in the right-hand column of the Space entry to drill through to the following additional details:
 
 <table>
   <tr>
@@ -339,7 +339,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 {{%tab "Administration API"%}}
 
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 
 {{%/tab%}}
 

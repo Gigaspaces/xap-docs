@@ -15,51 +15,51 @@ parent: admin-spaces-pu.html
 
 **Processing Unit**
 
-*Command:*
+*Command*
 
 `xap pu list`
 
-*Description:*
+*Description*
 
-This command lists all the Processing Units in a table with the name, deployment name, topology, status, instance count and additional information.
+This command lists all the Processing Units in a table with the Processing Unit name, type, Space, topology, status, file name, state, and number of instances.
 
-*Input Example:*
+*Input Example*
 
 ```bash
 <XAP-HOME>/bin/xap pu list
 ```
 
-*Output Example:*
+*Output Example*
 
 ![image](/attachment_files/admin/cli-xap-pu-list.png)
 
-*Parameters and Options:*
+*Parameters and Options*
 
 None.
 
 **Processing Unit instance**
 
-*Command:*
+*Command*
 
 `xap pu list-instances <name>`
  
-*Description:*
+*Description*
 
-This command lists all of the instances for a given Processing Unit, along with the Instance ID, Host ID, and Container ID information.
+This command lists all of the instances for a given Processing Unit, along with the Instance ID, Host ID, and Container ID.
 
  
-*Input Example:*
+*Input Example*
  
 ```bash
 <XAP-HOME>/bin/xap pu list-instances data-feeder
 ```
 
-*Output Example:*
+*Output Example*
 
 ![image](/attachment_files/admin/cli-xap-pu-list-instances.png)
 
 
-*Parameters and Options:*
+*Parameters and Options*
 
 <table>
   <tr>
@@ -88,18 +88,18 @@ This command lists all of the instances for a given Processing Unit, along with 
 
 `GET /pus`
 
-*Description:*
+*Description*
 
-The Processing Units are listed with the name, deployment name, topology, number of instances, and InstanceId.
+The Processing Units are listed with the name, Processing Unit type, file name, topology, number of instances, SLA information, and additional details.
 
-*Example Request:*
+*Example Request*
 
 ```bash
 curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus'
 ```
 
 
-*Example Response:*
+*Example Response*
 
 ```bash
 [
@@ -158,7 +158,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus'
 ]
 ```
 
-*Options:*
+*Options*
 
 None
 
@@ -168,17 +168,17 @@ None
 
 `GET /pus/{id}`
 
-*Description:*
+*Description*
 
-The given Processing Unit is listed with the name, deployment name, topology, number of instances, and InstanceId.
+The given Processing Unit is listed with the name, Processing Unit type, file name, topology, number of instances, SLA information, and additional details.
 
-*Example Request:*
+*Example Request*
 
 ```bash
 curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/alertSpace'
 ```
  
-*Example Response:*
+*Example Response*
 
 ```bash
 {
@@ -209,7 +209,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/al
 }
 ```
 
-*Options:*
+*Options*
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
@@ -222,17 +222,17 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/al
 
 `GET /pus/{id}/instances/{instanceId`
 
-*Description:*
+*Description*
 
-The given Processing Unit Instance is listed with the name, deployment name, topology, number of instances, and InstanceId.
+The given Processing Unit Instance is listed with the Instance ID, Processing Unit name, Host ID, Container ID, and Partition ID, and Backup ID.
 
-*Example Request:*
+*Example Request*
 
 ```bash
 curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/alertPu/instances/alertPu~1'
 ```
  
-*Example Response:*
+*Example Response*
 
 ```bash
 {
@@ -245,7 +245,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/al
 }
 ```
 
-*Options:*
+*Options*
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|

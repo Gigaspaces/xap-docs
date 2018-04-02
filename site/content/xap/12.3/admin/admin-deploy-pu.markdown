@@ -8,7 +8,7 @@ parent: admin-spaces-pu.html
  
  
  
-**Deploying a Processing Unit onto the Service Grid.**
+**To deploy a Processing Unit to the Service Grid:**
  
 
 {{%tabs%}}
@@ -20,23 +20,23 @@ parent: admin-spaces-pu.html
 
 *Description:*
 
-Deploys a Processing Unit to the Service Grid.
+Deploys a Processing Unit to the service grid.
 
 *Parameters and Options:*
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | name |Name of the processing unit to deploy|
-|Parameter | file |Path to processing unit file (.jar or .zip) |
-|Option    | backups=\<backups\> |Number of backups per partition.|
+|Parameter | name |Name of the Processing Unit to deploy|
+|Parameter | file |Path to the Processing Unit file (.jar or .zip). |
+|Option    | backups=\<backups\> |Specify the number of backups per partition.|
 |Option    | instances=\<instances\> |Number of instances.|
-|Option    | max-instances-per-machine=\<maxInstancesPerMachine\>|Determines maximum number of instances in same machine (from each partition).|
-|Option    | max-instances-per-vm=\<maxInstancesPerVM\>| Determines maximum number of instances in same VM (from each partition). |
+|Option    | max-instances-per-machine=\<maxInstancesPerMachine\>|Define the maximum number of instances on same machine (from each partition).|
+|Option    | max-instances-per-vm=\<maxInstancesPerVM\>| Define the maximum number of instances on same VM (from each partition). |
 |Option    |partitions=\<partitions\> | Number of partitions. |
 |Option    |property=\<String,String\>|Context properties.|
-|Option    |schema=\<schema\>|Cluster schema (partitioned, sync_replicated, async_replicated).|
-|Option    |version | Display version information.|
-|Option    |zones=\<zones\>| Which zones can host this processing unit.|
+|Option    |schema=\<schema\>|Cluster schema/topology (partitioned, sync_replicated, async_replicated).|
+|Option    |requires-isolation| If this Processing Unit should not share a container, adding this option provisions the Processing Unit in a dedicated container. |
+|Option    |zones=\<zones\>| Define which zones can host this Processing Unit.|
 
  
 *Input Example:*
@@ -58,7 +58,7 @@ This example deploys a PU named **myPu** with 2 partitions using the mypu.jar fi
 
 *Description:*
 
-Deploys a Processing Unit onto the Service Grid.
+Deploys a Processing Unit to the service grid.
 
 *Example:*
  
@@ -82,13 +82,13 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 | Option | Description | Required |
 |:-------|:------------|:---------|
-|name | Name of the processing unit.| Yes |
-|resource|File/Path to processing unit file (.jar or .zip) | Yes|
-|schema | Type of schema to use | No| 
+|name | Name of the Processing Unit.| Yes |
+|resource|File/Path to the Processing Unit file (.jar or .zip). | Yes|
+|schema | Type of clustering schema/topology to use. | No| 
 |instances | Number of instances to deploy | No|
 |partitions| Number of partitions | No|
 |backupsPerPartition|Number of backups per partition. | No| 
-|requiresIsolation| Requires isolation | No|
+|requiresIsolation| If this Processing Unit should not share a container, adding this option provisions the Processing Unit in a dedicated container. | No|
 |zones|Which zones can host this processing unit. | No|
 |contextProperties  |Context properties. | No|
  
@@ -139,7 +139,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

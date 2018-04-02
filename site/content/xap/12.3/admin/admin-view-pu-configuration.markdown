@@ -7,14 +7,13 @@ parent: admin-spaces-pu.html
 ---
  
  
-**Display Processing Unit Information:**
-
+**To view the Processing Unit configuration information:**
  
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**Display PU Information**
+**Processing Unit**
 
 *Command:*
 
@@ -39,11 +38,11 @@ Display detailed information for the given Processing Unit.
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | name |Name of the processing unit to display details|
+|Parameter | name |Name of the Processing Unit for which you want to view the details.|
  
 
 
-**Display PU instance information**
+**Processing Unit instance**
 
 *Command:*
 
@@ -68,7 +67,7 @@ Display detailed information for the given Processing Unit instance.
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | \<instance ID\> |Instance ID of the processing unit to display details|
+|Parameter | \<instance ID\> |Instance ID of the Processing Unit for which you want to view details.|
  
 
 
@@ -76,34 +75,78 @@ Display detailed information for the given Processing Unit instance.
 
 {{%tab "REST Manager API"%}}
 
-***Display PU Instances***
+**Specific Processing Unit**
 
-_Parameters:_<br>
+*Path*
 
-- host URL: Host URL   where the REST Manager is running.<br>
-- name : The name of the Space.
+`GET /pus/{id}/instances`
 
- 
-*Example:*
+*Description*
+
+The Instance ID, Processing Unit name, Host ID, Container ID, Partition ID, and Backup ID are displayed for the specified Processing Unit.
+
+*Example Request*
 
 ```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/deployments/myPu/instances'
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/myPu/instances'
 ```
  
-***Display PU instance information***
+*Example Response*
 
-_Parameters:_<br> 
-
-- host URL: Host URL   where the REST Manager is running.<br>
-- name : The name of the PU.<br>
-- instanceId : The id of the PU instance to use.
-
-_Options:_<br>
- 
-*Examples:*
- 
 ```bash
-curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v1/deployments/myPu/instances/myPu~1'
+{
+  "id": "myPu~1",
+  "processingUnitName": "myPu",
+  "hostId": "gigaspaces.com",
+  "containerId": "gigaspaces.com~16674",
+  "partitionId": 0,
+  "backupId": 0
+}
+```
+ 
+*Options*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| host URL | Provide the Host URL where the REST Manager is running. | Yes | 
+| name | Provide the name of the Processing Unit for which you want to see the configuration details. | Yes |  
+ 
+**Specific Processing Unit instance**
+
+*Path*
+
+`GET /pus/{id}/instances/{instanceId}`
+
+*Description*
+
+The Instance ID, deployment name, Host ID, Container ID, Partition ID, and Backup ID are displayed for the specified Processing Unit instance.
+
+*Example Request*
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/myPu/instances/myPu~1'
+```
+ 
+*Example Response*
+
+```bash
+{
+  "id": "myPu~1",
+  "deploymentName": "myPu",
+  "hostId": "gigaspaces.com",
+  "containerId": "gigaspaces.com~16674",
+  "partitionId": 0,
+  "backupId": 0
+}
+```
+ 
+*Options*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| host URL | Provide the Host URL where the REST Manager is running. | Yes | 
+| name | Provide the name of the Processing Unit for which you want to see the configuration details. | Yes |  
+| instanceId | Provide the Instance ID of the Processing Unit instance for which you want to see the configuration details. | Yes |
 
 {{%/tab%}}
 
