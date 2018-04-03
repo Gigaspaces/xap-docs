@@ -11,13 +11,13 @@ parent: admin-service-grid.html
  
 
 
-**To view the general Container details:**
+**To view the general container details:**
 <br>
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-***List all Containers***<br>
+**List all containers**<br>
 
 
 *Command:*
@@ -26,7 +26,7 @@ parent: admin-service-grid.html
 
 *Description:*
  
-Lists all containers on current host.
+This command lists all the containers on the current host.
 
 *Input Example:*
 
@@ -42,8 +42,7 @@ Lists all containers on current host.
 
 None
 
-**List Containers Information**
-
+**List container details**
 
 *Command:*
 
@@ -51,7 +50,7 @@ None
 
 *Description:*
  
-Show information for the specified container.
+This command lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.
 
 *Input Example:*
 
@@ -67,17 +66,15 @@ Show information for the specified container.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | container ID | The ID of container to get information from|
+|Parameter | container ID | Provide the ID of container for which you want to see the details. |
  
  
-
-
 {{%/tab%}}
 
 
 {{%tab "REST Manager API"%}}
 
-**List all Containers**
+**List all containers**
 
 *Path*
 
@@ -85,7 +82,7 @@ Show information for the specified container.
 
 *Description:*
 
-List processing unit instance containers (GSCs).
+This option lists all the containers in the Processing Unit instances.
 
 *Example Request:*
 
@@ -113,7 +110,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 None.
 
-**List all Container details**
+**List container details**
 
 *Path*
 
@@ -121,7 +118,7 @@ None.
 
 *Description:*
 
-List container details.
+This option lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.
 
 *Example Request:*
 
@@ -147,10 +144,10 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| containerId | Provide the containerId  for which you want to see the details. | Yes |
+| containerId | Provide the ID of the Processing Unit instance for which you want to see the container details. | Yes |
 
 
-**List JVM details for Container**
+**List JVM details for a specific container**
 
 *Path*
 
@@ -158,7 +155,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 *Description:*
 
-List jvm container details.
+This option lists the JVM details for the specified container.
 
 *Example Request:*
 
@@ -315,10 +312,10 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| containerId | Provide the containerId  for which you want to see the details. | Yes |
+| containerId | Provide the ID of the container for which you want to see the JVM details. | Yes |
 
 
-**List Transport details for Container**
+**List transport details for a specific container**
 
 *Path*
 
@@ -326,7 +323,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 *Description:*
 
-List transport container details.
+This option lists transport details, such as port and thread information, for the specified container.
 
 *Example Request:*
 
@@ -352,10 +349,9 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| containerId | Provide the containerId  for which you want to see the details. | Yes |
+| containerId | Provide the ID of the container for which you want to see the transport details. | Yes |
 
-
-**List JVM statistics details for Container**
+**List JVM statistics for a specific container**
 
 *Path*
 
@@ -363,7 +359,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 *Description:*
 
-List JVM statistics for container.
+This option lists the JVM statistics for the specified container.
 
 *Example Request:*
 
@@ -392,10 +388,10 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| containerId | Provide the containerId  for which you want to see the details. | Yes |
+| containerId | Provide the ID of the container for which you want to see the JVM statistics. | Yes |
 
 
-**List Transport statistics details for Container**
+**List transport statistics for a specific container**
 
 *Path*
 
@@ -403,7 +399,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 *Description:*
 
-List Transport statistics for container.
+This option lists the tranport statistics, such as completed tasks and thread information, for the specified container.
 
 *Example Request:*
 
@@ -428,9 +424,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| containerId | Provide the containerId  for which you want to see the details. | Yes |
-
-
+| containerId | Provide the ID of the container for which you want to see the transport statistics. | Yes |
 
 
 {{%/tab%}}
@@ -506,7 +500,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

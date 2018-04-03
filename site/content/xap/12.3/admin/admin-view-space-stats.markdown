@@ -9,8 +9,6 @@ parent: admin-spaces-pu.html
  
  
 
-
-
 **To view Space statistics:**
 
 <br>
@@ -18,7 +16,7 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**Display Space Statistics**
+**Statistics for Space operations**
 
 *Command:*
 
@@ -26,7 +24,7 @@ parent: admin-spaces-pu.html
  
 *Description:*
 
-This command shows Space operations statistics (Object count, write/read/take/execute statistics count, etc.)
+This command lists the statistics for Space operations: object count, write/read/take/execute count, etc.
  
 *Input Example:*
  
@@ -42,11 +40,10 @@ This command shows Space operations statistics (Object count, write/read/take/ex
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | name |Name of the Space to display the statistics for |
+|Parameter | name |Provide the name of the Space for which you want to display the operation statistics. |
  
  
-
-**Display Space Instance Statistics**
+**Statistics for Space instance operations**
 
 *Command:*
 
@@ -54,7 +51,7 @@ This command shows Space operations statistics (Object count, write/read/take/ex
  
 *Description:*
 
-This command lists all the Spaces  in a table with the name, deployment name, topology and InstanceId information.
+This command lists the statistics for Space instance operations: object count, write/read/take/execute count, etc.
  
 *Input Example:*
  
@@ -70,7 +67,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | instance ID |ID of the Space instance to display the statistics for |
+|Parameter | instance ID |Provide the instance ID of the Space instance for which you want to display the operation statistics. |
  
  
  
@@ -80,7 +77,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 {{%tab "REST Manager API"%}}
 
  
-**To view Space operations:**
+**Statistics for Space operations**
 
 *Path*
 
@@ -88,7 +85,7 @@ This command lists all the Spaces  in a table with the name, deployment name, to
 
 *Description:*
 
-Display the Space operations statistics.
+This option lists the statistics for Space operations: object count, write/read/take/execute count, etc.
 
 *Example Request:*
 
@@ -132,9 +129,9 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| space name | Provide the name of the Space for which you want to see the details. | Yes |
+| space name | Provide the name of the Space for which you want to see the operation statistics. | Yes |
 
-**To view Space Instance data types:**
+**Statistics for Space instance operations**
 
 *Path*
 
@@ -142,7 +139,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces
 
 *Description:*
 
-Display the Space Instance operations statistics.
+This option lists the statistics for Space instance operations: object count, write/read/take/execute count, etc.
 
 *Example Request:*
 
@@ -185,8 +182,8 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| space name | Provide the name of the Space for which you want to see the runtime details. | Yes |
-| instanceId| Provide the instance Id of the Space for which you want to see the runtime details. | Yes |
+| space name | Provide the name of the Space instance for which you want to see the operation statistics. | Yes |
+| instanceId| Provide the instance ID of the Space instance for which you want to see the operation statistics. | Yes |
  
 {{%/tab%}}
 
@@ -214,7 +211,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 {{% /tabs %}}
   

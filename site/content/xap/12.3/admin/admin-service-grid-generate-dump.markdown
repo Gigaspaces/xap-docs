@@ -5,11 +5,13 @@ categories: XAP123ADM,PRM
 weight: 700
 parent: admin-service-grid.html
 ---
+
+{{%info "Info"%}}
+This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.
+{{%/info%}}
  
 **To generate dump files:**
-<br>
 
-_Not yet available when using the **Command Line Interface** or the **REST Manager API** administration tools._
 
 {{%tabs%}}
 
@@ -75,7 +77,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

@@ -6,13 +6,12 @@ weight: 600
 parent: admin-insightedge.html
 ---
  
-  
+{{%info "Info"%}}
+This functionality is not yet available in the Command Line Interface, Web Management Console, GigaSpaces Management Center, or Administration API administration tools.
+{{%/info%}}  
 
 **To upload a Spark Application:** 
 
-_Not yet available when using the **Command Line Interface**._
-
-<br>
  
 {{%tabs%}}
 
@@ -30,8 +29,7 @@ N/A
 
 *Description:*
 
-Upload a Spark Application resource file.
-For example, you can try uploading the example application file: `<XAP-ROOT>/insightedge/examples/jars/insightedge-examples.jar`
+This option uploads a Spark application resource file. YOu can use the example application file provided in the following directory: `<XAP-ROOT>/insightedge/examples/jars/insightedge-examples.jar`
 
 *Example Request:*
 

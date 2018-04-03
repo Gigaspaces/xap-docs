@@ -17,7 +17,7 @@ A host is discovered by having a [Grid Service Agent](./admin-service-grid-agent
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**List all Hosts**
+**List all hosts**
 
 *Command:*
 
@@ -25,7 +25,7 @@ A host is discovered by having a [Grid Service Agent](./admin-service-grid-agent
 
 *Description:*
  
-Lists all host machines.
+Lists all the host machines.
 
 *Input Example:*
 
@@ -41,8 +41,7 @@ Lists all host machines.
 
 None
 
-
-**List Containers per host**
+**List containers per host**
 
 *Command:*
 
@@ -50,7 +49,7 @@ None
 
 *Description:*
  
-Lists all containers on a host machine.
+Lists all the containers on a specific host machine.
 
 *Input Example:*
 
@@ -67,10 +66,10 @@ Lists all containers on a host machine.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | name | Name (or IP address) of the host |
+|Parameter | name | Provide the name (or IP address) of the host for which you want to see the list of containers. |
 
 
-**List Operating System Information**
+**List host operating system information**
 
 *Command:*
 
@@ -78,7 +77,7 @@ Lists all containers on a host machine.
 
 *Description:*
  
-Lists all Operating System details for a host machine.
+Lists all the operating system and related host machine details for a specific host machine, such as OS type, host architecture, OS version, etc.
 
 *Input Example:*
 
@@ -95,10 +94,10 @@ Lists all Operating System details for a host machine.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | name | Name (or IP address) of the host  |
+|Parameter | name | Name (or IP address) of the host for which you want to see the operating system information. |
 
 
-**List Operating System Statistics**
+**List host operating system statistics**
 
 *Command:*
 
@@ -106,7 +105,7 @@ Lists all Operating System details for a host machine.
 
 *Description:*
  
-Lists all Operating System Statistics for a host machine.
+Lists several operating system statistics for a specific host machine, such as free physical memory, memory used, and free swap space.
 
 *Input Example:*
 
@@ -123,14 +122,14 @@ Lists all Operating System Statistics for a host machine.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | name | Name (or IP address) of the host  |
+|Parameter | name | Name (or IP address) of the host for which you want to see the operating system statistics. |
 
 {{%/tab%}}
 
 
 {{%tab "REST Manager API"%}}
 
-**To view all hosts**
+**List all hosts**
 
 *Path*
 
@@ -138,7 +137,7 @@ Lists all Operating System Statistics for a host machine.
 
 *Description:*
 
-List all hosts.
+This option lists the name, IP address, and containers for all the hosts in the service grid.
 
 *Example Request:*
 
@@ -165,7 +164,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts'
 None.
 
 
-**To view host specific information**
+**View specific host**
 
 *Path*
 
@@ -173,7 +172,7 @@ None.
 
 *Description:*
 
-List host information.
+This option lists the name, IP address, and containers for a specific host.
 
 *Example Request:*
 
@@ -197,9 +196,9 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| host name | Provide the host name  for which you want to see the details. | Yes |
+| host name | Provide the host name for which you want to see the general details. | Yes |
 
-**To view host containers**
+**List containers per host**
 
 *Path*
 
@@ -207,7 +206,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/
 
 *Description:*
 
-List host container information.
+This option lists the Host ID, Process ID, zones, and Processing Unit instances for containers on a specific host.
 
 *Example Request:*
 
@@ -235,10 +234,10 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| host name | Provide the host name  for which you want to see the details. | Yes |
+| host name | Provide the host name for which you want to see the container information. | Yes |
 
 
-**To view host os details**
+**List host operating system information**
 
 *Path*
 
@@ -246,7 +245,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/
 
 *Description:*
 
-List host  detail information.
+This option lists the container information for a specific host.
 
 *Example Request:*
 
@@ -280,9 +279,9 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| host name | Provide the host name  for which you want to see the details. | Yes |
+| host name | Provide the host name for which you want to see the operating system information. | Yes |
 
-**To view host statistics details**
+**List host operating system statistics**
 
 *Path*
 
@@ -290,7 +289,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/
 
 *Description:*
 
-List host statistics detail information.
+This option lists certain operating system statistics, such as free memory and used memory, for the specified host machine.
 
 *Example Request:*
 
@@ -318,7 +317,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| host name | Provide the host name  for which you want to see the details. | Yes |
+| host name | Provide the host name for which you want to see the operating system statistics. | Yes |
 
 
 
@@ -448,7 +447,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

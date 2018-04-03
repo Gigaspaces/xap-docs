@@ -6,12 +6,12 @@ weight: 800
 parent: admin-insightedge.html
 ---
  
-  
-**To delete a Spark Application:** 
+{{%info "Info"%}}
+This functionality is not yet available in the Command Line Interface, Web Management Console, GigaSpaces Management Center, or Administration API administration tools.
+{{%/info%}} 
  
-_Not yet available when using the **Command Line Interface**._
+**To delete a Spark application:** 
 
-<br>
  
 {{%tabs%}}
 
@@ -29,7 +29,7 @@ N/A
 
 *Description:*
 
-Deletes the spark application resource by name.
+This option deletes the spark application resource by name.
 
 *Example Request:*
 
@@ -41,7 +41,7 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/spark/app
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| id | Spark driver id | Yes  |
+| id | Provide the ID of the Spark driver where you want to remove the Spark application. | Yes  |
  
 
 {{%/tab%}}

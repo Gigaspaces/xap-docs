@@ -49,7 +49,7 @@ Runs a standalone Space in a stateful Processing Unit.
 |:-----|:-----|:------------|
 | Parameter | name | Name of the Space. |
 | Option    | ---lus| Start a lookup service. |
-| Option    | ---partitions=\<partitions\> |Number of partitions to use.|
+| Option    | ---partitions=\<partitions\> |Define the number of partitions to use.|
 | Option    | ---ha | Run the Space with high availability (adding a backup per partition). |
 | Option    | ---instances=1_1,1_2 | Specify one or more instances to run. If no instances are specified, runs all instances.|
  
@@ -88,8 +88,8 @@ Runs a standalone Processing Unit.
 |:-----|:-----|:------------|
 | Parameter | path | Relative/absolute path of a Processing Unit directory or archive file.|
 | Option    | ---lus| Start a lookup service. |
-| Option    | ---partitions=\<partitions\> |Number of partitions to use.|
-| Option    | ---ha | High availability adding a backup per partition. |
+| Option    | ---partitions=\<partitions\> |Define the number of partitions to use.|
+| Option    | ---ha | Run the Space with high availability (adding a backup per partition). |
 | Option    | ---instances=1_1,1_2 | Specify one or more instances to run. If no instances are specified, runs all instances.|
 
 

@@ -8,9 +8,9 @@ parent: admin-spaces-pu.html
 
 # Interacting with Space Data
 
-{{% note "Note"%}}
-This functionality is not available in the Command Line Interface, REST Manager API, or Administration API.
-{{% /note %}}
+{{% info "Info"%}}
+This functionality is not currently available in the Command Line Interface, REST Manager API, or Administration API.
+{{% /info %}}
 
 ## Querying a Space
 
@@ -76,10 +76,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 {{% /tabs %}}
 
 
-
 # Quiescing a Processing Unit 
-
- 
 
 **To quiesce a Processing Unit:**
 
@@ -92,7 +89,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 *Description:*
  
-Disable a running Processing Unit for maintenance.
+This command disables a running Processing Unit for maintenance.
 
 *Input Example:*
 
@@ -104,8 +101,8 @@ Disable a running Processing Unit for maintenance.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter |name | The name of the Processing Unit to disable|
-|Option | description | Reason for disabling the Processing Unit (for auditing purposes).|
+|Parameter |name | The name of the Processing Unit to disable. |
+|Option | description | Reason for disabling the Processing Unit (for auditing purposes). |
 
 {{%/tab%}}
 
@@ -117,7 +114,7 @@ Disable a running Processing Unit for maintenance.
 
 *Description:*
 
-Putting a Processing Unit into maintenance mode.
+This option disables a running Processing Unit for maintenance.
 
 *Example Request:*
 
@@ -131,7 +128,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
 | pu name | Provide the name of the Processing Unit you want to quiesce. | Yes |
-| pdescription | Provide a description why you are quiescing. | No|
+| pdescription | Provide descriptive text about quiescing the Processing Unit, which will appear in the event log. | No|
 
 {{%/tab%}}
 
@@ -156,7 +153,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -165,7 +162,6 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 <br>
 
 # Unquiescing a Processing Unit
-
  
 
 **To unquiesce a Processing Unit:**
@@ -179,7 +175,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Enable a quiesced Processing Unit.
+This command enables a quiesced Processing Unit.
 
 *Input Example:*
 
@@ -191,7 +187,7 @@ Enable a quiesced Processing Unit.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter |name | The name of the quiesced Processing Unit to enable|
+|Parameter |name | The name of the quiesced Processing Unit to enable. |
  
  
 {{%/tab%}}
@@ -204,7 +200,7 @@ Enable a quiesced Processing Unit.
 
 *Description:*
 
-Unquiesce a Processing Unit
+This option unquiesces a Processing Unit.
 
 *Example Request:*
 
@@ -242,7 +238,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -250,13 +246,11 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 # Restarting a Processing Unit
 
- 
-
- 
+{{%info "Info"%}}
+This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.
+{{%/info%}}
 
 **To restart a Processing Unit:**
-
-_Not yet available when using the **Command Line Interface** or the **REST Manager API** administration tools._
 
 {{%tabs%}}
 
@@ -289,14 +283,13 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
 
 #  Relocating a Processing Unit
 
- 
 
 **To relocate a Processing Unit:**
 
@@ -310,7 +303,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Relocate a Processing Unit Instance to another container. If container ID is not specified, will relocate to any available container.
+This command moves a Processing Unit instance to another container. If container ID is not specified, the Processing Unit instance will be moved to any available container.
 
 *Input Example:*
 
@@ -322,8 +315,8 @@ Relocate a Processing Unit Instance to another container. If container ID is not
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | instance ID | ID of Processing unit instance to relocate|
-|Parameter | [container ID] | The ID of the container to relocate to| Any available container if target is not specified |
+|Parameter | instance ID | ID of the Processing Unit instance to relocate. |
+|Parameter | [container ID] | The ID of the target container that will host the Processing Unit instance. | The Processing Unit instance will be moved to any available container if a target is not specified. |
  
 {{%/tab%}}
 
@@ -334,7 +327,7 @@ Relocate a Processing Unit Instance to another container. If container ID is not
 
 *Description:*
 
-Relocate a Processing Unit
+This option moves a Processing Unit instance to another container.
 
 *Example Request:*
 
@@ -374,15 +367,12 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
 
-
 #  Incrementing a Processing Unit
-
- 
 
 **To increment a Processing Unit:**
 
@@ -396,7 +386,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
 
-Add one instance to the specified **stateless** Processing Unit.
+This command adds one instance to the specified Processing Unit (which must be stateless).
 
 *Input Example:*
 
@@ -408,7 +398,7 @@ Add one instance to the specified **stateless** Processing Unit.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | name | The name of the stateless Processing unit to increment|
+|Parameter | name | Provide the name of the stateless Processing unit to increment. |
  
  
 {{%/tab%}}
@@ -421,7 +411,7 @@ Add one instance to the specified **stateless** Processing Unit.
 
 *Description:*
 
-Increment the processing unit's instances
+This option adds one instance to the specified Processing Unit (which must be stateless).
 
 *Example Request:*
 
@@ -433,14 +423,16 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| pu name | Provide the name of the Processing Unit to increment. | Yes |
+| pu name | Provide the name of the stateless Processing Unit to increment. | Yes |
 
 {{%/tab%}}
 
 
 {{%tab "Web Management Console"%}}
 
-N/A
+{{% info "Info"%}}
+This functionality is not available in the Web Management Console.
+{{% /info %}}
  
 {{%/tab%}}
 
@@ -452,14 +444,12 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
 
-#  Decrement a Processing Units instances
-
- 
+#  Decrementing a Processing Unit Instance
 
 **To decrement a Processing Unit:**
 
@@ -473,7 +463,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Remove one instance from the specified **stateless** Processing Unit
+This command removes one instance from the specified Processing Unit (which must be stateless).
 
 *Input Example:*
 
@@ -485,8 +475,8 @@ Remove one instance from the specified **stateless** Processing Unit
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | name | The name of the stateless Processing unit to decrement|
-|Parameter | instance ID | The ID of Processing unit instance to decrement|
+|Parameter | name | Provide the name of the stateless Processing unit to decrement. |
+|Parameter | instance ID | Provide the ID of the Processing Unit instance to be removed. |
  
  
 {{%/tab%}}
@@ -498,7 +488,7 @@ Remove one instance from the specified **stateless** Processing Unit
 
 *Description:*
 
-Delete the processing unit instance.
+This option removes one Processing Unit instance from the specified Processing Unit (must be stateless).
 
 *Example Request:*
 
@@ -510,14 +500,16 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| pu name | Provide the name of the Processing Unit to delete. | Yes |
-| instanceId | Provide the instance Id of the Processing Unit to delete. | Yes |
+| pu name | Provide the name of the stateless Processing Unit to be decremented. | Yes |
+| instanceId | Provide the instance ID of the Processing Unit instance to be removed. | Yes |
 {{%/tab%}}
 
 
 {{%tab "Web Management Console"%}}
 
-N/A
+{{% info "Info"%}}
+This functionality is not available in the Web Management Console.
+{{% /info %}}
  
 {{%/tab%}}
 
@@ -528,7 +520,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}

@@ -5,13 +5,14 @@ categories: XAP123ADM,PRM
 weight: 400
 parent: admin-insightedge.html
 ---
- 
-  
-**To view the Spark Job Status:**
 
-_Not yet available when using the **Command Line Interface**._
-<br>
- 
+{{%info "Info"%}}
+This functionality is not yet available in the Command Line Interface, Web Management Console, GigaSpaces Management Center, or Administration API administration tools.
+{{%/info%}} 
+  
+**To view the Spark job status:**
+
+
 {{%tabs%}}
 
 <!--
@@ -29,6 +30,8 @@ N/A
 
 *Description:*
 
+This option shows the status of the Spark jobs in the system.
+
 
 *Example Request:*
 
@@ -45,7 +48,7 @@ curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v2/spark/applic
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| id | The id of the Spark driver.| Yes |
+| id | Provide the ID of the Spark driver for which you want to see the jobs.| Yes |
 
  
 {{%/tab%}}

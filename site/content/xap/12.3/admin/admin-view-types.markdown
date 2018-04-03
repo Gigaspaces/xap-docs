@@ -5,10 +5,7 @@ categories: XAP123ADM,PRM
 weight: 800
 parent: admin-spaces-pu.html
 ---
- 
- 
- 
-
+  
  
 **To view data types in the Space:**
 
@@ -16,7 +13,7 @@ parent: admin-spaces-pu.html
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**To view Space data types:**
+**Space data details**
 
 *Command:*
 
@@ -24,7 +21,7 @@ parent: admin-spaces-pu.html
  
 *Description:*
 
-This command shows Space data types statistics for the specified Space name (Entry class, number of entries, notify templates).
+This command shows data type information for the specified Space: Entry class, number of entries, notify templates.
  
 *Input Example:*
  
@@ -40,11 +37,11 @@ This command shows Space data types statistics for the specified Space name (Ent
 
 |Item | Name| Description |
 |:----|:----|:------------|
-|Parameter | \<name\> |Name of the Space to display the statistics for |
+|Parameter | \<name\> |Provide the name of the Space for which you want to see the data type details. |
  
  
 
-**Display Space Types for Instance**
+**Space instance data details**
 
 *Command:*
 
@@ -52,7 +49,7 @@ This command shows Space data types statistics for the specified Space name (Ent
  
 *Description:*
 
-This command shows information for the specified Space instance details and data type statistics: Entry class, number of entries, notify templates.
+This command shows data type information for the specified Space instance: Entry class, number of entries, notify templates.
  
 *Input Example:*
  
@@ -68,7 +65,7 @@ This command shows information for the specified Space instance details and data
 
 |Item | Name| Description |
 |:----|:----|:------------| 
-|Parameter | instance ID |ID of the Space instance to display the statistics for |
+|Parameter | instance ID |Provide the instance ID of the Space instance for which you want to see the data type details. |
  
 {{%/tab%}}
 
@@ -82,7 +79,7 @@ This command shows information for the specified Space instance details and data
 
 *Description:*
 
-The entries in the entries in the Space are listed.
+The data entries in the Space are listed.
 
 *Example Request:*
 
@@ -105,7 +102,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| space name | Provide the name of the Space for which you want to see the details. | Yes |
+| space name | Provide the name of the Space for which you want to see the data type details. | Yes |
 
 **To view Space Instance data types:**
 
@@ -115,7 +112,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces
 
 *Description:*
 
-The entries in the entries in the Space Instance are listed.
+The data entries in the Space instance are listed.
 
 *Example Request:*
 
@@ -138,14 +135,11 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| space name | Provide the name of the Space for which you want to see the runtime details. | Yes |
-| instanceId| Provide the instance Id of the Space for which you want to see the runtime details. | Yes |
-
+| space name | Provide the name of the Space. | Yes |
+| instanceId| Provide the instance Id of the Space for which you want to see the data type details. | Yes |
 
 {{%/tab%}}
  
-
-
 {{%tab "Web Management Console"%}}
 
 1. In the Spaces view, highlight the Space or Space instance where you want to see the data types.
@@ -213,15 +207,13 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces
 
 {{%/tab%}}
  
-
 {{%tab "GigaSpaces Management Center"%}}
 
 Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 
 {{%/tab%}}
 
-
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 {{% /tabs %}}

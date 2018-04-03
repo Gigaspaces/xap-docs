@@ -8,11 +8,11 @@ parent: admin-insightedge.html
  
   
 
-{{% bgcolor yellow %}}write intro for this topic{{% /bgcolor %}}
+{{%info "Info"%}}
+This functionality is not yet available in the Command Line Interface, Web Management Console, GigaSpaces Management Center, or Administration API administration tools.
+{{%/info%}}
 
-_Not yet available when using the **Command Line Interface**._
-
-<br>
+**To deploy a Spark-based application:**
  
 {{%tabs%}}
 
@@ -24,15 +24,17 @@ N/A
 
 {{%tab "REST Manager API"%}}
 
-*Prerequisite*
-An application resource file needs to be uploaded. Refer to [Uploading a Spark Application File](./admin-ie-upload-spark-app-file.html)
-For example, you can try out the application file: <XAP-ROOT>/insightedge/examples/jars/insightedge-examples.jar
+*Prerequisites*
+
+An application resource file must be uploaded. Refer to [Uploading a Spark Application File](./admin-ie-upload-spark-app-file.html). You can use the following sample application file: `<XAP-ROOT>/insightedge/examples/jars/insightedge-examples.jar`
 
 *Path*
 
 `POST /spark/applications`
 
 *Description:*
+
+This option deploys a Spark-based application in the InsightEdge environment.
 
 
 *Example Request:*
@@ -56,11 +58,11 @@ The ID of the request to track with a status code: 202
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| mainClass | The main class of the Application | Yes |
-| applicationJar | The application jar file name | Yes |
-| name | The Spark application name | No |
-| applicationArguments | The Spark application arguments | No |
-| sparkProperties | The Spark context properties | No |
+| mainClass | The main class of the application. | Yes |
+| applicationJar | The application JAR file name. | Yes |
+| name | The Spark application name. | No |
+| applicationArguments | The Spark application arguments. | No |
+| sparkProperties | The Spark context properties. | No |
 
 
 {{%/tab%}}

@@ -7,13 +7,10 @@ parent: admin-service-grid.html
 ---
  
   
+When security is in place, the administration tools require credentials to securely access and operate the secured components. Access is granted to authenticated users, while operations are restricted based on the granted permission.
+For more information, refer to the [Security](../started/xap-tutorial-part10.html) page in the [Getting Started](../started/index.html) guide (under the [XAP Basics](../started/xap-basics.html) section).
+
 **To access a secured service grid:**
-
-When security is in place, the administration tools require credentials to securely access and operate the secured components.
-Access is granted to authenticated users, while operations are restricted based on the granted permission.
-For more information, refer to the [Getting Started - Security](../started/xap-tutorial-part10.html) section.
-
-<br>
  
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -53,8 +50,8 @@ See the [Security](./tools-web-ui.html#security) paragraph of the [Web Managemen
 {{%/tab%}}
 
 
-{{%tab "GigaSpaces Management Console"%}}
-TBD
+{{%tab "GigaSpaces Management Center"%}}
+Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html) topics in the Administration section.
 {{%/tab%}}
 
 

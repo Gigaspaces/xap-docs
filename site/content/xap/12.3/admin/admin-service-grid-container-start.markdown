@@ -6,9 +6,6 @@ weight: 300
 parent: admin-service-grid.html
 ---
  
-  
-
- 
 
  
  
@@ -27,7 +24,7 @@ parent: admin-service-grid.html
 
 *Description:*
  
-Starting a container.
+This commands starts a container.
 
 *Input Example:*
 
@@ -40,10 +37,10 @@ Starting a container.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | host | Host name to create container on.|
-|Option    |  ---memory:\<memory\> | Container's JVM max memory.|
-|Option    | ---zone=\<zone name\> | Container's zone.|
-|Option    |---property=\<String=String\> | Additional System properties.|
+|Parameter | host | Provide the name of the host where the container should be started.|
+|Option    |  ---memory:\<memory\> | Define the maximum amount of JVM memory for the new container. |
+|Option    | ---zone=\<zone name\> | Define the zone where the new container should be started. |
+|Option    |---property=\<String=String\> | Provide additional system properties.|
  
 {{%/tab%}}
 
@@ -56,7 +53,7 @@ Starting a container.
 
 *Description:*
 
-Deploy a container (GSC).
+This option starts a container.
 
 *Example Request:*
 
@@ -72,12 +69,11 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| memory | Container's JVM max memory.| No |
-| zone |Container's zone.| No |
-|vmArguments | Additional System properties.|
+| memory | Define the maximum amount of JVM memory for the new container. | No |
+| zone |Define the zone where the new container should be started. | No |
+|vmArguments | Provide additional system properties.|
  
 {{%/tab%}}
-
 
 {{%tab "Web Management Console"%}}
 
@@ -110,9 +106,6 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
  
 # Terminating a Container
-
- 
-
  
 
 **To terminate a container:**
@@ -126,7 +119,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Kill (stop) the specified container.
+This command stops (terminates) the specified container.
 
 *Input Example:*
 
@@ -139,7 +132,7 @@ Kill (stop) the specified container.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | container ID | ID of the container to kill|
+|Parameter | container ID | ID of the container to be terminated. |
  
  
 {{%/tab%}}
@@ -153,7 +146,7 @@ Kill (stop) the specified container.
 
 *Description:*
 
-Stop a container (GSC).
+This option stops (terminates) the specified container.
 
 *Example Request:*
 
@@ -165,7 +158,7 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/container
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| containerId | Id of the container | Yes |
+| containerId | ID of the container to be terminated. | Yes |
  
 {{%/tab%}}
 
@@ -199,7 +192,6 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 {{% /tabs %}}
 
 
-
 # Restarting a Container
 
 **To restart a container:**
@@ -213,7 +205,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Description:*
  
-Restart the specified container.
+This command restarts the specified container.
 
 *Input Example:*
 
@@ -226,7 +218,7 @@ Restart the specified container.
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | container ID | ID of the container to restart|
+|Parameter | container ID | ID of the container to be restarted. |
  
 {{%/tab%}}
 
@@ -238,7 +230,7 @@ Restart the specified container.
 
 *Description:*
 
-restart a container (GSC).
+This option restarts the specified container.
 
 *Example Request:*
 
@@ -250,7 +242,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| containerId | Id of the container | Yes |
+| containerId | ID of the container to be restarted. | Yes |
  
 {{%/tab%}}
 
