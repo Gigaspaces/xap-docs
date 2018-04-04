@@ -297,7 +297,7 @@ A list of configuration properties can be found in  the {{%exurl "org.rocksdb.DB
 Below are the values for the default class `com.com.gigaspaces.blobstore.rocksdb.config.XAPColumnFamilyOptions`.
 
 {{%refer%}}
-A list of configuration properties can be found in  the [org.rocksdb.ColumnFamilyOptionsInterface](https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/ColumnFamilyOptionsInterface.java) Java docs.
+A list of configuration properties can be found in  the [org.rocksdb.ColumnFamilyOptionsInterface](https://github.com/facebook/rocksdb/blob/v5.5.1/java/src/main/java/org/rocksdb/AdvancedColumnFamilyOptionsInterface.java) Java docs.
 {{%/refer%}}
 
 | Property               | Description                                               | Value |

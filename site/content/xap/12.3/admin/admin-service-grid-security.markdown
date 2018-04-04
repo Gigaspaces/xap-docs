@@ -54,7 +54,6 @@ If you configured your XAP instance to run in secure mode using the `-Dcom.gs.se
 ![xap-login-inline.png](/attachment_files/web-console/login-12.3.png)
 {{%/align%}}
 
-
 For more information about how to configure the Web Management Console for use in a secured environment, refer to the [Web Management Console](.//tools-web-ui.html) introductory page.
 
 {{%/tab%}}
