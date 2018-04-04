@@ -22,6 +22,44 @@ In standalone mode, the web container listens by default on port 8099. To view t
 
 # Security
 
+## Enabling Security
+
+The Web Management Console (Web-UI) allows for a secured access when the security `enabled` property is set. This property should be configured using `EXT_JAVA_OPTIONS` in `setenv` script and is applied to all XAP [Grid Components](securing-the-grid-services.html).
+
+The property:
+```java
+-Dcom.gs.security.enabled=true
+```
+
+{{%note "Notes"%}}
+The Lookup groups and Locators are loaded from the `setenv/setenv-overrides` script. ץ Lookup groups and Lookup Locators can be configured in the configuration files described in [Configure Lookup Groups and Locators](../started/common-environment-variables.html#extension).
+{{%/note%}}
+
+## Security Properties File
+
+The security properties file is used to configure the `SecurityManager`, which is responsible for the authentication and authorization process. The `security.properties` file is common to all components and is usually located under `<XAP root>/config/security/security.properties`. To only affect the Web Management Console, use `webui-security.properties` instead.
+
+The configuration file can be located anywhere in the classpath or in the classpath under `config/security`. Alternatively, a system property can be set to indicate the location of the properties file: 
+
+```java
+-Dcom.gs.security.properties-file = my-security.properties
+```
+
+By setting `-Dcom.gs.security.properties-file` the property file will be located as a direct path (e.g. `~/home/user/my-security.properties`), 
+a resource (e.g. "my-security.properties") in the classpath or in the classpath under `config/security`.
+
+## Custom Credentials
+
+An authentication mechanism might require a different set of actions to be taken on the provided credentials (username/password). A custom extension can be provided for this, as described in [Credentials Provider](custom-authentication.html).
+
+This credentials provider is configured as arguments to the command line of the Web Managment Console. Use `-user-details-provider` for the provider class name. Use `-user-details-properties` to provide additional properties. This argument is optional.
+
+Run the `gs-webui` script with these parameters:
+
+```bash
+gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address=myServer
+```
+
 ## SSL Connection 
 
 In order to run the web-ui server with SSL ( using the HTTPS protocol instead of HTTP), the following parameters must be provided as arguments to the `gs-webui` script:
@@ -84,20 +122,6 @@ gs-webui.bat
 {{% /tab %}}
 {{% /tabs %}}
 
-## Securing the Web Dashboard
-
-If you configured your XAP instance to run in secure mode using the `-Dcom.gs.security.enabled=true` property, you will see the following login window:
-
-{{% align center %}}
-![xap-login-inline.png](/attachment_files/web-console/login-12.3.png)
-{{%/align%}}
-
-The Lookup groups and Locators are loaded from the `setenv/setenv-overrides` script. 
-
-{{%refer%}}
-For more information on how to secure the grid services, refer to [Securing Grid Services](../security/securing-the-grid-services.html).
-Lookup groups and Lookup Locators can be configured in the configuration files described in [Configure Lookup Groups and Locators](../started/common-environment-variables.html#extension).
-{{%/refer%}}
 
 # Deploying the Web Application
 

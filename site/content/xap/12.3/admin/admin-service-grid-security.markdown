@@ -38,14 +38,24 @@ For more information, refer to the [Security](../started/xap-tutorial-part10.htm
 
 {{%tab "REST Manager API"%}}
 
-See section on [REST Manager API security](../security/securing-the-REST-manager.html)
+When security is enabled, the REST Manager API performs basic authentication and checks if the user has sufficient privileges 
+to execute the operation.
+
+For more information about using the REST Manager API in a secured environment, refer to the [REST Manager API](./admin-rest-manager-api.html) introductory page.
 
 {{%/tab%}}
 
 
 {{%tab "Web Management Console"%}}
 
-See the [Security](./tools-web-ui.html#security) paragraph of the [Web Management Console](./tools-web-ui.html) topic for information on how to configure the tool to access a secured service grid.
+If you configured your XAP instance to run in secure mode using the `-Dcom.gs.security.enabled=true` property, you will see the following login window when the Web Management Console is started:
+
+{{% align center %}}
+![xap-login-inline.png](/attachment_files/web-console/login-12.3.png)
+{{%/align%}}
+
+
+For more information about how to configure the Web Management Console for use in a secured environment, refer to the [Web Management Console](.//tools-web-ui.html) introductory page.
 
 {{%/tab%}}
 
@@ -56,7 +66,7 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 
 {{%tab "Administration API"%}}
-Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developers Guide.
+Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
 {{%/tab%}}
 
 {{% /tabs %}}
