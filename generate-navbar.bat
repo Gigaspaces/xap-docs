@@ -1,2 +1,2 @@
 @echo off
-call jarvis.bat generate-navbar %~dp0
+call jarvis.bat generate-navbar %~dp0 %1

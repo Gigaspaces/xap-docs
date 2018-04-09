@@ -1,3 +1,7 @@
 @echo off
 call mvn --file jarvis package -DskipTests
-start javaw -jar jarvis/target/jarvis-1.0.jar %*
+IF [%1]==[] (
+   start javaw -jar jarvis/target/jarvis-1.0.jar
+) ELSE ( 
+   java -jar jarvis/target/jarvis-1.0.jar %*
+)

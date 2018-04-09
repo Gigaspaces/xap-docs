@@ -25,12 +25,20 @@ public class Config {
     private final AtomicInteger totalPages= new AtomicInteger();
 
     public Config(String path) {
-        this(new File(path));
+        this(new File(path), null);
+    }
+
+    public Config(String path, String siteFolder) {
+        this(new File(path), siteFolder);
     }
 
     public Config(File path) {
+        this(path, null);
+    }
+
+    public Config(File path, String siteFolder) {
         this.path = path;
-        this.sitePath = new File(path, "site");
+        this.sitePath = new File(path, siteFolder != null ? siteFolder : "site");
         this.contentPath = new File(sitePath, "content");
         loadProperties();
         groupByPrefix(properties, "plugin.").forEach(this::addPlugin);
