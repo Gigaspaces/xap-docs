@@ -5,6 +5,9 @@ if not exist site-temp (
    xcopy /E ..\site site-temp
 )
 
+echo Overriding site-temp...
+xcopy /Y /E site-overrides site-temp
+
 pushd ..
 call generate-navbar.bat flare-migration\site-temp
 popd
