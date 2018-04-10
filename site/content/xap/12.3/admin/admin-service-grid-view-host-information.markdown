@@ -329,7 +329,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/
 The Hosts view provides a general overview of the host machines, Processing Units, and Spaces, and relevant containers.. 
 
 {{%note "Note"%}}
-Container information is explained in the [Viewing Container Information](/admin-service-grid-container-information.html) topic.
+Container information is explained in the [Viewing Container Information](./admin-service-grid-container-information.html) topic.
 {{%/note%}}
 
 <table>

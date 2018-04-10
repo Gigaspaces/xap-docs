@@ -435,7 +435,7 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/contai
 The Hosts view provides general overview of the containers that are running in the XAP environment. 
 
 {{%note "Note"%}}
-For a description of the other information displayed in the Hosts view, see the [Viewing Host Information](/admin-service-grid-view-host-information.html) topic.
+For a description of the other information displayed in the Hosts view, see the [Viewing Host Information](./admin-service-grid-view-host-information.html) topic.
 {{%/note%}}
 
 <table>

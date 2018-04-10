@@ -23,7 +23,7 @@ Tasks that users may perform on the Space and Processing Unit components in the 
 [Administering the Service Grid](./admin-service-grid.html)<br>
 Tasks that users may perform on the service grid as part of monitoring and managing the system, such as viewing host resources, managing containers, viewing logs and events, and generating dump files for analysis.
 
-[Administering InsightEdge](.//admin-insightedge.html)<br>
+[Administering InsightEdge](./admin-insightedge.html)<br>
 Provides information about clustering and logging for InsightEdge, along with tasks that users may perform when configuring and managing Spark-based applications.
 
 [Data Grid Clustering](./data-grid-clustering.html)<br>

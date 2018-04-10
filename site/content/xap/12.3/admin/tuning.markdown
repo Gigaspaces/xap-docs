@@ -21,4 +21,4 @@ After you have developed your application, you may want to adjust parameters in 
 
 ## Additional Resources
 
-For more information about fine-tuning the performance of your XAP-based application, refer to the section that describes [Moving Into Production]({{%currentxapurl%}}/production/).
+For more information about fine-tuning the performance of your XAP-based application, refer to the section that describes [Moving Into Production](../production/index.html).

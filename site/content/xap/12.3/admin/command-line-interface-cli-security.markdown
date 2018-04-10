@@ -1,17 +1,12 @@
 ---
 type: post123
-title:  Command Line Interface
+title:  Using the CLI in a Secured Environment
 categories: XAP123SEC, PRM
-parent: security-administration.html
-weight: 200
+parent: command-line-interface.html
+weight: 500
 ---
 
-
-
-
-
-
-The Command Line Interface can be used to manage and monitor a running system. It is mainly used for script automation, and when there is a limitation to run a Graphical User Interface. This section covers how security can be applied to the commands supported by the CLI tool.
+This page explains how security can be applied to the commands supported by the CLI tool.
 
 # Login/Logout
 

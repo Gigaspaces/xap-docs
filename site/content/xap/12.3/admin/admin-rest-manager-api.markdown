@@ -67,7 +67,7 @@ The REST component is part of the XAP Manager, and inherits the XAP Manager secu
 ## Enabling Security
 
 The REST Manager API allows for secured access and operations when the security `enabled` property is set.
-This property should be configured using the `EXT_JAVA_OPTIONS` in the `setenv` script, and is applied to all XAP [Grid Components](securing-the-grid-services.html).
+This property should be configured using the `EXT_JAVA_OPTIONS` in the `setenv` script, and is applied to all XAP [Grid Components](../security/securing-the-grid-services.html).
 
 The property:
 ```java

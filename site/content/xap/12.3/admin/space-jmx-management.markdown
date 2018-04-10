@@ -121,7 +121,7 @@ For a secure JConsole, use -Dcom.gigaspaces.system.registryRetries=1 and -Dcom.g
 
 # Viewing Thread CPU Usage with JDK 1.6
 
-JConsole includes a {{%exurl "new tab" "http://blog.luminis.nl/luminis/entry/top_threads_plugin_for_jconsole"%}} that displays CPU usage for each JVM thread. This tab is displayed using the [-pluginpath](http://java.sun.com/javase/{{%version "java-version"%}}/docs/technotes/guides/management/jconsole.html) JConsole parameter (already implemented in GigaSpaces).
+JConsole includes a {{%exurl "plugin" "https://arnhem.luminis.eu/top-threads-plugin-for-jconsole/"%}} that displays CPU usage for each JVM thread. This tab is displayed using the [-pluginpath](http://java.sun.com/javase/{{%version "java-version"%}}/docs/technotes/guides/management/jconsole.html) JConsole parameter (already implemented in GigaSpaces).
 
 **To view this tab in your JConsole**:
 

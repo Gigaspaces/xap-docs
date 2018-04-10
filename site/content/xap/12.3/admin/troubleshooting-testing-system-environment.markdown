@@ -12,12 +12,12 @@ weight: 200
 To perform a simple system testing you should use the `space-instance.bat` script on windows or `space-instance.sh` script on linux.
 
 {{% refer %}}
-To set up a production environment,refer to [Moving into Production Checklist]({{%currentxapurl%}}/production/).
+To set up a production environment,refer to [Moving into Production Checklist](../production/index.html).
 {{% /refer %}}
 
 # Verifying Local Installation
 
-1. Run a single GigaSpaces space instance by moving to the `<XAP Root>\bin` directory and running the `space-instance.bat/sh` command. You should see such an output:
+1. Run a single Space instance by moving to the `<XAP Root>\bin` directory and running the `space-instance.bat/sh` command. You should see such an output:
 
 
 ```bash
@@ -110,7 +110,7 @@ Average Time = 135 milliseconds
 ```
 
 {{% tip "Tip"%}}
-Subsequent space ping calls will have much faster response time. The fist space ping call introduce some meta data to the space. This happens only once.
+Subsequent Space ping calls will have much faster response time. The fist space ping call introduce some metadata to the Space. This happens only once.
 {{% /tip %}}
 
 If the space ping call fails with the following:
@@ -122,8 +122,8 @@ Service is not found using the URL: jini://*/*/mySpace?timeout=5000
 ```
 
 You have the following options:
-    - Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the [How to Configure Multicast](./network-multicast.html) section for details on how to enable multicast.
-    - Perform a space ping using **unicast** lookup discovery protocol:
+    - Make sure your network and machines running GigaSpaces products are configured to have multicast enabled. See the [How to Configure Multicast](./network-multicast.html) section for details on how to enable multicast.
+    - Perform a Space ping using **unicast** lookup discovery protocol:
     gs space ping -url jini://localhost/*/mySpace
 The following result should appear on the console:
 
@@ -143,7 +143,7 @@ Average Time = 135 milliseconds
 ```
 
 {{% tip "Tip"%}}
-When the ping client running on a remote machine (other than the machine running the space), `localhost` should be replaced with the machine **hostname** or **IP** running the space instance.
+When the ping client running on a remote machine (other than the machine running the space), `localhost` should be replaced with the machine **hostname** or **IP** running the Space instance.
 {{% /tip %}}
 
 # Verifying Remote Installation

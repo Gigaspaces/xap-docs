@@ -24,7 +24,7 @@ In standalone mode, the web container listens by default on port 8099. To view t
 
 ## Enabling Security
 
-The Web Management Console (Web-UI) allows for a secured access when the security `enabled` property is set. This property should be configured using `EXT_JAVA_OPTIONS` in `setenv` script and is applied to all XAP [Grid Components](securing-the-grid-services.html).
+The Web Management Console (Web-UI) allows for a secured access when the security `enabled` property is set. This property should be configured using `EXT_JAVA_OPTIONS` in `setenv` script and is applied to all XAP [Grid Components](../security/securing-the-grid-services.html).
 
 The property:
 ```java
@@ -50,7 +50,7 @@ a resource (e.g. "my-security.properties") in the classpath or in the classpath 
 
 ## Custom Credentials
 
-An authentication mechanism might require a different set of actions to be taken on the provided credentials (username/password). A custom extension can be provided for this, as described in [Credentials Provider](custom-authentication.html).
+An authentication mechanism might require a different set of actions to be taken on the provided credentials (username/password). A custom extension can be provided for this, as described in the [Authentication](../security/custom-authentication.html) page of the [Security](../security/index.html) section.
 
 This credentials provider is configured as arguments to the command line of the Web Managment Console. Use `-user-details-provider` for the provider class name. Use `-user-details-properties` to provide additional properties. This argument is optional.
 

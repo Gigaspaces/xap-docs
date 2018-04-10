@@ -101,7 +101,7 @@ The auto renewal idea is that the listener is added with a limited lease, for ex
 
 - The client process terminated unexpectedly, and didn't un register its listener. After the lease expires, the notify template is removed from the space, instead of staying alive forever.
 - If the space is no longer available, then the client is notified that it couldn't renew the listener lease.
-- If the client causes a [slow consumer]({{% currentadmurl %}}/slow-consumer.html) scenario, and as a result its listener has been disconnected by the space, then the client is notified that it couldn't renew the listener lease, and it can reregister to the event.
+- If the client causes a [slow consumer](../admin/slow-consumer.html) scenario, and as a result its listener has been disconnected by the space, then the client is notified that it couldn't renew the listener lease, and it can reregister to the event.
 
 **Configuring data event session with auto renewal**
 Auto renewal behavior is determined by the `EventSessionConfig.AutoRenew` property.

@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Deploying with Docker
+title:  Using Docker
 categories: XAP123GS
 parent: none
 weight: 400

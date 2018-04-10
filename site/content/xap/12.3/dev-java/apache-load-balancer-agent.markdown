@@ -14,7 +14,7 @@ XAP comes with a built-in utility allowing you to dynamically update an Apache h
 
 The integration dynamically creates and updates the  {{%exurl "mod_proxy_balancer" "http://httpd.apache.org/docs/2.2/mod/mod_proxy_balancer.html" %}} configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.
 
-General information on how to enable the mod_proxy load balancer and configuration can be found in the {{%exurl "Jetty mod_proxy docs" "http://docs.codehaus.org/display/JETTY/Configuring+mod_proxy"%}}. Note, the load balancer actual configuration of specific balancer members are generated automatically as explained below.
+General information on how to enable the mod_proxy load balancer and configuration can be found in the {{%exurl "Jetty mod_proxy docs" "https://wiki.eclipse.org/Jetty/Howto/Configure_mod_proxy"%}}. Note, the load balancer actual configuration of specific balancer members are generated automatically as explained below.
 
  
 Similar agents can be implemented for other HTTP load-balancers such as {{%exurl "F5" "http://www.f5.com"%}}, {{%exurl "Radware" "http://www.radware.com"%}},{{%exurl "CISCO ACE" "http://www.cisco.com/en/US/products/ps6906"%}}, {{%exurl "Barracuda" "http://www.barracudanetworks.com"%}} etc., using the [Administration and Monitoring API](./administration-and-monitoring-overview.html). See the [Web Load Balancer Agent PU](/sbp/web-load-balancer-agent-pu.html) for details.

@@ -58,4 +58,4 @@ insightedge host kill-agent
 * To run the examples on your local InsightEdge environment, see [Running the Examples](insightedge-examples.html)
 * To create your first InsightEdge application, see [Developing Your First Application](insightedge-first-app.html)
 * To learn more about the `insightedge` CLI script, use the `--help` option
-* To set up a cluster on a set of machines, see [Cluster Setup For InsightEdge](../admin/cluster_setup.html)
+* To set up a cluster on a set of machines, see [Cluster Setup For InsightEdge](../admin//admin-ie-cluster_setup.html)

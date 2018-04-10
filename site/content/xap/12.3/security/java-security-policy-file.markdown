@@ -2,8 +2,8 @@
 type: post123
 title:  Java Security Policy File
 categories: XAP123SEC, PRM
-parent: security-administration.html
-weight: 500
+parent: index.html
+weight: 740
 ---
 
 

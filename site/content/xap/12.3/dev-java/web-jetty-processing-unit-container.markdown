@@ -407,7 +407,7 @@ The `context` passes to the `SharedContextFactory`, is the property `web.context
 
 # Load Balancing
 
-This section explains how to configure plain mode with Apache and `mod_proxy` load balancer (for more information, read about {{%exurl "Jetty" "http://docs.codehaus.org/display/JETTY/Configuring+mod_proxy"%}}). Plain mode is used in the example. The first step after installing Apache 2.2 is to enable the `mod_proxy`, `mod_proxy_balancer`, and `mod_proxy_http` (at least) modules.
+This section explains how to configure plain mode with Apache and `mod_proxy` load balancer. Plain mode is used in the example. The first step after installing Apache 2.2 is to enable the `mod_proxy`, `mod_proxy_balancer`, and `mod_proxy_http` (at least) modules.
 
 The second step (as per the link to Jetty documentation) is to set the `workerName` property of the session ID manager. The Jetty integration automatically sets the `workerName` (if it is not set explicitly) as the `clusterInfo` name and the `clusterInfo` running number. You can override this by configuring the `jetty-web.xml`. The following examples shows how the `jetty-web.xml` workerName gets set automatically (if it was configured explicitly):
 
@@ -517,7 +517,7 @@ Web applications running inside the Jetty container can use SSL. The following e
 
 You can find a complete Jetty container definition [here](/download_files/jetty.pu.xml) and the associated properties file [here](/download_files/pu.properties).
 
-Jetty documentation outlines all the steps involved in configuring SSL. Please refer to the following [page](http://docs.codehaus.org/display/JETTY/How+to+configure+SSL) for more information.
+Jetty documentation outlines all the steps involved in configuring SSL. Please refer to the following [page](https://wiki.eclipse.org/Jetty/Howto/Configure_SSL) for more information.
 
 {{% refer %}}
 A complete example with a keystore and certificate file included is available [here](/download_files/jetty-ssl.zip).
