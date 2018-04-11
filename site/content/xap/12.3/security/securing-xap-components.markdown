@@ -22,5 +22,5 @@ You can apply security settings at the following levels:
 To administer and manage these components, set security configurations for:
 
 - [Web Management Console](../admin/tools-web-ui.html#security) - using a secured Web-UI server.
-- [REST Manager API](../admin//admin-rest-manager-api.html#security) - using a secured RESTful API.
+- [REST Manager API](../admin/admin-rest-manager-api.html#security) - using a secured RESTful API.
 

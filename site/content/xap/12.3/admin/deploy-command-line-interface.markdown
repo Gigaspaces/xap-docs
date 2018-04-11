@@ -38,8 +38,8 @@ Deploys an [application](../dev-java/deploying-onto-the-service-grid.html#Applic
 | -timeout | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.<br>Defaults to **5000** milliseconds (5 seconds).| -timeout [timeoutValue]|
 | -deploy-timeout | Timeout for deploy operation (in milliseconds),<br>otherwise blocks until all successful/failed deployment events arrive (default)" |-deploy-timeout [timeoutValue]|
 | -h / -help  | Prints help | |
-| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security](../security/command-line-interface-cli-security.html)| -secured [true/false]|
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security](../security/command-line-interface-cli-security.html)| -user xxx -password yyyy|
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| -secured [true/false]|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| -user xxx -password yyyy|
 
 {{%accordion%}}
 {{%accord title="Example"%}}
@@ -110,8 +110,8 @@ Undeploys an [application](../dev-java/deploying-onto-the-service-grid.html#Appl
 |  -timeout  | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.<br>Defaults to  **5000  milliseconds (5 seconds).| `-timeout [timeoutValue]`|
 | -undeploy-timeout | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |`-undeploy-timeout [timeoutValue]`|
 | -h / -help  | Prints help | |
-| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{%accordion%}}
 {{%accord title="Example"%}}
@@ -174,8 +174,8 @@ Property files and other resources should be jared and placed within any of the 
 | -max-instances-per-zone | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
 | -requires-isolation | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
 | h / help  | Prints help | |
-| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
  
 
@@ -265,8 +265,8 @@ Undeploys an [application](../dev-java/deploying-onto-the-service-grid.html#Appl
 | -timeout | Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.Defaults to `5000` milliseconds (5 seconds).| `-timeout [timeoutValue]`|
 | -undeploy-timeout | Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed deployment events arrive (default)" |`-undeploy-timeout [timeoutValue]`|
 | -h / -help  | Prints help | |
-| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{%accordion%}}
 {{%accord title="Example"%}}
@@ -307,8 +307,8 @@ gs> deploy-memcached [-sla ...] [-cluster ...] [-properties ...] [-user xxx -pas
 | -max-instances-per-zone | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
 | -requires-isolation | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
 | h / help  | Prints help | |
-| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{% tip %}}
 You can use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to deploy complex multi processing unit applications.
@@ -355,8 +355,8 @@ A Space only Processing Unit can be easily deployed onto the Service Grid.
 | -max-instances-per-zone | Allows you to set the SLA number of instances per zone in the format of `zoneX/number,zoneY/number` | |
 | -requires-isolation | Allows to set the SLA requires isolation, if set to true only a single processing unit instance will deployed on a given GSC| `-requires-isolation [true/false]`|
 | h / help  | Prints help | |
-| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-secured [true/false]`|
-| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [(CLI) Security](../security/command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
+| -secured | Deploys a secured processing unit (implicit when using -user/-password) - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-secured [true/false]`|
+| -user -password | Deploys a secured processing unit propagated with the supplied user and password - [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html)| `-user xxx -password yyyy`|
 
 {{% tip %}}
 You may use the [GigaSpaces Universal Deployer](/sbp/universal-deployer.html) to deploy complex multi processing unit applications.
