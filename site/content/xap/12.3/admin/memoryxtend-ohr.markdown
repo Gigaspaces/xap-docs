@@ -35,13 +35,13 @@ Creating a Space with the off-heap storage driver can be done via `pu.xml` or co
        xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{% currentversion %}}/core/openspaces-core.xsd
-       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/{{% currentversion %}}/off-heap-blob-store/openspaces-off-heap-blobstore.xsd">
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/{{% currentversion %}}/off-heap-blob-store/openspaces-off-heap-blob-store.xsd">
 
     <blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/>
 
     <os-core:embedded-space id="space" name="mySpace">
        <os-core:blob-store-data-policy persistent="false" blob-store-handler="offheapBlobstore"/>
-    </os-core:space>
+    </os-core:embedded-space>
 
     <os-core:giga-space id="gigaSpace" space="space"/>
 </beans>
