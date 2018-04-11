@@ -131,7 +131,7 @@ JConsole includes a {{%exurl "plugin" "https://arnhem.luminis.eu/top-threads-plu
 ![space_JMX_7_JDK6.jpg](/attachment_files/space_JMX_7_JDK6.jpg)
 {{% /align %}}
 
-- [Download the topthreads.jar file](http://blog.luminis.nl/luminis/resource/peter/topthreads.jar) and add it to your `<XAP Root>\lib\platform\ui` folder.
+- [Download the topthreads.jar file](https://bitbucket.org/pjtr/topthreads/downloads/topthreads-1.1.jar) and add it to your `<XAP Root>\lib\platform\ui` folder.
 
 {{% info "Info"%}}
 `topthreads-{{%version "topthreads"%}}.jar` is used by default. If `topthreads-{{%version "topthreads"%}}.jar` isn't found, the `JTop.jar` file (which is part of the JDK) is used instead.

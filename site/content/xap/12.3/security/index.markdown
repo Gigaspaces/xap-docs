@@ -44,7 +44,7 @@ The administration and monitoring tools interact with the application layers as 
 {{% /align%}}
 
 {{%refer%}}
-Refer to [Administration and Management Tools](security-administration.html) for details about the configuration options.
+Refer to [Administration Tools](../admin/admin-tools.html) for details about the configuration options.
 {{%/refer%}} 
 
 ## Securable Layers
@@ -63,8 +63,8 @@ Security is configured via a property file that includes required and custom pro
 
 * [Space and Processing Unit](security-configurations.html) - Includes configuration options for the properties file.
 * [Grid components](security-configurations-ext.html) - Includes configuration options for the grid components.
-* [Web Management Console](securing-the-web-ui.html) - Includes configurations for authenticating with secure XAP components.
-* [REST Manager API](securing-the-REST-manager.html) - Includes security and SSL configurations for secured RESTful API support.  
+* [Web Management Console](../admin/tools-web-ui.html#security) - Includes configurations for authenticating with secure XAP components.
+* [REST Manager API](../admin/admin-rest-manager-api.html#security) - Includes security and SSL configurations for secured RESTful API support.  
 
 When no property file is configured, there is a fallback implementation mainly used for testing or to get you started.
 This implementation stores the user credentials in a local file and can be used to demonstrate that security has been applied.

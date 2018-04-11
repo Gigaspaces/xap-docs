@@ -9,7 +9,7 @@ weight: 250
  
 
 {{%refer "Interacting with a Secured Grid"%}}
-In order to interact with a secured grid you need to login first. See [(CLI) Security](../security/command-line-interface-cli-security.html).
+In order to interact with a secured grid you need to login first. See [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html).
 {{%/refer%}}
 
 # application

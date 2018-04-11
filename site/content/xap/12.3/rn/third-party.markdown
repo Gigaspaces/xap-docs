@@ -20,7 +20,7 @@ This page list all the third-party libraries shipped with InsightEdge and XAP on
 | [Apache Commons](http://jakarta.apache.org/commons/) | 1.x-2.x | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | Yes | Core |
 | [Spring](https://spring.io/) | 4.3.13 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | Yes | Core |
 | [ASM](http://asm.objectweb.org/doc/tutorial.html) | 2.2.3 | [INRIA](http://asm.objectweb.org/license.html) | No | Core |
-| [Sigar](http://support.hyperic.com/display/SIGAR/Home) | 1.6.5 | [Apache2](http://support.hyperic.com/display/SIGAR/Home#Home-license) | No | Core |
+| [Sigar](https://github.com/hyperic/sigar) | 1.6.5 | [Apache2](https://github.com/hyperic/sigar/blob/master/LICENSE) | No | Core |
 | [HyperSonic SQL](http://www.hsqldb.org/) | 1.8.0 | [Hypersonic SQL](http://www.hsqldb.org/web/hsqlLicense.html) | No | Persistency |
 | [H2](http://www.h2database.com/) | 1.2 | [H2](http://www.h2database.com/html/license.html) | No | Persistency |
 | [Velocity](http://velocity.apache.org/) | 1.5 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | No | Utilities |
@@ -58,7 +58,7 @@ The InsightEdge platform is packaged with Apache Spark, which contains additiona
 |[Jetty](http://eclipse.org/jetty/)         |  9.2.24 | [Apache2](http://www.eclipse.org/jetty/licenses.html) | Web Container | [Jetty Processing Unit Container](../dev-java/web-jetty-processing-unit-container.html) |
 |[JMS](http://java.sun.com/products/jms/)   | 1.1 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | JMS | [JMS Messaging Support](../dev-java/messaging-support.html) |
 |[Mule](http://www.mulesoft.org/)           | 3.3.0 | [CPAL](http://www.mulesoft.org/licensing-mule-esb) | Mule | [Mule ESB](../dev-java/mule-esb.html) |
-|[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](http://svn.codehaus.org/groovy/trunk/groovy/groovy-core/LICENSE.txt) | Dynamic Scripting | [Dynamic Scripting Support](../dev-java/task-dynamic-language.html)|
+|[Groovy](http://groovy-lang.org/)          | 1.8.6 | [Apache2](https://github.com/apache/groovy/blob/master/LICENSE) | Dynamic Scripting | [Dynamic Scripting Support](../dev-java/task-dynamic-language.html)|
 |[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](../dev-java/scala.html) |
 |[snmp4j](http://www.snmp4j.org/)           | 1.11.2 | [Apache2](http://www.snmp4j.org/LICENSE-2_0.txt) | SNMP | [SNMP Connectivity via Alert Logging Gateway](../dev-java/snmp-connectivity-via-alert-logging-gateway.html) |
 |[log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SNMP | [SNMP Connectivity via Alert Logging Gateway](../dev-java/snmp-connectivity-via-alert-logging-gateway.html)  |
@@ -93,7 +93,7 @@ The InsightEdge platform is packaged with Apache Spark, which contains additiona
 | [Highcharts](http://www.highcharts.com/products/highcharts) | 2.1.9 | [Commercial](http://highsoft.com/legal/Highslide-Software-License-1-3.pdf) |
 | [Ext GWT](http://www.sencha.com/products/) | 2.2.5 | [Commercial](http://www.sencha.com/products/extjs/license/) |
 | [jQuery](http://www.jquery.com/) | 1.8.1 | [MIT](https://jquery.org/license/) |
-| [Raphaël](http://www.raphaeljs.com/) | 2.1.0 | [MIT](http://raphaeljs.com/license.html) |
+| [Raphaël](http://www.raphaeljs.com/) | 2.1.0 | [MIT](http://dmitrybaranovskiy.github.io/raphael/license.html) |
 | [Dracula Graph](http://www.graphdracula.net/) | 0.0.3 | [MIT](http://www.opensource.org/licenses/mit-license.php) |
 | [CCombo V2.0](http://www.christsam.blogspot.com/2011/05/ccombo-v20.html) | 2.0 | [MIT](http://www.opensource.org/licenses/mit-license.php) |
 | [SexyCombo](http://vladimir-k.blogspot.com/2009/02/sexy-combo-jquery-plugin.html) | 2.1.3 | [MIT](http://www.opensource.org/licenses/mit-license.php) |
@@ -102,7 +102,7 @@ The InsightEdge platform is packaged with Apache Spark, which contains additiona
 | [Apache Commons Math v2.1](http://commons.apache.org/math) | 2.1 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0) |
 | [Fugue Icons](http://p.yusukekamiyamane.com/) | 3.5.6 | [Creative Commons](http://p.yusukekamiyamane.com/) |
 | [Alphanum Comparator](http://www.davekoelle.com/alphanum.html) | | [LGPL](http://www.gnu.org/licenses/lgpl.html) |
-| [Jackson](http://wiki.fasterxml.com/JacksonHome) | 1.9.9 | [LGPL](http://www.gnu.org/licenses/lgpl.html) |
+| [Jackson](https://github.com/FasterXML/jackson) | 1.9.9 | [LGPL](http://www.gnu.org/licenses/lgpl.html) |
 | [JGit](http://www.eclipse.org/jgit/) | 2.2.0 | [EDL](http://www.eclipse.org/org/documents/edl-v10.php) |
 | [slf4j](http://www.slf4j.org/) | 1.7.2 | [MIT](http://www.slf4j.org/license.html) |
 | [JCTerm](http://www.jcraft.com/jcterm/) | 0.0.11 | [GNU LGPL](http://www.gnu.org/licenses/lgpl.html) |
@@ -131,7 +131,7 @@ The InsightEdge platform is packaged with Apache Spark, which contains additiona
 | [Javassist](http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/) | 3.18.2 | [Apache 2](http://www.opensource.org/licenses/mit-license.php) |
 | [log4j](https://logging.apache.org/) | 1.2.17 | [Apache 2](http://www.opensource.org/licenses/mit-license.php) |
 | [Reflections](https://code.google.com/p/reflections/) | 0.9.9 | [WTFPL](http://www.wtfpl.net/about/) |
-| [Jackson](http://wiki.fasterxml.com/JacksonHome) | 2.3 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
+| [Jackson](https://github.com/FasterXML/jackson) | 2.3 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
 
 {{% /tab %}}
 

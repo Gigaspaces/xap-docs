@@ -51,14 +51,14 @@ Since System Properties are JVM level, any Processing Unit deployed within a GSC
 But, if security configurations were provided as part of the `pu.properties` they will be used instead.
 {{%/note%}}
 
-# Configuration options
+# Configuration Options
 
-### Space
+## Space
 
 For a standalone Space, the default Space security configuration file is `<space-name>-security.properties`. 
 Just like the `pu.properties`, you can include the security properties as part of the custom properties being passed to the space `/./space?properties=myCustomProps`.
 
-### Processing Unit
+## Processing Unit
 
 The default Processing Unit (Space) security configuration file is `/META-INF/spring/pu.properties`. 
 This is equivalent to custom properties being passed to the Space. 
@@ -68,14 +68,13 @@ Thus, having a Processing Unit Cluster point to a specific security directory.
 It is possible to separate the security configurations from the Processing Unit configurations, 
 by placing the configurations in `/META-INF/spring/<Space name>-security.properties` file.
 
-### Service Grid Components
+## Service Grid Components
 
 The default Grid components security configuration file is `grid-security.properties`.  
 Here you can declare different configurations that will affect all the Grid components (such as GSA, GSM, GSC) together.
 
-### Web Management Console
+## Web Management Console
 
-The default Web Management Console component security configuration file is `webui-security.properties`. 
-The configuration file affects only the [Web Management Console](./securing-the-web-ui.html).
+The default Web Management Console component security configuration file is `webui-security.properties`.  The configuration file affects only the [Web Management Console](../admin/tools-web-ui.html#security).
 
 

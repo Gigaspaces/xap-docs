@@ -13,7 +13,7 @@ XAP provides an interactive command line tool as part of the product. This can b
 This tool provides many commands that can be used to manage and gather information about the various GigaSpaces runtime components. This section describes the commands supported by GigaSpaces CLI.
 
 {{%refer "Interacting with a Secured Grid"%}}
-In order to interact with a secured grid you need to login first. See [(CLI) Security](../security/command-line-interface-cli-security.html).
+In order to interact with a secured grid you need to login first. See [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html).
 {{%/refer%}}
 
 # application

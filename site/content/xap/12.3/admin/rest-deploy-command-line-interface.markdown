@@ -7,7 +7,7 @@ weight: 260
 ---
 
 {{%refer "Interacting with a Secured Grid"%}}
-In order to interact with a secured grid you need to login first. See [(CLI) Security](../security/command-line-interface-cli-security.html).
+In order to interact with a secured grid you need to log in first. See [Using the CLI in a Secured Environment](./command-line-interface-cli-security.html).
 {{%/refer%}}
 
 XAP provides an interactive command line tool as part of the product. This can be started using gs.sh/bat command (referred to as **GigaSpaces CLI**).

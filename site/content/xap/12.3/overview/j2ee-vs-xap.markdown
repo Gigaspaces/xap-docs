@@ -16,9 +16,9 @@ From a design and implementation perspective, XAP shares a lot of patterns with 
 |Persistency|JPA|[Hibernate]({{% latestjavaurl%}}/hibernate-space-persistency.html), [JPA]({{% latestjavaurl%}}/jpa-api-overview.html)|
 |Messaging|JMS,MDB|[JMS]({{%latestjavaurl%}}/messaging-support.html)<br>Polling Container {{%latestjavanet%}} <br>Notify Container {{% latestjavanet %}}<br> [Native Messaging API]({{% latestjavaurl%}}/session-based-messaging-api.html), MDB {{%  star %}} |
 |Security|JAAS, SSL|[Spring Security]({{%latestsecurl%}}/spring-security-bridge.html), [SSL]({{% latestsecurl%}}/securing-the-transport-layer-using-ssl.html)|
-|Web Session Management|HttpSession|[Global HttpSession sharing]({{% latestjavaurl%}}/global-http-session-sharing-overview.html)|
+|Web Session Management|HttpSession|[HTTP Session Management]({{% latestjavaurl%}}/http-session-management.html)|
 |Transaction Management|JTA|[Spring Transaction via Jini Transaction Manager]({{% latestjavaurl%}}/transaction-overview.html)|
-|Data Access|JDBC , Session Bean (Stateless or Stateful), Entity Bean|[JDBC]({{% latestjavaurl%}}/jdbc-driver.html), [Space]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html), [JPA]({{% latestjavaurl%}}/jpa-api.html) , Session Bean(Stateless or Stateful) {{%  star %}}, Entity Bean {{%  star %}}|
+|Data Access|JDBC , Session Bean (Stateless or Stateful), Entity Bean|[JDBC]({{% latestjavaurl%}}/jdbc-driver.html), [Space]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html), [JPA]({{% latestjavaurl%}}/jpa-api-overview.html) , Session Bean(Stateless or Stateful) {{%  star %}}, Entity Bean {{%  star %}}|
 |Remoting|EJB, IIOP, RMI|[Spring remoting over LRMI]({{% latestjavaurl%}}/executor-based-remoting.html) , EJB {{%  star %}}|
 |Web|Servlet, JSP | [Servlet, JSP via Jetty]({{% latestjavaurl%}}/web-application-overview.html)|
 |Packaging and deployment|EAR , war|[jar]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html), [war]({{% latestjavaurl%}}/web-application-overview.html) , EAR {{%  star %}}|
@@ -26,7 +26,7 @@ From a design and implementation perspective, XAP shares a lot of patterns with 
 |System Management|JMX|[JMX]({{% latestjavaurl%}}/snmp-connectivity-via-alert-logging-gateway.html) , [SNMP]({{% latestjavaurl%}}/snmp-connectivity-via-alert-logging-gateway.html), [Native Admin API]({{% latestjavaurl%}}/administration-and-monitoring-overview.html)|
 |Java Naming and Directory Service|JNDI|[Jini Lookup Service](./about-jini.html)|
 
-{{%  star %}} Available via [EasyBeans](http://www.easybeans.net/xwiki/bin/view/Main/WebHome), [openejb](http://openejb.apache.org), [embedded jboss](http://docs.jboss.org/ejb3/embedded/embedded.html) or [embedded-glassfish](http://embedded-glassfish.java.net).
+{{%  star %}} Available via [EasyBeans](https://forge.ow2.org/projects/easybeans), [openejb](http://openejb.apache.org), [embedded jboss](http://docs.jboss.org/ejb3/embedded/embedded.html) or [embedded-glassfish](http://embedded-glassfish.java.net).
 
 # Messaging Concepts & Patterns
 

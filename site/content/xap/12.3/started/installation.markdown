@@ -50,7 +50,7 @@ It is strongly recommended to read the following sections in addition to the abo
 # What's Next?
 
 - To verify a local installation, a remote installation, and the cluster configuration, refer to the [Testing System Environment](../admin/troubleshooting-testing-system-environment.html) section.
-- See [InsightEdge Basics](../insightedge-basics/) or [XAP Basics](../xap-basics/) for a step-by-step introduction to InsightEdge and XAP, including sample code.
+- See [InsightEdge Basics](./insightedge-basics.html) or [XAP Basics](./xap-basics.html) for a step-by-step introduction to InsightEdge and XAP, including sample code.
 
 {{% anchor 2 %}}
 

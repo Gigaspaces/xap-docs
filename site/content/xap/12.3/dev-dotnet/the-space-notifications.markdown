@@ -93,7 +93,7 @@ IDataEventSession dataEventSession = proxy.CreateDataEventSession(eventSessionCo
 An event listener that is registered for an event might be disconnected for the following reasons:
 
 - The space that holds the listener registration template, is no longer available.
-- The proxy that receives the notifications can't handle the amount of incoming events, and creates a [slow consumer]({{% currentadmurl %}}/slow-consumer.html) scenario, which causes the space to disconnect the listener.
+- The proxy that receives the notifications can't handle the amount of incoming events, and creates a [slow consumer](./admin/slow-consumer.html) scenario, which causes the space to disconnect the listener.
 
 In order to detect and handle listener disconnection, the **auto renewal** mechanism can be used.
 

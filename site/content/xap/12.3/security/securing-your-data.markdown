@@ -186,7 +186,7 @@ Using the CLI `deploy` command, embed the username and password matching the pla
 
 ## Protecting User/Password 
 
-Leaving the username and password exposed (in pu.xml/pu.properties) isn't secure. A preferred implementation is to supply the credentials during deployment. The GigaSpaces Management Center, CLI, and Admin API administration tools provide comprehensive support for deploying a secured Processing Unit (refer to [Security Administration](./security-administration.html)).
+Leaving the username and password exposed (in pu.xml/pu.properties) isn't secure. A preferred implementation is to supply the credentials during deployment. The GigaSpaces Management Center, CLI, and Admin API administration tools provide comprehensive support for deploying a secured Processing Unit (refer to [Accessing a Secured Service Grid](../admin/admin-service-grid-security.html)).
 
 Here is how the CLI deploy command would look like:
 
