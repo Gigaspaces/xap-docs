@@ -129,7 +129,7 @@ XAP can cache the values of indexed fields in the process native (off-heap) memo
 This feature increases the overall memory consumption of the Space by several bytes (depending on the indexed fields) per entry.
 {{%/note%}}
 
-Thw off-heap cache is disabled by default. To enable it, simply set the `off-heap-cache-memory-threshold` property in `rocksdb-blob-store` to the amount of memory you want to allocate for off-heap caching, for example `20m`. Use the following sizing units:
+The off-heap cache is disabled by default. To enable it, simply set the `off-heap-cache-memory-threshold` property in `rocksdb-blob-store` to the amount of memory you want to allocate for off-heap caching, for example `20m`. Use the following sizing units:
 
 * `b` - Bytes
 * `k`, `kb` - KiloBytes
