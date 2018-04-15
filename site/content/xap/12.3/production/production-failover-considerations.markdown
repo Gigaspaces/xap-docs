@@ -88,7 +88,7 @@ XAP Distributed Transactions involve a  remote or local XAP Distributed Transact
 
 # XA Transactions
 
-XA Transactions involves the XA transaction manager, XAP data grid node(s) and some additional participant(s). The transaction manager is usually deployed independently. The transaction manager can fail, so it should be deployed in a high availability configuration. Client code should support transaction manager failure by caching relevant transaction exceptions, and retrying the activity by aborting the old transaction, starting a new transaction, executing relevant operations and committing. tomikos and JBoss transaction managers are XAP certified and recommended.
+XA Transactions involves the XA transaction manager, XAP data grid node(s) and some additional participant(s). The transaction manager is usually deployed independently. The transaction manager can fail, so it should be deployed in a high availability configuration. Client code should support transaction manager failure by caching relevant transaction exceptions, and retrying the activity by aborting the old transaction, starting a new transaction, executing relevant operations and committing. Atomikos and JBoss transaction managers are XAP certified and recommended.
 
 # WAN Gateway Failure
 
