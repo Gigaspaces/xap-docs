@@ -34,7 +34,7 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ### Resolved Issues
 
-- {{% jira id="GS-13520" %}}: Could not start the Web Management Console from the gs-agent due to some JARs that were missing from the classpath.
+- {{% jira id="GS-13520" %}}: Could not display the off-heap columns in the Web Management Console (in systems with MemoryXtend).
 - {{% jira id="GS-13505" %}}: Running the demo command in the CLI using off-heap generates a NoClassDefFoundError.
 - {{% jira id="GS-13502" %}}: Provisioning a Space instance fails on "Identified another participant with the same name for Space".
 - {{% jira id="GS-13517" %}}: Index intersection optimization did not work as expected.
