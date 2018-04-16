@@ -116,16 +116,17 @@ public class JdbcTest {
 
 {{%tab Output%}}
 ```bash
-2017-09-09 16:56:13 INFO  XapSchema - Initializing connection to space /./space
-2017-09-09 16:56:13 INFO  XapSchema - Connection to space has been initialized
-2017-09-09 16:56:13 DEBUG XapSchema - Looking for XAP tables ...
-2017-09-09 16:56:13 DEBUG XapSchema - Found registered types in the space [java.lang.Object, xapsql.sandbox.Person]
-2017-09-09 16:56:13 TRACE XapSchema - Found [2] space types
-2017-09-09 16:56:13 TRACE XapSchema - Registering table: xapsql.sandbox.Person
-2017-09-09 16:56:13 DEBUG XapTable - Looking for 'xapsql.sandbox.Person' table row type
-2017-09-09 16:56:13 DEBUG XapTable - 'xapsql.sandbox.Person' table row type is RecordType(JavaType(class java.lang.Integer) age, VARCHAR(65535) firstName, JavaType(class java.util.UUID) id)
-2017-09-09 16:56:13 DEBUG XapTable - 'xapsql.sandbox.Person' table routing field is 'id'
-2017-09-09 16:56:14 DEBUG FlatQueryExecutor - Executing XAP query: SELECT * FROM xapsql.sandbox.Person WHERE age =  ?  Projection: [firstName, age] Parameters: [20]
+2018-04-15 09:45:54,832 [main] INFO  - Initializing connection to space jini://*/*/space
+2018-04-15 09:45:54,872 [main] INFO  - Connection to space has been initialized
+2018-04-15 09:45:54,902 [main] DEBUG - Creating prepared statement for query: SELECT e.firstName, e.age FROM Person e WHERE e.age = ?
+2018-04-15 09:45:55,439 [main] DEBUG - Looking for XAP tables ...
+2018-04-15 09:45:55,464 [main] DEBUG - Found registered types in the space [java.lang.Object, Person]
+2018-04-15 09:45:55,465 [main] TRACE - Found [2] space types
+2018-04-15 09:45:55,465 [main] TRACE - Registering table: Person
+2018-04-15 09:45:55,466 [main] DEBUG - Looking for 'Person' table row type
+2018-04-15 09:45:55,493 [main] DEBUG - 'Person' table row type is RecordType(JavaType(class java.lang.Integer) age, VARCHAR(65535) firstName, JavaType(class java.util.UUID) id)
+2018-04-15 09:45:55,493 [main] DEBUG - 'Person' table routing field is 'id'
+2018-04-15 09:45:56,150 [main] DEBUG - Executing XAP query: SELECT * FROM Person WHERE age =  ?  Projection: [firstName, age] Parameters: [20]
 | John  | 20  |
 | Eric  | 20  |
 ```
@@ -204,16 +205,17 @@ public class DocumentTest {
 
 {{%tab Output%}}
 ```
-2017-09-09 16:55:32 INFO  XapSchema - Initializing connection to space /./space
-2017-09-09 16:55:32 INFO  XapSchema - Connection to space has been initialized
-2017-09-09 16:55:33 DEBUG XapSchema - Looking for XAP tables ...
-2017-09-09 16:55:33 DEBUG XapSchema - Found registered types in the space [java.lang.Object, Product]
-2017-09-09 16:55:33 TRACE XapSchema - Found [2] space types
-2017-09-09 16:55:33 TRACE XapSchema - Registering table: Product
-2017-09-09 16:55:33 DEBUG XapTable - Looking for 'Product' table row type
-2017-09-09 16:55:33 DEBUG XapTable - 'Product' table row type is RecordType(JavaType(class java.lang.Object) CatalogNumber, JavaType(class java.lang.Object) Category)
-2017-09-09 16:55:33 DEBUG XapTable - 'Product' table routing field is 'Category'
-2017-09-09 16:55:33 DEBUG FlatQueryExecutor - Executing XAP query: SELECT * FROM Product  Projection: null Parameters: null
+2018-04-15 09:52:36,584 [main] INFO  - Initializing connection to space /./space
+2018-04-15 09:52:36,589 [main] INFO  - Connection to space has been initialized
+2018-04-15 09:52:36,626 [main] DEBUG - Creating prepared statement for query: SELECT * FROM Product p
+2018-04-15 09:52:37,166 [main] DEBUG - Looking for XAP tables ...
+2018-04-15 09:52:37,167 [main] DEBUG - Found registered types in the space [java.lang.Object, Product]
+2018-04-15 09:52:37,168 [main] TRACE - Found [2] space types
+2018-04-15 09:52:37,168 [main] TRACE - Registering table: Product
+2018-04-15 09:52:37,170 [main] DEBUG - Looking for 'Product' table row type
+2018-04-15 09:52:37,179 [main] DEBUG - 'Product' table row type is RecordType(JavaType(class java.lang.Object) CatalogNumber, JavaType(class java.lang.Object) Category)
+2018-04-15 09:52:37,179 [main] DEBUG - 'Product' table routing field is 'Category'
+2018-04-15 09:52:37,624 [main] DEBUG - Executing XAP query: SELECT * FROM Product  Projection: null Parameters: null
 Category :Aviation
 ```
 {{%/tab%}}
@@ -268,7 +270,7 @@ In order to get the query execution plan you can use `EXPLAIN PLAN FOR` keywords
 {{%tabs%}}
 {{%tab "Explain plan"%}}
 ```java
-public class ExplainPan {
+public class ExplainPlan {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		String spaceUrl = "/./space";
@@ -305,15 +307,16 @@ public class ExplainPan {
 {{%/tab%}}
 {{%tab "Output"%}}
 ```bash
-2017-09-09 16:57:09 INFO  XapSchema - Initializing connection to space /./space
-2017-09-09 16:57:09 INFO  XapSchema - Connection to space has been initialized
-2017-09-09 16:57:09 DEBUG XapSchema - Looking for XAP tables ...
-2017-09-09 16:57:09 DEBUG XapSchema - Found registered types in the space [java.lang.Object, xapsql.sandbox.Person]
-2017-09-09 16:57:09 TRACE XapSchema - Found [2] space types
-2017-09-09 16:57:09 TRACE XapSchema - Registering table: xapsql.sandbox.Person
-2017-09-09 16:57:09 DEBUG XapTable - Looking for 'xapsql.sandbox.Person' table row type
-2017-09-09 16:57:09 DEBUG XapTable - 'xapsql.sandbox.Person' table row type is RecordType(JavaType(class java.lang.Integer) age, VARCHAR(65535) firstName, JavaType(class java.util.UUID) id)
-2017-09-09 16:57:09 DEBUG XapTable - 'xapsql.sandbox.Person' table routing field is 'id'
+2018-04-15 09:56:21,616 [main] INFO  - Initializing connection to space /./space
+2018-04-15 09:56:21,618 [main] INFO  - Connection to space has been initialized
+2018-04-15 09:56:21,657 [main] DEBUG - Creating prepared statement for query: EXPLAIN PLAN FOR SELECT e.firstName, e.age FROM Person e WHERE e.age = ?
+2018-04-15 09:56:22,213 [main] DEBUG - Looking for XAP tables ...
+2018-04-15 09:56:22,213 [main] DEBUG - Found registered types in the space [java.lang.Object, Person]
+2018-04-15 09:56:22,213 [main] TRACE - Found [2] space types
+2018-04-15 09:56:22,213 [main] TRACE - Registering table: Person
+2018-04-15 09:56:22,214 [main] DEBUG - Looking for 'Person' table row type
+2018-04-15 09:56:22,219 [main] DEBUG - 'Person' table row type is RecordType(JavaType(class java.lang.Integer) age, VARCHAR(65535) firstName, JavaType(class java.util.UUID) id)
+2018-04-15 09:56:22,219 [main] DEBUG - 'Person' table routing field is 'id'
 XapToEnumerableConverter
   XapProject(firstName=[$1], age=[$0])
     XapFilter(condition=[=($0, ?0)])
