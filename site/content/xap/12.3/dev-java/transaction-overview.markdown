@@ -492,3 +492,27 @@ The following table describes the mapping between the {{%exurl "Spring Transacti
 {{%refer%}}
 You can view and inspect ongoing Space transactions with the [GigaSpaces Management Center](../admin/gigaspaces-browser-transaction-view.html).
 {{%/refer%}}
+
+# Starting Embedded Mahalo
+
+You can enable this option in one of the following ways:
+
+- Set the following option to `true` in your container schema:
+
+
+```xml
+<embedded-services>
+...
+<mahalo>
+	<!-- If true, will start an embedded Mahalo Jini Transaction Manager. Default value: false -->
+    <start-embedded-mahalo>${com.gs.start-embedded-mahalo}</start-embedded-mahalo>
+</mahalo>
+```
+
+- Set the following option as a JVM argument:
+
+    -Dcom.gs.start-embedded-mahalo=true
+
+- Set XPath in the `<XAP Root>\config\gs.properties` file:
+
+    com.j_spaces.core.container.embedded-services.mahalo.start-embedded-mahalo=true

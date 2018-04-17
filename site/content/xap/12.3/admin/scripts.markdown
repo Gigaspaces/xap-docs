@@ -12,7 +12,7 @@ The `<XAP root>/bin` folder includes the following scripts that can be used to m
 
 | Script | Description | Open Source | XAP Enterprise | InsightEdge Enterprise
 |:---------|:------------|:------------|:------------|:------------|
-| insightedge | Starts the InsightEdge Command Line Interface (CLI). | {{%oksign%}} | {{%oksign%}} | {{%oksign%}} |
+| insightedge | Starts the InsightEdge Command Line Interface (CLI). | {{%oksign%}} |  | {{%oksign%}} |
 | setenv | Configure the settings for the [Common Environment Variables](../dev-java/common-environment-variables.html). | {{%oksign%}} | {{%oksign%}} | {{%oksign%}} |
 | setenv-overrides | Use this script to override default settings in the setenv script. | {{%oksign%}} | {{%oksign%}} | {{%oksign%}} |
 | xap | The XAP Command Line Interface (CLI). |  {{%oksign%}} | {{%oksign%}} | {{%oksign%}} |
@@ -24,7 +24,7 @@ The `<XAP root>/bin` folder includes the following scripts that can be used to m
 
 # Advanced Scripts
 
-In addition to the scripts listed above, the `bin` folder in both the XAP and InsightEdge commercial editions contains additional scripts in the **advanced_scripts.zip** folder, which are only provided to maintain backwards compatibility with earlier versions of XAP.
+In addition to the scripts listed above, the `bin` folder (in both the XAP and InsightEdge commercial editions) contains additional scripts in the **advanced_scripts.zip** folder, which are only provided to maintain backwards compatibility with earlier versions of XAP.
 
 | Script | Description | Open Source | Enterprise |
 |:---------|:------------|:------------|:------------|
@@ -34,10 +34,10 @@ In addition to the scripts listed above, the `bin` folder in both the XAP and In
 | gsm_nolus | Starts a Grid Service Manager without a Lookup Service. |  | {{%oksign%}} |
 | gs-memcached | Starts a standalone, unmanaged instance of a [Memcached API](../dev-java/memcached-api.html) listener. |  | {{%oksign%}} |
 | lookupbrowser | Used for special debug scenarios to inspect the Lookup Service. |  | {{%oksign%}} |
-| platform-info | Prints GigaSpaces version info. Use the `xap --version` command in the CLI instead. |  | {{%oksign%}} |
+| platform-info | Prints GigaSpaces version info.<br>Instead of this script, ise the `xap --version` command in the CLI. |  | {{%oksign%}} |
 | pu-instance | Runs a standalone Processing Unit.<br>Instead of this script, use the `xap pu run` command in the CLI. |  | {{%oksign%}} |
 | startJiniLUS | Starts a Lookup Service. |  | {{%oksign%}} |
-| startJiniTX_Mahalo | Starts an instance of the Distributed transaction manager. |  | {{%oksign%}} |
+| startJiniTX_Mahalo | Starts an instance of the distributed transaction manager. |  | {{%oksign%}} |
 
 
 
