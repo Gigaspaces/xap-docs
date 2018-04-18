@@ -8,21 +8,20 @@ weight: 100
 
  
 
-The JDBC Driver is broadly compatible with the SQL-99 Core specification. It allows database-driven applications to interact with the Space via SQL read queries. 
-The driver will make the query optimization if needed and translates the SQL query into Space operations.
+The JDBC Driver is broadly compatible with the SQL-99 Core specification. It allows database-driven applications to interact with the Space via SQL read queries. The driver performs query optimization if needed and translates the SQL query into Space operations.
  
 
 # Installation
 
-Include all jar files from the `<XAP-HOME>\insightedge\lib\jdbc` and `<XAP-HOME>\lib\required` directories in your project.
+Include all the JAR files from the `<XAP-HOME>\insightedge\lib\jdbc` and `<XAP-HOME>\lib\required` directories in your project.
 
 
 # Usage
 
-The driver can query either [POJO's](./pojo-overview.html) or [Space Documents](./document-overview.html).
+The JDBC driver can query either [POJOs](./pojo-overview.html) or [Space Documents](./document-overview.html).
 
 
-## POJO support
+## POJO Support
  
 {{%tabs%}}
 {{%tab Person%}}
@@ -133,9 +132,8 @@ public class JdbcTest {
 {{%/tab%}}
 {{%/tabs%}}
 
- 
 
-## SpaceDocument Support
+## Space Document Support
 
 {{%tabs%}}
 {{%tab Program %}}
@@ -222,26 +220,25 @@ Category :Aviation
 {{%/tabs%}}
 
 {{%refer%}}
-For more information about SpaceDocuments see the [Document API](./document-api.html)
+For more information about Space documents, refer to the [Document API](./document-api.html) page.
 {{%/refer%}}
 
- 
 
 # JDBC URL
 
-In order to connect to the space with JDBC driver you need to specify jdbc connection URL. The general format of the URL is:
+In order to connect to the Space with JDBC driver, you need to specify the JDBC connection URL. The general format of the URL is:
 `jdbc:xap:url=<space_url>;<url_properties>`
 
-The `space_url` is mandatory. See the Space URL configuration [page](./the-space-configuration.html). Other parameters are optional.
+The `space_url` is mandatory. See the [Space URL configuration](./the-space-configuration.html) page. Other parameters are optional.
 
-The following url_properties are available:
+The following `url_properties` are available:
 
 | Property                    | Description   | Default value  |
 | --------------------------- |:--------------| :--------------|
-| user                        | The user for a secured space.          |              | 
-| password                    | The password for a secured space.      |              | 
-| disableServerSideJoins      | With this parameter all joins will be executed on client side. The data from tables will be loaded taking into account filters and projections.      |     false         |
-| preferSpaceIterator         | Use Space Iterator API to execute certain types of queries. Requires less memory on the client side, but may result in slower performance.         |     false         | 
+| user                        | The user for a secured Space.          |              | 
+| password                    | The password for a secured Space.      |              | 
+| disableServerSideJoins      | With this parameter, all joins are executed on the client side. The data from tables are loaded taking into account filters and projections.      |     false         |
+| preferSpaceIterator         | Use the Space Iterator API to execute certain types of queries. Requires less memory on the client side, but may result in slower performance.         |     false         | 
 | logLevel                    | Driver log level (client side only). See more in `Logging` section.      |     INFO         |
 | log4jFile                   | The path to log4j.properties file. If not provided, the default configuration is used. See more in `Logging` section. ||
 
@@ -249,7 +246,7 @@ Other properties inherited from `Calcite` {{%exurl "jdbc-connect-string-paramete
 
 Examples:
 
-Accessing an embedded Space with custom log level:
+Accessing an embedded Space with a custom log level:
 
 ```bash
 jdbc:xap:url=/./mySpace;logLevel=DEBUG
@@ -263,9 +260,9 @@ jdbc:xap:url=jini://LookupServiceHostname/*/mySpace;user=admin;password=admin
 
  
 
-# Explain plan
+# Explain Plan
 
-In order to get the query execution plan you can use `EXPLAIN PLAN FOR` keywords. For example:
+In order to get the query execution plan, you can use `EXPLAIN PLAN FOR` keywords. For example:
 
 {{%tabs%}}
 {{%tab "Explain plan"%}}
@@ -328,74 +325,75 @@ XapToEnumerableConverter
  
 
 
-# Table mapping
+# Table Mapping
 
-The driver can query either space classes or space documents. In case of the space class, the class package is stripped and only the class name is used. 
-If there are several classes with the same name but in different packages in the classpath, the full class name needs to be specified by replacing the package separator (.) with (_).
+The JDBC driver can query either Space classes or Space documents. When querying the Space class, the class package is stripped and only the class name is used. If there are several classes with the same name but in different packages in the classpath, the full class name needs to be specified by replacing the package separator (.) with (_).
+
 Example:
 
 ```java
 String sql = "SELECT e.firstName, e.age FROM xapsql_sandbox_Person e WHERE e.age = ?";
 ```
 
-In case of space documents the table name is equal to document name. The table name is case sensitive.
+When querying Space documents, the table name is equal to document name. The table name is case sensitive.
 <br>
 
 # Indexing 
 
 {{%refer%}}
-The performance of queries can be greatly improved by indexing. For more information about indexing see [Indexing](./indexing-overview.html)
+Query performance can be greatly improved by indexing. For more information about indexing, refer to the [Indexing](./indexing-overview.html) section.
 {{%/refer%}}
  
 # Logging 
 
-## Client Side logging (Driver)
+## Client-Side logging (Driver)
 
-The logging granularity can be set with the JDBC url parameter. 
-The level may be configured with one of the options: TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. 
-This url parameter configuration does not cover third party libraries logger level.
+The logging granularity can be set using the JDBC url parameter. The level can be configured with one of the following options: TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. 
 
-The default configuration of the driver's logger:
+This url parameter configuration does not apply to the logging level for third-party libraries.
+
+The default configuration of the JDBC driver's logger:
 
 - File appender is used, which writes to the file **<user_home>/xap-jdbc-driver.out**
 - Log level is INFO.
 
 
-## Server side logging (XAP)
-In order to change the logging level on the server use the following runtime property:
+## Server-Side Logging (XAP)
+
+In order to change the logging level on the server, use the following runtime property:
 
 ```bash
 com.gigaspaces.jdbc.level = FINE
 ```
 
 {{%refer%}}
-For more information on how to set logging levels see [Logging configuration](../admin/logging-overview.html)
+For more information on how to set logging levels, refer to the [Logging](../admin/logging-overview.html) section of the Administration guide.
 {{%/refer%}}
-
 
 # The Driver
 
-The driver translates SQL queries into Space API calls. It is important to understand which SQL construction driver convert to which Space calls. 
+The driver translates SQL queries into Space API calls. It is important to understand which SQL construction driver converts to which Space calls. 
 This will allow you to create more sufficient queries.
 
-There are several types of queries and let's first consider the main types of queries and how they are converted to the native xap interactions:
+There are several types of queries. We can first consider the main types of queries and how they are converted into native XAP interactions:
 
 
-##  Simple select with filters
+##  Simple Select with Filters
 
-Consider the following query: 
+Consider the following query:
+ 
 ```sql
 SELECT sales FROM Orders WHERE orderId = 100
 ```
 
-This query will create an XAP SQLQuery and will push predicate and projection down to the XAP side so only a small result subset will be loaded on the client side.
+This query creates an XAP SQLQuery, and pushes the predicate and projection down to the XAP side so only a small result subset is loaded on the client side.
 
 {{%refer%}}
-See more about [SQLQuery](./query-sql.html)
+For more information about XAP SQL support, refer to the [SQL Query](./query-sql.html) page.
 {{%/refer%}}
 
 
-## Query with aggregator
+## Query with Aggregator
 
 Consider the following query: 
 
@@ -403,32 +401,32 @@ Consider the following query:
 SELECT category, sum(profit) FROM Orders ORDER BY category
 ```
 
-This query will use the XAP aggregation API and push the aggregation fields and the projections down to data grid. All the calculation will be made on the server side.
+This query uses the XAP aggregation API, and pushes the aggregation fields and the projections down to the data grid. All the calculations are performed on the server side.
 
 {{%refer%}}
-See more about [Aggregation API](./aggregators.html)
+For more information about the XAP aggregation API, refer to the [Aggregation API](./aggregators.html) page.
 {{%/refer%}}
 
 
 
-## Join query - Algorithms
+## Join Query Algorithms
 
-There were implemented two join algorithms: `Hash Join` and  `Nested Loop Join`. They use the distributed tasks to execute the join. Considering two join tables, the bigger will be used as `probe` table while the smaller as `build` table.
+The JDBC driver has two join algorithms, `Hash Join` and  `Nested Loop Join`. They use the distributed tasks to execute the join. Considering two join tables, the larger table is used as the `probe` table, while the smaller is used as the `build` table.
 
-The `Hash Join` algorithm will be applied in case of equality conjunction (when only equals conditions are used in join predicates) while `Nested Loop Join` algorithm will be applied in other cases.
+The `Hash Join` algorithm is applied for equality conjunctions (when only equal conditions are used in the join predicates), while the `Nested Loop Join` algorithm is applied in other cases.
 
-It is important to note that each partition will load the `build` table from all the cluster and store it in memory. It is worth to mention that node has to have enough free memory while executing not collocated join to hold all the `build` table in memory of the single partition.
+Each partition loads the `build` table from the entire cluster and stores it in memory. The node must have enough free memory while executing a non-collocated join to hold the entire `build` table in the memory of the single partition.
 
-To gain the performance of the join queries consider to design your schema to run `Collocated Join`. The benefit of the collocated joins that it does not load the `build` table from all partitions, but only from the current partition. It uses `share nothing` approach. In order to achieve this join condition can only use a routing field.
+To improve the performance of the join queries, consider designing your schema to run `Collocated Join`. The benefit of the collocated join is that it doesn't load the `build` table from all partitions, but only from the current partition. This join uses the `share nothing` approach. In order to achieve this join condition, you can only use a routing field.
 
-Be aware that in case of `Nested Loop Join` the linear search will be applied against `build` table for each item in the `probe` table. It could make performance impact.
+When using a `Nested Loop Join`, the linear search is applied against the `build` table for each item in the `probe` table. This my affect performance.
 
-In order to turn off server side join execution and run all calculation on the client side set `disableServerSideJoins=false` url parameter.
+In order to turn off the server side join execution and run all calculations on the client side, set the `disableServerSideJoins=false` url parameter.
 
 
 # Limitations 
 
-- The driver was not designed for low latency operations
-- The driver allows only read operations
-- Embedded objects can not be used in the queries
-- Document's dynamic properties can not be used in the queries
+- The JDBC driver was not designed for low latency operations.
+- The JDBC driver allows only read operations.
+- Embedded objects can't be used in the queries.
+- Document's dynamic properties cann't be used in the queries.
