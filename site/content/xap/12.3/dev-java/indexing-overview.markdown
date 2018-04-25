@@ -25,10 +25,9 @@ Naturally the question arises of when to use indexing. Usually it is recommended
 
 {{% warning "Warning"%}} Keep in mind that "premature optimization is the root of all evil". It is always recommended to benchmark your code to get better results. {{%/warning%}}
 
-# Indexing at Runtime
+# Dynamic Indexing
 
-
-Indexes can be added dynamically with the `GigaSpaceTypeManager` interface.
+Indexes can be added dynamically during runtime with the `GigaSpaceTypeManager` interface. This doesn't lock any of the CRUD operations, so system performance is not affected.
  
 {{%refer%}}
 Refer to [Data Type Metadata](./the-space-meta-data.html#modifying-existing-classes) for more information.
