@@ -84,22 +84,23 @@ public class ContentSection {
     protected void generateSidenav(Config config, String suffix, Collection<Page> roots) throws IOException {
         String outputPath = config.getSitePath() + "/themes/hugo-bootswatch/layouts/partials/sidenav-" + suffix + ".html";
         // write the html to the file system
-        try ( 
-            PrintWriter writer = new PrintWriter(outputPath, "UTF-8")) {
-            roots.forEach((root) -> printPage(writer, root));
+        try (PrintWriter writer = new PrintWriter(outputPath, "UTF-8")) {
+			writer.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+			writer.println("<CatapultToc Version=\"1\" conditions=\"\">");			
+            roots.forEach((root) -> printPage(writer, root, "  "));			
+			writer.println("</CatapultToc>");			
         }
     }
     
-    private static void printPage(PrintWriter writer, Page page) {
-        String link = "<a href='/" + page.getHref() + "'>" + page.getTitle() + "</a>";
+    private static void printPage(PrintWriter writer, Page page, String indent) {
+    	//String attributes = "Title=\"" + page.getTitle() + "\" Link=\"" + page.getHref() + "\"";
+		String attributes = "Title=\"[%=System.LinkedTitle%]\" Link=\"" + page.getHref() + "\"";
         if (page.getChildren().isEmpty()) {
-            writer.println("<li>" + link + "</li>");
+            writer.println(indent + "<TocEntry " + attributes + "/>");
         } else {
-            writer.println("<li class='expandable'><div class='hitarea expandable-hitarea'></div>" + link);
-            writer.println("<ul style='display: none'>");
-            page.getChildren().forEach((child) -> printPage(writer, child));
-            writer.println("</ul>");
-            writer.println("</li>");
+            writer.println(indent + "<TocEntry " + attributes + ">");
+            page.getChildren().forEach((child) -> printPage(writer, child, indent + "  "));
+            writer.println(indent + "</TocEntry>");
         }
     }
 }
