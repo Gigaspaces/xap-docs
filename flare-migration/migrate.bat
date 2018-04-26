@@ -8,9 +8,9 @@ if not exist site-temp (
 echo Overriding site-temp...
 xcopy /Y /E site-overrides site-temp
 
-pushd ..
-call generate-navbar.bat flare-migration\site-temp
-popd
+echo Building navbar...
+call mvn --file jarvis package -DskipTests
+call java -jar jarvis/target/jarvis-1.0.jar %~dp0 site-temp
 
 echo Starting Hugo...
 pushd site-temp
