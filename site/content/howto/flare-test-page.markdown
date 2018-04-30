@@ -101,9 +101,6 @@ Should inherently convert to html links.
 
 {{%exclamation%}} This is an Exclamation icon. 
 
-{{%zip%}}  This is a zip icon. Should appear as regular link to a file, w/o image. For example, Download the example {{%zip "/attachment_files/sbp/PollingEvictor.zip"%}} that uses a polling container for eviction of Orders.
-
-
 # Layouts
 
 ## Table
@@ -204,6 +201,21 @@ Convert to Flare mini-TOCs
 Testing docs link [Event Processing](http://www.mulesoft.org) to see how this works.<br>
 
 Testing external link {{%exurl "Mule Site" "http://www.mulesoft.org/" %}} to see how this works.<br>
+
+## Java Docs
+
+[GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html).
+
+
+## .NET Docs
+
+[ISpaceProxy]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_ISpaceProxy.htm).
+
+
+## JIRA
+
+{{% jira id="GS-13389" %}}: Lookup Service (LUS) enhancements to improve stability in environments with large clusters.
+
 
 # Code Samples
 
