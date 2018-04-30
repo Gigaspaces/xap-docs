@@ -2,21 +2,40 @@
 type: post
 title:  Flare Test Page
 categories: howto
-parent:  index.html
 weight: 50
 ---
 
  Test page for Flare migration
 
 
-# Text
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+This is an *emphasized* text. 
+
+This is a **bold** text. 
+
+This is a `monospaced` text.
+ 
+
+# Lists
+
+* Unordered list item
+* Unordered list item
+* Unordered list item
 
 
-| **Example** | **Markdown** |
-|-------------|--------------|
-| This is an *emphasized* text. | This is an \*emphasized\* text. |
-| This is a **bold** text. | This is a \*\*bold\*\* text.  |
-| This is a `monospaced` text | This is a \`monospaced\` text |
+1. Ordered list item
+1. Ordered list item
+1. Ordered list item
+1. Ordered list item
 
 # Links
 
@@ -37,11 +56,11 @@ weight: 50
 # Icons
 
 
-| **Example** | **Markdown** |
-|--------------|-------------|
-| {{%infosign%}} This is an Info icon           |   {{%/*infosign*/%}} This is an Info icon. Example: {{%infosign%}} If this is your first time working with Easysoft, first follow the instructions to register and create your Easysoft user account.   |
-| {{%exclamation%}} This is an Exclamation icon |   {{%/*exclamation*/%}} This is an Exclamation icon. Example: {{%exclamation%}} When running in `./gs-agent --manager` configuration, this environment variable is ignored.    |
-| {{%zip%}}  This is a zip icon               |   {{%/*zip*/%}}  This is a zip icon. Should appear as regular link to a file, w/o image. For example, Download the example {{%zip "/attachment_files/sbp/PollingEvictor.zip"%}} that uses a polling container for eviction of Orders.     |
+{{%infosign%}} This is an Info icon. 
+
+{{%exclamation%}} This is an Exclamation icon. 
+
+{{%zip%}}  This is a zip icon. Should appear as regular link to a file, w/o image. For example, Download the example {{%zip "/attachment_files/sbp/PollingEvictor.zip"%}} that uses a polling container for eviction of Orders.
 
 
 # Layouts
@@ -159,7 +178,7 @@ The polling event container is an implementation of the polling  ........
 | Latest XAP Maven |  {{%/*version "maven-version"*/%}} {{%version maven-version %}}   |{{%version maven-version %}} |
 
 
-# Jar versions
+# JAR versions
 
 
 | **Description** | **Macro** | **Output** |
@@ -193,7 +212,7 @@ Navigate to the anchor [point](#hello)
 | This text has {{%/* color blue*/%}}blue{{%/* /color */%}}  |  This text has {{%color blue%}}blue{{%/color%}}    |
 | This text has {{%/* bgcolor orange */%}}orange background{{%/* /bgcolor */%}} | This text has {{% bgcolor orange %}}orange background{{% /bgcolor %}} |
 
-# Image Popup
+# Image Popup - Convert to Thumbnail
 
 {{%popup "/attachment_files/qsg/class_diagram.png"  %}}
 
@@ -219,13 +238,11 @@ Navigate to the anchor [point](#hello)
 
 | Description    | Markdown     |  Output   |
 |----------------|--------------|-----------|
-| Simple panel|{{%/*panel "hello there"*/%}}This is a simple panel{{%/* /panel */%}}|{{%panel "hello there"%}}This is a simple panel{{%/panel%}}|
 | Warning     |{{%/*warning "Warning....."*/%}}... {{%/* /warning*/%}}|{{%warning "Warning....."%}}... {{%/warning%}}|
 | Info     |{{%/*info "Info....."*/%}}... {{%/* /info*/%}}|{{%info "Info....."%}}... {{%/info%}}|
 | Note     |{{%/*note "Note....."*/%}}... {{%/* /note*/%}}|{{%note "Note....."%}}... {{%/note%}}|
 | Tip     |{{%/*tip "Tip....."*/%}}... {{%/* /tip*/%}}|{{%tip "Tip....."%}}... {{%/tip%}}|
 | Refer     |{{%/*refer*/%}}... {{%/* /refer*/%}}|{{%refer%}}... {{%/refer%}}|
-| VBar     |{{%/*vbar "VBar....."*/%}}... {{%/* /vbar*/%}}|{{%vbar "VBar....."%}}... {{%/vbar%}}|
 
 
 ### Landing page panel

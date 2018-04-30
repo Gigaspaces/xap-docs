@@ -15,7 +15,7 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
-# 12.3.1 M2 (Apr-29-2018)
+# 12.3.1 M2 (Apr-30-2018)
 
 ## Download Links
 
@@ -32,9 +32,9 @@ Early access builds are provided as is, and should not be used in production. Th
 ### Resolved Issues
 
 - {{% jira id="GS-13521" %}}: Space instance recovery fails on "Failed while getting participants from zookeeper server".
-- {{% jira id="GS-13486" %}}: Running the demo command in the CLI using off-heap generates a NoClassDefFoundError.
+- {{% jira id="GS-13486" %}}: IllegalArgumentException: A metric named process_cpu_time-total already exists.
 
-# 12.3.1 M1 (Apr-15-2018)
+# 12.3.1 M1 (Apr-16-2018)
 
 ## Download Links
 
