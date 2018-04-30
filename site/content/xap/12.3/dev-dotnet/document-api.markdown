@@ -97,11 +97,11 @@ public void WriteProduct1(ISpaceProxy spaceProxy)
 }
 ```
 
-Using generic types as nested properties (i.e IDictionary<String, Object> features) will be read as IDictionary<Object, Object> when the above document is read from the space.
+Using generic types as nested properties (i.e IDictionary&lt;String, Object&gt; features) will be read as IDictionary<Object, Object> when the above document is read from the space.
 
 There are two ways to receive back a dictionary of the same generic type. One is using the `DocumentProperties` class instead, and the other is to use a BinaryCustom storage type for the dynamic properties.
 
-The `DocumentProperties` class extends IDictionary<String, Object> and besides being strongly typed to String keys and Object values, it provides better performance when used.
+The `DocumentProperties` class extends IDictionary&lt;String, Object&gt; and besides being strongly typed to String keys and Object values, it provides better performance when used.
 
 
 ```csharp

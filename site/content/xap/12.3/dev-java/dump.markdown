@@ -73,7 +73,7 @@ The dump process occurs in stages within the runtime component. Each stage is ca
 |log |Adds all the log files of the process to the dump file.|
 |processingUnits|Dump of all the processing units (applicable only for GSCs) information.|
 
-The **log** process is the only processor that takes into account the context (Map<String, Object>) that can be passed as part of the dump command. It tries to find under the `logEntryMatcher` key a `LogEntryMatcher` that will be used to filter out just relevant parts of the log files to be returned. If no matcher is provided, all the log files will be returned. Here is an example of specifying a log entry matcher:
+The **log** process is the only processor that takes into account the context (Map&lt;String, Object&gt;) that can be passed as part of the dump command. It tries to find under the `logEntryMatcher` key a `LogEntryMatcher` that will be used to filter out just relevant parts of the log files to be returned. If no matcher is provided, all the log files will be returned. Here is an example of specifying a log entry matcher:
 
 
 ```java

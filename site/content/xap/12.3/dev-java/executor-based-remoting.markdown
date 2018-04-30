@@ -34,7 +34,7 @@ The `executor-proxy` include the following properties:
 |remoteResultReducer | RemoteResultReducer |No| result-reducer | When using broadcast is set to true, a custom reducer can be provided to reduce the array of result objects into a calculated response object.| |
 | remoteInvocationAspect | RemoteInvocationAspect |No| An Aspect that will be executed around each service invocation.| |
 |serviceProxy | Object |
-| methodHashLookup | Map<Method, MethodHash> |
+| methodHashLookup | Map&lt;Method, MethodHash&gt; |
 |interface | Class | Yes | | The interface (fully qualified class name) that this remoting proxy implements. Also controls which service will be invoked in the "server" (Processing Unit).| |
 
 Example:
