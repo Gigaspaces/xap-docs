@@ -15,7 +15,26 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
-# 12.3.1 M1 (Apr-15-2018)
+# 12.3.1 M2 (Apr-30-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.1/12.3.1-m2/gigaspaces-insightedge-open-12.3.1-m2-b19202.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.1/12.3.1-m2/gigaspaces-insightedge-12.3.1-m2-b19202.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.1/12.3.1-m2/gigaspaces-xap-open-12.3.1-m2-b19202.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.1/12.3.1-m2/gigaspaces-xap-12.3.1-m2-b19202.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.1/12.3.1-m2/gigaspaces-xap.net-12.3.1-m2-b19202.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13515" %}}: Upgrade Apache Curator to 4.0.1.
+
+### Resolved Issues
+
+- {{% jira id="GS-13521" %}}: Space instance recovery fails on "Failed while getting participants from zookeeper server".
+- {{% jira id="GS-13486" %}}: IllegalArgumentException: A metric named process_cpu_time-total already exists.
+
+# 12.3.1 M1 (Apr-16-2018)
 
 ## Download Links
 

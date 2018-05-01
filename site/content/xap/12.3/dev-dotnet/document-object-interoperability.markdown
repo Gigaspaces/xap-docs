@@ -53,7 +53,7 @@ Respectively, to support multiple ids queries, use the `IdsQuery` with the corre
 # Dynamic Properties
 
 By default, type descriptors created from concrete object classes do not support dynamic properties. If a document of such a type with a property that is not defined in the object will be written to the space, an exception will be thrown indicating the property is not defined in the type and the type does not support dynamic properties.
-In order to have a concrete class support dynamic properties it should have a property decorated with the \[SpaceDynamicProperties\] and the type of that property must be either DocumentProperties, Dictionary<String, Object> or IDictionary<String, Object>.
+In order to have a concrete class support dynamic properties it should have a property decorated with the \[SpaceDynamicProperties\] and the type of that property must be either DocumentProperties, Dictionary&lt;String, Object&gt; or IDictionary&lt;String, Object&gt;.
 
 
 ```java

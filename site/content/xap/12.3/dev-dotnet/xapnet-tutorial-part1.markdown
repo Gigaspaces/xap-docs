@@ -124,7 +124,7 @@ Partitioning is used when the total number of objects is too big to be stored in
 
 The XAP document API exposes the Space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike PONOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.
 
-To create a document we use a Dictionary<String,Object> for its properties. The SpaceDocument object is instantiated by using the type name and properties. XAP provides a special implementation of a Dictionary called  DocumentProperties.
+To create a document we use a Dictionary&lt;String,Object&gt; for its properties. The SpaceDocument object is instantiated by using the type name and properties. XAP provides a special implementation of a Dictionary called  DocumentProperties.
 
 Here is an example how you can create a SpaceDocument:
 
@@ -223,12 +223,12 @@ public void writeUsers() {
      User[] users = new User[2];
      users[0] = new User();
      users[0].Id=1L;
-     users[0].Name="John Dow";
+     users[0].Name="John Doe";
      users[0].Status=EAccountStatus.ACTIVE;
 
      users[1] = new User();
      users[1].Id=2L;
-     users[1].Name="John Dow";
+     users[1].Name="John Doe";
      users[1].Status=EAccountStatus.ACTIVE;
 
      spaceProxy.WriteMultiple(users);
@@ -268,7 +268,7 @@ When you want to update only a couple of attributes on an object in Space, you c
 public void changeSet() {
 	User user = new User();
 	user.Id=1L;
-	user.Name="John Dow";
+	user.Name="John Doe";
 	user.Status=EAccountStatus.ACTIVE;
 	proxy.Write(user);
 
@@ -332,12 +332,12 @@ Template matching (match by example) is a simple way to query the Space. The tem
 
 The following examples assume the default constructor of the User class initializes all its attributes to null.
 
-Read an entry of type User where the name is 'John Dow':
+Read an entry of type User where the name is 'John Doe':
 
 ```csharp
 public User findUserByTemplate() {
 	User user = new User();
-	user.Name="John Dow";
+	user.Name="John Doe";
 	return proxy.Read(user);
 }
 ```
@@ -362,17 +362,17 @@ The SQLQuery class is used to query the Space with an SQL-like syntax. The query
 
 ```csharp
 public User[] sqlFindUsersByName() {
-	SqlQuery<User> query = new SqlQuery<User>("Name = 'John Dow'");
+	SqlQuery<User> query = new SqlQuery<User>("Name = 'John Doe'");
 	return proxy.ReadMultiple<User>(query);
 }
 
 public User[] sqlFindUsersByNameAndCreditLimit() {
-	SqlQuery<User> query = new SqlQuery<User>("Name = 'John Dow' AND CreditLimit > 1000");
+	SqlQuery<User> query = new SqlQuery<User>("Name = 'John Doe' AND CreditLimit > 1000");
 	return proxy.ReadMultiple<User>(query);
 }
 
 public User[] sqlFindUsersByNameAndIds() {
-	SqlQuery<User> query = new SqlQuery<User>( "Name = 'John Dow' AND Id IN(1L,3L,5L)");
+	SqlQuery<User> query = new SqlQuery<User>( "Name = 'John Doe' AND Id IN(1L,3L,5L)");
 	return proxy.ReadMultiple<User>(query);
 
 public User[] sqlFindUsersByNameLike() {
@@ -391,13 +391,13 @@ For example:
 ```csharp
 public User[] sqlParameterFindUsersByName() {
 	SqlQuery<User> query = new SqlQuery<User>("Name = ?")
-	query.SetParameter(1, "John Dow");
+	query.SetParameter(1, "John Doe");
 	return proxy.ReadMultiple<User>(query);
 }
 
 public User[] sqlParameterFindUsersByNameAndCreditLimit() {
 	SqlQuery<User> query = new SqlQuery<User>("Name = ? AND CreditLimit > ?");
-	query.SetParameter(1, "John Dow");
+	query.SetParameter(1, "John Doe");
 	query.SetParameter(2, 1000);
 	return proxy.ReadMultiple<User>(query);
 }
@@ -492,7 +492,7 @@ In this example below we are just interested in the name attribute of the user o
 ```csharp
 public User[] findUsersByNameAndProjection() {
 	SqlQuery<User> query = new SqlQuery<User>( "Name = ?"){Projections = new []{"Name"}};
-	query.SetParameter (1, "John Dow");
+	query.SetParameter (1, "John Doe");
 
 	return proxy.ReadMultiple<User>(query);
 }
@@ -578,7 +578,7 @@ public User takeUserById() {
 
 public User takeUserByTemplate() {
    User template = new User();
-   template.Name="John Dow";
+   template.Name="John Doe";
    return spaceProxy.Take<User>(template);
 }
 
@@ -604,7 +604,7 @@ public void clearUserByTemplate() {
 
 public void clearUserBySQL() {
      SqlQuery<User> query = new SqlQuery<User>(User.class, "Name = ?");
-     query.setParameter(1, "John Dow");
+     query.setParameter(1, "John Doe");
      spaceProxy.Clear(query);
 }
 
@@ -733,7 +733,7 @@ namespace xaptutorial.model
     }
 }
 // Here is a query that will use this index
-SqlQuery<User> query = new SqlQuery<User>("Name = 'John Dow' AND CreditLimit > 1000");
+SqlQuery<User> query = new SqlQuery<User>("Name = 'John Doe' AND CreditLimit > 1000");
 ```
 
 There are several additional indexing options available. For example you can index nested attributes, Nested Dictionaries, Collections, nested attributes within a Collection, free text search and others.

@@ -112,7 +112,7 @@ The routing attribute can be explicitly set using the @SpaceRouting annotation f
 
 The GigaSpaces document API exposes the space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike POJOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.
 
-To create a document we use a Map<String,Object> for its properties. The SpaceDocument object is instantiated by using the type name and properties. XAP provides a special implementation of a Hash Map called  DocumentProperties that provides a fluent API.
+To create a document we use a Map&lt;String,Object&gt; for its properties. The SpaceDocument object is instantiated by using the type name and properties. XAP provides a special implementation of a Hash Map called  DocumentProperties that provides a fluent API.
 
 Here is an example how you can create a SpaceDocument:
 
@@ -716,12 +716,12 @@ There are several additional indexing options available. For example you can ind
 
 - no huge collections with many items
 
-- use change api instead of update , especially if collections are used.
+- use change api instead of update, especially if collections are used.
  
 
 
 
-# Other Data Access API's
+# Other Data Access APIs
 XAP provides a JDBC Driver, JPA API, MAP and Memcached APIs.
 
 {{%refer%}}[Other Data Access API's](../dev-java/other-data-access-apis.html){{%/refer%}}
