@@ -94,7 +94,7 @@ public class ContentSection {
     
     private static void printPage(PrintWriter writer, Page page, String indent) {
     	//String attributes = "Title=\"" + page.getTitle() + "\" Link=\"" + page.getHref() + "\"";
-		String attributes = "Title=\"[%=System.LinkedTitle%]\" Link=\"" + page.getHref() + "\"";
+		String attributes = "Title=\"[%=System.LinkedTitle%]\" Link=\"/Content/" + page.getHref() + "\"";
         if (page.getChildren().isEmpty()) {
             writer.println(indent + "<TocEntry " + attributes + "/>");
         } else {
