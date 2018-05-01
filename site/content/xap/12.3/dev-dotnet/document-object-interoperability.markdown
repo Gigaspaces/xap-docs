@@ -46,7 +46,7 @@ The `SqlQuery` class has a `QueryResultType` settings which can be set at constr
 
 ## ID Based Query
 
-In order to support ID queries for documents, use the `IdQuery` class, which encapsulates the type, id, routing and a `QueryResultType` with the corresponding `ISpaceProxy` overload methods: `ReadById`, `ReadIfExistsById`, `TakeById`, `TakeIfExistsById`. The result type is determined by the `QueryResultType`, similar to `SqlQuery`.
+In order to support ID queries for documents, use the `IdQuery` class, which encapsulates the type, ID, routing and a `QueryResultType` with the corresponding `ISpaceProxy` overload methods: `ReadById`, `ReadIfExistsById`, `TakeById`, `TakeIfExistsById`. The result type is determined by the `QueryResultType`, similar to `SqlQuery`.
 
 Respectively, to support multiple ids queries, use the `IdsQuery` with the corresponding `ReadByIds` and `TakeByIds`.
 
