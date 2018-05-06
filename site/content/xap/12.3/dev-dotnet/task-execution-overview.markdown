@@ -50,10 +50,10 @@ public class CountTask : ISpaceTask<int>
 }
 ```
 
-{{% info %}}
+{{% note %}}
 A space task needs to be serializable because it is being serialized and reconstructed at the node.
 The assembly that contains the task needs to be in the domain of the processing unit that contains the embedded space (present at its deployment directory).
-{{%/info%}}
+{{%/note%}}
 
 **Executing the space task**
 

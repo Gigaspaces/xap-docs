@@ -123,9 +123,9 @@ com.gs.security.fs.file-service.class = com.gigaspaces.security.fs.URLFileServic
 com.gs.security.fs.file-service.url = http://www.gigaspaces.com/download/attachments/gs-directory.fsm
 ```
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 The default file-service implementation class is: `com.gigaspaces.security.fs.LocalFileService`
-{{%/info%}}
+{{%/note%}}
 
 {{% note "Note"%}}
 You will need to manage the security directory as a local file, upload the file to an HTTP server, and only then configure your services with the above properties. If your HTTP server allows write-access, then the `URLFileService` can also be used for managing your directory; the `writeToFile` method (see interface) will use the output stream to write through this connection.

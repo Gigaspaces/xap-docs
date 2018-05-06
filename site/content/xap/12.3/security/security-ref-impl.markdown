@@ -90,9 +90,9 @@ public static class MyCustomSecurityManager implements SecurityManager {
 
 The most common scenario is for all services to share the **same** custom security. This is easily accomplished by placing the custom implementation classes in the `lib/optional/security` directory.
 
-{{% info %}}
+{{% note %}}
 You can use a different directory by configuring the `com.gigaspaces.lib.opt.security` system property.
-{{%/info%}}
+{{%/note%}}
 
 
 ```java
@@ -113,6 +113,6 @@ If each processing unit has its **own** custom security implementation, the cust
 <XAP root>/deploy/hello-processor/lib/my-processor-custom-security.jar
 ```
 
-{{% info %}} It is recommended that the custom security jar should only contain security-related classes. {{%/info%}}
+{{% note %}} It is recommended that the custom security jar should only contain security-related classes. {{%/note%}}
 
 

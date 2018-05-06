@@ -36,9 +36,9 @@ To enable the initial load activity an `ExternalDataSource` should be specified.
 </ProcessingUnit>
 ```
 
-{{% info %}}
+{{% note %}}
 The Initial Load is supported with the `partitioned` cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups you can use the `partitioned` and have ZERO as the amount of backups.
-{{% /info %}}
+{{% /note %}}
 
 # Controlling the Initial Load
 

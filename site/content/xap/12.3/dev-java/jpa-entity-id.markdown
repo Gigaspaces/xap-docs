@@ -14,9 +14,9 @@ Various options for mapping the identifier property of your JPA entities are pro
 
 In this case, the Entity's Id must be set manually in the user code before attempting to persist the entity.
 
-{{% info %}}
+{{% note %}}
 Reminder: GigaSpaces `@SpaceId` annotation should also be defined on the property defined with JPA's `@Id` annotation
-{{% /info %}}
+{{% /note %}}
 Example of user defined Id:
 
 

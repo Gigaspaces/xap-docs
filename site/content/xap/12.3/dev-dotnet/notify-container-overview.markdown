@@ -92,9 +92,9 @@ public Data ProcessData(IEventListenerContainer<Data> sender, DataEventArgs<Data
 }
 ```
 
-{{% info %}}
+{{% note %}}
 [DelegateDataEventArrivedAdapter](./event-listener-container.html#DelegateDataEventArrivedAdapter) is a class that adapts the supplied user method to the [DataEventHandler](./event-listener-container.html#DataEventHandler) delegate, and contains a built in logic of writing back event results to the space
-{{% /info %}}
+{{% /note %}}
 
 {{% /tab %}}
 
@@ -106,9 +106,9 @@ The above example registers with the Space for write notifications using the pro
 
 The notify event container registers for notifications only when the relevant Space it is working against is in primary mode. When the Space is in backup mode, no registration occurs. If the Space moves from backup mode to primary mode, the container registers for notifications, and if it moved to backup mode, the registrations are canceled.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 This mostly applies when working with an embedded Space directly with a cluster member. When working with a clustered Space (performing operations against the whole cluster), the mode of the Space is always primary.
-{{%/info%}}
+{{%/note%}}
 
 # Template Definition
 
@@ -515,9 +515,9 @@ public Data ProcessData(IEventListenerContainer sender, DataEventArgs<Data> e)
 }
 ```
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 [DelegateDataEventArrivedAdapter](./event-listener-container.html#DelegateDataEventArrivedAdapter) is a class that adapts the supplied user method to the [DataEventHandler](./event-listener-container.html#DataEventHandler) delegate, and contains a built-in logic of writing event results back to the Space.
-{{% /info %}}
+{{% /note %}}
 
 {{% /tab %}}
 

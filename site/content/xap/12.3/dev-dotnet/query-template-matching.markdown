@@ -73,9 +73,9 @@ int numberOfPersons = spaceProxy.Count(new Person());
 int numberOfCitizens = spaceProxy.Count(new Citizen());
 ```
 
-{{% info%}}
+{{% note%}}
 Since all classes extends `Object`, a template of type `Object` will match all the entries in the space.
-{{%/info%}}
+{{%/note%}}
 
 # Partitioned cluster
 

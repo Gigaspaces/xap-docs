@@ -12,9 +12,9 @@ When executing a query operation on the space, there's an overhead incurred by t
 
 The `ISpaceProxy` interface provides a method called `Snapshot` which receives a template or query , translates it to an internal XAP query structure and returns a reference to that structure as `IPreparedTemplate<T>`. That reference can then be used with any of the proxy's query operations to execute queries on the space in a more efficient manner, since there's no need to translate or parse the query.
 
-{{% info %}}
+{{% note %}}
 In previous versions the `Snapshot()` method was also used as a workaround for using SQLQuery with blocking operations. Starting 8.0 SQLQuery supports blocking operations out of the box so that workaround is no longer required.
-{{%/info%}}
+{{%/note%}}
 
 # Example
 

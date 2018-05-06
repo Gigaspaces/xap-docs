@@ -19,9 +19,9 @@ The Query view includes the following options:
 
 - Result set table -- the query results are displayed in a table at the lower part of the **Service View**, where each row represents Entry data, and each column represents class attribute data. Non-native types' attribute data is displayed using the `toString` returned value.
 
-{{% info %}}
+{{% note %}}
 Make sure that the space includes the non-native attribute classes as part of its classpath, and that the relevant application has the correct codebase, so that the the query result set table can display non-native type attribute data correctly.
-{{%/info%}}
+{{%/note%}}
 
 - Exporting result set data into HTML, XML or CSV -- to export the restored result set data, click the export button (![query_export.gif](/attachment_files/query_export.gif)). This displays the export dialog, which requires you to follow 2 simple steps, and then save the file to disk.
 - Entry UID is displayed for each object data -- when the SQL query includes the UID as part of the select statement (`select uid,\* from person`), the first column in the result set table displays the Entry UID.

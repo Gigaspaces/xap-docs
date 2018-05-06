@@ -42,9 +42,9 @@ And if you are building with Maven:
 </dependency>
 ```
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 InsightEdge .jars are already packed in the InsightEdge distribution, and are automatically loaded with your application if you submit them with `insightedge-submit` script or run the Web Notebook. As such, there is no need to pack them into your uber .jar. However, if you want to run Spark in `local[*]` mode, the dependencies should be declared with the `compile` scope.
-{{%/info%}}
+{{%/note%}}
 
 # Developing a Spark Application
 
@@ -71,14 +71,14 @@ val sc = new SparkContext(sparkConf)
 {{%/tab%}}
 {{%/tabs%}}
 
-{{%info "Info"e%}}
+{{%note "Info"e%}}
 It is important to import `org.insightedge.spark.implicits.all._` to enable the Data Grid specific API.
 
 `insightedge-space` is the default Data Grid name that the demo mode starts automatically.
 
 When you are running Spark applications from the Web Notebook, `InsightEdgeConfig` is created implicitly with the properties defined in the Spark interpreter.
 
-{{%/info%}}
+{{%/note%}}
 
 # Modeling Data Grid Objects
 

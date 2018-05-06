@@ -114,7 +114,7 @@ When multiple class fields are indexed, the space looks for the field value inde
 
 The smallest set of Space objects is the list of objects to perform the matching against (matching candidates). After the candidate's Space object list has been constructed, it is scanned to locate Space objects that fully match the given template - i.e. all non-null template fields match the corresponding Space object fields.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 Class fields that are not indexed are not used to construct the candidate list.
-{{%/info%}}
+{{%/note%}}
 

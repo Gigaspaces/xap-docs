@@ -6,9 +6,9 @@ weight: 700
 parent: admin-service-grid.html
 ---
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.
-{{%/info%}}
+{{%/note%}}
  
 **To generate dump files:**
 

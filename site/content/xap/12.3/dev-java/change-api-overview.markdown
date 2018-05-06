@@ -319,9 +319,9 @@ catch(ChangeException e)
 }
 ```
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 In order to prevent constructor overload ambiguity, when using an ID query with version, the Space routing property must also be specified. If the object has no Space routing, then its Space ID property is the routing property and it should be used, as shown in the previous example.
-{{%/info%}}
+{{%/note%}}
 
 # Notifications
 
@@ -414,7 +414,7 @@ Integer newCounter = ChangeExtension.addAndGet(space, idQuery, "counter", 1);
 
 You should use the primitive wrapper types, as the operation semantic is to return null if there is no object matching the provided ID query.
 
-{{% info "Info"%}}You can use `import static org.openspaces.extensions.ChangeExtension.` so that you don't have to prefix the call with `ChangeExtension'.{{% /info %}}
+{{% note "Info"%}}You can use `import static org.openspaces.extensions.ChangeExtension.` so that you don't have to prefix the call with `ChangeExtension'.{{% /note %}}
 
 # Considerations
 

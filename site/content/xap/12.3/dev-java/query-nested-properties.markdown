@@ -45,9 +45,9 @@ The following example queries for a **Person** with an **address** whose **city*
 ... = new SQLQuery<Person>(Person.class, "address.city = 'New York'");
 ```
 
-{{% info %}}
+{{% note %}}
 Note that other properties (if any) in **address** which are not part of the criteria are ignored in the matching process.
-{{%/info%}}
+{{%/note%}}
 
 The number of levels in the path is unlimited.
 For example, suppose the **Address** class has a **Street** class which encapsulates a **name** (String) and a **houseNum** (int).
@@ -102,10 +102,10 @@ public class Person {
 }
 ```
 
-{{% info%}}
+{{% note%}}
 Note that since the index is specified on top of the **address** property, the `path` is "**city**" rather than "**address.city**".
 For more information see the [Nested Properties Indexing](./indexing.html#Nested Properties Indexing) section under [Indexing](./indexing.html).
-{{%/info%}}
+{{%/note%}}
 
 {{% warning%}}
 The type of the nested object must be a class - querying interfaces is not supported.
@@ -134,10 +134,10 @@ The following example queries for a **Person** whose **phoneNumbers** property c
 ... = new SQLQuery<Person>(Person.class, "phoneNumbers.home = '555-1234'");
 ```
 
-{{% info%}}
+{{% note%}}
 A path can continue traversing from 'regular' properties to maps and back to 'regular' properties as needed.
 Map properties are useful for creating a flexible schema - since the keys in the map are not part of the schema, the map can be used to add or remove data from a space object without changing its structure.
-{{%/info%}}
+{{%/note%}}
 
 ## Indexing
 
@@ -158,10 +158,10 @@ public class Person {
 }
 ```
 
-{{% info %}}
+{{% note %}}
 Note that since the index is specified on top of the **phoneNumbers** property, the `path` is "**home**" rather than "**phoneNumbers.home**".
 For more information see the [Nested Properties Indexing](./indexing.html#Nested properties indexing) section under [Indexing](./indexing.html).
-{{%/info%}}
+{{%/note%}}
 
 {{% anchor collection-support %}}
 
@@ -169,9 +169,9 @@ For more information see the [Nested Properties Indexing](./indexing.html#Nested
 
 The GigaSpaces SQL syntax supports a special operand `[*]`, which is sometimes referred to as the 'contains' operand. This operand is used in conjunction with collection properties to indicate that each collection item should be evaluated, and if at least one such item matches, the owner entry is considered as matched.
 
-{{% info%}}
+{{% note%}}
 Arrays are supported as well, except for arrays of primitive types (int, boolean, etc.) which are are **not** supported - use the equivalent wrapper type (java.lang.Integer, java.lang.Boolean, etc.) instead.
-{{%/info%}}
+{{%/note%}}
 
 Suppose we have a type called **Dealer** with a property called **cars** (which is a list of strings).
 The following example queries for a **Dealer** whose *cars* collection property contains the **"Honda"** String:

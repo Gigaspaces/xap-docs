@@ -300,9 +300,9 @@ Distributed transaction consolidation is configured via the space configuration 
 
 In the following example we configure a space using its `pu.xml` to have transaction consolidation mode as enabled:
 
-{{% info %}}
+{{% note %}}
 Since 9.1.0 - Distributed transaction consolidation is enabled by default.
-{{% /info %}}
+{{% /note %}}
 
 
 ```xml
@@ -399,9 +399,9 @@ Distributed transaction participants' data will be processed individually if ten
 |space-config.mirror-service.distributed-transaction-processing.wait-timeout|60000 milliseconds|
 |space-config.mirror-service.distributed-transaction-processing.wait-for-operations|unlimited (-1 = unlimited)|
 
-{{% info %}}
+{{% note %}}
 Note that by setting the `cluster-config.groups.group.repl-policy.processing-type` property to `multi-source` all reliable asynchronous replication targets for that space will work in distributed transaction consolidation mode (For example: Gateway Sink).
-{{% /info %}}
+{{% /note %}}
 
 {{% note %}}
 Setting both `dist-tx-wait-timeout-millis` and `dist-tx-wait-for-opers` to unlimited (or very high value) is risky and may cause replication backlog accumulation due to a packet which is unconsolidated and waits for consolidation which may never occur due to various reasons.

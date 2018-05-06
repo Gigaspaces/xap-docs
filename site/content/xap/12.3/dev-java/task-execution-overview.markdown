@@ -502,11 +502,11 @@ public class OrderCountTask implements DistributedTask<Integer, Long> {
 
 When enabling autowiring of tasks, OpenSpaces annotations/interface injections can also be used, such as the `ClusterInfo` injection.
 
-{{% info "Why use @TaskGigaSpace/TaskGigaSpaceAware when you can autowire using standard Spring? "%}}
+{{% note "Why use @TaskGigaSpace/TaskGigaSpaceAware when you can autowire using standard Spring? "%}}
 You can inject a co-located `GigaSpace` instance to the task using the `@TaskGigaSpace` annotation  implementing the `TaskGigaSpaceAware` interface. You can also wire the task through standard Spring dependency injection using the `@AutowireTask` and `@Resource` annotations. 
 
 However, there's a big difference between the two; the `@TaskGigaSpace` annotation and the `TaskGigaSpaceAware` interface are intentionally designed not to trigger the Spring dependency resolution and injection process, because it can be quite costly in terms of performance if executed every time a task is submitted. Therefore, for the common case where you only need to inject the collocated `GigaSpace` instance to the task, it is recommended to use `@TaskGigaSpace` or `TaskGigaSpaceAware`.
-{{% /info %}}
+{{% /note %}}
 
 # Built-In Reducers
 

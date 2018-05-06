@@ -57,9 +57,9 @@ public class MyPojo
 
 - **Operation level replication** - space can be configured so that only specific operations are replicated from a source space to the target space(s).
 
-{{% info %}}
+{{% note %}}
 In replicated topology, **the take and clear operations are identical**. Therefore, referrals to the take operation in this section are also relevant for the clear operation.
-{{%/info%}}
+{{%/note%}}
 
 This can be done by setting the following property:
 
@@ -114,10 +114,10 @@ A table describing the behavior of combining the different properties:
 | False | True | Client gets notification only from those spaces that it registered for notification.<br>Notification occurs when data has been delivered to the space, either by a client application or from the replication. |
 | True | True | Client gets notification from all cluster spaces after registration.<br>Client gets multiple notifications for every space event. |
 
-{{% info %}}
+{{% note %}}
 Enabling both the Replicate notify templates and trigger notify templates triggers an event for each space, so it may result in more events than you initially intended.
  You can use the source of the event to check which space triggered it.
-{{%/info%}}
+{{%/note%}}
 
 # Conflict Resolution
 

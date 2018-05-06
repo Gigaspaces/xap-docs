@@ -71,9 +71,9 @@ Adjusting the lookup services multicast settings can be done using the following
 |com.gs.multicast.ttl|The multicast packet time to live. | 3|
 
 
-{{% info %}}
+{{% note %}}
 The two multicast addresses allow you to completely separate two different GigaSpaces installations, so lookup services won't communicate with each other (even on the wire level, which is different than the groups, which communicate on the content level).
-{{%/info%}}
+{{%/note%}}
 
 # Troubleshooting the Discovery/Group Configuration
 

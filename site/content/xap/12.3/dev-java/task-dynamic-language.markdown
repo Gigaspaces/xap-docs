@@ -209,9 +209,9 @@ By default, the `DefaultScriptingExecutor` passes beans of type `GigaSpace`, key
 
 As an example, if my server side Spring application context has a `GigaSpace` bean with id of `myGigaSpace`, a simple groovy script to use it (without configuring anything within the default executor) can be: `myGigaSpace.write(new Object())`. Note, we use the id of the bean to access the `GigaSpace` and write a new Object.
 
-{{% info %}}
+{{% note %}}
 A quick note regarding usage of `GigaSpace` beans. The clustered flag plays an important role when using it. This basically allows to control if the script execution of `GigaSpace` operations works only against its clustered member space, or against the whole cluster.
-{{%/info%}}
+{{%/note%}}
 
 ## Script Compilation Caching
 

@@ -12,9 +12,9 @@ weight: 1100
 
 If you are new to the **Hello World** example, we suggest to first review the {{%exurl "Hello World screen cast" "http://www.youtube.com/watch?v=I2s8jg_Gufs&feature=relmfu"%}}. With this page we provide a short overview of the example, and get you started with applying security aspects to it.
 
-{{% info %}}
+{{% note %}}
 The example distribution can be found under `<XAP root>/examples/helloworld`.
-{{%/info%}}
+{{%/note%}}
 
 # Overview
 
@@ -126,9 +126,9 @@ Lets look at how easily it can be using the [GigaSpaces Management Center (UI) S
 
 There are a couple of deployment options. For example deploying using the ant build script or the UI.
 
-{{% info %}}
+{{% note %}}
 To simplify this example we will assume that the Service Grid components are **not** secured.
-{{%/info%}}
+{{%/note%}}
 
 1. Start a GSM
 1. Start a GSC

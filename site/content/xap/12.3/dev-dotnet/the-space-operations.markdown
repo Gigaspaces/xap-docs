@@ -202,9 +202,9 @@ ILeaseContext<Employee> lc = spaceProxy.Write(employee,WriteModifiers.ReturnPrev
 Employee previousValue = lc.Object;
 ```
 
-{{% info %}}
+{{% note %}}
 Since in most scenarios the previous value is irrelevant, the default behavior is not to return it (i.e. `ILeaseContext.Object` return null). The `WriteModifiers.ReturnPrevOnUpdate` modifier is used to indicate the previous value should be returned.
-{{%/info%}}
+{{%/note%}}
 
 {{%anchor asynchronousWrite%}}
 
@@ -531,9 +531,9 @@ Employee e3 = spaceProxy.Take<Employee>(query);
 The GigaSpace interface provides simple way to perform bulk take operations. You may take large amount of objects in one call.
 
 
-{{% info %}}
+{{% note %}}
 To remove a batch of objects without returning these back into the client use `ISPaceProxy.Clear(SqlQuery)`;
-{{%/info%}}
+{{%/note%}}
 
 Examples:
 

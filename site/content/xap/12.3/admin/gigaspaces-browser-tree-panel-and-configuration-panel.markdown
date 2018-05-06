@@ -45,9 +45,9 @@ In the Select Columns window, check the checkboxes of the columns you want to se
 ![space_network_view_selectColumns_window_6.5.jpg](/attachment_files/space_network_view_selectColumns_window_6.5.jpg)
 {{% /align %}}
 
-{{% info %}}
+{{% note %}}
 The **Name** (space name) and **Space Container Name** are default options and cannot be unchecked.
-{{%/info%}}
+{{%/note%}}
 
 The columns to choose from are as follows:
 

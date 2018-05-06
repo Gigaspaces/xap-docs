@@ -101,10 +101,10 @@ Partitioning is used when the total number of objects is too big to be stored in
 
 
 
-{{%info%}}
+{{%note%}}
 The routing attribute can be explicitly set using the @SpaceRouting annotation for POJO entries or via the SpaceTypeDescriptorBuilder for document entries. If the routing attribute is not explicitly set, the space id attribute is used for routing. If the space id attribute is not defined, the first indexed attribute (alphabetically) is used for routing, otherwise the first attribute (alphabetically) is used for routing.
 
-{{%/info%}}
+{{%/note%}}
 
 {{%refer%}}[Routing in partitioned Space](../dev-java/routing-in-partitioned-spaces.html){{%/refer%}}
 
@@ -152,10 +152,10 @@ public void registerProductType(GigaSpace space) {
 
 Only properties with special roles like ID and Routing are part of the schema definition. These meta model settings cannot be changed without restarting the space or dropping the type, clearing all its instances and reintroducing it again.
 
-{{%info%}}
+{{%note%}}
 It is possible to write a POJO to the space and read it back as a document, and vice versa. This scenario is useful when you want to read or modify POJO objects without loading the concrete java classes.
 
-{{%/info%}}
+{{%/note%}}
 
 {{%refer%}}[Document POJO Interoperability](../dev-java/document-pojo-interoperability.html){{%/refer%}}
 
@@ -304,7 +304,7 @@ public User[] findUsersByTemplate() {
 ```
 
 
-{{%info%}}Template Matching support inheritance relationships, so that entries of a sub-class are visible in the context of the super class, but not the other way around.{{%/info%}}
+{{%note%}}Template Matching support inheritance relationships, so that entries of a sub-class are visible in the context of the super class, but not the other way around.{{%/note%}}
 
 ## SQL Query
 The SQLQuery class is used to query the space with an SQL-like syntax. The query statement includes only the WHERE statement part. An SQLQuery is composed from the class of entry to query and an expression in SQL syntax.
@@ -786,7 +786,7 @@ public void findSpace()  {
 ```
 
 
-{{%info%}}In the following parts of this tutorial we will introduce you the different schemas that support the XAP Spring integration. We will also use the Annotations to configure and inject components.{{%/info%}}
+{{%note%}}In the following parts of this tutorial we will introduce you the different schemas that support the XAP Spring integration. We will also use the Annotations to configure and inject components.{{%/note%}}
 
 
 

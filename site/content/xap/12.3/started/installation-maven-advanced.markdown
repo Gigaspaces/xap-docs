@@ -78,9 +78,9 @@ Maven defines the following scopes:
 | **runtime** | Indicates that the dependency is available for the runtime and test classpaths, but not for the compile classpath. |
 | **system** | This scope is similar to provided, except that you have to provide the JAR location explicitly. The artifact is not looked up in a repository. Using this scope is not advised due to portability issues. |
 
-{{% info %}}
+{{% note %}}
 During processing unit packaging only dependencies declared with the scopes **compile* and *runtime** are added to the PU distributable.
-{{%/info%}}
+{{%/note%}}
 
 {{%refer%}}
 For more information go to [Introduction to the Dependency Mechanism](http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html)

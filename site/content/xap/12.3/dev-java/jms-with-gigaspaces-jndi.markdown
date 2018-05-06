@@ -100,9 +100,9 @@ InitialContext context = new InitialContext();
 Topic myTopic = (Topic)context.lookup("GigaSpaces;containername;spaceName;jms;destinations;MyTopic");
 ```
 
-{{% info %}}
+{{% note %}}
 To get the resource, use the full binding name. If you configure `MyTopic` in the space configuration, the space binds it to the name:
-{{%/info%}}
+{{%/note%}}
 
 
 ```java

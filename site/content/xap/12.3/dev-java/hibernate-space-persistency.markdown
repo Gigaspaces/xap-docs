@@ -159,15 +159,15 @@ When using annotations to decorate the Space Classes the `sessionFactory` would 
 </bean>
 ```
 
-{{% info %}}
+{{% note %}}
 The `external-data-source` element within the persistent schema allows for further configuration of the external data source. The values can be injected using the properties tag within the Space tag using the "xpath" notation.
-{{%/info%}}
+{{%/note%}}
 
 Here is an example for a Space Domain class with its Hibernate decorations. See the `@SpaceId` and the `@SpaceRouting` used to include the Space Class meta Data.
 
-{{% info %}}
+{{% note %}}
 Make sure your POJO @SpaceId is defined on the same property as the Hibernate @Id. This is necessary for proper object mapping.
-{{% /info %}}
+{{% /note %}}
 See the [POJO Metadata](./modeling-your-data.html) for details about these decorations.
 
 

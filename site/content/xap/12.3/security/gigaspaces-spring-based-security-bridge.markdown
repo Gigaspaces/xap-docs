@@ -49,9 +49,9 @@ spring-security-config-location = ../config/security/security-config.xml
 
 This is all the configuration required to enable the use of the Spring-based security bridge. The rest is part of the Spring Security configuration XML file.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
  For convenience, the template properties `config/security/spring-security.properties` can be renamed to `security.properties` or referenced using a system property (see [Security Configurations](./security-configurations.html)).
-{{% /info %}}
+{{% /note %}}
 
 # Logging
 

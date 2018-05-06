@@ -236,9 +236,9 @@ For a  real-world example consult the streaming big data example :
 
 The archive container, performs take operations only when the relevant space it is working against is in primary mode. When the space is in backup mode, no take operations are performed. If the space moves from backup mode to primary mode, the take operations are started.
 
-{{% info %}}
+{{% note %}}
 This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.
-{{%/info%}}
+{{%/note%}}
 
 # Static Template Definition
 

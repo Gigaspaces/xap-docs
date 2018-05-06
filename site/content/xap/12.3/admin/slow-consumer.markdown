@@ -48,9 +48,9 @@ To allow the client to detect that the space removed its notify registration, it
 
 The LRMI thread pool queue size parameter, measured in **Objects**, configures the client and space server communication queue maximum size when processing incoming requests.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 In general, you should have a different LRMI thread pool queue size value for clients and for the space server.
-{{%/info%}}
+{{%/note%}}
 
 When the LRMI thread pool queue size in the client side reached its limit (client can't consume incoming notifications), the client will stop consuming incoming network packets. This in return will initiate the slow consumer mechanism at the space side that will cancel the client notify registration.
 
@@ -80,9 +80,9 @@ Ensure that you are not adding the services.config file to your server class pat
 
 You should configure the following JVM system properties at the **client side**. These specify the capacity of the LRMI thread pool, and set a specific limit. This allows the client to block incoming requests once the capacity is reached, in this case an incoming notification invocation. This will trigger the slow consumer mechanism at the server side since that client will stop receiving new notification invocations.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 When using FIFO notifications, the fifo notify queue should be limited as well for the same reasons
-{{%/info%}}
+{{%/note%}}
 
  
 

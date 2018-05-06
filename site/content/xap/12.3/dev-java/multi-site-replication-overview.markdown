@@ -33,9 +33,9 @@ The XAP WAN Gateway features the following:
 - Data filtering - The WAN Gateway replication can have a custom plug-in that allows users to filter/modify data before and after it has been replicated, at each source/target node.
 - Changing WAN replication topology during runtime - adding or removing remote sites without system shutdown.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 This page describes how to establish replication between multiple Spaces in a typical WAN environment. Each Space is a separate network and there is a need for a designated outbound and inbound gateway machine or machines on each network, in order to interact with the other network(s). 
-{{% /info %}}
+{{% /note %}}
 
 
 # Supported Toplogies
@@ -219,9 +219,9 @@ Distributed transaction participant data will be processed individually if 10 se
 |dist-tx-wait-for-opers|unlimited (-1 = unlimited)|
 |dist-tx-consolidation-failure-action|commit|
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 If you set the `cluster-config.groups.group.repl-policy.processing-type` property to `global-source`, all reliable asynchronous replication targets for that Space will work in non-distributed transaction consolidation mode. For example, a Mirror will also work in non-distributed transaction consolidation mode.
-{{% /info %}}
+{{% /note %}}
 
 {{% note "Notes"%}}
 Consolidation failure can occur under normal circumstances, if the target gateway is restarted or crashes during the consolidation process. For example, you may have a scenario where the transaction was successfully consolidated and executed on the target cluster, but the gateway was stopped while sending confirmation to the transaction participants in the source site and some of them received the confirmation while others did not. In this case, the transaction is actually successfully executed in the target site, and by default when the consolidation failure event occurs, the unconfirmed part reaches the conflict resolution handler will abort it (by default), and the state will remain consistent.

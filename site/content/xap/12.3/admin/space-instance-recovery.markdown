@@ -56,13 +56,13 @@ Completion phase is finished according to the consistency requirements of the re
 Once the recovery process is complete, a full report including the total amount of recovered space objects and notify registrations, and their class types, is logged.
 During the recovery process, the source space is available, and the target space is unavailable to clients.
 
-{{% info %}}
+{{% note %}}
 - Replication input filter events are called during recovery (on the target).
 - Space filter events are not called during recovery.
 - The space instance locates a space to recover from using the Jini Lookup Service - each replication group has a unique name.
  The source space looks for a matching space with the same replication group to recover from.
 - Partial recovery - the restarted space recovers only classes with the `@SpaceClass (replicate=true)` decoration (turned on only when partial replication is enabled).
-{{% /info %}}
+{{% /note %}}
 
 # Primary-Backup Topology
 

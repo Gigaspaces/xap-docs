@@ -137,7 +137,7 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 Note the following important information about the `TakeModifiers.EVICT_ONLY` modifier:
 
 - It can be used with any take operation - `take`, `takeById`, `takeMultiple`, etc.
@@ -145,7 +145,7 @@ Note the following important information about the `TakeModifiers.EVICT_ONLY` mo
 - When using this modifier, the timeout argument in operations that allow specifying a timeout is ignored. The operations will always return immediately.
 - When using this modifier, the `take` or `clear` calls will never be propagated to the underlying database (EDS layer) when running in synchronous or asynchronous persistency mode. A `take` operation, for example, might return a `null` while a matching object exists in the underlying database.
 - The `TakeModifiers.EVICT_ONLY` is **ignored when used in a transactional operation** - A `take` or `clear` in the context of a transaction will not result in eviction.
-{{%/info%}}
+{{%/note%}}
 
 # Exceeding the Physical Memory Capacity
 

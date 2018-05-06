@@ -30,6 +30,6 @@ QueueConnection queueConnection = queueConnectionFactory.createQueueConnection(u
 TopicConnection topicConnection = topicConnectionFactory.createTopicConnection(username,password);
 ```
 
-{{% info %}}
+{{% note %}}
 To use authentication, you must define a secured space with the same user/password.
-{{%/info%}}
+{{%/note%}}

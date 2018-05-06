@@ -12,9 +12,9 @@ XAP comes with a built in implementation of [Space Persistency](./space-persiste
 
 The `NHibernate Space Persistency Implementation` is used both with the [Synchronous](./direct-persistency.html) and the [Asynchronous Persistency](./asynchronous-persistency-with-the-mirror.html) modes.
 
-{{% info "Building the plugin "%}}
+{{% note "Building the plugin "%}}
 The NHibernate External Data Source is provided as a reference implementation under `<XAP Root>\Practices\ExternalDataSource\NHibernate`. You'll need to build it before using it by using the `build.bat` script.
-{{%/info%}}
+{{%/note%}}
 
 # Configuration
 
@@ -101,9 +101,9 @@ We can use the following `Person.hbm.xml` file:
 </hibernate-mapping>
 ```
 
-{{% info %}}
+{{% note %}}
 Make sure your PONO `[SpaceId]` is defined on the same property as the NHibernate `[Id]`. This is necessary for proper object mapping.
-{{% /info %}}
+{{% /note %}}
 See [Modeling Your Data](./modeling-your-data.html) for details about these decorations.
 
 # Properties

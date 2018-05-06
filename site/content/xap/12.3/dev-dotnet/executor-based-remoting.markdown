@@ -65,9 +65,9 @@ public class DataProcessor : IDataProcessor
 }
 ```
 
-{{% info %}}
+{{% note %}}
 Hosting services is done on a Processing Unit that starts an embedded space.
-{{%/info%}}
+{{%/note%}}
 
 {{% refer %}}For more details regarding service hosting please refer to [Domain Service Host](./domain-service-host.html){{% /refer %}}
 

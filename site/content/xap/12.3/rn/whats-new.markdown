@@ -73,9 +73,9 @@ The new `ORDERED` index consumes less memory than `EQUAL_AND_ORDERED`, at the co
 
 # Third-Party Product Changes
 
-{{%info "Support for Apache Spark 2.3"%}}
+{{%note "Support for Apache Spark 2.3"%}}
 The InsightEdge platform supports Apache Spark version 2.3. Due to lack of support for Apache Spark version 2.3 in the current Apache Zeppelin version, InsightEdge is packaged with Apache Spark 2.2. Customers that do not use Apache Zeppelin and have their own Apache Spark implementation can use version 2.3 with GigaSpaces products.
-{{%/info%}}
+{{%/note%}}
 
 * [Apache Zookeeper](https://zookeeper.apache.org/) has been upgraded to `3.4.10`
 * [Jetty](http://www.eclipse.org/jetty/) package has been upgraded to `9.2.24`

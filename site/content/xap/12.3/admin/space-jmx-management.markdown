@@ -65,10 +65,10 @@ Step 7. Connect to the MBean server (choose one of the following options):
 
     c. Press **Connect**. <br>
 
-{{% info "Info"%}}
+{{% note "Info"%}}
  New JMXConnectionServer was successfully registered into the MBeanServer
  using service url: service:jmx:rmi:///jndi/rmi://localhost:10098/jmxrmi
-{{% /info %}}
+{{% /note %}}
 
 {{% align center %}}
 ![space_JMX_4_space_JMX_IMG992.gif](/attachment_files/space_JMX_4_space_JMX_IMG992.gif)  <br>
@@ -133,9 +133,9 @@ JConsole includes a {{%exurl "plugin" "https://arnhem.luminis.eu/top-threads-plu
 
 - [Download the topthreads.jar file](https://bitbucket.org/pjtr/topthreads/downloads/topthreads-1.1.jar) and add it to your `<XAP Root>\lib\platform\ui` folder.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 `topthreads-{{%version "topthreads"%}}.jar` is used by default. If `topthreads-{{%version "topthreads"%}}.jar` isn't found, the `JTop.jar` file (which is part of the JDK) is used instead.
-{{%/info%}}
+{{%/note%}}
 
 Below are some example screenshots:
 
@@ -277,9 +277,9 @@ The space extensions **Info** tab displays the MBean name and its Java class.
 
 There is an option to restrict the access to space and space container operations or attributes; for example, you can decide to hide some of the attributes and configuration, and disable execution of operations.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 This way, you can view, restrict or modify most of the space and space container **configuration** (as set in the space/container schema files), or the basic **admin operations**, which were discussed in the above sections.
-{{%/info%}}
+{{%/note%}}
 
 To do this, modify the following space and space container **MBean Descriptors**, which are located inside the `<XAP Root>\lib\required\xap-datagrid.jar` file:
 

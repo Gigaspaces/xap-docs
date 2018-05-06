@@ -206,9 +206,9 @@ Use the space API to write the message in an ordinary way:
 spaceProxy.write(textMessage, null, Lease.Forever);
 ```
 
-{{% info %}}
+{{% note %}}
 The `SpaceWriter` example that resides in `<XAP Root>\examples\Basic\helloJMS` uses this technique to write JMS messages to the space.
-{{%/info%}}
+{{%/note%}}
 
 ## Reading/Taking JMS Messages
 

@@ -108,10 +108,10 @@ public Object change(MutableServerEntry entry) {
 `getPathValue`, `setPathValue` operations support nested paths, it will traverse on properties and map keys if the path contains '.' in it (e.g. "myPojo.mapProperty.key")
 {{% /tip %}}   
 	 
-{{% info %}}
+{{% note %}}
 When using a replicated topology (e.g. with backup space instances, gateways, mirror) the change operation itself is replicated (and *NOT* the modified entry). Hence, it is imperative that this method will always cause the exact same affect on the entry (assuming the same entry was provided). For example it should not rely 
 on variables that may change between executions, such as system time, random, machine name etc.
-If the operation is not structured that way, the state can be inconsistent in the different locations after being replicate. {{% /info %}}
+If the operation is not structured that way, the state can be inconsistent in the different locations after being replicate. {{% /note %}}
 
 # Space Security
 

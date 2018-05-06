@@ -6,9 +6,9 @@ weight: 1300
 parent: admin-spaces-pu.html
 ---
  
-{{%info "Info"%}}
+{{%note "Info"%}}
 This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.
-{{%/info%}}
+{{%/note%}}
   
 **To view the transaction details:**
 

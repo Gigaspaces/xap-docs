@@ -70,7 +70,7 @@ UserDetails user = new User("John Smith", "password",
                         new SpaceAuthority(SpacePrivilege.WRITE));
 ```
 
-{{% info %}}
+{{% note %}}
 The SecurityManager interface provides an extension to a user defined `DirectoryManager`. This allows you to connect to any storage to manage users and roles.
 This method is ***not mandatory***, and implementors can throw `DirectoryAccessDeniedException` if management should be done via external user management tools.
 
@@ -85,7 +85,7 @@ interface SecurityManager {
 ...
 }
 ```
-{{%/info%}}
+{{%/note%}}
 
 ## Role Authority
 

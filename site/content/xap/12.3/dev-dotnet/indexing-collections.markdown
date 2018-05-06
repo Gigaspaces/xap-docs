@@ -94,7 +94,7 @@ public class Information
 }
 ```
 
-{{% info %}}
+{{% note %}}
 Both `[SpaceIndex(Type=SpaceIndexType.Basic)]` and `[SpaceIndex(Type=SpaceIndexType.Extended)]` are supported.
-{{% /info %}}
+{{% /note %}}
 

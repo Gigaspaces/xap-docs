@@ -23,9 +23,9 @@ XAP provides two types of communication filter:
 - Stream-based filter - for a protocol like ZIP. This type of filter does not support a handshake phase.
 - Block-based filter - for encryption network filters. These filters do support a handshake phase.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 XAP currently supports only one communication filter, and this filter is applied to all the connections in the JVM.
-{{%/info%}}
+{{%/note%}}
 
 # Usage
 

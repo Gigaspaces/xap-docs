@@ -33,9 +33,9 @@ Additional options:
 
 You can choose to refresh the statistics display periodically. When auto refresh is running, a green blinking dot is displayed on the right side of the screen. Select the desired refresh rate from the drop-down menu. To stop the statistics automatic refresh, click the **Stop** button.
 
-{{% info %}}
+{{% note %}}
 Auto-refresh activity impacts server performance, so you might want to stop it when running benchmarks.
-{{%/info%}}
+{{%/note%}}
 
 {{% align center %}}
 ![GMC_space_statistics_RefreshRate_area_TopRight_7.1.jpg](/attachment_files/GMC_space_statistics_RefreshRate_area_TopRight_7.1.jpg)

@@ -130,9 +130,9 @@ SpaceDocument[] documents = gigaSpace.readByIds(
         ids, QueryResultType.DOCUMENT)).getResultsArray();
 ```
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 The original `readById` (and related methods) signatures are not suited for document types, because they require a concrete Java class. They always return POJO(s).
-{{%/info%}}
+{{%/note%}}
 
 # Dynamic Properties
 

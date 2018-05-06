@@ -167,9 +167,9 @@ The Deployment Wizard allows the deployment of a data-grid or a processing unit.
 ![select-gsm.png](/attachment_files/select-gsm.png)
 {{%/align%}}
 
-{{% info %}}
+{{% note %}}
 It is important to understand the difference between the credentials supplied to the **login** dialog and the supplied credentials provided when deploying. The first, is used to authenticate the user against the services discovered by the UI, and allow actions to be performed. One of the actions is to **deploy**. When you are authorized to deploy, the credentials passed in the deployment dialog are propagated to the Processing Unit.
-{{%/info%}}
+{{%/note%}}
 
 ## Deploying a Secured data-grid
 

@@ -6,9 +6,9 @@ weight: 501
 parent: admin-service-grid.html
 ---
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.
-{{%/info%}} 
+{{%/note%}} 
 
 
 **To view alerts:**
@@ -62,9 +62,9 @@ The Alert number displayed in the menu bar indicates the amount of currently act
 
 You can generate a dump file for the alert's related grid components by clicking the **Action** icon in the relevant line of the alert list. See [Generating Dump Files](./admin-service-grid-generate-dump.html) for information on how to define the dump file contents.
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 The Web-UI server utilizes the `<XAP Root>/config/alerts/alerts.xml` configuration file. These configurations apply to any client connecting to the Web-UI at the specified host and port.
-{{%/info%}}  
+{{%/note%}}  
 
 {{%/tab%}}
 

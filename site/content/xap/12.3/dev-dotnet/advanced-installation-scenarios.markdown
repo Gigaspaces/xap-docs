@@ -81,9 +81,9 @@ HKLM\SOFTWARE\GigaSpaces\XAP.NET\{{%version "xap-release"%}}.11600\CLR v2.0.5072
 HKLM\SOFTWARE\GigaSpaces\XAP.NET\{{%version "xap-release"%}}.11600\CLR v4.0.30319\SettingsPath=C:\GigaSpaces\XAP.NET {{%version "xap-release"%}} x64\NET v4.0\Config\Settings.xml
 ```
 
-{{% info %}}
+{{% note %}}
 HKCU is supported as well, and is searched before HKLM.
-{{%/info%}}
+{{%/note%}}
 
 
 

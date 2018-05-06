@@ -135,10 +135,10 @@ ProcessingUnit pu2 = gsm.deploy(
 
 <br>
 
-{{%info "Eager scale trigger verses Manual capacity trigger"%}}
+{{%note "Eager scale trigger verses Manual capacity trigger"%}}
 The differences between the Eager scale trigger and a Manual capacity trigger in terms of the maximum amount of memory and CPU are:
 
 - **Manual** capacity trigger expects the administrator to start enough available machines running the GigaSpaces agent to satisfy the specified capacity. Since it expects a new machine to be started, it does not balance the Processing Unit instances nor it does start new containers, until the machines are started. **Eager** trigger, on the other hand, redeploys as best as it can on the available machines, and scales out only when another machine is started or until the max capacity is reached.
 - The **Eager** trigger spreads out thin if enough machines are available (to gain as much CPU resources as possible). **Manual** trigger spreads out to new machines, before existing machines' memory is utilized, only when the `numberOfCpu` property is high enough.
 
-{{%/info%}}
+{{%/note%}}

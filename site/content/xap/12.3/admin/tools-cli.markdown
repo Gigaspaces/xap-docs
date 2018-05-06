@@ -88,6 +88,6 @@ To run a local Manager server and a web browser client, type `xap host run-agent
 
 To view a list of the running agents, type `xap host list` or `insightedge host list`.
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 If you've recently upgraded to version 12.3, note that this is a new version of the CLI tool and uses a different syntax and command set. We encourage using this new version, but if you need information about the old CLI commands, refer to the [GigaSpaces CLI](command-line-interface.html) pages in the [Legacy Tools](admin-legacy-tools.html) section.
-{{%/info%}}
+{{%/note%}}

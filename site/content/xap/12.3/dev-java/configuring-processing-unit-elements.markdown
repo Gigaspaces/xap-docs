@@ -31,9 +31,9 @@ The definitions in the `pu.xml` file are divided into 2 major categories:
 
 - User defined beans, which define instances of user classes to be used by the processing unit. For example, user defined event handlers to which the event containers delegate events as those are received.
 
-{{% info "SLA (Service Level Agreement) definitions "%}}
+{{% note "SLA (Service Level Agreement) definitions "%}}
 the `pu.xml` may also contain [SLA definitions](../admin/the-sla-overview.html). In previous releases, this was the recommended way to define your processing unit's SLA. As of version 7.0, the recommended way to do it is to use a separate sla.xml file, which separates this deployment and runtime aspect from the the processing unit's components. This enables better modularization and reuse of the processing unit.
-{{% /info %}}
+{{% /note %}}
 
 This section focuses on the overall structure of the `pu.xml` file. The various GigaSpaces components that can be included in the `pu.xml` (such as [event containers](./messaging-support.html), [remote services](./space-based-remoting-overview.html) and others) are covered in detail in their respective sections in the programmer's guide.
 

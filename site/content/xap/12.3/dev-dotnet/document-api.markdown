@@ -388,7 +388,7 @@ ISpaceTypeDescriptor typeDescriptor = typeBuilder.Create();
 spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptor);
 ```
 
-{{% info %}} Changing FIFO support after a type has been registered is not supported. {{%/info%}}
+{{% note %}} Changing FIFO support after a type has been registered is not supported. {{%/note%}}
 
 # Transactions and Optimistic Locking
 

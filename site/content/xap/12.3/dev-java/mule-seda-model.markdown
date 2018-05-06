@@ -65,9 +65,9 @@ OpenSpaces enhanced SEDA model allows storing of SEDA queues on top of the Space
 
 The enhanced SEDA queue model is mainly used when working in SBA mode. This means that each Mule Processing Unit instance starts a Space cluster member, and SEDA queues are stored directly in the cluster member this instance started. When working with a primary-backup topology, `os-seda` aware services of a Mule Processing Unit instance that started a backup cluster member are not started until the cluster member moves to primary mode.
 
-{{% info %}}
+{{% note %}}
 In such a topology, SEDA queue content is replicated from the primary cluster member to the backup, allowing you to continue the processing seamlessly in case of the primary failure.
-{{%/info%}}
+{{%/note%}}
 
 Here is an example of how it can be configured:
 

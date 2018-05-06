@@ -74,9 +74,9 @@ The SLA definition shown above creates four instances of a Processing Unit using
 It is up to the developer to configure the SLA correctly. Trying to deploy a Processing Unit with a cluster schema that requires backups without specifying `numberOfBackups` will cause the deployment to fail.
 {{%/note%}}
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the [Administration and Monitoring API](../dev-java/administration-and-monitoring-overview.html) which supports the above and and much more.
-{{% /info %}}
+{{% /note %}}
 
 # Defining the Space Cluster Topology
 

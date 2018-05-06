@@ -113,9 +113,9 @@ The following operations can be performed when the **JavaSpaces** area is select
 - **Write and Take** -- writes and takes objects, according to the number of iterations. For example, defining 20,000 iterations in the **Iterations** text box writes 2,000 objects to the space, and takes those 2,000 objects from the space.
 - **Write and Notify** -- writes objects according to the number of iterations, and registers for notifications on those objects. For example, defining 20,000 iterations in the **Iterations** text box writes 2,000 objects to the space, sends 2,000 notifications, receives 2,000 notify acknowledgments, and registers for notifications on the written objects.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 The referral to objects above means either Entries or POJOs, depending on the specified **Object Format**.
-{{%/info%}}
+{{%/note%}}
 
 ### Map API
 

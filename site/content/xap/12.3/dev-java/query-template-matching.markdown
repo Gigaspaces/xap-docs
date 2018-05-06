@@ -13,10 +13,10 @@ Template matching (a.k.a. Match by example) is a simple way to query the space -
 
 Since by convention the default constructor usually initializes all the properties to `null` either implicitly or explicitly, in most cases it's enough to simply set the properties which should be matched, without bothering with explicitly setting null to the other properties. Note that setting two or more properties with non-null values provides an **AND** behavior.
 
-{{% info%}}
+{{% note%}}
 It is highly recommended to index one or more of the properties used in the template to speed up the matching process. For more information see [Indexing](./indexing.html).
 If you require additional query options refer to [SQLQuery](./query-sql.html).
-{{%/info%}}
+{{%/note%}}
 
 # Examples
 
@@ -74,7 +74,7 @@ int numberOfPersons = gigaSpace.count(new Person());
 int numberOfCitizens = gigaSpace.count(new Citizen());
 ```
 
-{{% info %}} Since all classes extends `Object`, a template of type `Object` will match all the entries in the space.{{%/info%}}
+{{% note %}} Since all classes extends `Object`, a template of type `Object` will match all the entries in the space.{{%/note%}}
 
 # Partitioned cluster
 
@@ -119,9 +119,9 @@ public class Person {
 
 We've indicated that `-1` should be treated as `null` when performing template matching, and initialized age to `-1` so users of Person class need not set it explicitly whenever they use it. Note that gs.xml can be used instead of annotations to specify metadata - for more information refer to [POJO Metadata](./modeling-your-data.html).
 
-{{% info%}} Properties of primitive types are implicitly boxed when stored in the space and unboxed when reconstructed to a POJO.
+{{% note%}} Properties of primitive types are implicitly boxed when stored in the space and unboxed when reconstructed to a POJO.
 It is highly recommended to use the  primitive wrapper classes instead of primitives to simplify the code and avoid user errors.
-{{%/info%}}
+{{%/note%}}
 
 # Nested Template Matching
 

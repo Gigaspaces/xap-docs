@@ -28,9 +28,9 @@ As mentioned above the cluster information is passed to the components of each p
 | Backup ID | If the processing unit contains an embedded space with backups, a value between on 1 to `numberOfBackups`, denoting the backup ID of the processing instance. The primary instance ID which the processing unit instance is backing up is denoted by `instanceId`. If the processing unit instance is not a backup instance, `null` is returned | `getBackupId()` |
 | Running number | A running number of the processing unit instance instance. Takes into account different topologies and provides a unique identifier (starting from `0`) of the processing unit instance within the cluster | `getRunningNumber()` |
 
-{{% info %}}
+{{% note %}}
 `null` value for one of these properties means that they are not applicable for the processing unit instance at hand or the used deployment topology.
-{{%/info%}}
+{{%/note%}}
 
 # Obtaining the Cluster Information
 

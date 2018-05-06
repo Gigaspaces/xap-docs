@@ -54,18 +54,18 @@ To run a standalone Manager on your machine, use the `--auto` command without co
 
 {{%tab "REST Manager API"%}}
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 This functionality is not available in the REST Manager API administration tool.
-{{%/info%}}
+{{%/note%}}
 
 {{%/tab%}}
 
 
 {{%tab "Web Management Console"%}}
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 This functionality is not available in the Web Management Console administration tool.
-{{%/info%}}
+{{%/note%}}
 
 {{%/tab%}}
 
@@ -115,9 +115,9 @@ This command terminates the Grid Service Agent that is running on the current ho
 
 {{%tab "REST Manager API"%}}
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 This functionality is not available in the REST Manaqer API administration tool.
-{{%/info%}}
+{{%/note%}}
 
 {{%/tab%}}
 

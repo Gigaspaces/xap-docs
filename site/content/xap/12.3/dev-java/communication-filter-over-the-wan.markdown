@@ -67,6 +67,6 @@ or
   custom-jvm-properties="-Dcom.gs.lrmi.filter.factory=<filter name> -Dcom.gs.lrmi.filter.address-matchers-file=config/<file name>" />
 ```
 
-{{% info %}}
+{{% note %}}
 e.g. -Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.IOStreamCompressionFilterFactory
-{{% /info %}}
+{{% /note %}}

@@ -25,9 +25,9 @@ gs-agent.bat --manager-local
 
 After the XAP Manager has started, browse to {{%exurl "localhost:8090""http://localhost:8090"%}} and start working with the API. 
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 You must start a XAP Manager to access the REST Manager API. You can also start a cluster of XAP Managers to ensure high availability. To learn more about the XAP Manager, refer to [XAP Manager](xap-manager.html).
-{{%/info%}}
+{{%/note%}}
 
 The REST Manager API was built with {{%exurl "Swagger" "http://swagger.io/"%}}. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the `Try it out!` button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the `curl` command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self explanatory. You can also download the `yaml` specification and use Swagger's `Online Editor` to generate a client in your favorite language.
 
@@ -72,9 +72,9 @@ For more information about using the REST Manager API with security, refer to [R
 
 You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local XAP Manager. 
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 You must start a XAP Manager to access the pages using the links below.
-{{%/info%}}
+{{%/note%}}
 
 
 - Containers - See the [Containers](http://localhost:8090/{{%version rest-version%}}/index.html#/Containers) page.

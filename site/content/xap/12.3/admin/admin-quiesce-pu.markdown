@@ -8,9 +8,9 @@ parent: admin-spaces-pu.html
 
 # Interacting with Space Data
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 This functionality is not currently available in the Command Line Interface, REST Manager API, or Administration API.
-{{% /info %}}
+{{% /note %}}
 
 ## Querying a Space
 
@@ -246,9 +246,9 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 # Restarting a Processing Unit
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.
-{{%/info%}}
+{{%/note%}}
 
 **To restart a Processing Unit:**
 
@@ -430,9 +430,9 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 {{%tab "Web Management Console"%}}
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 This functionality is not available in the Web Management Console.
-{{% /info %}}
+{{% /note %}}
  
 {{%/tab%}}
 
@@ -507,9 +507,9 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/
 
 {{%tab "Web Management Console"%}}
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 This functionality is not available in the Web Management Console.
-{{% /info %}}
+{{% /note %}}
  
 {{%/tab%}}
 

@@ -19,9 +19,9 @@ A XAP web processing unit can use {{%exurl "Jetty" "http://www.eclipse.org/jetty
 
 {{%anchor jetty-version%}}
 
-{{%info "Jetty Version"%}}
+{{%note "Jetty Version"%}}
 The XAP 12.3 installation package includes Jetty version 9.2.24v20180105.
-{{%/info%}} 
+{{%/note%}} 
 
 ## Dependencies
 

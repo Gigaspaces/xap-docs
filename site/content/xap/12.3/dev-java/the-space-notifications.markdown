@@ -126,9 +126,9 @@ When working in clustered mode (schema) that includes a primary/backup schema, s
 
 Custom beans that need to be aware of the space mode (for example, working directly against a cluster member, i.e. not using a clustered proxy of the space, and performing operations against the space only when it is in primary mode) can implement the Spring `ApplicationListener` and check for the mentioned events.
 
-{{% info %}}
+{{% note %}}
 OpenSpaces also provides the [Space Mode Context Loader](./space-mode-context-loader.html), which can load the Spring application context when it has become primary, and unload it when it moves to backup.
-{{%/info%}}
+{{%/note%}}
 
 In embedded mode, the space factory bean registers with the space for space mode changes. The registration is performed on the actual space instance (and not a clustered proxy of it), and any events raised are translated to the equivalent OpenSpaces space mode change events. In remote mode, a single primary event is raised.
 

@@ -34,9 +34,9 @@ public class Person
 }
 ```
 
-{{% info %}}
+{{% note %}}
 It is recommended to use the `DocumentProperties` class to host dynamic properties.
-{{%/info%}}
+{{%/note%}}
 
 # Using Dynamic Properties
 

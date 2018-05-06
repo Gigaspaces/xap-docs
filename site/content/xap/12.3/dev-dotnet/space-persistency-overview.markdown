@@ -33,9 +33,9 @@ Persistency can be configured to run in Synchronous or Asynchronous mode:
 ![data-grid-async-persist.jpg](/attachment_files/data-grid-async-persist.jpg)
 {{% /align %}}
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 The difference between Synchronous and Asynchronous persistency mode is the way that data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the `ExternalDataSource` to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a **reliable** asynchronous manner using the mirror Service as a write-behind activity. This mode provides maximum performance.
-{{%/info%}}
+{{%/note%}}
 
 # Space Persistency API
 

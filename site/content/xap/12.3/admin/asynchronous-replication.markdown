@@ -24,9 +24,9 @@ In general you should have the `cluster-config.groups.group.repl-policy.replicat
 </os-core:embedded-space>
 ```
 
-{{%info%}}
+{{%note%}}
 In addition you should change `cluster-config.groups.group.repl-policy.processing-type` to `global-order` if async replication is used between primary and its backup.
-{{%/info%}}
+{{%/note%}}
 
 
 # When to Use Asynchronous Replication

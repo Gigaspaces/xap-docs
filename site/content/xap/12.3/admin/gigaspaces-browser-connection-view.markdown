@@ -39,9 +39,9 @@ You can choose to refresh the Connection view periodically. Select the desired r
 
 # Considerations
 
-{{% info %}}
+{{% note %}}
 Connections are created for a space **only when a space operation (eg. ping, write, etc.) is invoked**.
-{{%/info%}}
+{{%/note%}}
 
 - Information relates only to physical (live) connections. Logical connections will be shown in the future.
 - Disconnected connections are calculated and displayed only on the client side and are not supplied by MBean methods.

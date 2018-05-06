@@ -32,11 +32,11 @@ The routing property can be explicitly set using the \[`SpaceRouting`\] attribut
 It is highly recommended to explicitly define a routing property - when both space routing and space id are not defined, relying on implicit routing property selection can be confusing, being maintained mainly for backwards compatibility.
 {{%/note%}}
 
-{{% info %}}
+{{% note %}}
 Starting with 8.0.1, an auto generated space id can be used for routing as well. In previous versions this was not supported, and was ignored in the implicit routing property selection mechanism.
 
 Starting with 8.0.1, if the space id is not defined in a document type, it will be implicitly defined to auto generate id and routing information.
-{{%/info%}}
+{{%/note%}}
 
 In some scenarios, the data model does not require sophisticated partitioning, and simple space-id-based partitioning is all that's needed (hence the default). In other scenarios, this is not enough. For example, suppose we have a **Customer** class with a **customerId**, and an **Order** class with an **orderId** and **customerId**, and we want all the orders of each customer to be co-located with it in the same partition. In that case, we'd explicitly set the routing property of **Order** to **customerId** to ensure they're co-located.
 

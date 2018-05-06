@@ -64,7 +64,7 @@ int? newCounter = ISpaceProxy.AddAndGet(idQuery, "Counter", 1);
 You should use the primitive wrapper types as the operation semantic is to return null if there is no object matching the provided id query
 {{%/note%}}
 
-{{% info %}}
+{{% note %}}
 Add `using ISpaceProxy.Core.Change.Extensions;` in order to have the extension methods available.
-{{% /info %}}
+{{% /note %}}
 

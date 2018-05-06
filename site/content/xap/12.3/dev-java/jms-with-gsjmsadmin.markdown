@@ -73,6 +73,6 @@ GSJMSAdmin admin = GSJMSAdmin.getInstance();
 Topic topic = admin.jndiLookup("GigaSpaces;ContainerName;spaceName;jms;destinations;MyTopic")
 ```
 
-{{% info %}}
+{{% note %}}
 The name used to look for the resource is the full binding name.
-{{%/info%}}
+{{%/note%}}

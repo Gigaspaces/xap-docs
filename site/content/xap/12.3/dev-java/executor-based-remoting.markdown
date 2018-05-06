@@ -473,9 +473,9 @@ public interface SimpleService {
 
 In the above example, the `say()` method uses a `Future` in order to receive the result, while the `calc` method remains synchronous.
 
-{{% info %}}
+{{% note %}}
 When using different services, it is important to include the interface definition in the processing unit `lib` directory (or the compiled classes root directory), so that both client and server use their own definitions and don't share a single one.
-{{%/info%}}
+{{%/note%}}
 
 ## Single Service Interface
 
@@ -525,9 +525,9 @@ public class Value implements ClusterInfoAware {
 }
 ```
 
-{{% info %}}
+{{% note %}}
 Note the fact that `clusterInfo` is transient, so it won't be marshaled after injection back to the client.
-{{%/info%}}
+{{%/note%}}
 
 Another example is injecting another service that is defined in the server side directly into the parameter, for example, using Spring `@Autowired` annotation.
 

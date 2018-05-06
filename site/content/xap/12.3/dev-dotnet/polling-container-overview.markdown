@@ -91,9 +91,9 @@ public Data ProcessData(IEventListenerContainer<Data> sender, DataEventArgs<Data
 }
 ```
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 [DelegateDataEventArrivedAdapter](./event-listener-container.html#DelegateDataEventArrivedAdapter) is a class that adapts the supplied user method to the [SpaceDataEventHandler](./event-listener-container.html#SpaceDataEventHandler) delegate, and contains built-in logic for writing back event results to the Space.
-{{% /info %}}
+{{% /note %}}
 
 {{% /tab %}}
 
@@ -105,9 +105,9 @@ The above example performs single take operations (see [below](#receive-operatio
 
 The polling event container performs receive operations only when the relevant Space it is working against is in primary mode. When the Space is in backup mode, no receive operations are performed. If the Space moves from backup mode to primary mode, the receive operations are started.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 This mostly applies when working with an embedded Space directly with a cluster member. When working with a clustered Space (performing operations against the whole cluster), the mode of the Space is always primary.
-{{%/info%}}
+{{%/note%}}
 
 # FIFO Grouping
 
@@ -273,9 +273,9 @@ XAP.NET comes with several built-in receive operation-handler implementations:
 This receive operation handler must be used within a transaction.
 {{%/warning%}}
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 When using the `ExclusiveReadReceiveOperationHandler`, or even the `ReadReceiveOperationHandler`, the actual event still remains in the Space. If the data event is not taken from the Space, or one of its properties changes in order **not** to match the container template, the same data event is read again.
-{{%/info%}}
+{{%/note%}}
 
 The following is an example of how the receive operation handler can be configured with `ExclusiveReadReceiveOperationHandler`:
 

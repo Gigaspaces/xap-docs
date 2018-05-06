@@ -161,9 +161,9 @@ var query = from p in spaceProxy.Query<Person>()
             select p; 
 ```
 
-{{%info%}}
+{{%note%}}
 The `StartsWith` and `EndsWith` methods have multiple overloads, but only the single-parameter overload is supported in this LINQ provider.
-{{%/info%}}
+{{%/note%}}
 
 ## Collection Membership 
 
@@ -191,9 +191,9 @@ var query = from p in spaceProxy.Query<Person>()
             select p; 
 ```
 
-{{%info%}}
+{{%note%}}
 By default user-defined types are stored in the space in a binary format, which cannot be queried. If the path includes a user-defined type, the relevant property's storage type should be set to *Document*. For more information refer to [Property Storage Type](./poco-storage-type.html).
-{{%/info%}}
+{{%/note%}}
 
 # Projection 
 
@@ -253,9 +253,9 @@ foreach (var person in query)
 ```
 The `Batch()` extension method instructs the provider to retrieve the results in batches not exceeding 100 entries each. This both protects the memory usage and allows processing to start before all entries are retrieved. 
 
-{{%info%}}
+{{%note%}}
 Batching is suitable for large result sets, but on small ones it actually slows performance down, as it require multiple remote calls to the space to retrieve the data instead of fetching it all at once.
-{{%/info%}}
+{{%/note%}}
 
 # Aggregation
 

@@ -177,9 +177,9 @@ Distributed transaction participants data will be processed individually if 10 s
 |dist-tx-wait-for-opers|unlimited (-1 = unlimited)|
 |dist-tx-consolidation-failure-action|commit|
 
-{{% info %}}
+{{% note %}}
 Note that by setting the `cluster-config.groups.group.repl-policy.processing-type` property to `global-source` all reliable asynchronous replication targets for that space will work in non-distributed transaction consolidation mode (For example, a Mirror would be in-non distributed transaction consolidation mode as well.)
-{{% /info %}}
+{{% /note %}}
 
 {{% note %}}
 Consolidation failure can occur under normal circumstances, if the target gateway is restarted or crashed during the consolidation process. In a case where the transaction was successfully consolidated and executed on the target cluster but the gateway was stopped while sending confirmation to the transaction participants in the source space and some of them have received the confirmation while others have not. In such case, the transaction is actually successfully executed in the target space and by default when the consolidation failure event will occur the unconfirmed part will reach the conflict resolution handler which by default will abort it and the state will remain consistent.

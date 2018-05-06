@@ -63,16 +63,16 @@ public class Person
 }
 ```
 
-{{% info "Properties with Separate Accessors "%}}
+{{% note "Properties with Separate Accessors "%}}
 Starting with .NET 2.0, properties can have separate accessors for getters and setters (for example, a public getter and private setter). In these cases, if either the getter or the setter is public, the property is considered public (setting `IncludeProperties=IncludeMembers.Public` includes the property in the entry).
-{{% /info %}}
+{{% /note %}}
 
-{{% info "Read-Only Properties "%}}
+{{% note "Read-Only Properties "%}}
 Read-only properties (getter, without setter), are included in the entry, but when the object is deserialized, the value is not restored because there's no setter. This enables the Space to be queried using such properties. There are two common scenarios for read-only properties:
 
 - Calculated value -- the property returns a calculated value based on other fields/properties. This isn't a problem because no data is lost due to the 'missing' setter.
 - Access protection -- the class designer is meant to protect the property from outside changes. This can be problematic because the field value is lost. To prevent this, consider adding a private setter or excluding the property, and including the field (as explained next).
-{{% /info %}}
+{{% /note %}}
 
 # Indexing
 
@@ -87,9 +87,9 @@ public class Person
 }
 ```
 
-{{% info "Indexing Pros and Cons "%}}
+{{% note "Indexing Pros and Cons "%}}
 Indexing a property speeds up queries that include the property, but slows down write operations for that object (because the Space has to index the property). For this reason indexing is off by default, and the user decides which fields should be indexed.
-{{% /info %}}
+{{% /note %}}
 
 # Object ID vs. Entry ID
 
@@ -164,11 +164,11 @@ Each public property/field in the object is mapped to a property of the same nam
 
 While this generic approach solves simple scenarios easily, in some cases it is not enough. For example, you may want to exclude a specific property from being stored in the Space, or specify that a certain property should be indexed for faster performance. To that end, you can use a set of .NET attributes to control how an object is mapped to an entry. If you don't want to (or can't) use XAP.NET attributes in your code, you can create an XML file that defines those behaviors, commonly called `gs.xml`.
 
-{{% info "Info" %}}
+{{% note "Info" %}}
 Working with .NET attributes is usually simpler and easier than working with external XML files, so this page demonstrates all the features using attributes. However, every feature shown here can also be implemented using `gs.xml`.
 
 Mapping a .NET object to a Space entry does not involve .NET serialization, which means that the `[Serializable]` indication is not required, and in fact ignored. Even so, it is a good design practice to mark all objects stored in the space as `[Serializable]`, to maintain .NET standards.
-{{%/info%}}
+{{%/note%}}
 
 # Routing
 
@@ -195,9 +195,9 @@ Only one property in a class can be marked as a version property, and it must be
 
 When a class contains a field or a property that is not a nullable type, (for example, a primitive such as `int` or a struct such as `DateTime`), it is recommended to specify a null value for it that will be used when querying the Space for that class. The `NullValue` attribute instructs the Space to ignore this field when performing matching or partial update, when the content of the field in the template equals the defined `NullValue`.
 
-{{% info "Nullables "%}}
+{{% note "Nullables "%}}
 We recommend avoiding the use of such fields and properties, and the need to define null values, by wrapping them with their corresponding Nullable, for instance Nullable<int> or Nullable<DateTime>.
-{{% /info %}}
+{{% /note %}}
 
 To specify a null value, the field or property should be marked with the `[SpaceProperty(NullValue = ?)]` attribute:
 

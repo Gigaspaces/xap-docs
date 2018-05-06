@@ -15,9 +15,9 @@ The `SQLQuery` class is used to query the Space using SQL-like syntax. The query
 For the full documentation of the class's methods and constructors, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SQLQuery.html).
 {{% /note %}}
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 The the XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to [In-Grid SQL Query](./sql-query-intro.html).
-{{% /info %}}
+{{% /note %}}
 
 
 # Examples
@@ -135,7 +135,7 @@ query.setParameters(2, 3, "smith");
 SQLQuery<MyClass> query3 = new SQLQuery<MyClass>(MyClass.class,"num > ? or num < ? and name = ?", 2, 3, "smith");
 ```
 
-{{% info "Info"%}} 
+{{% note "Info"%}} 
 The number of **'?'** symbols in the expression string must match the number of parameters set on the query. For example, when using `IN` condition:
 
 
@@ -159,7 +159,7 @@ SQLQuery<MyClass> query = new SQLQuery<MyClass>(MyClass.class,"name = ? AND num 
 query.setParameter(1,"A");
 query.setParameter(2,collection);
 ```
-{{%/info%}}
+{{%/note%}}
 
 
 {{% warning "Important"%}}

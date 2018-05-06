@@ -39,9 +39,9 @@ Here is an example for a space configuration that performs only initial load fro
 </bean>
 ```
 
-{{% info %}}
+{{% note %}}
 The Initial Load is supported with the `partitioned` cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups set ZERO as the amount of backups.
-{{% /info %}}
+{{% /note %}}
 
 # Controlling the Initial Load
 

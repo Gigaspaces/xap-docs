@@ -32,9 +32,9 @@ The JMS client uses a cluster that contains more than one space. The session is 
 - Consuming a message from a queue, and sending a message to another destination.
 - Sending more than one message, to more than one destination.
 
-{{% info %}}
+{{% note %}}
 You do not need to use distributed transactions when consuming from a Topic, and sending a single message to another destination.
-{{%/info%}}
+{{%/note%}}
 
 ### Preparing JMS to Work with Distributed Transactions
 
@@ -54,9 +54,9 @@ To use Mahalo transactions in JMS transacted sessions, add the following system 
 com.gs.jms.use_mahalo=true
 ```
 
-{{% info %}}
+{{% note %}}
 You can avoid using distributed transactions by:
-{{%/info%}}
+{{%/note%}}
 
 - Not involving more than one destination in a transaction.
 - Using only a single space (not a cluster).

@@ -192,9 +192,9 @@ In addition, persistency requires the settings described in the sections below.
 
 If a GSC or a machine running a GSC restarts, there is no guarantee the XAP instance running within the GSC will be provisioned to the same machine where it was running before. When MemoryXtend is used in a non-persistent manner, this isn't problematic because the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, you must ensure that the instance is provisioned on the same machine where it was located before, so it can recover from the correct device, which is usually local to the machine.
  
-{{% info "Info"%}}
+{{% note "Info"%}}
 Central Storage mode allows you to use MemoryXtend without configuring the Machine-Instance Affinity.
-{{% /info %}}
+{{% /note %}}
 
 
 To ensure that the Service Grid deploys the XAP instances on the correct machines, use [instance-level SLA](./the-sla-overview.html). For example:

@@ -8,9 +8,9 @@ weight: 300
 
 You can view alerts in the Web Management Console Alerts panel, displayed by XAP Alert groups (alerts are grouped by correlation key), and also generate an alert dump for specific grid components. 
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 The Web-UI server utilizes the `<XAP Root>/config/alerts/alerts.xml` configuration file. These configurations apply to any client connecting to the Web-UI at the specified host and port.
-{{% /info%}}
+{{% /note%}}
 
 Alerts are grouped together by type, such as CPU, Memory, etc. When an alert is raised, it is aggregated with other consecutive alerts of the same type. Previous alerts from the aggregation get "pushed" down (circled in red). A resolved alert "closes" the aggregation (circled in green). A new alert of the same type will trigger a new aggregation.
 

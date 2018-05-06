@@ -110,7 +110,7 @@ Partitioning is used when the total number of objects is too big to be stored in
 
 
 
-{{%info%}}The routing attribute can be explicitly set using the `[SpaceRouting]` annotation for PONO entries or via the SpaceTypeDescriptorBuilder for document entries. If the routing attribute is not explicitly set, the Space id attribute is used for routing. If the Space id attribute is not defined, the first indexed attribute (alphabetically) is used for routing, otherwise the first attribute (alphabetically) is used for routing.{{%/info%}}
+{{%note%}}The routing attribute can be explicitly set using the `[SpaceRouting]` annotation for PONO entries or via the SpaceTypeDescriptorBuilder for document entries. If the routing attribute is not explicitly set, the Space id attribute is used for routing. If the Space id attribute is not defined, the first indexed attribute (alphabetically) is used for routing, otherwise the first attribute (alphabetically) is used for routing.{{%/note%}}
 
 
 {{%refer%}}
@@ -179,7 +179,7 @@ public void registerProductType() {
 
 Only properties with special roles like ID and Routing are part of the schema definition. These meta model settings cannot be changed without restarting the Space or dropping the type, clearing all its instances and reintroducing it again.
 
-{{%info%}}It is possible to write a PONO to the Space and read it back as a document, and vice versa. This scenario is useful when you want to read or modify PONO objects without loading the concrete C# classes.{{%/info%}}
+{{%note%}}It is possible to write a PONO to the Space and read it back as a document, and vice versa. This scenario is useful when you want to read or modify PONO objects without loading the concrete C# classes.{{%/note%}}
 
 
 
@@ -353,8 +353,8 @@ public User[] findUsersByTemplate() {
 ```
 
 
-{{%info%}}
-Template Matching support inheritance relationships, so that entries of a sub-class are visible in the context of the super class, but not the other way around.{{%/info%}}
+{{%note%}}
+Template Matching support inheritance relationships, so that entries of a sub-class are visible in the context of the super class, but not the other way around.{{%/note%}}
 
 #### SQL Query
 The SQLQuery class is used to query the Space with an SQL-like syntax. The query statement includes only the WHERE statement part. An SQLQuery is composed from the class of entry to query and an expression in SQL syntax.

@@ -201,9 +201,9 @@ You can configure the `max-disconnection-duration` parameter using `LocalViewSpa
 
 When the connection to the remote master Space is restored, the local view reloads all its data from the master Space (this is the same behavior as in the initialization process) before restoring the state to active. This ensures that the local view is consistent when it is accessed.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 When the synchronization is replication-based (default), the local view is resilient to failover because if a primary Space fails and a backup Space replaces it before the maximum disconnection duration expires, the local view remains intact during the failover process. When the synchronization is notification-based, this is not guaranteed because notifications may be lost during the failover process.
-{{%/info%}}
+{{%/note%}}
 
 
 ## Local View Monitor Interface

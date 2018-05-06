@@ -516,9 +516,9 @@ While executed tasks are effective when co-located, you may require operations o
 GigaSpace clustered = gigaSpace.getClustered();
 ```
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 Space operations performed from *within* the task are guarded by a temporary trust available throughout the life-cycle of the task. If you are trying to enforce custom access control, the `SecurityContext` must be extracted in a `before-execute` filter call.
-{{% /info %}}
+{{% /note %}}
 
 # Executor-Based Remoting
 

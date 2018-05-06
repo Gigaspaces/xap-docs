@@ -218,9 +218,9 @@ JPA classes are monitored at runtime for automatic dirty detection. There must b
 1. Enhance at runtime  using OpenJPA's Java agent enhancer.
 1. When using Spring, you can [specify a `LoadTimeWeaver`](http://static.springsource.org/spring/docs/3.0.x/reference/orm.html#orm-jpa-setup-lcemfb) that will enhance the classes at load time.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 The first option (enhance at build time) is the best in terms of performance and suitability for the XAP runtime environment.For detailed information about how to enhance your entities, refer to the [OpenJPA Entity Enhancement page](http://openjpa.apache.org/entity-enhancement.html).
-{{% /info %}}
+{{% /note %}}
 
 # XAP JPA Entities
 
@@ -377,9 +377,9 @@ em.close();
 emf.close();
 ```
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 When specifying entity names in the XAP JPQL, the full class qualified name should be used as shown in the above examples.
-{{% /info %}}
+{{% /note %}}
 
 # Persisting Collection Properties
 
@@ -635,9 +635,9 @@ query.setParameter(1, new MyTask(1));               // We pass our task instance
 Integer result = (Integer) query.getSingleResult(); // Task execution always returns a single result
 ```
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 Task execution using JPA's native query API is always synchronous.
-{{% /info %}}
+{{% /note %}}
 
 ### Getting an EntityManagerFactory Instance in a Task
 

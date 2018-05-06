@@ -36,11 +36,11 @@ Persistency can be configured to run in Synchronous or Asynchronous mode:
 ![data-grid-async-persistNew.jpg](/attachment_files/data-grid-async-persistNew.jpg)
 {{% /align %}}
 
-{{% info "Synchronous verses Asynchronous"%}}
+{{% note "Synchronous verses Asynchronous"%}}
 The difference between Synchronous and Asynchronous persistency mode is the way data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the `SpaceDataSource`/`SpaceSynchronizationEndpoint` to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a **reliable** asynchronous manner using the mirror service as a write-behind activity. This mode provides maximum performance.
 
 If you are upgrading from a version of XAP prior to 9.7, refer to the [Migrating From External Data Source API](./migrating-from-external-data-source-api.html) page.
-{{% /info %}}
+{{% /note %}}
 
 # Space Persistency API
 

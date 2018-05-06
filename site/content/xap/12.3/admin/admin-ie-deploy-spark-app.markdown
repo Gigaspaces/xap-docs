@@ -8,9 +8,9 @@ parent: admin-insightedge.html
  
   
 
-{{%info "Info"%}}
+{{%note "Info"%}}
 This functionality is not yet available in the Command Line Interface, Web Management Console, GigaSpaces Management Center, or Administration API administration tools.
-{{%/info%}}
+{{%/note%}}
 
 **To deploy a Spark-based application:**
  

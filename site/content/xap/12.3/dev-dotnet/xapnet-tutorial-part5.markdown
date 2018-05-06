@@ -55,9 +55,9 @@ A processing unit is essentially a .NET class library with a deployment descript
 </configuration>
 ```
 
-{{%info%}}
+{{%note%}}
  PU Configuration SnippetsFrom here on processing unit configuration snippets will usually be shortened to focus on the `<ProcessingUnit>` tag.
- {{%/info%}}
+ {{%/note%}}
 
 
 

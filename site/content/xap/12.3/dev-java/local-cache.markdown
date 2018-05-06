@@ -124,9 +124,9 @@ There are only 100 objects to clear from LC2, therefore not all of the 1000 obje
 1. Otherwise, the master Space is queried.
 1. All relevant matching objects are stored into the local cache and returned back to the application.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 To avoid a `readMultiple` call from the master Space, make sure you do not use `Integer.MAX_VALUE` as the `max_objects` value.
-{{%/info%}}
+{{%/note%}}
 
 ## Take/TakeMultiple Operations
 
@@ -136,9 +136,9 @@ Take is always executed on both the local Space and the master Space. Blocking T
 
 Writes are always executed on the master Space. Updates are executed both on the master Space and the local cache, to make sure the cache is consistent if the object is cached.
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 A **Transactional** object update updates the object in the master Space. It also removes any old copies from the local cache. This is done to provide transactional consistency. After a transaction is committed, the data is updated within the local cache according to the update policy.
-{{%/info%}}
+{{%/note%}}
 
 # Synchronization
 
@@ -157,11 +157,11 @@ Each change on the master Space triggers a notification at the local cache. The 
 - `None` - Do not register for master Space updates - If an object is changed in the master Space, it will remain stale in the local cache until its lease expires.
 
 
-{{% info "Info"%}}
+{{% note "Info"%}}
 Only **actual** object changes in the master Space are propagated to the cache - *update* and *take**. Object evictions or reloads from the data source do not update the local cache.
 
 When the local cache updates the cached object (i.e. PUSH policy), it creates a new object with the relevant data and updates the cache with the new reference. If an application is holding a reference to the previous object it will not be changed; to get the changes, the application should read it again from the local cache.
-{{%/info%}}
+{{%/note%}}
 
 `Push` is usually recommended for applications that perform more reads than updates (when reducing cache misses is important), whereas `Pull` is usually recommended for applications that perform more updates than reads (when protecting the cache from multiple updates is important and cache misses are acceptable).
 
