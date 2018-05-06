@@ -11,6 +11,7 @@ xcopy /Y /E site-overrides site-temp
 echo Building navbar...
 call mvn --file jarvis package -DskipTests
 call java -jar jarvis/target/jarvis-1.0.jar %~dp0 site-temp
+call java -jar jarvis/target/jarvis-1.0.jar analyze-shortcodes site-temp\content\xap\12.3 shortcodes-usage.csv
 
 echo Starting Hugo...
 pushd site-temp
