@@ -43,7 +43,7 @@ weight: 800
 
 {{%  anchor Space Based Architecture Artifacts %}}
 
-When a [Processing Unit library]({{% latestjavaurl%}}/the-processing-unit-structure-and-configuration.html) is deployed, a processing unit instance is created. The processing unit instance is hosted within the [GigaSpaces container](./the-runtime-environment.html#gsc). If the processing unit instance includes a space, all the collocated beans within the processing unit instance inherit the space primary/backup mode. If the space is running in primary mode, they will be active; if the space is running in backup mode, they will be in standby mode.
+When a [Processing Unit library](../dev-java/the-processing-unit-structure-and-configuration.html) is deployed, a processing unit instance is created. The processing unit instance is hosted within the [GigaSpaces container](./the-runtime-environment.html#gsc). If the processing unit instance includes a space, all the collocated beans within the processing unit instance inherit the space primary/backup mode. If the space is running in primary mode, they will be active; if the space is running in backup mode, they will be in standby mode.
 
 The following diagram illustrates a deployed Processing Unit with 2 partitions and a backup. The Processing Unit includes a Space, polling container and 2 User Beans. The deployed Processing Unit is hosted within 2 GigaSpaces containers.
 
@@ -57,7 +57,7 @@ The following diagram illustrates a deployed Processing Unit with 2 partitions a
 - JVM - Java process. Native OS process.
 - Processing unit - Deployable package (bundle).
 - GigaSpaces Container - Hosting deployed PU.
-- [Processing unit Instance]({{% latestjavaurl%}}/the-processing-unit-overview.html) - deployed instantiated PU.
+- [Processing unit Instance](../dev-java/the-processing-unit-overview.html) - deployed instantiated PU.
 - [Space Partition](./terminology.html) - Data-Grid Member. Store data in-memory.
 - Data-Grid - Collection of Space Partitions.
 - Local Proxy - Access to collocated space partition.
@@ -66,5 +66,5 @@ The following diagram illustrates a deployed Processing Unit with 2 partitions a
 - Backup Instance - standby space partition.
 - Standby Bean - Bean collocated with a backup instance.
 - Partition - Collection of primary and backup processing unit instances
-- [Polling container]({{% latestjavaurl%}}/polling-container-overview.html) - Execution queue. Consumes objects from the space.
+- [Polling container](../dev-java/polling-container-overview.html) - Execution queue. Consumes objects from the space.
  

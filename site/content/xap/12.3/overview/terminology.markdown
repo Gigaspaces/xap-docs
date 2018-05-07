@@ -182,7 +182,7 @@ A [partitioned Data Grid](#Partitioned Data Grid), with one or more [backup](#Pr
 {{%  /section %}}
 
 {{%  refer %}}
-For details about scaling a running space cluster **in runtime**, refer to the [Elastic Processing Unit]({{% latestjavaurl%}}/elastic-processing-unit-overview.html) section.
+For details about scaling a running space cluster **in runtime**, refer to the [Elastic Processing Unit](../dev-java/elastic-processing-unit-overview.html) section.
 {{%  /refer %}}
 
 

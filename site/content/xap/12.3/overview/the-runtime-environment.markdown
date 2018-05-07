@@ -13,7 +13,7 @@ weight: 600
 
 
 
-The basic unit of deployment in the GigaSpaces XAP platform is the [Processing Unit]({{% latestjavaurl%}}/the-processing-unit-overview.html).
+The basic unit of deployment in the GigaSpaces XAP platform is the [Processing Unit](../dev-java/the-processing-unit-overview.html).
 
 Once packaged, a processing unit is deployed onto the GigaSpaces runtime environment, which is called the *Service Grid*. It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
 
@@ -42,7 +42,7 @@ In order to discover one another in the network, the GSCs and GSMs use a [Lookup
 
 Finally, the *GSA* [Grid Service Agent](#gsa) component is used to start and manage the other components of the Service Grid (i.e. GSC, GSM, LUS). Typically, the GSA is started with the hosting machine's startup. Using the agent, you can bootstrap the entire cluster very easily, and start and stop additional GSCs, GSMs and lookup services at will.
 
-All of the above components are fully manageable from the GigaSpaces management interfaces such as the [UI]({{% latestadmurl%}}/gigaspaces-management-center.html), CLI and [Admin API]({{% latestjavaurl%}}/administration-and-monitoring-overview.html).
+All of the above components are fully manageable from the GigaSpaces management interfaces such as the [UI](../admin/tools-desktop-ui.html), CLI and [Admin API](../dev-java/administration-and-monitoring-overview.html).
 
 {{%  anchor gsm %}}
 
@@ -80,9 +80,9 @@ Note that the Lookup service is primarily used for establishing the initial conn
 
 Service registrations in the LUS are lease-based, and each service periodically renews its lease. That way, if a service hangs or disconnects from the LUS, its registration will be cancelled when the lease expires.
 
-The Lookup Service can be configured for either a [multicast]({{% latestadmurl%}}/network-multicast.html) or [unicast]({{% latestadmurl%}}/network-unicast-discovery.html) environment (default is multicast).
+The Lookup Service can be configured for either a [multicast](../admin/network-multicast.html) or [unicast](../admin/network-unicast-discovery.html) environment (default is multicast).
 
-Another important attribute in that context is the *lookup group*. The lookup group is a logical grouping of all the components that belong to the same runtime cluster. Using lookup groups, you can run multiple deployments on the same physical infrastructure, without them interfering with one another. For more details please refer to [Lookup Service Configuration]({{% latestadmurl%}}/network-lookup-service-configuration.html).
+Another important attribute in that context is the *lookup group*. The lookup group is a logical grouping of all the components that belong to the same runtime cluster. Using lookup groups, you can run multiple deployments on the same physical infrastructure, without them interfering with one another. For more details please refer to [Lookup Service Configuration](../admin/network-lookup-service-configuration.html).
 
 {{% note%}}
 It is common to start at least two LUS instances in each Service Grid for high-availability reasons. Note that the lookup service can run in the same process with a GSM, or in standalone mode using its own process.
@@ -110,7 +110,7 @@ The Grid Service Agent (GSA) is a process manager that can spawn and manage Serv
 
 Usually, a single GSA is run per machine. If you're setting up multiple Service Grids separated by [Lookup Groups or Locators](#lus), you'll probably start a GSA per machine per group.
 
-The GSA exposes the ability to start, restart, and kill a process either using the [Administration and Monitoring API]({{% latestjavaurl%}}/administration-and-monitoring-overview.html) or the GigaSpaces UI.
+The GSA exposes the ability to start, restart, and kill a process either using the [Administration API](../dev-java/administration-and-monitoring-overview.html) or the GigaSpaces Management Center.
 
 ## Process Management
 
@@ -122,8 +122,8 @@ Global processes take into account the number of process types [Grid Service Man
 
 # Optional Components
 
-* The Elastic Service Manager (ESM) manages the [Elastic Processing Unit]({{<latestjavaurl>}}/elastic-processing-unit-overview.html) together with the GSM.
+* The Elastic Service Manager (ESM) manages the [Elastic Processing Unit](../dev-java/elastic-processing-unit-overview.html) together with the GSM.
 
-* The [Apache Load Balancer Agent]({{<latestjavaurl>}}/apache-load-balancer-agent.html) is used when deploying web applications.
+* The [Apache Load Balancer Agent](../dev-java/apache-load-balancer-agent.html) is used when deploying web applications.
 
-* The Transaction Manager (TXM) is an optional component. When executing transactions that spans multiple space partitions you should use the Jini Transaction Manager or the Distributed Transaction Manager. See the [Transaction Management]({{% latestjavaurl%}}/transaction-overview.html) section for details.
+* The Transaction Manager (TXM) is an optional component. When executing transactions that spans multiple space partitions you should use the Jini Transaction Manager or the Distributed Transaction Manager. See the [Transaction Management](../dev-java/transaction-overview.html) section for details.

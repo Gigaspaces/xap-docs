@@ -23,7 +23,7 @@ From a design and implementation perspective, XAP shares a lot of patterns with 
 |Web|Servlet, JSP | [Servlet, JSP via Jetty](../dev-java/web-application-overview.html)|
 |Packaging and deployment|EAR, WAR|[JAR](../dev-java/the-processing-unit-structure-and-configuration.html), [WAR](../dev-java/web-application-overview.html), EAR {{%  star %}}|
 |Contexts and Dependency Injection|JSR 299|Spring IOC|
-|System Management|JMX|[JMX]({{% latestjavaurl%}}/snmp-connectivity-via-alert-logging-gateway.html) , [SNMP](../dev-java/snmp-connectivity-via-alert-logging-gateway.html), [Native Admin API](../dev-java/administration-and-monitoring-overview.html)|
+|System Management|JMX|[JMX](../dev-java/snmp-connectivity-via-alert-logging-gateway.html) , [SNMP](../dev-java/snmp-connectivity-via-alert-logging-gateway.html), [Native Admin API](../dev-java/administration-and-monitoring-overview.html)|
 |Java Naming and Directory Service|JNDI|[Jini Lookup Service](./about-jini.html)|
 
 {{%  star %}} Available via [EasyBeans](https://forge.ow2.org/projects/easybeans), [openejb](http://openejb.apache.org), [embedded jboss](http://docs.jboss.org/ejb3/embedded/embedded.html) or [embedded-glassfish](http://embedded-glassfish.java.net).

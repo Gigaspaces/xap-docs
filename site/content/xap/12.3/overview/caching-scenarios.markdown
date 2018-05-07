@@ -40,28 +40,28 @@ With this mechanism, the IMDG is the system of record. The database data is load
 
 The in-line cache is implemented using the following configurations:
 
-- [Read-through and Write-through]({{% latestjavaurl%}}/direct-persistency.html): For persisting the cache data synchronously.
-- [Write-behind - Mirror]({{% latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html): For persisting the cache data asynchronously.
+- [Read-through and Write-through](../dev-java/direct-persistency.html): For persisting the cache data synchronously.
+- [Write-behind - Mirror](../dev-java/asynchronous-persistency-with-the-mirror.html): For persisting the cache data asynchronously.
 
-Persistence logic can either be the out-of-the-box [Hibernate external data source]({{% latestjavaurl%}}/hibernate-space-persistency.html), or any custom persistence logic that implements the [Space Persistency]({{% latestjavaurl%}}/space-persistency-overview.html) extension points.
+Persistence logic can either be the out-of-the-box [Hibernate external data source](../dev-java/hibernate-space-persistency.html), or any custom persistence logic that implements the [Space Persistency](../dev-java/space-persistency-overview.html) extension points.
 
 The in-line cache ensures maximum performance when fetching data where the database is outside the critical path of the application transaction. (This makes more sense than it might seem: database contention is a primary source of application performance failure.)
 
 {{% note "Note"%}}
-For best performance, use the [ALL-IN-CACHE cache policy](../dev-java/all-in-cache-cache-policy.html) with the [write-behind mirror]({{% latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html). This will ensure maximum hit rate when accessing the cache. With this mode, you should make sure the cache can accommodate _all_ the data you will access.
+For best performance, use the [ALL-IN-CACHE cache policy](../dev-java/all-in-cache-cache-policy.html) with the [write-behind mirror](../dev-java/asynchronous-persistency-with-the-mirror.html). This will ensure maximum hit rate when accessing the cache. With this mode, you should make sure the cache can accommodate _all_ the data you will access.
 {{%  /note %}}
 
 The in-line cache mechanism is widely used with the following GigaSpaces APIs:
 
-- [GigaSpace API]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html) - GigaSpaces native Object/SQL API.
-- [Map API]({{% latestjavaurl%}}/map-api.html) - GigaSpaces Key/Value (JCache/Hashtable) API.
+- [GigaSpace API](../dev-java/the-gigaspace-interface-overview.html) - GigaSpaces native Object/SQL API.
+- [Map API](../dev-java/map-api.html) - GigaSpaces Key/Value (JCache/Hashtable) API.
 
 ## When Should You Use an In-Line Cache?
 
 An in-line cache is very useful when:
 
 - The total size of data stored within the database (or any other data source) is equal to or less than the amount of data stored in memory. Ideally, you should use the `ALL_IN_CACHE` cache policy mode.
-- The original data model of the data within the database (or any other data source) is similar to the data model of the objects in memory. [Space Persistency]({{% latestjavaurl%}}/space-persistency-overview.html) will work very well; the data will be loaded automatically from the database into the cache, and every change to the data in the cache will be propagated to the database behind the scenes.
+- The original data model of the data within the database (or any other data source) is similar to the data model of the objects in memory. [Space Persistency](../dev-java/space-persistency-overview.html) will work very well; the data will be loaded automatically from the database into the cache, and every change to the data in the cache will be propagated to the database behind the scenes.
 
 {{%  anchor side-cache %}}
 
@@ -71,7 +71,7 @@ With this mechanism, the application is responsible for maintaining the data in 
 
 1. The application attempts to read an object from the cache.
 2. If the object is found within the cache, the application uses it.
-3. If the object isn't found within the cache, the application fetches it from the database and then the application writes it into the cache. Another option is to turn on the space [Data source]({{% latestjavaurl%}}/space-persistency-overview.html) and allow it to load the data on cache miss in a lazy manner.
+3. If the object isn't found within the cache, the application fetches it from the database and then the application writes it into the cache. Another option is to turn on the space [Data source](../dev-java/space-persistency-overview.html) and allow it to load the data on cache miss in a lazy manner.
 4. The next time the application attempts to fetch the same object, it will be read from the cache (unless the object has been expired, evicted or removed explicitly).
 
 **Side Cache without an External Data Source**
@@ -93,10 +93,10 @@ With a side cache architecture, there is no mirror. The application is responsib
 
 The side cache scenario is widely used with the following GigaSpaces APIs:
 
-- [GigaSpace API]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html) - GigaSpaces native Object/SQL API.
-- [Map API]({{% latestjavaurl%}}/map-api.html) - GigaSpaces Key/Value (JCache/Hashtable) API.
-- [JDBC API]({{% latestjavaurl%}}/jdbc-driver.html) - GigaSpaces native JDBC driver.
-- [memcached API]({{% latestjavaurl%}}/memcached-api.html) - Using any memcached client ([Java](http://code.google.com/p/xmemcached) , C# , C , C++..). See [memcached libraries page](http://code.google.com/p/memcached/wiki/Clients) for the different programming languages supporting the memcached protocol that may be used with GigaSpaces server memcached implementation.
+- [GigaSpace API](../dev-java/the-gigaspace-interface-overview.html) - GigaSpaces native Object/SQL API.
+- [Map API](../dev-java/map-api.html) - GigaSpaces Key/Value (JCache/Hashtable) API.
+- [JDBC API](../dev-java/jdbc-driver.html) - GigaSpaces native JDBC driver.
+- [memcached API](../dev-java/memcached-api.html) - Using any memcached client ([Java](http://code.google.com/p/xmemcached) , C# , C , C++..). See [memcached libraries page](http://code.google.com/p/memcached/wiki/Clients) for the different programming languages supporting the memcached protocol that may be used with GigaSpaces server memcached implementation.
 - [Hibernate](/sbp/gigaspaces-for-hibernate-orm-users.html) - Leveraging GigaSpaces as Hibernate 2nd Level Cache.
 
 ## When Should You Use a Side Cache?
@@ -104,7 +104,7 @@ The side cache scenario is widely used with the following GigaSpaces APIs:
 A side cache is very useful when:
 
 - The total amount of data stored in the database (or any other data source) is relatively much higher than the amount of data stored in-memory. In this case, you should be running the space in `LRU` cache policy mode.
-- The original data model of the data within the database (or any other data source) is very different than the data model of the objects in-memory. In this case, the built-in [Space Persistency]({{% latestjavaurl%}}/space-persistency-overview.html) implementation  may not be relevant. A customized mapping logic should be implemented on the client application side to load data from the database and push it into the cache.
+- The original data model of the data within the database (or any other data source) is very different than the data model of the objects in-memory. In this case, the built-in [Space Persistency](../dev-java/space-persistency-overview.html) implementation  may not be relevant. A customized mapping logic should be implemented on the client application side to load data from the database and push it into the cache.
 
 {{%  anchor client-cache %}}
 
@@ -134,8 +134,8 @@ When using client cache, you use a two-layered cache architecture: The first lay
 
 The client cache size is limited to the client process heap size. The client-side cache is updated automatically when the master copy of the object within the IMDG is updated. The client cache can be implemented using the following configurations:
 
-- [Local Cache]({{% latestjavaurl%}}/local-cache.html) - On-demand client cache loading data based on client activity. This type of client cache evicts data when the client available memory drops below a configurable value.
-- [Local View]({{% latestjavaurl%}}/local-view.html) - Pre-fetch client cache loading data based on set of SQL queries. This client cache does not evict data. This client cache is designed to be read-only, and supports both queries and reads based on ID.
+- [Local Cache](../dev-java/local-cache.html) - On-demand client cache loading data based on client activity. This type of client cache evicts data when the client available memory drops below a configurable value.
+- [Local View](../dev-java/local-view.html) - Pre-fetch client cache loading data based on set of SQL queries. This client cache does not evict data. This client cache is designed to be read-only, and supports both queries and reads based on ID.
 
 {{%  info "Info"%}}
 By default, client cache is not enabled.

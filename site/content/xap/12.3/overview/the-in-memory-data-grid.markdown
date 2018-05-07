@@ -172,7 +172,7 @@ From a runtime perspective, there are several ways remote clients can interact w
 - **Remote client running in a Processing Unit on an SLA-Driven Container** -- a client can be deployed in its own Processing Unit, like the server instances, except that the client references services residing in remote Processing Units. In this mode the client is deployed and runs in an SLA-Driven Container, just like the server instances.
 - **Remote client running in a standalone processing unit** -- the client still runs in a processing unit, but outside the container. This allows it to leverage Processing Unit facilities to simplify its logic -- facilities such as the space abstraction and transactions -- without being dependent on the container. This mode can be useful for rich clients running as Swing applications, as web containers, and so on.
 - **Plain Java clients, J2EE** -- this can be either a regular POJO client that interacts with the space, or a Session Bean that obtains a reference to the space through the GigaSpaces SpaceFinder method, and uses that reference to interact with the space directly.
-- [.NET]({{% latestjavaurl%}}/index.html)** -- GigaSpaces provides .NET libraries that enable direct interaction with services via the space, just like a POJO client.
+- [.NET](../dev-java/index.html)** -- GigaSpaces provides .NET libraries that enable direct interaction with services via the space, just like a POJO client.
 
 {{% align center%}}
 ![Remote Clients.jpg](/attachment_files/Remote Clients.jpg)
@@ -244,7 +244,7 @@ Combined, these two facilities enable you to better control your environment and
 
 GigaSpaces and its Space-Based-Architecture embrace the {{%exurl "reactive programming""http://en.wikipedia.org/wiki/Reactive_programming"%}} approach. The following falls under reactive programming with GigaSpaces:
 
-- [Data Event Listener](../dev-java}/data-event-listener.html) - [Polling Container]({{% latestjavaurl%}}/polling-container-overview.html), [Notify Container]({{% latestjavaurl%}}/notify-container-overview.html)
+- [Data Event Listener](../dev-java}/data-event-listener.html) - [Polling Container](../dev-java/polling-container-overview.html), [Notify Container](../dev-java/notify-container-overview.html)
 - [Local View and Local Cache](./caching-scenarios.html)
 - [Mule ESB Integration](../dev-java/mule-esb.html)
 - [Task Execution over the Space](../dev-java/task-execution-overview.html)
@@ -260,7 +260,7 @@ The space supports a number of APIs to allow for maximum flexibility to space cl
 - The core [Space API](../dev-java/the-gigaspace-interface-overview.html), which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the space entries are simply Java objects. This API supports transactions.
 
 {{%  info "Accessing the Space from Other Languages" %}}
-The code space API is also supported in [.NET](../dev-dotnet/). This allows clients to access the space via these languages. It also supports [interoperability]({{<latestjavaurl>}}/interoperability-overview.html) between languages, so in effect you can write an object to the space using one language, and read it with another, say Java
+The code space API is also supported in [.NET](../dev-dotnet/). This allows clients to access the space via these languages. It also supports [interoperability](../dev-java/interoperability-overview.html) between languages, so in effect you can write an object to the space using one language, and read it with another, say Java
 {{%  /info %}}
 
 - The [JPA API](../dev-java/jpa-api-overview.html) allows you to use JPA annotations and execute JPQL queries on the space
@@ -284,7 +284,7 @@ In addition, the higher level services (remoting and event processing), are also
 # The Space as the Foundation for Space-Based Architecture
 
 Besides its ability to function as an in-memory data grid, the Space's core features and the services on top of it, form the foundation for [Space-Based Architecture (SBA)](/sbp/a-typical-sba-application.html). By using SBA, you can gain performance and scalability benefits not available with traditional tier-based architectures, even when these include an in-memory data grid, such as the Space.
-The basic unit of scalability in SBA is the [Processing Unit]({{% latestjavaurl%}}/the-processing-unit-overview.html). The Space can be embedded into the processing unit, or accessed remotely from it. When embedded into the processing unit, local services, such as event handler and service bean exposed remotely over the space, can interact with the local space instance to achieve unparalleled performance and scalability. The Space's built-in support for data partitioning is used to distribute the data and processing across the nodes, and for scaling the application.
+The basic unit of scalability in SBA is the [Processing Unit](../dev-java/the-processing-unit-overview.html). The Space can be embedded into the processing unit, or accessed remotely from it. When embedded into the processing unit, local services, such as event handler and service bean exposed remotely over the space, can interact with the local space instance to achieve unparalleled performance and scalability. The Space's built-in support for data partitioning is used to distribute the data and processing across the nodes, and for scaling the application.
 
 
 Different applications might have different caching requirements. Some applications require on-demand loading from an external, slower data source, due to limited memory; others use the cache for read-mostly purposes; transactional applications need a cache that handles both write and read operations, maintains consistency and serves as the application's system of record.
@@ -307,7 +307,7 @@ This section explains the topologies supported by XAP - replicated, partitioned 
 ![DGA-GigaSpacesDataGrid.jpg](/attachment_files/DGA-GigaSpacesDataGrid.jpg)
 {{% /align%}}
 
-- **GigaSpaces Container (GSC)** - a generic container that can run one or more [processing units]({{% latestjavaurl%}}/the-processing-unit-overview.html). A space instances usually runs within processing unit. The GSC is launched on each machine that participates in the space cluster, and hosts the space instances.
+- **GigaSpaces Container (GSC)** - a generic container that can run one or more [processing units](../dev-java/the-processing-unit-overview.html). A space instances usually runs within processing unit. The GSC is launched on each machine that participates in the space cluster, and hosts the space instances.
 
 {{% align center%}}
 ![DGA-ServiceGridDataGrid.jpg](/attachment_files/DGA-ServiceGridDataGrid.jpg)
