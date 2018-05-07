@@ -311,7 +311,7 @@ Core runtime for the GigaSpaces Space component. The above loggers relate to thi
 com.gigaspaces.filters.level = INFO
 ```
 
-The Space filters are described here {{%currentjavanet "the-space-filters.html" %}}.
+The Space filters are described here [Java version](../dev-java/the-space-filters.html) \|[ .NET version](../dev-dotnet/the-space-filters.html).
 
 ### Persistency
 
@@ -322,7 +322,7 @@ com.gigaspaces.persistent.shared_iterator.level = INFO
 org.hibernate.level = WARNING
 ```
 
-The GigaSpaces persistence options are explained here {{%currentjavanet "space-persistency-overview.html"%}}. One of the packaged External Data Source implementations uses Hibernate. It is called Hibernate External Data Source, which is described [here](../dev-java/hibernate-space-persistency.html).
+The GigaSpaces persistence options are explained here [Java version](../dev-java/space-persistency-overview.html) \|[ .NET version](../dev-dotnet/space-persistency-overview.html). One of the packaged External Data Source implementations uses Hibernate. It is called Hibernate External Data Source, which is described [here](../dev-java/hibernate-space-persistency.html).
 
 ### Query
 
@@ -331,7 +331,7 @@ The GigaSpaces persistence options are explained here {{%currentjavanet "space-p
 com.gigaspaces.query.level = INFO
 ```
 
-XAP supports SQL queries on data in the Space, and the logger corresponds to this functionality {{%currentjavanet "query-sql.html"%}}.
+XAP supports SQL queries on data in the Space, and the logger corresponds to this functionality [Java version](../dev-java/query-sql.html) \|[ .NET version](../dev-dotnet/query-sql.html).
 
 ### LRU and Eviction
 
@@ -359,7 +359,7 @@ Notifications can also be used via Session-based messaging, which is discussed i
 com.gigaspaces.core.fifo.level = INFO
 ```
 
-FIFO functionality is applicable for write, read and event (notifications), and is discussed  in detail here {{%currentjavanet "fifo-support.html" %}}.
+FIFO functionality is applicable for write, read and event (notifications), and is discussed  in detail here [Java version](../dev-java/fifo-support.html) \|[ .NET version](../dev-dotnet/fifo-support.html).
 
 ### Replication
 
@@ -408,7 +408,7 @@ This logger corresponds to XAP POJO support. More information is available [here
 com.gigaspaces.core.xa.level = INFO
 ```
 
-This logger corresponda to the XA Transaction manager running in the Space. More information is available here {{%currentjavanet "transaction-overview.html" %}}.
+This logger corresponda to the XA Transaction manager running in the Space. More information is available here [Java version](../dev-java/transaction-overview.html) \|[ .NET version](../dev-dotnet/transaction-overview.html).
 
 ### Jini Dist. TX Manager
 
@@ -418,7 +418,7 @@ com.sun.jini.mahalo.startup.level = INFO
 com.sun.jini.mahalo.destroy.level = INFO
 ```
 
-This logger is for the Jini Distributed Transaction manager. More information is available here {{%currentjavanet "transaction-overview.html" %}}.
+This logger is for the Jini Distributed Transaction manager. More information is available here [Java version](../dev-java/transaction-overview.html) \|[ .NET version](../dev-dotnet/transaction-overview.html).
 
 ### SpaceURL, SpaceValidator, SpaceURLParser
 
@@ -430,7 +430,7 @@ com.gigaspaces.common.lookupfinder.level = INFO
 com.gigaspaces.common.resourceloader.level = INFO
 ```
 
-The SpaceURL and its constraints are explained here {{%currentjavanet "the-space-configuration.html" %}}. Other loggers are related to this one, and are applicable when a client is trying to create a Space proxy using a URL.
+The SpaceURL and its constraints are explained here [Java version](../dev-java/the-space-configuration.html) \|[ .NET version](../dev-dotnet/the-space-configuration.html). Other loggers are related to this one, and are applicable when a client is trying to create a Space proxy using a URL.
 
 ### Multicast Notifications
 

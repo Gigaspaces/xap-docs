@@ -216,7 +216,7 @@ Property substitution is not supported for the nested `os-core:security` element
 
 # Local Cache
 
-The local cache {{%currentjavanet "local-cache.html"%}} is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have Read privileges.
+The local cache [Java version](../dev-java/local-cache.html) \|[ .NET version](../dev-dotnet/local-cache.html) is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have Read privileges.
 Security is enforced by the remote Space, and the proxy should be acquired by supplying the username and password.
 
 {{%tabs%}}
@@ -294,7 +294,7 @@ GigaSpace localView = new GigaSpaceConfigurer(configurer.localView()).gigaSpace(
 
 # Space Filters
 
-Space Filters {{%currentjavanet "the-space-filters.html"%}} are interceptors inside the XAP Space that allow implementation of user-defined logic based on Space events. Some filters need to perform operations on the embedded Space. If secured, the filter needs sufficient privileges for its operations.
+Space Filters [Java version](../dev-java/the-space-filters.html) \|[ .NET version](../dev-dotnet/the-space-filters.html) are interceptors inside the XAP Space that allow implementation of user-defined logic based on Space events. Some filters need to perform operations on the embedded Space. If secured, the filter needs sufficient privileges for its operations.
 
 The username and password supplied when creating a Space are used to _implicitly_ create a secured Space. The security privileges of the specified user are propagated to the filter. If the user has Read privileges, then the filter can perform a `space.read(..)` on its embedded Space.
 
@@ -493,7 +493,7 @@ public class CustomAccessControlFilter {
 
 # Task Execution over the Space
 
-Tasks {{%currentjavanet "task-execution-overview.html"%}} can be executed in a co-located, asynchronous manner within the Space (Processing Unit with an embedded Space). To execute a task, you must have Execute privileges. Execution can be restricted to certain tasks by applying 'Class-Filter'. There is no need to define specific privileges for operations being performed by the task on the Space.
+Tasks [Java version](../dev-java/task-execution-overview.html) \|[ .NET version](../dev-dotnet/task-execution-overview.html) can be executed in a co-located, asynchronous manner within the Space (Processing Unit with an embedded Space). To execute a task, you must have Execute privileges. Execution can be restricted to certain tasks by applying 'Class-Filter'. There is no need to define specific privileges for operations being performed by the task on the Space.
 
 The following is a simple implementation of a task that performs a 'count' operation on the Space.
 
@@ -522,7 +522,7 @@ Space operations performed from *within* the task are guarded by a temporary tru
 
 # Executor-Based Remoting
 
-Executor-based remoting {{%currentjavanet "executor-based-remoting.html" %}} allows you to use remote invocations of POJO services with the Space as the transport layer, using OpenSpaces Executors. To invoke a service method, you must have Execute privileges for class `org.openspaces.remoting.ExecutorRemotingTask`.
+Executor-based remoting [Java version](../dev-java/executor-based-remoting.html) \|[ .NET version](../dev-dotnet/executor-based-remoting.html) allows you to use remote invocations of POJO services with the Space as the transport layer, using OpenSpaces Executors. To invoke a service method, you must have Execute privileges for class `org.openspaces.remoting.ExecutorRemotingTask`.
 
 # Event-Driven Remoting
 

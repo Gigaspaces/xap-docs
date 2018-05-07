@@ -36,12 +36,12 @@ OpenSpaces is the primary framework for developing applications in GigaSpaces. O
 
 To achieve these goals, OpenSpaces adds the following components to the Spring development environment:
 
-- [Processing Unit]({{%latestjavaurl%}}/the-processing-unit-overview.html) -- the core unit of work. Encapsulates the middleware together with the business logic in a single unit of scaling and failover.
+- [Processing Unit](../dev-java/the-processing-unit-overview.html) -- the core unit of work. Encapsulates the middleware together with the business logic in a single unit of scaling and failover.
 - [SLA-Driven Container](./the-runtime-environment.html#gsc) -- a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.
 - [In-Memory Data Grid](./the-in-memory-data-grid.html) -- provides in-memory distributed data storage.
-- [Declarative Event Containers]({{% latestjavaurl%}}/messaging-support.html) -- for triggering events from the space into POJOs in pull or push mode.
-- [Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
-- [Declarative transaction support]({{% latestjavaurl%}}/transaction-overview.html) for GigaSpaces In-Memory Data Grid.
+- [Declarative Event Containers](../dev-java/messaging-support.html) -- for triggering events from the space into POJOs in pull or push mode.
+- [Remoting](../dev-java/space-based-remoting-overview.html) -- utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.
+- [Declarative transaction support](../dev-java/transaction-overview.html) for GigaSpaces In-Memory Data Grid.
 
 
 ## Core Middleware
@@ -56,10 +56,10 @@ XAP relies on the JavaSpaces (space-based) model as its core middleware, and pro
 
 | Feature | Benefit |
 |:--------|:--------|
-| [Extended and Standard Query]({{% latestjavaurl%}}/query-sql.html) based on SQL, and ability to connect to IMDG using standard JDBC connector. | Makes the IMDG accessible to standard reporting tools, and makes accessing the IMDG just like accessing a JDBC-compatible database, reducing the learning curve. |
+| [Extended and Standard Query](../dev-java/query-sql.html) based on SQL, and ability to connect to IMDG using standard JDBC connector. | Makes the IMDG accessible to standard reporting tools, and makes accessing the IMDG just like accessing a JDBC-compatible database, reducing the learning curve. |
 | SQL-based continuous query support. | Brings relevant data close to the local memory of the relevant application instance. |
-| [GigaSpaces Management Center]({{% latestadmurl%}}/gigaspaces-management-center.html) -- central management, monitoring and control of all IMDG instances on the network. | Allows the entire IMDG to be controlled and viewed from an administrator's console. |
-| [Mirror Service]({{% latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html) -- transparent persistence of data from the entire IMDG to a legacy database or other data source. | Allows seamless integration with existing reporting and back-office systems. |
+| [GigaSpaces Management Center](../admin/tools-desktop-ui.html) -- central management, monitoring and control of all IMDG instances on the network. | Allows the entire IMDG to be controlled and viewed from an administrator's console. |
+| [Mirror Service](../dev-java/asynchronous-persistency-with-the-mirror.html) -- transparent persistence of data from the entire IMDG to a legacy database or other data source. | Allows seamless integration with existing reporting and back-office systems. |
 | Real-time event notification -- application instances can selectively subscribe to specific events. | Provides capabilities usually offered by messaging systems, including slow-consumer support, FIFO, batching, pub/sub, content-based routing. |
 
 - **Messaging Grid** -- enables services to communicate and share information across the distributed In-Memory Data Grid. Supports a variety of messaging scenarios using the JavaSpaces or JMS API.
@@ -163,7 +163,7 @@ In XAP, this mode of interaction is achieved by space-based remoting. This metho
 
 With space-based remoting, a remote stub in generated for the remote service, using dynamic proxies. When a method is invoked on this proxy, the stub implicitly maps it to a command that is written to the space and is routed to the appropriate server instance. On the server-side, a generic delegator takes these commands and execute the method on the specific bean instance, based on the method name and arguments provided in the command. The result is also returned through the space, is received by the dynamic proxy, and is returned transparently to the client as the return value of the method.
 
-{{%  refer %}}For more details, refer to [Executor Based Remoting]({{% latestjavaurl%}}/executor-based-remoting.html).{{%  /refer %}}
+{{%  refer %}}For more details, refer to [Executor Based Remoting](../dev-java/executor-based-remoting.html).{{%  /refer %}}
 
 ## Remote Client Interaction Options
 
@@ -244,11 +244,11 @@ Combined, these two facilities enable you to better control your environment and
 
 GigaSpaces and its Space-Based-Architecture embrace the {{%exurl "reactive programming""http://en.wikipedia.org/wiki/Reactive_programming"%}} approach. The following falls under reactive programming with GigaSpaces:
 
-- [Data Event Listener]({{% latestjavaurl%}}/data-event-listener.html) - [Polling Container]({{% latestjavaurl%}}/polling-container-overview.html), [Notify Container]({{% latestjavaurl%}}/notify-container-overview.html)
+- [Data Event Listener](../dev-java}/data-event-listener.html) - [Polling Container]({{% latestjavaurl%}}/polling-container-overview.html), [Notify Container]({{% latestjavaurl%}}/notify-container-overview.html)
 - [Local View and Local Cache](./caching-scenarios.html)
-- [Mule ESB Integration]({{% latestjavaurl%}}/mule-esb.html)
-- [Task Execution over the Space]({{% latestjavaurl%}}/task-execution-overview.html)
-- [Asynchronous Operations]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html#asynchronous-operations)
+- [Mule ESB Integration](../dev-java/mule-esb.html)
+- [Task Execution over the Space](../dev-java/task-execution-overview.html)
+- [Asynchronous Operations](../dev-java/the-gigaspace-interface-overview.html#asynchronous-operations)
 - [Drools Rule Engine Integration](/sbp/xap-drools-integration.html) - Available from a 3rd party.
 
 
@@ -257,23 +257,23 @@ GigaSpaces and its Space-Based-Architecture embrace the {{%exurl "reactive progr
 
 The space supports a number of APIs to allow for maximum flexibility to space clients when accessing the space:
 
-- The core [Space API]({{<latestjavaurl>}}/the-gigaspace-interface-overview.html), which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the space entries are simply Java objects. This API supports transactions.
+- The core [Space API](../dev-java/the-gigaspace-interface-overview.html), which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the space entries are simply Java objects. This API supports transactions.
 
 {{%  info "Accessing the Space from Other Languages" %}}
-The code space API is also supported in [.NET]({{<latestneturl>}}/). This allows clients to access the space via these languages. It also supports [interoperability]({{<latestjavaurl>}}/interoperability-overview.html) between languages, so in effect you can write an object to the space using one language, and read it with another, say Java
+The code space API is also supported in [.NET](../dev-dotnet/). This allows clients to access the space via these languages. It also supports [interoperability]({{<latestjavaurl>}}/interoperability-overview.html) between languages, so in effect you can write an object to the space using one language, and read it with another, say Java
 {{%  /info %}}
 
-- The [JPA API]({{<latestjavaurl>}}/jpa-api-overview.html) allows you to use JPA annotations and execute JPQL queries on the space
-- The [Document API]({{<latestjavaurl>}}/document-api.html) allows you to develop your application in a schema-less manner. Using map-like objects, you can add attributes to data types in runtime.
-- The [Map API]({{<latestjavaurl>}}/map-api.html) allows you to access entries using a key/value approach. This is only recommended for specific scenarios where you only retrieve objects based on their IDs and would settle for the Map interface which is very limited in functionality compared to the core Space API. This API supports transactions.
-- The [JDBC API]({{<latestjavaurl>}}/jdbc-driver.html) allows you to access the space in a similar way to how you would access a relational database (note that it has a number of limitations).
+- The [JPA API](../dev-java/jpa-api-overview.html) allows you to use JPA annotations and execute JPQL queries on the space
+- The [Document API](../dev-java/document-api.html) allows you to develop your application in a schema-less manner. Using map-like objects, you can add attributes to data types in runtime.
+- The [Map API](../dev-java/map-api.html) allows you to access entries using a key/value approach. This is only recommended for specific scenarios where you only retrieve objects based on their IDs and would settle for the Map interface which is very limited in functionality compared to the core Space API. This API supports transactions.
+- The [JDBC API](../dev-java/jdbc-driver.html) allows you to access the space in a similar way to how you would access a relational database (note that it has a number of limitations).
 
 # Services on Top of the Space
 
 Building on top of the core API, the Space also provides higher level services  onto the application. These services, along with the space's basic capabilities, provide the full stack of middleware features that you can build your application with.
-[The Task Execution API]({{% latestjavaurl%}}/task-execution-overview.html) allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
-[Event containers]({{% latestjavaurl%}}/messaging-support.html) use the core API's operations and abstract your code from all the low level details involved in handling the event, such as event registration with the space, transaction initiation, etc. This has the benefit of abstracting your code from the lower level API and allows it to focus on your business logic and the application behavior.
-[Space-Based Remoting]({{% latestjavaurl%}}/space-based-remoting-overview.html) allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.
+[The Task Execution API](../dev-java/task-execution-overview.html) allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
+[Event containers](../dev-java/messaging-support.html) use the core API's operations and abstract your code from all the low level details involved in handling the event, such as event registration with the space, transaction initiation, etc. This has the benefit of abstracting your code from the lower level API and allows it to focus on your business logic and the application behavior.
+[Space-Based Remoting](../dev-java/space-based-remoting-overview.html) allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.
 
 # Spring Integration
 
@@ -338,8 +338,7 @@ This section explains the topologies supported by XAP - replicated, partitioned 
 - **Topology** - a specific configuration of space instances. For example, a replicated topology is a configuration in which all space instances replicate data between one another. In GigaSpaces, space topologies are defined by _clustering policies_ (explained in the following section).
 
 {{%  refer%}}
-Replication Configuration
-For more details on how to configure the replication mechanisms of the Space,  refer to [Replication]({{% latestadmurl%}}/replication.html) in the [Administration Guide]({{% latestadmurl%}}).
+For more details on how to configure the replication mechanisms of the Space, refer to [Replication](../admin/replication.html) in the [Administration Guide](../admin/index.html).
 {{%  /refer %}}
 
 # Data Grid Topologies
@@ -396,7 +395,7 @@ GigaSpaces XAP supports the following data grid topologies:
 {{% /section%}}
 
 {{%refer%}}
-For more information, refer to Local Cache {{%latestjavanet "local-cache.html"%}}.
+For more information, refer to Local Cache [Java version](../dev-java/local-cache.html.html) \|[ .NET version](../dev-dotnet/local-cache.html.html).
 {{%/refer%}}
 
 ### Local View
@@ -416,7 +415,7 @@ For more information, refer to Local Cache {{%latestjavanet "local-cache.html"%}
 {{% /section%}}
 
 {{%refer%}}
-For more information, refer to Local View {{%latestjavanet "local-view.html"%}}.
+For more information, refer to Local View [Java version](../dev-java/local-view.html) \|[ .NET version](../dev-dotnet/local-view.html).
 {{%/refer%}}
 
 

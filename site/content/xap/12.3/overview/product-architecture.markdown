@@ -31,7 +31,7 @@ Supports any language, any platform, any API - Achieve interoperability, easy mi
 
 ## OpenSpaces
 
-OpenSpaces is the GigaSpaces native programming API. It is an open-source {{%exurl "Spring-based""https://spring.io/"%}} application interface designed to make space-based development easy, reliable, and scalable. In addition, the programming model is non-intrusive, based on a simple POJO programming model and a clean integration point with other development frameworks.
+OpenSpaces is the GigaSpaces native programming API. It is an open-source {{%exurl "Spring-based""https://spring.io/"%}} application interface designed to make Space-based development easy, reliable, and scalable. In addition, the programming model is non-intrusive, based on a simple POJO programming model and a clean integration point with other development frameworks.
 
 The OpenSpaces API is divided into four parts:
 
@@ -44,7 +44,7 @@ The OpenSpaces API is divided into four parts:
 
 ## Core API
 
-The core package of OpenSpaces provides APIs for direct access to a data grid, internally referred to as a "Space." The main interface is the GigaSpace, which enables the basic interaction with the data grid. The core components include basic infrastructure support such as Space {{% latestjavanet "the-gigaspace-interface-overview.html"%}} construction, simplified API using the GigaSpace  interface including Transaction Management {{% latestjavanet "transaction-overview.html"%}} and declarative transaction support. Core components also include support for [Map/Cache]({{<latestjavaurl>}}/map-api.html) construction and a simplified API using [GigaMap]({{<latestjavaurl>}}/map-api.html).
+The core package of OpenSpaces provides APIs for direct access to a data grid, internally referred to as a "Space." The main interface is the GigaSpace, which enables the basic interaction with the data grid. The core components include basic infrastructure support such as Space [Java version](../dev-java/the-gigaspace-interface-overview.html) \|[ .NET version](../dev-dotnet/the-gigaspace-interface-overview.html) construction, simplified API using the GigaSpace interface including Transaction Management [Java version](../dev-java/transaction-overview.html) \|[ .NET version](../dev-dotnet/transaction-overview.html) and declarative transaction support. Core components also include support for [Map/Cache](../dev-java/map-api.html) construction and a simplified API using [GigaMap](../dev-java/map-api.html).
 
 {{%  anchor Events%}}
 
@@ -54,13 +54,13 @@ The events package is built on top of the core package, and provides simple obje
 
 Another alternative for events is the usage of JMS 1.1 on top of GigaSpaces, which is supported within the product and is recommended for client applications integrating with SBA applications.
 
-The events module includes components for simplified EDA/Service Bus development. These components allow [unified event-handling]({{% latestjavaurl%}}/data-event-listener.html) and provide two mechanisms for event-generation: a Polling Container {{% latestjavanet "polling-container-overview.html"%}} uses polling received operations against the space, and a Notify Container {{% latestjavanet "notify-container-overview.html" %}} which uses the space's built-in notification support.
+The events module includes components for simplified EDA/Service Bus development. These components allow [unified event-handling](../dev-java/data-event-listener.html) and provide two mechanisms for event-generation: a Polling Container [Java version](../dev-java/polling-container-overview.html) \|[ .NET version](../dev-dotnet/polling-container-overview.html) uses polling received operations against the Space, and a Notify Container [Java version](../dev-java/notify-container-overview.html) \|[ .NET version](../dev-dotnet/notify-container-overview.html) which uses the Space's built-in notification support.
 
 {{%  anchor Space-Based-Remoting%}}
 
 ## Space Based Remoting
 
-The Remoting {{% latestjavanet "space-based-remoting-overview.html" %}} package provides capabilities for clients to access remote services. Remoting in GigaSpaces XAP is implemented on top of the data grid's clustering model, which provides location transparency, fail-over, and performance to remote service invocations. XAP implements remoting , using the space as the transport layer, similar to {{%exurl "the Spring remoting components""http://static.springframework.org/spring/docs/3.0.x/reference/remoting.html"%}}.
+The Remoting [Java version](../dev-java/space-based-remoting-overview.html) \|[ .NET version](../dev-dotnet/space-based-remoting-overview.html) package provides capabilities for clients to access remote services. Remoting in GigaSpaces XAP is implemented on top of the data grid's clustering model, which provides location transparency, fail-over, and performance to remote service invocations. XAP implements remoting , using the space as the transport layer, similar to {{%exurl "the Spring remoting components""http://static.springframework.org/spring/docs/3.0.x/reference/remoting.html"%}}.
 
 Remoting can be viewed as the alternative to Java EE Session Beans, or Java RMI, as it provides all of their capabilities as well as supporting synchronous and asynchronous invocations, and dynamic scripting languages - enabling you to use Groovy or Ruby in your space-based applications.
 
@@ -93,9 +93,7 @@ GigaSpaces XAP provides several default implementations as part of the product, 
 
 **Current implementations supported by GigaSpaces XAP**
 
-
-
-More information on the usage of the above integrations can be found in the Developer Guide {{% latestjavanet %}}.
+More information on the usage of the above integrations can be found in the Developer Guide [Java version](../dev-java/index.html) \|[ .NET version](../dev-dotnet/index.html).
 
 {{%  anchor Spring-Container%}}
 
@@ -107,20 +105,20 @@ The Spring framework provides very elegant abstractions, which makes it very eas
 
 ## Jetty Web Container
 
-Jetty is a very popular web container, which provides support for JEE [web container]({{% latestjavaurl%}}/web-application-overview.html) specification services such as: Servlet, JavaServer Pages, JavaServer Faces, and others.
+Jetty is a very popular web container, which provides support for JEE [web container](../dev-java/web-application-overview.html) specification services such as: Servlet, JavaServer Pages, JavaServer Faces, and others.
 
-The integration with the [Jetty web container]({{% latestjavaurl%}}/web-jetty-processing-unit-container.html) allows you to run JEE web applications (.war files) in GigaSpaces XAP.
+The integration with the [Jetty web container](../dev-java/web-jetty-processing-unit-container.html) allows you to run JEE web applications (.war files) in GigaSpaces XAP.
 
-## Microsoft .NET container
+## Microsoft .NET Container
 
 The .NET SBA application takes advantage of the ability to run business services and .NET code, co located with the data stored within the space.
 
-The [.NET container]({{% latestneturl%}}) bridges the technical gap and provides a native .NET experience for .NET applications.
+The [.NET container](../dev-dotnet/the-processing-unit-overview.html) bridges the technical gap and provides a native .NET experience for .NET applications.
 
  
 ## Mule Integration
 
-Mule is a popular open source Enterprise Services Bus implementation in Java. The [Mule container integration]({{% latestjavaurl%}}/mule-esb.html) allows you to run a Mule application on top of the GigaSpaces XAP, and gain scalability, performance and high-availability, with almost no changes to the Mule application.
+Mule is a popular open source Enterprise Services Bus implementation in Java. The [Mule container integration](../dev-java/mule-esb.html) allows you to run a Mule application on top of the GigaSpaces XAP, and gain scalability, performance and high-availability, with almost no changes to the Mule application.
 
 
 
@@ -134,10 +132,9 @@ Data access, messaging, parallel processing services, speeding up your applicati
 - High Availability: Built-in hot backup and self-healing capabilities for zero downtime
 - Consistency: Maintain data integrity with 100% transactional data handling
 
-As an application platform, GigaSpaces XAP provides integrated, memory-based runtime capabilities. The core of these capabilities is backed by the space technology.  
+As an application platform, GigaSpaces XAP provides integrated, memory-based runtime capabilities. The core of these capabilities is backed by the Space technology.  
 
 The core middleware capabilities are:
-
 
 
 ## In-Memory Data Grid
@@ -153,19 +150,19 @@ It is important to note that the IMDG, although a memory-based service, is fully
 
 The IMDG uses the unified clustering layer, to provide a highly available and reliable service.
 
-The main API to access the IMDG service, is the [GigaSpace interface]({{% latestjavaurl%}}/the-gigaspace-interface-overview.html). In addition, one can use the Map API (using the [GigaMap interface]({{% latestjavaurl%}}/map-api.html)) to access the IMDG. Please refer to the [Developer Guide]({{% latestjavaurl%}}) for usage examples.
+The main API to access the IMDG service, is the [GigaSpace interface](../dev-java/the-gigaspace-interface-overview.html). In addition, one can use the Map API (using the [GigaMap interface](../dev-java/map-api.html)) to access the IMDG. Please refer to the [Developer Guide](../dev-java/index.html) for usage examples.
 
 ## Messaging Grid
 
-The messaging grid aspect of the space provides messaging capabilities such as:
+The messaging grid aspect of the Space provides messaging capabilities such as:
 
 1. Event-Driven capabilities - the ability to build event-driven processing applications. This model enables fast (in-memory-based) asynchronous modular processing, resulting in a very efficient and scalable processing paradigm.
 1. Asynchronous production and consumption of information.
 1. One-to-one, Many-to-One, One-to-Many and Many-to-Many relationships.
-1. FIFO  ordering. {{% latestjavanet "fifo-overview.html"%}}
-1. Transaction Management {{% latestjavanet "transaction-overview.html"%}}.
+1. FIFO  ordering. [Java version](../dev-java/fifo-overview.html.html) \|[ .NET version](../dev-dotnet/fifo-overview.html)
+1. Transaction Management [Java version](../dev-java/transaction-overview.html.html) \|[ .NET version](../dev-dotnet/transaction-overview.html.html)
 
-The core APIs used for messaging are the OpenSpaces [Notify]({{% latestjavaurl%}}/notify-container-overview.html) and [Polling]({{% latestjavaurl%}}/polling-container-overview.html) Containers. In addition, a [JMS 1.1 implementation]({{% latestjavaurl%}}/messaging-support.html) API is available to be used with existing JMS based applications. More information can be found in the [Messaging and Events]({{% latestjavaurl%}}/messaging-support.html) section.
+The core APIs used for messaging are the OpenSpaces [Notify](../dev-java/notify-container-overview.html) and [Polling](../dev-java/polling-container-overview.html) Containers. In addition, a [JMS 1.1 implementation](../dev-java/messaging-support.html) API is available to be used with existing JMS based applications. More information can be found in the [Messaging and Events](../dev-java/messaging-support.html) section.
 
 ## Processing Services
 

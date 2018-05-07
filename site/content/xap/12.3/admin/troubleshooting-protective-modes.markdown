@@ -47,7 +47,7 @@ The `ServiceGrid.config` should have the following
 
 The `SpaceId` property is essential for update operations. XAP also has a rich set of operations that use the `SpaceId` value to perform read/take/update very efficiently without fetching the entire object (aka `Change API`).  Since XAP 9.1 the following is enforced by the protective mode:
 
-Writing an entry to the space without a space ID {{%currentjavanet "query-by-id.html"%}} is error-prone - it can lead to duplicate entries, bad performance and more. In case your application contains objects without an `SpaceId` value you'll get the following exception:
+Writing an entry to the space without a space ID [Java version](../dev-java/query-by-id.html) \|[ .NET version](../dev-dotnet/query-by-id.html) is error-prone - it can lead to duplicate entries, bad performance and more. In case your application contains objects without an `SpaceId` value you'll get the following exception:
 
 
 ```bash
@@ -67,7 +67,7 @@ It is highly recommended that you modify them and add a `SpaceId` decoration. If
 
 The `Space Routing` property is used to partition the data across different partitions. It is recommended to define such property explicitly to control how data is partitioned and avoid common mistakes like writing data to the wrong partition.
 
-See more info on `routing property` {{%currentjavanet "routing-in-partitioned-spaces.html"%}}.
+See more info on `routing property` [Java version](../dev-java/routing-in-partitioned-spaces.html) \|[ .NET version](../dev-dotnet/routing-in-partitioned-spaces.html).
 
 Starting with XAP 9.7 a new protective mode has been added to protect against writing entries with a `null` value routing. In case your application contains objects without a routing value you'll get the following exception:
 
@@ -112,9 +112,9 @@ If this is not feasible, and you know what you're doing, it can be disabled usin
 
 If you must use primitive property types, then assign null values. This is enforced by the protective mode since 9.7.
 
-When querying the space using template matching {{%currentjavanet "query-template-matching.html" %}}, `null` properties are ignored and `non-null` properties are matched. Since primitive properties cannot be set to `null`, a `nullValue` can be assigned to a property to indicate a value which will be treated as null when using template matching.
+When querying the space using template matching [Java version](../dev-java/query-template-matching.html) \|[ .NET version](../dev-dotnet/query-template-matching.html), `null` properties are ignored and `non-null` properties are matched. Since primitive properties cannot be set to `null`, a `nullValue` can be assigned to a property to indicate a value which will be treated as null when using template matching.
 
-See primitive types matching {{%currentjavanet "query-template-matching.html#primitive-types" %}}
+See primitive types matching [Java version](../dev-java/query-template-matching.html#primitive-types) \|[ .NET version](../dev-dotnet/query-template-matching.html#primitive-types).
 
 A protective mode was added to protect against querying with a template that contains one or more primitive properties without a `nullValue`, since such templates are likely to produce unexpected results. 
 
@@ -126,7 +126,7 @@ com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected 
 ```
 
 
-It is highly recommended that you define `nullValue` where appropriate, or switch to SQLQuery {{%currentjavanet "query-sql.html"%}} instead.
+It is highly recommended that you define `nullValue` where appropriate, or switch to SQLQuery [Java version](../dev-java/query-sql.html) \|[ .NET version](../dev-dotnet/query-sql.html) instead.
 
 {{%note "Note"%}}
 If this is not feasible, this protective mode can be disabled using the following system property: 

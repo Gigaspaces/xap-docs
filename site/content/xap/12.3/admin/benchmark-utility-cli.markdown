@@ -217,7 +217,7 @@ The following example uses the XAP API, writes 1,000 POJOs into the space, 1K ea
 -take -objecttype pojo -i 1000 -s 1024
 ```
 
-The following example uses the XAP API, writes 1,000 Entries into the space in FIFO mode {{%currentjavanet "fifo-support.html" %}}, 1K each, and reads them back into the client three times.
+The following example uses the XAP API, writes 1,000 Entries into the space in FIFO mode [Java version](../dev-java/fifo-support.html) \|[ .NET version](../dev-dotnet/fifo-support.html), 1K each, and reads them back into the client three times.
 
 
 ```bash
