@@ -19,13 +19,11 @@ XAP 10 introduces a new storage model called BlobStore Storage Model, which allo
 {{%/column%}}
 
 {{%column width="30%"  %}}
-[{{%pdf "/download_files/White-Paper-ssd-V2.pdf" %}}
-This MemoryXtend white paper provides a high level overview of the technology and motivation behind MemoryXtend.
+This MemoryXtend [white paper](/download_files/White-Paper-ssd-V2.pdf) provides a high level overview of the technology and motivation behind MemoryXtend.
 {{%/column%}}
 
 {{%column width="30%"  %}}
-[{{%pdf "/download_files/xap10memoryXtend-tutorial.pdf"%}}
-The MemoryXtend Tutorial describes how to experiment with MemoryXtend and comparing RAM based Data Grid with SSD based Data Grid.
+This MemoryXtend [tutorial](/download_files/xap10memoryXtend-tutorial.pdf) describes how to experiment with MemoryXtend and comparing RAM based Data Grid with SSD based Data Grid.
 {{%/column%}}
 {{%/section%}}
 

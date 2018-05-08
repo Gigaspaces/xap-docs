@@ -202,7 +202,7 @@ while(true)
 
 # API Example
 
-The RedoLogTest {{%download "/download_files/redologDemo.zip" %}} starts a cluster with a single partition (primary + backup) with mirror enabled and WAN GW enabled. The mirror and WAN GW are not running. 
+The [RedoLogTest](/download_files/redologDemo.zip) starts a cluster with a single partition (primary + backup) with mirror enabled and WAN GW enabled. The mirror and WAN GW are not running. 
 It is writing a few entries to the space and later removes them. A replication filter is active, allowing you to track the activity where space classes that include `replicate=false` are not replicated. 
 
 ![redo](/attachment_files/redo-log.png)
