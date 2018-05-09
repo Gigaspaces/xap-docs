@@ -35,7 +35,24 @@ The CLI connects to the REST Manager API using the name or IP address of the Man
 <!--
 ## Overview
 <!--
-Bash completion in the CLI is available for Linux users. After activating the autocomplete feature (as explained below), navigate to `<XAP-HOME>/bin` and type `xap [TAB][TAB]` or `insightedge [TAB][TAB]`. This will complete the command sequence, or list all the available completions if there are multiple options.
+Bash completion in the CLI is available for Linux and MacOS X users. After activating the autocomplete feature (as explained below), navigate to `<XAP-HOME>/bin` and type `xap [TAB][TAB]` or `insightedge [TAB][TAB]`. This will complete the command sequence, or list all the available completions if there are multiple options.
+<!--
+## MacOS X Prerequisite
+<!--
+1. Install bash version 4 on MacOS X
+<!--
+1. Change the default shell to use bash 4.
+`sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'`
+`sudo chsh -s /usr/local/bin/bash`
+The first command adds the shell to the allowed shells. 
+The second command actually changes your default shell.
+<!--
+1. Make sure you are using bash 4 and `/usr/local/bin/bash`:
+`echo $BASH && echo $BASH_VERSION`
+<!--
+{{%note "Note"%}}
+Relevent for MacOS X users, use `./xap [TAB][TAB]` or `./insightedge [TAB][TAB]`. Otherwise you can add xap alias to the `.bash_profile`.
+{{%/note%}}
 <!--
 ## Activating the Autocomplete Feature
 <!--
@@ -48,16 +65,25 @@ The autocomplete script is located in `<XAP-HOME>/tools/cli`. There are two ways
 1. Go to `<XAP-HOME>/bin` and type: `xap [TAB][TAB]` or `insightedge [TAB][TAB]`.
 <!--
 {{%note "Note"%}}
-When you leave the bash session, autocomplete stops working.
+1. When you leave the bash session, autocomplete stops working.
 {{%/note%}}
 <!--  
 ### Method 2 - Permanent Installation
 <!--
-1. Place the `xap-autocomplete` or `insightedge-autocomplete` file in a `bash_completion.d` folder. The folder may appear in the following locations: `/etc/bash_completion.d` `/usr/local/etc/bash_completion.d` `~/bash_completion.d`
+1. Place the `xap-autocomplete` or `insightedge-autocomplete` file in a `bash_completion.d` folder. The folder may appear in the following locations: `/etc/bash_completion.d` `/usr/local/etc/bash_completion.d` `~/bash_completion.d` (create one if absent).
 <!--
 1. After installing the script, open a new bash console.
 <!--
 1. Go to `<XAP-HOME>/bin` and type: `xap [TAB][TAB]` or `insightedge [TAB][TAB]`.
+<!--
+#### MacOS X users
+After the first step:
+<!--
+1. Edit the `~/.bash_profile` and add the following code:
+`source /usr/local/etc/bash_completion.d/xap-autocomplete`
+<!--
+1. Reload the bash shell or open a new terminal
+`source ~/.bash_profile`
 <!--
 {{%tip "Tips"%}}
 1. If you export the xap or insightedge classpath, autocomplete will work from any directory. If you don't export the classpath, autocomplete works only from the bin directory.
