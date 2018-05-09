@@ -39,16 +39,8 @@ Bash completion in the CLI is available for Linux and MacOS X users. After activ
 <!--
 ## MacOS X Prerequisite
 <!--
-1. Install bash version 4 on MacOS X
-<!--
-1. Change the default shell to use bash 4.
-`sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'`
-`sudo chsh -s /usr/local/bin/bash`
-The first command adds the shell to the allowed shells. 
-The second command actually changes your default shell.
-<!--
-1. Make sure you are using bash 4 and `/usr/local/bin/bash`:
-`echo $BASH && echo $BASH_VERSION`
+The autocomplete script requires bash version 4 to be installed on MacOS X.
+Add the shell to the allowed shells and change it to be the default shell.
 <!--
 {{%note "Note"%}}
 Relevent for MacOS X users, use `./xap [TAB][TAB]` or `./insightedge [TAB][TAB]`. Otherwise you can add xap alias to the `.bash_profile`.
