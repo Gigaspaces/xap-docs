@@ -15,6 +15,28 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3.1 M4 (May-13-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-open-12.3.1-m4-b19204.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-12.3.1-m4-b19204.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-open-12.3.1-m4-b19204.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-12.3.1-m4-b19204.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap.net-12.3.1-m4-b19204.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13485" %}}: Improve memory allocation by pre-allocating ArrayList instances in the SQL execution engine.
+- {{% jira id="GS-13519" %}}: Upgrade RocksDB to 5.11.3.
+- {{% jira id="GS-13524" %}}: Display blobstore operation statistics in the Web Management Console.
+- {{% jira id="GS-13532" %}}: Enable configuring the MINIMAL_BUFFER_DIFF_TO_ALLOCATE property of the  OffHeapMemoryPool .
+
+### Resolved Issues
+
+- {{% jira id="GS-13537" %}}: The SQL query "SELECT COUNT (...) GROUP BY" doesn't work  in the Web Management Console when it includes enums.
+- {{% jira id="GS-13469" %}}: Remoting service routes incorrectly when the routing key is long, and if the value is higher than the max integer.
+
 # 12.3.1 M3 (May-06-2018)
 
 ## Download Links
@@ -66,7 +88,7 @@ N/A
 
 ### Features and Enhancements
 
-- {{% jira id="GS-13516" %}}: Sort results for REST operations related to Spaces and Processing Units.
+- {{% jira id="GS-13518" %}}: Sort results for REST operations related to Spaces and Processing Units.
 - {{% jira id="GS-13511" %}}: CLI Auto Complete.
 - {{% jira id="GS-13510" %}}: Simplified the CLI command "pu decrement" to receive only one parameter: pui_id.
 - {{% jira id="GS-13513" %}}: Enhance CLI output to display "N/A" instead of "-1" where relevant.
