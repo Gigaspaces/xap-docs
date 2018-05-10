@@ -25,7 +25,7 @@ The InsightEdge environment consists of Spark and the XAP data grid. You can use
 To start a complete InsightEdge environment on your local machine, run the following command from the `$XAP_HOME/bin` directory:
 
 ```bash
-insightedge host run-agent --auto gsc=2
+insightedge host run-agent --auto --gsc=2
 ```
 
 This will start the following components on your machine:

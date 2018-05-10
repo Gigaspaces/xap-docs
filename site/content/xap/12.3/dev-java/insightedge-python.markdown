@@ -24,18 +24,18 @@ To develop notebooks in Python, use the `%pyspark` interpreter in the Zeppelin w
 
 To start the command line shell, run the `./bin/insightedge-pyspark` script in the InsightEdge directory.
 
-For example, start InsightEdge in demo mode:
+For example, start InsightEdge demo:
 
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-<XAP-HOME>/insightedge/bin/insightedge.sh demo
+<XAP-HOME>/bin/insightedge.sh demo
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-<XAP-HOME>\insightedge\bin\insightedge.cmd demo
+<XAP-HOME>\bin\insightedge.cmd demo
 ```
 {{%/tab%}}
 {{%/tabs%}}
@@ -119,13 +119,13 @@ The application can be submitted with `insightedge-submit` script, for example:
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-<XAP-HOME>/insightedge/bin/insightedge-submit <XAP-HOME>/insightedge/examples/python/sf_salaries.py
+<XAP-HOME>/insightedge/bin/insightedge-submit --master spark://127.0.0.1:7077 <XAP-HOME>/insightedge/examples/python/sf_salaries.py
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-<XAP-HOME>\insightedge\bin\insightedge-submit <XAP-HOME>\insightedge\examples\python\sf_salaries.py
+<XAP-HOME>\insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 <XAP-HOME>\insightedge\examples\python\sf_salaries.py
 ```
 {{%/tab%}}
 {{%/tabs%}}

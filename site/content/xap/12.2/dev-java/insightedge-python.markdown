@@ -120,13 +120,13 @@ The application can be submitted with `insightedge-submit` script, for example:
 {{%tabs%}}
 {{%tab Linux%}}
 ```bash
-<XAP-HOME>/insightedge/bin/insightedge-submit <XAP-HOME>/insightedge/examples/python/sf_salaries.py
+<XAP-HOME>/insightedge/bin/insightedge-submit --master spark://127.0.0.1:7077 <XAP-HOME>/insightedge/examples/python/sf_salaries.py
 ```
 {{%/tab%}}
 
 {{%tab Windows%}}
 ```bash
-<XAP-HOME>\insightedge\bin\insightedge-submit </XAP-HOME/insightedge\examples\python\sf_salaries.py
+<XAP-HOME>\insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 </XAP-HOME/insightedge\examples\python\sf_salaries.py
 ```
 {{%/tab%}}
 {{%/tabs%}}
