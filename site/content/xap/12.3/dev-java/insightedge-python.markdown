@@ -11,7 +11,7 @@ InsightEdge has a Python API available via PySpark. Its functionality is limited
 
 # Interactive Use
 
-There are two options to analyze data interactively in Python: 
+There are two options for analyzing data interactively in Python: 
 
 - [Zeppelin](../started/insightedge-zeppelin.html)<br>
 - command line shell
@@ -24,7 +24,7 @@ To develop notebooks in Python, use the `%pyspark` interpreter in the Zeppelin w
 
 To start the command line shell, run the `./bin/insightedge-pyspark` script in the InsightEdge directory.
 
-For example, start InsightEdge demo:
+For example, start the InsightEdge demo:
 
 {{%tabs%}}
 {{%tab Linux%}}
@@ -58,7 +58,7 @@ Then start the command line shell:
 
 # Saving and Loading DataFrames in Python
 
-To operate on InsightEdge DataFrames, use the regular PySpark DataFrame API with the `org.apache.spark.sql.insightedge` format and specify Data Grid `collection` or `class` options. For example,
+To operate on InsightEdge DataFrames, use the regular PySpark DataFrame API with the `org.apache.spark.sql.insightedge` format, and specify Data Grid `collection` or `class` options. For example,
 
 {{%tabs%}}
 {{%tab "Python"%}}
@@ -92,7 +92,7 @@ df = spark.read.format("org.apache.spark.sql.insightedge").option("class", my_cl
 
 # Self-Contained Applications
 
-To develop a self-contained submittable application, use the regular PySpark and configure InsightEdge settings in `SparkConf`:
+To develop a self-contained submittable application, use the regular PySpark and configure the InsightEdge settings in `SparkConf`:
 
 {{%tabs%}}
 {{%tab "Python"%}}
@@ -114,7 +114,7 @@ spark = SparkSession.builder.config(conf=SparkConf()).getOrCreate()
 
 The complete source code is available at `<XAP-HOME>/insightedge/examples/python/sf_salaries.py`.
 
-The application can be submitted with `insightedge-submit` script, for example:
+The application can be submitted with the `insightedge-submit` script, for example:
 
 {{%tabs%}}
 {{%tab Linux%}}
