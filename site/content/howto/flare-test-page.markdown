@@ -177,13 +177,35 @@ Video links should be hidden.
 
 # Panels
 
+## Note
 
-Warning   {{%warning "Warning"%}}... {{%/warning%}}
+{{%note "Note"%}}
+This is a note panel
+{{%/note%}}
+
+## Tip
+
+{{%tip "Tip"%}}
+This is a tip panel
+{{%/tip%}}
+
+## Attention
  
-Note  {{%note "Note"%}}... {{%/note%}}
+{{%attention "Attention"%}}
+This is an attention panel
+{{%/attention%}}
 
-Tip  {{%tip "Tip"%}}... {{%/tip%}}
+## Important
 
+{{%warning "Important"%}}
+This is an important panel
+{{%/warning%}}
+
+## Refer
+
+{{%refer%}}
+This is a refer panel. See also [yada yada yada](http://docs.gigaspaces.com)
+{{%/refer%}}
 
 ## Landing page panel
 
