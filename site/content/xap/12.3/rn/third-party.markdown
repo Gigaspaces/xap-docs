@@ -63,6 +63,7 @@ The InsightEdge platform is packaged with Apache Spark, which contains additiona
 |[Scala](http://www.scala-lang.org/)        | 2.10.1 | [Scala](http://www.scala-lang.org/license.html) | Scala | [Scala](../dev-java/scala.html) |
 |[snmp4j](http://www.snmp4j.org/)           | 1.11.2 | [Apache2](http://www.snmp4j.org/LICENSE-2_0.txt) | SNMP | [SNMP Connectivity via Alert Logging Gateway](../dev-java/snmp-connectivity-via-alert-logging-gateway.html) |
 |[log4j-snmp-trap-appender](http://code.google.com/p/log4j-snmp-trap-appender/) | 1.2.9 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | SNMP | [SNMP Connectivity via Alert Logging Gateway](../dev-java/snmp-connectivity-via-alert-logging-gateway.html)  |
+|[RocksDB](https://rocksdb.org/)           | 5.11.3 | [Apache2](https://github.com/facebook/rocksdb/blob/master/LICENSE.Apache) | MemoryXtend | [MemoryXtend for Disk (SSD/HDD)](../admin/memoryxtend-rocksdb-ssd.html) |
 
 
 {{% /tab %}}
