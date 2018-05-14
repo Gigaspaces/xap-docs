@@ -51,8 +51,6 @@ XAP has a built in [Hibernate Space Persistency](./hibernate-space-persistency.h
 
 {{%accordion%}}
 {{%accord title="MirrorSpaceSynchronizationEndpoint"%}}
-{{% panel  %}}
-
 
 ```java
 package mypackage;
@@ -87,15 +85,15 @@ public class MirrorSpaceSynchronizationEndpoint extends SpaceSynchronizationEndp
 }
 ```
 
-{{% /panel %}}
+
 {{%/accord%}}
+
 {{%/accordion%}}
 
 And here is how this can be configured within the mirror configuration:
 
 {{%accordion%}}
 {{%accord title="Mirror Configuration"%}}
-{{% panel  %}}
 
 {{%tabs%}}
 {{%tab "  Namespace "%}}
@@ -129,7 +127,6 @@ And here is how this can be configured within the mirror configuration:
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% /panel %}}
 {{%/accord%}}
 {{%/accordion%}}
 

@@ -38,8 +38,6 @@ In JMS 1.0.2, each domain used a separate set of interfaces. JMS 1.1 presents th
 
 {{%accordion%}}
 {{%accord title="JMS 1.1"%}}
-{{% panel  %}}
-
 
 ```java
 ConnectionFactory connectionFactory = // obtain
@@ -78,7 +76,7 @@ connection.start();
 connection.close();
 ```
 
-{{% /panel %}}
+
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -88,7 +86,7 @@ connection.close();
 
 {{%accordion%}}
 {{%accord title="Publish/Subscribe"%}}
-{{% panel %}}
+
 
 
 ```java
@@ -129,7 +127,7 @@ topicConnection.start();
 topicConnection.close();
 ```
 
-{{% /panel %}}
+
 {{%/accord%}}
 {{%/accordion%}}
 
@@ -137,7 +135,6 @@ topicConnection.close();
 
 {{%accordion%}}
 {{%accord title="Point to Point"%}}
-{{% panel   %}}
 
 
 ```java
@@ -178,6 +175,6 @@ queueConnection.start();
 queueConnection.close();
 ```
 
-{{% /panel %}}
+
 {{%/accord%}}
 {{%/accordion%}}

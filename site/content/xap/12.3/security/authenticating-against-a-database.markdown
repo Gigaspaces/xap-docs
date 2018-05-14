@@ -6,12 +6,7 @@ parent: spring-security-bridge.html
 weight: 300
 ---
 
-
-
-
-
-
-Spring's Security `DaoAuthenticationProvider` is a simple authentication provider that uses a fData Access Object (DAO) to retrieve user information from a relational database. It leverages a `UserDetailsService` (as a DAO) in order to lookup the username, password and `GrantedAuthority` s. It authenticates the user simply by comparing the password submitted in a `UsernamePasswordAuthenticationToken`  against the one loaded by the `UserDetailsService`.
+Spring's Security `DaoAuthenticationProvider` is a simple authentication provider that uses a Data Access Object (DAO) to retrieve user information from a relational database. It leverages a `UserDetailsService` (as a DAO) in order to lookup the username, password and `GrantedAuthority` s. It authenticates the user simply by comparing the password submitted in a `UsernamePasswordAuthenticationToken`  against the one loaded by the `UserDetailsService`.
 
 Configuring the provider is quite simple:
 
@@ -99,18 +94,9 @@ create table group_members (
     constraint fk_group_members_group foreign key(group_id) references groups(id));
 ```
 
-The illustration below represents the table structures assumed by `JdbcDaoImpl` and an example table data holding our "Box-Office" users and roles. If you are not using groups (roles) then a `users` table and an `authorities` table will do.
+The illustration below represents the table structures assumed by `JdbcDaoImpl` and an example table data holding our "Box Office" users and roles. If you are not using groups (roles) then a `users` table and an `authorities` table will do.
 
-{{% color red %}}Edward{{% /color %}}
-,
-{{% color red %}}Arthur{{% /color %}}
-and
-{{% color blue %}}Thomas{{% /color %}}
-are all "Box-Office employees" which share this common role, with privileges to list all movies and their available seats, and to reserve a seat. On the other hand,
-{{% color blue %}}Thomas{{% /color %}}
- is **also** a "Box-Office Manager", with privileges to setup a new movie and remove old movies.
-{{% color red %}}Emily{{% /color %}}
-, is a "Box-Office Administrator" who is responsible for setting up the "Box-Office" application, and **also** has (non-role) privileges to read and write all data related to the cinema.
+{{% color red %}}Edward{{% /color %}}, {{% color red %}}Arthur{{% /color %}}, and {{% color blue %}}Thomas{{% /color %}} are all "Box Office employees" that share this common role, with privileges to list all movies and their available seats, and to reserve a seat. On the other hand, {{% color blue %}}Thomas{{% /color %}} is **also** a "Box Office Manager", with privileges to set up a new movie and remove old movies. {{% color red %}}Emily{{% /color %}}  is a "Box Office Administrator" who is responsible for setting up the "Box Office" application, and **also** has (non-role) privileges to read and write all data related to the cinema.
 
 {{% section %}}
 {{% column width="50%"%}}
@@ -170,11 +156,13 @@ By default, the `DaoAuthenticationProvider` uses the `PlaintextPasswordEncoder`,
 
 You can also set a _salt source_ for the encoder. For more information, refer to Spring Security reference.
 
-{{% panel %}}
+
+# Summary
+
 By now you should be familiar with some important concepts:
 
 - Setting up a Spring-based security bridge with a simple in-memory DAO or a relational database,
 - Defining privileges for a user, configure a password encoder,
 - Test a standalone security bridge against your configuration,
 - Launch a simple GigaSpaces instance with a Spring Security back-end.
-{{% /panel %}}
+
