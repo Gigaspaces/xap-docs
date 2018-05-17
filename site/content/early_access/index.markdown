@@ -15,6 +15,27 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3.1 M5 (May-21-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-open-12.3.1-m5-b19205.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-12.3.1-m5-b19205.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-open-12.3.1-m5-b19205.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-12.3.1-m5-b19205.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap.net-12.3.1-m5-b19205.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+N/A
+
+### Resolved Issues
+
+- {{% jira id="GS-13544" %}}: If a demotion event is sent shortly after an election event, the XAP Manager mishandles the second event and enters an inconsistent state.
+- {{% jira id="GS-13548" %}}: Storing the blobStoreVersion not implemented in MemoryXtend off-heap driver.
+- {{% jira id="GS-135XX" %}}: The Java 8 LocalDateTime is not shown in the Web Management Console object inspector.
+- {{% jira id="GS-13496" %}}: The Replication Channels metrics for partition clusters are not being reported.
+
 # 12.3.1 M4 (May-13-2018)
 
 ## Download Links
