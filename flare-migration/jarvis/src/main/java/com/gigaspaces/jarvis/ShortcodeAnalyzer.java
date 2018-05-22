@@ -32,10 +32,12 @@ public class ShortcodeAnalyzer {
 
     public void report(File target) throws IOException {
         System.out.println(target.getAbsolutePath());
+		if (target.exists())
+			target.delete();
         Map.Entry<String, AtomicInteger>[] shortcodes = stats.entrySet().toArray(new Map.Entry[0]);
         Arrays.sort(shortcodes, (Comparator<Map.Entry<String, AtomicInteger>>) (e1, e2) -> Integer.compare(e2.getValue().get(), e1.getValue().get()));
 
-        try (BufferedWriter writer = Files.newBufferedWriter(target.toPath(), StandardOpenOption.CREATE)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(target.toPath(), StandardOpenOption.CREATE_NEW)) {
             for (Map.Entry shortcode : shortcodes) {
                 writer.write(shortcode.getKey() + "," + shortcode.getValue() + System.lineSeparator());
             }
