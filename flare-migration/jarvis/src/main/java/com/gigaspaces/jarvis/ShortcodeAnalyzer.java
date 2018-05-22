@@ -90,7 +90,7 @@ public class ShortcodeAnalyzer {
         String nextWord() {
             // Get word:
             int pos = location;
-            while (Character.isAlphabetic(s.charAt(pos)))
+            while (!Character.isWhitespace(s.charAt(pos)) && s.charAt(pos) != '%')
                 pos++;
             String result = s.substring(location, pos);
             location = pos;
