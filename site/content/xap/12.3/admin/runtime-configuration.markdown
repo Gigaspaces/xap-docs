@@ -14,9 +14,9 @@ The basic unit of deployment in the GigaSpaces XAP platform is the [Processing U
 
 After is it packaged, a Processing Unit is deployed to the XAP runtime environment, which is called the *Service Grid*. The Service Grid is responsible for materializing the Processing Unit's configuration, provisioning its instances to the runtime infrastructure, and making sure the instances continue to run properly over time.
 
-{{%  info "Info"%}}
+{{% note "Info"%}}
 When developing your Processing Unit, we recommend [running and debugging the Processing Unit within your IDE](../started/xap-debug.html). Deploy it to the Service Grid when you want to test it in the real-life runtime environment, and for production.
-{{%  /info %}}
+{{% /note %}}
 
 # Architecture
 
@@ -32,11 +32,11 @@ Grid is composed of the following components:
 * [Grid Service Container](#gsc), or `gsc` - Provides an isolated runtime for one (or more) Processing Unit instance(s)
 * [Grid Service Agent](#gsa), or `gs-agent` - Starts and monitors Service Grid components on its machine.
 
-{{%  info "Info"%}}
+{{% note "Info"%}}
 In previous XAP versions, the Grid Service Manager and Lookup Service were standalone components. Starting in XAP version 12.1, we recommend starting the XAP Manager instead. In addition to this being simpler, it also offers better consistency and protection against network segmentation (via Apache Zookeeper), as well as the REST Manager API.
 
 For backward compatibility and to simplify the upgrade process, you can still start the LUS and GSM independently. However, future releases may include additional new features and functionality that will require using the XAP Manager.
-{{%  /info %}}
+{{%  /note %}}
 
 All of the above components are fully manageable from management interfaces such as the [XAP Management Center](gigaspaces-management-center.html), the command line interface, and the [Admin API](../dev-java/administration-and-monitoring-overview.html).
 

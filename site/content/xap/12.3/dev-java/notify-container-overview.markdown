@@ -1086,7 +1086,7 @@ For more information, refer to [Durable Notifications](./durable-notifications.h
 
 The notify event container can be configured to automatically perform a take on the notification data event. The container can also be configured to filter out events if the take operation returns `null`. (This usually happens when several clients receive this event, and only one succeeds with the take.)
 
-{{%note"Note"%}}
+{{%note "Note"%}}
 POJO properties should implement `hashcode` and `equals` methods for matching to succeed. Avoid using take on notify when one of the object fields is a primitive array.
 {{%/note%}}
 

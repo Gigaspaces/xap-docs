@@ -137,9 +137,9 @@ The client cache size is limited to the client process heap size. The client-sid
 - [Local Cache](../dev-java/local-cache.html) - On-demand client cache loading data based on client activity. This type of client cache evicts data when the client available memory drops below a configurable value.
 - [Local View](../dev-java/local-view.html) - Pre-fetch client cache loading data based on set of SQL queries. This client cache does not evict data. This client cache is designed to be read-only, and supports both queries and reads based on ID.
 
-{{%  info "Info"%}}
+{{% note "Info"%}}
 By default, client cache is not enabled.
-{{%  /info %}}
+{{% /note %}}
 
 ## When Should You Use a Client Cache?
 
