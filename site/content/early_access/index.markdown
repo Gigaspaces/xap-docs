@@ -19,9 +19,9 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ## Download Links
 
-* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-open-12.3.1-m5-b19205.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-12.3.1-m5-b19205.zip)\] 
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-open-12.3.1-m5-b19205.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-enterprise-12.3.1-m5-b19205.zip)\] 
 
-* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-open-12.3.1-m5-b19205.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-12.3.1-m5-b19205.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap.net-12.3.1-m5-b19205.msi)\]
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-open-12.3.1-m5-b19205.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-enterprise-12.3.1-m5-b19205.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap.net-12.3.1-m5-b19205.msi)\]
 
 ## Changelog
 
