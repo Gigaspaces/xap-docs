@@ -176,7 +176,7 @@ Spatial queries are available through the `spatial:` extension to the [SQL query
 
 # Intersect
 
-The intersection between {{%color "blue"%}}shape1{{%/color%}} and shape2 is not empty, some or all of shape1 overlaps some or all of shape2.
+The intersection between {{% text-blue %}}shape1{{% /text-blue %}} and shape2 is not empty, some or all of shape1 overlaps some or all of shape2.
 
 ![image](/attachment_files/geo/intersect.png)
 
@@ -285,7 +285,7 @@ public void init() {
 
 ## Within
 
-{{%color "blue"%}}Shape1{{%/color%}} is contained within shape2 including its boundaries.
+{{% text-blue %}}Shape1{{% /text-blue %}} is contained within shape2 including its boundaries.
 
 ![image](/attachment_files/geo/within.png)
 

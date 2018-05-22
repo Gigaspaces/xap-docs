@@ -25,7 +25,7 @@ Our default file-based implementation allows the directory to be administered on
 ## Security Management dialog
 
 There is no need for any service to be up and running. Just choose from the title menu bar
-{{% color blue %}}`Security -> Manage Security`{{% /color %}}
+{{% text-blue %}}`Security -> Manage Security`{{% /text-blue %}}
  and the management dialog will open.
 
 {{%align center%}}
@@ -116,7 +116,7 @@ gs-ui(.sh/.bat) -user user -password password
 ## Login dialog
 
 To login from within the UI, choose from the title menu bar
-{{% color blue %}}`Security -> Login`{{% /color %}}
+{{% text-blue %}}`Security -> Login`{{% /text-blue %}}
  and the login dialog  will open.
 
 {{%align center%}}
@@ -135,7 +135,7 @@ icon in the bottom-right corner of the screen (appears after Login). ![authentic
 ## Logout
 
 To logout, choose from the title menu bar
-{{% color blue %}}`Security -> Logout`{{% /color %}}, which will cause a refresh of all discovered services.
+{{% text-blue %}}`Security -> Logout`{{% /text-blue %}}, which will cause a refresh of all discovered services.
 
 # Actions and Privilege restrictions
 

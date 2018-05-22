@@ -96,7 +96,7 @@ create table group_members (
 
 The illustration below represents the table structures assumed by `JdbcDaoImpl` and an example table data holding our "Box Office" users and roles. If you are not using groups (roles) then a `users` table and an `authorities` table will do.
 
-{{% color red %}}Edward{{% /color %}}, {{% color red %}}Arthur{{% /color %}}, and {{% color blue %}}Thomas{{% /color %}} are all "Box Office employees" that share this common role, with privileges to list all movies and their available seats, and to reserve a seat. On the other hand, {{% color blue %}}Thomas{{% /color %}} is **also** a "Box Office Manager", with privileges to set up a new movie and remove old movies. {{% color red %}}Emily{{% /color %}}  is a "Box Office Administrator" who is responsible for setting up the "Box Office" application, and **also** has (non-role) privileges to read and write all data related to the cinema.
+{{% text-red %}}Edward{{% /text-red %}}, {{% text-red %}}Arthur{{% /text-red %}}, and {{% text-blue %}}Thomas{{% /text-blue %}} are all "Box Office employees" that share this common role, with privileges to list all movies and their available seats, and to reserve a seat. On the other hand, {{% text-blue %}}Thomas{{% /text-blue %}} is **also** a "Box Office Manager", with privileges to set up a new movie and remove old movies. {{% text-red %}}Emily{{% /text-red %}}  is a "Box Office Administrator" who is responsible for setting up the "Box Office" application, and **also** has (non-role) privileges to read and write all data related to the cinema.
 
 {{% section %}}
 {{% column width="50%"%}}
