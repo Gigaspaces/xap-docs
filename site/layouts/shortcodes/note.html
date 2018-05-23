@@ -1,12 +1,3 @@
-{{if isset .Params 0}}
 <div class='bs-callout bs-callout-info'>
-    <b style="">{{.Get 0}}</b><br>
+    <b>{{if isset .Params 0}}{{.Get 0}}{{else}}Note{{end}}</b><br/>
     {{.Inner}}</div>
-{{else}}
-<div class='bs-callout bs-callout-info'>{{.Inner}}</div>
-{{end}}
-
-
-
-
-

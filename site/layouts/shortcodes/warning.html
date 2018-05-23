@@ -1,7 +1,3 @@
-{{if isset .Params 0}}
 <div class='bs-callout bs-callout-danger'>
-    <b style="color:#d9534f">{{.Get 0}}</b><br>
+    <b style="color:#d9534f">{{if isset .Params 0}}{{.Get 0}}{{else}}Important{{end}}</b><br/>
     {{.Inner}}</div>
-{{else}}
-<div class='bs-callout bs-callout-danger'>{{.Inner}}</div>
-{{end}}
