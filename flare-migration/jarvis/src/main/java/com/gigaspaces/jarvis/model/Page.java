@@ -33,9 +33,8 @@ public class Page implements Comparable<Page> {
 
         String[] tokens = parseCategory(category);
         if (tokens != null) {
-            String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? file.getName().replace(".markdown", ".html") : tokens[2] + "/");
-            //String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? "" : tokens[2] + "/");
-            this.href = index ? prefix : prefix + file.getName().replace(".markdown", ".html");
+            String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? "" : tokens[2] + "/");
+            this.href = prefix + file.getName().replace(".markdown", ".html");
         } else {
             this.href = index ? id : id + ".html";
         }
