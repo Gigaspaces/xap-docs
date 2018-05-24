@@ -37,6 +37,7 @@ This will start the following components on your machine:
 * XAP service grid:
     * XAP Manager at {{%exurl "localhost:8090""http://localhost:8090"%}}
 	* 2 Grid Service Containers (GSCs)
+* XAP Web-UI at {{%exurl "localhost:8099""http://localhost:8099"%}}
 	
 Then run the following command to deploy a Space called `insightedge-space` with 2 partitions on those GSCs:
 
