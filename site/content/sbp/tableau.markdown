@@ -9,19 +9,19 @@ weight: 20
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Vitalii Zinchenko    | 12.2 | May 2018|  [Tableau](https://www.tableau.com/)  |     |
-
+| Vitalii Zinchenko    | 12.2 | September 2017|  [Tableau](https://www.tableau.com/)  |     |
+| Alon Shoham    | 12.3 | May 2018|  [Tableau](https://www.tableau.com/)  |     |
 
 # Overview
 
 Organizations often require quick insight into data to understand the business impact, and don't want to waste valuable time consulting their corporate IT team. With the [In-Grid SQL Query]({{%latestjavaurl%}}/sql-query-intro.html) feature,
 this can be done using the data stored in the XAP in-memory data grid. [Tableau](https://www.tableau.com/) can be connected to the XAP data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a visual format.
 
-This topic provides a demo for integrating Tableau with InsightEdge in a Microsoft Windows environment, so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.
+This topic describes how to set up a demo integration of Tableau with InsightEdge in a Microsoft Windows environment, so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.
 
 ## Architecture
 
-Tableau can connect to the XAP data grid using the SQL-99-compatible JDBC driver that is provided with the In-Grid SQL Query feature. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC connection is required to convert ODBC requests from Tableau into JDBC requests for the InsightEdge JDBC driver.
+Tableau can connect to the XAP data grid using the SQL-99-compatible JDBC driver that is provided with the In-Grid SQL Query feature. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC connection is required to convert ODBC requests from Tableau into JDBC requests for the InsightEdge JDBC driver. The Easysoft ODBC-JDBC gateway has been evaluated and certified for use with InsightEdge, and is used in the sample integration. 
 
 <img src="/attachment_files/sbp/tableau/diagram.png" width=386" height="134" />
  
@@ -31,51 +31,65 @@ In this example, a familiar `Simple - Superstore` Tableau users data set is used
   
 <img src="/attachment_files/sbp/tableau/schema.png" width=389" height="151" />
 
-# Configuration
+# Integrating Tableau with InsightEdge
 
-## Configuring InsightEdge for the Tableau demo
+In order to integrate Tableau with InsightEdge, you must have a XAP data grid that is up and running, and you need access to it. The InsightEdge platform includes XAP as a core component. After you set up and start your InsightEdge application, you must add sample data to a Space, for use with the demo.
 
-In order to integrate Tableau with InsightEdge, you must have a XAP data grid that is up and running, and you need access to it. InsightEdge application includes the XAP data grid as a core component.
+After InsightEdge has been configured, you can download and install the ODBC-JDBC gateway, activate it with a trial license, and set it up in Microsoft Windows.
 
-After you start your InsightEdge application, you must set up the system to run the Tableau demo.
+Lastly, download and configure Tableau to work with InsightEdge via the ODBC-JDBC gateway. At this point you can perform a query on the data grid via Tableau, and view the results.
 
-##### Deploying XAP Data Grid and Space
+## Configuring InsightEdge Locally
 
-Preparatory step: installing insightedge dependencies locally
+Before you deploy the data grid for the purpose of this demo, you should install the InsightEdge dependencies (see XXXX for more information).
+
+### Deploying the Data Grid
+
+The first step is deploying a XAP data grid and creating a Space for the demo.
+
+**To deploy the data grid on a local machine:**
 
 1. Run ${XAP_HOME}/tools/installmavenrep.bat script.
-
 1. Run ${XAP_HOME}/insightedge/tools/maven/insightedge-maven.cmd script.
+1. Navigate to the `$XAP_HOME\bin` directory and launch a cmd window.
+1. Type `insightedge host run-agent --auto --gsc=2` to create a XAP data grid.
+1. Type `insightedge space deploy --partitions=2 tableauSpace` to create a Space with the name `tableauSpace`.  
 
-On your local machine, run the following commands from the `$XAP_HOME\bin` directory:
+### Populating the Space
 
-1. XAP data grid:
-    ```bash
-    insightedge host run-agent --auto --gsc=2
-    ```
-1. To create a Space with the name `tableauSpace`:
-    ```bash
-    insightedge space deploy --partitions=2 tableauSpace
-    ```
-1. Populate the `tableauSpace` Space with data: 
+After the Space is created, it needs to be populated with sample data, so that you can later run queries on this data via Tableau.
 
-	- [Download](/download_files/sbp/xap-sql-demo.rar) this file and unpack it
-	- Under the extracted "xap-sql-demo" folder, build the sample with `mvn clean install`
-	- Execute the following command:
+**To populate the Space with data:**
+
+1. Download [this file](/download_files/sbp/xap-sql-demo.rar) and unpack it.
+1. Under the extracted "xap-sql-demo" folder, build the sample with `mvn clean install`.
+1. Execute the following command:
+
 	```bash
 	java -jar target\xap-sql-demo.jar --space-url "jini://*/*/tableauSpace?locators=127.0.0.1" --lookup-group <DATA_GRID_LOOKUP_GROUP>
 	```
-
-	- Substitute the value `<DATA_GRID_LOOKUP_GROUP>` with appropriate value for your deployment. lookup-group is optional.
-
-
+1. Substitute the value `<DATA_GRID_LOOKUP_GROUP>` with the appropriate value for your deployment. A lookup-group is optional.
 1. View the objects in the Space to verify that the data populated as expected.
 
 	<img src="/attachment_files/sbp/tableau/xap_1.png" width=371" height="68" />
- 
-## Setting Up the ODBC-JDBC Connection in Microsoft Windows
 
-The Easysoft ODBC-JDBC gateway has been evaluated and certified for use with InsightEdge. Follow these instructions to set up the Easysoft ODBC-JDBC gateway, or use your preferred bridge implementation.
+### Adding the XAP JDBC Client JAR to the Classpath
+
+When connecting to the data grid, the ODBC-JDBC gateway runs the XAP JDBC custom driver. In order to make the driver visible to the ODBC-JDBC gateway, you have to create a special JAR file for use when configuring the gateway in Microsoft Windows.
+
+**To generate the XAP JDBC Client JAR:**
+
+1. Navigate to `${XAP_HOME}/insightedge/tools/jdbc`.
+1. Run the `build-xap-jdbc-client.cmd` script to create the file `xap-jdbc-client.jar`. 
+
+	
+## Setting Up the ODBC-JDBC Connection
+
+Follow these instructions to download, install, and set up the Easysoft ODBC-JDBC gateway.
+
+{{%note%}}
+If you don't want to use the Easysoft ODBC-JDBC Gateway, you can run the demo using your preferred bridge implementation.
+{{%/note%}}
 
 ### Installing the Easysoft ODBC-JDBC Gateway
 
@@ -116,14 +130,6 @@ Look in your email spam section for the license.
 At this point, your user account is updated and you have access to the ODBC-JDBC gateway software for the duration of the trial license period.
 
 ### Configuring the ODBC-JDBC Gateway
-
-##### Add XAP Jdbc Client Jars to the Classpath
-When connecting to the data grid, Easysoft runs the xap-jdbc custom driver. In order to make the driver visible for Easysoft, follow these steps:
-
-1. Navigate to ${XAP_HOME}/insightedge/tools/jdbc. Run the build-xap-jdbc-client.cmd script.
-
-1. The script creates the file xap-jdbc-client.jar. This jar will be used in the following steps.
-
 
 After you have installed the gateway software and obtained a trial license, you have to configure the gateway to point to the required data source.
 

@@ -102,8 +102,8 @@ In addition to the management center, and web and command line interfaces, GigaS
 GigaSpaces provides several components for monitoring and troubleshooting your XAP or InsightEdge Enterprise deployments. These include:
 
 - [GigaSpaces Management Center](../admin/tools-desktop-ui.html)
-- [Web Management Console](../admin/web-management-console.html)
-- [Command Line Interface](../admin/deploy-command-line-interface.html)
+- [Web Management Console](../admin/tools-web-ui.html)
+- [Command Line Interface](../admin/tools-cli.html)
 - [Metrics Reporting and Integration](../admin/metrics-overview.html)
 - [Administrative Alerts](../dev-java/administrative-alerts.html)
 
