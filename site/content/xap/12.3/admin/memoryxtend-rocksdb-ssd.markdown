@@ -207,6 +207,65 @@ When set to FINER, you can see where the entries were fetched from. Look for the
 2017-11-28 07:57:49,117  FINER [com.gigaspaces.cache] - container [mySpace_container1_1:mySpace] Blobstore- entry loaded from disk, uid=-1850388785^84^98^0^0
 ```
 
+## Advanced Configuration
+
+when updating a value in the off-heap memory and the size of the new value is smaller then the old one we have two choices,
+to free the old memory and reallocate new memory or to overwrite the old value on the same memory space.
+
+deleting and reallocating is heavier then rewriting but rewriting leave allocated memory that is not utilized, that is why we provide a space property to control the decision.
+
+if the oldValueSize - newValueSize > blobstore.off-heap.update_threshold then we delete and reallocate and otherwise we overwrite the old value with the new.
+
+default threshold is 50B.
+
+
+### Example
+
+{{%tabs%}}
+{{%tab "pu.xml"%}}
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{% currentversion %}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/{{% currentversion %}}/off-heap-blob-store/openspaces-off-heap-blob-store.xsd">
+
+    <blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/>
+
+    <os-core:embedded-space id="space" name="mySpace">
+       <os-core:blob-store-data-policy persistent="false" blob-store-handler="offheapBlobstore"/>
+       <os-core:properties>
+          <props>
+             <prop key="blobstore.off-heap.update_threshold">1M</prop>
+          </props>
+    </os-core:embedded-space>
+
+    <os-core:giga-space id="gigaSpace" space="space"/>
+</beans>
+```
+{{% /tab %}}
+{{%tab "Java Code"%}}
+
+```java
+// Create off-heap storage driver:
+String memoryThreshold = "5g";
+BlobStoreStorageHandler blobStore = new OffHeapBlobStoreConfigurer()
+        .setMemoryThreshold(memoryThreshold)
+        .create();
+// Create space with that storage driver:
+String spaceName = "mySpace";
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(false));
+spaceConfigurer.addProperty("blobstore.off-heap.update_threshold", "1M");
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+```
+
 # Deployment Strategies
 
 ## Local Storage
