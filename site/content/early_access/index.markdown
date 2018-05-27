@@ -15,6 +15,25 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3.1 M6 (May-27-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-open-12.3.1-m6-b19206.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-enterprise-12.3.1-m6-b19206.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-open-12.3.1-m6-b19206.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-enterprise-12.3.1-m6-b19206.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap.net-12.3.1-m6-b19206.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13552" %}}: Share a single instance of Curator Framework client to support large-scale deployments.
+- {{% jira id="GS-13551" %}}: Handle Apache Curator leader election events in a single threaded queue.
+
+### Resolved Issues
+
+- {{% jira id="GS-13547" %}}: ServerTypeDesc tree was not cloned correctly.
+
 # 12.3.1 M5 (May-21-2018)
 
 ## Download Links
@@ -33,7 +52,7 @@ N/A
 
 - {{% jira id="GS-13544" %}}: If a demotion event is sent shortly after an election event, the XAP Manager mishandles the second event and enters an inconsistent state.
 - {{% jira id="GS-13548" %}}: Storing the blobStoreVersion not implemented in MemoryXtend off-heap driver.
-- {{% jira id="GS-135XX" %}}: The Java 8 LocalDateTime is not shown in the Web Management Console object inspector.
+- {{% jira id="GS-13539" %}}: The Java 8 LocalDateTime is not shown in the Web Management Console object inspector.
 - {{% jira id="GS-13496" %}}: The Replication Channels metrics for partition clusters are not being reported.
 
 # 12.3.1 M4 (May-13-2018)
