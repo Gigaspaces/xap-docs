@@ -49,8 +49,8 @@ The first step is deploying a XAP data grid and creating a Space for the demo.
 
 **To deploy the data grid on a local machine:**
 
-1. Run ${XAP_HOME}/tools/installmavenrep.bat script.
-1. Run ${XAP_HOME}/insightedge/tools/maven/insightedge-maven.cmd script.
+1. Run ${XAP_HOME}\tools\installmavenrep.bat script.
+1. Run ${XAP_HOME}\insightedge\tools\maven\insightedge-maven.cmd script.
 1. Navigate to the `$XAP_HOME\bin` directory and launch a cmd window.
 1. Type `insightedge host run-agent --auto --gsc=2` to create a XAP data grid.
 1. Type `insightedge space deploy --partitions=2 tableauSpace` to create a Space with the name `tableauSpace`.  
@@ -68,7 +68,7 @@ After the Space is created, it needs to be populated with sample data, so that y
 	```bash
 	java -jar target\xap-sql-demo.jar --space-url "jini://*/*/tableauSpace?locators=127.0.0.1" --lookup-group <DATA_GRID_LOOKUP_GROUP>
 	```
-1. Substitute the value `<DATA_GRID_LOOKUP_GROUP>` with the appropriate value for your deployment. A lookup-group is optional.
+1. Substitute the value `<DATA_GRID_LOOKUP_GROUP>` with the appropriate value for your deployment. The lookup-group argument is optional.
 1. View the objects in the Space to verify that the data populated as expected.
 
 	<img src="/attachment_files/sbp/tableau/xap_1.png" width=371" height="68" />
@@ -79,7 +79,7 @@ When connecting to the data grid, the ODBC-JDBC gateway runs the XAP JDBC custom
 
 **To generate the XAP JDBC Client JAR:**
 
-1. Navigate to `${XAP_HOME}/insightedge/tools/jdbc`.
+1. Navigate to `${XAP_HOME}\insightedge\tools\jdbc`.
 1. Run the `build-xap-jdbc-client.cmd` script to create the file `xap-jdbc-client.jar`. 
 
 	
