@@ -7,12 +7,12 @@ weight: 300
 ---
 
 
-# Introduction
+# Overview
 
 The MemoryXtend off-heap storage driver stores Space objects in RAM, outside the Java heap. This has two benefits:
 
 * Better RAM utilization - Objects are stored off-heap in serialized form, which consumes less memory than the same object would use in a Java heap.
-* Reduced GC activity - As less data is stored on the Java heap, the Garbage Collector's work becomes easier, yielding more deterministic behavior with lower chance of experiencing stop-the world pauses.
+* Reduced garbage collection activity - Less data is stored on the Java heap, so the garbage collector has less work. This yields more deterministic behavior with a lower chance of experiencing stop-the-world pauses.
 
 <br>
 
@@ -20,9 +20,9 @@ The MemoryXtend off-heap storage driver stores Space objects in RAM, outside the
 ![image](/attachment_files/blobstore/ohr3.png)
 {{%/align%}}
 
-# Configuration
+# Basic Configuration
 
-Creating a Space with the off-heap storage driver can be done via `pu.xml` or code. For example, to create a Space called 'mySpace' that can use up to 20GB of off-heap RAM:
+You can create a Space with the MemoryXtend off-heap storage driver via the `pu.xml` configuration file, or in the code. For example, to create a Space called 'mySpace' that can use up to 20GB of off-heap RAM:
 
 {{%tabs%}}
 {{%tab "pu.xml"%}}
@@ -67,17 +67,17 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-<br/>
-Note that the  general [MemoryXtend configuration options](./memoryxtend-overview.html#configuration) also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.
+<br>
+The  general [MemoryXtend configuration options](./memoryxtend-overview.html#configuration) also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.
 
-## Memory Threshold
+## Defining the Memory Threshold
 
 In order to use off-heap storage, you must define the amount of memory to allocate, for example. `20g`. Use the following sizing units:
 
 * `b` - Bytes
-* `k`, `kb` - KiloBytes
-* `m`, `mb` - MegaBytes
-* `g`, `gb` - GigaBytes
+* `k`, `kb` - Kilobytes
+* `m`, `mb` - Megabytes
+* `g`, `gb` - Gigabytes
 
 Before any operation that requires memory allocation (write, update, and initial load), the memory manager checks how much of the allocated memory has been used. If the threshold has been breached, an `OffHeapMemoryShortageException` is thrown. Read, take, and clear operations are always allowed.
 
@@ -87,14 +87,16 @@ If the used memory is below the configured threshold, then a large write operati
 
 # Advanced Configuration
 
-when updating a value in the off-heap memory and the size of the new value is smaller then the old one we have two choices,
-to free the old memory and reallocate new memory or to overwrite the old value on the same memory space.
+As part of fine-tuning the MemoryXtend functionality, you can control the balance between memory utilization and system performance. This is useful because there are two ways to update the value of an object in the off-heap memory:
 
-deleting and reallocating is heavier then rewriting but rewriting leave allocated memory that is not utilized, that is why we provide a space property to control the decision.
+* Free up the old memory allocation, and reallocate new memory.
+* Overwrite the old value using the same allocated memory.
 
-if the oldValueSize - newValueSize > blobstore.off-heap.update_threshold then we delete and reallocate and otherwise we overwrite the old value with the new.
+Deleting and reallocating memory takes longer then overwriting the same memory area, but if the size of the new value is smaller then the old value, then the overwrite option leaves part of the original allocated memory underutilized. You can use the `BLOBSTORE_OFF_HEAP_MIN_DIFF_TO_ALLOCATE_PROP` Space property to control when to trade off system performance for maximizing the memory usage. 
 
-default threshold is 50B.
+This Space property works as follows: if the oldValueSize - newValueSize > blobstore.off-heap.update_threshold, then delete and reallocate memory for the object. Otherwise overwrite the old object value with the new object value.
+
+The default threshold is 50B.
 
 
 ## Example

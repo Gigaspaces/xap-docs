@@ -6,12 +6,12 @@ parent: memoryxtend-overview.html
 weight: 200
 ---
 
-# Introduction
+# Overview
 
-XAP MemoryXtend for disk delivers built-in, high-speed persistence that leverages local or attached SSD devices, all-flash-arrays (AFA), or any other disk. It delivers low latency write and read performance, as well as fast data recovery.  XAP MemoryXtend for disk is based on {{%exurl "RocksDB""http://rocksdb.org/"%}}, which is a persistent key/value store optimized for fast storage environments. 
+XAP MemoryXtend for disk delivers built-in, high-speed persistence that leverages local or attached SSD devices, all-flash-arrays (AFA), or any other disk or memory option. It delivers low latency write and read performance, as well as fast data recovery.  XAP MemoryXtend for disk is based on {{%exurl "RocksDB""http://rocksdb.org/"%}}, which is a persistent key/value store optimized for fast storage environments. 
 
 
-# Architecture and Components
+## Architecture and Components
 
 When configured for the disk storage driver, the MemoryXtend architecture tiers the storage of each Space partition instance across two components: a Space partition instance (managed JVM heap) and an embedded key/value store (the blobstore) as shown in the diagram below. 
 
@@ -25,13 +25,13 @@ XAP requires Read/Write permissions to mounted devices/partitions.
  
  
  
-## Space Partition Instance
+### Space Partition Instance
 
 The Space partition instance is a JVM heap that acts as an LRU cache against the underlying blobstore. This tier in the architecture stores indexes, Space class metadata, transactions, replication redo logs, leases, and statistics. 
 Upon a Space read operation, if the object exists in the JVM heap (i.e. a cache <i>hit</i>) it is immediately returned to the Space proxy client. Otherwise, the Space loads it from the underlying blobstore and places it on the JVM heap (known as a cache <i>miss</i>). 
 
 
-## Blobstore
+### Blobstore
 
 The blobstore is based on a log-structured merge tree architecture (similar to popular NoSQL databases such as: {{%exurl "HBase""https://hbase.apache.org/"%}}, {{%exurl "BigTable""https://cloud.google.com/bigtable/"%}}, or {{%exurl "Cassandra""https://cassandra.apache.org/"%}}). There are three main components in the blobstore: 
 
@@ -40,9 +40,9 @@ The blobstore is based on a log-structured merge tree architecture (similar to p
 - **Sorted String Table (SST) files**: SSTable is a data structure (residing on disk) that efficiently stores a large data footprint while optimizing for high throughput, and sequential read/write workloads. When a MemTable fills up, it is flushed to an SST file on storage and the corresponding WAL file can be deleted.
 - **Built-in Cache**: MemoryXtend comes with a built-in cache. This cache is part of the Space partition tier, and stores objects in their native form.
 
-# Configuration
+# Basic Configuration
 
-Any existing XAP Space can be configured to integrate a blobstore with it. As with a typical Processing Unit, configuration is done through `pu.xml` or code. For example: 
+Any existing XAP Space can be configured to integrate a blobstore with it. As with a typical Processing Unit, configuration is done using either the `pu.xml` configuration file, or in the code. For example: 
 
 {{%tabs%}}
 {{%tab "Namespace"%}}
@@ -106,6 +106,8 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
+
+<br>
 The following table describes the configuration options used in `rocksdb-blob-store` above.
 
 | Property               | Description                                               | Default | Use |
@@ -132,9 +134,9 @@ This feature increases the overall memory consumption of the Space by several by
 The off-heap cache is disabled by default. To enable it, simply set the `off-heap-cache-memory-threshold` property in `rocksdb-blob-store` to the amount of memory you want to allocate for off-heap caching, for example `20m`. Use the following sizing units:
 
 * `b` - Bytes
-* `k`, `kb` - KiloBytes
-* `m`, `mb` - MegaBytes
-* `g`, `gb` - GigaBytes
+* `k`, `kb` - Kilobytes
+* `m`, `mb` - Megabytes
+* `g`, `gb` - Gigabytes
 
 Before any operation that requires memory allocation (write, update, and initial load), the memory manager checks how much of the allocated memory has been used. If the threshold has been breached, an `OffHeapMemoryShortageException` is thrown. Read, take, and clear operations are always allowed.
 
@@ -207,19 +209,20 @@ When set to FINER, you can see where the entries were fetched from. Look for the
 2017-11-28 07:57:49,117  FINER [com.gigaspaces.cache] - container [mySpace_container1_1:mySpace] Blobstore- entry loaded from disk, uid=-1850388785^84^98^0^0
 ```
 
-## Advanced Configuration
+# Advanced Configuration
 
-when updating a value in the off-heap memory and the size of the new value is smaller then the old one we have two choices,
-to free the old memory and reallocate new memory or to overwrite the old value on the same memory space.
+As part of fine-tuning the MemoryXtend functionality, you can control the balance between memory utilization and system performance. This is useful because there are two ways to update the value of an object in the off-heap memory:
 
-deleting and reallocating is heavier then rewriting but rewriting leave allocated memory that is not utilized, that is why we provide a space property to control the decision.
+* Free up the old memory allocation, and reallocate new memory.
+* Overwrite the old value using the same allocated memory.
 
-if the oldValueSize - newValueSize > blobstore.off-heap.update_threshold then we delete and reallocate and otherwise we overwrite the old value with the new.
+Deleting and reallocating memory takes longer then overwriting the same memory area, but if the size of the new value is smaller then the old value, then the overwrite option leaves part of the original allocated memory underutilized. You can use the `BLOBSTORE_OFF_HEAP_MIN_DIFF_TO_ALLOCATE_PROP` Space property to control when to trade off system performance for maximizing the memory usage. 
 
-default threshold is 50B.
+This Space property works as follows: if the oldValueSize - newValueSize > blobstore.off-heap.update_threshold, then delete and reallocate memory for the object. Otherwise overwrite the old object value with the new object value.
 
+The default threshold is 50B.
 
-### Example
+## Example
 
 {{%tabs%}}
 {{%tab "pu.xml"%}}
