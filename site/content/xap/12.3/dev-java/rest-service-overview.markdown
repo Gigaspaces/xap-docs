@@ -8,19 +8,6 @@ weight: 300
 
 
 
-In this section we will show you how to configure and use the rest service.
-
-
-<br>
-
-{{%fpanel%}}
-
-[Overview](./rest-service.html)<br>
-Describes the REST service and it's deployment options.
-
-[REST API](./rest-service-api.html)<br>
-The REST interface.
-
-{{%/fpanel%}}
+This section describes the REST service and its deployment options. It also explains how to configure and use the REST service via the REST interface.
 
 
