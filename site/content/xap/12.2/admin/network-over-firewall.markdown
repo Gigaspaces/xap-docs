@@ -93,7 +93,11 @@ Add the following system properties to the command line:
 -Dcom.gs.multicast.discoveryPort=
 ```
 
-- **Mandatory** -- Reggie Lookup Service: in this context, modify `com.sun.jini.reggie.initialUnicastDiscoveryPort`, the port used during unicast discovery. Default value is `0` - any available port.
+- **Mandatory** -- Reggie Lookup Service: in this context, modify `com.sun.jini.reggie.initialUnicastDiscoveryPort`, the port used during unicast discovery. Default value is `0` (undefined).
+
+{{% note %}}
+If you leave the unicast discovery port property `com.sun.jini.reggie.initialUnicastDiscoveryPort` unconfigured (with its default value of 0), then it will use the port value in the `com.gs.multicast.discoveryPort` property. 
+{{%/note%}}
 
 
 ```bash
