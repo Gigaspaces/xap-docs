@@ -28,6 +28,12 @@ This is an *emphasized* text.
 This is a **bold** text. 
 
 This is a `monospaced` text.
+
+{{% text-red %}}This is red text.{{% /text-red %}}<br>
+
+{{% text-blue %}}This is blue text.{{% /text-blue %}}<br>
+
+{{% text-green %}}This is green text.{{% /text-green %}}<br>
  
 
 ## Lists
@@ -42,13 +48,6 @@ This is a `monospaced` text.
 1. Ordered list item
 1. Ordered list item
 
-
-
-## Spans
-
-
-This text has {{%color blue%}}blue{{%/color%}}   
-This text has {{% bgcolor orange %}}orange background{{% /bgcolor %}}
 
 # Links
 
