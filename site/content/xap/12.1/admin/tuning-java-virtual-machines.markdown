@@ -55,32 +55,22 @@ The size you should specify for the heap depends on your heap usage over time. I
 
 ## Garbage Collection
 
-The recommendations in this section are for non-manager VMs only. Garbage collection, while necessary, introduces latency into your system by consuming resources that would otherwise be available to your application. If you are experiencing unacceptably high latencies in application processing, you might be able to improve performance by modifying your VM's garbage collection behavior. Garbage collection tuning options depend on the Java virtual machine you are using.
+{{% note %}}
+The recommendations in this section are for non-manager VMs only.
+{{% /note %}}
+
+Garbage collection, while necessary, introduces latency into your system by consuming resources that would otherwise be available to your application. If you are experiencing unacceptably high latencies in application processing, you might be able to improve performance by modifying your VM's garbage collection behavior. Garbage collection tuning options depend on the Java virtual machine you are using.
 
 Suggestions given here apply to the Sun HotSpot VM. If you use a different JVM, check with your vendor to see if these or comparable options are available.
 
 Modifications to garbage collection sometimes produce unexpected results. Always test your system before and after making changes to verify that the system's performance has improved. The two options suggested here are likely to expedite garbage collecting activities by introducing parallelism and by focusing on the data that is most likely to be ready for cleanup. The first parameter causes the garbage collector to run concurrent to your application processes. The second parameter causes it to run multiple, parallel threads for the "young generation" garbage collection (that is, garbage collection performed on the most recent objects in memory -- where the greatest benefits are expected):
     -XX:+UseConcMarkSweepGC -XX:+UseParNewGC
 
-For application VMs, if you are not using shared memory and you are using remote method invocation (RMI) Java APIs, you might also be able to reduce latency by disabling explicit calls to the garbage collector. The RMI internals automatically invoke garbage collection every sixty seconds to ensure that objects introduced by RMI activities are cleaned up. Your VM may be able to handle these additional garbage collection needs. If so, your application may run faster with explicit garbage collection disabled. You can try adding the following command-line parameter to your application invocation and test to see if your garbage collector is able to keep up with demand:
-    -XX:+DisableExplicitGC
 
 {{% refer %}}
 For more details, see [Moving into Production Checklist JVM Tuning](./moving-into-production-checklist.html).
 {{% /refer %}}
 
-## Remote GC
-
-The [sun rmi dgc gcInterval](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/technotes/guides/rmi/sunrmiproperties.html)  properties are set by default to 60000 milliseconds (60 seconds).
-
-In some cases this might cause the JVM process to slow down every 60 seconds. To reduce the performance impact of redundant GC cycles, increase the interval to be an hour (3600000 milliseconds) both for the space JVM and the client JVM.
-
-{{% tip %}}
-When starting the space in embedded mode or running it in remote mode using the `space-instance` or `gsc` commands make sure you have the following system properties:
-
-- `-Dsun.rmi.dgc.client.gcInterval=36000000`
-- `-Dsun.rmi.dgc.server.gcInterval=36000000`
-{{% /tip %}}
 
 # Soft References Cleanup
 

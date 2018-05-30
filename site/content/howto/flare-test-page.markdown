@@ -23,11 +23,11 @@ weight: 50
 
 ## Formatting
 
-This is an *emphasized* text. 
+This is *emphasized* text. 
 
-This is a **bold** text. 
+This is **bold** text. 
 
-This is a `monospaced` text.
+This is `monospaced` text.
 
 {{% text-red %}}This is red text.{{% /text-red %}}<br>
 
@@ -74,23 +74,7 @@ This is a `monospaced` text.
 
 ## Anchor
 
-Navigate to the anchor [point](#hello)
-
 Should inherently convert to html links.
-
-## Cross References
-
-| **Description** | **Markdown** | **Output** |
-|-----------------|--------------|------------|
-| Link to external site | \[GigaSpaces\]\(http://www.gigaspaces.com\) | [GigaSpaces](http://www.gigaspaces.com) |
-| Link to page in same folder | \[Anchor\](./anchor.html\) | [Anchor](./anchor.html) |
-| Link to page in `xap` folder | \[SQL Query\]({{%/*currentjavaurl*/%}}/sqlquery.html) | [SQL Query]({{%currentjavaurl%}}/query-sql.html) |
-| Link to page in `xapnet` folder | \[SQL Query\]({{%/*currentneturl*/%}}/sqlquery.html\) | [SQL Query]({{%currentneturl%}}/query-sql.html) |
-| Link to page in latest `xap` folder | \[SQL Query\]({{%/*latestjavaurl*/%}}/sqlquery.html\) | [SQL Query]({{%latestjavaurl%}}/query-sql.html) |
-| Link to page in latest `xapnet` folder | \[SQL Query\]({{%/*latestneturl*/%}}/sqlquery.html\) | [SQL Query]({{%latestneturl%}}/query-sql.html) |
-| Link to latest Java Tutorial page | \[Getting started\]({{%/*lateststartedurl*/%}}) | [Getting Started]({{%lateststartedurl%}}) |
-| Link to latest .NET Tutorial page | \[Getting started\]({{%/*latestnettuturl*/%}}) | [Getting Started]({{%latestnettuturl%}}) |
-| Link to latest Admin page | \[Administration\]({{%/*latestadmurl*/%}}) | [Admin]({{%latestadmurl%}}) |
 
 
 # Icons
@@ -107,6 +91,8 @@ Should inherently convert to html links.
 
 | Header1 | Header2 | Header3 |
 |:--------|:--------|:--------|
+| column1 | column2 | column3 |
+| column1 | column2 | column3 |
 | column1 | column2 | column3 |
 
 
@@ -206,20 +192,8 @@ This is an important panel
 This is a refer panel. See also [yada yada yada](http://docs.gigaspaces.com)
 {{%/refer%}}
 
-## Landing page panel
-
-{{%fpanel%}}
-- [Overview](/xap/11.0/dev-java/change-api.html)<br>
-Change API overview.
-
-{{%/fpanel%}}
-
-Convert to Flare mini-TOCs
-
 
 # Links
-
-Testing docs link [Event Processing](http://www.mulesoft.org) to see how this works.<br>
 
 Testing external link {{%exurl "Mule Site" "http://www.mulesoft.org/" %}} to see how this works.<br>
 
