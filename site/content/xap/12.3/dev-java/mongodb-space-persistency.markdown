@@ -21,12 +21,3 @@ XAP comes with built in implementations of [Space Data Source](./space-data-sour
 
 For further details about the persistency APIs used see [Space Persistency](./space-persistency-overview.html).
 
-
-{{%fpanel%}}
-
-[Data Source](./mongodb-space-data-source.html)<br>
-The Space Data Source API is used for reading data and meta data from the MongoDB.
-
-[Synchronization Endpoint](./mongodb-space-synchronization-endpoint.html)<br>
-The space synchronization endpoint API is used for synchronizing data from the space to MongoDB data base.
-{{%/fpanel%}}

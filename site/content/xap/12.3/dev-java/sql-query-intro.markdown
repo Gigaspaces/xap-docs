@@ -26,19 +26,6 @@ It does not support create/update/delete operations. Furthermore, the driver was
 
 
 {{%refer%}}
-If you are looking for low latency JDBC driver with CRUD capability, please consult [SQLQuery](./jdbc-driver.html).
+If you are looking for low latency JDBC driver with CRUD capability, refer to the [JDBC Driver](./jdbc-driver.html)topic in the Developer guide.
 {{%/refer%}}
  
-<br>
- 
-{{%fpanel%}}
-
-[SQL Driver](./sql-driver.html)<br>
-The driver allows database-driven applications to interact with the Space via SQL read queries.
- 
-[SQL Client](./sql-client.html)<br>
-Using the JDBC driver with SQL Client applications.  
-  
- 
-{{%/fpanel%}}
-

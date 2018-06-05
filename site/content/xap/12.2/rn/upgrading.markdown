@@ -18,12 +18,14 @@ For information about product changes that may affect your upgrade process, refe
 
 # Windows Environments
 
-If you are upgrading to version 12.2 or later in a Windows environment, you must add the following environment variables to the wrapper.conf file:
+If you are upgrading to version 12.2 or later in a Windows environment and using XAP as a Windows service, you must add the following environment variables to the wrapper.conf file:
 
 - `wrapper.java.additional.27 = -DXAP_GSA_OPTIONS=${xap_gsa_options}` 
 - `wrapper.java.additional.28 = -DXAP_GSC_OPTIONS=${xap_gsc_options}` 
 - `wrapper.java.additional.29 = -DXAP_GSM_OPTIONS=${xap_gsm_options}` 
 - `wrapper.java.additional.30 = -DXAP_LUS_OPTIONS=${xap_lus_options}`
+
+For more information about the wrapper.conf file, refer to the [XAP as a Windows Service](../admin/installation-windows-service.html) topic in the Administration section.
 
 # New Location for xap.datagrid.jar File
 

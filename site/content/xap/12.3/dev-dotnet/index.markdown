@@ -9,61 +9,7 @@ weight: 500
 
 This guide introduces the key concepts for building XAP applications. The topics in this guide span installation, tutorials, the XAP API, Processing Unit and platform interoperability.
 
-
-<br>
-
-{{%fpanel%}}
-
-[Installation](./installation-overview.html)<br>
-This guide provides step by step instructions on how to download and install XAP on different operating systems for the supported languages.
-
-[PONO Support](./poco-overview.html)<br>
-Understanding the semantics of Space Entries and .NET Objects
-
-[Space Document](./document-overview.html)<br>
-The XAP document API exposes the Space as a Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof.
-
-[Data Modeling](./modeling-your-data.html)<br>
-Modeling your objects that are used to interact with the Space.
-
-[The Space Interface](./the-gigaspace-interface-overview.html)<br>
-This section includes information about the different APIs for accessing and manipulating the Space data
-
-[Querying the Space](./querying-the-space.html)<br>
-This section explains the various mechanisms offered by GigaSpaces XAP to query the space for data, as well as related topics, such as how to use indexing to boost query performance and how the space can be iterated to fetch entries more efficiently.
-
-[Indexing](./indexing-overview.html)<br>
-This section explains the various mechanisms offered by GigaSpaces XAP to query the space for data, as well as related topics, such as how to use indexing to boost query performance and how the space can be iterated to fetch entries more efficiently.
-
-[Transactions](./transaction-overview.html)<br>
-XAP .NET provides an explicit transaction management programing model. It allows developers to easily write transactional code with the lowest overhead possible while minimizing the amount of hand-crafted code and separating it from the application hosting environment and instance management.
-
-[Space Persistency](./space-persistency-overview.html)<br>
-Using the GigaSpaces External Data Source interface to persist data stored in the space
-
-[Client-Side Caching](./client-side-caching.html)<br>
-Using the GigaSpaces External Data Source interface to persist data stored in the space
-
-[Task Execution](./task-execution-overview.html)<br>
-XAP support executing tasks in a collocated Space (processing unit that started an embedded Space). Space tasks can be executed either directly on a specific cluster member using typical routing value.
-
-[Event Processing](./event-processing.html)<br>
-This section will guide you through event processing APIs and configuration on top of the space.
-
-[Space-Based Remoting](./space-based-remoting-overview.html)<br>
-Remoting allows you to use remote invocations of PONO services, with the space as the transport layer.
-
-[Admininstration API](./admin-modules.html)<br>
-The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running GigaSpaces Agent, GigaSpaces Manager, GigaSpaces Container, Lookup Service, Processing Unit and Spaces.
-
-[The Processing Unit](./the-processing-unit-overview.html)<br>
-The Processing Unit is the unit of packaging and deployment in the GigaSpaces XAP platform. This section describes its directory structure, deployment descriptor and SLA definition and configuration.
-
-[Deployment and Administration](./administrators-guide.html)<br>
-The primary focus of the Administrator's Guide, is to provide both a basic, as well as more advanced overview of the GigaSpaces XAP administration and operation components.
-
-[Platform Interoperability](./interoperability.html)<br>
-The possibility for organizations whose projects include a combination of Java, .NET and C++ platforms to communicate and access each other easily and efficiently while also maintaining the benefits of the XAP scale-out application server.
-
-{{%/fpanel%}}
+<!--
+minitoc
+-->
 

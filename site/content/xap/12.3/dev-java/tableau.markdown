@@ -1,16 +1,10 @@
 ---
-type: post
+type: post123
 title:  Tableau Integration
-categories: SBP
-parent: insightedge.html
-weight: 20
+categories:  XAP123, IEE
+parent: sql-query-intro.html
+weight: 300
 ---
-
-
-|Author|XAP Version|Last Updated | Reference | Download |
-|------|-----------|-------------|-----------|----------|
-| Vitalii Zinchenko    | 12.2 | September 2017|  [Tableau](https://www.tableau.com/)  |     |
-| Alon Shoham    | 12.3 | May 2018|  [Tableau](https://www.tableau.com/)  |     |
 
 # Overview
 
