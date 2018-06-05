@@ -20,7 +20,7 @@ This section lists helpful recommendations for tuning your application when usin
 - [Make proper use of Indexes](#6)
 - [Use Asynchronous Operation](#7)
 - [Use Delta Read](#8)
-- [Colocate Data and Business Logic](#9)
+- [Co-locate Data and Business Logic](#9)
 - [Intelligent Partitioning](#10)
 - [Blocking Take and Thread Consumption](#11)
 - [Use Batch Operations](#12)
@@ -87,7 +87,7 @@ Consider using query projections to retrieve only the specific portions needed w
 
 {{%anchor 9%}}
 
-# Colocate Data and Business Logic
+# Co-locate Data and Business Logic
 
 Implement Task / Distributed Task to be used with the **execute** operation or use colocated notify/polling container to move processing business logic to the data side. This will avoid serialization and network usage.
 
