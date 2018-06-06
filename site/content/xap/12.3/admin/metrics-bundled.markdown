@@ -226,6 +226,14 @@ Space metrics are reported with the following tags:
 | space_operations_add-tp | Add operations per second.  | Double |
 | space_operations_replace-tp  | Replace operations per second. | Double |
 | space_operations_get-tp | Get operations per second. | Double |
+| space_blobstore_add | Number of add operations.  | Long |
+| space_blobstore_add-tp | Add operations per second.  | Double |
+| space_blobstore_get | Number of get operations. | Long |
+| space_blobstore_get-tp | Get operations per second. | Double |
+| space_blobstore_remove | Number of remove operations. | Long |
+| space_blobstore_remove-tp| Remove operations per second.  | Double |
+| space_blobstore_remove-tp| Remove operations per second.  | Double |
+| space_blobstore_compaction_avg | Compaction time on average | Double |
 | space_blobstore_cache-size  | Number of objects stored in the blobstore cache. | Long |
 | space_blobstore_cache-hit | Blobstore cache hits. | Long |
 | space_blobstore_cache-miss  | Total of blobstore cache misses. | Long |
