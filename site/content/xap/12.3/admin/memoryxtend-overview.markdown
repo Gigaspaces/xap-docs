@@ -65,6 +65,52 @@ MemoryXtend comes with a built-in, LRU-based cache that stores objects on-heap f
 | persistent |  Data is written to external storage, and the Space performs recovery from the external storage if needed. |  | required |
 | blob-store-cache-query | One or more SQL queries that determine which objects will be stored in cache. |  | optional |
 
+## Example
+
+{{%tabs%}}
+{{% /tab %}}
+{{%tab "pu.xml"%}}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-{{%version "spring"%}}.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%currentversion%}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/{{%currentversion%}}/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd">
+
+    <blob-store:rocksdb-blob-store id="rocksDbBlobstore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/>
+
+    <os-core:embedded-space id="space" space-name="mySpace" >
+        <os-core:blob-store-data-policy blob-store-handler="rocksDbBlobstore" persistent="true" avg-object-size-KB="5" cache-entries-percentage="20" />
+    </os-core:embedded-space>
+
+    <os-core:giga-space id="gigaSpace" space="space"/>
+</beans>
+```
+{{% /tab %}}
+{{%tab "Java Code"%}}
+
+```java
+// Create RocksDB storage driver:
+BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer()
+        .setPaths("[/mnt/db1,/mnt/db2]")
+        .setMappingDir("/tmp/mapping")
+        .create();
+// Create space with that storage driver:
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(true)
+                .setAvgObjectSizeKB(5)
+                .setCacheEntriesPercentage(20));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+```
+{{% /tab %}}
+{{% /tabs %}}
+
+
 ## Default Cache - LRU
 
 By default the cache uses an LRU strategy to cache and evict entries. The cache size is controlled by two settings:
