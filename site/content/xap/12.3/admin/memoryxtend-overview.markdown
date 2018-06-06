@@ -68,7 +68,6 @@ MemoryXtend comes with a built-in, LRU-based cache that stores objects on-heap f
 ## Example
 
 {{%tabs%}}
-{{% /tab %}}
 {{%tab "pu.xml"%}}
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -91,7 +90,6 @@ MemoryXtend comes with a built-in, LRU-based cache that stores objects on-heap f
 ```
 {{% /tab %}}
 {{%tab "Java Code"%}}
-
 ```java
 // Create RocksDB storage driver:
 BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer()

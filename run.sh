@@ -5,5 +5,5 @@ set -e
 ./generate-navbar.sh . 
 echo Starting Hugo...
 pushd site
-hugo server --watch -v
+/home/yaeln-pcu/IdeaProjects/xap-docs/hugo_0.17/hugo server --watch -v
 popd
