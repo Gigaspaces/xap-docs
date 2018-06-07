@@ -119,6 +119,10 @@ The following table describes the configuration options used in `rocksdb-blob-st
 | <nobr>data-column-family-options<nobr> | Specifies the tuning parameters for the LSM logic and memory tables. See the [Performance Tuning](./memoryxtend-rocksdb-ssd.html#performance-tuning) section for details.| | optional |
 | blob-store-handler | Blobstore implementation.|  | required |
 
+{{%note%}}
+For an example of how to configure the on-heap cache properties, see the [MemoryXtend overview](./memoryxtend-overview.html#on-heap-cache) topic.
+{{%/note%}}
+
 # Off-Heap Cache
 
 XAP can cache the values of indexed fields in the process native (off-heap) memory. This optimizes operations that require only indexed values in order to execute, by fetching the data from off-heap instead of disk. The operations that benefit from this optimization are:

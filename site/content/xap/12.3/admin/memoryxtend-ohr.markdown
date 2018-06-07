@@ -70,6 +70,10 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 <br>
 The  general [MemoryXtend configuration options](./memoryxtend-overview.html#configuration) also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.
 
+{{%note%}}
+For an example of how to configure the on-heap cache properties, see the [MemoryXtend overview](./memoryxtend-overview.html#on-heap-cache) topic.
+{{%/note%}}
+
 ## Defining the Memory Threshold
 
 In order to use off-heap storage, you must define the amount of memory to allocate, for example. `20g`. Use the following sizing units:

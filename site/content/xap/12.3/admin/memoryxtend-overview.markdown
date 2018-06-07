@@ -6,6 +6,7 @@ parent: none
 weight: 430
 ---
 
+# Overview
 
 In a traditional deployment, all XAP entries are stored in JVM heaps to provide the fastest performance possible. However, as data grows in size and numbers, the following issues become noticeable:
 
