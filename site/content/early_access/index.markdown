@@ -8,12 +8,34 @@ weight:
 
 This page contains early access information for XAP and InsightEdge 12.3.1, which is scheduled for release in Q2 2018. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
 
+{{%warning "Important"%}}
+In this milestone only, when trying to start Insightedge using the Python API the PySpark shell fails to start. This issue will be resolved in the next milestone.
+{{%/warning%}}
+
 {{%infosign%}} If you're just getting started with version 12.3.1, we recommend reading the [What's New](/xap/12.3/rn/whats-new.html) page in the general release notes.
 
 {{%tip "Disclaimer"%}}
 Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.3**. <br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.3/)
 {{%/tip%}}
 <hr/>
+
+# 12.3.1 M8 (Jun-10-2018)
+
+## Download Links
+
+* [InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-12.3.1-m8-b19208.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-enterprise-12.3.1-m8-b19208.zip) 
+
+* [XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-12.3.1-m8-b19208.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-enterprise-12.3.1-m8-b19208.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap.net-12.3.1-m8-b19208.msi)
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13557" %}}: Configure Spark to include InsightEdge dependencies on startup.
+
+### Resolved Issues
+
+- {{% jira id="GS-13559" %}}: Display blobstore operation statistics in the GigaSpaces Management Center.
 
 # 12.3.1 M7 (Jun-03-2018)
 

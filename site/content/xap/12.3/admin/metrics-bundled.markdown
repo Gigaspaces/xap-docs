@@ -218,25 +218,16 @@ Space metrics are reported with the following tags:
 
 | Metric | Description | Type |
 |:-------|:------------|:-----|
-| space_operations_remove | Number of remove operations. | Long |
-| space_operations_add | Number of add operations. | Long |
-| space_operations_replace  | Number of replace operations. | Long |
-| space_operations_get | Number of get operations. | Long |
-| space_operations_remove-tp | Remove operations per second.  | Double |
-| space_operations_add-tp | Add operations per second.  | Double |
-| space_operations_replace-tp  | Replace operations per second. | Double |
-| space_operations_get-tp | Get operations per second. | Double |
 | space_blobstore_add | Number of add operations.  | Long |
-| space_blobstore_add-tp | Add operations per second.  | Double |
+| space_blobstore_add-tp | Number of add operations per second.  | Double |
 | space_blobstore_get | Number of get operations. | Long |
-| space_blobstore_get-tp | Get operations per second. | Double |
+| space_blobstore_get-tp | Number of get operations per second. | Double |
 | space_blobstore_remove | Number of remove operations. | Long |
-| space_blobstore_remove-tp| Remove operations per second.  | Double |
-| space_blobstore_remove-tp| Remove operations per second.  | Double |
+| space_blobstore_remove-tp| Number of remove operations per second.  | Double |
 | space_blobstore_compaction_avg | Compaction time on average | Double |
 | space_blobstore_cache-size  | Number of objects stored in the blobstore cache. | Long |
-| space_blobstore_cache-hit | Blobstore cache hits. | Long |
-| space_blobstore_cache-miss  | Total of blobstore cache misses. | Long |
+| space_blobstore_cache-hit | Number of blobstore cache hits. | Long |
+| space_blobstore_cache-miss  | Total number of blobstore cache misses. | Long |
 | space_blobstore_hot-data-cache-miss  | Subgroup of cache misses - misses of hot data not found in cache. | Long |
 | space_blobstore_off-heap_used-bytes_total | Total used off-heap memory, in bytes. | Long |
 | space_blobstore_off-heap_used-bytes\_{type_name} | Used off-heap memory per type, in bytes. | Long |
