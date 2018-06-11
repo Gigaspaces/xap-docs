@@ -119,6 +119,7 @@ Refer to [Change code without restarts](../dev-java/the-space-no-restart.html)
 | com.gs.transport_protocol<br>.lrmi.custom.threadpool.<br>queue-size | Custom operations thread pool queue size  |  | 2147483647    |   | Invo<br>cation | No |
 | com.gs.transport_protocol<br>.lrmi.system-priority.<br>threadpool.queue-size | System operations thread pool queue size |  |  | 2147483647    |   | Invo<br>cation | No |
 | com.gs.transport_protocol<br>.lrmi.throw-resource-not-available | Specifies whether to throw an exception if no resources are available | false |  | Boolean    |   
+| com.gs.lrmi.nio<br>.selector.select-timeout  | Set the timeout to block while waiting for a channel to become ready. 0 = block indefinitely. This value must not be negative. | 10000  | Client & Server | Milliseconds |  Yes  |
 
 {{%refer%}}
 Refer to [Tuning the communication protocol](./tuning-communication-protocol.html)
