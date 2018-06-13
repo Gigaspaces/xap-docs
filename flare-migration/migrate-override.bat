@@ -1,0 +1,3 @@
+@echo off
+echo Overriding site-temp...
+xcopy /Y /E site-overrides site-temp
