@@ -4,22 +4,30 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ShortcodeAnalyzer {
 
     public static void scanAndReport(String path, String target) throws IOException {
         ShortcodeAnalyzer f = new ShortcodeAnalyzer();
+		f.initShortcodes("site-overrides\\layouts\\shortcodes");
         f.scanPath(new File(path));
         f.report(new File(target));
     }
 
-    private final Map<String, AtomicInteger> stats = new HashMap<>();
+    private final Map<String, AtomicInteger> statsWithOverrides = new HashMap<>();
+    private final Map<String, AtomicInteger> statsWithoutOverrides = new HashMap<>();
+    private final Set<String> shortcodesWithOverrides = new HashSet<>();
 
+	private void initShortcodes(String path) {
+        for (File f : new File(path).listFiles()) {
+			String name = f.getName().replace(".html","");
+            System.out.println("### " + name);
+			shortcodesWithOverrides.add(name);
+        }
+	}
+	
     public void scanPath(File file) throws IOException {
         if (file.isDirectory()) {
             for (File f : file.listFiles()) {
@@ -34,16 +42,22 @@ public class ShortcodeAnalyzer {
         System.out.println(target.getAbsolutePath());
 		if (target.exists())
 			target.delete();
-        Map.Entry<String, AtomicInteger>[] shortcodes = stats.entrySet().toArray(new Map.Entry[0]);
-        Arrays.sort(shortcodes, (Comparator<Map.Entry<String, AtomicInteger>>) (e1, e2) -> Integer.compare(e2.getValue().get(), e1.getValue().get()));
 
         try (BufferedWriter writer = Files.newBufferedWriter(target.toPath(), StandardOpenOption.CREATE_NEW)) {
-            for (Map.Entry shortcode : shortcodes) {
-                writer.write(shortcode.getKey() + "," + shortcode.getValue() + System.lineSeparator());
-            }
+			report(writer, statsWithOverrides, "*** Shortcodes with overrides ***");
+			report(writer, statsWithoutOverrides, "*** Shortcodes without overrides ***");
         }
         System.out.println("Created " + target.toString());
     }
+	
+	private static void report(BufferedWriter writer, Map<String, AtomicInteger> stats, String title) throws IOException {
+		writer.write(title + System.lineSeparator());
+        Map.Entry<String, AtomicInteger>[] shortcodes = stats.entrySet().toArray(new Map.Entry[0]);
+        Arrays.sort(shortcodes, (Comparator<Map.Entry<String, AtomicInteger>>) (e1, e2) -> Integer.compare(e2.getValue().get(), e1.getValue().get()));
+        for (Map.Entry shortcode : shortcodes) {
+            writer.write(shortcode.getKey() + "," + shortcode.getValue() + System.lineSeparator());
+        }
+	}
 
     private void processLine(String line) {
         Scanner s = new Scanner(line);
@@ -55,6 +69,7 @@ public class ShortcodeAnalyzer {
             if (shortcode == null || shortcode.isEmpty())
                 throw new IllegalStateException("Empty shortcode - [" + line + "]");
             if (s.findNext("%}}")) {
+				Map<String, AtomicInteger> stats = shortcodesWithOverrides.contains(shortcode) ? statsWithOverrides : statsWithoutOverrides;
                 stats.putIfAbsent(shortcode, new AtomicInteger());
                 stats.get(shortcode).incrementAndGet();
             } else {
