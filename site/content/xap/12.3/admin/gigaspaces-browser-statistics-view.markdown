@@ -7,25 +7,29 @@ weight: 500
 ---
 
 
-The Statistics view provides graphical representation of space operations performed and average throughput.
+The Statistics view provides information on operation statistics in the Space, such as read, write, take, etc. If you have a system with MemoryXtend, you can also see statistics for the off-heap driver and the disk storage (RocksDB) driver.
+
+# Operations Statistics
+
+The Operations tab provides a graphical representation of Space operations performed and average throughput.
 
 {{% align center %}}
 ![GMC_space_statistics_7.1.jpg](/attachment_files/GMC_space_statistics_7.1.jpg)
 {{% /align %}}
 
-# Operations Statistics Status
+## Operations Statistics Status Area
 
-The **Operations Statistics Status** area displays the total number of operations performed in the space. The **Legend** on the right side, apart from color indication, provides a check box for every operation, allowing you to remove it from the graph.
+The graph in the upper area of the tab displays the total number of operations performed in the Space. The legend on the right side shows the color that represents each operation in the graph. You can select and clear the check boxes as necessary to show or hide data for the different operations in the graph.
 
-# TP Statistics History
+## Throughput Statistics History Area
 
-The bottom left side graph is displayed depending on the selected option:
+The graph in the lower area of the tab display the following information, depending on the selected option:
 
-- **TP \[Operations/Sec\] History** -- displays throughput performance (operations per second).
-- **Total Operations Count History** -- displays the space operations' history. The graph represents the number of operations performed since you began working with the space.
+- **Display TP (Operations/Sec) History** -- displays the current throughput performance (operations per second).
+- **Display Total Operations Count History** -- displays the history of the Space operations, namely the number of operations performed since you began working with the Space.
+
 
 Additional options:
-
 - **Clear** button -- clears the graph.
 - The **Graph Scaling** area in the bottom right provides a check box for every operation, allowing you to remove it from the graph.
 
