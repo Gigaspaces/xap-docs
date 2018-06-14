@@ -233,6 +233,20 @@ Space metrics are reported with the following tags:
 | space_blobstore_off-heap_used-bytes\_{type_name} | Used off-heap memory per type, in bytes. | Long |
 | space_blobstore_off-heap-cache_used-bytes_total | Total used off-heap memory for caching, in bytes. | Long |
 | space_blobstore_off-heap-cache_used-bytes\_{type_name} | Used off-heap memory for caching per type, in bytes. | Long |
+| space_blobstore_memtable-hit | Number of MemTable hits. | Long |
+| space_blobstore_memtable-miss | Number of MemTable misses. | Long |
+| space_blobstore_get-hit-l0 | Number of Get queries served by L0. | Long |
+| space_blobstore_get-hit-l1 | Number of Get queries served by L1. | Long |
+| space_blobstore_get-hit-l2-and-up | Number of Get queries served by L2 and up. | Long |
+| space_blobstore_number-keys-written | Number of keys written to RocksDB. | Long |
+| space_blobstore_number-keys-read | Number of keys read from RocksDB. | Long |
+| space_blobstore_number-keys-updated | Number of keys updated, if in-place update is enabled. | Long |
+| space_blobstore_bytes-written | Number of uncompressed bytes issued by Put, Delete, Merge, and Write operations. | Long |
+| space_blobstore_bytes-read | Number of uncompressed bytes read from Get operations. | Long |
+| space_blobstore_iter-bytes-read | Number of uncompressed bytes read from an iterator (during initial load). | Long |
+| space_blobstore_number-multiget-calls | Number of MultiGet API calls. | Long |
+| space_blobstore_number-multiget-keys-read | Number of keys read via MultiGet API calls. | Long |
+| space_blobstore_number-multiget-bytes-read | Number of bytes received via MultiGet API calls. | Long |
 
 ## Connections
 
