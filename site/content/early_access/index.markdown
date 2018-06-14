@@ -19,6 +19,29 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3.1 RC1 (Jun-10-2018)
+
+## Download Links
+
+* [InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-12.3.1-rc1-b19209.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-enterprise-12.3.1-rc1-b19209.zip) 
+
+* [XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-12.3.1-rc1-b19209.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-enterprise-12.3.1-rc1-b19209.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap.net-12.3.1-rc1-b19209.msi)
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13564" %}}: Upgrade Spring to 4.3.17.
+- {{% jira id="GS-13562" %}}: Upgrade Apache Zookeeper to 3.4.12 and Netty to 3.10.6.Final.
+- {{% jira id="GS-13494" %}}: Upgrade Apache Spark to 2.3.0.
+- {{% jira id="GS-13569" %}}: Log fills up with "unmarshalling failure" messages when a cluster partition member is unreachable.
+
+### Resolved Issues
+
+- {{% jira id="GS-13531" %}}: SpaceTypeDescriptorBuilder fails when explicitly indexing the routing key using deprecated values.
+- {{% jira id="GS-13541" %}}: Manager class path does not include cert file located in 'com.gigaspaces.lib.opt.security' directory.
+- {{% jira id="GS-13565" %}}: Space instance becomes backup although it is offered leadership by Apache Zookeeper.
+
 # 12.3.1 M8 (Jun-10-2018)
 
 ## Download Links
