@@ -8,7 +8,7 @@ weight: 300
 
 # Overview
 
-Organizations often require quick insight into data to understand the business impact, and don't want to waste valuable time consulting their corporate IT team. With the [In-Grid SQL Query]({{%latestjavaurl%}}/sql-query-intro.html) feature,
+Organizations often require quick insight into data to understand the business impact, and don't want to waste valuable time consulting their corporate IT team. With the [In-Grid SQL Query](./sql-query-intro.html) feature,
 this can be done using the data stored in the XAP in-memory data grid. [Tableau](https://www.tableau.com/) can be connected to the XAP data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a visual format.
 
 This topic describes how to set up a demo integration of Tableau with InsightEdge in a Microsoft Windows environment, so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.
@@ -35,7 +35,7 @@ Lastly, download and configure Tableau to work with InsightEdge via the ODBC-JDB
 
 ## Configuring InsightEdge Locally
 
-Before you deploy the data grid for the purpose of this demo, you should install the InsightEdge dependencies (see XXXX for more information).
+Before you deploy the data grid for the purpose of this demo, you should install the InsightEdge [dependencies](../started/insightedge-first-app.html#project-dependencies).
 
 ### Deploying the Data Grid
 
@@ -89,9 +89,7 @@ If you don't want to use the Easysoft ODBC-JDBC Gateway, you can run the demo us
 
 **To download and install the Easysoft ODBC-JDBC gateway:**
 
-1. Log in to the Easysoft web site: {{%exurl "link""http://www.easysoft.com/cgi-bin/account/login.cgi"%}}
-	
-	{{%infosign%}} If this is your first time working with Easysoft, first follow the instructions to register and create your Easysoft user account.
+1. Log in to the Easysoft web site: {{%exurl "link""http://www.easysoft.com/cgi-bin/account/login.cgi"%}}. (If this is your first time working with Easysoft, first follow the instructions to register and create your Easysoft user account.)
 	
 1. {{%exurl "Download ""https://www.easysoft.com/products/data_access/odbc_jdbc_gateway/index.html"%}} the gateway from the Easysoft website.
 1. Install the gateway on your local machine.
@@ -131,8 +129,10 @@ After you have installed the gateway software and obtained a trial license, you 
 
 1. Navigate to the ODBC Data Source Administrator in Microsoft Windows.
 
-	{{%infosign%}} For instructions on how to access the ODBC Data Source Administrator, see this [Microsoft help topic]( https://docs.microsoft.com/en-us/sql/odbc/admin/odbc-data-source-administrator).
-
+{{%note%}}
+For instructions on how to access the ODBC Data Source Administrator, see this [Microsoft help topic]( https://docs.microsoft.com/en-us/sql/odbc/admin/odbc-data-source-administrator).
+{{%/note%}}
+	
 1. On the right-hand side of the ODBC Data Source Administrator window, go the System Data Sources tab, click **Add**.
 
 	<img src="/attachment_files/sbp/easysoft/odbc_data_source_administrator_1_3.png" width=478" height="339" />
@@ -198,9 +198,11 @@ Tableau has to be configured to use the ODBC-JDBC gateway as the data source.
 
 1. Under **Connections**, click the search icon in the **Schema** area and select **space**.
 
-	{{%infosign%}} The sample data for this demo contains a Space called **space**. If you have additional Spaces in your InsightEdge environment, they may appear in this list.
+{{%note%}}
+The sample data for this demo contains a Space called **space**. If you have additional Spaces in your InsightEdge environment, they may appear in this list.
+{{%/note%}}
 
-	<img src="/attachment_files/sbp/tableau/tableau_3.png" width=213" height="267" /> 
+<img src="/attachment_files/sbp/tableau/tableau_3.png" width=213" height="267" /> 
  
 1. Verify that Tableau can see the sample data by peforming a table search.  You should see **Locations** and **Orders** in the list of tables.
 

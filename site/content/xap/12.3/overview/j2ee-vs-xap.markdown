@@ -14,19 +14,19 @@ From a design and implementation perspective, XAP shares a lot of patterns with 
 |Component|JEE|XAP|
 |:--------|:---|:--|
 |Persistency|JPA|[Hibernate](../dev-java/hibernate-space-persistency.html), [JPA](../dev-java/jpa-api-overview.html)|
-|Messaging|JMS,MDB|[JMS](../dev-java/messaging-support.html)<br>Polling Container [Java version](../dev-java/polling-container-overview.html) \|[ .NET version](../dev-dotnet/polling-container-overview.html)<br>Notify Container [Java version](../dev-java/notify-container-overview.html) \|[ .NET version](../dev-dotnet/notify-container-overview.html)<br> [Native Messaging API](../dev-java/session-based-messaging-api.html), MDB {{% star %}} |
+|Messaging|JMS,MDB|[JMS](../dev-java/messaging-support.html)<br>Polling Container [Java version](../dev-java/polling-container-overview.html) \|[ .NET version](../dev-dotnet/polling-container-overview.html)<br>Notify Container [Java version](../dev-java/notify-container-overview.html) \|[ .NET version](../dev-dotnet/notify-container-overview.html)<br> [Native Messaging API](../dev-java/session-based-messaging-api.html), MDB<sup><b>1</b></sup> |
 |Security|JAAS, SSL|[Spring Security](../security/spring-security-bridge.html), [SSL](../security/securing-the-transport-layer-using-ssl.html)|
 |Web Session Management|HttpSession|[HTTP Session Management](../dev-java/http-session-management.html)|
 |Transaction Management|JTA|[Spring Transaction via Jini Transaction Manager](../dev-java/transaction-overview.html)|
-|Data Access|JDBC , Session Bean (Stateless or Stateful), Entity Bean|[JDBC](../dev-java/jdbc-driver.html), [Space](../dev-java/the-gigaspace-interface-overview.html), [JPA](../dev-java/jpa-api-overview.html) , Session Bean (Stateless or Stateful) {{% star %}}, Entity Bean {{% star %}}|
-|Remoting|EJB, IIOP, RMI|[Spring remoting over LRMI](../dev-java/executor-based-remoting.html), EJB {{% star %}}|
+|Data Access|JDBC , Session Bean (Stateless or Stateful), Entity Bean|[JDBC](../dev-java/jdbc-driver.html), [Space](../dev-java/the-gigaspace-interface-overview.html), [JPA](../dev-java/jpa-api-overview.html) , Session Bean (Stateless or Stateful)<sup><b>1</b></sup>, Entity Bean<sup><b>1</b></sup> |
+|Remoting|EJB, IIOP, RMI|[Spring remoting over LRMI](../dev-java/executor-based-remoting.html), EJB<sup><b>1</b></sup> |
 |Web|Servlet, JSP | [Servlet, JSP via Jetty](../dev-java/web-application-overview.html)|
-|Packaging and deployment|EAR, WAR|[JAR](../dev-java/the-processing-unit-structure-and-configuration.html), [WAR](../dev-java/web-application-overview.html), EAR {{%  star %}}|
+|Packaging and deployment|EAR, WAR|[JAR](../dev-java/the-processing-unit-structure-and-configuration.html), [WAR](../dev-java/web-application-overview.html), EAR<sup><b>1</b></sup> |
 |Contexts and Dependency Injection|JSR 299|Spring IOC|
 |System Management|JMX|[JMX](../dev-java/snmp-connectivity-via-alert-logging-gateway.html) , [SNMP](../dev-java/snmp-connectivity-via-alert-logging-gateway.html), [Native Admin API](../dev-java/administration-and-monitoring-overview.html)|
 |Java Naming and Directory Service|JNDI|[Jini Lookup Service](./about-jini.html)|
 
-{{%  star %}} Available via [EasyBeans](https://forge.ow2.org/projects/easybeans), [openejb](http://openejb.apache.org), [embedded jboss](http://docs.jboss.org/ejb3/embedded/embedded.html) or [embedded-glassfish](http://embedded-glassfish.java.net).
+<sup><b>1</b></sup>Available via [EasyBeans](https://forge.ow2.org/projects/easybeans), [openejb](http://openejb.apache.org), [embedded jboss](http://docs.jboss.org/ejb3/embedded/embedded.html) or [embedded-glassfish](http://embedded-glassfish.java.net).
 
 # Messaging Concepts & Patterns
 
