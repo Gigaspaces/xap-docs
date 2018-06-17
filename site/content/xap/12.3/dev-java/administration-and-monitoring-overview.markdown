@@ -737,6 +737,46 @@ static class SpacePartitionsComperator implements Comparator<SpacePartition>{
 }
 ```
 
+# MemoryXtend Statistics
+
+If you have a system that utilizes MemoryXtend, you can monitor the performance of the off-heap storage and the external disk storage. For a list of available blobstore operation statistics, see the [Predefined Metrics](../admin/metrics-bundled.html#blobstore-operations) page in the Administration guide.
+
+The following example demonstrates how to retrieve blobstore statistics using the Admin API.
+
+```java
+
+SpaceInstance spaceInstance =
+	admin.getSpaces().getSpaceByName( "MySpace" ).getInstances()[0];
+SpaceInstanceStatistics statistics = spaceInstance.getStatistics();
+if( statistics != null && statistics.getBlobStoreStatistics() != null ) {
+    BlobStoreStatistics blobStoreStatistics = statistics.getBlobStoreStatistics();
+   Collection<BlobStoreStorageStatistics> storageStatistics =
+                            blobStoreStatistics.getStorageStatistics();
+    if( storageStatistics != null && !storageStatistics.isEmpty() ) {
+        BlobStoreStorageStatistics blobStoreStorageStatistics =
+                                    storageStatistics.iterator().next();
+if (blobStoreStorageStatistics instanceof RocksDBBlobStoreStatistics) {
+ 	RocksDBBlobStoreStatistics rocksDBStatistics =
+    (RocksDBBlobStoreStatistics) blobStoreStorageStatistics;
+	long memtableHit = rocksDBStatistics.getMemtableHit();
+	long memtableMiss = rocksDBStatistics.getMemtableMiss();
+	long getHitL0 = rocksDBStatistics.getGetHitL0();
+	long getHitL1 = rocksDBStatistics.getGetHitL1();
+	long getHitL2AndUp = rocksDBStatistics.getHitL2AndUp();
+	long numberKeysWritten = rocksDBStatistics.getNumberKeysWritten();
+	long numberKeysRead = rocksDBStatistics.getNumberKeysRead();
+	long numberKeysUpdated = rocksDBStatistics.getNumberKeysUpdated();
+	long bytesWritten = rocksDBStatistics.getBytesWritten();
+	long bytesRead = rocksDBStatistics.getBytesRead();
+	long iterBytesRead = rocksDBStatistics.getIterBytesRead();
+	long numberMultigetCalls = 		rocksDBStatistics.getNumberMultigetCalls();
+	long numberMultigetKeysRead = 		rocksDBStatistics.getNumberMultigetKeysRead();
+	long numberMultigetBytesRead = 	rocksDBStatistics.getNumberMultigetBytesRead();
+      }
+}
+``` 
+
+
 # Monitoring the Mirror Service
 
 You can monitor various aspects of the mirror service using the Admin API.

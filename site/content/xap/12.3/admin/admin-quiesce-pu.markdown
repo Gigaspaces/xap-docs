@@ -459,7 +459,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 *Command:*
 
-`xap pu decrement <name> <instance ID>`
+`xap pu decrement <instance ID>`
 
 *Description:*
  
@@ -468,14 +468,13 @@ This command removes one instance from the specified Processing Unit (which must
 *Input Example:*
 
 ```bash
-<XAP-HOME>/bin/xap pu decrement myPu myPu~3
+<XAP-HOME>/bin/xap pu decrement myPu~3
 ```
 
 *Parameters and Options:*
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | name | Provide the name of the stateless Processing unit to decrement. |
 |Parameter | instance ID | Provide the ID of the Processing Unit instance to be removed. |
  
  
@@ -500,7 +499,6 @@ curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| pu name | Provide the name of the stateless Processing Unit to be decremented. | Yes |
 | instanceId | Provide the instance ID of the Processing Unit instance to be removed. | Yes |
 {{%/tab%}}
 
