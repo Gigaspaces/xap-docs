@@ -8,10 +8,6 @@ weight:
 
 This page contains early access information for XAP and InsightEdge 12.3.1, which is scheduled for release in Q2 2018. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
 
-{{%warning "Important"%}}
-In this milestone only, when trying to start Insightedge using the Python API the PySpark shell fails to start. This issue will be resolved in the next milestone.
-{{%/warning%}}
-
 {{%infosign%}} If you're just getting started with version 12.3.1, we recommend reading the [What's New](/xap/12.3/rn/whats-new.html) page in the general release notes.
 
 {{%tip "Disclaimer"%}}
@@ -19,7 +15,7 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
-# 12.3.1 RC1 (Jun-10-2018)
+# 12.3.1 RC1 (Jun-17-2018)
 
 ## Download Links
 
