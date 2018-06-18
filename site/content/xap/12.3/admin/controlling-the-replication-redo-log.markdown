@@ -68,7 +68,7 @@ If it affects them, we recommend they re-calibrate the replication settings to t
 
 Here are the parameters you may configure to tune the redo log behavior. You may configure the redo log behavior between replicated spaces and between the spaces and the Mirror:
 
-| Space Cluster Property | Description | Default Value for partitioned | Default Value for replicated clusters |
+| Space Cluster Property | Description | Default Value for mirror | Default Value for replicated clusters |
 |:-----------------------|:------------|:------------------------------------------|:--------------------------------------|
 |cluster-config.groups.group.repl-policy.redo-log-capacity | Specifies the total capacity of replication packets the redo log can hold for a standard replication target.| 150000 | -1/unlimited |
 |cluster-config.groups.group.repl-policy.redo-log-memory-capacity | Specifies the maximum number of replication packets the redo log keeps in memory.| 150000 | -1/unlimited |
