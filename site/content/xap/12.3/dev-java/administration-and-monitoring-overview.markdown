@@ -741,7 +741,7 @@ static class SpacePartitionsComperator implements Comparator<SpacePartition>{
 
 If you have a system that utilizes MemoryXtend, you can monitor the performance of the off-heap storage and the external disk storage. For a list of available blobstore operation statistics, see the [Predefined Metrics](../admin/metrics-bundled.html#blobstore-operations) page in the Administration guide.
 
-The following example demonstrates how to retrieve blobstore statistics using the Admin API.
+The following example (relevant for the disk storage driver) demonstrates how to retrieve RocksDB statistics using the Admin API.
 
 ```java
 
