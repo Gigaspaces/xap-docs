@@ -28,24 +28,22 @@ The graph in the lower area of the tab display the following information, depend
 - **Display TP (Operations/Sec) History** - displays the current throughput performance (operations per second).
 - **Display Total Operations Count History** - displays the history of the Space operations, namely the number of operations performed since you began working with the Space.
 
-Use the following options to configure the view behavior:
+Use the following options to modify the view behavior:
 
-- **History Measurement Duration** - configure how much history to save for the view.
-- **Enable History Graphs** - disable to stop displaying current statistics in the view.
+- **History Measurement Duration** - configure how much history to display in the view and click **Apply**.
+- **Enable History Graphs** - clear this check box to stop displaying current statistics in the view.
 - **Export** - click to export the operation statistics in a Microsoft Excel file.
 - **Clear Graph**  -- click to clear the graph.
 
 # MemoryXtend Statistics
 
-The MemoryXtend tab displays the following information:
-
-- Cache statistics for the off-heap storage driver
+The MemoryXtend tab is only visible if you have [MemoryXtend](./memoryxtend-overview.html) in your system. The tab displays cache statistics for the off-heap storage.
 
 {{% align left %}}
 ![off-heap driver stats.png](/attachment_files/admin/off-heap driver stats.png)
 {{% /align %}}
 
-- Cache and blobstore statistics for the disk storage driver.
+If you have the disk storage driver configured, you can also view the blobstore (RocksDB) statistics.
 
 {{% align left %}}
 ![disk driver stats.png](/attachment_files/admin/disk driver stats.png)

@@ -216,7 +216,7 @@ The following statistics are displayed for off-heap storage:
 	</tr>
 	<tr>
 		<td>Used Cache Size</td>
-		<td>Amount of memory currently being used of the off-heap cache, in MB.</td>
+		<td>Amount of off-heap cache memory currently being used, in MB.</td>
 	</tr>
 	<tr>
 		<td>Cache Miss</td>
