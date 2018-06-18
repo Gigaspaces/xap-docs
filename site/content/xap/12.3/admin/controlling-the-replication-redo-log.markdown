@@ -75,6 +75,7 @@ Here are the parameters you may configure to tune the redo log behavior. You may
 |cluster-config.groups.group.repl-policy.redo-log-recovery-capacity | Specifies the total capacity of replication packets the redo log can hold for a standard replication target while it is undergoing a recovery process.| 5000000 | -1/unlimited |
 |cluster-config.groups.group.repl-policy.on-redo-log-capacity-exceeded| See the [Handling an Increasing Redo Log](#handling-an-increasing-redo-log) for details. | drop-oldest | block-operations |
 |cluster-config.groups.group.repl-policy.on-missing-packets| Options: ignore , recover. See the [Handling Dropped Replication Packets](#handling-dropped-replication-packets) for details. | recover | ignore |
+|cluster-config.groups.group.repl-policy.redo-log-compaction| Options: mirror,none. See [Redo Log Compaction](#Redo-Log-Compaction) for details. | mirror | irrelevant |
 |cluster-config.mirror-service.redo-log-capacity | Specifies the total capacity of replication packets the redo log can hold for a mirror service replication target.|1000000| irrelevant |
 |cluster-config.mirror-service.on-redo-log-capacity-exceeded| See the [Handling an Increasing Redo Log](#handling-an-increasing-redo-log) for details. | block-operations | irrelevant |
 
@@ -107,6 +108,14 @@ For all of these parameters, -1 specifies unlimited behavior. When the memory ca
 The redo log capacity for a mirror service must be the same or higher than the redo log capacity for a non mirror target.
 
 These defaults are supposed to address the following scenario: a cluster tolerates a 4-5 minute backlog accumulated at the cluster members, without being replicated to the mirror, assuming a load of 3,000-5,000 transactions per second at each partition. Once the redo log size reaches this size, operations are blocked until the mirror reconnects and/or keeps up with the pace. For a backup space, the redo log is kept for a short disconnection of 20-30 seconds. Any disconnection longer than that is considered as if the backup is down, and it has to do a full recovery. Once the connection is re-established, its redo log is dropped without blocking operations.
+
+# Redo Log Compaction
+
+When `redo-log-compaction` is set to `mirror` compaction is performed on every packet that has been received by all replication targets
+except for the mirror and the packet is of a type that is @SpaceClass(persist=false) , which means the packet should not be persisted to the database.
+The compaction is a replacement of the full packet with a lightweight discarded packet.
+The redo log weight is affected by the compaction, we decrease the original packet weight and add the number-of-discarded-packet * 0.01.
+If you wish to disable the compaction you can set `redo-log-compaction` to `none`.
 
 # Handling an Increasing Redo Log
 
