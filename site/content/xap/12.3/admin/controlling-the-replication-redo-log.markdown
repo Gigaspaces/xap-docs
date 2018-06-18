@@ -69,17 +69,20 @@ These defaults are supposed to address the following scenario: a cluster tolerat
 
 ## Weight Policy
 
-Replication configuration is affected by the size of the redo log. It is measured in replication packets and various thresholds and policies that dictate system behavior. Transactions are replicated in a single packet (to ensure atomicity), so the redolog size may not be granular enough because transactions can include anywhere from a few to many sub-operations. Therefore, replication packets have weight, where simple operations weigh 1 and transactions weigh the sum of their sub-operations, which makes it easier to configure replication and increases the predictability of the replication. 
- 
-Two policies are available:
+Transactions are replicated in a single packet (to ensure atomicity), and the packet weight is the sum of the transaction operations it contains. Replication configuration is affected by the weight (size) of the redo log, which is a record of the packets that have accumulated prior to replicating to the target.  
 
-- **Fixed**<br>
-All packets have a weight of 1.
+
+Two policies are available:
 
 - **Accumulated** <br>
 A single write/take/update operation is translated into a packet with a weight of 1.<br>
 Multiple operations are translated into multiple single operations with a packet weight of 1.<br>
 A transaction is translated into a packet with the accumulated weight of all the single operations within the transaction.
+
+- **Fixed**<br>
+All packets have a weight of 1.
+
+
 
 You can use the `cluster-config.groups.group.repl-policy.backlog-weight-policy` property to configure the weight policy:
 
@@ -107,7 +110,7 @@ ptm.commit(status);
 
 Redo log compaction means replacing the full packet with a lightweight discarded packet. The redo log weight is affected by the compaction, so the original packet weight is decreased and the (number-of-discarded-packet * 0.01) is added.
 
-When the `redo-log-compaction` parameter is set to `mirror`, compaction is performed on every packet that has been received by all replication targets except for the mirror, and for packets of type `@SpaceClass(persist=false)`, which means the packet should not be persisted to the database. 
+When the `redo-log-compaction` parameter is set to `mirror`, compaction is performed on every packet that has been received by all replication targets except for the mirror, and only for packets of type `@SpaceClass(persist=false)` (which means the packet should not be persisted to the database). 
 
 To disable compaction, set the `redo-log-compaction` parameter to `none`.
 
