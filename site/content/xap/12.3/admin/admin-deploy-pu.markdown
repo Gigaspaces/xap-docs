@@ -37,6 +37,7 @@ Deploys a Processing Unit to the service grid.
 |Option    |schema=\<schema\>|Cluster schema/topology (partitioned, sync_replicated, async_replicated).|
 |Option    |requires-isolation| If this Processing Unit should not share a container, adding this option provisions the Processing Unit in a dedicated container. |
 |Option    |zones=\<zones\>| Define which zones can host this Processing Unit.|
+|Option    |primary-zones=\<a,b,c\>| Define a list of preferred zones for primary instances (applies only when [Deterministic Deployment](./the-sla-deterministic.html) is configured).|
 
  
 *Input Example:*
@@ -85,11 +86,12 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 |name | Name of the Processing Unit.| Yes |
 |resource|File/Path to the Processing Unit file (.jar or .zip). | Yes|
 |schema | Type of clustering schema/topology to use. | No| 
-|instances | Number of instances to deploy | No|
-|partitions| Number of partitions | No|
+|instances | Number of instances to deploy. | No|
+|partitions| Number of partitions. | No|
 |backupsPerPartition|Number of backups per partition. | No| 
 |requiresIsolation| If this Processing Unit should not share a container, adding this option provisions the Processing Unit in a dedicated container. | No|
 |zones|Which zones can host this processing unit. | No|
+|primaryZones|Define a list of preferred zones for primary instances (applies only when [Deterministic Deployment](./the-sla-deterministic.html) is configured). | No|
 |contextProperties  |Context properties. | No|
  
 
