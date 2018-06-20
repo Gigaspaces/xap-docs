@@ -36,7 +36,7 @@ This page list all the third-party libraries shipped with InsightEdge and XAP on
 
 | Product | Version | License |
 |:--------|:--------|:--------|
-| [Apache Spark](https://spark.apache.org/) | 2.3 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
+| [Apache Spark](https://spark.apache.org/) | 2.3.1 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
 | [Apache Zeppelin](https://zeppelin.apache.org/) | 0.7.2 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) |
 | [Apache Calcite](https://calcite.apache.org/) | 1.11.0 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | 
 
