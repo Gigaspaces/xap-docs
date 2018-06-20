@@ -24,7 +24,7 @@ When corporate policy requires leveraging remote sites for disaster recovery or 
 The Primary-Backup Zone Controller used with Deterministic Deployment should be deployed with the data grid Processing Unit. The controller allows you to specify a specific zone for primary instances and a different zone for backup instances. When the Primary-Backup Zone Controller is deployed/started, it relocates all the primary instances to GSCs that are associated with the primary zone and later relocates all the backup instances to GSCs that are associated with the backup zone. The Primary-Backup Zone Controller periodically checks the status of the deployed data grid and relocates relevant instances as needed.
 
 {{% align center%}}
-![primarybackupzonecontroller.jpg](/attachment_files/primarybackupzonecontroller.jpg)
+![primary-backup-zones.png](/attachment_files/admin/primary-backup-zones.png)
 {{%/align%}}
 
 # Example

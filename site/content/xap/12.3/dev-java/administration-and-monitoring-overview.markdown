@@ -348,8 +348,7 @@ This means that just creating the `Admin` and calling a specific "getter" for a 
 
 The Admin Domain Model has representation to all the XAP-level main actors. They include:
 
-![admin_DomainModel.jpg](/attachment_files/admin_DomainModel.jpg)
-
+<img src="/attachment_files/admin/admin_domain_model.png" width=569" height="388" />
 
 {{%section%}}
 {{%column width="45%" %}}
