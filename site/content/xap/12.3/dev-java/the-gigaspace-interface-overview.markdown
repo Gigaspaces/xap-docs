@@ -27,7 +27,7 @@ For more information about Spaces, refer to [The Space Operations](./the-space-o
 A client communicating with a an embedded Space performs all its operations via local connection. There is no network overhead when using this approach.
 
 {{%align center%}}
-![embedded-space.jpg](/attachment_files/embedded-space.jpg)
+<img src="/attachment_files/devguide/space-embedded.png" width=239" height="161" />
 {{%/align%}}
 
 The following is an example of how to create an embedded Space. The `EmbeddedSpaceConfigurer` is used to configure the Space URL:
@@ -69,7 +69,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 The Embedded space can be used in a distributed architecture such as the replicated or partitioned clustered space:
 
 {{%align center%}}
-![replicated-space1.jpg](/attachment_files/replicated-space1.jpg)
+<img src="/attachment_files/devguide/space-replicated.png" width=521" height="161" />
 {{%/align%}}
 
 A simple way to use the embedded Space in a clustered architecture is by deploying a [clustered Space](../admin/data-grid-clustering.html), or packaging your application as a [Processing Unit](./the-processing-unit-overview.html) and deploying it using the relevant SLA.
@@ -79,7 +79,7 @@ A simple way to use the embedded Space in a clustered architecture is by deployi
 A client communicating with a remote Space performs all its operations via a remote connection. The remote Space can be partitioned (with or without backups) or replicated (based on synchronous or asynchronous replication).
 
 {{% align center %}}
-![remote-space.jpg](/attachment_files/remote-space.jpg)
+<img src="/attachment_files/devguide/space-remote.png" width=783" height="160" />
 {{% /align %}}
 
 The following is an example of how a client application can create a proxy for interacting with a remote Space:
@@ -132,7 +132,7 @@ When working with a **remote Space**, the Space may become unavailable (due to n
 XAP supports a [local cache](./local-cache.html) (near cache) configuration. This provides a front-end, client-side cache that is used with the `read` operations implicitly. The local cache is loaded on demand or when you perform a `read` operation, and is updated implicitly by the Space.
 
 {{%align center%}}
-![local_cache.jpg](/attachment_files/local_cache.jpg)
+<img src="/attachment_files/devguide/space-local-cache.png" width=521" height="160" />
 {{%/align%}}
 
 The following is an example of a `GigaSpace` construct with a local cache:
@@ -185,7 +185,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 XAP supports a [local view](./local-view.html) configuration. This provides a front-end, client-side cache that is used with any `read` or `readMultiple` operations implicitly. The local view is loaded on start, and is updated implicitly by the Space.
 
 {{% align center %}}
-![local_view.jpg](/attachment_files/local_view.jpg)
+<img src="/attachment_files/devguide/space-local-view.png" width=521" height="160" />
 {{% /align %}}
 
 Here is an example for a `GigaSpace` construct with a local cache:
