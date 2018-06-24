@@ -15,6 +15,27 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 12.3.1 RC2 (Jun-24-2018)
+
+## Download Links
+
+* [InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-12.3.1-rc2-b19212.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/12.3.1/gigaspaces-insightedge-enterprise-12.3.1-rc2-b19212.zip) 
+
+* [XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-12.3.1-rc2-b19212.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap-enterprise-12.3.1-rc2-b19212.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/12.3.1/gigaspaces-xap.net-12.3.1-rc2-b19212.msi)
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13572" %}}: XAP and InsightEdge demo command should fail if XAP_MANAGER_SERVERS is configured.
+- {{% jira id="GS-13571" %}}: Enable building Python notebook in build process for InsightEdge Zeppelin tutorial.
+- {{% jira id="GS-13581" %}}: Upgrade Apache Spark to version 2.3.1.
+- {{% jira id="GS-13428" %}}: Enhance REST API and CLI to support primary zones.
+
+### Resolved Issues
+
+- {{% jira id="GS-13478" %}}: Change operation replicated to mirror can cause NPE in certain failover scenarios.
+
 # 12.3.1 RC1 (Jun-17-2018)
 
 ## Download Links
