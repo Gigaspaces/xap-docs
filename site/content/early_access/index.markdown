@@ -144,7 +144,7 @@ N/A
 - {{% jira id="GS-13485" %}}: Improve memory allocation by pre-allocating ArrayList instances in the SQL execution engine.
 - {{% jira id="GS-13519" %}}: Upgrade RocksDB to 5.11.3.
 - {{% jira id="GS-13524" %}}: Display blobstore operation statistics in the Web Management Console.
-- {{% jira id="GS-13532" %}}: Enable configuring the MINIMAL_BUFFER_DIFF_TO_ALLOCATE property of the  OffHeapMemoryPool .
+- {{% jira id="GS-13532" %}}: Enable configuring the MINIMAL_BUFFER_DIFF_TO_ALLOCATE property of the  OffHeapMemoryPool.
 
 ### Resolved Issues
 

@@ -35,7 +35,7 @@ With this mechanism, the IMDG is the system of record. The database data is load
 - When running in `LRU` [cache policy](../dev-java/memory-management-overview.html) mode, a subset of the data is loaded from the database into the cache when it is started. Data is evicted from the cache based on available memory or a maximum amount of cache objects. Once there is a cache miss, the cache looks for the data within the underlying data-source. If matching data is found, it is loaded into the cache and delivered to the application.
 
 {{% align center%}}
-![in-line-cache.jpg](/attachment_files/in-line-cache.jpg)
+![in-line-cache.png](/attachment_files/overview/in-line-cache.png)
 {{% /align%}}
 
 The in-line cache is implemented using the following configurations:
@@ -77,13 +77,15 @@ With this mechanism, the application is responsible for maintaining the data in 
 **Side Cache without an External Data Source**
 
 {{% align center%}}
-![side_cache.jpg](/attachment_files/side_cache.jpg)
+<img src="/attachment_files/overview/side-cache.png" width=644" height="231" />
 {{% /align%}}
+
+<br>
 
 **Side Cache with an External Data Source**
 
 {{% align center%}}
-![side_cache-lazy.jpg](/attachment_files/side_cache-lazy.jpg)
+<img src="/attachment_files/overview/side-cache-external-data.png" width=644" height="231" />
 {{% /align%}}
 
 With a side cache architecture, there is no mirror. The application is responsible for writing changes to the database. Data is evicted or expired from the space by writing it with a finite lease (TTL). There are two options for loading data into the space:
@@ -117,19 +119,24 @@ When using client cache, you use a two-layered cache architecture: The first lay
 **In-Line Cache with a Client Cache**
 
 {{% align center%}}
-![in-line_cache-local-cache.jpg](/attachment_files/in-line_cache-local-cache.jpg)
+![in-line-cache_local.png](/attachment_files/overview/in-line-cache_local.png)
+
 {{% /align%}}
+
+<br>
 
 **Side Cache with a Client Cache**
 
 {{% align center%}}
-![side-cache-local-cache.jpg](/attachment_files/side-cache-local-cache.jpg)
+<img src="/attachment_files/overview/side-cache-client-cache.png" width=648" height="224" />
 {{% /align%}}
+
+<br>
 
 **Side Cache using an External Data Source with a Client Cache**
 
 {{% align center%}}
-![side_cache-lazy-localcache.jpg](/attachment_files/side_cache-lazy-localcache.jpg)
+<img src="/attachment_files/overview/side-cache-external-data-local-cache.png" width=644" height="231" />
 {{% /align%}}
 
 The client cache size is limited to the client process heap size. The client-side cache is updated automatically when the master copy of the object within the IMDG is updated. The client cache can be implemented using the following configurations:
@@ -163,7 +170,7 @@ Here are few options you may use to refresh the cache:
 With this approach, data is pushed into the cache in a periodic manner via a timer. The timer fetches relevant data that was recently updated within the database and pushes it into the cache.
 
 {{% align center%}}
-![query-service.jpg](/attachment_files/query-service.jpg)
+<img src="/attachment_files/overview/refresh-data-timer.png" width=714" height="250" />
 {{% /align%}}
 
 ## Refresh Data using a Queue
@@ -171,7 +178,7 @@ With this approach, data is pushed into the cache in a periodic manner via a tim
 Any updates made to the database are also written to a queue. Refresher client consumes the messages on the queue and applies these changes to space.
 
 {{% align center%}}
-![queue-refresh.jpg](/attachment_files/queue-refresh.jpg)
+<img src="/attachment_files/overview/refresh-data-queue.png" width=554" height="503" />
 {{% /align%}}
 
 ## Refresh Data using Database Change Notifications
@@ -179,5 +186,5 @@ Any updates made to the database are also written to a queue. Refresher client c
 Oracle and several other databases support [Database Change Notifications](/sbp/oracle-delta-server.html), where a client can register a listener for changes to data. Any changes made to the database will trigger the listener defined in a DCN Client. The Listener can in turn write these messages into the space.
 
 {{% align center%}}
-![Database Change Notification.png](/attachment_files/Database Change Notification.png)
+<img src="/attachment_files/overview/refresh-data-DCN.png" width=554" height="484" />
 {{% /align%}}

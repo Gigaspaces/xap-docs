@@ -13,7 +13,7 @@ A Space Filter is a special hook point inside the engine that enables integratio
 
 
 {{% align center%}}
-![Space Filter.JPG](/attachment_files/Space Filter.JPG)
+<img src="/attachment_files/devguide/space-filter.png" width=478" height="336" />
 {{%/align%}}
 
 # Integrating the Space Filter with a Space

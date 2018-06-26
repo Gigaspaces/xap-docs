@@ -18,7 +18,7 @@ A `SpaceSynchronizationEndpoint` implementation can make use of the [Change API]
 Asynchronous Persistence
 
 {{%align center%}}
-![change-API-async-persistence.png](/attachment_files/devguide/change-API-async-persistence.png)
+<img src="/attachment_files/devguide/change-API-async-persistence.png" width=690" height="292" />
 {{%/align  %}}
 
 

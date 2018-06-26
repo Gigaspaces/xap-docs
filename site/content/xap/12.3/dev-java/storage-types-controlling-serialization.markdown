@@ -19,16 +19,17 @@ Each non-primitive space object property can be assigned a storage type decorati
 
 {{%tabs%}}
 {{%tab "Object Mode"%}}
-![storage-type-object.jpg](/attachment_files/storage-type-object.jpg)
+<img src="/attachment_files/devguide/storage-object.png" width=554" height="267" />
 {{% /tab %}}
 {{%tab "Binary Mode"%}}
-![storage-type-binary.jpg](/attachment_files/storage-type-binary.jpg)
+<img src="/attachment_files/devguide/storage-binary.png" width=601" height="266" />
 {{% /tab %}}
 {{%tab "Compressed Mode"%}}
-![storage-type-compressed.jpg](/attachment_files/storage-type-compressed.jpg)
+<img src="/attachment_files/devguide/storage-compressed.png" width=631" height="266" />
 {{% /tab %}}
 {{% /tabs %}}
 
+<br>
 The default storage type can be determined for the entire space and/or for a specific space class. If a default storage type is not defined for the space, then the default value is OBJECT. Each property for which a storage type was not defined gets the class's default storage type if that exists and the space storage type if it doesn't.
 
 # Why Use a Storage Type Different than OBJECT

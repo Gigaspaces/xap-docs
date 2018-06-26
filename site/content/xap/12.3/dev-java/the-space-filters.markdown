@@ -11,7 +11,7 @@ Space Filters are interceptors inside the XAP Space engine that enable integrati
 
 
 {{% align center%}}
-![Space Filter.JPG](/attachment_files/Space Filter.JPG)
+<img src="/attachment_files/devguide/space-filter.png" width=478" height="336" />
 {{%/align%}}
 
 # Space Filters

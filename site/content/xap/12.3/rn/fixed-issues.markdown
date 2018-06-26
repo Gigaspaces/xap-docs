@@ -6,7 +6,66 @@ parent: none
 weight: 300
 ---
 
-This section lists the changes that were made in InsightEdge Platform 12.3.
+This section lists the changes that were made in InsightEdge Platform 12.3.x.
+
+# 12.3.1
+
+This service pack was released in July 2018.
+
+## Improvements
+
+- {{% jira id="GS-13518" %}}: Sort results for REST operations related to Spaces and Processing Units.
+- {{% jira id="GS-13511" %}}: CLI Auto Complete.
+- {{% jira id="GS-13510" %}}: Simplified the CLI command "pu decrement" to receive only one parameter: pui_id.
+- {{% jira id="GS-13513" %}}: Enhance CLI output to display "N/A" instead of "-1" where relevant.
+- {{% jira id="GS-13515" %}}: Upgrade Apache Curator to 4.0.1.
+- {{% jira id="GS-13485" %}}: Improve memory allocation by pre-allocating ArrayList instances in the SQL execution engine.
+- {{% jira id="GS-13519" %}}: Upgrade RocksDB to 5.11.3.
+- {{% jira id="GS-13524" %}}: Display blobstore operation statistics in the Web Management Console.
+- {{% jira id="GS-13532" %}}: Enable configuring the MINIMAL_BUFFER_DIFF_TO_ALLOCATE property of the  OffHeapMemoryPool.
+- {{% jira id="GS-13552" %}}: Share a single instance of Curator Framework client to support large-scale deployments.
+- {{% jira id="GS-13551" %}}: Handle Apache Curator leader election events in a single threaded queue.
+- {{% jira id="GS-13557" %}}: Configure Spark to include InsightEdge dependencies on startup.
+- {{% jira id="GS-13564" %}}: Upgrade Spring to 4.3.17.
+- {{% jira id="GS-13562" %}}: Upgrade Apache Zookeeper to 3.4.12 and Netty to 3.10.6.Final.
+- {{% jira id="GS-13494" %}}: Upgrade Apache Spark to 2.3.0.
+- {{% jira id="GS-13569" %}}: Log fills up with "unmarshalling failure" messages when a cluster partition member is unreachable.
+- {{% jira id="GS-13572" %}}: XAP and InsightEdge demo command should fail if XAP_MANAGER_SERVERS is configured.
+- {{% jira id="GS-13571" %}}: Enable building Python notebook in build process for InsightEdge Zeppelin tutorial.
+- {{% jira id="GS-13581" %}}: Upgrade Apache Spark to version 2.3.1.
+- {{% jira id="GS-13428" %}}: Enhance REST API and CLI to support primary zones.
+
+## Resolved Issues
+
+- {{% jira id="GS-13520" %}}: Could not display the off-heap columns in the Web Management Console (in systems with MemoryXtend).
+- {{% jira id="GS-13505" %}}: Running the demo command in the CLI using off-heap generates a NoClassDefFoundError.
+- {{% jira id="GS-13502" %}}: Provisioning a Space instance fails on "Identified another participant with the same name for Space".
+- {{% jira id="GS-13517" %}}: Index intersection optimization did not work as expected.
+- {{% jira id="GS-13512" %}}: Insightedge CLI command fails to start Spark master and Spark worker when XAP_MANAGER_SERVERS is not configured.
+- {{% jira id="GS-13509" %}}: Unhealthy Space remains in Stopped state indefinitely after a network failure.
+- {{% jira id="GS-13508" %}}: Apache ZooKeeper sometimes fails to create a data directory on startup.
+- {{% jira id="GS-13521" %}}: Space instance recovery fails on "Failed while getting participants from zookeeper server".
+- {{% jira id="GS-13486" %}}: IllegalArgumentException: A metric named process_cpu_time-total already exists.
+- {{% jira id="GS-13521" %}}: Space instance recovery fails on "Failed while getting participants from zookeeper server".
+- {{% jira id="GS-13486" %}}: IllegalArgumentException: A metric named process_cpu_time-total already exists.
+- {{% jira id="GS-13451" %}}: The SQL query "SELECT COUNT (...) GROUP BY" doesn't work on  nested properties in the Web Management Console.
+- {{% jira id="GS-13537" %}}: The SQL query "SELECT COUNT (...) GROUP BY" doesn't work  in the Web Management Console when it includes enums.
+- {{% jira id="GS-13469" %}}: Remoting service routes incorrectly when the routing key is long, and if the value is higher than the max integer.
+- {{% jira id="GS-13544" %}}: If a demotion event is sent shortly after an election event, the XAP Manager mishandles the second event and enters an inconsistent state.
+- {{% jira id="GS-13548" %}}: Storing the blobStoreVersion not implemented in MemoryXtend off-heap driver.
+- {{% jira id="GS-13539" %}}: The Java 8 LocalDateTime is not shown in the Web Management Console object inspector.
+- {{% jira id="GS-13496" %}}: The Replication Channels metrics for partition clusters are not being reported.
+- {{% jira id="GS-13547" %}}: ServerTypeDesc tree was not cloned correctly.
+- {{% jira id="GS-13559" %}}: Display blobstore operation statistics in the GigaSpaces Management Center.
+- {{% jira id="GS-13531" %}}: SpaceTypeDescriptorBuilder fails when explicitly indexing the routing key using deprecated values.
+- {{% jira id="GS-13541" %}}: Manager class path does not include cert file located in 'com.gigaspaces.lib.opt.security' directory.
+- {{% jira id="GS-13565" %}}: Space instance becomes backup although it is offered leadership by Apache Zookeeper.
+- {{% jira id="GS-13478" %}}: Change operation replicated to mirror can cause NPE in certain failover scenarios.
+
+# 12.3.0
+
+The main version was released in March 2018.
+
 
 # Features and Enhancements
 
