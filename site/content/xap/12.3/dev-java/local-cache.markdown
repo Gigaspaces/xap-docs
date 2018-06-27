@@ -11,7 +11,7 @@ weight: 100
 A Local Cache is a client-side cache that maintains a subset of the master Space's data based on the client application's recent activity. The local cache is created empty, and whenever the client application executes a query the local cache first tries to fulfill it from the cache, otherwise it executes it on the master Space and caches the result locally for future queries.
 
 {{% align center %}}
-![local_cache.jpg](/attachment_files/local_cache.jpg)
+<img src="/attachment_files/devguide/space-local-cache.png" width=521" height="160" />
 {{% /align %}}
 
 

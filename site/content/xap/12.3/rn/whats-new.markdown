@@ -41,11 +41,12 @@ To get started with the new CLI, simply navigate to the **bin** folder and run `
 
 The following is a partial list of the available functionality:
 
-- Start and stop an agent (gs-agent) on the current host.
+- Start and stop a Grid Servie Agent (gs-agent) on the current host
 - Deploy and manage a Processing Unit or Space
 - List, create, kill, and restart containers (GSCs)
 - List hosts
 - List Spaces and Space instances
+- Autocomplete of commands
 
 The previous GigaSpaces CLI is still provided and supported, but will be removed in future versions. We encourage users to try the new CLI, and welcome feedback and requests for improvements.
 
@@ -73,13 +74,10 @@ The new `ORDERED` index consumes less memory than `EQUAL_AND_ORDERED`, at the co
 
 # Third-Party Product Changes
 
-{{%note "Support for Apache Spark 2.3"%}}
-The InsightEdge platform supports Apache Spark version 2.3. Due to lack of support for Apache Spark version 2.3 in the current Apache Zeppelin version, InsightEdge is packaged with Apache Spark 2.2. Customers that do not use Apache Zeppelin and have their own Apache Spark implementation can use version 2.3 with GigaSpaces products.
-{{%/note%}}
-
-* [Apache Zookeeper](https://zookeeper.apache.org/) has been upgraded to `3.4.10`
+* [Apache Spark](https://spark.apache.org/) has been upgraded to `2.3.1`
+* [Apache Zookeeper](https://zookeeper.apache.org/) has been upgraded to `3.4.12`
 * [Jetty](http://www.eclipse.org/jetty/) package has been upgraded to `9.2.24`
-* [Spring Framework](https://projects.spring.io/spring-framework/) integration has been upgraded to `4.3.13`
+* [Spring Framework](https://projects.spring.io/spring-framework/) integration has been upgraded to `4.3.17`
 * [Spring Security](http://projects.spring.io/spring-security/) integration has been upgraded to `4.2.3`
 
 # End-Of-Life and Deprecated Features and Functionality

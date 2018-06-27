@@ -17,7 +17,7 @@ Data is streamed into the client application's local view based on predefined cr
 During the local view initialization, data is loaded into the client's memory based on the view criteria. Afterwards, the local view is continuously updated by the master Space asynchronously; any operation executed on the master Space that affects an entry matching the view criteria is automatically propagated to the client.
 
 {{% align center %}}
-![local_view.jpg](/attachment_files/local_view.jpg)
+<img src="/attachment_files/devguide/space-local-view.png" width=521" height="160" />
 {{% /align %}}
 
 The following operations are supported (they are served by the local view). The master Space is not accessed when calling these:

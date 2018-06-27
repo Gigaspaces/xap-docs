@@ -28,12 +28,16 @@ This service pack was released in July 2018.
 - {{% jira id="GS-13557" %}}: Configure Spark to include InsightEdge dependencies on startup.
 - {{% jira id="GS-13564" %}}: Upgrade Spring to 4.3.17.
 - {{% jira id="GS-13562" %}}: Upgrade Apache Zookeeper to 3.4.12 and Netty to 3.10.6.Final.
-- {{% jira id="GS-13494" %}}: Upgrade Apache Spark to 2.3.0.
 - {{% jira id="GS-13569" %}}: Log fills up with "unmarshalling failure" messages when a cluster partition member is unreachable.
 - {{% jira id="GS-13572" %}}: XAP and InsightEdge demo command should fail if XAP_MANAGER_SERVERS is configured.
 - {{% jira id="GS-13571" %}}: Enable building Python notebook in build process for InsightEdge Zeppelin tutorial.
 - {{% jira id="GS-13581" %}}: Upgrade Apache Spark to version 2.3.1.
 - {{% jira id="GS-13428" %}}: Enhance REST API and CLI to support primary zones.
+- {{% jira id="GS-13542" %}}: Display redo log information in the Web Management Console.
+- {{% jira id="GS-13579" %}}: Remove dashes from new CLI output to simplify output parsing.
+- {{% jira id="GS-13582" %}}: Support public and private IP addresses for Docker deployment.
+- {{% jira id="GS-13563" %}}: Decouple JPA integration from OpenSpaces module.
+
 
 ## Resolved Issues
 
@@ -51,7 +55,7 @@ This service pack was released in July 2018.
 - {{% jira id="GS-13451" %}}: The SQL query "SELECT COUNT (...) GROUP BY" doesn't work on  nested properties in the Web Management Console.
 - {{% jira id="GS-13537" %}}: The SQL query "SELECT COUNT (...) GROUP BY" doesn't work  in the Web Management Console when it includes enums.
 - {{% jira id="GS-13469" %}}: Remoting service routes incorrectly when the routing key is long, and if the value is higher than the max integer.
-- {{% jira id="GS-13544" %}}: If a demotion event is sent shortly after an election event, the XAP Manager mishandles the second event and enters an inconsistent state.
+- {{% jira id="GS-13544" %}}: The XAP Manager mishandles pending requests when its leadership is relinquished.
 - {{% jira id="GS-13548" %}}: Storing the blobStoreVersion not implemented in MemoryXtend off-heap driver.
 - {{% jira id="GS-13539" %}}: The Java 8 LocalDateTime is not shown in the Web Management Console object inspector.
 - {{% jira id="GS-13496" %}}: The Replication Channels metrics for partition clusters are not being reported.
@@ -61,6 +65,11 @@ This service pack was released in July 2018.
 - {{% jira id="GS-13541" %}}: Manager class path does not include cert file located in 'com.gigaspaces.lib.opt.security' directory.
 - {{% jira id="GS-13565" %}}: Space instance becomes backup although it is offered leadership by Apache Zookeeper.
 - {{% jira id="GS-13478" %}}: Change operation replicated to mirror can cause NPE in certain failover scenarios.
+- {{% jira id="GS-13546" %}}: The `xap space run` CLI command fails when XAP_MANAGER_SERVERS is defined.
+- {{% jira id="GS-13543" %}}: Queries using the DISTINCT keyword do not work in the Web Management Console.
+- {{% jira id="GS-13538" %}}: Web Management Console displayed different values in the Monitoring tab and the Space statistics view for the number of data objects written to a Space.
+- {{% jira id="GS-13577" %}}: The 'pu undeploy' CLI command returns an error when the resource JAR file is not found in the resources directory.
+- {{% jira id="GS-13584" %}}: The 'xap pu run' CLI command might leave orphan sub-processes in some scenarios.
 
 # 12.3.0
 
