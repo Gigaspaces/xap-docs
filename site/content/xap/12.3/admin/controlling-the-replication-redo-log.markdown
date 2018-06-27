@@ -10,7 +10,7 @@ weight: 600
 On replicated clusters, each member (which is a source that sends replication events to its targets) has a replication redo log. This is a list of pending replication packets that need to be dispatched to the different targets.
 
 {{% align center%}}
-![replication_redo_log.png](/attachment_files/admin/replication_redo_log.png)
+<img src="/attachment_files/admin/replication_redo_log.png" width=690" height="292" />
 {{% /align%}}
 
 A replication packet is either a single non-transactional "destructive" (write/take/update) operation, or a group of these operations that are done under the same transaction. The redo log contains a single list that is kept for all the targets, and for each target a different state is maintained, which represents its position in the redo log. When the cluster is in a normal state, this redo log should remain at some low constant size. However, in certain common scenarios, such as a momentary network disconnection or a burst of high load, the redo log keeps all the pending events that need to be replicated until the source member manages to re-establish connection with the target, or until the replication target manages to catch up with the temporary load. As a result, the redo log size increases and can become quite large, depending on the different cluster usage, which affects the rate of creating replicated events.
@@ -164,13 +164,13 @@ For instance, consider a situation where you have a mirror, and you want the sys
 
 When EDS is used with the central data source set to false, (which means each cluster member has its own private database), a backup Space recovers from its private database once re-started, and not from its primary Space. Therefore if  `drop-oldest` replication mode is used, the dropped packets never reach the backup Space and these members remain out of sync.
 
-# Getting the Redo Log Size
+# Monitoring the Redo Log Size
 
-You can get the redo log size via the GigaSpaces Management Center, or via the Admin API.
+You can see the redo log size using the GigaSpaces Management Center, the Web Management Console, or the Administration API.
 
-## Viewing Redo Size via the GigaSpaces Management Center
+## Viewing the Redo Size in the GigaSpaces Management Center
 
-To view the redo log size, enable the redo log size monitoring:
+To see the redo log size in the GigaSpaces Management Center, enable the redo log size monitoring:
 
 ![red-log1.jpg](/attachment_files/red-log1.jpg)
 
@@ -178,9 +178,21 @@ A new column is added to the Space list table:
 
 ![red-log2.jpg](/attachment_files/red-log2.jpg)
 
-## Getting the Redo Log via the Admin API
+## Viewing the Redo Size in the Web Management Console
 
-The following example shows how to retrieve the redo log size using the Admin API:
+To see the redo log size in the Web Management Console:
+
+1. From the Spaces view, drill through to the required Space instance.
+1. in any column header, click the down arrow and hover over the **Columns** option to display the list of available columns.
+	<img src="/attachment_files/admin/web-ui-column-select.png" width=312" height="346" />
+
+1. Select **Replication Redo Log**. The column is added to the Space instance table.
+		<img src="/attachment_files/admin/web-ui-column-redolog.png" width=878" height="183" />
+
+
+## Getting the Redo Log Using the Administration API
+
+The following example shows how to get the redo log size using the Administration API:
 
 
 ```java
