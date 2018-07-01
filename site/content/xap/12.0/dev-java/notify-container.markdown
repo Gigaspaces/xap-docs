@@ -151,19 +151,6 @@ To avoid this behavior, the notify listener implementation should have [batching
 If the listener performs a large number of space operations, a [polling container](./polling-container.html#notify-verses-polling-container) should be considered as this is a more controlled event handler.
 
 
-
-# Primary/Backup
-
-By default, the notify event container registers for notifications only when the relevant space it is working against is in primary mode. When the space is in backup mode, no registration occurs. If the space moves from backup mode to primary mode, the container registers for notifications, and if it moved to backup mode, the registrations are canceled.
-
- 
-This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.
- 
-
-{{% note "NOTIFY_LEASE_EXPIRATION"%}}
-Notifications for expired objects (NOTIFY_LEASE_EXPIRATION type) are sent both from the primary and the backup space. To avoid this, you should set the Notify Container `replicateNotifyTemplate` to `false` and run the notify container collocated with the space. This will start the Notify Container only with the primary and will avoid duplicated notifications.
-{{%/note%}}
-
 # Template Definition
 
 When performing receive operations, a template is defined, creating a virtualized subset of data in the space, matching it. XAP supports templates based on the actual domain model (with `null` values denoting wildcards), which are shown in the examples. XAP allows the use of [SQLQuery](./query-sql.html) in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:
@@ -977,25 +964,6 @@ When a network failure occurs and the space can't communicate with the client, t
 
 {{% include "/COM/notify-recovery.markdown" %}}
 
-
-# Triggering Notifications on Backup Instances
-
-By default notifications are replicated to backup instances but are not triggered. To enable notifications triggered also on backup instances the `cluster-config.groups.group.repl-policy.trigger-notify-templates` should be enabled. See below:
-
-
-```xml
-<os-core:space id="space" url="/./space" >	
-	<os-core:properties>
-		<props>
-			<prop key="cluster-config.groups.group.repl-policy.trigger-notify-templates">true</prop>
-		</props>
-	</os-core:properties>
-</os-core:space>
-```
-
-{{% note %}}
-When this option is enabled - When running collocated notify container the listener implementation should not access its collocated instance as this is blocked with backup instances.  
-{{%/note%}}
 
 # Durable Notifications
 

@@ -146,16 +146,6 @@ This behavior should be avoided, as it may throttle the activity or impose large
 To prevent this, the notify listener implementation should have [batching enabled](#batch-events), where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a [polling container](./polling-container-overview.html#notify-verses-polling-container) should be considered, as this is a more controlled event handler.
 
 
-# Primary/Backup
-
-By default, the notify event container registers for notifications only when the relevant Space against which it is working is in primary mode. When the Space is in backup mode, no registration occurs. If the Space moves from backup mode to primary mode, the container registers for notifications, and if the Space moves to backup mode, the registrations are canceled.
-
-This behavior applies when working with an embedded Space directly with a cluster member. When working with a clustered Space (performing operations against the whole cluster), the mode of the Space is always primary.
- 
-{{% note "NOTIFY_LEASE_EXPIRATION"%}}
-Notifications for expired objects (NOTIFY_LEASE_EXPIRATION type) are sent both from the primary and the backup Spaces. To avoid duplicate notifications, set the Notify Container `replicateNotifyTemplate` to `false` and run the notify container co-located with the Space. This will start the Notify Container only with the primary, and prevent a duplicate notification scenario.
-{{%/note%}}
-
 # Template Definition
 
 When performing receive operations a template is defined, creating a virtualized subset of data in the Space that matches it. XAP supports templates based on the actual domain model (with `null` values denoting wildcards), which are shown in the examples. XAP allows the use of [SQLQuery](./query-sql.html) in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:
@@ -970,28 +960,6 @@ When a network failure occurs and the Space can't communicate with the client, t
     </os-core:properties>
 </os-core:embedded-space>
 ```
-
- 
-
-
-# Triggering Notifications on Backup Instances
-
-By default, notifications are replicated to backup instances but are not triggered. To trigger notifications on backup instances, enable `cluster-config.groups.group.repl-policy.trigger-notify-templates`. See below:
-
-
-```xml
-<os-core:embedded-space id="space" space-name="space" >	
-	<os-core:properties>
-		<props>
-			<prop key="cluster-config.groups.group.repl-policy.trigger-notify-templates">true</prop>
-		</props>
-	</os-core:properties>
-</os-core:space>
-```
-
-{{% note "Note"%}}
-If this option is enabled, when running co-located notify containers the listener implementation should not access its co-located instance, because it is blocked by the backup instances.  
-{{%/note%}}
 
 # Durable Notifications
 
