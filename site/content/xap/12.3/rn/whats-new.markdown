@@ -50,7 +50,7 @@ The following is a partial list of the available functionality:
 
 The previous GigaSpaces CLI is still provided and supported, but will be removed in future versions. We encourage users to try the new CLI, and welcome feedback and requests for improvements.
 
-{{<infosign>}} For more information, see [Command Line Interface](../admin/tools-cli.html)
+{{<infosign>}} For more information, see [Command Line Interface](../admin/tools-cli.html).
 
 # Docker Support
 
@@ -58,7 +58,7 @@ Starting with this version, official [Docker](https://www.docker.com) images for
 
 The Docker images leverage the new Command Line Interface and REST Manager API, which provides a seamless experience whether you work with Docker on your local machine, within your enterprise network, or in the cloud.
 
-{{<infosign>}} For more information, see [GigaSpaces Docker Hub Repo](https://hub.docker.com/r/gigaspaces/)
+{{<infosign>}} For more information, see the [GigaSpaces Docker Hub Repo](https://hub.docker.com/r/gigaspaces/).
 
 # Memory Footprint
 

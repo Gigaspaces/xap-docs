@@ -50,7 +50,7 @@ Read the following for detailed information about the InsightEdge and XAP and AP
 
 * [XAP.NET Guide](./dev-dotnet/index.html)
 
-* [Administration Guide](./admin/index.html) (inlcudes a [Security](./security/index.html) section)
+* [Administration Guide](./admin/index.html) (includes a [Security](./security/index.html) section)
 
 ## Additional Resources
 
