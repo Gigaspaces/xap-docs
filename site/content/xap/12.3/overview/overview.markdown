@@ -1,6 +1,6 @@
 ---
 type: post123
-title: Platform Components
+title: InsightEdge Platform with XAP Core
 categories: XAP123OVW
 parent: none
 weight: 100
@@ -12,7 +12,7 @@ weight: 100
 ![archi_overview.jpg](/attachment_files/Product_Architecture1.png)
 {{% /align %}}
 
-# XAP In-Memory Data Grid
+# In-Memory Data Grid
 
 GigaSpaces XAP is the core in-memory data grid for the InsightEdge Platform. XAP is designed to support ultra-low latency and high-throughput applications that follow [Space-Based Architecture](./space-based-architecture.html) design patterns. XAP is based on GigaSpaces' Spring-based [OpenSpaces Framework](./product-architecture.html#product-architecture-openSpaces-api-and-components) as the primary development environment, and uses the GigaSpaces space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
 
