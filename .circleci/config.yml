@@ -32,13 +32,15 @@ jobs:
             then
               echo "Publishing to production..."
               export DOCS_TARGET=PROD 
+              DOCS_BUCKET=docs.gigaspaces.com-v2
             else
               echo "Adding staging files..."
               cp staging/* _site
               echo "Publishing to staging..."
               export DOCS_TARGET=STAGING
+              DOCS_BUCKET=docs-staging.gigaspaces.com
             fi
-            s3_website push
+            aws s3 sync --dryrun . s3://$DOCS_BUCKET
 workflows:
   version: 2
   staging:
