@@ -5,6 +5,8 @@ jobs:
       - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
     steps:
       - checkout
+      - run: java -version
+      - run: mvn -version
       - run: 
           name: Install Hugo
           command: ./install-hugo.sh
