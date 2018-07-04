@@ -8,6 +8,11 @@ jobs:
       - run: java -version
       - run: mvn -version
       - run: python --version
+      - run:
+          name: Install Pip
+          command: |
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python get-pip.py --user
       - run: sudo pip install awscli
       - run: aws --version
       - run: 
