@@ -9,11 +9,11 @@ jobs:
       - run: mvn -version
       - run: python --version
       - run:
-          name: Install Pip
+          name: Install AWS CLI
           command: |
-            curl -O https://bootstrap.pypa.io/get-pip.py
-            python get-pip.py --user
-      - run: sudo pip install awscli
+            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+            unzip awscli-bundle.zip
+            sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
       - run: aws --version
       - run: 
           name: Install Hugo
