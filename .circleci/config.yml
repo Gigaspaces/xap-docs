@@ -1,0 +1,46 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+    steps:
+      - checkout
+      - run: 
+          name: Install Hugo
+          command: ./install-hugo.sh
+      - run: 
+          name: Build docs using Hugo
+          command: ./build-site.sh
+      - run: echo branch [$CIRCLE_BRANCH] tag [$CIRCLE_TAG]
+      - run: echo target before [$TARGET]
+      - run: 
+          name: Publish output
+          command: |
+            if [ -n "$CIRCLE_TAG" ]
+            then
+              echo "Publishing to production..."
+              export DOCS_TARGET=PROD 
+            else
+              echo "Adding staging files..."
+              cp staging/* _site
+              echo "Publishing to staging..."
+              export DOCS_TARGET=STAGING
+            fi
+            s3_website push
+      - run: echo target after [$TARGET] with some change
+workflows:
+  version: 2
+  staging:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
+  production:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^release-.*/
