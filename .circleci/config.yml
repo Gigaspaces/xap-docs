@@ -7,6 +7,7 @@ jobs:
       - checkout
       - run: java -version
       - run: mvn -version
+      - run: aws --version
       - run: 
           name: Install Hugo
           command: ./install-hugo.sh
