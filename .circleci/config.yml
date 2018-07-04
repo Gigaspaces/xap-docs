@@ -5,16 +5,19 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers #circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
     steps:
       - checkout
-      - run: java -version
-      - run: mvn -version
-      - run: python --version
+      - run: 
+          name: Version check
+          command: |
+            java -version
+            mvn -version
+            python --version
       - run:
           name: Install AWS CLI
           command: |
             curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
             unzip awscli-bundle.zip
             sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-      - run: aws --version
+            aws --version
       - run: 
           name: Install Hugo
           command: ./install-hugo.sh
@@ -22,7 +25,6 @@ jobs:
           name: Build docs using Hugo
           command: ./build-site.sh
       - run: echo branch [$CIRCLE_BRANCH] tag [$CIRCLE_TAG]
-      - run: echo target before [$TARGET]
       - run: 
           name: Publish output
           command: |
@@ -37,7 +39,6 @@ jobs:
               export DOCS_TARGET=STAGING
             fi
             s3_website push
-      - run: echo target after [$TARGET] with some change
 workflows:
   version: 2
   staging:
