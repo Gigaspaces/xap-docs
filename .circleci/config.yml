@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      - image: circleci/openjdk:8-jdk-browsers #circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
     steps:
       - checkout
       - run: java -version
