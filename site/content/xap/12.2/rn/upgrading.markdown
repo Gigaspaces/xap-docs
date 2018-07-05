@@ -27,9 +27,9 @@ If you are upgrading to version 12.2 or later in a Windows environment and using
 
 For more information about the wrapper.conf file, refer to the [XAP as a Windows Service](../admin/installation-windows-service.html) topic in the Administration section.
 
-# New Location for xap.datagrid.jar File
+# New Location for xap-datagrid.jar File
 
-As of version 12.2, the xap.datagrid.jar file was moved to **<XAP install dir>/lib/required**. When upgrading from an earlier version, verify that there isn't an additional copy of this file in the old location **<XAP install dir>/lib/optional/pu-common**. Having multiple copies of this file will result in a failure to instantiate data when the data grid is started, and an exception will be thrown. 
+As of version 12.2, the xap-datagrid.jar file was moved to **<XAP install dir>/lib/required**. When upgrading from an earlier version, verify that there isn't an additional copy of this file in the old location **<XAP install dir>/lib/optional/pu-common**. Having multiple copies of this file will result in a failure to instantiate data when the data grid is started, and an exception will be thrown. 
 
 # Maven Artifacts
 
