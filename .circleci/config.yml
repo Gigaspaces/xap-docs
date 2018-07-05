@@ -2,15 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers #circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      - image: circleci/openjdk:8-jdk-browsers
     steps:
       - checkout
-      - run: 
-          name: Version check
-          command: |
-            java -version
-            mvn -version
-            python --version
       - run:
           name: Install AWS CLI
           command: |
@@ -21,12 +15,18 @@ jobs:
       - run: 
           name: Install Hugo
           command: ./install-hugo.sh
+      - restore_cache:
+          keys:
+            - hugo_site-{{ .Branch }}
       - run: 
           name: Build docs using Hugo
           command: ./build-site.sh
-      - run: echo branch [$CIRCLE_BRANCH] tag [$CIRCLE_TAG]
+      - save_cache:
+          paths:
+              _site
+          key: hugo_site-{{ .Branch }}
       - run: 
-          name: Publish output
+          name: Publish output to S3
           command: |
             if [ -n "$CIRCLE_TAG" ]
             then
