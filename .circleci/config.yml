@@ -15,18 +15,9 @@ jobs:
       - run: 
           name: Install Hugo
           command: ./install-hugo.sh
-      - restore_cache:
-          keys:
-            - hugo_site-{{ .Branch }}-{{ epoch }}
-            - hugo_site-{{ .Branch }}-
-            - hugo_site-
       - run: 
           name: Build docs using Hugo
           command: ./build-site.sh
-      - save_cache:
-          paths:
-              _site
-          key: hugo_site-{{ .Branch }}-{{ epoch }}
       - run: 
           name: Publish output to S3
           command: |
