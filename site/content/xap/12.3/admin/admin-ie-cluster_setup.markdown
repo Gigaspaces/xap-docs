@@ -8,21 +8,26 @@ parent: admin-insightedge.html
 
 This topic explains how to install and run InsightEdge on a cluster.
 
-# Starting the Whole Cluster
+# Starting a Whole Cluster
 
 Your cluster should consist of one master node and several slave nodes for the following configuration:
 
-* Master nodes usually have the Spark master and the data grid management running
-* Slave nodes have Spark workers and data grid cluster members running on them
+* Master nodes usually host the Spark master and the XAP Manager (for data grid management)
+* Slave nodes host the Spark workers and data grid cluster members (Processing Unit instances)
 
 
-The master nodes start XAP Manager along with Apache Zookeeper for high availability. Therefore you need to configure the `XAP_MANAGER_SERVERS` on each machine. Please refer to the [XAP Manager](../admin/xap-manager.html) page for more information.
 
-In addition, it is recommended to set the `XAP_LOOKUP_GROUPS` property that is used to discover XAP components across the network. Refer to the [Environment Variables](../started/common-environment-variables.html) page for more advanced configurations.
+There are several environment variables that must be set in order for your InsightEdge cluster to function correctly. The environment variables are located in the `<XAP_HOME>/bin/setenv-overrides.sh/bat` file, and can be configured as described in the [Configuration](../started/common-environment-variables.html) page of the Getting Started guide.
 
-These configuration parameters can be set in the `<XAP_HOME>/bin/setenv-overrides.sh/bat` file.
+* `XAP_MANAGER_SERVERS` - Must be configured on each machine and is required for the master node, which starts the XAP Manager along with Apache Zookeeper for high availability. See the [XAP Manager](../admin/xap-manager.html) page for more information.
 
-## Starting locally
+* `XAP_LOOKUP_GROUPS` - This property is used to discover XAP components across the network. 
+
+* `XAP_GSC_OPTIONS` - Set this value based on the size of the JVM that is required to run your InsightEdge-based application.
+
+
+
+## Starting a Cluster Locally
 
 The run-agent command automatically resolves which service to run on the current host.
 The resolution is based on the `XAP_MANAGER_SERVERS` environment variable, but when undefined it will use localhost as the server IP.
@@ -39,7 +44,7 @@ Spark master - http://localhost:8080/
 Spark worker - http://localhost:8081/
 
 
-## Starting Master Nodes
+## Starting a Master Node
 
 Master nodes consist of a XAP Manager and a Spark master. On each master node, run the following:
 
