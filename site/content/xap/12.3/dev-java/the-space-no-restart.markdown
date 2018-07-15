@@ -1,19 +1,12 @@
 ---
 type: post123
-title:  Change code without restarts
+title:  Changing Code without a Restart
 categories: XAP123, OSS
-weight: 650
-parent: the-gigaspace-interface-overview.html
+weight: 250
+parent: change-api-overview.html
 ---
 
- 
-
-When executing user code on the space (e.g. space tasks), the space automatically loads the code from the remote client and caches it for future executions.
-Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify the code.
-
-Starting with 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed.
-The space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.
-
+The `@SupportCodeChange` annotation is used to tell the Space that your code has changed during runtime, affecting the Space task that needs to be executed. The Space can store multiple versions of the same task. This is useful in supporting client applications that may need to implement multiple different versions of a task.
 
 This annotation can be used with:
 
@@ -22,9 +15,9 @@ This annotation can be used with:
 - [Custom Aggregator](./aggregators.html#custom-aggregation)
 
 
-# Task execution
+# Task Execution
 
-For example, start with annotating your task with @SupportCodeChange(id="1"), and when the code changes, set the annotation to @SupportCodeChange(id="2"), and the space will load the new task.
+The annotation can be used when defining task execution. For example, annotate your task with `@SupportCodeChange(id="1")`. When the code changes, set the annotation to `@SupportCodeChange(id="2")`, and the Space will load the new task.
 
 
 {{%tabs%}}
@@ -78,16 +71,12 @@ public class DynamicTask implements Task<Integer> {
 
 
 {{%refer%}}
-For detailed information on task execution see [Task Execution over the space](./task-execution-overview.html)
+For detailed information about task execution, see the [Task Execution](./task-execution-overview.html) topic.
 {{%/refer%}}
-
-
-
-
 
 # Custom Change
 
-The annotation can be used for custom change operations.
+The annotation can be used for custom change operations, as demonstrated in the example below.
 
 {{%tabs%}}
 {{%tab "Change Version 1"%}}
@@ -126,7 +115,7 @@ public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
 ```
 {{%/tab%}}
 
-{{%tab "Change version 2"%}}
+{{%tab "Change Version 2"%}}
 ```java
 import com.gigaspaces.annotation.SupportCodeChange;
 import com.gigaspaces.client.CustomChangeOperation;
@@ -176,12 +165,12 @@ public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
 
 
 {{%refer%}}
-For detailed information on Custom Change see [Custom Change](./change-api-custom-operation.html)
+For detailed information about the Custom Change operation, see the [Custom Change](./change-api-custom-operation.html) topic.
 {{%/refer%}}
 
 # Custom Aggregation
 
-The annotation can be used for custom aggregation operations.
+The annotation can also be used for custom aggregation operations, as demonstrated by the following example.
 
 {{%tabs%}}
 {{%tab "Aggregation Version 1"%}}
@@ -229,7 +218,7 @@ public class ConcatAggregator extends SpaceEntriesAggregator<String> {
 ```
 {{%/tab%}}
 
-{{%tab "Aggregation version 2"%}}
+{{%tab "Aggregation Version 2"%}}
 ```java
 @SupportCodeChange(id ="2")
 public class ConcatAggregator extends SpaceEntriesAggregator<String> {
@@ -286,30 +275,30 @@ public class ConcatAggregator extends SpaceEntriesAggregator<String> {
 
 
 {{%refer%}}
-For detailed information on Custom Aggregator see [Aggregators](./aggregators.html)
+For detailed information about how to use custom aggregators, see the [Aggregators](./aggregators.html) topic.
 {{%/refer%}}
 
 
-# Number of caches
+# Number of Caches
 
-The default limit of class loaders (caches) is set to 3, when breached, the oldest cache is evicted in favor of the new one.
-This can be modified via space properties:
+The default limit of class loaders (caches) is 3. when this limit is breached, the oldest cache is evicted in favor of the new one.
+This value can be modified via the following Space properties:
 
 
-| Property name | Description | Default   |
+| Property Name | Description | Default   |
 |-----|----|------|
 |space-config.remote-code.max-class-loaders | Limit number of class loaders (caches)  |   3 |
-|space-config.remote-code.support.code.change | Enable / Disable code change   |  true |
+|space-config.remote-code.support.code.change | Enable/Disable code change   |  true |
  
 
  
 {{%note%}}
-`@SupportCodeChange` without id or with id="" are not cached.
+`@SupportCodeChange` annotations without an ID or with `id=""` are not cached.
 {{%/note%}}
 
 
 # Limitations
 
-- When using `@SupportCodeChange` no new types, can be introduced to the space.
+- When using `@SupportCodeChange`, no new types can be introduced to the Space.
 - Anonymous classes and lambdas do not support the annotation.
  
