@@ -6,7 +6,7 @@ parent: insightedge-apis.html
 weight: 450
 ---
 
-InsightEdge enhances the Agile Spark pushdown predicate capability by leveraging our native advanced indexing mechanism, which includes compound and nested indexes, to retrieve only relevant data entries when running a query (filter). This ability to filter directly on the source (instead of on the target as is done in the vanilla Apache Spark architecture) dramatically improves performance and reduces network overhead.
+InsightEdge enhances the Agile Spark pushdown predicate capability by leveraging our native advanced indexing mechanism, to retrieve only relevant data entries when running a query (filter). This ability to filter directly on the source (instead of on the target as is done in the vanilla Apache Spark architecture) dramatically improves performance and reduces network overhead.
 
 # Indexing
 
