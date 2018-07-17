@@ -36,7 +36,7 @@ To install the XAP maven plugin run the `installmavenrep` script:
 
 {{%/tabs%}}
 
-Download the `spring-data-xap` project and build it with maven using `mvn clean install`.
+Download the [xap-spring-data](https://github.com/Gigaspaces/xap-spring-data) project and build it with maven using `mvn clean install`.
 
 The recommended way to get started using spring-data-xap in your project is with a dependency management system - the snippet below can be copied and pasted into your build.
 
