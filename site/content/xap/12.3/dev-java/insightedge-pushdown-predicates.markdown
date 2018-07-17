@@ -6,7 +6,7 @@ parent: insightedge-apis.html
 weight: 450
 ---
 
-InsightEdge enhances the Agile Spark pushdown predicate capability by leveraging our native advanced indexing mechanism, which includes compound and nested indexes, to retrieve only relevant data entries when running a query (filter). **DOES THIS HAVE AN EFFECT ON DATA SHUFFLING?** This ability to filter directly on the source (instead of on the target as is done in the vanilla Apache Spark architecture) dramatically improves performance and reduces network overhead.
+InsightEdge enhances the Agile Spark pushdown predicate capability by leveraging our native advanced indexing mechanism, which includes compound and nested indexes, to retrieve only relevant data entries when running a query (filter). This ability to filter directly on the source (instead of on the target as is done in the vanilla Apache Spark architecture) dramatically improves performance and reduces network overhead.
 
 # Indexing
 
@@ -33,8 +33,7 @@ For more information about the geospatial predicates, refer to the [GeoSpatial A
 
 # RDD API
 
-When using the RDD (gridSql API), queries are performed in the data grid. To use the pushdown predicates with RDD, you can use the gridSql API as shown in the following example.
-
+To use the pushdown predicates with RDD, you can use the gridSql API as shown in the following example. With this API, the queries are performed in the data grid.
 
 ```scala
 val rdd1 = sc.gridSql[Product]("quantity > 0")...
@@ -45,7 +44,7 @@ val rdd2 = sc.gridSql[Product]("quantity > ? and featuredProduct = ?", Seq(10, t
 
 ## Geospatial API Support
 
-When using the geospatial API with the RDD API, the filtering is done on the data grid side and the predicate is pushed down to the grid. The gridSql API receives a Data Grid SQL query. 
+When using the geospatial API with the RDD API, the predicate is pushed down to the grid and the filtering is done on the data grid side. The gridSql API receives a Data Grid SQL query.
 
 
 ```scala
@@ -57,7 +56,7 @@ For more information about these types of queries, refer to the [RDD API](./insi
 
 # DataFrame/DataSet APIs
 
-When using the DataFrame or DataSet APIs, queries are performed in the client side (executors). If you choose to work with these APIs, use the regular syntax of the **filter** and **where** APIs. InsightEdge pushes down the supported predicates to the grid level.
+When using the DataFrame or DataSet APIs, filters are performed in the client side (executors). If you choose to work with these APIs, use the regular syntax of the **filter** and **where** APIs. InsightEdge pushes down the supported predicates to the grid level.
 
 ```scala
 //DataFrame
@@ -81,7 +80,7 @@ spark.read.grid[Product].as[Product].filter(p => p.quantity > 0).count()
 
 ## Geospatial API Support
 
-Although this API is supported, the filtering in this API is done in the client side. The predicates are therefore not pushed down to the data grid.
+Although this API is supported, the predicates are not pushed down to the data grid and therefore filtering is done on the client side.
 
 ```scala
 val df = sqlContext.read.grid[SpatialData]
