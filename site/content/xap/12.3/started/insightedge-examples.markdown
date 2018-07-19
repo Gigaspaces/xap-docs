@@ -1,6 +1,6 @@
 ---
 type: post123
-title:  Running The Examples
+title:  Running InsightEdge IDE Examples
 categories: XAP123GS, OSS
 parent: insightedge-basics.html
 weight: 300

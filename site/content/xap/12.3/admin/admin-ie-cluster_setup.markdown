@@ -23,7 +23,7 @@ There are several environment variables that must be set in order for your Insig
 
 * `XAP_LOOKUP_GROUPS` - This property is used to discover XAP components across the network. 
 
-* `XAP_GSC_OPTIONS` - Set this value based on the size of the JVM that is required to run your InsightEdge-based application.
+* `XAP_GSC_OPTIONS` - Set this value based on the size of the JVMs that will host the Processing Unit instances. For example, you can configure the amount of memory required as `-Xmx5g -Xms5g`.
 
 
 
