@@ -29,7 +29,7 @@ This section lists helpful recommendations for tuning your application when usin
 - [Use an Embedded Space if Possible](#15)
 - [Distribute Data and User Requests among Several Partitions](#16)
 - [Memory Usage Considerations](#17)
-- [Using Snapshot to Reduce Object Creation and Space Object Data Inspection](#18)
+- [Using prepareTemplate for Efficient Query Execution](#18)
 - [Determine Cache Size](#19)
 - [Determine Database Connection Pools](#20)
 - [Benchmarking Your Tuning](#21)
@@ -166,12 +166,12 @@ You can use [Data-Partitioning](./data-partitioning.html) to distribute the data
 
 {{%anchor 18%}}
 
-# Using Snapshot to Reduce Object Creation and Space Object Data Inspection
+# Using prepareTemplate for Efficient Query Execution
 
-When using the same template for matching, consider using a snapshot template. A snapshot template is the result object of the `GigaSpace.snapshot` call. The returned result includes GigaSpaces internal representation of the template object that does not need to undergo any inspection before it is sent to the GigaSpaces server.
+The prepareTemplate method creates a precompiled SQL template and stores it in a preparedTemplate object. A prepared template is the result object of the [GigaSpace.prepareTemplate]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html#prepareTemplate-java.lang.Object-). call. The returned result includes a GigaSpaces internal representation of the template object that does not need to undergo any inspection before it is sent to the GigaSpaces server.
 
 {{% tip %}}
-The snapshot returns an object you can use for subsequent matching as a template.
+The template returns an object you can use for subsequent matching.
 {{% /tip %}}
 
 {{%anchor 19%}}

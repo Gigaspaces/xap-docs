@@ -924,11 +924,13 @@ The configuration of enabling broadcasting is done on the client level, by setti
 
 <os-remoting:executor-proxy id="dataProcessor" giga-space="gigaSpace"
                    interface="org.openspaces.example.data.common.IDataProcessor" broadcast="true">
+    <os-remoting:result-reducer ref="remoteResultReducer" />
 </os-remoting:executor-proxy>
 
 <bean id="dataRemoting" class="DataRemoting">
     <property name="dataProcessor" ref="dataProcessor" />
 </bean>
+<bean id="remoteResultReducer" class="MyRemoteResultReducer" />
 ```
 
 {{% /tab %}}
@@ -948,11 +950,13 @@ The configuration of enabling broadcasting is done on the client level, by setti
     <property name="gigaSpace" ref="gigaSpace" />
     <property name="serviceInterface" value="org.openspaces.example.data.common.IDataProcessor" />
     <property name="broadcast" value="true" />
+    <property name="remoteResultReducer" ref="remoteResultReducer"/>
 </bean>
 
 <bean id="dataRemoting" class="DataRemoting">
     <property name="dataProcessor" ref="dataProcessor" />
 </bean>
+<bean id="remoteResultReducer" class="MyRemoteResultReducer" />
 ```
 
 {{% /tab %}}
@@ -964,8 +968,10 @@ SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("space");
 
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
 
+MyRemoteResultReducer myRemoteResultReducer = new MyRemoteResultReducer();
 IDataProcessor dataProcessor = new ExecutorRemotingProxyConfigurer<IDataProcessor>(gigaSpace, IDataProcessor.class)
                                .broadcast(true)
+			       .remoteResultReducer(myRemoteResultReducer)
                                .proxy();
 
 DataRemoting dataRemoting = new DataRemoting();

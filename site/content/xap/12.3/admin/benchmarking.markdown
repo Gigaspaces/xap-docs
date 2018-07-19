@@ -32,5 +32,5 @@ XAP has the following benchmark tools that can be used to run benchmark tests on
 
 If you want to run large-scale benchmark tests with a large number of concurrent accesses, or on a large number of data grid partitions, you should consider contacting GigaSpaces Support to help tune the configuration of the environment and JVM. In some cases GigaSpaces can also help with the code, as some of the default behaviors for the basic API have special modifiers that may boost performance.
 
-Developers sometime miss or misunderstand these advanced options, due to the vast amount of features the product offers. We urge you to {{%exurl "approach our support team" "http://www.gigaspaces.com/content/customer-support-services"%}} for advanced benchmarking and testing options. Information about tuning the product for such environments is not fully publicly available, because many larger systems have specialized requirements for which configurations are available, and for which generalized solutions are not entirely appropriate.
+For advanced benchmarking and testing options, please contact the GigaSpaces {{%exurl "support team" "http://www.gigaspaces.com/content/customer-support-services"%}}.
 

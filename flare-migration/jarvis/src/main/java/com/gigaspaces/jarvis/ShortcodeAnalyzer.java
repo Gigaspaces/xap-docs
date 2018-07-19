@@ -16,8 +16,8 @@ public class ShortcodeAnalyzer {
         f.report(new File(target));
     }
 
-    private final Map<String, AtomicInteger> statsWithOverrides = new HashMap<>();
-    private final Map<String, AtomicInteger> statsWithoutOverrides = new HashMap<>();
+    private final Map<String, ShortcodeCounter> statsWithOverrides = new HashMap<>();
+    private final Map<String, ShortcodeCounter> statsWithoutOverrides = new HashMap<>();
     private final Set<String> shortcodesWithOverrides = new HashSet<>();
 
     private void initShortcodes(String path) {
@@ -33,7 +33,7 @@ public class ShortcodeAnalyzer {
             }
         } else if (file.isFile()) {
             try {
-                Files.lines(file.toPath()).forEach(this::processLine);
+                Files.lines(file.toPath()).forEach(line -> processLine(file, line));
             } catch (RuntimeException e) {
                 throw new IOException("Failed to process file " + file, e);
             }
@@ -57,20 +57,20 @@ public class ShortcodeAnalyzer {
         System.out.println("Created " + target.toString());
     }
 
-    private static void report(BufferedWriter writer, Map<String, AtomicInteger> stats) throws IOException {
-        Map.Entry<String, AtomicInteger>[] shortcodes = stats.entrySet().toArray(new Map.Entry[0]);
-        Arrays.sort(shortcodes, (Comparator<Map.Entry<String, AtomicInteger>>) (e1, e2) -> Integer.compare(e2.getValue().get(), e1.getValue().get()));
+    private static void report(BufferedWriter writer, Map<String, ShortcodeCounter> stats) throws IOException {
+        Map.Entry<String, ShortcodeCounter>[] shortcodes = stats.entrySet().toArray(new Map.Entry[0]);
+        Arrays.sort(shortcodes, (Comparator<Map.Entry<String, ShortcodeCounter>>) (e1, e2) -> Integer.compare(e2.getValue().counter.get(), e1.getValue().counter.get()));
         for (Map.Entry shortcode : shortcodes) {
             writer.write(shortcode.getKey() + "," + shortcode.getValue() + System.lineSeparator());
         }
     }
 
-    private void processLine(String line) {
-        processLine(line, "{{%", "%}}");
-        processLine(line, "{{<", ">}}");
+    private void processLine(File file, String line) {
+        processLine(file, line, "{{%", "%}}");
+        processLine(file, line, "{{<", ">}}");
     }
 
-    private void processLine(String line, String prefix, String suffix) {
+    private void processLine(File file, String line, String prefix, String suffix) {
         Scanner s = new Scanner(line);
         while (s.findNext(prefix)) {
             s.skipWhiteSpaces();
@@ -80,9 +80,10 @@ public class ShortcodeAnalyzer {
             if (shortcode == null || shortcode.isEmpty())
                 throw new IllegalStateException("Empty shortcode - [" + line + "]");
             if (s.findNext(suffix)) {
-                Map<String, AtomicInteger> stats = shortcodesWithOverrides.contains(shortcode) ? statsWithOverrides : statsWithoutOverrides;
-                stats.putIfAbsent(shortcode, new AtomicInteger());
-                stats.get(shortcode).incrementAndGet();
+                Map<String, ShortcodeCounter> stats = shortcodesWithOverrides.contains(shortcode) ? statsWithOverrides : statsWithoutOverrides;
+				if (!stats.containsKey(shortcode))
+					stats.put(shortcode, new ShortcodeCounter(file.toString()));
+                stats.get(shortcode).counter.incrementAndGet();
             } else {
                 throw new IllegalStateException("Missing close " + suffix + System.lineSeparator() + line);
             }
@@ -125,9 +126,25 @@ public class ShortcodeAnalyzer {
             return result;
         }
     }
+	
+	public static class ShortcodeCounter {
+		private final AtomicInteger counter = new AtomicInteger();
+		private final String firstAppearance;
+		
+		public ShortcodeCounter(String firstAppearance) {
+			this.firstAppearance = firstAppearance;
+		}
+		
+		@Override
+		public String toString() {
+			return String.valueOf(counter.get()) + " (" + firstAppearance + ")";
+		}
+	}
 
+	/*
     public static void main(String[] args) {
         String line = "| maxLeaseDuration | The time the system waits between every lease renewal, for example: if the parameter value is `8000`, the system renews the space lease every 8000 `[milliseconds]`.<br>{{<infosign>}} As this value is reduced, renewal requests are performed more frequently while the service is up, and lease expiration occurs sooner when the service goes down. | 8000 |";
         new ShortcodeAnalyzer().processLine(line);
     }
+	*/
 }

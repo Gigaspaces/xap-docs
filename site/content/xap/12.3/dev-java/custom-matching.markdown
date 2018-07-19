@@ -1,34 +1,26 @@
 ---
-type: post
+type: post123
 title:  Custom Matching
-categories: SBP
-parent: data-access-patterns.html
-weight: 150
+categories: XAP123, OSS
+parent: querying-the-space.html
+weight: 330
 ---
-
-
-
-|Author|XAP Version|Last Updated | Reference | Download |
-|------|-----------|-------------|-----------|----------|
-|Shay Hassidim| 9.7| January 2010 |           |          |
-
 
 # Overview
 
-Usually you index and execute queries using primitive fields (long, float, string, etc). The fields may be within the root level of the space object, or embedded within [nested objects]({{%latestjavaurl%}}/query-sql.html#nested-0bject-query) within the space object. You may construct a query using a template object or SQL to specify the criteria you would like to use when the matching phase is performed within the space when looking for the relevant objects.
+Queries are usually indexed and executed using primitive fields (long, float, string, etc.). These fields can be at the root level of the Space object, or embedded within [nested objects](./query-sql.html#nested-object-query) in the Space object. You can construct a query using a template object or SQL, to specify the criteria you want to use when the matching phase is performed within the Space when looking for the relevant objects.
 
-In some cases you might want to use a custom data type with a custom business logic to find matching objects within the space, rather the usual [primitive data type](http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html) comparison. To allow the space to invoke your business logic when the matching process is conducted, the [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) interface should be implemented for a class that stores the data you would like to use with your custom business logic.
+However, in some cases you may need a custom data type with custom business logic to find matching objects within the Space, instead of the usual [primitive data type](http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html) comparison. To allow the Space to invoke your business logic when the matching process is conducted, the [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) interface should be implemented for a class that stores the data you want to use with your custom business logic.
 
 {{% tip %}}
-The [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) implementation should not be done for the space class itself, but for one of its fields.
+The [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) implementation should not be done for the Space class itself, but for one of its fields.
 {{% /tip %}}
 
-Such custom business logic might be useful when comparing vector data (2 dimensional Cartesian space). These may represent sound, maps, pictures or any other 2 or 3 dimensional artifacts. You may use this technique to query data based on any other mathematical or financial related formulas such as [Time value of money](http://en.wikipedia.org/wiki/Time_value_of_money) like Present Value of a Cash Flow Series, Future Value of a Cash Flow Series, etc. Other areas where such custom matching is relevant, are Pattern recognition, Sequence analysis, Surveillance, Forensic, Social network behavior etc.
-
-{{% info %}} In some cases, you may index the data to speed up the custom matching process. To enable this, you should index the field so that its class implements the `Comparable` interface using the `EXTENDED` index type as part of the space class. See the [Indexing]({{%latestjavaurl%}}/indexing.html) page for additional information about how to enable the `EXTENDED` index. Indexing the custom type field **should be used carefully since it does not support** a `Comparable.compareTo` implementation that performs relative-based matching, as demonstrated by the following example.
+{{% info %}} To index the data to speed up the custom matching process, index the field so that its class implements the `Comparable` interface using the `EXTENDED` index type as part of the Space class. See the [Indexing](./indexing.html) section for additional information about how to enable the `EXTENDED` index. Indexing the custom type field should be used with caution, because it doesn't support a `Comparable.compareTo` implementation that performs relative-based matching, which is demonstrated in the example on this page.
 {{%/info%}}
 
 # Vector Compare Example
+
 The following example illustrates a business logic implementation used to query for vector data (an array of Integer values), using the [Euclidean distance](http://en.wikipedia.org/wiki/Euclidean_distance) formula:
 
 {{% panel %}}![EuclideanDistance.jpg](/attachment_files/sbp/EuclideanDistance.jpg){{% /panel %}}
@@ -52,12 +44,12 @@ SQLQuery<Vector> query= new SQLQuery<Vector>(Vector.class ,
 		"AND vectordata <= ?");
 ```
 
-Here is an example of a target vector, and a matching vector found using the custom matching implementation illustrated below:
+The following is an example of a target vector, and a matching vector found using the custom matching implementation:
 
 {{% panel %}}![custommatching.jpg](/attachment_files/sbp/custommatching.jpg){{% /panel %}}
 
 {{% tip %}}
-To scale the system you should deploy the space using the [partitioned cluster schema](/product_overview/terminology.html). This will allow queries (i.e. matching) to be executed across all the partitions in parallel, speeding up the query execution time.
+To scale the system, deploy the Space in a [partitioned cluster schema](/product_overview/terminology.html). This allows queries such as matching to be executed across all the partitions in parallel, speeding up the query execution time.
 {{% /tip %}}
 
 See **The Application** tab for the full query usage. This allows the `Comparable.compareTo` implementation to be performed on a smaller candidate subset of objects.
