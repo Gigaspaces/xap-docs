@@ -60,7 +60,7 @@ For more information about InsightEdge license options, see the [Product License
 {{%tab "  Windows "%}}
 
 ```
-Insightedge demo
+insightedge demo
  ```
 
 {{% /tab %}}
