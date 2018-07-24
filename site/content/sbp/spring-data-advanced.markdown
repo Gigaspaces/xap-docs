@@ -7,8 +7,6 @@ parent: spring-data.html
 ---
 
 
-{{%ssummary%}}{{%/ssummary%}}
-
 This section describes some of the more advanced features available through XAP Spring Data.
 
 # Projection API

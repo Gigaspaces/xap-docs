@@ -6,9 +6,6 @@ weight: 200
 parent: spring-data.html
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
-
-
 
 When developing an XAP application using Spring we need to configure a connection to the active Space inside the Spring IoC container. We will show you how a basic connection can be created using XML or Java based Spring configurations.
 

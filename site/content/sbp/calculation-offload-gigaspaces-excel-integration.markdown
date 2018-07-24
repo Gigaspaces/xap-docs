@@ -6,7 +6,6 @@ parent: excel-that-scales-solution.html
 weight: 100
 ---
 
-{{% ssummary%}}Using the calculation offload pattern.{{% /ssummary %}}
 
 # Overview
 

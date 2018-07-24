@@ -6,8 +6,6 @@ parent: excel-that-scales-solution.html
 weight: 400
 ---
 
-{{% ssummary page%}}Frequently asked questions about the GigaSpaces-Excel integration.{{% /ssummary %}}
-
 # Overview
 
 The following FAQs deal with the GigaSpaces Excel Integration solutions.

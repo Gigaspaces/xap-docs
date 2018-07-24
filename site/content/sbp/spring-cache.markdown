@@ -10,7 +10,7 @@ weight: 101
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-|Ali Hodroj<br>Director of Solution Architecture GigaSpaces| 9.7| October 2014| [Spring Framework](http://docs.spring.io/spring-framework/docs/4.0.x/spring-framework-reference/html/cache.html)|{{%git "https://github.com/GigaSpaces-ProfessionalServices/spring-cache-abstraction" %}}|
+|Ali Hodroj<br>Director of Solution Architecture GigaSpaces| 9.7| October 2014| [Spring Framework](http://docs.spring.io/spring-framework/docs/4.0.x/spring-framework-reference/html/cache.html)|[Github link](https://github.com/GigaSpaces-ProfessionalServices/spring-cache-abstraction)|
 
 
 
@@ -19,25 +19,17 @@ weight: 101
 Since version 3.1, the `Spring Framework` provides support for transparently adding caching to an existing `Spring` application through method annotations. As is the case with transaction support, the caching abstraction decouples caching implementation from the business logic. This article shows how to utilize the XAP CacheManager with Spring that implements the following distributed caching scenario:
 
 
-
-
 |**Distributed cache**|**Distributed cache + local cache** |
 |------|-----|
 |![scaling_agent.jpg](/attachment_files/springcache/spring-cache1.png)|![scaling_agent.jpg](/attachment_files/springcache/spring-cache2.png)|
 
 
 
-{{%vbar "Benefits when using XAP as a Spring caching provider:" %}}
+**Benefits when using XAP as a Spring caching provider**
 
 -	**Decreased Latency** –  Ability to utilize local cache across all server instances for localized reads, greatly reducing serialization across the wire
-
 -	**Scalability** – Horizontally scalable and partitioned cache with flexible cache entry routing
-
 -	**High Availability** – Each partition has a backup instance deployable on a different JVM, host, or availability zone.
-{{%/vbar%}}
-
-
-
 
 # Configuring the Cache Storage
 

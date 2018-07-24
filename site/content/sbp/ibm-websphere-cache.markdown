@@ -67,9 +67,9 @@ An Application Server from the WebSphere Family <br>
 •	IBM Integration Designer
 
 #### GigaSpaces Software <br>
-•	{{%download "http://www.gigaspaces.com/xap-download" %}}GigaSpaces XAP Premium Edition 9+ <br>
-•	{{%download "/download_files/sbp/GigaSpacesDynaCacheIntegration.jar"%}}GigaSpacesDynaCacheIntegration.jar <br>
-•	{{%download "/download_files/sbp/GigaDynaCacheTestWeb.war"%}} GigaDynaCacheTestWeb.war
+•	GigaSpaces [XAP Premium Edition 9+](http://www.gigaspaces.com/xap-download) <br>
+•	[GigaSpacesDynaCacheIntegration.jar](/download_files/sbp/GigaSpacesDynaCacheIntegration.jar) <br>
+•	[GigaDynaCacheTestWeb.war](/download_files/sbp/GigaDynaCacheTestWeb.war)
 
 
 # Run Demo with Dynamic Cache as WebSphere Caching Provider

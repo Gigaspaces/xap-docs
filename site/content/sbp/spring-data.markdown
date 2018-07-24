@@ -17,23 +17,3 @@ This section is the reference guide for Spring Data with XAP. It explains basic 
 
 
 
-
-
-
-
-{{%fpanel%}}
-
-- [Quick Start](./spring-data-quick-start.html)
-
-- [XAP Support](./spring-data-overview.html)
-
-- [XAP Repository](./spring-data-repository.html)
-
-- [Basic Usage](./spring-data-basic.html)
-
-- [Advanced Usage](./spring-data-advanced.html)
-
-- [Appendix](./spring-data-appendix.html)
-
-
-{{%/fpanel%}}

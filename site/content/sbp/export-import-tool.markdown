@@ -9,7 +9,7 @@ weight: 50
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Skyler Severns | 10.2.0 | December 2015|    | {{%git "https://github.com/GigaSpaces-ProfessionalServices/import-export"%}}   |
+| Skyler Severns | 10.2.0 | December 2015|    | [Github link](https://github.com/GigaSpaces-ProfessionalServices/import-export)   |
 
 
 The Export/Import tool was originally created to help our engineers quickly replicate test scenarios.
@@ -30,7 +30,7 @@ the actual operation will be performed. To put it simply each primary instance i
 - Upgrading XAP versions
 - Setting up integration-style test scenarios
 
-You can download and build the source code from our GitHub repository {{%git "https://github.com/GigaSpaces-ProfessionalServices/import-export"%}}.
+You can download and build the [source code](https://github.com/GigaSpaces-ProfessionalServices/import-export) from our GitHub repository.
 Directions on how to build the project can be found in the repository's `README` document.
  Alternatively you can contact your [GigaSpaces Technical Account Manager](http://www.gigaspaces.com/services-technical-account-management) for pre-built binaries.
 

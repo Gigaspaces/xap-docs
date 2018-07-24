@@ -1,6 +1,6 @@
 ---
 type: post
-title:  Hot deploy
+title:  Hot Deploy
 categories: SBP
 weight: 100
 parent: hot-deploy.html
@@ -9,7 +9,7 @@ parent: hot-deploy.html
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Anna Babich <br> Pavlo Romanenko| 10.0 | November 2014|  |  {{%git "https://github.com/fe2s/xap-hot-deploy" %}}   |
+| Anna Babich <br> Pavlo Romanenko| 10.0 | November 2014|  | [Github link](https://github.com/fe2s/xap-hot-deploy)   |
 
 
 This tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool using the hot deploy approach , placing new PU code on the GSM PU deploy folder and later restart each PU instance. See XAP Hot Deploy documentation for details.

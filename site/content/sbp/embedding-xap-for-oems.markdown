@@ -12,8 +12,6 @@ weight: 100
 | Shay Hassidim|  | Feb 2014|    |    |
 
 
-{{% ssummary page %}}Explains how to deploy and manage a [Data Grid](/product_overview/the-in-memory-data-grid.html), catering to quick OEM installation.{{% /ssummary %}}
-
 GigaSpaces XAP can be used as a self contained application platform in which case your application would be contained (embedded) within the GigaSpaces application container. GigaSpaces XAP can also be embedded within external application processes. This section describe the steps required to embed GigaSpaces within external application processes.
 
 # General Description

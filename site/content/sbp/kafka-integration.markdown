@@ -9,7 +9,7 @@ weight: 50
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-|Oleksiy Dyagilev| 9.6| February 2014| [Apache Kafka](http://kafka.apache.org)|{{%zip "/download_files/sbp/kafka-integration.tar"%}}|
+|Oleksiy Dyagilev| 9.6| February 2014| [Apache Kafka](http://kafka.apache.org)| [Kafka integration](/download_files/sbp/kafka-integration.tar)|
 
 
 
@@ -54,7 +54,7 @@ In order to run an example, please follow the instruction below:
 Step 1: Install Kafka<br/>
 
 Step 2:	Start Zookeeper and Kafka server<br/>
-bin/zookeeper-server-start.sh config/zookeeper.properties{{<wbr>}}
+bin/zookeeper-server-start.sh config/zookeeper.properties<br>
 bin/kafka-server-start.sh config/server.properties
 
 Step 3:	Build project<br/>

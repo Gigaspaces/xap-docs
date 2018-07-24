@@ -6,15 +6,10 @@ weight: 1100
 parent: examples.html
 ---
 
-{{% ssummary  %}}  {{% /ssummary %}}
-
 
 This example demonstrates a simple processing unit architecture project -- a complete SBA application that can easily scale. It demonstrates a usage of XAP's SBA related components, such as [Event Listener Container]({{%latestneturl%}}/event-processing.html), [Space Based Remoting]({{%latestneturl%}}/space-based-remoting-overview.html) and the [Processing Unit]({{%latestneturl%}}/the-processing-unit-overview.html).
 
-You can find the example in the distribution:
-
-
-{{%folderopen%}} Example Root `<XAP Root>\Examples\ProcessingUnit`
+You can find the example in the distribution: `<XAP Root>\Examples\ProcessingUnit`
 
 
 # Architecture

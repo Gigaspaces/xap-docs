@@ -15,17 +15,16 @@ weight: 250
 
 # XAP.NET ASP.NET Session State Store
 
-It's becoming increasingly important for organizations to share HTTP session data across multiple data centers, multiple web server instances or different types of web servers. Here are few scenarios where HTTP session sharing is required: {{<wbr>}}
+It's becoming increasingly important for organizations to share HTTP session data across multiple data centers, multiple web server instances or different types of web servers. Here are few scenarios where HTTP session sharing is required: 
 
-{{%vbar%}}
--  Multiple different Web servers running your web application - You may be porting your application from one web server to another and there will be a period of time when both types of servers need to be active in production.{{<wbr>}}
+-  Multiple different Web servers running your web application - You may be porting your application from one web server to another and there will be a period of time when both types of servers need to be active in production.
 
--  Web Application is broken into multiple modules - When applications are modularized such that different functionalities are deployed across multiple server instances. For example, you may have login, basic info, check-in and shopping functionalities split into separate modules and deployed individually across different servers for manageability or scalability. In order for the user to be presented with a single, seamless, and transparent application, session data needs to be shared between all the servers.{{<wbr>}}
+-  Web Application is broken into multiple modules - When applications are modularized such that different functionalities are deployed across multiple server instances. For example, you may have login, basic info, check-in and shopping functionalities split into separate modules and deployed individually across different servers for manageability or scalability. In order for the user to be presented with a single, seamless, and transparent application, session data needs to be shared between all the servers.
 
--  Reduce Web application memory footprint - The web application storing all session within the web application process heap, consuming large amount of memory. Having the session stored within a remote process will reduce web application utilization avoiding garbage collocation and long pauses.{{<wbr>}}
+-  Reduce Web application memory footprint - The web application storing all session within the web application process heap, consuming large amount of memory. Having the session stored within a remote process will reduce web application utilization avoiding garbage collocation and long pauses.
 
--  Multiple Data-Center deployment - You may need to deploy your application across multiple data centers for high-availability, scalability or flexibility, so session data will need to be replicated.{{<wbr>}}
-{{%/vbar%}}
+-  Multiple Data-Center deployment - You may need to deploy your application across multiple data centers for high-availability, scalability or flexibility, so session data will need to be replicated.
+
 
 {{%section%}}
 {{%column width="70%" %}}
@@ -39,37 +38,36 @@ With this solution, there is no need to deploy a database to store the session, 
 
 # Overview
 
-GigaSpaces XAP.NET ASP.NET Session State Store Management for .NET is designed to deliver the application maximum performance with **ZERO** application code changes. It features the following: {{<wbr>}}
+GigaSpaces XAP.NET ASP.NET Session State Store Management for .NET is designed to deliver the application maximum performance with **ZERO** application code changes. It features the following: 
 
-{{%vbar%}}
 
--  Reduced IIS memory footprint storing the session within a remote Data Grid.{{<wbr>}}
 
--  No code changes required to share the session with other remote IIS servers.{{<wbr>}}
+-  Reduced IIS memory footprint storing the session within a remote Data Grid.
 
--  Application elasticity - Support session replication across different IIS applications located within the same or different data-centers/clouds allowing the application to scale dynamically without any downtime.{{<wbr>}}
+-  No code changes required to share the session with other remote IIS servers.
 
--  Unlimited number of sessions and concurrent users support - Sub-millisecond session data access by using GigaSpaces In-Memory-Data-Grid as the session state store. {{<wbr>}}
+-  Application elasticity - Support session replication across different IIS applications located within the same or different data-centers/clouds allowing the application to scale dynamically without any downtime.
 
--  Session replication over the WAN support - Utilizing GigaSpaces Multi-Site Replication over the WAN technology. Support data compression and encryption.{{<wbr>}}
+-  Unlimited number of sessions and concurrent users support - Sub-millisecond session data access by using GigaSpaces In-Memory-Data-Grid as the session state store. 
 
--  HTTP Session data access scalability - Session data can utilize any of the supported In-Memory-Data-Grid topologies ; replicated or partitioned.{{<wbr>}}
+-  Session replication over the WAN support - Utilizing GigaSpaces Multi-Site Replication over the WAN technology. Support data compression and encryption.
 
--  Transparent IIS Failover - Allow IIS restart without any session data loss.{{<wbr>}}
+-  HTTP Session data access scalability - Session data can utilize any of the supported In-Memory-Data-Grid topologies ; replicated or partitioned.
 
--  Sticky session and Non-sticky session support - Your requests can move across multiple IIS seamlessly.{{<wbr>}}
+-  Transparent IIS Failover - Allow IIS restart without any session data loss.
 
-{{%/vbar%}}
+-  Sticky session and Non-sticky session support - Your requests can move across multiple IIS seamlessly.
+
 
 # Session State Options
 
 Before proceeding with the following sections, please find some more information on various session state modes [here](http://msdn.microsoft.com/en-us/library/vstudio/ms178586(v=vs.100).aspx). There are pros and cons of these various approaches.
 
-1)	Inproc mode has the best performance metrics but it only works best when you have a single server hosting a web application and web applications in which the end user is guaranteed to be re-directed to the one and only, and therefore, correct server. This mode is used when session data is not very critical as it can be in some other ways reconstructed.
+* Inproc mode has the best performance metrics but it only works best when you have a single server hosting a web application and web applications in which the end user is guaranteed to be re-directed to the one and only, and therefore, correct server. This mode is used when session data is not very critical as it can be in some other ways reconstructed.
 
-2)	Out of process/StateServer mode is the only way that allows you to really distribute your applications inside and outside your data centers. This is the mode that one chooses when they cannot guarantee which web server would be serving the end user's request. Herewith you can get the performance of reading from memory, reliability (and associated concerns) of having sessions managed by a separate process for all the web servers involved.
+* Out of process/StateServer mode is the only way that allows you to really distribute your applications inside and outside your data centers. This is the mode that one chooses when they cannot guarantee which web server would be serving the end user's request. Herewith you can get the performance of reading from memory, reliability (and associated concerns) of having sessions managed by a separate process for all the web servers involved.
 
-3)	SQL Server mode is used when very high levels of reliability are required. In other words, a session and its attributes have to be guaranteed re-construction on the fly and the application absolutely requires this kind of data reliability. Keep in mind that this mode has the worst performance of all (as quite easily understood) and trades off reliability for performance. This also allows you to globally distribute your applications across datacenters but relies heavily on clustering SQL Server databases across these data centers globally.
+* SQL Server mode is used when very high levels of reliability are required. In other words, a session and its attributes have to be guaranteed re-construction on the fly and the application absolutely requires this kind of data reliability. Keep in mind that this mode has the worst performance of all (as quite easily understood) and trades off reliability for performance. This also allows you to globally distribute your applications across datacenters but relies heavily on clustering SQL Server databases across these data centers globally.
 
 We will be concentrating our discussions on using an out of process, custom storage provider for achieving true global, lightweight distribution of your application that provides better reliability than other modes discussed above.
 
@@ -133,7 +131,7 @@ The following instructions assume that you have downloaded/installed the prerequ
 {{% note type="Application Platform" %}}
 XAP.NET is platform dependent. Ensure your application, version of .NET, and server configuration use the same platform as the XAP.NET installation.{{% /note %}}
 
-## The Sample Application
+## Sample Application
 {{% warning %}}
 If needed correct the reference to `Gigaspaces.Core.dll`, by adding a reference to the library shipped with XAP.NET.
 The default installation of GigaSpaces will put the library in a path similar to `C:\GigaSpaces\XAP.NET 9.7.0 x64\NET v4.0.30319\Bin`
@@ -147,7 +145,7 @@ The sample application can be deployed into IIS and ran from Visual Studio at th
 clustered server environment. All applications expected to read and write data that will be consumed by other applications 
 must share the same [machine key](http://msdn.microsoft.com/en-us/library/w8h3skw9.aspx).
 
-#### Configuration
+### Configuration
 
 
 ```xml
@@ -174,7 +172,7 @@ must share the same [machine key](http://msdn.microsoft.com/en-us/library/w8h3sk
 </configuration>
 ```
 
-#### Deployment
+### Deployment
 Deploy an [IMDG](./dotnet-your-first-xap-application.html) with the name of `sessionSpace`.
 
 Deploy the application using [Microsoft's publish web application](http://msdn.microsoft.com/en-us/library/dd465337.aspx) feature built into Visual Studio. We've already defined a publish profile
@@ -184,7 +182,7 @@ to publish the application into the standard web directory of the local machine 
 Publishing to `c:\inetpub\wwwroot\` requires running Visual Studio as an administrator.
 {{% /note %}}
 
-#### Interacting with the space
+### Interacting with the Space
 {{% info %}}There is nothing unique in how client applications interface with the session API.{{% /info %}}
 
 ```c#

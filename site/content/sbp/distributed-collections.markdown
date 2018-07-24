@@ -9,7 +9,7 @@ weight: 18
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Mike Raney| 10.2 | February 2016|    |  {{%git "https://github.com/GigaSpaces-ProfessionalServices/distributed-collections" %}}  |
+| Mike Raney| 10.2 | February 2016|    |  [Github link](https://github.com/GigaSpaces-ProfessionalServices/distributed-collections)  |
 
 
 

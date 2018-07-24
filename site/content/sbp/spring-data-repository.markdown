@@ -7,11 +7,6 @@ parent: spring-data.html
 ---
 
 
-{{%ssummary%}}{{%/ssummary%}}
-
-
-
-
 This part of the documentation explains how to configure and use Repositories with Spring Data. You can operate directly with the `GigaSpace` bean created in the previous section to perform read and write operations. It is easier to use Spring Data Repositories for the same purposes. This approach significantly reduces the amount of boilerplate code from your data-access layer as well as gives you more flexibility and cleaner code which is easy to read and support. The `GigaSpace` bean is still available with the `space()` method at the `XapRepository` interface.
 
 {{%note%}}

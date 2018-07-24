@@ -6,8 +6,6 @@ weight: 100
 parent:  first-jpa-app.html
 ---
 
-{{% ssummary %}} {{%/ssummary %}}
-
 This step explains how to adjust your JPA domain model to the XAP JPA implementation for maximum performance and scalability.
 
 # Working with JPA

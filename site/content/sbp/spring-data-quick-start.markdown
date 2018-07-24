@@ -7,8 +7,6 @@ parent: spring-data.html
 ---
 
 
-{{%ssummary%}}{{%/ssummary%}}
-
 This guide will walk you through the steps of building a Spring Data application with   XAP. You will use the   Spring Data XAP library to store and retrieve POJOs.
 
 # Installation

@@ -10,7 +10,7 @@ weight: 100
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Shay Hassidim| 12.0.1 | Feb 2017|    |    {{%download "/download_files/sbp/ElasticCalculationEngine.zip"%}}|
+| Shay Hassidim| 12.0.1 | Feb 2017|    | [Example](/download_files/sbp/ElasticCalculationEngine.zip)|
 
 
 # Overview

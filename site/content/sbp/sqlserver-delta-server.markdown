@@ -53,8 +53,9 @@ In our example we will only demonstrate the notifications for INSERT, UPDATE and
 
 ## Change Data Capture (CDC) Setup And Configuration
 
-Note:- This setup is for XAP.NET. Please download it here (http://www.gigaspaces.com/xap-download). After downloading XAP.NET, please run the version appropriate for your platform (x86 or x64). Remember to copy the license you received via email to the appropriate location (e.g. C:\GigaSpaces\XAP.NET 9.7.0 x86\Runtime\gslicense.xml). Next, proceed with starting XAP.NET and monitoring it via the Web-GUI as follows:
-a.  Gs-agent{{<wbr>}} - This can be enabled via windows service or by running Gs-agent.exe thus:
+This setup is for XAP.NET. Please download it here (http://www.gigaspaces.com/xap-download). After downloading XAP.NET, please run the version appropriate for your platform (x86 or x64). Remember to copy the license you received via email to the appropriate location (e.g. C:\GigaSpaces\XAP.NET 9.7.0 x86\Runtime\gslicense.xml). Next, proceed with starting XAP.NET and monitoring it via the Web-GUI as follows:
+
+a.  Gs-agent - This can be enabled via windows service or by running Gs-agent.exe thus:
 
 ```bash
 C:\GigaSpaces\XAP.NET 9.7.0 x86\NET v4.0.30319\Bin\Gs-agent.exe

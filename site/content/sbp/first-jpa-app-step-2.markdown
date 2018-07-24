@@ -6,7 +6,6 @@ weight: 200
 parent:  first-jpa-app.html
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
 
 This step explains how to utilize the power of the grid when implementing the data access layer of the PetClinic application (namely the `Clinic` interface), and seamlessly use distributed computing paradigms such as Map/Reduce and data and processing colocation.
 

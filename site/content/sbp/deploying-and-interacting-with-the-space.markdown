@@ -6,9 +6,6 @@ weight: 400
 parent: examples.html
 ---
 
-{{% ssummary %}}  {{% /ssummary %}}
-
-
 
 This section covers the main APIs of GigaSpaces XAP. It explains how to:
 

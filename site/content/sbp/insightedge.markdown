@@ -6,11 +6,4 @@ parent: none
 weight: 600
 ---
 
-
-{{%fpanel%}} 
-
-[Tableau Integration](./tableau.html)
-
-[Deep Learning](./insightedge-bigdl.html)
-
-{{%/fpanel%}}
+This section describes potential InsightEdge integrations.
