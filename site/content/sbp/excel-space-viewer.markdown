@@ -147,7 +147,7 @@ The Excel Space Viewer has been tested with the following editions of Microsoft 
 
 **To install and run the Excel space viewer**:
 
-1. {{% lampon %}} Download the [Excel Space Viewer Installation](/attachment_files/sbp/GigaSpacesViewerSetup.zip) file and extract it.
+1. Download the [Excel Space Viewer Installation](/attachment_files/sbp/GigaSpacesViewerSetup.zip) file and extract it.
 2. Run the `GigaSpacesViewerSetup.msi` file.
  {{% exclamation %}} If the .NET Framework is not installed on your machine, the system opens a dialog asking whether you want to install it. In this case, select **Yes** and proceed with the installation. After you finish installing, reopen the `GigaSpacesViewerSetup.msi` file and continue the procedure below.
 

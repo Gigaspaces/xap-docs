@@ -7,10 +7,6 @@ parent: spring-data.html
 ---
 
 
-{{%ssummary%}}{{%/ssummary%}}
-
-
-
 {{%anchor appendix-a%}}
 
 # Supported Query Keywords

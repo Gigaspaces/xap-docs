@@ -1,0 +1,6 @@
+<p class="not-in-use">COLUMN</p>
+{{ if isset .Params "width" }}
+<div style='float:left;width:{{.Get "width"}};padding-left:0px;padding-right:10px;position:relative;margin-left:0px;margin-right:0px;'>{{.Inner}}</div>
+{{else}}
+<div class="col-md-3">{{.Inner}}</div>
+{{end}}

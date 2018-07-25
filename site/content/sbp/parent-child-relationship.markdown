@@ -6,8 +6,6 @@ parent: modeling-your-data.html
 weight: 100
 ---
 
-{{% ssummary %}}Constructing Parent-Child Relationships with GigaSpaces Data-Grid{{% /ssummary %}}
-
 # Parent-Child Relationship
 
 In some cases, you might want to store objects within the space that include references to other space objects -- i.e. an object graph. With such object relationships, you might want to fetch a parent object that is associated with a child object(s) holds a specific data (join).

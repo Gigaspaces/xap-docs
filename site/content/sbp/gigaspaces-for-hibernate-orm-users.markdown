@@ -13,20 +13,14 @@ weight: 2000
 | Shay Hassidim| 9.6 | Feb 2014|    |    |
 
 
-
-
 {{% anchor 1 %}}
 
-
-
-This page explains how you can use  XAP to:
+This page explains how you can use XAP to:
 
 - **Get a free 2nd-level distributed cache** for your [Hibernate](http://www.hibernate.org)-based database integration
 - **Scale up your database using the existing ORM** by adding a GigaSpaces Data Grid with back-end Hibernate integration
 
 GigaSpaces as Hibernate 2nd level cache provides:
-
-{{%vbar  %}}
 
 - Unlimited cache capacity
 - All activities be monitored/profiled in real-time
@@ -39,7 +33,7 @@ GigaSpaces as Hibernate 2nd level cache provides:
 - Built-in security
 - Built-in deployment environment
 - Built-in alerting system
-{{%/vbar%}}
+
 
 Read further in this section for more details about these solutions, or jump to detailed instructions: [how to get a free distributed second-level cache](#step1) or [how to add a GigaSpaces data grid](#step2).
 
@@ -92,9 +86,13 @@ To gain ultimate scalability for your application, you can package your business
 This approach is called Space Based Architecture, and the way to achieve it is the Spring-based OpenSpaces platform, which allows you to deploy your application as a set of services encased in a Processing Unit.
 
 
-{{% refer %}}To learn more about Space-Based Architecture and its implications, read our white paper, [The Scalability Revolution: From Dead End to Open Road](http://www.gigaspaces.com/WhitePapers).{{% /refer %}}
+{{% refer %}}
+To learn more about Space-Based Architecture and its implications, read our white paper, [The Scalability Revolution: From Dead End to Open Road](http://www.gigaspaces.com/WhitePapers).
+{{% /refer %}}
 
-{{% refer %}}To learn more about OpenSpaces, see the [OpenSpaces](/product_overview/product-architecture.html#ProductArchitecture-OpenSpacesAPIandComponents) section in this online help.{{% /refer %}}
+{{% refer %}}
+To learn more about OpenSpaces, see the [OpenSpaces](/product_overview/product-architecture.html#ProductArchitecture-OpenSpacesAPIandComponents) section in this online help.
+{{% /refer %}}
 
 {{% anchor step1 %}}
 
@@ -241,21 +239,25 @@ In this topology each application accessing a remote cache.
 
 **To use the remote cache topology:**
 
-- Set your `gigaspaces.hibernate.cache.url` property to `jini://*/*/dataGrid`
+1. Set your `gigaspaces.hibernate.cache.url` property to `jini://*/*/dataGrid`
+1. Copy `dom4j.jar` and `hibernate3.jar` and all relevant Hibernate distribution package libraries into the `<GigaSpaces Root>/lib/platform/ext` folder.
+1. Run `<GigaSpaces Root>\bin\gs-agent.bat (.sh)` to start the GigaSpaces [runtime environment]({{%currentadmurl%}}/the-runtime-environment.html).
+1. Run the deploy command to deploy the remote space:
 
-- Copy `dom4j.jar` and `hibernate3.jar` and all relevant Hibernate distribution package libraries into the `<GigaSpaces Root>/lib/platform/ext` folder.
-- Run `<GigaSpaces Root>\bin\gs-agent.bat (.sh)` to start the GigaSpaces [runtime environment]({{%currentadmurl%}}/the-runtime-environment.html).
-- Run the deploy command to deploy the remote space:
+	```
     <GigaSpaces root>\bin\gs.bat deploy-space datagrid
-Wait to see the following output:
+	```
+1. Wait to see the following output:
+
+	```
     Found 1 GSMs
     Deploying [datagrid] with name [datagrid] under groups [gigaspaces-7.1.2-XAPPremium-ga] and locators []
     SLA Not Found in PU.  Using Default SLA.
     Waiting for [1] processing unit instances to be deployed...
     [datagrid] [1] deployed successfully on [10.10.254.1]
     Finished deploying [1] processing unit instances
-
-- Run your application.
+	```
+1. Run your application.
 {{% /tab %}}
 {{%tab "  Master-Local Cache "%}}
 **Master-Local Cache Topology**
@@ -267,22 +269,25 @@ In this topology each application has a lightweight, embedded cache, which is in
 
 **To use the master-local topology:**
 
-- Set your `gigaspaces.hibernate.cache.url` property to `jini://*/*/dataGrid?useLocalCache`
+1. Set your `gigaspaces.hibernate.cache.url` property to `jini://*/*/dataGrid?useLocalCache`
+1. Copy `dom4j.jar` and `hibernate3.jar` and all relevant Hibernate distribution package libraries into the `<GigaSpaces Root>/lib/platform/ext` folder.
+1. Run `<GigaSpaces Root>\bin\gs-agent.bat (.sh)` to start the GigaSpaces [runtime environment]({{%currentadmurl%}}/the-runtime-environment.html).
+1. Run the deploy command to deploy the master space:
 
-- Copy `dom4j.jar` and `hibernate3.jar` and all relevant Hibernate distribution package libraries into the `<GigaSpaces Root>/lib/platform/ext` folder.
-- Run `<GigaSpaces Root>\bin\gs-agent.bat (.sh)` to start the GigaSpaces [runtime environment]({{%currentadmurl%}}/the-runtime-environment.html).
-- Run the deploy command to deploy the master space:
+	```
     <GigaSpaces root>\bin\gs.bat deploy-space datagrid
+	```
+1. Wait to see the following output:
 
-Wait to see the following output:
-    Found 1 GSMs
+    ```
+	Found 1 GSMs
     Deploying [datagrid] with name [datagrid] under groups [gigaspaces-7.1.2-XAPPremium-ga] and locators []
     SLA Not Found in PU.  Using Default SLA.
     Waiting for [1] processing unit instances to be deployed...
     [datagrid] [1] deployed successfully on [10.10.254.1]
     Finished deploying [1] processing unit instances
-
-- Run your application.
+	```
+1. Run your application.
 {{% /tab %}}
 {{%tab "  Partitioned Master-Local Cache "%}}
 **Partitioned Master-Local Cache Topology**
@@ -298,14 +303,17 @@ This topology requires XAP Premium Edition.
 
 **To use the master-local partitioned topology with two partitions:**
 
-- Configure your `gigaspaces.hibernate.cache.url` property to `jini://*/*/dataGrid?useLocalCache`
+1. Configure your `gigaspaces.hibernate.cache.url` property to `jini://*/*/dataGrid?useLocalCache`
+1. Copy `dom4j.jar` and `hibernate3.jar` from Hibernate distribution package into the `<GigaSpaces Root>/lib/platform/ext` folder.
+1. Run `<GigaSpaces Root>\bin\gs-agent.bat (.sh)` to start the GigaSpaces [runtime environment]({{%currentadmurl%}}/the-runtime-environment.html).
+1. Run the deploy command to deploy the master space in cluster of two partitions topology:
 
-- Copy `dom4j.jar` and `hibernate3.jar` from Hibernate distribution package into the `<GigaSpaces Root>/lib/platform/ext` folder.
-- Run `<GigaSpaces Root>\bin\gs-agent.bat (.sh)` to start the GigaSpaces [runtime environment]({{%currentadmurl%}}/the-runtime-environment.html).
-- Run the deploy command to deploy the master space in cluster of two partitions topology:
-    <GigaSpaces root>\bin\gs.bat deploy-space -cluster schema=partitioned total_members=2,0 datagrid
+    ```
+	<GigaSpaces root>\bin\gs.bat deploy-space -cluster schema=partitioned total_members=2,0 datagrid
+	```
+1. Wait to see the following output:
 
-Wait to see the following output:
+    ```
     gs> deploy-space -cluster schema=partitioned total_members=2,0 datagrid
     Found 1 GSMs
     Deploying [datagrid] with name [datagrid] under groups [gigaspaces-7.1.2-XAPPremium-ga] and locators []
@@ -317,8 +325,8 @@ Wait to see the following output:
     [datagrid] [1] deployed successfully on [10.10.254.1]
     [datagrid] [2] deployed successfully on [10.10.254.1]
     Finished deploying [2] processing unit instances
-
-- Run your application.
+	```
+1. Run your application.
 {{% /tab %}}
 {{%tab "  Embedded Replicated Cache "%}}
 **Embedded Replicated Cache Topology**
@@ -334,14 +342,18 @@ This topology requires XAP Premium Edition.
 
 **To use the embedded replicated topology with two replicated instances:**
 
-- In your first application, configure the `gigaspaces.hibernate.cache.url` property to the following (as one long line):
-    /./dataGrid?cluster_schema=sync_replicated&amp;total_members=2&amp;id=1
+1. In your first application, configure the `gigaspaces.hibernate.cache.url` property to the following (as one long line): 
 
-- Run your first application.
-- In your second application, configure your `gigaspaces.hibernate.cache.url` property to the following (as one long line):
-    /./dataGrid?cluster_schema=sync_replicated&amp;total_members=2&amp;id=2
+	```
+	/./dataGrid?cluster_schema=sync_replicated&amp;total_members=2&amp;id=1
+	```
+1. Run your first application.
+1. In your second application, configure your `gigaspaces.hibernate.cache.url` property to the following (as one long line): 
 
-- Run your second application.
+	```
+	/./dataGrid?cluster_schema=sync_replicated&amp;total_members=2&amp;id=2
+	```
+1. Run your second application.
 {{% /tab %}}
 {{% /tabs %}}
 

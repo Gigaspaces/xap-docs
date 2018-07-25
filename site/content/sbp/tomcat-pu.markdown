@@ -41,10 +41,10 @@ Embedding  Tomcat along with one or more associated web application is simply a 
 
 The tomcat processing unit hierarchy, once built with maven, will have the following structure:
 
-Tomcat PU {{<wbr>}}
-|-   com  {{<wbr>}}
-|-   lib    {{<wbr>}}
-|-   META-INF  {{<wbr>}}
+Tomcat PU <br>
+|-   com  <br>
+|-   lib   <br>
+|-   META-INF <br>
 |-   webapps
 
 

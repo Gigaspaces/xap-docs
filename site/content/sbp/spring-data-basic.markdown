@@ -7,10 +7,6 @@ parent: spring-data.html
 ---
 
 
-{{%ssummary%}}{{%/ssummary%}}
-
-
-
 This section describes how to define query methods. The basic concept: user defines methods using a specific query syntax as method name, the XAP repository proxy derives these methods into XAP queries. A full explanation of this mechanism can be found at [Spring Data Reference](http://docs.spring.io/spring-data/data-commons/docs/1.9.1.RELEASE/reference/html/#repositories.query-methods). In this document only basic usage will be explained.
 
 # Query Methods

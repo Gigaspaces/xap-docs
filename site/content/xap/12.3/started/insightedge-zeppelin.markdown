@@ -1,6 +1,6 @@
 ---
 type: post123
-title: Web Notebook
+title: Using the InsightEdge Web Notebook
 categories: XAP123GS, OSS
 parent: insightedge-basics.html
 weight: 200

@@ -8,7 +8,7 @@ weight: 400
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|:----------:|
-| Shay  Hassidim| 12.0.1 | March 2017|    | {{%download "/download_files/sbp/wan-replication_multi_gw.zip"%}}   |
+| Shay  Hassidim| 12.0.1 | March 2017|    | [Example](/download_files/sbp/wan-replication_multi_gw.zip)   |
 
 
 # Overview
@@ -28,7 +28,7 @@ With the example below we will run a source space (New-York) with 2 partitions a
 
 # Example
 
-**1.** Download {{%download "/download_files/sbp/wan-replication_multi_gw.zip"%}} the example and extract its content into an empty folder.<br> 
+**1.** Download the [example](/download_files/sbp/wan-replication_multi_gw.zip) and extract its content into an empty folder.<br> 
 It includes two folders: **deploy** and **scripts**.<br>
 - Deploy - This includes the PU folders for space and gateway<br>
 - Scripts – This includes all the start agents and deploy scripts

@@ -6,8 +6,6 @@ parent: excel-that-scales-solution.html
 weight: 600
 ---
 
-{{% ssummary %}}Debugging using Excel; how to write a hosting application for easy debugging.{{% /ssummary %}}
-
 # Overview
 
 # Writing a Hosting Application for Easy Debugging

@@ -7,10 +7,6 @@ parent: examples.html
 ---
 
 
-{{% ssummary   %}} {{% /ssummary %}}
-
-
-
 In this tutorial, you will see three core space-based concepts in action: architecture, application deployment, and scaling.
 
 Space-based architecture is an architecture that relies on co-location of business logic and data, and partitioning of work. Space-based architecture is also characterized by a reliance on asynchronous (yet typically low-latency) operations.

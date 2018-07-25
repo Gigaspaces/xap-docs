@@ -2,14 +2,14 @@
 type: post
 title:  Refreshable Business Logic Example
 categories: SBP
-weight: 2200
-parent: production.html
+weight: 300
+parent: hot-deploy.html
 ---
  
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-|Shravan (Sean) Kumar,| 7.1.3|   |           | {{%download "/attachment_files/sbp/refreshable-prototype.zip" %}}        |
+|Shravan (Sean) Kumar,| 7.1.3|   |           | [Example](/attachment_files/sbp/refreshable-prototype.zip)  |
 
 
 # Overview

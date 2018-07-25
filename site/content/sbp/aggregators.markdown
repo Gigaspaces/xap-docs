@@ -6,7 +6,6 @@ parent: processing.html
 weight: 450
 ---
 
-{{% ssummary  %}}  {{% /ssummary %}}
 
 {{%section%}}
 {{%column width="60%" %}}

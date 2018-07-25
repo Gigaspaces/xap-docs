@@ -6,7 +6,6 @@ weight: 700
 parent: examples.html
 ---
 
-{{%ssummary%}}{{%/ssummary%}}
 
 This section describes SBA from an application development perspective. It focuses on developing a high-throughput, event-driven, service-oriented application using GigaSpaces XAP and Space-Based Architecture.
 

@@ -6,7 +6,6 @@ parent: excel-that-scales-solution.html
 weight: 800
 ---
 
-{{% ssummary%}}Writing your first RTD/UDF application using the GigaSpaces-Excel integration.{{% /ssummary %}}
 
 # Overview
 

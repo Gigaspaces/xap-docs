@@ -10,7 +10,7 @@ weight: 45
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-|Oleksiy Dyagilev| 10.0| August 2014| [Storm](https://storm.incubator.apache.org)| {{%git "https://github.com/fe2s/xap-storm" %}}|
+|Oleksiy Dyagilev| 10.0| August 2014| [Storm](https://storm.incubator.apache.org)| [Github link](https://github.com/fe2s/xap-storm)|
 
 
 # Introduction

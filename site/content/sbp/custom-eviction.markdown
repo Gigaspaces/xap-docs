@@ -107,7 +107,7 @@ Eviction logic will be defined as listener logic. Eviction candidates will be se
 
 Another variation of this approach is listener logic will wait for a command object (something like a close of business day event). When this command object is written into space eviction logic starts and cleans up data.
 
-Download the example {{%zip "/attachment_files/sbp/PollingEvictor.zip"%}} that uses a polling container for eviction of Orders.
+Download the [example](/attachment_files/sbp/PollingEvictor.zip) that uses a polling container for eviction of Orders.
 
 In this simplistic example (created using hello-world example included in the product distribution),
 

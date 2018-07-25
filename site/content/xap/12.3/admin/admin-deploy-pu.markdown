@@ -110,25 +110,24 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 		<li>(Optional) If you want this Processing Unit to be secure, do the following In the <b>User Login Details</b> area:
 		<ul>
 			<li>Select <b>Secured Space</b>.</li>
-			<li>Provide the user credentials in the <b>User Name</b> and <b>Password</b> boxes.
-		</ul>
-		</ol>
+			<li>Provide the user credentials in the <b>User Name</b> and <b>Password</b> boxes.</li>
+		</ul></li>
+	</ol>
 1.	In the **Cluster Info** area, apply the required configuration details:
 	<ol type="a">
-		<li>In the <b>Cluster schema</b> box, specify the SLA definitions (cluster topology):</li>
+		<li>In the <b>Cluster schema</b> box, specify the SLA definitions (cluster topology):
 		<ul>
 			<li><b>None</b> - A standalone Processing Unit with an embedded Space.</li>
 			<li><b>Partitioned</b> - A cluster that is partitioned across the instances that are specified.</li>
 			<li><b>Sync_replicated</b> - A cluster with synchronous replication across the instances that are specified.</li>
 			<li><b>Async_replicated</b> - A cluster with asynchronous replication across the instances that are specified.</li>
-		</ul>
+		</ul></li>
 		<li>In the <b>Number of Instances</b> box,  specify the number of primary Processing Unit instances to deploy in the cluster.</li>
 		<li>(For partitioned clusters) In the <b>Number of Backups</b> box, define the number of backup Processing Units for each primary Processing Unit.</li>
 		<li>In the <b>Max Inst. per VM</b> box, define the maximum number of Processing Unit instances each virtual host may contain (the default is 1).</li>
 		<li>In the <b>Max Inst. per VM</b> box, define the maximum number of Processing Unit instances each physical host may contain.</li>
 		<li>If you have more than one host, you can specify on which host to deploy the primary Processing Unit instances.</li>
-		</li>
-	</ol>	
+	</ol>
 1. Click **Deploy**.
  
 {{%/tab%}}

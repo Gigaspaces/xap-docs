@@ -6,13 +6,10 @@ weight: 1000
 parent: examples.html
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
-
-
 
 {{% section %}}
 {{% column width="80%" %}}
-{{<wbr>}}
+<br>
 We live almost every aspect of our lives in a real-time world. Think about our social communications; we update our friends online via social networks and micro-blogging, we text from our cell phones, or message from our laptops. But it's not just our social lives; we shop online whenever we want, we search the web for immediate answers to our questions, we trade stocks online, we pay our bills, and do our banking. All online and all in real time.
 {{% /column %}}
 {{% column width="20%" %}}

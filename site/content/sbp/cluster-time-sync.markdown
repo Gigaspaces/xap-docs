@@ -57,7 +57,7 @@ Those using Microsoft Windows operating systems should follow the instructions [
 
 ### Apple Macintosh
 
-Comprehensive instructions for Apple Macintosh users can be found here [{{%pdf%}}](http://tf.nist.gov/service/pdf/macintosh.pdf).
+Comprehensive instructions for Apple Macintosh users can be found [here](http://tf.nist.gov/service/pdf/macintosh.pdf).
 
 Users of all operating systems can decide to use time server pools, even if their operating system doesn't configure them by default. To do so simply follow [these instructions](http://www.pool.ntp.org/en/use.html) (Note: it contains more explicit instructions for Windows users)
 

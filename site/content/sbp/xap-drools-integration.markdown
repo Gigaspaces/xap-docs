@@ -10,7 +10,7 @@ weight: 100
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Allen Terleto| 10.0.1| September 2014|   |    {{%git "https://github.com/Gigaspaces/xap-drools-integration" %}} |
+| Allen Terleto| 10.0.1| September 2014|   |  [Github link](https://github.com/Gigaspaces/xap-drools-integration) |
 
 
 
@@ -432,7 +432,7 @@ Confirm Java is installed by running the java -version in your command line
 
 ![drools1](/attachment_files/drools/drools8.png)
 
-If Java is not installed, download Java {{%download "https://java.com/en/download/index.jsp"%}} and add JAVA_HOME to your system variables
+If Java is not installed, [download Java](https://java.com/en/download/index.jsp) and add JAVA_HOME to your system variables
 ![drools1](/attachment_files/drools/drools9.png)
 
 
@@ -447,7 +447,7 @@ Confirm Maven is installed by running the mvn version in your command line
 
 ![drools1](/attachment_files/drools/drools11.png)
 
-If Maven is not installed, download Maven {{%download "http://maven.apache.org/download.cgi"%}} and add M2_HOME to your system variables
+If Maven is not installed, [download Maven](http://maven.apache.org/download.cgi) and add M2_HOME to your system variables
 
 ![drools1](/attachment_files/drools/drools12.png)
 
@@ -458,7 +458,7 @@ Add %M2_HOME%/bin to your PATH system variable
 {{%/accord%}}
 
 {{%accord  title="Step 3: XAP Installation"%}}
-If XAP is not installed {{%download "http://www.gigaspaces.com/xap-download"%}} and add JSHOMEDIR to your system variables
+If XAP is not installed, download the [latest version](http://www.gigaspaces.com/xap-download) and add JSHOMEDIR to your system variables
 
 ![drools1](/attachment_files/drools/drools14.png)
 
@@ -470,7 +470,7 @@ Add %JSHOMEDIR%/bin to your PATH system variable
 
 {{%accord title="Step 4: Download Example"%}}
 
-Download the example {{%git "https://github.com/Gigaspaces/xap-drools-integration" %}} and extract.
+Download the [example](https://github.com/Gigaspaces/xap-drools-integration) and extract.
 
 ![drools1](/attachment_files/drools/drools16.png)
 {{%/accord%}}

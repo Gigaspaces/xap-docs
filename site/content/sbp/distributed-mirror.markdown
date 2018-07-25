@@ -9,7 +9,7 @@ weight: 50
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|:----------:|
-| Shay Hassidim| 12.0 | March 2017| [Asynchronous Persistence]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html)| {{%download "/download_files/sbp/distributed-mirror.zip"%}}|
+| Shay Hassidim| 12.0 | March 2017| [Asynchronous Persistence]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html)| [Example](/download_files/sbp/distributed-mirror.zip)|
 
 # Overview 
 
@@ -24,7 +24,7 @@ With the example below we will run a partitioned space (2 partitions) and 2 mirr
 {{%/align%}}
 
 #  The Example
-Download {{%download "/download_files/sbp/distributed-mirror.zip"%}} the example and extract its content into an empty folder. You will find 3 zip files:
+Download the [example](/download_files/sbp/distributed-mirror.zip) and extract its contents into an empty folder. You will find 3 zip files:
 
 - multi-mirror.zip – A Mirror PU configured to support multiple mirror instances
 - space.zip - A Space PU configured to support multiple mirror instances

@@ -6,14 +6,13 @@ weight: 300
 parent:  first-jpa-app.html
 ---
 
-{{% ssummary %}}{{% /ssummary %}}
 
 This step shows how to build, package and deploy the application while taking advantage of XAP's dynamic load balancing capabilities and the Space as a highly HttpSession store.
 
 
 # Building the Example Application
 
-The application sources and build scripts can be downloaded {{%git "https://github.com/gigaspaces/petclinic-jpa"%}}. This application uses a Maven build script, so you need to make sure you're connected to the internet when you first run it to allow Maven to download all the dependencies.
+The application sources and build scripts can be downloaded from this [Github link](https://github.com/gigaspaces/petclinic-jpa). This application uses a Maven build script, so you need to make sure you're connected to the internet when you first run it to allow Maven to download all the dependencies.
 
 
 

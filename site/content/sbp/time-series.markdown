@@ -483,9 +483,9 @@ This demo will use a `sla.xml` file which contains the SLA definitions within th
 
 **Step 1.**	Download the [realTimeAnalyticsTimeSeries.rar](/download_files/sbp/realTimeAnalyticsTimeSeries.rar) file and extract it into a folder named `realTimeAnalyticsTimeSeries`.<br>
 
-**Step 2.**	Update setenv.bat to have the right value for `JAVA_HOME` and `JSHOMEDIR` variables {{<wbr>}}
+**Step 2.**	Update setenv.bat to have the right value for `JAVA_HOME` and `JSHOMEDIR` variables 
 
-**Step 3.**	Add `maven\bin` to your path if you dont have it already installed and run: {{<wbr>}}
+**Step 3.**	Add `maven\bin` to your path if you dont have it already installed and run: 
 
 
 ```java
