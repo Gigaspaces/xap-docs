@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ShortcodeAnalyzer {
 
+	private static final boolean VERBOSE = Boolean.parseBoolean(System.getenv("VERBOSE_REPORT"));
+	
     public static void scanAndReport(String path, String target) throws IOException {
         ShortcodeAnalyzer f = new ShortcodeAnalyzer();
         f.initShortcodes("site-overrides\\layouts\\shortcodes");
@@ -81,9 +83,9 @@ public class ShortcodeAnalyzer {
                 throw new IllegalStateException("Empty shortcode - [" + line + "]");
             if (s.findNext(suffix)) {
                 Map<String, ShortcodeCounter> stats = shortcodesWithOverrides.contains(shortcode) ? statsWithOverrides : statsWithoutOverrides;
-				if (!stats.containsKey(shortcode))
-					stats.put(shortcode, new ShortcodeCounter(file.toString()));
-                stats.get(shortcode).counter.incrementAndGet();
+				stats.putIfAbsent(shortcode, new ShortcodeCounter());
+			    stats.get(shortcode).counter.incrementAndGet();
+                stats.get(shortcode).locations.add(file.toString());
             } else {
                 throw new IllegalStateException("Missing close " + suffix + System.lineSeparator() + line);
             }
@@ -129,15 +131,26 @@ public class ShortcodeAnalyzer {
 	
 	public static class ShortcodeCounter {
 		private final AtomicInteger counter = new AtomicInteger();
-		private final String firstAppearance;
-		
-		public ShortcodeCounter(String firstAppearance) {
-			this.firstAppearance = firstAppearance;
-		}
-		
+		private final Set<String> locations = new HashSet<String>();
+				
 		@Override
 		public String toString() {
-			return String.valueOf(counter.get()) + " (" + firstAppearance + ")";
+			return String.valueOf(counter.get()) + toString(locations, VERBOSE);
+		}
+		
+		private static String toString(Set<String> locations, boolean verbose) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(" (#locations: " + locations.size());
+			if (verbose) {
+				sb.append(")");
+				for (String location : locations) {
+					sb.append(System.lineSeparator());
+					sb.append("    " + location);
+				}
+			} else {
+				sb.append(" " + locations.iterator().next() + ")");
+			}
+			return sb.toString();
 		}
 	}
 
