@@ -50,7 +50,7 @@ Before deploying a Space, you must start a container (refer to [Starting a Conta
   </tr>
   <tr>
     <td>Option</td>
-    <td nowrap>--partitions</td>
+    <td style="white-space: nowrap">--partitions</td>
     <td>Define how many primary partitions the Space should contain, using the syntax <code>--partitions=n</code>.</td>
     <td></td>
   </tr>
@@ -62,7 +62,7 @@ Before deploying a Space, you must start a container (refer to [Starting a Conta
   </tr>
   <tr>
     <td>Option</td>
-    <td nowrap>--requires-isolation</td>
+    <td style="white-space: nowrap">--requires-isolation</td>
     <td>If this Space should not share a container, adding this option provisions the Space in a dedicated container.</td>
     <td></td>
   </tr>

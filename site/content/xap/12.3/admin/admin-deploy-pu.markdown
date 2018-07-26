@@ -110,9 +110,9 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 		<li>(Optional) If you want this Processing Unit to be secure, do the following In the <b>User Login Details</b> area:
 		<ul>
 			<li>Select <b>Secured Space</b>.</li>
-			<li>Provide the user credentials in the <b>User Name</b> and <b>Password</b> boxes.
+			<li>Provide the user credentials in the <b>User Name</b> and <b>Password</b> boxes.</li>
 		</ul>
-		</ol>
+	</ol>
 1.	In the **Cluster Info** area, apply the required configuration details:
 	<ol type="a">
 		<li>In the <b>Cluster schema</b> box, specify the SLA definitions (cluster topology):</li>
@@ -127,7 +127,6 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 		<li>In the <b>Max Inst. per VM</b> box, define the maximum number of Processing Unit instances each virtual host may contain (the default is 1).</li>
 		<li>In the <b>Max Inst. per VM</b> box, define the maximum number of Processing Unit instances each physical host may contain.</li>
 		<li>If you have more than one host, you can specify on which host to deploy the primary Processing Unit instances.</li>
-		</li>
 	</ol>	
 1. Click **Deploy**.
  

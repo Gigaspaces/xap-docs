@@ -35,7 +35,7 @@ SELECT * FROM my.company.com.MyPojo WHERE rownum < 1000
 1. To export the results of a query:
 
 	<ol type="a">
-		<li>Click <b>Export</b>.
+		<li>Click <b>Export</b>.</li>
 		<li>Select an action (<b>Open</b>, <b>Save</b>, or <b>Cancel</b>).</li>
 	</ol>
 	The results are exported in a zipped CSV file.

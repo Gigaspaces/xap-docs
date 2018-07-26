@@ -9,8 +9,6 @@ parent: admin-spaces-pu.html
 
 **Removing a Processing Unit from the Service Grid**.
 
-<br> 
- 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
