@@ -21,6 +21,22 @@ var terms = [
   {
     "find": /&ndash;/g,
     "replace": '–'
+  },
+  {
+    "find": /&hellip;/g,
+    "replace": '...'
+  },
+  {
+    "find": /<br>/g,
+    "replace": '<br/>'
+  },
+  {
+    "find": /width=(\d)/g,
+    "replace": 'width="$1'
+  },
+  {
+    "find": /<\/?nobr>/g,
+    "replace": ''
   }
 ];
 

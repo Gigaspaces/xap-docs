@@ -1,5 +1,6 @@
-<p class="not-in-use">IMAGERTEXT</p>
-<div class="row" style="margin-right:5px; margin-left:0px">
-    <img src="{{.Get 0}}" class="alignright" alt="" title="" />
-        {{.Inner}}
-</div>
+<table class="tc-borderless">
+  <tr>
+    <td>{{ .Inner }}</td>
+    <td><img src="{{.Get 0}}" alt="" title="" /></td>
+  </tr>
+</table>
