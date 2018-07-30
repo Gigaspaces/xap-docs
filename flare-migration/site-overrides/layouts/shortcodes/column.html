@@ -1,3 +1,7 @@
-<td style="width:{{.Get " width "}};">
- {{.Inner}}
+{{ if isset .Params "width" }}
+<td style="width:{{.Get "width"}};">
+{{else}}
+<td>
+{{end}}
+  {{.Inner}}
 </td>

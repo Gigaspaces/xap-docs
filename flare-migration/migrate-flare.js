@@ -37,6 +37,14 @@ var terms = [
   {
     "find": /<\/?nobr>/g,
     "replace": ''
+  },
+  {
+    "find": /\.html/g,
+    "replace": '.htm/'
+  },
+  {
+    "find": /attachment_files\//g,
+    "replace": '../../../attachement_files/'
   }
 ];
 
@@ -123,6 +131,7 @@ function processHTM(sFilename) {
       fh.Delete();
   }
 
+  sFilename = sFilename.substr(0, sFilename.length - 1);
   fh = fso.CreateTextFile(sFilename, true);
   fh.Write(result.html);
   fh.Close();
