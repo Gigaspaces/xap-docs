@@ -32,7 +32,7 @@ The Console Appender writes log messages to the console.
 
 The RollingFileAppender writes log messages to log files. The Spark log files are: 
 
-* Written to <XAP_HOME>/logs.
+* Written to &lt;XAP_HOME&gt;/logs.
 * Rolled based on file size (up to 2GB)
 
 #### Log File Name Format

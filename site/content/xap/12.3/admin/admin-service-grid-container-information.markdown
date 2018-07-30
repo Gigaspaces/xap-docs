@@ -6,18 +6,14 @@ weight: 200
 parent: admin-service-grid.html
 ---
  
-  
-
- 
-
 
 **To view the general container details:**
-<br>
+
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
-**List all containers**<br>
+**List all containers**
 
 
 *Command:*
@@ -66,7 +62,7 @@ This command lists the container ID, Process ID, zones, and Processing Unit inst
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | container ID | Provide the ID of container for which you want to see the details. |
+|Parameter | Container ID | Provide the ID of container for which you want to see the details. |
  
  
 {{%/tab%}}

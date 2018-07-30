@@ -9,7 +9,6 @@ parent: admin-spaces-pu.html
 You can use any of the administration tools to view operations statistics for a Space. If you have a system with MemoryXtend, you can access cache and blobstore metrics via the Admin API, and you can view these statistics in the Web Management Console and GigaSpaces Management Center.
  
 
-<br>
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}

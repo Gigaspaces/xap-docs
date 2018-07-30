@@ -38,9 +38,9 @@ This commands starts a container.
 | Item | Name | Description |
 |:-----|:------|:------------|
 |Parameter | host | Provide the name of the host where the container should be started.|
-|Option    |  ---memory:\<memory\> | Define the maximum amount of JVM memory for the new container. |
-|Option    | ---zone=\<zone name\> | Define the zone where the new container should be started. |
-|Option    |---property=\<String=String\> | Provide additional system properties.|
+|Option    |  ---memory:&lt;memory&gt; | Define the maximum amount of JVM memory for the new container. |
+|Option    | ---zone=&lt;zone name&gt; | Define the zone where the new container should be started. |
+|Option    |---property=&lt;String=String&gt; | Provide additional system properties.|
  
 {{%/tab%}}
 

@@ -281,7 +281,11 @@ Format: `xap|$TOP_LEVEL|$HOST|lus|$PID:METRIC_NAME`
 ### Processing unit metrics
 Metric name has a `pu_` prefix.
 
-Format: `xap|$TOP_LEVEL|pu|$PU_NAME|$PU_INSTANCE_ID:`<br>`METRIC_NAME_WITHOUT_PREFIX`
+Format:
+
+ `xap|$TOP_LEVEL|pu|$PU_NAME|$PU_INSTANCE_ID:`
+ 
+ `METRIC_NAME_WITHOUT_PREFIX`
 
 
 |Before conversion|After conversion|
@@ -294,7 +298,11 @@ Space metrics name starts with "space_". Metrics for primary and backup are conv
 #### Space metrics / primary partition
 Metric tag `space_instance_id` contains only numbers.
 
-Format: `xap|$TOP_LEVEL|space|$SPACE_NAME|primary$SPACE_INSTANCE_ID:`<br>`METRIC_NAME_WITHOUT_PREFIX`
+Format:
+
+`xap|$TOP_LEVEL|space|$SPACE_NAME|primary$SPACE_INSTANCE_ID:`
+
+`METRIC_NAME_WITHOUT_PREFIX`
 
 
 |Before conversion|After conversion|
@@ -304,7 +312,11 @@ Format: `xap|$TOP_LEVEL|space|$SPACE_NAME|primary$SPACE_INSTANCE_ID:`<br>`METRIC
 #### Space metrics / backup partition
 Metric tag `space_instance_id` does not consist only of numbers.
 
-Format: `xap|$TOP_LEVEL|space|space_$SPACE_NAME|backup$SPACE_INSTANCE_ID:`<br>`METRIC_NAME_WITHOUT_PREFIX`
+Format:
+
+`xap|$TOP_LEVEL|space|space_$SPACE_NAME|backup$SPACE_INSTANCE_ID:`
+
+`METRIC_NAME_WITHOUT_PREFIX`
 
 
 |Before conversion|After conversion|

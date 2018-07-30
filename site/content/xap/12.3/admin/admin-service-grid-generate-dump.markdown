@@ -52,14 +52,14 @@ The Web Management Console supports generating the following types of dump files
 
 	<ol type="a">
 		<li>In the <b>Cause for dump retrieval</b> box, type a reason for generating the dump file. This text will appear in the summary file for each XAP component.</li>
-		<li>In the <b>Select Dump Types</b> area, check the options for the information you want in the dump file, which provides a summary file plus the following:</li>
+		<li>In the <b>Select Dump Types</b> area, check the options for the information you want in the dump file, which provides a summary file plus the following:
 		<ul>
 			<li><b>JVM Thread Dump</b> - container state and thread information per container. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.</li>
 			<li><b>Network Dump</b> - network statistics per container.</li>
 			<li><b>Log Dump</b> - log files for all services, including those that have been terminated, or only services that are currently running (if the <b>Only Live Services Log Dump</b> option is checked). This type of dump file is useful for troubleshooting failover scenarios.</li>
 			<li><b>Processing Unit Dump</b> - pu.xml file per Processing Unit, event container information per Processing Unit instance, and a summary file per Space.</li>
 			<li><b>JVM Heap Dump</b> - binary heap dump file.</li>
-		</ul>
+		</ul></li>
 		<li>Click <b>Generate</b>.</li>
 	</ol>
     

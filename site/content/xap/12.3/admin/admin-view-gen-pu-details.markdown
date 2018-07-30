@@ -8,7 +8,7 @@ parent: admin-spaces-pu.html
  
  
 **To view information about the deployed Processing Units:**
-<br>
+
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
@@ -71,9 +71,7 @@ This command lists all of the instances for a given Processing Unit, along with 
     <td>Parameter</td>
     <td>name</td>
     <td>Name of Processing Unit to list instances for.</td>
-    <td></td>
-  </tr>
-  <tr>
+   </tr>
 </table>
 
 
@@ -273,7 +271,7 @@ You can see the following Processing Unit details in the main Processing Units v
   <tr>
     <td>Status</td>
     <td>Current status of the Processing Unit:
-	<ul>
+		<ul>
 			<li><b>Intact</b> - the Processing Unit was successfully deployed and is operating normally.</li>
 			<li><b>Scheduled</b> - the Processing Unit was not yet successfully deployed, but an additional attempt will be made.</li>
 			<li><b>Compromised</b> - the Processing Unit is no longer intact, but has not yet completed the undeploy process.</li>

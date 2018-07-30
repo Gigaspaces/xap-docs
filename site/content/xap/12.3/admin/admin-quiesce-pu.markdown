@@ -159,7 +159,6 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 {{% /tabs %}}
 
 
-<br>
 
 # Unquiescing a Processing Unit
  

@@ -105,7 +105,7 @@ This example deploys a Space named **mySpace** with high availability, three par
 |------|-------------------|----------------|
 | name | Provide the name of the Space you are deploying. | Yes |
 | ha         |High availability. Adds a single backup partition per primary partition. | No |
-| partitions=\<partitions\>    | Define how many primary partitions the Space should contain, using the syntax `--partitions=n`. | No |
+| partitions= &lt;partitions&gt;    | Define how many primary partitions the Space should contain, using the syntax `--partitions=n`. | No |
 |requiresIsolation   | If this Space should not share a container, adding this option provisions the Space in a dedicated container. | No |
 
 {{%/tab%}}

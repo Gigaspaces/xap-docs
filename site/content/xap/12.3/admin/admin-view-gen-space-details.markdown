@@ -12,8 +12,6 @@ parent: admin-spaces-pu.html
 
 **To view the Space runtime information:**
 
-<br>
-
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
@@ -75,10 +73,8 @@ The Space instances for the given Space are listed with their Instance ID, Mode,
     <td>Parameter</td>
     <td>name</td>
     <td>Provide the name of the Space for which to list the instances.</td>
-    <td></td>
   </tr>
-  <tr>
-</table>
+  </table>
 
 
 {{%/tab%}}

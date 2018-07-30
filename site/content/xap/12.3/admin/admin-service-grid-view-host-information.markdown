@@ -9,10 +9,9 @@ parent: admin-service-grid.html
   
 A host is discovered by having a [Grid Service Agent](./admin-service-grid-agent.html) running on it.
 
-<br>
 
 **To view host information:**
-<br>
+
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}

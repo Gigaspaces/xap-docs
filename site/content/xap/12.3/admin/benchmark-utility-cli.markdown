@@ -32,7 +32,8 @@ This print-out is displayed below:
 
 
 
-Option arguments in square brackets [] are required;<br>
+Option arguments in square brackets [] are required;
+
 Option arguments in triangular brackets <> are optional.
 
 
@@ -203,7 +204,7 @@ run.bat jini://\*/\*/benchmarkSpace -read -i 1000
 {{%/tab%}}
 {{%/tabs%}}
 
-<br>
+
 The following example uses the XAP API, writes 1,000 Entries into the space, 1K each, and reads them back into the client.
 
 ```bash
