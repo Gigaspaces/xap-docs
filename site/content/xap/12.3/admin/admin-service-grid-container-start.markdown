@@ -71,7 +71,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 |------|-------------------|----------------|
 | memory | Define the maximum amount of JVM memory for the new container. | No |
 | zone |Define the zone where the new container should be started. | No |
-|vmArguments | Provide additional system properties.|
+|vmArguments | Provide additional system properties.| |
  
 {{%/tab%}}
 
