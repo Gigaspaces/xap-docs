@@ -8,36 +8,34 @@ weight:
 
 This page contains early access information for XAP and InsightEdge 14.0.0, which is scheduled for release in Q4 2018. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
 
+<!--
 {{%infosign%}} If you're just getting started with version 14.0.0, we recommend reading the [What's New](/xap/12.3/rn/whats-new.html) page in the general release notes.
+-->
 
 {{%tip "Disclaimer"%}}
 Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.3.1**. <br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.3/)
 {{%/tip%}}
 <hr/>
 
-# 14.0.0 M1 (Aug-05-2018)
+# 14.0.0 M6 (Aug-05-2018)
 
 ## Download Links
 
-* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.1/12.3.1-m1/gigaspaces-insightedge-open-12.3.1-m1-b19201.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/insightedge/12.3.1/12.3.1-m1/gigaspaces-insightedge-12.3.1-m1-b19201.zip)\] 
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-14.0.0-m6-b19906.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-enterprise-14.0.0-m6-b19906.zip)\] 
 
-* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap-open/12.3.1/12.3.1-m1/gigaspaces-xap-open-12.3.1-m1-b19201.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.1/12.3.1-m1/gigaspaces-xap-12.3.1-m1-b19201.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/com/gigaspaces/xap/12.3.1/12.3.1-m1/gigaspaces-xap.net-12.3.1-m1-b19201.msi)\]
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-14.0.0-m6-b19906.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-enterprise-14.0.0-m6-b19906.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap.net-14.0.0-m6-b19906.msi)\]
 
 ## Changelog
 
 ### Features and Enhancements
 
-- {{% jira id="GS-13516" %}}: Sort results for REST operations related to Spaces and Processing Units.
-- {{% jira id="GS-13511" %}}: CLI Auto Complete.
-- {{% jira id="GS-13510" %}}: Simplified the CLI command "pu decrement" to receive only one parameter: pui_id.
-- {{% jira id="GS-13513" %}}: Enhance CLI output to display "N/A" instead of "-1" where relevant.
+- {{% jira id="GS-13600" %}}: Add system property to show standalone Spaces in REST Manager API and CLI.
+- {{% jira id="GS-13448" %}}: Enhance logging to reflect replication connection state changes.
+- {{% jira id="GS-13596" %}}: Enhance command line `--server` option to support `host:port` format.
+- {{% jira id="GS-13591" %}}: Add a summary to CLI output.
+- {{% jira id="GS-13573" %}}: Improve  XAP and InsightEdge demo command behavior when XAP_MANAGER_SERVERS is configured.
 
 ### Resolved Issues
 
-- {{% jira id="GS-13520" %}}: Could not start the Web Management Console from the gs-agent due to some JARs that were missing from the classpath.
-- {{% jira id="GS-13505" %}}: Running the demo command in the CLI using off-heap generates a NoClassDefFoundError.
-- {{% jira id="GS-13502" %}}: Provisioning a Space instance fails on "Identified another participant with the same name for Space".
-- {{% jira id="GS-13517" %}}: Index intersection optimization did not work as expected.
-- {{% jira id="GS-13512" %}}: Insightedge CLI command fails to start Spark master and Spark worker when XAP_MANAGER_SERVERS is not configured.
-- {{% jira id="GS-13509" %}}: Unhealthy Space remains in Stopped state indefinitely after a network failure.
-- {{% jira id="GS-13508" %}}: Apache ZooKeeper sometimes fails to create a data directory on startup.
+- {{% jira id="GS-13404" %}}: Can't generate dump files from user interface after first attempt.
+- {{% jira id="GS-13386" %}}: "Only Live Services Log Dump" doesn't work as expected.
