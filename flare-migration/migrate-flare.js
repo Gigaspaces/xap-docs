@@ -1,12 +1,11 @@
 /**
-  * ScriptName: migrate-flare.js
-  * By: Shlomo Sagir, "Tech-Tav Documentation, Ltd."
-  * Copyright 2018 (All rights reserved)
-  * Command Line: cscript.exe migrate-flare.js //Nologo PathToOutputFolder
-  **/
+ * ScriptName: migrate-flare.js
+ * By: Shlomo Sagir, "Tech-Tav Documentation, Ltd."
+ * Copyright 2018 (All rights reserved)
+ * Command Line: cscript.exe migrate-flare.js //Nologo PathToOutputFolder
+ **/
 
-var terms = [
-  {
+var terms = [{
     "find": /<html xmlns/g,
     "replace": '<?xml version="1.0" encoding="utf-8"?>\r\n<html xmlns'
   },
@@ -45,24 +44,52 @@ var terms = [
   {
     "find": /attachment_files\//g,
     "replace": '../../../attachement_files/'
+  },
+  {
+    "find": /<p>[\s\s]*?<p>/g,
+    "replace": '<p>'
+  },
+  {
+    "find": /<\/p>[\s\s]*?<\/p>/g,
+    "replace": '</p>'
+  },
+  {
+    "find": /<\/td>[\s\s]*?<\/p>/g,
+    "replace": '</td>'
+  },
+  {
+    "find": /<p>[\s\s]*?<td/g,
+    "replace": '<td'
+  },
+  {
+    "find": /<p class="tc-admon-title">(Note|Tip|Attention|Important)<\/p>/g,
+    "replace": ''
   }
 ];
+
+var special = {
+  find: 'Resources/Snippets/',
+  replace: '../'
+};
 
 var debugMode = false;
 var logFile = "";
 var logLevel = 1;
-var sExt = "html", iExt = sExt.length;
+var sExt = "html",
+  iExt = sExt.length;
 var sError = WScript.ScriptName + "::Error: ";
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var wsh = new ActiveXObject("WScript.Shell");
 var oArgs = WScript.Arguments;
-var sFolder = (oArgs.length===1) ? oArgs(0) : null;
+var sFolder = (oArgs.length === 1) ? oArgs(0) : null;
 
 if (!/^\w:\\/.test(sFolder)) {
   sFolder = wsh.currentDirectory +
-    ((sFolder.substr(0,1)==="\\") ? "" : "\\") +
+    ((sFolder.substr(0, 1) === "\\") ? "" : "\\") +
     sFolder;
 }
+
+initUtils();
 
 lfh = fso.CreateTextFile(sFolder + "\\migrate-flare.log.txt", true);
 log('sFolder:: ', sFolder);
@@ -72,40 +99,48 @@ if (sFolder) {
   processFolder(sFolder, true);
   log(WScript.ScriptName + ":: Finished");
 } else
-log(sError + "Missing Parameter - You must specify the path to the topics folder in the Projects Content folder");
+  log(sError + "Missing Parameter - You must specify the path to the topics folder in the Projects Content folder");
 lfh.Close();
 
 function processFolder(sFolder, deep) {
   var f, fc, fn;
 
   if (!fso.FolderExists(sFolder) || !(f = fso.GetFolder(sFolder))) {
-      log(sError + "Unable to open topics folders");
-      return;
+    log(sError + "Unable to open topics folders");
+    return;
   }
 
   if (deep) {
     for (fc = new Enumerator(f.SubFolders); !fc.atEnd(); fc.moveNext()) {
-        processFolder(sFolder + "\\" + fc.item().name, deep);
+      processFolder(sFolder + "\\" + fc.item().name, deep);
     }
   }
 
   for (fc = new Enumerator(f.files); !fc.atEnd(); fc.moveNext()) {
-      fn = fc.item().name;
-      if (fn.substr(fn.length-iExt, iExt)===sExt) {
-          writeHTM(sFolder + "\\" + fn, processHTM(sFolder + "\\" + fn));
-      }
+    fn = fc.item().name;
+    if (fn.substr(fn.length - iExt, iExt) === sExt) {
+      writeHTM(sFolder + "\\" + fn, processHTM(sFolder + "\\" + fn));
+    }
   }
 }
 
 function processHTM(sFilename) {
   var s = t = readHTM(sFilename);
-  for (var i=0;i<terms.length;i++) {
-      s = s.replace(terms[i].find,terms[i].replace);
-  }
-  return {"html": s, "writeReq": s!==t};
+  for (var i = 0; i < terms.length; i++) {
+    s = s.replace(terms[i].find, terms[i].replace);
   }
 
-  function readHTM(sFilename) {
+  var depth = sFilename.substr(sFolder.length + 1).split('\\').length - 1;
+  if (depth) {
+    s = s.replace(special.find, special.replace.repeat(depth)+special.find);
+  }
+  return {
+    "html": s,
+    "writeReq": s !== t
+  };
+}
+
+function readHTM(sFilename) {
   var ForReading = 1;
   var fh = fso.OpenTextFile(sFilename, ForReading);
   var s = fh.ReadAll();
@@ -113,22 +148,22 @@ function processHTM(sFilename) {
   fh.Close();
 
   return s;
-  }
+}
 
-  function writeHTM(sFilename, result) {
+function writeHTM(sFilename, result) {
   var fh;
 
   log("  " + sFilename + " [" + (result.writeReq ? "Modified" : "Unchanged") + ']');
   if (!result.writeReq) return;
 
   if (debugMode) {
-      log(WScript.ScriptName + "::\n[" + sFilename + "]:\n" + result.html + "\n", 2);
-      return;
+    log(WScript.ScriptName + "::\n[" + sFilename + "]:\n" + result.html + "\n", 2);
+    return;
   }
 
   if (fso.FileExists(sFilename)) {
-      fh = fso.GetFile(sFilename);
-      fh.Delete();
+    fh = fso.GetFile(sFilename);
+    fh.Delete();
   }
 
   sFilename = sFilename.substr(0, sFilename.length - 1);
@@ -142,5 +177,42 @@ function log(sMessage, iLevel) {
   if (logLevel >= l) {
     WScript.Echo(sMessage);
     lfh.WriteLine(sMessage);
+  }
+}
+
+function initUtils() {
+  if (!String.prototype.repeat) {
+    String.prototype.repeat = function (count) {
+      'use strict';
+      if (this == null) {
+        throw new TypeError('can\'t convert ' + this + ' to object');
+      }
+      var str = '' + this;
+      count = +count;
+      if (count != count) {
+        count = 0;
+      }
+      if (count < 0) {
+        throw new RangeError('repeat count must be non-negative');
+      }
+      if (count == Infinity) {
+        throw new RangeError('repeat count must be less than infinity');
+      }
+      count = Math.floor(count);
+      if (str.length == 0 || count == 0) {
+        return '';
+      }
+      // Ensuring count is a 31-bit integer allows us to heavily optimize the
+      // main part. But anyway, most current (August 2014) browsers can't handle
+      // strings 1 << 28 chars or longer, so:
+      if (str.length * count >= 1 << 28) {
+        throw new RangeError('repeat count must not overflow maximum string size');
+      }
+      var rpt = '';
+      for (var i = 0; i < count; i++) {
+        rpt += str;
+      }
+      return rpt;
+    };
   }
 }
