@@ -1,5 +1,5 @@
 ---
-type: post
+type: post123
 title:  Storing Partition Summary Information
 categories: XAP123, OSS
 parent: task-execution-overview.html
