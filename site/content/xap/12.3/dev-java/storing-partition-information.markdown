@@ -6,7 +6,7 @@ parent: task-execution-overview.html
 weight: 300
 ---
 
-You may have a scenario where computation is done on a partition by partition basis and you wish to save the results, instead of recalculating them each time. This example calculates values per partition and saves it to the current partition. It will work regardless of the number of partitions that are running in the space. The example uses an Executor Service to make the calcuations on each partition. The `ClusterInfo` object is used to get information about the partition the service is currently executing in. The results are then saved to a PartitionSummary object.
+A scenario may occur where computation is done on a partition by partition basis and you wish to save the results, instead of recalculating them each time. This example calculates values per partition and saves it to the current partition. It will work regardless of the number of partitions that are running in the space. The example uses an Executor Service to make the calcuations on each partition. The `ClusterInfo` object is used to get information about the partition the service is currently executing in. The results are then saved to a PartitionSummary object.
 
 The following code demonstrates Space Based Remoting, aka Service Executor. A complete example can be found [here](/download_files/sbp/Store-Partition-Summary.zip).
 
