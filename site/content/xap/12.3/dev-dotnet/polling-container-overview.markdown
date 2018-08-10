@@ -166,7 +166,7 @@ pollingEventListenerContainer.Template = new SqlQuery<Data>("Processed = false")
 # Dynamic Template Definition
 
 When performing polling receive operations, a dynamic template can be used. A method providing a dynamic template is called before each receive operation, and can return a different object in each call.
-The event template object needs to be of IQuery<TData> type, which means if you want to use an object-based template, you have to wrap it with the `ObjectQuery` wrapper.
+The event template object needs to be of IQuery&lt;TData&gt; type, which means if you want to use an object-based template, you have to wrap it with the `ObjectQuery` wrapper.
 
 {{%tabs%}}
 
@@ -658,6 +658,6 @@ public void ExceptionHandler(object sender, UserExceptionEventArgs<Data> e)
 
 # Default Values of Polling Container Configuration Parameters
 
-The default values for all of the polling container properties, such as `min-concurrent-consumers`, `receive-operation-handler`, `receive-timeout`, and others can be found in the API docs. Each property has a corresponding Default<property name> const field that sets the default value of the property.
+The default values for all of the polling container properties, such as `min-concurrent-consumers`, `receive-operation-handler`, `receive-timeout`, and others can be found in the API docs. Each property has a corresponding Default&lt;property name&gt; const field that sets the default value of the property.
 
  

@@ -311,7 +311,7 @@ public class Owner {
     //
     public Owner() {
     }
-    public Owner(Integer id, String name, List<Pet> pets) {
+    public Owner(Integer id, String name, List&lt;Pet&gt; pets) {
         super();
         this.id = id;
         this.name = name;

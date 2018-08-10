@@ -361,7 +361,7 @@ Container information is explained in the [Viewing Container Information](./admi
     <td>List of Processing Units that are deployed on the host (with the number of running instances).</td>
   </tr>
   <tr>
-    <td>Primaries & Backups</td>
+    <td>Primaries &amp; Backups</td>
     <td>Number of running Processing Unit instances according to primary and backup status.</td>
   </tr>
   <tr>

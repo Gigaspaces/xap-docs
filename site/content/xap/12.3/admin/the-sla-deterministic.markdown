@@ -46,7 +46,6 @@ First, add the following snippet to your Processing Unit.
 {{%/tab%}}
 {{%/tabs%}}
 
-<br>
 After modifying the pu.xml, update the sla.xml as follows.
 
 {{%tabs%}}
@@ -66,7 +65,6 @@ After modifying the pu.xml, update the sla.xml as follows.
 {{%/tab%}}
 {{%/tabs%}}
 
-<br>
 ## Setting Up the Zones
 
 Two zones (zone1, zone2) need to be defined:

@@ -11,7 +11,7 @@ weight: 200
 The notify event container implements the [IEventListenerContainer](./event-listener-container.html) interface, and uses the space inheritance support for notifications, using a GigaSpaces data event session API. If a notification occurs, the [DataEventArrived](./event-listener-container.html#data-event-arrived) event is invoked with the event. A notify event operation is mainly used when simulating Topic semantics.
 {{%/column%}}
 {{%column width="30%" %}}
-<img src="/attachment_files/dotnet/Net_notify_cont.jpg" width="150" height="200">
+<img src="/attachment_files/dotnet/Net_notify_cont.jpg" width="150" height="200" />
 
 {{%/column%}}
 {{%/section%}}
@@ -718,7 +718,7 @@ public void ExceptionHandler(object sender, UserExceptionEventArgs<Data> e)
 
 # Default Values of Notify Container Configuration Parameters
 
-The default values for all of the notify container configuration parameters, such as `perform-take-on-notify`, `ignore-event-on-null-take`, and others can be found in the API docs. Each property has a corresponding Default<property name> const field that sets the default value of the property.
+The default values for all of the notify container configuration parameters, such as `perform-take-on-notify`, `ignore-event-on-null-take`, and others can be found in the API docs. Each property has a corresponding Default&lt;property name&gt; const field that sets the default value of the property.
 
 
  

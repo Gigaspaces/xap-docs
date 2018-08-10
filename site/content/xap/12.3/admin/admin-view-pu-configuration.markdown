@@ -197,6 +197,7 @@ The Config tab displays the general Processing Unit parameters as they were defi
 			<li><b>Compromised</b> - the Processing Unit is no longer intact, but has not yet completed the undeploy process.</li>
 			<li><b>Broken</b> - the Processing Unit could not be deployed.</li>
 		</ul>
+    </td>
   </tr>
   <tr>
     <td>Planned Instances</td>

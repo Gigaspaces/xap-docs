@@ -10,6 +10,18 @@ var terms = [{
     "replace": '<?xml version="1.0" encoding="utf-8"?>\r\n<html xmlns'
   },
   {
+    "find": /<b>(.*?)<\/b>/g,
+    "replace": '<span class="tc-bold">$1</span>'
+  },
+  {
+    "find": /<strong>(.*?)<\/strong>/g,
+    "replace": '<span class="tc-bold">$1</span>'
+  },
+  {
+    "find": /<em>(.*?)<\/em>/g,
+    "replace": '<span class="tc-italic">$1</span>'
+  },
+  {
     "find": /&(\w{2}quo|quot);/g,
     "replace": '"'
   },
@@ -26,8 +38,28 @@ var terms = [{
     "replace": '...'
   },
   {
+    "find": /&rarr;/g,
+    "replace": '&#8592;'
+  },
+  {
+    "find": /&frasl;/g,
+    "replace": '&#8260;'
+  },
+  {
+    "find": /&nbsp;/g,
+    "replace": ' '
+  },
+  {
+    "find": /&reg;/g,
+    "replace": '&#174;'
+  },
+  {
     "find": /<br>/g,
     "replace": '<br/>'
+  },
+  {
+    "find": /&amp;#35;/g,
+    "replace": '#'
   },
   {
     "find": /width=(\d)/g,
@@ -46,20 +78,24 @@ var terms = [{
     "replace": '../../../attachement_files/'
   },
   {
+    "find": /<\/(table|thead|tbody|tr|th|td|div|ul)>[\s\s]*?<\/p>/g,
+    "replace": '</$1>'
+  },
+  {
+    "find": /<p>[\s\s]*?<(table|thead|tbody|tr|th|td|div|ol|ul)/g,
+    "replace": '<$1'
+  },
+  {
     "find": /<p>[\s\s]*?<p>/g,
     "replace": '<p>'
   },
   {
+    "find": /<p>[\s\s]*?<\/div>/g,
+    "replace": '</div>'
+  },
+  {
     "find": /<\/p>[\s\s]*?<\/p>/g,
     "replace": '</p>'
-  },
-  {
-    "find": /<\/td>[\s\s]*?<\/p>/g,
-    "replace": '</td>'
-  },
-  {
-    "find": /<p>[\s\s]*?<td/g,
-    "replace": '<td'
   },
   {
     "find": /<p class="tc-admon-title">(Note|Tip|Attention|Important)<\/p>/g,

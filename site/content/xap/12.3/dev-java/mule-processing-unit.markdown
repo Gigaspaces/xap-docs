@@ -29,18 +29,18 @@ In the example above, the `OpenSpacesMuleContextLoader` loads a Mule application
 Packaging of the Processing Unit should follow the [Processing Unit structure](./the-processing-unit-structure-and-configuration.html).
 
 {{% note %}}
-When deploying a Processing Unit into the [SLA-driven container](./deploying-onto-the-service-grid.html), Mule JAR files should be "installed" into the XAP installation (on each node). The following minimum set of JARs need to be copied into `<XAP Root>\lib\platform\mule` (if the Mule directory does not exists, create it).
+When deploying a Processing Unit into the [SLA-driven container](./deploying-onto-the-service-grid.html), Mule JAR files should be "installed" into the XAP installation (on each node). The following minimum set of JARs need to be copied into `&lt;XAP Root&gt;\lib\platform\mule` (if the Mule directory does not exists, create it).
 {{%/note%}}
 
 - Download Mule 3.7 distribution from [mule's website](https://www.mulesoft.org/download-mule-esb-community-edition) and extract the file.
  
-- Copy the following JAR files from `<Mule Root>\lib\mule` to `<XAP Root>\lib\platform\mule`:
+- Copy the following JAR files from `<Mule Root>\lib\mule` to `&lt;XAP Root&gt;\lib\platform\mule`:
 `mule-commons`, `mule-core`, `mule-core-tests`, `mule-module-annotations`, `mule-module-client`, `mule-module-jbossts`, `mule-module-spring-config`, `mule-module-spring-extras`,  `mule-mvel2-2.1.9-MULE-003`, `mule-transport-http`, `mule-transport-quartz`, `mule-transport-stdio`, `mule-transport-vm` . Other transports (if used) should be copied as well.
 
-- Copy the following JAR files from `<Mule Root>\lib\opt` to `<XAP Root>\lib\platform\mule`:
+- Copy the following JAR files from `<Mule Root>\lib\opt` to `&lt;XAP Root&gt;\lib\platform\mule`:
 `commons-beanutils`, `commons-io`, `commons-lang`, `dom4j`, `guava`, `jaxen`, `quartz`, `uuid`, `jgrapht-jdk1.5`. Other required JAR files can be copied as well (or they can be put in the Processing Unit `lib` directory).
 
-- Copy the following JAR files from `<Mule Root>\lib\boot` to `<XAP Root>\lib\platform\mule`:
+- Copy the following JAR files from `<Mule Root>\lib\boot` to `&lt;XAP Root&gt;\lib\platform\mule`:
 `commons-cli`, `log4j`, `mule-module-logging`, `wrapper`. Other required JAR files can be copied as well (or they can be put in the Processing Unit `lib` directory).
 
 {{% note %}}
@@ -49,7 +49,7 @@ The required mule jar files can also be placed within the processing unit `lib` 
 
 #### Packaging for Mule example
 
-In the [Mule ESB example](/sbp/mule-esb-example.html), the following jars are required and should be placed under <XAP Root>\lib\platform\mule
+In the [Mule ESB example](/sbp/mule-esb-example.html), the following jars are required and should be placed under &lt;XAP Root&gt;\lib\platform\mule
 
 ```bash
 commons-beanutils-1.8.0.jar

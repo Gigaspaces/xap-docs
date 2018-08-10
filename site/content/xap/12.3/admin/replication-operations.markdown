@@ -137,9 +137,9 @@ The **default** behavior in these cases is to treat the conflicting operations a
 
 When a conflict happens you may observe the following messages in the logs:
 
-- Replication detected conflicting Update operation on entry - <com.mycomp.myclass> uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry is locked by another transaction.
-- Replication detected conflicting Write operation on entry - <com.mycomp.myclass> uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry already in space.
-- Replication detected conflicting Update operation on entry - <com.mycomp.myclass> uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry not in space.
+- Replication detected conflicting Update operation on entry - &lt;com.mycomp.myclass&gt; uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry is locked by another transaction.
+- Replication detected conflicting Write operation on entry - &lt;com.mycomp.myclass&gt; uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry already in space.
+- Replication detected conflicting Update operation on entry - &lt;com.mycomp.myclass&gt; uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry not in space.
 - Replication detected illegal take operation on entry uid=<-5434534533283^26^5434538^0^0>. Symptom: Entry class name wasn't replicated. Ignoring the illegal operation. 
 
 {{% refer %}}

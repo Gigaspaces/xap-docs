@@ -13,7 +13,7 @@ The service reloading feature allows you to reload business logic (Spring beans)
 
 {{% note %}}
 Service Reloading only works when downloading the processing unit to the GSC is disabled (pu.download deploy property should be set to false). For more information on how to do it, see [this page](./deploying-onto-the-service-grid.html#distributionToGSCs).
-For service reloading to work, common classes have to be copied to the <GigaSpacesRoot>/lib/platform/ext folder
+For service reloading to work, common classes have to be copied to the &lt;GigaSpacesRoot&gt;/lib/platform/ext folder
 {{%/note%}}
 
 # Configuring Reloadable Business Logic
@@ -78,7 +78,7 @@ Above configuration will let you refresh the code defined in the refreshable con
 
 # Reloading Business Logic
 
-When there is a change in business logic for any beans defined in the refreshable context and these changes are ready to be applied to the cluster, copy the new classes into the GigaSpaces deploy folder of GSM machine(s) and work folder of each cluster node (default location, <GigaSpacesRoot>/work/processing-units/<puInstance>) and execute the reload command as below:
+When there is a change in business logic for any beans defined in the refreshable context and these changes are ready to be applied to the cluster, copy the new classes into the GigaSpaces deploy folder of GSM machine(s) and work folder of each cluster node (default location, &lt;GigaSpacesRoot&gt;/work/processing-units/&lt;puInstance&gt;) and execute the reload command as below:
 
 
 ```java

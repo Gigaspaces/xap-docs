@@ -147,12 +147,13 @@ This example deploys a Space named **mySpace** with high availability, three par
 
 	<ol type="a">
 		<li>Select the <b>Select Zone</b> option and:
-		<ul>
-			<li>From the list on the left, select which zone to use for the -zone deployment parameter.</li>
-			<li>In the <b>Max. Instances (partitions) number</b> area on the right, define the maximum instances per zone (`-max-instances-per-zone` deployment parameter).</li>
-		</ul>
-		<li>If you don’t want to specify a zone, select <b>Any Zone</b>.
-		</ol>
+      <ul>
+        <li>From the list on the left, select which zone to use for the -zone deployment parameter.</li>
+        <li>In the <b>Max. Instances (partitions) number</b> area on the right, define the maximum instances per zone (`-max-instances-per-zone` deployment parameter).</li>
+      </ul>
+    </li>
+		<li>If you don’t want to specify a zone, select <b>Any Zone</b>.</li>
+  </ol>
 	
 1. Click **Deploy**.
 

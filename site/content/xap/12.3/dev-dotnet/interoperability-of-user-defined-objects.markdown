@@ -68,6 +68,7 @@ namespace MyCompany.MyProject.Entities
   }
 }
 ```
+
 {{%/column%}}
 
 {{%column width="50%" %}}
@@ -97,6 +98,7 @@ public class Address
     public String Country;
 }
 ```
+
 {{%/column%}}
 {{%/section%}}
 

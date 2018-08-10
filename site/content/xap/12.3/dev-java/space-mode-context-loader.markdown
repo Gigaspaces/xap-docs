@@ -112,7 +112,7 @@ with the following Processing Unit definition:
 
 {{% tip %}}
 If there is more then one gigaSpace proxy in the pu you should bind the context to the gigaSpace instance by setting the giga-space property e.g.:
-<os-core:context-loader id="modeExample" location="classpath:/META-INF/spring/mode/mode.xml" giga-space="gigaSpace">
+&lt;os-core:context-loader id="modeExample" location="classpath:/META-INF/spring/mode/mode.xml" giga-space="gigaSpace"&gt;
 {{% /tip %}}
 
 we can see that the `SpaceModeContextBean` `afterPropertiesSet` callback is called when the Processing Unit instance is in primary mode. When it moves to backup mode, the Spring application context is unloaded, and the `destroy` callback is invoked. Note the usage of the `GigaSpace` instance, which is defined in the Processing Unit definition, as part of the bean defined in the `mode.xml` file. This is allowed because of the fact that the Processing Unit definition acts as a parent application context to the application context loaded with `mode.xml`.

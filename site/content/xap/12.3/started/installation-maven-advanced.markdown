@@ -11,7 +11,7 @@ This page contains information beyond the basics. It was created for those who w
 
 # Processing Unit Assembly Definition
 
-The XAP maven plugin uses the maven assembly plugin to generate the processing unit directory structure. Each PU module has the file <module-name>/src/main/assembly/assembly.xml that defines the assembly structure. One of its tasks is to determine which of the dependency JARS go into the lib directory and which go into the shared-lib directory.
+The XAP maven plugin uses the maven assembly plugin to generate the processing unit directory structure. Each PU module has the file &lt;module-name&gt;/src/main/assembly/assembly.xml that defines the assembly structure. One of its tasks is to determine which of the dependency JARS go into the lib directory and which go into the shared-lib directory.
 
 **assembly.xml**
 

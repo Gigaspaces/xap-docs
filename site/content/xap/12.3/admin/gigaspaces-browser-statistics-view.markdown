@@ -57,7 +57,6 @@ You can choose to refresh the statistics display periodically. When auto refresh
 ![GMC_space_statistics_RefreshRate_area_TopRight_7.1.jpg](/attachment_files/GMC_space_statistics_RefreshRate_area_TopRight_7.1.jpg)
 {{% /align %}}
 
-<br>
 
 {{% note %}}
 Auto-refresh activity impacts server performance, so you might want to stop it when running benchmarks.

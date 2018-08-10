@@ -77,7 +77,7 @@ Here are the available parameters for a remote space:
 | space-name                            |String| The space name to connect to the remote space| |Yes ||
 | instance-id                           | Number     |  The id of the space instance within a cluster to connect to | |  No  ||
 | lookup-groups                         |String|The Jini Lookup Service group to find the space using multicast        || No |  |
-| <nobr>lookup-locators<nober>          |String| Instructs the started space to locate the Jini Lookup Service on specific host name and port        ||  No  | |
+| <nobr>lookup-locators<nobr>          |String| Instructs the started space to locate the Jini Lookup Service on specific host name and port        ||  No  | |
 | lookup-timeout                        |MSeconds| Lookup timeout in milli seconds            |5000ms |No| |
 | versioned                             |Boolean|  When false, optimistic lock is disabled. In a local cache and views the default is true, otherwise the default value is false.|False |No| [Annotation](./pojo-attribute-annotations.html#spaceversion)<br>[Optimistic Locking](./transaction-optimistic-locking.html) |
  

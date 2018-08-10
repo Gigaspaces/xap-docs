@@ -15,8 +15,6 @@ The REST API exposing HTTP based interface Space. It is leveraging the [XAP API]
 1. POST - can be used to perform a write / writeMultiple or update / updateMultiple actions.
 1. DELETE - can be used to perform take / takeMultiple actions either by ID or by a space query.
 
-<br/>
-
 
 # Introduce Type
 

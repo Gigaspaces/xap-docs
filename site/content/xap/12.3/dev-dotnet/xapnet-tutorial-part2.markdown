@@ -146,9 +146,9 @@ Deployed Applications
 
 {{%popup "/attachment_files/qsg/Shot11.png" "Deployed Applications"%}}
 {{%/column%}}
+{{%column width="20%"%}}
 Hosts (GSA,GSC,GSM,LUS)
 
-{{%column width="20%"%}}
 {{%popup "/attachment_files/qsg/Shot2.png"  "Hosts (GSA,GSC,GSM,LUS)"%}}
 {{%/column%}}
 {{%/section%}}

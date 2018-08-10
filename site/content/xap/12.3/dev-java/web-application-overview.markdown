@@ -21,7 +21,8 @@ The web container used behind the scenes is {{%exurl "Jetty" "http://www.eclipse
 
 # Deployment
 
-The integration can deploy either a packaged or an exploded WAR file. In order to deploy packaged WAR file, it can be specified using one of the deployment mechanisms (UI/CLI/Programmatic, see more [here](./deploying-onto-the-service-grid.html#deployDirections)). 
+The integration can deploy either a packaged or an exploded WAR file. In order to deploy packaged WAR file, it can be specified using one of the deployment mechanisms (UI/CLI/Programmatic, see more [here](./deploying-onto-the-service-grid.html#deployDirections)).
+ 
 {{% note "Note"%}}
 The deploy client, the GSMs, and the GSCs can run on different machines.
 {{%/note%}}

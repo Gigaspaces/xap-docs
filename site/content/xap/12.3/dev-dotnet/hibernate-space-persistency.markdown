@@ -104,6 +104,7 @@ We can use the following `Person.hbm.xml` file:
 {{% note %}}
 Make sure your PONO `[SpaceId]` is defined on the same property as the NHibernate `[Id]`. This is necessary for proper object mapping.
 {{% /note %}}
+
 See [Modeling Your Data](./modeling-your-data.html) for details about these decorations.
 
 # Properties

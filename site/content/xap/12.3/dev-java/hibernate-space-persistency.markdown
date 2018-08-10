@@ -168,6 +168,7 @@ Here is an example for a Space Domain class with its Hibernate decorations. See 
 {{% note %}}
 Make sure your POJO @SpaceId is defined on the same property as the Hibernate @Id. This is necessary for proper object mapping.
 {{% /note %}}
+
 See the [POJO Metadata](./modeling-your-data.html) for details about these decorations.
 
 

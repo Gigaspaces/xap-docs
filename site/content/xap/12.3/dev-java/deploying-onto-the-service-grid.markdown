@@ -36,7 +36,7 @@ However,   XAP also supports the deployment of exploded processing units. (The d
 
 # Distribution of Processing Unit Binaries to the Running GSCs
 
-By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the `<XAP Root>/work/processing-units` directory (The location of this directory can be overridden via the `com.gs.work` system property).
+By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the `&lt;XAP Root&gt;/work/processing-units` directory (The location of this directory can be overridden via the `com.gs.work` system property).
 
 Downloading the processing unit archive to the GSC is the recommended option, but it can be disabled. In order to disable it, the `pu.download` [deployment property](./deployment-properties.html)  should be set to `false`. This will not download the entire archive to the GSC, but will force the GSC to load the processing unit classes one at a time from the GSM via a URLClassLoader.
 
@@ -89,13 +89,13 @@ Deploying via the CLI is based on the `deploy` command. This command accepts var
 
 
 ```java
-> <XAP root>/bin/gs.sh(bat) deploy myPU.jar
+> &lt;XAP Root&gt;/bin/gs.sh(bat) deploy myPU.jar
 ```
 
 {{% /tab %}}
 {{%tab "  GigaSpaces UI "%}}
 
-- Open the GigaSpaces UI by launching `<XAP root>/bin/gs-ui.sh(bat)
+- Open the GigaSpaces UI by launching `&lt;XAP Root&gt;/bin/gs-ui.sh(bat)
 - Click the "Deploy Application" button ![deploy_processing_unit_button.jpg](/attachment_files/deploy_processing_unit_button.jpg) at the top left of the window
 - In the deployment wizard, click **...** to select your processing unit archive, and then click **Deploy**
 {{% /tab %}}
@@ -434,7 +434,7 @@ Since XAP v9.0.1 the processing unit dependencies can be described using an XML 
 
 
 ```java
-> <XAP root>/bin/gs.sh(bat) deploy-application examples/data/dist.zip
+> &lt;XAP Root&gt;/bin/gs.sh(bat) deploy-application examples/data/dist.zip
 ```
 
 Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):

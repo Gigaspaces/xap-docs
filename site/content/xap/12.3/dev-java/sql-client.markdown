@@ -26,24 +26,16 @@ Examples:
 1. Copy all of the XAP/InsightEdge JAR files (located in ...xap/lib and ...xap/insightedge/lib/jdbc) to the squirreL `lib` folder.
 1. Start SquirreL.
 1. Click the **Drivers** vertical tab on the left, and then click **+** to add a new driver.
-  {{%align left%}}
   ![image](/attachment_files/xap-sql/squirrel-driver.png)
-  {{%/align%}}
 
 1. Click the **Aliases** vertical tab on the left, and then click **+** to add a new connection. Sample URL: `jdbc:xap:url=jini://*/*/mySpace?locators=127.0.1.1&groups=xap-12.3.1`
-  {{%align left%}}
   ![image](/attachment_files/xap-sql/squirrel-alias.png)
-  {{%/align%}}
 
 1. Create a connection to the XAP data grid.
- {{%align left%}}
  ![image](/attachment_files/xap-sql/squirrel-connect.png)
- {{%/align%}}
 
 1. Run a test query, for example `SELECT * FROM Product;`.
- {{%align left%}}
  ![image](/attachment_files/xap-sql/squirrel-query.png)
- {{%/align%}}
 
 
 # SQLLine

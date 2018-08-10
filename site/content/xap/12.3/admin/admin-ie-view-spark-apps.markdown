@@ -5,12 +5,7 @@ categories: XAP123ADM,PRM
 weight: 500
 parent: admin-insightedge.html
 ---
- 
-  
 
- 
-
-<br>
  
 {{%tabs%}}
 

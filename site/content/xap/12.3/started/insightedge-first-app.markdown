@@ -16,7 +16,7 @@ For instructions on how to install a minimum InsightEdge cluster setup and launc
 
 InsightEdge {{%version "xap-version"%}} runs on Spark {{%version "spark-version"%}} and Scala {{%version "scala-version"%}}. These dependencies will be included when you depend on the InsightEdge artifacts.
 
-InsightEdge .jars are not published to Maven Central Repository yet. To install Maven artifacts run the following command from the '<XAP HOME>/insightedge/tools/maven' directory:
+InsightEdge .jars are not published to Maven Central Repository yet. To install Maven artifacts run the following command from the '&lt;XAP HOME&gt;/insightedge/tools/maven' directory:
 
 ```bash
 insightedge-maven

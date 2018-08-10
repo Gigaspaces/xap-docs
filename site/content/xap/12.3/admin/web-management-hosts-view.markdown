@@ -11,12 +11,11 @@ weight: 500
 
 Use the Hosts view to monitor the physical resources of your cluster. These  include the hosts and virtual machines. Please refer to the image below and the call-outs in it for more details.
 
-<br>
 
 {{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/host-view.jpg)
 {{% /align%}}
-<br>
+
 
 # Settings
 
@@ -30,8 +29,6 @@ maintenance operations and specific settings on individual components.
 {{%/column%}}
 {{%/section%}}
 
-
-<br>
 
 {{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/host-setting.jpg)
@@ -50,7 +47,6 @@ maintenance operations and specific settings on individual components.
 
 For each component you can view the log information. It is possible to filter the logs and search them.
 
-<br>
 
 {{% align center%}}
 ![hosts1.jpg](/attachment_files/web-console/host-view-logging.jpg)

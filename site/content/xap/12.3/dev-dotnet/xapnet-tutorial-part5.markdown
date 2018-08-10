@@ -91,10 +91,10 @@ A sample SLA definition is shown below:
 
 
 # Deployment
-When deploying the PU to the XAP Service Grid, the PU is uploaded to the XAP Manager (GSM) and extracted to the deploy directory of the local XAP installation (located by default under <XAP Root>\deploy).
+When deploying the PU to the XAP Service Grid, the PU is uploaded to the XAP Manager (GSM) and extracted to the deploy directory of the local XAP installation (located by default under &lt;XAP Root&gt;\deploy).
 Once extracted, the GSM processes the deployment descriptor and based on that provisions PU instances to the running XAP containers.
 
-Each GSC to which a certain instance was provisioned, downloads the PU from the GSM, extracts it to its local working directory (located by default under <XAP Root>\work\deployed-processing-units) and starts the PU instance.
+Each GSC to which a certain instance was provisioned, downloads the PU from the GSM, extracts it to its local working directory (located by default under &lt;XAP Root&gt;\work\deployed-processing-units) and starts the PU instance.
 
 {{%tip "Building directly to the deploy folder"%}}
 A common practice is to change the PU project output directory to `GS_HOME\deploy\[pu-name\]`, since this is the default path used by the GUI and the command line interface will find the PU's to deploy under this file structure.

@@ -63,7 +63,7 @@ This information is also available in the Config tab of the associated Processin
     <td>(If applicable) The cluster topology (partitioned or replicated).</td>
   </tr>
   <tr>
-    <td colspan="2"><i>Network & Environment</i></td>
+    <td colspan="2"><i>Network &amp; Environment</i></td>
     <td></td>
   </tr>
   <tr>

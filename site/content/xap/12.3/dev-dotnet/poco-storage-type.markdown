@@ -61,7 +61,7 @@ Effectively this means a POJO property is always considered as StorageType.Objec
 
 # Defaults
 
-There is a list of types which have 'premium citizenship' in the `PBS` protocol, which means all platforms know how to read/write them. These are: all the primitives (int, DateTime, string, etc,), nullables (Nullable<int>, Nullable<DateTime>, etc), arrays/collections/lists/maps/dictionaries of such. All of these types default to Object storage types.
+There is a list of types which have 'premium citizenship' in the `PBS` protocol, which means all platforms know how to read/write them. These are: all the primitives (int, DateTime, string, etc,), nullables (Nullable&lt;int&gt;, Nullable&lt;DateTime&gt;, etc), arrays/collections/lists/maps/dictionaries of such. All of these types default to Object storage types.
 
 Any other type is assumed to be a user defined type, and its default storage type will be BinaryCustom, to make sure a novice user will have no trouble working with it. Setting it to Object would required the user to provide the space with an equivalent POJO class, so the space would be able to store it, and this is something most .NET users don't care about. Setting it to Binary might provide faster result, but it have some limitations (e.g. complex object graphs which contains the same object twice, or cycles).
 

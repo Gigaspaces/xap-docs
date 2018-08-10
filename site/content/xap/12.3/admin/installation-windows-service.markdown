@@ -47,7 +47,7 @@ An example GSA windows service configuration created using [Java Service Wrapper
 - Also modify Additional Java parameters (look for wrapper.java.additional.xxx) defined in the wrapper.config file.
 - Install the service using the included `InstallGSAService-NT.bat` script.
 - After the install you should be able to see the service in the Windows Services applet.
-<br>
+
 
 {{%align center%}}
 ![ServicesView.jpg](/attachment_files/ServicesView.jpg)
@@ -55,7 +55,6 @@ An example GSA windows service configuration created using [Java Service Wrapper
 
 - Service is installed with Startup Type of "Manual". Change it to "Automatic" to start the service automatically after every restart.
 
-<br>
 {{%align center%}}
 ![ServicesAutoStart.jpg](/attachment_files/ServicesAutoStart.jpg)
 {{%/align  %}}

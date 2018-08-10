@@ -17,6 +17,7 @@ In this case, the Entity's Id must be set manually in the user code before attem
 {{% note %}}
 Reminder: GigaSpaces `@SpaceId` annotation should also be defined on the property defined with JPA's `@Id` annotation
 {{% /note %}}
+
 Example of user defined Id:
 
 

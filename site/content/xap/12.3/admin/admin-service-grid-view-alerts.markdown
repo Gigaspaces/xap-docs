@@ -38,7 +38,7 @@ You can view alerts in the Web Management Console Alerts panel, displayed in XAP
   </tr>
   <tr>
     <td>Status</td>
-    <td>Severity of the alert (Warning, Severe). Expand the top-level alert to see the recurrences of the alert and if/when it was resolved. A green check mark indicates an alert than has been resolved.<td>
+    <td>Severity of the alert (Warning, Severe). Expand the top-level alert to see the recurrences of the alert and if/when it was resolved. A green check mark indicates an alert than has been resolved.</td>
   </tr>
   <tr>
     <td>Type</td>

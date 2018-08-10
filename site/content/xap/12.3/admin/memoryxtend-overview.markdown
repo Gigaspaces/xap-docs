@@ -360,8 +360,6 @@ The following examples demonstrate how to configure a persistent disk-based stor
 ```
 {{% /tab %}}
 {{% /tabs %}}
-<br/>
-<br/>
 
 
 # Supported XAP APIs

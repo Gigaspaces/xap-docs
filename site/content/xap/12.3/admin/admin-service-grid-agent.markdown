@@ -10,7 +10,7 @@ parent: admin-service-grid.html
 
  
 **To start a Grid Service Agent:**
-<br>
+
  
  
 {{%tabs%}}

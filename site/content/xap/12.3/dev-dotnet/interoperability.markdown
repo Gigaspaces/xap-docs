@@ -16,7 +16,6 @@ XAP supports easy and efficient communication and access across projects that in
 {{%column width="50%" %}}
  C#
 
-
 ```csharp
 using GigaSpaces.Core.Metadata;
 
@@ -35,11 +34,11 @@ namespace MyCompany.MyProject.Entities
    }
 }
 ```
+
 {{%/column%}}
 
 {{%column width="50%" %}}
  Java
-
 
 ```java
 package com.mycompany.myproject.entities;
@@ -60,6 +59,7 @@ package com.mycompany.myproject.entities;
    }
 }
 ```
+
 {{%/column%}}
 {{%/section%}}
 

@@ -159,7 +159,7 @@ mvn xap:run
 |:---------|:------------|:---------|:-----------|:--------|
 | cluster | Cluster properties | No| * `schema` -- the cluster schema name<br>- `total_members` -- a list of the cluster members, separated by a comma<br>- `id` -- the cluster ID<br>- `backup_id` -- the backup ID | * `schema=partitioned`<br>- `total_members=1,1`<br>- `id=1`<br>- `backup_id=1` |
 | groups | Comma-delimited list of lookup group names | No | | group1,group2 |
-| locators | Comma-delimited list of Jini locators hosts | No | | jini://<hostname1>, jini://<hostname2> |
+| locators | Comma-delimited list of Jini locators hosts | No | | jini://&lt;hostname1&gt;, jini://&lt;hostname2&gt; |
 | properties | Location of context-level properties | No | * `file` -- the properties file<br>- `embed` -- property definition | file://config/context.properties<br>    embed://prop1=value1 |
 | module | The name of the Processing Unit module to run | No | | `feeder` |
 
@@ -191,6 +191,7 @@ To change the logging configuration place the new _xap_logging.properties_ file 
 To change the security permissions place the new _policy.all_ file in the _policy_ directory (you may need to create this directory) under the project's root directory.
 
 {{% note %}} Those changes apply only when deploying the processing units. {{%/note%}}
+
 {{% anchor packaging %}}
 
 # Packaging Processing Units
@@ -254,7 +255,7 @@ mvn xap:run-standalone
 |:---------|:------------|:---------|:-----------|:--------|
 | cluster | Cluster properties | No| * `schema` -- the cluster schema name<br>- `total_members` -- a list of the cluster members, separated by a comma<br>- `id` -- the cluster ID<br>- `backup_id` -- the backup ID | * `schema=partitioned`<br>- `total_members=1,1`<br>- `id=1`<br>- `backup_id=1` |
 | groups | Comma-delimited list of lookup group names | No | | group1,group2 |
-| locators | Comma-delimited list of Jini locators hosts | No| | jini://<hostname1>, jini://<hostname2> |
+| locators | Comma-delimited list of Jini locators hosts | No| | jini://&lt;hostname1&gt;, jini://&lt;hostname2&gt; |
 | properties | Context-level properties location | No| * `file` -- properties file<br>- `embed` -- properties definition | <br>    file://config/context.properties<br>    embed://prop1=value1 |
 | module | The name of the Processing Unit module to run | No| | `feeder` |
 

@@ -10,6 +10,7 @@ weight: 600
 In many scenarios, you need to set up XAP in environments which have a firewall running. This section&nbsp;provides&nbsp;XAPs configuration recommendations for several firewall topologies:
 
 - Basic configuration: XAP cluster (GSM and GSCs) running behind the firewall, with clients connecting through the firewall. Multicast traffic is allowed behind the firewall and unicast-only traffic comes from the clients through the firewall.
+
  {{% note %}}
  Basic configuration, suitable for most scenarios, requires mandatory setting of the following properties (these system property settings are described below):
  

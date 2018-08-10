@@ -196,7 +196,7 @@ Only one property in a class can be marked as a version property, and it must be
 When a class contains a field or a property that is not a nullable type, (for example, a primitive such as `int` or a struct such as `DateTime`), it is recommended to specify a null value for it that will be used when querying the Space for that class. The `NullValue` attribute instructs the Space to ignore this field when performing matching or partial update, when the content of the field in the template equals the defined `NullValue`.
 
 {{% note "Nullables "%}}
-We recommend avoiding the use of such fields and properties, and the need to define null values, by wrapping them with their corresponding Nullable, for instance Nullable<int> or Nullable<DateTime>.
+We recommend avoiding the use of such fields and properties, and the need to define null values, by wrapping them with their corresponding Nullable, for instance Nullable&lt;int&gt; or Nullable&lt;DateTime&gt;.
 {{% /note %}}
 
 To specify a null value, the field or property should be marked with the `[SpaceProperty(NullValue = ?)]` attribute:

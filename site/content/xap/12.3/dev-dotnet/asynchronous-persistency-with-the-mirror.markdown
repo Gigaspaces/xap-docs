@@ -57,6 +57,7 @@ The IMDG Mirror replication settings includes the following options:
 {{% note %}}
 The Mirror Service may receive replication events from multiple active primary partitions. Each active partition sends its operations to the Mirror service via a dedicated replication channel. The Mirror handles incoming replication requests simultaneously. Every Primary Space sending its operations to the Mirror Service in the same order the operations have been executed allowing the Mirror preserve the consistency of the data within the data source.
 {{% /note %}}
+
 The Data-Grid Space settings would look like this:
 
 

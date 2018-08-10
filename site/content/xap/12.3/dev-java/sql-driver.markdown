@@ -354,7 +354,7 @@ This url parameter configuration does not apply to the logging level for third-p
 
 The default configuration of the JDBC driver's logger:
 
-- File appender is used, which writes to the file **<user_home>/xap-jdbc-driver.out**
+- File appender is used, which writes to the file **&lt;user_home&gt;/xap-jdbc-driver.out**
 - Log level is INFO.
 
 

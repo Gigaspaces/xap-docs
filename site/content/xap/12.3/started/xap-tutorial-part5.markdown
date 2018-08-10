@@ -181,10 +181,10 @@ A sample SLA definition is shown below:
 
 
 # Deployment
-When deploying the PU to the XAP Service Grid, the PU jar file is uploaded to the XAP Manager (GSM) and extracted to the deploy directory of the local XAP installation (located by default under <XAP Root>/deploy).
+When deploying the PU to the XAP Service Grid, the PU jar file is uploaded to the XAP Manager (GSM) and extracted to the deploy directory of the local XAP installation (located by default under &lt;XAP ROOT&gt;/deploy).
 Once extracted, the GSM processes the deployment descriptor and based on that provisions PU instances to the running XAP containers.
 
-Each GSC to which a certain instance was provisioned, downloads the PU jar file from the GSM, extracts it to its local working directory (located by default under <XAP Root>/work/deployed-processing-units) and starts the PU instance.
+Each GSC to which a certain instance was provisioned, downloads the PU jar file from the GSM, extracts it to its local working directory (located by default under &lt;XAP ROOT&gt;/work/deployed-processing-units) and starts the PU instance.
 
 
 # Example

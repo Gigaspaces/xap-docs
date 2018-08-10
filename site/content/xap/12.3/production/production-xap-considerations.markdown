@@ -218,7 +218,6 @@ gs deploy -zones webZone myWar.war
 ```
 {{%/accord%}}
 {{%/accordion%}}
-<br>
 
 {{%anchor RunningMultipleZones%}}
 

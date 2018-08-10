@@ -20,16 +20,20 @@ Run gs-agent with `--help` or `-h` to see all available options:
 {{% section %}}
 {{% column width="50%" %}}
 **Linux**
+
 ```bash
 ./gs-agent.sh --help
 ```
+
 {{% /column %}}
 
 {{% column width="45%" %}}
 **Windows**
+
 ```bash
 gs-agent --help
 ```
+
 {{% /column %}}
 {{% /section %}}
 
@@ -40,22 +44,26 @@ To start a single manager on the local machine (useful for dev and testing):
 {{% section %}}
 {{% column width="50%" %}}
 **Linux**
+
 ```bash
-# Starts a local manager:
+&#35; Starts a local manager:
 ./gs-agent.sh --manager-local
-# Starts a local manager and 2 GSCs:
+&#35; Starts a local manager and 2 GSCs:
 ./gs-agent.sh --manager-local --gsc=2
 ```
+
 {{% /column %}}
 
 {{% column width="45%" %}}
 **Windows**
+
 ```bash
 REM Starts a local manager:
 gs-agent --manager-local
 REM Starts a local manager and 2 GSCs:
 gs-agent --manager-local --gsc=2
 ```
+
 {{% /column %}}
 {{% /section %}}
 
@@ -64,22 +72,26 @@ To start a highly-available cluster of managers on several hosts, run the follow
 {{% section %}}
 {{% column width="50%" %}}
 **Linux**
+
 ```bash
-# Starts a manager:
+&#35; Starts a manager:
 ./gs-agent.sh --manager
-# Starts a manager and 2 GSCs:
+&#35; Starts a manager and 2 GSCs:
 ./gs-agent.sh --manager --gsc=2
 ```
+
 {{% /column %}}
 
 {{% column width="45%" %}}
 **Windows**
+
 ```bash
 REM Starts a manager:
 gs-agent --manager
 REM Starts a manager and 2 GSCs:
 gs-agent --manager --gsc=2
 ```
+
 {{% /column %}}
 {{% /section %}}
 
@@ -92,22 +104,26 @@ If you cannot use the manager for some reason, but you still want high-availabil
 {{% section %}}
 {{% column width="50%" %}}
 **Linux**
+
 ```bash
-# Starts a LUS and GSM:
+&#35; Starts a LUS and GSM:
 ./gs-agent.sh --lus --gsm
-# Starts a LUS, GSM and 2 GSCs:
+&#35; Starts a LUS, GSM and 2 GSCs:
 ./gs-agent.sh --lus --gsm --gsc=2
 ```
+
 {{% /column %}}
 
 {{% column width="45%" %}}
 **Windows**
+
 ```bash
 REM Starts a LUS and GSM:
 gs-agent --lus --gsm
 REM Starts a LUS, GSM and 2 GSCs:
 gs-agent --lus --gsm --gsc=2
 ```
+
 {{% /column %}}
 {{% /section %}}
 
@@ -116,18 +132,22 @@ Alternatively, if your environment supports multicast and you prefer a more dyna
 {{% section %}}
 {{% column width="50%" %}}
 **Linux**
+
 ```bash
-# Starts a LUS, GSM and 2 GSCs:
+&#35; Starts a LUS, GSM and 2 GSCs:
 ./gs-agent.sh --global.lus=2 --global.gsm=2 --gsc=2
 ```
+
 {{% /column %}}
 
 {{% column width="45%" %}}
 **Windows**
+
 ```bash
 REM Starts a LUS, GSM and 2 GSCs:
 gs-agent --global.lus=2 --global.gsm=2 --gsc=2
 ```
+
 {{% /column %}}
 {{% /section %}}
 
@@ -136,16 +156,20 @@ In fact, since this configuration is convenient for new users, it is also the de
 {{% section %}}
 {{% column width="50%" %}}
 **Linux**
+
 ```bash
 ./gs-agent.sh -z
 ```
+
 {{% /column %}}
 
 {{% column width="45%" %}}
 **Windows**
+
 ```bash
 gs-agent -z
 ```
+
 {{% /column %}}
 {{% /section %}}
 
@@ -166,6 +190,7 @@ For example:
 {{% section %}}
 {{% column width="50%" %}}
 **Linux**
+
 ```bash
 export XAP_GSA_OPTIONS=-Xmx256m
 export XAP_GSC_OPTIONS=-Xms2g -Xmx2g
@@ -174,10 +199,12 @@ export XAP_LUS_OPTIONS=-Xmx1g
 
 ./gs-agent.sh
 ```
+
 {{% /column %}}
 
 {{% column width="45%" %}}
 **Windows**
+
 ```bash
 set XAP_GSA_OPTIONS=-Xmx256m
 set XAP_GSC_OPTIONS=-Xms2g -Xmx2g
@@ -186,6 +213,7 @@ set XAP_LUS_OPTIONS=-Xmx1g
 
 call gs-agent.bat
 ```
+
 {{% /column %}}
 {{% /section %}}
 
@@ -262,6 +290,7 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
     <restart-regex>.*java\.lang\.OutOfMemoryError.*</restart-regex>
 </process>
 ```
+
 {{% /tab %}}
 {{%tab "  gsc_large.xml "%}}
 
@@ -279,6 +308,7 @@ For example, suppose we want our agent to load 2 'small' GSCs (512MB each) in a 
     <restart-regex>.*java\.lang\.OutOfMemoryError.*</restart-regex>
 </process>
 ```
+
 {{% /tab %}}
 {{% /tabs %}}
 

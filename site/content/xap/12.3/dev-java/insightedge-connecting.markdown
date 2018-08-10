@@ -38,6 +38,7 @@ Supported `InsightEdgeConfig` parameters are listed in the table below:
 # Creating the SparkContext
 
 Create `SparkContext` as you usually do with a pure Spark application:
+
 {{%tabs%}}
 {{%tab "Scala" %}}
 ```scala

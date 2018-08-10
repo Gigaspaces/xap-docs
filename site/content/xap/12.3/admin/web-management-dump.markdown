@@ -14,6 +14,7 @@ weight: 500
 You can generate a dump file that includes information about the runtime environment for a specific host, or across the entire environment.
 
 Start the Web Management Console, click Generate Dump, and select the relevant option:
+
 {{% align center %}}
 ![WEB-UI1.png](/attachment_files/WEB-UI1.png)
 {{% /align %}}

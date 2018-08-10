@@ -14,7 +14,6 @@ The MemoryXtend off-heap storage driver stores Space objects in RAM, outside the
 * Better RAM utilization - Objects are stored off-heap in serialized form, which consumes less memory than the same object would use in a Java heap.
 * Reduced garbage collection activity - Less data is stored on the Java heap, so the garbage collector has less work. This yields more deterministic behavior with a lower chance of experiencing stop-the-world pauses.
 
-<br>
 
 {{%align center%}}
 ![image](/attachment_files/blobstore/ohr3.png)
@@ -67,7 +66,6 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-<br>
 The  general [MemoryXtend configuration options](./memoryxtend-overview.html#configuration) also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.
 
 {{%note%}}

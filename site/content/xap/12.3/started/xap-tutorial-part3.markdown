@@ -130,8 +130,8 @@ public void executeTaskWithRouting() throws InterruptedException, ExecutionExcep
 }
 ```
 
-There are other options available for task routing
-.
+There are other options available for task routing.
+
 {{%refer%}}[Task Execution over the Space](../dev-java/task-execution-overview.html){{%/refer%}}
 
 

@@ -60,8 +60,8 @@ The interface includes the following main operations:
 [aggregation](#aggregators)  across the Space<br>
 [count](#count) objects in Space<br>
 [counters](#counters) increment and decrement
-{{%column width="50%" %}}
 {{%/column%}}
+{{%column width="50%" %}}
 {{%/column%}}
 {{%/section%}}
 
@@ -410,7 +410,7 @@ If at the end of that time no value can be returned that would not interfere wit
 
 ## Asynchronous Read
 
-The GigaSpace interface supports asynchronous (non-blocking) read operations through the GigaSpace interface. It returns a [Future\<T\>](http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) object, where T is the type of the object the request returns. Future<T>.get() can be used to query the object to see if a result has been returned or not.
+The GigaSpace interface supports asynchronous (non-blocking) read operations through the GigaSpace interface. It returns a [Future\<T\>](http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.
 
 Alternatively, asyncRead also accept an implementation of [AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html), which will have its `AsyncFutureListener.onResult` method called when the result has been populated. This does not affect the return type of the `Future<T>`, but provides an additional mechanism for handling the asynchronous response.
 
@@ -688,7 +688,7 @@ If the only possible matches for the template have conflicting locks from one or
 
 ## Asynchronous Take
 
-The GigaSpace interface supports asynchronous (non-blocking) take operations through the GigaSpace interface. It returns a [Future\<T\>](http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) object, where T is the type of the object the request returns. Future<T>.get() can be used to query the object to see if a result has been returned or not.
+The GigaSpace interface supports asynchronous (non-blocking) take operations through the GigaSpace interface. It returns a [Future\<T\>](http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html) object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.
 
 Alternatively, asyncTake also accept an implementation of [AsyncFutureListener]({{% api-javadoc %}}/com/gigaspaces/async/AsyncFutureListener.html), which will have its `AsyncFutureListener.onResult` method called when the result has been populated. This does not affect the return type of the `Future<T>`, but provides an additional mechanism for handling the asynchronous response.
 

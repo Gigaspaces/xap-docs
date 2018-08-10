@@ -106,8 +106,6 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-
-<br>
 The following table describes the configuration options used in `rocksdb-blob-store` above.
 
 | Property               | Description                                               | Default | Use |
@@ -254,6 +252,7 @@ The default threshold is 50B.
     <os-core:giga-space id="gigaSpace" space="space"/>
 </beans>
 ```
+
 {{% /tab %}}
 {{%tab "Java Code"%}}
 
@@ -279,13 +278,11 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
 This configuration allows each Space partition instance (primary or backup) to use a machine-local storage device (SSD/HDD). With this approach, data locality is leveraged so that the devices local to the machine are used for reads/writes. The local storage deployment strategy provides an easy way to implement a "local persistent store" (also known as native persistence) pattern. 
 
-<br>
 
 {{%align center%}}
 ![image](/attachment_files/blobstore/memoryxtend-local-storage.png)
 {{%/align%}}
 
-<br>
 
 ## Central Storage
 
@@ -385,6 +382,7 @@ A list of configuration properties can be found in  the [org.rocksdb.ColumnFamil
 
 {{%tabs%}}
 {{%tab "Namespace" %}}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -417,8 +415,10 @@ A list of configuration properties can be found in  the [org.rocksdb.ColumnFamil
     <os-core:giga-space id="gigaSpace" space="space"/>
 </beans>
 ```
+
 {{% /tab %}}
 {{%tab "Java Code"%}}
+
 ```java
 RocksDBBlobStoreConfigurer configurer = new RocksDBBlobStoreConfigurer()
         .setPaths("[/tmp/rocksdb,/tmp/rocksdb2]")
@@ -443,5 +443,6 @@ embeddedSpaceConfigurer.cachePolicy(cachePolicy);
 
 gigaSpace = new GigaSpaceConfigurer(embeddedSpaceConfigurer.space()).gigaSpace();
 ```
+
 {{% /tab %}}
 {{% /tabs %}}

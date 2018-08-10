@@ -20,7 +20,7 @@ GigaSpaces XAP.NET is bundled with [Oracle Java SE 8 update 121](http://www.orac
 2. Locate the `<XapNet.Runtime.JavaHome>` node and change its value to the location of the JVM you wish to use.
 
 {{% note "Using JAVA_HOME "%}}
-Many systems define an environment variable called `JAVA_HOME` which points to the JVM installation, since most java applications and libraries (including GigaSpaces XAP) use `JAVA_HOME` to locate java. Since the `Settings.xml` file supports environment variable expansion, it is possible to set <XapNet.Runtime.JavaHome> to `%JAVA_HOME%`, so you can later on change the jvm location without editing the xml file.
+Many systems define an environment variable called `JAVA_HOME` which points to the JVM installation, since most java applications and libraries (including GigaSpaces XAP) use `JAVA_HOME` to locate java. Since the `Settings.xml` file supports environment variable expansion, it is possible to set &lt;XapNet.Runtime.JavaHome&gt; to `%JAVA_HOME%`, so you can later on change the jvm location without editing the xml file.
 {{% /note %}}
 
 {{% anchor JvmSettings %}}

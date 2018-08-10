@@ -10,7 +10,6 @@ weight: 1600
 XAP 10 introduces a new storage model called BlobStore Storage Model, which allows an external storage medium (one that does not reside on the JVM heap) to store the IMDG data. This guide describes the general architecture and functionality of this storage model that is leveraging both on-heap, off-heap and SSD implementation, called `MemoryXtend`.
 
 
-<br>
 
 
 {{%section%}}
@@ -27,6 +26,5 @@ This MemoryXtend [tutorial](/download_files/xap10memoryXtend-tutorial.pdf) descr
 {{%/column%}}
 {{%/section%}}
 
-<br>
 {{%refer%}}[MemoryXtend](../admin/memoryxtend-overview.html){{%/refer%}}
 

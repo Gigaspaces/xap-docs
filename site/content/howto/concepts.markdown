@@ -1,5 +1,5 @@
 ---
-type: post123
+type: post
 title: Important Concepts
 categories: XAP123OVW
 parent: none

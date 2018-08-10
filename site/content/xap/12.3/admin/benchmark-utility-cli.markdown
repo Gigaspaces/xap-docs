@@ -86,7 +86,7 @@ Other possible values are:
 
 |Option | Description|
 |:------|:-----|
-|-i <number of iterations> |number of iterations; default is 1000 |
+|-i &lt;number of iterations&gt; |number of iterations; default is 1000 |
 |-lease [time in ms] |lease timeout in milliseconds of the write/put operation   |
 |-t [time in ms]| timeout in milliseconds of the read/take/get/remove operations |
 |-s [size in bytes] |set byte size of the entry object.  |
@@ -97,7 +97,7 @@ Other possible values are:
 |-repeatfirst [repeats] |repeat times of first operation|
 |-repeatsecond [repeats] |repeat times of second operation  |
 |-m [batch size] |specifies the batch size when performing batch operations |
-|-rand <number of iterations> |will randomize second operation ids/keys in a range; default is by -i|
+|-rand &lt;number of iterations&gt; |will randomize second operation ids/keys in a range; default is by -i|
 |-tx [nth-iteration] |tx will be committed every nth-iteration; if zero, as specified by -i|
 |-delaywrite [t ms] |delays first operation every t milliseconds    |
 |-delayreadtake [t ms] |delays second & third operation every t milliseconds |
@@ -135,8 +135,8 @@ Other possible values are:
 
 |Option | Description|
 |:------|:-----|
-|-showrate <iteration cycle> |global throughput will be displayed every iteration cycle; default is 1000|
-|-showthreadrate <iteration cycle> |thread throughput will be displayed every iteration cycle; default is 1000|
+|-showrate &lt;iteration cycle&gt; |global throughput will be displayed every iteration cycle; default is 1000|
+|-showthreadrate &lt;iteration cycle&gt; |thread throughput will be displayed every iteration cycle; default is 1000|
 |-stress \[repeat times\] |runs the entire benchmark as many as 'repeat times' as stated |
 
 
