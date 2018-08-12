@@ -104,8 +104,9 @@ var terms = [{
 ];
 
 var special = {
-  find: 'Resources/Snippets/',
-  replace: '../'
+  find: /Resources\/Snippets\//g,
+  replace: 'Resources/Snippets/',
+  pattern: '../'
 };
 
 var debugMode = false;
@@ -168,7 +169,7 @@ function processHTM(sFilename) {
 
   var depth = sFilename.substr(sFolder.length + 1).split('\\').length - 1;
   if (depth) {
-    s = s.replace(special.find, special.replace.repeat(depth)+special.find);
+    s = s.replace(special.find, special.pattern.repeat(depth)+special.replace);
   }
   return {
     "html": s,
