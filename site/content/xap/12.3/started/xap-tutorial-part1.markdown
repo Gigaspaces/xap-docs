@@ -697,41 +697,27 @@ There are several additional indexing options available. For example you can ind
 **When you code your space classes make sure:**
 
 - there are indexes for all relevant attributes including nested attributes you use for queries
-
 - numeric attribute queried with between / greater / less than should have an ordered index.
-
 - compound indexes should be used for attributes queried using AND query
-
 - space classes have empty no arg constructor
-
 - all nested classes are serializable
-
 - do not use  int, long, etc. integer attributes, instead use Long.
-
 - when possible use writeMultiple.
-
 - use projection for read/readMultiple
-
 - use clear for data removal and not take or takeMultiple
-
 - no huge collections with many items
-
 - use change api instead of update, especially if collections are used.
- 
-
-
 
 # Other Data Access APIs
 XAP provides a JDBC Driver, JPA API, MAP and Memcached APIs.
 
 {{%refer%}}[Other Data Access API's](../dev-java/other-data-access-apis.html){{%/refer%}}
 
-
-
 # Spring Integration
 All XAP components can be wired and configured with the application using corresponding Spring Beans.
 
-**The GigaSpaces Spring Integration supports:**<br>
+**The GigaSpaces Spring Integration supports:**
+
 - Spring Automatic Transaction Demarcation<br>
 - Spring Data<br>
 - Spring JMS<br>
@@ -742,9 +728,7 @@ All XAP components can be wired and configured with the application using corres
 - Spring Security<br>
 - Mule
  
-
 Lets look at a Spring configuration file that represents the creation of an embedded space:
-
 
 
 ```xml
@@ -773,7 +757,6 @@ Lets look at a Spring configuration file that represents the creation of an embe
 </beans>
 ```
 
-
 And here is the code to access the Spring bean within your application:
 
 ```java
@@ -785,8 +768,4 @@ public void findSpace()  {
 }
 ```
 
-
 {{%note%}}In the following parts of this tutorial we will introduce you the different schemas that support the XAP Spring integration. We will also use the Annotations to configure and inject components.{{%/note%}}
-
-
-
