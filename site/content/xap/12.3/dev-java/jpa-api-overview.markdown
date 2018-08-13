@@ -364,7 +364,7 @@ em.close();
 emf.close();
 ```
 
-**JOIN support for one to many relationship (Owner --> List<Pet>)**
+**JOIN support for one to many relationship (Owner --> List&lt;Pet&gt;)**
 
 
 ```java

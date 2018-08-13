@@ -12,9 +12,8 @@ XAP supports easy and efficient communication and access across projects that in
 
 # Designing Interoperable Classes
 
-{{%section%}}
-{{%column width="50%" %}}
- C#
+{{%tabs%}}
+{{% tab "C#" %}}
 
 ```csharp
 using GigaSpaces.Core.Metadata;
@@ -35,10 +34,8 @@ namespace MyCompany.MyProject.Entities
 }
 ```
 
-{{%/column%}}
-
-{{%column width="50%" %}}
- Java
+{{%/tab%}}
+{{% tab Java %}}
 
 ```java
 package com.mycompany.myproject.entities;
@@ -60,8 +57,8 @@ package com.mycompany.myproject.entities;
 }
 ```
 
-{{%/column%}}
-{{%/section%}}
+{{% /tab %}}
+{{% /tabs %}}
 
 ## Guidelines and Restrictions
 

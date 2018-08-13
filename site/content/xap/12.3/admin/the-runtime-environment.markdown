@@ -17,33 +17,29 @@ To start a Service Grid on a machine, launch the `gs-agent` utility located in t
 ## Help
 Run gs-agent with `--help` or `-h` to see all available options:
 
-{{% section %}}
-{{% column width="50%" %}}
-**Linux**
+{{%tabs%}}
+{{% tab Linux %}}
 
 ```bash
 ./gs-agent.sh --help
 ```
 
-{{% /column %}}
-
-{{% column width="45%" %}}
-**Windows**
+{{%/tab%}}
+{{% tab Windows %}}
 
 ```bash
 gs-agent --help
 ```
 
-{{% /column %}}
-{{% /section %}}
+{{% /tab %}}
+{{% /tabs %}}
 
 ## Manager
 
 To start a single manager on the local machine (useful for dev and testing):
 
-{{% section %}}
-{{% column width="50%" %}}
-**Linux**
+{{%tabs%}}
+{{% tab Linux %}}
 
 ```bash
 &#35; Starts a local manager:
@@ -52,10 +48,8 @@ To start a single manager on the local machine (useful for dev and testing):
 ./gs-agent.sh --manager-local --gsc=2
 ```
 
-{{% /column %}}
-
-{{% column width="45%" %}}
-**Windows**
+{{%/tab%}}
+{{% tab Windows %}}
 
 ```bash
 REM Starts a local manager:
@@ -64,14 +58,13 @@ REM Starts a local manager and 2 GSCs:
 gs-agent --manager-local --gsc=2
 ```
 
-{{% /column %}}
-{{% /section %}}
+{{% /tab %}}
+{{% /tabs %}}
 
 To start a highly-available cluster of managers on several hosts, run the following on each of the designated hosts:
 
-{{% section %}}
-{{% column width="50%" %}}
-**Linux**
+{{%tabs%}}
+{{% tab Linux %}}
 
 ```bash
 &#35; Starts a manager:
@@ -80,10 +73,8 @@ To start a highly-available cluster of managers on several hosts, run the follow
 ./gs-agent.sh --manager --gsc=2
 ```
 
-{{% /column %}}
-
-{{% column width="45%" %}}
-**Windows**
+{{%/tab%}}
+{{% tab Windows %}}
 
 ```bash
 REM Starts a manager:
@@ -92,8 +83,8 @@ REM Starts a manager and 2 GSCs:
 gs-agent --manager --gsc=2
 ```
 
-{{% /column %}}
-{{% /section %}}
+{{% /tab %}}
+{{% /tabs %}}
 
 (Note that you also need to configure the `XAP_MANAGER_SERVERS` to the list of designated manager servers)
 
@@ -101,9 +92,8 @@ gs-agent --manager --gsc=2
 
 If you cannot use the manager for some reason, but you still want high-availability, you can pick a couple of hosts to serve for management, and start a LUS and GSM on them:
 
-{{% section %}}
-{{% column width="50%" %}}
-**Linux**
+{{%tabs%}}
+{{% tab Linux %}}
 
 ```bash
 &#35; Starts a LUS and GSM:
@@ -112,10 +102,8 @@ If you cannot use the manager for some reason, but you still want high-availabil
 ./gs-agent.sh --lus --gsm --gsc=2
 ```
 
-{{% /column %}}
-
-{{% column width="45%" %}}
-**Windows**
+{{%/tab%}}
+{{% tab Windows %}}
 
 ```bash
 REM Starts a LUS and GSM:
@@ -124,54 +112,48 @@ REM Starts a LUS, GSM and 2 GSCs:
 gs-agent --lus --gsm --gsc=2
 ```
 
-{{% /column %}}
-{{% /section %}}
+{{% /tab %}}
+{{% /tabs %}}
 
 Alternatively, if your environment supports multicast and you prefer a more dynamic approach, you can use the `global` prefix to indicate that GSMs and LUSs will be automatically started and managed by the collective of gs-agents, instead of explicitly on a specific hosts. For example, to start 2 Global GSM and LUS accross a set of hosts, as well as 2 GSCs on each host:
 
-{{% section %}}
-{{% column width="50%" %}}
-**Linux**
+{{%tabs%}}
+{{% tab Linux %}}
 
 ```bash
 &#35; Starts a LUS, GSM and 2 GSCs:
 ./gs-agent.sh --global.lus=2 --global.gsm=2 --gsc=2
 ```
 
-{{% /column %}}
-
-{{% column width="45%" %}}
-**Windows**
+{{%/tab%}}
+{{% tab Windows %}}
 
 ```bash
 REM Starts a LUS, GSM and 2 GSCs:
 gs-agent --global.lus=2 --global.gsm=2 --gsc=2
 ```
 
-{{% /column %}}
-{{% /section %}}
+{{% /tab %}}
+{{% /tabs %}}
 
 In fact, since this configuration is convenient for new users, it is also the default - running `gs-agent` without any arguments would produce the same effect. If you wish to disable it and start without any components, run gs-agent with `--zero-defaults` or `-z`. This can be useful if you're planning to use the  manager's RESTful API from another host to add/remove containers.
 
-{{% section %}}
-{{% column width="50%" %}}
-**Linux**
+{{%tabs%}}
+{{% tab Linux %}}
 
 ```bash
 ./gs-agent.sh -z
 ```
 
-{{% /column %}}
-
-{{% column width="45%" %}}
-**Windows**
+{{%/tab%}}
+{{% tab Windows %}}
 
 ```bash
 gs-agent -z
 ```
 
-{{% /column %}}
-{{% /section %}}
+{{% /tab %}}
+{{% /tabs %}}
 
 # Configuration
 
@@ -187,9 +169,8 @@ The component-specific configuration override the system-wide configuration.
 
 For example:
 
-{{% section %}}
-{{% column width="50%" %}}
-**Linux**
+{{%tabs%}}
+{{% tab Linux %}}
 
 ```bash
 export XAP_GSA_OPTIONS=-Xmx256m
@@ -200,10 +181,8 @@ export XAP_LUS_OPTIONS=-Xmx1g
 ./gs-agent.sh
 ```
 
-{{% /column %}}
-
-{{% column width="45%" %}}
-**Windows**
+{{%/tab%}}
+{{% tab Windows %}}
 
 ```bash
 set XAP_GSA_OPTIONS=-Xmx256m
@@ -214,8 +193,8 @@ set XAP_LUS_OPTIONS=-Xmx1g
 call gs-agent.bat
 ```
 
-{{% /column %}}
-{{% /section %}}
+{{% /tab %}}
+{{% /tabs %}}
 
 # Customizing GSA Components
 

@@ -158,7 +158,7 @@ The **Help** menu provides the following options
 
 The button toolbar allows you to perform maintenance operations on containers and spaces.
 
-|Syntax|Description|
+|Button|Description|
 |:-----|:----------|
 | ![ping.gif](/attachment_files/ping.gif) | Pings the selected space |
 | ![clean_space.gif](/attachment_files/clean_space.gif) | Cleans the selected space |
