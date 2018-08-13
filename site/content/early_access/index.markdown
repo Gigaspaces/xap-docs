@@ -13,7 +13,7 @@ This page contains early access information for XAP and InsightEdge 14.0.0, whic
 -->
 
 {{%tip "Disclaimer"%}}
-Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.3.1**. Additionally, the early access documentation has not yet been released. Use the documentation for the lastest stable release.<br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.3/)
+Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.3.1**. The early access documentation is not available yet, so please use the documentation for the lastest stable release.<br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.3/)
 {{%/tip%}}
 <hr/>
 
