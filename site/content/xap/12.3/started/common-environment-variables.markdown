@@ -42,6 +42,7 @@ The following list describes XAP-related environment variables:
 |  XAP_SECURITY_POLICY  | The default policy file.|XAP_HOME/policy/policy.all  | |
 |  XAP_LOGS_CONFIG_FILE | The location of the XAP logging configuration        | XAP_HOME/config/log/xap_logging.properties |
 |  XAP_MANAGER_SERVERS  | Set the list of Manager servers that other machines can connect to   | |
+|  XAP_PUBLIC_HOST	    | Define the public IP address for the Docker host machine | |
 |  XAP_MANAGER_OPTIONS  | Java options for the XAP Manager                     | |
 |  XAP_GSC_OPTIONS      | Java options for the Grid Service Container (GSC)    | |
 |  XAP_GSM_OPTIONS      | Java options for the Grid Service Manager (GSM) 	{{%exclamation%}}      | |
