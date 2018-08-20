@@ -1,6 +1,6 @@
 ---
 type: post
-title:  Lowering the Space Object Footprint
+title:  Reducing the Space Object Footprint
 categories: SBP
 parent: data-access-patterns.html
 weight: 900
@@ -16,18 +16,18 @@ weight: 900
 
 
 # Overview
-By default, when using the GigaSpaces Java API, the space stores space object fields as is. No data compaction, or compression is done while the object is transported across the network or when stored within the space.
+By default, when using the GigaSpaces Java API, the Space stores Space object fields as is. No data compaction or compression is done while the object is transported across the network, or when stored within the Space.
 
 {{% note %}}
 
-- The Compressed Storage Type compressing non-primitive fields using the zip utilities. It is different than the compact serialization pattern.
-- The Binary Storage Type store non-primitive fields within the space as it in its byte array form. It does not compress or reduce the footprint of the data as the compact pattern. It avoid the need to introduce nested space object data type to the space JVM and the need to de-serialize these at the space side. The Binary Storage Type may improve the performance when the space object store large collection.
-- The C++ and .Net API objects data does go through some compaction when sent across the network.
+- The Compressed Storage Type is a different approach than the compact serialization, pattern, and compresses non-primitive fields using the zip utilities.
+- The Binary Storage Type stores non-primitive fields within the Space in its byte array form. It does not compress or reduce the footprint of the data as the compact pattern does. This approach makes it unnecessary to introduce the nested Space object data type to the Space JVM, or to de-serialize them on the Space side. The Binary Storage Type may improve performance when the Space object stores large collections.
+- C++ and .Net API data objects may undergo some compaction when sent across the network.
 {{% /note %}}
 
-With the Compact Serialization pattern you may reduce the space object memory footprint when stored within the data grid. This allows you to store more space objects per memory unit. This pattern works very well when the space object includes large number of numerical values as it is storing these in more optimal data type.
+With the Compact Serialization pattern, you can reduce the footprint of the data object in the Space memory when it is stored in the data grid, which allows storing more Space objects per memory unit. This pattern works very well when the Space object includes a large number of numerical values, because these objects are stored as a more optimal data type.
 
-The basic idea of the compact serialization pattern is simple: Total control on the format of the space object data while transported over the network and when stored within the space. This technique:
+The compact serialization pattern enables complete control over the format of the data object while transported over the network and when stored within the Space. This technique:
 
 - Compacts the object payload data when transported over the network and when stored in memory.
 - Avoids the de-serialization involved when space object written to the space from a remote client (for non primitive fields such as user defined classes or collection field)
