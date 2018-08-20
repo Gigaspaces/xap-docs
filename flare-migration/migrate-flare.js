@@ -74,10 +74,6 @@ var terms = [{
     "replace": '.htm/'
   },
   {
-    "find": /attachment_files\//g,
-    "replace": '../../../attachement_files/'
-  },
-  {
     "find": /<\/(table|thead|tbody|tr|th|td|div|ul)>[\s\s]*?<\/p>/g,
     "replace": '</$1>'
   },
@@ -103,11 +99,20 @@ var terms = [{
   }
 ];
 
-var special = {
-  find: /Resources\/Snippets\//g,
-  replace: 'Resources/Snippets/',
-  pattern: '../'
-};
+var special = [
+  {
+    find: /Resources\/Snippets\//g,
+    replace: 'Resources/Snippets/',
+    pattern: '../',
+    depthMod: 0
+  }/* ,
+  {
+    find: /\/attachment_files/g,
+    replace: 'attachement_files',
+    pattern: '../',
+    depthMod: 3
+  } */
+];
 
 var debugMode = false;
 var logFile = "";
@@ -169,7 +174,9 @@ function processHTM(sFilename) {
 
   var depth = sFilename.substr(sFolder.length + 1).split('\\').length - 1;
   if (depth) {
-    s = s.replace(special.find, special.pattern.repeat(depth)+special.replace);
+    for (var j = 0; j < special.length; j++) {
+      s = s.replace(special[j].find, special[j].pattern.repeat(depth+special[j].depthMod)+special[j].replace);
+    }
   }
   return {
     "html": s,
