@@ -10,23 +10,25 @@ weight: 330
 
 Queries are usually indexed and executed using primitive fields (long, float, string, etc.). These fields can be at the root level of the Space object, or embedded within [nested objects](./query-sql.html#nested-object-query) in the Space object. You can construct a query using a template object or SQL, to specify the criteria you want to use when the matching phase is performed within the Space when looking for the relevant objects.
 
-However, in some cases you may need a custom data type with custom business logic to find matching objects within the Space, instead of the usual [primitive data type](http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html) comparison. To allow the Space to invoke your business logic when the matching process is conducted, the [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) interface should be implemented for a class that stores the data you want to use with your custom business logic.
+However, in some cases you may need a custom data type with custom business logic to find matching objects within the Space, instead of the [primitive data type](http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html) comparison. To allow the Space to invoke your business logic when the matching process is conducted, the [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) interface should be implemented for a class that stores the data you want to use with your custom business logic.
 
 {{% tip %}}
 The [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) implementation should not be done for the Space class itself, but for one of its fields.
 {{% /tip %}}
 
-{{% info %}} To index the data to speed up the custom matching process, index the field so that its class implements the `Comparable` interface using the `EXTENDED` index type as part of the Space class. See the [Indexing](./indexing.html) section for additional information about how to enable the `EXTENDED` index. Indexing the custom type field should be used with caution, because it doesn't support a `Comparable.compareTo` implementation that performs relative-based matching, which is demonstrated in the example on this page.
-{{%/info%}}
+You can index the data to speed up the custom matching process; index the field so that its class implements the `Comparable` interface using the `EXTENDED` index type as part of the Space class. Indexing the custom type field should be used with caution, because it doesn't support a `Comparable.compareTo` implementation that performs relative-based matching, which is demonstrated in the example on this page.
+
+{{%note%}}
+See the [Indexing](./indexing.html) section for additional information about how to enable the `EXTENDED` index. 
+{{%/note%}}
 
 # Vector Compare Example
 
-The following example illustrates a business logic implementation used to query for vector data (an array of Integer values), using the [Euclidean distance](http://en.wikipedia.org/wiki/Euclidean_distance) formula:
+The following example is a business logic implementation used to query for vector data (an array of Integer values), using the [Euclidean distance](http://en.wikipedia.org/wiki/Euclidean_distance) formula:
 
 {{% panel %}}![EuclideanDistance.jpg](/attachment_files/sbp/EuclideanDistance.jpg){{% /panel %}}
 
 The object that holds the array implements the [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) interface. The Space class has a getter method for this field indexing, using the `EXTENDED` index. The actual query involves indexed fields for several sample data points within the vector, together with the custom field:
-
 
 ```java
 SQLQuery<Vector> query= new SQLQuery<Vector>(Vector.class ,
@@ -52,11 +54,11 @@ The following is an example of a target vector, and a matching vector found usin
 To scale the system, deploy the Space in a [partitioned cluster schema](/product_overview/terminology.html). This allows queries such as matching to be executed across all the partitions in parallel, speeding up the query execution time.
 {{% /tip %}}
 
-See **The Application** tab for the full query usage. This allows the `Comparable.compareTo` implementation to be performed on a smaller candidate subset of objects.
+The **Application** tab shows the full query usage. This allows the `Comparable.compareTo` implementation to be performed on a smaller candidate subset of objects.
 
 {{%tabs%}}
 
-{{%tab "  The Comparable implementation "%}}
+{{%tab " Comparable Implementation "%}}
 
 
 ```java
@@ -129,7 +131,7 @@ public class VectorData implements Serializable, Comparable <VectorData>{
 
 {{% /tab %}}
 
-{{%tab "  The Space Class "%}}
+{{%tab " Space Class "%}}
 
 
 ```java
@@ -190,7 +192,7 @@ public class Vector {
 
 {{% /tab %}}
 
-{{%tab "  The Application "%}}
+{{%tab " Application "%}}
 
 
 ```java
@@ -256,5 +258,4 @@ static int[] getRandomVector()
 ```
 
 {{% /tab %}}
-
 {{% /tabs %}}
