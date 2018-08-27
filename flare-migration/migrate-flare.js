@@ -105,13 +105,13 @@ var special = [
     replace: 'Resources/Snippets/',
     pattern: '../',
     depthMod: 0
-  }/* ,
+  },
   {
     find: /\/attachment_files/g,
-    replace: 'attachement_files',
+    replace: 'Resources/Static/attachment_files',
     pattern: '../',
-    depthMod: 3
-  } */
+    depthMod: 0
+  }
 ];
 
 var debugMode = false;
