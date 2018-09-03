@@ -12,56 +12,82 @@ Apache Spark 2.3.x has native Kubernetes support. Users can run Spark workloads 
 
 The Spark submission mechanism creates a Spark driver running within a Kubernetes pod. The driver creates executors running within Kubernetes pods, connects to them, and executes application code. Using InsightEdge, application code can connect to a Data Pod and interact with the distributed data grid.
 
+This topic explains how to run the Apache Spark `SparkPi` example, and the InsightEdge `SaveRDD` example, which is one of the basic Scala examples provided in the InsightEdge software package. Do the following to run these examples in Kubernetes:
+
+1. Set the Spark configuration property for the InsightEdge Docker image.
+1. Provide a URL for submitting the Spark jobs to Kubernetes.
+1. Configure the Kubernetes service account so it can be used by the Driver Pod.
+1. Deploy a data grid with a headless service (Lookup locator).
+1. Submit the Spark jobs for the examples.
 
 ## Kubernetes Container Image
 
-InsightEdge Docker image is built to be run in a container runtime environment that Kubernetes supports. This Docker image is used in the examples below to demonstrate how to submit the `SparkPi` example and the `SaveRDD` basic InsightEdge example.
+InsightEdge provides a Docker image designed to be used in a container runtime environment, such as Kubernetes. This Docker image is used in the examples below to demonstrate how to submit the Apache Spark `SparkPi` example and the InsightEdge `SaveRDD` example.
 
 
-The Spark configuration property `spark.kubernetes.container.image` is required when submitting Spark jobs. This configuration has been applied to the examples.
+The following Spark configuration property `spark.kubernetes.container.image` is required when submitting Spark jobs for an InsightEdge application. Note how this configuration is applied to the examples in the Spark submit:
 
 ```
 --conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:dev-latest
 ```
 
+## Getting the Kubernetes Master URL
 
-### Kubernetes master URL
-
-The Kubernetes master URL can be obtain by using the Kubernetes command-line tool. This will print out the URL to be used in the following examples when submitting Spark jobs to Kubernetes scheduler.
+You can get the the Kubernetes master URL using kubectl. Type the following command to print out the URL that will be used in the Spark and InsightEdge examples when submitting Spark jobs to the Kubernetes scheduler.
 
 ```
 kubectl cluster-info
 ```
-E.g. output: `Kubernetes master is running at https://192.168.99.100:8443`
 
-### Kubernetes Service Accounts
+Sample output: `Kubernetes master is running at https://192.168.99.100:8443`
 
-In Kubernetes clusters with RBAC enabled, users can configure Kubernetes RBAC roles and service accounts used by the various Spark on Kubernetes components to access the Kubernetes API server.
+## Configuring the Kubernetes Service Accounts
 
-Spark on Kubernetes supports specifying a custom service account to be used by the driver pod through the configuration property passed as part of the submit command.
+In Kubernetes clusters with RBAC enabled, users can configure Kubernetes RBAC roles and service accounts used by the various Spark jobs on Kubernetes components to access the Kubernetes API server. 
 
-```
---conf spark.kubernetes.authenticate.driver.serviceAccountName=spark
-```
+Spark on Kubernetes supports specifying a custom service account for use by the Driver Pod via the configuration property that is passed as part of the submit command. To create a custom service account, run the following kubectl command:
 
-To create a custom service account, run the following command:
 ```
 kubectl create serviceaccount spark
 ```
 
-To grant a service account role, use the kubectl to create a role in the `default` namespace and grant it to the `spark` service account created above. For the examples that follow, run the command:
+After the custom service account is created, you need to grant a service account role. To grant a service account a Role, a RoleBinding is needed. To create a RoleBinding or ClusterRoleBinding, use the kubectl `create rolebinding` (or `clusterrolebinding` for ClusterRoleBinding) command. For example, the following command creates an `edit` ClusterRole in the `default` namespace and grants it to the `spark` service account you created above.
 
 ```
 kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
 ```
 
-## Submit Spark Jobs with InsightEdge Submit
-
-The `insightedge-submit` script is located under the extracted location of InsightEdge and inside the `insightedge/bin` directory. This script is similar to the `spark-submit` command used by Spark users to submit Spark jobs. We will demonstrate the usage of submitting a pure Spark example and an InsightEdge example by calling this script.
-
-### Submit the Spark Pi example in Kubernetes
+After the service account has been created and configured, you can apply it in the Spark submit:
 
 ```
+--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark
+```
+
+## Deploying the Data Grid on Kubernetes
+
+Run the following Helm command in the command window to start a basic data grid called `insightedge-space`: 
+
+```
+helm install insightedge --name insightedge-space
+```
+
+For the application to connect to the `insightedge-space` data grid, the Space lookup locator needs to be set with the headless service name. This is required when running on a Kubernetes cluster (not a minikube).
+
+The headless service is set as the Space Lookup locator as shown below in the Spark submit:
+
+```
+--conf spark.insightedge.space.lookup.locator=insightedge-space-xap-manager-hs
+```
+
+## Submitting Spark Jobs with InsightEdge Submit
+
+The `insightedge-submit` script is located in the InsightEdge home directory, in `insightedge/bin`. This script is similar to the `spark-submit` command used by Spark users to submit Spark jobs. The following examples run both a pure Spark example and an InsightEdge example by calling this script.
+
+### SparkPi Example
+
+Run the following InsightEdge submit script for the SparkPi example. This example specifies a JAR file with a specific URI that uses the `local://` scheme. This URI is the location of the example JAR that is already available in the Docker image. If your application’s dependencies are all hosted in remote locations (like HDFS or HTTP servers), you can use the appropriate remote URIs, such as `https://path/to/examples.jar`.
+
+```bash
 ./insightedge-submit \
 --master k8s://https://192.168.99.100:8443 \
 --deploy-mode cluster \
@@ -73,18 +99,17 @@ local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-2.3.
 
 ```
 
-Notice that in the above example we specify a jar with a specific URI with a scheme of `local://`. This URI is the location of the example jar that is already in the Docker image. If your application’s dependencies are all hosted in remote locations like HDFS or HTTP servers, they may be referred to by their appropriate remote URIs. E.g. `https://path/to/examples.jar`
-
-See Spark’s documentation for more configurations that are specific to Spark on Kubernetes. For example, to specify the driver pod name add the following configuration option to the submit command:
+Refer to the Apache Spark documentation for more configurations that are specific to Spark on Kubernetes. For example, to specify the Driver Pod name, add the following configuration option to the submit command:
 
 ```
 --conf spark.kubernetes.driver.pod.name=spark-pi-driver
 ```
 
+### SaveRDD Example
 
-### Submit the SaveRDD example in Kubernetes
+Run the following InsightEdge submit script for the SaveRDD example, which generates "N" products, converts them to RDD, and saves them to the data grid.
 
-```
+```bash
 ./insightedge-submit \
 --master k8s://https://192.168.99.100:8443 \
 --deploy-mode cluster \
@@ -97,16 +122,12 @@ local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
 ```
 
-To query the number of Objects in the `insightedge-space` use the insightedge CLI tool. This should show that there are `100,000` objects of type `org.insightedge.examples.basic.Product`. The port `8090` is exposed as the internal endpoint `insightedge-space-xap-manager-service:30890 TCP` and should be specified as part of the `--server` option:
+Use the GigaSpaces CLI to query the number of objects in the `insightedge-space` data grid. The output should show `100,000` objects of type `org.insightedge.examples.basic.Product`.
+
+Port `8090` is exposed as the internal endpoint `insightedge-space-xap-manager-service:30890 TCP`, and should be specified as part of the `--server` option. Type the following CLI command:
 
 ```
 ../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats insightedge-space
 ```
 
-### InsightEdge Space Lookup Locator
 
-For the application to connect to the `insightedge-space`, the Space lookup locator needs to be set with the headless service name. This is required when running on a Kubernetes cluster (not a minikube).
-
-```
---conf spark.insightedge.space.lookup.locator=insightedge-space-xap-manager-hs
-```
