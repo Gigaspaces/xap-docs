@@ -10,7 +10,7 @@ public class MenuTree {
     private static final Logger logger = Logger.getInstance();
 
     private static final String[] SHARED_DIRS = new String[]{
-        "product_overview", "faq", "api_documentation", "release_notes", "howto", "videos", "sbp"};
+        "early_access", "product_overview", "faq", "api_documentation", "release_notes", "howto", "videos", "sbp"};
 
     public static void generateNavbar(Config config) throws IOException {
         config.getTotalFolders().set(0);
