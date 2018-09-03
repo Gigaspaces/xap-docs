@@ -12,7 +12,7 @@ In order to familiarize yourself with the data grid and InsightEdge in a Kuberne
 
 Run the following Helm command in the command window to start a data grid in Kubernetes. This deploys a Kubernetes cluster called `hello`, which contains a data grid comprised of one Space in a Data Pod, and one Platform Manager called `hello-xap-manager` in a Management Pod. The Platform Manager manages the Space, the Manager service, and the headless service. There are no backup instances specified. 
 
-```
+```bash
 helm install xap --name hello
 ```
 
@@ -26,19 +26,19 @@ You can monitor the `hello` cluster you deployed using any of the following admi
 
 * Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs.
 
-```
+```bash
 minikube dashboard
 ```
 
 * Kubectl: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.
 
-```
+```bash
 kubectl describe pod
 ```
 
 * Helm chart: run the following command to print the status of the 'hello' release in the command window.
 
-```
+```bash
 helm status hello
 ```
 
@@ -47,13 +47,13 @@ helm status hello
 
 To delete the `hello` Space cluster, use the following Helm command. It removes the release, but leaves the logs and data so you can inspect them at a future time. This command will remove both the Platform Manager and the Space.
 
-```
+```bash
 helm del hello
 ```
 
 If you want to remove the release and delete all the `hello` release data from the server, add the `--purge` option.
 
-```
+```bash
 helm del --purge hello
 ```
 
@@ -70,16 +70,17 @@ When you deploy a data grid that is comprised of a clustered Space in a standard
 ### Deploying the Platform Manager
 
 If you want to connect multiple Spaces to a single Platform Manager, you should deploy the Management Pod first, using the following Helm command to create a Pod called `testmanager`:
-```
-helm install xap/ --name testmanager --set space.enabled=false
+
+```bash
+helm install xap --name testmanager --set space.enabled=false
 ```
 
 ### Creating a Space Cluster
 
 After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called `testspace` with `n` partitions, and to specify that the cluster should connect to the `testmanager` Management Pod:
 
-```
-helm install xap/ --name testspace --set space.manager=testmanager,space.partitions=n
+```bash
+helm install xap --name testspace --set space.manager=testmanager,space.partitions=n
 ```
 
 ## Deploying a Processing Unit in Kubernetes
@@ -111,13 +112,13 @@ The first step in deploying the sample Processing Units to Kubernetes is to buil
 
 Open a command window and navigate to the following folder in the XAP or InsightEdge package: 
 
-```
+```bash
 cd <xap home>/examples/data-app/event-processing/
 ```
 	
 Type the following command (for Unix environments) to build the processor and feeder Processing Units:
 
-```
+```bash
 ./build.sh package
 ```
 
@@ -129,7 +130,7 @@ In order to deploy the Processing Units on Kubernetes, a URL must be provided. Y
 
 Type the following Helm command in the command window to create a local HTTP server:
 
-```
+```bash
 helm serve --repo-path . --address <your machine IP>:<port>
 ```
 
@@ -143,20 +144,20 @@ Open a new command window and navigate to the charts directory in `<xap home>/to
 
 As was done for the Space demo, type the following Helm command to deploy a Management Pod called `testmanager`:
 
-```
-helm install xap/ --name testmanager --set space.enabled=false
+```bash
+helm install xap --name testmanager --set space.enabled=false
 ```
 
 Next, type the following Helm command to deploy a Data Pod with the processor Processing Unit from the location where it was built in the examples directory:
 
-```
-helm install xap/ --name processor --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
+```bash
+helm install xap --name processor --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
 ```
 
 Lastly, type the following Helm command to deploy a Data Pod with the feeder Processing Unit from the same directory:
 
-```
-helm install xap/ --name feeder --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
+```bash
+helm install xap --name feeder --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
 ```
 
 ### Monitoring the Processing Units
@@ -175,8 +176,8 @@ When the manager high availability property (`ha`) is set to true, Kubernetes de
 
 The following Helm command deploys three Management Pods named `testmanager`, with high availability enabled:
 
-```
-helm install xap/ --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
+```bash
+helm install xap --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
 ```
 
 ### Defining the Space Topology
@@ -185,7 +186,7 @@ When you set the Space high availability property to true, Kubernetes deploys a 
 
 The following Helm command deploys a Space cluster called `test` in a high availability topology, with anti-affinity enabled: 
 
-```
+```bash
 helm install xap --name test --set space.ha=true,space.antiAffinity.enabled=true,space.manager=testmanager
 ```
 
@@ -197,7 +198,7 @@ You can configure the memory allocation for a Pod for both the Docker container 
 
 The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:
 
-```
+```bash
 helm install xap --name test --set space.resources.limits.memory=512Mi,space.java.heap=256m
 ```
 
@@ -205,7 +206,7 @@ You can define the maximum size of the Docker container as an absolute value, an
 
 The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:
 
-```
+```bash
 helm install xap --name test --set space.resources.limits.memory=256Mi,space.java.heap=75%
 ```
 
@@ -215,8 +216,8 @@ helm install xap --name test --set space.resources.limits.memory=256Mi,space.jav
 
 The Helm charts have a list of supported values that can be configured. To view this list, use the following Helm command:
 
-```
-helm inspect xap/
+```bash
+helm inspect xap
 ```
 
 The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a '.' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:
@@ -232,7 +233,7 @@ You can create additional values.yaml files with customized values.
 
 The following Helm command creates a replica of the original values.yaml file called hello.yaml:
 
-```
+```bash
 helm install xap -f customValues.yaml --name hello
 ```
 
@@ -260,13 +261,13 @@ At this point, you can use the CLI commands to monitor the data grid, making sur
 
 To view a list of Spaces, type the following command:
 
-```
+```bash
 ./xap --server=test-space-xap-manager-hs space list
 ```
 
 To view the Data Type statistics, typ the following command:
 
-```
+```bash
 ./xap --server=test-space-xap-manager-hs space info --type-stats test-space
 ```
 
@@ -278,7 +279,7 @@ You can monitor the status of the various Kubernetes components using the Kubern
 
 The test-space-xap-manager-hs is one of the Kubernetes services. To list all of the Kubernetes services and exposed ports, type the following command:
 
-```
+```bash
 kubectl get services
 ```
 
@@ -290,6 +291,6 @@ If the Kubernetes environment doesn't launch properly, you can investigate by ch
 
 You can access this log in the Kubernetes dashboard, or run the following kubectl command to print the init container log in the command window:
  
-```
+```bash
 kubectl logs test-xap-space-1-0 -c check-manager-ready
 ```
