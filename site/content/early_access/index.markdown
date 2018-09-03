@@ -3,7 +3,7 @@ type: post
 title:  Early Access
 parent:
 categories: EARLY_ACCESS
-weight:
+weight: 1
 ---
 
 This page contains early access information for XAP and InsightEdge 14.0.0, which is scheduled for release in Q4 2018. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
@@ -16,6 +16,24 @@ This page contains early access information for XAP and InsightEdge 14.0.0, whic
 Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.3.1**. The early access documentation is not available yet, so please use the documentation for the lastest stable release.<br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.3/)
 {{%/tip%}}
 <hr/>
+
+# 14.0.0 M10 (Sep-02-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-14.0.0-m10-b19910.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-enterprise-14.0.0-m10-b19910.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-14.0.0-m10-b19910.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-enterprise-14.0.0-m10-b19910.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap.net-14.0.0-m10-b19910.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13615" %}}: Run InsightEdge Spark jobs on Kubernetes using the InsightEdge Docker image.
+
+### Resolved Issues
+
+- {{% jira id="GS-13603" %}}: The Web Management Console fails to parse java.util.Date properties.
 
 # 14.0.0 M9 (Aug-26-2018)
 
