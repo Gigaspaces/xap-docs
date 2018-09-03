@@ -3,7 +3,7 @@ type: post
 title:  Early Access
 parent:
 categories: EARLY_ACCESS
-weight:
+weight: 1
 ---
 
 This page contains early access information for XAP and InsightEdge 14.0.0, which is scheduled for release in Q4 2018. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
