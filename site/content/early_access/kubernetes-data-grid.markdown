@@ -71,7 +71,7 @@ When you deploy a data grid that is comprised of a clustered Space in a standard
 
 If you want to connect multiple Spaces to a single Platform Manager, you should deploy the Management Pod first, using the following Helm command to create a Pod called `testmanager`:
 ```
-helm install xap/ --name testmanager --set space.enabled=false
+helm install xap --name testmanager --set space.enabled=false
 ```
 
 ### Creating a Space Cluster
@@ -79,7 +79,7 @@ helm install xap/ --name testmanager --set space.enabled=false
 After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called `testspace` with `n` partitions, and to specify that the cluster should connect to the `testmanager` Management Pod:
 
 ```
-helm install xap/ --name testspace --set space.manager=testmanager,space.partitions=n
+helm install xap --name testspace --set space.manager=testmanager,space.partitions=n
 ```
 
 ## Deploying a Processing Unit in Kubernetes
@@ -144,19 +144,19 @@ Open a new command window and navigate to the charts directory in `<xap home>/to
 As was done for the Space demo, type the following Helm command to deploy a Management Pod called `testmanager`:
 
 ```
-helm install xap/ --name testmanager --set space.enabled=false
+helm install xap --name testmanager --set space.enabled=false
 ```
 
 Next, type the following Helm command to deploy a Data Pod with the processor Processing Unit from the location where it was built in the examples directory:
 
 ```
-helm install xap/ --name processor --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
+helm install xap --name processor --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
 ```
 
 Lastly, type the following Helm command to deploy a Data Pod with the feeder Processing Unit from the same directory:
 
 ```
-helm install xap/ --name feeder --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
+helm install xap --name feeder --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
 ```
 
 ### Monitoring the Processing Units
@@ -176,7 +176,7 @@ When the manager high availability property (`ha`) is set to true, Kubernetes de
 The following Helm command deploys three Management Pods named `testmanager`, with high availability enabled:
 
 ```
-helm install xap/ --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
+helm install xap --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
 ```
 
 ### Defining the Space Topology
@@ -216,7 +216,7 @@ helm install xap --name test --set space.resources.limits.memory=256Mi,space.jav
 The Helm charts have a list of supported values that can be configured. To view this list, use the following Helm command:
 
 ```
-helm inspect xap/
+helm inspect xap
 ```
 
 The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a '.' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:
