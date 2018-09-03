@@ -1,7 +1,7 @@
 ---
 type: post
 title:  Early Access
-parent:
+parent: none
 categories: EARLY_ACCESS
 weight: 1
 ---
