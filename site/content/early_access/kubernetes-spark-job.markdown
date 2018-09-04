@@ -73,10 +73,10 @@ helm install insightedge --name insightedge-space
 
 For the application to connect to the `insightedge-space` data grid, the Space lookup locator needs to be set with the headless service name. This is required when running on a Kubernetes cluster (not a minikube).
 
-The headless service is set as the Space Lookup locator as shown below in the Spark submit:
+The headless service is set as the Space lookup locator as shown below in the Spark submit:
 
 ```
---conf spark.insightedge.space.lookup.locator=insightedge-space-xap-manager-hs
+--conf spark.insightedge.space.lookup.locator=insightedge-space-insightedge-manager-hs
 ```
 
 ## Submitting Spark Jobs with InsightEdge Submit
@@ -117,14 +117,14 @@ Run the following InsightEdge submit script for the SaveRDD example, which gener
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
 --conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:dev-latest \
---conf spark.insightedge.space.lookup.locator=insightedge-space-xap-manager-hs \
+--conf spark.insightedge.space.lookup.locator=insightedge-space-insightedge-manager-hs \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
 ```
 
 Use the GigaSpaces CLI to query the number of objects in the `insightedge-space` data grid. The output should show `100,000` objects of type `org.insightedge.examples.basic.Product`.
 
-Port `8090` is exposed as the internal endpoint `insightedge-space-xap-manager-service:30890 TCP`, and should be specified as part of the `--server` option. Type the following CLI command:
+Port `8090` is exposed as the internal endpoint `insightedge-space-insightedge-manager-service:30890 TCP`, and should be specified as part of the `--server` option. Type the following CLI command:
 
 ```
 ../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats insightedge-space

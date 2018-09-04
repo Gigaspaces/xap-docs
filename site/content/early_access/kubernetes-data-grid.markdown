@@ -6,19 +6,37 @@ categories: EARLY_ACCESS
 weight: 100
 ---
 
-In order to familiarize yourself with the data grid and InsightEdge in a Kubernetes deployment, you can launch a demo. This topic describes how to perform basic deployment tasks with the demo using simple Helm commands. You can perform these deployment tasks on the Kubernetes minikube, because you only need a single node. 
+{{%note%}}
+The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the [Getting Started](../xap/12.3/started/) section before performing the tasks described here.
+{{%/note%}}
 
-# Starting a Data Grid in Kubernetes
+This topic describes how to do basic and intermediate-level deployment tasks for the data grid and InsightEdge using simple Helm commands. You can perform these tasks using a Kubernetes minikube, because you only need a single node. 
+
+{{%tip%}}
+Configuring the data grid for InsightEdge involves the same tasks as configuring the data grid alone. The deployment and maintenance tasks described below use `xap` Helm chart commands. However, you can also perform these tasks using the `insightedge` Helm chart commands. 
+{{%/tip%}}
+
+# Getting Started
+
+## Starting a Data Grid in Kubernetes
 
 Run the following Helm command in the command window to start a data grid in Kubernetes. This deploys a Kubernetes cluster called `hello`, which contains a data grid comprised of one Space in a Data Pod, and one Platform Manager called `hello-xap-manager` in a Management Pod. The Platform Manager manages the Space, the Manager service, and the headless service. There are no backup instances specified. 
+
+To start a data grid:
 
 ```bash
 helm install xap --name hello
 ```
 
-## Working with Data Objects
+To start an InsightEdge data grid:
 
-The [Deploying a Processing Unit in Kubernetes](#deploying-a-processing-unit-in-kubernetes) section provides an example of how the data grid stores and processes data objects.
+```bash
+helm install insightedge --name hello
+```
+
+{{%note%}}
+The rest of the data grid tasks described below use command examples from the `xap` Helm chart. However, you can also perform these tasks using the `insightedge` Helm chart. 
+{{%/note%}}
 
 ## Monitoring the Data Grid in Kubernetes
 
@@ -57,33 +75,69 @@ If you want to remove the release and delete all the `hello` release data from t
 helm del --purge hello
 ```
 
-# Beyond the Basics
+# Deploying a Space Cluster
 
-This section describes how to create a more complex data grid deployment in Kubernetes, such as deploying multiple or clustered Spaces, configuring high availability, and implementing Pod anti-affinity.
+The demo above created a data grid that contained a single Space instance. Real-life environments generally have to store large volumes of data, and therefore need more than a single Space instance (a cluster).
 
-While you can use the Kubernetes minikube to deploy a clustered Space, performance may be affected based on the available memory and CPU power of the local machine or VM running the minikube. Additionally, there are some features that can't be applied if you are deploying on a single node, such as Pod anti-affinity.
+Type the following Helm command to deploy a Space cluster with n Data Pods, with a partition count from 1 to n:
 
-## Deploying a Clustered Space on Kubernetes
+```
+helm install xap --name test --set space.partitions=n
+```
 
-When you deploy a data grid that is comprised of a clustered Space in a standard environment, you need one Management Pod that contains the Platform Manager, and multiple Data Pods for the Space cluster.
+# Defining High Availability (HA) 
 
-### Deploying the Platform Manager
+There are several aspects to configuring a data grid for high availability. Each primary Data Pod needs a minimum of one backup Data Pod, and three Management Pods are deployed instead of one so that a quorum of Platform Managers is always available to manage the Spaces. Both the Data Pods and the Management Pods should have the Pod anti-affinity property set to true, so that the primary/backup sets and the managers are deployed on different nodes. This enables successful failover if a node gets disrupted.
 
-If you want to connect multiple Spaces to a single Platform Manager, you should deploy the Management Pod first, using the following Helm command to create a Pod called `testmanager`:
+{{%note%}}
+The Kubernetes minikube runs on a single node and therefore doesn't provide anti-affinity, so you may want to evaluate XAP and InsightEdge high-availability behavior on a Kubernetes cluster that contains multiple nodes.
+{{%/note%}}
+
+## Configuring High Availability for the Platform Manager
+
+When the manager high availability property (`ha`) is set to true, Kubernetes deploys three Management Pods. You should enable the manager high availability property so these Management Pods are deployed on different nodes.
+
+The following Helm command deploys three Management Pods named `testmanager`, with high availability enabled:
+
+```bash
+helm install xap --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
+```
+
+## Defining the Space Topology
+
+When you set the Space high availability property to true, Kubernetes deploys a backup Data Pod for each primary Data Pod. You must also enable the Space anti-affinity (`antiAffinity`) property so that the backup Data Pods are deployed on different nodes than the primary Data Pods.
+
+{{%note%}}
+If you apply Pod anti-affinity on a minikube, not all of the Pods will be deployed, because the environment contains only a single node.
+{{%/note%}}
+
+The following Helm command deploys a Space cluster called `test` in a high availability topology, with anti-affinity enabled: 
+
+```bash
+helm install xap --name test --set space.ha=true,space.antiAffinity.enabled=true,space.manager=testmanager
+```
+
+# Deploying Multiple Spaces on Kubernetes
+
+If you want to deploy multiple data grids in the same Kubernetes environment, to preserve resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each data grid with its own Platform Manager.
+
+## Deploying the Platform Manager
+
+The helm command by default creates a Management Pod and a Data Pod together. When deploying a Platform Manager that will connect to multiple Spaces, you have to disable the part of the command that creates the Data Pod. Type the following Helm command to create a Management Pod called `testmanager` without the accompanying Space:
 
 ```bash
 helm install xap --name testmanager --set space.enabled=false
 ```
 
-### Creating a Space Cluster
+## Deploying the Spaces
 
-After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called `testspace` with `n` partitions, and to specify that the cluster should connect to the `testmanager` Management Pod:
+After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called `testspace`, and to specify that the cluster should connect to the `testmanager` Management Pod:
 
 ```bash
-helm install xap --name testspace --set space.manager=testmanager,space.partitions=n
+helm install xap --name testspace --set space.manager=testmanager
 ```
 
-## Deploying a Processing Unit in Kubernetes
+# Deploying a Processing Unit in Kubernetes
 
 A Processing Unit is a container that can hold any of the following:
 
@@ -96,7 +150,9 @@ You can use the event-processing example available with the XAP and InsightEdge 
 - Processor - a Processing Unit with the main task of processing unprocessed data objects. The processing of data objects is accomplished  using both and event container and remoting.
 - Feeder - a Processing Unit that contains two feeders, a standard Space feeder and a JMS feeder, to feed unprocessed data objects that are in turn processed by the processor module. The standard Space feeder feeds unprocessed data objects  by both directly writing them to the Space and using OpenSpaces Remoting. The JMS feeder uses the JMS API to feed unprocessed data objects using a MessageConverter, which converts JMS ObjectMessages into data objects.
 
-**Note:** As a prerequisite for running this example, you must install Maven on the machine where you unpacked the GigaSpaces software package.
+{{%note%}}
+As a prerequisite for running this example, you must install Maven on the machine where you unpacked the GigaSpaces software package.
+{{%/note%}}
 
 To build and deploy the event-processing example in Kubernetes, the following steps are required:
 
@@ -106,14 +162,14 @@ To build and deploy the event-processing example in Kubernetes, the following st
 4. Deploy the Processing Units that were created when you built the example to Data Pods in Kubernetes, connecting them to the Management Pod.
 5. View the processor logs to see the data processing results.
 
-### Building the Processing Unit Example
+## Building the Processing Unit Example
 
 The first step in deploying the sample Processing Units to Kubernetes is to build them from the examples directory. The example uses Maven as its build tool, and comes with a build script that runs Maven automatically. 
 
 Open a command window and navigate to the following folder in the XAP or InsightEdge package: 
 
 ```bash
-cd <xap home>/examples/data-app/event-processing/
+cd <product home>/examples/data-app/event-processing/
 ```
 	
 Type the following command (for Unix environments) to build the processor and feeder Processing Units:
@@ -124,7 +180,7 @@ Type the following command (for Unix environments) to build the processor and fe
 
 This build script finalizes the Processing Unit structure of both the processor and the feeder, and copies the processor JAR file to /examples/data-app/event-processing/processor/target/data-processor/lib, making the /examples/data-app/event-processing/processor/target/data-processor/ a ready-to-use Processing Unit. The final result is two Processing Unit JAR files, one under processor/target and another under feeder/target. 
 
-### Providing a URL for Kubernetes
+## Providing a URL for Kubernetes
 
 In order to deploy the Processing Units on Kubernetes, a URL must be provided. You can use an existing HTTP server, or you can create a local HTTP server using Helm. Ensure that your Kubernetes environment has access to the URL that you provide. If you opt for a local server, we recommend creating it from the examples directory so that it can easily access the Processing Unit JARs that were created.
 
@@ -136,7 +192,7 @@ helm serve --repo-path . --address <your machine IP>:<port>
 
 Leave this command window open so the server remains available and Kubernetes can connect to it.
 
-### Deploying the GigaSpaces Components
+## Deploying the GigaSpaces Components
 
 Similar to deploying a Space cluster, it is best practice to first deploy the Management Pod (with the Platform Manager), and then deploy the Data Pods (first the processor, then the feeder).
 
@@ -160,35 +216,10 @@ Lastly, type the following Helm command to deploy a Data Pod with the feeder Pro
 helm install xap --name feeder --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
 ```
 
-### Monitoring the Processing Units
+## Monitoring the Processing Units
 
 You can use one of the Kubernetes tools to view the logs for the processor Data Pod, where you can see that the sample data has been processed.
 
-## Defining a High Availability (HA) Environment
-
-There are several aspects to configuring a data grid for high availability. Each primary Data Pod needs a minimum of one backup Data Pod, and three Management Pods are deployed instead of one so that a quorum of Platform Managers is always available to manage the Spaces. Both the Data Pods and the Management Pods should have the Pod anti-affinity property set to true, so that the primary/backup sets and the managers are deployed on different nodes. This enables successful failover if a node gets disrupted.
-
-**Note:** The Kubernetes minikube runs on a single node and therefore doesn't provide anti-affinity, so it is best to evaluate XAP and InsightEdge high-availability behavior on a Kubernetes cluster that contains multiple nodes. 
-
-### Defining High Availability for the Platform Manager
-
-When the manager high availability property (`ha`) is set to true, Kubernetes deploys three Management Pods. You should enable the manager high availability property so these Management Pods are deployed on different nodes.
-
-The following Helm command deploys three Management Pods named `testmanager`, with high availability enabled:
-
-```bash
-helm install xap --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
-```
-
-### Defining the Space Topology
-
-When you set the Space high availability property to true, Kubernetes deploys a 2.1 topology, meaning two primary Data Pods (with a Pod ID of `0` for the first primary, and `1` for the second primary) and one backup Data Pod per primary. You must also enable the Space anti-affinity (`antiAffinity`) property so that the backup Data Pods are deployed on different nodes than the primary Data Pods.
-
-The following Helm command deploys a Space cluster called `test` in a high availability topology, with anti-affinity enabled: 
-
-```bash
-helm install xap --name test --set space.ha=true,space.antiAffinity.enabled=true,space.manager=testmanager
-```
 
 # Managing the Application Environment
 
@@ -222,8 +253,8 @@ helm inspect xap
 
 The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a '.' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:
 
-manager:
-    ha:false
+manager:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ha:false
 	
 The value you will set will look like this in the command window: `manager.ha=true`
 

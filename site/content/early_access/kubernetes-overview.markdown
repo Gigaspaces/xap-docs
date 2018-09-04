@@ -1,6 +1,6 @@
 ---
 type: post
-title:  InsightEdge Kubernetes Integration
+title:  Kubernetes Integration
 parent: none
 categories: EARLY_ACCESS
 weight: 100
@@ -8,9 +8,11 @@ weight: 100
 
 
 
-This section describes how to deploy the GigaSpaces data grid and InsightEdge in a Kubernetes environment. The integration is packaged as a [Helm chart](https://docs.helm.sh/developing_charts/#charts), and is located at `$XAP_HOME/tools/kubernetes/charts/xap`.
+This section describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a [Helm chart](https://docs.helm.sh/developing_charts/#charts). You can deploy the full InsightEdge platform, which includes the data grid, using the Helm chart located at `<home directory>/tools/kubernetes/charts/insightedge`, or just the data grid using the Helm chart located at `<home directory>/tools/kubernetes/charts/xap`.
 
-**Note:** The GigaSpaces Kubernetes integration is under active development and is subject to change. You can use the XAP Helm chart to deploy both the data grid and the InsightEdge platform.
+{{%note%}}
+The GigaSpaces Kubernetes integration is under active development and is subject to change. Additionally, you can use the `xap` Helm chart to deploy both the data grid and the InsightEdge platform.
+{{%/note%}}
 
 ## Prerequisites
 
@@ -22,4 +24,4 @@ Before beginning to work with the data grid and InsightEdge, ensure that you hav
 
 ## Helm Chart Location
 
-Helm supports installing charts in [various forms](https://docs.helm.sh/helm/#helm-install). A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository. The `xap` Helm chart is provided as an unpackaged chart in the `$XAP_HOME/tools/kubernetes/charts` folder. All of the commands described here should be executed from that folder. If you prefer to store the chart in an alternate location, you must specify the path to the chart so that Helm can locate it.
+Helm supports installing charts in [a number of ways](https://docs.helm.sh/helm/#helm-install). A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository. The `xap` and `insightedge` Helm charts are provided as unpackaged charts in the `<home directory>/tools/kubernetes/charts` folder. All of the commands described here should be executed from that folder. If you prefer to store the chart in an alternate location, you must specify the path to the chart so that Helm can locate it.
