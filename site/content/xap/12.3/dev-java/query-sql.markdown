@@ -16,7 +16,7 @@ For the full documentation of the class's methods and constructors, see [Javadoc
 {{% /note %}}
 
 {{% note "Info"%}}
-The the XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to [In-Grid SQL Query](./sql-query-intro.html).
+The XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to [In-Grid SQL Query](./sql-query-intro.html).
 {{% /note %}}
 
 
