@@ -13,7 +13,7 @@ The topics in this section assume basic knowledge of InsightEdge and the data gr
 This topic describes how to do basic and intermediate-level deployment tasks for the data grid and InsightEdge using simple Helm commands. You can perform these tasks using a Kubernetes minikube, because you only need a single node. 
 
 {{%tip%}}
-Configuring the data grid for InsightEdge involves the same tasks as configuring the data grid alone. The deployment and maintenance tasks described below use `xap` Helm chart commands. However, you can also perform these tasks using the `insightedge` Helm chart commands. 
+Configuring the data grid for InsightEdge involves the same tasks as configuring the data grid alone. The deployment and maintenance tasks described below use `insightedge` Helm chart commands. However, you can also perform these tasks using the `xap` Helm chart commands. 
 {{%/tip%}}
 
 # Getting Started
@@ -35,7 +35,7 @@ helm install insightedge --name hello
 ```
 
 {{%note%}}
-The rest of the data grid tasks described below use command examples from the `xap` Helm chart. However, you can also perform these tasks using the `insightedge` Helm chart. 
+The rest of the data grid tasks described below use command examples from the `insightedge` Helm chart. However, you can also perform these tasks using the `xap` Helm chart. 
 {{%/note%}}
 
 ## Monitoring the Data Grid in Kubernetes
@@ -82,7 +82,7 @@ The demo above created a data grid that contained a single Space instance. Real-
 Type the following Helm command to deploy a Space cluster with n Data Pods, with a partition count from 1 to n:
 
 ```
-helm install xap --name test --set space.partitions=n
+helm install insightedge --name test --set space.partitions=n
 ```
 
 # Defining High Availability (HA) 
@@ -100,7 +100,7 @@ When the manager high availability property (`ha`) is set to true, Kubernetes de
 The following Helm command deploys three Management Pods named `testmanager`, with high availability enabled:
 
 ```bash
-helm install xap --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
+helm install insightedge --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
 ```
 
 ## Defining the Space Topology
@@ -114,7 +114,7 @@ If you apply Pod anti-affinity on a minikube, not all of the Pods will be deploy
 The following Helm command deploys a Space cluster called `test` in a high availability topology, with anti-affinity enabled: 
 
 ```bash
-helm install xap --name test --set space.ha=true,space.antiAffinity.enabled=true,space.manager=testmanager
+helm install insightedge --name test --set space.ha=true,space.antiAffinity.enabled=true,space.manager=testmanager
 ```
 
 # Deploying Multiple Spaces on Kubernetes
@@ -126,7 +126,7 @@ If you want to deploy multiple data grids in the same Kubernetes environment, to
 The helm command by default creates a Management Pod and a Data Pod together. When deploying a Platform Manager that will connect to multiple Spaces, you have to disable the part of the command that creates the Data Pod. Type the following Helm command to create a Management Pod called `testmanager` without the accompanying Space:
 
 ```bash
-helm install xap --name testmanager --set space.enabled=false
+helm install insightedge --name testmanager --set space.enabled=false
 ```
 
 ## Deploying the Spaces
@@ -134,7 +134,7 @@ helm install xap --name testmanager --set space.enabled=false
 After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called `testspace`, and to specify that the cluster should connect to the `testmanager` Management Pod:
 
 ```bash
-helm install xap --name testspace --set space.manager=testmanager
+helm install insightedge --name testspace --set space.manager=testmanager
 ```
 
 # Deploying a Processing Unit in Kubernetes
@@ -201,19 +201,19 @@ Open a new command window and navigate to the charts directory in `<xap home>/to
 As was done for the Space demo, type the following Helm command to deploy a Management Pod called `testmanager`:
 
 ```bash
-helm install xap --name testmanager --set space.enabled=false
+helm install insightedge --name testmanager --set space.enabled=false
 ```
 
 Next, type the following Helm command to deploy a Data Pod with the processor Processing Unit from the location where it was built in the examples directory:
 
 ```bash
-helm install xap --name processor --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
+helm install insightedge --name processor --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
 ```
 
 Lastly, type the following Helm command to deploy a Data Pod with the feeder Processing Unit from the same directory:
 
 ```bash
-helm install xap --name feeder --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
+helm install insightedge --name feeder --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
 ```
 
 ## Monitoring the Processing Units
@@ -230,7 +230,7 @@ You can configure the memory allocation for a Pod for both the Docker container 
 The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:
 
 ```bash
-helm install xap --name test --set space.resources.limits.memory=512Mi,space.java.heap=256m
+helm install insightedge --name test --set space.resources.limits.memory=512Mi,space.java.heap=256m
 ```
 
 You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.
@@ -238,7 +238,7 @@ You can define the maximum size of the Docker container as an absolute value, an
 The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:
 
 ```bash
-helm install xap --name test --set space.resources.limits.memory=256Mi,space.java.heap=75%
+helm install insightedge --name test --set space.resources.limits.memory=256Mi,space.java.heap=75%
 ```
 
 ## Configuring the Helm Chart Values
@@ -248,7 +248,7 @@ helm install xap --name test --set space.resources.limits.memory=256Mi,space.jav
 The Helm charts have a list of supported values that can be configured. To view this list, use the following Helm command:
 
 ```bash
-helm inspect xap
+helm inspect insightedge
 ```
 
 The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a '.' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:
@@ -265,7 +265,7 @@ You can create additional values.yaml files with customized values.
 The following Helm command creates a replica of the original values.yaml file called hello.yaml:
 
 ```bash
-helm install xap -f customValues.yaml --name hello
+helm install insightedge -f customValues.yaml --name hello
 ```
 
 ## Monitoring the Data Grid
@@ -286,20 +286,20 @@ For information on how to use the REST Manager API, see the [Administration Tool
 
 You can use the GigaSpaces CLI to monitor and administer the data grid.
 
-To access the CLI, click the **EXEC** button in the Kubernetes dashboard to open a shell into the Management Pod. Next, navigate to the `/opt/gigaspaces/bin` directory and start the GigaSpaces CLI (xap or insightedge).
+To access the CLI, click the **EXEC** button in the Kubernetes dashboard to open a shell into the Management Pod. Next, navigate to the `/opt/gigaspaces/bin` directory and start the GigaSpaces CLI (insightedge or xap).
 
 At this point, you can use the CLI commands to monitor the data grid, making sure to set the --server with the Manager Headless Service name. 
 
 To view a list of Spaces, type the following command:
 
 ```bash
-./xap --server=test-space-xap-manager-hs space list
+./insightedge --server=test-space-xap-manager-hs space list
 ```
 
 To view the Data Type statistics, typ the following command:
 
 ```bash
-./xap --server=test-space-xap-manager-hs space info --type-stats test-space
+./insightedge --server=test-space-xap-manager-hs space info --type-stats test-space
 ```
 
 For more information about the GigaSpaces CLI and available commands, see the [Administration Tools](../xap/12.3/admin/admin-tools.html) section of the documentation. 
