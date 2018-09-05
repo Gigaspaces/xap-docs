@@ -107,7 +107,14 @@ Refer to the Apache Spark documentation for more configurations that are specifi
 
 ### SaveRDD Example
 
-Run the following InsightEdge submit script for the SaveRDD example, which generates "N" products, converts them to RDD, and saves them to the data grid.
+Run the following InsightEdge submit script for the SaveRDD example, which generates "N" products, converts them to RDD, and saves them to the data grid. This example has the following configuration:
+
+* The --master has the prefix `k8s://<Kubernetes Master URL>:<port>`.
+* The `spark.insightedge.space.lookup.locator` is set with the headless service of the Manager Pod (&lt;release name&gt;-insightedge-manager-hs).
+* The example lookup is the default Space called `insightedge-space`.
+* In Kubernetes clusters with RBAC enabled, the service account must be set (e.g. `serviceAccountName=spark`).
+* The `spark.kubernetes.container.image` is set with the desired Docker image (This is usually of the form `gigaspaces/insightedge-enterprise:1.0.0`).
+
 
 ```bash
 ./insightedge-submit \
