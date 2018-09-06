@@ -28,7 +28,7 @@ InsightEdge provides a Docker image designed to be used in a container runtime e
 The following Spark configuration property `spark.kubernetes.container.image` is required when submitting Spark jobs for an InsightEdge application. Note how this configuration is applied to the examples in the Spark submit:
 
 ```
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:dev-latest
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0-m11
 ```
 
 ## Getting the Kubernetes Master URL
@@ -94,7 +94,7 @@ Run the following InsightEdge submit script for the SparkPi example. This exampl
 --name spark-pi \
 --class org.apache.spark.examples.SparkPi \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:dev-latest \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0-m11 \
 local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-2.3.1.jar
 
 ```
@@ -123,7 +123,7 @@ Run the following InsightEdge submit script for the SaveRDD example, which gener
 --name i9e-saveRdd \
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:dev-latest \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0-m11 \
 --conf spark.insightedge.space.lookup.locator=insightedge-space-insightedge-manager-hs \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
