@@ -1,2 +1,2 @@
 @echo off
-hugo -s site-hugo -d ..\output 
+call run-hugo.bat -d ..\output 
