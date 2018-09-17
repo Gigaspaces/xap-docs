@@ -47,7 +47,7 @@ SqlQuery supports the following:
 - `AND` / `OR` operators to combine two or more conditions.
 - All basic logical operations to create conditions: `=, <>, <,>, >=, <=, like, NOT like, is null, is NOT null, IN`.
 - [Aggregate](./aggregators.html) functions: COUNT, MAX, MIN, SUM, AVG
-- `BETWEEN` (starting 8.0.1)
+- `BETWEEN`
 - `ORDER BY (ASC | DESC)` for multiple PONO properties. Supported only by readMultiple. `ORDER BY` supports also nested object fields. `ORDER BY` supports `NULLS LAST` to control the order behavior of a field when its value is `null`.
 - `GROUP BY` - performs DISTINCT on the PONO properties. Supported only by readMultiple. `GROUP BY` supports also nested object fields.
 - `sysdate` - current system date and time.
@@ -107,7 +107,7 @@ SqlQuery<MyClass> query3 = new SqlQuery<MyClass>("Num = 1 OR Name='smith'");
 
 Note that in `query1` the `Num` property is used both for routing and matching.
 
-In some scenarios we may want to execute the query on a specific partition without matching the routing property (e.g. blocking operation). Starting 8.0.1, this can be done via the `Routing` property:
+In some scenarios we may want to execute the query on a specific partition without matching the routing property (e.g. blocking operation). This can be done via the `Routing` property:
 
 
 ```csharp
@@ -135,7 +135,7 @@ A query is considered complex if it contains one or more of the following:
 - `GROUP BY`
 - `ORDER BY`
 - Subqueries
-- `OR` (before 8.0.1)
+
 
 The following features support only simple SQL queries
 

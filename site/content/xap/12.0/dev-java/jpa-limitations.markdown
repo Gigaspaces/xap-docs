@@ -51,8 +51,8 @@ Functionalities that are not supported by the XAP JPA API.
 #### Unsupported JPQL keywords/expressions
 
 - NOT.
-- BETWEEN (Supported in 8.0.1).
-- LIKE (Supported in 8.0.1).
+- BETWEEN 
+- LIKE 
 - IS EMPTY.
 - EXISTS.
 - ANY/ALL.
@@ -68,14 +68,14 @@ Functionalities that are not supported by the XAP JPA API.
 - Fetch Joins.
 - Inner Joins are supported but the selected object must be the owning object of the relationship (this also applies to projections).
 
-# Other/misc.
+# Other/misc
 
-- Native queries (Supported in 8.0.1).
+- Native queries. 
 - Primitive types support due to inconsistency between how GigaSpaces treats primitives to how JPA treats them.
-- entityManager.refresh() for classes which has properties in a relation (Supported in 8.0.1).
+- entityManager.refresh() for classes which has properties in a relation.
 - orm.xml is partially supported. The recommended way to model your data is by using Annotations.
 - Lazy loading is not supported and therefore entities are always Eagerly loaded.
-- Optimistic locking is not supported and therefore the LockManager property should always be set to "none" in persistence.xml (Supported in 8.0.1):
+- Optimistic locking is not supported and therefore the LockManager property should always be set to "none" in persistence.xml:
 
 
 ```xml

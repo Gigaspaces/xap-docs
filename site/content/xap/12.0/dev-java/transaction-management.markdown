@@ -288,7 +288,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 {{% /tabs %}}
 
 {{% note%}}
-Since version 8.0.1, XAP JTA implementation supports both local and distributed transaction managers. That means that you can enlist multiple space partitions as a single XA resource in an XA transaction.
+XAP JTA implementation supports both local and distributed transaction managers. That means that you can enlist multiple space partitions as a single XA resource in an XA transaction.
 {{%/note%}}
 
 {{% warning %}}

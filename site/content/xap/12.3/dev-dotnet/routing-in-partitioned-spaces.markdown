@@ -26,16 +26,14 @@ Target partition space ID =
     getRoutingPropertyValue(entry).hashCode() % (number of partitions)
 ```
 
-The routing property can be explicitly set using the \[`SpaceRouting`\] attribute for [Object entries](./pono-attribute-annotations.html) or via the `SpaceTypeDescriptorBuilder` for [document entries](./document-api.html). If the routing property is not explicitly set, the space id property is used for routing. If the space id property is not defined, the first indexed property (alphabetically) is used for routing, otherwise the first property (alphabetically) is used for routing.
+The routing property can be explicitly set using the \[`SpaceRouting`\] attribute for [Object entries](./pono-attribute-annotations.html) or via the `SpaceTypeDescriptorBuilder` for [document entries](./document-api.html). If the routing property is not explicitly set, the space id property is used for routing. If the space ID property is not defined, the first indexed property (alphabetically) is used for routing, otherwise the first property (alphabetically) is used for routing.
 
 {{% note %}}
-It is highly recommended to explicitly define a routing property - when both space routing and space id are not defined, relying on implicit routing property selection can be confusing, being maintained mainly for backwards compatibility.
+It is highly recommended to explicitly define a routing property - when both space routing and space ID are not defined, relying on implicit routing property selection can be confusing, being maintained mainly for backwards compatibility.
 {{%/note%}}
 
 {{% note %}}
-Starting with 8.0.1, an auto generated space id can be used for routing as well. In previous versions this was not supported, and was ignored in the implicit routing property selection mechanism.
-
-Starting with 8.0.1, if the space id is not defined in a document type, it will be implicitly defined to auto generate id and routing information.
+An auto-generated space ID can be used for routing as well. If the space ID is not defined in a document type, it will be implicitly defined to auto-generate the ID and routing information. (In earlier versions this was not supported, and was ignored in the implicit routing property selection mechanism.)
 {{%/note%}}
 
 In some scenarios, the data model does not require sophisticated partitioning, and simple space-id-based partitioning is all that's needed (hence the default). In other scenarios, this is not enough. For example, suppose we have a **Customer** class with a **customerId**, and an **Order** class with an **orderId** and **customerId**, and we want all the orders of each customer to be co-located with it in the same partition. In that case, we'd explicitly set the routing property of **Order** to **customerId** to ensure they're co-located.

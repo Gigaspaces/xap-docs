@@ -34,10 +34,9 @@ The routing property can be explicitly set using the `@SpaceRouting` annotation 
 
 {{% note %}} It is highly recommended to explicitly define a routing property - when both space routing and space id are not defined, relying on implicit routing property selection can be confusing (being maintained mainly for backwards compatibility).{{%/note%}}
 
-{{% tip %}}Starting with 8.0.1, an auto generated space id can be used for routing as well(Please do not relay on the same auto generated routing value in the other Pojo) . In previous versions this was not supported, and was ignored in the implicit routing property selection mechanism.
-
-Starting with 8.0.1, if the space id is not defined in a document type it will be implicitly defined to auto generate id and routing.
-{{%/tip%}}
+{{% note %}}
+An auto-generated space ID can be used for routing as well. If the space ID is not defined in a document type, it will be implicitly defined to auto-generate the ID and routing information. (In earlier versions this was not supported, and was ignored in the implicit routing property selection mechanism.)
+{{%/note%}}}
 
 In some scenarios, the data model does not require sophisticated partitioning, and simple space-id-based partitioning is all that's needed (hence the default). In other scenarios this is not enough. For example, suppose we have a **Customer** class with a **customerId**, and an **Order** class with an **orderId** and **customerId**, and we want all the orders of each customer to be co-located with it in the same partition. In that case we'd explicitly set the routing property of **Order** to **customerId** to ensure they're co-located.
 
@@ -57,13 +56,13 @@ See [Writing New Objects from a Collocated Business Logic]({{%currentadmurl%}}/c
 
 # Writing To a Partitioned Space
 
-As explained above, in [Defining a Routing Property](#defining-a-routing-property), when a proxy is asked to write an entry it extracts the routing property value to determine the relevant partition id and forwards the entry to that partition. If the routing property value is null, an exception will be thrown indicating the proxy cannot write the entry because it does not know the target partition.
+As explained above, in [Defining a Routing Property](#defining-a-routing-property), when a proxy is asked to write an entry it extracts the routing property value to determine the relevant partition ID and forwards the entry to that partition. If the routing property value is null, an exception will be thrown indicating the proxy cannot write the entry because it does not know the target partition.
 
 When an entry is being updated, the proxy uses the routing property to route the update request to the relevant partition.
 
 On a batch write/update via `writeMultiple`, the proxy iterates over the batch of entries and divides them into groups according to the routing property, and each group is sent to the relevant partition in parallel.
 
-Starting with 8.0.1, an auto generated id property can be used for routing as well - the proxy detects that routing is auto generated, selects a partition using a round-robin approach and forwards the entry to that partition. The space embeds the partition id in the auto generated id value, so if the entry is later updated the proxy will extract the partition id from the id value and route the entry to the correct partition. Note that auto generated routing is only valid in conjunction with auto generated id, and cannot be used to route other entries.
+An auto-generated ID property can be used for routing as well - the proxy detects that routing is auto-generated, selects a partition using a round-robin approach and forwards the entry to that partition. The space embeds the partition ID in the auto-generated ID value, so if the entry is later updated the proxy will extract the partition ID from the ID value and route the entry to the correct partition. Note that auto-generated routing is only valid in conjunction with auto-generated ID, and cannot be used to route other entries.
 
 {{%anchor Querying a Partitioned Space %}}
 

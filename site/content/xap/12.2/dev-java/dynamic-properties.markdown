@@ -13,7 +13,7 @@ POJO entries properties are bound by the schema of the POJO class definition, wh
 
 Starting with version 8.0, GigaSpaces provides the [Document API](./document-api.html), which is schema free, and enables users to add properties freely without worrying about the schema. However, some users still prefer to continue working with POJO but would like to enjoy the benefits of dynamic properties.
 
-Starting with 8.0.1, dynamic properties can be used with POJOs as well. This provides better interoperability between POJO and document entries, and provides excellent schema evolution support without switching from POJO to document.
+Dynamic properties can be used with POJOs as well. This provides better interoperability between POJO and document entries, and provides excellent schema evolution support without switching from POJO to document.
 
 
 {{%warning%}}
