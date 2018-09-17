@@ -38,7 +38,7 @@ public class Config {
 
     public Config(File path, String siteFolder) {
         this.path = path;
-        this.sitePath = new File(path, siteFolder != null ? siteFolder : "site");
+        this.sitePath = new File(path, siteFolder != null ? siteFolder : "site-hugo");
         this.contentPath = new File(sitePath, "content");
         loadProperties();
         groupByPrefix(properties, "plugin.").forEach(this::addPlugin);

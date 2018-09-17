@@ -82,7 +82,7 @@ public class ContentSection {
     }
     
     protected void generateSidenav(Config config, String suffix, Collection<Page> roots) throws IOException {
-        String outputPath = config.getPath() + "/site/themes/hugo-bootswatch/layouts/partials/sidenav-" + suffix + ".html";
+        String outputPath = config.getSitePath() + "/themes/hugo-bootswatch/layouts/partials/sidenav-" + suffix + ".html";
         // write the html to the file system
         try ( 
             PrintWriter writer = new PrintWriter(outputPath, "UTF-8")) {
