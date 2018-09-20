@@ -38,12 +38,12 @@ jobs:
             aws s3 sync --delete --storage-class=REDUCED_REDUNDANCY _site s3://$DOCS_BUCKET
 workflows:
   version: 2
-  staging:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only: master
+  #staging:
+  #  jobs:
+  #    - build:
+  #        filters:
+  #          branches:
+  #            only: master
   production:
     jobs:
       - build:
