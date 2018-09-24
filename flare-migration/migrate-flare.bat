@@ -6,4 +6,3 @@ cscript migrate-flare.js //nologo %fOut%
 echo Copying files ...
 ROBOCOPY /e %fOut% "..\site-flare\Content"
 echo Done
-pause
