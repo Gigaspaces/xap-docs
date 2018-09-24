@@ -1,15 +1,29 @@
 @echo off
+SETLOCAL EnableDelayedExpansion
+
 echo *** Purging previous output ***
 rmdir output /S /Q
 mkdir output
+
 echo *** Building hugo site ***
-call build-site-hugo.bat
+call run-hugo.bat -d ..\output
+
 echo *** Building flare site ***
-call build-site-flare.bat
-if defined Destination (
-  if %Destination%==staging (set DOCS_BUCKET=docs-staging.gigaspaces.com) else (set DOCS_BUCKET=docs.gigaspaces.com-v2)
-  echo Publishing site to %Destination% at %DOCS_BUCKET%...
-  set AWS_PROFILE=%Destination%
-  aws s3 sync --delete --storage-class=REDUCED_REDUNDANCY output s3://%DOCS_BUCKET%
+rem @"C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild.exe" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
+echo Skipped - Flare integration is under construction
+
+echo *** Publishing output ***
+if "%1"=="" (
+  echo echo Publishing skipped - destination not defined
+) else (
+  if "%1"=="staging" set DOCS_BUCKET=docs-staging.gigaspaces.com
+  if "%1"=="production" set DOCS_BUCKET=docs.gigaspaces.com-v2
+  if not defined DOCS_BUCKET (
+    echo echo Publishing skipped - unsupported destination [%1]
+  ) else (
+    echo Publishing site to %1 at !DOCS_BUCKET!...
+    set AWS_PROFILE=%1
+    aws s3 sync --delete --storage-class=REDUCED_REDUNDANCY output s3://!DOCS_BUCKET!
+  )
 )
 echo *** Site build completed ***
