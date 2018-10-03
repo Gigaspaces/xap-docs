@@ -38,15 +38,9 @@ If your installed JDK version is lower then 1.5 or none is installed, see below 
 # Installing a Proper JDK (Java Development Kit)
 
 1. To install JDK 1.6, download and install [**JDK 6 Update X**](http://java.sun.com/javase/downloads/index.jsp)
-
-
 {{% anchor 1 %}}
-
-
 1. **Download and unzip the latest XAP release** from the [downloads page](http://www.gigaspaces.com/LatestProductVersion).
 {{% anchor 2 %}}
-
-
 1. **Install a Java IDE**. If you don't have an IDE installed, you can [download and unzip the Eclipse IDE for Java Developers](http://www.eclipse.org/downloads), or the [IntelliJ IDEA](http://www.jetbrains.com/idea/download/index.html) IDE (we recommend the Ultimate Edition because of its excellent Spring framework support). If you're using Eclipse, it is also recommended to install the [Spring Tool Suite plugin for Eclipse](http://www.springsource.com/developer/sts).
 
 # Running the Application inside Eclipse IDE

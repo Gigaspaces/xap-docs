@@ -6,18 +6,9 @@ parent: xap-basics.html
 weight: 700
 ---
 
-
-
 In this part of the tutorial we will introduce you to the different processing services you can run on top of the space.
 
-
-
-
-
 XAP includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns. It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications. All services follow the POJO/Spring based abstraction approach which includes dependency injection and annotations.
-
-
-
 
 # Task Execution
 Task Execution provides a fine-grained API for performing ad-hoc parallel execution of user defined tasks. This framework should be used in the following scenarios:
@@ -135,8 +126,6 @@ There are other options available for task routing.
 {{%refer%}}[Task Execution over the Space](../dev-java/task-execution-overview.html){{%/refer%}}
 
 
-
-
 # Distributed Task
 A DistributedTask is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions.
 
@@ -209,10 +198,7 @@ The executor builder allows to combine several task executions (both distributed
 {{%/refer%}}
 
 
-
-
-
-# Space Based Remoting
+# Space-Based Remoting
 Spring provides support for various remoting technologies. XAP uses the same concepts to provide remoting, using the space as the underlying protocol.
 
 Why would you use the space as the transport layer include:
@@ -221,13 +207,8 @@ Why would you use the space as the transport layer include:
 - Load-balancing - when using a space with a partitioned cluster topology, each remote invocation is automatically directed to the appropriate partition (based on its routing handler), providing automatic load-balancing.
 - Performance - remote invocations are represented in fast internal XAP objects, providing fast serialization and transport over the net.
 - Asynchronous execution - by its nature, remoting support is asynchronous, allowing for much higher throughput of remote invocations. XAP allows you to use asynchronous execution using Futures, and also provides synchronous support (built on top of it).
-
-
-- Executor Based Remoting
-The Executor Based Remoting executes synchronous or asynchronous calls between the client and the server. In this mode the client invocation executes a task that invokes the corresponding server method immediately when the call arrives at the server. The server must therefore be collocated with the space.
-
-- Event Driven Remoting
-Event Driven Remoting supports most of the above capabilities, but does not support map/reduce style invocations. In terms of implementation, it's based on the Polling Container feature, which means that it writes an invocation entry to the space which is later consumed by a polling container. Once taking the invocation entry from the space, the polling container's event handler delegates the call to the space-side service.
+- Executor-Based Remoting - Executor-Based Remoting executes synchronous or asynchronous calls between the client and the server. In this mode the client invocation executes a task that invokes the corresponding server method immediately when the call arrives at the server. The server must therefore be collocated with the space.
+- Event-Driven Remoting - Event-Driven Remoting supports most of the above capabilities, but does not support map/reduce style invocations. In terms of implementation, it's based on the Polling Container feature, which means that it writes an invocation entry to the space which is later consumed by a polling container. Once taking the invocation entry from the space, the polling container's event handler delegates the call to the space-side service.
 
 In this tutorial will look at an Executor based Remoting service.
 
@@ -272,7 +253,7 @@ The service is exported to the server with the Spring configuration. Here is an 
 <os-remoting:service-exporter id="serviceExporter" />
 ```
 
-#### Client side invocation
+#### Client-side invocation
 On the client side the remoting proxy is injected with the @ExecutorProxy annotation:
 
 ```java

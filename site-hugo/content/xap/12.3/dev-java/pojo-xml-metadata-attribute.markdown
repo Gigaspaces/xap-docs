@@ -254,7 +254,7 @@ Example:
 ```
 
 {{%refer%}}
-[Space Object ID Operations{./space-object-id-operations.html)
+[Space Object ID Operations(./space-object-id-operations.html)
 {{%/refer%}}
 
 
@@ -356,7 +356,7 @@ Example:
 
 
 {{%refer%}}
-[Transactions Optimistic locking]{./transaction-optimistic-locking.html)
+[Transactions Optimistic locking](./transaction-optimistic-locking.html)
 {{%/refer%}}
 
 
@@ -413,7 +413,7 @@ Example:
 
 
 {{%refer%}}
-[Lease automatic expiration]{./leases-automatic-expiration.html)
+[Lease automatic expiration](./leases-automatic-expiration.html)
 {{%/refer%}}
 
 
@@ -441,16 +441,14 @@ Example:
 
 
 {{%refer%}}
-[FIFO Grouping]{./fifo-grouping.html)
+[FIFO Grouping](./fifo-grouping.html)
 {{%/refer%}}
 
 
 
 {{%refer%}}
-[FIFO Grouping]{./fifo-grouping.html)
+[FIFO Grouping](./fifo-grouping.html)
 {{%/refer%}}
-
-
 
 # SpaceDynamicProperties
 
@@ -479,10 +477,8 @@ Example:
 
 
 {{%refer%}}
-[Dynamic Properties]{./dynamic-properties.html)
+[Dynamic Properties](./dynamic-properties.html)
 {{%/refer%}}
-
-
 
 
 # SpaceDocumentSupport
@@ -506,13 +502,9 @@ Example:
 </gigaspaces-mapping>
 ```
 
-
-
 {{%refer%}}
 [Document POJO Interoperability]{./document-pojo-interoperability.html#deep-interoperability)
 {{%/refer%}}
-
-
 
 
 # Space Sequence Number
@@ -535,7 +527,4 @@ Example:
 	</class>
 </gigaspaces-mapping>
 ```
-
-
-
 

@@ -113,6 +113,6 @@ public class Information {
 ```
 
 {{% note "Note"%}}
-@SpaceIndex(type=SpaceIndexType.EQUAL), @SpaceIndex(type=SpaceIndexType.ORDERED), and @SpaceIndex(type=SpaceIndexType.EQUAL_AND_ORDERED) are supported.
+`@SpaceIndex(type=SpaceIndexType.EQUAL)`, `@SpaceIndex(type=SpaceIndexType.ORDERED)`, and `@SpaceIndex(type=SpaceIndexType.EQUAL_AND_ORDERED)` are supported.
 {{% /note %}}
 

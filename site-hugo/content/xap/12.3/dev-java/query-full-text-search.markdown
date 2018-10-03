@@ -9,14 +9,15 @@ weight: 360
 
 XAP 12.1 introduces full text search capability leveraging the {{%exurl "Lucene" "http://lucene.apache.org"%}} search engine library. 
 
-The following features are supported:<br>
-- Keyword matching<br>
-- Search for phrase<br> 
-- Wildcard matching<br>
-- Proximity matching<br>
-- Range searching<br>
-- Boosting a term<br>
-- Regular expressions<br>
+The following features are supported:
+
+- Keyword matching
+- Search for phrase 
+- Wildcard matching
+- Proximity matching
+- Range searching
+- Boosting a term
+- Regular expressions
 - Fuzzy search
     
 {{%note%}}

@@ -511,8 +511,12 @@ You can enable this option in one of the following ways:
 
 - Set the following option as a JVM argument:
 
-    -Dcom.gs.start-embedded-mahalo=true
+    ```java
+	-Dcom.gs.start-embedded-mahalo=true
+	```
 
 - Set XPath in the `<XAP Root>\config\gs.properties` file:
 
-    com.j_spaces.core.container.embedded-services.mahalo.start-embedded-mahalo=true
+    ```java
+	com.j_spaces.core.container.embedded-services.mahalo.start-embedded-mahalo=true
+	```

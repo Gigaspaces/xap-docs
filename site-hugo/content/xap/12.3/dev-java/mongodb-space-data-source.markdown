@@ -157,35 +157,24 @@ Before deploying your Processing Unit, please do the following:
 ### Cache miss Query limitations 
 Supported queries:
 
-- `id = 1234` 
-
+- `id = 1234`
 - `name = 'John' AND age = 13` 
-
 - `address.streetName = 'Liberty'` 
-
 - `age > 15`
-
 - `age < 20`
-
 - `age <= 20`
-
 - ` age >= 15`
-
 - `name = 'John' OR name = 'Jane'`
-
 - `name rlike 'A.*B'`
-
 - `name like 'A%'`
-
 - `name is NULL`
-
 - `name is NOT NULL`
 
 {{%note "Note:"%}}
 Java types Short, Float, BigDecimal and BigInt supported only =,<> queries >,<,>=,<= is not supported.
 {{%/note%}}
 
-# Unsupported queries:
+# Unsupported queries
 
 - Contains is unsupported
 

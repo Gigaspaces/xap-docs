@@ -12,9 +12,7 @@ The space can have a single instance that runs on a single JVM, or multiple inst
 Available topologies:
 
 * Replicated - data is copied to all of the JVMs in the cluster.
-
 * Partitioned - data is distributed across all of the JVMs, each containing a different data subset. A partition is a subset of data that is distributed by a routing key.
-
 * Partitioned with backup - data resides in a partition, and also in one or more backup space instances for this partition.
 
 

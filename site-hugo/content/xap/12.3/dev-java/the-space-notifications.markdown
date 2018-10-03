@@ -12,9 +12,9 @@ Some of the space operations can generate notifications when they are executed. 
 
 The following space operations may trigger notifications:
 
-- write(), writeMultiple()
-- asyncTake() , take() , takeById(), takeByIds() , takeIfExists() ,takeIfExistsById(), takeMultiple() , clear()
-- AsyncChange , change()
+- `write()`, `writeMultiple()`
+- `asyncTake()`, `take()`, `takeById()`, `takeByIds()`, `takeIfExists()`, `takeIfExistsById()`, `takeMultiple()`, `clear()`
+- `AsyncChange`, `change()`
 
 {{%note%}}
 Space operations under transactions will trigger notifications when the transaction commits.

@@ -230,9 +230,6 @@ It might also be relevant if the actual data required for the processing is not 
 {{%/imagertext%}}
 
 
-{{%refer%}}
-[Services & Best Practices, Master Worker Pattern](/sbp/master-worker-pattern.html)
-{{%/refer%}}
 
 
 

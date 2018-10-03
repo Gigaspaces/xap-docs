@@ -65,7 +65,7 @@ The GSA is a process manager that can spawn and manage service grid processes (O
 {{%/imagertext%}}
 
 {{%refer%}}
-[Product Overview, Service Grid](../overview/the-runtime-environment.html)
+[Service Grid](../overview/the-runtime-environment.html) in the Product Overview section.
 {{%/refer%}}
 
 
@@ -147,13 +147,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 When the application write Payment objects into this space, XAP will use the routing information provided (@SpaceRouting) by the Payment class to route the object to the right partition. 
 
-{{%refer%}}
-[Product Overview, Space Topology](../overview/the-runtime-environment.html#topologies)
-{{%/refer%}}
-
-
-
-# Interacting with the data Grid
+# Interacting with the Data Grid
 Now we are ready to interact with the data grid. All the examples we explored in the first part of the tutorial can be used to interact with the IMDG.
 
 If you have started the IMDG within your application, you would acquire the space like this:
@@ -170,7 +164,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("xapTutor
 ```
 
 
-# WEB Admin UI  
+# Web Management Console  
  
 You can start XAP's console and inspect the Data Grid components that have been started. In the XAP distribution you will find the command file to launch the console.
 

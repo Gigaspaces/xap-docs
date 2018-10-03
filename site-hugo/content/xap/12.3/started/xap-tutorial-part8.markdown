@@ -10,21 +10,13 @@ weight: 1200
 
 In this part of the tutorial we will show you how you can deploy a standard WAR file onto the Service Grid.
 
-
-
-
 XAP allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the Service Grid Processing Unit Container. The web container used behind the scenes is Jetty.
-
-
-
 
 The integration allows you to make use of the following Service Grid features:
 
 - Dynamic allocation of several instances of a web application (probably fronted by a load balancer).
 - Management of the instances running (if a GSC fails, the web application instances running on it will be instantiated on a different GSC).
 - SLA monitor based dynamic allocation and de-allocation of web application instances.
-
-
 
 # Deployment
 The web application itself is a pure, JEE based, web application. The application can be the most generic web application, and automatically make use of the Service Grid features.
@@ -60,8 +52,8 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 {{%/tabs%}}
 
 
-## Deploy with Web Admin UI
-You can deploy a war file just like a PU with the Web Administration UI:
+## Deploy with Web Management Console
+You can deploy a war file just like a PU with the Web Management Console:
 
 {{%section%}}
 {{%column width="20%"%}}
@@ -94,9 +86,6 @@ Web page display
 {{%popup "/attachment_files/qsg/Deploy-web5.png"  "Web page display"%}}
 {{%/column%}}
 {{%/section%}}
-
-
-
 
 ### Using a Space
 The web application can define a space either embedded or remote using Spring or direct in java code. There are several ways how a space and other components can be used and configured within a web application. Here are some scenarios:
@@ -162,11 +151,6 @@ Jetty itself is configured using Spring, and allows you to control all aspects o
 
 {{%refer%}}[Web Application Support](../dev-java/web-application-overview.html){{%/refer%}}
 
-
-
-
-
-
 # HTTP Session management
 The XAP-Jetty integration comes with a support for storing the javax.servlet.http.HttpSession in the Space allowing supporting session replication and failover between different web application instances deployed into GigaSpaces containers.
 
@@ -177,10 +161,6 @@ The GigaSpaces HTTP Session Management provides the following:
 - Dynamic scalability - Allows the web application to scale up or down based on SLA
 - Continuous High-Availability - Allows the application to survive any system failures
 - Non intrusive session management or explicit Data Grid API access for fine grain control - Allows multiple web servers to share the same session in transparent manner
-
-
-
-
 
 ### Enabling HTTP Session Management
 There are several ways to configure Space session based support, depending on the definition of which space and how the space was started.
@@ -201,9 +181,6 @@ In this example we connect to a remote space called sessionSpace and create a lo
 When deploying, include within the META-INF/spring/pu.properties file the jetty.sessions.spaceUrl property value. This should be set with the space url defining where the sessions will be stored.
 
 ### Deploying with the Web Admin UI:
-
- 
-
 
 {{%section%}}
 
@@ -262,7 +239,6 @@ Inspect session
 {{%refer%}}[HTTP Session Management](../dev-java/http-session-management.html){{%/refer%}}
 
  
-
 # Load Balancing
 {{%section%}}
 {{%column width="80%" %}}
@@ -279,11 +255,6 @@ The integration dynamically creates and updates the mod_proxy_balancer configura
 {{%/column%}}
 {{%/section%}}
 
-
- 
  
 {{%refer%}}[Apache Load balancer Agent](../dev-java/apache-load-balancer-agent.html){{%/refer%}}
-
-
-
 

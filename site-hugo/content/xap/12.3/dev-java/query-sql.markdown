@@ -569,15 +569,17 @@ You can specify that the `SQLQuery` contain only partial results, which means th
 # Simple vs. Complex Queries
 
 Most space operations and features support any SQL query, but some support only **simple** queries and not **complex** ones.
-A query is considered complex if it contains one or more of the following:<br>
-- `GROUP BY`<br>
-- `ORDER BY`<br>
+A query is considered complex if it contains one or more of the following:
+
+- `GROUP BY`
+- `ORDER BY`
 - Sub queries
 
-The following features support only simple SQL queries:<br>
-- Snapshot<br>
-- Blocking operations<br>
-- [Notifications](./session-based-messaging-api.html)<br>
+The following features support only simple SQL queries:
+
+- Snapshot
+- Blocking operations
+- [Notifications](./session-based-messaging-api.html)
 - [GSIterator](./query-paging-support.html)
  
 
