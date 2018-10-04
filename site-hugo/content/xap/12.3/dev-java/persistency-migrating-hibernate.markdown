@@ -46,10 +46,9 @@ With the [All In Cache policy](./all-in-cache-cache-policy.html), the assumption
 LRU persistency model is based on the eviction model: **Some** of the data stored In-Memory (based on auto expiration mechanism or explicit data eviction) and **ALL** the data stored on disk where the preferred disk media is a database. You may leverage Hibernate as the mapping layer when data is persist or have a custom persistency mapping implemented leveraging the [Space Data Source API](./space-data-source-api.html).
 
 {{% tip %}}
-GigaSpaces do not support the overflow model when persisting data since it may lead to inconsistency situations.
+GigaSpaces does not support the overflow model when persisting data since it may lead to inconsistency situations.
 {{% /tip %}}
 
-.
 Using a database to store the data allows you to:
 
 - Reload it very fast into the space with plenty of flexibility to customize the load activity.

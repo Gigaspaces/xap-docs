@@ -70,7 +70,9 @@ You can place these JARs in each XAP installation in your network, but it is mor
 
 When a new JAR needs to be loaded, just place the new JAR in `pu-common` directory and restart the Processing Unit.
 
-Note: if different Processing Units use different versions of the same JAR (under same JAR file name) then `pu-common` should not be used.
+{{% note %}}
+If different Processing Units use different versions of the same JAR (under same JAR file name) then `pu-common` should not be used.
+{{% /note %}}
 
 ## META-INF/MANIFEST.MF descriptor
 JAR files specified in the Processing Unit's `META-INF/MANIFEST.MF` descriptor file will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, see the [Class Loaders](#classloaders) section below.
