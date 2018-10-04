@@ -169,17 +169,17 @@ Refer to [JMX Management](../admin/space-jmx-management.html)
 
 
 
-# Management Console
+# GigaSpaces Management Center
 
 {{%refer%}}
-The dump can be created via the [Management Center](../admin/gigaspaces-dump.html)
+The dump can be created via the [GigaSpaces Management Center](../admin/gigaspaces-dump.html).
 {{%/refer%}}
 
  
 # Web Management Console
 
 {{%refer%}}
-The dump can be created via the [Web Management Console](../admin/web-management-dump.html)
+The dump can be created via the [Web Management Console](../admin/web-management-dump.html).
 {{%/refer%}}
 
  

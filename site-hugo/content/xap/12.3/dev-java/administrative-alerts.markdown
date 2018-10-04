@@ -76,7 +76,8 @@ You can view alerts in the Web Management Console. For information, refer to [Vi
 
 Alerts can be consumed using a registered event listener by registering with the `AlertManager` component (which is part of the [Administration and Monitoring API](./administration-and-monitoring-overview.html). The listener will be notified of alerts that have been triggered.
 
-Javadoc ref: [Alert]({{% api-javadoc %}}/org/openspaces/admin/alert/Alert.html)&nbsp;[AlertManager]({{% api-javadoc %}}/org/openspaces/admin/alert/AlertManager.html)&nbsp;[XmlAlertConfigurationParser]({{% api-javadoc %}}/org/openspaces/admin/alert/config/parser/XmlAlertConfigurationParser.html)&nbsp;[AlertTriggeredEventListener]({{% api-javadoc %}}/org/openspaces/admin/alert/events/AlertTriggeredEventListener.html)
+
+{{%refer%}}[Alert]({{% api-javadoc %}}/org/openspaces/admin/alert/Alert.html), [AlertManager]({{% api-javadoc %}}/org/openspaces/admin/alert/AlertManager.html), [XmlAlertConfigurationParser]({{% api-javadoc %}}/org/openspaces/admin/alert/config/parser/XmlAlertConfigurationParser.html), [AlertTriggeredEventListener]({{% api-javadoc %}}/org/openspaces/admin/alert/events/AlertTriggeredEventListener.html){{%/refer%}}
 
 
 ```java
@@ -123,7 +124,7 @@ The `org.openspaces.admin.alert.Alert` instance includes the following set of pr
 | Config | The configuration properties set for this alert | |
 | Properties | Any runtime properties that could be extracted and are relevant information for this alert | e.g. host name, host address, memory utilization,etc. |
 
-Javadoc ref: [AlertSeverity]({{% api-javadoc %}}/org/openspaces/admin/alert/AlertSeverity.html)&nbsp;[AlertStatus]({{% api-javadoc %}}/org/openspaces/admin/alert/AlertStatus.html)
+{{%refer%}}[AlertSeverity]({{% api-javadoc %}}/org/openspaces/admin/alert/AlertSeverity.html), [AlertStatus]({{% api-javadoc %}}/org/openspaces/admin/alert/AlertStatus.html){{%/refer%}}
 
 # Runtime Configuration
 
