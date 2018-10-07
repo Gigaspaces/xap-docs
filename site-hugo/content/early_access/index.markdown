@@ -19,6 +19,26 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 14.0.0 M12 (Oct-07-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-14.0.0-m12-b19912.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-enterprise-14.0.0-m12-b19912.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-14.0.0-m12-b19912.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-enterprise-14.0.0-m12-b19912.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap.net-14.0.0-m12-b19912.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13499" %}}: Reduce replication network traffic by skipping discarded packets.
+- {{% jira id="GS-13618" %}}: Add ChangeSet.isEmpty() to indicate if it contains any change operations.
+- {{% jira id="GS-13619" %}}: Override the IdQuery.equals() default implementation to streamline unit testing.
+
+### Resolved Issues
+
+- {{% jira id="GS-13535" %}}: Null comparison does not work in SQL query when using a nested collection of objects.
+
 # 14.0.0 M11 (Sep-09-2018)
 
 ## Download Links
