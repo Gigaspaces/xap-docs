@@ -17,7 +17,6 @@ call migrate.bat
 popd
 echo *** Building flare site ***
 "C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild.exe" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
-echo Skipped - under construction
 
 echo *** Publishing output ***
 if "%1"=="" (

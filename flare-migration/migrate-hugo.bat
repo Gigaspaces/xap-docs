@@ -1,5 +1,5 @@
 @echo off
 echo Starting Hugo...
 pushd site-temp
-hugo -d ..\output
+..\..\bin\hugo-0.17\hugo.exe -d ..\output
 popd
