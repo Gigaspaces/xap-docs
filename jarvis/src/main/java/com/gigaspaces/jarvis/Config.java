@@ -74,7 +74,6 @@ public class Config {
     }
 
     private void loadDefaultConfig() {
-        properties.put("hugo.path", "hugo");
         final boolean isWindows = File.separatorChar == '\\';
         if (isWindows) {
             addDefaultPluginIfExists("notepad", "Open With Notpad...", "notepad");
@@ -140,10 +139,6 @@ public class Config {
         return contentPath;
     }
     
-    public String getHugoPath() {
-        return properties.get("hugo.path");
-    }
-
     public Map<String, String> getPagePluging() {
         return pagePluging;
     }

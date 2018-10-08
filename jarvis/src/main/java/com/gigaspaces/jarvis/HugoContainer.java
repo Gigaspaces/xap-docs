@@ -19,11 +19,13 @@ public class HugoContainer implements Closeable{
     
     public HugoContainer(Config config) {
         this.config = config;
+		String hugoExecutable = config.getPath().toString() + File.separatorChar + "bin" + File.separatorChar + "hugo-0.17" + File.separatorChar + "hugo.exe";
         this.processBuilder = new ProcessBuilder()
-                .command(config.getHugoPath(), "server")
-                .directory(new File(config.getPath(), "site"))
+                .command(hugoExecutable , "-s", config.getSitePath().toString(), "server")
+//                .directory(new File(config.getPath(), "site"))
                 .redirectErrorStream(true);
-        
+        this.processBuilder.environment().put("HUGO_STATICDIR", "../site-flare/Content/Resources/Static");
+
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() { 
