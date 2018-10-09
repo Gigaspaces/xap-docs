@@ -370,6 +370,6 @@ All XAP APIs are supported with the blobstore configuration. This includes the S
 # Limitations
 
 - MemoryXtend and [Direct Persistency](../dev-java/direct-persistency.html) configuration is not supported.
-- MemoryXtend only is only supported with the Space caching policy set to ALL_IN_CACHE. LRU and other cache policies that use eviction are not supported. 
+- MemoryXtend is only supported with the Space caching policy set to ALL_IN_CACHE. LRU and other cache policies that use eviction are not supported. 
 - MemoryXtend is not supported with the `ESM`.
 
