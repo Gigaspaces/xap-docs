@@ -48,12 +48,12 @@ For example, **C:\GigaSpaces\XAP.NET-12.1.1-x64\NET v4.0\Config\DefaultApp.confi
 
 # Third Party Upgrades
 
-* [Jetty](http://www.eclipse.org/jetty/) integration has been upgraded to `9.2.21`
-* [Curator](http://curator.apache.org/) integration has been upgraded to `12.2.0`
+* [Jetty](http://www.eclipse.org/jetty/) support has been enhanced to include version `9.2.21`
+* [Curator](http://curator.apache.org/) integration has been upgraded to `2.12.0`
 * [Lucene](https://lucene.apache.org/) integration has been upgraded to `6.4.2` (affects geospatial and full text search)
 * [Spatial4J](https://github.com/locationtech/spatial4j) integration has been upgraded to `0.6` (affects geospatial)
 
-In addition, the jvm bundled with XAP.NET hase been upgraded to Java 8 update 121.
+In addition, the JVM bundled with XAP.NET hase been upgraded to Java 8 update 121.
 
 # Deprecations and Removed APIs
 

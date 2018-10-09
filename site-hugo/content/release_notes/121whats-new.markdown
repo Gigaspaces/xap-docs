@@ -24,7 +24,7 @@ The XAP Manager (or simply The Manager) is a component which stacks together the
 
 When executing user code on the space (e.g. space tasks), the space automatically loads the code from the remote client and caches it for future executions. Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify their code. 
 
-Starting 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed. For example, start with annotating your task with `@SupportCodeChange(id="1")`, and when the code changes, set the annotation to `@SupportCodeChange(id="2")`, and the space will load the new task.
+Starting in 12.1, you can use the `@SupportCodeChange` annotation to tell the space your code has changed. For example, start with annotating your task with `@SupportCodeChange(id="1")`, and when the code changes, set the annotation to `@SupportCodeChange(id="2")`, and the space will load the new task.
 
 The space can store multiple versions of the same task side-by-side (ideal for supporting clients using different versions). This feature also applies for other features which execute user-defined code at the space, namely custom change and custom aggregate.
 
@@ -52,9 +52,9 @@ Web applications which need to know which port they're running on can now get it
 
 # Administration
 
-## GS-Agent enhancements
+## GS Agent Enhancements
 
-GS-Agent now supports a new, user-friendly syntax. For example, to start 2 GSCs simply specify `--gsc=2`.
+The GS Agent now supports a new, user-friendly syntax. For example, to start 2 GSCs simply specify `--gsc=2`.
 
 The old syntax is still supported for backwards compatibility.
 
@@ -84,7 +84,7 @@ The Web Management Console (web-ui) can now be configured to use SSL.
 
 A couple of improvements which can come in handy for troubleshooting:
 
-## Include terminated processes in dump
+## Include Terminated Processes in Dump File
 
 The dump functionality is useful for gathering log files from system components. However, up to now it only included components which are currently running - if a process has terminated and restarted, only its current log would be collected. Starting 12.1 you can specify if you want to collect terminated processes as well when you perform a dump.
 
@@ -98,9 +98,9 @@ Whenever a service grid component is started, it prints a system report in its l
 
 # Third Party Upgrades
 
-* [Jetty](http://www.eclipse.org/jetty/) integration has been upgraded to `9.2.21`
-* [Curator](http://curator.apache.org/) integration has been upgraded to `12.2.0`
+* [Jetty](http://www.eclipse.org/jetty/) support has been enhanced to include version `9.2.21`
+* [Curator](http://curator.apache.org/) integration has been upgraded to `2.12.0`
 * [Lucene](https://lucene.apache.org/) integration has been upgraded to `6.4.2` (affects geospatial and full text search)
 * [Spatial4J](https://github.com/locationtech/spatial4j) integration has been upgraded to `0.6` (affects geospatial)
 
-In addition, the jvm bundled with XAP.NET hase been upgraded to Java 8 update 121.
+In addition, the JVM bundled with XAP.NET hase been upgraded to Java 8 update 121.

@@ -197,28 +197,6 @@ if (pu != null) {
 
 Since we are un deploying an Elastic Processing Unit, this will also terminate all the GSCs hosting the PU.
 
-Running the deployment code from the command line is very convenient. Rename the java file extension to groovy, and run it using the following command:
-
-{{%tabs%}}
-{{%tab "  Windows "%}}
-
-
-```java
-%XAP_HOME%\tools\groovy\bin\groovy deploy.groovy
-```
-
-{{% /tab %}}
-
-{{%tab "  Linux "%}}
-
-
-```java
-${XAP_HOME}tools/groovy/bin/groovy deploy.groovy
-```
-
-{{% /tab %}}
-{{% /tabs %}}
-
 # Hot Deploy
 
 To enable business continuity in a better manner, having system upgrade without any downtime, here is a simple procedure you should follow when you would like to perform a hot deploy, upgrading a PU that includes both a business logic and a collocated embedded space:
