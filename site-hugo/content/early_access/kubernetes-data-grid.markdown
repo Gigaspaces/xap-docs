@@ -241,11 +241,11 @@ The following Helm command sets an absolute value for the Docker container, and 
 helm install insightedge --name test --set space.resources.limits.memory=256Mi,space.java.heap=75%
 ```
 
-## Configuring the Helm Chart Values
+## Configuring the Data Grid using the Helm Chart
 
-### Default Helm Charts
+### Default Helm Chart
 
-The Helm charts have a list of supported values that can be configured. To view this list, use the following Helm command:
+The InsightEdge Helm chart has a list of supported values that can be configured. To view this list, use the following Helm command:
 
 ```bash
 helm inspect insightedge
@@ -253,8 +253,8 @@ helm inspect insightedge
 
 The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a '.' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:
 
-manager:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ha:false
+`manager:`<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ha:false`
 	
 The value you will set will look like this in the command window: `manager.ha=true`
 
@@ -267,6 +267,11 @@ The following Helm command creates a replica of the original values.yaml file ca
 ```bash
 helm install insightedge -f customValues.yaml --name hello
 ```
+### Overriding the Processing Unit Properties
+
+It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit [Deployment Properties](https://docs.gigaspaces.com/xap/12.3/dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) topic), so you can override these properties using the Helm chart.  
+
+After defining the properties as placeholders, use the `key=value;key2=value` format to pass the override values to the Helm chart using either the `--set pu.properties=<your key-value pairs>` command, or by editing the values.yaml.
 
 ## Monitoring the Data Grid
 

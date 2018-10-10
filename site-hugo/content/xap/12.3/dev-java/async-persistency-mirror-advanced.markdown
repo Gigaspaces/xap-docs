@@ -182,14 +182,13 @@ To override and extend this behavior, you can implement an exception handler tha
 
 With the above, we use the `SpaceSynchronizationEndpointExceptionHandler`, and wrap the `DefaultHibernateSpaceSynchronizationEndpoint` with it (and pass that to the space). On the `SpaceSynchronizationEndpointExceptionHandler`, we set our own implementation of the `ExceptionHandler`, to be called when there is an exception. With the `ExceptionHandler` you can decide what to do with the Exception: "swallow it", execute some logic, or re-throw it.
 
-{{% note "It's critical to test your persistence in the mirror."%}}
+## Testing Space Persistence in the Mirror
 
-A configured mirror will repeatedly try to store things in the DB. In the case on unrecoverable failure (imagine an invalid mapping or a constraint issue), this can cause the redo log to grow, eventually resulting in overflow of the redo to disk, and then, when the predefined disk capacity is exhausted, leading to a rejection of any non-read space operation (similar to how the memory manager works). The exception that clients will see in this case is `RedologCapacityExceededException` (which inherits from `ResourceCapacityExceededException`).
+A configured mirror will repeatedly try to store things in the database. If there is an unrecoverable failure (such as an invalid mapping or a constraint issue), this can cause the redo log to grow, eventually resulting in overflow of the redo to disk, and then, when the predefined disk capacity is exhausted, leading to a rejection of any non-read space operation (similar to how the memory manager works). The exception that clients will see in this case is `RedologCapacityExceededException` (which inherits from `ResourceCapacityExceededException`).
 
-The application can handle this by using the `ExceptionHandler` at the mirror EDS level. It can count the number of consecutive failures returned from the DB and when a certain threshold is reached, log it somewhere and move on, for example.
+The application can handle this by using the `ExceptionHandler` at the mirror EDS level. It can count the number of consecutive failures returned from the database, and when a certain threshold is reached, log it somewhere and move on, for example.
 
 That said, the easiest thing to do is test your persistence in the mirror.
-{{% /note %}}
 
 # Mirror Behavior with Distributed Transactions
 
@@ -239,7 +238,7 @@ Notes:
 2. Non-transactional operations are grouped according to the replication policy (`bulk-size` and `interval-millis`) and sent to the Mirror Service.
 3. Transactional and non-transactional items are not mixed.
 
-Starting with XAP 9.0.1 a new transaction participant meta data interface has been introduced. The new interface describing the transaction's unique id which consists of the transaction's id and the transaction manager id who have created it:
+The transaction participant metadata interface describes the transaction's unique ID, which consists of the transaction's ID and the transaction manager ID who created it:
 
 
 ```java
@@ -298,7 +297,7 @@ Distributed transaction consolidation is configured via the space configuration 
 In the following example we configure a space using its `pu.xml` to have transaction consolidation mode as enabled:
 
 {{% note %}}
-Since 9.1.0 - Distributed transaction consolidation is enabled by default.
+Distributed transaction consolidation is enabled by default.
 {{% /note %}}
 
 
@@ -320,6 +319,11 @@ The `cluster-config.groups.group.repl-policy.processing-type` may have the follo
 
 - `global-order`  - Do not maintain any ordering. Mirror consolidation is not executed. 
 - `multi-source` - Maintain ordering per partition. Transaction consolidation is executed.
+
+{{% note %}}
+If you have set the value of the `on-redo-log-capacity-exceeded` parameter to `drop-oldest`, you must set the `global order` value for this property. 
+{{% /note %}}
+
 
 In order to take advantage of this feature, mirror operation grouping should be set to `group-by-space-transaction` in mirror `pu.xml`:
 
@@ -407,17 +411,16 @@ Setting both `dist-tx-wait-timeout-millis` and `dist-tx-wait-for-opers` to unlim
 # Usage Scenarios
 
 
-
-
 {{%imagertext "/attachment_files/IMG101.gif"%}}
+
 #### Writing Synchronously to the Mirror Data Source
+
 The following is a schematic flow of a synchronous replicated cluster with three members, which are communicating with a Mirror Service:
 {{%/imagertext%}}
 
-
-
 {{%imagertext "/attachment_files/IMG103.gif"%}}
 #### Reading from the Data Source
+
 The Mirror Service space is used to asynchronously **persist** data into the data source. As noted elsewhere, the Mirror is **not** a regular space, and should **not** be interacted with directly. Thus, data can't be read from the data source using the Mirror Service space. Nonetheless, the data might be read by other spaces which are configured with a space data source.
 
 The data-grid pu.xml needs to be configured to use an **space data source** which, when dealing with a Mirror, is **central** to the cluster.
@@ -426,10 +429,10 @@ Here is a schematic flow of how a Mirror Service asynchronously receives data, t
 {{%/imagertext%}}
 
 
-
-
 {{%imagertext "/attachment_files/IMG104.gif"%}}
+
 #### Partitioning Over a Central Mirror Data Source
+
 When partitioning data, each partition asynchronously replicates data into the Mirror Service. Each partition can read back data that belongs to it (according to the load-balancing policy defined).
 
 Here is a schematic flow of how two partitions (each a primary-backup pair) asynchronously interact with a data source:
