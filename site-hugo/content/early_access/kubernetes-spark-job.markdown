@@ -138,3 +138,37 @@ Port `8090` is exposed as the internal endpoint `insightedge-space-insightedge-m
 ```
 
 
+#### Configuration options added to 14.0 Milestone 13
+
+A simplified configuration is available in GigaSpaces 14.0.0 M13.
+Two additional configuration options can be used with the `insightedge-submit` script.
+
+##### Lookup Locator
+To provide the Lookup Locator for the Space to connect to, add the configuration property: `--conf spark.insightedge.space.manager=testmanager`
+
+This comes instead of using the full notation, e.g. `--conf spark.insightedge.space.lookup.locator=testmanager-insightedge-manager-hs`
+
+##### Space Name
+To provide a different Space name to operate on, add the configuration property: `--conf spark.insightedge.space.name=testspace`.
+
+For example, the following helm commands will install the following stateful sets:
+testmanager-insightedge-manager, testmanager-insightedge-zeppelin, testspace-insightedge-space-*\[i\]*.
+
+The insightedge submit command will submit the SaveRdd example with the `testspace` and `testmanager` configuration parameters.
+
+```bash
+$ helm install insightedge/ --name testmanager --set space.enabled=false
+
+$ helm install insightedge/ --name testspace --set space.manager=testmanager --set zeppelin.enabled=false
+
+$ ./insightedge-submit \
+--master k8s://https://192.168.99.100:8443 \
+--deploy-mode cluster \
+--name i9e-saveRdd \
+--class org.insightedge.examples.basic.SaveRdd \
+--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0.0-m13 \
+--conf spark.insightedge.space.name=testspace \
+--conf spark.insightedge.space.manager=testmanager \
+local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
+```
