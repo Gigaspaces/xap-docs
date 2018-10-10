@@ -19,6 +19,7 @@ This page list all the third-party libraries shipped with InsightEdge and XAP on
 | [Security](http://java.sun.com/products/jsse/) |1.6 | [Sun](http://www.opensource.org/licenses/sunpublic.php) | Yes | Core |
 | [Apache Commons](http://jakarta.apache.org/commons/) | 1.x-2.x | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | Yes | Core |
 | [Spring](https://spring.io/) | 4.3.17 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | Yes | Core |
+| [Spring Security](https://spring.io/projects/spring-security) | 4.2.3 | [Apache2](http://www.apache.org/licenses/LICENSE-2.0.html) | No | Core |
 | [ASM](http://asm.objectweb.org/doc/tutorial.html) | 2.2.3 | [INRIA](http://asm.objectweb.org/license.html) | No | Core |
 | [Sigar](https://github.com/hyperic/sigar) | 1.6.5 | [Apache2](https://github.com/hyperic/sigar/blob/master/LICENSE) | No | Core |
 | [HyperSonic SQL](http://www.hsqldb.org/) | 1.8.0 | [Hypersonic SQL](http://www.hsqldb.org/web/hsqlLicense.html) | No | Persistency |
