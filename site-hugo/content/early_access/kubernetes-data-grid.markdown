@@ -241,7 +241,7 @@ The following Helm command sets an absolute value for the Docker container, and 
 helm install insightedge --name test --set space.resources.limits.memory=256Mi,space.java.heap=75%
 ```
 
-## Configuring the Helm Chart Values
+## Configuring the Data Grid using Helm Chart Values
 
 ### Default Helm Charts
 
@@ -267,6 +267,10 @@ The following Helm command creates a replica of the original values.yaml file ca
 ```bash
 helm install insightedge -f customValues.yaml --name hello
 ```
+### Overriding PU properties
+
+You can create override the PU properties defined in the pu.xml if they are defined as placeholder (see documentation: https://docs.gigaspaces.com/xap/12.3/dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) 
+Create a string with your configuration in the format key=value;key2=value (as explained in the socumentation) and pass it to the Helm either using --set pu.properties=<your key-value pairs> or by editing the values.yaml.
 
 ## Monitoring the Data Grid
 
