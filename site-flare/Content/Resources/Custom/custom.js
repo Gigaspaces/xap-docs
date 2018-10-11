@@ -4,6 +4,7 @@
       version: '1.0',
       prefix: 'TOPNAV:::',
       debug: true,
+      domain: "\.gigaspaces\.com",
       isIframe: window.self !== window.top,
       prodVer: location.href.match(/\/(\d+?[\.\d]*?)\//)[1],
       scrollToTopMin: 200
@@ -18,6 +19,8 @@
       _self.log('version::', _self.props.version);
     },
     init: function () {
+      var re = new RegExp(_self.props.domain + '$');
+      if (re.test(location.hostname)) _self.props.debug = false;
       _self.ready();
     },
     ready: function () {
@@ -77,7 +80,6 @@
 
         $(document)
           .mouseup(function (e) {
-            console.log('Clicked outside menu, closing menu');
             if (!$('.nav-menu>li>a').is(e.target))
               $('.nav-menu>li.open').removeClass('open');
           });
@@ -143,7 +145,7 @@
         $.getScript(options.filename)
           .done(function () {
             options.callback(options);
-          })
+          });
       }
     }
   };

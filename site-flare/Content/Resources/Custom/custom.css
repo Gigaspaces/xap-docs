@@ -17,17 +17,24 @@ MadCap|breadcrumbsProxy {
   color: #cccccc;
   padding: 0 5px;
 }
+body {
+  overflow-y: hidden;
+}
 h1:first-of-type {
   border-bottom:1px solid #eee;
+  margin-top: .67em;
+  padding-bottom: 20px;
 }
 #contentBody .row {
   display: flex;
   flex-direction: row;
 }
 .bodyContent {
+  border-left: solid 1px #eee;
   flex: 1 1;
   margin-bottom: 300px;
   overflow: auto;
+  padding: 0px 15px;
 }
 /* SideNav */
 .sideContent {
@@ -230,4 +237,16 @@ h1:first-of-type {
 }
 .fa-home:before {
   content: "\f015";
+}
+/* Easy UI Fixes */
+.easyui-accordion,
+.panel,
+.panel-header.accordion-header.accordion-header,
+.panel-header.accordion-header.accordion-header-selected,
+.panel-body.accordion-body {
+  width: 100% !important;
+}
+.panel-tool a {
+  background-color: #e2e2e2;
+  border-radius: 3px;
 }

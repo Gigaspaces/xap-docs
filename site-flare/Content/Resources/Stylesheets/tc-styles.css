@@ -78,7 +78,7 @@ div.tc-admon-refer::before,
 div.tc-admon-tip::before,
 div.tc-admon-important::before {
   display: block;
-  font-size: .875;
+  font-size: .875rem;
   font-weight: 700;
 }
 div.tc-admon-attention::before {
@@ -149,7 +149,7 @@ li {
   margin: 0px;
 }
 p {
-  font-size: .875;
+  font-size: .875rem;
 }
 p.tc-admon-title {
   font-weight: 700;
@@ -185,18 +185,41 @@ span.tc-iconexcl:before {
   /* padding-right: 0.5em; */
 }
 p.tc-tablehead {
-  font-size: .75px;
+  font-size: .75rem;
   font-weight: 700;
   margin: 0;
   line-height: 17px;
 }
 p.tc-tablebody {
-  font-size: .75px;
+  font-size: .75rem;
   line-height: 17px;
   padding: 10px;
 }
 p.tc-todo {
   /* placeholder */
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  display: block;
+  font-size: 13px;
+  line-height: 1.42857143;
+  margin: 0 0 10px;
+  padding: 9.5px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+code {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+code:not([class]) {
+  background-color: #ededed;
+  border-radius: 4px;
+  color: black;
+  font-size: 90%;
+  padding: 2px 4px;
 }
 code.language-bash {
   /* placeholder */
@@ -248,7 +271,7 @@ table a:hover {
 table {
   font-family: Arial, Helvetica, sans-serif;
   color: #666;
-  font-size: 12px;
+  font-size: .75rem;
   text-shadow: 1px 1px 0px #fff;
   background: #eaebec;
   margin: 0px;
@@ -322,5 +345,12 @@ table tr:last-child td:last-child {
   border-bottom-right-radius: 3px;
 }
 table.tc-borderless {
-  /* placeholder */
+  background: transparent !important;
+  border: none !important;
+  border-collapse: collapse !important;
+  box-shadow: none !important;
+  font-size: .875rem!important;
+}
+table.tc-borderless img {
+  max-width: none;
 }
