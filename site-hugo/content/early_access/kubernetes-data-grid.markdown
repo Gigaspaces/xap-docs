@@ -271,7 +271,7 @@ helm install insightedge -f customValues.yaml --name hello
 
 It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit [Deployment Properties](https://docs.gigaspaces.com/xap/12.3/dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) topic), so you can override these properties using the Helm chart.  
 
-After defining the properties as placeholders, use the `key=value;key2=value` format to pass the override values to the Helm chart using either the `--set pu.properties=<your key-value pairs>` command, or by editing the values.yaml.
+After defining the properties as placeholders, use the `key1=value1;key2=value2` format to pass the override values to the Helm chart using either the `--set space.pu.properties=<your key-value pairs>` command, or by editing the values.yaml.
 
 ## Monitoring the Data Grid
 
