@@ -71,17 +71,25 @@
       buildNavItems: function () {
         var vMenu = null,
           rMenu = null;
-        var vLabel;
+        var mLabel, mTarget;
         var menuStart = '<ul id="MENU_ID" class="nav-menu"><li><a href="#">MENU_LABEL<span class="caret"></span></a><ul>';
         var menuEnd = '</ul></li></ul>';
 
+        $(document)
+          .mouseup(function (e) {
+            console.log('Clicked outside menu, closing menu');
+            if (!$('.nav-menu>li>a').is(e.target))
+              $('.nav-menu>li.open').removeClass('open');
+          });
+
         vMenu = menuStart.replace('MENU_ID', 'version-menu');
         for (var v in versionData) {
-          vLabel = versionData[v].label || v;
+          mLabel = versionData[v].label || v;
+          mTarget = versionData[v].target || '_self';
           if (v == _self.props.prodVer)
-            vMenu = vMenu.replace('MENU_LABEL', vLabel);
+            vMenu = vMenu.replace('MENU_LABEL', mLabel);
           else
-            vMenu += '<li><a href="' + versionData[v].url + '">' + vLabel + '</a></li>';
+            vMenu += '<li><a href="' + versionData[v].url + '" target="' + mTarget + '">' + mLabel + '</a></li>';
         }
         vMenu += menuEnd;
         $(vMenu).appendTo('.logo-wrapper');
@@ -89,16 +97,14 @@
           .click(function (e) {
             e.preventDefault();
             $('#version-menu>li').toggleClass('open');
-          }).blur(function (e) {
-            e.preventDefault();
-            $('#version-menu>li').removeClass('open');
           });
 
         for (var r in resourcesData) {
+          mTarget = resourcesData[r].target || '_self';
           if (!rMenu)
             rMenu = menuStart.replace('MENU_ID', 'resources-menu').replace('MENU_LABEL', r);
           else
-            rMenu += '<li><a href="' + resourcesData[r].url + '">' + r + '</a></li>';
+            rMenu += '<li><a href="' + resourcesData[r].url + '" target="' + mTarget + '">' + r + '</a></li>';
         }
         rMenu += menuEnd;
         $(rMenu).appendTo('.logo-wrapper');
@@ -106,9 +112,6 @@
           .click(function (e) {
             e.preventDefault();
             $('#resources-menu>li').toggleClass('open');
-          }).blur(function (e) {
-            e.preventDefault();
-            $('#resources-menu>li').removeClass('open');
           });
 
         for (var i = 0; i < buttonsData.length; i++) {
