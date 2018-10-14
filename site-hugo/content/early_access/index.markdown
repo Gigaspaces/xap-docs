@@ -19,6 +19,24 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 14.0.0 M13 (Oct-14-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-14.0.0-m13-b19913.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-enterprise-14.0.0-m13-b19913.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-14.0.0-m13-b19913.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-enterprise-14.0.0-m13-b19913.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap.net-14.0.0-m13-b19913.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13643" %}}: Configure insightedge-submit script to use Platform Manager name instead of lookup locator when running on Kubernetes.
+
+### Resolved Issues
+
+N/A
+
 # 14.0.0 M12 (Oct-07-2018)
 
 ## Download Links

@@ -272,6 +272,9 @@ spaceConfigurer.addProperty("blobstore.off-heap.update_threshold", "1M");
 GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 ```
 
+{{% /tab %}}
+{{% /tabs %}}
+
 # Deployment Strategies
 
 ## Local Storage

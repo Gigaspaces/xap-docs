@@ -162,7 +162,7 @@ For example:
 
 # UI - Logging
 
-The [gs-ui](./gigaspaces-management-center.html) and the [gs-webui](./web-management-console.html) is not part of the services and its configuration should be done separately in `gs-ui.sh` , `gs-webui.sh` or `gs-ui.bat`, `gs-webui.bat` files.
+The [GigaSpaces Management Center](./gigaspaces-management-center.html) and the [Web Management Console](./web-management-console.html) are not part of the services, and their configuration should be done separately in the `gs-ui.sh` or  `gs-ui.bat` file for the GigaSpaces Management Center, and the`gs-webui.sh` or `gs-webui.bat` file for the Web Management Console.
 
 For example: write to a separate file, you need to add this system property:
 

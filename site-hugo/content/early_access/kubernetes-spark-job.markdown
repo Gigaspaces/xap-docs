@@ -137,18 +137,22 @@ Port `8090` is exposed as the internal endpoint `insightedge-space-insightedge-m
 ../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats insightedge-space
 ```
 
+#### Improved Configuration Options 
 
-#### Configuration options added to 14.0 Milestone 13
+{{%note%}}
+These improvements are available starting from version 14.0.0 M13.
+{{%/note%}}
 
-A simplified configuration is available in GigaSpaces 14.0.0 M13.
-Two additional configuration options can be used with the `insightedge-submit` script.
+The following simplified configuration options can be used with the `insightedge-submit` script.
 
 ##### Lookup Locator
-To provide the Lookup Locator for the Space to connect to, add the configuration property: `--conf spark.insightedge.space.manager=testmanager`
 
-This comes instead of using the full notation, e.g. `--conf spark.insightedge.space.lookup.locator=testmanager-insightedge-manager-hs`
+The full notation for providing the Space lookup locator is `--conf spark.insightedge.space.lookup.locator=<release name>-<headless service name>, for example `--conf spark.insightedge.space.lookup.locator=testmanager-insightedge-manager-hs`.
+
+You can define this information for the insightEdge submit script using the simplified sytax `--conf spark.insightedge.space.manager=<platform manager name>` that adds the configuration property `, for example `--conf spark.insightedge.space.manager=testmanager`
 
 ##### Space Name
+
 To provide a different Space name to operate on, add the configuration property: `--conf spark.insightedge.space.name=testspace`.
 
 For example, the following helm commands will install the following stateful sets:

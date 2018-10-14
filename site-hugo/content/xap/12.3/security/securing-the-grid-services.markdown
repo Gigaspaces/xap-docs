@@ -54,4 +54,7 @@ A [Grid Service Container (GSC)](../overview/the-runtime-environment.html#gsc) i
 
 A secured GSC can **only** connect to a secured GSM. This means that a Processing Unit managed by a secured GSM can only be provisioned to a secured GSC.
 
-**Note:** Security of a GSC does not enforce any security on the deployed Processing Unit. i.e., a secured GSC can contain a Processing unit with a non-secured space, and a non-secured GSC can contain a Processing Unit with a secured space.
+{{%note%}}
+Security of a GSC does not enforce any security on the deployed Processing Unit. i.e., a secured GSC can contain a Processing unit with a non-secured space, and a non-secured GSC can contain a Processing Unit with a secured space.
+{{%/note%}}
+
