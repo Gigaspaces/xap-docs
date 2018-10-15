@@ -12,12 +12,13 @@ weight: 200
 
 When deploying a Processing Unit(PU) configured with an embedded [Space](../dev-java/the-space-configuration.html) with a clustered SLA or when running a remote clustered space, a clustered `GigaSpace` proxy is created.
 
-A clustered proxy is a smart proxy that performs operations against the entire cluster when needed.<br>
-- The `write` operation will be routed based on the routing field value to the relevant partition (using the routing field hashcode to calculate the the target partition).<br>
-- The `read` operation will do the same by routing the operation to the relevant partition.<br>
-- The `writeMultiple` will generate an entries bucket per partition for all entries that should be placed within the same partition and perform a parallel write to all relevant partitions.<br>
-- The `readMultiple` and `clear` operations will access all cluster partitions in a map-reduce fashion in case the query/template routing value is not specified.<br>
-- The `execute` operation will route the `Task` to the relevant partition based on the routing value.<br>
+A clustered proxy is a smart proxy that performs operations against the entire cluster when needed.
+
+- The `write` operation will be routed based on the routing field value to the relevant partition (using the routing field hashcode to calculate the the target partition).
+- The `read` operation will do the same by routing the operation to the relevant partition.
+- The `writeMultiple` will generate an entries bucket per partition for all entries that should be placed within the same partition and perform a parallel write to all relevant partitions.
+- The `readMultiple` and `clear` operations will access all cluster partitions in a map-reduce fashion in case the query/template routing value is not specified.
+- The `execute` operation will route the `Task` to the relevant partition based on the routing value.
 - The `execute` operation will route the `DistributedTask` to all partitions if no routing value been specified or to a specific partitions in case a routing value been specified.
  
 
@@ -33,7 +34,7 @@ The decision of working directly with a cluster member or against the whole clus
 
 You can use the `clustered` property to control this behavior or use the API to use a non-clustered embedded proxy to create a clustered proxy. This allows the collocated business logic to access the entire cluster to perform cluster wide operations. Clustered and Non-Clustered proxies may be used with a [Task](../dev-java/task-execution-overview.html), [Service](../dev-java/executor-based-remoting.html), [Notify Container](../dev-java/notify-container-overview.html) , [Polling Container](../dev-java/polling-container-overview.html) and any other Collocated business logic.
 
-# How to Create a Clustered Proxy?
+# Creating a Clustered Proxy
 You may use Spring based configuration or API to create a Clustered Proxy.
 
 ## Using Spring
@@ -45,7 +46,7 @@ When using a Spring based `pu.xml` to construct the [GigaSpace](../dev-java/the-
 <os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/>
 ```
 
-## Using API
+## Using an API
 The `GigaSpace.getClustered()` method allows you to get a cluster wide proxy from a non-clustered proxy. In such a case the `@GigaSpaceContext` should be used to inject the non-clustered `GigaSpace` bean or the `@TaskGigaSpace` when executing a `Task` that is invoked at the space side.
 
 Another option is to use the `GigaSpaceConfigurer`:
@@ -96,17 +97,20 @@ gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
 }
 ```
 
-# Why Would I want a Clustered Proxy?
+# Why Do I @ant a Clustered Proxy?
+
 A clustered proxy provides you access to the entire cluster rather than a specific partition. Once you will need to read/write/take/clear/execute against the entire cluster you must use a clustered proxy.
 
 # Performance Considerations of a Clustered Proxy
+
 With a remote client, serialization and network activity will impact the performance when writing/reading data. With a collocated non-clustered proxy serialization and network activity will not happen when the client code interacts with the embedded space so these should not be considered, but they will be considered when the embedded space has a backup pair. Here the replication activity will be impacted by the serialization and network activity. Still, this would be a single network hop rather than two when having a remote client.
 
-# Protective Mode Exception when using a Non-Clustered Proxy
+# Protective Mode Exception when Using a Non-Clustered Proxy
 
 To protect a user using a non-clustered proxy from writing or updating objects using a wrong routing field value, GigaSpaces runs by default in Protective Mode. This will throw the `ProtectiveModeException` and block users from getting into such scenarios. You can turn off this behavior by using the following: `com.gs.protectiveMode.wrongEntryRoutingUsage=false`.
 
 The `com.gigaspaces.client.protective.ProtectiveModeException` is thrown when:
+
 - Writing a new object using a wrong routing field with a non-clustered proxy.
 - Changing/Updating an existing object modifying its routing field to a different value which doesn't match the partition it resides in.
 
@@ -116,11 +120,12 @@ The error message looks like this:
 Exception in thread "main" com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - the routing value in the written entry of type 'com.test.Data' does not match this space partition id. The value within the entry's routing property named 'id' is 1 which matches partition id 2 while current partition id is 1. Having a mismatching routing value would result in a remote client not being able to locate this entry as the routing value will not match the partition the entry is located. (you can disable this protection, though it is not recommended, by setting the following system property: com.gs.protectiveMode.wrongEntryRoutingUsage=false)
 
 
-# How to use both a Clustered and Non-clustered Proxies ?
+# Using Both Clustered and Non-clustered Proxies
 
 There are scenarios where a collocated component (Remote Service, Task, Event Container) will have both a clustered proxy and a non-clustered embedded proxy. The clustered proxy will be used to interact with the entire cluster where the non-clustered embedded proxy will be used to bootstrap the space and interact only with the local partition.
 
 ## Example
+
 With our examples below we will use this simple Space Class:
 
 ```java
@@ -145,7 +150,7 @@ this.id = id;
 When there is no explicit `@SpaceRouting` declared, the method annotated as the `@SpaceId` is used as the `@SpaceRouting` method.
 {{%/note%}}
 
-## A Remote Service Usage of a Clustered and a Non-Clustered Proxy
+## Remote Service Usage of a Clustered and a Non-Clustered Proxy
 
 With this example the `pu.xml` includes the following:
 
@@ -262,7 +267,7 @@ Service call - routing 1 partition 2 gigaSpaceRemote - total visible objects:2
 Service call - routing 1 partition 2 gigaSpaceEmbed - total visible objects:1
 ```
 
-## A DistributedTask Usage of a Clustered and a Non-Clustered Proxy
+## DistributedTask Usage of a Clustered and a Non-Clustered Proxy
 
 Our `DistributedTask` implements [ClusterInfoAware](../dev-java/obtaining-cluster-information.html). This allows it to be injected with the `ClusterInfo` that provides information about the cluster topology and the local partition ID. Here is how the `DistributedTask` looks:
 
@@ -353,7 +358,7 @@ From Task Execute - partition 1 gigaSpaceRemote - total visible objects:2
 From Task Execute - partition 2 gigaSpaceRemote - total visible objects:2
 ```
 
-## Event Container Usage of Clustered and Non-Clustered Proxy
+## Event Container Usage of a Clustered and a Non-Clustered Proxy
 
 With this example the `pu.xml` includes the following:
 
@@ -444,7 +449,7 @@ Got event! Data [id=1]
 From Notify Container - partition 2 Counting total space objects using a Clustered proxy :1
 ```
 
-# Writing New Objects from a Collocated Business Logic
+# Writing New Objects from Co-located Business Logic
 
 When writing new objects from a collocated business logic with a partitioned space, the routing field must "match" the collocated space instance. See below example loading data into the space using a `DistributedTask` injected with a collocated proxy.
 

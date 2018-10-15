@@ -47,9 +47,7 @@ When a [Processing Unit library](../dev-java/the-processing-unit-structure-and-c
 
 The following diagram illustrates a deployed Processing Unit with 2 partitions and a backup. The Processing Unit includes a Space, polling container and 2 User Beans. The deployed Processing Unit is hosted within 2 GigaSpaces containers.
 
-{{%  section %}}
-![term_sba_artifacts.jpg](/attachment_files/term_sba_artifacts.jpg)
-{{%  /section %}}
+{{%  section %}}![term_sba_artifacts.jpg](/attachment_files/term_sba_artifacts.jpg)
 
  
 **Legend**
