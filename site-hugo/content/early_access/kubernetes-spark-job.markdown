@@ -147,18 +147,19 @@ The following simplified configuration options can be used with the `insightedge
 
 ##### Lookup Locator
 
-The full notation for providing the Space lookup locator is `--conf spark.insightedge.space.lookup.locator=<release name>-<headless service name>, for example `--conf spark.insightedge.space.lookup.locator=testmanager-insightedge-manager-hs`.
+The full notation for providing the Space lookup locator is `--conf spark.insightedge.space.lookup.locator=<release name>-<headless service name>`, for example `--conf spark.insightedge.space.lookup.locator=testmanager-insightedge-manager-hs`.
 
-You can define this information for the insightEdge submit script using the simplified sytax `--conf spark.insightedge.space.manager=<platform manager name>` that adds the configuration property `, for example `--conf spark.insightedge.space.manager=testmanager`
+You can define this information for the insightEdge submit script using the simplified syntax `--conf spark.insightedge.space.manager=<platform manager name>` that adds the configuration property, for example `--conf spark.insightedge.space.manager=testmanager`
 
 ##### Space Name
 
-To provide a different Space name to operate on, add the configuration property: `--conf spark.insightedge.space.name=testspace`.
+The insightedge-submit script now accepts any Space name when running an InsightEdge example in Kubernetes.
 
-For example, the following helm commands will install the following stateful sets:
-testmanager-insightedge-manager, testmanager-insightedge-zeppelin, testspace-insightedge-space-*\[i\]*.
+To provide a Space name for the script, add the configuration property: `--conf spark.insightedge.space.name=<space name>`.
 
-The insightedge submit command will submit the SaveRdd example with the `testspace` and `testmanager` configuration parameters.
+For example, the Helm commands below will install the following stateful sets: `testmanager-insightedge-manager`, `testmanager-insightedge-zeppelin`, `testspace-insightedge-space-*\[i\]*`
+
+The InsightEdge submit command will submit the SaveRDD example with the `testspace` and `testmanager` configuration parameters.
 
 ```bash
 $ helm install insightedge/ --name testmanager --set space.enabled=false

@@ -143,16 +143,3 @@ When the entire system crashes, it boots itself either from the long-term persis
 
 In a disaster recovery setup, this type of event can happen only when both sites go down at the same time.  In this case, the system recovers using the data that was last updated in the long-term storage.
 
-# Additional Resources
-
-
-{{%exurl "NoCAP" "http://natishalom.typepad.com/nati_shaloms_blog/2010/10/nocap.html" %}}<br>
-
-{{%exurl "NoCAP - Part II Availability and Partition tolerance" "http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-ii-availability-and-partition-tolerance.html" %}}<br>
-
-{{%exurl "NoCAP - Part III - GigaSpaces clustering explained" "http://natishalom.typepad.com/nati_shaloms_blog/2010/11/nocap-part-iii-gigaspaces-clustering-explained.html" %}}<br>
-
-{{%exurl "Data Grid Clustering" "http://www.slideboom.com/presentations/615477/GigaSpaces_HA" %}}
-
-
-
