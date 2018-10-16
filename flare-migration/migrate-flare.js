@@ -22,6 +22,10 @@ var terms = [{
     "replace": '<span class="tc-italic">$1</span>'
   },
   {
+    "find": /&rsquo;/g,
+    "replace": "'"
+  },
+  {
     "find": /&(\w{2}quo|quot);/g,
     "replace": '"'
   },
