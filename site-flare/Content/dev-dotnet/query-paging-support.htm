@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Paging Support</h1>
+  
+
+<p>In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/#readMultiple-T-">readMultiple</a> overloads in <code>GigaSpace</code>. However, if there are lots of matching entries, you may encounter several problems:</p>
+
+<ul>
+<li>Memory usage - Both the server and client need to allocate enough memory for the entire result set.</li>
+<li>Latency - Since all the results are returned in one bulk, the client must wait until the final result arrives before it can process the first one.</li>
+</ul>
+
+<p>A better approach is to create an iterator that iterates over the matching entries one at a time. Under the hood, the server returns results in batches, and when the client's buffer is exhausted the next batch is implicitly returned from the server.</p>
+
+<div class="tc-admon-note">
+  <p class="tc-admon-title">GSIterator</p>
+  <p>This page describes the new space iterator which is intended to replace the old <code>GSIterator</code> starting 10.2. Information about the old GSIterator is available <a href="./query-paging-support-old.htm/">here</a>.</p>
+</div>
+
+<h1 id="usage">Usage</h1>
+
+<p>Use the <code>GetSpaceIterator(template)</code> to create the iterator. Example:</p>
+
+<pre><code class="language-java">    // Find and print all persons who are older than 21:
+    foreach (var person in spaceProxy.GetSpaceIterator&lt;Person&gt;(new SqlQuery&lt;Person&gt;("Age &gt; 21")))
+    {
+      Console.WriteLine("Id: " + person.Id + ", Age: " + person.Age);
+    }
+</code></pre>
+
+<h2 id="transactions">Transactions</h2>
+
+<p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template will not be included as part of the matched set.</p>
+
+<h1 id="limitations">Limitations</h1>
+
+<h3 id="complex-queries">Complex queries</h3>
+
+<p>The space iterator only supports simple SQL queries. For more information about the differences between simple and complex queries see <a href="./query-sql.htm/#SimpleQueries">simple SQL queries</a>.</p>
+
+</body>
+</html>

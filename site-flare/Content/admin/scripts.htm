@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Scripts</h1>
+  
+
+<p>The <code>&lt;XAP root&gt;/bin</code> folder includes the following scripts that can be used to manage and monitor service grid components and applications in runtime.</p>
+
+<h1 id="general-scripts">General Scripts</h1>
+
+<table>
+<thead>
+<tr>
+<th align="left">Script</th>
+<th align="left">Description</th>
+<th align="left">Open Source</th>
+<th align="left">XAP Enterprise</th>
+<th align="left">InsightEdge Enterprise</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">insightedge</td>
+<td align="left">Starts the InsightEdge Command Line Interface (CLI).</td>
+<td align="left">✔</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">setenv</td>
+<td align="left">Configure the settings for the <a href="../dev-java/common-environment-variables.htm/">Common Environment Variables</a>.</td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">setenv-overrides</td>
+<td align="left">Use this script to override default settings in the setenv script.</td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">xap</td>
+<td align="left">The XAP Command Line Interface (CLI).</td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">gs</td>
+<td align="left">The legacy Gigaspaces CLI.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">gs-agent</td>
+<td align="left">Starts the Grid Service Agent.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">gs-ui</td>
+<td align="left">Starts the GigaSpaces Management Center.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">gs-webui</td>
+<td align="left">Starts the Web Management Console.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+<td align="left">✔</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="advanced-scripts">Advanced Scripts</h1>
+
+<p>In addition to the scripts listed above, the <code>bin</code> folder (in both the XAP and InsightEdge commercial editions) contains additional scripts in the <span class="tc-bold">advanced_scripts.zip</span> folder, which are only provided to maintain backwards compatibility with earlier versions of XAP.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Script</th>
+<th align="left">Description</th>
+<th align="left">Open Source</th>
+<th align="left">Enterprise</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">esm</td>
+<td align="left">Starts the Elastic Service Manager.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">gsc</td>
+<td align="left">Starts a Grid Service Container.<br/>Instead of this script, start a GSC as described in <a href="./admin-service-grid-container-start.htm/">Managing Containers</a>.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">gsm</td>
+<td align="left">Starts a Grid Service Manager.<br/>Instead of this script, start a XAP Manager as described in <a href="./admin-service-grid-agent.htm/">Managing the Grid Service Agent</a>.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">gsm_nolus</td>
+<td align="left">Starts a Grid Service Manager without a Lookup Service.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">gs-memcached</td>
+<td align="left">Starts a standalone, unmanaged instance of a <a href="../dev-java/memcached-api.htm/">Memcached API</a> listener.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">lookupbrowser</td>
+<td align="left">Used for special debug scenarios to inspect the Lookup Service.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">platform-info</td>
+<td align="left">Prints GigaSpaces version info.<br/>Instead of this script, ise the <code>xap --version</code> command in the CLI.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">pu-instance</td>
+<td align="left">Runs a standalone Processing Unit.<br/>Instead of this script, use the <code>xap pu run</code> command in the CLI.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">startJiniLUS</td>
+<td align="left">Starts a Lookup Service.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+
+<tr>
+<td align="left">startJiniTX_Mahalo</td>
+<td align="left">Starts an instance of the distributed transaction manager.</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

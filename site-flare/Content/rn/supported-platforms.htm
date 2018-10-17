@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Supported Platforms</h1>
+  
+
+<h1 id="requirements">Requirements</h1>
+
+<p>GigaSpaces InsightEdge and XAP are implemented using Java, and require the following:</p>
+
+<ul>
+<li>Java version 8 or higher</li>
+<li>Any operating system that is supported by Java (for example Linux/Unix, Microsoft Windows, and Apple Mac OS/X)</li>
+</ul>
+
+<p>XAP.NET requires <a href="http://msdn.microsoft.com/en-us/vstudio/aa496123">Microsoft .NET Framework 3.5</a> or later. Additional information is provided in the <a href="../dev-dotnet/installation-overview.htm/">Installation</a> section of the <a href="../dev-dotnet">XAP.NET Guide</a>.</p>
+
+<p>For information on VMWare support, refer to the <a href="vmware-guidelines.htm/">VMWare guidelines</a>.</p>
+
+<h1 id="limitations">Limitations</h1>
+
+<p>The following issues have been encountered in specific use cases:</p>
+
+<ul>
+<li>SUSE-10 Linux Enterprise Service Pack 3 has bugs that make the OS network layer unreliable. Do not use this operating system with GigaSpaces products.</li>
+<li>Java 8: In these versions, the behavior of the multicast operations regarding IPv6 has changed, and this can cause long initial connection times. To mitigate this issue, add "-Djava.net.preferIPv4Stack=true' to the JVM arguments.</li>
+</ul>
+
+<div class="tc-admon-note">
+  
+  <p>Java 9 is not currently supported with this version of InsightEdge and XAP due to changes in the Java platform. Java 9 is planned to be supported in a future release.</p>
+</div>
+
+<h1 id="lifecycle-and-end-of-life-policy">Lifecycle and End-of-Life Policy</h1>
+
+<h2 id="java">Java</h2>
+
+<p>Refer to the <a href="http://www.oracle.com/technetwork/java/eol-135779.htm/">Oracle Java SE Support Roadmap</a> for the latest information.</p>
+
+<h2 id="xap">XAP</h2>
+
+<p>Refer to the <a href="/release_notes/lifecycle.htm/">JVM &amp; Third-Party End-Of-Life Policy</a> for the latest updates.</p>
+
+</body>
+</html>

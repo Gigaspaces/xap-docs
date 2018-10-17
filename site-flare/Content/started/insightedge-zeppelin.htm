@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Using the InsightEdge Web Notebook</h1>
+  
+
+<p>This section describes how to use the interactive Apache Zeppelin Web Notebook.</p>
+
+<h1 id="starting-the-web-notebook">Starting the Web Notebook</h1>
+
+<p>The Web Notebook can be started in any of the following ways:</p>
+
+<ul>
+<li>Rn the <code>insightedge demo</code> command; the Web Notebook is started automatically at <a href="http://localhost:9090" target="_blank" >localhost:9090</a>.</li>
+<li>Start the Web Notebook manually at any time by running <code>zeppelin.sh/cmd</code> from the <code>&lt;XAP HOME&gt;/insightedge/zeppelin/bin</code> directory.</li>
+</ul>
+
+<p>When Zeppelin is running, you can browse to <a href="http://localhost:9090" target="_blank" >localhost:9090</a> and start exploring the pre-built notebooks:</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/Zeppelin_examples_100.png" alt="image" /></p>
+</div>
+
+<h1 id="configuring-the-web-notebook">Configuring the Web Notebook</h1>
+
+<p>InsightEdge-specific settings can be configured in the <span class="tc-italic">Interpreter</span> menu -&gt; <span class="tc-italic">Spark</span> interpreter. Important settings include the following properties for connecting Spark with the data grid:</p>
+
+<ul>
+<li><code>insightedge.group</code></li>
+<li><code>insightedge.locator</code></li>
+<li><code>insightedge.spaceName</code></li>
+</ul>
+
+<p>These properties are transparently translated into <code>InsightEdgeConfig</code> to establish a connection between Spark and the data grid.</p>
+
+<div class="tc-admon-refer">
+  
+  <p>Refer to <a href="../dev-java/insightedge-connecting.htm/">Connecting to the Data Grid</a> for more details about the connection properties.</p>
+</div>
+
+<h1 id="using-the-web-notebook">Using the Web Notebook</h1>
+
+<p>The Web Notebook comes with sample notes. We recommend that you review them, and then use them as a template for your own notes. There are several things you should take into account.</p>
+
+<ul>
+<li><p>The data grid model can be declared in a notebook using the <code>%define</code> interpreter:</p>
+
+<pre><code class="language-scala">%define
+package model.v1
+
+import org.insightedge.scala.annotation._
+import scala.beans.{BeanProperty, BooleanBeanProperty}
+
+case class Product(
+    @BeanProperty @SpaceId var id: Long,
+    @BeanProperty var description: String,
+    @BeanProperty var quantity: Int,
+    @BooleanBeanProperty var featuredProduct: Boolean
+    ) {
+    def this() = this(-1, null, -1, false)
+}
+</code></pre>
+
+<pre><code class="language-scala">%spark
+import model.v1._
+</code></pre></li>
+
+<li><p>You can  load external .JARs from the Spark interpreter settings, or with the <code>z.load("/path/to.jar")</code> command:</p>
+
+<pre><code class="language-scala">%dep
+z.load("./insightedge/examples/jars/insightedge-examples.jar")
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><pre><code>For more details, refer to &lt;a href="https://zeppelin.apache.org/docs/latest/interpreter/spark.htm/#dependency-management" target="_blank" &gt;Zeppelin Dependency Management&lt;/a&gt;.
+</code></pre>
+</p>
+</div></li>
+
+<li><p>You must load your dependencies before you start using the <code>SparkContext</code> (<code>sc</code>) command. If you want to redefine the model or load another .JAR after <code>SparkContext</code> has already started, you must reload the Spark interpreter.</p></li>
+</ul>
+
+</body>
+</html>

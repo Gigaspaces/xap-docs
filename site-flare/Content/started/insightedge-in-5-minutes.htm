@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>InsightEdge in 5 Minutes</h1>
+  
+
+<p>This topic describes how to start an InsightEdge using the embedded demo, in order to get you up and running as quickly as possible. The demo is launched via the GigaSpaces command line interface (CLI) tool. The InsightEdge demo runs in standalone mode and creates the following environment on your local machine:</p>
+
+<ul>
+<li>Spark Master</li>
+<li>Spark Worker</li>
+<li>Apache Zeppelin</li>
+<li>Data grid comprised of a Space in high availability mode (two primary partitions, each with a single backup partition)</li>
+</ul>
+
+<h1 id="initializing-the-insightedge-application">Initializing the InsightEdge Application</h1>
+
+<p>It takes just a few simple steps to start InsightEdge using the CLI.</p>
+
+<p><span class="tc-bold">To begin working with InsightEdge:</span></p>
+
+<ol>
+<li>Download the InsightEdge package from the GigaSpaces website and install it, as described in <a href="./installation.htm/">Downloading and Installing</a>.</li>
+<li>From the &lt;INSIGHTEDGE_HOME&gt; directory, open the <code>xap-license.txt</code> file and apply the "tryme" license key, which will give you access to the InsightEdge features and functionality for 24 hours.</li>
+</ol>
+
+<pre><code># License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
+tryme
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>For more information about InsightEdge license options, see the <a href="./license-key.htm/">Product License</a> page.</p>
+</div>
+
+<ol>
+<li><p>Navigate to the following directory and start the CLI:
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux/Mac" style="padding:10px"><pre><code>&lt;INSIGHTEDGE_HOME&gt;/bin
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code>&lt;INSIGHTEDGE_HOME&gt;\bin
+</code></pre>
+</div>
+</div></li>
+
+<li><p>Run the following command in the CLI:
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux/Mac" style="padding:10px"><pre><code>./insightedge demo
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code>insightedge demo
+</code></pre>
+</div>
+</div></li>
+</ol>
+
+<p>The InsightEdge environment includes a number of components, and may take up to a minute to finish initializing.</p>
+
+<p>The Web Management Console is automatically launched in the local machine's default web browser at the following address: <code>localhost:8099</code>. It opens to the host screen, which shows the four containers that were created by the demo (two partitions with one backup each).</p>
+
+<div class="tc-admon-note">
+  
+  <p>For information on how to use the Web Management Console and other administration tools to view the XAP core components (the data fabric within InsightEdge), see the <a href="../admin/admin-spaces-pu.htm/">Administering Spaces and Processing Units</a> topics in the Administration section.</p>
+</div>
+
+<h1 id="apache-zeppelin-notebook-examples">Apache Zeppelin Notebook Examples</h1>
+
+<p>After you get InsightEdge up and running, you can use the Apache Zeppelin web notebook to explore the examples that are provided with the product.</p>
+
+<p><span class="tc-bold">To access the examples in the web notebook:</span></p>
+
+<ol>
+<li>Navigate to <code>localhost:9090</code> in your web browser.</li>
+<li>The InsightEdge package comes with three Getting Started notebooks; InsightEdge Basics, InsightEdge Geospatial API, and InsightEdge Python Example. Open any of these examples and click <span class="tc-bold">Play</span> to run the paragraph it contains.
+<div class="tc-admon-note">
+  
+  <p>If you see an <span class="tc-bold">Interpreter Binding</span> setting in the notebook main window, click <span class="tc-bold">Save</span> (don't deselect any interpreters or the examples won't work).</p>
+</div></li>
+</ol>
+
+<h1 id="what-s-next">What's Next?</h1>
+
+<ul>
+<li>For more infomation about the Apache Zeppelin Web Notebook, see <a href="insightedge-zeppelin.htm/">Using the InsightEdge Web Notebook</a>.</li>
+<li>To run the examples on your local InsightEdge environment, see <a href="insightedge-examples.htm/">Running InsightEdge IDE Examples</a>.</li>
+<li>To create your first InsightEdge application, see <a href="insightedge-first-app.htm/">Developing Your First InsightEdge Application</a>.</li>
+<li>To learn more about the InsightEdge CLI script, use the <code>--help</code> option.</li>
+</ul>
+
+</body>
+</html>

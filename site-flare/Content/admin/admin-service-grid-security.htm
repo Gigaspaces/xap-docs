@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Accessing a Secured Service Grid</h1>
+  <p>When security is in place, the administration tools require credentials to securely access and operate the secured components. Access is granted to authenticated users, while operations are restricted based on the granted permission.
+For more information, refer to the <a href="../started/xap-tutorial-part10.htm/">Security</a> page in the <a href="../started/index.htm/">Getting Started</a> guide (under the <a href="../started/xap-basics.htm/">XAP Basics</a> section).</p>
+
+<p><span class="tc-bold">To access a secured service grid:</span></p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Command Line Interface" style="padding:10px"><p><span class="tc-italic">Command:</span></p>
+
+<p><code>xap --username=&lt;user name&gt; --password=&lt;password&gt; &lt;command&gt;</code></p>
+
+<p><span class="tc-italic">Example:</span></p>
+
+<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap --username=user --password=pass  host list
+</code></pre>
+
+<p><span class="tc-italic">Parameters and Options:</span></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Item</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Option</td>
+<td align="left">username</td>
+<td align="left">The user name.</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">password</td>
+<td align="left">The password.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div title="REST Manager API" style="padding:10px"><p>When security is enabled, the REST Manager API performs basic authentication and checks if the user has sufficient privileges
+to execute the operation.</p>
+
+<p>For more information about using the REST Manager API in a secured environment, refer to the <a href="./admin-rest-manager-api.htm/">REST Manager API</a> introductory page.</p>
+</div>
+
+<div title="Web Management Console" style="padding:10px"><p>If you configured your XAP instance to run in secure mode using the <code>-Dcom.gs.security.enabled=true</code> property, you will see the following login window when the Web Management Console is started:</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/web-console/login-12.3.png" alt="xap-login-inline.png" /></p>
+</div>
+
+<p>For more information about how to configure the Web Management Console for use in a secured environment, refer to the <a href="./tools-web-ui.htm/">Web Management Console</a> introductory page.</p>
+</div>
+
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
+</div>
+
+<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a> topics in the Developer Guide.</p>
+</div>
+</div>
+
+</body>
+</html>

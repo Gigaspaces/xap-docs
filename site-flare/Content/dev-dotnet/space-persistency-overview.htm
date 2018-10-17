@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Space Persistency</h1>
+  
+
+<p>The Space Persistency is provided via a component called <span class="tc-bold">External Data Source</span>. This component provides persistency capabilities for the space architecture to interact with a persistency layer:</p>
+
+<ul>
+<li>Pre-loading data from the persistency layer and lazy load data from the persistency (available when the Space is running in LRU mode).</li>
+<li>Delegating changes within the Space to the persistency layer.</li>
+</ul>
+
+<p>XAP Space Persistency provides the <code>AbstractExternalDataSource</code> class, which can be extended and then used to load and store data into an existing data source. Data is <a href="./space-persistency-initial-load.htm/">loaded from the data source</a> during Space initialization, and from then onwards the application works directly with the Space.</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/data-grid-initial-loadNew.jpg" alt="data-grid-initial-loadNew.jpg" /></p>
+</div>
+
+<p>Persistency can be configured to run in Synchronous or Asynchronous mode:</p>
+
+<ul>
+<li>Synchronous Mode - see <a href="./direct-persistency.htm/">Direct Persistency</a></li>
+</ul>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/data-grid-sync-persist.jpg" alt="data-grid-sync-persist.jpg" /></p>
+</div>
+
+<ul>
+<li>Asynchronous Mode - see  <a href="./asynchronous-persistency-with-the-mirror.htm/">Asynchronous Persistency with the Mirror</a></li>
+</ul>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/data-grid-async-persist.jpg" alt="data-grid-async-persist.jpg" /></p>
+</div>
+
+<div class="tc-admon-note">
+  <p class="tc-admon-title">Info</p>
+  <p>The difference between Synchronous and Asynchronous persistency mode is the way that data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the <code>ExternalDataSource</code> to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a <span class="tc-bold">reliable</span> asynchronous manner using the mirror Service as a write-behind activity. This mode provides maximum performance.</p>
+</div>
+
+<h1 id="space-persistency-api">Space Persistency API</h1>
+
+<p>The Space Persistency API contains an abstract class that should be extended in order to customize the Space persistency functionality. The ability to customize the Space persistency functionality allows XAP to interact with any external application or data source.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Client Call</th>
+<th align="left">External Data Source Call</th>
+<th align="left">Cache Policy Mode</th>
+<th align="left">EDS Usage Mode</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>Write</code>, <code>Change</code>, <code>Take</code>, <code>WriteMultiple</code>, <code>TakeMultiple</code>, <code>Clear</code></td>
+<td align="left"><code>ExecuteBulk</code></td>
+<td align="left">ALL_IN_CACHE, LRU</td>
+<td align="left">read-write</td>
+</tr>
+
+<tr>
+<td align="left"><code>Transaction Commit</code></td>
+<td align="left"><code>ExecuteBulk</code></td>
+<td align="left">ALL_IN_CACHE, LRU</td>
+<td align="left">read-write</td>
+</tr>
+
+<tr>
+<td align="left"><code>Read</code>, <code>ReadMultiple</code>, <code>ReadById</code>, <code>ReadByIds</code>, <code>Count</code></td>
+<td align="left"><code>GetEnumerator</code></td>
+<td align="left">LRU</td>
+<td align="left">read-write,read-only</td>
+</tr>
+
+<tr>
+<td align="left"><code>TakeMultiple</code></td>
+<td align="left"><code>GetEnumerator</code></td>
+<td align="left">ALL_IN_CACHE, LRU</td>
+<td align="left">read-write</td>
+</tr>
+</tbody>
+</table>
+
+<p>For detailed API information, refer to <a href="./hibernate-space-persistency.htm/">External Data Source API</a>.</p>
+
+<p>XAP comes with a built-in implementation of <code>AbstractExternalDataSource</code> called <a href="./hibernate-space-persistency.htm/">NHibernate Space Persistency</a>.</p>
+
+<p>Refer to <a href="./space-persistency-initial-load.htm/">Space Persistency Initial Load</a> for information on how to to allow the Space to pre-load its data.</p>
+
+</body>
+</html>

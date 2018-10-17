@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Multi Site LAN Replication</h1>
+  
+
+<p>Multiple Space replication is the ability to replicate state between different deployed Spaces (different cluster of Space instances), where each of the Space instances of each of the Spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, you must have a direct network connection between all the Space instances of all of the clusters (or at least a connection between all Space instances to the targeted Space gateway machine). Replicating between Spaces in the same network is done using exactly the same mechanisms and gateway described in <a href="./multi-site-replication-overview.htm/">Multi-Site Replication over the WAN</a>. However, the method is simplified because much of the configuration and some of the components are not needed, as the Spaces reside in the same network.</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_use_cases.jpg" alt="wan_use_cases.jpg" /></p>
+</div>
+
+<h2 id="gateway-features">Gateway Features</h2>
+
+<p>The XAP Gateway features the following:</p>
+
+<ul>
+<li>Total data consistency, ordering with no data loss - Due to its architecture, the gateway is stateless and data loss does not happen. Transactions in a source Space are replicated in atomic manner and in the correct order to the remote Spaces.</li>
+<li>Conflict resolution support - XAP can identify data conflicts and allow you to decide to override the local copy with the remote replicated copy, reject the remote replicated copy, or merge the local and the remote copy.</li>
+<li>Monitoring and Management - The gateway exposes statistics on replication activity to remote Spaces.</li>
+<li>Multi-Master / Master-Slave support - The gateway supports all popular replication topologies.</li>
+<li>Space bootstrapping - After a Space starts, it can reload all its data or just specific data from a different Space without introducing data consistency problems. This functionality can also be used for hot upgrading purposes when a newer version of the application is started and the initial state is bootstrapped from an existing cluster.</li>
+<li>Data filtering - The gateway replication can have a custom plug-in that allows users to filter/modify data before and after it is replicated at each source/target Space.</li>
+<li>Changing replication topology in runtime - Remote Spaces can be added or removed without requiring system shutdown.</li>
+</ul>
+
+<div class="tc-admon-note">
+  
+  <p>If each Space resides on a different network and there is no network connectivity between all the Space instances of all the Spaces, read <a href="./multi-site-replication-overview.htm/">Multi-Site Replication over the WAN</a> to
+understand how to establish replication between different networks.</p>
+</div>
+
+<h1 id="supported-topologies">Supported Topologies</h1>
+
+<p>This page provides two sample multi-space replication topologies. These are not the only supported topologies. In fact, the permutations of topologies are quite extensive, and we've chosen to demonstrate two of the more common topologies which can also serve as a basis for other topologies as required by the user:</p>
+
+<ul>
+<li>Multi-master with two spaces, where each space is active and updates its subset of the data.</li>
+<li>Master-slave, where only one space actually updates the data while the rest either serve as a backup or use it in read only mode.</li>
+</ul>
+
+<p>For both of the above topologies, replication is done in a similar way: Each space is replicating the relevant data to its target space(s) via the target space gateway which routes the data to the target space. The data is being replicated asynchronously in a reliable mode, which means that even if a primary space instance fails on the source space, the backup space instance which replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary space instance. This is very similar to the <a href="./asynchronous-persistency-with-the-mirror.htm/">Mirror Service</a> replication scheme. The gateway is discussed in full below.</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/gateway_lan_how_it_works.jpg" alt="gateway_lan_how_it_works.jpg" /></p>
+</div>
+
+<p>Replication may use Hub &amp; Spoke, Ring, Hierarchical or Pass-Through architecture:</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_topologies.jpg" alt="wan_topologies.jpg" /></p>
+</div>
+
+<h1 id="configuring-a-space-with-gateway-targets">Configuring a Space With Gateway Targets</h1>
+
+<p>A replication from one space to the another is basically a replication from a space to a target gateway. The source space is decoupled from the target space. Instead, it is configured to replicate to target space's gateway, the gateway is in charge of dispatching the incoming replication packets to the relevant target space. Each space needs to be made aware of the target gateways to which it replicates the data, by specifying the target gateways in the source space configuration.</p>
+
+<p>From the space's perspective, a replication from one space to a target gateway is like any other replication channel (e.g mirror, backup...) and the backlog and confirmation state of the replication channel to the target gateway is kept in the source space. As a result, the gateway is stateless as far as holding the replication state is concerned, and only the source space is in charge of the replication progress and state. Each gateway has a unique logical name, in our cases will demonstrate with city names assuming there is a VPN or LAN between the spaces (e.g. "London" or "New York"). This name is used by remote spaces that are replicating to this space via its gateway.</p>
+
+<p>The following snippet shows how to configure a space that resides in New York to replicate to two other spaces, one in London and one in Hong Kong:</p>
+
+<pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+
+&lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
+  &lt;os-gateway:target name="LONDON"/&gt;
+  &lt;os-gateway:target name="HONGKONG"/&gt;
+&lt;/os-gateway:targets&gt;
+</code></pre>
+
+<p>Each of replication channel to the gateways can be configured with more parameters, such parameters can applied to all gateways or specifically per gateway, for example:</p>
+
+<pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+
+&lt;os-gateway:targets id="gatewayTargets"
+  local-gateway-name="NEWYORK" bulk-size="1000"
+  max-redo-log-capacity="1000000"&gt;
+  &lt;os-gateway:target name="LONDON" /&gt;
+  &lt;os-gateway:target name="HONGKONG" bulk-size="100"/&gt;
+&lt;/os-gateway:targets&gt;
+</code></pre>
+
+<p>Here we have specified a global bulk size of 1000 but have specifically overridden it in the replication channel to Hong Kong with 100, and have a global maximum redo log capacity for both targets of 1000000.</p>
+
+<div class="tc-admon-refer">
+  
+  <p>For more details about all the available configuration elements of the space gateway targets please refer to the <a href="./configuring-space-gateway-targets.htm/">Configuring Space Gateway Targets</a> section.</p>
+</div>
+
+<p><span class="tc-bold">Use the <code>partitioned</code> cluster schema</span>
+You should have the <code>partitioned</code> cluster schema used with the space to enable the replication to the Gateway.
+If you are not interested in having backups running but have the replication to the Gateway running, you should have ZERO as the number of backups. See below example of an sla.xml configuration you could use in such a case:</p>
+
+<pre><code class="language-xml">&lt;os-sla:sla cluster-schema="partitioned" number-of-instances="1" number-of-backups="0"&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+
+<p>Note that when there are no backups running any failure of the primary might cause a loss of data.</p>
+
+<h1 id="configuring-and-deploying-the-gateway">Configuring and Deploying the Gateway</h1>
+
+<p>A gateway needs to be deployed as a processing unit per space (though, one gateway processing unit can be used to replicate into more than one space), and it is composed by the sink component which is in charge of dispatching incoming replication from remote spaces into the targeted space.</p>
+
+<h2 id="gateway-basic-configuration">Gateway Basic Configuration</h2>
+
+<p>Following the above example, here we demonstrate how to configure the gateway processing unit in New York, which needs to send replication to London and Hong Kong and also receive replication from the other spaces.</p>
+
+<pre><code class="language-xml">&lt;os-gateway:sink id="sink"
+  local-gateway-name="NEWYORK"
+  local-space-url="jini://*/*/myNYSpace"&gt;
+  &lt;os-gateway:sources&gt;
+    &lt;os-gateway:source name="LONDON" /&gt;
+    &lt;os-gateway:source name="HONGKONG" /&gt;
+  &lt;/os-gateway:sources&gt;
+&lt;/os-gateway:sink&gt;
+</code></pre>
+
+<h2 id="gateway-and-the-mirror-service">Gateway and the Mirror Service</h2>
+
+<p>A gateway and a <a href="./asynchronous-persistency-with-the-mirror.htm/">Mirror Service</a> are two different components which can co-exist together without any effect on each other. A gateway is just another reliable asynchronous target. Due to this fact, we will not discuss or demonstrate mirror service along side with a gateway because they do not contradict each other or require any special configuration when used in the same space cluster.</p>
+
+<h2 id="gateway-and-distributed-transactions">Gateway and Distributed Transactions</h2>
+
+<p>By default the gateway will preserve distributed transactions atomicity (distributed transactions consolidation), this can be disabled by adding the following property to the space configuration:</p>
+
+<pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
+  &lt;os-core:properties&gt;
+    &lt;props&gt;
+      &lt;prop key="cluster-config.groups.group.repl-policy.processing-type"&gt;
+        global-order
+      &lt;/prop&gt;
+    &lt;/props&gt;
+  &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+
+<p>Distributed transaction consolidation is done by waiting for all the transaction participants data before processing is done by the Sink component.
+In some cases, certain distributed transaction participants' data might be delayed due to network delay or disconnection and therefore may cause delays in replication.
+In order to prevent this potential delay, it is possible to set a timeout parameter which indicates how much time to wait for distributed transactions participants data before processing the data individually for each participant.</p>
+
+<p>It is possible to specify the behavior when processing is split to individual participants upon consolidation failure (timeout or other reasons), the unconsolidated transaction can be either aborted or committed.</p>
+
+<p>Please note that while waiting for the pieces of a distributed transaction to arrive at the sink, replication isn't waiting but keeping the data flow and preventing from conflicts to happen.</p>
+
+<p>The following example demonstrates how to set the timeout for waiting for distributed transaction data to arrive. It is also possible to set the amount of new operations to perform before processing data individually for each participant</p>
+
+<pre><code class="language-xml">&lt;os-gateway:sink id="sink" local-gateway-name="NEWYORK"
+  local-space-url="jini://*/*/myNYSpace"&gt;
+  &lt;os-gateway:sources&gt;
+    &lt;os-gateway:source name="LONDON" /&gt;
+    &lt;os-gateway:source name="HONGKONG" /&gt;
+  &lt;/os-gateway:sources&gt;
+  &lt;os-gateway:tx-support
+     dist-tx-wait-timeout-millis="10000"
+     dist-tx-wait-for-opers="20"
+     dist-tx-consolidation-failure-action="commit"/&gt; &lt;!--or "abort"--&gt;
+&lt;/os-gateway:sink&gt;
+</code></pre>
+
+<p>Distributed transaction participants data will be processed individually if 10 seconds have passed and not all of the participants data  has arrived or if 20 new operations were executed after the distributed transaction.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Attribute</th>
+<th align="left">Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">dist-tx-wait-timeout-millis</td>
+<td align="left">60000 milliseconds</td>
+</tr>
+
+<tr>
+<td align="left">dist-tx-wait-for-opers</td>
+<td align="left">unlimited (-1 = unlimited)</td>
+</tr>
+
+<tr>
+<td align="left">dist-tx-consolidation-failure-action</td>
+<td align="left">commit</td>
+</tr>
+</tbody>
+</table>
+
+<div class="tc-admon-note">
+  
+  <p>Note that by setting the <code>cluster-config.groups.group.repl-policy.processing-type</code> property to <code>global-source</code> all reliable asynchronous replication targets for that space will work in non-distributed transaction consolidation mode (For example, a Mirror would be in-non distributed transaction consolidation mode as well.)</p>
+</div>
+
+<div class="tc-admon-note">
+  
+  <p>Consolidation failure can occur under normal circumstances, if the target gateway is restarted or crashed during the consolidation process. In a case where the transaction was successfully consolidated and executed on the target cluster but the gateway was stopped while sending confirmation to the transaction participants in the source space and some of them have received the confirmation while others have not. In such case, the transaction is actually successfully executed in the target space and by default when the consolidation failure event will occur the unconfirmed part will reach the conflict resolution handler which by default will abort it and the state will remain consistent.</p>
+</div>
+
+<div class="tc-admon-note">
+  
+  <p>Due to the above, setting both <code>dist-tx-wait-timeout-millis</code> and <code>dist-tx-wait-for-opers</code> to unlimited (or very high value) is risky and may cause replication backlog accumulation due to a
+packet which is unconsolidated and waits for consolidation which may never occur.</p>
+</div>
+
+<h1 id="master-slave-topology">Master-Slave Topology</h1>
+
+<p>With this architecture, we have a master-slave topology where all data is being manipulated in one space, and two other spaces are reading the data but not updating it. In other words, the "other spaces" - the slaves - should not replicate data to the other gateways.</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_master_slave.jpg" alt="wan_master_slave.jpg" /></p>
+</div>
+
+<p>In this case, New York's space will be the active space while London and Hong Kong will be the passive spaces. As explained before, being passive does not necessarily means no work is done in these spaces. However, in terms of replication, these spaces should not replicate to the other spaces and usually should not alter data replicated from other spaces because it may cause conflicts.</p>
+
+<p>Like all GigaSpaces Processing Units, the configuration details of each of the above components is placed in a <code>pu.xml</code> file. Here are the contents of the files for each of the components:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  New York Space " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:os-core="http://www.openspaces.org/schema/core"
+  xmlns:os-events="http://www.openspaces.org/schema/events"
+  xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+  xmlns:os-sla="http://www.openspaces.org/schema/sla"
+  xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+    http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+  &lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+
+  &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
+    &lt;os-gateway:target name="LONDON"/&gt;
+    &lt;os-gateway:target name="HONGKONG"/&gt;
+  &lt;/os-gateway:targets&gt;
+&lt;/beans&gt;
+</code></pre>
+</div>
+
+<div title="  London Space " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:os-core="http://www.openspaces.org/schema/core"
+  xmlns:os-events="http://www.openspaces.org/schema/events"
+  xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+  xmlns:os-sla="http://www.openspaces.org/schema/sla"
+  xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+    http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+  &lt;os-core:embedded-space  id="space" space-name="myLondonSpace"/&gt;
+    &lt;!-- No gateway targets needed as this space
+         is not replicating to any gateway--&gt;
+&lt;/beans&gt;
+</code></pre>
+</div>
+
+<div title="  London Gateway " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:os-core="http://www.openspaces.org/schema/core"
+  xmlns:os-events="http://www.openspaces.org/schema/events"
+  xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+  xmlns:os-sla="http://www.openspaces.org/schema/sla"
+  xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring%].xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+    http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+  &lt;os-gateway:sink id="sink" local-gateway-name="LONDON"
+    local-space-url="jini://*/*/myLondonSpace"&gt;
+    &lt;os-gateway:sources&gt;
+       &lt;os-gateway:source name="NEWYORK" /&gt;
+    &lt;/os-gateway:sources&gt;
+  &lt;/os-gateway:sink&gt;
+
+&lt;/beans&gt;
+</code></pre>
+</div>
+
+<div title="  Hong Kong Space " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:os-core="http://www.openspaces.org/schema/core"
+  xmlns:os-events="http://www.openspaces.org/schema/events"
+  xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+  xmlns:os-sla="http://www.openspaces.org/schema/sla"
+  xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+    http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+  &lt;os-core:embedded-space  id="space" space-name="myHKSpace"/&gt;
+    &lt;!-- No gateway targets needed as this space
+         is not replicating to any gateway--&gt;
+&lt;/beans&gt;
+</code></pre>
+</div>
+
+<div title="  Hong Kong Gateway " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:os-core="http://www.openspaces.org/schema/core"
+  xmlns:os-events="http://www.openspaces.org/schema/events"
+  xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+  xmlns:os-sla="http://www.openspaces.org/schema/sla"
+  xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring%].xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+    http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+  &lt;os-gateway:sink id="sink" local-gateway-name="Hong Kong"
+    local-space-url="jini://*/*/myHKSpace"&gt;
+    &lt;os-gateway:sources&gt;
+      &lt;os-gateway:source name="NEWYORK" /&gt;
+    &lt;/os-gateway:sources&gt;
+  &lt;/os-gateway:sink&gt;
+&lt;/beans&gt;
+</code></pre>
+</div>
+</div>
+
+<h1 id="multi-master-topology">Multi-Master Topology</h1>
+
+<p>With this architecture, we will have a multi-master topology where data is being generated and manipulated in all spaces.</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_multi_master.jpg" alt="wan_multi_master.jpg" /></p>
+</div>
+
+<p>We will demonstrate this using two spaces but any number of spaces is supported in the same manner. In a master-slave topology, each space should try to modify different subsets of the data as much as possible because many conflicts can occur if multiple spaces are changing the same space entries at the same time. Such conflict can be resolved using a conflict resolver which will be discussed fully at <a href="./multi-site-conflict-resolution.htm/">Multi-Site Conflict Resolution</a>.</p>
+
+<div class="tc-admon-note">
+  
+  <p>This link refers to multi-site replication, where replication is done indirectly via local gateway delegator to the target gateway sink. However the subject in this context is the same for both cases.</p>
+</div>
+
+<p>With the example below we will have only New York and London as the two active spaces.</p>
+
+<p>Here are the contents of the files for each of the components:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  New York Space " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla"
+        xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+        &lt;os-core:embedded-space  id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+
+        &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
+          &lt;os-gateway:target name="LONDON"/&gt;
+        &lt;/os-gateway:targets&gt;
+
+&lt;/beans&gt;
+</code></pre>
+</div>
+<div title="  New York Gateway " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla"
+        xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+        &lt;os-gateway:sink id="sink" local-gateway-name="NEWYORK"
+           local-space-url="jini://*/*/myNYSpace"&gt;
+          &lt;os-gateway:sources&gt;
+            &lt;os-gateway:source name="LONDON" /&gt;
+          &lt;/os-gateway:sources&gt;
+        &lt;/os-gateway:sink&gt;
+
+&lt;/beans&gt;
+</code></pre>
+</div>
+<div title="  London Space " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla"
+        xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+        &lt;os-core:embedded-space  id="space" space-name="myLondonSpace"
+          gateway-targets="gatewayTargets"/&gt;
+
+        &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="LONDON"&gt;
+          &lt;os-gateway:target name="NEWYORK"/&gt;
+        &lt;/os-gateway:targets&gt;
+
+&lt;/beans&gt;
+</code></pre>
+</div>
+<div title="  London Gateway " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla"
+        xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+        &lt;os-gateway:sink id="sink" local-gateway-name="LONDON"
+          local-space-url="jini://*/*/myLondonSpace"&gt;
+          &lt;os-gateway:sources&gt;
+            &lt;os-gateway:source name="NEWYORK" /&gt;
+          &lt;/os-gateway:sources&gt;
+        &lt;/os-gateway:sink&gt;
+
+&lt;/beans&gt;
+</code></pre>
+</div>
+<div title="  Symmetric Gateway Config " style="padding:10px"><p>In this example, the gateway <code>pu.xml</code> is quite symmetric, the only difference is the local gateway name and the target gateway name. In such cases, it may be more convenient to create a single gateway <code>pu.xml</code> and use place holders to override the relevant properties at deploy time by injecting values for these properties:</p>
+
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla"
+        xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+        &lt;bean id="propertiesConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/&gt;
+
+        &lt;os-gateway:sink id="sink"
+          local-gateway-name="${localGatewayName}"
+          local-space-url="${localSpaceUrl}"&gt;
+          &lt;os-gateway:sources&gt;
+            &lt;os-gateway:source name="NEWYORK" /&gt;
+            &lt;os-gateway:source name="LONDON" /&gt;
+          &lt;/os-gateway:sources&gt;
+        &lt;/os-gateway:sink&gt;
+
+&lt;/beans&gt;
+</code></pre>
+
+<p>In the above we have configured both LONDON and NEWYORK at the sources of the sink, the sink will filter a gateway target and source if they match their local name. Using the above technique may simplify scenarios which are symmetric but it is not recommended when the scenarios are <span class="tc-bold">not</span> symmetric as it can be unnecessarily confusing.</p>
+</div>
+</div>
+
+<h1 id="filtering-replication-between-gateways">Filtering Replication Between Gateways</h1>
+
+<p>In some cases, there can be data that should not be replicated between the spaces but should still be replicated locally to the backup or a mirror service. Hence, specifying the object is not replicated does not fit. Since a replication channel to a gateway is like any other replication channel, a custom <a href="../admin/cluster-replication-filters.htm/">Replication Filter</a> at the source space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
+
+<div class="tc-admon-refer">
+  
+  <p>For full details and example please refer to <a href="./replication-gateway-filtering.htm/">Replication Gateway Filtering</a></p>
+</div>
+
+<div class="tc-admon-note">
+  
+  <p>This link refers to multi-site replication, where replication is done indirectly via local gateway delegator to the target gateway sink. However the subject in this context is the same for both cases.</p>
+</div>
+
+<h1 id="bootstrap-one-space-from-another-space">Bootstrap One Space From Another Space</h1>
+
+<p>Bootstrapping a space from another space is a process in which one space is starting fresh and it is being populated with the data of another space. This can be useful after a very long disconnection where the replication redo-log in the source spaces that replicates to this space was dropped due to breaching capacity limitations, and the disconnected space should start fresh. Other reasons may be an explicit planned downtime due-to some maintenance of one space which lead to a complete system bootstrap once restarted.
+Or bootstrapping a new version of an application where a gateway target is added dynamically to an existing space, and the new space will bootstrap from the existing one and once finished traffic is diverted to the new space.</p>
+
+<div class="tc-admon-refer">
+  
+  <p>For full details of how to enable the bootstrap mechanism refer to <a href="./replication-gateway-lan-bootstrapping-process.htm/">Replication Gateway Bootstrapping Process</a></p>
+</div>
+
+<h1 id="changing-replication-topology-during-runtime">Changing Replication Topology During Runtime</h1>
+
+<p>The topology might change during runtime, for instance a new space can be added and the existing spaces should be familiar with it and start replicating to it and receive replication from it. On the other hand a space can be removed and the existing should stop holding replication backlog for it and drop it from their list of gateway targets.</p>
+
+<div class="tc-admon-refer">
+  
+  <p>For full details of how to add and remove gateway targets during runtime refer to <a href="./changing-multi-site-deployment-during-runtime.htm/">Changing Multi-Site Deployment during Runtime</a></p>
+</div>
+
+<div class="tc-admon-note">
+  
+  <p>This link refers to multi-site replication, where replication is done indirectly via local gateway delegator to the target gateway sink. However the subject in this context is the same for both cases.</p>
+</div>
+
+<h1 id="additional-resources">Additional Resources</h1>
+
+<p><a href="./multi-site-replication-overview.htm/">Multi Site Replication</a></p>
+
+</body>
+</html>

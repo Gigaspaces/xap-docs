@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Consistency Biased</h1>
+  
+
+<p>In distributed computing, consistency-biased leader election is established using an odd number of coordinators (usually 3). Having an odd number ensures that if network segmentation occurs, there will be no draw between the segments - the majority of coordinators (e.g. 2) will be in one segment, and the minority (e.g. 1) in the other. This allows each segment to play its role and ensure consistency:</p>
+
+<ul>
+<li>If the minority segment holds leadership, it will relinquish it, and will suspend itself until it rejoins the majority.</li>
+<li>The majority segment will select a new leader if needed, knowing that the minority will relinquish the previous leader.</li>
+</ul>
+
+<p>In XAP, consistency-biased leader election is used when the space is deployed on an environmenent managed by a <a href="xap-manager.htm/">XAP Manager</a> cluster. Each manager contains an embedded Apache Zookeeper node (znode), and together they provide the necessary environment to ensure consistency.</p>
+
+<h1 id="what-is-apache-zookeeper">What is Apache Zookeeper?</h1>
+
+<p><a href="https://zookeeper.apache.org/">Apache ZooKeeper</a> is a centralized service providing distributed synchronization, which can be used for various use cases in distributed systems such as leader election, configuration, distributed locks and more. It is highly reliable and widely used across the industry, both in open source projects such as Apache HBase and Apache Kafka), and by large companies such as Yahoo and Rackspace.</p>
+
+<div class="tc-admon-tip">
+  
+  <p>You don't have to download or setup Apache Zookeeper. It comes packaged with XAP, and is automatically started and monitored by the XAP Manager.</p>
+</div>
+
+<h1 id="usage">Usage</h1>
+
+<p>When a space is deployed on an environment managed by a <a href="xap-manager.htm/">XAP Manager</a>, consistency-biased leader election is automatically enabled.</p>
+
+<h1 id="configuration">Configuration</h1>
+
+<p>The default configuration is valid for most environments and applications. You can change it if you need to decrease/increase failover time (i.e. the duration between a primary fails and a backup accepts leadership in its place), using the following space properties:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Property</th>
+<th align="left">Description</th>
+<th align="left">Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>space-config.leader-election.zookeeper.session-timeout</code></td>
+<td align="left">Session timeout (in milliseconds)</td>
+<td align="left"><code>8000</code></td>
+</tr>
+
+<tr>
+<td align="left"><code>space-config.leader-election.zookeeper.connection-timeout</code></td>
+<td align="left">Connection timeout (in milliseconds)</td>
+<td align="left"><code>5000</code></td>
+</tr>
+
+<tr>
+<td align="left"><code>space-config.leader-election.zookeeper.retry-timeout</code></td>
+<td align="left">Retry timeout, in case operation fails</td>
+<td align="left"><code>Integer.MAX_VALUE</code></td>
+</tr>
+
+<tr>
+<td align="left"><code>space-config.leader-election.zookeeper.retry-interval</code></td>
+<td align="left">Interval between retries (in milliseconds)</td>
+<td align="left"><code>1000</code></td>
+</tr>
+</tbody>
+</table>
+
+<div class="tc-admon-note">
+  
+  <p>A shorter failover time is not always advantageous. It may cause short network disconnections to trigger unnecessary failovers, which can affect system stability. Change the defaults only after careful consideration, and adjust the values to suit your network capabilities and applicative requirements.</p>
+</div>
+
+<h1 id="implementation">Implementation</h1>
+
+<p>GigaSpaces XAP uses the Apache Curator <a href="http://curator.apache.org/curator-recipes/leader-election.htm/">leader selector</a> recipe, which implements a distributed lock with a notification mechanism using Apache Zookeeper.</p>
+
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/zookeeper-based-leader-selector.png" alt="image" /></p>
+</div>
+
+<p>The following occurs during leader election:</p>
+
+<ul>
+<li>There is a znode, say “/participants/partitionX".</li>
+<li>All participants of the election process create an ephemeral-sequential node on the same election path.</li>
+<li>The node with the smallest sequence number is the leader.</li>
+<li>Each “follower” node listens to the node with the next lower sequence number.</li>
+<li>Upon leader removal, go to election path and find a new leader, or become the leader if it has the lowest sequence number.</li>
+<li>Upon session expiration (disconnection), check the election state and go to election if needed. If there is a disconnection, the primary Space instance is moved to Quiese mode and will be restarted.</li>
+</ul>
+
+<h2 id="partition-split-brain-instances">Partition Split Brain Instances</h2>
+
+<p>The Apache Zookeeper leader selector avoids split-brain instances through quorum. If the primary Space is not in the majority, that Space is frozen (or quiesced) until the network is connected and the frozen primary Spac eis terminated automatically.</p>
+
+</body>
+</html>

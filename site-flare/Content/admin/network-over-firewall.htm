@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>XAP Over a Firewall</h1>
+  
+
+<p>In many scenarios, you need to set up XAP in environments which have a firewall running. This section provides XAPs configuration recommendations for several firewall topologies:</p>
+
+<ul>
+<li>Basic configuration: XAP cluster (GSM and GSCs) running behind the firewall, with clients connecting through the firewall. Multicast traffic is allowed behind the firewall and unicast-only traffic comes from the clients through the firewall.</li>
+</ul>
+
+<div class="tc-admon-note">
+  
+  <p>Basic configuration, suitable for most scenarios, requires mandatory setting of the following properties (these system property settings are described below):</p>
+
+<ul>
+<li><code>com.gs.multicast.discoveryPort</code></li>
+<li><code>com.gigaspaces.start.httpPort</code></li>
+<li><code>com.gs.transport_protocol.lrmi.bind-port</code></li>
+<li><code>com.sun.jini.reggie.initialUnicastDiscoveryPort</code></li>
+</ul>
+</div>
+
+<ul>
+<li>Same topology as above: All cluster components and clients communicate over unicast only. <span class="tc-bold">Multicast traffic is prohibited</span>.</li>
+<li>The firewall divides the XAP cluster into zones. Some components (GSCs, GSM) run in one firewall zone, while the rest of the components run in another firewall zone(s). Only unicast traffic is allowed between firewall zones.</li>
+</ul>
+
+<p>To learn more about XAP port usage, refer to <a href="./network-ports.htm/">How to Control the Used Ports</a>.</p>
+
+<h1 id="xap-firewall-settings">XAP Firewall Settings</h1>
+
+<p><span class="tc-bold">To enable all XAP components to work over a firewall and control all network activity through explicitly defined static ports:</span></p>
+
+<p>Step 1: All communications traversing the firewall should be switched to Unicast TCP (use XAP Jini unicast lookup locators and set the <code>-Dcom.gs.multicast.discoveryPort</code> as described in the next section). Jini Multicast discovery should be disabled.<br/></p>
+
+<p>Step 2: Specific listener ports of system components should be <span class="tc-bold">statically set</span>.   <br/></p>
+
+<p>Step 3: Necessary listener <span class="tc-bold">port ranges</span> should be defined per each IP address, where the XAP server components reside.</p>
+
+<p>Components such as GSM/Lookup Service, GSC, and Mahalo use a single Webster (HTTPD service) and a single LRMI transport port per component. Accordingly, the same quantity of Webster and LRMI ports should be planned for each IP address where those components reside.</p>
+
+<p>Port ranges should be chosen continuously, as Webster and LRMI port bindings are performed sequentially, beginning from the low port number. Each additional component started on the <span class="tc-italic">same machine</span> opens a sequentially higher Webster and LRMI port, beginning from the low port in the defined port range.</p>
+
+<p>Step 4: <span class="tc-bold">Firewall rules for incoming traffic</span> should include opening a TCP port for each statically defined XAP component listener, for each IP address where a XAP component is running (excluding the JMX MBean server).<br/></p>
+
+<p>Step 5: <span class="tc-bold">JMX listener ports</span> that are presented in XAP components and assigned by the RMIRegistry mechanism (the default port range begins at 10098; each component opens the next available port) can remain dynamically assigned and should not be opened in the firewall. JMX connections are dedicated to administrative purposes and can be accessed by monitoring tools behind the firewall. The MBeanServer and the RMI lookup are not available outside the firewall. <br/></p>
+
+<p>Step 6: Each static XAP listener port behind the firewall should be mapped by NAT to the static IP address outside of the firewall. XAP clients/servers residing outside of the firewall should be set to work versus statically mapped by NAT listeners outside IP addresses.<br/></p>
+
+<p>Step 7: <span class="tc-bold">Mandatory</span> – the range of port numbers (just free unassigned ports allowed) should be above <code>1024</code> and below <code>65536</code>.</p>
+
+<div class="tc-admon-note">
+  <p class="tc-admon-title">Recommended Port Ranges</p>
+  <p>As per IANA standards, port numbers are based on three ranges: System Ports (0-1023), User Ports (1024-49151), and the Dynamic and/or Private Ports (49152-65535). Select your port range from the available user ports or dynamic ports.</p>
+</div>
+
+<h2 id="listener-ports-per-xap-component">Listener Ports per XAP Component</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Component</th>
+<th align="left">Listeners</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">GSM</td>
+<td align="left">Lookup Service<br/>LRMI Transport<br/>Webster<br/>JMX</td>
+</tr>
+
+<tr>
+<td align="left">GSC</td>
+<td align="left">LRMI Transport <br/>Webster <br/>JMX</td>
+</tr>
+
+<tr>
+<td align="left">Transaction Manager (Mahalo)</td>
+<td align="left">LRMI Transport <br/>Webster <br/>JMX</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="required-configuration-modifications">Required Configuration Modifications</h2>
+
+<h3 id="bin-gs-sh-script-modifications">bin/gs.sh Script Modifications</h3>
+
+<p>Add the following system properties to the command line:</p>
+
+<ul>
+<li><span class="tc-bold">Optional</span> – For unicast-only solutions, use the following system property to <span class="tc-bold">disable the Jini multicast activity</span>:</li>
+</ul>
+
+<pre><code class="language-bash">-Dcom.gs.multicast.enabled=false
+</code></pre>
+
+<ul>
+<li><span class="tc-bold">Mandatory</span> – Reggie Lookup Service: in this context, modify <code>com.gs.multicast.discoveryPort</code>, the port used during discovery for both unicast and multicast requests. The default value is <code>4174</code>.</li>
+</ul>
+
+<pre><code class="language-bash">-Dcom.gs.multicast.discoveryPort=
+</code></pre>
+
+<ul>
+<li><span class="tc-bold">Mandatory</span> – Reggie Lookup Service: in this context, modify <code>com.sun.jini.reggie.initialUnicastDiscoveryPort</code>, the port used during unicast discovery. The default value is <code>0</code> (undefined).</li>
+</ul>
+
+<div class="tc-admon-note">
+  
+  <p>If you leave the unicast discovery port property <code>com.sun.jini.reggie.initialUnicastDiscoveryPort</code> unconfigured (with its default value of 0), then it will use the port value in the <code>com.gs.multicast.discoveryPort</code> property.</p>
+</div>
+
+<pre><code class="language-bash">-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=
+</code></pre>
+
+<ul>
+<li><span class="tc-bold">Optional</span> – <code>RMIRegistry</code> port (used for RMI lookup and for JMX MBean server). The default value is <code>10098</code>.</li>
+</ul>
+
+<pre><code class="language-bash">-Dcom.gigaspaces.system.registryPort=
+</code></pre>
+
+<ul>
+<li><span class="tc-bold">Mandatory</span> – Webster HTTPD service port.</li>
+</ul>
+
+<pre><code class="language-bash">-Dcom.gigaspaces.start.httpPort=
+</code></pre>
+
+<p>Sample port settings:</p>
+
+<pre><code class="language-bash">-Dcom.gs.multicast.enabled=false
+-Dcom.gs.multicast.discoveryPort=7102
+-Dcom.gigaspaces.system.registryPort=7103
+-Dcom.gigaspaces.start.httpPort=7104
+</code></pre>
+
+<h3 id="bin-gs-ui-sh-gui-script-modifications-optional">bin/gs-ui.sh GUI Script Modifications (Optional)</h3>
+
+<p>These modifications are only needed when a GUI client should connect through the firewall. Add the following system properties to the command line:</p>
+
+<ul>
+<li><span class="tc-bold">Mandatory</span> – use the following system property to <span class="tc-bold">disable the Jini multicast activity</span>. For unicast-only solutions:</li>
+</ul>
+
+<pre><code class="language-bash">-Dcom.gs.multicast.enabled=false
+</code></pre>
+
+<ul>
+<li><span class="tc-bold">Mandatory</span> – Reggie Lookup Service: in this context, modify <code>com.gs.multicast.discoveryPort</code>, the port used during discovery for both unicast and multicast requests. The default value is <code>4174</code>.</li>
+</ul>
+
+<pre><code class="language-bash">-Dcom.gs.multicast.discoveryPort=
+</code></pre>
+
+<ul>
+<li><span class="tc-bold">Mandatory</span> – <code>RMIRegistry</code> port (used for RMI lookup and for JMX MBean server). The default value is <code>10098</code>.</li>
+</ul>
+
+<pre><code class="language-bash">-Dcom.gigaspaces.system.registryPort=
+</code></pre>
+
+<ul>
+<li><span class="tc-bold">Optional</span> – Webster HTTPD service port.</li>
+</ul>
+
+<pre><code class="language-bash">-Dcom.gigaspaces.start.httpPort=
+</code></pre>
+
+<p>Sample port settings:</p>
+
+<pre><code class="language-bash">-Dcom.gs.multicast.enabled=false
+-Dcom.gs.multicast.discoveryPort=7102
+-Dcom.gigaspaces.system.registryPort=7103
+-Dcom.gigaspaces.start.httpPort=7104
+</code></pre>
+
+<h3 id="bin-setenv-sh-script-modifications-mandatory">bin/setenv.sh Script Modifications (Mandatory)</h3>
+
+<p>Lookup locators unicast discovery port should be the same as defined in <code>gs.sh</code>, for example:</p>
+
+<pre><code class="language-bash">XAP_LOOKUP_LOCATORS=server111:7102; export XAP_LOOKUP_LOCATORS
+</code></pre>
+
+<h3 id="lrmi-communication-protocol-port-range-setting-modifications">LRMI Communication Protocol Port Range Setting Modifications</h3>
+
+<p>The <code>com.gigaspaces.start.httpPort</code> Webster port number property can be defined by overriding as shown below, or using a system property:</p>
+
+<pre><code class="language-bash">gsm.sh webster.xml
+gsc.sh webster.xml
+startJiniTX_Mahalo.sh webster.xml
+</code></pre>
+
+<p>Content of override file for Webster port definitions:</p>
+
+<pre><code class="language-xml">&lt;overrides&gt;
+    &lt;Component Name="com.gigaspaces.start"&gt;
+        &lt;Parameter Name="httpPort" Value="9099"/&gt;
+    &lt;/Component&gt;
+&lt;/overrides&gt;
+</code></pre>
+
+</body>
+</html>

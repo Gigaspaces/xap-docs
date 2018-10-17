@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Administering Open Source Editions</h1>
+  <p>The Command Line Interface tool can be used to perform minimal administration tasks for open source XAP and InsightEdge editions. The available commands are described below.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="XAP Open Source" style="padding:10px"><h2 id="run-xap-in-demo-mode">Run XAP in Demo Mode</h2>
+
+<p><span class="tc-italic">Command:</span></p>
+
+<p><code>xap demo</code></p>
+
+<p><span class="tc-italic">Description:</span></p>
+
+<p>Runs a Space in high availability mode (2 primaries with 1 backup each).</p>
+
+<p><span class="tc-italic">Parameters and Options:</span></p>
+
+<p>None.</p>
+
+<p><span class="tc-italic">Input Example:</span></p>
+
+<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap demo
+</code></pre>
+
+<h2 id="run-a-standalone-space">Run a Standalone Space</h2>
+
+<p><span class="tc-italic">Command:</span></p>
+
+<p><code>xap space run</code></p>
+
+<p><span class="tc-italic">Description:</span></p>
+
+<p>Runs a standalone Space in a stateful Processing Unit.</p>
+
+<p><span class="tc-italic">Parameters and Options:</span></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Item</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Parameter</td>
+<td align="left">name</td>
+<td align="left">Name of the Space.</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">—lus</td>
+<td align="left">Start a lookup service.</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">—partitions=&lt;partitions&gt;</td>
+<td align="left">Define the number of partitions to use.</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">—ha</td>
+<td align="left">Run the Space with high availability (adding a backup per partition).</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">—instances=1_1,1_2</td>
+<td align="left">Specify one or more instances to run. If no instances are specified, runs all instances.</td>
+</tr>
+</tbody>
+</table>
+
+<p><span class="tc-italic">Input Example:</span></p>
+
+<p>This example runs a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions. The CLI commands start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).</p>
+
+<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha mySpace
+</code></pre>
+
+<p>To run instances separately, run each of the following commands on different hosts (note that –lus is specified for discovery):</p>
+
+<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha --instances=1_1 mySpace
+&lt;XAP-HOME&gt;/bin/xap space run --partitions=2 --ha --instances=1_2 mySpace
+&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha --instances=2_1 mySpace
+&lt;XAP-HOME&gt;/bin/xap space run --partitions=2 --ha --instances=2_2 mySpace
+</code></pre>
+
+<h2 id="run-a-standalone-processing-unit">Run a Standalone Processing Unit</h2>
+
+<p><span class="tc-italic">Command:</span></p>
+
+<p><code>xap pu run</code></p>
+
+<p><span class="tc-italic">Description:</span></p>
+
+<p>Runs a standalone Processing Unit.</p>
+
+<p><span class="tc-italic">Parameters and Options:</span></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Item</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Parameter</td>
+<td align="left">path</td>
+<td align="left">Relative/absolute path of a Processing Unit directory or archive file.</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">—lus</td>
+<td align="left">Start a lookup service.</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">—partitions=&lt;partitions&gt;</td>
+<td align="left">Define the number of partitions to use.</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">—ha</td>
+<td align="left">Run the Space with high availability (adding a backup per partition).</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">—instances=1_1,1_2</td>
+<td align="left">Specify one or more instances to run. If no instances are specified, runs all instances.</td>
+</tr>
+</tbody>
+</table>
+
+<p><span class="tc-italic">Input Example:</span></p>
+
+<p>This example deploys a Processing Unit that contains a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions.</p>
+
+<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu run --lus --ha --partitions=2 myPu.jar
+</code></pre>
+</div>
+
+<div title="InsightEdge Open Source" style="padding:10px"><h2 id="run-insightedge-in-demo-mode">Run InsightEdge in Demo Mode</h2>
+
+<p><span class="tc-italic">Command:</span></p>
+
+<p><code>insightedge demo</code></p>
+
+<p><span class="tc-italic">Description:</span></p>
+
+<p>Run Spark in standalone mode (master, worker and Apache Zeppelin), and run a Space in high availability mode (2 primaries with 1 backup each).</p>
+
+<p><span class="tc-italic">Parameters and Options:</span></p>
+
+<p>None.</p>
+
+<p><span class="tc-italic">Input Example:</span></p>
+
+<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/insightedge demo
+</code></pre>
+</div>
+</div>
+
+</body>
+</html>

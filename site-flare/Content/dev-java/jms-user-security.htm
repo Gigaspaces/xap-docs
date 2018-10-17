@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Security</h1>
+  <p>To use the Enterprise Messaging Grid security facilities, you must specify a user name and password when you create the connection:</p>
+
+<ul>
+<li>Using the unified model:</li>
+</ul>
+
+<pre><code class="language-java">Connection connection = connectionFactory.createConnection(username,password);
+</code></pre>
+
+<ul>
+<li>Using the point to point domain:</li>
+</ul>
+
+<pre><code class="language-java">QueueConnection queueConnection = queueConnectionFactory.createQueueConnection(username,password);
+</code></pre>
+
+<ul>
+<li>Using the publish/subscribe domain:</li>
+</ul>
+
+<pre><code class="language-java">TopicConnection topicConnection = topicConnectionFactory.createTopicConnection(username,password);
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>To use authentication, you must define a secured space with the same user/password.</p>
+</div>
+
+</body>
+</html>

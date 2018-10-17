@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>What&#39;s New</h1>
+  
+
+<p>This section describes product changes, along with new features and functionality for InsightEdge platform release 12.3.</p>
+
+<h1 id="tiered-storage-memoryxtend">Tiered Storage (MemoryXtend)</h1>
+
+<h2 id="user-controlled-cache">User-Controlled Cache</h2>
+
+<p>The LRU on-heap cache has been enhanced to accept user-defined criteria, so that customers can prioritize data availability. Users can create sets of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk (SSD or HDD). This is an evolution of an existing API that controlled what data should be cached during initial load; this policy now applies for the entire application lifetime of the data grid.</p>
+
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-overview.htm/#user-defined-cache">User-Defined Cache</a>.</p>
+
+<h2 id="off-heap-storage-driver">Off-Heap Storage Driver</h2>
+
+<p>In addition to the existing SSD/Disk storage driver, a new storage driver is now available for <span class="tc-bold">Off-Heap RAM</span>. This drivers enables users to store data on RAM outside the JVM heap, which is faster than disk access and consumes less memory than on-heap data objects.</p>
+
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-ohr.htm/">MemoryXtend for Off-Heap RAM</a>.</p>
+
+<h2 id="off-heap-caching-for-ssd-storage-driver">Off-Heap Caching for SSD Storage Driver</h2>
+
+<p>In systems with MemoryXtend, the InsightEdge platform can store the values of indexed fields in off-heap memory, to avoid having to fetch data from disk (SSD or HDD) for queries that only need the index. This feature can optimize performance by up to 50% for the following operations:</p>
+
+<ul>
+<li>Read with projection and only indexed fields in query and projection - primary instance optimization</li>
+<li>Take with only indexed fields in query - backup optimization</li>
+<li>Clear with only indexed fields in query - primary and backup instance optimization</li>
+</ul>
+
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-rocksdb-ssd.htm/#off-heap-cache">Off-Heap Cache</a>.</p>
+
+<h1 id="new-command-line-interface">New Command Line Interface</h1>
+
+<p>A new Command Line Interface (CLI) is now available, which supports both InsightEdge and XAP applications. The new CLI unifies the user experience across InsightEdge and XAP, and is based on the recent addition of the REST Manager API, enabling users to manage remote or cloud-based environments as easily as managing local machines. In addition, the new CLI provides modern syntax and a user-friendly command structure, along with help screens to guide users in learning how to use the tool.</p>
+
+<p>To get started with the new CLI, simply navigate to the <span class="tc-bold">bin</span> folder and run <code>insightedge --help</code> or <code>xap --help</code> (according to the GigaSpaces product being used).</p>
+
+<p>The following is a partial list of the available functionality:</p>
+
+<ul>
+<li>Start and stop a Grid Servie Agent (gs-agent) on the current host</li>
+<li>Deploy and manage a Processing Unit or Space</li>
+<li>List, create, kill, and restart containers (GSCs)</li>
+<li>List hosts</li>
+<li>List Spaces and Space instances</li>
+<li>Autocomplete of commands</li>
+</ul>
+
+<p>The previous GigaSpaces CLI is still provided and supported, but will be removed in future versions. We encourage users to try the new CLI, and welcome feedback and requests for improvements.</p>
+
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/tools-cli.htm/">Command Line Interface</a>.</p>
+
+<h1 id="docker-support">Docker Support</h1>
+
+<p>Starting with this version, official <a href="https://www.docker.com">Docker</a> images for InsightEdge and XAP are provided for both open source and Enterprise editions. The Docker images are available at <a href="https://hub.docker.com/r/gigaspaces/">Docker Hub</a>, and the corresponding Docker files are available on <a href="https://github.com/gigaspaces/docker">GitHub</a>.</p>
+
+<p>The Docker images leverage the new Command Line Interface and REST Manager API, which provides a seamless experience whether you work with Docker on your local machine, within your enterprise network, or in the cloud.</p>
+
+<p><span class="tc-iconinfo">&#160;</span> For more information, see the <a href="https://hub.docker.com/r/gigaspaces/">GigaSpaces Docker Hub Repo</a>.</p>
+
+<h1 id="memory-footprint">Memory Footprint</h1>
+
+<p>New index types have been introduced, to offer users additional indexing options that require a smaller memory footprint. The new index types are:</p>
+
+<ul>
+<li><code>EQUAL</code> - Performs matching by equality, and should be used instead of the <code>BASIC</code> indexing option.</li>
+<li><code>ORDERED</code> - Performs ordered matching.</li>
+<li><code>EQUAL_AND_ORDERED</code> - Performs both matching by equality and ordered matching, and should be used instead of the <code>EXTENDED</code> indexing option.</li>
+</ul>
+
+<p>The new <code>ORDERED</code> index consumes less memory than <code>EQUAL_AND_ORDERED</code>, at the cost of matching equality less efficiently. When optimizing for ordered queries alone, this is the preferred index type. When optimizing for both ordered and equality queries, there is a performance-vs-footprint trade-off between <code>ORDERED</code> and <code>EQUAL_AND_ORDERED</code>, which you should consider according to your use case.</p>
+
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/indexing.htm/#index-types">Index Types</a>.</p>
+
+<h1 id="third-party-product-changes">Third-Party Product Changes</h1>
+
+<ul>
+<li><a href="https://spark.apache.org/">Apache Spark</a> has been upgraded to <code>2.3.1</code></li>
+<li><a href="https://zookeeper.apache.org/">Apache Zookeeper</a> has been upgraded to <code>3.4.12</code></li>
+<li><a href="http://www.eclipse.org/jetty/">Jetty</a> package has been upgraded to <code>9.2.24</code></li>
+<li><a href="https://projects.spring.io/spring-framework/">Spring Framework</a> integration has been upgraded to <code>4.3.17</code></li>
+<li><a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to <code>4.2.3</code></li>
+</ul>
+
+<h1 id="end-of-life-and-deprecated-features-and-functionality">End-Of-Life and Deprecated Features and Functionality</h1>
+
+<p>The following functionality is deprecated as of this release:</p>
+
+<ul>
+<li>V1 of the REST Manager API (use the new V2 instead)</li>
+<li><code>BASIC</code> and <code>EXTENDED</code> index types (use <code>EQUAL</code> | <code>ORDERED</code> | <code>EQUAL_AND_ORDERED</code> instead)</li>
+</ul>
+
+<p>In addition, Java 7 is no longer supported. Java 8 is now the minimum supported version.</p>
+
+</body>
+</html>

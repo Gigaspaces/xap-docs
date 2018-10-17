@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>GS-Agent</h1>
+  
+
+ <a id="GSRuntimeEnv">&#160;</a>
+
+<p>A processing unit is deployed onto the XAP runtime environment, which is called the <a href="../overview/the-runtime-environment.htm/">Service Grid</a>. It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.</p>
+
+<h1 id="usage">Usage</h1>
+
+<p>To start a Service Grid on a machine, launch the <code>gs-agent</code> utility located in the <code>$XAP_HOME/bin</code> folder. This will start the <a href="../overview/the-runtime-environment.htm/#gsa">Grid Service Agent</a>, which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, <code>--process_type=n</code> will start <code>n</code> instances of the specified <code>process_type</code>. Use the <code>global</code> keyword (e.g. <code>--global.process_type=n</code>) to specify that the agent should coordinate with other running agents the hosting and management of that service. Let's look at common use cases:</p>
+
+<h2 id="help">Help</h2>
+
+<p>Run gs-agent with <code>--help</code> or <code>-h</code> to see all available options:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash">./gs-agent.sh --help
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code class="language-bash">gs-agent --help
+</code></pre>
+</div>
+</div>
+
+<h2 id="manager">Manager</h2>
+
+<p>To start a single manager on the local machine (useful for dev and testing):</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash"># Starts a local manager:
+./gs-agent.sh --manager-local
+# Starts a local manager and 2 GSCs:
+./gs-agent.sh --manager-local --gsc=2
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a local manager:
+gs-agent --manager-local
+REM Starts a local manager and 2 GSCs:
+gs-agent --manager-local --gsc=2
+</code></pre>
+</div>
+</div>
+
+<p>To start a highly-available cluster of managers on several hosts, run the following on each of the designated hosts:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash"># Starts a manager:
+./gs-agent.sh --manager
+# Starts a manager and 2 GSCs:
+./gs-agent.sh --manager --gsc=2
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a manager:
+gs-agent --manager
+REM Starts a manager and 2 GSCs:
+gs-agent --manager --gsc=2
+</code></pre>
+</div>
+</div>
+
+<p>(Note that you also need to configure the <code>XAP_MANAGER_SERVERS</code> to the list of designated manager servers)</p>
+
+<h2 id="without-manager">Without Manager</h2>
+
+<p>If you cannot use the manager for some reason, but you still want high-availability, you can pick a couple of hosts to serve for management, and start a LUS and GSM on them:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash"># Starts a LUS and GSM:
+./gs-agent.sh --lus --gsm
+# Starts a LUS, GSM and 2 GSCs:
+./gs-agent.sh --lus --gsm --gsc=2
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a LUS and GSM:
+gs-agent --lus --gsm
+REM Starts a LUS, GSM and 2 GSCs:
+gs-agent --lus --gsm --gsc=2
+</code></pre>
+</div>
+</div>
+
+<p>Alternatively, if your environment supports multicast and you prefer a more dynamic approach, you can use the <code>global</code> prefix to indicate that GSMs and LUSs will be automatically started and managed by the collective of gs-agents, instead of explicitly on a specific hosts. For example, to start 2 Global GSM and LUS accross a set of hosts, as well as 2 GSCs on each host:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash"># Starts a LUS, GSM and 2 GSCs:
+./gs-agent.sh --global.lus=2 --global.gsm=2 --gsc=2
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a LUS, GSM and 2 GSCs:
+gs-agent --global.lus=2 --global.gsm=2 --gsc=2
+</code></pre>
+</div>
+</div>
+
+<p>In fact, since this configuration is convenient for new users, it is also the default - running <code>gs-agent</code> without any arguments would produce the same effect. If you wish to disable it and start without any components, run gs-agent with <code>--zero-defaults</code> or <code>-z</code>. This can be useful if you're planning to use the  manager's RESTful API from another host to add/remove containers.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash">./gs-agent.sh -z
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code class="language-bash">gs-agent -z
+</code></pre>
+</div>
+</div>
+
+<h1 id="configuration">Configuration</h1>
+
+<p>Service Grid configuration is often composed of two layers: system-wide configuration and component-specific configuration.</p>
+
+<p>The system-wide configuration specifies settings which all components share, e.g. discovery (unicast/multicast), security, zones, etc. These are set using the <code>EXT_JAVA_OPTIONS</code> environment variable.</p>
+
+<p>The component-specific configuration specifies settings per component type, e.g. the GSC memory limit is greater than the GSM and LUS. These are set using one or more of the environment variables: <code>XAP_GSA_OPTIONS</code>, <code>XAP_GSC_OPTIONS</code>, <code>XAP_GSM_OPTIONS</code>, <code>XAP_LUS_OPTIONS</code>.</p>
+
+<div class="tc-admon-note">
+  
+  <p>The component-specific configuration override the system-wide configuration.</p>
+</div>
+
+<p>For example:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash">export XAP_GSA_OPTIONS=-Xmx256m
+export XAP_GSC_OPTIONS=-Xms2g -Xmx2g
+export XAP_GSM_OPTIONS=-Xmx1g
+export XAP_LUS_OPTIONS=-Xmx1g
+
+./gs-agent.sh
+</code></pre>
+</div>
+<div title="Windows" style="padding:10px"><pre><code class="language-bash">set XAP_GSA_OPTIONS=-Xmx256m
+set XAP_GSC_OPTIONS=-Xms2g -Xmx2g
+set XAP_GSM_OPTIONS=-Xmx1g
+set XAP_LUS_OPTIONS=-Xmx1g
+
+call gs-agent.bat
+</code></pre>
+</div>
+</div>
+
+<h1 id="customizing-gsa-components">Customizing GSA Components</h1>
+
+<p>GSA manages different process types. Each process type is defined within the <code>$XAP_HOME/config/gsa</code> directory in an xml file that identifies the process type by its name.</p>
+
+<div class="tc-admon-note">
+  
+  <p>You can change the default location of the GSA configuration files using the <code>com.gigaspaces.grid.gsa.config-directory</code> system property.</p>
+</div>
+
+<p>The following are the process types that come out of the box:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Processes Type</th>
+<th align="left">Description</th>
+<th align="left">XML config file name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">gsc</td>
+<td align="left">Defines a <a href="../overview/the-runtime-environment.htm/#gsc">Grid Service Container</a></td>
+<td align="left">gsc.xml</td>
+</tr>
+
+<tr>
+<td align="left">gsm</td>
+<td align="left">Defines a <a href="../overview/the-runtime-environment.htm/#gsm">Grid Service Manager</a></td>
+<td align="left">gsm.xml</td>
+</tr>
+
+<tr>
+<td align="left">lus</td>
+<td align="left">Defines a <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a></td>
+<td align="left">lus.xml</td>
+</tr>
+
+<tr>
+<td align="left">gsm_lus</td>
+<td align="left">Defines a <a href="../overview/the-runtime-environment.htm/#gsm">Grid Service Manager</a> and <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a> within the same JVM</td>
+<td align="left">gsm_lus.xml</td>
+</tr>
+
+<tr>
+<td align="left">esm</td>
+<td align="left">Defines an Elastic Service Manager which is required for deploying <a href="../dev-java/elastic-processing-unit-overview.htm/">Elastic Processing Unit</a></td>
+<td align="left">esm.xml</td>
+</tr>
+</tbody>
+</table>
+
+<p>Here is an example of the <code>gsc.xml</code> configuration file:</p>
+
+<pre><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+    &lt;script enable="true" work-dir="${com.gs.home}/bin"
+            windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
+        &lt;argument&gt;start&lt;/argument&gt;
+        &lt;argument&gt;"GSC"&lt;/argument&gt;
+    &lt;/script&gt;
+    &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
+        &lt;input-argument&gt;&lt;/input-argument&gt;
+        &lt;argument&gt;com.gigaspaces.start.services="GSC"&lt;/argument&gt;
+    &lt;/vm&gt;
+    &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
+&lt;/process&gt;
+</code></pre>
+
+<p>The GSA can either spawn a script based process, or a pure JVM (with its arguments) process. The GSC for example, allows for both types of process spawning.</p>
+
+<ul>
+<li>The <code>initial-instances</code> parameter controls what type of spawning will be performed when the GSA spawns processes by itself (and not on demand by the Admin API).</li>
+<li>The <code>shutdown-class</code> followed by the <code>restart-on-exit</code> flag, controls if the process will be restarted upon termination. There are three types of values:
+
+<ul>
+<li><code>always</code> - Always restarts the process if it exits.</li>
+<li><code>never</code> - Never restarts the process if it exists.</li>
+<li><code>!0</code> - Restarts the process only if the exit code is different than 0.</li>
+</ul></li>
+<li>The <code>shutdown-class</code> is an implementation of <code>com.gigaspaces.grid.gsa.ShutdownProcessHandler</code> interface and provides the default shutdown hooks before and after shutdown of a process, to make sure it is shutdown properly. The <code>shutdown-class</code> can be omitted.</li>
+<li>The <code>restart-regex</code> (there can be more than one element) is applied to each console output line of the managed process, and if there is a match, the GSA will automatically restart the process. By default, the GSC will be restarted if there is an <code>OutOfMemoryError</code>.</li>
+</ul>
+
+<p>In addition, within the <code>script</code> tag, you can add the following tags:</p>
+
+<ul>
+<li><code>argument</code> - adds a command ling argument which will be passed to the script. In the <code>gsc.xml</code> example above, there are two command line arguments.</li>
+<li><code>environment</code> -adds an environment variable. For example, <code>&lt;environment name="XAP_GSC_OPTIONS"&gt;-Xmx1024m&lt;/environment&gt;</code> can be used to override the memory for the GSC.</li>
+</ul>
+
+<h1 id="advanced-configuration">Advanced Configuration</h1>
+
+<p>In some scenarios you'll need to have several "flavors' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.</p>
+
+<p>For example, suppose we want our agent to load 2 "small' GSCs (512MB each) in a zone called <span class="tc-italic">Small</span>, and 1 "large' GSC (1024MB) in a zone called <span class="tc-italic">Large</span>. To achieve this, we'll duplicate the default <code>gsc.xml</code> (which resides in <code>$XAP_HOME/config/gsa</code>) into <code>gsc_small.xml</code> and <code>gsc_large.xml</code>, and modify them to include an <code>environment</code> tag which sets <code>XAP_GSC_OPTIONS</code> to the required settings:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  gsc_small.xml " style="padding:10px"><pre><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+    &lt;script enable="true" work-dir="${com.gs.home}/bin"
+            windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+        &lt;environment name="XAP_COMPONENT_OPTIONS"&gt;-Xms512m -Xmx512m -Dcom.gs.zones=Small&lt;/environment&gt;
+    &lt;/script&gt;
+    &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
+        &lt;input-argument&gt;&lt;/input-argument&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+    &lt;/vm&gt;
+    &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
+&lt;/process&gt;
+</code></pre>
+</div>
+<div title="  gsc_large.xml " style="padding:10px"><pre><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+    &lt;script enable="true" work-dir="${com.gs.home}/bin"
+            windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+        &lt;environment name="XAP_COMPONENT_OPTIONS"&gt;-Xms1024m -Xmx1024m -Dcom.gs.zones=Large&lt;/environment&gt;
+    &lt;/script&gt;
+    &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
+        &lt;input-argument&gt;&lt;/input-argument&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+    &lt;/vm&gt;
+    &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
+&lt;/process&gt;
+</code></pre>
+</div>
+</div>
+
+<p>Now, to start the agent, we'll use the following command:</p>
+
+<pre><code class="language-xml">gs-agent --gsc_small=2 --gsc_large
+</code></pre>
+
+</body>
+</html>
