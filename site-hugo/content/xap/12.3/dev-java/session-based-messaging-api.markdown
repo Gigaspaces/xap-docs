@@ -20,69 +20,75 @@ The Event Session API is the low level API for notifications. It is preferable t
 - The most important part of the notify registration is preparing the right template - all Entries that match the template (conducted by the appropriate operation), trigger an event back to the registered client application. <br>
 - When a new Entry that matches the template arrives at the space, the notify method of the `RemoteEventListener` in the registration is invoked, supplying the client with a `RemoteEvent` object.
 
-*When using the Session Event API, you should implement 3 basic routines*: <br>
-1. Register for notifications. <br>
-2. Filter the events before sent to the client (optional). <br>
+*When using the Session Event API, you should implement 3 basic routines*:
+
+1. Register for notifications.
+2. Filter the events before sent to the client (optional).
 3. Receive the event.
 
 {{%align center%}}
 ![sessionbasedmessagingapt11.jpg](/attachment_files/sessionbasedmessagingapi11.jpg)
 {{%/align%}}
 
-The session-based messaging API is designed with the following objectives:<br>
-- Simple and unified interfaces*  <br>
-- Single entry point* \- users access all the event-related services from a single entry point. <br>
-- Extensibility* \- allows simple extensions for other types of event services, as well as other configuration parameters.<br>
-- Backwards compatibility* \- coexists with the existing API in a way that allows a deprecation period without duplicating the code. <br>
-- Support for Spring bean creation/configuration.<br>
-- Batch notification support. <br>
+The session-based messaging API is designed with the following objectives:
 
-Some advanced options supported with the Session messaging API: <br>
-- No client codebase needs to be set. <br>
-- Support registering large amount of listeners using the same session reducing resource consumption. <br>
-- Provides the ability to get the Entry that triggered the event in the space.<br>
-- Allows registration for specific notification events, for example, write, update, take, and lease expiration events.<br>
-- Option delivering events in FIFO order (default is non-FIFO).<br>
-- Supports server-side notification filtering capabilities.<br>
+- Simple and unified interfaces* 
+- Single entry point* \- users access all the event-related services from a single entry point.
+- Extensibility* \- allows simple extensions for other types of event services, as well as other configuration parameters.
+- Backwards compatibility* \- coexists with the existing API in a way that allows a deprecation period without duplicating the code.
+- Support for Spring bean creation/configuration.
+- Batch notification support.
+
+Some advanced options supported with the Session messaging API:
+
+- No client codebase needs to be set.
+- Support registering large amount of listeners using the same session reducing resource consumption.
+- Provides the ability to get the Entry that triggered the event in the space.
+- Allows registration for specific notification events, for example, write, update, take, and lease expiration events.
+- Option delivering events in FIFO order (default is non-FIFO).
+- Supports server-side notification filtering capabilities.
 
 The session API provides a convenient and efficient mechanism for sending messaging to multiple recipients through the space. Every recipient can register for notifications by creating a `DataEventSession` object.
 
 {{%tip%}}
-When using EventSession in several threads, each thread should create and use its own EventSession .
+When using EventSession in several threads, each thread should create and use its own EventSession.
 {{%/tip%}}
 
 The sender of the message can write an Entry with a limited lease time to the space. The recipients receive the Entry through the remote event. New recipients have the opportunity to get old messages from the space through read. The messages are cleaned automatically by the expiration mechanism.
 
 # Supported Topologies
 
-
-
 Event registration is available with all supported space topologies. Each topology allows the client to receive the event. Still, there are behaviors you should be aware of when deploying the application.
 
 ## Single Remote Space
+
 When registering for notifications with a remote space, the space performs a remote call when delivering the event to the client application.
 
 ## Embedded Space
+
 When the client registers for notifications running in the same JVM as the space, no remote calls are involved. This allows fast notification delivery without serialization of the object that started the event.
 
 ## Replicated Space
+
 When deploying a replicated space, you might want to replicate notify registration from the source space (primary) to the replica (backup space), allowing the replica space to continue and send notifications in case the source space failed.
 
 Receiving events occurs as a result of data replication, and not directly from a client-space operation. This is popular in WAN-based applications, where a remote client running in the remote site wants to be notified when an operation occurs in the source space, without getting the actual notification from the remote source space, but from a replica space that is located at its local site.
 
 ## Partitioned Space
+
 The most common requirement when deploying partitioned spaces is to register the notification to all partitions, and receive the notifications from all partitions when a matching event is identified. This is the default behavior of the partitioned space.
 
 ## Local Cache
+
 When registering for notifications using a proxy running in the [local cache], notifications are delivered from the master space. Any matching event in the master space is delivered to the registered client. Events in the local cache are not delivered to the registered client, unless you specifically register for events by getting the local cache proxy.
 
 ## Local View
+
 When registering for notifications using a proxy running in the [local view], notifications are delivered from the local view. These do not involve remote calls and are based on activities performed in the local view. The events do not affect the remote master space or other clients accessing the master space. The events delivered from the local view are relatively fast, and do not involve serialization. Since notifications received from the local view are based on the local view query filter, the registered client might not receive events that other clients, registered for notifications using the master space, receive.
 
 {{%tip%}}
-Starting with XAP 8.0.6 Local view using the replication mechanism to update the local view
+The Local view uses the replication mechanism to update the local view.
 {{%/tip%}}
-
 
 
 # Register for Notifications
@@ -100,8 +106,8 @@ EventSessionConfig config = new EventSessionConfig();
 DataEventSession session = space.newDataEventSession(config);
 ```
 
-{{% /tab   %}}
-{{%tab "   Simple Template Registration"%}}
+{{% /tab %}}
+{{%tab " Simple Template Registration"%}}
 
 Here is an example for creating the `DataEventSession` and registering for notifications using simple template and cancelling the registration:
 
@@ -121,8 +127,8 @@ public class DataSessionEventExample implements RemoteEventListener
 }
 ```
 
-{{% /tab   %}}
-{{%tab "  SQLQuery Template Registration"%}}
+{{% /tab %}}
+{{%tab "SQLQuery Template Registration"%}}
 
 Here is an example for creating the `DataEventSession` and registering for notifications using a `SQLQuery}`template and cancelling the registration:
 
@@ -143,8 +149,8 @@ public class DataSessionEventExample implements RemoteEventListener
 }
 ```
 
-{{% /tab   %}}
-{{%tab "  Batch Notification Registration"%}}
+{{% /tab%}}
+{{%tab "Batch Notification Registration"%}}
 
 When a client expects to receive a large amount of events, it is recommended to deliver the events from the space into the client in batches. Batch notifications minimize the amount of remote calls the space needs to perform in order to deliver the events to the client. The downside when using this approach is the potential of some latency issues when delivering the events to the client.
 
@@ -171,7 +177,7 @@ public class DataSessionEventExample implements RemoteEventListener
 }
 ```
 
-{{% /tab   %}}
+{{% /tab %}}
 {{%tab "EventSession"%}}
 
 The session-based API defines an entity called `EventSession` -- a stateful registration service that is used to register/un-register listeners to the space. 
@@ -238,7 +244,7 @@ public interface DataEventSession extends EventSession
 ```
 
 {{%/tab%}}
-{{%tab "  EventRegistration"%}}
+{{%tab "EventRegistration"%}}
 
 The `EventRegistration` is a utility class used as a return value for event-interest registration methods. Objects in this class encapsulate the information needed by a client in order to identify a notification as a response to a registration request, and to maintain that registration request. It is not mandatory for an event-interest registration method to use this class.
 
@@ -289,7 +295,7 @@ The names of the parameters that can be used in the `Properties` object or file:
 - `renewDuration` -- specifies the time for each renew. Used when `autoRenew=true`.   
 - `renewRTT` -- specifies the time that takes the Lease to renew. Used when `autoRenew=true`.
 
-{{% /tab   %}}
+{{% /tab %}}
 {{% /tabs %}}
 
 # Receive the Event
@@ -361,7 +367,6 @@ The `EntryArrivedRemoteEvent` includes the following methods:
 
  // specific is the event comes from replication or not.
  boolean isFromReplication();
-
 ```
 
 {{% /tab %}}
@@ -653,8 +658,7 @@ This might result in more events than you initially intended. You can use the so
 
 ## Durable Notifications - Notification Delivery During Failover
 
-Due to the asynchronous nature of notification delivery, when a primary space fails right after replicating an operation to the backup space and before sending the notification to the registered client, the backup space might not be able to send the missing notifications, since it is in the process of moving to active mode.
-This means that during this very short period of time, the registered client might not receive events that occurred in the primary space and were replicated to the backup space.
+Due to the asynchronous nature of notification delivery, when a primary space fails right after replicating an operation to the backup space and before sending the notification to the registered client, the backup space might not be able to send the missing notifications, since it is in the process of moving to active mode. This means that during this very short period of time, the registered client might not receive events that occurred in the primary space and were replicated to the backup space.
 
 To ensure notification delivery by the backup space during the failover period, durable notifications mode needs to be enabled:
 
@@ -670,8 +674,8 @@ For further details see [Durable Notifications](./durable-notifications.html).
 ## The UNMATCHED NotifyActionType
 
 The `UNMATCHED` `NotifyActionType` should be used when you would like to receive notifications for objects which got their value been updated where the object that was initially matches the template no longer matches the template.
-Example:
-You would like to maintain within the client side a list for all the objects which got their status as `true`. You register for notifications using a template which had the status field as `true`.
+
+Example: You would like to maintain within the client side a list for all the objects which got their status as `true`. You register for notifications using a template which had the status field as `true`.
 
 An object with status as `true` is written into the space. This triggers a notification about the existence of this object. In some point the object is read from the space, the status field value changed from `true` to `false` and the object is written back into the space with its updated data.
 
@@ -682,6 +686,7 @@ You have to include the `UNMATCHED NotifyActionType` to receive a notification w
 ## The MATCHED_UPDATE NotifyActionType
 
 The `MATCHED_UPDATE` `NotifyActionType` should be used to receive notifications for entries that match a given notify template after being updated and did not match before that update.
+
 Example:
 
 ```java
@@ -698,7 +703,9 @@ The last operation (updating myPojo's 'processed' property from false to true) w
 NOTIFY_MATCHED_UPDATE and NOTIFY_UPDATE cannot be used together for the same listener.
 
 ## The REMATCHED_UPDATE NotifyActionType
+
 The `REMATCHED_UPDATE` `NotifyActionType` should be used to receive notifications for entries that match a given notify template after being updated and that were also a match before that update.
+
 Example:
 
 ```java

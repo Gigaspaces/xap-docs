@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+<head><title></title></head>
 <body>
 <h1>Securing the Data Layer</h1>
   
@@ -9,23 +9,13 @@
 
 <p>A secured embedded Space protects access (to data), which is granted only to users with sufficient privileges. When a remote Space proxy connects to a secured Space, it must provide security credentials (usually the username and password, as explained in <a href="./custom-security.htm/">Custom Security</a> regarding extensions).</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="space"&gt;
-    &lt;os-core:security username="sa" password="adaw@##$" /&gt;
-&lt;/os-core:space-proxy&gt;
+<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="space"&gt;    &lt;os-core:security username="sa" password="adaw@##$" /&gt;&lt;/os-core:space-proxy&gt;
 </code></pre>
 </div>
-<div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
-    &lt;property name="name" value="space" /&gt;
-    &lt;property name="securityConfig"&gt;
-        &lt;bean class="org.openspaces.core.space.SecurityConfig"&gt;
-            &lt;property name="username" value="sa" /&gt;
-            &lt;property name="password" value="adaw@##$" /&gt;
-        &lt;/bean&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
+<div title="Plain XML" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;    &lt;property name="name" value="space" /&gt;    &lt;property name="securityConfig"&gt;        &lt;bean class="org.openspaces.core.space.SecurityConfig"&gt;            &lt;property name="username" value="sa" /&gt;            &lt;property name="password" value="adaw@##$" /&gt;        &lt;/bean&gt;    &lt;/property&gt;&lt;/bean&gt;
 </code></pre>
 </div>
-<div title="Code" style="padding:10px"><pre><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("sa", "adaw@##$");
+<div title="Code" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("sa", "adaw@##$");
 GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 </code></pre>
 </div>
@@ -33,26 +23,16 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 
 <p>An embedded Space can be configured with internal services (Space filters, Notify/Polling containers, etc.), which must have privileges to operate on the embedded Space. These privileges are propagated by the security credentials provided when creating a Space.</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space"&gt;
-    &lt;os-core:security username="sa" password="adaw@##$" /&gt;
-&lt;/os-core:embedded-space&gt;
+<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space"&gt;    &lt;os-core:security username="sa" password="adaw@##$" /&gt;&lt;/os-core:embedded-space&gt;
 </code></pre>
 </div>
-<div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
-    &lt;property name="name" value="space" /&gt;
-    &lt;property name="securityConfig"&gt;
-        &lt;bean class="org.openspaces.core.space.SecurityConfig"&gt;
-            &lt;property name="username" value="sa" /&gt;
-            &lt;property name="password" value="adaw@##$" /&gt;
-        &lt;/bean&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
+<div title="Plain XML" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;    &lt;property name="name" value="space" /&gt;    &lt;property name="securityConfig"&gt;        &lt;bean class="org.openspaces.core.space.SecurityConfig"&gt;            &lt;property name="username" value="sa" /&gt;            &lt;property name="password" value="adaw@##$" /&gt;        &lt;/bean&gt;    &lt;/property&gt;&lt;/bean&gt;
 </code></pre>
 </div>
-<div title="Code" style="padding:10px"><p>The security credentials can be either be supplied as a <code>UserDetails</code> object, or in its simpler form of two Strings (username and password).
+<div title="Code" style="padding: 10px;"><p>The security credentials can be either be supplied as a <code>UserDetails</code> object, or in its simpler form of two Strings (username and password).
 These are used to <span class="tc-italic">implicitly</span> create a secured Space, with security privileges being propagated to internal services.</p>
 
-<pre><code class="language-java">EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("space").userDetails("user", "password");
+<pre xml:space="preserve"><code class="language-java">EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("space").userDetails("user", "password");
 GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 </code></pre>
 </div>
@@ -60,26 +40,21 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 
 <p>An embedded Space with no internal services can be simply configured as secured.</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space"&gt;
-    &lt;os-core:security secured="true" /&gt;
-&lt;/os-core:embedded-space&gt;
+<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space"&gt;    &lt;os-core:security secured="true" /&gt;&lt;/os-core:embedded-space&gt;
 </code></pre>
 </div>
-<div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
-    &lt;property name="name" value="space" /&gt;
-    &lt;property name="secured" value="true" /&gt;
-&lt;/bean&gt;
+<div title="Plain XML" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;    &lt;property name="name" value="space" /&gt;    &lt;property name="secured" value="true" /&gt;&lt;/bean&gt;
 </code></pre>
 </div>
-<div title="Code" style="padding:10px"><p>The <code>secured</code> Space URL property indicates that the Space being created should be secured.</p>
+<div title="Code" style="padding: 10px;"><p>The <code>secured</code> Space URL property indicates that the Space being created should be secured.</p>
 
-<pre><code class="language-java">EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("space?secured");
+<pre xml:space="preserve"><code class="language-java">EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("space?secured");
 GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 </code></pre>
 
 <p>The <code>secured</code> URL property is also exposed as a convenient <code>.secured(true)</code> method call.</p>
 
-<pre><code class="language-java">EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("space").secured(true);
+<pre xml:space="preserve"><code class="language-java">EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("space").secured(true);
 GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 </code></pre>
 </div>
@@ -93,34 +68,24 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
 
 <p>A Processing Unit (for example, a feeder application) may access a secured Space using a remote Space proxy.</p>
 
-<pre><code class="language-xml">&lt;os-core:space-proxy id="mySpace" space-name="mySpace"&gt;
-    &lt;os-core:security username="sa" password="adaw@##$" /&gt;
-&lt;/os-core:space-proxy&gt;
+<pre xml:space="preserve"><code class="language-xml">&lt;os-core:space-proxy id="mySpace" space-name="mySpace"&gt;    &lt;os-core:security username="sa" password="adaw@##$" /&gt;&lt;/os-core:space-proxy&gt;
 </code></pre>
 
 <p>The <code>username</code> and <code>password</code> can also be supplied using a <code>pu.properties</code> file supplied during deployment. If these are supplied, they will be used to <span class="tc-italic">implicitly</span> connect to a secured Space, returning an authenticated proxy for this user.</p>
 
-<pre><code class="language-java">#pu.properties
+<pre xml:space="preserve"><code class="language-java">#pu.properties
 security.username=user
 security.password=password
 </code></pre>
 
 <p><code>security.username</code> and <code>security.password</code> are constant property keys. If you want to set your own property placeholders, such as <code>$\{mySpace.username\}</code> and <code>$\{mySpace.password\}</code>, you must use plain XML configuration. These properties have to be injected at deploy time, by some property resolver.</p>
 
-<pre><code class="language-xml">&lt;bean id="mySpace" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
-    &lt;property name="name" value="mySpace" /&gt;
-    &lt;property name="securityConfig"&gt;
-        &lt;bean class="org.openspaces.core.space.SecurityConfig"&gt;
-            &lt;property name="username" value="${myusername}" /&gt;
-            &lt;property name="password" value="${mypassword}" /&gt;
-        &lt;/bean&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
+<pre xml:space="preserve"><code class="language-xml">&lt;bean id="mySpace" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;    &lt;property name="name" value="mySpace" /&gt;    &lt;property name="securityConfig"&gt;        &lt;bean class="org.openspaces.core.space.SecurityConfig"&gt;            &lt;property name="username" value="${myusername}" /&gt;            &lt;property name="password" value="${mypassword}" /&gt;        &lt;/bean&gt;    &lt;/property&gt;&lt;/bean&gt;
 </code></pre>
 
 <p>Using the CLI <code>deploy</code> command, embed the username and password matching the placeholders given in the <code>pu.xml</code>:</p>
 
-<pre><code class="language-xml">&gt; gs deploy -properties embed://myusername=testing;mypassword=1234 myPU.jar
+<pre xml:space="preserve"><code class="language-xml">&gt; gs deploy -properties embed://myusername=testing;mypassword=1234 myPU.jar
 </code></pre>
 
 <h2 id="protecting-user-password">Protecting User/Password</h2>
@@ -129,19 +94,17 @@ security.password=password
 
 <p>Here is how the CLI deploy command would look like:</p>
 
-<pre><code class="language-xml">&lt;bean id="mySpace" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
-    &lt;property name="name" value="mySpace" /&gt;
-&lt;/bean&gt;
+<pre xml:space="preserve"><code class="language-xml">&lt;bean id="mySpace" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;    &lt;property name="name" value="mySpace" /&gt;&lt;/bean&gt;
 </code></pre>
 
 <p>Using the CLI <code>deploy</code> command, supply the username and password using <code>-user</code> and <code>-password</code>:</p>
 
-<pre><code class="language-xml">&gt; gs deploy -secured -user testing -password 1234 myPU.jar
+<pre xml:space="preserve"><code class="language-xml">&gt; gs deploy -secured -user testing -password 1234 myPU.jar
 </code></pre>
 
 <p>Property substitution is not supported for the nested <code>os-core:security</code> element. If you don't want to add a Space property (and need to use property placeholders instead), you can pass the username and password as parameters:</p>
 
-<pre><code class="language-xml">&lt;os-core:security credentials-provider="com.gigaspaces.security.directory.DefaultCredentialsProvider" /&gt; 
+<pre xml:space="preserve"><code class="language-xml">&lt;os-core:security credentials-provider="com.gigaspaces.security.directory.DefaultCredentialsProvider" /&gt; 
 
 &lt;bean id="com.gigaspaces.security.directory.DefaultCredentialsProvider" class="com.gigaspaces.security.directory.DefaultCredentialsProvider"&gt; 
 &lt;constructor-arg value="%{ims.username[default:%{SPACE_USERNAME}]}" /&gt; 
@@ -154,30 +117,23 @@ security.password=password
 <p>The local cache <a href="../dev-java/local-cache.htm/">Java version</a> |<a href="../dev-dotnet/local-cache.htm/"> .NET version</a> is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have Read privileges.
 Security is enforced by the remote Space, and the proxy should be acquired by supplying the username and password.</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Local Cache Configurer" style="padding:10px"><pre><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
+<div class="easyui-tabs" plain="true" data-options=""><div title="Local Cache Configurer" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
 GigaSpace remoteSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 
 LocalCacheSpaceConfigurer configurer = new LocalCacheSpaceConfigurer(remoteSpace.getSpace()).updateMode(UpdateMode.PULL);
 GigaSpace localCache = new GigaSpaceConfigurer(configurer.localCache()).gigaSpace();
 </code></pre>
 </div>
-<div title="Local Cache Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="remoteSpace" space-name="space" &gt;
-    &lt;os-core:security username="user" password="password"/&gt;
-&lt;/os-core:space-proxy&gt;
-
-&lt;os-core:local-cache id="localCacheSpace" space="remoteSpace" update-mode="PULL"/&gt;
-
-&lt;!--
+<div title="Local Cache Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:space-proxy id="remoteSpace" space-name="space" &gt;    &lt;os-core:security username="user" password="password"/&gt;&lt;/os-core:space-proxy&gt;&lt;os-core:local-cache id="localCacheSpace" space="remoteSpace" update-mode="PULL"/&gt;&lt;!--
  OpenSpaces simplified Space API built on top of IJSpace/JavaSpace.
---&gt;
-&lt;os-core:giga-space id="localCache" space="localCacheSpace"/&gt;
+--&gt;&lt;os-core:giga-space id="localCache" space="localCacheSpace"/&gt;
 </code></pre>
 </div>
 </div>
 
 <h1 id="local-view">Local View</h1>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Local View Configurer" style="padding:10px"><pre><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
+<div class="easyui-tabs" plain="true" data-options=""><div title="Local View Configurer" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
 GigaSpace remoteSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
 
 LocalViewSpaceConfigurer configurer = new LocalViewSpaceConfigurer(remoteSpace.getSpace())
@@ -187,19 +143,9 @@ LocalViewSpaceConfigurer configurer = new LocalViewSpaceConfigurer(remoteSpace.g
 GigaSpace localView = new GigaSpaceConfigurer(configurer.localView()).gigaSpace();
 </code></pre>
 </div>
-<div title="   Local View Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="remoteSpace" space-name="space" &gt;
-   &lt;os-core:security username="user" password="password"/&gt;
-&lt;/os-core:space-proxy&gt;
-
-&lt;os-core:local-view id="localViewSpace" space="space"&gt;
-   &lt;os-core:view-query where="quantity = 20" class="...Trade"/&gt;
-   &lt;os-core:view-query where="stockId =&gt; 10" class="...Stock"/&gt;
-&lt;/os-core:local-view&gt;
-
-&lt;!--
+<div title="Local View Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:space-proxy id="remoteSpace" space-name="space" &gt;   &lt;os-core:security username="user" password="password"/&gt;&lt;/os-core:space-proxy&gt;&lt;os-core:local-view id="localViewSpace" space="space"&gt;   &lt;os-core:view-query where="quantity = 20" class="...Trade"/&gt;   &lt;os-core:view-query where="stockId =&gt; 10" class="...Stock"/&gt;&lt;/os-core:local-view&gt;&lt;!--
  OpenSpaces simplified Space API built on top of IJSpace/JavaSpace.
---&gt;
-&lt;os-core:giga-space id="localView" space="localViewSpace"/&gt;
+--&gt;&lt;os-core:giga-space id="localView" space="localViewSpace"/&gt;
 </code></pre>
 </div>
 </div>
@@ -214,30 +160,15 @@ GigaSpace localView = new GigaSpaceConfigurer(configurer.localView()).gigaSpace(
 
 <p>A filter can be registered for <code>before-authentication</code> events. Before a client tries to authenticate, any filter with the <code>before-authentication</code> operation-code is invoked. The <code>SpaceContext</code> supplied as part of the call holds a <code>SecurityContext</code> that has the <code>UserDetails</code> object.</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><p>The following Spring configuration registers this filter for <code>before-authentication</code> (6) operation:</p>
+<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><p>The following Spring configuration registers this filter for <code>before-authentication</code> (6) operation:</p>
 
-<pre><code class="language-xml">&lt;bean id="simpleISpaceFilter" class="eg.SimpleISpaceFilter" /&gt;
-
-&lt;os-core:embedded-space id="space" space-name="space"&gt;
-    &lt;os-core:security secured="true"/&gt;
-    &lt;os-core:space-filter&gt;
-        &lt;os-core:filter ref="simpleISpaceFilter" /&gt;
-        &lt;os-core:operation code="6" /&gt;
-        ...
-    &lt;/os-core:space-filter&gt;
-&lt;/os-core:embedded-space&gt;
+<pre xml:space="preserve"><code class="language-xml">&lt;bean id="simpleISpaceFilter" class="eg.SimpleISpaceFilter" /&gt;&lt;os-core:embedded-space id="space" space-name="space"&gt;    &lt;os-core:security secured="true"/&gt;    &lt;os-core:space-filter&gt;        &lt;os-core:filter ref="simpleISpaceFilter" /&gt;        &lt;os-core:operation code="6" /&gt;        ...
+    &lt;/os-core:space-filter&gt;&lt;/os-core:embedded-space&gt;
 </code></pre>
 </div>
-<div title="Annotations" style="padding:10px"><p>An example of a simple POJO filter using annotations:</p>
+<div title="Annotations" style="padding: 10px;"><p>An example of a simple POJO filter using annotations:</p>
 
-<pre><code class="language-xml">&lt;bean id="simpleFilter" class="eg.SimpleFilter" /&gt;
-
-&lt;os-core:embedded-space id="space" space-name="space"&gt;
-    &lt;os-core:security secured="true"/&gt;
-    &lt;os-core:annotation-adapter-filter priority="1"&gt;
-        &lt;os-core:filter ref="simpleFilter" /&gt;
-    &lt;/os-core:annotation-adapter-filter&gt;
-&lt;/os-core:embedded-space&gt;
+<pre xml:space="preserve"><code class="language-xml">&lt;bean id="simpleFilter" class="eg.SimpleFilter" /&gt;&lt;os-core:embedded-space id="space" space-name="space"&gt;    &lt;os-core:security secured="true"/&gt;    &lt;os-core:annotation-adapter-filter priority="1"&gt;        &lt;os-core:filter ref="simpleFilter" /&gt;    &lt;/os-core:annotation-adapter-filter&gt;&lt;/os-core:embedded-space&gt;
 </code></pre>
 
 <div class="tc-admon-note">
@@ -245,7 +176,7 @@ GigaSpace localView = new GigaSpaceConfigurer(configurer.localView()).gigaSpace(
   <p>The annotated method must have <code>SpaceContext</code> as a parameter.</p>
 </div>
 
-<pre><code class="language-java">//Delegate Filter
+<pre xml:space="preserve"><code class="language-java">//Delegate Filter
 public class SimpleFilter {
 
     @BeforeAuthentication
@@ -260,37 +191,22 @@ public class SimpleFilter {
 }
 </code></pre>
 </div>
-<div title="Method listings" style="padding:10px"><p>The following Spring configuration XML shows how the filter can be configured using explicit method listings (in this case, annotations are not required).
+<div title="Method listings" style="padding: 10px;"><p>The following Spring configuration XML shows how the filter can be configured using explicit method listings (in this case, annotations are not required).
 Note the <code>before-authentication</code> method adapter.</p>
 
-<pre><code class="language-xml">&lt;bean id="simpleFilter" class="eg.SimpleFilter" /&gt;
-
-&lt;os-core:embedded-space id="space" space-name="space"&gt;
-    &lt;os-core:security secured="true"/&gt;
-    &lt;os-core:method-adapter-filter before-authentication="beforeAuthenticationMethod"&gt;
-        &lt;os-core:filter ref="simpleFilter"/&gt;
-    &lt;/os-core:method-adapter-filter&gt;
-&lt;/os-core:embedded-space&gt;
+<pre xml:space="preserve"><code class="language-xml">&lt;bean id="simpleFilter" class="eg.SimpleFilter" /&gt;&lt;os-core:embedded-space id="space" space-name="space"&gt;    &lt;os-core:security secured="true"/&gt;    &lt;os-core:method-adapter-filter before-authentication="beforeAuthenticationMethod"&gt;        &lt;os-core:filter ref="simpleFilter"/&gt;    &lt;/os-core:method-adapter-filter&gt;&lt;/os-core:embedded-space&gt;
 </code></pre>
 </div>
-<div title="Embedded-space operations" style="padding:10px"><p><span class="tc-italic">Implicitly</span> create a secured Space, with security privileges that are propagated to the filter.
+<div title="Embedded-space operations" style="padding: 10px;"><p><span class="tc-italic">Implicitly</span> create a secured Space, with security privileges that are propagated to the filter.
 These privileges should be sufficient for operations being performed by the filter on the embedded Space.</p>
 
-<pre><code class="language-xml">&lt;!-- pu.xml --&gt;
-&lt;bean id="simpleFilter" class="eg.SimpleFilter" /&gt;
-
-&lt;os-core:embedded-space id="space" space-name="space"&gt;
-   &lt;os-core:security username="user" password="password"/&gt;
-   &lt;os-core:method-adapter-filter filter-init="init"
-                                  before-write="beforeWrite"&gt;
-        &lt;os-core:filter ref="simpleFilter"/&gt;
-   &lt;/os-core:method-adapter-filter&gt;
-&lt;/os-core:embedded-space&gt;
+<pre xml:space="preserve"><code class="language-xml">&lt;!-- pu.xml --&gt;&lt;bean id="simpleFilter" class="eg.SimpleFilter" /&gt;&lt;os-core:embedded-space id="space" space-name="space"&gt;   &lt;os-core:security username="user" password="password"/&gt;   &lt;os-core:method-adapter-filter filter-init="init"
+                                  before-write="beforeWrite"&gt;        &lt;os-core:filter ref="simpleFilter"/&gt;   &lt;/os-core:method-adapter-filter&gt;&lt;/os-core:embedded-space&gt;
 </code></pre>
 
 <p>The filter acquires a GigaSpaces reference on filter initialization. Now the filter can perform operations on the embedded secured Space.</p>
 
-<p><pre><code class="language-java">public class SimpleFilter {
+<p /><pre xml:space="preserve"><code class="language-java">public class SimpleFilter {
     GigaSpace gigaSpace;
     @OnFilterInit
     void init(IJSpace space) {
@@ -318,19 +234,12 @@ These privileges should be sufficient for operations being performed by the filt
 
 <p>The filter can be declared just like any other filter, but note that the <code>priority</code> plays a role in the order of filter execution. The default priority is zero.</p>
 
-<pre><code class="language-xml">&lt;bean id="customAccessControlFilter" class="example.CustomAccessControlFilter" /&gt;
-
-&lt;os-core:embedded-space id="space" space-name="space"&gt;
-    &lt;os-core:security secured="true"/&gt;
-    &lt;os-core:annotation-adapter-filter priority="0"&gt;
-        &lt;os-core:filter ref="customAccessControlFilter" /&gt;
-    &lt;/os-core:annotation-adapter-filter&gt;
-&lt;/os-core:embedded-space&gt;
+<pre xml:space="preserve"><code class="language-xml">&lt;bean id="customAccessControlFilter" class="example.CustomAccessControlFilter" /&gt;&lt;os-core:embedded-space id="space" space-name="space"&gt;    &lt;os-core:security secured="true"/&gt;    &lt;os-core:annotation-adapter-filter priority="0"&gt;        &lt;os-core:filter ref="customAccessControlFilter" /&gt;    &lt;/os-core:annotation-adapter-filter&gt;&lt;/os-core:embedded-space&gt;
 </code></pre>
 
 <p>Usage examples:</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Access based on user name" style="padding:10px"><pre><code class="language-java">public class CustomAccessControlFilter {
+<div class="easyui-tabs" plain="true" data-options=""><div title="Access based on user name" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">public class CustomAccessControlFilter {
     ...
     @BeforeRead
     public void beforeRead(Account account, int operationCode, SpaceContext context) {
@@ -348,7 +257,7 @@ These privileges should be sufficient for operations being performed by the filt
 }
 </code></pre>
 </div>
-<div title="Access based on role and field data" style="padding:10px"><pre><code class="language-java">public class CustomAccessControlFilter {
+<div title="Access based on role and field data" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">public class CustomAccessControlFilter {
     ...
     @BeforeWrite
     public void beforeWrite(Account account, int operationCode, SpaceContext context) {
@@ -374,7 +283,7 @@ These privileges should be sufficient for operations being performed by the filt
 
 <p>The following is a simple implementation of a task that performs a "count' operation on the Space.</p>
 
-<pre><code class="language-java">private static final class MyTask implements Task&lt;Integer&gt; {
+<pre xml:space="preserve"><code class="language-java">private static final class MyTask implements Task&lt;Integer&gt; {
    @TaskGigaSpace
    transient GigaSpace gigaSpace;
 
@@ -386,7 +295,7 @@ These privileges should be sufficient for operations being performed by the filt
 
 <p>While executed tasks are effective when co-located, you may require operations on the cluster.</p>
 
-<pre><code class="language-java">GigaSpace clustered = gigaSpace.getClustered();
+<pre xml:space="preserve"><code class="language-java">GigaSpace clustered = gigaSpace.getClustered();
 </code></pre>
 
 <div class="tc-admon-note">
@@ -406,7 +315,7 @@ These privileges should be sufficient for operations being performed by the filt
 
 <p>XAP allows applications to connect using a <a href="../dev-java/jdbc-driver.htm/">JDBC driver</a>. A XAP JDBC driver accepts SQL statements, translates them into Space operations, and returns standard result sets. To acquire a connection to a remote secured Space, provide the credentials (username and password) as parameters to the connection.</p>
 
-<pre><code class="language-java">Class.forName("com.j_spaces.jdbc.driver.GDriver").newInstance();
+<pre xml:space="preserve"><code class="language-java">Class.forName("com.j_spaces.jdbc.driver.GDriver").newInstance();
 String url = "jdbc:gigaspaces:url:jini://*/*/space";
 Connection conn = DriverManager.getConnection(url, "user", "password");
 Statement st = conn.createStatement();
