@@ -37,7 +37,10 @@ function processBuildFolder(srcFolder) {
   fso.CopyFolder(srcFolder.Path, sDstPath);
   var dstFolder = fso.GetFolder(sDstPath);
   log("Processing HTML files...");
-  processFilesWithExtension(dstFolder, ".html", [{"find": /=\"\S*?Resources\/Static\//g, "replace": '="/'}]);
+  processFilesWithExtension(dstFolder, ".html", [
+    { "find": /=\"\S*?Resources\/Static\//g, "replace": '="/' },
+    { "find": /https:\/\/docs\.gigaspaces\.com/g, "replace": '' }
+  ]);
   log("Processing static resources...");
   processStaticResources(fso.GetFolder(dstFolder.Path + "\\Resources\\Static"), sOutputPath);
 }
