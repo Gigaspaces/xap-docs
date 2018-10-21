@@ -20,7 +20,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information about Spaces, refer to <a href="./the-space-operations.htm/">The Space Operations</a>.</p>
+  <p>For more information about Spaces, refer to <a href="the-space-operations.htm">The Space Operations</a>.</p>
 </div>
 
 <h1 id="embedded-space">Embedded Space</h1>
@@ -56,7 +56,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/devguide/space-replicated.png" width="521" height="161" /></p>
 </div>
 
-<p>A simple way to use the embedded Space in a clustered architecture is by deploying a <a href="../admin/data-grid-clustering.htm/">clustered Space</a>, or packaging your application as a <a href="./the-processing-unit-overview.htm/">Processing Unit</a> and deploying it using the relevant SLA.</p>
+<p>A simple way to use the embedded Space in a clustered architecture is by deploying a <a href="../admin/data-grid-clustering.htm">clustered Space</a>, or packaging your application as a <a href="the-processing-unit-overview.htm">Processing Unit</a> and deploying it using the relevant SLA.</p>
 
 <h1 id="remote-space">Remote Space</h1>
 
@@ -87,16 +87,16 @@
 
 <div class="tc-admon-refer">
   
-  <p>A full description of the Space URL Properties is available <a href="./the-space-configuration.htm/">here.</a>.</p>
+  <p>A full description of the Space URL Properties is available <a href="the-space-configuration.htm">here.</a>.</p>
 </div>
 
 <h2 id="reconnection">Reconnection</h2>
 
-<p>When working with a <span class="tc-bold">remote Space</span>, the Space may become unavailable (due to network problems, Processing Unit relocation, etc.). For information on how such disruptions are handled and configured, refer to <a href="../admin/tuning-proxy-connectivity.htm/">Proxy Connectivity</a>.</p>
+<p>When working with a <span class="tc-bold">remote Space</span>, the Space may become unavailable (due to network problems, Processing Unit relocation, etc.). For information on how such disruptions are handled and configured, refer to <a href="../admin/tuning-proxy-connectivity.htm">Proxy Connectivity</a>.</p>
 
 <h1 id="local-cache">Local Cache</h1>
 
-<p>XAP supports a <a href="./local-cache.htm/">local cache</a> (near cache) configuration. This provides a front-end, client-side cache that is used with the <code>read</code> operations implicitly. The local cache is loaded on demand or when you perform a <code>read</code> operation, and is updated implicitly by the Space.</p>
+<p>XAP supports a <a href="local-cache.htm">local cache</a> (near cache) configuration. This provides a front-end, client-side cache that is used with the <code>read</code> operations implicitly. The local cache is loaded on demand or when you perform a <code>read</code> operation, and is updated implicitly by the Space.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/devguide/space-local-cache.png" width="521" height="160" /></p>
 </div>
@@ -131,7 +131,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 
 <h1 id="local-view">Local View</h1>
 
-<p>XAP supports a <a href="./local-view.htm/">local view</a> configuration. This provides a front-end, client-side cache that is used with any <code>read</code> or <code>readMultiple</code> operations implicitly. The local view is loaded on start, and is updated implicitly by the Space.</p>
+<p>XAP supports a <a href="local-view.htm">local view</a> configuration. This provides a front-end, client-side cache that is used with any <code>read</code> or <code>readMultiple</code> operations implicitly. The local view is loaded on start, and is updated implicitly by the Space.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/devguide/space-local-view.png" width="521" height="160" /></p>
 </div>
@@ -213,9 +213,9 @@ localViewConfigurer.close();
 
 <h2 id="communication-resources">Communication Resources</h2>
 
-<p>All communication-related resources in XAP are shared between all the XAP components at the Java classloader level. If you're using the <a href="../admin/the-runtime-environment.htm/">XAP service grid</a> to run your XAP application, you do not need to handle the cleanup of communication resources explicitly.</p>
+<p>All communication-related resources in XAP are shared between all the XAP components at the Java classloader level. If you're using the <a href="../admin/the-runtime-environment.htm">XAP service grid</a> to run your XAP application, you do not need to handle the cleanup of communication resources explicitly.</p>
 
-<p>If your application runs in a standalone environment or another hosted environment (such as a JEE application server), you must explicitly clean up those resources. You have to shut down these resources explicitly when your application no longer uses the XAP components (for example, when it is undeployed from the application server). This is done by calling the static <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/LRMIManager.htm/">shutdown()</a> method on the LRMIManager.</p>
+<p>If your application runs in a standalone environment or another hosted environment (such as a JEE application server), you must explicitly clean up those resources. You have to shut down these resources explicitly when your application no longer uses the XAP components (for example, when it is undeployed from the application server). This is done by calling the static <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/LRMIManager.htm">shutdown()</a> method on the LRMIManager.</p>
 
 <p>If the JVM process is shut down anyway, you don't have to explicitly shut down the communication resources.</p>
 
@@ -279,7 +279,7 @@ LRMIManager.shutdown();
 
 <h1 id="persistency">Persistency</h1>
 
-<p>When constructing a Space, you can provide <a href="./space-persistency-overview.htm/">Space Persistency</a> extensions using Spring-based configuration instead of using the Space schema. The following is an example of how it can be defined:</p>
+<p>When constructing a Space, you can provide <a href="space-persistency-overview.htm">Space Persistency</a> extensions using Spring-based configuration instead of using the Space schema. The following is an example of how it can be defined:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"&gt;
     &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver"/&gt;
@@ -357,7 +357,7 @@ Space construction (note the specific schema change), and causes the Space to us
 
 <div class="tc-admon-note">
   
-  <p>This configuration can also be used with the XAP <a href="./asynchronous-persistency-with-the-mirror.htm/">Mirror Service</a> deployed as a Processing Unit.</p>
+  <p>This configuration can also be used with the XAP <a href="asynchronous-persistency-with-the-mirror.htm">Mirror Service</a> deployed as a Processing Unit.</p>
 </div>
 
 <h1 id="additional-resources">Additional Resources</h1>

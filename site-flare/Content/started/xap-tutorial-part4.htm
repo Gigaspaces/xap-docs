@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -153,7 +153,7 @@ public class Payment implements Serializable {
         <h1 id="jms">JMS</h1>
         <p>In addition to the polling containers you can also use a JMS facade on top of the space to deliver events. The JMS facade is designed to enable integration with external feeders that cannot or were not designed to work with the space based API.</p>
         <div class="tc-admon-note">
-            <p>For more information, see Event&#160;Processing&gt;<a href="../dev-java/messaging-support.htm/">JMS Messaging Support</a>.</p>
+            <p>For more information, see Event&#160;Processing&gt;<a href="../dev-java/messaging-support.htm">JMS Messaging Support</a>.</p>
         </div>
         <h1 id="master-worker-pattern">Master Worker Pattern</h1>
         <table class="tc-borderless">
@@ -162,8 +162,8 @@ public class Payment implements Serializable {
                     <p>The Master-Worker Pattern (sometimes called the Master-Slave or the Map-Reduce pattern) is used for parallel processing. It follows a simple approach that allows applications to perform simultaneous processing across multiple machines or processes via a <code>Master</code> and multiple <code>Workers</code>.
 In GigaSpaces XAP, you can implement the Master-Worker pattern using several methods:</p>
                     <ul>
-                        <li><a href="/sbp/map-reduce-pattern-executors-example.htm/">Task Executors</a> - best for a scenario where the processing activity is collocated with the data (the data is stored within the same space as the tasks being executed).</li>
-                        <li><a href="../dev-java/polling-container-overview.htm/">Polling Containers</a> - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time.</li>
+                        <li><a href="https://docs.gigaspaces.com/sbp/map-reduce-pattern-executors-example.htm">Task Executors</a> - best for a scenario where the processing activity is collocated with the data (the data is stored within the same space as the tasks being executed).</li>
+                        <li><a href="../dev-java/polling-container-overview.htm">Polling Containers</a> - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time.</li>
                     </ul>
                     <p>It might also be relevant if the actual data required for the processing is not stored within the space, or the time it takes to retrieve the required data from the space is much shorter than the time it takes to complete the processing.</p>
                 </td>

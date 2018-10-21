@@ -5,7 +5,7 @@
 <h1>Service Level Agreement (SLA)</h1>
   
 
-<p>The GigaSpaces runtime environment (also referred to as the Service Grid) provides SLA-driven capabilities via the <a href="../overview/the-runtime-environment.htm/#gsm">Grid Service Manager (GSM)</a> and the <a href="../overview/the-runtime-environment.htm/#gsc">Grid Service Container (GSC)</a> runtime components. The GSC is responsible for running one or more Processing Units. The GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available GSCs.</p>
+<p>The GigaSpaces runtime environment (also referred to as the Service Grid) provides SLA-driven capabilities via the <a href="../overview/the-runtime-environment.htm#gsm">Grid Service Manager (GSM)</a> and the <a href="../overview/the-runtime-environment.htm#gsc">Grid Service Container (GSC)</a> runtime components. The GSC is responsible for running one or more Processing Units. The GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available GSCs.</p>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Enforcing SLA Definitions </p>
@@ -23,7 +23,7 @@
 
 <li><p>Embed the SLA definitions within the Processing Unit's <code>pu.xml</code> file.</p></li>
 
-<li><p>Provide a separate XML file with the SLA definitions to the GSM at deployment time via one of the <a href="../dev-java/deploying-onto-the-service-grid.htm/">deployment tools</a>.</p></li>
+<li><p>Provide a separate XML file with the SLA definitions to the GSM at deployment time via one of the <a href="../dev-java/deploying-onto-the-service-grid.htm">deployment tools</a>.</p></li>
 
 <li><p>Use the deployment tools themselves to provide/override the Processing Unit's SLA (see below). For example, the GUI deployment dialog enables you to type in various SLA definitions, such as the number of instances, number of backups, and Space topology.</p></li>
 </ul>
@@ -58,7 +58,7 @@
 </div>
 </div>
 
-<p>The SLA definition shown above creates four instances of a Processing Unit using the <code>partitioned</code> <a href="../overview/the-runtime-environment.htm/#topologies">space topology</a>. It defines two partitions (<code>number-of-instances="2"</code>), each with one backup (<code>number-of-backups="1"</code>). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (<code>max-instances-per-vm="1"</code>).</p>
+<p>The SLA definition shown above creates four instances of a Processing Unit using the <code>partitioned</code> <a href="../overview/the-runtime-environment.htm#topologies">space topology</a>. It defines two partitions (<code>number-of-instances="2"</code>), each with one backup (<code>number-of-backups="1"</code>). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (<code>max-instances-per-vm="1"</code>).</p>
 
 <div class="tc-admon-note">
   
@@ -67,7 +67,7 @@
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p>In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the <a href="../dev-java/administration-and-monitoring-overview.htm/">Administration and Monitoring API</a> which supports the above and and much more.</p>
+  <p>In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the <a href="../dev-java/administration-and-monitoring-overview.htm">Administration and Monitoring API</a> which supports the above and and much more.</p>
 </div>
 
 <h1 id="defining-the-space-cluster-topology">Defining the Space Cluster Topology</h1>
@@ -98,7 +98,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>Please refer to <a href="../overview/the-runtime-environment.htm/#topologies">this page</a> for more details about space clustering topologies and guidelines regarding when to use each of the topologies.
+  <p>Please refer to <a href="../overview/the-runtime-environment.htm#topologies">this page</a> for more details about space clustering topologies and guidelines regarding when to use each of the topologies.
 The number-of-backups parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.</p>
 </div>
 
@@ -144,7 +144,7 @@ The <code>max-instances-per-vm</code> defines the maximum number of instances pe
 The rebalance concept is based on the assumption that there are initially more partitions than GSCs. The ratio between partitions to GSCs is called the scaling factor; meaning how much your data grid can expand itself without shutdown, and without increasing the amount of partitions.</p>
 
 <p>Example: Start with 4 GSCs and 20 partitions with backups (40 instances). Each GSC will initially host 10 instances, and can end up with 40 GSCs (after one or more rebalancing operations) where each GSC hosts a single instance. In this example,  the capacity of the data grid is increased to 10 times larger without downtime, while the amount of partitions remains the same.
-See the <a href="/sbp/capacity-planning.htm/">capacity planning</a> section for more details.</p>
+See the <a href="https://docs.gigaspaces.com/sbp/capacity-planning.htm">capacity planning</a> section for more details.</p>
 
 <p>The following is an example of setting the <code>max-instances-per-vm</code> parameter:</p>
 
@@ -183,7 +183,7 @@ See the <a href="/sbp/capacity-planning.htm/">capacity planning</a> section for 
 
 <h1 id="monitoring-the-liveness-of-processing-unit-instances">Monitoring the Liveness of Processing Unit Instances</h1>
 
-<p>The <a href="../overview/the-runtime-environment.htm/#gsm">GSM</a> monitors the liveness of all the Processing Unit instances it provisioned to the GSCs. The GSM pings each instance in the cluster to see whether it is available.</p>
+<p>The <a href="../overview/the-runtime-environment.htm#gsm">GSM</a> monitors the liveness of all the Processing Unit instances it provisioned to the GSCs. The GSM pings each instance in the cluster to see whether it is available.</p>
 
 <p>You can control how often a Processing Unit instance is monitored by the GSM, and in case of failure, how many times the GSM will try again to ping the instance and how long it will wait between retry attempts.</p>
 

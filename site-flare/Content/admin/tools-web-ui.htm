@@ -24,7 +24,7 @@
 
 <h2 id="enabling-security">Enabling Security</h2>
 
-<p>The Web Management Console (Web-UI) allows for a secured access when the security <code>enabled</code> property is set. This property should be configured using <code>EXT_JAVA_OPTIONS</code> in <code>setenv</code> script and is applied to all XAP <a href="../security/securing-the-grid-services.htm/">Grid Components</a>.</p>
+<p>The Web Management Console (Web-UI) allows for a secured access when the security <code>enabled</code> property is set. This property should be configured using <code>EXT_JAVA_OPTIONS</code> in <code>setenv</code> script and is applied to all XAP <a href="../security/securing-the-grid-services.htm">Grid Components</a>.</p>
 
 <p>The property:</p>
 
@@ -33,7 +33,7 @@
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Notes</p>
-  <p>The Lookup groups and Locators are loaded from the <code>setenv/setenv-overrides</code> script. ץ Lookup groups and Lookup Locators can be configured in the configuration files described in <a href="../started/common-environment-variables.htm/#extension">Configure Lookup Groups and Locators</a>.</p>
+  <p>The Lookup groups and Locators are loaded from the <code>setenv/setenv-overrides</code> script. ץ Lookup groups and Lookup Locators can be configured in the configuration files described in <a href="../started/common-environment-variables.htm#extension">Configure Lookup Groups and Locators</a>.</p>
 </div>
 
 <h2 id="security-properties-file">Security Properties File</h2>
@@ -50,7 +50,7 @@ a resource (e.g. "my-security.properties") in the classpath or in the classpath 
 
 <h2 id="custom-credentials">Custom Credentials</h2>
 
-<p>An authentication mechanism might require a different set of actions to be taken on the provided credentials (username/password). A custom extension can be provided for this, as described in the <a href="../security/custom-authentication.htm/">Authentication</a> page of the <a href="../security/index.htm/">Security</a> section.</p>
+<p>An authentication mechanism might require a different set of actions to be taken on the provided credentials (username/password). A custom extension can be provided for this, as described in the <a href="../security/custom-authentication.htm">Authentication</a> page of the <a href="../security/index.htm">Security</a> section.</p>
 
 <p>This credentials provider is configured as arguments to the command line of the Web Managment Console. Use <code>-user-details-provider</code> for the provider class name. Use <code>-user-details-properties</code> to provide additional properties. This argument is optional.</p>
 
@@ -107,7 +107,7 @@ gs-webui.bat
 
 <h2 id="xap-runtime-environment">XAP Runtime Environment</h2>
 
-<p>To deploy the Web Management Console to the XAP <a href="./the-runtime-environment.htm/">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;XAP root&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
+<p>To deploy the Web Management Console to the XAP <a href="the-runtime-environment.htm">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;XAP root&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
 
 <p>In this case, the Web Management Console actually monitors the runtime environment on which it runs.</p>
 
@@ -121,7 +121,7 @@ gs-webui.bat
 
 <div class="tc-admon-refer">
   
-  <p>For more information about XAP's web application support, refer to the <a href="../dev-java/web-application-overview.htm/">Web Application Support</a> section in the Developer Guide.</p>
+  <p>For more information about XAP's web application support, refer to the <a href="../dev-java/web-application-overview.htm">Web Application Support</a> section in the Developer Guide.</p>
 </div>
 
 <h2 id="third-party-jee-servlet-container">Third-Party JEE Servlet Container</h2>
@@ -139,7 +139,7 @@ gs-webui.bat
 <li><code>&lt;XAP root&gt;/lib/optional/spring/spring-webmvc-4.1.1.RELEASE.jar</code><br/></li>
 </ol>
 
-<p>By default, these are not part of the the <code>gs-webui.war</code> file because they are automatically included in the classpath of both the standalone container and the XAP <a href="./the-runtime-environment.htm/">Runtime Environment</a>.</p>
+<p>By default, these are not part of the the <code>gs-webui.war</code> file because they are automatically included in the classpath of both the standalone container and the XAP <a href="the-runtime-environment.htm">Runtime Environment</a>.</p>
 </div>
 
 <p>After the web application starts, point your browser to the proper location. For example, if you start the web application using a standalone web container, the default URL is <code>http://&lt;standalone server host&gt;:8099</code>.</p>
@@ -162,7 +162,7 @@ gs-webui.bat
 
 <h2 id="deployment-location-of-the-web-application">Deployment Location of the Web Application</h2>
 
-<p>The web application communicates with the runtime components of the XAP cluster, and receives notification from the XAP <a href="../overview/the-runtime-environment.htm/#lus">lookup service</a>. Therefore, it is highly recommended to run the web application in the same network segment of the other cluster components. This does not affect the web browser client, which communicates with the web application using standard HTTP and can be located anywhere, provided that it has access to the web application.</p>
+<p>The web application communicates with the runtime components of the XAP cluster, and receives notification from the XAP <a href="../overview/the-runtime-environment.htm#lus">lookup service</a>. Therefore, it is highly recommended to run the web application in the same network segment of the other cluster components. This does not affect the web browser client, which communicates with the web application using standard HTTP and can be located anywhere, provided that it has access to the web application.</p>
 
 <h2 id="running-via-a-reverse-proxy">Running via a Reverse Proxy</h2>
 

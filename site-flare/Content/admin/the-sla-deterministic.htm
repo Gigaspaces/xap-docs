@@ -15,7 +15,7 @@
 
 <p>Having primary and backup instances in different remote sites that geographically distant from each other is not recommended with read/write applications. In this case, primary and backup instances should be located within the same LAN with high speed connectivity and high capacity bandwidth, to allow the primary instance to replicate data as fast as it can to the backup instance, in order to minimize the effect of replication overhead on application behavior.</p>
 
-<p>When corporate policy requires leveraging remote sites for disaster recovery or remote client access, most systems will have their data grid's primary and backup instances (using synchronous replication mode) within the same LAN (master data grid).There will be another grid and its data grid (not sharing the same lookup service or GSM with the master data grid) running as a slave data grid, where the <a href="/sbp/wan-replication-gateway.htm/">WAN Replication Gateway</a> is used to replicate data between the master and slave data grid asynchronously. With multi-master architecture, the WAN Replication Gateway may run a conflict resolver to handle concurrent updates of the same object at both sites.</p>
+<p>When corporate policy requires leveraging remote sites for disaster recovery or remote client access, most systems will have their data grid's primary and backup instances (using synchronous replication mode) within the same LAN (master data grid).There will be another grid and its data grid (not sharing the same lookup service or GSM with the master data grid) running as a slave data grid, where the <a href="https://docs.gigaspaces.com/sbp/wan-replication-gateway.htm">WAN Replication Gateway</a> is used to replicate data between the master and slave data grid asynchronously. With multi-master architecture, the WAN Replication Gateway may run a conflict resolver to handle concurrent updates of the same object at both sites.</p>
 
 <h1 id="controlling-primary-backup-location">Controlling Primary/Backup Location</h1>
 
@@ -90,7 +90,7 @@ gs-agent --gsc=2
 
 <div class="tc-admon-note">
   
-  <p>Deploy your Processing Unit using the CLI, Web Management Console, or GigaSpaces Management Center. See the <a href="./admin-deploy-pu.htm/">Deploying a Processing Unit</a> topic.</p>
+  <p>Deploy your Processing Unit using the CLI, Web Management Console, or GigaSpaces Management Center. See the <a href="admin-deploy-pu.htm">Deploying a Processing Unit</a> topic.</p>
 </div>
 
 <p>When deployed, all primary instances will be allocated in zone <code>A</code> and backups in zone <code>B</code>. If the primary instance fails, the order is restored using restart.</p>

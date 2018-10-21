@@ -226,7 +226,7 @@ Implementing a custom authentication obviously requires replacing this security 
 
 <h2 id="custom-directorymanager">Custom DirectoryManager</h2>
 
-<p>The <code>createDirectoryManager</code> method can be used to implement a custom users-roles directory management component. However, this is not part of the authentication process, but rather an administrative task, hence our demo throws an exception. If you want to learn more, see <a href="./custom-user-role-management.htm/">Custom User-Role Management</a>.</p>
+<p>The <code>createDirectoryManager</code> method can be used to implement a custom users-roles directory management component. However, this is not part of the authentication process, but rather an administrative task, hence our demo throws an exception. If you want to learn more, see <a href="custom-user-role-management.htm">Custom User-Role Management</a>.</p>
 
 <h2 id="usage-1">Usage</h2>
 
@@ -261,7 +261,7 @@ EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("mySpac
 GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).create();
 </code></pre>
 </div>
-<div title="   Properties " style="padding:10px"><p>The <code>SecurityManager</code> can be configured using custom properties supplied as part of the security properties file (see <a href="./security-configurations.htm/">Security Configurations</a> for information about configuring security properties).
+<div title="   Properties " style="padding:10px"><p>The <code>SecurityManager</code> can be configured using custom properties supplied as part of the security properties file (see <a href="security-configurations.htm">Security Configurations</a> for information about configuring security properties).
 The property <code>com.gs.security.security-manager.class</code> defines the <code>SecurityManager</code> class to instantiate (requires a default constructor).
 Additional custom properties can be added to facilitate custom configuration for the security manager.
 For example:</p>
@@ -278,7 +278,7 @@ custom-security.server-address = myServer
 
 <div class="tc-admon-refer">
   
-  <p>For a full list of command usage, refer to <a href="../admin/command-line-interface-cli-security.htm/">Using the CLI in a Secured Environment</a>.</p>
+  <p>For a full list of command usage, refer to <a href="../admin/command-line-interface-cli-security.htm">Using the CLI in a Secured Environment</a>.</p>
 </div>
 
 <p>Run the <code>gs</code> script, and then use the <code>login</code> command:</p>

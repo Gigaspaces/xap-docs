@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html>
 <head><title></title></head>
 <body>
@@ -81,7 +81,7 @@ IDataEventSession dataEventSession = proxy.CreateDataEventSession(eventSessionCo
 
 <ul>
 <li>The space that holds the listener registration template, is no longer available.</li>
-<li>The proxy that receives the notifications can't handle the amount of incoming events, and creates a <a href="../admin/slow-consumer.htm/">slow consumer</a> scenario, which causes the space to disconnect the listener.</li>
+<li>The proxy that receives the notifications can't handle the amount of incoming events, and creates a <a href="../admin/slow-consumer.htm">slow consumer</a> scenario, which causes the space to disconnect the listener.</li>
 </ul>
 
 <p>In order to detect and handle listener disconnection, the <span class="tc-bold">auto renewal</span> mechanism can be used.</p>
@@ -91,7 +91,7 @@ IDataEventSession dataEventSession = proxy.CreateDataEventSession(eventSessionCo
 <ul>
 <li>The client process terminated unexpectedly, and didn't un register its listener. After the lease expires, the notify template is removed from the space, instead of staying alive forever.</li>
 <li>If the space is no longer available, then the client is notified that it couldn't renew the listener lease.</li>
-<li>If the client causes a <a href="../admin/slow-consumer.htm/">slow consumer</a> scenario, and as a result its listener has been disconnected by the space, then the client is notified that it couldn't renew the listener lease, and it can reregister to the event.</li>
+<li>If the client causes a <a href="../admin/slow-consumer.htm">slow consumer</a> scenario, and as a result its listener has been disconnected by the space, then the client is notified that it couldn't renew the listener lease, and it can reregister to the event.</li>
 </ul>
 
 <p><span class="tc-bold">Configuring data event session with auto renewal</span>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html>
 <head><title></title></head>
 <body>
@@ -8,7 +8,7 @@
 <table class="tc-borderless">
   <tr>
     <td><p>The Spring Framework provides a transaction manager abstraction using the <code>PlatformTransactionManager</code> interface with several different built-in implementations, such as JDBC Data Source and JTA. XAP provides several implementations for Spring's <code>PlatformTransactionManager</code>, allowing you to use the XAP's local and Jini Distributed Transaction Managers.
-By implementing Spring's <code>PlatformTransactionManager</code>, the XAP API allows users to utilize Spring's rich support for <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm/#transaction-declarative" target="_blank">declarative transaction management</a>. The declarative transaction support can be easily utilized with the <a href="./the-gigaspace-interface-overview.htm/">GigaSpace Interface</a>.</p>
+By implementing Spring's <code>PlatformTransactionManager</code>, the XAP API allows users to utilize Spring's rich support for <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-declarative" target="_blank">declarative transaction management</a>. The declarative transaction support can be easily utilized with the <a href="the-gigaspace-interface-overview.htm">GigaSpace Interface</a>.</p>
 
 <p>When using Spring declarative transaction, a proxy is generated for the classes annotated with <code>@Transactional</code> methods. In this case, <span class="tc-bold">only external method calls</span> coming in through the proxy are intercepted. This means that "self-invocation', i.e. a method within the target object calling some other method of the target object, won't lead to an actual transaction at runtime even if the invoked method is marked with <code>@Transactional</code>.</p>
 </td>
@@ -18,7 +18,7 @@ By implementing Spring's <code>PlatformTransactionManager</code>, the XAP API al
 
 <div class="tc-admon-note">
   
-  <p>In order to make <a href="./the-gigaspace-interface-overview.htm/">The GigaSpace Interface </a> transactional, the transaction manager must be provided to it when constructing the GigaSpace bean.
+  <p>In order to make <a href="the-gigaspace-interface-overview.htm">The GigaSpace Interface </a> transactional, the transaction manager must be provided to it when constructing the GigaSpace bean.
 The following should be added to your <code>pu.xml</code> to enable the configuration of transactional behavior based on annotations:</p>
 
 <pre xml:space="preserve"><code class="language-xml">&lt;beans ....
@@ -33,7 +33,7 @@ The following should be added to your <code>pu.xml</code> to enable the configur
 
 <h1 id="constructing-the-xap-transaction-manager">Constructing the XAP Transaction Manager</h1>
 
-<p>The distributed <a href="https://river.apache.org/release-doc/current/specs/html/txn-spec.htm/" target="_blank">Jini Transaction Manager</a> starts an embedded distributed (Mahalo) <span class="tc-bold">Jini Transaction Manager</span>, which is then wrapped with an implementation of the Spring <code>PlatformTransactionManager</code>. This transaction manager is used to perform distributed transactions spanning multiple Space instances.</p>
+<p>The distributed <a href="https://river.apache.org/release-doc/current/specs/html/txn-spec.htm" target="_blank">Jini Transaction Manager</a> starts an embedded distributed (Mahalo) <span class="tc-bold">Jini Transaction Manager</span>, which is then wrapped with an implementation of the Spring <code>PlatformTransactionManager</code>. This transaction manager is used to perform distributed transactions spanning multiple Space instances.</p>
 
 <p>The following is an example of how it can be defined in a Spring application context:</p>
 
@@ -132,7 +132,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>The above configuration creates a Distributed Transaction Manager with a pool of 2 transaction (lease) renewal managers (a single manager can handle multiple transactions, more managers allow for better concurrency). Each transaction is renewed every 1 second (1000 milliseconds) with an expected round trip time of 500 milliseconds. This means that a transaction with a timeout of 10 seconds is renewed 10 times (approximately) and if the JVM crashes, the transaction expires within a second (at most).</p>
 
-<p>More information regarding Lease Renewal Manager can be found <a href="./leases-automatic-expiration.htm/#LeaseRenewalManager">here</a>.</p>
+<p>More information regarding Lease Renewal Manager can be found <a href="leases-automatic-expiration.htm#LeaseRenewalManager">here</a>.</p>
 
 <h1 id="xa-jta-support">XA/JTA Support</h1>
 
@@ -164,7 +164,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <div class="tc-admon-refer">
   
-  <p>See the <a href="/sbp/jta-xa-example.htm/">JTA-XA Example</a> for fully running demonstration how to integrate XAP with an external JMS Server.</p>
+  <p>See the <a href="https://docs.gigaspaces.com/sbp/jta-xa-example.htm">JTA-XA Example</a> for fully running demonstration how to integrate XAP with an external JMS Server.</p>
 </div>
 
 <h1 id="multiple-transaction-managers">Multiple Transaction Managers</h1>
@@ -193,7 +193,7 @@ public String getFoo()
 <p>There are two ways to demarcate the transaction boundaries in your code:</p>
 
 <ol>
-<li>Annotate your methods with the Spring <code>@Transactional</code> annotation, and configure Spring to process the annotation such that every call to the annotated methods will be automatically performed under a transaction. In this case, the transaction starts before the method is called and commits when the method call returns. If an exception is thrown from the method, the transaction is rolled back automatically. You can control various aspects of the transaction by using the attributes of the <code>@Transactional</code> annotation. Refer to the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/transaction/annotation/Transactional.htm/">Javadoc</a> of this class for more details.</li>
+<li>Annotate your methods with the Spring <code>@Transactional</code> annotation, and configure Spring to process the annotation such that every call to the annotated methods will be automatically performed under a transaction. In this case, the transaction starts before the method is called and commits when the method call returns. If an exception is thrown from the method, the transaction is rolled back automatically. You can control various aspects of the transaction by using the attributes of the <code>@Transactional</code> annotation. Refer to the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/transaction/annotation/Transactional.htm">Javadoc</a> of this class for more details.</li>
 <li>Programmatically create the required transaction manager (see below) and a <code>TransactionDefinition</code> instance, and call the Space operations you would to perform under a transaction.</li>
 </ol>
 
@@ -233,11 +233,11 @@ public void myTransactionalMethod(Object data) {
        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;    &lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;    &lt;!-- Defines a distributed Jini transaction manager. --&gt;    &lt;os-core:distributed-tx-manager id="transactionManager"/&gt;        &lt;bean id="transactionalBean" class="MyClass"/&gt;        &lt;bean id="callingBean" class="MyOtherClass"&gt;            &lt;property name="myClass" ref="transactionalBean"/&gt;        &lt;/bean&gt;    &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;&lt;/beans&gt;
 </code></pre>
 
-<p>You can also annotate beans exposed via <a href="./space-based-remoting-overview.htm/">space based remoting</a>. If you include the <code>&lt;tx:annotation-driven&gt;</code> element in your <code>pu.xml</code> file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.</p>
+<p>You can also annotate beans exposed via <a href="space-based-remoting-overview.htm">space based remoting</a>. If you include the <code>&lt;tx:annotation-driven&gt;</code> element in your <code>pu.xml</code> file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.</p>
 
 <h1 id="programmatic-transaction-management">Programmatic Transaction Management</h1>
 
-<p>If you don't want to leverage <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm/#transaction-declarative" target="_blank">Spring's declarative transaction management</a>, or have an application that is not configured by Spring, you can start, commit and roll back transactions explicitly from within your code by using Spring's transaction API.</p>
+<p>If you don't want to leverage <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-declarative" target="_blank">Spring's declarative transaction management</a>, or have an application that is not configured by Spring, you can start, commit and roll back transactions explicitly from within your code by using Spring's transaction API.</p>
 
 <p>Here is how you should use the Transaction manager via the API:</p>
 
@@ -281,7 +281,7 @@ ptm.commit(status);
 
 <div class="tc-admon-refer">
   
-  <p>You can also use Spring's <a href="http://static.springframework.org/spring/docs/2.5.x/api/org/springframework/transaction/support/TransactionTemplate.htm/" target="_blank">TransactionTemplate</a> if you prefer. This is documented in full in the <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm/#transaction-programmatic" target="_blank">Spring reference guide</a>.</p>
+  <p>You can also use Spring's <a href="http://static.springframework.org/spring/docs/2.5.x/api/org/springframework/transaction/support/TransactionTemplate.htm" target="_blank">TransactionTemplate</a> if you prefer. This is documented in full in the <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-programmatic" target="_blank">Spring reference guide</a>.</p>
 </div>
 
 <div class="tc-admon-note">
@@ -291,7 +291,7 @@ ptm.commit(status);
 
 <h1 id="spring-transactiondefinition-mapping-to-xap-readmodifiers">Spring TransactionDefinition Mapping to XAP ReadModifiers</h1>
 
-<p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.htm/" target="_blank">Spring TransactionDefinition</a> Mapping to XAP ReadModifiers:</p>
+<p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.htm" target="_blank">Spring TransactionDefinition</a> Mapping to XAP ReadModifiers:</p>
 
 <table>
 <thead>
@@ -328,7 +328,7 @@ ptm.commit(status);
 
 <div class="tc-admon-refer">
   
-  <p>You can view and inspect ongoing Space transactions with the <a href="../admin/gigaspaces-browser-transaction-view.htm/">GigaSpaces Management Center</a>.</p>
+  <p>You can view and inspect ongoing Space transactions with the <a href="../admin/gigaspaces-browser-transaction-view.htm">GigaSpaces Management Center</a>.</p>
 </div>
 
 <h1 id="starting-embedded-mahalo">Starting Embedded Mahalo</h1>

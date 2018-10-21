@@ -5,7 +5,7 @@
 <h1>Change API</h1>
   
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeSet.htm/">ChangeSet</a> allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object.</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeSet.htm">ChangeSet</a> allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object.</p>
 
 <h3 id="additional-resources">Additional Resources</h3>
 
@@ -20,8 +20,8 @@ This reduces the required network traffic between the client and the Space, and 
   </tr>
 </table>
 
-<p>Moreover, using this API also can prevent having to read the existing object prior to the change operation, because the change operation can specify how to change the existing property without knowing its current value. For instance, implementing atomic <a href="./the-space-counters.htm/">Counters</a> can be done by increasing a counter property of an integer property by some delta. Another example is adding a value to a collection.
-The change API supports <a href="./transaction-overview.htm/">transactions</a> in the same way the other Space operation supports it, using a transactional <code>GigaSpace</code> instance.</p>
+<p>Moreover, using this API also can prevent having to read the existing object prior to the change operation, because the change operation can specify how to change the existing property without knowing its current value. For instance, implementing atomic <a href="the-space-counters.htm">Counters</a> can be done by increasing a counter property of an integer property by some delta. Another example is adding a value to a collection.
+The change API supports <a href="transaction-overview.htm">transactions</a> in the same way the other Space operation supports it, using a transactional <code>GigaSpace</code> instance.</p>
 
  <a id="change">&#160;</a>
 
@@ -37,12 +37,12 @@ space.change(idQuery, new ChangeSet().increment("count", 1));
 
 <h1 id="query-template">Query Template</h1>
 
-<p>The change operation can receive any <a href="./querying-the-space.htm/">query template</a> for matching a single object or multiple objects that need to be changed by the operation.</p>
+<p>The change operation can receive any <a href="querying-the-space.htm">query template</a> for matching a single object or multiple objects that need to be changed by the operation.</p>
 
 <h1 id="change-set">Change Set</h1>
 
-<p>The change operation requires a <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeSet.htm/">ChangeSet</a> that describes the changes that have to be made after locating the object specified by the query template.
-The <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeSet.htm/">ChangeSet</a> contains a predefined set of operations that can be invoked to alter the object. The set can contain one or more changes that will be applied sequentially to the object.
+<p>The change operation requires a <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeSet.htm">ChangeSet</a> that describes the changes that have to be made after locating the object specified by the query template.
+The <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeSet.htm">ChangeSet</a> contains a predefined set of operations that can be invoked to alter the object. The set can contain one or more changes that will be applied sequentially to the object.
 Each specified change can operate on any level of properties of the specified object. This is defined by specifying the path to the property that needs to be changed, where ".' in the path specifies
 that this change is done on a nested property. For instance:</p>
 
@@ -79,7 +79,7 @@ space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
 <p>Each operation in the change set acts on a specified string path. This path points to the property that needs to be changed, and has the following semantic:</p>
 
 <ol>
-<li><span class="tc-bold">First level property</span> - A path with no ".' character in it points to a first-level property. If the property specified by this path is not part of the Object, it is treated as a dynamic property (see <a href="./dynamic-properties.htm/">Dynamic Properties</a>). If the object doesn't support dynamic properties, an exception is generated.</li>
+<li><span class="tc-bold">First level property</span> - A path with no ".' character in it points to a first-level property. If the property specified by this path is not part of the Object, it is treated as a dynamic property (see <a href="dynamic-properties.htm">Dynamic Properties</a>). If the object doesn't support dynamic properties, an exception is generated.</li>
 <li><span class="tc-bold">Nested property</span> - A path that contains a ".' character is considered a path to a nested property. The location process of the final property that needs to be changed is done recursively by activating the properties, specified by the split of the path using the ".' character, one at a time until reaching the targeted end property.</li>
 <li><span class="tc-bold">Nested Map property</span> - A path that contains a ".' character may also point to keys inside a map, meaning the following path - "attributes.color' looks for a key named "color' if the property named "attribute' in the object is actually a map. This affects nested properties as well.</li>
 </ol>
@@ -175,11 +175,11 @@ space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
 
 <h1 id="change-api-with-the-embedded-model">Change API with the Embedded Model</h1>
 
-<p>With the <a href="/sbp/modeling-your-data.htm/#Embedded vs. Non-Embedded Relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the Change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances. This significantly improves the overall system stability.</p>
+<p>With the <a href="https://docs.gigaspaces.com/sbp/modeling-your-data.htm#Embedded vs. Non-Embedded Relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the Change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances. This significantly improves the overall system stability.</p>
 
 <h1 id="change-result">Change Result</h1>
 
-<p>The change operations returns a <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeResult.htm/">ChangeResult</a> object that provides information regarding the effect of the change operation.</p>
+<p>The change operations returns a <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeResult.htm">ChangeResult</a> object that provides information regarding the effect of the change operation.</p>
 
 <pre><code class="language-java">public interface ChangeResult&lt;T&gt;
         extends Serializable
@@ -217,7 +217,7 @@ if (changeResult.getNumberOfChangedEntries() == 0)
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to <a href="./change-api-advanced.htm/">Advanced Implementations</a>.</p>
+  <p>For more information, refer to <a href="change-api-advanced.htm">Advanced Implementations</a>.</p>
 </div>
 
 <h1 id="changeexception">ChangeException</h1>
@@ -323,7 +323,7 @@ catch(ChangeException e)
 
 <h1 id="optimistic-locking">Optimistic Locking</h1>
 
-<p>The <code>change</code> operation has the same semantics as a regular Space <code>update</code> operation regarding <a href="./transaction-optimistic-locking.htm/">Optimistic Locking</a>. It increases the version of the changed object, and the expected version can be specified in the ID query when optimistic locking is needed.</p>
+<p>The <code>change</code> operation has the same semantics as a regular Space <code>update</code> operation regarding <a href="transaction-optimistic-locking.htm">Optimistic Locking</a>. It increases the version of the changed object, and the expected version can be specified in the ID query when optimistic locking is needed.</p>
 
 <pre><code class="language-java">GigaSpace space = // ... obtain a space reference
 Uuid id = ...;
@@ -417,15 +417,15 @@ space.asyncChange(idQuery, new ChangeSet().increment("balance.euro", 5.2D), myLi
 <h1 id="spacesynchronizationendpoint">SpaceSynchronizationEndpoint</h1>
 
 <p>A SpaceSynchronizationEndpoint implementation can support change operations, and make use of lighter replication between the Space and the mirror.
-For more information on how to implement this, refer to the <a href="./change-api-advanced.htm/">Advanced Implementations</a> topic.</p>
+For more information on how to implement this, refer to the <a href="change-api-advanced.htm">Advanced Implementations</a> topic.</p>
 
 <h1 id="replication-filter">Replication Filter</h1>
 
-<p>Change passes through the <a href="../admin/cluster-replication-filters.htm/">Replication Filter</a> like other operations, and can be discarded on the replication level, for example.</p>
+<p>Change passes through the <a href="../admin/cluster-replication-filters.htm">Replication Filter</a> like other operations, and can be discarded on the replication level, for example.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more information on how to handle change in replication filters, refer to the <a href="./change-api-advanced.htm/">Advanced Implementations</a> topic.</p>
+  <p>For more information on how to handle change in replication filters, refer to the <a href="change-api-advanced.htm">Advanced Implementations</a> topic.</p>
 </div>
 
 <h1 id="add-and-get-operations">Add and Get Operations</h1>

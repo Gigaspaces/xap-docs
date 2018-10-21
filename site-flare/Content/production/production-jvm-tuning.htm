@@ -30,7 +30,7 @@ JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrent
 
 <h2 id="space-object-footprint">Space Object Footprint</h2>
 
-<p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this, refer to <a href="./production-capacity-planning.htm/">Capacity Planning</a>.</p>
+<p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this, refer to <a href="production-capacity-planning.htm">Capacity Planning</a>.</p>
 
 <h3 id="using-a-compound-index-to-reduce-the-index-footprint">Using a Compound Index to Reduce the Index Footprint</h3>
 
@@ -146,7 +146,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p>
 <p>Some useful references:</p>
 
 <ul>
-<li><a href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/G1GettingStarted/index.htm/">Getting Started with the G1 Garbage Collector</a></li>
+<li><a href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/G1GettingStarted/index.htm">Getting Started with the G1 Garbage Collector</a></li>
 <li><a href="http://stackoverflow.com/questions/8111310/java-7-jdk-7-garbage-collection-and-documentation">jdk7 garbage collection and documentation</a></li>
 <li><a href="http://blog.sematext.com/2013/06/24/g1-cms-java-garbage-collector">g1 cms java garbage collector</a></li>
 <li><a href="http://stackoverflow.com/questions/8262674/java7-g1-options">java7 g1 options</a></li>
@@ -169,7 +169,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p>
 
 <h2 id="soft-references-lru-policy">Soft References LRU Policy</h2>
 
-<p>In order to provide the highest level of performance, XAP takes advantage of features in the Java language that allow for effective caching in the face of memory demands. In particular, the <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/ref/SoftReference.htm/">SoftReference</a> class is used to store data until there is a need for explicit garbage collection, at which point the data stored in soft references will be collected if possible. The system default is 1000, which represents the amount of time (in milliseconds) that objects will survive past their last reference. <code>-XX:SoftRefLRUPolicyMSPerMB</code> is the parameter that allows you to determine how much data is cached by allowing the JVM to control how long it endures; it is recommended to set this value to <span class="tc-bold">500</span> in active, dynamic systems:</p>
+<p>In order to provide the highest level of performance, XAP takes advantage of features in the Java language that allow for effective caching in the face of memory demands. In particular, the <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/ref/SoftReference.htm">SoftReference</a> class is used to store data until there is a need for explicit garbage collection, at which point the data stored in soft references will be collected if possible. The system default is 1000, which represents the amount of time (in milliseconds) that objects will survive past their last reference. <code>-XX:SoftRefLRUPolicyMSPerMB</code> is the parameter that allows you to determine how much data is cached by allowing the JVM to control how long it endures; it is recommended to set this value to <span class="tc-bold">500</span> in active, dynamic systems:</p>
 
 <pre><code class="language-bash">-XX:SoftRefLRUPolicyMSPerMB=500
 </code></pre>
@@ -190,7 +190,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p>
 
 <div class="tc-admon-refer">
   
-  <p>Refer to <a href="../admin/tuning-java-virtual-machines.htm/">Tuning Java Virtual Machines</a> and <a href="http://java.sun.com/javase/technologies/hotspot/gc/gc_tuning_6.htm/">Java SE 6 HotSpot Virtual Machine Garbage Collection Tuning</a> for more detailed JVM tuning recommendations.</p>
+  <p>Refer to <a href="../admin/tuning-java-virtual-machines.htm">Tuning Java Virtual Machines</a> and <a href="http://java.sun.com/javase/technologies/hotspot/gc/gc_tuning_6.htm">Java SE 6 HotSpot Virtual Machine Garbage Collection Tuning</a> for more detailed JVM tuning recommendations.</p>
 </div>
 
 </body>

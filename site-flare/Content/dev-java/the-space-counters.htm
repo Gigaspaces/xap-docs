@@ -59,7 +59,7 @@ WordCount wordount = space.readById(WordCount.class , idQuery);
 int counterValue = wordount.getMycounter();
 </code></pre>
 
-<p>Another way getting the Counter value without reading the space object back to the client would be via a <a href="./task-execution-overview.htm/">Task</a>:</p>
+<p>Another way getting the Counter value without reading the space object back to the client would be via a <a href="task-execution-overview.htm">Task</a>:</p>
 
 <pre><code class="language-java">public class GetCounterTask implements Task&lt;Integer&gt; {
 
@@ -88,11 +88,11 @@ int counterValue= future.get();
 
 <h1 id="pre-loading">Pre-Loading</h1>
 
-<p>When pre-loading the space via the <a href="./space-persistency-initial-load.htm/">External Data Source initial-load</a> you may need to construct Counters data. The <code>initialLoad</code> method allows you to implement the logic to generate the counter data and load it into the space after the actual data been loaded from the external data source (database).</p>
+<p>When pre-loading the space via the <a href="space-persistency-initial-load.htm">External Data Source initial-load</a> you may need to construct Counters data. The <code>initialLoad</code> method allows you to implement the logic to generate the counter data and load it into the space after the actual data been loaded from the external data source (database).</p>
 
 <h1 id="example">Example</h1>
 
-<p>With the following example the <code>Counter</code> class wraps the <code>GigaSpace.change</code> operation providing simple <code>increment</code>,<code>decrement</code>,<code>get</code> and <code>unset</code> methods to manage counters. The example using an <a href="./document-extending.htm/">extended SpaceDocument</a> as the space object storing the counters data. To retrieve the counter existing value a <a href="./task-execution-overview.htm/">Task</a> is used. To launch the example run the <code>CounterTest</code> unit test.</p>
+<p>With the following example the <code>Counter</code> class wraps the <code>GigaSpace.change</code> operation providing simple <code>increment</code>,<code>decrement</code>,<code>get</code> and <code>unset</code> methods to manage counters. The example using an <a href="document-extending.htm">extended SpaceDocument</a> as the space object storing the counters data. To retrieve the counter existing value a <a href="task-execution-overview.htm">Task</a> is used. To launch the example run the <code>CounterTest</code> unit test.</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title=" CounterTest.java" style="padding:10px"><pre><code class="language-java">package org.openspaces;
 import org.junit.Before;

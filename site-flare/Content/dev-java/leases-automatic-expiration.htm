@@ -29,7 +29,7 @@
 
 <h1 id="space-object-lease">Space Object Lease</h1>
 
-<p>Leases can be used for objects written to GigaSpaces cluster. All the write operations in <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/">GigaSpace</a> interface support Lease. Lease duration is an argument that is passed to the write operations and they return a Lease Context which can be used to manage the Leases.</p>
+<p>Leases can be used for objects written to GigaSpaces cluster. All the write operations in <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace</a> interface support Lease. Lease duration is an argument that is passed to the write operations and they return a Lease Context which can be used to manage the Leases.</p>
 
 <pre><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).gigaSpace();
 
@@ -153,7 +153,7 @@ gigaSpace.writeMultiple(processedLowPriorityOrders,
 
 <h3 id="configuring-leaserenewalmanager">Configuring LeaseRenewalManager</h3>
 
-<p>LeaseRenewalManager supports <a href="[%=Links.ApiJavaDoc%]/index.htm/?net/jini/config/Configuration.htm/">Configuration</a> entries, with component "net.jini.lease.LeaseRenewalManager":</p>
+<p>LeaseRenewalManager supports <a href="[%=Links.ApiJavaDoc%]/index.htm/?net/jini/config/Configuration.htm">Configuration</a> entries, with component "net.jini.lease.LeaseRenewalManager":</p>
 
 <table>
 <thead>
@@ -419,11 +419,11 @@ private static final class LeaseRenewalConfiguration implements Configuration {
 </div>
 </div>
 
-<p>API page for <a href="[%=Links.ApiJavaDoc%]/net/jini/lease/LeaseRenewalManager.htm/">LeaseRenewalManager</a> has additional information.</p>
+<p>API page for <a href="[%=Links.ApiJavaDoc%]/net/jini/lease/LeaseRenewalManager.htm">LeaseRenewalManager</a> has additional information.</p>
 
 <h1 id="lease-expiration-notifications">Lease Expiration Notifications</h1>
 
-<p>Getting events once the space object lease expired can be done using the <a href="./notify-container-overview.htm/">Notify Container</a>. See example below:</p>
+<p>Getting events once the space object lease expired can be done using the <a href="notify-container-overview.htm">Notify Container</a>. See example below:</p>
 
 <pre><code class="language-java">SimpleListener myListenr = new SimpleListener();
 SimpleNotifyEventListenerContainer notifyEventListenerContainer = new SimpleNotifyContainerConfigurer(

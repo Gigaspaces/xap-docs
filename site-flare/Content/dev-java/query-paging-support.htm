@@ -5,7 +5,7 @@
 <h1>Paging Support</h1>
   
 
-<p>In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/#readMultiple-T-">readMultiple</a> overloads in <code>GigaSpace</code>. However, if there are lots of matching entries, you may encounter several problems:</p>
+<p>In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm#readMultiple-T-">readMultiple</a> overloads in <code>GigaSpace</code>. However, if there are lots of matching entries, you may encounter several problems:</p>
 
 <ul>
 <li>Memory usage - Both the server and client need to allocate enough memory for the entire result set.</li>
@@ -16,12 +16,12 @@
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">GSIterator</p>
-  <p>This page describes the new space iterator which is intended to replace the old <code>GSIterator</code> starting 10.1. Information about the old GSIterator is available <a href="./query-paging-support-old.htm/">here</a>.</p>
+  <p>This page describes the new space iterator which is intended to replace the old <code>GSIterator</code> starting 10.1. Information about the old GSIterator is available <a href="query-paging-support-old.htm">here</a>.</p>
 </div>
 
 <h1 id="usage">Usage</h1>
 
-<p>Use the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/">GigaSpace</a> <code>iterator(template)</code> method to create an iterator of all the objects in the space which match the template (either <a href="./query-sql.htm/">SQLQuery</a> or <a href="./query-template-matching.htm/">template</a>). This results in a <code>SpaceIterator&lt;T&gt;</code> which implements both <code>Iterator&lt;T&gt;</code> and <code>Iterable&lt;T&gt;</code>, so a simple <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.htm/">for-each loop</a> can be used to iterate the results. For example:</p>
+<p>Use the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace</a> <code>iterator(template)</code> method to create an iterator of all the objects in the space which match the template (either <a href="query-sql.htm">SQLQuery</a> or <a href="query-template-matching.htm">template</a>). This results in a <code>SpaceIterator&lt;T&gt;</code> which implements both <code>Iterator&lt;T&gt;</code> and <code>Iterable&lt;T&gt;</code>, so a simple <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.htm">for-each loop</a> can be used to iterate the results. For example:</p>
 
 <pre><code class="language-java">private void demoIterator(GigaSpace gigaSpace) {
     SQLQuery&lt;MySpaceClass&gt; query = new SQLQuery(MySpaceClass.class,"lastName = 'Smith'");
@@ -53,7 +53,7 @@
 
 <h3 id="complex-queries">Complex queries</h3>
 
-<p>The space iterator only supports simple SQL queries. For more information about the differences between simple and complex queries see <a href="./query-sql.htm/#SimpleQueries">simple SQL queries</a>.</p>
+<p>The space iterator only supports simple SQL queries. For more information about the differences between simple and complex queries see <a href="query-sql.htm#SimpleQueries">simple SQL queries</a>.</p>
 
 </body>
 </html>

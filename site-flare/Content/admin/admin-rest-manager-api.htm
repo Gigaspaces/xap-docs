@@ -5,7 +5,7 @@
 <h1>REST Manager API</h1>
   
 
-<p>The <a href="xap-manager.htm/">XAP Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
+<p>The <a href="xap-manager.htm">XAP Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
 
 <p>To begin, start a standalone XAP Manager on your machine using the following command:</p>
 
@@ -21,7 +21,7 @@
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p>You must start a XAP Manager to access the REST Manager API. You can also start a cluster of XAP Managers to ensure high availability. To learn more about the XAP Manager, refer to <a href="xap-manager.htm/">XAP Manager</a>.</p>
+  <p>You must start a XAP Manager to access the REST Manager API. You can also start a cluster of XAP Managers to ensure high availability. To learn more about the XAP Manager, refer to <a href="xap-manager.htm">XAP Manager</a>.</p>
 </div>
 
 <p>The REST Manager API was built with <a href="http://swagger.io/" target="_blank" >Swagger</a>. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the <code>Try it out!</code> button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the <code>curl</code> command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self explanatory. You can also download the <code>yaml</code> specification and use Swagger's <code>Online Editor</code> to generate a client in your favorite language.</p>
@@ -64,7 +64,7 @@ Currently you cannot delete/replace a JAR file if a deployed Processing Unit is 
 <h2 id="enabling-security">Enabling Security</h2>
 
 <p>The REST Manager API allows for secured access and operations when the security <code>enabled</code> property is set.
-This property should be configured using the <code>EXT_JAVA_OPTIONS</code> in the <code>setenv</code> script, and is applied to all XAP <a href="../security/securing-the-grid-services.htm/">Grid Components</a>.</p>
+This property should be configured using the <code>EXT_JAVA_OPTIONS</code> in the <code>setenv</code> script, and is applied to all XAP <a href="../security/securing-the-grid-services.htm">Grid Components</a>.</p>
 
 <p>The property:</p>
 
@@ -72,7 +72,7 @@ This property should be configured using the <code>EXT_JAVA_OPTIONS</code> in th
 </code></pre>
 
 <p>By default, to get you up and running, if nothing was configured the fallback security implementation
-uses a local file to save credentials (see <a href="../security/default-file-based-security-implementation-ext.htm/">File-Based Security</a>.</p>
+uses a local file to save credentials (see <a href="../security/default-file-based-security-implementation-ext.htm">File-Based Security</a>.</p>
 
 <h2 id="ssl-configuration">SSL Configuration</h2>
 
@@ -158,19 +158,19 @@ a resource (e.g. "my-security.properties") in the classpath or in the classpath 
 
 <ul>
 <li>Containers - [%=Versions.rest-version%] See [%=Versions.rest-version%]
-the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/index.htm/#/Containers" target="_blank" >Containers</a> page.</li>
-<li>Hosts - See the <a href="http://localhost:8090/v2/index.htm/#/Hosts" target="_blank" >Hosts</a> page.</li>
-<li>Information - See the <a href="http://localhost:8090/v2/index.htm/#/Information" target="_blank" >Information</a> page.</li>
-<li>Processing Units - See the <a href="http://localhost:8090/v2/index.htm/#/Processing_Units" target="_blank" >Processing Units</a> page.</li>
-<li>Requests - See the <a href="http://localhost:8090/v2/index.htm/#/Requests" target="_blank" >Requests</a> page.</li>
-<li>Spaces - See the <a href="http://localhost:8090/v2/index.htm/#/Spaces" target="_blank" >Spaces</a> page.</li>
-<li>Spark - See the <a href="http://localhost:8090/v2/index.htm/#/Spark" target="_blank" >Spark</a> page.</li>
+the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/index.htm#/Containers" target="_blank" >Containers</a> page.</li>
+<li>Hosts - See the <a href="http://localhost:8090/v2/index.htm#/Hosts" target="_blank" >Hosts</a> page.</li>
+<li>Information - See the <a href="http://localhost:8090/v2/index.htm#/Information" target="_blank" >Information</a> page.</li>
+<li>Processing Units - See the <a href="http://localhost:8090/v2/index.htm#/Processing_Units" target="_blank" >Processing Units</a> page.</li>
+<li>Requests - See the <a href="http://localhost:8090/v2/index.htm#/Requests" target="_blank" >Requests</a> page.</li>
+<li>Spaces - See the <a href="http://localhost:8090/v2/index.htm#/Spaces" target="_blank" >Spaces</a> page.</li>
+<li>Spark - See the <a href="http://localhost:8090/v2/index.htm#/Spark" target="_blank" >Spark</a> page.</li>
 </ul>
 
 <h1 id="online-editor">Online Editor</h1>
 
 <p>You can download the <code>yaml</code> configuration file from  <a href="http://localhost:8090/v2/xap-manager-api.yaml" target="_blank" >http://localhost:8090/v2/xap-manager-api.yaml</a>
-and import or copy and past the yaml content into the <a href="http://editor.swagger.io/#!/" target="_blank" >Swagger Editor</a>.</p>
+and import or copy and past the yaml content into the <a href="http://editor.swagger.io#!/" target="_blank" >Swagger Editor</a>.</p>
 
 <p><img src="../Resources/Static/attachment_files/rest-admin/swagger-ui.png" alt="image" /></p>
 

@@ -12,7 +12,7 @@
 
 <h1 id="space-filters">Space Filters</h1>
 
-<p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="./the-space-filters-metadata.htm/">Space Filters</a>. It uses the space support for a <code>FilterProvider</code>, which is a wrapper for an <code>ISpaceFilter</code> implementation and its characteristics (such as priority, <code>activeWhenBackup</code>). This allows you to provide space filters without changing the space schema.</p>
+<p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="the-space-filters-metadata.htm">Space Filters</a>. It uses the space support for a <code>FilterProvider</code>, which is a wrapper for an <code>ISpaceFilter</code> implementation and its characteristics (such as priority, <code>activeWhenBackup</code>). This allows you to provide space filters without changing the space schema.</p>
 
 <div class="tc-admon-note">
   
@@ -211,11 +211,11 @@
 
 <h1 id="accessing-a-space-within-a-space-filter">Accessing a Space within a Space Filter</h1>
 
-<p>Accessing a space within a space filter can cause a cycle construction exception, since the space can not be injected to the filter (because the space was not constructed yet). There are options to solve this with pure Spring, but OpenSpaces provides a simpler option by using the <a href="./pojo-grid-annotations.htm/">GigaSpacesLateContext</a> annotation.</p>
+<p>Accessing a space within a space filter can cause a cycle construction exception, since the space can not be injected to the filter (because the space was not constructed yet). There are options to solve this with pure Spring, but OpenSpaces provides a simpler option by using the <a href="pojo-grid-annotations.htm">GigaSpacesLateContext</a> annotation.</p>
 
 <h1 id="space-replication-filters">Space Replication Filters</h1>
 
-<p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="../admin/cluster-replication-filters.htm/">Cluster Replication Filters</a>. It uses the space support for a <code>ReplicationFilterProvider</code> which is a wrapper for an <code>IReplicationFilter</code> implementation and its characteristics (such as <code>activeWhenBackup</code>). This allows you to provide space replication filters without changing the space schema.</p>
+<p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="../admin/cluster-replication-filters.htm">Cluster Replication Filters</a>. It uses the space support for a <code>ReplicationFilterProvider</code> which is a wrapper for an <code>IReplicationFilter</code> implementation and its characteristics (such as <code>activeWhenBackup</code>). This allows you to provide space replication filters without changing the space schema.</p>
 
 <div class="tc-admon-note">
   

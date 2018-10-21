@@ -40,7 +40,7 @@
 
 <h1 id="implementing-a-custom-mirror-data-source">Implementing a Custom Mirror Data Source</h1>
 
-<p>XAP has a built in <a href="./hibernate-space-persistency.htm/">Hibernate Space Persistency</a> implementation which is a <code>SpaceSynchronizationEndpoint</code> extension. You can implement your own Mirror very easily to accommodate your exact needs. See example below:</p>
+<p>XAP has a built in <a href="hibernate-space-persistency.htm">Hibernate Space Persistency</a> implementation which is a <code>SpaceSynchronizationEndpoint</code> extension. You can implement your own Mirror very easily to accommodate your exact needs. See example below:</p>
 
 <div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="MirrorSpaceSynchronizationEndpoint" style="padding:10px;"><pre><code class="language-java">package mypackage;
 
@@ -116,14 +116,14 @@ public class MirrorSpaceSynchronizationEndpoint extends SpaceSynchronizationEndp
 
 <div class="tc-admon-refer">
   
-  <p>See the <a href="/sbp/mirror-monitor.htm/">Mirror Monitor</a> for a simple example how such approach should be implemented.</p>
+  <p>See the <a href="https://docs.gigaspaces.com/sbp/mirror-monitor.htm">Mirror Monitor</a> for a simple example how such approach should be implemented.</p>
 </div>
 
 <p>There are cases with large space clusters or with systems that produce large volume of activity where the amount of activity performed by a clustered space would require a distributed (multi-instance) mirror setup.</p>
 
 <div class="tc-admon-refer">
   
-  <p>See the <a href="/sbp/distributed-mirror.htm/">Distributed Mirror</a> for an example how to configure this scenario.</p>
+  <p>See the <a href="https://docs.gigaspaces.com/sbp/distributed-mirror.htm">Distributed Mirror</a> for an example how to configure this scenario.</p>
 </div>
 
 <h1 id="handling-mirror-exceptions">Handling Mirror Exceptions</h1>
@@ -433,7 +433,7 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
 <li>The Mirror Service cannot be used with a single space. It is supported with the <code>async-replicated</code>, and <code>partitioned</code> cluster schemas.</li>
 <li>The Mirror Service is a single space which joins a replication group. The Mirror Service is not a clustered space or part of the replication group declaration.</li>
 <li>When the Mirror Service is loaded, it does not perform memory recovery. See the <a href="#reliability">reliability section</a> for more details.</li>
-<li><a href="./transient-entries.htm/">Transient Entries</a> are not persisted into the data source, just as in any other persistent mode.</li>
+<li><a href="transient-entries.htm">Transient Entries</a> are not persisted into the data source, just as in any other persistent mode.</li>
 <li>You should have one Mirror Service running per Data-Grid cluster.</li>
 <li>The Mirror Service cannot be clustered. Deploying it as a Processing unit ensures its high-availability.</li>
 <li>The Mirror does not load data back into the space. The <code>SpaceDataSource</code> implementation of the space should be used to initialize the space when started.</li>
@@ -441,7 +441,7 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
 
 <div class="tc-admon-refer">
   
-  <p><a href="./space-persistency-advanced-topics.htm/#limits">Space persistency considerations</a> also apply to the Mirror Service.</p>
+  <p><a href="space-persistency-advanced-topics.htm#limits">Space persistency considerations</a> also apply to the Mirror Service.</p>
 </div>
 
 <h1 id="troubleshooting">Troubleshooting</h1>

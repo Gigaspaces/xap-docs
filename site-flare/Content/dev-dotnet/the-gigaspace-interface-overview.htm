@@ -20,14 +20,14 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to the <a href="./the-space-operations.htm/">Operations</a> page.</p>
+  <p>For more information, refer to the <a href="the-space-operations.htm">Operations</a> page.</p>
 </div>
 
 <p>A Space proxy is created to interact with the Space. Several configuration parameters are available.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to the <a href="./the-space-configuration.htm/">Configuration</a> page.</p>
+  <p>For more information, refer to the <a href="the-space-configuration.htm">Configuration</a> page.</p>
 </div>
 
 <h1 id="embedded-space">Embedded Space</h1>
@@ -95,16 +95,16 @@ ISpaceProxy spaceProxy = new SpaceProxyFactory("mySpace").Create();
 
 <div class="tc-admon-refer">
   
-  <p>A full description of the Space URL properties can be found <a href="./the-space-configuration.htm/">here.</a>.</p>
+  <p>A full description of the Space URL properties can be found <a href="the-space-configuration.htm">here.</a>.</p>
 </div>
 
 <h2 id="reconnection">Reconnection</h2>
 
-<p>When working with a <span class="tc-bold">remote Space</span>, the Space may become unavailable (network problems, processing unit relocation, etc.). For information on how such disruptions are handled and configured, refer to <a href="../admin/tuning-proxy-connectivity.htm/">Proxy Connectivity</a>.</p>
+<p>When working with a <span class="tc-bold">remote Space</span>, the Space may become unavailable (network problems, processing unit relocation, etc.). For information on how such disruptions are handled and configured, refer to <a href="../admin/tuning-proxy-connectivity.htm">Proxy Connectivity</a>.</p>
 
 <h1 id="local-cache">Local Cache</h1>
 
-<p>XAP supports a <a href="./local-cache.htm/">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that is used with the <code>Read</code> operations implicitly . The local cache is loaded on demand or when you perform a <code>Read</code> operation, and is updated implicitly by the Space.</p>
+<p>XAP supports a <a href="local-cache.htm">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that is used with the <code>Read</code> operations implicitly . The local cache is loaded on demand or when you perform a <code>Read</code> operation, and is updated implicitly by the Space.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/devguide/space-local-cache.png" width="521" height="160" /></p>
 </div>
@@ -120,7 +120,7 @@ ISpaceProxy localCache = GigaSpacesFactory.CreateLocalCache(spaceProxy);
 
 <h1 id="local-view">Local View</h1>
 
-<p>XAP supports a <a href="./local-view.htm/">Local View</a> configuration. This provides a front-end client side cache that is used with any <code>Read</code> or <code>ReadMultiple</code> operations implicitly. The local view is loaded on startup, and is updated implicitly by the Space.</p>
+<p>XAP supports a <a href="local-view.htm">Local View</a> configuration. This provides a front-end client side cache that is used with any <code>Read</code> or <code>ReadMultiple</code> operations implicitly. The local view is loaded on startup, and is updated implicitly by the Space.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/devguide/space-local-view.png" width="521" height="160" /></p>
 </div>
@@ -177,12 +177,12 @@ IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(spaceProxy, vi
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to <a href="../admin/admin-service-grid-security.htm/">Accessing a Secured Service Grid</a>.</p>
+  <p>For more information, refer to <a href="../admin/admin-service-grid-security.htm">Accessing a Secured Service Grid</a>.</p>
 </div>
 
 <h1 id="persistency">Persistency</h1>
 
-<p>When constructing a Space, you can provide <a href="./space-persistency-overview.htm/">Space Persistency</a> extensions using a NHibernate configuration. The following is an example of how it can be defined:</p>
+<p>When constructing a Space, you can provide <a href="space-persistency-overview.htm">Space Persistency</a> extensions using a NHibernate configuration. The following is an example of how it can be defined:</p>
 
 <pre><code class="language-xml">&lt;?xml version="1.0" ?&gt;
 &lt;hibernate-configuration  xmlns="urn:nhibernate-configuration-2.2" &gt;

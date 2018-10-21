@@ -29,24 +29,24 @@
 <p>The processing unit jar file is composed of several key elements:</p>
 
 <ul>
-<li><p><code>META-INF/spring/pu.xml</code> (mandatory): This is the processing unit's deployment descriptor, which is in fact a <a href="http://www.springframework.org">Spring</a> context XML configuration with a number of GigaSpaces-specific namespace bindings. These bindings include GigaSpaces specific components (such as the space for example). The <code>pu.xml</code> file typically contains definitions of GigaSpaces components (<a href="../overview/the-in-memory-data-grid.htm/">space</a>, <a href="./event-processing.htm/">event containers</a>, <a href="./space-based-remoting-overview.htm/">remote service exporters</a>) and user defined beans which would typically interact with those components (e.g. an event handler to which the event containers delegate the events, or a service beans which is exposed to remote clients by a remote service exporter).</p></li>
+<li><p><code>META-INF/spring/pu.xml</code> (mandatory): This is the processing unit's deployment descriptor, which is in fact a <a href="http://www.springframework.org">Spring</a> context XML configuration with a number of GigaSpaces-specific namespace bindings. These bindings include GigaSpaces specific components (such as the space for example). The <code>pu.xml</code> file typically contains definitions of GigaSpaces components (<a href="../overview/the-in-memory-data-grid.htm">space</a>, <a href="event-processing.htm">event containers</a>, <a href="space-based-remoting-overview.htm">remote service exporters</a>) and user defined beans which would typically interact with those components (e.g. an event handler to which the event containers delegate the events, or a service beans which is exposed to remote clients by a remote service exporter).</p></li>
 
-<li><p><code>META-INF/spring/sla.xml</code> (not mandatory): This file contains SLA definitions for the processing unit (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an <code>&lt;os:sla&gt;</code> definition in the <code>pu.xml</code> file. If neither is present, the <a href="../admin/the-sla-overview.htm/">default SLA</a>  will be applied. Note, the <code>sla.xml</code> can also be placed at the root of the processing unit. SLA definitions can be also specified at the deploy time via the <a href="../admin/deploy-command-line-interface.htm/">deploy CLI</a> or <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManagers.htm/">deploy API</a>.</p></li>
+<li><p><code>META-INF/spring/sla.xml</code> (not mandatory): This file contains SLA definitions for the processing unit (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an <code>&lt;os:sla&gt;</code> definition in the <code>pu.xml</code> file. If neither is present, the <a href="../admin/the-sla-overview.htm">default SLA</a>  will be applied. Note, the <code>sla.xml</code> can also be placed at the root of the processing unit. SLA definitions can be also specified at the deploy time via the <a href="../admin/deploy-command-line-interface.htm">deploy CLI</a> or <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManagers.htm">deploy API</a>.</p></li>
 </ul>
 
 <div class="tc-admon-note">
   
-  <p>SLA definitions are only enforced when deploying the processing unit to the GigaSpaces service grid, since this environment actively manages and controls the deployment using the <a href="../overview/the-runtime-environment.htm/#gsm">GSM</a>. When <a href="../started/xap-debug.htm/">running within your IDE</a> or in <a href="./running-in-standalone-mode.htm/">standalone mode</a> these definitions are ignored.</p>
+  <p>SLA definitions are only enforced when deploying the processing unit to the GigaSpaces service grid, since this environment actively manages and controls the deployment using the <a href="../overview/the-runtime-environment.htm#gsm">GSM</a>. When <a href="../started/xap-debug.htm">running within your IDE</a> or in <a href="running-in-standalone-mode.htm">standalone mode</a> these definitions are ignored.</p>
 </div>
 
 <ul>
-<li><p><code>META-INF/spring/pu.properties</code> (not mandatory): Enables you to externalize properties included in the <code>pu.xml</code> file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see <a href="./web-application-overview.htm/">this page</a> for more details) or space properties (when defining a space inside your processing unit). Note, the <code>pu.properties</code> can also be placed at the root of the processing unit.</p></li>
+<li><p><code>META-INF/spring/pu.properties</code> (not mandatory): Enables you to externalize properties included in the <code>pu.xml</code> file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see <a href="web-application-overview.htm">this page</a> for more details) or space properties (when defining a space inside your processing unit). Note, the <code>pu.properties</code> can also be placed at the root of the processing unit.</p></li>
 
 <li><p><span class="tc-bold">User class files</span>: Your processing unit's classes (here under the com.mycompany.myproject package)</p></li>
 
 <li><p><code>lib</code>: Other jars on which your processing unit depends, e.g. commons-math.jar or jars that contain common classes across many processing units.</p></li>
 
-<li><p><code>META-INF/MANIFEST.MF</code> (not mandatory): This file could be used for adding additional jars to the processing unit classpath, using the standard <code>MANIFEST.MF</code> <code>Class-Path</code> property. (see <a href="./the-processing-unit-structure-and-configuration.htm/#Manifest Based Classpath">Manifest Based Classpath</a> for more details)</p></li>
+<li><p><code>META-INF/MANIFEST.MF</code> (not mandatory): This file could be used for adding additional jars to the processing unit classpath, using the standard <code>MANIFEST.MF</code> <code>Class-Path</code> property. (see <a href="the-processing-unit-structure-and-configuration.htm#Manifest Based Classpath">Manifest Based Classpath</a> for more details)</p></li>
 </ul>
 
 <div class="tc-admon-note">
@@ -109,17 +109,17 @@ starting with 10.1 version the product dosn't include xml parsing jars under lib
 
 <h1 id="runtime-modes">Runtime Modes</h1>
 
-<p>The processing unit can <a href="./deploying-and-running-overview.htm/">run</a> in multiple modes.</p>
+<p>The processing unit can <a href="deploying-and-running-overview.htm">run</a> in multiple modes.</p>
 
-<p>When deployed on to the <a href="../admin/the-runtime-environment.htm/">GigaSpaces runtime environment</a> or when running in <a href="./running-in-standalone-mode.htm/">standalone mode</a>, all the jars under the <code>lib</code> directory of your processing unit jar, will be automatically added to the processing unit's classpath.</p>
+<p>When deployed on to the <a href="../admin/the-runtime-environment.htm">GigaSpaces runtime environment</a> or when running in <a href="running-in-standalone-mode.htm">standalone mode</a>, all the jars under the <code>lib</code> directory of your processing unit jar, will be automatically added to the processing unit's classpath.</p>
 
-<p>When <a href="../started/xap-debug.htm/">running within your IDE</a>, it is similar to any other Java application, i.e. you should make sure all the dependent jars are part of your project classpath.</p>
+<p>When <a href="../started/xap-debug.htm">running within your IDE</a>, it is similar to any other Java application, i.e. you should make sure all the dependent jars are part of your project classpath.</p>
 
 <h1 id="deploying-the-processing-unit-to-the-service-grid">Deploying the Processing Unit to the Service Grid</h1>
 
-<p>When deploying the processing unit to <a href="../admin/the-runtime-environment.htm/">GigaSpaces Service Grid</a>, the processing unit jar file is uploaded to the <a href="../overview/the-runtime-environment.htm/#gsm">XAP Manager (GSM)</a> and extracted to the <code>deploy</code> directory of the local GigaSpaces installation (located by default under <code>&lt;XAP Root&gt;/deploy</code>).</p>
+<p>When deploying the processing unit to <a href="../admin/the-runtime-environment.htm">GigaSpaces Service Grid</a>, the processing unit jar file is uploaded to the <a href="../overview/the-runtime-environment.htm#gsm">XAP Manager (GSM)</a> and extracted to the <code>deploy</code> directory of the local GigaSpaces installation (located by default under <code>&lt;XAP Root&gt;/deploy</code>).</p>
 
-<p>Once extracted, the <a href="../overview/the-runtime-environment.htm/#gsm">GSM</a> processes the deployment descriptor and based on that provisions processing unit instances to the running <a href="../overview/the-runtime-environment.htm/#gsc">XAP containers</a>.</p>
+<p>Once extracted, the <a href="../overview/the-runtime-environment.htm#gsm">GSM</a> processes the deployment descriptor and based on that provisions processing unit instances to the running <a href="../overview/the-runtime-environment.htm#gsc">XAP containers</a>.</p>
 
 <p>Each GSC to which a certain instance was provisioned, downloads the processing unit jar file from the GSM, extracts it to its local work directory (located by default under <code>&lt;XAP Root&gt;/work/deployed-processing-units</code>) and starts the processing unit instance.</p>
 
@@ -127,13 +127,13 @@ starting with 10.1 version the product dosn't include xml parsing jars under lib
 
 <h1 id="deploying-data-only-processing-units">Deploying Data Only Processing Units</h1>
 
-<p>In some cases, your processing unit contains only a <a href="./the-space-configuration.htm/#proxy">Space</a> and no custom code.</p>
+<p>In some cases, your processing unit contains only a <a href="the-space-configuration.htm#proxy">Space</a> and no custom code.</p>
 
-<p>One way to package such processing unit is to use the standard processing unit packaging described above, and create a processing unit jar file which only includes a <a href="./configuring-processing-unit-elements.htm/">deployment descriptor</a> with the required space definitions and SLA.</p>
+<p>One way to package such processing unit is to use the standard processing unit packaging described above, and create a processing unit jar file which only includes a <a href="configuring-processing-unit-elements.htm">deployment descriptor</a> with the required space definitions and SLA.</p>
 
 <p>GigaSpaces also provides a simpler option via its built-in data-only processing unit templates (located under <code>&lt;XAP Root&gt;/deploy/templates/datagrid</code>. Using these templates you can deploy and run data only processing unit without creating a dedicated jar for them.</p>
 
-<p>For more information please refer to <a href="./deploying-and-running-overview.htm/">Deploying and running the processing unit</a></p>
+<p>For more information please refer to <a href="deploying-and-running-overview.htm">Deploying and running the processing unit</a></p>
 
  <a id="classloaders">&#160;</a>
 
@@ -234,7 +234,7 @@ Class-Path: /home/user1/java/libs/user-lib.jar
 
 <div class="tc-admon-refer">
   
-  <p>Further details about the manifest file can be found <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/technotes/guides/jar/jar.htm/#JAR%20Manifest">here</a>.</p>
+  <p>Further details about the manifest file can be found <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/technotes/guides/jar/jar.htm#JAR%20Manifest">here</a>.</p>
 </div>
 
 </body>

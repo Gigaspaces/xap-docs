@@ -39,7 +39,7 @@ Person[] persons = proxy.ReadMultiple&lt;Person&gt;(query, 100);
 <ul>
 <li><code>AND</code> / <code>OR</code> operators to combine two or more conditions.</li>
 <li>All basic logical operations to create conditions: <code>=, &lt;&gt;, &lt;,&gt;, &gt;=, &lt;=, like, NOT like, is null, is NOT null, IN</code>.</li>
-<li><a href="./aggregators.htm/">Aggregate</a> functions: COUNT, MAX, MIN, SUM, AVG</li>
+<li><a href="aggregators.htm">Aggregate</a> functions: COUNT, MAX, MIN, SUM, AVG</li>
 <li><code>BETWEEN</code></li>
 <li><code>ORDER BY (ASC | DESC)</code> for multiple PONO properties. Supported only by readMultiple. <code>ORDER BY</code> supports also nested object fields. <code>ORDER BY</code> supports <code>NULLS LAST</code> to control the order behavior of a field when its value is <code>null</code>.</li>
 <li><code>GROUP BY</code> - performs DISTINCT on the PONO properties. Supported only by readMultiple. <code>GROUP BY</code> supports also nested object fields.</li>
@@ -60,7 +60,7 @@ Person[] persons = proxy.ReadMultiple&lt;Person&gt;(query, 100);
 
 <h1 id="indexing">Indexing</h1>
 
-<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality , bigger / less than , BETWEEN, IN , LIKE , NOT LIKE, IS NULL statements. For more information see <a href="./indexing.htm/">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code> statement.</p>
+<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality , bigger / less than , BETWEEN, IN , LIKE , NOT LIKE, IS NULL statements. For more information see <a href="indexing.htm">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code> statement.</p>
 
 <h1 id="blocking-operations">Blocking Operations</h1>
 

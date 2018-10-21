@@ -28,7 +28,7 @@
 <li>The Mirror Service Processing Unit Settings</li>
 </ul>
 
-<p>The above share the <span class="tc-bold">same</span> <a href="./space-persistency-overview.htm/">Space Persistency</a> settings but have different space settings. See the <a href="./hibernate-space-persistency.htm/">NHibernate Space Persistency</a> for details how to use the built-in <code>HibernateExternalDataSource</code>.</p>
+<p>The above share the <span class="tc-bold">same</span> <a href="space-persistency-overview.htm">Space Persistency</a> settings but have different space settings. See the <a href="hibernate-space-persistency.htm">NHibernate Space Persistency</a> for details how to use the built-in <code>HibernateExternalDataSource</code>.</p>
 
 <h1 id="the-data-grid-processing-unit">The Data-Grid Processing Unit</h1>
 
@@ -84,13 +84,13 @@
 
 <tr>
 <td align="left">cluster-config.mirror-service.on-redo-log-capacity-exceeded</td>
-<td align="left">Available options:<br/>block-operations - all cluster operations that need to be replicated (write/update/take) are blocked until the redo log size decreases below the capacity. (Users get RedoLogCapacityExceededException exceptions while trying to execute these operations.)<br/>drop-oldest - the oldest packet in the redo log is dropped.<br/>See the <a href="../admin/controlling-the-replication-redo-log.htm/">Controlling the Replication Redo Log</a> for details.</td>
+<td align="left">Available options:<br/>block-operations - all cluster operations that need to be replicated (write/update/take) are blocked until the redo log size decreases below the capacity. (Users get RedoLogCapacityExceededException exceptions while trying to execute these operations.)<br/>drop-oldest - the oldest packet in the redo log is dropped.<br/>See the <a href="../admin/controlling-the-replication-redo-log.htm">Controlling the Replication Redo Log</a> for details.</td>
 <td align="left">block-operations</td>
 </tr>
 
 <tr>
 <td align="left">cluster-config.mirror-service.redo-log-capacity</td>
-<td align="left">Specifies the total capacity of replication packets the redo log can hold for a mirror service replication target.<br/>See the <a href="../admin/controlling-the-replication-redo-log.htm/">Controlling the Replication Redo Log</a> for details.</td>
+<td align="left">Specifies the total capacity of replication packets the redo log can hold for a mirror service replication target.<br/>See the <a href="../admin/controlling-the-replication-redo-log.htm">Controlling the Replication Redo Log</a> for details.</td>
 <td align="left">1000000</td>
 </tr>
 
@@ -142,12 +142,12 @@
 
 <div class="tc-admon-refer">
   
-  <p>See the <a href="./space-persistency-advanced-topics.htm/#properties">Space Persistency Properties</a> and the <a href="./hibernate-space-persistency.htm/">NHibernate Space Persistency</a> for full details about the EDS properties the you may configure.</p>
+  <p>See the <a href="space-persistency-advanced-topics.htm#properties">Space Persistency Properties</a> and the <a href="hibernate-space-persistency.htm">NHibernate Space Persistency</a> for full details about the EDS properties the you may configure.</p>
 </div>
 
 <p>You <span class="tc-bold">must use a Data-Grid cluster schema that includes a backup</span> (i.e. <code>partitioned</code>) when running a Mirror Service. Without having backup, the Primary IMDG Spaces <span class="tc-bold">will not</span> replicate their activities to the Mirror Service. For testing purposes, in case you don't want to start backup spaces, you can use the <code>partitioned</code> cluster schema and have 0 as the number of backups - this will still allow the primary spaces to replicate their operations to the Mirror.</p>
 
-<p>If you wish to change the mirror service name please refer to <a href="./async-persistency-mirror-advanced.htm/">Async Persistency - Mirror - Advanced</a>.</p>
+<p>If you wish to change the mirror service name please refer to <a href="async-persistency-mirror-advanced.htm">Async Persistency - Mirror - Advanced</a>.</p>
 
 <div class="tc-admon-note">
   
@@ -172,7 +172,7 @@
 <tbody>
 <tr>
 <td align="left">OperationGrouping</td>
-<td align="left">Options:<br/>group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).<br/>group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).<br/>See the <a href="./async-persistency-mirror-advanced.htm/#mirror-behavior-with-distributed-transactions">Mirror behavior with Distributed Transactions</a> for details</td>
+<td align="left">Options:<br/>group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).<br/>group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).<br/>See the <a href="async-persistency-mirror-advanced.htm#mirror-behavior-with-distributed-transactions">Mirror behavior with Distributed Transactions</a> for details</td>
 <td align="left">group-by-replication-bulk</td>
 </tr>
 
@@ -211,7 +211,7 @@
 </code></pre>
 
 <ul>
-<li>The above configuration constructs a Mirror Service using GigaSpaces built-in <a href="./hibernate-space-persistency.htm/">NHibernate Space Persistency</a>.</li>
+<li>The above configuration constructs a Mirror Service using GigaSpaces built-in <a href="hibernate-space-persistency.htm">NHibernate Space Persistency</a>.</li>
 <li>The name of the Mirror Space is important. The <code>mirror-service</code> is the default name for a mirror Space, which is then used by the IMDG to connect to its mirror.</li>
 <li>The configuration above should exist within the mirror PU <code>pu.config</code> file.</li>
 </ul>
@@ -251,8 +251,8 @@ Before primary space is un deployed/redeployed, all data changes are flushed to 
 <li>Optimize the database transaction support.</li>
 <li>Implement a Mirror Service that will write the incoming data into a CSV file. This should be faster than writing data into the database. Later import the data into the database. (normally very fast operation)</li>
 <li>Increase the database maximum connections.</li>
-<li>Optimize Hibernate mapping and configuration. Using a proper <a href="./space-persistency-advanced-topics.htm/#hibernate-id-generation">Hibernate ID generator</a> is crucial for getting optimum performance.</li>
-<li>Use PARTIAL_UPDATE (see <a href="./the-space-operations.htm/">Partial Update</a>). Updates to an object that are performed using the PARTIAL_UPDATE modifier can be executed on the mirror as partial update as well. This can increase the performance in case a lot of updates are performed on a large object.
+<li>Optimize Hibernate mapping and configuration. Using a proper <a href="space-persistency-advanced-topics.htm#hibernate-id-generation">Hibernate ID generator</a> is crucial for getting optimum performance.</li>
+<li>Use PARTIAL_UPDATE (see <a href="the-space-operations.htm">Partial Update</a>). Updates to an object that are performed using the PARTIAL_UPDATE modifier can be executed on the mirror as partial update as well. This can increase the performance in case a lot of updates are performed on a large object.
 To use this optimization you need to set the following space property:</li>
 </ul>
 
@@ -261,16 +261,16 @@ To use this optimization you need to set the following space property:</li>
 
 <h1 id="mirror-monitoring">Mirror Monitoring</h1>
 
-<p>The activity of the mirror service can be monitored using the <a href="../dev-java/administration-and-monitoring-overview.htm/#administrationand-monitoring-api-nonitoring-the-mirror-service">Administration and monitoring API</a>. This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.</p>
+<p>The activity of the mirror service can be monitored using the <a href="../dev-java/administration-and-monitoring-overview.htm#administrationand-monitoring-api-nonitoring-the-mirror-service">Administration and monitoring API</a>. This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.</p>
 
-<p>You may view Mirror and its replication statistics via the <a href="../admin/gigaspaces-management-center.htm/">GigaSpaces Management Center</a>. Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.</p>
+<p>You may view Mirror and its replication statistics via the <a href="../admin/gigaspaces-management-center.htm">GigaSpaces Management Center</a>. Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/mirror_ui_stats.jpg" alt="mirror_ui_stats.jpg" /></p>
 </div>
 
 <div class="tc-admon-refer">
   
-  <p>See also the <a href="/sbp/mirror-monitor.htm/">Mirror Monitor JMX utility</a> for graphical mirror service monitoring via JMX</p>
+  <p>See also the <a href="https://docs.gigaspaces.com/sbp/mirror-monitor.htm">Mirror Monitor JMX utility</a> for graphical mirror service monitoring via JMX</p>
 </div>
 
 </body>

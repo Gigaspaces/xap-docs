@@ -7,11 +7,11 @@
 
  <a id="GSRuntimeEnv">&#160;</a>
 
-<p>A processing unit is deployed onto the XAP runtime environment, which is called the <a href="../overview/the-runtime-environment.htm/">Service Grid</a>. It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.</p>
+<p>A processing unit is deployed onto the XAP runtime environment, which is called the <a href="../overview/the-runtime-environment.htm">Service Grid</a>. It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.</p>
 
 <h1 id="usage">Usage</h1>
 
-<p>To start a Service Grid on a machine, launch the <code>gs-agent</code> utility located in the <code>$XAP_HOME/bin</code> folder. This will start the <a href="../overview/the-runtime-environment.htm/#gsa">Grid Service Agent</a>, which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, <code>--process_type=n</code> will start <code>n</code> instances of the specified <code>process_type</code>. Use the <code>global</code> keyword (e.g. <code>--global.process_type=n</code>) to specify that the agent should coordinate with other running agents the hosting and management of that service. Let's look at common use cases:</p>
+<p>To start a Service Grid on a machine, launch the <code>gs-agent</code> utility located in the <code>$XAP_HOME/bin</code> folder. This will start the <a href="../overview/the-runtime-environment.htm#gsa">Grid Service Agent</a>, which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, <code>--process_type=n</code> will start <code>n</code> instances of the specified <code>process_type</code>. Use the <code>global</code> keyword (e.g. <code>--global.process_type=n</code>) to specify that the agent should coordinate with other running agents the hosting and management of that service. Let's look at common use cases:</p>
 
 <h2 id="help">Help</h2>
 
@@ -157,31 +157,31 @@ call gs-agent.bat
 <tbody>
 <tr>
 <td align="left">gsc</td>
-<td align="left">Defines a <a href="../overview/the-runtime-environment.htm/#gsc">Grid Service Container</a></td>
+<td align="left">Defines a <a href="../overview/the-runtime-environment.htm#gsc">Grid Service Container</a></td>
 <td align="left">gsc.xml</td>
 </tr>
 
 <tr>
 <td align="left">gsm</td>
-<td align="left">Defines a <a href="../overview/the-runtime-environment.htm/#gsm">Grid Service Manager</a></td>
+<td align="left">Defines a <a href="../overview/the-runtime-environment.htm#gsm">Grid Service Manager</a></td>
 <td align="left">gsm.xml</td>
 </tr>
 
 <tr>
 <td align="left">lus</td>
-<td align="left">Defines a <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a></td>
+<td align="left">Defines a <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a></td>
 <td align="left">lus.xml</td>
 </tr>
 
 <tr>
 <td align="left">gsm_lus</td>
-<td align="left">Defines a <a href="../overview/the-runtime-environment.htm/#gsm">Grid Service Manager</a> and <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a> within the same JVM</td>
+<td align="left">Defines a <a href="../overview/the-runtime-environment.htm#gsm">Grid Service Manager</a> and <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a> within the same JVM</td>
 <td align="left">gsm_lus.xml</td>
 </tr>
 
 <tr>
 <td align="left">esm</td>
-<td align="left">Defines an Elastic Service Manager which is required for deploying <a href="../dev-java/elastic-processing-unit-overview.htm/">Elastic Processing Unit</a></td>
+<td align="left">Defines an Elastic Service Manager which is required for deploying <a href="../dev-java/elastic-processing-unit-overview.htm">Elastic Processing Unit</a></td>
 <td align="left">esm.xml</td>
 </tr>
 </tbody>

@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Advanced Configuration</h1>
-        <p>This page contains information beyond the basics. It was created for those who want to know a little bit more about how XAP and Maven integrate. Basically, the information given in <a href="./installation-maven.htm/">XAP Maven Plugin</a> should be sufficient for the common user.</p>
+        <p>This page contains information beyond the basics. It was created for those who want to know a little bit more about how XAP and Maven integrate. Basically, the information given in <a href="installation-maven.htm">XAP Maven Plugin</a> should be sufficient for the common user.</p>
         <h1 id="processing-unit-assembly-definition">Processing Unit Assembly Definition</h1>
         <p>The XAP maven plugin uses the maven assembly plugin to generate the processing unit directory structure. Each PU module has the file &lt;module-name&gt;/src/main/assembly/assembly.xml that defines the assembly structure. One of its tasks is to determine which of the dependency JARS go into the lib directory and which go into the shared-lib directory.</p>
         <p><span class="tc-bold">assembly.xml</span>
@@ -90,7 +90,7 @@ The first dependencySet (where its outputDirectory=lib) defines which JARS go in
         </table>
         <div class="tc-admon-note">
             <p>During processing unit packaging only dependencies declared with the scopes <span class="tc-bold">compile* and *runtime</span> are added to the PU distributable.</p>
-            <p>For more information, see <a href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.htm/">Introduction to the Dependency Mechanism</a>.</p>
+            <p>For more information, see <a href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.htm">Introduction to the Dependency Mechanism</a>.</p>
         </div>
         <h2 id="configuring-maven-to-use-the-assembly-descriptor">Configuring Maven to use the Assembly Descriptor</h2>
         <p>To instruct Maven to use this assembly descriptor to generate the processing units, we configure the assembly plugin by adding the following xml snippet to the module's pom.xml file.</p>
@@ -129,9 +129,9 @@ The first dependencySet (where its outputDirectory=lib) defines which JARS go in
             <ul>
                 <li><a href="http://maven.apache.org/plugins/maven-assembly-plugin/">Assembly plugin documentation</a>
                 </li>
-                <li><a href="http://maven.apache.org/plugins/maven-assembly-plugin/assembly.htm/">Assembly descriptor reference</a>
+                <li><a href="http://maven.apache.org/plugins/maven-assembly-plugin/assembly.htm">Assembly descriptor reference</a>
                 </li>
-                <li><a href="http://maven.apache.org/plugins/maven-assembly-plugin/single-mojo.htm/">Assembly plugin "single' mojo documentation</a>
+                <li><a href="http://maven.apache.org/plugins/maven-assembly-plugin/single-mojo.htm">Assembly plugin "single' mojo documentation</a>
                 </li>
             </ul>
         </div>

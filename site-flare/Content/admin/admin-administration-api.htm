@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Administration API</h1>
-        <p>The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.htm/#gsa">XAP Agent</a>, <a href="../overview/the-runtime-environment.htm/#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.htm/#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a>, Processing Unit, and Spaces.</p>
+        <p>The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.htm#gsa">XAP Agent</a>, <a href="../overview/the-runtime-environment.htm#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.htm#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>, Processing Unit, and Spaces.</p>
         <p><span class="tc-bold">Dependencies</span>
         </p>
         <p>In order to use this feature, include the <code>${XAP_HOME}/lib/platform/service-grid/xap-admin.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
@@ -266,7 +266,7 @@ public void space() {
         </div>
         <h1 id="admin-construction">Admin Construction</h1>
         <p>The Admin API uses the <code>AdminFactory</code> in order to create <code>Admin</code> instances. After you finish working with the <code>Admin</code>, its <code>Admin#close()</code> method should be called.</p>
-        <p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
+        <p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
         <h1 id="discovery-process">Discovery Process</h1>
         <p>When the <code>Admin</code> is created, it starts to receive discovery events from all the advertised services/components within its lookup groups and lookup locators. The events occur asynchronously and the data model within the Admin API gets initialized in the background with services coming and going.</p>
         <p>This means that just creating the <code>Admin</code> and calling a specific "getter" for a data structure might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>waitFor</code> method that allows waiting for a specific number of services to be up. When navigating the data model, the Admin API provides its most up-to-date state of the system it is monitoring.</p>

@@ -38,12 +38,12 @@ In order to use this feature, include the <code>${XAP_HOME}/lib/optional/full-te
 
 <div class="tc-admon-refer">
   
-  <p>For more information on dependencies see <a href="../started/maven-artifacts.htm/">Maven Artifacts</a></p>
+  <p>For more information on dependencies see <a href="../started/maven-artifacts.htm">Maven Artifacts</a></p>
 </div>
 
 <h1 id="examples">Examples</h1>
 
-<p>Text search queries are available through the <code>text:</code> extension to the <a href="./query-sql.htm/">SQL query syntax</a>.</p>
+<p>Text search queries are available through the <code>text:</code> extension to the <a href="query-sql.htm">SQL query syntax</a>.</p>
 
 <p>For example, suppose we have a class called <code>NewsArticle</code> with a String property called <code>content</code> and a String property called <code>type</code>:</p>
 
@@ -76,7 +76,7 @@ query.setParameter(1, "blog");
 
 <h1 id="supported-search-operations">Supported Search Operations</h1>
 
-<p>XAP supports the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.htm/#package_description" target="_blank" >Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
+<p>XAP supports the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.htm#package_description" target="_blank" >Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
 
 <h1 id="nested-properties">Nested Properties</h1>
 
@@ -143,7 +143,7 @@ query.setParameter(2, new Long(1000));
 
 <h1 id="analyzer">Analyzer</h1>
 
-<p>An <a href="http://lucene.apache.org/core/5_3_0/core/org/apache/lucene/analysis/package-summary.htm/#package_description" target="_blank" >Analyzer</a> is responsible for supplying a TokenStream which can be consumed by the indexing and searching processes in Lucene. There are several different <a href="https://lucene.apache.org/core/3_0_3/api/core/org/apache/lucene/analysis/Analyzer.htm/" target="_blank" >Analyzers</a> available.</p>
+<p>An <a href="http://lucene.apache.org/core/5_3_0/core/org/apache/lucene/analysis/package-summary.htm#package_description" target="_blank" >Analyzer</a> is responsible for supplying a TokenStream which can be consumed by the indexing and searching processes in Lucene. There are several different <a href="https://lucene.apache.org/core/3_0_3/api/core/org/apache/lucene/analysis/Analyzer.htm" target="_blank" >Analyzers</a> available.</p>
 
 <p>You can use the <code>@SpaceTextAnalyzer</code>  annotation to choose the Analyzer:</p>
 
@@ -205,12 +205,12 @@ public class NewsArticle {
 
 <div class="tc-admon-refer">
   
-  <p>The performance of text search queries can be vastly improved by indexing the relevant  properties. For detailed information see See <a href="./indexing-text-search.htm/">Indexing</a> for more information.</p>
+  <p>The performance of text search queries can be vastly improved by indexing the relevant  properties. For detailed information see See <a href="indexing-text-search.htm">Indexing</a> for more information.</p>
 </div>
 
 <h1 id="space-document">Space Document</h1>
 
-<p>The text search is also supported with <a href="./document-overview.htm/">Space Documents</a>. Lets take the above example of the <code>NewsArticle</code> and use it as a <code>SpaceDocument</code>:</p>
+<p>The text search is also supported with <a href="document-overview.htm">Space Documents</a>. Lets take the above example of the <code>NewsArticle</code> and use it as a <code>SpaceDocument</code>:</p>
 
 <pre><code class="language-java">DocumentProperties author = new DocumentProperties();
 author.put("firstName", "Friedrich");
@@ -251,7 +251,7 @@ SpaceDocument result = this.gigaSpace.read(query);
 
 <div class="tc-admon-refer">
   
-  <p>Refer to <a href="./document-overview.htm/">SpaceDocument</a> for more information on SpaceDocument.</p>
+  <p>Refer to <a href="document-overview.htm">SpaceDocument</a> for more information on SpaceDocument.</p>
 </div>
 
 <h1 id="configuration">Configuration</h1>

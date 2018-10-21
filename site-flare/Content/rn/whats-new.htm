@@ -13,13 +13,13 @@
 
 <p>The LRU on-heap cache has been enhanced to accept user-defined criteria, so that customers can prioritize data availability. Users can create sets of queries that define what data should be cached as hot data in the in-memory data grid, while cold data continues to be stored on disk (SSD or HDD). This is an evolution of an existing API that controlled what data should be cached during initial load; this policy now applies for the entire application lifetime of the data grid.</p>
 
-<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-overview.htm/#user-defined-cache">User-Defined Cache</a>.</p>
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-overview.htm#user-defined-cache">User-Defined Cache</a>.</p>
 
 <h2 id="off-heap-storage-driver">Off-Heap Storage Driver</h2>
 
 <p>In addition to the existing SSD/Disk storage driver, a new storage driver is now available for <span class="tc-bold">Off-Heap RAM</span>. This drivers enables users to store data on RAM outside the JVM heap, which is faster than disk access and consumes less memory than on-heap data objects.</p>
 
-<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-ohr.htm/">MemoryXtend for Off-Heap RAM</a>.</p>
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-ohr.htm">MemoryXtend for Off-Heap RAM</a>.</p>
 
 <h2 id="off-heap-caching-for-ssd-storage-driver">Off-Heap Caching for SSD Storage Driver</h2>
 
@@ -31,7 +31,7 @@
 <li>Clear with only indexed fields in query - primary and backup instance optimization</li>
 </ul>
 
-<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-rocksdb-ssd.htm/#off-heap-cache">Off-Heap Cache</a>.</p>
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/memoryxtend-rocksdb-ssd.htm#off-heap-cache">Off-Heap Cache</a>.</p>
 
 <h1 id="new-command-line-interface">New Command Line Interface</h1>
 
@@ -52,7 +52,7 @@
 
 <p>The previous GigaSpaces CLI is still provided and supported, but will be removed in future versions. We encourage users to try the new CLI, and welcome feedback and requests for improvements.</p>
 
-<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/tools-cli.htm/">Command Line Interface</a>.</p>
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/tools-cli.htm">Command Line Interface</a>.</p>
 
 <h1 id="docker-support">Docker Support</h1>
 
@@ -74,7 +74,7 @@
 
 <p>The new <code>ORDERED</code> index consumes less memory than <code>EQUAL_AND_ORDERED</code>, at the cost of matching equality less efficiently. When optimizing for ordered queries alone, this is the preferred index type. When optimizing for both ordered and equality queries, there is a performance-vs-footprint trade-off between <code>ORDERED</code> and <code>EQUAL_AND_ORDERED</code>, which you should consider according to your use case.</p>
 
-<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/indexing.htm/#index-types">Index Types</a>.</p>
+<p><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/indexing.htm#index-types">Index Types</a>.</p>
 
 <h1 id="third-party-product-changes">Third-Party Product Changes</h1>
 

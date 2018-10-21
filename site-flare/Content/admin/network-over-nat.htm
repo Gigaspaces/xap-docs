@@ -7,7 +7,7 @@
 
 <p>Some scenarios may include usage of XAP components where each component is  in a different private network, and the connection between the components needs to be on  a different public IP (i.e., via <a href="http://en.wikipedia.org/wiki/Network_address_translation" target="_blank" >network address translation</a>.)</p>
 
-<p>XAP components expose themselves via the built in remoting mechanism (<a href="./tuning-communication-protocol.htm/">LRMI</a>) that contains the IP of the source component as part of its connection url. In the above case, the private IP has no meaning to a remote component/client that needs to connect to this component.</p>
+<p>XAP components expose themselves via the built in remoting mechanism (<a href="tuning-communication-protocol.htm">LRMI</a>) that contains the IP of the source component as part of its connection url. In the above case, the private IP has no meaning to a remote component/client that needs to connect to this component.</p>
 
 <p>For instance, imagine a remote client which is trying to connect to a space that exists in a private network but has a public IP provided by the NAT mapping: the LRMI url would normally contain the private IP but has to use the public IP to actually connect. This page addresses how to solve this issue.</p>
 
