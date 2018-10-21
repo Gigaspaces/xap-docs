@@ -19,6 +19,25 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 14.0.0 M14 (Oct-21-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-14.0.0-m14-b19914.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-enterprise-14.0.0-m14-b19914.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-14.0.0-m14-b19914.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-enterprise-14.0.0-m14-b19914.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap.net-14.0.0-m14-b19914.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13637" %}}: Upgrade to Spring Security 4.2.8.
+
+### Resolved Issues
+
+- {{% jira id="GS-13627" %}}: EXT_JAVA_OPTIONS environment variable is ignored when using OpenJDK with Microsoft Windows.
+- {{% jira id="GS-13661" %}}: SPARK_MOUNTED_CLASSPATH contains incorrect semicolon on Microsoft Windows.
+
 # 14.0.0 M13 (Oct-14-2018)
 
 ## Download Links
