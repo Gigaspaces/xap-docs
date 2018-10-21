@@ -1,201 +1,151 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>REST Manager API</h1>
-  
-
-<p>The <a href="xap-manager.htm">XAP Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
-
-<p>To begin, start a standalone XAP Manager on your machine using the following command:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Unix" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs-agent.sh --manager-local
+    <head>
+    </head>
+    <body>
+        <h1>REST Manager API</h1>
+        <p>The <a href="xap-manager.htm">XAP Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
+        <p>To begin, start a standalone XAP Manager on your machine using the following command:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Unix" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs-agent.sh --manager-local
 </code></pre>
-</div>
-<div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\gs-agent.bat --manager-local
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\gs-agent.bat --manager-local
 </code></pre>
-</div>
-</div>
-
-<p>After the XAP Manager has started, browse to <a href="http://localhost:8090" target="_blank" >localhost:8090</a> and start working with the API.</p>
-
-<div class="tc-admon-note">
-  <p class="tc-admon-title">Info</p>
-  <p>You must start a XAP Manager to access the REST Manager API. You can also start a cluster of XAP Managers to ensure high availability. To learn more about the XAP Manager, refer to <a href="xap-manager.htm">XAP Manager</a>.</p>
-</div>
-
-<p>The REST Manager API was built with <a href="http://swagger.io/" target="_blank" >Swagger</a>. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the <code>Try it out!</code> button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the <code>curl</code> command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self explanatory. You can also download the <code>yaml</code> specification and use Swagger's <code>Online Editor</code> to generate a client in your favorite language.</p>
-
-<p><img src="../Resources/Static/attachment_files/rest-admin/rest-admin-2.png" alt="image" /></p>
-
-<h1 id="long-running-operations">Long-Running Operations</h1>
-
-<p>In the Admin API, long-running operations (for example, <code>deploy</code> and <code>undeploy</code>) are asynchronous with no future or callback. You can either track progress manually, or use various ‘andWait’ overloads (for example, <code>deployAndWait</code>). The REST Manager API  cannot use <code>andWait</code> so you must poll for completion, but each such operation behaves differently.</p>
-
-<p>Instead, the REST Manager API contains Request functionality. Each long-running operation creates a request and returns its ID, so you can poll on the request ID and check the status (running/successful/failed).
+            </div>
+        </div>
+        <p>After the XAP Manager has started, browse to <a href="http://localhost:8090" target="_blank">localhost:8090</a> and start working with the API.</p>
+        <div class="tc-admon-note">
+            <p class="tc-admon-title">Info</p>
+            <p>You must start a XAP Manager to access the REST Manager API. You can also start a cluster of XAP Managers to ensure high availability. To learn more about the XAP Manager, refer to <a href="xap-manager.htm">XAP Manager</a>.</p>
+        </div>
+        <p>The REST Manager API was built with <a href="http://swagger.io/" target="_blank">Swagger</a>. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the <code>Try it out!</code> button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the <code>curl</code> command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self explanatory. You can also download the <code>yaml</code> specification and use Swagger's <code>Online Editor</code> to generate a client in your favorite language.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/rest-admin/rest-admin-2.png" alt="image" />
+        </p>
+        <h1 id="long-running-operations">Long-Running Operations</h1>
+        <p>In the Admin API, long-running operations (for example, <code>deploy</code> and <code>undeploy</code>) are asynchronous with no future or callback. You can either track progress manually, or use various ‘andWait’ overloads (for example, <code>deployAndWait</code>). The REST Manager API  cannot use <code>andWait</code> so you must poll for completion, but each such operation behaves differently.</p>
+        <p>Instead, the REST Manager API contains Request functionality. Each long-running operation creates a request and returns its ID, so you can poll on the request ID and check the status (running/successful/failed).
 The request exposes additional useful information:</p>
-
-<ul>
-<li>Who started the request (IP and user)</li>
-<li>When the request was started and completed</li>
-<li>If the request failed, an error message</li>
-<li>Additional properties on the request execution</li>
-</ul>
-
-<p>By default, the system keeps up to 100,000 completed requests (configurable), and purges the oldest as needed.</p>
-
-<h1 id="processing-unit-deployment-and-upload">Processing Unit Deployment and Upload</h1>
-
-<p>Deploying a Processing Unit requires uploading a resource (JAR/WAR/ZIP) to the XAP Manager, but due to technical issues we currently can’t include both a binary file and a JSON payload in the same REST operation.
+        <ul>
+            <li>Who started the request (IP and user)</li>
+            <li>When the request was started and completed</li>
+            <li>If the request failed, an error message</li>
+            <li>Additional properties on the request execution</li>
+        </ul>
+        <p>By default, the system keeps up to 100,000 completed requests (configurable), and purges the oldest as needed.</p>
+        <h1 id="processing-unit-deployment-and-upload">Processing Unit Deployment and Upload</h1>
+        <p>Deploying a Processing Unit requires uploading a resource (JAR/WAR/ZIP) to the XAP Manager, but due to technical issues we currently can’t include both a binary file and a JSON payload in the same REST operation.
 Instead, there are two operations:</p>
-
-<ul>
-<li>Upload a resource.</li>
-<li>Deploy a Processing Unit, and provide a name of a previously uploaded resource.</li>
-</ul>
-
-<p>This also means that when you undeploy a Processing Unit, the resource does not get deleted. If you want to delete it you must execute a separate REST operation (if you want to undeploy/redeploy with the same JAR. there’s no need to remove it).
+        <ul>
+            <li>Upload a resource.</li>
+            <li>Deploy a Processing Unit, and provide a name of a previously uploaded resource.</li>
+        </ul>
+        <p>This also means that when you undeploy a Processing Unit, the resource does not get deleted. If you want to delete it you must execute a separate REST operation (if you want to undeploy/redeploy with the same JAR. there’s no need to remove it).
 Currently you cannot delete/replace a JAR file if a deployed Processing Unit is using it.</p>
-
-<h1 id="security">Security</h1>
-
-<p>The REST component is part of the XAP Manager, and inherits the XAP Manager security configuration. As the REST uses an HTTP protocol, it is best to configure SSL to allow for HTTPS (secure access).</p>
-
-<h2 id="enabling-security">Enabling Security</h2>
-
-<p>The REST Manager API allows for secured access and operations when the security <code>enabled</code> property is set.
+        <h1 id="security">Security</h1>
+        <p>The REST component is part of the XAP Manager, and inherits the XAP Manager security configuration. As the REST uses an HTTP protocol, it is best to configure SSL to allow for HTTPS (secure access).</p>
+        <h2 id="enabling-security">Enabling Security</h2>
+        <p>The REST Manager API allows for secured access and operations when the security <code>enabled</code> property is set.
 This property should be configured using the <code>EXT_JAVA_OPTIONS</code> in the <code>setenv</code> script, and is applied to all XAP <a href="../security/securing-the-grid-services.htm">Grid Components</a>.</p>
-
-<p>The property:</p>
-
-<pre><code class="language-java">-Dcom.gs.security.enabled=true
+        <p>The property:</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
 </code></pre>
-
-<p>By default, to get you up and running, if nothing was configured the fallback security implementation
+        <p>By default, to get you up and running, if nothing was configured the fallback security implementation
 uses a local file to save credentials (see <a href="../security/default-file-based-security-implementation-ext.htm">File-Based Security</a>.</p>
-
-<h2 id="ssl-configuration">SSL Configuration</h2>
-
-<p>Basic authentication does not encrypt user credentials, so running a XAP Manager in a secure environment without SSL is a security hazard;
+        <h2 id="ssl-configuration">SSL Configuration</h2>
+        <p>Basic authentication does not encrypt user credentials, so running a XAP Manager in a secure environment without SSL is a security hazard;
 The system detects this and aborts. You must <span class="tc-bold">explicitly</span> enable or disable the SSL by setting the system property <code>com.gs.manager.rest.ssl.enabled</code>.</p>
-
-<p>You can do one of the following:</p>
-
-<ul>
-<li>Disable SSL explicitly (not recommended).</li>
-<li>Enable SSL, and the system will generate a certificate for you.</li>
-<li>Enable SSL and provide a trusted certificate that you own.</li>
-</ul>
-
-<p>An auto-generated certificate provides reasonable security, but if your enterprise security guidelines are more
+        <p>You can do one of the following:</p>
+        <ul>
+            <li>Disable SSL explicitly (not recommended).</li>
+            <li>Enable SSL, and the system will generate a certificate for you.</li>
+            <li>Enable SSL and provide a trusted certificate that you own.</li>
+        </ul>
+        <p>An auto-generated certificate provides reasonable security, but if your enterprise security guidelines are more
 strict you can provide your own certificate.</p>
-
-<p>Finally, if you need to configure something that we don’t expose (we use Jetty under the hood to host the web app),
+        <p>Finally, if you need to configure something that we don’t expose (we use Jetty under the hood to host the web app),
 you can provide your own jetty.xml file via a system property.</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Port</th>
-<th align="left">System Property</th>
-<th align="left">Default</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Enable/disable</td>
-<td align="left">com.gs.manager.rest.ssl.enabled</td>
-<td align="left">must be explicitly set</td>
-</tr>
-
-<tr>
-<td align="left">Keystore path</td>
-<td align="left">com.gs.manager.rest.ssl.keystore-path</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">Keystore password</td>
-<td align="left">com.gs.manager.rest.ssl.keystore-password</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">Custom config</td>
-<td align="left">com.gs.manager.rest.jetty.config</td>
-<td align="left"></td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="security-properties-file">Security Properties File</h2>
-
-<p>The security properties file is used to configure the <code>SecurityManager</code>, that is responsible for the authentication and authorization process.
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Port</th>
+                    <th align="left">System Property</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Enable/disable</td>
+                    <td align="left">com.gs.manager.rest.ssl.enabled</td>
+                    <td align="left">must be explicitly set</td>
+                </tr>
+                <tr>
+                    <td align="left">Keystore path</td>
+                    <td align="left">com.gs.manager.rest.ssl.keystore-path</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">Keystore password</td>
+                    <td align="left">com.gs.manager.rest.ssl.keystore-password</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">Custom config</td>
+                    <td align="left">com.gs.manager.rest.jetty.config</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 id="security-properties-file">Security Properties File</h2>
+        <p>The security properties file is used to configure the <code>SecurityManager</code>, that is responsible for the authentication and authorization process.
 The <code>security.properties</code> file is common to all components and is usually located under <code>&lt;XAP root&gt;/config/security/security.properties</code>.</p>
-
-<p>The REST component is part of the XAP Grid components.
+        <p>The REST component is part of the XAP Grid components.
 To only affect the Grid components, use the <code>grid-security.properties</code> instead.</p>
-
-<p>The configuration file can be located anywhere in the classpath or in the classpath under <code>config/security</code>.</p>
-
-<p>Alternatively, a system property can be set to indicate the location of the properties file:</p>
-
-<pre><code class="language-java">-Dcom.gs.security.properties-file = my-security.properties
+        <p>The configuration file can be located anywhere in the classpath or in the classpath under <code>config/security</code>.</p>
+        <p>Alternatively, a system property can be set to indicate the location of the properties file:</p><pre><code class="language-java">-Dcom.gs.security.properties-file = my-security.properties
 </code></pre>
-
-<p>By setting <code>-Dcom.gs.security.properties-file</code> the property file will be located as a direct path (e.g. <code>~/home/user/my-security.properties</code>),
+        <p>By setting <code>-Dcom.gs.security.properties-file</code> the property file will be located as a direct path (e.g. <code>~/home/user/my-security.properties</code>),
 a resource (e.g. "my-security.properties") in the classpath or in the classpath under <code>config/security</code>.</p>
-
-<h1 id="operations">Operations</h1>
-
-<p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local XAP Manager.</p>
-
-<div class="tc-admon-note">
-  <p class="tc-admon-title">Info</p>
-  <p>You must start a XAP Manager to access the pages using the links below.</p>
-</div>
-
-<ul>
-<li>Containers - [%=Versions.rest-version%] See [%=Versions.rest-version%]
-the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/index.htm#/Containers" target="_blank" >Containers</a> page.</li>
-<li>Hosts - See the <a href="http://localhost:8090/v2/index.htm#/Hosts" target="_blank" >Hosts</a> page.</li>
-<li>Information - See the <a href="http://localhost:8090/v2/index.htm#/Information" target="_blank" >Information</a> page.</li>
-<li>Processing Units - See the <a href="http://localhost:8090/v2/index.htm#/Processing_Units" target="_blank" >Processing Units</a> page.</li>
-<li>Requests - See the <a href="http://localhost:8090/v2/index.htm#/Requests" target="_blank" >Requests</a> page.</li>
-<li>Spaces - See the <a href="http://localhost:8090/v2/index.htm#/Spaces" target="_blank" >Spaces</a> page.</li>
-<li>Spark - See the <a href="http://localhost:8090/v2/index.htm#/Spark" target="_blank" >Spark</a> page.</li>
-</ul>
-
-<h1 id="online-editor">Online Editor</h1>
-
-<p>You can download the <code>yaml</code> configuration file from  <a href="http://localhost:8090/v2/xap-manager-api.yaml" target="_blank" >http://localhost:8090/v2/xap-manager-api.yaml</a>
-and import or copy and past the yaml content into the <a href="http://editor.swagger.io#!/" target="_blank" >Swagger Editor</a>.</p>
-
-<p><img src="../Resources/Static/attachment_files/rest-admin/swagger-ui.png" alt="image" /></p>
-
-<p>From the Swagger user interface, you can generate client code in your preferred language:</p>
-
-<p><img src="../Resources/Static/attachment_files/rest-admin/generate-client-code.png" alt="image" /></p>
-
-<h1 id="extending-the-rest-manager-api">Extending The REST Manager API</h1>
-
-<p>The REST Manager API is extensible so that custom methods can be added. Developers can implement a plain Java class with <a href="https://github.com/jax-rs" target="_blank" >JAX-RS</a> annotations.</p>
-
-<h2 id="sample-implementation">Sample Implementation</h2>
-
-<p>Follow the instructions below to create a sample extension for the REST Manager API:</p>
-
-<ol>
-<li>Create a class and annotate it with <code>com.gigaspaces.manager.rest.CustomManagerResource</code>.</li>
-<li>Create a method for each path you wish to intercept, and annotate it with an HTTP operation (e.g. <code>@GET</code>) and a <code>@Path</code> annotation with the relevant path.</li>
-<li>Use JAX-RS parameter annotations (e.g. <code>@QueryParam</code>) to map HTTP request parameters to your method.</li>
-<li>If you wish to use <code>Admin</code>, create an appropiate field and annotate it with JAX-RS <code>@Context</code> annotation.</li>
-</ol>
-
-<p>For example:</p>
-
-<pre><code class="language-java">@CustomManagerResource
+        <h1 id="operations">Operations</h1>
+        <p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local XAP Manager.</p>
+        <div class="tc-admon-note">
+            <p class="tc-admon-title">Info</p>
+            <p>You must start a XAP Manager to access the pages using the links below.</p>
+        </div>
+        <ul>
+            <li>Containers - [%=Versions.rest-version%] See [%=Versions.rest-version%]
+the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/index.htm#/Containers" target="_blank">Containers</a> page.</li>
+            <li>Hosts - See the <a href="http://localhost:8090/v2/index.htm#/Hosts" target="_blank">Hosts</a> page.</li>
+            <li>Information - See the <a href="http://localhost:8090/v2/index.htm#/Information" target="_blank">Information</a> page.</li>
+            <li>Processing Units - See the <a href="http://localhost:8090/v2/index.htm#/Processing_Units" target="_blank">Processing Units</a> page.</li>
+            <li>Requests - See the <a href="http://localhost:8090/v2/index.htm#/Requests" target="_blank">Requests</a> page.</li>
+            <li>Spaces - See the <a href="http://localhost:8090/v2/index.htm#/Spaces" target="_blank">Spaces</a> page.</li>
+            <li>Spark - See the <a href="http://localhost:8090/v2/index.htm#/Spark" target="_blank">Spark</a> page.</li>
+        </ul>
+        <h1 id="online-editor">Online Editor</h1>
+        <p>You can download the <code>yaml</code> configuration file from  <a href="http://localhost:8090/v2/xap-manager-api.yaml" target="_blank">http://localhost:8090/v2/xap-manager-api.yaml</a>
+and import or copy and past the yaml content into the <a href="http://editor.swagger.io#!/" target="_blank">Swagger Editor</a>.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/rest-admin/swagger-ui.png" alt="image" />
+        </p>
+        <p>From the Swagger user interface, you can generate client code in your preferred language:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/rest-admin/generate-client-code.png" alt="image" />
+        </p>
+        <h1 id="extending-the-rest-manager-api">Extending The REST Manager API</h1>
+        <p>The REST Manager API is extensible so that custom methods can be added. Developers can implement a plain Java class with <a href="https://github.com/jax-rs" target="_blank">JAX-RS</a> annotations.</p>
+        <h2 id="sample-implementation">Sample Implementation</h2>
+        <p>Follow the instructions below to create a sample extension for the REST Manager API:</p>
+        <ol>
+            <li>Create a class and annotate it with <code>com.gigaspaces.manager.rest.CustomManagerResource</code>.</li>
+            <li>Create a method for each path you wish to intercept, and annotate it with an HTTP operation (e.g. <code>@GET</code>) and a <code>@Path</code> annotation with the relevant path.</li>
+            <li>Use JAX-RS parameter annotations (e.g. <code>@QueryParam</code>) to map HTTP request parameters to your method.</li>
+            <li>If you wish to use <code>Admin</code>, create an appropiate field and annotate it with JAX-RS <code>@Context</code> annotation.</li>
+        </ol>
+        <p>For example:</p><pre><code class="language-java">@CustomManagerResource
 @Path("/demo")
 public class BasicPluggableOperationTest {
     @Context Admin admin;
@@ -210,28 +160,16 @@ public class BasicPluggableOperationTest {
     }
 }
 </code></pre>
-
-<p>This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/v2/demo/report?hostname=mypc</code>.</p>
-
-<p>To run the example, compile it and package it into a .jar file, then copy the .jar to <code>$XAP_HOME/lib/platform/manager/plugins</code> and start the XAP Manager.</p>
-
-<p>Note that some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
-
-<h2 id="configuration">Configuration</h2>
-
-<p>When the XAP Manager starts, it scans the <code>$XAP_HOME/lib/platform/manager/plugins</code> for classes in the jar files with the JAX-RS annotations and registers them.
-You can override the location using the following system property:</p>
-
-<pre><code class="language-bash">com.gs.manager.rest.plugins.path="pathToJar"
+        <p>This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/v2/demo/report?hostname=mypc</code>.</p>
+        <p>To run the example, compile it and package it into a .jar file, then copy the .jar to <code>$XAP_HOME/lib/platform/manager/plugins</code> and start the XAP Manager.</p>
+        <p>Note that some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
+        <h2 id="configuration">Configuration</h2>
+        <p>When the XAP Manager starts, it scans the <code>$XAP_HOME/lib/platform/manager/plugins</code> for classes in the jar files with the JAX-RS annotations and registers them.
+You can override the location using the following system property:</p><pre><code class="language-bash">com.gs.manager.rest.plugins.path="pathToJar"
 </code></pre>
-
-<h2 id="response">Response</h2>
-
-<p>In the example above the method returns a String, and in addition it implicitly returns an HTTP code 200 (OK). If you need to explicitly specify the HTTP result code, use <code>org.openspaces.admin.rest.Response</code> instead of a <code>String</code>.</p>
-
-<p>For example:</p>
-
-<pre><code class="language-java">import org.openspaces.admin.rest.Response
+        <h2 id="response">Response</h2>
+        <p>In the example above the method returns a String, and in addition it implicitly returns an HTTP code 200 (OK). If you need to explicitly specify the HTTP result code, use <code>org.openspaces.admin.rest.Response</code> instead of a <code>String</code>.</p>
+        <p>For example:</p><pre><code class="language-java">import org.openspaces.admin.rest.Response
 
 @GET
 @Path("/report")
@@ -245,25 +183,16 @@ public Response report(@QueryParam("hostname") String hostname) {
     return Response.ok().entity(result).build();
 }
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>Make sure you use <code>org.openspaces.admin.rest.Response</code> and not JAX-RS Response.</p>
-</div>
-
-<h2 id="security-1">Security</h2>
-
-<p>To define security privileges for a custom method, you have to import <code>org.openspaces.admin.rest.PrivilegeRequired</code> and <code>org.openspaces.admin.rest.RestPrivileges</code>, and use <code>@PrivilegeRequired</code>.
+        <div class="tc-admon-note">
+            <p>Make sure you use <code>org.openspaces.admin.rest.Response</code> and not JAX-RS Response.</p>
+        </div>
+        <h2 id="security-1">Security</h2>
+        <p>To define security privileges for a custom method, you have to import <code>org.openspaces.admin.rest.PrivilegeRequired</code> and <code>org.openspaces.admin.rest.RestPrivileges</code>, and use <code>@PrivilegeRequired</code>.
 The <code>@PrivilegeRequired</code> annotation accepts a <code>RestPrivileges</code> enum that corresponds to the Security privileges.</p>
-
-<div class="tc-admon-refer">
-  
-  <p>For more information about security, see the <a href="../security/">Security Guide</a>.</p>
-</div>
-
-<p>For example:</p>
-
-<pre><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
+        <div class="tc-admon-note">
+            <p>For more information about security, see the <a href="../security/index.htm">Security</a> section of the documentation website.</p>
+        </div>
+        <p>For example:</p><pre><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
 import org.openspaces.admin.rest.RestPrivileges
 
 @CustomManagerResource
@@ -279,38 +208,20 @@ public class PluggableSecuredContoller {
     }
 }
 </code></pre>
-
-<h2 id="jax-rs-support">JAX-RS Support</h2>
-
-<p>The <code>JAX-RS</code> API is used for extension support because it is a well-known standard and commonly used by developers. The sections below list the annotations that are supported, and those that are not supported.</p>
-
-<h3 id="supported-annotations">Supported Annotations</h3>
-
-<p>The following JAX-RS annotations are supported:</p>
-
-<ul>
-<li>HTTP operations: <code>@GET</code>, <code>@PUT</code>, <code>@POST</code>, <code>@DELETE</code></li>
-<li>Parameters: <code>@QueryParam</code>, <code>@PathParam</code>, <code>@DefaultValue</code>
-
-<ul>
-<li>Supported types: Java primitive types ("int', "long', etc.) and <code>String</code></li>
-</ul></li>
-<li>Other: <code>@Context</code>
-
-<ul>
-<li>Fields only (No support for constructors or method arguments)</li>
-<li>Supported types: <code>Admin</code></li>
-</ul></li>
-</ul>
-
-<h3 id="unsupported-annotations">Unsupported Annotations</h3>
-
-<p>The following JAX-RS annotations are not supported:</p>
-
-<ul>
-<li>HTTP operations: <code>@OPTIONS</code>, <code>@HEAD</code></li>
-<li>Parameters: <code>@FormParam</code>, <code>@HeaderParam</code>, <code>@CookieParam</code>, `@Matrix</li>
-</ul>
-
-</body>
+        <h2 id="jax-rs-support">JAX-RS Support</h2>
+        <p>The <code>JAX-RS</code> API is used for extension support because it is a well-known standard and commonly used by developers. The sections below list the annotations that are supported, and those that are not supported.</p>
+        <h3 id="supported-annotations">Supported Annotations</h3>
+        <p>The following JAX-RS annotations are supported:</p>
+        <ul>
+            <li>HTTP operations: <code>@GET</code>, <code>@PUT</code>, <code>@POST</code>, <code>@DELETE</code></li>
+            <li>Parameters: <code>@QueryParam</code>, <code>@PathParam</code>, <code>@DefaultValue</code><ul><li>Supported types: Java primitive types ("int', "long', etc.) and <code>String</code></li></ul></li>
+            <li>Other: <code>@Context</code><ul><li>Fields only (No support for constructors or method arguments)</li><li>Supported types: <code>Admin</code></li></ul></li>
+        </ul>
+        <h3 id="unsupported-annotations">Unsupported Annotations</h3>
+        <p>The following JAX-RS annotations are not supported:</p>
+        <ul>
+            <li>HTTP operations: <code>@OPTIONS</code>, <code>@HEAD</code></li>
+            <li>Parameters: <code>@FormParam</code>, <code>@HeaderParam</code>, <code>@CookieParam</code>, `@Matrix</li>
+        </ul>
+    </body>
 </html>
