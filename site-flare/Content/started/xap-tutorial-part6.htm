@@ -21,7 +21,7 @@
 &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;
 </code></pre>
         <div class="tc-admon-note">
-            <p>In order to make the XAP Interface transactional, the transaction manager must be provided to it when constructing the GigaSpace bean. You also need to add &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;  to enable the configuration of transactional behavior based on annotations.</p>
+            <p>In order to make the XAP Interface transactional, the transaction manager must be provided to it when constructing the GigaSpace bean. You also need to add <code>&lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;</code>  to enable the configuration of transactional behavior based on annotations.</p>
         </div>
         <h3 id="transaction-demarcation">Transaction Demarcation</h3>
         <p>In your Java code you can annotate your class or methods with the Spring <code>@Transactional</code> annotation and configure Spring to process the annotation such that every call to the annotated methods will be automatically performed under a transaction. The transaction starts before the method is called and commits when the method call returns. If an exception is thrown from the method the transaction is rolled back automatically. Note that you can control various aspects of the transaction like propagation by using the attributes of the <code>@Transactional</code> annotation.</p>

@@ -51,7 +51,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).create();
 </code></pre>
         <p>The result is a <code>GigaSpace</code> instance, which is a proxy to the <code>myGrid</code> data grid.</p>
         <div class="tc-admon-note">
-            <p>For more information on the <code>SpaceProxyConfigurer</code> and <code>GigaSpaceConfigurer</code> see <a href="../dev-java/the-space-configuration.htm/">SpaceURL</a></p>
+            <p>For more information about the <code>SpaceProxyConfigurer</code> and <code>GigaSpaceConfigurer</code>, see <a href="../dev-java/the-space-configuration.htm">The Space URL</a>.</p>
         </div>
         <h2 id="implementing-a-pojo">Implementing a POJO</h2>
         <p>We now have a <code>GigaSpace</code> instance connected to our grid, which we can use to store and retrieve entries. But what shall we write? Actually, any POJO can be stored in the space, so long as it has a default constructor and an ID property. For this tutorial let's define a <code>Person</code> class with the following properties:</p><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;

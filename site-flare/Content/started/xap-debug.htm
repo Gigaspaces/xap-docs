@@ -28,11 +28,11 @@
                 </tr>
                 <tr>
                     <td align="left">-properties [property file location] </td>
-                    <td align="left">Allows you to <a href="../dev-java/deployment-properties.htm/">inject properties</a> to the processing unit at deployment time.</td>
+                    <td align="left">Allows you to <a href="../dev-java/deployment-properties.htm">inject properties</a> to the processing unit at deployment time.</td>
                 </tr>
                 <tr>
                     <td align="left">-properties embed://[property1 name]=<br />[property1 value];<br />[property2 name]=<br />[property2 value]</td>
-                    <td align="left">Allows you to <a href="../dev-java/deployment-properties.htm/">directly inject properties</a> to the processing unit at startup time.</td>
+                    <td align="left">Allows you to <a href="../dev-java/deployment-properties.htm">directly inject properties</a> to the processing unit at startup time.</td>
                 </tr>
             </tbody>
         </table>
@@ -67,7 +67,7 @@ The following screenshot displays the <span class="tc-bold">Create, manage, and 
         </div>
         <div class="tc-admon-note">
             <p class="tc-admon-title">Using Lookup Groups/Locators </p>
-            <p>You can isolate your environment by defining <a href="../overview/the-runtime-environment.htm/#lus">Lookup Groups/Locators</a>. You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have <code>XAP_LOOKUP_GROUPS</code>/<code>XAP_LOOKUP_LOCATORS</code> OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using <code>XAP_LOOKUP_GROUPS</code> environment variable you need to add the following as VM argument to the run configuration:</p><pre xml:space="preserve"><code class="language-bash">-Dcom.gs.jini_lus.groups=${env_var:XAP_LOOKUP_GROUPS}
+            <p>You can isolate your environment by defining <a href="../overview/the-runtime-environment.htm#lus">Lookup Groups/Locators</a>. You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have <code>XAP_LOOKUP_GROUPS</code>/<code>XAP_LOOKUP_LOCATORS</code> OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using <code>XAP_LOOKUP_GROUPS</code> environment variable you need to add the following as VM argument to the run configuration:</p><pre xml:space="preserve"><code class="language-bash">-Dcom.gs.jini_lus.groups=${env_var:XAP_LOOKUP_GROUPS}
 </code></pre>
             <p>To set the lookup locators:</p><pre xml:space="preserve"><code class="language-bash">-Dcom.gs.jini_lus.locators=${env_var:XAP_LOOKUP_LOCATORS}
 </code></pre>

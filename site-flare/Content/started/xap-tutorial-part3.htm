@@ -162,12 +162,12 @@
             <li>Event-Driven Remoting - Event-Driven Remoting supports most of the above capabilities, but does not support map/reduce style invocations. In terms of implementation, it's based on the Polling Container feature, which means that it writes an invocation entry to the space which is later consumed by a polling container. Once taking the invocation entry from the space, the polling container's event handler delegates the call to the space-side service.</li>
         </ul>
         <p>In this tutorial will look at an Executor based Remoting service.</p>
-        <h4 id="defining-the-contract">Defining the contract</h4>
+        <h4 id="defining-the-contract">Defining the Contract</h4>
         <p>In order to support remoting, the first step is to define the contract between the client and the server. Here is an example of a payment service:</p><pre><code class="language-java">public interface IPaymentProcessor {
     Payment processPayment(Payment data);
 }
 </code></pre>
-        <h4 id="implement-the-service">Implement the Service</h4>
+        <h4 id="implement-the-service">Implementing the Service</h4>
         <p>Next, an implementation of this contract needs to be provided. This implementation will "live" on the server side. Here is a sample implementation:</p><pre><code class="language-java">@RemotingService
 public class PaymentProcessor implements IPaymentProcessor {
      public Payment processPayment(Payment payment) {
@@ -176,7 +176,7 @@ public class PaymentProcessor implements IPaymentProcessor {
     }
 }
 </code></pre>
-        <h4 id="exporting-the-service">Exporting the service</h4>
+        <h4 id="exporting-the-service">Exporting the Service</h4>
         <p>The service is exported to the server with the Spring configuration. Here is an example:</p><pre><code class="language-xml">&lt;!-- Scan the packages for annotations / --&gt;
 &lt;context:component-scan base-package="xap.qsg" /&gt;
 
@@ -191,8 +191,8 @@ public class PaymentProcessor implements IPaymentProcessor {
 
 &lt;os-remoting:service-exporter id="serviceExporter" /&gt;
 </code></pre>
-        <h4 id="client-side-invocation">Client-side invocation</h4>
-        <p>On the client side the remoting proxy is injected with the @ExecutorProxy annotation:</p><pre><code class="language-java">public class RemoteService {
+        <h4 id="client-side-invocation">Client-side Invocation</h4>
+        <p>On the client side, the remoting proxy is injected with <code>the @ExecutorProxy </code>annotation:</p><pre><code class="language-java">public class RemoteService {
      @Autowired
      @Qualifier(IRemotingService.SPACE)
      private GigaSpace space;
@@ -206,7 +206,7 @@ public class PaymentProcessor implements IPaymentProcessor {
 }
 </code></pre>
         <div class="tc-admon-note">
-            <p>For more information, see <a href="../dev-java/space-based-remoting-overview.htm">Space Based Remoting</a>.</p>
+            <p>For more information, see <a href="../dev-java/space-based-remoting-overview.htm">Space-Based Remoting</a>.</p>
         </div>
     </body>
 </html>

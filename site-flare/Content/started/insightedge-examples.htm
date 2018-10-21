@@ -1,94 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Running InsightEdge IDE Examples</h1>
-  
-
-<h1 id="overview">Overview</h1>
-
-<p>This section explains how to use the sample code that has been provided with the InsightEdge package.</p>
-
-<div class="tc-admon-note">
-  <p class="tc-admon-title">Notes</p>
-  <ul>
-<li><p>The example sources are located at <code>&lt;XAP HOME&gt;/insightedge/examples</code>.</p></li>
-
-<li><p>The example .jar is located at <code>&lt;XAP HOME&gt;/insightedge/examples/jars</code>.</p></li>
-</ul>
-</div>
-
-<h1 id="building-the-examples">Building the examples</h1>
-
-<p>Building the examples is not required, since the package includes a pre-built .jar file. However, if you wish to modify the examples for learning purposes and rebuild them, follow this procedure.</p>
-
-<p>Before the first time building the examples, you need to install the InsightEdge artifacts in your local Maven repository. To do that, run the following from the <code>$XAP_HOME/insightedge/tools/maven</code> directory:</p>
-
-<pre><code class="language-bash">insightedge-maven
+    <head>
+    </head>
+    <body>
+        <h1>Running InsightEdge IDE Examples</h1>
+        <h1 id="overview">Overview</h1>
+        <p>This section explains how to use the sample code that has been provided with the InsightEdge package.</p>
+        <div class="tc-admon-note">
+            <ul>
+                <li>
+                    <p>The example sources are located at <code>&lt;XAP HOME&gt;/insightedge/examples</code>.</p>
+                </li>
+                <li>
+                    <p>The example .jar is located at <code>&lt;XAP HOME&gt;/insightedge/examples/jars</code>.</p>
+                </li>
+            </ul>
+        </div>
+        <h1 id="building-the-examples">Building the Examples</h1>
+        <p>Building the examples is not required, since the package includes a pre-built .jar file. However, if you wish to modify the examples for learning purposes and rebuild them, follow this procedure.</p>
+        <p>Before the first time building the examples, you need to install the InsightEdge artifacts in your local Maven repository. To do that, run the following from the <code>$XAP_HOME/insightedge/tools/maven</code> directory:</p><pre><code class="language-bash">insightedge-maven
 </code></pre>
-
-<p>Next, use the following command in Maven to build the examples from <code>$XAP_HOME/insightedge/examples</code>:</p>
-
-<pre><code class="language-bash">mvn clean package
+        <p>Next, use the following command in Maven to build the examples from <code>$XAP_HOME/insightedge/examples</code>:</p><pre><code class="language-bash">mvn clean package
 </code></pre>
-
-<p>The end result is an examples .jar located at <code>$XAP_HOME/insightedge/examples/target/insightedge-examples.jar</code>.</p>
-
-<h1 id="running-the-examples">Running the Examples</h1>
-
-<p>In order to run the examples on your local machine you need to start a local InsightEdge environment. If you haven't done so already, refer to <a href="insightedge-local-setup.htm/">Local Machine Setup</a> for more info.</p>
-
-<p>You can run the InsightEdge example .jar from any of the following:</p>
-
-<ul>
-<li>Apache Zeppelin Web Notebook</li>
-<li>An IDE</li>
-<li>A command line</li>
-</ul>
-
-<h2 id="using-the-web-notebook">Using the Web Notebook</h2>
-
-<p>To run the examples from the Apache Zeppelin web notebook, go to <code>http://localhost:9090/</code>. For more info see <a href="insightedge-zeppelin.htm/">Web notebook</a>.</p>
-
-<h2 id="using-an-ide">Using an IDE</h2>
-
-<p>You can run the examples from your preferred IDE. Every example has a <code>main</code> method, so it can be executed as standard application. Note these two important configuration requirements:</p>
-
-<ul>
-<li>Enable <code>run-from-ide</code> in the Maven profile. This will switch the required dependencies to <code>compile</code> scope, so they are available in the classpath.</li>
-<li>Pass the examples as <code>local[*]</code> and <code>insightedge-space</code> arguments.</li>
-</ul>
-
-<h2 id="using-a-command-line">Using a Command Line</h2>
-
-<p>To run the examples from a command line, run the following from the <code>$XAP_HOME/insightedge/bin</code> directory:</p>
-
-<pre><code class="language-bash">insightedge-submit --class {main class name} --master {Spark master URL} {path/to/insightedge-examples.jar}
+        <p>The end result is an examples .jar located at <code>$XAP_HOME/insightedge/examples/target/insightedge-examples.jar</code>.</p>
+        <h1 id="running-the-examples">Running the Examples</h1>
+        <p>In order to run the examples on your local machine you need to start a local InsightEdge environment. If you haven't done so already, refer to <a href="insightedge-local-setup.htm">Local Machine Setup</a> for more info.</p>
+        <p>You can run the InsightEdge example .jar from any of the following:</p>
+        <ul>
+            <li>Apache Zeppelin Web Notebook</li>
+            <li>An IDE</li>
+            <li>A command line</li>
+        </ul>
+        <h2 id="using-the-web-notebook">Using the Web Notebook</h2>
+        <p>To run the examples from the Apache Zeppelin web notebook, go to <code>http://localhost:9090/</code>. For more info see <a href="insightedge-zeppelin.htm">Using the InsightEdge Web Notebook</a>.</p>
+        <h2 id="using-an-ide">Using an IDE</h2>
+        <p>You can run the examples from your preferred IDE. Every example has a <code>main</code> method, so it can be executed as standard application. Note these two important configuration requirements:</p>
+        <ul>
+            <li>Enable <code>run-from-ide</code> in the Maven profile. This will switch the required dependencies to <code>compile</code> scope, so they are available in the classpath.</li>
+            <li>Pass the examples as <code>local[*]</code> and <code>insightedge-space</code> arguments.</li>
+        </ul>
+        <h2 id="using-a-command-line">Using a Command Line</h2>
+        <p>To run the examples from a command line, run the following from the <code>$XAP_HOME/insightedge/bin</code> directory:</p><pre><code class="language-bash">insightedge-submit --class {main class name} --master {Spark master URL} {path/to/insightedge-examples.jar}
 </code></pre>
-
-<p>For example, <code>SaveRDD</code> can be submitted with the following syntax:</p>
-
-<pre><code class="language-bash">insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
+        <p>For example, <code>SaveRDD</code> can be submitted with the following syntax:</p><pre><code class="language-bash">insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
     ./$XAP_HOME/insightedge/examples/jars/insightedge-examples.jar
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>Running the <code>TwitterPopularTags</code> example requires you to pass <a href="https://apps.twitter.com/" target="_blank" >Twitter app tokens</a> as arguments.</p>
-</div>
-
-<h3 id="python-examples">Python Examples</h3>
-
-<p>In addition to the above, you can run Python examples using the following command:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><pre><code class="language-bash">insightedge-submit --master {Spark master URL} {path/to/your-example.py}
+        <div class="tc-admon-note">
+            <p>Running the <code>TwitterPopularTags</code> example requires you to pass <a href="https://apps.twitter.com/" target="_blank">Twitter app tokens</a> as arguments.</p>
+        </div>
+        <h3 id="python-examples">Python Examples</h3>
+        <p>In addition to the above, you can run Python examples using the following command:</p>
+        <div class="easyui-tabs" plain="true" data-options=""><pre><code class="language-bash">insightedge-submit --master {Spark master URL} {path/to/your-example.py}
 </code></pre>
-
-<p>For example:</p>
-
-<pre><code class="language-bash">insightedge-submit --master spark://127.0.0.1:7077 ./$XAP_HOME/insightedge/examples/python/sf_salaries.py
+            <p>For example:</p><pre><code class="language-bash">insightedge-submit --master spark://127.0.0.1:7077 ./$XAP_HOME/insightedge/examples/python/sf_salaries.py
 </code></pre>
-</div>
-
-</body>
+        </div>
+    </body>
 </html>
