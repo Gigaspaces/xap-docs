@@ -93,7 +93,7 @@ SpaceDocument[] documents = gigaSpace.readByIds(
         <h1 id="dynamic-properties">Dynamic Properties</h1>
         <p>When a type descriptor is created from a POJO class, the type descriptor builder checks if the POJO class supports <a href="dynamic-properties.htm">Dynamic Properties</a>. If it doesn't, the type descriptor will also not support dynamic properties. If a Space document is created using the same type with a property that is not defined in the POJO and written to the Space, an exception is thrown indicating the property is not defined in the type and the type does not support dynamic properties.</p>
         <p>It is possible to manually create a <code>SpaceTypeDescriptor</code> of the POJO using the <code>SpaceTypeDescriptorBuilder</code> and enable dynamic properties. However, if client A writes a document with a dynamic property and client B reads it as a POJO, the dynamic property is ignored, and if client B proceeds to update the entry the dynamic property is deleted from the Space.</p>
-        <h1 id="deep-interoperability">Deep Interoperability</h1>
+        <h1 id="deep-interoperability"><a name="Deep"></a>Deep Interoperability</h1>
         <p>If the POJO contains properties that are POJO themselves, the Space implicitly converts these properties to Space documents as needed.
 For example:</p><pre><code class="language-java">// Create a POJO entry with a POJO property and write it to space:
 Person personPojo = new Person()
