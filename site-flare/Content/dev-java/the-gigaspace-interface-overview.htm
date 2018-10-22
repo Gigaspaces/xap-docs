@@ -13,14 +13,14 @@
             <li>Take - get the value from the Space and delete its content.</li>
             <li>Notify - alert when the contents of an entry of interest have registered changes.</li>
         </ul>
-        <div class="tc-admon-refer">
-            <p>For more information about Spaces, refer to <a href="the-space-operations.htm">The Space Operations</a>.</p>
+        <div class="tc-admon-note">
+            <p>For more information about Spaces, refer to the<a href="the-space-operations.htm"> Operations</a> topic.</p>
         </div>
         <h1 id="embedded-space">Embedded Space</h1>
         <p>A client communicating with a an embedded Space performs all its operations via local connection. There is no network overhead when using this approach.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/devguide/space-embedded.png" width="239" height="161" />
+                <img src="../Resources/Static/attachment_files/devguide/space-embedded.png" width="239" height="161" class="tc-picture30" />
             </p>
         </div>
         <p>The following is an example of how to create an embedded Space. The <code>EmbeddedSpaceConfigurer</code> is used to configure the Space URL:</p>
@@ -45,7 +45,7 @@
         <p>The Embedded space can be used in a distributed architecture such as the replicated or partitioned clustered space:</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/devguide/space-replicated.png" width="521" height="161" />
+                <img src="../Resources/Static/attachment_files/devguide/space-replicated.png" width="521" height="161" class="tc-picture50" />
             </p>
         </div>
         <p>A simple way to use the embedded Space in a clustered architecture is by deploying a <a href="../admin/data-grid-clustering.htm">clustered Space</a>, or packaging your application as a <a href="the-processing-unit-overview.htm">Processing Unit</a> and deploying it using the relevant SLA.</p>
@@ -53,7 +53,7 @@
         <p>A client communicating with a remote Space performs all its operations via a remote connection. The remote Space can be partitioned (with or without backups) or replicated (based on synchronous or asynchronous replication).</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/devguide/space-remote.png" width="783" height="160" />
+                <img src="../Resources/Static/attachment_files/devguide/space-remote.png" width="783" height="160" class="tc-picture80" />
             </p>
         </div>
         <p>The following is an example of how a client application can create a proxy for interacting with a remote Space:</p>
@@ -75,8 +75,8 @@
 </code></pre>
             </div>
         </div>
-        <div class="tc-admon-refer">
-            <p>A full description of the Space URL Properties is available <a href="the-space-configuration.htm">here.</a>.</p>
+        <div class="tc-admon-note">
+            <p>See <MadCap:xref href="the-space-configuration.htm">The Space URL</MadCap:xref> for a full description of the Space URL properties.</p>
         </div>
         <h2 id="reconnection">Reconnection</h2>
         <p>When working with a <span class="tc-bold">remote Space</span>, the Space may become unavailable (due to network problems, Processing Unit relocation, etc.). For information on how such disruptions are handled and configured, refer to <a href="../admin/tuning-proxy-connectivity.htm">Proxy Connectivity</a>.</p>
@@ -84,7 +84,7 @@
         <p>XAP supports a <a href="local-cache.htm">local cache</a> (near cache) configuration. This provides a front-end, client-side cache that is used with the <code>read</code> operations implicitly. The local cache is loaded on demand or when you perform a <code>read</code> operation, and is updated implicitly by the Space.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/devguide/space-local-cache.png" width="521" height="160" />
+                <img src="../Resources/Static/attachment_files/devguide/space-local-cache.png" width="521" height="160" class="tc-picture50" />
             </p>
         </div>
         <p>The following is an example of a <code>GigaSpace</code> construct with a local cache:</p>
@@ -118,7 +118,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
         <p>XAP supports a <a href="local-view.htm">local view</a> configuration. This provides a front-end, client-side cache that is used with any <code>read</code> or <code>readMultiple</code> operations implicitly. The local view is loaded on start, and is updated implicitly by the Space.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/devguide/space-local-view.png" width="521" height="160" />
+                <img src="../Resources/Static/attachment_files/devguide/space-local-view.png" width="521" height="160" class="tc-picture50" />
             </p>
         </div>
         <p>Here is an example for a <code>GigaSpace</code> construct with a local cache:</p>
@@ -184,8 +184,7 @@ LocalViewSpaceConfigurer localViewConfigurer = new LocalViewSpaceConfigurer(urlC
 localViewConfigurer.close();
 </code></pre>
         <div class="tc-admon-note">
-            <p class="tc-admon-title">Local View and Cache</p>
-            <p>When using LocalCache and LocalView. you need to call the <code>close()</code> method on their respective configurer.</p>
+            <p>When using Local Cache and Local View, you need to call the <code>close()</code> method on their respective configurer.</p>
         </div>
         <h2 id="communication-resources">Communication Resources</h2>
         <p>All communication-related resources in XAP are shared between all the XAP components at the Java classloader level. If you're using the <a href="../admin/the-runtime-environment.htm">XAP service grid</a> to run your XAP application, you do not need to handle the cleanup of communication resources explicitly.</p>
@@ -237,7 +236,7 @@ LRMIManager.shutdown();
             </div>
         </div>
         <p>You can configure the Space to be secured using deploy-time properties (bean-level properties), without declaring the security element. The <code>security.username</code> and <code>security.password</code> can be provided, and the Spaces defined within the Processing Unit are automatically secured.</p>
-        <div class="tc-admon-refer">
+        <div class="tc-admon-note">
             <p>For more information about how to secure XAP components, refer to the <a href="../security/index.htm">Security</a> section of the documentation website.</p>
         </div>
         <h1 id="persistency">Persistency</h1>

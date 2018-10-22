@@ -1,48 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Custom Serialization</h1>
-  
-
-<p>To solve the performance problems associated with class serialization, the serialization mechanism allows you to declare an embedded class is Externalizable. When the ObjectOutputStream writeObject() method is called, it performs the following sequence of actions:</p>
-
-<ul>
-<li>Tests to see if the object is an instance of Externalizable. If so, it uses externalization to marshall the object.</li>
-<li>If the object isn't an instance of Externalizable, it tests to see whether the object is an instance of Serializable. If so, it uses serialization to marshall the object. If neither of these two cases apply, an exception is thrown.</li>
-</ul>
-
-<p>Externalizable is an interface that consists of two methods:</p>
-
-<pre><code class="language-java">public void readExternal(ObjectInput in);
+    <head>
+    </head>
+    <body>
+        <h1>Custom Serialization</h1>
+        <p>To solve the performance problems associated with class serialization, the serialization mechanism allows you to declare an embedded class is Externalizable. When the ObjectOutputStream writeObject() method is called, it performs the following sequence of actions:</p>
+        <ul>
+            <li>Tests to see if the object is an instance of Externalizable. If so, it uses externalization to marshall the object.</li>
+            <li>If the object isn't an instance of Externalizable, it tests to see whether the object is an instance of Serializable. If so, it uses serialization to marshall the object. If neither of these two cases apply, an exception is thrown.</li>
+        </ul>
+        <p>Externalizable is an interface that consists of two methods:</p><pre><code class="language-java">public void readExternal(ObjectInput in);
 public void writeExternal(ObjectOutput out);
 </code></pre>
-
-<p>The Externalization mechanism writes out the identity of the class (which boils down to the name of the class and the appropriate serialVersionUID). It also stores the superclass structure and all the information about the class hierarchy. But instead of visiting each superclass and using it to store some of the state information, it simply calls writeExternal() on the local class definition.
+        <p>The Externalization mechanism writes out the identity of the class (which boils down to the name of the class and the appropriate serialVersionUID). It also stores the superclass structure and all the information about the class hierarchy. But instead of visiting each superclass and using it to store some of the state information, it simply calls writeExternal() on the local class definition.
 The Externalization mechanism stores all the metadata, but writes out only the local instance information.</p>
-
-<p>When a POJO class with embedded properties uses the Space API, you may implement the <code>Externalizable</code> mechanism for the embedded property. This can be done to control serialization and deserialization when the Object is sent to the space (e.g. write, update and execute Operations) and when it is sent back to the client (e.g. read and take operations). This will optimize the remote call when using Remote Space configuration for single, partitioned, and replicated space topologies.</p>
-
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/serialization2.jpg" alt="storage-type-object.jpg" /></p>
-</div>
-
-<p><br/></p>
-
-<div class="tc-admon-note">
-  
-  <ul>
-<li>When implementing the <code>Externalizable</code> interface, the storage type of the nested property needs to be of type <a href="storage-types-controlling-serialization.htm">OBJECT</a>.</li>
-<li>Implementing <code>Externalizable</code> for the Space class itself is not supported.</li>
-</ul>
-</div>
-
-<p><br/></p>
-
-<h1 id="example">Example</h1>
-
-<p>Here is an example; the <code>Person</code> class has an <code>Address</code> property that is being externalized.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" Person.java " style="padding:10px"><pre><code class="language-java">@SpaceClass
+        <p>When a POJO class with embedded properties uses the Space API, you may implement the <code>Externalizable</code> mechanism for the embedded property. This can be done to control serialization and deserialization when the Object is sent to the space (e.g. write, update and execute Operations) and when it is sent back to the client (e.g. read and take operations). This will optimize the remote call when using Remote Space configuration for single, partitioned, and replicated space topologies.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/serialization2.jpg" alt="storage-type-object.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>
+            <br />
+        </p>
+        <div class="tc-admon-note">
+            <ul>
+                <li>When implementing the <code>Externalizable</code> interface, the storage type of the nested property needs to be of type <a href="storage-types-controlling-serialization.htm">OBJECT</a>.</li>
+                <li>Implementing <code>Externalizable</code> for the Space class itself is not supported.</li>
+            </ul>
+        </div>
+        <p>
+            <br />
+        </p>
+        <h1 id="example">Example</h1>
+        <p>Here is an example; the <code>Person</code> class has an <code>Address</code> property that is being externalized.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Person.java " style="padding:10px"><pre><code class="language-java">@SpaceClass
 public class Person {
 
     private Long id;
@@ -87,8 +80,8 @@ public class Person {
     }
 }
 </code></pre>
-</div>
-<div title=" Address.java " style="padding:10px"><pre><code class="language-java">public class Address implements Externalizable {
+            </div>
+            <div title=" Address.java " style="padding:10px"><pre><code class="language-java">public class Address implements Externalizable {
 
     private String street;
 
@@ -135,15 +128,13 @@ public class Person {
     }
 }
 </code></pre>
-</div>
-</div>
-
-<h1 id="kryo-serialization">Kryo Serialization</h1>
-
-<p><a href="https://github.com/EsotericSoftware/kryo" target="_blank" >Kryo</a> is a fast and efficient object graph serialization framework for Java. You can use this framework to serialize your objects with XAP.
+            </div>
+        </div>
+        <h1 id="kryo-serialization">Kryo Serialization</h1>
+        <p><a href="https://github.com/EsotericSoftware/kryo" target="_blank">Kryo</a> is a fast and efficient object graph serialization framework for Java. You can use this framework to serialize your objects with XAP.
 Using the same example from above, the <code>writeExternal</code>  and <code>readExternal</code> methods of the <code>Address</code> class make use of the <code>KryoSerializers</code>.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Address" style="padding:10px"><pre><code class="language-java">package xap.kryo;
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Address" style="padding:10px"><pre><code class="language-java">package xap.kryo;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -210,9 +201,8 @@ public class Address implements Externalizable {
 }
 
 </code></pre>
-</div>
-
-<div title="KryoSerializers" style="padding:10px"><pre><code class="language-java">package xap.kryo;
+            </div>
+            <div title="KryoSerializers" style="padding:10px"><pre><code class="language-java">package xap.kryo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -277,13 +267,10 @@ public class KryoSerializers {
 }
 
 </code></pre>
-</div>
-</div>
-
-<div class="tc-admon-refer">
-  
-  <p>You can find a complete example <a href="https://github.com/GigaSpaces-ProfessionalServices/kryo-serialization-example">here</a></p>
-</div>
-
-</body>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>You can find a complete example <a href="https://github.com/GigaSpaces-ProfessionalServices/kryo-serialization-example">here</a>.</p>
+        </div>
+    </body>
 </html>

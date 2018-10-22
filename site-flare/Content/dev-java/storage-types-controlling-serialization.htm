@@ -14,17 +14,17 @@
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Object Mode" style="padding:10px">
                 <p>
-                    <img src="../Resources/Static/attachment_files/devguide/storage-object.png" width="554" height="267" class="tc-picture50" />
+                    <img src="../Resources/Static/attachment_files/devguide/storage-object.png" width="554" height="267" class="tc-picture80" />
                 </p>
             </div>
             <div title="Binary Mode" style="padding:10px">
                 <p>
-                    <img src="../Resources/Static/attachment_files/devguide/storage-binary.png" width="601" height="266" class="tc-picture50" />
+                    <img src="../Resources/Static/attachment_files/devguide/storage-binary.png" width="601" height="266" class="tc-picture80" />
                 </p>
             </div>
             <div title="Compressed Mode" style="padding:10px">
                 <p>
-                    <img src="../Resources/Static/attachment_files/devguide/storage-compressed.png" width="631" height="266" class="tc-picture50" />
+                    <img src="../Resources/Static/attachment_files/devguide/storage-compressed.png" width="631" height="266" class="tc-picture80" />
                 </p>
             </div>
         </div>
@@ -87,7 +87,7 @@ When a certain class which serves as a space property is likely to change over t
         <p>GigaSpaces do not store the object reference within the space, but stores the object non-primitive references and the primitive fields data within the space within a document based structure. When having multiple threads accessing the same object simultaneously, you should clone the object after you read it and use the clone copy when updating the writing it back into the space.
 If you read an object from the space and change it without writing it back, you might modify one of its complex type fields that another thread holding its reference.
 (other thread might be replication thread...If there is also an index on this field the index won't be updated...)</p>
-        <h2 id="remote-mode">Remote mode</h2>
+        <h2 id="remote-mode">Remote Mode</h2>
         <p>In remote mode, the Object's non-primitive fields are serialized where the serialization mode determine how it is done:</p>
         <ul>
             <li>Native mode - non-primitive Object fields are serialized using Java Serialization. These are de-serialized at the space side before they are stored inside the space.</li>
