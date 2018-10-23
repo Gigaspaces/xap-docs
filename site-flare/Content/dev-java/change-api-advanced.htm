@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Advanced Implementations</h1>
-  
-
-<h1 id="change-and-spacesynchronizationendpoint">Change and SpaceSynchronizationEndpoint</h1>
-
-<p>A <code>SpaceSynchronizationEndpoint</code> implementation can make use of the <a href="change-api-overview.htm">Change API</a> and support change operation, this way allowing the network utilization to be more optimized by sending only the change set to the mirror service instead of the fully updated object. By default the mirror service starts in a mode which does not support change, hence, any change operation done on the space is being replicated as a regular update to the mirror service. You could provide an implementation that does support change and configure the space to send the supported change operations to the mirror with only the required data to apply the change. Following is an example of how can one obtain the change set from a <code>DataSyncOperation</code>.</p>
-
-<p>Asynchronous Persistence</p>
-
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/devguide/change-API-async-persistence.png" width="690" height="292" /></p>
-</div>
-
-<pre><code class="language-java">public class MySpaceSynchronizationEndpoint extends SpaceSynchronizationEndpoint {
+    <head>
+    </head>
+    <body>
+        <h1>Advanced Implementations</h1>
+        <h1 id="change-and-spacesynchronizationendpoint">Change and SpaceSynchronizationEndpoint</h1>
+        <p>A <code>SpaceSynchronizationEndpoint</code> implementation can make use of the <a href="change-api-overview.htm">Change API</a> and support change operation, this way allowing the network utilization to be more optimized by sending only the change set to the mirror service instead of the fully updated object. By default the mirror service starts in a mode which does not support change, hence, any change operation done on the space is being replicated as a regular update to the mirror service. You could provide an implementation that does support change and configure the space to send the supported change operations to the mirror with only the required data to apply the change. Following is an example of how can one obtain the change set from a <code>DataSyncOperation</code>.</p>
+        <p>Asynchronous Persistence</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/devguide/change-API-async-persistence.png" width="690" height="292" class="tc-picture80" />
+            </p>
+        </div><pre><code class="language-java">public class MySpaceSynchronizationEndpoint extends SpaceSynchronizationEndpoint {
 
   @Override
   public void onOperationsBatchSynchronization(OperationsBatchData batchData){
@@ -47,10 +44,7 @@
 
 }
 </code></pre>
-
-<p>Once you have an implementation that supports some or all of the change operations, the space need to be configured in a way which specifies which change operations are supported by the mirror, and that is in order for it to know which operations can be sent to the mirror as change and which operations needs to be converted to full update. following an example of how to configure a space with mirror which supports: <code>set</code>, <code>unset</code> and <code>increment</code> change operations.</p>
-
-<pre><code class="language-xml"> &lt;os-core:embedded-space id="space" space-name="mySpace" mirror="true"&gt;
+        <p>Once you have an implementation that supports some or all of the change operations, the space need to be configured in a way which specifies which change operations are supported by the mirror, and that is in order for it to know which operations can be sent to the mirror as change and which operations needs to be converted to full update. following an example of how to configure a space with mirror which supports: <code>set</code>, <code>unset</code> and <code>increment</code> change operations.</p><pre><code class="language-xml"> &lt;os-core:embedded-space id="space" space-name="mySpace" mirror="true"&gt;
     &lt;os-core:properties&gt;
         &lt;props&gt;
             &lt;prop key="cluster-config.mirror-service.change-support"&gt;
@@ -60,90 +54,84 @@
     &lt;/os-core:properties&gt;
 &lt;/os-core:embedded-space&gt;
 </code></pre>
-
-<p>Here is the full list of change operations:</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">ChangeSet operation</th>
-<th align="left">Mirror Change Support Name</th>
-<th align="left">ChangeOperation class</th>
-<th align="left">Comment</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.set</span></td>
-<td align="left">set</td>
-<td align="left">SetOperation</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.unset</span></td>
-<td align="left">unset</td>
-<td align="left">UnsetOperation</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.increment</span></td>
-<td align="left">increment</td>
-<td align="left">IncrementOperation</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.decrement</span></td>
-<td align="left">increment</td>
-<td align="left">IncrementOperation</td>
-<td align="left">will be increment with negative value</td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.addToCollection</span></td>
-<td align="left">addToCollection</td>
-<td align="left">AddToCollectionOperation</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.addAllToCollection</span></td>
-<td align="left">addAllToCollection</td>
-<td align="left">AddAllToCollectionOperation</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.removeFromCollection</span></td>
-<td align="left">removeFromCollection</td>
-<td align="left">RemoveFromCollectionOperation</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.putInMap</span></td>
-<td align="left">putInMap</td>
-<td align="left">PutInMapOperation</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-bold">ChangeSet.removeFromMap</span></td>
-<td align="left">removeFromMap</td>
-<td align="left">RemoveFromMapOperation</td>
-<td align="left"></td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="obtaining-change-detailed-results">Obtaining Change detailed results</h1>
-
-<p>By default, the change result will only contain the number of entries which were changed during the operation. In order to get more details (requires more network traffic) the <code>ChangeModifiers.RETURN_DETAILED_RESULTS</code> should be used. When using this modifier the result will contain the list of entries which were changed including the change affect that took place on each entry. You can use this in order to know what was the affect, for instance what is the value of a numeric property after the increment operation was applied on it.</p>
-
-<pre><code class="language-java">    GigaSpace space = // ... obtain a space reference
+        <p>Here is the full list of change operations:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">ChangeSet operation</th>
+                    <th align="left">Mirror Change Support Name</th>
+                    <th align="left">ChangeOperation class</th>
+                    <th align="left">Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.set</span>
+                    </td>
+                    <td align="left">set</td>
+                    <td align="left">SetOperation</td>
+                    <td align="left"> </td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.unset</span>
+                    </td>
+                    <td align="left">unset</td>
+                    <td align="left">UnsetOperation</td>
+                    <td align="left"> </td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.increment</span>
+                    </td>
+                    <td align="left">increment</td>
+                    <td align="left">IncrementOperation</td>
+                    <td align="left"> </td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.decrement</span>
+                    </td>
+                    <td align="left">increment</td>
+                    <td align="left">IncrementOperation</td>
+                    <td align="left">will be increment with negative value</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.addToCollection</span>
+                    </td>
+                    <td align="left">addToCollection</td>
+                    <td align="left">AddToCollectionOperation</td>
+                    <td align="left"> </td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.addAllToCollection</span>
+                    </td>
+                    <td align="left">addAllToCollection</td>
+                    <td align="left">AddAllToCollectionOperation</td>
+                    <td align="left"> </td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.removeFromCollection</span>
+                    </td>
+                    <td align="left">removeFromCollection</td>
+                    <td align="left">RemoveFromCollectionOperation</td>
+                    <td align="left"> </td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.putInMap</span>
+                    </td>
+                    <td align="left">putInMap</td>
+                    <td align="left">PutInMapOperation</td>
+                    <td align="left"> </td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">ChangeSet.removeFromMap</span>
+                    </td>
+                    <td align="left">removeFromMap</td>
+                    <td align="left">RemoveFromMapOperation</td>
+                    <td align="left"> </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 id="obtaining-change-detailed-results">Obtaining Detailed Change Results</h1>
+        <p>By default, the change result will only contain the number of entries which were changed during the operation. In order to get more details (requires more network traffic) the <code>ChangeModifiers.RETURN_DETAILED_RESULTS</code> should be used. When using this modifier the result will contain the list of entries which were changed including the change affect that took place on each entry. You can use this in order to know what was the affect, for instance what is the value of a numeric property after the increment operation was applied on it.</p><pre><code class="language-java">    GigaSpace space = // ... obtain a space reference
     Uuid id = ...;
     IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
     ChangeResult&lt;Account&gt; changeResult = space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D), ChangeModifiers.RETURN_DETAILED_RESULTS);
@@ -155,13 +143,9 @@
     ...
     }
 </code></pre>
-
-<h1 id="change-and-replication-filters">Change and Replication Filters</h1>
-
-<p>When using <a href="../admin/cluster-replication-filters.htm">Replication Filter</a>, one can extract the <code>DataSyncChangeSet</code> from the <code>IReplicationFilterEntry</code> in the same way as extracting it from a <code>DataSyncOperation</code> by using the
-<code>ChangeDataSyncOperation</code> class in the following way:</p>
-
-<pre><code class="language-java">public class MyReplicationFilter implements IReplicationFilter {
+        <h1 id="change-and-replication-filters">Change and Replication Filters</h1>
+        <p>When using a <a href="../admin/cluster-replication-filters.htm">Replication Filter</a>, one can extract the <code>DataSyncChangeSet</code> from the <code>IReplicationFilterEntry</code> in the same way as extracting it from a <code>DataSyncOperation</code> by using the
+<code>ChangeDataSyncOperation</code> class in the following way:</p><pre><code class="language-java">public class MyReplicationFilter implements IReplicationFilter {
   ...
 
   @Override
@@ -174,10 +158,7 @@
   }
 }
 </code></pre>
-
-<h1 id="change-and-space-filters">Change and Space Filters</h1>
-
-<p><a href="the-space-filters.htm">Space Filter</a> can intercept a <code>FilterOperationCodes.BEFORE_CHANGE</code> and <code>FilterOperationCodes.AFTER_CHANGE</code> events, and in that events the <code>DataSyncChangeSet</code> can be extracted from the ISpaceFilterEntry using the <code>ChangeDataSyncOperation.getChangeSet(IFilterEntry)</code> method.</p>
-
-</body>
+        <h1 id="change-and-space-filters">Change and Space Filters</h1>
+        <p><a href="the-space-filters.htm">Space Filter</a> can intercept a <code>FilterOperationCodes.BEFORE_CHANGE</code> and <code>FilterOperationCodes.AFTER_CHANGE</code> events, and in that events the <code>DataSyncChangeSet</code> can be extracted from the ISpaceFilterEntry using the <code>ChangeDataSyncOperation.getChangeSet(IFilterEntry)</code> method.</p>
+    </body>
 </html>

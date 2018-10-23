@@ -1,31 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Notifications</h1>
-  
-
-<p>Some of the space operations can generate notifications when they are executed. Notifications are also generated when working in clustered mode (schema) that includes a primary/backup schema. A listener can be defined to receive these notifications.</p>
-
-<p>The following space operations may trigger notifications:</p>
-
-<ul>
-<li><code>write()</code>, <code>writeMultiple()</code></li>
-<li><code>asyncTake()</code>, <code>take()</code>, <code>takeById()</code>, <code>takeByIds()</code>, <code>takeIfExists()</code>, <code>takeIfExistsById()</code>, <code>takeMultiple()</code>, <code>clear()</code></li>
-<li><code>AsyncChange</code>, <code>change()</code></li>
-</ul>
-
-<div class="tc-admon-note">
-  
-  <p>Space operations under transactions will trigger notifications when the transaction commits.</p>
-</div>
-
-<h1 id="notify-example">Notify Example</h1>
-
-<p>In the following example we register a listener to receive notifications when an Employee instance is written or update in the space.
-The client registering the listener will receive a copy of the object written in the space as notification. The object in the space will continue to exist.</p>
-
-<pre><code class="language-java">@EventDriven
+    <head>
+    </head>
+    <body>
+        <h1>Notifications</h1>
+        <p>Some of the space operations can generate notifications when they are executed. Notifications are also generated when working in clustered mode (schema) that includes a primary/backup schema. A listener can be defined to receive these notifications.</p>
+        <p>The following space operations may trigger notifications:</p>
+        <ul>
+            <li><code>write()</code>, <code>writeMultiple()</code></li>
+            <li><code>asyncTake()</code>, <code>take()</code>, <code>takeById()</code>, <code>takeByIds()</code>, <code>takeIfExists()</code>, <code>takeIfExistsById()</code>, <code>takeMultiple()</code>, <code>clear()</code></li>
+            <li><code>AsyncChange</code>, <code>change()</code></li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>Space operations under transactions will trigger notifications when the transaction commits.</p>
+        </div>
+        <h1 id="notify-example">Notify Example</h1>
+        <p>In the following example we register a listener to receive notifications when an Employee instance is written or update in the space.
+The client registering the listener will receive a copy of the object written in the space as notification. The object in the space will continue to exist.</p><pre><code class="language-java">@EventDriven
 @Notify
 @NotifyType(write = true, update = true)
 @TransactionalEvent
@@ -54,17 +45,11 @@ eventListener.start();
 eventListener.destroy();
 
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="notify-container-overview.htm">Notify Container</a></p>
-</div>
-
-<h1 id="polling-example">Polling Example</h1>
-
-<p>This example works just like the notification example above, except that the object is removed from the space:</p>
-
-<pre><code class="language-java">
+        <div class="tc-admon-note">
+            <p>For more information, see Event Processing&gt;<a href="notify-container-overview.htm">Notify Container</a>.</p>
+        </div>
+        <h1 id="polling-example">Polling Example</h1>
+        <p>This example works just like the notification example above, except that the object is removed from the space:</p><pre><code class="language-java">
   @EventDriven
   @Polling
   @NotifyType(write = true, update = true)
@@ -99,43 +84,43 @@ eventListener.destroy();
   //.......
   pollingListener.destroy();
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="polling-container-overview.htm">Polling Container</a></p>
-</div>
-
-<h1 id="primary-backup">Primary/Backup</h1>
-
-<table class="tc-borderless"><tr><td style="width:60%;"><p>When working in clustered mode (schema) that includes a primary/backup schema, several components within the Processing Unit need to be aware of the current space mode and any changes made to it (such as event containers). Using Spring support for application events, two events are defined within OpenSpaces: <code>BeforeSpaceModeChangeEvent</code> and <code>AfterSpaceModeChangeEvent</code>. Both are raised when a space changes its mode from primary to backup or versa, and holds the current space mode.</p>
-</td>
-<td style="width:35%;"><p><img src="../Resources/Static/attachment_files/OS_PrimaryBackupCluster.jpg" alt="OS_PrimaryBackupCluster.jpg" /></p>
-</td>
-</tr></table>
-
-<p>Custom beans that need to be aware of the space mode (for example, working directly against a cluster member, i.e. not using a clustered proxy of the space, and performing operations against the space only when it is in primary mode) can implement the Spring <code>ApplicationListener</code> and check for the mentioned events.</p>
-
-<div class="tc-admon-note">
-  
-  <p>OpenSpaces also provides the <a href="space-mode-context-loader.htm">Space Mode Context Loader</a>, which can load the Spring application context when it has become primary, and unload it when it moves to backup.</p>
-</div>
-
-<p>In embedded mode, the space factory bean registers with the space for space mode changes. The registration is performed on the actual space instance (and not a clustered proxy of it), and any events raised are translated to the equivalent OpenSpaces space mode change events. In remote mode, a single primary event is raised.</p>
-
-<p>Space mode registration can be overridden and explicitly set within the space factory configuration. Here is an example of how it can be set (it cannot register for notifications even though it is an embedded space):</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+        <div class="tc-admon-note">
+            <p>For more information, see Event Processing&gt;<a href="polling-container-overview.htm">Polling Container</a>.</p>
+        </div>
+        <h1 id="primary-backup">Primary/Backup</h1>
+        <table class="tc-borderless">
+            <col style="width: 401px;" />
+            <col />
+            <tr>
+                <td>
+                    <p>When working in clustered mode (schema) that includes a primary/backup schema, several components within the Processing Unit need to be aware of the current space mode and any changes made to it (such as event containers). Using Spring support for application events, two events are defined within OpenSpaces: <code>BeforeSpaceModeChangeEvent</code> and <code>AfterSpaceModeChangeEvent</code>. Both are raised when a space changes its mode from primary to backup or versa, and holds the current space mode.</p>
+                </td>
+                <td style="width:35%;">
+                    <p>
+                        <img src="../Resources/Static/attachment_files/OS_PrimaryBackupCluster.jpg" alt="OS_PrimaryBackupCluster.jpg" class="tc-picture100" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p>Custom beans that need to be aware of the space mode (for example, working directly against a cluster member, i.e. not using a clustered proxy of the space, and performing operations against the space only when it is in primary mode) can implement the Spring <code>ApplicationListener</code> and check for the mentioned events.</p>
+        <div class="tc-admon-note">
+            <p>OpenSpaces also provides the <a href="space-mode-context-loader.htm">Space Mode Context Loader</a>, which can load the Spring application context when it has become primary, and unload it when it moves to backup.</p>
+        </div>
+        <p>In embedded mode, the space factory bean registers with the space for space mode changes. The registration is performed on the actual space instance (and not a clustered proxy of it), and any events raised are translated to the equivalent OpenSpaces space mode change events. In remote mode, a single primary event is raised.</p>
+        <p>Space mode registration can be overridden and explicitly set within the space factory configuration. Here is an example of how it can be set (it cannot register for notifications even though it is an embedded space):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
 &lt;os-core:embedded-space id="space" space-name="space" register-for-space-mode-notifications="false" /&gt;
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
 &lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
     &lt;property name="name" value="space" /&gt;
     &lt;property name="registerForSpaceModeNotifications" value="false" /&gt;
 &lt;/bean&gt;
 </code></pre>
-</div>
-<div title="  Code " style="padding:10px"><pre><code class="language-java">
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">
 EmbeddedSpaceConfigurer spaceConfigurer =
               new EmbeddedSpaceConfigurer("space").registerForSpaceModeNotifications(false);
 IJSpace space = spaceConfigurer.space();
@@ -145,50 +130,45 @@ IJSpace space = spaceConfigurer.space();
 // shutting down / closing the Space
 spaceConfigurer.destroy();
 </code></pre>
-</div>
-</div>
-
-<h3 id="primary-backup-notifications">Primary Backup Notifications</h3>
-
-<p>A bean can implement the following interfaces to get notified about space mode changes:</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Interface</th>
-<th align="left">Implemented Method</th>
-<th align="left">When Invoked</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left"><span class="tc-italic">SpaceBeforeBackupListener</span></td>
-<td align="left">void onBeforeBackup(BeforeSpaceModeChangeEvent event)</td>
-<td align="left">Before a space becomes backup</td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-italic">SpaceBeforePrimaryListener</span></td>
-<td align="left">void onBeforePrimary(BeforeSpaceModeChangeEvent event)</td>
-<td align="left">Before a space becomes primary</td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-italic">SpaceAfterBackupListener</span></td>
-<td align="left">void onAfterBackup(AfterSpaceModeChangeEvent event)</td>
-<td align="left">After a space becomes backup</td>
-</tr>
-
-<tr>
-<td align="left"><span class="tc-italic">SpaceAfterPrimaryListener</span></td>
-<td align="left">void onAfterPrimary(AfterSpaceModeChangeEvent event)</td>
-<td align="left">After a space becomes primary</td>
-</tr>
-</tbody>
-</table>
-
-<pre><code class="language-java">class MyBean implements SpaceBeforeBackupListener, SpaceAfterPrimaryListener {
+            </div>
+        </div>
+        <h3 id="primary-backup-notifications">Primary Backup Notifications</h3>
+        <p>A bean can implement the following interfaces to get notified about space mode changes:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Interface</th>
+                    <th align="left">Implemented Method</th>
+                    <th align="left">When Invoked</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><span class="tc-italic">SpaceBeforeBackupListener</span>
+                    </td>
+                    <td align="left">void onBeforeBackup(BeforeSpaceModeChangeEvent event)</td>
+                    <td align="left">Before a space becomes backup</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-italic">SpaceBeforePrimaryListener</span>
+                    </td>
+                    <td align="left">void onBeforePrimary(BeforeSpaceModeChangeEvent event)</td>
+                    <td align="left">Before a space becomes primary</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-italic">SpaceAfterBackupListener</span>
+                    </td>
+                    <td align="left">void onAfterBackup(AfterSpaceModeChangeEvent event)</td>
+                    <td align="left">After a space becomes backup</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-italic">SpaceAfterPrimaryListener</span>
+                    </td>
+                    <td align="left">void onAfterPrimary(AfterSpaceModeChangeEvent event)</td>
+                    <td align="left">After a space becomes primary</td>
+                </tr>
+            </tbody>
+        </table><pre><code class="language-java">class MyBean implements SpaceBeforeBackupListener, SpaceAfterPrimaryListener {
 
     // invoked before a space becomes backup
     public void onBeforeBackup(BeforeSpaceModeChangeEvent event) {
@@ -202,46 +182,38 @@ spaceConfigurer.destroy();
 
 }
 </code></pre>
-
-<p>If the bean does not implement any of the interfaces above, another option is to annotate the bean's methods that need to be invoked when a space mode changes.</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Annotation</th>
-<th align="left">Method Parameter</th>
-<th align="left">When Invoked</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">@PreBackup</td>
-<td align="left"><span class="tc-italic">none</span> or <span class="tc-italic">BeforeSpaceModeChangeEvent</span></td>
-<td align="left">Before a space becomes backup</td>
-</tr>
-
-<tr>
-<td align="left">@PrePrimary</td>
-<td align="left"><span class="tc-italic">none</span> or <span class="tc-italic">BeforeSpaceModeChangeEvent</span></td>
-<td align="left">Before a space becomes primary</td>
-</tr>
-
-<tr>
-<td align="left">@PostBackup</td>
-<td align="left"><span class="tc-italic">none</span> or <span class="tc-italic">AfterSpaceModeChangeEvent</span></td>
-<td align="left">After a space becomes backup</td>
-</tr>
-
-<tr>
-<td align="left">@PostPrimary</td>
-<td align="left"><span class="tc-italic">none</span> or <span class="tc-italic">AfterSpaceModeChangeEvent</span></td>
-<td align="left">After a space becomes primary</td>
-</tr>
-</tbody>
-</table>
-
-<pre><code class="language-java">class MyBean {
+        <p>If the bean does not implement any of the interfaces above, another option is to annotate the bean's methods that need to be invoked when a space mode changes.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Annotation</th>
+                    <th align="left">Method Parameter</th>
+                    <th align="left">When Invoked</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">@PreBackup</td>
+                    <td align="left"><span class="tc-italic">none</span> or <span class="tc-italic">BeforeSpaceModeChangeEvent</span></td>
+                    <td align="left">Before a space becomes backup</td>
+                </tr>
+                <tr>
+                    <td align="left">@PrePrimary</td>
+                    <td align="left"><span class="tc-italic">none</span> or <span class="tc-italic">BeforeSpaceModeChangeEvent</span></td>
+                    <td align="left">Before a space becomes primary</td>
+                </tr>
+                <tr>
+                    <td align="left">@PostBackup</td>
+                    <td align="left"><span class="tc-italic">none</span> or <span class="tc-italic">AfterSpaceModeChangeEvent</span></td>
+                    <td align="left">After a space becomes backup</td>
+                </tr>
+                <tr>
+                    <td align="left">@PostPrimary</td>
+                    <td align="left"><span class="tc-italic">none</span> or <span class="tc-italic">AfterSpaceModeChangeEvent</span></td>
+                    <td align="left">After a space becomes primary</td>
+                </tr>
+            </tbody>
+        </table><pre><code class="language-java">class MyBean {
 
     // invoked before a space becomes backup; gets the BeforeSpaceModeChangeEvent as a parameter
     @PreBackup
@@ -257,22 +229,18 @@ spaceConfigurer.destroy();
 
 }
 </code></pre>
-
-<p>In order to enable this feature, the following should be placed within the application context configuration:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+        <p>In order to enable this feature, the following should be placed within the application context configuration:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
 &lt;os-core:annotation-support /&gt;
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
 &lt;bean id="coreAnntoationSupport" class="org.openspaces.core.config.AnnotationSupportBeanDefinitionParser" /&gt;
 </code></pre>
-</div>
-</div>
-
-<p>When there is more than one Proxy (e.g: embedded, remote, ...), the following should be done in order to be sure that the Primary Backup Notifications arrived from the current Space instance:</p>
-
-<pre><code class="language-java">class MyBean {
+            </div>
+        </div>
+        <p>When there is more than one Proxy (e.g: embedded, remote, ...), the following should be done in order to be sure that the Primary Backup Notifications arrived from the current Space instance:</p><pre><code class="language-java">class MyBean {
 
     @Resource(name="gigaSpace")
     private GigaSpace gigaSpace;
@@ -296,13 +264,10 @@ spaceConfigurer.destroy();
 
 }
 </code></pre>
-
-<p>The method compareAndSet() allows you to compare the current value of the AtomicBoolean to an expected value.
+        <p>The method compareAndSet() allows you to compare the current value of the AtomicBoolean to an expected value.
 If the current value is equal to the expected value, a new value can be set on the AtomicBoolean.
 The compareAndSet() method is atomic, so only a single thread can execute it at the same time.
-Thus, the compareAndSet() method can be used to implement a simple synchronization like lock.</p>
-
-<pre><code class="language-java">class MyBean {
+Thus, the compareAndSet() method can be used to implement a simple synchronization like lock.</p><pre><code class="language-java">class MyBean {
 
     @Resource(name="gigaSpace")
     private GigaSpace gigaSpace;
@@ -328,23 +293,15 @@ Thus, the compareAndSet() method can be used to implement a simple synchronizati
 
 }
 </code></pre>
-
-<h1 id="listening-for-space-mode-changed-events">Listening for Space Mode Changed Events</h1>
-
-<p>When a remote client is interested to receive events when a space instance changing its runtime mode (from primary to backup or vise versa), it should implement the <code>SpaceModeChangedEventListener</code>. See below how:</p>
-
-<p>Registering for the event using the <a href="administration-and-monitoring-overview.htm">Administration API</a>:</p>
-
-<pre><code class="language-java">Admin admin = new AdminFactory().createAdmin();
+        <h1 id="listening-for-space-mode-changed-events">Listening for Space Mode Changed Events</h1>
+        <p>When a remote client is interested to receive events when a space instance changing its runtime mode (from primary to backup or vise versa), it should implement the <code>SpaceModeChangedEventListener</code>. See below how:</p>
+        <p>Registering for the event using the <a href="administration-and-monitoring-overview.htm">Administration API</a>:</p><pre><code class="language-java">Admin admin = new AdminFactory().createAdmin();
 Space space = admin.getSpaces().waitFor(spaceName, 10, TimeUnit.SECONDS);
 SpaceModeChangedEventManager modeManager =  space.getSpaceModeChanged();
 MySpaceModeListener spaceModeListener = new MySpaceModeListener (space);
 modeManager.add(spaceModeListener);
 </code></pre>
-
-<p>The <code>MySpaceModeListener</code> should implement the <code>SpaceModeChangedEventListener</code> - see below simple example:</p>
-
-<pre><code class="language-java">public class MySpaceModeListener implements SpaceModeChangedEventListener{
+        <p>The <code>MySpaceModeListener</code> should implement the <code>SpaceModeChangedEventListener</code> - see below simple example:</p><pre><code class="language-java">public class MySpaceModeListener implements SpaceModeChangedEventListener{
 
     Space space ;
     public MySpaceModeListener (Space space)
@@ -363,6 +320,5 @@ modeManager.add(spaceModeListener);
     }
 }
 </code></pre>
-
-</body>
+    </body>
 </html>

@@ -1,42 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Geospatial Queries</h1>
-  
-
-<p>Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.</p>
-
-<div class="tc-admon-note">
-  
-  <p>Spatial queries can be used with any space operation which supports SQL queries (read, readMultiple, take, etc.)</p>
-</div>
-
-<p><span class="tc-bold">Dependencies</span><br/>
-In order to use this feature, include the <code>${XAP_HOME}/lib/optional/spatial/xap-spatial.jar</code> file on your classpath or use maven dependencies:</p>
-
-<pre><code class="language-xml">&lt;dependency&gt;
+    <head>
+    </head>
+    <body>
+        <h1>Geospatial Queries</h1>
+        <p>Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.</p>
+        <div class="tc-admon-note">
+            <p>Spatial queries can be used with any space operation that supports SQL queries (read, readMultiple, take, etc.).</p>
+        </div>
+        <p><span class="tc-bold">Dependencies</span>
+            <br />
+In order to use this feature, include the <code>${XAP_HOME}/lib/optional/spatial/xap-spatial.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
     &lt;artifactId&gt;xap-spatial&lt;/artifactId&gt;
     &lt;version&gt;[%=Versions.maven-version%]&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>For more information on dependencies see <a href="../started/maven-artifacts.htm">Maven Artifacts</a></p>
-</div>
-
-<h1 id="getting-started">Getting Started</h1>
-
-<p>Suppose we want to write an application to locate nearby gas stations.  First, we create a <code>GasStation</code> class which includes the location and address of the gas station:</p>
-
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/geo/geo-coordinates.png" alt="image" /></p>
-</div>
-
-<p>And here is the corresponding java class:</p>
-
-<pre><code class="language-java">import org.openspaces.spatial.shapes.Point;
+        <div class="tc-admon-note">
+            <p>For more information about dependencies, see <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
+        </div>
+        <h1 id="getting-started">Getting Started</h1>
+        <p>Suppose we want to write an application to locate nearby gas stations.  First, we create a <code>GasStation</code> class which includes the location and address of the gas station:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/geo/geo-coordinates.png" alt="image" class="tc-picture80" />
+            </p>
+        </div>
+        <p>And here is the corresponding java class:</p><pre><code class="language-java">import org.openspaces.spatial.shapes.Point;
 
 import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;
@@ -67,10 +57,7 @@ public class GasStation {
 }
 
 </code></pre>
-
-<p>Let's write some gas stations into the Space:</p>
-
-<pre><code class="language-java">    GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("geoSpace")).gigaSpace();
+        <p>Let's write some gas stations into the Space:</p><pre><code class="language-java">    GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("geoSpace")).gigaSpace();
 
     GasStation gs = new GasStation();
     gs.setId(new Long(1));
@@ -78,10 +65,7 @@ public class GasStation {
 
     gigaSpace.write(gs);        
 </code></pre>
-
-<p>Next, we can query for a gas station within a certain radius of our location:</p>
-
-<pre><code class="language-java">    Point p = ShapeFactory.point(7.5d, 7.5d);
+        <p>Next, we can query for a gas station within a certain radius of our location:</p><pre><code class="language-java">    Point p = ShapeFactory.point(7.5d, 7.5d);
 
     SQLQuery&lt;GasStation&gt; query = new SQLQuery&lt;GasStation&gt;(GasStation.class, "location spatial:within ?")
                 .setParameter(1, ShapeFactory.circle(p, 4.5d));
@@ -92,57 +76,46 @@ public class GasStation {
     }
 }
 </code></pre>
-
-<h1 id="shapes">Shapes</h1>
-
-<p>XAP supports the following shapes:</p>
-
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/geo/shapes.png" alt="image" /></p>
-</div>
-
-<p>All shapes are located in the <code>org.openspaces.spatial.shapes</code> package.</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Shape</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Point</td>
-<td align="left">A point, denoted by <code>X</code> and <code>Y</code> coordinates.</td>
-</tr>
-
-<tr>
-<td align="left">LineString</td>
-<td align="left">A finite sequence of one or more consecutive line segments.</td>
-</tr>
-
-<tr>
-<td align="left">Circle</td>
-<td align="left">A circle, denoted by a point and a radius.</td>
-</tr>
-
-<tr>
-<td align="left">Rectangle</td>
-<td align="left">A rectangle aligned with the axis (for non-aligned rectangles use Polygon).</td>
-</tr>
-
-<tr>
-<td align="left">Polygon</td>
-<td align="left">A finite sequence of consecutive line segments which denotes a bounded area.</td>
-</tr>
-</tbody>
-</table>
-
-<p>To create a shape, use the <code>ShapeFactory</code> class.</p>
-
-<p>Example:</p>
-
-<pre><code class="language-java">import static org.openspaces.spatial.ShapeFactory.circle;
+        <h1 id="shapes">Shapes</h1>
+        <p>XAP supports the following shapes:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/geo/shapes.png" alt="image" class="tc-picture80" />
+            </p>
+        </div>
+        <p>All shapes are located in the <code>org.openspaces.spatial.shapes</code> package.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Shape</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Point</td>
+                    <td align="left">A point, denoted by <code>X</code> and <code>Y</code> coordinates.</td>
+                </tr>
+                <tr>
+                    <td align="left">LineString</td>
+                    <td align="left">A finite sequence of one or more consecutive line segments.</td>
+                </tr>
+                <tr>
+                    <td align="left">Circle</td>
+                    <td align="left">A circle, denoted by a point and a radius.</td>
+                </tr>
+                <tr>
+                    <td align="left">Rectangle</td>
+                    <td align="left">A rectangle aligned with the axis (for non-aligned rectangles use Polygon).</td>
+                </tr>
+                <tr>
+                    <td align="left">Polygon</td>
+                    <td align="left">A finite sequence of consecutive line segments which denotes a bounded area.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>To create a shape, use the <code>ShapeFactory</code> class.</p>
+        <p>Example:</p><pre><code class="language-java">import static org.openspaces.spatial.ShapeFactory.circle;
 import static org.openspaces.spatial.ShapeFactory.lineString;
 import static org.openspaces.spatial.ShapeFactory.point;
 import static org.openspaces.spatial.ShapeFactory.rectangle;
@@ -150,12 +123,8 @@ import static org.openspaces.spatial.ShapeFactory.polygon;
 
   Point point = ShapeFactory.point(1, 2);
 </code></pre>
-
-<p>You can also use <code>static import</code> to simplify shape creation.</p>
-
-<p>Example:</p>
-
-<pre><code class="language-java">import static org.openspaces.spatial.ShapeFactory.circle;
+        <p>You can also use <code>static import</code> to simplify shape creation.</p>
+        <p>Example:</p><pre><code class="language-java">import static org.openspaces.spatial.ShapeFactory.circle;
 import static org.openspaces.spatial.ShapeFactory.lineString;
 import static org.openspaces.spatial.ShapeFactory.point;
 import static org.openspaces.spatial.ShapeFactory.rectangle;
@@ -173,46 +142,40 @@ import org.openspaces.spatial.shapes.Rectangle;
   Rectangle rectangle = rectangle(-10d, -10d, 10d, 10d);
   Polygon polygon = polygon(point(-10,10), point(0, 10), point(10,-10));
 </code></pre>
-
-<h1 id="queries">Queries</h1>
-
-<p>Spatial queries are available through the <code>spatial:</code> extension to the <a href="query-sql.htm">SQL query syntax</a>. The following operations are supported:</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Query</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">shape1 spatial:intersects shape2</td>
-<td align="left">The intersection between shape1 and shape 2 is not empty (i.e. some or all of shape1 overlaps some or all of shape2).</td>
-</tr>
-
-<tr>
-<td align="left">shape1 spatial:within shape2</td>
-<td align="left">shape1 is within (contained in) shape2, boundaries inclusive.</td>
-</tr>
-
-<tr>
-<td align="left">shape1 spatial:contains shape2</td>
-<td align="left">shape1 contains shape2, boundaries inclusive.</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="intersect">Intersect</h1>
-
-<p>The intersection between <span class="tc-textblue">shape1</span> and shape2 is not empty, some or all of shape1 overlaps some or all of shape2.</p>
-
-<p><img src="../Resources/Static/attachment_files/geo/intersect.png" alt="image" /></p>
-
-<p>In our example we write first a <span class="tc-bold">CircleProperty</span> object into the Space. Then we create other shapes and see if theses shapes intersect with the stored <span class="tc-bold">CircleProperty</span> in the Space.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="CircleProperty" style="padding:10px"><pre><code class="language-java">import org.openspaces.spatial.shapes.Circle;
+        <h1 id="queries">Queries</h1>
+        <p>Spatial queries are available through the <code>spatial:</code> extension to the <a href="query-sql.htm">SQL query syntax</a>. The following operations are supported:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Query</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">shape1 spatial:intersects shape2</td>
+                    <td align="left">The intersection between shape1 and shape 2 is not empty (i.e. some or all of shape1 overlaps some or all of shape2).</td>
+                </tr>
+                <tr>
+                    <td align="left">shape1 spatial:within shape2</td>
+                    <td align="left">shape1 is within (contained in) shape2, boundaries inclusive.</td>
+                </tr>
+                <tr>
+                    <td align="left">shape1 spatial:contains shape2</td>
+                    <td align="left">shape1 contains shape2, boundaries inclusive.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 id="intersect">Intersect</h1>
+        <p>The intersection between <span class="tc-textblue">shape1</span> and shape2 is not empty, some or all of shape1 overlaps some or all of shape2.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/geo/intersect.png" alt="image" class="tc-picture80" />
+            </p>
+        </div>
+        <p>In our example we write first a <span class="tc-bold">CircleProperty</span> object into the Space. Then we create other shapes and see if theses shapes intersect with the stored <span class="tc-bold">CircleProperty</span> in the Space.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="CircleProperty" style="padding:10px"><pre><code class="language-java">import org.openspaces.spatial.shapes.Circle;
 
 import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;
@@ -240,9 +203,8 @@ public class CircleProperty {
     }
 }
 </code></pre>
-</div>
-
-<div title="Initial Load" style="padding:10px"><pre><code class="language-java">public void init() {
+            </div>
+            <div title="Initial Load" style="padding:10px"><pre><code class="language-java">public void init() {
     gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("geoSpace")).gigaSpace();
 
     CircleProperty c1 = new CircleProperty();
@@ -251,12 +213,9 @@ public class CircleProperty {
     gigaSpace.write(c1);
 }
 </code></pre>
-</div>
-</div>
-
-<h2 id="spatial-queries">Spatial queries</h2>
-
-<pre><code class="language-java"> public void testIntersect() {
+            </div>
+        </div>
+        <h2 id="spatial-queries">Spatial Queries</h2><pre><code class="language-java"> public void testIntersect() {
     LineString lineString = lineString(point(20, -10), point(20, 5),point(0,5),point(0,20) );
     SQLQuery&lt;CircleProperty&gt; query = new SQLQuery&lt;CircleProperty&gt;(CircleProperty.class,
                 "boundery spatial:intersects ?").setParameter(1, lineString);
@@ -302,16 +261,16 @@ public class CircleProperty {
     }
  }
 </code></pre>
-
-<h2 id="within">Within</h2>
-
-<p><span class="tc-textblue">Shape1</span> is contained within shape2 including its boundaries.</p>
-
-<p><img src="../Resources/Static/attachment_files/geo/within.png" alt="image" /></p>
-
-<p>In our example we write first a <span class="tc-bold">CircleProperty</span>  and a <span class="tc-bold">LineProperty</span> object into the Space. Notice that both space classes are subclasses of <span class="tc-bold">AbstractProperty</span>.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Abstract Property" style="padding:10px"><pre><code class="language-java">import org.openspaces.spatial.shapes.Shape;
+        <h2 id="within">Within</h2>
+        <p><span class="tc-textblue">Shape1</span> is contained within shape2 including its boundaries.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/geo/within.png" alt="image" class="tc-picture80" />
+            </p>
+        </div>
+        <p>In our example we write first a <span class="tc-bold">CircleProperty</span>  and a <span class="tc-bold">LineProperty</span> object into the Space. Notice that both space classes are subclasses of <span class="tc-bold">AbstractProperty</span>.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Abstract Property" style="padding:10px"><pre><code class="language-java">import org.openspaces.spatial.shapes.Shape;
 
 import com.gigaspaces.annotation.pojo.SpaceId;
 
@@ -337,27 +296,24 @@ public abstract class AbstractProperty {
     }
 }
 </code></pre>
-</div>
-
-<div title="Circle Property" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
+            </div>
+            <div title="Circle Property" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
 
 @SpaceClass
 public class CircleProperty extends AbstractProperty{
  
 }
 </code></pre>
-</div>
-
-<div title="Line Property" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
+            </div>
+            <div title="Line Property" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
 
 @SpaceClass
 public class LineProperty extends AbstractProperty {
 
 }
 </code></pre>
-</div>
-
-<div title="Initial Load" style="padding:10px"><pre><code class="language-java">public void init() {
+            </div>
+            <div title="Initial Load" style="padding:10px"><pre><code class="language-java">public void init() {
     gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("geoSpace")).gigaSpace();
 
     CircleProperty c1 = new CircleProperty();
@@ -371,14 +327,10 @@ public class LineProperty extends AbstractProperty {
     gigaSpace.write(l1);
 }
 </code></pre>
-</div>
-</div>
-
-<h2 id="spatial-queries-1">Spatial queries</h2>
-
-<p>Will use a spatial query to find the shapes stored in the Space that are within a circle:</p>
-
-<pre><code class="language-java">public void testWithin() {
+            </div>
+        </div>
+        <h2 id="spatial-queries-1">Spatial Queries</h2>
+        <p>Will use a spatial query to find the shapes stored in the Space that are within a circle:</p><pre><code class="language-java">public void testWithin() {
 
     Circle circle = circle(point(-0.0d, 0.0d), 15.0d);
     SQLQuery&lt;AbstractProperty&gt; query = new SQLQuery&lt;AbstractProperty&gt;(AbstractProperty.class, "boundery spatial:within ?")
@@ -392,17 +344,14 @@ public class LineProperty extends AbstractProperty {
     }
 }
 </code></pre>
-
-<h1 id="geofencing">Geofencing</h1>
-
-<p>Geofencing allows automatic alerts to be generated based on the defined coordinates of a geographic area.</p>
-
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/geo/geo-fencing.png" alt="image" /></p>
-</div>
-
-<p>XAP uses Event Containers with Spatial queries to do just that. For example, we want to be notified when a new <code>GasStation</code> appears within a certain radius of my location.</p>
-
-<pre><code class="language-java">Point location = ShapeFactory.point(0, 0);
+        <h1 id="geofencing">Geofencing</h1>
+        <p>Geofencing allows automatic alerts to be generated based on the defined coordinates of a geographic area.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/geo/geo-fencing.png" alt="image" class="tc-picture50" />
+            </p>
+        </div>
+        <p>XAP uses Event Containers with Spatial queries to do just that. For example, we want to be notified when a new <code>GasStation</code> appears within a certain radius of my location.</p><pre><code class="language-java">Point location = ShapeFactory.point(0, 0);
 double radius = 5.0d;
 SQLQuery&lt;GasStation&gt; query = new SQLQuery(GasStation.class, "location spatial:within ?")
         .setParameter(1, ShapeFactory.circle(location, radius));
@@ -416,63 +365,47 @@ SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerCon
         }
     }).notifyContainer();
 </code></pre>
-
-<h1 id="wkt-support">WKT Support</h1>
-
-<p>The <code>ShapeFactory</code> also supports parsing <a href="https://en.wikipedia.org/wiki/Well-known_text" target="_blank" >WKT</a></p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Shape</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Point</td>
-<td align="left">POINT (0 0)</td>
-</tr>
-
-<tr>
-<td align="left">Envelope</td>
-<td align="left">ENVELOPE (1.0, 2.0, 4.0, 3.0)</td>
-</tr>
-
-<tr>
-<td align="left">Rectangle</td>
-<td align="left">LINESTRING(30 10, 40 10, 40 20, 30 20, 30 10)</td>
-</tr>
-
-<tr>
-<td align="left">Polygon</td>
-<td align="left">POLYGON (0.0 0.0, 0.0 5.0, 2.5 2.5, 5.0 5.0, 5.0 0.0, 0.0 0.0)</td>
-</tr>
-
-<tr>
-<td align="left">Buffer</td>
-<td align="left">BUFFER  (POINT (0.0 0.0), 5.0))</td>
-</tr>
-</tbody>
-</table>
-
-<p>For example:</p>
-
-<pre><code class="language-java">Shape s2 = ShapeFactory.parse("POINT (1.0 2.0)",ShapeFormat.WKT);
+        <h1 id="wkt-support">WKT Support</h1>
+        <p>The <code>ShapeFactory</code> also supports parsing <a href="https://en.wikipedia.org/wiki/Well-known_text" target="_blank">WKT</a></p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Shape</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Point</td>
+                    <td align="left">POINT (0 0)</td>
+                </tr>
+                <tr>
+                    <td align="left">Envelope</td>
+                    <td align="left">ENVELOPE (1.0, 2.0, 4.0, 3.0)</td>
+                </tr>
+                <tr>
+                    <td align="left">Rectangle</td>
+                    <td align="left">LINESTRING(30 10, 40 10, 40 20, 30 20, 30 10)</td>
+                </tr>
+                <tr>
+                    <td align="left">Polygon</td>
+                    <td align="left">POLYGON (0.0 0.0, 0.0 5.0, 2.5 2.5, 5.0 5.0, 5.0 0.0, 0.0 0.0)</td>
+                </tr>
+                <tr>
+                    <td align="left">Buffer</td>
+                    <td align="left">BUFFER  (POINT (0.0 0.0), 5.0))</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>For example:</p><pre><code class="language-java">Shape s2 = ShapeFactory.parse("POINT (1.0 2.0)",ShapeFormat.WKT);
 Shape s3 = ShapeFactory.parse("ENVELOPE (1.0, 2.0, 4.0, 3.0)",ShapeFormat.WKT);
 Shape s4 = ShapeFactory.parse("LINESTRING (1.0 11.0, 2.0 12.0, 3.0 13.0)",ShapeFormat.WKT);
 Shape s5 = ShapeFactory.parse("POLYGON ((0.0 0.0, 0.0 5.0, 2.5 2.5, 5.0 5.0, 5.0 0.0, 0.0 0.0))",ShapeFormat.WKT);
 Shape s6 = ShapeFactory.parse("BUFFER (POINT (0.0 0.0), 5.0)",ShapeFormat.WKT);
 </code></pre>
-
-<h1 id="geojson-support">GeoJson Support</h1>
-
-<p>The <code>ShapeFactory</code> also supports parsing  <a href="http://geojson.org/" target="_blank" >GeoJson</a> strings into shapes. For example:</p>
-
-<p>Examples:</p>
-
-<pre><code class="language-java">ShapeFactory.parse("{\"type\":\"Point\",\"coordinates\":[1.0,2.0]}", ShapeFormat.GEOJSON);
+        <h1 id="geojson-support">GeoJson Support</h1>
+        <p>The <code>ShapeFactory</code> also supports parsing  <a href="http://geojson.org/" target="_blank">GeoJson</a> strings into shapes. For example:</p>
+        <p>Examples:</p><pre><code class="language-java">ShapeFactory.parse("{\"type\":\"Point\",\"coordinates\":[1.0,2.0]}", ShapeFormat.GEOJSON);
 ShapeFactory.parse("{\"type\":\"Polygon\",\"coordinates\": [[[1.0,3.0],[1.0,4.0],[2.0,4.0],[2.0,3.0],[1.0,3.0]]]}",
                 ShapeFormat.GEOJSON);
 ShapeFactory.parse("{\"type\":\"LineString\",\"coordinates\":[[1.0,11.0],[2.0,12.0],[3.0,13.0]]}",
@@ -483,27 +416,16 @@ ShapeFactory.parse("{\"type\":\"Polygon\",\"coordinates\":[[[0.0,0.0],[0.0,5.0],
                 ShapeFormat.GEOJSON);
 ShapeFactory.parse("{\"type\":\"Circle\",\"coordinates\":[0.0,0.0],\"radius\":5.0}", ShapeFormat.GEOJSON);
 </code></pre>
-
-<h1 id="configuration">Configuration</h1>
-
-<h2 id="lucene">Lucene</h2>
-
-<p>XAP uses <a href="https://lucene.apache.org/" target="_blank" >Lucene</a> to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Spatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.</p>
-
-<h3 id="store-directory">Store Directory</h3>
-
-<p>Lucene indexing is stored in a <span class="tc-bold">Store Directory</span>. Lucene supports different Store Directory implementations, but recommends using the <a href="https://lucene.apache.org/core/5_3_0/core/org/apache/lucene/store/MMapDirectory.htm" target="_blank" >MMapDirectory</a>, which is what XAP uses by default.</p>
-
-<h3 id="file-system">File System</h3>
-
-<p>Lucene indexes are stored in the file system. When used within a processing unit deployed on the service grid, these files are stored within the processing unit working folder, and automatically deleted if/when the processing unit is undeployed. When there's no service grid involved, the files are stored in a unique folder under <code>user.home</code>. This location can be explicitly set using the <code>space-config.spatial.lucene.storage.location</code> space property.</p>
-
-<h1 id="indexing">Indexing</h1>
-
-<div class="tc-admon-refer">
-  
-  <p>The performance of Geospatial queries can be vastly improved by indexing shape properties. For detailed information see <a href="indexing-geospatial.htm">Geospatial indexing</a></p>
-</div>
-
-</body>
+        <h1 id="configuration">Configuration</h1>
+        <h2 id="lucene">Lucene</h2>
+        <p>XAP uses <a href="https://lucene.apache.org/" target="_blank">Lucene</a> to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Spatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.</p>
+        <h3 id="store-directory">Store Directory</h3>
+        <p>Lucene indexing is stored in a <span class="tc-bold">Store Directory</span>. Lucene supports different Store Directory implementations, but recommends using the <a href="https://lucene.apache.org/core/5_3_0/core/org/apache/lucene/store/MMapDirectory.htm" target="_blank">MMapDirectory</a>, which is what XAP uses by default.</p>
+        <h3 id="file-system">File System</h3>
+        <p>Lucene indexes are stored in the file system. When used within a processing unit deployed on the service grid, these files are stored within the processing unit working folder, and automatically deleted if/when the processing unit is undeployed. When there's no service grid involved, the files are stored in a unique folder under <code>user.home</code>. This location can be explicitly set using the <code>space-config.spatial.lucene.storage.location</code> space property.</p>
+        <h1 id="indexing">Indexing</h1>
+        <div class="tc-admon-note">
+            <p>The performance of Geospatial queries can be vastly improved by indexing shape properties. For detailed information, see Indexing&gt;<a href="indexing-geospatial.htm">Geospatial Index</a>.</p>
+        </div>
+    </body>
 </html>
