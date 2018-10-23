@@ -1,53 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Full Text Search</h1>
-  
-
-<p>XAP 12.1 introduces full text search capability leveraging the <a href="http://lucene.apache.org" target="_blank" >Lucene</a> search engine library.</p>
-
-<p>The following features are supported:</p>
-
-<ul>
-<li>Keyword matching</li>
-<li>Search for phrase</li>
-<li>Wildcard matching</li>
-<li>Proximity matching</li>
-<li>Range searching</li>
-<li>Boosting a term</li>
-<li>Regular expressions</li>
-<li>Fuzzy search
+    <head>
+    </head>
+    <body>
+        <h1>Full Text Search</h1>
+        <p>XAP 12.1 introduced full text search capability leveraging the <a href="http://lucene.apache.org" target="_blank">Lucene</a> search engine library.</p>
+        <p>The following features are supported:</p>
+        <ul>
+            <li>Keyword matching</li>
+            <li>Search for phrase</li>
+            <li>Wildcard matching</li>
+            <li>Proximity matching</li>
+            <li>Range searching</li>
+            <li>Boosting a term</li>
+            <li>Regular expressions</li>
+            <li>Fuzzy search
 <br /></li>
-</ul>
-
-<div class="tc-admon-note">
-  
-  <p>Full text search queries can be used with any space operation which supports SQL queries (read, readMultiple, take, etc.)</p>
-</div>
-
-<p><span class="tc-bold">Dependencies</span><br/>
-In order to use this feature, include the <code>${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar</code> file on your classpath or use maven dependencies:</p>
-
-<pre><code class="language-xml">&lt;dependency&gt;
+        </ul>
+        <div class="tc-admon-note">
+            <p>Full text search queries can be used with any space operation that supports SQL queries (read, readMultiple, take, etc.).</p>
+        </div>
+        <p><span class="tc-bold">Dependencies</span>
+            <br />
+In order to use this feature, include the <code>${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
     &lt;artifactId&gt;xap-full-text-search&lt;/artifactId&gt;
     &lt;version&gt;[%=Versions.maven-version%]&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>For more information on dependencies see <a href="../started/maven-artifacts.htm">Maven Artifacts</a></p>
-</div>
-
-<h1 id="examples">Examples</h1>
-
-<p>Text search queries are available through the <code>text:</code> extension to the <a href="query-sql.htm">SQL query syntax</a>.</p>
-
-<p>For example, suppose we have a class called <code>NewsArticle</code> with a String property called <code>content</code> and a String property called <code>type</code>:</p>
-
-<pre><code class="language-java">// Matching 
+        <div class="tc-admon-note">
+            <p>For more information about dependencies, see <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
+        </div>
+        <h1 id="examples">Examples</h1>
+        <p>Text search queries are available through the <code>text:</code> extension to the <a href="query-sql.htm">SQL query syntax</a>.</p>
+        <p>For example, suppose we have a class called <code>NewsArticle</code> with a String property called <code>content</code> and a String property called <code>type</code>:</p><pre><code class="language-java">// Matching 
 SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "content text:match ?");
 query.setParameter(1, "deployment"); 
     
@@ -73,16 +59,12 @@ SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.
 query.setParameter(1, "space");
 query.setParameter(1, "blog");
 </code></pre>
-
-<h1 id="supported-search-operations">Supported Search Operations</h1>
-
-<p>XAP supports the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.htm#package_description" target="_blank" >Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
-
-<h1 id="nested-properties">Nested Properties</h1>
-
-<p>In the example below, the <code>author</code> is a property of type <code>Person</code>  which is a property of <code>NewsArticle</code>:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="NewsAricle" style="padding:10px"><pre><code class="language-java">@SpaceClass
+        <h1 id="supported-search-operations">Supported Search Operations</h1>
+        <p>XAP supports the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.htm#package_description" target="_blank">Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
+        <h1 id="nested-properties">Nested Properties</h1>
+        <p>In the example below, the <code>author</code> is a property of type <code>Person</code>  which is a property of <code>NewsArticle</code>:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="NewsAricle" style="padding:10px"><pre><code class="language-java">@SpaceClass
 public class NewsArticle {
     private UUID id;
     private String content;
@@ -102,9 +84,8 @@ public class NewsArticle {
     //......
 }
 </code></pre>
-</div>
-
-<div title="Person" style="padding:10px"><pre><code class="language-java">public class Person {
+            </div>
+            <div title="Person" style="padding:10px"><pre><code class="language-java">public class Person {
     private String firstName;
     private String lastName;
 
@@ -122,32 +103,20 @@ public class NewsArticle {
     }
 }
 </code></pre>
-</div>
-</div>
-
-<p>And here is an example how you can query for nested properties:</p>
-
-<pre><code class="language-java">SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "author.firstName text:match ? AND  author.lastName text:match ?");
+            </div>
+        </div>
+        <p>And here is an example how you can query for nested properties:</p><pre><code class="language-java">SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "author.firstName text:match ? AND  author.lastName text:match ?");
 query.setParameter(1, "Friedrich");
 query.setParameter(2, "Durrenmatt");
 </code></pre>
-
-<h1 id="combining-text-and-standard-predicates">Combining Text and Standard Predicates</h1>
-
-<p>Suppose our <code>NewsArticle</code> class contains a articleNumber property as well, and we want to enhance our query and find the NewsArticle with a articleNumber. We can simply add the relevant predicate to the query’s criteria:</p>
-
-<pre><code class="language-java">SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "content text:match ? AND articleNumber &lt; ?");
+        <h1 id="combining-text-and-standard-predicates">Combining Text and Standard Predicates</h1>
+        <p>Suppose our <code>NewsArticle</code> class contains a articleNumber property as well, and we want to enhance our query and find the NewsArticle with a articleNumber. We can simply add the relevant predicate to the query’s criteria:</p><pre><code class="language-java">SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "content text:match ? AND articleNumber &lt; ?");
 query.setParameter(1, "deployment");
 query.setParameter(2, new Long(1000));  
 </code></pre>
-
-<h1 id="analyzer">Analyzer</h1>
-
-<p>An <a href="http://lucene.apache.org/core/5_3_0/core/org/apache/lucene/analysis/package-summary.htm#package_description" target="_blank" >Analyzer</a> is responsible for supplying a TokenStream which can be consumed by the indexing and searching processes in Lucene. There are several different <a href="https://lucene.apache.org/core/3_0_3/api/core/org/apache/lucene/analysis/Analyzer.htm" target="_blank" >Analyzers</a> available.</p>
-
-<p>You can use the <code>@SpaceTextAnalyzer</code>  annotation to choose the Analyzer:</p>
-
-<pre><code class="language-java">import org.apache.lucene.analysis.core.KeywordAnalyzer;
+        <h1 id="analyzer">Analyzer</h1>
+        <p>An <a href="http://lucene.apache.org/core/5_3_0/core/org/apache/lucene/analysis/package-summary.htm#package_description" target="_blank">Analyzer</a> is responsible for supplying a TokenStream which can be consumed by the indexing and searching processes in Lucene. There are several different <a href="https://lucene.apache.org/core/3_0_3/api/core/org/apache/lucene/analysis/Analyzer.htm" target="_blank">Analyzers</a> available.</p>
+        <p>You can use the <code>@SpaceTextAnalyzer</code>  annotation to choose the Analyzer:</p><pre><code class="language-java">import org.apache.lucene.analysis.core.KeywordAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.openspaces.textsearch.SpaceTextAnalyzer;
 import org.openspaces.textsearch.SpaceTextIndex;
@@ -177,10 +146,7 @@ public class NewsArticle {
   // ....
 }
 </code></pre>
-
-<p>For nested properties you  can use the <code>@SpaceTextAnalyzers</code>annotation:</p>
-
-<pre><code class="language-java">@SpaceClass
+        <p>For nested properties you  can use the <code>@SpaceTextAnalyzers</code>annotation:</p><pre><code class="language-java">@SpaceClass
 public class NewsArticle {
     private UUID id;
     private String content;
@@ -195,24 +161,15 @@ public class NewsArticle {
     }
     // .....
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>If the <code>@SpaceTextAnalyzer</code> annotation is omitted, the <code>StandardAnalyzer</code> is applied.</p>
-</div>
-
-<h1 id="indexing">Indexing</h1>
-
-<div class="tc-admon-refer">
-  
-  <p>The performance of text search queries can be vastly improved by indexing the relevant  properties. For detailed information see See <a href="indexing-text-search.htm">Indexing</a> for more information.</p>
-</div>
-
-<h1 id="space-document">Space Document</h1>
-
-<p>The text search is also supported with <a href="document-overview.htm">Space Documents</a>. Lets take the above example of the <code>NewsArticle</code> and use it as a <code>SpaceDocument</code>:</p>
-
-<pre><code class="language-java">DocumentProperties author = new DocumentProperties();
+        <div class="tc-admon-note">
+            <p>If the <code>@SpaceTextAnalyzer</code> annotation is omitted, the <code>StandardAnalyzer</code> is applied.</p>
+        </div>
+        <h1 id="indexing">Indexing</h1>
+        <div class="tc-admon-note">
+            <p>The performance of text search queries can be vastly improved by indexing the relevant  properties. For detailed information, see <a href="indexing-text-search.htm">Indexing</a>.</p>
+        </div>
+        <h1 id="space-document">Space Document</h1>
+        <p>The text search is also supported with <a href="document-overview.htm">Space Documents</a>. Lets take the above example of the <code>NewsArticle</code> and use it as a <code>SpaceDocument</code>:</p><pre><code class="language-java">DocumentProperties author = new DocumentProperties();
 author.put("firstName", "Friedrich");
 author.put("lastName", "Durrenmatt");
 
@@ -223,10 +180,7 @@ SpaceDocument doc =  new SpaceDocument("NewsArticle")
  
 // ...
 </code></pre>
-
-<p>Defining the TypeDescriptor and registering with the Space is done with the <code>addQueryExtensionInfo</code> method:</p>
-
-<pre><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("xapSpace")).gigaSpace();
+        <p>Defining the TypeDescriptor and registering with the Space is done with the <code>addQueryExtensionInfo</code> method:</p><pre><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("xapSpace")).gigaSpace();
 
 // Simple 
 gigaSpace.getTypeManager().registerTypeDescriptor(new SpaceTypeDescriptorBuilder(typeName).idProperty("id").create());
@@ -241,56 +195,44 @@ gigaSpace.getTypeManager().registerTypeDescriptor(new SpaceTypeDescriptorBuilder
                 .addQueryExtensionInfo("author.firstName",LuceneTextSearchQueryExtensionProvider.analyzer(KeywordAnalyzer.class))
                 .addQueryExtensionInfo("author.LastName",LuceneTextSearchQueryExtensionProvider.analyzer(StandardAnalyzer.class)).create());
 </code></pre>
-
-<p>Search the space for SpaceDocuments:</p>
-
-<pre><code class="language-java">SQLQuery&lt;SpaceDocument&gt; query = new SQLQuery("NewsArticle", "content text:match ?").setParameter(1, "The quick brown fox jumps over the lazy dog");
+        <p>Search the space for SpaceDocuments:</p><pre><code class="language-java">SQLQuery&lt;SpaceDocument&gt; query = new SQLQuery("NewsArticle", "content text:match ?").setParameter(1, "The quick brown fox jumps over the lazy dog");
 SpaceDocument result = this.gigaSpace.read(query);
 
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>Refer to <a href="document-overview.htm">SpaceDocument</a> for more information on SpaceDocument.</p>
-</div>
-
-<h1 id="configuration">Configuration</h1>
-
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>lucene.storage.location</td>
-<td>The location of the lucene index</td>
-<td>Deploy path of this space instance, when deployed in the service grid. When not deployed in the service grid &lt;user.dir&gt;/xap/full_text_search</td>
-</tr>
-
-<tr>
-<td>lucene.storage.directory-type</td>
-<td>The directory type. Available values: MMapDirectory, RAMDirectory.</td>
-<td>MMapDirectory</td>
-</tr>
-
-<tr>
-<td>lucene.max-uncommitted-changes</td>
-<td>The buffer size of uncommitted changes. When user write indexed document to the space, the document doesn’t flushes to the lucene index immediately. It flushes after search or after overflowing the buffer.</td>
-<td>1000</td>
-</tr>
-
-<tr>
-<td>lucene.max-results</td>
-<td>The max number of the document retrieved from lucene during the search.</td>
-<td>Integer.MAX_VALUE</td>
-</tr>
-</tbody>
-</table>
-
-</body>
+        <div class="tc-admon-note">
+            <p>For more information about Space Documents, see the <a href="document-overview.htm">Space Document</a> section.</p>
+        </div>
+        <h1 id="configuration">Configuration</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>lucene.storage.location</td>
+                    <td>The location of the lucene index</td>
+                    <td>Deploy path of this space instance, when deployed in the service grid. When not deployed in the service grid &lt;user.dir&gt;/xap/full_text_search</td>
+                </tr>
+                <tr>
+                    <td>lucene.storage.directory-type</td>
+                    <td>The directory type. Available values: MMapDirectory, RAMDirectory.</td>
+                    <td>MMapDirectory</td>
+                </tr>
+                <tr>
+                    <td>lucene.max-uncommitted-changes</td>
+                    <td>The buffer size of uncommitted changes. When user write indexed document to the space, the document doesn’t flushes to the lucene index immediately. It flushes after search or after overflowing the buffer.</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>lucene.max-results</td>
+                    <td>The max number of the document retrieved from lucene during the search.</td>
+                    <td>Integer.MAX_VALUE</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
 </html>

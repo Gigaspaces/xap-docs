@@ -1,29 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Paging Support</h1>
-  
-
-<p>In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm#readMultiple-T-">readMultiple</a> overloads in <code>GigaSpace</code>. However, if there are lots of matching entries, you may encounter several problems:</p>
-
-<ul>
-<li>Memory usage - Both the server and client need to allocate enough memory for the entire result set.</li>
-<li>Latency - Since all the results are returned in one bulk, the client must wait until the final result arrives before it can process the first one.</li>
-</ul>
-
-<p>A better approach is to create an iterator that iterates over the matching entries one at a time. Under the hood, the server returns results in batches, and when the client's buffer is exhausted the next batch is implicitly returned from the server.</p>
-
-<div class="tc-admon-note">
-  <p class="tc-admon-title">GSIterator</p>
-  <p>This page describes the new space iterator which is intended to replace the old <code>GSIterator</code> starting 10.1. Information about the old GSIterator is available <a href="query-paging-support-old.htm">here</a>.</p>
-</div>
-
-<h1 id="usage">Usage</h1>
-
-<p>Use the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace</a> <code>iterator(template)</code> method to create an iterator of all the objects in the space which match the template (either <a href="query-sql.htm">SQLQuery</a> or <a href="query-template-matching.htm">template</a>). This results in a <code>SpaceIterator&lt;T&gt;</code> which implements both <code>Iterator&lt;T&gt;</code> and <code>Iterable&lt;T&gt;</code>, so a simple <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.htm">for-each loop</a> can be used to iterate the results. For example:</p>
-
-<pre><code class="language-java">private void demoIterator(GigaSpace gigaSpace) {
+    <head>
+    </head>
+    <body>
+        <h1>Paging Support</h1>
+        <p>In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm#readMultiple-T-">readMultiple</a> overloads in <code>GigaSpace</code>. However, if there are lots of matching entries, you may encounter several problems:</p>
+        <ul>
+            <li>Memory usage - Both the server and client need to allocate enough memory for the entire result set.</li>
+            <li>Latency - Since all the results are returned in one bulk, the client must wait until the final result arrives before it can process the first one.</li>
+        </ul>
+        <p>A better approach is to create an iterator that iterates over the matching entries one at a time. Under the hood, the server returns results in batches, and when the client's buffer is exhausted the next batch is implicitly returned from the server.</p>
+        <div class="tc-admon-note">
+            <p>This page describes the space <code>Iterator</code>, which should be used instead of <code>GSIterator</code>. Information about the GSIterator is available <a href="query-paging-support-old.htm">here</a>.</p>
+        </div>
+        <h1 id="usage">Usage</h1>
+        <p>Use the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace</a> <code>iterator(template)</code> method to create an iterator of all the objects in the space which match the template (either <a href="query-sql.htm">SQLQuery</a> or <a href="query-template-matching.htm">template</a>). This results in a <code>SpaceIterator&lt;T&gt;</code> which implements both <code>Iterator&lt;T&gt;</code> and <code>Iterable&lt;T&gt;</code>, so a simple <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.htm">for-each loop</a> can be used to iterate the results. For example:</p><pre><code class="language-java">private void demoIterator(GigaSpace gigaSpace) {
     SQLQuery&lt;MySpaceClass&gt; query = new SQLQuery(MySpaceClass.class,"lastName = 'Smith'");
     int counter = 0;
     for (MySpaceClass entry : gigaSpace.iterator(query)) {
@@ -31,29 +22,17 @@
     }
 }
 </code></pre>
-
-<p>If you're using Java 8 or later, you may use the new "forEach` extension with a lambda expression:</p>
-
-<pre><code class="language-java">private void demoForEach(GigaSpace gigaSpace) {
+        <p>If you're using Java 8 or later, you may use the new "forEach` extension with a lambda expression:</p><pre><code class="language-java">private void demoForEach(GigaSpace gigaSpace) {
     SQLQuery&lt;MySpaceClass&gt; query = new SQLQuery(MySpaceClass.class,"lastName = 'Smith'");
     AtomicInteger counter = new AtomicInteger();
     gigaSpace.iterator(query).forEach((e) -&gt; System.out.println(counter.incrementAndGet() + " " + e.getLastName()));
 }
 </code></pre>
-
-<h2 id="batch-size">Batch size</h2>
-
-<p>Under the hood the iterator uses batching to fetch entries from the server, then serve the entries from the batch to the client whenever it asks for the next entry. The default batch size is <code>100</code>. You can use a different batch size by calling the <code>gigaSpace.iterator(template, batchSize)</code> overload.</p>
-
-<h2 id="transactions">Transactions</h2>
-
-<p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template will not be included as part of the matched set.</p>
-
-<h1 id="limitations">Limitations</h1>
-
-<h3 id="complex-queries">Complex queries</h3>
-
-<p>The space iterator only supports simple SQL queries. For more information about the differences between simple and complex queries see <a href="query-sql.htm#SimpleQueries">simple SQL queries</a>.</p>
-
-</body>
+        <h2 id="batch-size">Batch Size</h2>
+        <p>Under the hood, the iterator uses batching to fetch entries from the server, then serve the entries from the batch to the client whenever it asks for the next entry. The default batch size is <code>100</code>. You can use a different batch size by calling the <code>gigaSpace.iterator(template, batchSize)</code> overload.</p>
+        <h2 id="transactions">Transactions</h2>
+        <p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template will not be included as part of the matched set.</p>
+        <h1 id="limitations">Limitations</h1>
+        <p>Complex queries - The space iterator only supports simple SQL queries. For more information about the differences between simple and complex queries, see <MadCap:xref href="query-sql.htm#Simple">Simple vs. Complex Queries</MadCap:xref> in the <a href="query-sql.htm#SimpleQueries">SQLQuery</a> topic.</p>
+    </body>
 </html>

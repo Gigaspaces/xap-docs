@@ -1,18 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Synchronization Endpoint</h1>
-  
-
-<p>A MongoDB based implementation of the <a href="space-synchronization-endpoint-api.htm">Space Synchronization Endpoint</a>.</p>
-
-<h1 id="library-dependencies">Library dependencies</h1>
-
-<p>The MongoDB Space Synchronization Endpoint uses the <a href="http://docs.mongodb.org/ecosystem/drivers/java/">MongoDB Driver</a> For communicating with the MongoDB cluster.
-Include the following in your <code>pom.xml</code></p>
-
-<pre><code class="language-xml">    &lt;!-- currently the MongoDB library is not the central maven repository --&gt; 
+    <head>
+    </head>
+    <body>
+        <h1>Synchronization Endpoint</h1>
+        <p>A MongoDB based implementation of the <a href="space-synchronization-endpoint-api.htm">Space Synchronization Endpoint</a>.</p>
+        <h1 id="library-dependencies">Library Dependencies</h1>
+        <p>The MongoDB Space Synchronization Endpoint uses the <a href="http://docs.mongodb.org/ecosystem/drivers/java/">MongoDB Driver</a> For communicating with the MongoDB cluster.
+Include the following in your <code>pom.xml</code></p><pre><code class="language-xml">    &lt;!-- currently the MongoDB library is not the central maven repository --&gt; 
     &lt;repositories&gt;
         &lt;repository&gt;
             &lt;id&gt;org.openspaces&lt;/id&gt;
@@ -46,12 +41,10 @@ Include the following in your <code>pom.xml</code></p>
         ...
     &lt;/dependencies&gt;
 </code></pre>
-
-<h1 id="setup">Setup</h1>
-
-<p>An example of how the MongoDB Space Synchronization Endpoint can be configured within a mirror.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Spring " style="padding:10px"><pre><code class="language-xml">    &lt;?xml version="1.0" encoding="utf-8"?&gt; 
+        <h1 id="setup">Setup</h1>
+        <p>An example of how the MongoDB Space Synchronization Endpoint can be configured within a mirror.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Spring " style="padding:10px"><pre><code class="language-xml">    &lt;?xml version="1.0" encoding="utf-8"?&gt; 
     &lt;beans xmlns="http://www.springframework.org/schema/beans" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" 
         xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-jms="http://www.openspaces.org/schema/jms" 
@@ -91,8 +84,8 @@ Include the following in your <code>pom.xml</code></p>
         &lt;/bean&gt; 
     &lt;/beans&gt;
 </code></pre>
-</div>
-<div title="  Code " style="padding:10px"><pre><code class="language-java">        MongoClient config = new MongoClient(host, port);
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">        MongoClient config = new MongoClient(host, port);
         
         MongoClientConnector client = new MongoClientConnectorConfigurer()
                 .client(config)
@@ -111,49 +104,41 @@ Include the following in your <code>pom.xml</code></p>
         .addProperty("space-config.mirror-service.cluster.backups-per-partition", String.valueOf(numOfBackups)) 
         .create();
 </code></pre>
-</div>
-</div>
-
-<p>For more details about different configurations see <a href="space-persistency-overview.htm">Space Persistency</a>.</p>
-
-<h1 id="before-you-begin">Before you begin</h1>
-
-<p>Before deploying your Processing Unit, please do the following:</p>
-
-<ol>
-<li>Copy the <code>xap-mongodb.jar</code> from <code>lib\optional\mongodb</code> to <code>lib\optional\pu-common</code>.</li>
-<li>download the following jars and copy them to <code>lib\optional\pu-common</code>:</li>
-</ol>
-
-<ul>
-<li><p><code>antlr-runtime.jar</code> from <a href="http://www.antlr.org/download.htm">antlr's website</a> .</p></li>
-
-<li><p><code>mongo-java-driver-[%=Versions.mongo-java-driver%].jar</code> from <a href="http://docs.mongodb.org/ecosystem/drivers/java/">mongoDB's website</a> .</p></li>
-</ul>
-
-<h2 id="mongospacesynchronizationendpoint-properties">MongoSpaceSynchronizationEndpoint Properties</h2>
-
-<table>
-<thead>
-<tr>
-<th align="left">Property</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">client</td>
-<td align="left">A configured com.gigaspaces.persistency.MongoClientConnector bean. Must be configured.</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="considerations">Considerations</h1>
-
-<ul>
-<li>Change API and Partial updates is supported</li>
-</ul>
-
-</body>
+            </div>
+        </div>
+        <p>For more details about different configurations see <a href="space-persistency-overview.htm">Space Persistency</a>.</p>
+        <h1 id="before-you-begin">Before You Begin</h1>
+        <p>Before deploying your Processing Unit, please do the following:</p>
+        <ol>
+            <li>Copy the <code>xap-mongodb.jar</code> from <code>lib\optional\mongodb</code> to <code>lib\optional\pu-common</code>.</li>
+            <li>download the following jars and copy them to <code>lib\optional\pu-common</code>:</li>
+        </ol>
+        <ul>
+            <li>
+                <p><code>antlr-runtime.jar</code> from <a href="http://www.antlr.org/download.htm">antlr's website</a> .</p>
+            </li>
+            <li>
+                <p><code>mongo-java-driver-[%=Versions.mongo-java-driver%].jar</code> from <a href="http://docs.mongodb.org/ecosystem/drivers/java/">mongoDB's website</a> .</p>
+            </li>
+        </ul>
+        <h2 id="mongospacesynchronizationendpoint-properties">MongoSpaceSynchronizationEndpoint Properties</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">client</td>
+                    <td align="left">A configured com.gigaspaces.persistency.MongoClientConnector bean. Must be configured.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 id="considerations">Considerations</h1>
+        <ul>
+            <li>Change API and Partial updates is supported</li>
+        </ul>
+    </body>
 </html>

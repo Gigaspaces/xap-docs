@@ -120,7 +120,7 @@ query.setParameter(2,collection);
         <div class="tc-admon-important">
             <p>Parameter assignment to the <code>SQLQuery</code> instance is not thread-safe. If the query is intended to be executed on multiple threads which may change the parameters, it is recommended to use different <code>SQLQuery</code> instances. This has an analogue in JDBC, because <code>PreparedStatement</code> is not thread-safe either.</p>
         </div><a id="Nested">&#160;</a>
-        <h1 id="nested-properties">Nested Properties</h1>
+        <h1 id="nested-properties"><a name="Nested"></a>Nested Properties</h1>
         <p>XAP SQL syntax contains various extensions to support matching nested properties, maps, collections and arrays.</p>
         <p>Some examples:</p><pre xml:space="preserve"><code class="language-java">// Query for a Person who lives in New York:
 ... = new SQLQuery&lt;Person&gt;(Person.class, "address.city = 'New York'");
@@ -387,7 +387,7 @@ OR
         <div class="tc-admon-note">
             <p>For details on how to use the projection API, see <a href="query-partial-results.htm">Projection</a>.</p>
         </div><a id="SimpleQueries">&#160;</a>
-        <h1 id="simple-vs-complex-queries">Simple vs. Complex Queries</h1>
+        <h1 id="simple-vs-complex-queries"><a name="Simple"></a>Simple vs. Complex Queries</h1>
         <p>Most space operations and features support any SQL query, but some support only <span class="tc-bold">simple</span> queries and not <span class="tc-bold">complex</span> ones.
 A query is considered complex if it contains one or more of the following:</p>
         <ul>
