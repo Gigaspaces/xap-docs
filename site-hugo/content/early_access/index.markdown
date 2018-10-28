@@ -19,6 +19,30 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 14.0.0 M15 (Oct-28-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-14.0.0-m15-b19915.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-enterprise-14.0.0-m15-b19915.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-14.0.0-m15-b19915.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-enterprise-14.0.0-m15-b19915.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap.net-14.0.0-m15-b19915.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13675" %}}: InsightEdge JDBC driver automatically creates an alias for types using short name if not ambigous.
+- {{% jira id="GS-13674" %}}: InsightEdge JDBC driver automatically creates an alias for types using underscores to allow non-escaped usage.
+- {{% jira id="GS-13672" %}}: End Of Life - GigaSpace.getModifiersForIsolationLevel().
+- {{% jira id="GS-13671" %}}: Deprecation - GSIterator and GigaSpace.iterator()
+- {{% jira id="GS-13669" %}}: Enhance Deploy command in CLI to auto-zip resource in case it's a directory.
+- {{% jira id="GS-13668" %}}: Reduce Web Management Console (web-ui) memory consumption due to unused statistics.
+- {{% jira id="GS-13666" %}}: Upgrade Spark to 2.3.2.
+
+### Resolved Issues
+
+N/A
+
 # 14.0.0 M14 (Oct-21-2018)
 
 ## Download Links
