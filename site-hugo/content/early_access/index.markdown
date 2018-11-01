@@ -19,6 +19,32 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
+# 14.0.0 RC1 (Nov-4-2019)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-14.0.0-rc1-b19916.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-enterprise-14.0.0-rc1-b19916.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-14.0.0-rc1-b19916.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-enterprise-14.0.0-rc1-b19916.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap.net-14.0.0-rc1-b19916.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13622" %}}: Support unmanaged Processing Units in Admin API
+- {{% jira id="GS-13599" %}}: Changed default rownum from 5000 to 10 in Web Management Console
+- {{% jira id="GS-13644" %}}: Upgrade Zeppelin to 0.8
+- {{% jira id="GS-13656" %}}: Add Zeppelin InsightEdge JDBC interpreter 
+- {{% jira id="GS-13650" %}}: Add autoCommit property to InsigntEdge JDBC Driver (for zeppelin)
+- {{% jira id="GS-13309" %}}: New API to initialize InsightEdge from existing spark context / session
+- {{% jira id="GS-13667" %}}: Increase ZooKeeper client session timeout setting to 15 seconds
+- {{% jira id="GS-13588" %}}: Enhanced XAP.NET to support dtd validation via Tls12 url (s3)
+- {{% jira id="GS-13677" %}}: End Of Life - XAP.NET for .NET v3.5
+
+### Resolved Issues
+
+- {{% jira id="GS-13631" %}}: When a transaction aborts due to network failure, it may not release the participating entries immediately
+
 # 14.0.0 M15 (Oct-28-2018)
 
 ## Download Links
