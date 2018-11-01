@@ -6,9 +6,9 @@ parent: none
 weight: 800
 ---
 
-# InsightEdge Platform Version 12.3
+# InsightEdge Platform Version 14.0
 
-These release notes provide information about product changes, updates, resolved issues, and more for the InsightEdge platform release 12.3. Refer to the topics listed below for details.
+These release notes provide information about product changes, updates, resolved issues, and more for the InsightEdge platform release 14.0. Refer to the topics listed below for details.
 
 # GigaSpaces Product Lifecycle and End-of-Life Policy
 
@@ -18,6 +18,7 @@ For information about the InsightEdge and XAP product lifecycle, and the product
 
 Release notes for previous versions of XAP are available at the following links:
 
+- [12.3](/xap/12.3/rn/index.html)
 - [12.2](/xap/12.2/rn/index.html)
 - [12.1](/release_notes/xap121.html)
 - [12.0](/release_notes/xap120.html)
