@@ -162,9 +162,11 @@ For example, the Helm commands below will install the following stateful sets: `
 The InsightEdge submit command will submit the SaveRDD example with the `testspace` and `testmanager` configuration parameters.
 
 ```bash
-$ helm install insightedge/ --name testmanager --set space.enabled=false
+$ helm install insightedge-manager --name testmanager
 
-$ helm install insightedge/ --name testspace --set space.manager=testmanager --set zeppelin.enabled=false
+$ helm install insightedge-zeppelin --name testzeppelin
+
+$ helm install insightedge-pu --name testspace --set manager.name=testmanager 
 
 $ ./insightedge-submit \
 --master k8s://https://192.168.99.100:8443 \

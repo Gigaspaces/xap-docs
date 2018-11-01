@@ -13,7 +13,7 @@ The topics in this section assume basic knowledge of InsightEdge and the data gr
 This topic describes how to do basic and intermediate-level deployment tasks for the data grid and InsightEdge using simple Helm commands. You can perform these tasks using a Kubernetes minikube, because you only need a single node. 
 
 {{%tip%}}
-Configuring the data grid for InsightEdge involves the same tasks as configuring the data grid alone. The deployment and maintenance tasks described below use `insightedge` Helm chart commands. However, you can also perform these tasks using the `xap` Helm chart commands. 
+Configuring the data grid for InsightEdge involves the same tasks as configuring the data grid alone. The deployment and maintenance tasks described below use `insightedge` Helm charts commands. However, you can also perform these tasks using the `xap` Helm charts commands. 
 {{%/tip%}}
 
 # Getting Started
@@ -82,7 +82,7 @@ The demo above created a data grid that contained a single Space instance. Real-
 Type the following Helm command to deploy a Space cluster with n Data Pods, with a partition count from 1 to n:
 
 ```
-helm install insightedge --name test --set space.partitions=n
+helm install insightedge --name test --set insihgtedge-pu.partitions=n
 ```
 
 # Defining High Availability (HA) 
@@ -100,7 +100,7 @@ When the manager high availability property (`ha`) is set to true, Kubernetes de
 The following Helm command deploys three Management Pods named `testmanager`, with high availability enabled:
 
 ```bash
-helm install insightedge --name testmanager --set space.enabled=false,manager.ha=true,manager.antiAffinity.enabled=true
+helm install insightedge-manager --name testmanager --set ha=true,antiAffinity.enabled=true
 ```
 
 ## Defining the Space Topology
@@ -114,7 +114,7 @@ If you apply Pod anti-affinity on a minikube, not all of the Pods will be deploy
 The following Helm command deploys a Space cluster called `test` in a high availability topology, with anti-affinity enabled: 
 
 ```bash
-helm install insightedge --name test --set space.ha=true,space.antiAffinity.enabled=true,space.manager=testmanager
+helm install insightedge-pu --name test --set ha=true,antiAffinity.enabled=true,manager.name=testmanager
 ```
 
 # Deploying Multiple Spaces on Kubernetes
@@ -126,7 +126,7 @@ If you want to deploy multiple data grids in the same Kubernetes environment, to
 The helm command by default creates a Management Pod and a Data Pod together. When deploying a Platform Manager that will connect to multiple Spaces, you have to disable the part of the command that creates the Data Pod. Type the following Helm command to create a Management Pod called `testmanager` without the accompanying Space:
 
 ```bash
-helm install insightedge --name testmanager --set space.enabled=false
+helm install insightedge-manager --name testmanager
 ```
 
 ## Deploying the Spaces
@@ -134,7 +134,7 @@ helm install insightedge --name testmanager --set space.enabled=false
 After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called `testspace`, and to specify that the cluster should connect to the `testmanager` Management Pod:
 
 ```bash
-helm install insightedge --name testspace --set space.manager=testmanager
+helm install insightedge-pu --name testspace --set manager.name=testmanager
 ```
 
 # Deploying a Processing Unit in Kubernetes
@@ -201,19 +201,19 @@ Open a new command window and navigate to the charts directory in `<xap home>/to
 As was done for the Space demo, type the following Helm command to deploy a Management Pod called `testmanager`:
 
 ```bash
-helm install insightedge --name testmanager --set space.enabled=false
+helm install insightedge-manager --name testmanager 
 ```
 
 Next, type the following Helm command to deploy a Data Pod with the processor Processing Unit from the location where it was built in the examples directory:
 
 ```bash
-helm install insightedge --name processor --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
+helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
 ```
 
 Lastly, type the following Helm command to deploy a Data Pod with the feeder Processing Unit from the same directory:
 
 ```bash
-helm install insightedge --name feeder --set space.manager=testmanager,space.pu.resource=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
+helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
 ```
 
 ## Monitoring the Processing Units
@@ -230,7 +230,7 @@ You can configure the memory allocation for a Pod for both the Docker container 
 The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:
 
 ```bash
-helm install insightedge --name test --set space.resources.limits.memory=512Mi,space.java.heap=256m
+helm install insightedge --name test --set insightedge-pu.resources.limits.memory=512Mi,insightedge-pu.java.heap=256m
 ```
 
 You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.
@@ -238,7 +238,7 @@ You can define the maximum size of the Docker container as an absolute value, an
 The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:
 
 ```bash
-helm install insightedge --name test --set space.resources.limits.memory=256Mi,space.java.heap=75%
+helm install insightedge --name test --set insightedge-pu.resources.limits.memory=256Mi,insightedge-pu.java.heap=75%
 ```
 
 ## Configuring the Data Grid using the Helm Chart
@@ -256,7 +256,7 @@ The values.yaml file is printed in the command window, and each configurable val
 `manager:`<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ha:false`
 	
-The value you will set will look like this in the command window: `manager.ha=true`
+The value you will set will look like this in the command window: `insightedge-manager.ha=true`
 
 ### Customizing a Helm Chart
 
@@ -271,7 +271,7 @@ helm install insightedge -f customValues.yaml --name hello
 
 It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit [Deployment Properties](https://docs.gigaspaces.com/xap/12.3/dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) topic), so you can override these properties using the Helm chart.  
 
-After defining the properties as placeholders, use the `key1=value1;key2=value2` format to pass the override values to the Helm chart using either the `--set space.pu.properties=<your key-value pairs>` command, or by editing the values.yaml.
+After defining the properties as placeholders, use the `key1=value1;key2=value2` format to pass the override values to the Helm chart using either the `--set insightedge-pu.properties=<your key-value pairs>` command, or by editing the values.yaml.
 
 ## Monitoring the Data Grid
 
