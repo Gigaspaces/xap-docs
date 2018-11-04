@@ -15,7 +15,7 @@ This page contains early access information for XAP and InsightEdge 14.0.0, whic
 -->
 
 {{%tip "Disclaimer"%}}
-Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.3.1**. The early access documentation is not available yet, so please use the documentation for the lastest stable release.<br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/12.3/)
+Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.3.1**. <br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/14.0/)
 {{%/tip%}}
 <hr/>
 
@@ -31,19 +31,19 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ### Features and Enhancements
 
-- {{% jira id="GS-13622" %}}: Support unmanaged Processing Units in Admin API
-- {{% jira id="GS-13599" %}}: Changed default rownum from 5000 to 10 in Web Management Console
-- {{% jira id="GS-13644" %}}: Upgrade Zeppelin to 0.8
-- {{% jira id="GS-13656" %}}: Add Zeppelin InsightEdge JDBC interpreter 
-- {{% jira id="GS-13650" %}}: Add autoCommit property to InsigntEdge JDBC Driver (for zeppelin)
-- {{% jira id="GS-13309" %}}: New API to initialize InsightEdge from existing spark context / session
-- {{% jira id="GS-13667" %}}: Increase ZooKeeper client session timeout setting to 15 seconds
-- {{% jira id="GS-13588" %}}: Enhanced XAP.NET to support dtd validation via Tls12 url (s3)
-- {{% jira id="GS-13677" %}}: End Of Life - XAP.NET for .NET v3.5
+- {{% jira id="GS-13622" %}}: Support unmanaged Processing Units in Admin API.
+- {{% jira id="GS-13599" %}}: Changed default rownum from 5000 to 10 in Web Management Console.
+- {{% jira id="GS-13644" %}}: Upgrade Zeppelin to 0.8.
+- {{% jira id="GS-13656" %}}: Add Zeppelin InsightEdge JDBC interpreter. 
+- {{% jira id="GS-13650" %}}: Add autoCommit property to InsightEdge JDBC Driver (for Zeppelin).
+- {{% jira id="GS-13309" %}}: New API to initialize InsightEdge from existing Spark context/session.
+- {{% jira id="GS-13667" %}}: Increase ZooKeeper client session timeout setting to 15 seconds.
+- {{% jira id="GS-13588" %}}: Enhanced XAP.NET to support dtd validation via Tls12 url (s3).
+- {{% jira id="GS-13677" %}}: End Of Life - XAP.NET for .NET v3.5.
 
 ### Resolved Issues
 
-- {{% jira id="GS-13631" %}}: When a transaction aborts due to network failure, it may not release the participating entries immediately
+- {{% jira id="GS-13631" %}}: When a transaction aborts due to network failure, it may not release the participating entries immediately.
 
 # 14.0.0 M15 (Oct-28-2018)
 
@@ -60,8 +60,8 @@ Early access builds are provided as is, and should not be used in production. Th
 - {{% jira id="GS-13675" %}}: InsightEdge JDBC driver automatically creates an alias for types using short name if not ambigous.
 - {{% jira id="GS-13674" %}}: InsightEdge JDBC driver automatically creates an alias for types using underscores to allow non-escaped usage.
 - {{% jira id="GS-13672" %}}: End Of Life - GigaSpace.getModifiersForIsolationLevel().
-- {{% jira id="GS-13671" %}}: Deprecation - GSIterator and GigaSpace.iterator()
-- {{% jira id="GS-13669" %}}: Enhance Deploy command in CLI to auto-zip resource in case it's a directory.
+- {{% jira id="GS-13671" %}}: Deprecation - GSIterator and GigaSpace.iterator().
+- {{% jira id="GS-13669" %}}: Enhance Deploy command in CLI to auto-zip resource in case it is a directory.
 - {{% jira id="GS-13668" %}}: Reduce Web Management Console (web-ui) memory consumption due to unused statistics.
 - {{% jira id="GS-13666" %}}: Upgrade Spark to 2.3.2.
 
