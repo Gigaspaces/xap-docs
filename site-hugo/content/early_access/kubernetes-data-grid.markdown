@@ -219,7 +219,7 @@ Leave this command window open so the server remains available and Kubernetes ca
 
 Similar to deploying a Space cluster, it is best practice to first deploy the Management Pod (with the Platform Manager), and then deploy the Data Pods (first the processor, then the feeder).
 
-Open a new command window and navigate to the charts directory in `<xap home>/tools/kubernetes/charts/`.
+Open a new command window and navigate to the charts directory (where you fetched the charts from our repo).
 
 As was done for the Space demo, type the following Helm command to deploy a Management Pod called `testmanager`:
 
