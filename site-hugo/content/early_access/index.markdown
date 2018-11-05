@@ -19,7 +19,7 @@ Early access builds are provided as is, and should not be used in production. Th
 {{%/tip%}}
 <hr/>
 
-# 14.0.0 RC1 (Nov-4-2019)
+# 14.0.0 RC1 (Nov-4-2018)
 
 ## Download Links
 
