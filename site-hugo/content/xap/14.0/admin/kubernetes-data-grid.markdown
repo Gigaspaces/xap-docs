@@ -1,9 +1,9 @@
 ---
-type: post
+type: post140
 title:  Deploying a Data Grid in Kubernetes
 parent: kubernetes-overview.html
-categories: EARLY_ACCESS
-weight: 100
+categories: XAP140ADM, PRM
+weight: 200
 ---
 
 {{%note%}}

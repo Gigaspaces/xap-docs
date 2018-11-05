@@ -2,8 +2,8 @@
 type: post140
 title:  The Service Grid
 categories: XAP140ADM, PRM
-weight: 700
-parent: none
+weight: 200
+parent: orchestration.html
 ---
 
 This section describes the available XAP runtime configuration parameters.

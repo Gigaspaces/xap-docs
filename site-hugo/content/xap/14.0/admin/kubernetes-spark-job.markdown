@@ -1,9 +1,9 @@
 ---
-type: post
+type: post140
 title:  Running a Spark Job in Kubernetes
 parent: kubernetes-overview.html
-categories: EARLY_ACCESS
-weight: 200
+categories: XAP140ADM, PRM
+weight: 300
 ---
 
 The InsightEdge platform provides a first-class integration between Apache Spark and the XAP core data grid capability. This allows hybrid/transactional analytics processing by co-locating Spark jobs in place with low-latency data grid applications. InsightEdge includes a full Spark distribution. 

@@ -1,9 +1,9 @@
 ---
-type: post
+type: post140
 title:  Terms and Concepts
 parent: kubernetes-overview.html
-categories: EARLY_ACCESS
-weight: 80
+categories: XAP140ADM, PRM
+weight: 100
 ---
 
 ## KubeGrid
