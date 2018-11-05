@@ -18,6 +18,29 @@ Configuring the data grid for InsightEdge involves the same tasks as configuring
 
 # Getting Started
 
+## Getting the Helm charts from GigaSpaces Repo
+
+The xap and insightedge Helm charts are published in the GigaSpaces Helm chart repository at https://resources.gigaspaces.com/helm-charts. You can install charts directly from this repo, but you may find it  easier to instead add the GigaSpaces Helm chart repo to the Helm repo list:
+
+```bash
+helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
+```
+Once you’ve added the GigaSpaces Helm chart repo, Helm can locate the Gigaspaces charts, so you can install them as follows:
+```bash
+helm install gigaspaces/insightedge --version=14.0.0-rc1 --name helloworld
+```
+Another option is to fetch the GigaSpaces Helm chart and unpack it locally, so you don’t  have to repeat the repo and version in each command (which has the added benefit of making the commands shorter). For example, if you fetch and unpack the Helm chart using the following command:
+```bash
+helm fetch gigaspaces/insightedge --version=14.0.0-rc1 --untar
+```
+The chart is unpackaged in a local folder called insightedge, and then you can install it by simply typing:
+```bash
+helm install insightedge --name hello
+```
+All of the commands described here assume you’ve fetched the Helm chart and it should be executed from that folder, but you can use any of Helm’s install options (remote location, repo reference, etc.)
+
+Please note that you will need to fetch every chart you will be using (for example: xap, xap-pu and xap-manager)
+
 ## Starting a Data Grid in Kubernetes
 
 Run the following Helm command in the command window to start a data grid in Kubernetes. This deploys a Kubernetes cluster called `hello`, which contains a data grid comprised of one Space in a Data Pod, and one Platform Manager called `hello-xap-manager` in a Management Pod. The Platform Manager manages the Space, the Manager service, and the headless service. There are no backup instances specified. 
@@ -82,7 +105,7 @@ The demo above created a data grid that contained a single Space instance. Real-
 Type the following Helm command to deploy a Space cluster with n Data Pods, with a partition count from 1 to n:
 
 ```
-helm install insightedge --name test --set insihgtedge-pu.partitions=n
+helm install insightedge --name test --set pu.partitions=n
 ```
 
 # Defining High Availability (HA) 
@@ -230,7 +253,7 @@ You can configure the memory allocation for a Pod for both the Docker container 
 The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:
 
 ```bash
-helm install insightedge --name test --set insightedge-pu.resources.limits.memory=512Mi,insightedge-pu.java.heap=256m
+helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m
 ```
 
 You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.
@@ -238,7 +261,7 @@ You can define the maximum size of the Docker container as an absolute value, an
 The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:
 
 ```bash
-helm install insightedge --name test --set insightedge-pu.resources.limits.memory=256Mi,insightedge-pu.java.heap=75%
+helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%
 ```
 
 ## Configuring the Data Grid using the Helm Chart
@@ -256,7 +279,7 @@ The values.yaml file is printed in the command window, and each configurable val
 `manager:`<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ha:false`
 	
-The value you will set will look like this in the command window: `insightedge-manager.ha=true`
+The value you will set will look like this in the command window: `manager.ha=true`
 
 ### Customizing a Helm Chart
 
