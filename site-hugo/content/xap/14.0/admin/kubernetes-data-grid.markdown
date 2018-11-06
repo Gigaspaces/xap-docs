@@ -38,25 +38,49 @@ Configuring the data grid for InsightEdge involves the same tasks as configuring
 
 # Getting Started
 
-## Getting the Helm charts from GigaSpaces Repo
+In this section, you will learn how to do the following:
 
-The xap and insightedge Helm charts are published in the GigaSpaces Helm chart repository at https://resources.gigaspaces.com/helm-charts. You can install charts directly from this repo, but you may find it  easier to instead add the GigaSpaces Helm chart repo to the Helm repo list:
+- Get the required GigaSpaces Helm charts
+- How to start a data grid in Kubernetes
+- How to monitor your data gris using Kubernetes tools
+- How to delete your data grid
+
+## Accessing the GigaSpaces Helm Charts
+
+The `xap` and `insightedge` Helm charts are published in the GigaSpaces Helm chart repository at `https://resources.gigaspaces.com/helm-charts`. There are multiple ways to access these charts in order to install a GigaSpaces product in Kubernetes:
+
+- Install a chart directly from the repo
+- Add the GigaSpaces Helm chart repo to the Helm repo list
+- Unpack the required Helm chart in a local folder
+
+### Adding a Helm Chart to the Repo List
+
+You can point to the GigaSpaces Helm repo using kubectl, so that Helm can locate the `xap` and `insightedge` charts for installation:
 
 ```bash
 helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
 ```
-Once you’ve added the GigaSpaces Helm chart repo, Helm can locate the Gigaspaces charts, so you can install them as follows:
+
+After adding the GigaSpaces Helm chart repo, you can install them (based on the product version) as follows:
+
 ```bash
 helm install gigaspaces/insightedge --version=14.0.0-rc1 --name helloworld
 ```
-Another option is to fetch the GigaSpaces Helm chart and unpack it locally, so you don’t  have to repeat the repo and version in each command (which has the added benefit of making the commands shorter). For example, if you fetch and unpack the Helm chart using the following command:
+
+### Fetching the GigaSpaces Helm Charts from the GigaSpaces Repository
+
+Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you fetch and unpack the Helm chart using the following command:
+
 ```bash
 helm fetch gigaspaces/insightedge --version=14.0.0-rc1 --untar
 ```
+
 The chart is unpackaged in a local folder called insightedge, and then you can install it by simply typing:
+
 ```bash
 helm install insightedge --name hello
 ```
+
 All of the commands described here assume you’ve fetched the Helm chart and it should be executed from that folder, but you can use any of Helm’s install options (remote location, repo reference, etc.)
 
 Please note that you will need to fetch every chart you will be using (for example: xap, xap-pu and xap-manager)
