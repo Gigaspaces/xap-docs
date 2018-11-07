@@ -160,7 +160,6 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 {{% /tabs %}}
 
 
-
 # Unquiescing a Processing Unit
  
 
@@ -239,6 +238,84 @@ Refer to the [GigaSpaces Management Center](./gigaspaces-management-center.html)
 
 {{%tab "Administration API"%}}
 Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html) topics in the Developer Guide.
+{{%/tab%}}
+
+{{% /tabs %}}
+
+
+# Demoting a Primary Processing Unit Instance
+
+**To demote a Processing Unit from a primary to a backup:**
+
+{{%tabs%}}
+{{%tab "Command Line Interface"%}}
+
+*Command:*
+
+???
+
+*Description:*
+ 
+This command demotes a Processing Unit instance from a primary to a backup, with no downtime required.
+
+*Input Example:*
+
+???
+
+*Parameters and Options:*
+
+| Item | Name | Description |
+|:-----|:------|:------------|
+|Parameter |??? | ???. |
+|Option | ??? | ???. |
+
+{{%/tab%}}
+
+{{%tab "REST Manager API"%}}
+
+*Path*
+
+???
+
+*Description:*
+
+This command demotes a Processing Unit instance from a primary to a backup, with no downtime required.
+
+*Example Request:*
+
+???
+ 
+
+*Options:*
+
+| Option     | Description       |   Required     |
+|------|-------------------|----------------|
+| ??? | ???. | Yes |
+| ??? | ???. | No|
+
+{{%/tab%}}
+
+
+{{%tab "Web Management Console"%}}
+
+1. In the Processing Units view, highlight the Processing Unit instance you want to demote.
+1. Click the **Actions** icon, and select **Demote** from the menu.
+1. (Optional) If you want helpful information to appear in the log, type some descriptive text in the **Description** box (for example: "rebalance after failover").
+1. Click **OK**.
+
+The Demote Progress window displays the result of the process (for example, "Demotion completed successfully").
+{{%/tab%}}
+
+
+{{%tab "GigaSpaces Management Center"%}}
+
+You can view the status of the Processing Unit instances in the GigaSpaces Management center (where???). However, you must use one of the other administration tools to hot swap the instances.
+
+{{%/tab%}}
+
+
+{{%tab "Administration API"%}}
+???
 {{%/tab%}}
 
 {{% /tabs %}}
@@ -372,7 +449,7 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 
 {{% /tabs %}}
 
-#  Incrementing a Processing Unit
+#  Incrementing a Processing Unit Instance
 
 **To increment a Processing Unit:**
 
