@@ -9,7 +9,7 @@ weight: 400
 
 
 
-The [SQL Query](./query-sql.html) page shows how to express complex queries on flat space entries (e.g. entries which are composed of scalar types like integers and strings), but in reality space entries are often composed of more complex types.
+The [SQL Query](./query-sql.html) page shows how to express complex queries on flat Space entries (e.g. entries that are composed of scalar types like integers and strings), but in reality Space entries are often composed of more complex types.
 For example, a **Person** class may have:
 
 - An **address** property of type **Address**, which is a user-defined class encapsulating address details (e.g. city, street).
@@ -46,7 +46,7 @@ The following example queries for a **Person** with an **address** whose **city*
 ```
 
 {{% note %}}
-Other properties (if any) in **address** which are not part of the criteria are ignored in the matching process.
+Other properties (if any) in **address** that are not part of the criteria are ignored in the matching process.
 {{%/note%}}
 
 The number of levels in the path is unlimited.
@@ -103,13 +103,13 @@ public class Person {
 ```
 
 {{% note%}}
-Note that since the index is specified on top of the **address** property, the `path` is "**city**" rather than "**address.city**".
-For more information see the [Nested Properties Indexing](./indexing.html#Nested Properties Indexing) section under [Indexing](./indexing.html).
+The index is specified on top of the **address** property, therefore the `path` is "**city**" rather than "**address.city**".
+For more information, see the [Nested Properties Indexing](./indexing.html#Nested Properties Indexing) topic under [Indexing](./indexing.html).
 {{%/note%}}
 
 {{% warning%}}
 The type of the nested object must be a class - querying interfaces is not supported.
-Nested properties' classes should be `Serializable`, otherwise the entry will not be accessible from remote clients.
+Nested property classes should be `Serializable`, otherwise the entry will not be accessible from remote clients.
 {{%/warning%}}
 
 # Nested Maps
@@ -136,13 +136,13 @@ The following example queries for a **Person** whose **phoneNumbers** property c
 
 {{% note%}}
 A path can continue traversing from 'regular' properties to maps and back to 'regular' properties as needed.
-Map properties are useful for creating a flexible schema - since the keys in the map are not part of the schema, the map can be used to add or remove data from a space object without changing its structure.
+Map properties are useful for creating a flexible schema; the keys in the map are not part of the schema, so the map can be used to add or remove data from a Space object without changing its structure.
 {{%/note%}}
 
 ## Indexing
 
 Paths containing map keys can be indexed to boost performance, similar to 'regular' paths.
-For example, suppose we've analyzed our queries and decided that **phoneNumbers.home** is commonly used and should be indexed:
+For example, suppose we analyzed our queries and decided that **phoneNumbers.home** is commonly used and should be indexed:
 
 
 ```java
@@ -159,7 +159,7 @@ public class Person {
 ```
 
 {{% note %}}
-Note that since the index is specified on top of the **phoneNumbers** property, the `path` is "**home**" rather than "**phoneNumbers.home**".
+The index is specified on top of the **phoneNumbers** property, therefore the `path` is "**home**" rather than "**phoneNumbers.home**".
 For more information see the [Nested Properties Indexing](./indexing.html#Nested properties indexing) section under [Indexing](./indexing.html).
 {{%/note%}}
 
@@ -170,7 +170,7 @@ For more information see the [Nested Properties Indexing](./indexing.html#Nested
 The GigaSpaces SQL syntax supports a special operand `[*]`, which is sometimes referred to as the 'contains' operand. This operand is used in conjunction with collection properties to indicate that each collection item should be evaluated, and if at least one such item matches, the owner entry is considered as matched.
 
 {{% note%}}
-Arrays are supported as well, except for arrays of primitive types (int, boolean, etc.) which are are **not** supported - use the equivalent wrapper type (java.lang.Integer, java.lang.Boolean, etc.) instead.
+Arrays are supported, except for arrays of primitive types (int, boolean, etc.) which are are **not** supported - use the equivalent wrapper type (java.lang.Integer, java.lang.Boolean, etc.) instead.
 {{%/note%}}
 
 Suppose we have a type called **Dealer** with a property called **cars** (which is a list of strings).
@@ -212,15 +212,9 @@ The following example queries for a **Dealer** which contains a **car** which co
 ... = new SQLQuery<Dealer>(Dealer.class, "cars[*].tags[*] = 'Convertible'");
 ```
 
-
-
-
-
-<br>
-
 ## Multiple Conditions On Collection Items
 
-The scope of the `[*]` operand is bounded to the predicate it participates in. When using it more than once, each occurrence is evaluated separately.
+The scope of the `[*]` operand is bound to the predicate it participates in. When using it more than once, each occurrence is evaluated separately.
 This behavior is useful when looking for multiple distinct items, for example: a dealer with several cars of different companies.
 The following example queries for a **Dealer** which has both a **Honda** and a **Subaru**:
 
@@ -238,13 +232,12 @@ The following example queries for a **Dealer** which has a **Car** whose *compan
 ```
 
 {{% note "Caution "%}}
-Writing that last query without parentheses will yield results which are somewhat confusing:
+Writing that last query without parentheses will yield results that are somewhat confusing:
 
 
 ```java
 ... = new SQLQuery<Dealer>(Dealer.class, "cars[*].company = 'Honda' AND cars[*].color = 'Red'");
 ```
-
 
 This query will match any **Dealer** with a **Honda** car and a **Red** car, but not necessarily the same car (e.g. a blue **Honda** and a **Red** Subaru).
 {{% /note %}}
@@ -270,9 +263,9 @@ Here is a graphical representation of this query:
 As it does not make sense to perform an OR in this case.
 {{%/warning%}}
 
-#### In operation
+#### In Operation
 
-Beginning 10.1, SQLQuery now supports `IN` when used with nested properties. For example, to search for a dealer with cars where company is either "Honda" or "Ford"
+SQLQuery supports `IN` when used with nested properties. For example, to search for a dealer with cars where company is either "Honda" or "Ford"
 
 ```java
 ... = new SQLQuery<Dealer>(Dealer.class, "cars[*].company in ('Honda', 'Ford') ");
@@ -281,7 +274,7 @@ Beginning 10.1, SQLQuery now supports `IN` when used with nested properties. For
 ## Indexing
 
 Collection properties can be indexed to boost performance, similar to 'regular' paths, except that each item in the collection is indexed.
-For example, suppose we've analyzed our queries and decided that **cars[*].company** is commonly used and should be indexed:
+For example, suppose we analyzed our queries and decided that **cars[*].company** is commonly used and should be indexed:
 
 
 ```java
@@ -292,9 +285,9 @@ public List<Car> getCars() {
 ```
 
 {{% note %}}
-Note that since the index is specified on top of the **cars** property, the `path` is \[*\].company rather than cars\[*\].company**.
-The bigger the collection - the more memory is required to store the index at the server (since each item is indexed). Use with caution!
-For more information see the [Collection Indexing](./indexing.html#Collection Indexing) section under [Indexing](./indexing.html).
+The index is specified on top of the **cars** property, therefore the `path` is \[*\].company rather than cars\[*\].company**.
+The bigger the collection, the more memory is required to store the index at the server (since each item is indexed). Use with caution!
+For more information see the [Collection Indexing](./indexing.html#Collection Indexing) topic under [Indexing](./indexing.html).
 {{%/note%}}
 
 
