@@ -46,7 +46,7 @@ The following example queries for a **Person** with an **address** whose **city*
 ```
 
 {{% note %}}
-Note that other properties (if any) in **address** which are not part of the criteria are ignored in the matching process.
+Other properties (if any) in **address** which are not part of the criteria are ignored in the matching process.
 {{%/note%}}
 
 The number of levels in the path is unlimited.
@@ -189,6 +189,20 @@ The following example queries for a **Dealer** whose **cars** collection propert
 ... = new SQLQuery<Dealer>(Dealer.class, "cars[*].company = 'Honda'");
 ```
 
+The String property can be queried for NULL or non NULL values. The property must not be indexed.
+The following example queries for a **Dealer** whose **cars** collection property contains a **Car** with a **company** which is null:
+
+```java
+... = new SQLQuery<Dealer>(Dealer.class, "cars[*].company IS NULL");
+```
+
+or query for a **Dealer** whose **cars** collection property contains a **Car** with a **company** which is not null:
+
+```java
+... = new SQLQuery<Dealer>(Dealer.class, "cars[*].company IS NOT NULL");
+```
+
+
 Matching collections within collections recursively is supported as well.
 Suppose the **Car** class has a collection of strings called **tags**, to store additional information.
 The following example queries for a **Dealer** which contains a **car** which contains a **tag** which equals "**Convertible**":
@@ -291,5 +305,7 @@ For more information see the [Collection Indexing](./indexing.html#Collection In
 - Nested properties' classes should be `Serializable`, otherwise the entry will not be accessible from remote clients.
 - Arrays of primitive types (int, boolean, etc.) are not supported - use the equivalent wrapper type (java.lang.Integer, java.lang.Boolean, etc.) instead.
 
+- 'IS NULL' and 'IS NOT NULL' are not supported for a property which has @SpaceIndex annotation, e.g. `@SpaceIndex(path = "[*].company")`.
+- 'IS NULL' and 'IS NOT NULL' are not supported for multiple conditions inside parentheses.
  
 
