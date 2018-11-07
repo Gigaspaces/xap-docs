@@ -1,6 +1,6 @@
 ---
 type: post140
-title:  The Service Grid
+title:  Service Grid
 categories: XAP140ADM, PRM
 weight: 200
 parent: orchestration.html
