@@ -65,7 +65,7 @@ import org.insightedge.spark.implicits.all._
 val sparkConf = new SparkConf()
     .setAppName("sample-app")
 	.setMaster("spark://127.0.0.1:7077")
-	.setInsightEdgeConfig(InsightEdgeConfig("insightedge-space"))
+	.setInsightEdgeConfig(InsightEdgeConfig("demo"))
 val sc = new SparkContext(sparkConf)
 ```
 {{%/tab%}}
@@ -74,7 +74,7 @@ val sc = new SparkContext(sparkConf)
 {{%note "Info"e%}}
 It is important to import `org.insightedge.spark.implicits.all._` to enable the Data Grid specific API.
 
-`insightedge-space` is the default Data Grid name that the demo mode starts automatically.
+`demo` is the default Data Grid name that the demo mode starts automatically.
 
 When you are running Spark applications from the Web Notebook, `InsightEdgeConfig` is created implicitly with the properties defined in the Spark interpreter.
 

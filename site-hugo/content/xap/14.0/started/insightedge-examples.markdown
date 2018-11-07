@@ -53,7 +53,7 @@ To run the examples from the Apache Zeppelin web notebook, go to `http://localho
 You can run the examples from your preferred IDE. Every example has a `main` method, so it can be executed as standard application. Note these two important configuration requirements:
 
 * Enable `run-from-ide` in the Maven profile. This will switch the required dependencies to `compile` scope, so they are available in the classpath.
-* Pass the examples as `local[*]` and `insightedge-space` arguments.
+* Pass the examples as `local[*]` and `demo` arguments.
 
 ## Using a Command Line
 

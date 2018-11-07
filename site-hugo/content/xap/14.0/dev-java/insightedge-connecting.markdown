@@ -18,19 +18,19 @@ To connect the Spark application to the Data Grid, use `import org.insightedge.s
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
 
-val gsConfig = InsightEdgeConfig("insightedge-space", Some("insightedge"), Some("127.0.0.1:4174"))
+val gsConfig = InsightEdgeConfig("demo", Some("insightedge"), Some("127.0.0.1:4174"))
 val sparkConf = new SparkConf().setAppName("sample-app").setMaster("spark://127.0.0.1:7077").setInsightEdgeConfig(gsConfig)
 ```
 {{%/tab%}}
 {{%/tabs%}}
 
-In this example we connect to a Space `insightedge-space` with a lookup group `insightedge` and a lookup locator `127.0.0.1:4174`.
+In this example we connect to a Space `demo` with a lookup group `insightedge` and a lookup locator `127.0.0.1:4174`.
 
 Supported `InsightEdgeConfig` parameters are listed in the table below:
 
 | Property Name | Description                                                                                                                                      |
 |:-----------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
-| `spaceName`      | Defines the logical namespace for Data Grid objects. When starting InsightEdge in a demo mode the name of space is `insightedge-space`|
+| `spaceName`      | Defines the logical namespace for Data Grid objects. When starting InsightEdge in a demo mode the name of space is `demo`|
 | `lookupGroups`   | Used to locate the space with multicast discovery. In a demo mode the group is `insightedge`                                 |
 | `lookupLocators` | Used to locate the space with unicast discovery. In a demo mode the locator is `127.0.0.1:4174`                            |
 

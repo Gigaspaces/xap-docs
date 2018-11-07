@@ -63,7 +63,7 @@ The following list describes InsightEdge-related environment variables:
 |:--------------------------|:------------------------------------------------------|:------------|
 | SPARK_HOME                | The directory where Spark is installed                | `XAP_HOME/insightedge` |
 | INSIGHTEDGE_CLASSPATH_EXT | Extra classpath to append to InsightEdge components   | |
-| INSIGHTEDGE_SPACE_NAME    | Space name to use in InsightEdge scripts and examples | `insightedge-space`    |
+| INSIGHTEDGE_SPACE_NAME    | Space name to use in InsightEdge scripts and examples | `demo`    |
 
 In addition, you can also use standard Spark environment variables. The InsightEdge platform loads Spark components in a manner that preserves their usage. For example, set `SPARK_MASTER_PORT` to override the default `7077` port.
 

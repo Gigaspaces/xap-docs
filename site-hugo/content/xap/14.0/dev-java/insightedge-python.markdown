@@ -102,7 +102,7 @@ from pyspark.sql import SparkSession
 
 conf = SparkConf()
 conf.setAppName("InsightEdge Python Example")
-conf.set("spark.insightedge.space.name", "insightedge-space")
+conf.set("spark.insightedge.space.name", "demo")
 conf.set("spark.insightedge.space.lookup.group", "insightedge")
 conf.set("spark.insightedge.space.lookup.locator", "127.0.0.1:4174")
 

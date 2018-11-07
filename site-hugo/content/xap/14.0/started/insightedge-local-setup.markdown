@@ -39,7 +39,7 @@ This will start the following components on your machine:
 	* 2 Grid Service Containers (GSCs)
 * XAP Web-UI at {{%exurl "localhost:8099""http://localhost:8099"%}}
 	
-Then run the following command to deploy a Space called `insightedge-space` with 2 partitions on those GSCs:
+Then run the following command to deploy a Space called `demo` with 2 partitions on those GSCs:
 
 ```bash
 insightedge space deploy --partitions=2 insightedge-space

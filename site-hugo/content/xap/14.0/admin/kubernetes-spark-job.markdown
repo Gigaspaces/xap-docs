@@ -65,18 +65,18 @@ After the service account has been created and configured, you can apply it in t
 
 ## Deploying the Data Grid on Kubernetes
 
-Run the following Helm command in the command window to start a basic data grid called `insightedge-space`: 
+Run the following Helm command in the command window to start a basic data grid called `demo`: 
 
 ```
-helm install insightedge --name insightedge-space
+helm install insightedge --name demo
 ```
 
-For the application to connect to the `insightedge-space` data grid, the Space lookup locator needs to be set with the headless service name. This is required when running on a Kubernetes cluster (not a minikube).
+For the application to connect to the `demo` data grid, the Space lookup locator needs to be set with the headless service name. This is required when running on a Kubernetes cluster (not a minikube).
 
 The headless service is set as the Space lookup locator as shown below in the Spark submit:
 
 ```
---conf spark.insightedge.space.lookup.locator=insightedge-space-insightedge-manager-hs
+--conf spark.insightedge.space.lookup.locator=demo-insightedge-manager-hs
 ```
 
 ## Submitting Spark Jobs with InsightEdge Submit
@@ -111,7 +111,7 @@ Run the following InsightEdge submit script for the SaveRDD example, which gener
 
 * The --master has the prefix `k8s://<Kubernetes Master URL>:<port>`.
 * The `spark.insightedge.space.lookup.locator` is set with the headless service of the Manager Pod (&lt;release name&gt;-insightedge-manager-hs).
-* The example lookup is the default Space called `insightedge-space`.
+* The example lookup is the default Space called `demo`.
 * In Kubernetes clusters with RBAC enabled, the service account must be set (e.g. `serviceAccountName=spark`).
 * The `spark.kubernetes.container.image` is set with the desired Docker image (This is usually of the form `gigaspaces/insightedge-enterprise:1.0.0`).
 
@@ -124,17 +124,17 @@ Run the following InsightEdge submit script for the SaveRDD example, which gener
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
 --conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0-m11 \
---conf spark.insightedge.space.lookup.locator=insightedge-space-insightedge-manager-hs \
+--conf spark.insightedge.space.lookup.locator=demo-insightedge-manager-hs \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
 ```
 
-Use the GigaSpaces CLI to query the number of objects in the `insightedge-space` data grid. The output should show `100,000` objects of type `org.insightedge.examples.basic.Product`.
+Use the GigaSpaces CLI to query the number of objects in the `demo` data grid. The output should show `100,000` objects of type `org.insightedge.examples.basic.Product`.
 
-Port `8090` is exposed as the internal endpoint `insightedge-space-insightedge-manager-service:30890 TCP`, and should be specified as part of the `--server` option. Type the following CLI command:
+Port `8090` is exposed as the internal endpoint `demo-insightedge-manager-service:30890 TCP`, and should be specified as part of the `--server` option. Type the following CLI command:
 
 ```
-../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats insightedge-space
+../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats demo
 ```
 
 #### Improved Configuration Options 
@@ -157,7 +157,7 @@ The insightedge-submit script now accepts any Space name when running an Insight
 
 To provide a Space name for the script, add the configuration property: `--conf spark.insightedge.space.name=<space name>`.
 
-For example, the Helm commands below will install the following stateful sets: `testmanager-insightedge-manager`, `testmanager-insightedge-zeppelin`, `testspace-insightedge-space-*\[i\]*`
+For example, the Helm commands below will install the following stateful sets: `testmanager-insightedge-manager`, `testmanager-insightedge-zeppelin`, `testspace-demo-*\[i\]*`
 
 The InsightEdge submit command will submit the SaveRDD example with the `testspace` and `testmanager` configuration parameters.
 
