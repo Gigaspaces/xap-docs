@@ -1,7 +1,7 @@
 ---
 type: post140
-title:  Resource Load Balancing
-categories: XAP140ADM, OSS
+title:  Hot Primary Swap
+categories: XAP140ADM
 weight: 1220
 ---
 

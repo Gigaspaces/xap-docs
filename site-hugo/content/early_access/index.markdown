@@ -10,16 +10,42 @@ weight: 1
 
 This page contains early access information for XAP and InsightEdge 14.0.0, which is scheduled for release in Q4 2018. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
 
-<!--
-{{%infosign%}} If you're just getting started with version 14.0.0, we recommend reading the [What's New](/xap/12.3/rn/whats-new.html) page in the general release notes.
--->
+
+{{%infosign%}} If you're just getting started with version 14.0.0, we recommend reading the [What's New](/xap/14.0/rn/whats-new.html) page in the general release notes.
+
 
 {{%tip "Disclaimer"%}}
 Early access builds are provided as is, and should not be used in production. The latest stable release is version **12.3.1**. <br>[Download](http://www.gigaspaces.com/xap-download) | [Documentation](/xap/14.0/)
 {{%/tip%}}
 <hr/>
 
-# 14.0.0 RC1 (Nov-4-2018)
+# 14.0.0 RC2 (Nov-11-2018)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-14.0.0-rc2-b19917.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.0.0/gigaspaces-insightedge-enterprise-14.0.0-rc2-b19917.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-14.0.0-rc2-b19917.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap-enterprise-14.0.0-rc2-b19917.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.0.0/gigaspaces-xap.net-14.0.0-rc2-b19917.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13???" %}}: ???.
+- {{% jira id="GS-13679" %}}: Change InsightEdge space name in demo mode.
+- {{% jira id="GS-13681" %}}: Migrate InsightEdge examples from separate repo to InsightEdge.
+- {{% jira id="GS-13690" %}}: Upgrade Jetty version to 9.2 latest. 
+- {{% jira id="GS-13693" %}}: Deprecate gs-agent script.
+- {{% jira id="GS-13692" %}}: Deprecate legacy command line interface.
+- {{% jira id="GS-13688" %}}: Support querying space data from REST Manager and CLI.
+- {{% jira id="GS-13686" %}}: Enhanced CLI 'pu run' command validation to include invalid instances.
+- {{% jira id="GS-13685" %}}: Improve error message for CLI command 'pu run' when file not found.
+
+### Resolved Issues
+
+- {{% jira id="GS-13689" %}}: InsightEdge JDBC driver does not work with Spark SQL.
+
+# 14.0.0 RC1 (Nov-04-2018)
 
 ## Download Links
 
@@ -81,7 +107,7 @@ N/A
 
 ### Features and Enhancements
 
-- {{% jira id="GS-13637" %}}: Upgrade to Spring Security 4.2.8.
+- {{% jira id="GS-13637" %}}: Upgrade to Spring Security 4.2.8 and Spring Framework 4.3.19.
 
 ### Resolved Issues
 
