@@ -21,19 +21,55 @@ When Zeppelin is running, you can browse to {{%exurl "localhost:9090""http://loc
 ![image](/attachment_files/Zeppelin_examples_100.png)
 {{%/align%}}
 
-# Configuring the Web Notebook
+# Connecting Zeppelin to InsightEdge
 
-InsightEdge-specific settings can be configured in the *Interpreter* menu -> *Spark* interpreter. Important settings include the following properties for connecting Spark with the data grid:
+## Spark Context Initialization
 
-* `insightedge.group`
-* `insightedge.locator`
-* `insightedge.spaceName`
+In order to establish the connection Zeppelin -> Spark -> Data Grid,  each notebook should start with a paragraph that injects the InsightEdge settings to the Spark context. Important settings include the following properties:
 
-These properties are transparently translated into `InsightEdgeConfig` to establish a connection between Spark and the data grid.
+* `spaceName`
+* `lookupGroups`
+* `lookupLocators`
 
-{{%refer%}}
-Refer to [Connecting to the Data Grid](../dev-java/insightedge-connecting.html) for more details about the connection properties.
-{{%/refer%}}
+And are injected through the `InsightEdge` class
+
+```scala
+    case class InsightEdgeConfig(
+                                 spaceName: String,
+                                 lookupGroups: Option[String] = None,
+                                 lookupLocators: Option[String] = None)
+```
+
+The Zeppelin mandatory initilization paragraph:
+
+```scala
+    %spark
+    import org.insightedge.spark.implicits.all._
+    import org.insightedge.spark.context.InsightEdgeConfig
+    
+    //spaceName is required, other two parameters are optional
+    val ieConfig = new InsightEdgeConfig(spaceName = "mySpace", lookupGroups = None, lookupLocators = None)
+    
+    //sc is the spark context initalized by zeppelin
+    sc.initializeInsightEdgeContext(ieConfig)
+```
+## InsightEdge JDBC Zeppelin Interpreter
+
+Zeppelin uses interpreters to compile and run paragraphs. InsightEdge Zeppelin comes with a custom JDBC interpreter, that enables running SQL queries on the data grid in notebooks. 
+The queries are executed by [InsightEdge SQL Driver](sql-query-intro.html) 
+
+### JDBC Interpreter Configuration
+
+The JDBC interpreter connects to the data grid via a jdbc url. To configure the url value to point to the kubernetes data grid, perform the following steps:
+
+- In Zeppelin web UI, go to the Interpreters section
+- Find the insightedge_jdbc interpreter and press edit
+- Edit the `default.url` parameter to the following form `jdbc:insightedge:spaceName=<release-name>?locators=<release name>-<headless service name>`
+- Save interpreter changes
+
+### Querying the Data Grid In Notebooks
+
+Once the JDBC interpreter is properly configured, Zeppelin paragraphs bound to the `%insightedge_jdbc`  interpreter can run SQL queries on the data grid
 
 # Using the Web Notebook
 

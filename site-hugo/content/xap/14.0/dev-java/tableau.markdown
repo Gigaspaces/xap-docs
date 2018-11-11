@@ -55,26 +55,26 @@ After the Space is created, it needs to be populated with sample data, so that y
 
 **To populate the Space with data:**
 
-1. Download [this file](/download_files/sbp/xap-sql-demo.rar) and unpack it.
-1. Under the extracted "xap-sql-demo" folder, build the sample with `mvn clean install`.
+1. Download [this file](/download_files/sbp/insightedge-sql-demo.rar) and unpack it.
+1. Under the extracted "insightedge-sql-demo" folder, build the sample with `mvn clean install`.
 1. Execute the following command:
 
 	```bash
-	java -jar target\xap-sql-demo.jar --space-url "jini://*/*/tableauSpace?locators=127.0.0.1" --lookup-group <DATA_GRID_LOOKUP_GROUP>
+	java -jar target\insightedge-sql-demo.jar --space-url "jini://*/*/tableauSpace?locators=127.0.0.1" --lookup-group <DATA_GRID_LOOKUP_GROUP>
 	```
 1. Substitute the value `<DATA_GRID_LOOKUP_GROUP>` with the appropriate value for your deployment. The lookup-group argument is optional.
 1. View the objects in the Space to verify that the data populated as expected.
 
 	<img src="/attachment_files/sbp/tableau/xap_1.png" width=371" height="68" />
 
-### Adding the XAP JDBC Client JAR to the Classpath
+### Adding the InsightEdge JDBC Client JAR to the Classpath
 
-When connecting to the data grid, the ODBC-JDBC gateway runs the XAP JDBC custom driver. In order to make the driver visible to the ODBC-JDBC gateway, you have to create a special JAR file for use when configuring the gateway in Microsoft Windows.
+When connecting to the data grid, the ODBC-JDBC gateway runs the InsightEdge JDBC custom driver. In order to make the driver visible to the ODBC-JDBC gateway, you have to create a special JAR file for use when configuring the gateway in Microsoft Windows.
 
-**To generate the XAP JDBC Client JAR:**
+**To generate the InsightEdge JDBC Client JAR:**
 
 1. Navigate to `${XAP_HOME}\insightedge\tools\jdbc`.
-1. Run the `build-xap-jdbc-client.cmd` script to create the file `xap-jdbc-client.jar`. 
+1. Run the `build-jdbc-client.cmd` script to create the file `insightedge-jdbc-client.jar`. 
 
 	
 ## Setting Up the ODBC-JDBC Connection
@@ -142,16 +142,16 @@ For instructions on how to access the ODBC Data Source Administrator, see this [
 	<img src="/attachment_files/sbp/easysoft/odbc_data_source_administrator_2_1.png" width=373" height="284" />
   
 1. Click **Finish**.
+1. **IMPORTANT** - edit the CLASSPATH environment variable and append to it the path to your insightedge-jdbc-client.jar file. Create the CLASSPATH environment variable if it doesn't exist.
+
+    <img src="/attachment_files/sbp/easysoft/odbc_data_source_environment_variable_2_1.png" width=373" height="284" />
+    
 1. In the Easysoft ODBC-JDBC Gateway DSN Setup window that is displayed, configure the gateway access to the data source by filling in the fields with the following values:
 
-	- DSN: **easysoft-xap-odbc-jdbc**
+	- DSN: **easysoft-insightedge-odbc-jdbc**
 	- Driver Class: **com.gigaspaces.jdbc.Driver**
 	- Class Path: Leave field empty
-	- **IMPORTANT** - edit the CLASSPATH environment variable and append to it the path to your xap-jdbc-client.jar file. Create the CLASSPATH environment variable if it doesn't exist.
-
-	<img src="/attachment_files/sbp/easysoft/odbc_data_source_environment_variable_2_1.png" width=373" height="284" />
-
-	- URL: **jdbc:xap:url=jini://\*/\*/tableauSpace?locators=127.0.0.1**
+	- URL: **jdbc:insightedge:url=jini://\*/\*/tableauSpace?locators=127.0.0.1**
 
 1. Check the **Strip Quote** check box.
 
@@ -185,7 +185,7 @@ Tableau has to be configured to use the ODBC-JDBC gateway as the data source.
 1. In the Other Databases (ODBC) window, configure the options as follows:	
 
 	a. In the **Connect Using** area, defin the DSN:
-	- Select **easysoft-xap-odbc-jdbc**
+	- Select **easysoft-insightedge-odbc-jdbc**
 	- Click **Connect**.
 
 	b. In the *Connection Attributes** area, provide the name of the database:

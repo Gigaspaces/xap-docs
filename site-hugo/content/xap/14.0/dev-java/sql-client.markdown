@@ -23,18 +23,19 @@ Examples:
 **To install SquirreL for use with the InsightEdge platform:**
 
 1. Download and install {{%exurl "SquirreL" "http://squirrel-sql.sourceforge.net/#installation"%}}.
-1. Copy all of the XAP/InsightEdge JAR files (located in ...xap/lib and ...xap/insightedge/lib/jdbc) to the squirreL `lib` folder.
+1. Copy all of the XAP JAR files (located in ...xap/lib/required) to the squirreL `lib` folder
+1. Copy all of the InsightEdge JAR files (xap/insightedge/lib/jdbc) to the squirreL `lib` folder.
 1. Start SquirreL.
 1. Click the **Drivers** vertical tab on the left, and then click **+** to add a new driver.
   ![image](/attachment_files/xap-sql/squirrel-driver.png)
 
-1. Click the **Aliases** vertical tab on the left, and then click **+** to add a new connection. Sample URL: `jdbc:xap:url=jini://*/*/mySpace?locators=127.0.1.1&groups=xap-12.3.1`
+1. Click the **Aliases** vertical tab on the left, and then click **+** to add a new connection. Sample URL: `jdbc:insightedge:url=jini://*/*/mySpace?locators=127.0.0.1&groups=xap-14.0.0`
   ![image](/attachment_files/xap-sql/squirrel-alias.png)
 
 1. Create a connection to the XAP data grid.
  ![image](/attachment_files/xap-sql/squirrel-connect.png)
 
-1. Run a test query, for example `SELECT * FROM Product;`.
+1. Run a test query, for example `SELECT * FROM Product;` (the data grid was filled with `Product` objects in advance).
  ![image](/attachment_files/xap-sql/squirrel-query.png)
 
 
@@ -51,7 +52,7 @@ Before installing and using SQLLine, make sure you have at least one Space deplo
 1. Use the following command to access the Space with SQLLine: 
 
 	```bash
-	!connect jdbc:xap:url=jini://*/*/space?locators=127.0.0.1 Enter credentials if your space is secured (or just press Return otherwise).
+	!connect jdbc:insightedge:url=jini://*/*/space?locators=127.0.0.1 Enter credentials if your space is secured (or just press Return otherwise).
 	```
 1. To list available tables, type: 
 
