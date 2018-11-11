@@ -12,10 +12,11 @@ This section lists the changes that were made in InsightEdge Platform 14.0.x.
 
 # Features and Enhancements
 
-- {{% jira id="GS-13???" %}}: ???.
+- {{% jira id="GS-13593" %}}: Kubernetes support.
+- {{% jira id="GS-13601" %}}: New MemoryXtend driver for Persistent Memory (PMEM.
 - {{% jira id="GS-13679" %}}: Change InsightEdge space name in demo mode.
 - {{% jira id="GS-13681" %}}: Migrate InsightEdge examples from separate repo to InsightEdge.
-- {{% jira id="GS-13690" %}}: Upgrade Jetty version to 9.2 latest. 
+- {{% jira id="GS-13695" %}}: Upgrade Jetty version to 9.3 latest. 
 - {{% jira id="GS-13693" %}}: Deprecate gs-agent script.
 - {{% jira id="GS-13692" %}}: Deprecate legacy command line interface.
 - {{% jira id="GS-13688" %}}: Support querying space data from REST Manager and CLI.
@@ -53,13 +54,15 @@ This section lists the changes that were made in InsightEdge Platform 14.0.x.
 
 # Resolved Issues
 
-
-
 - {{% jira id="GS-13689" %}}: InsightEdge JDBC driver does not work with Spark SQL.
 - {{% jira id="GS-13631" %}}: When a transaction aborts due to network failure, it may not release the participating entries immediately.
+- {{% jira id="GS-13658" %}}: Misspelled License in "Licence data is corrupted" error message.
+- {{% jira id="GS-13657" %}}: Typo in XAP Manager system property for configuring ZooKeeper session timeout.
+- {{% jira id="GS-13649" %}}: Fix InsightEdge JDBC Driver initialization to return null when connection fails.
 - {{% jira id="GS-13627" %}}: EXT_JAVA_OPTIONS environment variable is ignored when using OpenJDK with Microsoft Windows.
 - {{% jira id="GS-13661" %}}: SPARK_MOUNTED_CLASSPATH contains incorrect semicolon on Microsoft Windows.
 - {{% jira id="GS-13535" %}}: Null comparison does not work in SQL query when using a nested collection of objects.
+- {{% jira id="GS-13625" %}}: SQL query with Java date/time WHERE clause fails when date/time format property is configured.
 - {{% jira id="GS-13603" %}}: The Web Management Console fails to parse java.util.Date properties.
 - {{% jira id="GS-13404" %}}: Can't generate dump files from user interface after first attempt.
 - {{% jira id="GS-13386" %}}: "Only Live Services Log Dump" doesn't work as expected.

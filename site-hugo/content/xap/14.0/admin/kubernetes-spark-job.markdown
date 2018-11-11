@@ -71,12 +71,10 @@ Run the following Helm command in the command window to start a basic data grid 
 helm install insightedge --name demo
 ```
 
-For the application to connect to the `demo` data grid, the Space lookup locator needs to be set with the headless service name. This is required when running on a Kubernetes cluster (not a minikube).
-
-The headless service is set as the Space lookup locator as shown below in the Spark submit:
+For the application to connect to the `demo` data grid, the name of the manager must be provided. This is required when running on a Kubernetes cluster (not a minikube).
 
 ```
---conf spark.insightedge.space.lookup.locator=demo-insightedge-manager-hs
+--conf spark.insightedge.space.manager=demo
 ```
 
 ## Submitting Spark Jobs with InsightEdge Submit
@@ -124,7 +122,7 @@ Run the following InsightEdge submit script for the SaveRDD example, which gener
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
 --conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0-m11 \
---conf spark.insightedge.space.lookup.locator=demo-insightedge-manager-hs \
+--conf spark.insightedge.space.manager=demo \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
 ```
@@ -144,12 +142,6 @@ These improvements are available starting from version 14.0.0 M13.
 {{%/note%}}
 
 The following simplified configuration options can be used with the `insightedge-submit` script.
-
-##### Lookup Locator
-
-The full notation for providing the Space lookup locator is `--conf spark.insightedge.space.lookup.locator=<release name>-<headless service name>`, for example `--conf spark.insightedge.space.lookup.locator=testmanager-insightedge-manager-hs`.
-
-You can define this information for the insightEdge submit script using the simplified syntax `--conf spark.insightedge.space.manager=<platform manager name>` that adds the configuration property, for example `--conf spark.insightedge.space.manager=testmanager`
 
 ##### Space Name
 

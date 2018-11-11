@@ -31,10 +31,11 @@ Early access builds are provided as is, and should not be used in production. Th
 
 ### Features and Enhancements
 
-- {{% jira id="GS-13???" %}}: ???.
+- {{% jira id="GS-13593" %}}: Kubernetes support.
+- {{% jira id="GS-13601" %}}: New MemoryXtend driver for Persistent Memory (PMEM).
 - {{% jira id="GS-13679" %}}: Change InsightEdge space name in demo mode.
 - {{% jira id="GS-13681" %}}: Migrate InsightEdge examples from separate repo to InsightEdge.
-- {{% jira id="GS-13690" %}}: Upgrade Jetty version to 9.2 latest. 
+- {{% jira id="GS-13695" %}}: Upgrade Jetty version to 9.3 latest. 
 - {{% jira id="GS-13693" %}}: Deprecate gs-agent script.
 - {{% jira id="GS-13692" %}}: Deprecate legacy command line interface.
 - {{% jira id="GS-13688" %}}: Support querying space data from REST Manager and CLI.

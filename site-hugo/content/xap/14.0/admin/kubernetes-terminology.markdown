@@ -41,18 +41,22 @@ The Zeppelin Pod contains the interactive Apache Zeppelin web-based notebook. Us
 An anti-affinity rule forces a group of virtual machines to be placed across different physical hosts. This prevents all the virtual machines from failing at the same time if a single physical host fails.
 Pod anti-affinity allocates the primary and backup Management and Data Pods across the available nodes in such a way that a backup Pod is always located on a different node from its primary Pod.
 
+<!--
 ## Pod Disruption Budget
  
 A Pod can disappear due to a voluntary disruption, meaning a person or a controller destroys it, or if there is an unavoidable hardware or system software error (an involuntary disruption).
 A Pod Disruption Budget (PDB) enables limiting the number Pods that are down simultaneously due to voluntary disruptions. This protects the application by ensuring that a homogeneous set of Pods is always up and available.
+-->
 
 ## Pod Quorum
 
 A high availability configuration requires three Management Pods. This ensures an uninterrupted workflow if a Management Pod is disrupted, because there is still a quorum (required minimum) available to continue managing the Data Pods in the system.
 
+<!--
 ## Readiness
 
 A probe that indicates whether a Data Pod is ready to service requests (the application’s processes are ready to process input). If data is still loading, then the Pod is not ready and the probe will not receive a response.
+<!--
 
 ## Services
 

@@ -8,14 +8,10 @@ weight: 200
 
 
 {{%note%}}
-The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the [Getting Started](../xap/12.3/started/) section before performing the tasks described here.
+The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the [Getting Started](../xap/14.0/started/) section before performing the tasks described here.
 {{%/note%}}
 
-This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a [Helm chart](https://docs.helm.sh/developing_charts/#charts). You can deploy the full InsightEdge platform, which includes the data grid, using the Helm chart located at `<home directory>/tools/kubernetes/charts/insightedge`, or just the data grid using the Helm chart located at `<home directory>/tools/kubernetes/charts/xap`.
-
-{{%note%}}
-The GigaSpaces Kubernetes integration is under active development and is subject to change. Additionally, you can use the `xap` Helm chart to deploy both the data grid and the InsightEdge platform.
-{{%/note%}}
+This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a [Helm chart](https://docs.helm.sh/developing_charts/#charts). You can deploy the full InsightEdge platform, which includes the data grid, using the Helm chart available in the GigaSpaces Helm repository.
 
 ## Prerequisites
 
@@ -50,18 +46,18 @@ There are multiple ways to access these charts in order to install a GigaSpaces 
 - Add the GigaSpaces Helm chart repo to the Helm repo list
 - Unpack the required Helm chart(s) in a local folder
 
-### Adding a Helm Chart to the Repo List
+### Adding a Helm Repo to the Repo List
 
-You can point to the GigaSpaces Helm repo using kubectl, so that Helm can locate the `xap` and `insightedge` charts for installation:
+You can point to the GigaSpaces Helm repo, so that Helm can locate the `xap` and `insightedge` charts for installation:
 
 ```bash
 helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
 ```
 
-After adding the GigaSpaces Helm chart repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install the InsightEdge demo, use the following command:
+After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:
 
 ```bash
-helm install gigaspaces/insightedge --version=14.0.0-rc1 --name helloworld
+helm install gigaspaces/insightedge --version={{%version helm-version" %}} --name demo
 ```
 
 ### Fetching the GigaSpaces Helm Charts from the GigaSpaces Repository
@@ -73,13 +69,13 @@ You must fetch every chart that you will be using (for example: xap, xap-pu and 
 {{%/note%}}
 
 ```bash
-helm fetch gigaspaces/insightedge --version=14.0.0-rc1 --untar
+helm fetch gigaspaces/insightedge --version={{%version helm-version" %}} --untar
 ```
 
 The chart is unpackaged in a local folder called insightedge, and then you can install the demo by typing:
 
 ```bash
-helm install insightedge --name hello
+helm install insightedge --name demo
 ```
 
 All of the commands in the examples below assume that the Helm chart was fetched and stored in a local folder, but you can modify the commands to accomodate the other Helm install options (remote location, repo reference, etc.).
@@ -108,7 +104,13 @@ The rest of the data grid tasks described below use command examples from the `i
 
 You can monitor the `hello` cluster you deployed using any of the following administration tools.
 
-* Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs.
+* Helm chart: run the following command to print the status of the 'hello' release in the command window.
+
+```bash
+helm status hello
+```
+
+* Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs. For example, if you're using minikube:
 
 ```bash
 minikube dashboard
@@ -118,12 +120,6 @@ minikube dashboard
 
 ```bash
 kubectl describe pod
-```
-
-* Helm chart: run the following command to print the status of the 'hello' release in the command window.
-
-```bash
-helm status hello
 ```
 
 ## Deleting a Data Grid from the Kubernetes Environment 
@@ -185,7 +181,7 @@ helm install insightedge-pu --name test --set ha=true,antiAffinity.enabled=true,
 
 # Deploying Multiple Spaces on Kubernetes
 
-If you want to deploy multiple data grids in the same Kubernetes environment, to preserve resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each data grid with its own Platform Manager.
+If you want to deploy multiple data grids in the same Kubernetes environment, to better utilize resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each data grid with its own Platform Manager.
 
 ## Deploying the Platform Manager
 
@@ -335,7 +331,7 @@ helm install insightedge -f customValues.yaml --name hello
 ```
 ### Overriding the Processing Unit Properties
 
-It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit [Deployment Properties](https://docs.gigaspaces.com/xap/12.3/dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) topic), so you can override these properties using the Helm chart.  
+It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit [Deployment Properties](https://docs.gigaspaces.com/xap/14.0/dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) topic), so you can override these properties using the Helm chart.  
 
 After defining the properties as placeholders, use the `key1=value1;key2=value2` format to pass the override values to the Helm chart using either the `--set insightedge-pu.properties=<your key-value pairs>` command, or by editing the values.yaml.
 
@@ -351,7 +347,7 @@ To get the IP address of your minikube, type the `minikube ip` command in the co
 
 `http://<minikube ip>:8090`
 
-For information on how to use the REST Manager API, see the [Administration Tools](../xap/12.3/admin/admin-tools.html) section of the documentation. 
+For information on how to use the REST Manager API, see the [Administration Tools](../xap/14.0/admin/admin-tools.html) section of the documentation. 
 
 ### GigaSpaces Command Line Interface
 
@@ -373,7 +369,7 @@ To view the Data Type statistics, typ the following command:
 ./insightedge --server=test-space-xap-manager-hs space info --type-stats test-space
 ```
 
-For more information about the GigaSpaces CLI and available commands, see the [Administration Tools](../xap/12.3/admin/admin-tools.html) section of the documentation. 
+For more information about the GigaSpaces CLI and available commands, see the [Administration Tools](../xap/14.0/admin/admin-tools.html) section of the documentation. 
 
 ## Advanced Monitoring Using Kubernetes Tools
 
@@ -389,7 +385,7 @@ For more information on using the Kubernetes monitoring tools, refer to the [Kub
 
 ## Troubleshooting
 
-If the Kubernetes environment doesn't launch properly, you can investigate by checking the Init Container logs. An init container is always run before a GigaSpaces Pod is started. After the init container runs to completion, Kubernetes deploys the actual Pod (such as a Management Pod, Data Pod, WAN Gateway Pod, etc.). So when you deploy a Space, for example, an init container runs first to verify that the Platform Manager is available, and then the Data Pod with the Space is created.
+If the Kubernetes environment doesn't launch properly, you can investigate by checking the Init Container logs. An init container is always run before a GigaSpaces Pod is started. After the init container runs to completion, Kubernetes deploys the actual Pod (such as a Management Pod, Data Pod, etc.). So when you deploy a Space, for example, an init container runs first to verify that the Platform Manager is available, and then the Data Pod with the Space is created.
 
 You can access this log in the Kubernetes dashboard, or run the following kubectl command to print the init container log in the command window:
  
