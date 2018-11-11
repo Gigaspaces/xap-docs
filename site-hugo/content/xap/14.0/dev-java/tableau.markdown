@@ -151,7 +151,7 @@ For instructions on how to access the ODBC Data Source Administrator, see this [
 
 	<img src="/attachment_files/sbp/easysoft/odbc_data_source_environment_variable_2_1.png" width=373" height="284" />
 
-	- URL: **jdbc:xap:url=jini://\*/\*/tableauSpace?locators=127.0.0.1**
+	- URL: **jdbc:insightedge:url=jini://\*/\*/tableauSpace?locators=127.0.0.1**
 
 1. Check the **Strip Quote** check box.
 

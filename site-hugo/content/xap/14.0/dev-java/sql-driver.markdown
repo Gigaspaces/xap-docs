@@ -94,7 +94,7 @@ public class JdbcTest {
 
 		// Query the data with jdbc
 		Class.forName("com.gigaspaces.jdbc.Driver");
-		Connection connection = DriverManager.getConnection("jdbc:xap:url=/./space;logLevel=debug");
+		Connection connection = DriverManager.getConnection("jdbc:insightedge:url=/./space;logLevel=debug");
 
 		String sql = "SELECT e.firstName, e.age FROM Person e WHERE e.age = ?";
 		
@@ -171,7 +171,7 @@ public class DocumentTest {
 
 		// Query the data with jdbc
 		Class.forName("com.gigaspaces.jdbc.Driver");
-		Connection connection = DriverManager.getConnection("jdbc:xap:url=/./space;logLevel=trace");
+		Connection connection = DriverManager.getConnection("jdbc:insightedge:url=/./space;logLevel=trace");
 
 		String sql = "SELECT * FROM Product p";
 
@@ -227,7 +227,7 @@ For more information about Space documents, refer to the [Document API](./docume
 # JDBC URL
 
 In order to connect to the Space with JDBC driver, you need to specify the JDBC connection URL. The general format of the URL is:
-`jdbc:xap:url=<space_url>;<url_properties>`
+`jdbc:insightedge:url=<space_url>;<url_properties>`
 
 The `space_url` is mandatory. See the [Space URL configuration](./the-space-configuration.html) page. Other parameters are optional.
 
@@ -241,6 +241,7 @@ The following `url_properties` are available:
 | preferSpaceIterator         | Use the Space Iterator API to execute certain types of queries. Requires less memory on the client side, but may result in slower performance.         |     false         | 
 | logLevel                    | Driver log level (client side only). See more in `Logging` section.      |     INFO         |
 | log4jFile                   | The path to log4j.properties file. If not provided, the default configuration is used. See more in `Logging` section. ||
+| autoCommit                  | Queries are auto commited to the database | false |
 
 Other properties inherited from `Calcite` {{%exurl "jdbc-connect-string-parameters""https://calcite.apache.org/docs/adapter.html#jdbc-connect-string-parameters"%}}
 
@@ -249,13 +250,13 @@ Examples:
 Accessing an embedded Space with a custom log level:
 
 ```bash
-jdbc:xap:url=/./mySpace;logLevel=DEBUG
+jdbc:insightedge:url=/./mySpace;logLevel=DEBUG
 ```
 
 Accessing a remote secured Space:
 
 ```bash
-jdbc:xap:url=jini://LookupServiceHostname/*/mySpace;user=admin;password=admin
+jdbc:insightedge:url=jini://LookupServiceHostname/*/mySpace;user=admin;password=admin
 ```
 
  
@@ -285,7 +286,7 @@ public class ExplainPlan {
 
 		// Query the data with jdbc
 		Class.forName("com.gigaspaces.jdbc.Driver");
-		Connection connection = DriverManager.getConnection("jdbc:xap:url=/./space;logLevel=trace");
+		Connection connection = DriverManager.getConnection("jdbc:insightedge:url=/./space;logLevel=trace");
 
         // Use the EXPLAIN PLAN
 		String sql = "EXPLAIN PLAN FOR SELECT e.firstName, e.age FROM Person e WHERE e.age = ?";
