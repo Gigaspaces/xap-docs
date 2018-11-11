@@ -42,6 +42,7 @@ REST URL - http://localhost:8090
 Web Management Console - http://localhost:8099
 Spark master - http://localhost:8080/
 Spark worker - http://localhost:8081/
+Zeppelin - http://localhost:9090/
 
 
 ## Starting a Master Node
