@@ -13,7 +13,7 @@ This section lists the changes that were made in InsightEdge Platform 14.0.x.
 # Features and Enhancements
 
 - {{% jira id="GS-13593" %}}: Kubernetes support.
-- {{% jira id="GS-13601" %}}: New MemoryXtend driver for Persistent Memory (PMEM.
+- {{% jira id="GS-13601" %}}: New MemoryXtend driver for Persistent Memory (PMEM).
 - {{% jira id="GS-13679" %}}: Change InsightEdge space name in demo mode.
 - {{% jira id="GS-13681" %}}: Migrate InsightEdge examples from separate repo to InsightEdge.
 - {{% jira id="GS-13695" %}}: Upgrade Jetty version to 9.3 latest. 
