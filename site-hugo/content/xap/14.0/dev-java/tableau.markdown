@@ -43,10 +43,11 @@ The first step is deploying a XAP data grid and creating a Space for the demo.
 
 **To deploy the data grid on a local machine:**
 
-1. Run ${XAP_HOME}\tools\installmavenrep.bat script.
+1. Run ${XAP_HOME}\tools\maven\installmavenrep.bat script.
 1. Run ${XAP_HOME}\insightedge\tools\maven\insightedge-maven.cmd script.
 1. Navigate to the `$XAP_HOME\bin` directory and launch a cmd window.
 1. Type `insightedge host run-agent --auto --gsc=2` to create a XAP data grid.
+1. Launch a new cmd window.
 1. Type `insightedge space deploy --partitions=2 tableauSpace` to create a Space with the name `tableauSpace`.  
 
 ### Populating the Space
@@ -63,7 +64,7 @@ After the Space is created, it needs to be populated with sample data, so that y
 	java -jar target\insightedge-sql-demo.jar --space-url "jini://*/*/tableauSpace?locators=127.0.0.1" --lookup-group <DATA_GRID_LOOKUP_GROUP>
 	```
 1. Substitute the value `<DATA_GRID_LOOKUP_GROUP>` with the appropriate value for your deployment. The lookup-group argument is optional.
-1. View the objects in the Space to verify that the data populated as expected.
+1. Open <GigaSpaces Management Center> in order to verify that the data populated in space as expected.
 
 	<img src="/attachment_files/sbp/tableau/xap_1.png" width=371" height="68" />
 
