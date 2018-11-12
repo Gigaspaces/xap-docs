@@ -162,7 +162,7 @@ When the manager high availability property (`ha`) is set to true, Kubernetes de
 The following Helm command deploys three Management Pods named `testmanager`, with high availability enabled:
 
 ```bash
-helm install insightedge-manager --name testmanager --set ha=true,antiAffinity.enabled=true
+helm install insightedge --name testmanager --set manager.ha=true,manager.antiAffinity.enabled=true
 ```
 
 ## Defining the Space Topology
@@ -176,12 +176,20 @@ If you apply Pod anti-affinity on a minikube, not all of the Pods will be deploy
 The following Helm command deploys a Space cluster called `test` in a high availability topology, with anti-affinity enabled: 
 
 ```bash
-helm install insightedge-pu --name test --set ha=true,antiAffinity.enabled=true,manager.name=testmanager
+helm install insightedge --name test --set pu.ha=true,pu.antiAffinity.enabled=true,pu.manager.name=testmanager
 ```
 
 # Deploying Multiple Spaces on Kubernetes
 
 If you want to deploy multiple data grids in the same Kubernetes environment, to better utilize resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each data grid with its own Platform Manager.
+
+To enable users to customize the installation, we provide several additional Helm charts that can be used to define specific constellations in more advanced scenarios:
+
+- Manager (`insightedge-manager` or `xap-manager`)
+- Processing Unit (`insightedge-pu` or `xap-pu`)
+- Apache Zeppelin (`insightedge-zeppelin`)
+
+Before using these charts for the first time, you must fetch the charts as described in Getting Started section.
 
 ## Deploying the Platform Manager
 

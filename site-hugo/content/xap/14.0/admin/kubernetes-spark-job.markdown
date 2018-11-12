@@ -8,7 +8,7 @@ weight: 300
 
 The InsightEdge platform provides a first-class integration between Apache Spark and the XAP core data grid capability. This allows hybrid/transactional analytics processing by co-locating Spark jobs in place with low-latency data grid applications. InsightEdge includes a full Spark distribution. 
 
-Apache Spark 2.3.x has native Kubernetes support. Users can run Spark workloads in an existing Kubernetes 1.7+ cluster and take advantage of Apache Spark’s ability to manage distributed data processing tasks.
+Apache Spark 2.3.x has native Kubernetes support. Users can run Spark workloads in an existing Kubernetes 1.9+ cluster and take advantage of Apache Spark’s ability to manage distributed data processing tasks.
 
 The Spark submission mechanism creates a Spark driver running within a Kubernetes pod. The driver creates executors running within Kubernetes pods, connects to them, and executes application code. Using InsightEdge, application code can connect to a Data Pod and interact with the distributed data grid.
 
@@ -28,7 +28,7 @@ InsightEdge provides a Docker image designed to be used in a container runtime e
 The following Spark configuration property `spark.kubernetes.container.image` is required when submitting Spark jobs for an InsightEdge application. Note how this configuration is applied to the examples in the Spark submit:
 
 ```
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0-m11
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version helm-version" %}}
 ```
 
 ## Getting the Kubernetes Master URL
@@ -92,8 +92,8 @@ Run the following InsightEdge submit script for the SparkPi example. This exampl
 --name spark-pi \
 --class org.apache.spark.examples.SparkPi \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0-m11 \
-local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-2.3.1.jar
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version helm-version" %}} \
+local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-{{%version spark-version" %}}.jar
 
 ```
 
@@ -121,7 +121,7 @@ Run the following InsightEdge submit script for the SaveRDD example, which gener
 --name i9e-saveRdd \
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0-m11 \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version helm-version" %}} \
 --conf spark.insightedge.space.manager=demo \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
@@ -166,7 +166,7 @@ $ ./insightedge-submit \
 --name i9e-saveRdd \
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:14.0.0-m13 \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version helm-version" %}} \
 --conf spark.insightedge.space.name=testspace \
 --conf spark.insightedge.space.manager=testmanager \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
