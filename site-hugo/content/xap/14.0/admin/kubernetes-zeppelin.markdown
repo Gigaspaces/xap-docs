@@ -3,7 +3,7 @@ type: post140
 title:  Apache Zeppelin Kubernetes Pod
 parent: kubernetes-overview.html
 categories: XAP140ADM, PRM
-weight: 100
+weight: 400
 ---
 
 # Overview

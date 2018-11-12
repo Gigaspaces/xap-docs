@@ -56,7 +56,7 @@ A high availability configuration requires three Management Pods. This ensures a
 ## Readiness
 
 A probe that indicates whether a Data Pod is ready to service requests (the application’s processes are ready to process input). If data is still loading, then the Pod is not ready and the probe will not receive a response.
-<!--
+-->
 
 ## Services
 
@@ -70,6 +70,5 @@ In environments where load-balancing and a single service IP are not needed, you
 
 ## StatefulSet
 
-A StatefulSet manages the deployment and scaling of a set of Pods for stateful applications. The Pods are based on an identical container definition, but are not interchangeable (each Pod has a persistent identifier that it maintains across any rescheduling).
-For example, a StatefulSet can manage automated rolling updates of business logic inside a Pod, and can control scaling up Data Pods one at a time.
+A StatefulSet manages the deployment and scaling of a set of Pods for stateful applications. The Pods are based on an identical container definition, but are not interchangeable (each Pod has a persistent identifier that it maintains across any rescheduling). For example, a StatefulSet can manage automated rolling updates of business logic inside a Pod, and can control scaling up Data Pods one at a time.
 
