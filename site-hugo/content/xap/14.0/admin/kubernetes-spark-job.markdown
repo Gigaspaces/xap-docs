@@ -28,7 +28,7 @@ InsightEdge provides a Docker image designed to be used in a container runtime e
 The following Spark configuration property `spark.kubernetes.container.image` is required when submitting Spark jobs for an InsightEdge application. Note how this configuration is applied to the examples in the Spark submit:
 
 ```
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version helm-version" %}}
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version "helm-version" %}}
 ```
 
 ## Getting the Kubernetes Master URL
@@ -92,8 +92,8 @@ Run the following InsightEdge submit script for the SparkPi example. This exampl
 --name spark-pi \
 --class org.apache.spark.examples.SparkPi \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version helm-version" %}} \
-local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-{{%version spark-version" %}}.jar
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version "helm-version" %}} \
+local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-{{%version "spark-version" %}}.jar
 
 ```
 
@@ -121,7 +121,7 @@ Run the following InsightEdge submit script for the SaveRDD example, which gener
 --name i9e-saveRdd \
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version helm-version" %}} \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version "helm-version" %}} \
 --conf spark.insightedge.space.manager=demo \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
@@ -166,7 +166,7 @@ $ ./insightedge-submit \
 --name i9e-saveRdd \
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version helm-version" %}} \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:{{%version "helm-version" %}} \
 --conf spark.insightedge.space.name=testspace \
 --conf spark.insightedge.space.manager=testmanager \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar

@@ -57,7 +57,7 @@ helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
 After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:
 
 ```bash
-helm install gigaspaces/insightedge --version={{%version helm-version" %}} --name demo
+helm install gigaspaces/insightedge --version={{%version "helm-version" %}} --name demo
 ```
 
 ### Fetching the GigaSpaces Helm Charts from the GigaSpaces Repository
@@ -69,7 +69,7 @@ You must fetch every chart that you will be using (for example: xap, xap-pu and 
 {{%/note%}}
 
 ```bash
-helm fetch gigaspaces/insightedge --version={{%version helm-version" %}} --untar
+helm fetch gigaspaces/insightedge --version={{%version "helm-version" %}} --untar
 ```
 
 The chart is unpackaged in a local folder called insightedge, and then you can install the demo by typing:
