@@ -6,32 +6,39 @@ parent: insightedge-basics.html
 weight: 200
 ---
 
-This section describes how to use the interactive Apache Zeppelin Web Notebook.
+This section describes how to use the interactive Apache Zeppelin Web Notebook with InsightEdge.
 
 # Starting the Web Notebook
 
-The Web Notebook can be started in any of the following ways:
+The InsightEdge Apache Zeppelin web notebook can be started in any of the following ways:
 
-* Rn the `insightedge demo` command; the Web Notebook is started automatically at {{%exurl "localhost:9090""http://localhost:9090"%}}. 
-* Start the Web Notebook manually at any time by running `zeppelin.sh/cmd` from the `<XAP HOME>/insightedge/zeppelin/bin` directory.
+* Run the `insightedge demo` command; the web notebook is started automatically at {{%exurl "localhost:9090""http://localhost:9090"%}}. 
+* Start the web notebook manually at any time by running `zeppelin.sh/cmd` from the `<XAP HOME>/insightedge/zeppelin/bin` directory.
 
-When Zeppelin is running, you can browse to {{%exurl "localhost:9090""http://localhost:9090"%}} and start exploring the pre-built notebooks:
+When Apache Zeppelin is running, you can browse to {{%exurl "localhost:9090""http://localhost:9090"%}} and start exploring the pre-built notebooks:
 
 {{%align center%}}
 ![image](/attachment_files/Zeppelin_examples_100.png)
 {{%/align%}}
 
-# Connecting Zeppelin to InsightEdge
+# Connecting a New Apache Zeppelin Notebook to InsightEdge
 
-## Spark Context Initialization
+If you want to create a new Apache Zeppelin web notebook instead of using the example notebooks that come packaged with InsightEdge, there are two ways to run a Zeppelin notebook against InsightEdge:
 
-In order to establish the connection Zeppelin -> Spark -> Data Grid,  each notebook should start with a paragraph that injects the InsightEdge settings to the Spark context. Important settings include the following properties:
+- Write a Spark application that reads and writes data to the data grid using the Spark context.
+- Write an SQL query that is interpreted by the InsightEdge JDBC interpreter (which is run directly against the data grid).
+
+## Initializing the Spark Context
+
+In order to establish the connection between Apache Zeppelin through Apache Spark and then to the data grid, each notebook should start with a paragraph that injects the InsightEdge settings to the Spark context. Important settings include the following properties:
 
 * `spaceName`
 * `lookupGroups`
 * `lookupLocators`
 
-And are injected through the `InsightEdge` class
+These properties are injected through the following in the notebook:
+
+- `InsightEdge` class:
 
 ```scala
     case class InsightEdgeConfig(
@@ -40,7 +47,7 @@ And are injected through the `InsightEdge` class
                                  lookupLocators: Option[String] = None)
 ```
 
-The Zeppelin mandatory initilization paragraph:
+- Apache Zeppelin mandatory initialization paragraph:
 
 ```scala
     %spark
@@ -53,27 +60,26 @@ The Zeppelin mandatory initilization paragraph:
     //sc is the spark context initalized by zeppelin
     sc.initializeInsightEdgeContext(ieConfig)
 ```
-## InsightEdge JDBC Zeppelin Interpreter
+## InsightEdge JDBC Interpreter
 
-Zeppelin uses interpreters to compile and run paragraphs. InsightEdge Zeppelin comes with a custom JDBC interpreter, that enables running SQL queries on the data grid in notebooks. 
-The queries are executed by [InsightEdge SQL Driver](sql-query-intro.html) 
+Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with InsightEdge comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook.  The queries are executed by the [InsightEdge SQL Driver](sql-query-intro.html).   
 
-### JDBC Interpreter Configuration
+### Configuring the JDBC Interpreter
 
-The JDBC interpreter connects to the data grid via a jdbc url. To configure the url value to point to the kubernetes data grid, perform the following steps:
+The JDBC interpreter connects to the data grid via a JDBC URL. To configure the URL value to point to the data grid, do the following:
 
-- In Zeppelin web UI, go to the Interpreters section
-- Find the insightedge_jdbc interpreter and press edit
-- Edit the `default.url` parameter to the following form `jdbc:insightedge:spaceName=<release-name>?locators=<release name>-<headless service name>`
-- Save interpreter changes
+1. In the Apache Zeppelin web interface, navigate to the Interpreters section.
+1. Select the insightedge_jdbc interpreter, and click Edit.
+1. Edit the `default.url` parameter as follows: `jdbc:insightedge:spaceName=<space-name>
+1. Save the changes you made to the interpreter.
 
-### Querying the Data Grid In Notebooks
+### Querying the Data Grid in Notebooks
 
-Once the JDBC interpreter is properly configured, Zeppelin paragraphs bound to the `%insightedge_jdbc`  interpreter can run SQL queries on the data grid
+When the JDBC interpreter is properly configured, Zeppelin paragraphs that are bound to the `%insightedge_jdbc` interpreter can run SQL queries directly on the data grid.
 
 # Using the Web Notebook
 
-The Web Notebook comes with sample notes. We recommend that you review them, and then use them as a template for your own notes. There are several things you should take into account.
+The Apache Zeppelin web notebook comes with sample notes. We recommend that you review them, and then use them as a template for your own notes. There are several things you should take into account.
 
 * The data grid model can be declared in a notebook using the `%define` interpreter:
 
@@ -99,15 +105,15 @@ The Web Notebook comes with sample notes. We recommend that you review them, and
 	import model.v1._
 	```
 
-* You can  load external .JARs from the Spark interpreter settings, or with the `z.load("/path/to.jar")` command:
+* You can load external .JARs from the Spark interpreter settings, or with the `z.load("/path/to.jar")` command:
 
 	```scala
 	%dep
 	z.load("./insightedge/examples/jars/insightedge-examples.jar")
 	```
 
-	{{%refer%}}
-	For more details, refer to {{%exurl "Zeppelin Dependency Management""https://zeppelin.apache.org/docs/latest/interpreter/spark.html#dependency-management"%}}.
-	{{%/refer%}}
+ {{%refer%}}
+ For more details, refer to {{%exurl "Zeppelin Dependency Management""https://zeppelin.apache.org/docs/latest/interpreter/spark.html#dependency-management"%}}.
+ {{%/refer%}}
 
 * You must load your dependencies before you start using the `SparkContext` (`sc`) command. If you want to redefine the model or load another .JAR after `SparkContext` has already started, you must reload the Spark interpreter.
