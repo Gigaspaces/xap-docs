@@ -29,6 +29,7 @@ MemoryXtend offers the following storage driver options:
 
 * [MemoryXtend for Disk (SSD/HDD Storage](./memoryxtend-rocksdb-ssd.html) - For storing data on SSD or any other disk device.
 * [MemoryXtend for Off-Heap Memory](./memoryxtend-ohr.html) - For storing data in off-heap memory (also known as native heap).
+* [MemoryXtend for Pmem](./memoryxtend-pmem.html) - For storing data in pmem memory.
 
 # Class-Level Settings
 
