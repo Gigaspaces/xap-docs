@@ -9,29 +9,30 @@ weight: 300
 # Overview
 
 Organizations often require quick insight into data to understand the business impact, and don't want to waste valuable time consulting their corporate IT team. With the [In-Grid SQL Query](./sql-query-intro.html) feature,
-this can be done using the data stored in the XAP in-memory data grid. [Tableau](https://www.tableau.com/) can be connected to the XAP data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a visual format.
+this can be done using the data stored in the XAP in-memory data grid. [Tableau](https://www.tableau.com/) can be connected to the data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a visual format.
 
-This topic describes how to set up a demo integration of Tableau with InsightEdge in a Microsoft Windows environment, so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.
+This topic describes how to set up an integration of Tableau with InsightEdge in a Microsoft Windows environment, so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.
 
 ## Architecture
 
-Tableau can connect to the XAP data grid using the SQL-99-compatible JDBC driver that is provided with the In-Grid SQL Query feature. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC connection is required to convert ODBC requests from Tableau into JDBC requests for the InsightEdge JDBC driver. The Easysoft ODBC-JDBC gateway has been evaluated and certified for use with InsightEdge, and is used in the sample integration. 
+Tableau can connect to the data grid using the SQL-99-compatible JDBC driver that is provided with the In-Grid SQL Query feature. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC connection is needed to convert ODBC requests from Tableau into JDBC requests for the InsightEdge JDBC driver. The Easysoft ODBC-JDBC gateway has been evaluated and certified for use with InsightEdge, and is used in the integration described here. 
 
 <img src="/attachment_files/sbp/tableau/diagram.png" width=386" height="134" />
  
 ## Sample Data Set
 
-In this example, a familiar `Simple - Superstore` Tableau users data set is used. The original schema is too simple to show the join capabilities, so some additions were made to the model, namely that location information is referenced by the orders entity. The updated schema is as follows:
+In this example, a familiar `Simple - Superstore` Tableau users data set is used. The original schema is too simple to show the join capabilities, so the model was updated with location information that is referenced by the orders entity. The updated schema is as follows:
   
 <img src="/attachment_files/sbp/tableau/schema.png" width=389" height="151" />
 
 # Integrating Tableau with InsightEdge
 
-In order to integrate Tableau with InsightEdge, you must have a XAP data grid that is up and running, and you need access to it. The InsightEdge platform includes XAP as a core component. After you set up and start your InsightEdge application, you must add sample data to a Space, for use with the demo.
+In order to integrate Tableau with InsightEdge, you need a data grid that is up and running, and you need access to it. After setting up and starting InsightEdge, do the following to create the necessary environment to integrate Tableau and view data:
 
-After InsightEdge has been configured, you can download and install the ODBC-JDBC gateway, activate it with a trial license, and set it up in Microsoft Windows.
-
-Lastly, download and configure Tableau to work with InsightEdge via the ODBC-JDBC gateway. At this point you can perform a query on the data grid via Tableau, and view the results.
+- Add sample data to the Space.
+- After InsightEdge has been configured, download and install the ODBC-JDBC gateway, activate it with a trial license, and set it up in Microsoft Windows.
+- Download and configure Tableau to work with InsightEdge via the ODBC-JDBC gateway.
+- Perform a query on the data grid via Tableau, and view the results.
 
 ## Configuring InsightEdge Locally
 
@@ -39,15 +40,16 @@ Before you deploy the data grid for the purpose of this demo, you should install
 
 ### Deploying the Data Grid
 
-The first step is deploying a XAP data grid and creating a Space for the demo.
+The first step is deploying a data grid and creating a Space.
 
 **To deploy the data grid on a local machine:**
 
-1. Run ${XAP_HOME}\tools\maven\installmavenrep.bat script.
-1. Run ${XAP_HOME}\insightedge\tools\maven\insightedge-maven.cmd script.
-1. Navigate to the `$XAP_HOME\bin` directory and launch a cmd window.
-1. Type `insightedge host run-agent --auto --gsc=2` to create a XAP data grid.
-1. Launch a new cmd window.
+1. Run the following scripts from the `$<XAP_HOME>\tools\maven` directory:
+	- installmavenrep.bat
+	- insightedge-maven.cmd 
+1. Navigate to the `$<XAP_HOME>\bin` directory and launch a cmd window.
+1. Type `insightedge host run-agent --auto --gsc=2` to create a data grid.
+1. Launch a new command window.
 1. Type `insightedge space deploy --partitions=2 tableauSpace` to create a Space with the name `tableauSpace`.  
 
 ### Populating the Space
@@ -56,7 +58,7 @@ After the Space is created, it needs to be populated with sample data, so that y
 
 **To populate the Space with data:**
 
-1. Download [this file](/download_files/sbp/insightedge-sql-demo.rar) and unpack it.
+1. Download the [InsightEdge SQL demo](/download_files/sbp/insightedge-sql-demo.rar) and unpack it.
 1. Under the extracted "insightedge-sql-demo" folder, build the sample with `mvn clean install`.
 1. Execute the following command:
 
@@ -64,7 +66,7 @@ After the Space is created, it needs to be populated with sample data, so that y
 	java -jar target\insightedge-sql-demo.jar --space-url "jini://*/*/tableauSpace?locators=127.0.0.1" --lookup-group <DATA_GRID_LOOKUP_GROUP>
 	```
 1. Substitute the value `<DATA_GRID_LOOKUP_GROUP>` with the appropriate value for your deployment. The lookup-group argument is optional.
-1. Open <GigaSpaces Management Center> in order to verify that the data populated in space as expected.
+1. Open the GigaSpaces Management Center in order to verify that the data was populated in the Space as expected.
 
 	<img src="/attachment_files/sbp/tableau/xap_1.png" width=371" height="68" />
 
@@ -74,7 +76,7 @@ When connecting to the data grid, the ODBC-JDBC gateway runs the InsightEdge JDB
 
 **To generate the InsightEdge JDBC Client JAR:**
 
-1. Navigate to `${XAP_HOME}\insightedge\tools\jdbc`.
+1. Navigate to `$<XAP_HOME>\insightedge\tools\jdbc`.
 1. Run the `build-jdbc-client.cmd` script to create the file `insightedge-jdbc-client.jar`. 
 
 	
@@ -83,7 +85,7 @@ When connecting to the data grid, the ODBC-JDBC gateway runs the InsightEdge JDB
 Follow these instructions to download, install, and set up the Easysoft ODBC-JDBC gateway.
 
 {{%note%}}
-If you don't want to use the Easysoft ODBC-JDBC Gateway, you can run the demo using your preferred bridge implementation.
+If you don't want to use the Easysoft ODBC-JDBC Gateway, you can use your preferred bridge implementation.
 {{%/note%}}
 
 ### Installing the Easysoft ODBC-JDBC Gateway
@@ -97,7 +99,7 @@ If you don't want to use the Easysoft ODBC-JDBC Gateway, you can run the demo us
 
 ### Requesting an EasySoft License
 
-After you install the Easysoft gateway on your machine, you have to request a trial license in order to run the application.
+After you install the Easysoft gateway on your machine, you must request a trial license in order to run the application.
 
 **To obtain a trial Easysoft license for the ODBC-JDBC gateway:**
 
@@ -119,8 +121,7 @@ After you install the Easysoft gateway on your machine, you have to request a tr
 
 	<img src="/attachment_files/sbp/easysoft/easysoft_data_license_manager_3.png" width=352" height="247" />
 	
-Look in your email spam section for the license.
-At this point, your user account is updated and you have access to the ODBC-JDBC gateway software for the duration of the trial license period.
+Look in your email spam section for the license. At this point, your user account is updated and you have access to the ODBC-JDBC gateway software for the duration of the trial license period.
 
 ### Configuring the ODBC-JDBC Gateway
 
@@ -129,7 +130,6 @@ After you have installed the gateway software and obtained a trial license, you 
 **To configure the ODBC-JDBC gateway:**
 
 1. Navigate to the ODBC Data Source Administrator in Microsoft Windows.
-
 {{%note%}}
 For instructions on how to access the ODBC Data Source Administrator, see this [Microsoft help topic]( https://docs.microsoft.com/en-us/sql/odbc/admin/odbc-data-source-administrator).
 {{%/note%}}
@@ -170,7 +170,7 @@ For instructions on how to access the ODBC Data Source Administrator, see this [
 
 Download and install [Tableau](https://www.tableau.com/) desktop.
 
-After the XAP data grid has been populated with the sample data, and the ODBC-JDBC Gateway has been configured to connect to InsightEdge, you can configure Tableau to read the data and display it in a graphic visual format. You can then query the data grid and see the activity that occurs under the hood when Tableau accesses XAP as a SQL database and reads the requested data. 
+After the data grid has been populated with the sample data, and the ODBC-JDBC Gateway has been configured to connect to InsightEdge, you can configure Tableau to read the data and display it in a graphic visual format. You can then query the data grid and see the activity that occurs under the hood when Tableau accesses XAP as a SQL database and reads the requested data. 
 
 ### Configuring the Data Source
 
@@ -179,9 +179,8 @@ Tableau has to be configured to use the ODBC-JDBC gateway as the data source.
 **To configure the ODBC-JDBC gateway:**
 
 1. Start Tableau.
-1. Click Connect in the Tableau desktop, and select **Other Database (ODBC)** as the data source.
-
-	<img src="/attachment_files/sbp/tableau/tableau_0.png" width=243" height="245" />
+1. Click **Connect** in the Tableau desktop, and select **Other Database (ODBC)** as the data source.
+<img src="/attachment_files/sbp/tableau/tableau_0.png" width=243" height="245" />
 
 1. In the Other Databases (ODBC) window, configure the options as follows:	
 
@@ -198,12 +197,11 @@ Tableau has to be configured to use the ODBC-JDBC gateway as the data source.
 	<img src="/attachment_files/sbp/tableau/tableau_2_1.png" width=310" height="496" /> 
 
 1. Under **Connections**, click the search icon in the **Schema** area and select **space**.
-
 {{%note%}}
-The sample data for this demo contains a Space called **space**. If you have additional Spaces in your InsightEdge environment, they may appear in this list.
+The sample data contains a Space called **space**. If you have additional Spaces in your InsightEdge environment, they may appear in this list.
 {{%/note%}}
 
-<img src="/attachment_files/sbp/tableau/tableau_3.png" width=213" height="267" /> 
+	<img src="/attachment_files/sbp/tableau/tableau_3.png" width=213" height="267" /> 
  
 1. Verify that Tableau can see the sample data by peforming a table search.  You should see **Locations** and **Orders** in the list of tables.
 
@@ -226,17 +224,17 @@ Everything that needs to be configured has been set up, and you can execute quer
  
 1. Below the data pane, select the **Sheet1** tab.
 1. Select **Country** and **State** from the **Locations** node using standard Windows functionality (press the **Ctrl** key while selecting).
-1. Right click and select **Create Hierarchy** from the menu that is displayed.
+1. Right-click and select **Create Hierarchy** from the menu that is displayed.
 
 	<img src="/attachment_files/sbp/tableau/tableau_4.png" width=338" height="347" />  
  
 1. Double-click **State**.
 1. From the **Measures** area, drag and drop **Sales** to the Size option in the Marks card, and **Profit** to the Color option.
-1. View the results in the data pane; you can easily see the sales-profit insight that was derived from the data retrieved from the XAP data grid.
+1. View the results in the data pane; you can easily see the sales-profit insight that was derived from the data retrieved from the data grid.
 
 	<img src="/attachment_files/sbp/tableau/tableau_5.png" width=770" height="388" />
 
-1. In the GigaSpaces Management Center, view the Space operations statistics. You can see the read operations that were performed when Tableau accessed the XAP data grid to construct the view:
+1. In the GigaSpaces Management Center, view the Space operations statistics. You can see the read operations that were performed when Tableau accessed the data grid to construct the view:
 
 	<img src="/attachment_files/sbp/tableau/xap_3.png" width=757" height="392" />
 
