@@ -99,19 +99,27 @@ Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts
 |12.1 b17100     |March 2017	|12.1.1 b17100 in June 2017            |No Plans| September 2019 |
 |12.2 b18000     |Sept. 2017	|12.2.1 b18100 in Nov. 2017            |No Plans| March 2020 |
 |12.3 b19000     |March 2018	|12.3.1 b19300 in July 2018            |No Plans|  |
-                         
+|14.0 b19xxx     |<nobr>November 2018<nobr>	|                                      |14.0.1  |   |
+                        
         
 **[1] Product Releases** – GigaSpaces R4.x and R5.x refer to all editions including the Enterprise (EE), Caching (EDG) and Community editions. R6.x refers to all editions including the XAP, Caching (EDG) and Community editions.<br>
 **[2] Planned Maintenance Service Pack Release** – Planned dates for release of additional service packs for the specific product version. These dates are provided for planning purposes only, are subject to change at any time and are not to be considered commitments.<br>
 **[3] Release End-of-Life Retirement Date** – effective date of the standard support and service discontinuance. Extended Support might be available beyond this date. <br>
 **[4] Extended Support currently available**
 
-#  JVM and Third-Party End-Of-Life Policy
+#  Third-Party End-Of-Life Policy
+
+This section describes GigaSpaces' general support policies for Java and Spring Framework. For more information about which versions are supported with the current release of the InsightEdge Platform, refer to the Release Notes page that discusses the third-party products shipped with InsightEdge and XAP. 
+
+## Java Support
  
-- Java SE 1.4 EOL – Based on information made publicly available by Sun Microsystems, as of October 30th 2008 Java SE 1.4 SDK has reached its End of Service Life (EOSL).
-- Java SE 1.5 EOL – Based on information made publicly available by Sun Microsystems, as of October 30th 2009 Java SE 1.5 SDK has reached its End of Service Life (EOSL).
-- Sun also ceased to support the J2SE 1.4 and 1.5 JVMs. In addition, the two other major JVM vendors, namely IBM and Oracle, announced their limited ability to support these JVMs in light of Sun's announcement. This in turn will limit GigaSpaces’ ability to provide support for applications running on these JVMs. However, we will continue to support XAP editions up to version 6.6 (for Java 1.4) and up to version 7.1 (for Java 1.5) in these environments on a best-effort basis. Customers concerned about this EOL announcement are encouraged to contact their JDK vendor to explore the extended support entitlements beyond the stated EOL period.
-- GigaSpaces recommends that customers upgrade to a fully-supported environment, such as the latest version of InsightEdge or XAP {{%latestxaprelease%}} and the latest Java 1.8 SDK.
+Customers should upgrade to a fully-supported environment, such as the latest version of InsightEdge or XAP {{%latestxaprelease%}} and the latest Java 1.8 SDK.
+
+- GigaSpaces is planning to support the first Long-Term Support (LTS) Java 11 release in an upcoming version of the InsightEdge Platform, and all future LTS Java versions as they are released.
+- From version 8.0 onwards, XAP no longer supports the Java 1.5 SDK, and requires Java 1.6 SDK or higher. 
 - From version 7.0 onwards, XAP no longer supports the Java 1.4 SDK, and requires Java 1.5 SDK or higher.
-- From version 8.0 onwards, XAP no longer supports the Java 1.5 SDK, and requires Java 1.6 SDK or higher. For details about Java 1.4 and 1.5 SDK EOL, refer to the following page: http://java.sun.com/products/archive/eol.policy.html
-- For more details, refer to the page that discusses the third-party products shipped with InsightEdge and XAP.
+
+## Spring Framework Support
+
+GigaSpaces supports Spring Framework according to the support policy described on the [Spring Framework Versions](https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-Versions) page for the Spring project.   
+ 
