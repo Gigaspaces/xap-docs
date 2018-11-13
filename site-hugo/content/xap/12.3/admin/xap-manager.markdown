@@ -35,7 +35,7 @@ gs-agent.bat --manager-local
  
 In the manager log file (`$XAP_HOME/logs`), you can see:
 
-* The maanger has started LUS, Zookeeper, GSM and REST API have started and various other details about them.
+* The Manager has started LUS, Zookeeper, GSM and REST API have started and various other details about them.
 * Zookeeper files reside in `$XAP_HOME/work/manager/zookeeper`
 * REST API is started on [localhost:8090](http://localhost:8090)
 
@@ -75,6 +75,7 @@ XAP_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:310
 When using this syntax in unix/linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.
 {{%/note%}}
 
+
 ## Zookeeper
 
 ZooKeeper's behavior is governed by the ZooKeeper configuration file (`zoo.cfg`). 
@@ -85,6 +86,36 @@ Default port of Zookeeper is 2181.
 {{%refer%}}
 Additional information on Zookeeper configuration can be found at {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration"%}}.
 {{%/refer%}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Backwards Compatibility
 

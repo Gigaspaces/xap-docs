@@ -23,8 +23,8 @@ Examples:
 **To install SquirreL for use with the InsightEdge platform:**
 
 1. Download and install {{%exurl "SquirreL" "http://squirrel-sql.sourceforge.net/#installation"%}}.
-1. Copy all of the XAP JAR files (located in ...xap/lib/required) to the squirreL `lib` folder
-1. Copy all of the InsightEdge JAR files (xap/insightedge/lib/jdbc) to the squirreL `lib` folder.
+1. Copy all of the XAP JAR files (located in `<XAP-HOME>\lib\required`) to the squirreL `lib` folder.
+1. Copy all of the InsightEdge JAR files (`<XAP-HOME>\insightedge\lib\jdbc`) to the squirreL `lib` folder.
 1. Start SquirreL.
 1. Click the **Drivers** vertical tab on the left, and then click **+** to add a new driver.
   ![image](/attachment_files/xap-sql/squirrel-driver.png)

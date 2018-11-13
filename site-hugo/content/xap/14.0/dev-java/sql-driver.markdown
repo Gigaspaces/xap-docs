@@ -239,9 +239,9 @@ The following `url_properties` are available:
 | password                    | The password for a secured Space.      |              | 
 | disableServerSideJoins      | With this parameter, all joins are executed on the client side. The data from tables are loaded taking into account filters and projections.      |     false         |
 | preferSpaceIterator         | Use the Space Iterator API to execute certain types of queries. Requires less memory on the client side, but may result in slower performance.         |     false         | 
-| logLevel                    | Driver log level (client side only). See more in `Logging` section.      |     INFO         |
-| log4jFile                   | The path to log4j.properties file. If not provided, the default configuration is used. See more in `Logging` section. ||
-| autoCommit                  | Queries are auto commited to the database | false |
+| logLevel                    | Driver log level (client side only). For more information, see the [Logging](../admin/logging-overview.html) topic.      |     INFO         |
+| log4jFile                   | The path to log4j.properties file. If not provided, the default configuration is used. For more information, see the [Logging](../admin/logging-overview.html) topic. ||
+| autoCommit                  | Queries are auto-commited to the databas.e | false |
 
 Other properties inherited from `Calcite` {{%exurl "jdbc-connect-string-parameters""https://calcite.apache.org/docs/adapter.html#jdbc-connect-string-parameters"%}}
 
@@ -258,8 +258,6 @@ Accessing a remote secured Space:
 ```bash
 jdbc:insightedge:url=jini://LookupServiceHostname/*/mySpace;user=admin;password=admin
 ```
-
- 
 
 # Explain Plan
 
@@ -323,8 +321,6 @@ XapToEnumerableConverter
 {{%/tab%}}
 {{%/tabs%}}
 
- 
-
 
 # Table Mapping
 
@@ -349,9 +345,9 @@ Query performance can be greatly improved by indexing. For more information abou
 
 ## Client-Side logging (Driver)
 
-The logging granularity can be set using the JDBC url parameter. The level can be configured with one of the following options: TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. 
+The logging granularity can be set using the JDBC URL parameter. The level can be configured with one of the following options: TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. 
 
-This url parameter configuration does not apply to the logging level for third-party libraries.
+This URL parameter configuration does not apply to the logging level for third-party libraries.
 
 The default configuration of the JDBC driver's logger:
 
@@ -387,10 +383,10 @@ Consider the following query:
 SELECT sales FROM Orders WHERE orderId = 100
 ```
 
-This query creates an XAP SQLQuery, and pushes the predicate and projection down to the XAP side so only a small result subset is loaded on the client side.
+This query creates a data grid SQLQuery, and pushes the predicate and projection down to the data grid side so only a small result subset is loaded on the client side.
 
 {{%refer%}}
-For more information about XAP SQL support, refer to the [SQL Query](./query-sql.html) page.
+For more information about SQL support in the data grid, refer to the [SQL Query](./query-sql.html) page.
 {{%/refer%}}
 
 
