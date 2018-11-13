@@ -33,10 +33,13 @@ In this section, you will learn how to do the following:
 
 - Get the required GigaSpaces Helm charts
 - Start a data grid in Kubernetes
-- Monitor your data gris using Kubernetes tools
+- Monitor your data grid using Kubernetes tools
 - Delete your data grid
 
 ## Accessing the GigaSpaces Helm Charts
+
+The Helm package manager is used for installing InsightEdge and XAP in the Kubernetes environment. Helm makes deploying complex applications more portable, supports automatic rollbacks, and is a familiar pattern for developers that is easy to understand.
+Moreover, since Helm is open source, there are many community charts available with standard configurations for common application services. 
 
 Helm supports installing charts in [a number of ways](https://docs.helm.sh/helm/#helm-install). A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The `xap` and `insightedge` Helm charts are published in the GigaSpaces Helm chart repository at `https://resources.gigaspaces.com/helm-charts`. 
 
