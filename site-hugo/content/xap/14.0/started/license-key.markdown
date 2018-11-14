@@ -18,7 +18,7 @@ After you download an InsightEdge or XAP commercial edition from the {{%exurl "D
 
 ```bash
 # License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
-Product=InsightEdge;Version={{%version xap-version%}};Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2017-Sep-30;Hash=PNXrPIPANOOddPNQFdQQ
+Product=InsightEdge;Version={{%version xap-version%}};Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2022-Dec-31;Hash=PNXrPIPANOOddPNQFdQQ
 ```
 
 If you're using [Docker images](https://hub.docker.com/u/gigaspaces/) for evaluation, add the `-e XAP_LICENSE=...` option to the Docker run command, using the license key in the email.
