@@ -11,7 +11,7 @@ In distributed computing, consistency-biased leader election is established usin
 * If the minority segment holds leadership, it will relinquish it, and will suspend itself until it rejoins the majority.
 * The majority segment will select a new leader if needed, knowing that the minority will relinquish the previous leader.
 
-In XAP, consistency-biased leader election is used when the space is deployed on an environmenent managed by a [XAP Manager](xap-manager.html) cluster. Each manager contains an embedded Apache Zookeeper node (znode), and together they provide the necessary environment to ensure consistency.
+In XAP, consistency-biased leader election is used when the space is deployed on an environment managed by a [XAP Manager](xap-manager.html) cluster. Each manager contains an embedded Apache Zookeeper node (znode), and together they provide the necessary environment to ensure consistency.
 
 # What is Apache Zookeeper?
 
@@ -25,7 +25,7 @@ When a space is deployed on an environment managed by a [XAP Manager](xap-manage
 
 # Configuration
 
-The default configuration is valid for most environments and applications. You can change it if you need to decrease/increase failover time (the time it takes from when a primary fails to when a backup accepts leadership in its place), using the following Space properties:
+The default configuration is valid for most environments and applications. You can change it if you need to decrease/increase failover time (the time it takes from when a primary fails to when a backup accepts leadership in its place), using the following Space properties (can also be provided as a JVM System property):
 
 | Property             | Description                                               | Default |
 |:---------------------|:----------------------------------------------------------|:--------|
@@ -33,6 +33,7 @@ The default configuration is valid for most environments and applications. You c
 | `space-config.leader-election.zookeeper.session-timeout` | Session timeout (in milliseconds)    | 15000 |
 | `space-config.leader-election.zookeeper.retry-timeout` | Retry policy maximum elapse timeout | Integer.MAX_VALUE |
 | `space-config.leader-election.zookeeper.retry-interval` | Interval between retries (in milliseconds) | 100 |
+
 ZooKeeper connections have sessions that are maintained on each heartbeat. The connection timeout applies to an API call, while the session timeout applies to network partition incidents.
 
 A new election takes place only in the presence of a ZooKeeper quorum. A backup Space in the quorum is elected primary when the primary Space session expires.

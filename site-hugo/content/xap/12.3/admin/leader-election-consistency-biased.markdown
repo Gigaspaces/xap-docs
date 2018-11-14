@@ -11,7 +11,7 @@ In distributed computing, consistency-biased leader election is established usin
 * If the minority segment holds leadership, it will relinquish it, and will suspend itself until it rejoins the majority.
 * The majority segment will select a new leader if needed, knowing that the minority will relinquish the previous leader.
 
-In XAP, consistency-biased leader election is used when the space is deployed on an environmenent managed by a [XAP Manager](xap-manager.html) cluster. Each manager contains an embedded Apache Zookeeper node (znode), and together they provide the necessary environment to ensure consistency.
+In XAP, consistency-biased leader election is used when the space is deployed on an environment managed by a [XAP Manager](xap-manager.html) cluster. Each manager contains an embedded Apache Zookeeper node (znode), and together they provide the necessary environment to ensure consistency.
 
 # What is Apache Zookeeper?
 

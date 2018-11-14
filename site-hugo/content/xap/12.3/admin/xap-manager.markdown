@@ -95,9 +95,9 @@ The ZooKeeper configuration file `zoo.cfg` is preset with the following paramete
 |----------|-------------| ------|
 | tickTime | Time unit used by ZooKeeper, in milliseconds. | 1000|
 | initLimit| Amount of time, in ticks, to allow followers to connect and sync to a leader. | 10|
-| syncLimit| Amount of time, in ticks, to allow followers to sync with ZooKeeper. | 10|
+| syncLimit| Amount of time, in ticks, to allow followers to sync with ZooKeeper. | 5|
 | clientPort| The port to listen for client connections; the port that clients attempt to connect to. | 2181|
-| maxSessionTimeout| The maximum session timeout that the server will allow the client to negotiate, in milliseconds. | 60000|
+| maxSessionTimeout| The maximum session timeout that the server will allow the client to negotiate, in milliseconds. | 20000|
 | autopurge | Automatic purging of the snapshots and corresponding transaction logs. | enabled by purgeInterval > 0|
 | autopurge.purgeInterval | The time interval for which the purge task has to be triggered (zero to disable), in hours. | 1|
 | autopurge.snapRetainCount | Retains the most recent snapshots and the corresponding transaction logs and deletes the rest. | 3|
@@ -112,9 +112,12 @@ As a participant of the ZooKeeper leader election, the GSM is configurable using
 |System Property |Default  |
 |----------------|---------|
 |`com.gs.manager.leader-election.zookeeper.connection-timeout` | 5000|
-|`com.gs.manager.leader-election.zookeeper.session-timeout`    |15000|
+|`om.gs.manager.leader-election.zookeeper.session-timeout`    | 8000|
 |`com.gs.manager.leader-election.zookeeper.retry-timeout`      |Integer.MAX_VALUE |
 |`com.gs.manager.leader-election.zookeeper.retry-interval`     |100 |
+
+(note the typo in: \[c\]om.gs.manager.leader-election.zookeeper.session-timeout)
+
 # Backwards Compatibility
 
 The Manager is offered side-by-side with the existing stack (GSM, LUS, etc.). We think this is a better way of working with XAP, and we want new users and customers to work solely with it. 
