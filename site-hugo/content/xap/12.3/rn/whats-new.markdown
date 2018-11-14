@@ -87,4 +87,7 @@ The following functionality is deprecated as of this release:
 - V1 of the REST Manager API (use the new V2 instead)
 - `BASIC` and `EXTENDED` index types (use `EQUAL` | `ORDERED` | `EQUAL_AND_ORDERED` instead)
 
-In addition, Java 7 is no longer supported. Java 8 is now the minimum supported version.
+In addition, please note the following:
+
+- Java 7 is no longer supported. Java 8 is now the minimum supported version.
+- The XAP.NET 32-bit package is end of life as of this release.

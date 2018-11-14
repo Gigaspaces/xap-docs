@@ -170,7 +170,7 @@ For instructions on how to access the ODBC Data Source Administrator, see this [
 
 Download and install [Tableau](https://www.tableau.com/) desktop.
 
-After the data grid has been populated with the sample data, and the ODBC-JDBC Gateway has been configured to connect to InsightEdge, you can configure Tableau to read the data and display it in a graphic visual format. You can then query the data grid and see the activity that occurs under the hood when Tableau accesses XAP as a SQL database and reads the requested data. 
+After the data grid has been populated with the sample data, and the ODBC-JDBC Gateway has been configured to connect to InsightEdge, you can configure Tableau to read the data and display it in a graphic visual format. You can then query the data grid and see the activity that occurs under the hood when Tableau accesses it as a SQL database and reads the requested data. 
 
 ### Configuring the Data Source
 

@@ -24,8 +24,6 @@ The latest version of XAP can be downloaded {{%exurl "here" "http://www.gigaspac
 
 **Supported Operating Systems:** Any Windows operating system supported by the designated .NET Framework version.
 
-**64-bit support:** XAP.NET is released in two separate packages for x86 and x64. The XAP.NET x86 package can be installed on a x64 environment and run using {{%exurl "WoW64" "http://msdn.microsoft.com/en-us/library/aa384249.aspx"%}}.
-
 #  Installation
 
 GigaSpaces XAP.NET is packaged as a standard Windows Installer package (`.msi` file). To start the installation simply double-click the msi file, and the installation wizard will pop up and guide you through the installation process. After you accept the license agreement, you will see the standard installation details screen, allowing you to modify the installation path (default is `C:\GigaSpaces\XAP.NET {{%currentversion%}} x86` or `x64`) and which features to install.
