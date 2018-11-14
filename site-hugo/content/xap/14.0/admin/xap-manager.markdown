@@ -6,19 +6,19 @@ parent: runtime-configuration.html
 weight: 250
 ---
 
-The XAP Manager (or simply The Manager) is a component which stacks together the [LUS](../overview/the-runtime-environment.html#lus) and [GSM](../overview/the-runtime-environment.html#gsm) 
+The XAP Manager (or simply The Manager) is a component that stacks together the [LUS](../overview/the-runtime-environment.html#lus) and [GSM](../overview/the-runtime-environment.html#gsm) 
 along with {{%exurl "Apache ZooKeeper""http://zookeeper.apache.org/"%}} and an embedded web application which hosts an admin instance with a [RESTful management API](xap-manager-rest.html) on top of it.
 
 In addition to simplifying setup and management, the Manager also provides the following benefits:
 
-* Space leader election will use zookeeper instead of LUS, providing a more robust process (consistent when network partitions occur), and eliminating [split brains](./split-brain-and-primary-resolution.html).
-* When using MemoryXtend, last primary will automatically be stored in Zookeeper (instead of you needing to setup a shared NFS and configure the PU to use it)
-* The GSM will use Zookeeper for leader election (instead of an active-active topology used today). This provides a more robust process (consistent when network partitions occur). Also, having a single leader GSM means that the general behaviour is more deterministic and logs are easier to read.
-* RESTful API for managing the environment remotely from any platform.
+* Space leader election uses Apache Zookeeper instead of the LUS, providing a more robust process (consistent when network partitions occur), and eliminating [split brains](./split-brain-and-primary-resolution.html).
+* When using MemoryXtend, the last primary will automatically be stored in Apache Zookeeper (instead of having to set up a shared NFS and configure the Processing Unit to use it).
+* The GSM uses Apache Zookeeper for leader election (instead of the active-active topology used today). This provides a more robust process (consistent when network partitions occur). Also, having a single leader GSM means that the general behaviour is more deterministic and logs are easier to read.
+* REST API for managing the environment remotely from any platform.
 
 # Getting Started
 
-The easiest way to get started is to run a standalone manager on your machine - simply run the following command:
+The easiest way to get started is to run a standalone Manager on your machine - simply run the following command:
 
 {{%tabs%}}
 {{%tab Linux%}}
@@ -33,25 +33,25 @@ gs-agent.bat --manager-local
 {{%/tab%}}
 {{%/tabs%}}
  
-In the manager log file (`$XAP_HOME/logs`), you can see:
+In the Manager log file (`$XAP_HOME/logs`), you can see:
 
-* The maanger has started LUS, Zookeeper, GSM and REST API have started and various other details about them.
-* Zookeeper files reside in `$XAP_HOME/work/manager/zookeeper`
-* REST API is started on [localhost:8090](http://localhost:8090)
+* The Manager has started the LUS, Zookeeper, GSM and REST API (and various other details about them).
+* Apache Zookeeper files reside in `$XAP_HOME/work/manager/zookeeper`.
+* The REST API is started on [localhost:8090](http://localhost:8090) .
 
 {{%note "Remote Access"%}}
-The local manager is intended for local usage on the developer's machine, hence it binds to `localhost`, and is not accessible from other machines. If you wish to start a manager and access it from other hosts, follow the procedure described in **High Availability** below with a single host.
+The local Manager is intended for local use on the developer's machine, so it binds to `localhost` and is not accessible from other machines. If you want to start a Manager and access it from other hosts, follow the procedure described in **High Availability** below with a single host.
 {{%/note%}}
 
 # High Availability
 
-In a production environment, you'll probably want a cluster of managers on multiple hosts, to ensure high availability. You'll need 3 machines (odd number is required to ensure quorum during network partitions). For examplem, suppose you’ve selected machines alpha, bravo and charlie to host the managers:
+In a production environment, you'll probably want a cluster of Managers on multiple hosts to ensure high availability. You'll need 3 machines (an odd number is required to ensure a quorum during network partitions). For example, suppose you’ve selected machines alpha, bravo and charlie to host the managers:
 
-1. Edit the `$XAP_HOME/bin/setenv-overrides.sh/bat` script and set `XAP_MANAGER_SERVERS` to the list of hosts. For example: `export XAP_MANAGER_SERVERS=alpha,bravo,charlie`
-2. Copy the modified `setenv-overrides.sh/bat` to each machine which runs a `gs-agent`.
-3. Run `gs-agent --manager` on the manager machines (alpha, bravo, charlie, in this case).
+1. Edit the `$XAP_HOME/bin/setenv-overrides.sh/bat` script and set `XAP_MANAGER_SERVERS` to the list of hosts. For example: `export XAP_MANAGER_SERVERS=alpha,bravo,charlie`/
+2. Copy the modified `setenv-overrides.sh/bat` to each machine that runs a `gs-agent`.
+3. Run `gs-agent --manager` on the <anager machines (alpha, bravo, and charlie in this case).
 
-Note that starting more than one manager on the same host is not supported.
+Starting more than one Manager on the same host is not supported.
 
 # Configuration
 
@@ -59,32 +59,65 @@ Note that starting more than one manager on the same host is not supported.
 
 The following ports can be modified using system properties, e.g. via the `setenv-overrides` script located in `$XAP_HOME/bin`:
 
-|Port   |System property |Default  |
+|Port   |System Property |Default  |
 |-------|----------------|---------|
 |REST |`com.gs.manager.rest.port`| 8090|
 |Zookeeper |`com.gs.manager.zookeeper.discovery.port`<br>`com.gs.manager.zookeeper.leader-election.port` |2888<br>3888|
 |Lookup Service|`com.gs.multicast.discoveryPort`|4174 |
 
-{{%note "Note:"%}}
-Zookeeper requires that each manager can reach any other manager. If you are changing the Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the `XAP_MANAGER_SERVERS` environment variable.  For example:
+{{%note %}}
+Apache Zookeeper requires that each Manager can reach the other Managers. If you change the Apache Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the `XAP_MANAGER_SERVERS` environment variable.  For example:
 
 ```bash
 XAP_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200"
 ```
 
-When using this syntax in unix/linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.
+When using this syntax in Unix/Linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.
 {{%/note%}}
 
-## Zookeeper
+## Apache Zookeeper
 
-ZooKeeper's behavior is governed by the ZooKeeper configuration file (`zoo.cfg`). 
-When using XAP manager, an embedded Zookeeper instance is started using a default configuration located at `$XAP_HOME/config/zookeeper/zoo.cfg`. 
+
+
+Apache ZooKeeper's behavior is governed by its configuration file (`zoo.cfg`). 
+When using XAP Manager, an embedded Zookeeper instance is started using a default configuration located at `$XAP_HOME/config/zookeeper/zoo.cfg`. 
 If you need to override the default settings, either edit the default file, or use the `XAP_ZOOKEEPER_SERVER_CONFIG_FILE` environment variable or the `com.gs.zookeeper.config-file` system property to point to your custom configuration file.
-Default port of Zookeeper is 2181.
+The default Zookeeper port is 2181.
+
 
 {{%refer%}}
-Additional information on Zookeeper configuration can be found at {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration"%}}.
+For more information about Apache Zookeeper configuration, see {{%exurl "ZooKeeper configuration""https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration"%}}.
 {{%/refer%}}
+
+### Zookeeper Configuration File
+
+The ZooKeeper configuration file `zoo.cfg` is preset with the following parameters.
+
+| Property | Description | Value |
+|----------|-------------| ------|
+| tickTime | Time unit used by ZooKeeper, in milliseconds. | 1000|
+| initLimit| Amount of time, in ticks, to allow followers to connect and sync to a leader. | 10|
+| syncLimit| Amount of time, in ticks, to allow followers to sync with ZooKeeper. | 10|
+| clientPort| The port to listen for client connections; the port that clients attempt to connect to. | 2181|
+| maxSessionTimeout| The maximum session timeout that the server will allow the client to negotiate, in milliseconds. | 60000|
+| autopurge | Automatic purging of the snapshots and corresponding transaction logs. | enabled by purgeInterval > 0|
+| autopurge.purgeInterval | The time interval for which the purge task has to be triggered (zero to disable), in hours. | 1|
+| autopurge.snapRetainCount | Retains the most recent snapshots and the corresponding transaction logs and deletes the rest. | 3|
+
+
+## ZooKeeper Client
+
+The Manager stack uses the ZooKeeper leader election to select a leader among the Grid Service Managers. The leader GSM will act as the managing (active) GSM of the deployed Processing Units.
+The ZooKeeper quorum ensures that there will only be one elected Manager. In the absence of a quorum, and until a GSM is elected leader, the GSMs will only monitor the cluster.
+As a participant of the ZooKeeper leader election, the GSM is configurable using the following properties:
+
+|System Property |Default  |
+|----------------|---------|
+|`com.gs.manager.leader-election.zookeeper.connection-timeout` | 5000|
+|`com.gs.manager.leader-election.zookeeper.session-timeout`    |15000|
+|`com.gs.manager.leader-election.zookeeper.retry-timeout`      |Integer.MAX_VALUE |
+|`com.gs.manager.leader-election.zookeeper.retry-interval`     |100 |
+
 
 # Backwards Compatibility
 
@@ -92,10 +125,10 @@ The Manager is offered side-by-side with the existing stack (GSM, LUS, etc.). We
 On the same note we understand that it requires some effort from existing users which upgrade to 12.1 (probably not too much, mostly on changing the scripts they use to start the environment), 
 so if you’re upgrading for bug fixes/other features and don’t want the manager for now, you can switch from 12.0 to 12.1 and continue using the old components - it’s all still there.
 
-{{%note "Note:"%}}
-The Manager uses a different selection strategy when selecting resources where to deploy a processing unit instance. The strategy is to choose the container with the least relative weight. This is achieved by calculating the relative weight of each container in regards to other containers. Prior to 12.1 the strategy was to calculate the weight of a container based on gathering remote state. In large deployments, the network overhead and the overall deployment time is costly. We can achieve almost the same behavior with the new strategy.
+{{%note%}}
+The Manager uses a different selection strategy when selecting resources where to deploy a Processing Unit instance. The strategy is to choose the container with the least relative weight. This is achieved by calculating the relative weight of each container in regards to other containers. Prior to 12.1, the strategy was to calculate the weight of a container based on gathering remote state. In large deployments, the network overhead and the overall deployment time is costly. We can achieve almost the same behavior with the new strategy.
 
-Notice that you may be experiencing a different instance distribution than before. Although in both strategies we take a "best-effort" approach, in some cases it may still be an uneven distribution due to simultaneous selection process.
+You may experience a different instance distribution than before. Although in both strategies we take a "best-effort" approach, in some cases it may still be an uneven distribution due to simultaneous selection process.
 
 To change between selector strategies, use the following system property (org.jini.rio.monitor.serviceResourceSelector). For example, to set the strategy to the on prior to 12.1, assign the following when loading the manager (in `XAP_MANAGER_OPTIONS` environment variable):
 ```bash
@@ -105,14 +138,14 @@ To change between selector strategies, use the following system property (org.ji
 
 # FAQ
 
-### Q. Why do I need 3 managers? In previous versions 2 LUS + 2 GSM was enough for high availability
+### Q. Why do I need 3 Managers? In previous versions 2 LUS + 2 GSM was enough for high availability.
 
-With an even number of managers, consistency cannot be assured in case of a network partitioning, hence the 3 managers requirement.
+With an even number of managers, consistency cannot be assured in case of a network partition, hence the need for 3 Managers.
 
-### Q. I want higher availability - can I use 5 managers instead of 3?
+### Q. I want higher availability - can I use 5 Managers instead of 3?
 
-Theoretically this is possible (e.g. Zookeeper supports this), but currently this is not supported in XAP - starting 5 managers would also start 5 Lookup Services, which will lead to excessive chatinnes and performance drop. This issue is in our backlog, though - if it's important for you please contact support or your sales rep to vote it up.
+Theoretically this is possible (Apache Zookeeper supports this), but currently this is not supported in XAP - starting 5 managers would also start 5 Lookup Services, which will lead to excessive chatiness and performance drop. This issue is in our backlog, though - if it's important for you please contact support or your sales rep to vote it up.
 
 ### Q. Can I use a load balancer in front of the REST API?
 
-Sure. However, make sure to use sticky sessions, as some of the operations (e.g. upload/deploy) take time to resonate to the other managers.
+Yes. However, make sure to use sticky sessions, as some of the operations (e.g. upload/deploy) take time to propogate to the other Managers.

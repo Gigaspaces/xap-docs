@@ -17,7 +17,7 @@ In XAP, consistency-biased leader election is used when the space is deployed on
 
 [Apache ZooKeeper](https://zookeeper.apache.org/) is a centralized service providing distributed synchronization, which can be used for various use cases in distributed systems such as leader election, configuration, distributed locks and more. It is highly reliable and widely used across the industry, both in open source projects such as Apache HBase and Apache Kafka), and by large companies such as Yahoo and Rackspace.
 
-{{% tip "Tip"%}} You don't have to download or setup Apache Zookeeper. It comes packaged with XAP, and is automatically started and monitored by the XAP Manager. {{% /tip %}}
+{{% tip %}} You don't have to download or setup Apache Zookeeper. It comes packaged with XAP, and is automatically started and monitored by the XAP Manager. {{% /tip %}}
 
 # Usage
 
@@ -25,20 +25,28 @@ When a space is deployed on an environment managed by a [XAP Manager](xap-manage
 
 # Configuration
 
-The default configuration is valid for most environments and applications. You can change it if you need to decrease/increase failover time (i.e. the duration between a primary fails and a backup accepts leadership in its place), using the following space properties:
+The default configuration is valid for most environments and applications. You can change it if you need to decrease/increase failover time (the time it takes from when a primary fails to when a backup accepts leadership in its place), using the following Space properties:
 
 | Property             | Description                                               | Default |
 |:---------------------|:----------------------------------------------------------|:--------|
-| `space-config.leader-election.zookeeper.session-timeout`                 | Session timeout (in milliseconds)    | `8000` |
-| <nobr>`space-config.leader-election.zookeeper.connection-timeout`</nobr> | Connection timeout (in milliseconds) | `5000` |
-| `space-config.leader-election.zookeeper.retry-timeout`                   | Retry timeout, in case operation fails | `Integer.MAX_VALUE` |
-| `space-config.leader-election.zookeeper.retry-interval`                  | Interval between retries (in milliseconds) | `1000` |
+| `space-config.leader-election.zookeeper.connection-timeout` | Connection timeout (in milliseconds) | 5000 |
+| `space-config.leader-election.zookeeper.session-timeout` | Session timeout (in milliseconds)    | 15000 |
+| `space-config.leader-election.zookeeper.retry-timeout` | Retry policy maximum elapse timeout | Integer.MAX_VALUE |
+| `space-config.leader-election.zookeeper.retry-interval` | Interval between retries (in milliseconds) | 100 |
+ZooKeeper connections have sessions that are maintained on each heartbeat. The connection timeout applies to an API call, while the session timeout applies to network partition incidents.
 
-{{% note "Note" %}} A shorter failover time is not always advantageous. It may cause short network disconnections to trigger unnecessary failovers, which can affect system stability. Change the defaults only after careful consideration, and adjust the values to suit your network capabilities and applicative requirements. {{% /note %}}
+A new election takes place only in the presence of a ZooKeeper quorum. A backup Space in the quorum is elected primary when the primary Space session expires.
+
+When a session expires, the primary Space suspends its activity until a quorum is reestablished. After the network partition is resolved, the primary Space resolves its state, terminating if a primary Space has already been elected.
+
+A primary Space may resume activity only if its session has not yet expired. Otherwise it terminates and becomes re-instantiated as a backup Space by the managing GSM.
+
+The failover time (of a backup Space until it is elected as primary) is a function of the session timeout plus the time it takes for the state to change. On a LAN network, this has been measured on average to be 35 seconds with the above default settings. This is twice as fast as Lookup-Service-based election.
+{{% note %}} A shorter failover time is not always advantageous. It may cause short network disconnections to trigger unnecessary failovers, which can affect system stability. Change the defaults only after careful consideration, and adjust the values to suit your network capabilities and applicative requirements. {{% /note %}}
 
 # Implementation
 
-GigaSpaces XAP uses the Apache Curator [leader selector](http://curator.apache.org/curator-recipes/leader-election.html) recipe, which implements a distributed lock with a notification mechanism using Apache Zookeeper.
+XAP uses the Apache Curator [leader selector](http://curator.apache.org/curator-recipes/leader-election.html) recipe, which implements a distributed lock with a notification mechanism using Apache Zookeeper.
 
 {{%align center%}}
 ![image](/attachment_files/zookeeper-based-leader-selector.png)
@@ -55,4 +63,4 @@ The following occurs during leader election:
 
 ## Partition Split Brain Instances
 
-The Apache Zookeeper leader selector avoids split-brain instances through quorum. If the primary Space is not in the majority, that Space is frozen (or quiesced) until the network is connected and the frozen primary Spac eis terminated automatically.
+The Apache Zookeeper leader selector prevents split-brain instances through quorum. If the primary Space is not in the majority, that Space is frozen (or quiesced) until the network is connected and the frozen primary Space is terminated automatically.
