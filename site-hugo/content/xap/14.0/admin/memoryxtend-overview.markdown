@@ -10,10 +10,10 @@ weight: 430
 
 In a traditional deployment, all XAP entries are stored in JVM heaps to provide the fastest performance possible. However, as data grows in size and numbers, the following issues become noticeable:
 
-- **Price** - While RAM performs much better than a magnetic hard drive, it is also much more expensive. As SSD gains in popularity, we see new scenarios where storing part of the data in SSD and part in RAM provides great business value.
+- **Price** - While RAM performs much better than a magnetic hard drive, it is also much more expensive. As SSD gains in popularity, we see new scenarios where storing part of the data in SSD and part in RAM provides great business value. Additionally, the new PMEM storage option provides performance similar to RAM, but at a cost closer to that of SSD.
 - **Garbage Collection** - The bigger the JVM heaps get, the harder the garbage collector works. Storing some of the data off-heap (i.e. in the native heap instead of the managed JVM heap) and managing it manually allows using a smaller JVM heap and relieves the pressure on the garbage collector.
 
-The MemoryXtend (blobstore) storage model allows an external storage medium (one that does not reside on the JVM heap) to store the Space data. This section describes the general MemoryXtend architecture and functionality, and its off-heap RAM and hSSD implementations.
+The MemoryXtend (blobstore) storage model allows an external storage medium (one that does not reside on the JVM heap) to store the Space data. This section describes the general MemoryXtend architecture and functionality, and its off-heap RAM, hSSD, and PMEM implementations.
 
 # Implementation
 
@@ -29,7 +29,7 @@ MemoryXtend offers the following storage driver options:
 
 * [MemoryXtend for Disk (SSD/HDD Storage](./memoryxtend-rocksdb-ssd.html) - For storing data on SSD or any other disk device.
 * [MemoryXtend for Off-Heap Memory](./memoryxtend-ohr.html) - For storing data in off-heap memory (also known as native heap).
-* [MemoryXtend for Pmem](./memoryxtend-pmem.html) - For storing data in pmem memory.
+* [MemoryXtend for PMEM](./memoryxtend-pmem.html) - For storing data in PMEM memory.
 
 # Class-Level Settings
 
@@ -334,7 +334,7 @@ The following examples demonstrate how to configure a persistent disk-based stor
 </beans>
 ```
 {{% /tab %}}
-{{%tab "Zookeeper -based"%}}
+{{%tab "Zookeeper-based"%}}
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
