@@ -29,3 +29,8 @@ When the connection is restored and the affected host machine is back online, th
 
 
 Customers can use the Demote capability when writing their rebalancing policies, leveraging the ability to perform a hot swap during runtime. Without the need to take instances down during the rebalancing effort, system performance can remain at peak and system health can easily be fully restored.
+
+
+{{%refer %}}
+For API usage see [Demote Space Instance](./admin-quiesce-pu.html#demoting-a-primary-processing-unit-instance) section in Advanced Maintenance Activities page.
+{{%/refer%}}

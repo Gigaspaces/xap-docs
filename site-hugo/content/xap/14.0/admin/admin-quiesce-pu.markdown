@@ -243,31 +243,34 @@ Refer to the [Admin API](../dev-java/administration-and-monitoring-overview.html
 {{% /tabs %}}
 
 
-# Demoting a Primary Processing Unit Instance
+# Demoting a Primary Space Instance
 
-**To demote a Processing Unit from a primary to a backup:**
+**To demote a Space instance from a primary to a backup:**
 
 {{%tabs%}}
 {{%tab "Command Line Interface"%}}
 
 *Command:*
 
-???
+`xap space demote-instance <instance ID>`
 
 *Description:*
  
-This command demotes a Processing Unit instance from a primary to a backup, with no downtime required.
+This command demotes a Space instance from a primary to a backup, with no downtime required.
 
 *Input Example:*
 
-???
+```bash
+<XAP-HOME>/bin/xap space demote-instance mySpace~1_1 --max-suspend-time=15s
+```
+
 
 *Parameters and Options:*
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter |??? | ???. |
-|Option | ??? | ???. |
+|Parameter | instance ID | ID of Space instance to demote |
+|Option | max-suspend-time | Maximum suspend time of Space during demote. Default to 15s. |
 
 {{%/tab%}}
 
@@ -275,47 +278,88 @@ This command demotes a Processing Unit instance from a primary to a backup, with
 
 *Path*
 
-???
+`POST /spaces/{id}/instances/{instanceId}/demote`
 
 *Description:*
 
-This command demotes a Processing Unit instance from a primary to a backup, with no downtime required.
+This command demotes a Space instance from a primary to a backup, with no downtime required.
 
 *Example Request:*
 
-???
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/spaces/mySpace/instances/mySpace~1_1/demote?maxSuspendTime=15s'
+```
  
 
 *Options:*
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| ??? | ???. | Yes |
-| ??? | ???. | No|
+| id | Space name | Yes |
+| instanceId | ID of Space instance to demote | Yes |
+| maxSuspendTime | Maximum suspend time of Space during demote. Default is 15s. | No |
 
 {{%/tab%}}
 
 
 {{%tab "Web Management Console"%}}
 
-1. In the Processing Units view, highlight the Processing Unit instance you want to demote.
+1. In any view, highlight the Space instance you want to demote.
 1. Click the **Actions** icon, and select **Demote** from the menu.
 1. (Optional) If you want helpful information to appear in the log, type some descriptive text in the **Description** box (for example: "rebalance after failover").
 1. Click **OK**.
 
-The Demote Progress window displays the result of the process (for example, "Demotion completed successfully").
+The Demote Progress window displays the result of the process (for example, "Demote completed successfully").
 {{%/tab%}}
 
 
 {{%tab "GigaSpaces Management Center"%}}
 
-You can view the status of the Processing Unit instances in the GigaSpaces Management center (where???). However, you must use one of the other administration tools to hot swap the instances.
+You can view the status of the Space instances in the Space Browser tab. However, you must use one of the other administration tools to hot swap the instances.
 
 {{%/tab%}}
 
 
 {{%tab "Administration API"%}}
-???
+
+You can use the [Admin API](../dev-java/administration-and-monitoring-overview.html) in order to demote a primary Space to backup.
+
+On a Space instance you can call demote with a parameter of maximum suspend time of Space during demote:
+
+```java
+Admin admin = ... // Get or init an Admin instance
+Space mySpace = admin.getSpaces().waitFor("mySpace");
+SpaceInstance primarySpaceInstance = mySpace.getPartition(0).getPrimary();
+// call demote with maximum suspend time of 15 seconds
+Future<?> future = primarySpaceInstance.demote(15, TimeUnit.SECONDS);
+future.get(); // or future.get(timeout, unit);
+```
+
+In addition, the Admin API allows registering for SuspendTypeChangedEvent:
+```java
+SpaceSuspendTypeChangedEventListener myListener = new SpaceSuspendTypeChangedEventListener() {
+    @Override
+    public void spaceSuspendTypeChanged(SpaceSuspendTypeChangedEvent event) {
+        System.out.println("Got event for space instance [" + event.getSpaceInstance().getId() + "], " +
+                "previous value is " + event.getPreviousSuspendType() + ", " +
+                "new value is " + event.getNewSuspendType());
+    }
+};
+
+mySpace.getSpaceSuspendTypeChanged().add(myListener);
+...
+mySpace.getSpaceSuspendTypeChanged().remove(myListener);
+```
+<br/>
+
+The SuspendType options are:
+
+- NONE - The space is not suspended.
+- QUIESCED - The space is quiesced.
+- DEMOTING - The space is demoting to backup.
+- DISCONNECTED - The space is disconnected from ZooKeeper.
+
+
 {{%/tab%}}
 
 {{% /tabs %}}
