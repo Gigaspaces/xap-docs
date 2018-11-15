@@ -12,6 +12,7 @@ This section lists the changes that were made in InsightEdge Platform 14.0.x.
 
 # Features and Enhancements
 
+- {{% jira id="GS-13598" %}}: Demote Primary Space to Backup.
 - {{% jira id="GS-13593" %}}: Kubernetes support.
 - {{% jira id="GS-13601" %}}: New MemoryXtend driver for Persistent Memory (PMEM).
 - {{% jira id="GS-13679" %}}: Change InsightEdge space name in demo mode.
@@ -49,7 +50,7 @@ This section lists the changes that were made in InsightEdge Platform 14.0.x.
 - {{% jira id="GS-13448" %}}: Enhance logging to reflect replication connection state changes.
 - {{% jira id="GS-13596" %}}: Enhance command line `--server` option to support `host:port` format.
 - {{% jira id="GS-13591" %}}: Add a summary to CLI output.
-- {{% jira id="GS-13573" %}}: Improve  XAP and InsightEdge demo command behavior when XAP_MANAGER_SERVERS is configured.
+- {{% jira id="GS-13573" %}}: Improve XAP and InsightEdge demo command behavior when XAP_MANAGER_SERVERS is configured.
 
 
 # Resolved Issues
