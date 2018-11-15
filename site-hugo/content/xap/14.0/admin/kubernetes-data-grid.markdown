@@ -141,6 +141,21 @@ If you want to remove the release and delete all the `hello` release data from t
 helm del --purge hello
 ```
 
+# Applying a Product License
+
+The Kubernetes installation comes with a 24-hour trial `tryme` license, to enable users to perform one-click installation and explore the InsightEdge Platform and XAP functionality. However, if you want a longer trial license, you can apply the evaluation license key that you received in the email that was sent to you after you downloaded your InsightEdge or XAP commercial edition from the Download Center. These instructions are also applicable for applying a your official product license after you purchase a GigaSpaces product.
+
+When the data grid starts, it checks for a valid license. You can apply the license by setting the `pu.license` property. For example, to apply the license for InsightEdge, use the following Helm command:
+
+```bash
+helm install insightedge --name hello --set pu.license="<your license key>"
+```
+
+{{%note%}}
+- You must enclose the license key in quotation marks ("...").
+- If you install a Processing Unit using the `insightedge-pu` or `xap-pu` chart, use the syntax `--set license="<your license key>"`.
+{{%/note%}}
+
 # Deploying a Space Cluster
 
 The demo above created a data grid that contained a single Space instance. Real-life environments generally have to store large volumes of data, and therefore need more than a single Space instance (a cluster).
@@ -327,7 +342,7 @@ The following Helm command sets an absolute value for the Docker container, and 
 helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%
 ```
 
-## Configuring the Data Grid using the Helm Chart
+## Configuring the Data Grid Using the Helm Chart
 
 ### Default Helm Chart
 
