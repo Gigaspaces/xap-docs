@@ -9,7 +9,7 @@ weight: 400
 
 # Overview
 
-PMEM is a new class of memory that combines high capacity and affordability. By expanding affordable system memory capacities (greater than 3TB per CPU socket), end customers can use systems enabled with PMEM to better optimize their workloads by moving and maintaining larger amounts of data closer to the processor, and minimizing the higher latency of fetching data from system storage.
+Persistent Memory (PMEM) is a new class of memory that combines high capacity and affordability. By expanding affordable system memory capacities (greater than 3TB per CPU socket), end customers can use systems enabled with PMEM to better optimize their workloads by moving and maintaining larger amounts of data closer to the processor, and minimizing the higher latency of fetching data from system storage.
 
 The Persistent Memory Development Kit, PMDK, is a collection of libraries that have been developed for various use cases, tuned, validated to production quality, and thoroughly documented. These libraries build on the Direct Access (DAX) feature available in both Linux and Windows, which allows applications direct load/store access to persistent memory by memory-mapping files on a persistent-memory-aware file system. The PMDK also includes a collection of tools, examples, and tutorials on persistent memory programming.
 

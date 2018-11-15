@@ -67,15 +67,16 @@ helm install gigaspaces/insightedge --version={{%version "helm-version" %}} --na
 
 Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you fetch and unpack the Helm chart using the following command:
 
-{{%note%}}
-You must fetch every chart that you will be using (for example: xap, xap-pu and xap-manager) in your GigaSpaces application environment.
-{{%/note%}}
 
 ```bash
 helm fetch gigaspaces/insightedge --version={{%version "helm-version" %}} --untar
 ```
 
-The chart is unpackaged in a local folder called insightedge, and then you can install the demo by typing:
+{{%note%}}
+You must fetch every chart that you will be using (for example: xap, xap-pu and xap-manager) in your GigaSpaces application environment.
+{{%/note%}}
+
+The chart is unpacked in a local folder called insightedge, and then you can install the demo by typing:
 
 ```bash
 helm install insightedge --name demo
@@ -85,7 +86,7 @@ All of the commands in the examples below assume that the Helm chart was fetched
 
 ## Starting a Data Grid in Kubernetes
 
-Run the following Helm command in the command window to start a data grid in Kubernetes. This deploys a Kubernetes cluster called `hello`, which contains a data grid comprised of one Space in a Data Pod, and one Platform Manager called `hello-xap-manager` in a Management Pod. The Platform Manager manages the Space, the Manager service, and the headless service. There are no backup instances specified. 
+In the directory where you unpacked the Helm chart(s), run the following Helm command in the command window to start a data grid in Kubernetes. This deploys a Kubernetes cluster called `hello`, which contains a data grid comprised of one Space in a Data Pod, and one Platform Manager called `hello-xap-manager` in a Management Pod. The Platform Manager manages the Space, the Manager service, and the headless service. There are no backup instances specified. 
 
 To start a data grid:
 
@@ -107,7 +108,7 @@ The rest of the data grid tasks described below use command examples from the `i
 
 You can monitor the `hello` cluster you deployed using any of the following administration tools.
 
-* Helm chart: run the following command to print the status of the 'hello' release in the command window.
+* Helm: Run the following command to print the status of the 'hello' release in the command window.
 
 ```bash
 helm status hello
@@ -162,10 +163,10 @@ The Kubernetes minikube runs on a single node and therefore doesn't provide anti
 
 When the manager high availability property (`ha`) is set to true, Kubernetes deploys three Management Pods. You should enable the manager high availability property so these Management Pods are deployed on different nodes.
 
-The following Helm command deploys three Management Pods named `testmanager`, with high availability enabled:
+The following Helm command deploys three Management Pods (instead of one) with high availability enabled:
 
 ```bash
-helm install insightedge --name testmanager --set manager.ha=true,manager.antiAffinity.enabled=true
+helm install insightedge-manager --name test --set manager.ha=true,manager.antiAffinity.enabled=true
 ```
 
 ## Defining the Space Topology
@@ -179,7 +180,7 @@ If you apply Pod anti-affinity on a minikube, not all of the Pods will be deploy
 The following Helm command deploys a Space cluster called `test` in a high availability topology, with anti-affinity enabled: 
 
 ```bash
-helm install insightedge --name test --set pu.ha=true,pu.antiAffinity.enabled=true,pu.manager.name=testmanager
+helm install insightedge --name test --set pu.ha=true,pu.antiAffinity.enabled=true
 ```
 
 # Deploying Multiple Spaces on Kubernetes
@@ -220,7 +221,7 @@ A Processing Unit is a container that can hold any of the following:
 
 You can use the event-processing example available with the XAP and InsightEdge software packages to see how data is fed to the function and processed in Processing Units. The example creates the following modules:
 
-- Processor - a Processing Unit with the main task of processing unprocessed data objects. The processing of data objects is accomplished  using both and event container and remoting.
+- Processor - a Processing Unit with the main task of processing unprocessed data objects. The processing of data objects is accomplished  using both an event container and remoting.
 - Feeder - a Processing Unit that contains two feeders, a standard Space feeder and a JMS feeder, to feed unprocessed data objects that are in turn processed by the processor module. The standard Space feeder feeds unprocessed data objects  by both directly writing them to the Space and using OpenSpaces Remoting. The JMS feeder uses the JMS API to feed unprocessed data objects using a MessageConverter, which converts JMS ObjectMessages into data objects.
 
 {{%note%}}
@@ -230,7 +231,7 @@ As a prerequisite for running this example, you must install Maven on the machin
 To build and deploy the event-processing example in Kubernetes, the following steps are required:
 
 1. Build the sample Processing Units from the GigaSpaces software package.
-2. Provide a URL for deployment to Kubernetes.
+2. Provide a URL for deploying the Processing Unit JAR file to Kubernetes.
 3. Deploy a Platform Manager (Management Pod).
 4. Deploy the Processing Units that were created when you built the example to Data Pods in Kubernetes, connecting them to the Management Pod.
 5. View the processor logs to see the data processing results.
@@ -280,13 +281,13 @@ helm install insightedge-manager --name testmanager
 Next, type the following Helm command to deploy a Data Pod with the processor Processing Unit from the location where it was built in the examples directory:
 
 ```bash
-helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/processor/target/data-processor.jar
+helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar
 ```
 
 Lastly, type the following Helm command to deploy a Data Pod with the feeder Processing Unit from the same directory:
 
 ```bash
-helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/test/gigaspaces-xap-enterprise-14.0.0-m9-b19909/examples/data-app/event-processing/feeder/target/data-feeder.jar
+helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar
 ```
 
 ## Monitoring the Processing Units
@@ -298,12 +299,24 @@ You can use one of the Kubernetes tools to view the logs for the processor Data 
 
 ## Configuring the Container Memory Allocation
 
-You can configure the memory allocation for a Pod for both the Docker container and the Java on-heap memory. The on-heap memory allocation can be defined as an absolute value, or as a percentage of the Docker container.
+The Docker container is always allocated an absolute amount of memory. If this is undefined in the Helm chart, the container will use as much as is necessary to accomodate the data and processes it contains. You can limit the memory allocation for the contents of the Docker container (Data Pod, Manager Pod, processes, etc.) and the heap memory.
+
+The on-heap memory allocation can be defined as any of the following:
+
+- A positive absolute value for the heap memory.
+- A negative absolute value for the heap memory, calculating the heap size as (_[total allocated container resources] - [XMib]_).
+- A percentage of the Docker container.
 
 The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:
 
 ```bash
 helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m
+```
+
+The following Helm commands allocates the amount of memory for the Docker container, and sets aside a specific amount of memory for the container to use. The rest of the memory is available to the Java heap.
+
+```bash
+helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m
 ```
 
 You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.
@@ -327,7 +340,7 @@ helm inspect insightedge
 The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a '.' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:
 
 `manager:`<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ha:false`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ha: false`
 	
 The value you will set will look like this in the command window: `manager.ha=true`
 
@@ -335,7 +348,7 @@ The value you will set will look like this in the command window: `manager.ha=tr
 
 You can create additional values.yaml files with customized values.
 
-The following Helm command creates a replica of the original values.yaml file called hello.yaml:
+The following Helm command shows how a custom YAML file can be used to override the values in the original GigaSpaces Helm chart:
 
 ```bash
 helm install insightedge -f customValues.yaml --name hello
@@ -344,7 +357,7 @@ helm install insightedge -f customValues.yaml --name hello
 
 It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit [Deployment Properties](https://docs.gigaspaces.com/xap/14.0/dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) topic), so you can override these properties using the Helm chart.  
 
-After defining the properties as placeholders, use the `key1=value1;key2=value2` format to pass the override values to the Helm chart using either the `--set insightedge-pu.properties=<your key-value pairs>` command, or by editing the values.yaml.
+After defining the properties as placeholders, use the `key1=value1;key2=value2` format to pass the override values to the Helm chart using either the `--set insightedge-pu.properties=<your key-value pairs>` command, or using a custom YAML file.
 
 ## Monitoring the Data Grid
 
@@ -374,7 +387,7 @@ To view a list of Spaces, type the following command:
 ./insightedge --server=test-space-xap-manager-hs space list
 ```
 
-To view the Data Type statistics, typ the following command:
+To view the Data Type statistics, type the following command:
 
 ```bash
 ./insightedge --server=test-space-xap-manager-hs space info --type-stats test-space
