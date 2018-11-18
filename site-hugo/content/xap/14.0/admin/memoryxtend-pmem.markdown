@@ -23,6 +23,8 @@ GigaSpaces has developed a PMEM driver that works with Intel's Optane DC PMEM ar
 
 {{%note%}}
 Intel's Optane DC is not yet available in the market, so to use the GigaSpaces PMEM driver you need to emulate PMEM on your machine. For information on how to do this, see the section on [how to emulate Persistent Memory]( https://pmem.io/2016/02/22/pm-emulation.html) on Intel's Persistent Memory Programming project website.
+
+If you would like to receive early access to the Optane PC hardware for evaluation purposes, contact us to [request a demo](https://www.gigaspaces.com/request-demo) via the GigaSpaces website.
 {{%/note%}}
 
 
