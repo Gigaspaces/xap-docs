@@ -269,8 +269,8 @@ This command demotes a Space instance from a primary to a backup, with no downti
 
 | Item | Name | Description |
 |:-----|:------|:------------|
-|Parameter | instance ID | ID of Space instance to demote |
-|Option | max-suspend-time | Maximum suspend time of Space during demote. Default to 15s. |
+|Parameter | instance ID | Provide the ID of the Space instance you want to demote. |
+|Option | max-suspend-time | Define the maximum amount of time that the Space instance can be suspended, in seconds, during the demote process. The default value is 15. |
 
 {{%/tab%}}
 
@@ -295,9 +295,9 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
 
 | Option     | Description       |   Required     |
 |------|-------------------|----------------|
-| id | Space name | Yes |
-| instanceId | ID of Space instance to demote | Yes |
-| maxSuspendTime | Maximum suspend time of Space during demote. Default is 15s. | No |
+| id | The name of the Space. | Yes |
+| instanceId | The ID of the Space instance you want to demote. | Yes |
+| maxSuspendTime | Define the maximum amount of time that the Space instance can be suspended, in seconds, during the demote process. The default value is 15. | No |
 
 {{%/tab%}}
 
@@ -322,9 +322,9 @@ You can view the status of the Space instances in the Space Browser tab. However
 
 {{%tab "Administration API"%}}
 
-You can use the [Admin API](../dev-java/administration-and-monitoring-overview.html) in order to demote a primary Space to backup.
+You can use the [Administration API](../dev-java/administration-and-monitoring-overview.html) to demote a primary Space instance to a backup.
 
-On a Space instance you can call demote with a parameter of maximum suspend time of Space during demote:
+You can call demote for a Space instance, with a parameter of maximum suspend time for that Space instance during the demote process, as follows:
 
 ```java
 Admin admin = ... // Get or init an Admin instance
@@ -335,7 +335,8 @@ Future<?> future = primarySpaceInstance.demote(15, TimeUnit.SECONDS);
 future.get(); // or future.get(timeout, unit);
 ```
 
-In addition, the Admin API allows registering for SuspendTypeChangedEvent:
+In addition, the Administration API allows registering for SuspendTypeChangedEvent:
+
 ```java
 SpaceSuspendTypeChangedEventListener myListener = new SpaceSuspendTypeChangedEventListener() {
     @Override
@@ -354,10 +355,10 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
 
 The SuspendType options are:
 
-- NONE - The space is not suspended.
-- QUIESCED - The space is quiesced.
-- DEMOTING - The space is demoting to backup.
-- DISCONNECTED - The space is disconnected from ZooKeeper.
+- NONE - The Space is not suspended.
+- QUIESCED - The Space is quiesced.
+- DEMOTING - The Space is being demoted to backup.
+- DISCONNECTED - The Space is disconnected from Apache ZooKeeper.
 
 
 {{%/tab%}}
