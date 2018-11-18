@@ -16,19 +16,19 @@ InsightEdge Enterprise offers the following additional benefits:
 
 * Disaster recovery via geo-redundancy, fast data replication and native persistence
 
-{{% note "Note"%}}
-If you are already using InsightEdge or XAP, refer to the [Release Notes](./rn/index.html) for a list of new features, changes, updates, and resolved issues. If you are new to InsightEdge, refer to our list of [frequently asked questions](./started/faq.html) to understand more about upgrading your XAP environment and leveraging your existing Apache or Scala implementations.
+{{% note %}}
+If you are already using InsightEdge or XAP, refer to the [Release Notes](./rn/index.html) for a list of new features, changes, updates, and resolved issues. If you are new to InsightEdge, refer to our list of [frequently asked questions](./started/faq.html) to understand more about upgrading your environment and leveraging your existing Apache or Scala implementations.
 {{% /note %}}
 
 # Licensing Options
 
-InsightEdge is available in Java and .NET flavors, and offers several licensed editions, along with XAP and InsightEdge open-source editions. You can download a free 30-day trial version of any of the following:
+The InsightEdge Platform and XAP are available in Java and .NET flavors, and offer several licensed editions, along with open-source editions. You can download a free 30-day trial version of any of the following:
+
+* InsightEdge Platform - Offers the full functionality of InsightEdge and the XAP Enterprise edition, along with additional features such as full SQL-99 compatibility.
 
 * XAP Premium - Provides all the functionality of the open-source edition, plus high availability and convenient management features (including the Service Grid user interface).
 
-* XAP Enterprise - Builds on the XAP Premium edition, adding the MemoryXtend feature (supporting SSD/HDD and off-heap RAM) and Multi-Site WAN Replication for geo-redundancy.
-
-* InsightEdge Enterprise - Offers the full functionality of InsightEdge and the XAP Enterprise edition, along with additional features such as full SQL-99 compatibility.
+* XAP Enterprise - Builds on the XAP Premium edition, adding the MemoryXtend feature (supporting SSD/HDD, PMEM, and off-heap RAM) and Multi-Site WAN Replication for geo-redundancy.
 
 When the trial period is over, you can continue to benefit from the open-source functionality, or contact GigaSpaces support to purchase a license for the edition that best suits your needs.
 
