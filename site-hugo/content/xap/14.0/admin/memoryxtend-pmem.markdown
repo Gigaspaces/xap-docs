@@ -13,6 +13,10 @@ Persistent Memory (PMEM) is a new class of memory that combines high capacity an
 
 The Persistent Memory Development Kit, PMDK, is a collection of libraries that have been developed for various use cases, tuned, validated to production quality, and thoroughly documented. These libraries build on the Direct Access (DAX) feature available in both Linux and Windows, which allows applications direct load/store access to persistent memory by memory-mapping files on a persistent-memory-aware file system. The PMDK also includes a collection of tools, examples, and tutorials on persistent memory programming.
 
+{{%note%}}
+The PMEM storage driver dose not currently support Windows.
+{{%/note%}}
+
 PMDK is vendor-neutral, started by Intel and motivated by the introduction of Optane DC persistent memory. PMDK is open source and will work with any persistent memory that provides the SNIA NVM Programming Model.
 
 GigaSpaces has developed a PMEM driver that works with Intel's Optane DC PMEM array, which is currently in its beta stage. The MemoryXtend pmem storage driver stores Space objects in pmem, outside the Java heap.
