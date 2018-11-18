@@ -6,7 +6,7 @@ parent: none
 weight: 100
 ---
 
-This section describes product changes, along with new features and functionality for InsightEdge platform release 14.0.
+This section describes product changes, along with new features and functionality for InsightEdge Platform and XAP release 14.0.
 
 # Kubernetes Integration
 
@@ -36,15 +36,9 @@ Our new demote capability in the REST Manager API makes it easier, faster, and s
 
 # Enhanced Web Notebook Functionality 
 
-## Data Visualization
-
 InsightEdge now offers a JDBC-based interpreter for Apache Zeppelin. Customers can use this new interpreter to access data directly from the data grid, instead of via a Spark interpreter. This provides incredible value for analysts and developers, who can now visualize the Space data within the Zeppelin notebook.
 
 {{<infosign>}} For more information, see [Using the InsightEdge Web Notebook](../started/insightedge-zeppelin.html).
-
-## Programming Language Support
-
-The InsightEdge Web Notebook now supports notebooks with full R and Python language support.
 
 # Third-Party Product Changes
 

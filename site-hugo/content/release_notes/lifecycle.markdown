@@ -68,7 +68,7 @@ Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts
 |Product Release [1] |	GA Date | Last Maintenance Service Pack Release|Planned Next Maintenance Service Pack Release [2]|Support Discontinuance ("End of Life") [3]|
 |--------------------|----------|--------------------------------------|-------------------------------------------------|------------------------------------------|
 |14.0 b20000     |<nobr>November 2018<nobr>	|                                      |14.0.1  |   |
-|12.3 b19000     |March 2018	|12.3.1 b19300 in July 2018            |No Plans|  |
+|12.3 b19000     |March 2018	|12.3.1 b19300 in July 2018            |No Plans| November 2020 |
 |12.2 b18000     |Sept. 2017	|12.2.1 b18100 in Nov. 2017            |No Plans| March 2020 |
 |12.1 b17100     |March 2017	|12.1.1 b17100 in June 2017            |No Plans| September 2019 |
 |12.0 b16000     |<nobr>January 2017<nobr> |12.0.1 b16600 in Sep. 2016 |No Plans|March 2019  |            
