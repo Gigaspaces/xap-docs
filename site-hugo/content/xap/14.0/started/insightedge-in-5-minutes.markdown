@@ -20,7 +20,7 @@ It takes just a few simple steps to start InsightEdge using the CLI.
 **To begin working with InsightEdge:**
 
 1. Download the InsightEdge package from the GigaSpaces website and install it, as described in [Downloading and Installing](./installation.html).
-1. From the &lt;INSIGHTEDGE_HOME&gt; directory, open the `xap-license.txt` file and apply the "tryme" license key, which will give you access to the InsightEdge features and functionality for 24 hours.
+1. From the home directory, open the `xap-license.txt` file and apply the "tryme" license key, which will give you access to the InsightEdge features and functionality for 24 hours.
 
 ```
 # License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
