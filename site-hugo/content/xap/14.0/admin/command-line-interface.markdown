@@ -6,14 +6,14 @@ parent: admin-legacy-tools.html
 weight: 100
 ---
 
- 
-
-
 
 GigaSpaces provides an interactive command line tool as part of the product. This can be started using gs.sh/bat command (referred to as **GigaSpaces CLI**).
 
 This tool provides many commands that can be used to manage and gather information about the various GigaSpaces runtime components. This section describes the commands supported by GigaSpaces CLI.
 
+{{%note%}}
+This CLI is deprecated as of version 14.0, as noted in the [Release Notes](../rn/whats-new.html). Use the [new CLI](./tools-cli.html) instead.
+{{%/note%}}
 
 # help
 

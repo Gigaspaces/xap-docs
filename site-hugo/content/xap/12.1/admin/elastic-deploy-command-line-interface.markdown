@@ -162,6 +162,10 @@ gs> undeploy-application data-app
 
 # deploy elastic space
 
+{{%note%}}
+The Elastic Processing Unit is deprecated as of version 12.1, as noted in the [Release Notes](/release_notes/121upgrading.html).
+{{%/note%}}
+
 ## Syntax
 
 ```bash

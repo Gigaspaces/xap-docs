@@ -11,7 +11,7 @@ An Elastic Processing Unit (EPU) is a Processing Unit with additional capabiliti
 When a machine failure occurs, or when scale requirements change, new machines are provisioned and the Processing Unit deployment distribution is balanced automatically.
 
 {{%note%}}
-The Elastic Processing Unit is deprecated as of XAP version 12.1, as noted in the [Release Notes](http://localhost:1313/release_notes/121upgrading.html).
+The Elastic Processing Unit is deprecated as of XAP version 12.1, as noted in the [Release Notes](/release_notes/121upgrading.html).
 {{%/note%}}
 
 

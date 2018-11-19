@@ -56,7 +56,7 @@ The following third-party dependency updates mitigate known security vulnerabili
 The following functionality is deprecated as of this release:
 
 - Legacy command line interface (use the new command line interface that was introduced in release 12.3 instead)
-- The gs-agent script (use the `xap host run-agent` command instead)
+- The gs-agent script (use the `insightedge host run-agent` or `xap host run-agent` command instead)
 
 The following functionality is end of life as of this release:
 

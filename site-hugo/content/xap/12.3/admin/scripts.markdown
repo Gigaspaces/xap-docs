@@ -39,6 +39,8 @@ In addition to the scripts listed above, the `bin` folder (in both the XAP and I
 | startJiniLUS | Starts a Lookup Service. |  | ✔ |
 | startJiniTX_Mahalo | Starts an instance of the distributed transaction manager. |  | ✔ |
 
-
+{{%note%}}
+The Elastic Processing Unit is deprecated as of version 12.1, as noted in the [Release Notes](/release_notes/121upgrading.html).
+{{%/note%}}
 
 

@@ -10,6 +10,10 @@ weight: 200
 
 A processing unit is deployed onto the XAP runtime environment, which is called the [Service Grid](../overview/the-runtime-environment.html). It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.
 
+{{%note%}}
+The gs-agent script is deprecated as of version 14.0, as noted in the [Release Notes](../rn/whats-new.html). Use the `xap host run-agent` or `insightedge host run-agent` command in the [new CLI](./tools-cli.html) instead.
+{{%/note%}}
+
 # Usage
 
 To start a Service Grid on a machine, launch the `gs-agent` utility located in the `$XAP_HOME/bin` folder. This will start the [Grid Service Agent](../overview/the-runtime-environment.html#gsa), which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, `--process_type=n` will start `n` instances of the specified `process_type`. Use the `global` keyword (e.g. `--global.process_type=n`) to specify that the agent should coordinate with other running agents the hosting and management of that service. Let's look at common use cases:

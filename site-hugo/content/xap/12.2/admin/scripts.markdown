@@ -46,6 +46,10 @@ The scripts listed below are available in the licensed editions of the GigaSpace
 - **esm** - starts an instance of the [ESM]({{%currentjavaurl%}}/elastic-processing-unit-overview.html).
 - **startJiniTX_Mahalo** - starts an instance of the Distributed transaction manager.
 
+{{%note%}}
+The Elastic Processing Unit is deprecated as of version 12.1, as noted in the [Release Notes](/release_notes/121upgrading.html).
+{{%/note%}}
+
 # Processing Units
 
 **Open-Source Scripts**

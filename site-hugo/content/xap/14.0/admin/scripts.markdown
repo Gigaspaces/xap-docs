@@ -21,6 +21,9 @@ The `<XAP root>/bin` folder includes the following scripts that can be used to m
 | gs-ui | Starts the GigaSpaces Management Center. |  | ✔ | ✔ |
 | gs-webui | Starts the Web Management Console. |  | ✔ | ✔ |
 
+{{%note%}}
+The gs-agent script is deprecated as of version 14.0, as noted in the [Release Notes](../rn/whats-new.html). Use the `xap host run-agent` or `insightedge host run-agent` command in the [new CLI](./tools-cli.html) instead.
+{{%/note%}}
 
 # Advanced Scripts
 
@@ -39,6 +42,8 @@ In addition to the scripts listed above, the `bin` folder (in both the XAP and I
 | startJiniLUS | Starts a Lookup Service. |  | ✔ |
 | startJiniTX_Mahalo | Starts an instance of the distributed transaction manager. |  | ✔ |
 
-
+{{%note%}}
+The Elastic Processing Unit is deprecated as of version 12.1, as noted in the [Release Notes](/release_notes/121upgrading.html).
+{{%/note%}}
 
 

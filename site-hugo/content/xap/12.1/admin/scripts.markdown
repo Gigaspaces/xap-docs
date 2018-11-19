@@ -29,6 +29,10 @@ If you need to start the [Service Grid](/product_overview/service-grid.html) com
 - **esm** - starts an instance of the [ESM]({{%currentjavaurl%}}/elastic-processing-unit.html).
 - **startJiniTX_Mahalo** - starts an instance of the Distributed transaction manager.
 
+{{%note%}}
+The Elastic Processing Unit is deprecated as of version 12.1, as noted in the [Release Notes](/release_notes/121upgrading.html).
+{{%/note%}}
+
 # Processing Units
 - **pu-instance** - starts a standalone, un managed instance of a processing unit.
 - **space-instance** - starts a standalone, un managed instance of a space. Used usually in development.
