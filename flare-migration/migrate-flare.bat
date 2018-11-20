@@ -1,6 +1,6 @@
 @echo off
 setlocal
-set fOut=".\output\xap\12.3"
+set fOut=".\output\xap\14.0"
 echo Updating Flare content ...
 cscript migrate-flare.js //nologo %fOut%
 echo Copying files ...

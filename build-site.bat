@@ -8,6 +8,12 @@ mkdir output
 echo *** Building hugo site ***
 call run-hugo.bat -d ..\output
 
+echo *** TEMP - migrating hugo output to flare content... ***	
+pushd flare-migration	
+rmdir site-temp /S /Q	
+rmdir output /S /Q	
+call migrate.bat	
+popd
 echo *** Building flare site ***
 "C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild.exe" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
 
