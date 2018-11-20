@@ -397,9 +397,9 @@ gs-webui.bat
 
 The Web Management server uses the Administration API to collect the operational statistics that are displayed in the Web Management Console. By default the Admin instance collects only two kinds of statistics, Space and SpaceInstance. These are the only other statistics that can be viewed using the Web Management Console.
 
-The statistics are sampled and aggregated for display in the throughput statistics timeline based on the `space.history-size` system property. The default value is 15 samples. Other statistics are not collected because there is no means of displaying the results.
+The statistics are sampled and aggregated for display in the throughput statistics timeline based on the `com.gs.space.history-size` system property. The default value is 15 samples. Other statistics are not collected because there is no means of displaying the results.
 
-To change the amount of samples that are aggregated, modify the system property as follows (only the `space.history-size` parameter is relevant):
+To change the amount of samples that are aggregated, modify the system property as follows (only the `com.gs.space.history-size` parameter is relevant):
 
 ```java
 -Dcom.gs.space.history-size=15
