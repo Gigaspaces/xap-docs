@@ -5,7 +5,7 @@
 <h1>Jetty Processing Unit Container</h1>
   
 
-<p>A XAP web processing unit can use <a href="http://www.eclipse.org/jetty/" target="_blank" >Jetty</a> as the web container that actually runs the WAR file deployed on the service grid. Jetty is included with the XAP installation package. The integration allows you to run both a pure WAR file (meaning it does not use a Space), as well as simplifying the introduction of Space (both embedded and remote) in non-Spring and Spring environments.</p>
+<p>A Web Processing Unit can use <a href="http://www.eclipse.org/jetty/" target="_blank" >Jetty</a> as the web container that actually runs the WAR file deployed on the Service Grid. Jetty is included with the product installation package. The integration allows you to run both a pure WAR file (meaning it does not use a Space), as well as simplifying the introduction of Space (both embedded and remote) in non-Spring and Spring environments.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/web_app_archi.jpg" alt="web_app_archi.jpg" /></p>
 </div>
@@ -30,12 +30,12 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information about dependencies, refer to <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
+  <p>For more information about dependencies, refer to <a href="../started/maven-artifacts.htm/">Maven Artifacts</a>.</p>
 </div>
 
 <h1 id="jetty-instance-handling">Jetty Instance Handling</h1>
 
-<p>Jetty itself is configured using Spring, and allows you to control all aspects of both the Jetty instance created, and the web application context. Jetty instances can be created (by default) in one of two modes. The first is <span class="tc-bold">plain</span>, where a Jetty instance is created for each web processing unit instance running within a GSC. The second is <span class="tc-bold">shared</span>, where a single Jetty instance is created and shared between all the different web processing unit instances running on the same GSC. A custom Jetty instantiation and handling can also be configured.</p>
+<p>Jetty itself is configured using Spring, and allows you to control all aspects of both the Jetty instance created, and the web application context. Jetty instances can be created (by default) in one of two modes. The first is <span class="tc-italic">plain</span>, where a Jetty instance is created for each web processing unit instance running within a GSC. The second is <span class="tc-italic">shared</span>, where a single Jetty instance is created and shared between all the different Web Processing Unit instances running on the same Grid Service Container. A custom Jetty instantiation and handling can also be configured.</p>
 
 <p>By default, the instantiation mode is plain. In order to control (at deploy time) which instantiation mode is used, the deploy property <code>jetty.instance</code> can be passed with either the <code>plain</code> value (the default) or the <code>shared</code> value.</p>
 
@@ -43,11 +43,11 @@
 
 <h1 id="plain-instantiation-mode">Plain Instantiation Mode</h1>
 
-<p>Plain mode (the simplest and the default mode) creates a Jetty instance for each web processing unit instance (web application). The mode configuration parameters are in the XAP JAR file under <code>org/openspaces/pu/container/jee/jetty/jetty.plain.pu.xml</code>.</p>
+<p>Plain mode (the simplest and the default mode) creates a Jetty instance for each Web Processing Unit instance (web application). The mode configuration parameters are in the data grid JAR file under <code>org/openspaces/pu/container/jee/jetty/jetty.plain.pu.xml</code>.</p>
 
-<p>Plain mode is simple because the context path that is created for each web application instance is exactly the same. Only the connector (port) that it runs on is different. When working in a virtualized environment, where more than one instance of the same web application can run on the same VM, this requires some thought. The service grid allows you to control whether only one instance of the web application runs on a VM, using the <code>max-instances-per-vm</code> option, or even using the <code>max-instances-per-machine</code> option. What fits best depends on the deployment and service requirements of the application.</p>
+<p>Plain mode is simple because the context path that is created for each web application instance is exactly the same. Only the connector (port) that it runs on is different. When working in a virtualized environment, where more than one instance of the same web application can run on the same VM, this requires some thought. The Service Grid allows you to control whether only one instance of the web application runs on a VM, using the <code>max-instances-per-vm</code> option, or even using the <code>max-instances-per-machine</code> option. What fits best depends on the deployment and service requirements of the application.</p>
 
-<p>Even though a new Jetty instance is created for each web application instance that runs within a GSC (JVM), some resources are still shared between the different Jetty instances, making this instantiation model more lightweight than it first seemed. For example, the thread pool Jetty uses to service requests is shared between all the different Jetty instances.</p>
+<p>Even though a new Jetty instance is created for each web application instance that runs within a Grid Service Container (JVM), some resources are still shared between the different Jetty instances, making this instantiation model more lightweight than it first seemed. For example, the thread pool Jetty uses to service requests is shared between all the different Jetty instances.</p>
 
 <p>There are many features that are exposed and can control how plain mode is used. The following is a simple explanation of all the different parts within the <code>jetty.plain.pu.xml</code>.</p>
 
@@ -112,61 +112,65 @@
 
 <h2 id="jetty-instance">Jetty Instance</h2>
 
-<pre><code class="language-xml">&lt;bean id="jettyHolder" class="org.openspaces.pu.container.jee.jetty.holder.SharedJettyHolder"&gt;
-    &lt;constructor-arg ref="jetty" /&gt;
-&lt;/bean&gt;
+<pre><code class="language-xml">&lt;bean id="jettyHolder" class="org.openspaces.pu.container.jee.jetty.SharedJettyHolder"&gt; 
+    &lt;constructor-arg ref="jetty" /&gt; 
+&lt;/bean&gt; 
 
-&lt;bean id="jetty" class="org.eclipse.jetty.server.Server"&gt;
-    &lt;constructor-arg&gt;
-        &lt;bean class="org.eclipse.jetty.util.thread.QueuedThreadPool"&gt;
-            &lt;property name="minThreads" value="${web.threadPool.minThreads}"/&gt;
-            &lt;property name="maxThreads" value="${web.threadPool.maxThreads}"/&gt;
-        &lt;/bean&gt;
-    &lt;/constructor-arg&gt;
-    &lt;property name="connectors"&gt;
-        &lt;list&gt;
-            &lt;bean class="org.eclipse.jetty.server.ServerConnector"&gt;
-                &lt;constructor-arg name="server" ref="jetty"/&gt;
-                &lt;constructor-arg name="executor"&gt;&lt;null/&gt;&lt;/constructor-arg&gt;
-                &lt;constructor-arg name="scheduler"&gt;&lt;null/&gt;&lt;/constructor-arg&gt;
-                &lt;constructor-arg name="bufferPool"&gt;&lt;null/&gt;&lt;/constructor-arg&gt;
-                &lt;constructor-arg name="acceptors" value="${web.selector.acceptors}"/&gt;
-                &lt;constructor-arg name="selectors" value="${web.selector.selectors}"/&gt;
-                &lt;constructor-arg name="factories"&gt;
-                    &lt;list&gt;
-                        &lt;bean class="org.eclipse.jetty.server.HttpConnectionFactory"&gt;
-                            &lt;constructor-arg&gt;
-                                &lt;bean class="org.eclipse.jetty.server.HttpConfiguration"&gt;
-                                    &lt;property name="securePort" ref="confidentialPort"/&gt;
-                                &lt;/bean&gt;
-                            &lt;/constructor-arg&gt;
-                        &lt;/bean&gt;
-                    &lt;/list&gt;
-                &lt;/constructor-arg&gt;
-                &lt;property name="port" ref="basePort"/&gt;
-                &lt;property name="idleTimeout" value="${web.selector.maxIdleTime}"/&gt;
-            &lt;/bean&gt;
-        &lt;/list&gt;
-    &lt;/property&gt;
-    &lt;property name="handler"&gt;
-        &lt;bean class="org.eclipse.jetty.server.handler.HandlerCollection"&gt;
-            &lt;property name="handlers"&gt;
-                &lt;list&gt;
-                    &lt;bean class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/&gt;
-                    &lt;bean class="org.eclipse.jetty.server.handler.DefaultHandler"/&gt;
-                &lt;/list&gt;
-            &lt;/property&gt;
-        &lt;/bean&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-&lt;/beans&gt;
+&lt;bean id="jetty" class="org.eclipse.jetty.server.Server"&gt; 
+
+    &lt;constructor-arg&gt; 
+        &lt;bean class="org.eclipse.jetty.util.thread.QueuedThreadPool"&gt; 
+            &lt;property name="minThreads" value="${web.threadPool.minThreads}"/&gt; 
+            &lt;property name="maxThreads" value="${web.threadPool.maxThreads}"/&gt; 
+        &lt;/bean&gt; 
+    &lt;/constructor-arg&gt; 
+
+    &lt;property name="connectors"&gt; 
+        &lt;list&gt; 
+            &lt;bean class="org.eclipse.jetty.server.ServerConnector"&gt; 
+                &lt;constructor-arg name="server" ref="jetty"/&gt; 
+                &lt;constructor-arg name="executor"&gt;&lt;null/&gt;&lt;/constructor-arg&gt; 
+                &lt;constructor-arg name="scheduler"&gt;&lt;null/&gt;&lt;/constructor-arg&gt; 
+                &lt;constructor-arg name="bufferPool"&gt;&lt;null/&gt;&lt;/constructor-arg&gt; 
+                &lt;constructor-arg name="acceptors" value="${web.selector.acceptors}"/&gt; 
+                &lt;constructor-arg name="selectors" value="${web.selector.selectors}"/&gt; 
+                &lt;constructor-arg name="factories"&gt; 
+                    &lt;list&gt; 
+                        &lt;bean class="org.eclipse.jetty.server.HttpConnectionFactory"&gt; 
+                            &lt;constructor-arg&gt; 
+                                &lt;bean class="org.eclipse.jetty.server.HttpConfiguration"&gt; 
+                                    &lt;property name="securePort" ref="confidentialPort"/&gt; 
+                                &lt;/bean&gt; 
+                            &lt;/constructor-arg&gt; 
+                        &lt;/bean&gt; 
+                    &lt;/list&gt; 
+                &lt;/constructor-arg&gt; 
+                &lt;property name="port" ref="port"/&gt; 
+               &lt;property name="name" value="MYCONNECTOR1"/&gt; 
+                &lt;property name="idleTimeout" value="${web.selector.maxIdleTime}"/&gt; 
+            &lt;/bean&gt; 
+        &lt;/list&gt; 
+    &lt;/property&gt; 
+    &lt;property name="handler"&gt; 
+        &lt;bean class="org.eclipse.jetty.server.handler.HandlerCollection"&gt; 
+            &lt;property name="handlers"&gt; 
+                &lt;list&gt; 
+                    &lt;bean class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/&gt; 
+                    &lt;bean class="org.eclipse.jetty.server.handler.DefaultHandler"/&gt; 
+                &lt;/list&gt; 
+            &lt;/property&gt; 
+        &lt;/bean&gt; 
+    &lt;/property&gt; 
+&lt;/bean&gt; 
 </code></pre>
 
 <p>The above shows how the Jetty instance is configured. The <code>Jetty</code> bean is actually the Jetty server configured. Most of the parameters can be controlled using deploy-time properties.</p>
 
-<p>An important aspect here is the <code>SharedThreadPool</code>, which wraps the actual Jetty thread pool used. The <code>SharedThreadPool</code> causes the Jetty thread pool to be shared among all of the Jetty instances created on that specific GSC (JVM). In this case, the first web application that is deployed to the GSC controls the thread pool size. Other web applications can't modify the size of the thread pool.</p>
+<p>An important aspect here is the <code>SharedThreadPool</code>, which wraps the actual Jetty thread pool used. The <code>SharedThreadPool</code> causes the Jetty thread pool to be shared among all of the Jetty instances created on that specific Grid Service Manager (JVM). In this case, the first web application that is deployed to the GSC controls the thread pool size. Other web applications can't modify the size of the thread pool.</p>
 
 <p>The bean that is actually used (and expected to be defined) within the configuration is the <code>JettyHolder</code> (it must be named <span class="tc-bold">JettyHolder</span>). In our case, the <code>JettyHolder</code> used is the <code>PlainJettyHolder</code>, which creates a new instance of Jetty for each instance of the web application.</p>
+
+<p>The connector name can be retrieved from <code>ServletContext</code> with the  attribute name <code>jetty.MYCONNECTOR1.port.actual</code>. Connectors ports are saved within <code>ServletContext</code> according to the name, and can be retrieved with the attribute name <code>jetty.[CONNECTOR_NAME].port.actual</code>.</p>
 
 <h2 id="web-context">Web Context</h2>
 
@@ -227,13 +231,13 @@
 
 <h1 id="shared-instantiation-mode">Shared Instantiation Mode</h1>
 
-<p>Shared mode creates a single Jetty instance per GSC (JVM). The mode configuration parameters are in the XAP JAR file, under <code>org/openspaces/pu/container/jee/jetty/jetty.shared.pu.xml</code>. The benefits of this mode are obvious as only one instance of Jetty is created per JVM (plain mode also shares some resources between different Jetty instances).</p>
+<p>Shared mode creates a single Jetty instance per GSC (JVM). The mode configuration parameters are in the data grid JAR file, under <code>org/openspaces/pu/container/jee/jetty/jetty.shared.pu.xml</code>. The benefits of this mode are obvious as only one instance of Jetty is created per JVM (plain mode also shares some resources between different Jetty instances).</p>
 
-<p>The main difficulties when working with this mode are due to the possibility for more than one web application instance to run on the same GSC (JVM). In order to solve this problem, by default when working in shared mode, the web context path is the actual web context, appended by a running number. For example, when deploying 2 instances of the petclinic web application, the first instance is deployed under <code>petclinic_1</code> web app context, while the second is deployed under <code>petclinic_2</code>.</p>
+<p>The main difficulties when working with this mode are due to the possibility of more than one web application instance running on the same GSC (JVM). In order to solve this problem, by default when working in shared mode, the web context path is the actual web context, appended by a running number. For example, when deploying 2 instances of the petclinic web application, the first instance is deployed under <code>petclinic_1</code> web app context, while the second is deployed under <code>petclinic_2</code>.</p>
 
-<p>The service grid allows you to configure that only a single instance of a web application is deployed on a GSC, using the <code>max-instances-per-vm</code> parameter. In this case, the default behavior of appending a running number to the context is not needed, and it can be disabled by changing the deploy time property <code>web.context.unique</code> to <code>true</code>.</p>
+<p>The Service Grid allows you to configure the environment so that only a single instance of a web application is deployed on a GSC, using the <code>max-instances-per-vm</code> parameter. In this case, the default behavior of appending a running number to the context is not needed, and can be disabled by changing the deploy time property <code>web.context.unique</code> to <code>true</code>.</p>
 
-<p>There are many features that are exposed and can control how  shared mode can be used. The following is an explanation of the properties in the <code>jetty.shared.pu.xml</code>.</p>
+<p>There are many features that are exposed and can control how shared mode can be used. The following is an explanation of the properties in the <code>jetty.shared.pu.xml</code>.</p>
 
 <h2 id="configuration-properties-1">Configuration Properties</h2>
 
@@ -262,7 +266,7 @@
 &lt;/bean&gt;
 </code></pre>
 
-<p>All the above properties can be controlled during deployment (or by adding a <span class="tc-bold">META-INF/spring/pu.properties</span> file). What they actually control (though very evident from the name) will be explained in the following sections.</p>
+<p>All the above properties can be controlled during deployment (or by adding a <code>META-INF/spring/pu.properties</code> file). What they actually control (though very evident from the name) will be explained in the following sections.</p>
 
 <h2 id="port-numbers-1">Port Numbers</h2>
 
@@ -320,6 +324,7 @@
                     &lt;/list&gt;
                 &lt;/constructor-arg&gt;
                 &lt;property name="port" ref="port"/&gt;
+        &lt;property name="name" value="MYCONNECTOR1"/&gt;
                 &lt;property name="idleTimeout" value="${web.selector.maxIdleTime}"/&gt;
             &lt;/bean&gt;
         &lt;/list&gt;
@@ -339,228 +344,14 @@
 
 <p>The above shows how the Jetty instance is configured. The <code>Jetty</code> bean is actually the Jetty server configured. Most of the parameters can be controlled using deploy-time properties.</p>
 
+<p>The connector name can be retrieved from <code>ServletContext</code> with the  attribute name <code>jetty.MYCONNECTOR1.port.actual</code>. Connectors ports are saved within <code>ServletContext</code> according to the name, and can be retrieved with the attribute name <code>jetty.[CONNECTOR_NAME].port.actual</code>.</p>
+
 <p>The bean that is used (and expected to be defined) within the configuration is the <code>JettyHolder</code> (it must be named <span class="tc-bold">JettyHolder</span>). In our case, the <code>JettyHolder</code> used is the <code>SharedJettyHolder</code>, which creates a single instance of Jetty on the GSC (JVM) level.</p>
 
 <div class="tc-admon-note">
   
-  <p>This means that the first deployed web application in shared mode controls how the Jetty instance is created.</p>
+  <p></p>
 </div>
-
-<h2 id="web-context-1">Web Context</h2>
-
-<pre><code class="language-xml">&lt;bean id="context" class="org.openspaces.pu.container.jee.SharedContextFactory"&gt;
-    &lt;property name="context" value="${web.context}" /&gt;
-    &lt;property name="unique" value="${web.context.unique}" /&gt;
-    &lt;property name="separator" value="${web.context.separator}" /&gt;
-&lt;/bean&gt;
-
-&lt;bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext"&gt;
-        &lt;property name="contextPath" ref="context"/&gt;
-        &lt;property name="war" value="${jee.deployPath}"/&gt;
-        &lt;property name="tempDirectory" value="${jee.deployPath}/WEB-INF/work"/&gt;
-        &lt;property name="copyWebDir" value="${web.context.copyWebDir}"/&gt;
-        &lt;property name="parentLoaderPriority" value="${web.context.classLoader.parentFirst}"/&gt;
-        &lt;property name="configurationClasses"&gt;
-            &lt;list&gt;
-                &lt;value&gt;org.eclipse.jetty.webapp.WebInfConfiguration&lt;/value&gt;
-                &lt;value&gt;org.eclipse.jetty.webapp.WebXmlConfiguration&lt;/value&gt;
-                &lt;value&gt;org.eclipse.jetty.webapp.MetaInfConfiguration&lt;/value&gt;
-                &lt;value&gt;org.eclipse.jetty.webapp.FragmentConfiguration&lt;/value&gt;
-                &lt;value&gt;org.eclipse.jetty.plus.webapp.EnvConfiguration&lt;/value&gt;
-                &lt;value&gt;org.eclipse.jetty.plus.webapp.PlusConfiguration&lt;/value&gt;
-                &lt;value&gt;org.eclipse.jetty.webapp.JettyWebXmlConfiguration&lt;/value&gt;
-                &lt;value&gt;org.eclipse.jetty.annotations.AnnotationConfiguration&lt;/value&gt;
-            &lt;/list&gt;
-        &lt;/property&gt;
-        &lt;property name="sessionHandler" ref="secureSessionHandler"/&gt;
-    &lt;/bean&gt;
-</code></pre>
-
-<p>This <code>webAppContext</code> bean controls the actual web context that corresponds to the web application instance being deployed. Its context path is controlled by the <code>context</code> bean, represented by the <code>SharedContextFactory</code> class.</p>
-
-<p>The <code>SharedContextFactory</code> controls the web application context path under which the web application instance is deployed. If the <code>unique</code> flag is set to <code>true</code>, it uses the <code>context</code> path passed, appends the <code>separator</code>, and then appends the web application instance number (the cluster info running number). If the <code>unique</code> flag is set to <code>false</code>, it uses the <code>context</code> passed.</p>
-
-<p>The <code>context</code> passes to the <code>SharedContextFactory</code>, is the property <code>web.context</code>, which defaults to <code>clusterInfo.name</code> (the <code>clusterInfo.name</code> is the name of the Processing Unit and by default uses the WAR file name, but it can be overridden using the <code>override-name</code> feature).</p>
-
-<h1 id="load-balancing">Load Balancing</h1>
-
-<p>This section explains how to configure plain mode with Apache and <code>mod_proxy</code> load balancer. Plain mode is used in the example. The first step after installing Apache 2.2 is to enable the <code>mod_proxy</code>, <code>mod_proxy_balancer</code>, and <code>mod_proxy_http</code> (at least) modules.</p>
-
-<p>The second step (as per the link to Jetty documentation) is to set the <code>workerName</code> property of the session ID manager. The Jetty integration automatically sets the <code>workerName</code> (if it is not set explicitly) as the <code>clusterInfo</code> name and the <code>clusterInfo</code> running number. You can override this by configuring the <code>jetty-web.xml</code>. The following examples shows how the <code>jetty-web.xml</code> workerName gets set automatically (if it was configured explicitly):</p>
-
-<pre><code class="language-xml">&lt;Configure class="oorg.eclipse.jetty.webapp.WebAppContext"&gt;
-  &lt;Get name="sessionHandler"&gt;
-    &lt;Get name="sessionManager"&gt;
-      &lt;Call name="setIdManager"&gt;
-        &lt;Arg&gt;
-          &lt;New class="org.eclipse.jetty.server.session.HashSessionIdManager"&gt;
-            &lt;Set name="WorkerName"&gt;${clusterInfo.name}${clusterInfo.runningNumberOffset1}&lt;/Set&gt;
-          &lt;/New&gt;
-        &lt;/Arg&gt;
-      &lt;/Call&gt;
-    &lt;/Get&gt;
-  &lt;/Get&gt;
-&lt;/Configure&gt;
-</code></pre>
-
-<p>Then, the Apache httpd.conf should be modified to enable load balancing, as shown in the following example:</p>
-
-<pre><code class="language-bash">ProxyPass /balancer !
-ProxyPass /petclinic balancer://petclinic_cluster/ stickysession=JSESSIONID nofailover=On
-
-&lt;Proxy balancer://petclinic_cluster&gt;
-    BalancerMember http://machine1:8080/petclinic route=petclinic1
-    BalancerMember http://machine1:8081/petclinic route=petclinic2
-    BalancerMember http://machine2:8080/petclinic route=petclinic1
-    BalancerMember http://machine2:8081/petclinic route=petclinic2
-&lt;/Proxy&gt;
-
-# Proxy Management
-
-&lt;Location /balancer&gt;
-SetHandler balancer-manager
-
-Order Deny,Allow
-Deny from all
-Allow from all
-&lt;/Location&gt;
-
-ProxyStatus On
-&lt;Location /status&gt;
-SetHandler server-status
-
-Order Deny,Allow
-Deny from all
-Allow from all
-&lt;/Location&gt;
-</code></pre>
-
-<p>The above configuration configures the load balancer to direct traffic to <code>/petclinic</code> on <code>machine1</code> and <code>machine2</code>. On both machines, the ports used are <code>8080</code> and <code>8081</code>. This is because of the dynamic nature of the service grid, where web application instance number 1 (which corresponds to port <code>8080</code>) might be deployed on <code>machine1</code> or <code>machine2</code>.</p>
-
-<p>The above provides an overview of how to configure the Apache load balancer by hand. XAP comes with a built-in <a href="apache-load-balancer-agent.htm">Apache Load Balancer Agent</a> that provides a dynamic update of Apache, based on changes occurring in the deployment of the web application.</p>
-
-<h1 id="securing-the-jetty-container">Securing the Jetty Container</h1>
-
-<h2 id="configuring-ssl">Configuring SSL</h2>
-
-<p>Web applications running inside the Jetty container can use SSL. The following example defines the SSLConnector:</p>
-
-<pre><code class="language-xml">&lt;bean id="sslHttpConfig" class="org.eclipse.jetty.server.HttpConfiguration"&gt;
-    &lt;constructor-arg ref="httpConfig"/&gt;
-    &lt;property name="customizers"&gt;
-        &lt;list&gt;
-            &lt;bean class="org.eclipse.jetty.server.SecureRequestCustomizer"/&gt;
-        &lt;/list&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-
-&lt;bean id="sslContextFactory" class="org.eclipse.jetty.util.ssl.SslContextFactory"&gt;
-    &lt;property name="keyStorePath" value="/path-to/keystore"/&gt;
-    &lt;property name="keyStorePassword" value="storepass"/&gt;
-    &lt;property name="keyManagerPassword" value="keypass"/&gt;
-    &lt;property name="trustStorePath" value="/path-to/keystore"/&gt;
-    &lt;property name="trustStorePassword" value="storepass"/&gt;
-&lt;/bean&gt;
-
-&lt;property name="connectors"&gt;
-     &lt;list&gt;
-         &lt;bean class="org.eclipse.jetty.server.ServerConnector"&gt;
-             &lt;constructor-arg name="server" ref="jetty"/&gt;
-             &lt;constructor-arg name="factories"&gt;
-                &lt;list&gt;
-                    &lt;bean class="org.eclipse.jetty.server.SslConnectionFactory"&gt;
-                        &lt;constructor-arg index="0" ref="sslContextFactory" /&gt;
-                        &lt;constructor-arg index="1" type="java.lang.String"&gt;
-                            &lt;value&gt;http/1.1&lt;/value&gt;
-                        &lt;/constructor-arg&gt;
-                    &lt;/bean&gt;
-                    &lt;bean class="org.eclipse.jetty.server.HttpConnectionFactory"&gt;
-                        &lt;constructor-arg name="config" ref="sslHttpConfig"/&gt;
-                    &lt;/bean&gt;
-                &lt;/list&gt;
-             &lt;/constructor-arg&gt;
-             &lt;property name="port" value="8444"/&gt;
-             &lt;property name="idleTimeout" value="${web.selector.maxIdleTime}"/&gt;
-         &lt;/bean&gt;
-    &lt;/list&gt;
-&lt;/property&gt;
-</code></pre>
-
-<p>You can find a complete Jetty container definition <a href="/download_files/jetty.pu.xml">here</a> and the associated properties file <a href="/download_files/pu.properties">here</a>.</p>
-
-<p>Jetty documentation outlines all the steps involved in configuring SSL. Please refer to the following <a href="https://wiki.eclipse.org/Jetty/Howto/Configure_SSL">page</a> for more information.</p>
-
-<div class="tc-admon-refer">
-  
-  <p>A complete example with a keystore and certificate file included is available <a href="/download_files/jetty-ssl.zip">here</a>.</p>
-</div>
-
-<h2 id="authentication-and-access-control-using-security-realms">Authentication and Access Control Using Security Realms</h2>
-
-<p>Security realms allow you to secure your web applications against unauthorized access. Protection is based on authentication that identifies who is requesting access to the web application, and access control that restricts what can be accessed and how it is accessed within the web application.</p>
-
-<p>Jetty supports teh following security realms:</p>
-
-<ul>
-<li><a href="http://wiki.eclipse.org/Jetty/Tutorial/Realms#HashLoginService">HashLoginService</a></li>
-<li><a href="http://wiki.eclipse.org/Jetty/Tutorial/Realms#JDBCLoginService">JDBCLoginService</a></li>
-<li><a href="http://wiki.eclipse.org/Jetty/Tutorial/JAAS">JAAS</a></li>
-</ul>
-
-<p>Jetty documentation provides more information about security realms and how to configure them. Refer to the <a href="http://wiki.eclipse.org/Jetty/Feature/Realms">Security Realms</a> and <a href="http://wiki.eclipse.org/Jetty/Tutorial/Realms">Security Realms Tutorial</a> pages for more details.</p>
-
-<h2 id="custom-jetty-security-examples">Custom Jetty Security Examples</h2>
-
-<h3 id="hash-login-example">Hash Login Example</h3>
-
-<p>The attached <a href="/download_files/webapp-hash-security.zip">example</a> shows a web processing unit configured to use <code>HashLoginService</code>. This uses a security realm file for storing the credentials (user ID and passwords) that are used to authenticate users. Roles authorized for the application are defined in the <code>web.xml</code> file.</p>
-
-<p>Your Jetty configuration should include a SecurityHandler configuration (<code>HashLoginService</code>), as shown in the following example:</p>
-
-<pre><code class="language-xml">&lt;property name="securityHandler"&gt;
-    &lt;bean class="org.eclipse.jetty.security.ConstraintSecurityHandler"&gt;
-        &lt;property name="loginService"&gt;
-            &lt;bean class="org.eclipse.jetty.security.HashLoginService"&gt;
-                &lt;property name="name" value="MyRealm"/&gt;
-                &lt;property name="config" value="${jee.deployPath}/WEB-INF/realm.properties"/&gt;
-                &lt;property name="refreshInterval" value="60"/&gt;
-            &lt;/bean&gt;
-        &lt;/property&gt;
-    &lt;/bean&gt;
-&lt;/property&gt;
-</code></pre>
-
-<p>The <code>web.xml</code> file should include security-constraint, login-config and roles.</p>
-
-<h3 id="custom-jaas-security-example">Custom JAAS Security Example</h3>
-
-<p>The attached <a href="/download_files/webapp-jaas.zip">example</a> shows a web processing unit configured to use <code>JAASLoginService</code> and a custom login module. Authentication requests are passed to the login module, whose behavior can be customized to suit the specific needs of the web application. In this simplistic example, any request with a password of "password" goes through successfully.</p>
-
-<p>Jetty configuration should include SecurityHandler configuration (<code>JAASLoginService</code>), as shown in the following example:</p>
-
-<pre><code class="language-xml">&lt;property name="securityHandler"&gt;
-    &lt;bean class="org.eclipse.jetty.security.ConstraintSecurityHandler"&gt;
-        &lt;property name="loginService"&gt;
-            &lt;bean class="org.eclipse.jetty.plus.jaas.JAASLoginService"&gt;
-                &lt;property name="name" value="${aas.realm.name}" /&gt;
-                &lt;property name="loginModuleName" value="AASLogin" /&gt;
-                &lt;property name="callbackHandlerClass"
-                                 value="org.eclipse.jetty.plus.jaas.callback.DefaultCallbackHandler" /&gt;
-            &lt;/bean&gt;
-        &lt;/property&gt;
-    &lt;/bean&gt;
-&lt;/property&gt;
-</code></pre>
-
-<p>Login module definition is a configuration file that maps the module name to a Java class implementation, as shown in the following example:</p>
-
-<pre><code class="language-bash">AASLogin {
-          com.gigaspaces.web.jaas.MySecurityModule required
-          debug="true" file="/realm.properties";
-      };
-</code></pre>
-
-<p>The above configuration file should be passed as a JVM system property, <code>java.security.auth.login.config</code> for all the GSCs that host the web application instances (<code>-Djava.security.auth.login.config=\Dev\webapp-jaas\config\login.config</code>).</p>
 
 </body>
 </html>

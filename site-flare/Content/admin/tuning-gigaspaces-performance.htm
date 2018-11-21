@@ -65,7 +65,7 @@
 
 <h1 id="make-proper-use-of-indexes">Make Proper Use of Indexes</h1>
 
-<p>XAP includes a sophisticated built-in real-time indexing engine (regardless whether the space is persistent or not) that maintains a hash and btree like indexes for each indexed Space Class attribute. If you store a large number of Space objects from the same class type in the space, consider defining one or more indexes for attributes used with <a href="../dev-java/query-template-matching.htm">template matching</a> or <a href="../dev-java/query-sql.htm">SQL Query</a>. Defining indexes will improve the <code>read/take/readMultiple/takeMultiple/clear/count</code> operations response time significantly. Remember, indexes impact <code>write</code> and <code>take</code> operations response time, so choose your indexed fields carefully - each index has an overhead. GigaSpaces support index for equality , comparison (bigger/less than) queries and support <a href="../dev-java/indexing.htm">Regular Index</a> for a specific field and a <a href="../dev-java/indexing.htm#Compound Indexing">Compound Index</a> for multiple fields. Indexes can be defined for space class root level object or for a nested field allowing you to query different type of objects ("join") using the same query without any performance penalty. For bigger/less than/between queries use the <span class="tc-bold">Extended index</span>.</p>
+<p>XAP includes a sophisticated built-in real-time indexing engine (regardless whether the space is persistent or not) that maintains a hash and btree like indexes for each indexed Space Class attribute. If you store a large number of Space objects from the same class type in the space, consider defining one or more indexes for attributes used with <a href="../dev-java/query-template-matching.htm/">template matching</a> or <a href="../dev-java/query-sql.htm/">SQL Query</a>. Defining indexes will improve the <code>read/take/readMultiple/takeMultiple/clear/count</code> operations response time significantly. Remember, indexes impact <code>write</code> and <code>take</code> operations response time, so choose your indexed fields carefully - each index has an overhead. GigaSpaces support index for equality , comparison (bigger/less than) queries and support <a href="../dev-java/indexing.htm/">Regular Index</a> for a specific field and a <a href="../dev-java/indexing.htm/#Compound Indexing">Compound Index</a> for multiple fields. Indexes can be defined for space class root level object or for a nested field allowing you to query different type of objects ("join") using the same query without any performance penalty. For bigger/less than/between queries use the <span class="tc-bold">Extended index</span>.</p>
 
  <a id="7">&#160;</a>
 
@@ -136,7 +136,7 @@ or (A = 'Y' and B &gt; '2000-10-1' and B &lt; '2003-11-1')
 <h1 id="distribute-data-and-user-requests-among-several-partitions">Distribute Data and User Requests among Several Partitions</h1>
 
 <p>A single machine is always limited in the amount of data and user requests it can handle.
-You can use <a href="data-partitioning.htm">Data-Partitioning</a> to distribute the data and the calculation co-located with each partition. In more advanced scenarios you should use the <a href="https://docs.gigaspaces.com/sbp/master-worker-pattern.htm">Master-Worker pattern</a> to distribute the data and the calculation in a different ratio.</p>
+You can use <a href="./data-partitioning.htm/">Data-Partitioning</a> to distribute the data and the calculation co-located with each partition. In more advanced scenarios you should use the <a href="/sbp/master-worker-pattern.htm/">Master-Worker pattern</a> to distribute the data and the calculation in a different ratio.</p>
 
  <a id="17">&#160;</a>
 
@@ -159,7 +159,7 @@ You can use <a href="data-partitioning.htm">Data-Partitioning</a> to distribute 
 
 <h1 id="using-preparetemplate-for-efficient-query-execution">Using prepareTemplate for Efficient Query Execution</h1>
 
-<p>The prepareTemplate method creates a precompiled SQL template and stores it in a preparedTemplate object. A prepared template is the result object of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm#prepareTemplate-java.lang.Object-">GigaSpace.prepareTemplate</a>. call. The returned result includes a GigaSpaces internal representation of the template object that does not need to undergo any inspection before it is sent to the GigaSpaces server.</p>
+<p>The prepareTemplate method creates a precompiled SQL template and stores it in a preparedTemplate object. A prepared template is the result object of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/#prepareTemplate-java.lang.Object-">GigaSpace.prepareTemplate</a>. call. The returned result includes a GigaSpaces internal representation of the template object that does not need to undergo any inspection before it is sent to the GigaSpaces server.</p>
 
 <div class="tc-admon-tip">
   
@@ -189,8 +189,8 @@ You can use <a href="data-partitioning.htm">Data-Partitioning</a> to distribute 
   <p>For more details, refer to:</p>
 
 <ul>
-<li><a href="benchmark-browser.htm">Benchmark View</a></li>
-<li><a href="benchmark-utility-cli.htm">Benchmark Example</a></li>
+<li><a href="./benchmark-browser.htm/">Benchmark View</a></li>
+<li><a href="./benchmark-utility-cli.htm/">Benchmark Example</a></li>
 </ul>
 </div>
 

@@ -110,5 +110,5 @@ Customers should upgrade to a fully-supported environment, such as the latest ve
 
 ## Spring Framework Support
 
-GigaSpaces supports Spring Framework version 4.3.x. Backwards compatibiity is based on the Spring policy descrbed on the [Spring Framework Versions](https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-Versions) page for the Spring project.   
+GigaSpaces supports Spring Framework version 4.3.x. Backwards compatibility is based on the Spring policy described on the [Spring Framework Versions](https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-Versions) page for the Spring project.   
  

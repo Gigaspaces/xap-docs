@@ -183,7 +183,7 @@ foreach (IMachine machine in admin.Machines)
 
 <div class="tc-admon-refer">
   
-  <p>Refer to <a href="scaling-agent-example.htm">Scaling Agent Example</a> for a fully running example that comes with the product.</p>
+  <p>Refer to <a href="./scaling-agent-example.htm/">Scaling Agent Example</a> for a fully running example that comes with the product.</p>
 </div>
 
 <h1 id="admin-construction">Admin Construction</h1>
@@ -214,7 +214,7 @@ foreach (IMachine machine in admin.Machines)
 <tbody>
 <tr>
 <td align="left">GridServiceAgent</td>
-<td align="left">Process manager that manages Service Grid processes such as GSM, GSC and LUS. More info <a href="../overview/the-runtime-environment.htm#gsa">here</a>.</td>
+<td align="left">Process manager that manages Service Grid processes such as GSM, GSC and LUS. More info <a href="../overview/the-runtime-environment.htm/#gsa">here</a>.</td>
 <td align="left">- Allows you to list all the currently managed processes.<br/>- Start processes (GSM, GSC, LUS).</td>
 </tr>
 
@@ -226,7 +226,7 @@ foreach (IMachine machine in admin.Machines)
 
 <tr>
 <td align="left">GridServiceManager</td>
-<td align="left">Manages Processing Unit deployments and Grid Service Containers. More info <a href="../overview/the-runtime-environment.htm#gsm">here</a>.</td>
+<td align="left">Manages Processing Unit deployments and Grid Service Containers. More info <a href="../overview/the-runtime-environment.htm/#gsm">here</a>.</td>
 <td align="left">- Deploy Processing Units.<br/>- Deploy pure Space Processing Units.<br/>- Get the Grid Service Agent managing it.<br/>- Restart itself (if managed by a Grid Service Agent).<br/>- Kill itself (if managed by a Grid Service Agent).</td>
 </tr>
 
@@ -238,7 +238,7 @@ foreach (IMachine machine in admin.Machines)
 
 <tr>
 <td align="left">GridServiceContainer</td>
-<td align="left">Container hosting Processing Unit Instances deployed from the GSM. More info <a href="../overview/the-runtime-environment.htm#gsc">here</a>.</td>
+<td align="left">Container hosting Processing Unit Instances deployed from the GSM. More info <a href="../overview/the-runtime-environment.htm/#gsc">here</a>.</td>
 <td align="left">- List currently running Processing Unit instances.<br/>- Register for Processing Unit Instance additions and removals events.</td>
 </tr>
 
@@ -250,7 +250,7 @@ foreach (IMachine machine in admin.Machines)
 
 <tr>
 <td align="left">LookupService</td>
-<td align="left">Registry of services (GSM, GSC, Space instances, Processing Unit instances) that can be looked up using it. More info <a href="../overview/the-runtime-environment.htm#lus">here</a>.</td>
+<td align="left">Registry of services (GSM, GSC, Space instances, Processing Unit instances) that can be looked up using it. More info <a href="../overview/the-runtime-environment.htm/#lus">here</a>.</td>
 <td align="left">Get the Lookup Groups and Locator it was started with.</td>
 </tr>
 
@@ -281,13 +281,13 @@ foreach (IMachine machine in admin.Machines)
 <tr>
 <td align="left">Space</td>
 <td align="left">Composed of one or more Space instances, to form a Space topology (cluster).</td>
-<td align="left">- Get all the currently running Space instances that are part of the Space.<br/>- Wait for X number of Space instances to be up.<br/>- Register for Space instance addition and removal events.<br/>- Register for Space instance change mode events (for all Space instances that are part of the Space).<br/>- Register for Space instance replication status change events (for all Space instances that are part of the Space).<br/>- Get aggregated Space statistics.<br/>- Register for aggregated Space statistics events (if monitoring).<br/>- Get a clustered <a href="the-gigaspace-interface-overview.htm">Space</a> to perform Space operations.</td>
+<td align="left">- Get all the currently running Space instances that are part of the Space.<br/>- Wait for X number of Space instances to be up.<br/>- Register for Space instance addition and removal events.<br/>- Register for Space instance change mode events (for all Space instances that are part of the Space).<br/>- Register for Space instance replication status change events (for all Space instances that are part of the Space).<br/>- Get aggregated Space statistics.<br/>- Register for aggregated Space statistics events (if monitoring).<br/>- Get a clustered <a href="./the-gigaspace-interface-overview.htm/">Space</a> to perform Space operations.</td>
 </tr>
 
 <tr>
 <td align="left">SpaceInstance</td>
 <td align="left">Actual instance of a Space that is part of a topology (cluster), usually running within a Processing Unit instance.</td>
-<td align="left">- Get its Space mode (primary or backup).<br/>- Register for Space mode change events.<br/>- Get its replication targets.<br/>- Register for replication status change events.<br/>- Get a direct <a href="the-gigaspace-interface-overview.htm">Space</a> to perform Space operations.<br/>- Get Space instance statistics.<br/>- Register for Space instance statistics (if monitoring).</td>
+<td align="left">- Get its Space mode (primary or backup).<br/>- Register for Space mode change events.<br/>- Get its replication targets.<br/>- Register for replication status change events.<br/>- Get a direct <a href="./the-gigaspace-interface-overview.htm/">Space</a> to perform Space operations.<br/>- Get Space instance statistics.<br/>- Register for Space instance statistics (if monitoring).</td>
 </tr>
 
 <tr>

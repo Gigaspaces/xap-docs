@@ -44,7 +44,7 @@
 </ol>
 </div>
 
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> topics in the Administration section.</p>
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
 </div>
 </div>
 
@@ -63,7 +63,7 @@
 <p>After you delete the data, you can verify it was removed by looking at the value of the Instances Count column for that data type.</p>
 </div>
 
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> topics in the Administration section.</p>
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
 </div>
 </div>
 
@@ -161,10 +161,10 @@
 <p>The Quiesce Progress window displays the result of the Quiesce process (for example, "Quiesce completed successfully"), and a token that the administrator can use to perform actions on the Processing Unit while it is in quiesced state. It is recommended to copy this token from the window before clicking <span class="tc-bold">OK</span>.</p>
 </div>
 
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> topics in the Administration section.</p>
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
 </div>
 
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a> topics in the Developer Guide.</p>
+<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a> topics in the Developer Guide.</p>
 </div>
 </div>
 
@@ -249,10 +249,154 @@
 <p>When the Processing Unit is available again, the status in the Processing Unit view changes to Intact.</p>
 </div>
 
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> topics in the Administration section.</p>
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
 </div>
 
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a> topics in the Developer Guide.</p>
+<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a> topics in the Developer Guide.</p>
+</div>
+</div>
+
+<h1 id="demoting-a-primary-space-instance">Demoting a Primary Space Instance</h1>
+
+<p><span class="tc-bold">To demote a Space instance from a primary to a backup:</span></p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Command Line Interface" style="padding:10px"><p><span class="tc-italic">Command:</span></p>
+
+<p><code>xap space demote-instance &lt;instance ID&gt;</code></p>
+
+<p><span class="tc-italic">Description:</span></p>
+
+<p>This command demotes a Space instance from a primary to a backup, with no downtime required.</p>
+
+<p><span class="tc-italic">Input Example:</span></p>
+
+<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space demote-instance mySpace~1_1 --max-suspend-time=15s
+</code></pre>
+
+<p><span class="tc-italic">Parameters and Options:</span></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Item</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Parameter</td>
+<td align="left">instance ID</td>
+<td align="left">Provide the ID of the Space instance you want to demote.</td>
+</tr>
+
+<tr>
+<td align="left">Option</td>
+<td align="left">max-suspend-time</td>
+<td align="left">Define the maximum amount of time that the Space instance can be suspended, in seconds, during the demote process. The default value is 15.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div title="REST Manager API" style="padding:10px"><p><span class="tc-italic">Path</span></p>
+
+<p><code>POST /spaces/{id}/instances/{instanceId}/demote</code></p>
+
+<p><span class="tc-italic">Description:</span></p>
+
+<p>This command demotes a Space instance from a primary to a backup, with no downtime required.</p>
+
+<p><span class="tc-italic">Example Request:</span></p>
+
+<pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/spaces/mySpace/instances/mySpace~1_1/demote?maxSuspendTime=15s'
+</code></pre>
+
+<p><span class="tc-italic">Options:</span></p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>The name of the Space.</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>instanceId</td>
+<td>The ID of the Space instance you want to demote.</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>maxSuspendTime</td>
+<td>Define the maximum amount of time that the Space instance can be suspended, in seconds, during the demote process. The default value is 15.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div title="Web Management Console" style="padding:10px"><ol>
+<li>In any view, highlight the Space instance you want to demote.</li>
+<li>Click the <span class="tc-bold">Actions</span> icon, and select <span class="tc-bold">Demote</span> from the menu.</li>
+<li>(Optional) If you want helpful information to appear in the log, type some descriptive text in the <span class="tc-bold">Description</span> box (for example: "rebalance after failover").</li>
+<li>Click <span class="tc-bold">OK</span>.</li>
+</ol>
+
+<p>The Demote Progress window displays the result of the process (for example, "Demote completed successfully").</p>
+</div>
+
+<div title="GigaSpaces Management Center" style="padding:10px"><p>You can view the status of the Space instances in the Space Browser tab. However, you must use one of the other administration tools to hot swap the instances.</p>
+</div>
+
+<div title="Administration API" style="padding:10px"><p>You can use the <a href="../dev-java/administration-and-monitoring-overview.htm/">Administration API</a> to demote a primary Space instance to a backup.</p>
+
+<p>You can call demote for a Space instance, with a parameter of maximum suspend time for that Space instance during the demote process, as follows:</p>
+
+<pre><code class="language-java">Admin admin = ... // Get or init an Admin instance
+Space mySpace = admin.getSpaces().waitFor("mySpace");
+SpaceInstance primarySpaceInstance = mySpace.getPartition(0).getPrimary();
+// call demote with maximum suspend time of 15 seconds
+Future&lt;?&gt; future = primarySpaceInstance.demote(15, TimeUnit.SECONDS);
+future.get(); // or future.get(timeout, unit);
+</code></pre>
+
+<p>In addition, the Administration API allows registering for SuspendTypeChangedEvent:</p>
+
+<pre><code class="language-java">SpaceSuspendTypeChangedEventListener myListener = new SpaceSuspendTypeChangedEventListener() {
+    @Override
+    public void spaceSuspendTypeChanged(SpaceSuspendTypeChangedEvent event) {
+        System.out.println("Got event for space instance [" + event.getSpaceInstance().getId() + "], " +
+                "previous value is " + event.getPreviousSuspendType() + ", " +
+                "new value is " + event.getNewSuspendType());
+    }
+};
+
+mySpace.getSpaceSuspendTypeChanged().add(myListener);
+...
+mySpace.getSpaceSuspendTypeChanged().remove(myListener);
+</code></pre>
+
+<p><br/></p>
+
+<p>The SuspendType options are:</p>
+
+<ul>
+<li>NONE - The Space is not suspended.</li>
+<li>QUIESCED - The Space is quiesced.</li>
+<li>DEMOTING - The Space is being demoted to backup.</li>
+<li>DISCONNECTED - The Space is disconnected from Apache ZooKeeper.</li>
+</ul>
 </div>
 </div>
 
@@ -282,10 +426,10 @@
 <p>The Processing Unit instance is not visible in the Processing Unit view until it has finished restarting. This can take several seconds.</p>
 </div>
 
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> topics in the Administration section.</p>
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
 </div>
 
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a> topics in the Developer Guide.</p>
+<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a> topics in the Developer Guide.</p>
 </div>
 </div>
 
@@ -389,14 +533,14 @@
 <p>The Processing Unit state is Scheduled in the Processing Unit view until the instance is relocated and initiated. This can take several seconds.</p>
 </div>
 
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> topics in the Administration section.</p>
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
 </div>
 
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a> topics in the Developer Guide.</p>
+<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a> topics in the Developer Guide.</p>
 </div>
 </div>
 
-<h1 id="incrementing-a-processing-unit">Incrementing a Processing Unit</h1>
+<h1 id="incrementing-a-processing-unit-instance">Incrementing a Processing Unit Instance</h1>
 
 <p><span class="tc-bold">To increment a Processing Unit:</span></p>
 
@@ -476,10 +620,10 @@
 
 </div>
 
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> topics in the Administration section.</p>
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
 </div>
 
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a> topics in the Developer Guide.</p>
+<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a> topics in the Developer Guide.</p>
 </div>
 </div>
 
@@ -563,10 +707,10 @@
 
 </div>
 
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> topics in the Administration section.</p>
+<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="./gigaspaces-management-center.htm/">GigaSpaces Management Center</a> topics in the Administration section.</p>
 </div>
 
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a> topics in the Developer Guide.</p>
+<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a> topics in the Developer Guide.</p>
 </div>
 </div>
 

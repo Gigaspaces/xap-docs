@@ -5,7 +5,7 @@
 <h1>Executor-Based Remoting</h1>
   
 
-<p><span class="tc-bold">Executor Based Remoting</span> uses <a href="task-execution-overview.htm">Executors</a> to provided remoting capabilities on top of the Space. Executor Based Remoting allows for direct invocation of services in an asynchronous manner in a broadcast or routed manner. Executor Remoting works with services that are deployed in a Processing Unit and execute within a collocated space.</p>
+<p><span class="tc-bold">Executor Based Remoting</span> uses <a href="./task-execution-overview.htm/">Executors</a> to provided remoting capabilities on top of the Space. Executor Based Remoting allows for direct invocation of services in an asynchronous manner in a broadcast or routed manner. Executor Remoting works with services that are deployed in a Processing Unit and execute within a collocated space.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/Executor.jpg" alt="Executor.jpg" /></p>
 </div>
@@ -456,7 +456,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 
 <div class="tc-admon-note">
   
-  <p>Using a <a href="document-api.htm">SpaceDocument</a> as the annotated routing argument will cause an Exception since the <code>SpaceDocument</code> class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. To avoid the Exception, simply extend the <code>SpaceDocument</code> class as described in <a href="document-extending.htm">Extending Space Documents</a> and then define the relevant <code>getProperty</code> method in the extension class. Alternatively, an Exception can be avoided by implementing a <code>RemoteRoutingHandler</code>, as described above.</p>
+  <p>Using a <a href="./document-api.htm/">SpaceDocument</a> as the annotated routing argument will cause an Exception since the <code>SpaceDocument</code> class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. To avoid the Exception, simply extend the <code>SpaceDocument</code> class as described in <a href="./document-extending.htm/">Extending Space Documents</a> and then define the relevant <code>getProperty</code> method in the extension class. Alternatively, an Exception can be avoided by implementing a <code>RemoteRoutingHandler</code>, as described above.</p>
 </div>
 
 <h1 id="asynchronous-execution">Asynchronous Execution</h1>
@@ -943,7 +943,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 
 <p>In case of a Primary Backup clusters and Partitioned Sync2Backup clusters, when there is failure of primary space partition, remoting request is transparently forwarded to the backup.</p>
 
-<p>Executor proxy is aware of each partition in the cluster and connection with the failed primary partition will get interrupted/disconnected in case of a failure. Proxy recognizes failure and redirects the request to the backup partition. When the backup becomes ready (any warmup code that needs to run and is ready to accept operations), it will accept this request and process the request. All of this failover behavior is done within the GigaSpaces proxy code and client does not need any extra logic. For more information refer to <a href="../admin/tuning-proxy-connectivity.htm">Proxy Connectivity</a>.</p>
+<p>Executor proxy is aware of each partition in the cluster and connection with the failed primary partition will get interrupted/disconnected in case of a failure. Proxy recognizes failure and redirects the request to the backup partition. When the backup becomes ready (any warmup code that needs to run and is ready to accept operations), it will accept this request and process the request. All of this failover behavior is done within the GigaSpaces proxy code and client does not need any extra logic. For more information refer to <a href="../admin/tuning-proxy-connectivity.htm/">Proxy Connectivity</a>.</p>
 
 <p>If the backup space does not become ready to accept requests within the configured number of retries, execute request will fail with an Exception. In case of a broadcast request, <code>SpaceRemotingResult</code> for failed partition will have an exception. Following example shows how to inspect for exceptions in Reducer,</p>
 
@@ -975,7 +975,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 
 <div class="tc-admon-refer">
   
-  <p>For more information see <a href="custom-serialization.htm">Custom Serialization</a>.</p>
+  <p>For more information see <a href="./custom-serialization.htm/">Custom Serialization</a>.</p>
 </div>
 
 <h1 id="working-examples">Working Examples</h1>

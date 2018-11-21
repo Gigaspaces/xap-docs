@@ -80,14 +80,14 @@ In case a limited redo log is used the following property defines the maximum si
 
 <div class="tc-admon-refer">
   
-  <p>For more info refer to <a href="controlling-the-replication-redo-log.htm">Controlling the Replication Redo Log</a></p>
+  <p>For more info refer to <a href="./controlling-the-replication-redo-log.htm/">Controlling the Replication Redo Log</a></p>
 </div>
 
 <p>Completion phase is finished according to the consistency requirements of the replication type.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more info refer to <a href="synchronous-replication.htm#Behavior During Recovery">Synchronous Replication Behavior During Recovery</a> and <a href="asynchronous-replication.htm#Behavior During Recovery">Asynchronous Replication Behavior During Recovery</a></p>
+  <p>For more info refer to <a href="./synchronous-replication.htm/#Behavior During Recovery">Synchronous Replication Behavior During Recovery</a> and <a href="./asynchronous-replication.htm/#Behavior During Recovery">Asynchronous Replication Behavior During Recovery</a></p>
 </div>
 
 <p>Once the recovery process is complete, a full report including the total amount of recovered space objects and notify registrations, and their class types, is logged.
@@ -114,7 +114,7 @@ If there are other space instances in the same replication group, they don't rep
 
 <p>Primary and Backup space instances use the same database to stored their data. The space is the system of record. The data is usually persisted through the Mirror service.
 Which data is recovered depends on the space caching policy.
-There is special handling for <a href="../dev-java/transient-entries.htm">Transient Entries</a> (<code>persist=false</code>), since they can't be persisted - they are always recovered from the primary.</p>
+There is special handling for <a href="../dev-java/transient-entries.htm/">Transient Entries</a> (<code>persist=false</code>), since they can't be persisted - they are always recovered from the primary.</p>
 
 <h3 id="all-in-cache-policy">All In Cache Policy</h3>
 
@@ -139,7 +139,7 @@ If the primary space is unavailable for some reason - recovery will be retried  
 <li>the space itself becomes primary and then no recovery is necessary.</li>
 </ul>
 
-<p>Any other failure - <a href="../dev-java/all-in-cache-cache-policy.htm#SpaceMemoryShortageException">SpaceMemoryShortageException</a>, Database not available etc. is retried 3 times before failing.</p>
+<p>Any other failure - <a href="../dev-java/all-in-cache-cache-policy.htm/#SpaceMemoryShortageException">SpaceMemoryShortageException</a>, Database not available etc. is retried 3 times before failing.</p>
 
 <h1 id="active-active-topology">Active-Active Topology</h1>
 
@@ -160,7 +160,7 @@ If there are other space instances in the same replication group, after recovery
 <li>If database has data –&gt; recover persistent objects from the database + recover transient objects from the source.</li>
 </ol>
 
-<p>For further info and configuration options see <a href="../dev-java/direct-persistency.htm#Distributed Databases">Distributed Databases</a></p>
+<p>For further info and configuration options see <a href="../dev-java/direct-persistency.htm/#Distributed Databases">Distributed Databases</a></p>
 
 <h2 id="space-instance-recovery-failure-handling">Space Instance Recovery Failure Handling</h2>
 

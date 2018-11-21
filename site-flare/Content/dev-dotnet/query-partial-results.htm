@@ -9,7 +9,7 @@
 
 <h1 id="example">Example</h1>
 
-<p>Projections are supported using a <a href="query-sql.htm">SqlQuery</a> or <a href="query-by-id.htm">ID Queries</a>. Below is a simple example that demonstrates reading a <code>Person</code> object where only the "FirstName' and "LastName' properties are returned with the query result array. All other <code>Person</code> properties will not be returned:</p>
+<p>Projections are supported using a <a href="./query-sql.htm/">SqlQuery</a> or <a href="./query-by-id.htm/">ID Queries</a>. Below is a simple example that demonstrates reading a <code>Person</code> object where only the "FirstName' and "LastName' properties are returned with the query result array. All other <code>Person</code> properties will not be returned:</p>
 
 <pre><code class="language-csharp">public class Person
 {
@@ -38,7 +38,7 @@ IdsQuery&lt;Person&gt; idsQuery = new IdsQuery&lt;Person&gt;(new Long[]{id1,id2}
 Person result[] = space.ReadByIds(idsQuery).ResultsArray;
 </code></pre>
 
-<p>The <a href="document-api.htm">SpaceDocument</a> support projections as well:</p>
+<p>The <a href="./document-api.htm/">SpaceDocument</a> support projections as well:</p>
 
 <pre><code class="language-csharp">SqlQuery&lt;SpaceDocument&gt; docQuery = new SqlQuery&lt;SpaceDocument&gt;(typeof(Person).Name ,"")
   {Projections = new []{"FirstName", "LastName"}};
@@ -56,13 +56,13 @@ SpaceDocument docresult[] = space.ReadMultiple(docQuery);
 
 <p>A projection is defined for any operation that returns data from the Space. Therefore id-based or query-based operations support projections. You can use the Projection API with <code>Read</code>,<code>Take</code>,<code>ReadById</code>,<code>TakeById</code>,<code>ReadMultiple</code> and <code>TakeMultiple</code> operations. When performing a <code>Take</code> operation with projection, the entire Object will be removed from the space, but the result returned to the user will contain only the projected properties.</p>
 
-<p>You can use projections with a <a href="notify-container-overview.htm">Notify Container</a>, when subscribing to notifications. You can use it with a <a href="polling-container-overview.htm">Polling Container</a>, when consuming Space Objects. You can also create a <a href="local-view.htm">Local View</a> with templates or a <code>View</code> using projections. The local view will maintain the relevant objects, but the view of the data will contain only the projected properties.
+<p>You can use projections with a <a href="./notify-container-overview.htm/">Notify Container</a>, when subscribing to notifications. You can use it with a <a href="./polling-container-overview.htm/">Polling Container</a>, when consuming Space Objects. You can also create a <a href="./local-view.htm/">Local View</a> with templates or a <code>View</code> using projections. The local view will maintain the relevant objects, but the view of the data will contain only the projected properties.
 Both dynamic and fixed properties can be specified - the syntax is the same. As a result, when providing a property name which is not part of the property set, it will be treated as a dynamic property: That is, if there is no like-named dynamic property present on a query result Object, then the property will be ignored entirely (and no Exception will be thrown). Please note that a result may contain multiple objects, each with a different combination of properties (fixed and/or dynamic) - each object will be treated individually when applying projections to it.</p>
 
 <h1 id="considerations">Considerations</h1>
 
 <ol>
-<li>You can't use a projection on <a href="local-cache.htm">Local Cache</a>, as the Local Cache needs to contain fully constructed objects. Reconstructing an Object locally with projection would only negatively impact performance.</li>
+<li>You can't use a projection on <a href="./local-cache.htm/">Local Cache</a>, as the Local Cache needs to contain fully constructed objects. Reconstructing an Object locally with projection would only negatively impact performance.</li>
 <li>You can't use a projection to query a Local View for the same reason as for Local Cache. However, you can create a Local View with a projection template in which case the Local View will contain the Objects in their projected form.</li>
 </ol>
 
@@ -70,7 +70,7 @@ Both dynamic and fixed properties can be specified - the syntax is the same. As 
 
 <div class="tc-admon-refer">
   
-  <p><a href="https://github.com/GigaSpaces/gs-executor-remoting/">This repository</a> (Scala) contains an integration test that performs projection on a query in the context of <a href="executor-based-remoting.htm">Executor Based Remoting</a>. Relevant lines of code (Scala) are <a href="https://github.com/GigaSpaces/gs-executor-remoting/blob/master/src/test/scala/com/gigaspaces/sbp/WatchRepairSuite.scala#L124">here</a>.</p>
+  <p><a href="https://github.com/GigaSpaces/gs-executor-remoting/">This repository</a> (Scala) contains an integration test that performs projection on a query in the context of <a href="./executor-based-remoting.htm/">Executor Based Remoting</a>. Relevant lines of code (Scala) are <a href="https://github.com/GigaSpaces/gs-executor-remoting/blob/master/src/test/scala/com/gigaspaces/sbp/WatchRepairSuite.scala#L124">here</a>.</p>
 </div>
 
 </body>

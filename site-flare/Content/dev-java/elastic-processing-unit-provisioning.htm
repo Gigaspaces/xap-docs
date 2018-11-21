@@ -7,7 +7,7 @@
 
 <h1 id="system-bootstrapping">System Bootstrapping</h1>
 
-<p>Each machine requires a single running <a href="../overview/the-runtime-environment.htm#gsa">GigaSpaces Agent</a>. The example below shows how to start a new XAP agent. The command line parameters instruct the agents to communicate with each other and start the specified amount of managers. It does not start any containers automatically. The EPU starts containers on demand.</p>
+<p>Each machine requires a single running <a href="../overview/the-runtime-environment.htm/#gsa">GigaSpaces Agent</a>. The example below shows how to start a new XAP agent. The command line parameters instruct the agents to communicate with each other and start the specified amount of managers. It does not start any containers automatically. The EPU starts containers on demand.</p>
 
 <p>That means that potentially any machine could be a management machine:</p>
 
@@ -50,7 +50,7 @@ nohup ${XAP_HOME}/bin/gs-agent.sh &gt; /dev/null 2&gt;&amp;1 &amp;
 </div>
 </div>
 
-<p>Configure the EPU scale config to use <code>dedicatedManagementMachines</code>, and reduce the <code>reservedMemoryCapacityPerMachine</code>. For more information consult the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/config/DiscoveredMachineProvisioningConfigurer.htm">discovered machine provisioning configuration JavaDoc</a>.</p>
+<p>Configure the EPU scale config to use <code>dedicatedManagementMachines</code>, and reduce the <code>reservedMemoryCapacityPerMachine</code>. For more information consult the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/config/DiscoveredMachineProvisioningConfigurer.htm/">discovered machine provisioning configuration JavaDoc</a>.</p>
 
 <h1 id="zone-based-machine-provisioning">Zone Based Machine Provisioning</h1>
 
@@ -80,7 +80,7 @@ gs-agent.sh --global.lus=1 --global.gsm=1 --global.esm=1
 
 <h1 id="automatic-machine-provisioning">Automatic Machine Provisioning</h1>
 
-<p>When deploying an EPU pass an instance of <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/ElasticMachineProvisioningConfig.htm">ElasticMachineProvisioningConfig</a> as the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.htm">machineProvisioning</a> deployment property.</p>
+<p>When deploying an EPU pass an instance of <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/ElasticMachineProvisioningConfig.htm/">ElasticMachineProvisioningConfig</a> as the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.htm/">machineProvisioning</a> deployment property.</p>
 
 <pre><code class="language-java">ProcessingUnit pu = gsm.deploy(
         new ElasticStatefulProcessingUnitDeployment(new File("myPU.jar"))
@@ -92,7 +92,7 @@ gs-agent.sh --global.lus=1 --global.gsm=1 --global.esm=1
 );
 </code></pre>
 
-<p>When deploying Gigaspaces XAP on the management machine(s) place the plug-in JAR file under <code>/gigaspaces-xap/lib/platform/esm</code> folder. The ESM then loads classes specified by the <code>machineProvisioning</code> configuration. These classes need to implement either <a href="[%=Links.ApiJavaDoc%]/org/openspaces/grid/gsm/machines/plugins/ElasticMachineProvisioning.htm">ElasticMachineProvisioning</a> or <a href="[%=Links.ApiJavaDoc%]/org/openspaces/grid/gsm/machines/plugins/NonBlockingElasticMachineProvisioning.htm">NonBlockingElasticMachineProvisioning</a>. That class must also implement <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/bean/Bean.htm">Bean</a> which has resemblance to the Spring Bean.</p>
+<p>When deploying Gigaspaces XAP on the management machine(s) place the plug-in JAR file under <code>/gigaspaces-xap/lib/platform/esm</code> folder. The ESM then loads classes specified by the <code>machineProvisioning</code> configuration. These classes need to implement either <a href="[%=Links.ApiJavaDoc%]/org/openspaces/grid/gsm/machines/plugins/ElasticMachineProvisioning.htm/">ElasticMachineProvisioning</a> or <a href="[%=Links.ApiJavaDoc%]/org/openspaces/grid/gsm/machines/plugins/NonBlockingElasticMachineProvisioning.htm/">NonBlockingElasticMachineProvisioning</a>. That class must also implement <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/bean/Bean.htm/">Bean</a> which has resemblance to the Spring Bean.</p>
 
 <h1 id="automatic-rebalancing">Automatic Rebalancing</h1>
 
@@ -140,7 +140,7 @@ gs-agent.sh --global.lus=1 --global.gsm=1 --global.esm=1
 
 <ul>
 <li>During relocation of a specific instance, primary election takes place. For a few seconds, operations on that partition and operations on the whole cluster is denied. Internally, the client proxy retries the operation until the primary election takes place and masks the failure, but the delay exists.
-This delay can be reduced by modifying configuration settings as explained in <a href="../admin/troubleshooting-failure-detection.htm">Failure Detection</a>. Overriding the default value of these context properties is achieved with the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.htm">addContextProperty</a> deployment property. For example:</li>
+This delay can be reduced by modifying configuration settings as explained in <a href="../admin/troubleshooting-failure-detection.htm/">Failure Detection</a>. Overriding the default value of these context properties is achieved with the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.htm/">addContextProperty</a> deployment property. For example:</li>
 </ul>
 
 <pre><code class="language-java">ProcessingUnit pu = gsm.deploy(

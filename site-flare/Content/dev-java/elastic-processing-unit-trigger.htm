@@ -77,7 +77,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
 
 <ul>
 <li>Number of maximum machines is limited to the number of partitions calculated/defined during the deployment time. This limitation does not exist for stateless processing units.</li>
-<li>Multiple Eager EPUs can run on the same <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a> but on different machines. Machines are marked by starting a Grid Service Agent with a specific zone (With a command line argument -Dcom.gs.zones=zone1).</li>
+<li>Multiple Eager EPUs can run on the same <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a> but on different machines. Machines are marked by starting a Grid Service Agent with a specific zone (With a command line argument -Dcom.gs.zones=zone1).</li>
 </ul>
 
 <pre><code class="language-java">ProcessingUnit pu1 = gsm.deploy(

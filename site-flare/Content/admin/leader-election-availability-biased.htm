@@ -35,7 +35,7 @@
 
 <div class="tc-admon-note">
   
-  <p>Data resolution occurs between two different clusters using the WAN gateway as a replication channel. In this case a <a href="../dev-java/multi-site-conflict-resolution.htm">conflict resolution</a> is executed.</p>
+  <p>Data resolution occurs between two different clusters using the WAN gateway as a replication channel. In this case a <a href="../dev-java/multi-site-conflict-resolution.htm/">conflict resolution</a> is executed.</p>
 </div>
 
 <h2 id="primary-resolution">Primary Resolution</h2>
@@ -74,7 +74,7 @@ The steps for reaching a conclusion are outlined.</p>
 
 <h3 id="suspend-partition-primaries-policy">Suspend Partition Primaries Policy</h3>
 
-<p>Both primary Space instances are suspended (see <a href="quiescemode.htm">Quiesce</a> for reference), awaiting manual resolution.</p>
+<p>Both primary Space instances are suspended (see <a href="./quiescemode.htm/">Quiesce</a> for reference), awaiting manual resolution.</p>
 
 <p><span class="tc-bold">Resolution - Step 1</span>
 Each primary upon discovery of a split-brain enters a Self-Quiesce mode, suspending all interaction with the Space. Only interactions of a proxy that is applied with the Quiesce token are allowed. The Quiesce token is the name of the Space (as apposed to the default auto-generated token) to ease coding logic via Admin API upon split-brain detection).</p>

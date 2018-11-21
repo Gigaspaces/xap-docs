@@ -64,10 +64,10 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 
 <p>The local cache uses the entry's version to determine whether the local entry is up-to-date or stale when handling updates. Usually this mechanism is transparent to the user and does not require declaring a version property, because the master Space and local cache maintain version information implicitly for each entry.</p>
 
-<p>The exception is a master Space with <a href="space-persistency-overview.htm">Space persistency</a> enabled. For example, suppose that an entry in the master Space has version 7, and gets stored in the local cache, then evicted from the master Space and later reloaded from the data source. If the version is not persisted and reloaded, it will be set to 1 and the local cache will ignore upcoming updates on that entry because its cached version is 7. In that case, it is the user's responsibility to make sure that the entry's version is persisted and loaded in the data source, using the following rules:</p>
+<p>The exception is a master Space with <a href="./space-persistency-overview.htm/">Space persistency</a> enabled. For example, suppose that an entry in the master Space has version 7, and gets stored in the local cache, then evicted from the master Space and later reloaded from the data source. If the version is not persisted and reloaded, it will be set to 1 and the local cache will ignore upcoming updates on that entry because its cached version is 7. In that case, it is the user's responsibility to make sure that the entry's version is persisted and loaded in the data source, using the following rules:</p>
 
 <ol>
-<li>Each POJO class should declare a <a href="pojo-overview.htm#JavaSpacesPOJO-POJOAnnotationsandXMLSpaceMappingFileElements">SpaceVersion</a> property.</li>
+<li>Each POJO class should declare a <a href="./pojo-overview.htm/#JavaSpacesPOJO-POJOAnnotationsandXMLSpaceMappingFileElements">SpaceVersion</a> property.</li>
 <li>In the database, you should add a <code>VERSION_ID</code> column that will be mapped to this property in the corresponding tables. If you are using Hibernate, add the <code>versionId</code> property to the hbm.xml file or the <code>@Version</code> annotation to the mapped class.</li>
 <li>When writing new entries to the Space, it is recommended to use version 0 and let the Space implicitly initialize to version 1.</li>
 <li>When using template matching to query the Space, make sure that the template used has the version ID field set to ZERO to make sure the Space will ignore it.</li>
@@ -203,13 +203,13 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 
 <h1 id="advanced-notification">Advanced Notification</h1>
 
-<p>The  round-trip-time setting can be configured using the <code>space-config.dist-cache.events.lease-renew.round-trip-time</code> custom property. For more information about this setting refer to <a href="session-based-messaging-api.htm">Session-Based Messaging API</a>.</p>
+<p>The  round-trip-time setting can be configured using the <code>space-config.dist-cache.events.lease-renew.round-trip-time</code> custom property. For more information about this setting refer to <a href="./session-based-messaging-api.htm/">Session-Based Messaging API</a>.</p>
 
 <h1 id="memory-eviction">Memory Eviction</h1>
 
 <h2 id="cache-policy">Cache Policy</h2>
 
-<p>When using a local cache with <code>GigaSpace</code>, the cache policy is set to <code>LRU</code> and cannot be changed. When using the local cache with <code>GigaMap</code>, the default cache policy is <code>com.j_spaces.map.eviction.FIFOEvictionStrategy</code>, and other policies may be used by setting the <code>space-config.dist-cache.eviction-strategy</code> custom property. For more details refer to the <a href="map-api.htm#GigaMap with a Local (Near) Cache">Map API</a>.</p>
+<p>When using a local cache with <code>GigaSpace</code>, the cache policy is set to <code>LRU</code> and cannot be changed. When using the local cache with <code>GigaMap</code>, the default cache policy is <code>com.j_spaces.map.eviction.FIFOEvictionStrategy</code>, and other policies may be used by setting the <code>space-config.dist-cache.eviction-strategy</code> custom property. For more details refer to the <a href="./map-api.htm/#GigaMap with a Local (Near) Cache">Map API</a>.</p>
 
 <h2 id="memory-configuration-properties">Memory Configuration Properties</h2>
 
@@ -273,7 +273,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
 
 <div class="tc-admon-refer">
   
-  <p>See the <a href="memory-management-overview.htm">Memory Management Facilities</a> for additional details on these configuration properties.</p>
+  <p>See the <a href="./memory-management-overview.htm/">Memory Management Facilities</a> for additional details on these configuration properties.</p>
 </div>
 
 <div class="tc-admon-tip">

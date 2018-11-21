@@ -7,7 +7,7 @@
 
 <h1 id="common-scenarios">Common Scenarios</h1>
 
-<p>GigaSpaces infrastructure can be started using a GigaSpaces Grid Service Agent as explained in <a href="../overview/the-runtime-environment.htm#gsa">GSA page</a>. When using Windows based OS for running GigaSpaces infrastructure, users want to convert GSA into a windows service for following common reasons,</p>
+<p>GigaSpaces infrastructure can be started using a GigaSpaces Grid Service Agent as explained in <a href="../overview/the-runtime-environment.htm/#gsa">GSA page</a>. When using Windows based OS for running GigaSpaces infrastructure, users want to convert GSA into a windows service for following common reasons,</p>
 
 <ol>
 <li>GSA process should survive a user logoff.</li>
@@ -23,7 +23,7 @@
 
 <p>If you need to fulfill all 3 reasons above, then you have to create a windows service for GSA.</p>
 
-<p>Easiest way to convert GSA into service is to use the .NET version of the product and create windows service using the instructions that are documented in the <a href="../dev-dotnet/installation-overview.htm">XAP.NET installation</a> documentation.</p>
+<p>Easiest way to convert GSA into service is to use the .NET version of the product and create windows service using the instructions that are documented in the <a href="../dev-dotnet/installation-overview.htm/">XAP.NET installation</a> documentation.</p>
 
 <p>Some users are not comfortable using the .NET version of the product and want to use only Java version of the product. In such cases, there are many software that can help in converting a Java Application (like GigaSpaces) to a Windows Service.</p>
 
@@ -31,7 +31,7 @@
   
   <ul>
 <li><a href="http://wrapper.tanukisoftware.org/">Java Service Wrapper</a></li>
-<li><a href="http://commons.apache.org/daemon/procrun.htm">Apache Commons Daemon - Procrun</a></li>
+<li><a href="http://commons.apache.org/daemon/procrun.htm/">Apache Commons Daemon - Procrun</a></li>
 <li><a href="http://launch4j.sourceforge.net/">Launch4J</a></li>
 <li><a href="http://sourceforge.net/projects/yajsw/">Yet Another Java Service Wrapper</a></li>
 </ul>
@@ -39,7 +39,7 @@
 
 <h1 id="example">Example</h1>
 
-<p>An example GSA windows service configuration created using <a href="http://wrapper.tanukisoftware.org/">Java Service Wrapper</a> can be downloaded from <a href="/download_files/myApp.zip">here</a>. It was created using the <a href="http://wrapper.tanukisoftware.com/doc/english/integrate-simple-win.htm#allTogether">instructions</a> on Tanuki software website.</p>
+<p>An example GSA windows service configuration created using <a href="http://wrapper.tanukisoftware.org/">Java Service Wrapper</a> can be downloaded from <a href="/download_files/myApp.zip">here</a>. It was created using the <a href="http://wrapper.tanukisoftware.com/doc/english/integrate-simple-win.htm/#allTogether">instructions</a> on Tanuki software website.</p>
 
 <ul>
 <li>Modify the wrapper.config file per your environment. For downloading wrapper.jar go to <a href="http://wrapper.tanukisoftware.org/">Java Service Wrapper</a>, download wrapper-windows-xxx-xx-x.x.xx-pro.zip which fits to your platform, unzip it and copy wrapper-windows-xxx-xx-x.x.xx-pro\lib\wrapper.jar to your myApp\lib dir (or to any dir on your file system and point to it in your classpath)</li>

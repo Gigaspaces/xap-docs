@@ -1,19 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-    <head>
-    </head>
-    <body>
-        <h1>User-Defined Classes</h1>
-        <p>Since matching and comparing expressions is executed via java's built-in <code>equals</code> and <code>Comparable</code> mechanisms, a user defined class can be matched and compared as well.</p>
-        <p>For example, suppose a user defined a class called <span class="tc-bold">Version</span>, which encapsulates a major version and a minor version integers, and then implements a space class <span class="tc-italic">Document</span> with a <span class="tc-bold">version</span> property.
-The following example queries for a <span class="tc-bold">Document</span> with a <span class="tc-bold">version</span> greater than <span class="tc-bold">2.5</span>:</p><pre><code class="language-java">SQLQuery&lt;Document&gt; query = new SQLQuery&lt;Document&gt;(Document.class, "version &gt; ?", new Version(2, 5));
+<head></head>
+<body>
+<h1>User Defined Classes</h1>
+  <p>Since matching and comparing expressions is executed via java's built-in <code>equals</code> and <code>Comparable</code> mechanisms, a user defined class can be matched and compared as well.</p>
+
+<p>For example, suppose a user defined a class called <span class="tc-bold">Version</span>, which encapsulates a major version and a minor version integers, and then implements a space class <span class="tc-italic">Document</span> with a <span class="tc-bold">version</span> property.
+The following example queries for a <span class="tc-bold">Document</span> with a <span class="tc-bold">version</span> greater than <span class="tc-bold">2.5</span>:</p>
+
+<pre><code class="language-java">SQLQuery&lt;Document&gt; query = new SQLQuery&lt;Document&gt;(Document.class, "version &gt; ?", new Version(2, 5));
 </code></pre>
-        <p>In order for that query to execute correctly, the user-defined class should implement the following:</p>
-        <ul>
-            <li>For equality (equals/not equals): the <code>equals()</code> and <code>hashCode()</code> methods.</li>
-            <li>For comparison (greater/less than): the <code>java.lang.Comparable</code> interface.</li>
-        </ul>
-        <p>Here's an example of <span class="tc-bold">Version</span> implementing both equality and comparison requirements:</p><pre><code class="language-java">public class Version implements Serializable, Comparable&lt;Version&gt; {
+
+<p>In order for that query to execute correctly, the user-defined class should implement the following:</p>
+
+<ul>
+<li>For equality (equals/not equals): the <code>equals()</code> and <code>hashCode()</code> methods.</li>
+<li>For comparison (greater/less than): the <code>java.lang.Comparable</code> interface.</li>
+</ul>
+
+<p>Here's an example of <span class="tc-bold">Version</span> implementing both equality and comparison requirements:</p>
+
+<pre><code class="language-java">public class Version implements Serializable, Comparable&lt;Version&gt; {
     private int major;
     private int minor;
     // Getters and setters are omitted for brevity.
@@ -46,5 +53,6 @@ The following example queries for a <span class="tc-bold">Document</span> with a
     }
 }
 </code></pre>
-    </body>
+
+</body>
 </html>

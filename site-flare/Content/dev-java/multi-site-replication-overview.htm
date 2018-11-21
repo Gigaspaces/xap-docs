@@ -48,7 +48,7 @@
 <li>Master-slave, where only one site actually updates the data while the rest either serve as a backup or use it in read only mode.</li>
 </ul>
 
-<p>For both of the above topologies, replication is done in in a similar way. Each Space replicates the relevant data to its target Space(s) via a local gateway, which routes the data to the gateway of the target Space(s) and from there to the target Space. The data is replicated asynchronously in a reliable mode, which means that even if a primary Space instance fails on the source site, the backup Space instance that replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary Space instance. This is very similar to the <a href="asynchronous-persistency-with-the-mirror.htm">Mirror Service</a> replication scheme. The gateway is discussed in full below.</p>
+<p>For both of the above topologies, replication is done in in a similar way. Each Space replicates the relevant data to its target Space(s) via a local gateway, which routes the data to the gateway of the target Space(s) and from there to the target Space. The data is replicated asynchronously in a reliable mode, which means that even if a primary Space instance fails on the source site, the backup Space instance that replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary Space instance. This is very similar to the <a href="./asynchronous-persistency-with-the-mirror.htm/">Mirror Service</a> replication scheme. The gateway is discussed in full below.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_how_it_works.jpg" alt="wan_how_it_works.jpg" /></p>
 </div>
@@ -90,7 +90,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more details about all the available configuration elements of the space gateway targets,  refer to <a href="configuring-space-gateway-targets.htm">Configuring Space Gateway Targets</a>.</p>
+  <p>For more details about all the available configuration elements of the space gateway targets,  refer to <a href="./configuring-space-gateway-targets.htm/">Configuring Space Gateway Targets</a>.</p>
 </div>
 
 <p><span class="tc-bold">Use the <code>partitioned</code> cluster schema</span></p>
@@ -157,12 +157,12 @@ have no meaning, all sites could designate the same ports as well--&gt;
 
 <div class="tc-admon-refer">
   
-  <p>For full details and available configurations,  refer to <a href="replication-gateway-components.htm">Replication Gateway Components</a>.</p>
+  <p>For full details and available configurations,  refer to <a href="./replication-gateway-components.htm/">Replication Gateway Components</a>.</p>
 </div>
 
 <h2 id="gateway-and-the-mirror-service">Gateway and the Mirror Service</h2>
 
-<p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.htm">Mirror Service</a> are two different components, which can co-exist together without affecting each other. A gateway is just another reliable asynchronous target. As such, there is no need to demonstrate the mirror service alongside a gateway because they don't conflict with each other or require any special configuration when used in the same Space cluster.</p>
+<p>A gateway and a <a href="./asynchronous-persistency-with-the-mirror.htm/">Mirror Service</a> are two different components, which can co-exist together without affecting each other. A gateway is just another reliable asynchronous target. As such, there is no need to demonstrate the mirror service alongside a gateway because they don't conflict with each other or require any special configuration when used in the same Space cluster.</p>
 
 <h2 id="gateway-and-distributed-transactions">Gateway and Distributed Transactions</h2>
 
@@ -445,7 +445,7 @@ In order to prevent this potential delay, you can set a timeout parameter that i
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_multi_master.jpg" alt="wan_multi_master.jpg" /></p>
 </div>
 
-<p>The example below describes two sites, but any number of sites is supported in the same manner. In a master-slave topology, each site should try to modify different subsets of the data as much as possible, because many conflicts can occur if multiple sites change the same Space entries at the same time. These conflicts can be resolved using a conflict resolver, which is described in detail in the <a href="multi-site-conflict-resolution.htm">Multi-Site Conflict Resolution</a> topic.</p>
+<p>The example below describes two sites, but any number of sites is supported in the same manner. In a master-slave topology, each site should try to modify different subsets of the data as much as possible, because many conflicts can occur if multiple sites change the same Space entries at the same time. These conflicts can be resolved using a conflict resolver, which is described in detail in the <a href="./multi-site-conflict-resolution.htm/">Multi-Site Conflict Resolution</a> topic.</p>
 
 <p>In the example below, New York and London are the two active sites.</p>
 
@@ -650,16 +650,16 @@ In order to prevent this potential delay, you can set a timeout parameter that i
 
 <div class="tc-admon-refer">
   
-  <p>The <a href="https://docs.gigaspaces.com/sbp/wan-replication-gateway.htm">Multi-Master running example</a> topic includes a three-way setup that replicates data between three sites.</p>
+  <p>The <a href="/sbp/wan-replication-gateway.htm/">Multi-Master running example</a> topic includes a three-way setup that replicates data between three sites.</p>
 </div>
 
 <h1 id="filtering-replication-between-gateways">Filtering Replication Between Gateways</h1>
 
-<p>On occasion, there may be data that should not be replicated between sites but should still be replicated locally to the backup or a mirror service. If this is the case, it isn't suitable to specify that the object should not be replicated. A replication channel to a gateway is like any other replication channel, so a custom <a href="../admin/cluster-replication-filters.htm">Replication Filter</a> at the source Space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name, in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
+<p>On occasion, there may be data that should not be replicated between sites but should still be replicated locally to the backup or a mirror service. If this is the case, it isn't suitable to specify that the object should not be replicated. A replication channel to a gateway is like any other replication channel, so a custom <a href="../admin/cluster-replication-filters.htm/">Replication Filter</a> at the source Space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name, in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For full details and an example, refer to <a href="replication-gateway-filtering.htm">Replication Gateway Filtering</a>.</p>
+  <p>For full details and an example, refer to <a href="./replication-gateway-filtering.htm/">Replication Gateway Filtering</a>.</p>
 </div>
 
 <h1 id="bootstrapping-a-site-from-another-site">Bootstrapping a Site From Another Site</h1>
@@ -668,7 +668,7 @@ In order to prevent this potential delay, you can set a timeout parameter that i
 
 <div class="tc-admon-refer">
   
-  <p>For more informaion on how to enable the bootstrap mechanism, refer to <a href="replication-gateway-bootstrapping-process.htm">Replication Gateway Bootstrapping Process</a>.</p>
+  <p>For more informaion on how to enable the bootstrap mechanism, refer to <a href="./replication-gateway-bootstrapping-process.htm/">Replication Gateway Bootstrapping Process</a>.</p>
 </div>
 
 <h1 id="changing-the-site-topology-during-runtime">Changing the Site Topology During Runtime</h1>
@@ -677,7 +677,7 @@ In order to prevent this potential delay, you can set a timeout parameter that i
 
 <div class="tc-admon-refer">
   
-  <p>For more information on how to add and remove sites during runtime, refer to <a href="changing-multi-site-deployment-during-runtime.htm">Changing Multi-Site Deployment during Runtime</a>.</p>
+  <p>For more information on how to add and remove sites during runtime, refer to <a href="./changing-multi-site-deployment-during-runtime.htm/">Changing Multi-Site Deployment during Runtime</a>.</p>
 </div>
 
 <h1 id="additional-resources">Additional Resources</h1>
@@ -685,8 +685,8 @@ In order to prevent this potential delay, you can set a timeout parameter that i
 <p>The following pages in this section provide more details on the Multi-Site Replication module:</p>
 
 <ul>
-<li><a href="https://docs.gigaspaces.com/sbp/wan-replication-gateway.htm#Replication Throughput Capacity">Replication Throughput Capacity</a></li>
-<li><a href="https://docs.gigaspaces.com/sbp/wan-replication-gateway.htm#WAN Gateway Replication Benchmark">WAN Gateway Replication Benchmark</a></li>
+<li><a href="/sbp/wan-replication-gateway.htm/#Replication Throughput Capacity">Replication Throughput Capacity</a></li>
+<li><a href="/sbp/wan-replication-gateway.htm/#WAN Gateway Replication Benchmark">WAN Gateway Replication Benchmark</a></li>
 </ul>
 
 <p>You can also view the following video:</p>

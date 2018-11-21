@@ -7,7 +7,7 @@
 
 <h1 id="the-runtime-environment-gsa-lus-gsm-and-gsc">The Runtime Environment (GSA, LUS, GSM and GSC)</h1>
 
-<p>In a dynamic environment where you want to start <a href="../overview/the-runtime-environment.htm#gsc">GSCs</a> and <a href="../overview/the-runtime-environment.htm#gsm">GSMs</a> remotely, manually, or dynamically, the <a href="../overview/the-runtime-environment.htm#gsa">GSA</a> is the only component that should be running on the machine hosting the <a href="../admin/the-runtime-environment.htm">XAP runtime environment</a>. This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.</p>
+<p>In a dynamic environment where you want to start <a href="../overview/the-runtime-environment.htm/#gsc">GSCs</a> and <a href="../overview/the-runtime-environment.htm/#gsm">GSMs</a> remotely, manually, or dynamically, the <a href="../overview/the-runtime-environment.htm/#gsa">GSA</a> is the only component that should be running on the machine hosting the <a href="../admin/the-runtime-environment.htm/">XAP runtime environment</a>. This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.</p>
 
 <p>Plan the initial number of GSCs and GSMs based on the application memory footprint, and the amount of processing you might need. The most basic deployment should include 2 GSMs (running on different machines), 2 lookup services (running on different machines), and 2 GSCs (running on each machine). These host your data Grid or any other application components (services, web servers, Mirror) that you deploy.</p>
 
@@ -139,7 +139,7 @@ gs deploy-space -cluster schema=partitioned total_members=2 spaceY
 
 <h1 id="zones">Zones</h1>
 
-<p>The <a href="../admin/the-sla-zones.htm">XAP zone</a> allows you to "label" a running GSC(s) before starting it. The XAP <span class="tc-bold">zone</span> should be used to isolate applications and a data grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs, where they all share the <span class="tc-bold">same set of LUSs and GSMs</span>.</p>
+<p>The <a href="../admin/the-sla-zones.htm/">XAP zone</a> allows you to "label" a running GSC(s) before starting it. The XAP <span class="tc-bold">zone</span> should be used to isolate applications and a data grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs, where they all share the <span class="tc-bold">same set of LUSs and GSMs</span>.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/zones.jpg" alt="image" /></p>
 </div>
@@ -233,7 +233,7 @@ gs-agent.sh --gsc=2
 
 <tr>
 <td align="left">com.gigaspaces.grid.gsa.config-directory</td>
-<td align="left">The location of the GSA configuration files. <a href="../overview/the-runtime-environment.htm#gsa">The GigaSpaces Agent</a> (GSA) manages different process types. Each process type is defined within this folder in an xml file that identifies the process type by its name.</td>
+<td align="left">The location of the GSA configuration files. <a href="../overview/the-runtime-environment.htm/#gsa">The GigaSpaces Agent</a> (GSA) manages different process types. Each process type is defined within this folder in an xml file that identifies the process type by its name.</td>
 <td align="left"><code>&lt;gigaspaces-xap root&gt;\config\gsa</code></td>
 </tr>
 
@@ -254,7 +254,7 @@ gs-agent.sh --gsc=2
 
 <h2 id="user-pu-application-libraries">User PU Application Libraries</h2>
 
-<p>A <a href="../dev-java/the-processing-unit-structure-and-configuration.htm">Processing Unit</a> JAR file, or a <a href="../dev-java/web-jetty-processing-unit-container.htm">Web Application</a> WAR file should include (within its lib folder) all the necessary JARs required for the application. Resource files should be placed within one of the JAR files within the PU JAR, located under the lib folder. In addition, the PU JAR should include the pu.xml within the <code>META-INF\spring</code> folder.
+<p>A <a href="../dev-java/the-processing-unit-structure-and-configuration.htm/">Processing Unit</a> JAR file, or a <a href="../dev-java/web-jetty-processing-unit-container.htm/">Web Application</a> WAR file should include (within its lib folder) all the necessary JARs required for the application. Resource files should be placed within one of the JAR files within the PU JAR, located under the lib folder. In addition, the PU JAR should include the pu.xml within the <code>META-INF\spring</code> folder.
 In order to close LRMI threads when closing application, use:LRMIManager.shutdown().</p>
 
 <h2 id="data-grid-pu-libraries">Data Grid PU Libraries</h2>
@@ -272,7 +272,7 @@ In order to close LRMI threads when closing application, use:LRMIManager.shutdow
 
 <h1 id="space-memory-management">Space Memory Management</h1>
 
-<p>The Space supports two <a href="../dev-java/memory-management-overview.htm">memory management</a> modes:</p>
+<p>The Space supports two <a href="../dev-java/memory-management-overview.htm/">memory management</a> modes:</p>
 
 <ul>
 <li><code>ALL_IN_CACHE</code> - this assumes all application data is stored within the space.</li>
@@ -343,19 +343,19 @@ The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</c
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/sbp/rebalance_util.jpg" alt="rebalance_util.jpg" /></p>
 </div>
 
-<p>The Elastic Service Manager (ESM) component is responsible for scaling the IMDG during runtime, and is used with the <a href="../dev-java/elastic-processing-unit-overview.htm">Elastic Processing Unit</a>:</p>
+<p>The Elastic Service Manager (ESM) component is responsible for scaling the IMDG during runtime, and is used with the <a href="../dev-java/elastic-processing-unit-overview.htm/">Elastic Processing Unit</a>:</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/sbp/flow.gif" alt="flow.gif" /></p>
 </div>
 
 <div class="tc-admon-tip">
   
-  <p>When using the <a href="../dev-java/elastic-processing-unit-overview.htm">Elastic Processing Unit</a>, instances will be continuously rebalanced across all available machines.</p>
+  <p>When using the <a href="../dev-java/elastic-processing-unit-overview.htm/">Elastic Processing Unit</a>, instances will be continuously rebalanced across all available machines.</p>
 </div>
 
 <h1 id="log-files">Log Files</h1>
 
-<p>XAP generates log files for each running component . This includes the GSA, GSC, GSM, Lookup Service and client-side components. By default, the log files are created within the <code>&lt;gigaspaces-xap-root&gt;\logs</code> folder. After some time, you may end up with a large number of files that are difficult to maintain and search. it is recommended to back up or delete old log files. You can use the <a href="../admin/logging-backing-custom-policy.htm">logging backup policy</a> to manage your log files.</p>
+<p>XAP generates log files for each running component . This includes the GSA, GSC, GSM, Lookup Service and client-side components. By default, the log files are created within the <code>&lt;gigaspaces-xap-root&gt;\logs</code> folder. After some time, you may end up with a large number of files that are difficult to maintain and search. it is recommended to back up or delete old log files. You can use the <a href="../admin/logging-backing-custom-policy.htm/">logging backup policy</a> to manage your log files.</p>
 
 </body>
 </html>

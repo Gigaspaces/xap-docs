@@ -7,7 +7,7 @@
 
 <p>A <span class="tc-bold">Local View</span> is a Client Side Cache that maintains a subset of the master space's data. The Local View allows the client to read distributed data without performing any remote calls.</p>
 
-<p>Data is streamed into the client's local view based on predefined criteria (a collection of <a href="query-sql.htm">SQLQuery</a> objects). These criteria are specified by the client when the local view is created.</p>
+<p>Data is streamed into the client's local view based on predefined criteria (a collection of <a href="./query-sql.htm/">SQLQuery</a> objects). These criteria are specified by the client when the local view is created.</p>
 
 <p>During the local view initialization, data is loaded into the client's memory based on the view criteria. Afterwards, the local view is continuously updated by the master space asynchronously; any operation executed on the master space that affects an entry which matches the view criteria is automatically propagated to the client.</p>
 
@@ -48,7 +48,7 @@ IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views);
 
 <p>As data is stored in the client application's memory, care must be taken to ensure that the application's memory is sufficient to maintain the data. Certain scenarios can result in a memory shortage. If you create multiple local views in the same client or your local view query is too broad, the application could run out of memory and the <code>MemoryShortageException</code> will be thrown.</p>
 
-<p>To overcome this either refine the local view queries to cache less data or increase the underlying JVM's memory, as explained in <a href="jvm-configuration.htm">Jvm Configuration</a>.</p>
+<p>To overcome this either refine the local view queries to cache less data or increase the underlying JVM's memory, as explained in <a href="./jvm-configuration.htm/">Jvm Configuration</a>.</p>
 
 <h1 id="synchronization">Synchronization</h1>
 

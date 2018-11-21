@@ -5,7 +5,7 @@
 <h1>Multi Site LAN Replication</h1>
   
 
-<p>Multiple Space replication is the ability to replicate state between different deployed Spaces (different cluster of Space instances), where each of the Space instances of each of the Spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, you must have a direct network connection between all the Space instances of all of the clusters (or at least a connection between all Space instances to the targeted Space gateway machine). Replicating between Spaces in the same network is done using exactly the same mechanisms and gateway described in <a href="multi-site-replication-overview.htm">Multi-Site Replication over the WAN</a>. However, the method is simplified because much of the configuration and some of the components are not needed, as the Spaces reside in the same network.</p>
+<p>Multiple Space replication is the ability to replicate state between different deployed Spaces (different cluster of Space instances), where each of the Space instances of each of the Spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, you must have a direct network connection between all the Space instances of all of the clusters (or at least a connection between all Space instances to the targeted Space gateway machine). Replicating between Spaces in the same network is done using exactly the same mechanisms and gateway described in <a href="./multi-site-replication-overview.htm/">Multi-Site Replication over the WAN</a>. However, the method is simplified because much of the configuration and some of the components are not needed, as the Spaces reside in the same network.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_use_cases.jpg" alt="wan_use_cases.jpg" /></p>
 </div>
@@ -26,7 +26,7 @@
 
 <div class="tc-admon-note">
   
-  <p>If each Space resides on a different network and there is no network connectivity between all the Space instances of all the Spaces, read <a href="multi-site-replication-overview.htm">Multi-Site Replication over the WAN</a> to
+  <p>If each Space resides on a different network and there is no network connectivity between all the Space instances of all the Spaces, read <a href="./multi-site-replication-overview.htm/">Multi-Site Replication over the WAN</a> to
 understand how to establish replication between different networks.</p>
 </div>
 
@@ -39,7 +39,7 @@ understand how to establish replication between different networks.</p>
 <li>Master-slave, where only one space actually updates the data while the rest either serve as a backup or use it in read only mode.</li>
 </ul>
 
-<p>For both of the above topologies, replication is done in a similar way: Each space is replicating the relevant data to its target space(s) via the target space gateway which routes the data to the target space. The data is being replicated asynchronously in a reliable mode, which means that even if a primary space instance fails on the source space, the backup space instance which replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary space instance. This is very similar to the <a href="asynchronous-persistency-with-the-mirror.htm">Mirror Service</a> replication scheme. The gateway is discussed in full below.</p>
+<p>For both of the above topologies, replication is done in a similar way: Each space is replicating the relevant data to its target space(s) via the target space gateway which routes the data to the target space. The data is being replicated asynchronously in a reliable mode, which means that even if a primary space instance fails on the source space, the backup space instance which replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary space instance. This is very similar to the <a href="./asynchronous-persistency-with-the-mirror.htm/">Mirror Service</a> replication scheme. The gateway is discussed in full below.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/gateway_lan_how_it_works.jpg" alt="gateway_lan_how_it_works.jpg" /></p>
 </div>
@@ -81,7 +81,7 @@ understand how to establish replication between different networks.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more details about all the available configuration elements of the space gateway targets please refer to the <a href="configuring-space-gateway-targets.htm">Configuring Space Gateway Targets</a> section.</p>
+  <p>For more details about all the available configuration elements of the space gateway targets please refer to the <a href="./configuring-space-gateway-targets.htm/">Configuring Space Gateway Targets</a> section.</p>
 </div>
 
 <p><span class="tc-bold">Use the <code>partitioned</code> cluster schema</span>
@@ -114,7 +114,7 @@ If you are not interested in having backups running but have the replication to 
 
 <h2 id="gateway-and-the-mirror-service">Gateway and the Mirror Service</h2>
 
-<p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.htm">Mirror Service</a> are two different components which can co-exist together without any effect on each other. A gateway is just another reliable asynchronous target. Due to this fact, we will not discuss or demonstrate mirror service along side with a gateway because they do not contradict each other or require any special configuration when used in the same space cluster.</p>
+<p>A gateway and a <a href="./asynchronous-persistency-with-the-mirror.htm/">Mirror Service</a> are two different components which can co-exist together without any effect on each other. A gateway is just another reliable asynchronous target. Due to this fact, we will not discuss or demonstrate mirror service along side with a gateway because they do not contradict each other or require any special configuration when used in the same space cluster.</p>
 
 <h2 id="gateway-and-distributed-transactions">Gateway and Distributed Transactions</h2>
 
@@ -341,7 +341,7 @@ packet which is unconsolidated and waits for consolidation which may never occur
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_multi_master.jpg" alt="wan_multi_master.jpg" /></p>
 </div>
 
-<p>We will demonstrate this using two spaces but any number of spaces is supported in the same manner. In a master-slave topology, each space should try to modify different subsets of the data as much as possible because many conflicts can occur if multiple spaces are changing the same space entries at the same time. Such conflict can be resolved using a conflict resolver which will be discussed fully at <a href="multi-site-conflict-resolution.htm">Multi-Site Conflict Resolution</a>.</p>
+<p>We will demonstrate this using two spaces but any number of spaces is supported in the same manner. In a master-slave topology, each space should try to modify different subsets of the data as much as possible because many conflicts can occur if multiple spaces are changing the same space entries at the same time. Such conflict can be resolved using a conflict resolver which will be discussed fully at <a href="./multi-site-conflict-resolution.htm/">Multi-Site Conflict Resolution</a>.</p>
 
 <div class="tc-admon-note">
   
@@ -495,11 +495,11 @@ packet which is unconsolidated and waits for consolidation which may never occur
 
 <h1 id="filtering-replication-between-gateways">Filtering Replication Between Gateways</h1>
 
-<p>In some cases, there can be data that should not be replicated between the spaces but should still be replicated locally to the backup or a mirror service. Hence, specifying the object is not replicated does not fit. Since a replication channel to a gateway is like any other replication channel, a custom <a href="../admin/cluster-replication-filters.htm">Replication Filter</a> at the source space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
+<p>In some cases, there can be data that should not be replicated between the spaces but should still be replicated locally to the backup or a mirror service. Hence, specifying the object is not replicated does not fit. Since a replication channel to a gateway is like any other replication channel, a custom <a href="../admin/cluster-replication-filters.htm/">Replication Filter</a> at the source space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For full details and example please refer to <a href="replication-gateway-filtering.htm">Replication Gateway Filtering</a></p>
+  <p>For full details and example please refer to <a href="./replication-gateway-filtering.htm/">Replication Gateway Filtering</a></p>
 </div>
 
 <div class="tc-admon-note">
@@ -514,7 +514,7 @@ Or bootstrapping a new version of an application where a gateway target is added
 
 <div class="tc-admon-refer">
   
-  <p>For full details of how to enable the bootstrap mechanism refer to <a href="replication-gateway-lan-bootstrapping-process.htm">Replication Gateway Bootstrapping Process</a></p>
+  <p>For full details of how to enable the bootstrap mechanism refer to <a href="./replication-gateway-lan-bootstrapping-process.htm/">Replication Gateway Bootstrapping Process</a></p>
 </div>
 
 <h1 id="changing-replication-topology-during-runtime">Changing Replication Topology During Runtime</h1>
@@ -523,7 +523,7 @@ Or bootstrapping a new version of an application where a gateway target is added
 
 <div class="tc-admon-refer">
   
-  <p>For full details of how to add and remove gateway targets during runtime refer to <a href="changing-multi-site-deployment-during-runtime.htm">Changing Multi-Site Deployment during Runtime</a></p>
+  <p>For full details of how to add and remove gateway targets during runtime refer to <a href="./changing-multi-site-deployment-during-runtime.htm/">Changing Multi-Site Deployment during Runtime</a></p>
 </div>
 
 <div class="tc-admon-note">
@@ -533,7 +533,7 @@ Or bootstrapping a new version of an application where a gateway target is added
 
 <h1 id="additional-resources">Additional Resources</h1>
 
-<p><a href="multi-site-replication-overview.htm">Multi Site Replication</a></p>
+<p><a href="./multi-site-replication-overview.htm/">Multi Site Replication</a></p>
 
 </body>
 </html>

@@ -43,7 +43,7 @@
 
 <p>The <code>MEMORY_ONLY_SEARCH</code> modifier may be used to instruct the space to limit the query / template matching performed with read/take/clear/change operations to the data stored only in memory and not the space's backend persistence store (database). This give you the flexibility of minimizing the database load in cases where this modifier can be applied.</p>
 
-<p>This is very useful When running with the <code>LRU</code> cache policy and deploying a <a href="polling-container-overview.htm">Polling Container</a>. By default in such case, all <code>read</code>, <code>take</code> and <code>clear</code> operations will be conducted <span class="tc-bold">both</span> against the space and the underlying persistent store. By using the <code>UseMemoryOnlySearch</code> Polling Container property, the operations invoked by the polling container will <span class="tc-bold">only access the space</span> when conducting the search, without interacting with the persistent store.</p>
+<p>This is very useful When running with the <code>LRU</code> cache policy and deploying a <a href="./polling-container-overview.htm/">Polling Container</a>. By default in such case, all <code>read</code>, <code>take</code> and <code>clear</code> operations will be conducted <span class="tc-bold">both</span> against the space and the underlying persistent store. By using the <code>UseMemoryOnlySearch</code> Polling Container property, the operations invoked by the polling container will <span class="tc-bold">only access the space</span> when conducting the search, without interacting with the persistent store.</p>
 
 <p>Here's a polling container example using the <code>MEMORY_ONLY_SEARCH</code> modifier:</p>
 
@@ -142,7 +142,7 @@ used memory: 1497 mb
 
 <div class="tc-admon-note">
   
-  <p>The <span class="tc-bold">_DCache</span> prefix is part of the space name - it indicates that the exception is thrown from the client local cache. In this case, increase the <code>space-config.engine.memory_usage.retry_count</code> to a larger number. For more information, refer to the <a href="../production/production-local-cache-policy.htm">Local Cache Policy</a> page in the <a href="../production/index.htm">Moving into Production Checklist</a> section.</p>
+  <p>The <span class="tc-bold">_DCache</span> prefix is part of the space name - it indicates that the exception is thrown from the client local cache. In this case, increase the <code>space-config.engine.memory_usage.retry_count</code> to a larger number. For more information, refer to the <a href="../production/production-local-cache-policy.htm/">Local Cache Policy</a> page in the <a href="../production/index.htm/">Moving into Production Checklist</a> section.</p>
 </div>
 
 <h1 id="monitoring-the-space-memory-manager-activity">Monitoring the Space Memory Manager Activity</h1>
@@ -210,7 +210,7 @@ The default value of the <code>space-config.engine.lruTouchThreshold</code> is 5
 
 <h1 id="reloading-data">Reloading Data</h1>
 
-<p>When a persistent space (using <a href="space-persistency-overview.htm">Space Persistency</a>), running in <span class="tc-bold">LRU cache policy mode</span>, is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the <code>space-config.engine.cache_size</code> value.</p>
+<p>When a persistent space (using <a href="./space-persistency-overview.htm/">Space Persistency</a>), running in <span class="tc-bold">LRU cache policy mode</span>, is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the <code>space-config.engine.cache_size</code> value.</p>
 
 <p>When the <code>space-config.engine.memory_usage</code> is <code>true</code> (evicting data from the space, based on free heap size), is it recommended to have a large value for the <code>space-config.engine.cache_size</code> property. This instructs the space engine to ignore the amount of space objects when launching the eviction mechanism. This ensures that the eviction is based only on heap size free memory.</p>
 

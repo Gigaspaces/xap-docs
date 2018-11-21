@@ -2,20 +2,20 @@
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
-<h1>The Service Grid</h1>
+<h1>Service Grid</h1>
   
 
 <p>This section describes the available XAP runtime configuration parameters.</p>
 
  <a id="GSRuntimeEnv">&#160;</a>
 
-<p>The basic unit of deployment in the GigaSpaces XAP platform is the <a href="../dev-java/the-processing-unit-overview.htm">Processing Unit</a>.</p>
+<p>The basic unit of deployment in the GigaSpaces XAP platform is the <a href="../dev-java/the-processing-unit-overview.htm/">Processing Unit</a>.</p>
 
 <p>After is it packaged, a Processing Unit is deployed to the XAP runtime environment, which is called the <span class="tc-italic">Service Grid</span>. The Service Grid is responsible for materializing the Processing Unit's configuration, provisioning its instances to the runtime infrastructure, and making sure the instances continue to run properly over time.</p>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p>When developing your Processing Unit, we recommend <a href="../started/xap-debug.htm">running and debugging the Processing Unit within your IDE</a>. Deploy it to the Service Grid when you want to test it in the real-life runtime environment, and for production.</p>
+  <p>When developing your Processing Unit, we recommend <a href="../started/xap-debug.htm/">running and debugging the Processing Unit within your IDE</a>. Deploy it to the Service Grid when you want to test it in the real-life runtime environment, and for production.</p>
 </div>
 
 <h1 id="architecture">Architecture</h1>
@@ -31,7 +31,7 @@ Grid is composed of the following components:</p>
 Grid components</li>
 <li><a href="#gsm">Grid Service Manager</a>, or <code>gsm</code> - Manages the deployment and life cycle of the Processing Unit</li>
 <li>Embedded Zookeeper - Provides consistent state management and facilitates leader election in data grids</li>
-<li><a href="xap-manager-rest.htm">REST Manager API</a> - Provides a cross-platform endpoint to manage the XAP runtime environment from anywhere</li>
+<li><a href="xap-manager-rest.htm/">REST Manager API</a> - Provides a cross-platform endpoint to manage the XAP runtime environment from anywhere</li>
 </ul></li>
 <li><a href="#gsc">Grid Service Container</a>, or <code>gsc</code> - Provides an isolated runtime for one (or more) Processing Unit instance(s)</li>
 <li><a href="#gsa">Grid Service Agent</a>, or <code>gs-agent</code> - Starts and monitors Service Grid components on its machine.</li>
@@ -44,7 +44,7 @@ Grid components</li>
 <p>For backward compatibility and to simplify the upgrade process, you can still start the LUS and GSM independently. However, future releases may include additional new features and functionality that will require using the XAP Manager.</p>
 </div>
 
-<p>All of the above components are fully manageable from management interfaces such as the <a href="gigaspaces-management-center.htm">XAP Management Center</a>, the command line interface, and the <a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a>.</p>
+<p>All of the above components are fully manageable from management interfaces such as the <a href="gigaspaces-management-center.htm/">XAP Management Center</a>, the command line interface, and the <a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a>.</p>
 
 <div class="tc-align-center"></div>
 
@@ -76,7 +76,7 @@ Grid components</li>
 
 <p>Service registrations in the LUS are lease-based, and each service periodically renews its lease. That way, if a service hangs or disconnects from the LUS, its registration gets cancelled when the lease expires.</p>
 
-<p>For more information on the LUS, refer to <a href="the-lookup-service.htm">The Lookup Service</a>.</p>
+<p>For more information on the LUS, refer to <a href="./the-lookup-service.htm/">The Lookup Service</a>.</p>
 
  <a id="gsa">&#160;</a>
 
@@ -86,17 +86,17 @@ Grid components</li>
 
 <p>Usually, each machine runs a single gs-agent. If you are setting up multiple Service Grids separated by <a href="#lus">Lookup Groups or Locators</a>, you will probably start a gs-agent per machine, per group.</p>
 
-<p>The gs-agent exposes the ability to start, restart, and kill a process either using the <a href="../dev-java/administration-and-monitoring-overview.htm">Administration and Monitoring API</a> or the XAP Management Center.</p>
+<p>The gs-agent exposes the ability to start, restart, and kill a process either using the <a href="../dev-java/administration-and-monitoring-overview.htm/">Administration and Monitoring API</a> or the XAP Management Center.</p>
 
 <h1 id="high-availability">High Availability</h1>
 
-<p>High availability is acheived via redundancy. We recommend setting up and starting three XAP Managers (refer to <a href="xap-manager.htm#high-availability">XAP Manager High Availability</a>).</p>
+<p>High availability is acheived via redundancy. We recommend setting up and starting three XAP Managers (refer to <a href="xap-manager.htm/#high-availability">XAP Manager High Availability</a>).</p>
 
 <p>Alternatively, it is possible to manually configure and start multiple LUS and GSM instances. For more information, refer to the following topics:</p>
 
 <ul>
-<li><a href="lus-configuration.htm">Global vs. Local LUS</a></li>
-<li><a href="gsm-configuration.htm">Global vs. Local GSM</a></li>
+<li><a href="lus-configuration.htm/">Global vs. Local LUS</a></li>
+<li><a href="gsm-configuration.htm/">Global vs. Local GSM</a></li>
 </ul>
 
 <h1 id="advanced">Advanced</h1>

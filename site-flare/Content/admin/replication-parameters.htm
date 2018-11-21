@@ -25,7 +25,7 @@
 
 <tr>
 <td align="left">cluster-config.groups.group.repl-policy.policy-type</td>
-<td align="left">Optional values:<br/>* Full-replication - all objects are replicated. <br/>*  Partial-replication - objects with the <code>@SpaceClass</code> configured (replicate = false) will not be replicated.This allows you to control replication at a class base level.<br/>See the <a href="../dev-java/the-space-configuration.htm">POJO Metadata</a> page for details.</td>
+<td align="left">Optional values:<br/>* Full-replication - all objects are replicated. <br/>*  Partial-replication - objects with the <code>@SpaceClass</code> configured (replicate = false) will not be replicated.This allows you to control replication at a class base level.<br/>See the <a href="../dev-java/the-space-configuration.htm/">POJO Metadata</a> page for details.</td>
 <td align="left">partial-replication</td>
 </tr>
 
@@ -101,7 +101,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information, see the <a href="asynchronous-replication.htm">Asynchronous Replication</a> page.</p>
+  <p>For more information, see the <a href="./asynchronous-replication.htm/">Asynchronous Replication</a> page.</p>
 </div>
 
 <h1 id="synchronous-replication-parameters">Synchronous Replication Parameters</h1>
@@ -144,7 +144,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more info refer to <a href="synchronous-replication.htm">Synchronous Replication</a></p>
+  <p>For more info refer to <a href="./synchronous-replication.htm/">Synchronous Replication</a></p>
 </div>
 
 <h1 id="recovery-parameters">Recovery Parameters</h1>
@@ -175,7 +175,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more info refer to <a href="space-instance-recovery.htm">Space Instance Recovery</a></p>
+  <p>For more info refer to <a href="./space-instance-recovery.htm/">Space Instance Recovery</a></p>
 </div>
 
 <h1 id="redo-log-parameters">Redo Log Parameters</h1>
@@ -210,13 +210,13 @@
 
 <tr>
 <td>cluster-config.groups.group.repl-policy.on-redo-log-capacity-exceeded</td>
-<td>See the <a href="controlling-the-replication-redo-log.htm#Handling an Increasing Redo Log">Handling an Increasing Redo Log</a> page for details.</td>
+<td>See the <a href="./controlling-the-replication-redo-log.htm/#Handling an Increasing Redo Log">Handling an Increasing Redo Log</a> page for details.</td>
 <td>drop-oldest</td>
 </tr>
 
 <tr>
 <td>cluster-config.groups.group.repl-policy.on-missing-packets</td>
-<td>Options: <code>ignore</code>, <code>recover</code>. See the <a href="controlling-the-replication-redo-log.htm#Handling Dropped Replication Packets">Handling Dropped Replication Packets</a> page for details.</td>
+<td>Options: <code>ignore</code>, <code>recover</code>. See the <a href="./controlling-the-replication-redo-log.htm/#Handling Dropped Replication Packets">Handling Dropped Replication Packets</a> page for details.</td>
 <td>recover</td>
 </tr>
 
@@ -228,7 +228,7 @@
 
 <tr>
 <td>cluster-config.mirror-service.on-redo-log-capacity-exceeded</td>
-<td>See the <a href="controlling-the-replication-redo-log.htm#Handling an Increasing Redo Log">Handling an Increasing Redo Log</a> page for details.</td>
+<td>See the <a href="./controlling-the-replication-redo-log.htm/#Handling an Increasing Redo Log">Handling an Increasing Redo Log</a> page for details.</td>
 <td>block-operations</td>
 </tr>
 </tbody>
@@ -280,7 +280,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information, see the <a href="controlling-the-replication-redo-log.htm">Controlling the Replication Redo Log</a> page.</p>
+  <p>For more information, see the <a href="./controlling-the-replication-redo-log.htm/">Controlling the Replication Redo Log</a> page.</p>
 </div>
 
 <h1 id="mirror-service-parameters">Mirror Service Parameters</h1>
@@ -321,7 +321,7 @@
 
 <tr>
 <td align="left">cluster-config.mirror-service.on-redo-log-capacity-exceeded</td>
-<td align="left">Available options:<br/><code>block-operations</code> - all cluster operations that need to be replicated (write/update/take) are blocked until the redo log size drops below the maximum capacity. (Users get RedoLogCapacityExceededException exceptions while trying to execute these operations.)<br/><code>drop-oldest</code> - the oldest packet in the redo log is dropped.<br/>See the <a href="controlling-the-replication-redo-log.htm">Controlling the Replication Redo Log</a> page for details.</td>
+<td align="left">Available options:<br/><code>block-operations</code> - all cluster operations that need to be replicated (write/update/take) are blocked until the redo log size drops below the maximum capacity. (Users get RedoLogCapacityExceededException exceptions while trying to execute these operations.)<br/><code>drop-oldest</code> - the oldest packet in the redo log is dropped.<br/>See the <a href="./controlling-the-replication-redo-log.htm/">Controlling the Replication Redo Log</a> page for details.</td>
 <td align="left">block-operations</td>
 </tr>
 
@@ -335,7 +335,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to the <a href="controlling-the-replication-redo-log.htm">Controlling the Replication Redo Log</a> topic.</p>
+  <p>For more information, refer to the <a href="./controlling-the-replication-redo-log.htm/">Controlling the Replication Redo Log</a> topic.</p>
 </div>
 
 <h1 id="durable-notifications-parameters">Durable Notifications Parameters</h1>
@@ -366,7 +366,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information about Durable Notfications, refer to the <a href="../dev-java/durable-notifications.htm">Durable Notifications</a> topic in the Developer guide.</p>
+  <p>For more information about Durable Notfications, refer to the <a href="../dev-java/durable-notifications.htm/">Durable Notifications</a> topic in the Developer guide.</p>
 </div>
 
 <h1 id="local-view-parameters">Local View Parameters</h1>

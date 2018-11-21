@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Upgrading the CLI</h1>
+  
+
+<p>A new <a href="tools-cli.htm/">Command Line Interface</a> was introduced in the InsightEdge Platform and XAP release 12.3. This CLI provides a simpler syntax and is cloud-friendly (based on the <a href="admin-rest-manager-api.htm/">REST Manager API</a>).</p>
+
+<p>The <a href="command-line-interface.htm/">legacy CLI</a> is still supported, but has been deprecated as of InsightEdge Platform and XAP release 14.0 and will be removed in a future version. Customers upgrading from older product versions are encouraged to upgrade to the new CLI.</p>
+
+<p>To get started with the new CLI, simply run <code>xap --help</code> from the product's <code>bin</code> folder.</p>
+
+<h1 id="commonly-used-options">Commonly Used Options</h1>
+
+<p>The following table lists common tasks and the commands that are used to execute them using both the old and new Command Line Interfaces. This is not an exhaustive list, but it should help you get started with migration quickly and estimate the required effort.</p>
+
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Old Command</th>
+<th>New Command</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Get help</td>
+<td><code>gs help</code></td>
+<td><code>xap help</code> or <code>xap --help</code></td>
+</tr>
+
+<tr>
+<td>Get version</td>
+<td><code>gs version</code></td>
+<td><code>xap version</code></td>
+</tr>
+
+<tr>
+<td>Get information</td>
+<td><code>gs stats</code></td>
+<td><code>xap info</code></td>
+</tr>
+
+<tr>
+<td>Start agent components</td>
+<td>`gs gsa start-gsm</td>
+<td>start-gsc</td>
+</tr>
+
+<tr>
+<td>Stop agent components</td>
+<td><code>gs gsa shutdown [options]</code></td>
+<td><code>xap host kill-agent [options]</code></td>
+</tr>
+
+<tr>
+<td>List agent components</td>
+<td><code>gs list [options]</code></td>
+<td><code>xap host list [options]</code> and <code>xap container list [options]</code></td>
+</tr>
+
+<tr>
+<td>Deploy a space</td>
+<td><code>gs deploy-space [options] &lt;space-name&gt;</code></td>
+<td><code>xap space deploy [options] &lt;space-name&gt;</code></td>
+</tr>
+
+<tr>
+<td>List spaces</td>
+<td><code>gs space list [options]</code></td>
+<td><code>xap space list [options]</code> and <code>xap space info [options] &lt;space-name&gt;</code></td>
+</tr>
+
+<tr>
+<td>Query a Space</td>
+<td><code>gs space sql [options]</code></td>
+<td><code>xap space query [options] &lt;space-name&gt; &lt;type&gt;</code></td>
+</tr>
+
+<tr>
+<td>Deploy a Processing Unit</td>
+<td><code>gs deploy [options] &lt;pu-name-or-file&gt;</code></td>
+<td><code>xap pu deploy [options] &lt;pu-name&gt; &lt;pu-file&gt;</code></td>
+</tr>
+
+<tr>
+<td>Undeploy a Processing Unit</td>
+<td><code>gs undeploy [options] &lt;pu-name&gt;</code></td>
+<td><code>xap pu undeploy [options] &lt;pu-name&gt;</code></td>
+</tr>
+
+<tr>
+<td>Quiesce a Processing Unit</td>
+<td><code>gs quiesce [options] &lt;pu-name&gt;</code></td>
+<td><code>xap pu quiesce [options] &lt;pu-name&gt;</code></td>
+</tr>
+
+<tr>
+<td>Unquiesce a Processing Unit</td>
+<td><code>gs unquiesce [options] &lt;pu-name&gt;</code></td>
+<td><code>xap pu unquiesce [options] &lt;pu-name&gt;</code></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="obsolete-commands">Obsolete Commands</h1>
+
+<p>This section lists commands that have not been ported to the new Command Line Interface for various reasons.</p>
+
+<h2 id="interactive-shell-commands">Interactive Shell Commands</h2>
+
+<p>The old Command Line Interface supports an interactive shell mode, and as such includes a set of shell-related commands, which are currently not supported in the new CLI as it is not interactive.</p>
+
+<ul>
+<li><code>cd</code></li>
+<li><code>dir</code></li>
+<li><code>pwd</code></li>
+<li><code>ls</code></li>
+<li><code>set</code></li>
+<li><code>login</code></li>
+</ul>
+
+<h2 id="elastic-processing-unit-commands">Elastic Processing Unit Commands</h2>
+
+<p>The Elastic Processing Unit was deprecated in version 12.1, therefore its commands were not ported to the new Command Line Interface.</p>
+
+<ul>
+<li><code>deploy-elastic-space</code></li>
+<li><code>deploy-elastic-pu</code></li>
+<li><code>scale</code></li>
+</ul>
+
+<h2 id="miscellaneous">Miscellaneous</h2>
+
+<ul>
+<li><code>pudeploy</code> - alias for the <code>deploy</code> command.</li>
+<li><code>deploy-memcached</code> - Can be done via the <code>deploy</code> command.</li>
+<li><code>deploy-rest</code> - Can be done via the <code>deploy</code> command.</li>
+<li><code>deploy-application</code> and <code>undeploy-application</code> - Low usage rate, can be done via the <code>deploy</code>/<code>undeploy</code> commands and scripting.</li>
+<li><code>jconsole</code> - The new CLI is based on the REST protocol, so this command is misleading. Users may access the standard JConsole directly.</li>
+<li><code>admin multicastTest</code> - The new CLI is based on the XAP Manager, which uses unicast.</li>
+</ul>
+
+</body>
+</html>

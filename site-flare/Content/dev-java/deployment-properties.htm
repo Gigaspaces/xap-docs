@@ -5,7 +5,7 @@
 <h1>Deployment Properties</h1>
   
 
-<p>When a processing unit is deployed and provisioned, you can inject property values to it only known at deployment time, or in order to further configure the processing unit elements. Injected properties can be either properties that have been explicitly externalized from the <a href="configuring-processing-unit-elements.htm">processing unit configuration file</a> or properties related to one the platform components (e.g. a space) that can be configured at deployment time. This mechanism is built on top of Spring's support for an externalized properties configuration called <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm#beans-factory-placeholderconfigurer" target="_blank" >PropertyPlaceholderConfigurer</a>. This mechanism has been enhanced to provide a powerful yet simple property injection.</p>
+<p>When a processing unit is deployed and provisioned, you can inject property values to it only known at deployment time, or in order to further configure the processing unit elements. Injected properties can be either properties that have been explicitly externalized from the <a href="./configuring-processing-unit-elements.htm/">processing unit configuration file</a> or properties related to one the platform components (e.g. a space) that can be configured at deployment time. This mechanism is built on top of Spring's support for an externalized properties configuration called <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm/#beans-factory-placeholderconfigurer" target="_blank" >PropertyPlaceholderConfigurer</a>. This mechanism has been enhanced to provide a powerful yet simple property injection.</p>
 
 <div class="tc-admon-note">
   
@@ -14,7 +14,7 @@
 
 <h1 id="defining-property-place-holders-in-your-processing-unit">Defining Property Place Holders in Your Processing Unit</h1>
 
-<p>Property injection to the processing unit's configuration is supported at the Spring application context scope, which means that it can be applied to all of the components configured in the <a href="configuring-processing-unit-elements.htm">processing unit's configuration file</a> (whether GigaSpaces out of the box components like the space, space proxy or event containers, or user-defined beans).</p>
+<p>Property injection to the processing unit's configuration is supported at the Spring application context scope, which means that it can be applied to all of the components configured in the <a href="./configuring-processing-unit-elements.htm/">processing unit's configuration file</a> (whether GigaSpaces out of the box components like the space, space proxy or event containers, or user-defined beans).</p>
 
 <p>Below you can find an example of an XML configuration which defines to property place holders, <code>spaceSchema</code> and <code>connectionTimeout</code>. In this example we also specify default values for them, which is always a good practice and does not force the deployer to specify values for these place holders.</p>
 
@@ -60,31 +60,31 @@
 </div>
 </div>
 
-<p>The various <a href="deploying-and-running-overview.htm">processing unit runtime modes</a> all provide support for injecting property values instead of place holders. There are several ways to define the values for the property place holders, depending on how you choose to run/deploy your processing unit.</p>
+<p>The various <a href="./deploying-and-running-overview.htm/">processing unit runtime modes</a> all provide support for injecting property values instead of place holders. There are several ways to define the values for the property place holders, depending on how you choose to run/deploy your processing unit.</p>
 
 <h2 id="using-a-properties-file">Using a <code>.properties</code> File</h2>
 
 <p>If you would like your properties to be configured in a dedicated file this can be done in various ways.</p>
 
 <ul>
-<li><p>Including a <code>pu.properties</code> file in the processing unit. This file can be placed under the root of the processing unit or under the <code>META-INF/spring</code> directory (This is also described <a href="the-processing-unit-structure-and-configuration.htm">here</a>). The values of this file will be loaded and injected automatically to the processing unit instances at deployment time.</p></li>
+<li><p>Including a <code>pu.properties</code> file in the processing unit. This file can be placed under the root of the processing unit or under the <code>META-INF/spring</code> directory (This is also described <a href="./the-processing-unit-structure-and-configuration.htm/">here</a>). The values of this file will be loaded and injected automatically to the processing unit instances at deployment time.</p></li>
 
-<li><p>External <code>.properties</code> file. The file can have any name, as long as it's accessible to the deployment tool (UI, CLI, etc.) or specified when <a href="../started/xap-debug.htm">running the processing unit within your IDE</a> or in <a href="running-in-standalone-mode.htm">standalone mode</a>.
-When deploying through the <a href="../admin/command-line-interface.htm">CLI</a> or <a href="../started/xap-debug.htm">running within the IDE</a>, you specify the location of the file using <code>-properties &lt;location&gt;</code> as a command line argument with the CLI or a program argument within the IDE.</p></li>
+<li><p>External <code>.properties</code> file. The file can have any name, as long as it's accessible to the deployment tool (UI, CLI, etc.) or specified when <a href="../started/xap-debug.htm/">running the processing unit within your IDE</a> or in <a href="./running-in-standalone-mode.htm/">standalone mode</a>.
+When deploying through the <a href="../admin/command-line-interface.htm/">CLI</a> or <a href="../started/xap-debug.htm/">running within the IDE</a>, you specify the location of the file using <code>-properties &lt;location&gt;</code> as a command line argument with the CLI or a program argument within the IDE.</p></li>
 </ul>
 
 <pre><code class="language-java">gs deploy -properties file://myConfigFolder/pu.properties data-processor.jar
 </code></pre>
 
-<p>By default, the location is a file-system-based location of a properties file (follows Spring <a href="http://static.springframework.org/spring/docs/2.5.x/reference/resources.htm#resources-resourceloader" target="_blank" >Resource Loader</a> syntax).</p>
+<p>By default, the location is a file-system-based location of a properties file (follows Spring <a href="http://static.springframework.org/spring/docs/2.5.x/reference/resources.htm/#resources-resourceloader" target="_blank" >Resource Loader</a> syntax).</p>
 
 <p>The following is an example of a <code>.properties</code> file that can be used with the sample <code>pu.xml</code> configuration shown above. In this case, the values within the <code>.properties</code> file are injected to the processing unit instances (overriding values in <code>pu.properties</code> if it exists).</p>
 
 <p>When deploying via the UI, the file can be loaded into the deployment wizard by clicking "Next" in the first screen of the wizard and then "Load Properties", locating the properties file on your local disk. This will load all the property place holders that are in the file.</p>
 
 <ul>
-<li>Direct property injection. This can also be done via one of the deployment tools (UI, CLI) or specified when <a href="../started/xap-debug.htm">running the processing unit within your IDE</a>.
-When deploying through the <a href="../admin/command-line-interface.htm">CLI</a> or <a href="../started/xap-debug.htm">running within the IDE</a>, you specify property values by using the following syntax:</li>
+<li>Direct property injection. This can also be done via one of the deployment tools (UI, CLI) or specified when <a href="../started/xap-debug.htm/">running the processing unit within your IDE</a>.
+When deploying through the <a href="../admin/command-line-interface.htm/">CLI</a> or <a href="../started/xap-debug.htm/">running within the IDE</a>, you specify property values by using the following syntax:</li>
 </ul>
 
 <pre><code class="language-java">-properties embed://spaceSchema=persistent;connectionTimeout=15000
@@ -95,7 +95,7 @@ When deploying via the UI, click "Next" in the first screen of the deployment wi
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Property Injection for SLA Definitions </p>
-  <p>From version 7.0 onwards, the processing unit's <a href="../admin/the-sla-overview.htm">SLA definitions</a>  can be defined in a separate <code>sla.xml</code> file (unlike previous release in which they could only have been defined in the <code>pu.xml</code> file). As you may recall, the SLA definition are expressed via the <code>&lt;os-sla:sla&gt;</code> XML element in either the <code>pu.xml</code> of the <code>sla.xml</code> files.</p>
+  <p>From version 7.0 onwards, the processing unit's <a href="../admin/the-sla-overview.htm/">SLA definitions</a>  can be defined in a separate <code>sla.xml</code> file (unlike previous release in which they could only have been defined in the <code>pu.xml</code> file). As you may recall, the SLA definition are expressed via the <code>&lt;os-sla:sla&gt;</code> XML element in either the <code>pu.xml</code> of the <code>sla.xml</code> files.</p>
 
 <p>You should note however that property injection, as described in this page, and any external jars imports, is only available for SLA definitions expressed in a separate <code>sla.xml</code> file, and will not be applied to the <code>&lt;os-sla:sla&gt;</code> element if it is part of the <code>pu.xml</code> file.</p>
 
@@ -104,7 +104,7 @@ When deploying via the UI, click "Next" in the first screen of the deployment wi
 
 <h1 id="using-deployment-properties-to-override-space-schema-and-cluster-schema">Using Deployment Properties to Override Space Schema and Cluster Schema</h1>
 
-<p>When a <a href="the-space-configuration.htm">Space</a> is created, two major groups of configuration elements determine its runtime configuration: the space schema and the cluster schema. The cluster schema controls the space clustering topology (partitioned or replicated), whether the replication to its replicas is synchronous or asynchronous, and various other aspects that control its clustering behavior. The space schema on the other hand, controls other elements which are not related to the space clustering topology, such as the eviction strategy (LRU, ALL_IN_CACHE), whether or not its persistent, etc.</p>
+<p>When a <a href="./the-space-configuration.htm/">Space</a> is created, two major groups of configuration elements determine its runtime configuration: the space schema and the cluster schema. The cluster schema controls the space clustering topology (partitioned or replicated), whether the replication to its replicas is synchronous or asynchronous, and various other aspects that control its clustering behavior. The space schema on the other hand, controls other elements which are not related to the space clustering topology, such as the eviction strategy (LRU, ALL_IN_CACHE), whether or not its persistent, etc.</p>
 
 <p>The basis for these two configuration groups are XML files located inside the GigaSpaces libraries. In order to override the values in these XML files, one can simply specify the <a href="http://en.wikipedia.org/wiki/XPath" target="_blank" >XPath</a> expression that corresponds to the element to be overridden.</p>
 

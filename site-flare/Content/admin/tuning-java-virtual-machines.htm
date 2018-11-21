@@ -70,14 +70,14 @@ These general concepts include:</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more details, see <a href="../production/production-jvm-tuning.htm">JVM Tuning</a> in the <a href="../production/index.htm">Moving into Production</a> section.</p>
+  <p>For more details, see <a href="../production/production-jvm-tuning.htm/">JVM Tuning</a> in the <a href="../production/index.htm/">Moving into Production</a> section.</p>
 </div>
 
 <h1 id="soft-references-cleanup">Soft References Cleanup</h1>
 
 <p>Softly reachable objects will remain alive for some amount of time after the last time they were referenced. The default value is one second (1000) of lifetime per free megabyte in the heap. This value can be adjusted using the <code>-XX:SoftRefLRUPolicyMSPerMB</code> flag, which accepts integer values representing milliseconds per MB of free memory.</p>
 
-<p>If the application using large amount of <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/lang/ref/SoftReference.htm">Soft references</a> you may want to tune the <code>-XX:SoftRefLRUPolicyMSPerMB</code> to have a smaller value than the default.</p>
+<p>If the application using large amount of <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/lang/ref/SoftReference.htm/">Soft references</a> you may want to tune the <code>-XX:SoftRefLRUPolicyMSPerMB</code> to have a smaller value than the default.</p>
 
 <h1 id="usebiasedlocking-jvm-option">UseBiasedLocking JVM Option</h1>
 
@@ -85,7 +85,7 @@ These general concepts include:</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more details, see the <a href="http://java.sun.com/performance/reference/whitepapers/tuning.htm">Java Tuning White Paper</a>.</p>
+  <p>For more details, see the <a href="http://java.sun.com/performance/reference/whitepapers/tuning.htm/">Java Tuning White Paper</a>.</p>
 </div>
 
 <p><code>-XX:+UseBiasedLocking</code> enables a technique for improving the performance of un contended synchronization. An object is "biased" toward the thread which first acquires its monitor via a monitorenter byte code or synchronized method invocation; subsequent monitor-related operations performed by that thread are relatively much faster on multiprocessor machines.</p>
@@ -107,31 +107,31 @@ These general concepts include:</p>
 <ul>
 <li><a href="http://www.javaperformancetuning.com/">Java Performance Tuning</a></li>
 <li><a href="http://java.sun.com/docs/books/performance/">Sun; Java Platform Performance: Stratergies  and Tactics</a></li>
-<li><a href="http://java.sun.com/docs/books/performance/1st_edition/html/JPClassLoading.fm.htm">Sun; Chapter 6 - Controlling Class Loading</a></li>
-<li><a href="http://www.onjava.com/pub/a/onjava/2006/11/01/scaling-enterprise-java-on-64-bit-multi-core.htm">Scaling Enterprise Java on 64-bit Multi-Core X86-Based Servers</a></li>
+<li><a href="http://java.sun.com/docs/books/performance/1st_edition/html/JPClassLoading.fm.htm/">Sun; Chapter 6 - Controlling Class Loading</a></li>
+<li><a href="http://www.onjava.com/pub/a/onjava/2006/11/01/scaling-enterprise-java-on-64-bit-multi-core.htm/">Scaling Enterprise Java on 64-bit Multi-Core X86-Based Servers</a></li>
 </ul>
 
 <p><span class="tc-bold">Oracle Sun JVM</span></p>
 
 <ul>
-<li><a href="http://java.sun.com/docs/hotspot/VMOptions.htm">Sun; Java HotSpot VM Options</a></li>
+<li><a href="http://java.sun.com/docs/hotspot/VMOptions.htm/">Sun; Java HotSpot VM Options</a></li>
 <li><a href="http://performance.netbeans.org/howto/jvmswitches/">NetBeans; Tuning JVM switches for performance</a></li>
-<li><a href="http://java.sun.com/docs/hotspot/gc5.0/gc_tuning_5.htm">Sun; Tuning Garbage Collection with the 5.0 Java Virtual Machine</a></li>
+<li><a href="http://java.sun.com/docs/hotspot/gc5.0/gc_tuning_5.htm/">Sun; Tuning Garbage Collection with the 5.0 Java Virtual Machine</a></li>
 </ul>
 
 <p><span class="tc-bold">IBM JVM</span></p>
 
 <ul>
-<li><a href="http://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/index.jsp?topic=/com.ibm.websphere.nd.doc/info/ae/ae/tprf_tunejvm.htm">Tuning Java virtual machines</a></li>
+<li><a href="http://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/index.jsp?topic=/com.ibm.websphere.nd.doc/info/ae/ae/tprf_tunejvm.htm/">Tuning Java virtual machines</a></li>
 <li><a href="http://www-128.ibm.com/developerworks/java/jdk/">IBM developer kits</a></li>
 <li><a href="http://www-128.ibm.com/developerworks/java/jdk/diagnosis/">Diagnosis documentation</a></li>
-<li><a href="http://publib.boulder.ibm.com/infocenter/wasinfo/v5r1/index.jsp?topic=/com.ibm.websphere.nd.doc/info/ae/ae/welc_tuning.htm">Tuning</a></li>
+<li><a href="http://publib.boulder.ibm.com/infocenter/wasinfo/v5r1/index.jsp?topic=/com.ibm.websphere.nd.doc/info/ae/ae/welc_tuning.htm/">Tuning</a></li>
 </ul>
 
 <p><span class="tc-bold">Tuning Operating Systems</span></p>
 
 <ul>
-<li><a href="http://publib.boulder.ibm.com/infocenter/ws60help/topic/com.ibm.websphere.nd.doc/info/ae/ae/tprf_tuneopsys.htm">IBM; Tuning operating systems</a></li>
+<li><a href="http://publib.boulder.ibm.com/infocenter/ws60help/topic/com.ibm.websphere.nd.doc/info/ae/ae/tprf_tuneopsys.htm/">IBM; Tuning operating systems</a></li>
 </ul>
 
 </body>

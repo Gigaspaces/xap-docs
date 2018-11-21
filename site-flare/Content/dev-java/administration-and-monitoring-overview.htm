@@ -5,7 +5,7 @@
 <h1>Admin API</h1>
   
 
-<p>The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.htm#gsa">XAP Agent</a>, <a href="../overview/the-runtime-environment.htm#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.htm#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>, <a href="the-processing-unit-overview.htm">Processing Unit</a> and Spaces.</p>
+<p>The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.htm/#gsa">XAP Agent</a>, <a href="../overview/the-runtime-environment.htm/#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.htm/#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a>, <a href="./the-processing-unit-overview.htm/">Processing Unit</a> and Spaces.</p>
 
 <p><span class="tc-bold">Dependencies</span></p>
 
@@ -20,7 +20,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
+  <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.htm/">Maven Artifacts</a>.</p>
 </div>
 
 <h1 id="examples">Examples</h1>
@@ -276,14 +276,14 @@ public void space() {
 
 <div class="tc-admon-refer">
   
-  <p>A fully running example of a <a href="https://docs.gigaspaces.com/sbp/scaling-agent.htm">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
+  <p>A fully running example of a <a href="/sbp/scaling-agent.htm/">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
 </div>
 
 <h1 id="admin-construction">Admin Construction</h1>
 
 <p>The Admin API uses the <code>AdminFactory</code> in order to create <code>Admin</code> instances. After you finish working with the <code>Admin</code>, its <code>Admin#close()</code> method should be called.</p>
 
-<p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
+<p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
 
 <h1 id="discovery-process">Discovery Process</h1>
 
@@ -341,12 +341,12 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsa/GridServiceAgent.htm">GridServiceAgent</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsa/GridServiceAgent.htm/">GridServiceAgent</a></td>
 </tr>
 
 <tr>
 <td>Description</td>
-<td>A process manager that manages Service Grid processes such as GSM, GSC and LUS. More information is available <a href="../overview/the-runtime-environment.htm#gsa">here</a>.</td>
+<td>A process manager that manages Service Grid processes such as GSM, GSC and LUS. More information is available <a href="../overview/the-runtime-environment.htm/#gsa">here</a>.</td>
 </tr>
 
 <tr>
@@ -374,7 +374,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsa/GridServiceAgents.htm">GridServiceAgents</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsa/GridServiceAgents.htm/">GridServiceAgents</a></td>
 </tr>
 
 <tr>
@@ -407,12 +407,12 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManager.htm">GridServiceManager</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManager.htm/">GridServiceManager</a></td>
 </tr>
 
 <tr>
 <td>Description</td>
-<td>Manages Processing Unit deployments and Grid Service Containers. More information is available <a href="../overview/the-runtime-environment.htm#gsm">here</a>.</td>
+<td>Manages Processing Unit deployments and Grid Service Containers. More information is available <a href="../overview/the-runtime-environment.htm/#gsm">here</a>.</td>
 </tr>
 
 <tr>
@@ -440,7 +440,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManagers.htm">GridServiceManagers</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManagers.htm/">GridServiceManagers</a></td>
 </tr>
 
 <tr>
@@ -473,12 +473,12 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsc/GridServiceContainer.htm">GridServiceContainer</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsc/GridServiceContainer.htm/">GridServiceContainer</a></td>
 </tr>
 
 <tr>
 <td>Description</td>
-<td>Container that hosts Processing Unit instances deployed from the GSM. More information is available <a href="../overview/the-runtime-environment.htm#gsc">here</a>.</td>
+<td>Container that hosts Processing Unit instances deployed from the GSM. More information is available <a href="../overview/the-runtime-environment.htm/#gsc">here</a>.</td>
 </tr>
 
 <tr>
@@ -506,7 +506,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsc/GridServiceContainers.htm">GridServiceContainers</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsc/GridServiceContainers.htm/">GridServiceContainers</a></td>
 </tr>
 
 <tr>
@@ -539,12 +539,12 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/lus/LookupService.htm">LookupService</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/lus/LookupService.htm/">LookupService</a></td>
 </tr>
 
 <tr>
 <td>Description</td>
-<td>A registry of services (GSM, GSC, Space instances, Processing Unit instances) that can be looked up using it. More information is available <a href="../overview/the-runtime-environment.htm#lus">here</a>.</td>
+<td>A registry of services (GSM, GSC, Space instances, Processing Unit instances) that can be looked up using it. More information is available <a href="../overview/the-runtime-environment.htm/#lus">here</a>.</td>
 </tr>
 
 <tr>
@@ -572,7 +572,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/lus/LookupServices.htm">LookupServices</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/lus/LookupServices.htm/">LookupServices</a></td>
 </tr>
 
 <tr>
@@ -605,7 +605,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnit.htm">ProcessingUnit</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnit.htm/">ProcessingUnit</a></td>
 </tr>
 
 <tr>
@@ -638,7 +638,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnitInstance.htm">ProcessingUnitInstance</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnitInstance.htm/">ProcessingUnitInstance</a></td>
 </tr>
 
 <tr>
@@ -671,7 +671,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnits.htm">ProcessingUnits</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnits.htm/">ProcessingUnits</a></td>
 </tr>
 
 <tr>
@@ -704,7 +704,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/Space.htm">Space</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/Space.htm/">Space</a></td>
 </tr>
 
 <tr>
@@ -714,7 +714,7 @@ public void space() {
 
 <tr>
 <td>Main Operations</td>
-<td>- Get all the currently running Space Instances that are part of the Space.<br/>- Wait for X number of Space instances to be up.<br/>- Get aggregated Space statistics.<br/>- Get a clustered <a href="the-gigaspace-interface-overview.htm">Space</a> to perform Space operations.</td>
+<td>- Get all the currently running Space Instances that are part of the Space.<br/>- Wait for X number of Space instances to be up.<br/>- Get aggregated Space statistics.<br/>- Get a clustered <a href="./the-gigaspace-interface-overview.htm/">Space</a> to perform Space operations.</td>
 </tr>
 
 <tr>
@@ -737,7 +737,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/SpaceInstance.htm">SpaceInstance</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/SpaceInstance.htm/">SpaceInstance</a></td>
 </tr>
 
 <tr>
@@ -747,7 +747,7 @@ public void space() {
 
 <tr>
 <td>Main Operations</td>
-<td>- Get its Space mode (primary or backup).<br/>- Get its replication targets.<br/>- Get a direct <a href="the-gigaspace-interface-overview.htm">Space</a> to perform Space operations.<br/>- Get Space instance statistics.</td>
+<td>- Get its Space mode (primary or backup).<br/>- Get its replication targets.<br/>- Get a direct <a href="./the-gigaspace-interface-overview.htm/">Space</a> to perform Space operations.<br/>- Get Space instance statistics.</td>
 </tr>
 
 <tr>
@@ -770,7 +770,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/Spaces.htm">Spaces</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/Spaces.htm/">Spaces</a></td>
 </tr>
 
 <tr>
@@ -803,7 +803,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/vm/VirtualMachine.htm">VirtualMachine</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/vm/VirtualMachine.htm/">VirtualMachine</a></td>
 </tr>
 
 <tr>
@@ -836,7 +836,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/vm/VirtualMachines.htm">VirtualMachines</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/vm/VirtualMachines.htm/">VirtualMachines</a></td>
 </tr>
 
 <tr>
@@ -869,7 +869,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/machine/Machine.htm">Machine</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/machine/Machine.htm/">Machine</a></td>
 </tr>
 
 <tr>
@@ -902,7 +902,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/machine/Machines.htm">Machines</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/machine/Machines.htm/">Machines</a></td>
 </tr>
 
 <tr>
@@ -935,7 +935,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/os/OperatingSystem.htm">OperatingSystem</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/os/OperatingSystem.htm/">OperatingSystem</a></td>
 </tr>
 
 <tr>
@@ -968,7 +968,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/os/OperatingSystems.htm">OperatingSystems</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/os/OperatingSystems.htm/">OperatingSystems</a></td>
 </tr>
 
 <tr>
@@ -1001,7 +1001,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/transport/Transport.htm">Transport</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/transport/Transport.htm/">Transport</a></td>
 </tr>
 
 <tr>
@@ -1034,7 +1034,7 @@ public void space() {
 <tbody>
 <tr>
 <td>Name</td>
-<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/transport/Transports.htm">Transports</a></td>
+<td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/transport/Transports.htm/">Transports</a></td>
 </tr>
 
 <tr>
@@ -1191,7 +1191,7 @@ static class SpacePartitionsComperator implements Comparator&lt;SpacePartition&g
 
 <h1 id="memoryxtend-statistics">MemoryXtend Statistics</h1>
 
-<p>If you have a system that utilizes MemoryXtend, you can monitor the performance of the off-heap storage and the external disk storage. For a list of available blobstore operation statistics, see the <a href="../admin/metrics-bundled.htm#blobstore-operations">Predefined Metrics</a> page in the Administration guide.</p>
+<p>If you have a system that utilizes MemoryXtend, you can monitor the performance of the off-heap storage and the external disk storage. For a list of available blobstore operation statistics, see the <a href="../admin/metrics-bundled.htm/#blobstore-operations">Predefined Metrics</a> page in the Administration guide.</p>
 
 <p>The following example (relevant for the disk storage driver) demonstrates how to retrieve RocksDB statistics using the Admin API.</p>
 
@@ -1258,12 +1258,12 @@ if (blobStoreStorageStatistics instanceof RocksDBBlobStoreStatistics) {
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to the API documentation on <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/cluster/replication/async/mirror/MirrorStatistics.htm">MirrorStatistics</a>.</p>
+  <p>For more information, refer to the API documentation on <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/cluster/replication/async/mirror/MirrorStatistics.htm/">MirrorStatistics</a>.</p>
 </div>
 
 <h1 id="pu-status-changed-events">PU Status Changed Events</h1>
 
-<p>You can receive notifications about the deployment status of a Processing Unit. An event listener can be attached to the Admin API that delivers events describing the current and previous <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/pu/DeploymentStatus.htm">DeploymentStatus</a> of a Processing Unit.
+<p>You can receive notifications about the deployment status of a Processing Unit. An event listener can be attached to the Admin API that delivers events describing the current and previous <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/pu/DeploymentStatus.htm/">DeploymentStatus</a> of a Processing Unit.
 Here is an example:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title=" ChangeStatus" style="padding:10px"><pre><code class="language-java">public class ProcessingUnitStatusChanged {
@@ -1312,7 +1312,7 @@ Here is an example:</p>
 
 <h1 id="service-monitors">Service Monitors</h1>
 
-<p>The Admin API allows you to monitor XAP services. The information is available through the <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/pu/ProcessingUnitInstanceStatistics.htm">ProcessingUnitInstanceStatistics</a>.</p>
+<p>The Admin API allows you to monitor XAP services. The information is available through the <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/pu/ProcessingUnitInstanceStatistics.htm/">ProcessingUnitInstanceStatistics</a>.</p>
 
 <table>
 <thead>
@@ -1324,32 +1324,32 @@ Here is an example:</p>
 
 <tbody>
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/pu/container/jee/stats/WebRequestsServiceMonitors.htm">WebRequestsServiceMonitors</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/pu/container/jee/stats/WebRequestsServiceMonitors.htm/">WebRequestsServiceMonitors</a></td>
 <td align="left">Statistics monitor information for JEE servlet requests.</td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/remoting/RemotingServiceDetails.htm">RemotingServiceMonitors</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/remoting/RemotingServiceDetails.htm/">RemotingServiceMonitors</a></td>
 <td align="left">Generic remoting service details.</td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/EventContainerServiceMonitors.htm">EventContainerServiceMonitors</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/EventContainerServiceMonitors.htm/">EventContainerServiceMonitors</a></td>
 <td align="left">A generic event container service monitors.</td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/polling/PollingEventContainerServiceMonitors.htm">PollingEventContainerServiceMonitors</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/polling/PollingEventContainerServiceMonitors.htm/">PollingEventContainerServiceMonitors</a></td>
 <td align="left">Polling container service monitors.</td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/notify/NotifyEventContainerServiceMonitors.htm">NotifyEventContainerServiceMonitors</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/notify/NotifyEventContainerServiceMonitors.htm/">NotifyEventContainerServiceMonitors</a></td>
 <td align="left">Notify container service monitors.</td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/asyncpolling/AsyncPollingEventContainerServiceMonitors.htm">AsyncPollingEventContainerServiceMonitors</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/asyncpolling/AsyncPollingEventContainerServiceMonitors.htm/">AsyncPollingEventContainerServiceMonitors</a></td>
 <td align="left">Async Polling container service monitors.</td>
 </tr>
 </tbody>
@@ -1376,7 +1376,7 @@ Here is an example:</p>
 }
 </code></pre>
 
-<p>You can also attach a <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/pu/events/ProcessingUnitInstanceStatisticsChangedEventListener.htm">ProcessingUnitInstanceStatisticsChangedEventListener</a> to Processing Units that will fire by default every 5 seconds.</p>
+<p>You can also attach a <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/pu/events/ProcessingUnitInstanceStatisticsChangedEventListener.htm/">ProcessingUnitInstanceStatisticsChangedEventListener</a> to Processing Units that will fire by default every 5 seconds.</p>
 
 <pre><code class="language-java">public void serviceMonitorsEventListeners() {
     Admin admin = new AdminFactory().createAdmin();

@@ -7,7 +7,7 @@
 
 <p>The general rule when selecting the hardware to run GigaSpaces applications is <span class="tc-bold">the faster the better</span>. Multi-core machines with large amounts of memory are the most cost effective, because they provide the best performance by leveraging large JVM heap size that can handle simultaneous requests with minimal thread context switch overhead.</p>
 
-<p>You can run production systems with 30G-50GB heap size with some JVM tuning when leveraging multi-core machines. The recommended hardware is <a href="https://ark.intel.com/products/series/59213/Legacy-Intel-Xeon-Processors?series=47915">Intel Xeon Processor 5600 Series</a>. Here is an example for <a href="http://www.cisco.com/en/US/products/ps10280/prod_models_comparison.htm">recommended server configuration</a>:</p>
+<p>You can run production systems with 30G-50GB heap size with some JVM tuning when leveraging multi-core machines. The recommended hardware is <a href="https://ark.intel.com/products/series/59213/Legacy-Intel-Xeon-Processors?series=47915">Intel Xeon Processor 5600 Series</a>. Here is an example for <a href="http://www.cisco.com/en/US/products/ps10280/prod_models_comparison.htm/">recommended server configuration</a>:</p>
 
 <table>
 <thead>
@@ -87,7 +87,7 @@
 
 <h1 id="disk-space">Disk Space</h1>
 
-<p>With any XAP-based system, log files will be generated. A good best practice is to allocate at least 100MB of free disk size per machine running GigaSpaces applications. Ensure that you delete old log files or move them to a backup location. The XAP data grid may overflow data into the <code>work directory</code> when there is a long replication disconnection or replication delay. The location of the <code>work directory</code> should be on local storage for each XAP node in order to make this replication backlog data always available to the node. The storage should have enough disk space to store the replication backlog as explained in <a href="../admin/controlling-the-replication-redo-log.htm">Controlling the Replication Redo Log</a>.</p>
+<p>With any XAP-based system, log files will be generated. A good best practice is to allocate at least 100MB of free disk size per machine running GigaSpaces applications. Ensure that you delete old log files or move them to a backup location. The XAP data grid may overflow data into the <code>work directory</code> when there is a long replication disconnection or replication delay. The location of the <code>work directory</code> should be on local storage for each XAP node in order to make this replication backlog data always available to the node. The storage should have enough disk space to store the replication backlog as explained in <a href="../admin/controlling-the-replication-redo-log.htm/">Controlling the Replication Redo Log</a>.</p>
 
 </body>
 </html>

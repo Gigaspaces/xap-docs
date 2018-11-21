@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>MemoryXtend for PMEM</h1>
+  
+
+<h1 id="overview">Overview</h1>
+
+<p>Persistent Memory (PMEM) is a new class of memory that combines high capacity and affordability. By expanding affordable system memory capacities (greater than 3TB per CPU socket), end customers can use systems enabled with PMEM to better optimize their workloads by moving and maintaining larger amounts of data closer to the processor, and minimizing the higher latency of fetching data from system storage.</p>
+
+<p>The Persistent Memory Development Kit, PMDK, is a collection of libraries that have been developed for various use cases, tuned, validated to production quality, and thoroughly documented. These libraries build on the Direct Access (DAX) feature available in both Linux and Windows, which allows applications direct load/store access to persistent memory by memory-mapping files on a persistent-memory-aware file system. The PMDK also includes a collection of tools, examples, and tutorials on persistent memory programming.</p>
+
+<div class="tc-admon-note">
+  
+  <p>The PMEM storage driver dose not currently support Windows.</p>
+</div>
+
+<p>PMDK is vendor-neutral, started by Intel and motivated by the introduction of Optane DC persistent memory. PMDK is open source and will work with any persistent memory that provides the SNIA NVM Programming Model.</p>
+
+<p>GigaSpaces has developed a PMEM driver that works with Intel's Optane DC PMEM array, which is currently in its beta stage. The MemoryXtend pmem storage driver stores Space objects in pmem, outside the Java heap.</p>
+
+<div class="tc-admon-note">
+  
+  <p>Intel's Optane DC is not yet available in the market, so to use the GigaSpaces PMEM driver you need to emulate PMEM on your machine. For information on how to do this, see the section on <a href="https://pmem.io/2016/02/22/pm-emulation.htm/">how to emulate Persistent Memory</a> on Intel's Persistent Memory Programming project website.</p>
+
+<p>If you would like to receive early access to the Optane PC hardware for evaluation purposes, contact us to <a href="https://www.gigaspaces.com/request-demo">request a demo</a> via the GigaSpaces website.</p>
+</div>
+
+<h1 id="prerequisites">Prerequisites</h1>
+
+<p>The GigaSpaces PMEM driver is based on the libpmem library, which provides low-level persistent memory support. In order to use this driver, you need the following shared libraries installed:</p>
+
+<ul>
+<li>libpmem</li>
+<li>libpmemobj</li>
+<li>libpmempool</li>
+</ul>
+
+<p>Additionally, make sure that <code>LD_LIBRARY_PATH</code> includes the above libraries running in your environment.</p>
+
+<p>For information about these libraries and how to install them, refer to the Intel Persistent Memory Programming project website at <a href="https://pmem.io/">https://pmem.io/</a>.</p>
+
+<h1 id="basic-configuration">Basic Configuration</h1>
+
+<div class="tc-admon-note">
+  
+  <p>The PMEM storage driver dose not currently support persistence mode.</p>
+</div>
+
+<p>You can create a Space that utilizes the MemoryXtend PMEM storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' with a PMEM memory pool of 20GB to be allocated at /tmp/pu-local-storage-pool.txt:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/pmem-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/14.0/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/14.0/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
+
+
+    &lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" file-name="/tmp/pu-local-storage-pool.txt"/&gt;
+
+    &lt;os-core:embedded-space id="space" name="MySpace"&gt;
+        &lt;!-- cache-entries-percentage=0 in order to make sure that objects are written to the ssd--&gt;
+        &lt;os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
+                                         cache-entries-percentage="20"
+                                         avg-object-size-KB="10"
+                                         persistent="false"/&gt;
+    &lt;/os-core:embedded-space&gt;
+&lt;/beans&gt;
+</code></pre>
+</div>
+<div title="Java" style="padding:10px"><pre><code class="language-java">// Create off-heap storage driver:
+BlobStoreStorageHandler blobStore = new PmemBlobStoreConfigurer()
+        blobStore.setMemoryPoolSize("20GB");
+        blobStore.setFileName("/tmp/pu-local-storage-pool.txt");
+        blobStore.setVerbose(false);
+        .create();
+// Create space with that storage driver:
+String spaceName = "mySpace";
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(false));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre>
+</div>
+</div>
+
+<p>The general <a href="./memoryxtend-overview.htm/#configuration">MemoryXtend configuration options</a> also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.</p>
+
+<div class="tc-admon-note">
+  
+  <p>For an example of how to configure the on-heap cache properties, see the <a href="./memoryxtend-overview.htm/#on-heap-cache">MemoryXtend overview</a> topic.</p>
+</div>
+
+<h2 id="defining-the-memory-pool-size">Defining the Memory Pool Size</h2>
+
+<p>In order to use PMEM storage, you must define the amount of memory to allocate, for example. <code>20g</code>. Use the following sizing units:</p>
+
+<ul>
+<li><code>b</code> - Bytes</li>
+<li><code>k</code>, <code>kb</code> - Kilobytes</li>
+<li><code>m</code>, <code>mb</code> - Megabytes</li>
+<li><code>g</code>, <code>gb</code> - Gigabytes</li>
+</ul>
+
+<p>Before any operation that requires memory allocation (write, update, and initial load), the memory manager checks how much of the allocated memory has been used. If the threshold has been breached, an <code>OffHeapMemoryShortageException</code> is thrown. Read, take, and clear operations are always allowed.</p>
+
+<h1 id="monitoring">Monitoring</h1>
+
+<p>The amount of used memory can be tracked with the following monitoring and administration tools:</p>
+
+<ul>
+<li>Metrics - The <code>space_blobstore_off-heap_used-bytes_total</code> metric, as described on the <a href="./metrics-bundled.htm/#blobstore-operations">Metrics</a> page.</li>
+<li>Admin API - Thru <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/space/SpaceInstanceStatistics.htm/#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
+<li>Web Management Console - In the Space instances view, right-click any of the columns in the table and add the <span class="tc-bold">Used Off-Heap</span> column.</li>
+</ul>
+
+<div class="tc-admon-note">
+  
+  <p>The data grid views the PMEM storage as off-heap storage. Therefore, the monitoring tools are the same for both the PMEM and the off-heap drivers.</p>
+</div>
+
+</body>
+</html>

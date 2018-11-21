@@ -7,7 +7,7 @@
 
 <p>A local view is a read-only, client-side Space that maintains a subset of the master Space's data, allowing the client to read distributed data without performing any remote calls or data serialization.</p>
 
-<p>Data is streamed into the client application's local view based on predefined criteria (a collection of <a href="query-sql.htm">SQLQuery</a> objects) specified by the client when the local view is created.</p>
+<p>Data is streamed into the client application's local view based on predefined criteria (a collection of <a href="./query-sql.htm/">SQLQuery</a> objects) specified by the client when the local view is created.</p>
 
 <p>During the local view initialization, data is loaded into the client's memory based on the view criteria. Afterwards, the local view is continuously updated by the master Space asynchronously; any operation executed on the master Space that affects an entry matching the view criteria is automatically propagated to the client.</p>
 
@@ -17,9 +17,9 @@
 <p>The following operations are supported (they are served by the local view). The master Space is not accessed when calling these:</p>
 
 <ul>
-<li><code>read</code> , <code>readMultiple</code> , <code>asyncRead</code> , <code>count</code> , using <a href="query-template-matching.htm">Template Matching</a>, <a href="query-by-id.htm">Id Queries</a> or <a href="query-sql.htm">SQLQuery</a></li>
-<li><a href="notify-container-overview.htm">Notify Container</a> , <a href="session-based-messaging-api.htm">Session Based Messaging API</a></li>
-<li><a href="query-paging-support.htm">IteratorBuilder</a></li>
+<li><code>read</code> , <code>readMultiple</code> , <code>asyncRead</code> , <code>count</code> , using <a href="./query-template-matching.htm/">Template Matching</a>, <a href="./query-by-id.htm/">Id Queries</a> or <a href="./query-sql.htm/">SQLQuery</a></li>
+<li><a href="./notify-container-overview.htm/">Notify Container</a> , <a href="./session-based-messaging-api.htm/">Session Based Messaging API</a></li>
+<li><a href="./query-paging-support.htm/">IteratorBuilder</a></li>
 </ul>
 
 <p>The following operations are <span class="tc-bold">not</span> supported when using local view, and should be performed using a regular Space proxy:</p>
@@ -32,7 +32,7 @@
 
 <h1 id="usage">Usage</h1>
 
-<p>Creating a local view is similar to creating a <a href="the-gigaspace-interface-overview.htm">GigaSpace</a> instance, except that the Space is wrapped with a local view before exposing it as a <code>GigaSpace</code>. The local view can be configured via Spring using <code>LocalViewSpaceFactoryBean</code> or the <code>&lt;os-core:local-view&gt;</code> Spring tag, or in code using <code>LocalViewSpaceConfigurer</code>. For example:</p>
+<p>Creating a local view is similar to creating a <a href="./the-gigaspace-interface-overview.htm/">GigaSpace</a> instance, except that the Space is wrapped with a local view before exposing it as a <code>GigaSpace</code>. The local view can be configured via Spring using <code>LocalViewSpaceFactoryBean</code> or the <code>&lt;os-core:local-view&gt;</code> Spring tag, or in code using <code>LocalViewSpaceConfigurer</code>. For example:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="    Namespace   " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy  id="space" space-name="mySpace"/&gt;
 
@@ -110,11 +110,11 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 
 <h1 id="synchronization">Synchronization</h1>
 
-<p>The local view uses <a href="../admin/replication.htm">replication</a> instead of <a href="session-based-messaging-api.htm">notifications</a> to synchronize with the master Space, because replication provides higher reliability than notification. In general, this is an implementation detail that should not concern the user, except for the following cases:</p>
+<p>The local view uses <a href="../admin/replication.htm/">replication</a> instead of <a href="./session-based-messaging-api.htm/">notifications</a> to synchronize with the master Space, because replication provides higher reliability than notification. In general, this is an implementation detail that should not concern the user, except for the following cases:</p>
 
 <ul>
-<li>Using a view query on a type/class configured to be <a href="modeling-your-data.htm">non-replicable</a>.</li>
-<li>Using a cluster with an <a href="../admin/replication-topologies.htm">Active-Active</a> topology, or a non-clustered Space.</li>
+<li>Using a view query on a type/class configured to be <a href="./modeling-your-data.htm/">non-replicable</a>.</li>
+<li>Using a cluster with an <a href="../admin/replication-topologies.htm/">Active-Active</a> topology, or a non-clustered Space.</li>
 </ul>
 
 <p>In these cases, the local view automatically reverts to notification-based synchronization.</p>
@@ -157,7 +157,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 
 <h3 id="notifications">Notifications</h3>
 
-<p>If local view synchronization is done using notifications, the round-trip-time can be configured using the <code>space-config.dist-cache.events.lease-renew.round-trip-time</code> custom property. For more information about this setting refer to <a href="session-based-messaging-api.htm">Session Based Messaging API</a>.</p>
+<p>If local view synchronization is done using notifications, the round-trip-time can be configured using the <code>space-config.dist-cache.events.lease-renew.round-trip-time</code> custom property. For more information about this setting refer to <a href="./session-based-messaging-api.htm/">Session Based Messaging API</a>.</p>
 
 <h2 id="batch-synchronization">Batch Synchronization</h2>
 

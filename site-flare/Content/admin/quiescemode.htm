@@ -9,7 +9,7 @@
 
 <p>This feature adds support for "Quiesce state" (or maintenance mode) for a Processing Unit. If a space is <span class="tc-bold">quiesced</span>, it rejects all data-related operations with an exception, allowing the user to perform maintenance operations.</p>
 
-<p>The XAP <a href="../dev-java/polling-container-overview.htm">Polling Container</a> and <a href="../dev-java/notify-container-overview.htm">Notify Container</a> are also aware of the Space's quiesce state, and handle quiesce state changed events by implementing <a href="#listener">QuiesceStateChangedListener</a>.</p>
+<p>The XAP <a href="../dev-java/polling-container-overview.htm/">Polling Container</a> and <a href="../dev-java/notify-container-overview.htm/">Notify Container</a> are also aware of the Space's quiesce state, and handle quiesce state changed events by implementing <a href="#listener">QuiesceStateChangedListener</a>.</p>
 
 <p>In addition to the XAP event containers mentioned above, a user-defined Bean can also handle quiesce state changed events by implementing <a href="#listener">QuiesceStateChangedListener</a>.</p>
 
@@ -17,7 +17,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>Quiesce mode can be also triggered using a CLI (see <a href="quiesce-command-line-interface.htm">Quiesce CLI</a>).</p>
+  <p>Quiesce mode can be also triggered using a CLI (see <a href="./quiesce-command-line-interface.htm/">Quiesce CLI</a>).</p>
 </div>
 
 <h2 id="uses-for-quiesce-state">Uses for Quiesce State</h2>
@@ -82,7 +82,7 @@
 <ul>
 <li>The Processing Unit should be <span class="tc-bold">intact</span> before triggering a quiesce request.</li>
 <li>Although Quiesce handles the Processing Unit restart, it is not resilient regarding sudden network disconnections (in XAP grid component machines). Therefore, under rare conditions the quiesce request must be repeated manually by the user.</li>
-<li>Quiesce state changed events are propagated only to the components (beans) that are located within the Processing Unit context file (<a href="../dev-java/configuring-processing-unit-elements.htm">pu.xml</a>), therefore custom components are not aware of quiesce state changed events (even if the component implements <a href="#listener">QuiesceStateChangedListener</a>).</li>
+<li>Quiesce state changed events are propagated only to the components (beans) that are located within the Processing Unit context file (<a href="../dev-java/configuring-processing-unit-elements.htm/">pu.xml</a>), therefore custom components are not aware of quiesce state changed events (even if the component implements <a href="#listener">QuiesceStateChangedListener</a>).</li>
 <li>Replication of the Quiesce state between primary and backup GSM is not yet supported. GSM failover may result in losing the quiesce state of the system. If this happens, you must repeat the quiesce request  in order to re-inform the GSM about the current quiesce state.</li>
 </ul>
 

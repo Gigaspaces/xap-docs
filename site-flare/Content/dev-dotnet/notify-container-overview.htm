@@ -5,7 +5,7 @@
 <h1>Notify Container</h1>
   
 
-<table class="tc-borderless"><tr><td style="width:70%;"><p>The notify event container implements the <a href="event-listener-container.htm">IEventListenerContainer</a> interface, and uses the space inheritance support for notifications, using a GigaSpaces data event session API. If a notification occurs, the <a href="event-listener-container.htm#data-event-arrived">DataEventArrived</a> event is invoked with the event. A notify event operation is mainly used when simulating Topic semantics.</p>
+<table class="tc-borderless"><tr><td style="width:70%;"><p>The notify event container implements the <a href="./event-listener-container.htm/">IEventListenerContainer</a> interface, and uses the space inheritance support for notifications, using a GigaSpaces data event session API. If a notification occurs, the <a href="./event-listener-container.htm/#data-event-arrived">DataEventArrived</a> event is invoked with the event. A notify event operation is mainly used when simulating Topic semantics.</p>
 </td>
 <td style="width:30%;"><p><img src="../Resources/Static/attachment_files/dotnet/Net_notify_cont.jpg" width="150" height="200" /></p>
 </td>
@@ -73,7 +73,7 @@ notifyEventListenerContainer.Dispose();
 
 <div class="tc-admon-note">
   
-  <p><a href="event-listener-container.htm#DelegateDataEventArrivedAdapter">DelegateDataEventArrivedAdapter</a> is a class that adapts the supplied user method to the <a href="event-listener-container.htm#DataEventHandler">DataEventHandler</a> delegate, and contains a built in logic of writing back event results to the space</p>
+  <p><a href="./event-listener-container.htm/#DelegateDataEventArrivedAdapter">DelegateDataEventArrivedAdapter</a> is a class that adapts the supplied user method to the <a href="./event-listener-container.htm/#DataEventHandler">DataEventHandler</a> delegate, and contains a built in logic of writing back event results to the space</p>
 </div>
 </div>
 </div>
@@ -91,7 +91,7 @@ notifyEventListenerContainer.Dispose();
 
 <h1 id="template-definition">Template Definition</h1>
 
-<p>When performing receive operations, a template is defined, creating a virtualized subset of data in the Space, matching it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.htm">SqlQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
+<p>When performing receive operations, a template is defined, creating a virtualized subset of data in the Space, matching it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="./query-sql.htm/">SqlQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[NotifyEventDriven]
 public class SimpleListener
@@ -162,7 +162,7 @@ notifyEventListenerContainer.NotifyType = DataEventType.Write | DataEventType.Up
 
 <h1 id="batch-events">Batch Events</h1>
 
-<p>The notify container, through the unified event API, allows batching of notifications. Batching causes the Space to accumulate the notifications, and when a certain amount of time has passed or a certain size is reached, causes the events to be raised to the client. Batching is very useful when working with a remote Space, since it reduces the network round-trip operations. Moreover, when using Batch notification, it is possible (but not mandatory) to work with the <a href="event-listener-container.htm#BatchDataEventArrived">BatchDataEventArrived</a> instead, and handle a batch of notifications at once.</p>
+<p>The notify container, through the unified event API, allows batching of notifications. Batching causes the Space to accumulate the notifications, and when a certain amount of time has passed or a certain size is reached, causes the events to be raised to the client. Batching is very useful when working with a remote Space, since it reduces the network round-trip operations. Moreover, when using Batch notification, it is possible (but not mandatory) to work with the <a href="./event-listener-container.htm/#BatchDataEventArrived">BatchDataEventArrived</a> instead, and handle a batch of notifications at once.</p>
 
 <p>The following is an example of batching, where if the number of notifications has passed 10, or the time passed is 5 seconds (since the last batch was sent), a batch of notifications is sent to the client:</p>
 
@@ -220,7 +220,7 @@ notifyEventListenerContainer.BatchDataEventArrived += new DelegateDataEventArriv
 
 <div class="tc-admon-refer">
   
-  <p>For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the <a href="fifo-support.htm">FIFO Support</a> section.</p>
+  <p>For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the <a href="./fifo-support.htm/">FIFO Support</a> section.</p>
 </div>
 
 <p>The following is an example of how FIFO events can be configured with the notify container:</p>
@@ -358,7 +358,7 @@ notifyEventListenerContainer.IgnoreEventOnNullTake = true;
 
 <h1 id="space-data-event-args">Space Data Event Args</h1>
 
-<p>The notify container uses the XAP <a href="the-space-notifications.htm">data event session API</a> under the hood. When a notification is triggered, it contains <code>SpaceDataEventArgs</code>, which holds more information about the notification itself, such as the template and the DataEventType (for example, whether this notification was triggered by a write or an update operation). When using the notify container, it is possible to receive that additional information as a parameter of the event listener method:</p>
+<p>The notify container uses the XAP <a href="./the-space-notifications.htm/">data event session API</a> under the hood. When a notification is triggered, it contains <code>SpaceDataEventArgs</code>, which holds more information about the notification itself, such as the template and the DataEventType (for example, whether this notification was triggered by a write or an update operation). When using the notify container, it is possible to receive that additional information as a parameter of the event listener method:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[NotifyEventDriven]
 public class SimpleListener
@@ -407,7 +407,7 @@ notifyEventListenerContainer.Dispose();
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p><a href="event-listener-container.htm#DelegateDataEventArrivedAdapter">DelegateDataEventArrivedAdapter</a> is a class that adapts the supplied user method to the <a href="event-listener-container.htm#DataEventHandler">DataEventHandler</a> delegate, and contains a built-in logic of writing event results back to the Space.</p>
+  <p><a href="./event-listener-container.htm/#DelegateDataEventArrivedAdapter">DelegateDataEventArrivedAdapter</a> is a class that adapts the supplied user method to the <a href="./event-listener-container.htm/#DataEventHandler">DataEventHandler</a> delegate, and contains a built-in logic of writing event results back to the Space.</p>
 </div>
 </div>
 </div>

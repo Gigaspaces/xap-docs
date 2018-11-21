@@ -5,7 +5,7 @@
 <h1>ALL IN CACHE Policy</h1>
   
 
-<p>When running in <code>ALL_IN_CACHE</code> cache policy mode, the space uses only the available physical memory. When running in a persistent space mode and having <a href="space-persistency-overview.htm">Space Persistency</a> defined, the space data is backed with the underlying database, but the overall capacity of the space does not exceed the capacity of the available physical memory.</p>
+<p>When running in <code>ALL_IN_CACHE</code> cache policy mode, the space uses only the available physical memory. When running in a persistent space mode and having <a href="./space-persistency-overview.htm/">Space Persistency</a> defined, the space data is backed with the underlying database, but the overall capacity of the space does not exceed the capacity of the available physical memory.</p>
 
 <div class="tc-admon-note">
   
@@ -47,7 +47,7 @@ total memory: 1820 mb, used memory: 1283 mb
 -XX:MaxPermSize=256m -XX:+ExplicitGCInvokesConcurrent -XX:+UseCompressedOops
 </code></pre>
 
-<p>When running with large heap size you should tune the memory manager settings. This will avoid throwing <code>SpaceMemoryShortageException</code> too early. See the <a href="memory-management-overview.htm#HandlingLargeJVMHeapSize">Handling Large JVM Heap Size</a> section for details.</p>
+<p>When running with large heap size you should tune the memory manager settings. This will avoid throwing <code>SpaceMemoryShortageException</code> too early. See the <a href="./memory-management-overview.htm/#HandlingLargeJVMHeapSize">Handling Large JVM Heap Size</a> section for details.</p>
 
 </body>
 </html>

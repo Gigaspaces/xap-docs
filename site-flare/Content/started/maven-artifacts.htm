@@ -1,184 +1,212 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-    <head>
-    </head>
-    <body>
-        <h1>Maven Artifacts</h1>
-        <p>XAP is Maven-friendly. It is built using Maven and is designed to be easily used by developers constructing XAP applications. In this page we'll explain how to use XAP with Maven.</p>
-        <h1 id="xap-maven-repository">XAP Maven Repository</h1>
-        <p>XAP artifacts are not currently published in the Maven Central Repo, so you must first configure a repository:</p><pre><code class="language-xml">&lt;repository&gt;
+<head></head>
+<body>
+<h1>Maven Artifacts</h1>
+  
+
+<p>XAP is Maven-friendly. It is built using Maven and is designed to be easily used by developers constructing XAP applications. In this page we'll explain how to use XAP with Maven.</p>
+
+<h1 id="xap-maven-repository">XAP Maven Repository</h1>
+
+<p>XAP artifacts are not currently published in the Maven Central Repo, so you must first configure a repository:</p>
+
+<pre><code class="language-xml">&lt;repository&gt;
    &lt;id&gt;org.openspaces&lt;/id&gt;
    &lt;url&gt;http://maven-repository.openspaces.org&lt;/url&gt;
 &lt;/repository&gt;
 </code></pre>
-        <h1 id="xap-artifacts">XAP Artifacts</h1>
-        <p>The main dependency required to use XAP is <code>xap-openspaces</code>.</p><pre><code class="language-xml">&lt;dependency&gt;
+
+<h1 id="xap-artifacts">XAP Artifacts</h1>
+
+<p>The main dependency required to use XAP is <code>xap-openspaces</code>.</p>
+
+<pre><code class="language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
   &lt;artifactId&gt;xap-openspaces&lt;/artifactId&gt;
   &lt;version&gt;[%=Versions.maven-version%]&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-        <h2 id="core-artifacts">Core Artifacts</h2>
-        <p>This section lists the core artifacts. You only need to add <code>xap-openspaces</code>, because all the other core artifacts are its dependencies.</p>
-        <p>The group ID for these artifacts is <code>org.gigaspaces</code>.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Artifact ID</th>
-                    <th>Location in product</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>xap-openspaces</td>
-                    <td>${XAP_HOME}/lib/required/xap-openspaces.jar</td>
-                </tr>
-                <tr>
-                    <td>xap-datagrid</td>
-                    <td>${XAP_HOME}/lib/required/xap-datagrid.jar</td>
-                </tr>
-                <tr>
-                    <td>xap-common</td>
-                    <td>${XAP_HOME}/lib/required/xap-common.jar</td>
-                </tr>
-                <tr>
-                    <td>xap-trove</td>
-                    <td>${XAP_HOME}/lib/required/xap-trove.jar</td>
-                </tr>
-                <tr>
-                    <td>xap-asm</td>
-                    <td>${XAP_HOME}/lib/required/xap-asm.jar</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2 id="extension-artifacts">Extension Artifacts</h2>
-        <p>This section lists extension artifacts. The group ID for these artifacts is <code>org.gigaspaces</code>.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Artifact ID</th>
-                    <th>Location in product</th>
-                    <th>Required for</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>xap-map</td>
-                    <td>${XAP_HOME}/lib/optional/map/xap-map.jar</td>
-                    <td><a href="../dev-java/map-api.htm">Map API</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-map-spring</td>
-                    <td>${XAP_HOME}/lib/optional/map/xap-map-spring.jar</td>
-                    <td><a href="../dev-java/map-api.htm">Map API</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-jms</td>
-                    <td>${XAP_HOME}/lib/optional/jms/xap-jms.jar</td>
-                    <td><a href="../dev-java/messaging-support.htm">JMS</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-jetty</td>
-                    <td>${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty.jar</td>
-                    <td><a href="../dev-java/web-jetty-processing-unit-container.htm">Jetty PU Container</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-mongodb</td>
-                    <td>${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar</td>
-                    <td><a href="../dev-java/mongodb.htm">MongoDB integration</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-spatial</td>
-                    <td>${XAP_HOME}/lib/optional/spatial/xap-spatial.jar</td>
-                    <td><a href="../dev-java/query-geospatial.htm">Geospatial Queries</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-full-text-search</td>
-                    <td>${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar</td>
-                    <td><a href="../dev-java/query-full-text-search.htm">Full Text Search</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h2 id="premium-extensions">Premium Extensions</h2>
-        <p>This section lists Premium artifacts. The group ID for these artifacts is <code>com.gigaspaces</code>.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Artifact ID</th>
-                    <th>Location in product</th>
-                    <th>Required for</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>xap-near-cache-spring</td>
-                    <td>${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar</td>
-                    <td><a href="../dev-java/client-side-caching.htm">Client Side Caching</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-near-cache</td>
-                    <td>${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar</td>
-                    <td><a href="../dev-java/client-side-caching.htm">Client Side Caching</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-security</td>
-                    <td>${XAP_HOME}/lib/optional/security/xap-security.jar</td>
-                    <td><a href="../security/index.htm">Security</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-zookeeper</td>
-                    <td>${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar</td>
-                    <td><a href="../admin/leader-election-consistency-biased.htm">Consistency-biased leader election</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-admin</td>
-                    <td>${XAP_HOME}/lib/platform/service-grid/xap-admin.jar</td>
-                    <td><a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h2 id="enterprise-extensions">Enterprise Extensions</h2>
-        <p>This section lists Enterprise artifacts. The group ID for these artifacts is <code>com.gigaspaces</code>.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Artifact ID</th>
-                    <th>Location in product</th>
-                    <th>Required for</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>xap-mx-rocksdb</td>
-                    <td>${XAP_HOME}/lib/optional/memoryxtend/rocksdb/xap-mx-rocksdb.jar</td>
-                    <td><a href="../admin/memoryxtend-overview.htm">MemoryXtend - SSD</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-wan-gateway-spring</td>
-                    <td>${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar</td>
-                    <td><a href="../dev-java/multi-site-replication-overview.htm">WAN Replication</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>xap-wan-gateway</td>
-                    <td>${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar</td>
-                    <td><a href="../dev-java/multi-site-replication-overview.htm">WAN Replication</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+
+<h2 id="core-artifacts">Core Artifacts</h2>
+
+<p>This section lists the core artifacts. You only need to add <code>xap-openspaces</code>, because all the other core artifacts are its dependencies.</p>
+
+<p>The group ID for these artifacts is <code>org.gigaspaces</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Artifact ID</th>
+<th>Location in product</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>xap-openspaces</td>
+<td>${XAP_HOME}/lib/required/xap-openspaces.jar</td>
+</tr>
+
+<tr>
+<td>xap-datagrid</td>
+<td>${XAP_HOME}/lib/required/xap-datagrid.jar</td>
+</tr>
+
+<tr>
+<td>xap-common</td>
+<td>${XAP_HOME}/lib/required/xap-common.jar</td>
+</tr>
+
+<tr>
+<td>xap-trove</td>
+<td>${XAP_HOME}/lib/required/xap-trove.jar</td>
+</tr>
+
+<tr>
+<td>xap-asm</td>
+<td>${XAP_HOME}/lib/required/xap-asm.jar</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="extension-artifacts">Extension Artifacts</h2>
+
+<p>This section lists extension artifacts. The group ID for these artifacts is <code>org.gigaspaces</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Artifact ID</th>
+<th>Location in product</th>
+<th>Required for</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>xap-map</td>
+<td>${XAP_HOME}/lib/optional/map/xap-map.jar</td>
+<td><a href="../dev-java/map-api.htm/">Map API</a></td>
+</tr>
+
+<tr>
+<td>xap-map-spring</td>
+<td>${XAP_HOME}/lib/optional/map/xap-map-spring.jar</td>
+<td><a href="../dev-java/map-api.htm/">Map API</a></td>
+</tr>
+
+<tr>
+<td>xap-jms</td>
+<td>${XAP_HOME}/lib/optional/jms/xap-jms.jar</td>
+<td><a href="../dev-java/messaging-support.htm/">JMS</a></td>
+</tr>
+
+<tr>
+<td>xap-jetty</td>
+<td>${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty.jar</td>
+<td><a href="../dev-java/web-jetty-processing-unit-container.htm/">Jetty PU Container</a></td>
+</tr>
+
+<tr>
+<td>xap-mongodb</td>
+<td>${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar</td>
+<td><a href="../dev-java/mongodb.htm/">MongoDB integration</a></td>
+</tr>
+
+<tr>
+<td>xap-spatial</td>
+<td>${XAP_HOME}/lib/optional/spatial/xap-spatial.jar</td>
+<td><a href="../dev-java/query-geospatial.htm/">Geospatial Queries</a></td>
+</tr>
+
+<tr>
+<td>xap-full-text-search</td>
+<td>${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar</td>
+<td><a href="../dev-java/query-full-text-search.htm/">Full Text Search</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="premium-extensions">Premium Extensions</h2>
+
+<p>This section lists Premium artifacts. The group ID for these artifacts is <code>com.gigaspaces</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Artifact ID</th>
+<th>Location in product</th>
+<th>Required for</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>xap-near-cache-spring</td>
+<td>${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar</td>
+<td><a href="../dev-java/client-side-caching.htm/">Client Side Caching</a></td>
+</tr>
+
+<tr>
+<td>xap-near-cache</td>
+<td>${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar</td>
+<td><a href="../dev-java/client-side-caching.htm/">Client Side Caching</a></td>
+</tr>
+
+<tr>
+<td>xap-security</td>
+<td>${XAP_HOME}/lib/optional/security/xap-security.jar</td>
+<td><a href="../security/">Security</a></td>
+</tr>
+
+<tr>
+<td>xap-zookeeper</td>
+<td>${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar</td>
+<td><a href="../admin/leader-election-consistency-biased.htm/">Consistency-biased leader election</a></td>
+</tr>
+
+<tr>
+<td>xap-admin</td>
+<td>${XAP_HOME}/lib/platform/service-grid/xap-admin.jar</td>
+<td><a href="../dev-java/administration-and-monitoring-overview.htm/">Admin API</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="enterprise-extensions">Enterprise Extensions</h2>
+
+<p>This section lists Enterprise artifacts. The group ID for these artifacts is <code>com.gigaspaces</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Artifact ID</th>
+<th>Location in product</th>
+<th>Required for</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>xap-mx-rocksdb</td>
+<td>${XAP_HOME}/lib/optional/memoryxtend/rocksdb/xap-mx-rocksdb.jar</td>
+<td><a href="../admin/memoryxtend-overview.htm/">MemoryXtend - SSD</a></td>
+</tr>
+
+<tr>
+<td>xap-wan-gateway-spring</td>
+<td>${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar</td>
+<td><a href="../dev-java/multi-site-replication-overview.htm/">WAN Replication</a></td>
+</tr>
+
+<tr>
+<td>xap-wan-gateway</td>
+<td>${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar</td>
+<td><a href="../dev-java/multi-site-replication-overview.htm/">WAN Replication</a></td>
+</tr>
+</tbody>
+</table>
+
+</body>
 </html>

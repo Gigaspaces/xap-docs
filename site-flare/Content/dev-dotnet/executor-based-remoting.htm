@@ -5,7 +5,7 @@
 <h1>Executor-Based Remoting</h1>
   
 
-<p>Executor based remoting uses <a href="task-execution-overview.htm">Executors</a> to implement remoting capabilities on top of the space. Executor based remoting allows for direct invocation of services, both in synchronous and an asynchronous manner as well as broadcast capabilities. Executor remoting works with services that are exposed within a processing unit that started a collocated space.</p>
+<p>Executor based remoting uses <a href="./task-execution-overview.htm/">Executors</a> to implement remoting capabilities on top of the space. Executor based remoting allows for direct invocation of services, both in synchronous and an asynchronous manner as well as broadcast capabilities. Executor remoting works with services that are exposed within a processing unit that started a collocated space.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/Executor.jpg" alt="Executor.jpg" /></p>
 </div>
@@ -43,7 +43,7 @@ public class DataProcessor : IDataProcessor
 
 <h1 id="hosting-the-service-in-the-grid">Hosting the Service in the Grid</h1>
 
-<p>The next step is hosting the service in the grid. Hosting the service is done on the server side within a <a href="the-processing-unit-overview.htm">Processing Unit </a> - all types which have the [SpaceRemotingService] attribute will automatically be created and hosted:</p>
+<p>The next step is hosting the service in the grid. Hosting the service is done on the server side within a <a href="./the-processing-unit-overview.htm/">Processing Unit </a> - all types which have the [SpaceRemotingService] attribute will automatically be created and hosted:</p>
 
 <pre><code class="language-csharp">[SpaceRemotingService]
 public class DataProcessor : IDataProcessor
@@ -59,7 +59,7 @@ public class DataProcessor : IDataProcessor
 
 <div class="tc-admon-refer">
   
-  <p>For more details regarding service hosting please refer to <a href="domain-service-host.htm">Domain Service Host</a></p>
+  <p>For more details regarding service hosting please refer to <a href="./domain-service-host.htm/">Domain Service Host</a></p>
 </div>
 
 <h1 id="using-the-service-on-the-client-side">Using the Service on the Client Side</h1>
@@ -89,7 +89,7 @@ IDataProcessor dataProcessorProxy = proxyBuilder.CreateProxy();
 
 <div class="tc-admon-refer">
   
-  <p>Learn how to host a service under specific lookup names in <a href="domain-service-host.htm#service-lookup-name">Domain Service Host</a></p>
+  <p>Learn how to host a service under specific lookup names in <a href="./domain-service-host.htm/#service-lookup-name">Domain Service Host</a></p>
 </div>
 
 <h2 id="remote-routing-handler">Remote Routing Handler</h2>

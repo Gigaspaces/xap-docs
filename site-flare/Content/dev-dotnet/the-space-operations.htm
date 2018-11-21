@@ -15,8 +15,8 @@
 <a href="#asynchronousWrite">asynchronous write</a> to the space</p>
 </td>
 <td style="width:45%;"><p><span class="tc-bold">Change objects in space:</span><br/>
-<a href="change-api-overview.htm">change</a> one object in space<br/>
-<a href="change-api-overview.htm">changeMultiple</a> objects in space <br/></p>
+<a href="./change-api-overview.htm/">change</a> one object in space<br/>
+<a href="./change-api-overview.htm/">changeMultiple</a> objects in space <br/></p>
 </td>
 </tr></table>
 
@@ -179,7 +179,7 @@ Employee previousValue = lc.Object;
 
 <h2 id="asynchronous-write">Asynchronous write</h2>
 
-<p>Asynchronous <code>write</code> operation can be implemented using a <a href="task-execution-overview.htm">Task</a>, where the <code>Task</code> implementation include a write operation. With this approach the <code>Task</code> is sent to the space and executed in an asynchronous manner. The write operation itself will be completed once both the primary and the backup will acknowledge the operation. This activity will be performed as a background activity from the client perspective.</p>
+<p>Asynchronous <code>write</code> operation can be implemented using a <a href="./task-execution-overview.htm/">Task</a>, where the <code>Task</code> implementation include a write operation. With this approach the <code>Task</code> is sent to the space and executed in an asynchronous manner. The write operation itself will be completed once both the primary and the backup will acknowledge the operation. This activity will be performed as a background activity from the client perspective.</p>
 
 <p>Example</p>
 
@@ -193,7 +193,7 @@ spaceProxy.Write(employee,WriteModifiers.OneWay);
 
 <div class="tc-admon-note">
   
-  <p>Writing an object into a space might generate <a href="notify-container-overview.htm">notifications</a> to registered objects.</p>
+  <p>Writing an object into a space might generate <a href="./notify-container-overview.htm/">notifications</a> to registered objects.</p>
 </div>
 
  <a id="read">&#160;</a>
@@ -206,7 +206,7 @@ If no match is found, null is returned. Passing a null reference as the template
 
 <p>Any matching object can be returned. Successive read requests with the same template may or may not return equivalent objects, even if no intervening modifications have been made to the space.
 Each invocation of <code>read</code> may return a new object even if the same object is matched in the space.
-If you would like to read objects in the same order they have been written into the space you should perform the read objects in a <a href="fifo-support.htm">FIFO mode</a>.</p>
+If you would like to read objects in the same order they have been written into the space you should perform the read objects in a <a href="./fifo-support.htm/">FIFO mode</a>.</p>
 
 <div class="tc-admon-note">
   
@@ -222,7 +222,7 @@ If you would like to read objects in the same order they have been written into 
 <li>By SQLQuery</li>
 </ul>
 
-<p>To learn more about the different options refer to <a href="querying-the-space.htm">Querying the Space</a></p>
+<p>To learn more about the different options refer to <a href="./querying-the-space.htm/">Querying the Space</a></p>
 
 <p>Examples:</p>
 
@@ -450,9 +450,9 @@ In circumstances in which this is unacceptable, the take can be wrapped inside a
 
 <div class="tc-admon-note">
   
-  <p>If you would like to take objects from the space in the same order they have been written into the space you should perform the take objects in a <a href="fifo-support.htm">FIFO mode</a>.</p>
+  <p>If you would like to take objects from the space in the same order they have been written into the space you should perform the take objects in a <a href="./fifo-support.htm/">FIFO mode</a>.</p>
 
-<p>Taking an object from the space might generate <a href="notify-container-overview.htm">notifications</a> to registered objects/queries.</p>
+<p>Taking an object from the space might generate <a href="./notify-container-overview.htm/">notifications</a> to registered objects/queries.</p>
 </div>
 
 <p>The take operation can be performed with the following options:</p>
@@ -464,7 +464,7 @@ In circumstances in which this is unacceptable, the take can be wrapped inside a
 <li>By SQLQuery</li>
 </ul>
 
-<p>To learn more about the different options refer to <a href="querying-the-space.htm">Querying the Space</a></p>
+<p>To learn more about the different options refer to <a href="./querying-the-space.htm/">Querying the Space</a></p>
 
 <p>Examples:</p>
 
@@ -875,7 +875,7 @@ public class Person
 
 <div class="tc-admon-refer">
   
-  <p><a href="aggregators.htm">Aggregators</a></p>
+  <p><a href="./aggregators.htm/">Aggregators</a></p>
 </div>
 
 </body>

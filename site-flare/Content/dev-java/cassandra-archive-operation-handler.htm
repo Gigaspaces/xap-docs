@@ -1,26 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-    <head>
-    </head>
-    <body>
-        <h1>Archive Handler</h1>
-        <table class="tc-borderless">
-            <col style="width: 400px;" />
-            <col />
-            <tr>
-                <td>
-                    <p>The <a href="archive-container.htm">Archive Container</a> can be configured to work against Cassandra (without writing any extra code). The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/archive/ArchiveOperationHandler.htm">ArchiveOperationHandler interface</a> abstracts the Big-Data storage from the <a href="archive-container.htm">Archive Container</a>. The Cassandra Archive Operation Handler implements this interface by <a href="#property-value-serializer">serializing</a> space objects into Cassandra.</p>
-                </td>
-                <td>
-                    <img src="../Resources/Static/attachment_files/archive-container-cassandra.jpg" alt="" title="" class="tc-picture100" />
-                </td>
-            </tr>
-        </table>
-        <h1 id="library-dependencies">Library Dependencies</h1>
-        <p>The Cassandra Archive Operation Handler uses the <a href="http://hector-client.github.com/hector/build/html/index.htm" target="_blank">Hector Library</a> for communicating with the Cassandra cluster.
+<head></head>
+<body>
+<h1>Archive Handler</h1>
+  
+
+<table class="tc-borderless">
+  <tr>
+    <td><p>The <a href="./archive-container.htm/">Archive Container</a> can be configured to work against Cassandra (without writing any extra code). The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/archive/ArchiveOperationHandler.htm/">ArchiveOperationHandler interface</a> abstracts the Big-Data storage from the <a href="./archive-container.htm/">Archive Container</a>. The Cassandra Archive Operation Handler implements this interface by <a href="#property-value-serializer">serializing</a> space objects into Cassandra.</p>
+</td>
+    <td><img src="../Resources/Static/attachment_files/archive-container-cassandra.jpg" alt="" title="" /></td>
+  </tr>
+</table>
+
+<h1 id="library-dependencies">Library dependencies</h1>
+
+<p>The Cassandra Archive Operation Handler uses the <a href="http://hector-client.github.com/hector/build/html/index.htm/" target="_blank" >Hector Library</a> for communicating with the Cassandra cluster.
 Include the following in your <code>pom.xml</code></p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="  hector using log4j " style="padding:10px"><pre><code class="language-xml">&lt;dependency&gt;
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  hector using log4j " style="padding:10px"><pre><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;org.apache.cassandra&lt;/groupId&gt;
     &lt;artifactId&gt;cassandra-clientutil&lt;/artifactId&gt;
     &lt;version&gt;[%=Versions.cassandra-clientutil%]&lt;/version&gt;
@@ -38,8 +36,8 @@ Include the following in your <code>pom.xml</code></p>
     &lt;version&gt;[%=Versions.hector-core%]&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-            </div>
-            <div title="  hector using java.util.logging " style="padding:10px"><pre><code class="language-xml">&lt;dependency&gt;
+</div>
+<div title="  hector using java.util.logging " style="padding:10px"><pre><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;org.apache.cassandra&lt;/groupId&gt;
     &lt;artifactId&gt;cassandra-clientutil&lt;/artifactId&gt;
     &lt;version&gt;[%=Versions.cassandra-clientutil%]&lt;/version&gt;
@@ -74,11 +72,12 @@ Include the following in your <code>pom.xml</code></p>
     &lt;version&gt;[%=Versions.slf4j-jdk14%]&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-            </div>
-        </div>
-        <h1 id="setup">Setup</h1>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-archive-cassandra:cassandra-archive-handler id="cassandraArchiveHandler"
+</div>
+</div>
+
+<h1 id="setup">Setup</h1>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-archive-cassandra:cassandra-archive-handler id="cassandraArchiveHandler"
   giga-space="gigaSpace"
   hosts="127.0.0.1"
   port="9160"
@@ -86,8 +85,8 @@ Include the following in your <code>pom.xml</code></p>
   write-consistency="QUORUM"
 /&gt;
 </code></pre>
-            </div>
-            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
 &lt;bean id="cassandraArchiveHandler" class="org.openspaces.persistency.cassandra.archive.CassandraArchiveOperationHandler"&gt;
     &lt;property name="gigaSpace" ref="gigaSpace"/&gt;
     &lt;property name="hosts" value="127.0.0.1" /&gt;
@@ -96,8 +95,8 @@ Include the following in your <code>pom.xml</code></p>
     &lt;property name="writeConsistency" value="QUORUM" /&gt;
 &lt;/bean&gt;
 </code></pre>
-            </div>
-            <div title="  Code " style="padding:10px"><pre><code class="language-java">
+</div>
+<div title="  Code " style="padding:10px"><pre><code class="language-java">
 ArchiveOperationHandler cassandraArchiveHandler =
     new CassandraArchiveOperationHandlerConfigurer()
     .gigaSpace(gigaSpace)
@@ -112,70 +111,83 @@ ArchiveOperationHandler cassandraArchiveHandler =
 
 archiveContainer.destroy();
 </code></pre>
-            </div>
-        </div>
-        <h1 id="cassandraarchiveoperationhandler-properties">CassandraArchiveOperationHandler Properties</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th align="left">Property</th>
-                    <th align="left">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td align="left">gigaSpace</td>
-                    <td align="left">GigaSpace reference used for type descriptors. see <a href="archive-container.htm#configuration">Archive Container</a></td>
-                </tr>
-                <tr>
-                    <td align="left">hosts</td>
-                    <td align="left">Comma separated list of Cassandra host names or ip addresses</td>
-                </tr>
-                <tr>
-                    <td align="left">port</td>
-                    <td align="left">Cassandra port. By default uses 9160</td>
-                </tr>
-                <tr>
-                    <td align="left">keyspace</td>
-                    <td align="left">Cassandra keyspace</td>
-                </tr>
-                <tr>
-                    <td align="left">propertyValueSerializer</td>
-                    <td align="left">see <a href="#property-value-serializer">Property Value Serializer</a>.</td>
-                </tr>
-                <tr>
-                    <td align="left">flattenedPropertiesFilter</td>
-                    <td align="left">see <a href="cassandra-space-synchronization-endpoint.htm#flattened-properties-filter">Flattened Properties Filter</a>.</td>
-                </tr>
-                <tr>
-                    <td align="left">columnFamilyNameConverter</td>
-                    <td align="left">see <a href="cassandra-space-synchronization-endpoint.htm#column-family-name-converter">Column Family Name Converter</a>.</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2 id="property-value-serializer">Property Value Serializer</h2>
-        <p>By default when serializing object/document properties to column values, the following serialization logic is applied:</p>
-        <ul>
-            <li>If the type of the value to be serialized matches a primitive type in Cassandra it will be serialized as defined by the Cassandra primitive type serialization protocol.</li>
-            <li>Otherwise, the value will be serialized using standard java Object serialization mechanism.</li>
-        </ul>
-        <p>It is possible to override this default behavior by providing a custom implementation of <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/persistency/cassandra/meta/types/dynamic/PropertyValueSerializer.htm">PropertyValueSerializer</a>.
-This interface is defined by these 2 methods:</p><pre><code class="language-java">ByteBuffer toByteBuffer(Object value);
+</div>
+</div>
+
+<h1 id="cassandraarchiveoperationhandler-properties">CassandraArchiveOperationHandler Properties</h1>
+
+<table>
+<thead>
+<tr>
+<th align="left">Property</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">gigaSpace</td>
+<td align="left">GigaSpace reference used for type descriptors. see <a href="./archive-container.htm/#configuration">Archive Container</a></td>
+</tr>
+
+<tr>
+<td align="left">hosts</td>
+<td align="left">Comma separated list of Cassandra host names or ip addresses</td>
+</tr>
+
+<tr>
+<td align="left">port</td>
+<td align="left">Cassandra port. By default uses 9160</td>
+</tr>
+
+<tr>
+<td align="left">keyspace</td>
+<td align="left">Cassandra keyspace</td>
+</tr>
+
+<tr>
+<td align="left">propertyValueSerializer</td>
+<td align="left">see <a href="#property-value-serializer">Property Value Serializer</a>.</td>
+</tr>
+
+<tr>
+<td align="left">flattenedPropertiesFilter</td>
+<td align="left">see <a href="./cassandra-space-synchronization-endpoint.htm/#flattened-properties-filter">Flattened Properties Filter</a>.</td>
+</tr>
+
+<tr>
+<td align="left">columnFamilyNameConverter</td>
+<td align="left">see <a href="./cassandra-space-synchronization-endpoint.htm/#column-family-name-converter">Column Family Name Converter</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="property-value-serializer">Property Value Serializer</h2>
+
+<p>By default when serializing object/document properties to column values, the following serialization logic is applied:</p>
+
+<ul>
+<li>If the type of the value to be serialized matches a primitive type in Cassandra it will be serialized as defined by the Cassandra primitive type serialization protocol.</li>
+<li>Otherwise, the value will be serialized using standard java Object serialization mechanism.</li>
+</ul>
+
+<p>It is possible to override this default behavior by providing a custom implementation of <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/persistency/cassandra/meta/types/dynamic/PropertyValueSerializer.htm/">PropertyValueSerializer</a>.
+This interface is defined by these 2 methods:</p>
+
+<pre><code class="language-java">ByteBuffer toByteBuffer(Object value);
 Object fromByteBuffer(ByteBuffer byteBuffer);
 </code></pre>
-        <p>Properties will only be serialized by the custom serializer if their type does not match a primitive type in Cassandra.</p>
-        <h1 id="known-limitations">Known Limitations</h1>
-        <p>The CassandraArchiveHandler has the following known limitations:
- </p>
-        <ul>
-            <li> The archiver must not write two different entries with the same ID. This would corrupt the entry in Cassandra. </li>
-            <li> Only Space Documents are supported. You can still write POJOs to the space, but the <code>@EventTemplate</code> used for taking objects from the space must be a SpaceDocument.
- </li>
-            <li> The archiver is thread safe.
- </li>
-            <li> The archiver is idempotent as long as there are no two threads that are writing two different objects with the same space ID.
-</li>
-            <li>  Both fixed and dynamic space properties are serialized with the same <code>propertyValueSerializer</code>.</li>
-        </ul>
-    </body>
+
+<p>Properties will only be serialized by the custom serializer if their type does not match a primitive type in Cassandra.</p>
+
+<h1 id="known-limitations">Known Limitations</h1>
+
+<p>The CassandraArchiveHandler has the following known limitations:
+ *  The archiver must not write two different entries with the same ID. This would corrupt the entry in Cassandra.
+ *  Only Space Documents are supported. You can still write POJOs to the space, but the @EventTemplate used for taking objects from the space must be a SpaceDocument.
+ *  The archiver is thread safe
+ *  The archiver is idempotent as long as there are no two threads that are writing two different objects with the same space id.
+ *  Both fixed and dynamic space properties are serialized with the same propertyValueSerializer.</p>
+
+</body>
 </html>

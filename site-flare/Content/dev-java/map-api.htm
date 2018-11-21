@@ -5,7 +5,7 @@
 <h1>Map API</h1>
   
 
-<p>XAP allows applications to interact with the space and cache data using the Map API (JCache) or a <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/Hashtable.htm">HashTable API</a>. Accessing the space via the Map API can be done using the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.htm">GigaMap</a> interfaces. It includes enhanced options such as declarative transactions support, coherent runtime exception hierarchy, timeout operations , TTL, locking and versioning.</p>
+<p>XAP allows applications to interact with the space and cache data using the Map API (JCache) or a <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/Hashtable.htm/">HashTable API</a>. Accessing the space via the Map API can be done using the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.htm/">GigaMap</a> interfaces. It includes enhanced options such as declarative transactions support, coherent runtime exception hierarchy, timeout operations , TTL, locking and versioning.</p>
 
 <p><span class="tc-bold">Dependencies</span><br/>
 In order to use this feature, include the <code>${XAP_HOME}/lib/optional/map/xap-map.jar</code> and <code>${XAP_HOME}/lib/optional/map/xap-map-spring.jar</code> files on your classpath or use maven dependencies:</p>
@@ -24,7 +24,7 @@ In order to use this feature, include the <code>${XAP_HOME}/lib/optional/map/xap
 
 <div class="tc-admon-refer">
   
-  <p>For more information on dependencies see <a href="../started/maven-artifacts.htm">Maven Artifacts</a></p>
+  <p>For more information on dependencies see <a href="../started/maven-artifacts.htm/">Maven Artifacts</a></p>
 </div>
 
 <p>There are multiple runtime configurations you may use when caching your data within the space:</p>
@@ -105,7 +105,7 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 
 <h2 id="gigamap-with-a-local-near-cache">GigaMap with a Local (Near) Cache</h2>
 
-<p>The <code>GigaMap</code> support <a href="local-cache.htm">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that will be used with the <code>get</code> operations implicitly. The local cache will be loaded on demand or when you perform a <code>put</code> operation (when the <span class="tc-bold">putFirst</span> option is activated).</p>
+<p>The <code>GigaMap</code> support <a href="./local-cache.htm/">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that will be used with the <code>get</code> operations implicitly. The local cache will be loaded on demand or when you perform a <code>put</code> operation (when the <span class="tc-bold">putFirst</span> option is activated).</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/local_cache-map.jpg" alt="local_cache-map.jpg" /></p>
 </div>
@@ -218,7 +218,7 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 
 <h1 id="gigamap-operations">GigaMap Operations</h1>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.htm">GigaMap</a> provides the exact semantic as the <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.htm">java.util.Map</a> interface: clear, containsKey, put, putAll, get and remove methods. In addition it includes the lock , putAndUnlock , and the unlock methods.</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.htm/">GigaMap</a> provides the exact semantic as the <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.htm/">java.util.Map</a> interface: clear, containsKey, put, putAll, get and remove methods. In addition it includes the lock , putAndUnlock , and the unlock methods.</p>
 
 <pre><code class="language-java">IMap map = // get IMap either by injection or code creation
 GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
@@ -239,11 +239,11 @@ gigaMap.put(key , value , 5000);
 
 <h1 id="declarative-transactions">Declarative Transactions</h1>
 
-<p>There is no need to provide a Jini transaction object for the different map operations. <code>GigaMap</code> with the different OpenSpaces <a href="transaction-overview.htm">transaction managers</a> and Spring allow simple declarative definition of transactions. This means that if there is an ongoing transaction running, most operations performed using the <code>GigaMap</code> interface join it, using Spring's rich transaction support.</p>
+<p>There is no need to provide a Jini transaction object for the different map operations. <code>GigaMap</code> with the different OpenSpaces <a href="./transaction-overview.htm/">transaction managers</a> and Spring allow simple declarative definition of transactions. This means that if there is an ongoing transaction running, most operations performed using the <code>GigaMap</code> interface join it, using Spring's rich transaction support.</p>
 
 <div class="tc-admon-refer">
   
-  <p>It is highly recommended to read the <a href="http://static.springframework.org/spring/docs/2.0.x/reference/transaction.htm">transaction management chapter</a> in the Spring reference documentation.</p>
+  <p>It is highly recommended to read the <a href="http://static.springframework.org/spring/docs/2.0.x/reference/transaction.htm/">transaction management chapter</a> in the Spring reference documentation.</p>
 </div>
 
 <h2 id="transaction-provider">Transaction Provider</h2>
@@ -348,7 +348,7 @@ System.out.println("After unLock:Is key "  + key+ " locked:" + gigaMap.isLocked(
 
 <h1 id="gigaspace-api-vs-gigamap-api">GigaSpace API vs. GigaMap API</h1>
 
-<p>Here is a simple comparison between the GigaMap API vs. the <a href="the-gigaspace-interface-overview.htm">GigaSpace API</a>:</p>
+<p>Here is a simple comparison between the GigaMap API vs. the <a href="./the-gigaspace-interface-overview.htm/">GigaSpace API</a>:</p>
 
 <table>
 <thead>
@@ -614,7 +614,7 @@ IMap clusteredMap = new MapConfigurer(space).clustered(true).createMap();
 
 <h1 id="exception-hierarchy">Exception Hierarchy</h1>
 
-<p>OpenSpaces is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.htm#dao-exceptions" target="_blank" >consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
+<p>OpenSpaces is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.htm/#dao-exceptions" target="_blank" >consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
 
 <p>OpenSpaces provides a pluggable exception translator using the following interface:</p>
 

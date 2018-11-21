@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Running a Spark Job in Kubernetes</h1>
+  
+
+<p>The InsightEdge platform provides a first-class integration between Apache Spark and the XAP core data grid capability. This allows hybrid/transactional analytics processing by co-locating Spark jobs in place with low-latency data grid applications. InsightEdge includes a full Spark distribution.</p>
+
+<p>Apache Spark 2.3.x has native Kubernetes support. Users can run Spark workloads in an existing Kubernetes 1.9+ cluster and take advantage of Apache Spark’s ability to manage distributed data processing tasks.</p>
+
+<p>The Spark submission mechanism creates a Spark driver running within a Kubernetes pod. The driver creates executors running within Kubernetes pods, connects to them, and executes application code. Using InsightEdge, application code can connect to a Data Pod and interact with the distributed data grid.</p>
+
+<p>This topic explains how to run the Apache Spark <code>SparkPi</code> example, and the InsightEdge <code>SaveRDD</code> example, which is one of the basic Scala examples provided in the InsightEdge software package. Do the following to run these examples in Kubernetes:</p>
+
+<ol>
+<li>Set the Spark configuration property for the InsightEdge Docker image.</li>
+<li>Provide a URL for submitting the Spark jobs to Kubernetes.</li>
+<li>Configure the Kubernetes service account so it can be used by the Driver Pod.</li>
+<li>Deploy a data grid with a headless service (Lookup locator).</li>
+<li>Submit the Spark jobs for the examples.</li>
+</ol>
+
+<h2 id="kubernetes-container-image">Kubernetes Container Image</h2>
+
+<p>InsightEdge provides a Docker image designed to be used in a container runtime environment, such as Kubernetes. This Docker image is used in the examples below to demonstrate how to submit the Apache Spark <code>SparkPi</code> example and the InsightEdge <code>SaveRDD</code> example.</p>
+
+<p>The following Spark configuration property <code>spark.kubernetes.container.image</code> is required when submitting Spark jobs for an InsightEdge application. Note how this configuration is applied to the examples in the Spark submit:</p>
+
+<pre><code>--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%]
+</code></pre>
+
+<h2 id="getting-the-kubernetes-master-url">Getting the Kubernetes Master URL</h2>
+
+<p>You can get the the Kubernetes master URL using kubectl. Type the following command to print out the URL that will be used in the Spark and InsightEdge examples when submitting Spark jobs to the Kubernetes scheduler.</p>
+
+<pre><code>kubectl cluster-info
+</code></pre>
+
+<p>Sample output: <code>Kubernetes master is running at https://192.168.99.100:8443</code></p>
+
+<h2 id="configuring-the-kubernetes-service-accounts">Configuring the Kubernetes Service Accounts</h2>
+
+<p>In Kubernetes clusters with RBAC enabled, users can configure Kubernetes RBAC roles and service accounts used by the various Spark jobs on Kubernetes components to access the Kubernetes API server.</p>
+
+<p>Spark on Kubernetes supports specifying a custom service account for use by the Driver Pod via the configuration property that is passed as part of the submit command. To create a custom service account, run the following kubectl command:</p>
+
+<pre><code>kubectl create serviceaccount spark
+</code></pre>
+
+<p>After the custom service account is created, you need to grant a service account role. To grant a service account a Role, a RoleBinding is needed. To create a RoleBinding or ClusterRoleBinding, use the kubectl <code>create rolebinding</code> (or <code>clusterrolebinding</code> for ClusterRoleBinding) command. For example, the following command creates an <code>edit</code> ClusterRole in the <code>default</code> namespace and grants it to the <code>spark</code> service account you created above.</p>
+
+<pre><code>kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
+</code></pre>
+
+<p>After the service account has been created and configured, you can apply it in the Spark submit:</p>
+
+<pre><code>--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark
+</code></pre>
+
+<h2 id="deploying-the-data-grid-on-kubernetes">Deploying the Data Grid on Kubernetes</h2>
+
+<p>Run the following Helm command in the command window to start a basic data grid called <code>demo</code>:</p>
+
+<pre><code>helm install insightedge --name demo
+</code></pre>
+
+<p>For the application to connect to the <code>demo</code> data grid, the name of the manager must be provided. This is required when running on a Kubernetes cluster (not a minikube).</p>
+
+<pre><code>--conf spark.insightedge.space.manager=demo
+</code></pre>
+
+<h2 id="submitting-spark-jobs-with-insightedge-submit">Submitting Spark Jobs with InsightEdge Submit</h2>
+
+<p>The <code>insightedge-submit</code> script is located in the InsightEdge home directory, in <code>insightedge/bin</code>. This script is similar to the <code>spark-submit</code> command used by Spark users to submit Spark jobs. The following examples run both a pure Spark example and an InsightEdge example by calling this script.</p>
+
+<h3 id="sparkpi-example">SparkPi Example</h3>
+
+<p>Run the following InsightEdge submit script for the SparkPi example. This example specifies a JAR file with a specific URI that uses the <code>local://</code> scheme. This URI is the location of the example JAR that is already available in the Docker image. If your application’s dependencies are all hosted in remote locations (like HDFS or HTTP servers), you can use the appropriate remote URIs, such as <code>https://path/to/examples.jar</code>.</p>
+
+<pre><code class="language-bash">./insightedge-submit \
+--master k8s://https://192.168.99.100:8443 \
+--deploy-mode cluster \
+--name spark-pi \
+--class org.apache.spark.examples.SparkPi \
+--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%] \
+local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-[%=Versions.spark-version%].jar
+
+</code></pre>
+
+<p>Refer to the Apache Spark documentation for more configurations that are specific to Spark on Kubernetes. For example, to specify the Driver Pod name, add the following configuration option to the submit command:</p>
+
+<pre><code>--conf spark.kubernetes.driver.pod.name=spark-pi-driver
+</code></pre>
+
+<h3 id="saverdd-example">SaveRDD Example</h3>
+
+<p>Run the following InsightEdge submit script for the SaveRDD example, which generates "N" products, converts them to RDD, and saves them to the data grid. This example has the following configuration:</p>
+
+<ul>
+<li>The –master has the prefix <code>k8s://&lt;Kubernetes Master URL&gt;:&lt;port&gt;</code>.</li>
+<li>The <code>spark.insightedge.space.lookup.locator</code> is set with the headless service of the Manager Pod (&lt;release name&gt;-insightedge-manager-hs).</li>
+<li>The example lookup is the default Space called <code>demo</code>.</li>
+<li>In Kubernetes clusters with RBAC enabled, the service account must be set (e.g. <code>serviceAccountName=spark</code>).</li>
+<li>The <code>spark.kubernetes.container.image</code> is set with the desired Docker image (This is usually of the form <code>gigaspaces/insightedge-enterprise:1.0.0</code>).</li>
+</ul>
+
+<pre><code class="language-bash">./insightedge-submit \
+--master k8s://https://192.168.99.100:8443 \
+--deploy-mode cluster \
+--name i9e-saveRdd \
+--class org.insightedge.examples.basic.SaveRdd \
+--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%] \
+--conf spark.insightedge.space.manager=demo \
+local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
+
+</code></pre>
+
+<p>Use the GigaSpaces CLI to query the number of objects in the <code>demo</code> data grid. The output should show <code>100,000</code> objects of type <code>org.insightedge.examples.basic.Product</code>.</p>
+
+<p>Port <code>8090</code> is exposed as the internal endpoint <code>demo-insightedge-manager-service:30890 TCP</code>, and should be specified as part of the <code>--server</code> option. Type the following CLI command:</p>
+
+<pre><code>../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats demo
+</code></pre>
+
+<h4 id="improved-configuration-options">Improved Configuration Options</h4>
+
+<div class="tc-admon-note">
+  
+  <p>These improvements are available starting from version 14.0.0 M13.</p>
+</div>
+
+<p>The following simplified configuration options can be used with the <code>insightedge-submit</code> script.</p>
+
+<h5 id="space-name">Space Name</h5>
+
+<p>The insightedge-submit script now accepts any Space name when running an InsightEdge example in Kubernetes.</p>
+
+<p>To provide a Space name for the script, add the configuration property: <code>--conf spark.insightedge.space.name=&lt;space name&gt;</code>.</p>
+
+<p>For example, the Helm commands below will install the following stateful sets: <code>testmanager-insightedge-manager</code>, <code>testmanager-insightedge-zeppelin</code>, <code>testspace-demo-*\[i\]*</code></p>
+
+<p>The InsightEdge submit command will submit the SaveRDD example with the <code>testspace</code> and <code>testmanager</code> configuration parameters.</p>
+
+<pre><code class="language-bash">$ helm install insightedge-manager --name testmanager
+
+$ helm install insightedge-zeppelin --name testzeppelin
+
+$ helm install insightedge-pu --name testspace --set manager.name=testmanager 
+
+$ ./insightedge-submit \
+--master k8s://https://192.168.99.100:8443 \
+--deploy-mode cluster \
+--name i9e-saveRdd \
+--class org.insightedge.examples.basic.SaveRdd \
+--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%] \
+--conf spark.insightedge.space.name=testspace \
+--conf spark.insightedge.space.manager=testmanager \
+local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
+</code></pre>
+
+</body>
+</html>

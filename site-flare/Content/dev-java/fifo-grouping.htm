@@ -30,7 +30,7 @@
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Exclusivity</p>
-  <p>The selected group is locked until the operation is terminated- the operation transaction is committed/ aborted.  See the <a href="fifo-grouping.htm#Exclusivity">Exclusivity</a> section for more elaborations.</p>
+  <p>The selected group is locked until the operation is terminated- the operation transaction is committed/ aborted.  See the <a href="./fifo-grouping.htm/#Exclusivity">Exclusivity</a> section for more elaborations.</p>
 </div>
 
 <h1 id="method-of-operation">Method Of Operation</h1>
@@ -39,7 +39,7 @@
 <li>FG operations must be performed within transactions.</li>
 <li>Any class that supports FG is logically divided to groups according to the FG designated property. This property must be indexed and will be automatically indexed by the system if an index definition does not exist for it.  An additional data structure is kept for this property in order to assist in traversing the different groups.</li>
 
-<li><p>In the selecting template a null value will generally be rendered for this property which stands for bring any available group. An available group is any FG that matches the selection template and is not currently locked by another FG thread (see <a href="fifo-grouping.htm#Exclusivity">Exclusivity</a> section).</p></li>
+<li><p>In the selecting template a null value will generally be rendered for this property which stands for bring any available group. An available group is any FG that matches the selection template and is not currently locked by another FG thread (see <a href="./fifo-grouping.htm/#Exclusivity">Exclusivity</a> section).</p></li>
 
 <li><p>If the selecting template (Pojo) has a value for a property other than the FG designated property - this property can be indexed (like for any regular read/take operation) and in addition a <code>@SpaceFifoGroupingIndex</code> annotation can be added  to it  in order to assist in efficient traversal. In this case the system will create a compound index that contains this property and the FG designated property. For example, if a polling container is responsible for all the new reservations (reservations with processingState = NEW), then it is recommended to declare a SpaceFifoGroupingIndex on the processingState property. This would help to achieve better performance when searching for reservations of certain flight that have processingState = NEW.</p></li>
 </ul>
@@ -235,7 +235,7 @@ For example, declaring <code>SpaceFifoGroupingIndex(path="a")</code>, overriding
 <h1 id="considerations">Considerations</h1>
 
 <ul>
-<li>FG is not supported with a Space using <a href="lru-cache-policy.htm">LRU Cache policy</a> and <a href="space-persistency-overview.htm">Space Persistency</a> enabled.</li>
+<li>FG is not supported with a Space using <a href="./lru-cache-policy.htm/">LRU Cache policy</a> and <a href="./space-persistency-overview.htm/">Space Persistency</a> enabled.</li>
 <li>Cross partitioning of groups is not supported (same limitation as in regular FIFO operations).</li>
 <li><code>@SpaceFifoGroupingProperty</code> and <code>@SpaceFifoGroupingIndex</code> cannot be used as dynamic indexes.</li>
 

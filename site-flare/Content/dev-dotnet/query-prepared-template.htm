@@ -5,7 +5,7 @@
 <h1>Prepared Template</h1>
   
 
-<p>When executing a query operation on the space, there's an overhead incurred by translating the query to an internal representation (in object templates the properties values are extracted using reflection, in <a href="query-sql.htm">SQLQuery</a> the expression string is parsed to an expression tree). If the same query is executed over and over again without modification, that overhead can be removed by using <span class="tc-bold">prepared templates</span>.</p>
+<p>When executing a query operation on the space, there's an overhead incurred by translating the query to an internal representation (in object templates the properties values are extracted using reflection, in <a href="./query-sql.htm/">SQLQuery</a> the expression string is parsed to an expression tree). If the same query is executed over and over again without modification, that overhead can be removed by using <span class="tc-bold">prepared templates</span>.</p>
 
 <p>The <code>ISpaceProxy</code> interface provides a method called <code>Snapshot</code> which receives a template or query , translates it to an internal XAP query structure and returns a reference to that structure as <code>IPreparedTemplate&lt;T&gt;</code>. That reference can then be used with any of the proxy's query operations to execute queries on the space in a more efficient manner, since there's no need to translate or parse the query.</p>
 
@@ -16,7 +16,7 @@
 
 <h1 id="example">Example</h1>
 
-<p>Use <code>ISpaceProxy.Snapshot</code> to create a prepared template from an object template or a <a href="query-sql.htm">SqlQuery</a>.</p>
+<p>Use <code>ISpaceProxy.Snapshot</code> to create a prepared template from an object template or a <a href="./query-sql.htm/">SqlQuery</a>.</p>
 
 <h4 id="creating-a-prepared-template-from-an-object">Creating a prepared template from an object</h4>
 
@@ -34,7 +34,7 @@
 
 <div class="tc-admon-important">
   
-  <p>Using the <code>ISpaceProxy.Snapshot</code> method with complex SQL queries is not supported. For more information see <a href="query-sql.htm#Simple SqlQuery">simple SQL queries</a>.</p>
+  <p>Using the <code>ISpaceProxy.Snapshot</code> method with complex SQL queries is not supported. For more information see <a href="./query-sql.htm/#Simple SqlQuery">simple SQL queries</a>.</p>
 </div>
 
 <p>After creating the prepared template, it can be passed as a template to the Read, Take, ReadMultiple, TakeMultiple, Count and Clear operations, as well as a template when registering for notification.</p>

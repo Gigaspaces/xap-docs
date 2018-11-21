@@ -1,40 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-    <head>
-    </head>
-    <body>
-        <h1>Explain Plan</h1>
-        <p><span class="tc-bold">Explain Plan</span> can be used to obtain a description of the strategy or plan that XAP uses to implement a specific <code>SQLQuery</code>.
+<head></head>
+<body>
+<h1>Explain Plan</h1>
+  
+
+<p><span class="tc-bold">Explain Plan</span> can be used to obtain a description of the strategy or plan that XAP uses to implement a specific <code>SQLQuery</code>.
 Explain Plan reports on the way in which the query uses indices and how many entries were scanned.</p>
-        <div class="tc-admon-note">
-            <p>For detailed information about how to assign indexing, see the <a href="indexing.htm#index-types">Indexing</a> topic.</p>
-        </div>
-        <h2 id="index-information">Index Information</h2>
-        <ul>
-            <li>Indexes that the space considered using and the selected index at each stage of the query.</li>
-            <li>Each cluster node may produce a different result.</li>
-            <li>Information breakdown by Pojo type.</li>
-        </ul>
-        <h2 id="scanning-information">Scanning Information</h2>
-        <ul>
-            <li>Number of entries the space scanned in order to find the matching entries and how many entries were matched.</li>
-            <li>Each cluster node may produce a different result.</li>
-            <li>Information breakdown by Pojo type.</li>
-        </ul>
-        <h1 id="index-types">Index Types</h1>
-        <p>The index type is determined by the SpaceIndexType enumeration. The index types are:</p>
-        <p><span class="tc-bold">NONE</span> - No indexing is used.</p>
-        <p><span class="tc-bold">EQUAL</span> - performs equality matching (equal to/not equal to).</p>
-        <p><span class="tc-bold">ORDERED</span> - performs ordered matching (bigger than/less than).</p>
-        <p><span class="tc-bold">EQUAL_AND_ORDERED</span> - performs both equality and ordered matching, and uses a larger memory footprint than the other indexing types.</p>
-        <h1 id="usage">Usage</h1>
-        <p>The execution plan is initiated by calling the <code>withExplainPlan()</code> method on the <code>SQLQuery</code>. After the query is executed the information is obtained with the <code>query.getExplainPlan()</code> method.</p><pre><code class="language-java">SQLQuery&lt;Person&gt; query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; 20")
+
+<div class="tc-admon-refer">
+  
+  <p>For detailed information how to assign index consult <a href="./indexing.htm/#index-types">indexing</a></p>
+</div>
+
+<h2 id="index-information">Index Information</h2>
+
+<ul>
+<li>Indexes that the space considered using and the selected index at each stage of the query.</li>
+<li>Each cluster node may produce a different result.</li>
+<li>Information breakdown by Pojo type.</li>
+</ul>
+
+<h2 id="scanning-information">Scanning Information</h2>
+
+<ul>
+<li>Number of entries the space scanned in order to find the matching entries and how many entries were matched.</li>
+<li>Each cluster node may produce a different result.</li>
+<li>Information breakdown by Pojo type.</li>
+</ul>
+
+<h1 id="index-types">Index Types</h1>
+
+<p>The index type is determined by the SpaceIndexType enumeration. The index types are:</p>
+
+<p><span class="tc-bold">NONE</span> - No indexing is used.</p>
+
+<p><span class="tc-bold">EQUAL</span> - performs equality matching (equal to/not equal to).</p>
+
+<p><span class="tc-bold">ORDERED</span> - performs ordered matching (bigger than/less than).</p>
+
+<p><span class="tc-bold">EQUAL_AND_ORDERED</span> - performs both equality and ordered matching, and uses a larger memory footprint than the other indexing types.</p>
+
+<h1 id="usage">Usage</h1>
+
+<p>The execution plan is initiated by calling the <code>withExplainPlan()</code> method on the <code>SQLQuery</code>. After the query is executed the information is obtained with the <code>query.getExplainPlan()</code> method.</p>
+
+<pre><code class="language-java">SQLQuery&lt;Person&gt; query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; 20")
         .withExplainPlan();
 gigaSpace.readMultiple(query);
 ExplainPlan explainPlan = query.getExplainPlan();
 </code></pre>
-        <h1 id="example">Example</h1>
-        <p>We use a <code>Person</code> class with several properties annotated with <code>@SpaceIndex</code> indicating that we want to use indexes when queries are performed.</p><pre><code class="language-java">import java.util.UUID;
+
+<h1 id="example">Example</h1>
+
+<p>We use a <code>Person</code> class with several properties annotated with <code>@SpaceIndex</code> indicating that we want to use indexes when queries are performed.</p>
+
+<pre><code class="language-java">import java.util.UUID;
 
 import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;
@@ -69,18 +90,21 @@ public class Person {
 }
 
 </code></pre>
-        <p>When different <code>SQLQuery</code> are executed against the space, we can display for each of them the plan that XAP chooses to execute the query.</p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Simple" style="padding:10px">
-                <p><span class="tc-bold">Query</span>
-                </p><pre><code class="language-java">SQLQuery&lt;Person&gt; query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; ? ")
+
+<p>When different <code>SQLQuery</code> are executed against the space, we can display for each of them the plan that XAP chooses to execute the query.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Simple" style="padding:10px"><p><span class="tc-bold">Query</span></p>
+
+<pre><code class="language-java">SQLQuery&lt;Person&gt; query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; ? ")
     .setParameter(1, 30L)
     .withExplainPlan();
 gigaSpace.readMultiple(query);
 System.out.println(query.getExplainPlan());
 </code></pre>
-                <p><span class="tc-bold">Output</span>
-                </p><pre><code class="language-bash">******************** Explain plan report ********************
+
+<p><span class="tc-bold">Output</span></p>
+
+<pre><code class="language-bash">******************** Explain plan report ********************
 Query: SELECT * FROM sandbox.explainplan.Person WHERE age &gt; ? 
 Execution Information Summary:
     Total scanned partitions: 1
@@ -97,10 +121,11 @@ Detailed Execution Information:
         Matched entries: 1000
 *************************************************************
 </code></pre>
-            </div>
-            <div title="AND" style="padding:10px">
-                <p><span class="tc-bold">Query</span>
-                </p><pre><code class="language-java">query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; ? and gender = ? and country = ?")
+</div>
+
+<div title="AND" style="padding:10px"><p><span class="tc-bold">Query</span></p>
+
+<pre><code class="language-java">query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; ? and gender = ? and country = ?")
     .setParameter(1, 30L)
     .setParameter(2, "M")
     .setParameter(3, "USA")
@@ -109,8 +134,10 @@ Detailed Execution Information:
 gigaSpace.readMultiple(query);
 System.out.println(query.getExplainPlan());
 </code></pre>
-                <p><span class="tc-bold">Output</span>
-                </p><pre><code class="language-bash">******************** Explain plan report ********************
+
+<p><span class="tc-bold">Output</span></p>
+
+<pre><code class="language-bash">******************** Explain plan report ********************
 Query: SELECT * FROM sandbox.explainplan.Person WHERE age &gt; ? and gender = ? and country = ?
 Execution Information Summary:
     Total scanned partitions: 1
@@ -133,10 +160,11 @@ Detailed Execution Information:
                 Selected: [@1] EQ(country, USA), size=1000, type=EQUAL
 *************************************************************
 </code></pre>
-            </div>
-            <div title="AND with OR" style="padding:10px">
-                <p><span class="tc-bold">Query</span>
-                </p><pre><code class="language-java">    
+</div>
+
+<div title="AND with OR" style="padding:10px"><p><span class="tc-bold">Query</span></p>
+
+<pre><code class="language-java">    
 query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; ? and gender = ? or country = ? ")
     .setParameter(1, 30L)
     .setParameter(2, "M")
@@ -146,8 +174,10 @@ query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; ? and gender = ? or c
 gigaSpace.readMultiple(query);
 System.out.println(query.getExplainPlan());
 </code></pre>
-                <p><span class="tc-bold">Output</span>
-                </p><pre><code class="language-bash">******************** Explain plan report ********************
+
+<p><span class="tc-bold">Output</span></p>
+
+<pre><code class="language-bash">******************** Explain plan report ********************
 Query: SELECT * FROM sandbox.explainplan.Person WHERE age &gt; ? and gender = ? or country = ? 
 Execution Information Summary:
     Total scanned partitions: 1
@@ -180,18 +210,27 @@ Detailed Execution Information:
                 Selected: [@4] Union [@3, @1]
 ************************************************************* 
 </code></pre>
-            </div>
-        </div>
-        <h1 id="limitations">Limitations</h1>
-        <ul>
-            <li>Supported via the Java API. Not supported via the .NET API.</li>
-            <li>Supported operations: Read, ReadMultiple, TakeMultiple , count</li>
-            <li>Supported index types: Equal, Ordered, and Equal-and-Ordered. <span class="tc-bold">Unsupported index types: Compound, Unique, Collection, and Geospatial.</span></li>
-            <li>Supported query type : Basic.</li>
-            <li>Not Supported:
+</div>
+</div>
 
-<ul><li>Off-Heap</li><li>FIFO grouping</li><li>Operations: Take/Clear and variations, blocking operations, space iterator, aggregate , change, notifications</li><li>JDBC API (hence also Web-UI/GS-UI)</li><li>Regex, Is null, Sql function</li></ul></li>
-            <li>Not thread Safe</li>
-        </ul>
-    </body>
+<h1 id="limitations">Limitations</h1>
+
+<ul>
+<li>Supported via the Java API. Not supported via the .NET API.</li>
+<li>Supported operations: Read, ReadMultiple, TakeMultiple , count</li>
+<li>Supported index types: Equal, Ordered, and Equal-and-Ordered. <span class="tc-bold">Unsupported index types: Compound, Unique, Collection, and Geospatial.</span></li>
+<li>Supported query type : Basic.</li>
+<li>Not Supported:
+
+<ul>
+<li>Off-Heap</li>
+<li>FIFO grouping</li>
+<li>Operations: Take/Clear and variations, blocking operations, space iterator, aggregate , change, notifications</li>
+<li>JDBC API (hence also Web-UI/GS-UI)</li>
+<li>Regex, Is null, Sql function</li>
+</ul></li>
+<li>Not thread Safe</li>
+</ul>
+
+</body>
 </html>
