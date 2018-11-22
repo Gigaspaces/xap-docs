@@ -18,7 +18,7 @@ KubeGrid runs Apache Zeppelin in a dedicated Pod. The Apache Zeppelin web notebo
 # Querying the Data Grid with the InsightEdge JDBC Interpreter
 
 Zeppelin uses interpreters to compile and run paragraphs. InsightEdge Zeppelin comes with a custom JDBC interpreter, that enables running SQL queries on the data grid in notebooks. 
-The queries are executed by [InsightEdge SQL Driver](sql-query-intro.html)      
+The queries are executed by the [InsightEdge SQL Driver](../dev-java/sql-query-intro.html).    
 
 ## Configuring the JDBC Interpreter
 
