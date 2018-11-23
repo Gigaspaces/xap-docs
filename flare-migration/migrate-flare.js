@@ -74,8 +74,12 @@ var terms = [{
     "replace": ''
   },
   {
+    "find": /"\.\//g,
+    "replace": '"'
+  },
+  {
     "find": /\.html/g,
-    "replace": '.htm/'
+    "replace": '.htm'
   },
   {
     "find": /<\/(table|thead|tbody|tr|th|td|div|ul)>[\s\s]*?<\/p>/g,
