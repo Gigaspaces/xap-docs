@@ -20,7 +20,7 @@
 
 <p>Since a <code>SpaceDocument</code> is completely dynamic by nature, it is very easy to change or evolve your data model without ever taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist since the space does not enforce any restriction with regards to the property set of documents that belong to a certain type. This is a much more lightweight model in comparison to the classic POJO model, where a recompilation and in many cases a full space restart is required to change the data schema.</p>
 
-<p>If POJO model cannot be replaced with Document model, yet some level of schema evolution is desired within the POJO model, <a href="./dynamic-properties.htm/">Dynamic Properties</a> can be used.</p>
+<p>If POJO model cannot be replaced with Document model, yet some level of schema evolution is desired within the POJO model, <a href="dynamic-properties.htm">Dynamic Properties</a> can be used.</p>
 
 <h1 id="type-definition">Type Definition</h1>
 
@@ -284,7 +284,7 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
 
 <h2 id="sql-query">SQL Query</h2>
 
-<p>You can use the <a href="./query-sql.htm/">SQLQuery</a> to search for matching <code>SpaceDocument</code> entries.
+<p>You can use the <a href="query-sql.htm">SQLQuery</a> to search for matching <code>SpaceDocument</code> entries.
 For example: Read a document of type <span class="tc-bold">Product</span> whose <span class="tc-bold">Price</span> is greater than 15:</p>
 
 <pre><code class="language-java">public SpaceDocument readProductBySQL(GigaSpace gigaSpace) {
@@ -440,18 +440,18 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
 
 <h1 id="indexing">Indexing</h1>
 
-<p>Properties and nested paths can be <a href="./indexing.htm/">indexed</a> to boost queries performance. In the type registration sample above the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties are indexed.</p>
+<p>Properties and nested paths can be <a href="indexing.htm">indexed</a> to boost queries performance. In the type registration sample above the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties are indexed.</p>
 
 <p>The schema is flexible and new properties may be added after the type has been registered, therefore it is possible to add indexes dynamically as well.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more information about indexing, see the <a href="./indexing.htm/">Indexing</a> page.</p>
+  <p>For more information about indexing, see the <a href="indexing.htm">Indexing</a> page.</p>
 </div>
 
 <h1 id="events">Events</h1>
 
-<p>Event containers (both <a href="./polling-container-overview.htm/">polling container</a> and <a href="./notify-container-overview.htm/">notify container</a>) support Space <code>Document</code> entries.</p>
+<p>Event containers (both <a href="polling-container-overview.htm">polling container</a> and <a href="notify-container-overview.htm">notify container</a>) support Space <code>Document</code> entries.</p>
 
 <p>Here is a simple example of a polling event container configuration using a <code>Document</code>:</p>
 
@@ -581,7 +581,7 @@ pollingEventListenerContainer.destroy();
 
 <h1 id="fifo">FIFO</h1>
 
-<p><a href="./fifo-support.htm/">FIFO support</a> is off by default with <code>Document</code> entries (same as with POJO). To enable FIFO support, modify the type introduction code and set the desired FIFO support mode. For example:</p>
+<p><a href="fifo-support.htm">FIFO support</a> is off by default with <code>Document</code> entries (same as with POJO). To enable FIFO support, modify the type introduction code and set the desired FIFO support mode. For example:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Spring Namespace Configuration " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
     &lt;os-core:space-type type-name="Product" fifo-support="OPERATION" &gt;
@@ -630,12 +630,12 @@ gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);
 
 <div class="tc-admon-refer">
   
-  <p>For more information about FIFO, see the <a href="./fifo-support.htm/">FIFO Support</a> page.</p>
+  <p>For more information about FIFO, see the <a href="fifo-support.htm">FIFO Support</a> page.</p>
 </div>
 
 <h1 id="transactions-and-optimistic-locking">Transactions and Optimistic Locking</h1>
 
-<p>Transactions and isolation modifiers semantics is identical to the POJO semantics. For more information about transactions, see the <a href="./transaction-overview.htm/">Transaction Management</a> page.</p>
+<p>Transactions and isolation modifiers semantics is identical to the POJO semantics. For more information about transactions, see the <a href="transaction-overview.htm">Transaction Management</a> page.</p>
 
 <p>Optimistic locking is disabled by default with <code>Document</code> entries (same as with POJO). To enable it, modify the type introduction code and set the optimistic locking support. For example:</p>
 
@@ -686,14 +686,14 @@ gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);
 
 <div class="tc-admon-refer">
   
-  <p>For more information about optimistic locking, see the <a href="./transaction-optimistic-locking.htm/">Optimistic Locking</a> page.</p>
+  <p>For more information about optimistic locking, see the <a href="transaction-optimistic-locking.htm">Optimistic Locking</a> page.</p>
 </div>
 
 <h1 id="local-cache-local-view">Local Cache / Local View</h1>
 
-<p><a href="./local-view.htm/">Local View</a> and <a href="./local-cache.htm/">Local Cache</a> are supported for Documents. By default, the <code>SpaceDocument</code> instance is stored in the cache which speeds up query performance since the data does not need to be transformed from internal structure to <code>SpaceDocument</code>.</p>
+<p><a href="local-view.htm">Local View</a> and <a href="local-cache.htm">Local Cache</a> are supported for Documents. By default, the <code>SpaceDocument</code> instance is stored in the cache which speeds up query performance since the data does not need to be transformed from internal structure to <code>SpaceDocument</code>.</p>
 
-<p>If you intend to use local cache or local view in a mixed POJO-Document environment, please refer to <a href="./document-pojo-interoperability.htm/">Document-POJO Interoperability</a>.</p>
+<p>If you intend to use local cache or local view in a mixed POJO-Document environment, please refer to <a href="document-pojo-interoperability.htm">Document-POJO Interoperability</a>.</p>
 
 <h1 id="persistency">Persistency</h1>
 
@@ -796,7 +796,7 @@ Pojos can be persisted via document EDS as well, in the same way.</p>
 
 <div class="tc-admon-refer">
   
-  <p>If you intend to use Space filters in a mixed POJO-Document environment, refer to <a href="./document-pojo-interoperability.htm/">Document-POJO Interoperability</a>.</p>
+  <p>If you intend to use Space filters in a mixed POJO-Document environment, refer to <a href="document-pojo-interoperability.htm">Document-POJO Interoperability</a>.</p>
 </div>
 
 <h1 id="replication-filters">Replication Filters</h1>
@@ -805,7 +805,7 @@ Pojos can be persisted via document EDS as well, in the same way.</p>
 
 <div class="tc-admon-refer">
   
-  <p>If you intend to use Space replication filters in a mixed POJO-Document environment, refer to <a href="./document-pojo-interoperability.htm/">Document-POJO Interoperability</a>.</p>
+  <p>If you intend to use Space replication filters in a mixed POJO-Document environment, refer to <a href="document-pojo-interoperability.htm">Document-POJO Interoperability</a>.</p>
 </div>
 
 </body>

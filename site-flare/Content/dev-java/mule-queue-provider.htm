@@ -13,7 +13,7 @@
 
 <div class="tc-admon-note">
   
-  <p>In such a scenario, the backup services probably shouldn't run at all and should start processing only in case of failover. In order to configure the SEDA services to be aware of the current space state of the cluster member they are working against, see the <a href="./mule-seda-model.htm/">Mule SEDA Model</a> section.</p>
+  <p>In such a scenario, the backup services probably shouldn't run at all and should start processing only in case of failover. In order to configure the SEDA services to be aware of the current space state of the cluster member they are working against, see the <a href="mule-seda-model.htm">Mule SEDA Model</a> section.</p>
 </div>
 
 <p>In order to use the OpenSpaces queue provider, the following namespaces should be defined:</p>
@@ -103,7 +103,7 @@ The messaging style can be configured on the endpoints in the following way:</p>
 
 <h1 id="transaction-support">Transaction Support</h1>
 
-<p>Operations performed on the Space when working with a virtualized queue are all performed using the <code>GigaSpace</code> bean. The <code>GigaSpace</code> bean supports <a href="./the-gigaspace-interface-overview.htm/#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions">declarative transactions</a> when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as due to its built-in transaction management strategy, which allows you to use OpenSpaces with <a href="./transaction-overview.htm/">different transaction managers</a>, including XA.</p>
+<p>Operations performed on the Space when working with a virtualized queue are all performed using the <code>GigaSpace</code> bean. The <code>GigaSpace</code> bean supports <a href="the-gigaspace-interface-overview.htm#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions">declarative transactions</a> when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as due to its built-in transaction management strategy, which allows you to use OpenSpaces with <a href="transaction-overview.htm">different transaction managers</a>, including XA.</p>
 
 <p>Here is an example of how to configure working with queues using the Distributed Transaction Manager:</p>
 

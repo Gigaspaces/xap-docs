@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+<head><title></title></head>
 <body>
 <h1>Using an Apache Zeppelin Notebook in Kubernetes</h1>
   
@@ -20,7 +20,7 @@
 <h1 id="querying-the-data-grid-with-the-insightedge-jdbc-interpreter">Querying the Data Grid with the InsightEdge JDBC Interpreter</h1>
 
 <p>Zeppelin uses interpreters to compile and run paragraphs. InsightEdge Zeppelin comes with a custom JDBC interpreter, that enables running SQL queries on the data grid in notebooks.
-The queries are executed by <a href="sql-query-intro.htm/">InsightEdge SQL Driver</a></p>
+The queries are executed by the <a href="../dev-java/sql-query-intro.htm">InsightEdge SQL Driver</a>.</p>
 
 <h2 id="configuring-the-jdbc-interpreter">Configuring the JDBC Interpreter</h2>
 
@@ -29,7 +29,7 @@ The queries are executed by <a href="sql-query-intro.htm/">InsightEdge SQL Drive
 <ol>
 <li>In the Apache Zeppelin web interface, navigate to the Interpreters section.</li>
 <li>Select the insightedge_jdbc interpreter, and click Edit.</li>
-<li>Edit the <code>default.url</code> parameter as follows: `jdbc:insightedge:spaceName=<space-name></li>
+<li>Edit the <code>default.url</code> parameter as follows: `jdbc:insightedge:spaceName=<space-name /></li>
 <li>Save the changes you made to the interpreter.</li>
 </ol>
 

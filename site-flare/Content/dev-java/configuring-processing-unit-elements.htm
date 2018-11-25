@@ -11,11 +11,11 @@
 
 <h1 id="the-pu-xml-file">The pu.xml file</h1>
 
-<p>This file is a <a href="http://www.springframework.org" target="_blank" >Spring framework</a> XML configuration file. It leverages the Spring framework <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm/" target="_blank" >IoC container</a> and extends it by using the Spring <a href="http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.htm/" target="_blank" >custom namespace mechanism</a>.</p>
+<p>This file is a <a href="http://www.springframework.org" target="_blank" >Spring framework</a> XML configuration file. It leverages the Spring framework <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm" target="_blank" >IoC container</a> and extends it by using the Spring <a href="http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.htm" target="_blank" >custom namespace mechanism</a>.</p>
 
 <div class="tc-admon-refer">
   
-  <p>It is recommended (although not mandatory) that you familiarize yourself with the Spring XML configuration basics. A good place to start is <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm/" target="_blank" >here</a></p>
+  <p>It is recommended (although not mandatory) that you familiarize yourself with the Spring XML configuration basics. A good place to start is <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm" target="_blank" >here</a></p>
 </div>
 
 <h1 id="pu-xml-contents">pu.xml Contents</h1>
@@ -23,26 +23,26 @@
 <p>The definitions in the <code>pu.xml</code> file are divided into 2 major categories:</p>
 
 <ul>
-<li><p>GigaSpaces specific components, such as <a href="./the-space-configuration.htm/#proxy">space</a>, <a href="./the-gigaspace-interface-overview.htm/">GigaSpace</a>, <a href="./messaging-support.htm/">event containers</a> or <a href="./space-based-remoting-overview.htm/">remote service exporters</a>.</p></li>
+<li><p>GigaSpaces specific components, such as <a href="the-space-configuration.htm#proxy">space</a>, <a href="the-gigaspace-interface-overview.htm">GigaSpace</a>, <a href="messaging-support.htm">event containers</a> or <a href="space-based-remoting-overview.htm">remote service exporters</a>.</p></li>
 
 <li><p>User defined beans, which define instances of user classes to be used by the processing unit. For example, user defined event handlers to which the event containers delegate events as those are received.</p></li>
 </ul>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">SLA (Service Level Agreement) definitions </p>
-  <p>the <code>pu.xml</code> may also contain <a href="../admin/the-sla-overview.htm/">SLA definitions</a>. In previous releases, this was the recommended way to define your processing unit's SLA. As of version 7.0, the recommended way to do it is to use a separate sla.xml file, which separates this deployment and runtime aspect from the the processing unit's components. This enables better modularization and reuse of the processing unit.</p>
+  <p>the <code>pu.xml</code> may also contain <a href="../admin/the-sla-overview.htm">SLA definitions</a>. In previous releases, this was the recommended way to define your processing unit's SLA. As of version 7.0, the recommended way to do it is to use a separate sla.xml file, which separates this deployment and runtime aspect from the the processing unit's components. This enables better modularization and reuse of the processing unit.</p>
 </div>
 
-<p>This section focuses on the overall structure of the <code>pu.xml</code> file. The various GigaSpaces components that can be included in the <code>pu.xml</code> (such as <a href="./messaging-support.htm/">event containers</a>, <a href="./space-based-remoting-overview.htm/">remote services</a> and others) are covered in detail in their respective sections in the programmer's guide.</p>
+<p>This section focuses on the overall structure of the <code>pu.xml</code> file. The various GigaSpaces components that can be included in the <code>pu.xml</code> (such as <a href="messaging-support.htm">event containers</a>, <a href="space-based-remoting-overview.htm">remote services</a> and others) are covered in detail in their respective sections in the programmer's guide.</p>
 
 <h1 id="multiple-configuration-options">Multiple Configuration Options</h1>
 
 <p>In recent versions (2.0 and 2.5), the Spring framework has introduced two additional ways to configure your Spring application.</p>
 
 <ul>
-<li><p>Extensive support for <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm/#beans-annotation-config" target="_blank" >configuration through Java 5 annotations</a> to simplify many of the configuration tasks a bring the configuration closer to the code</p></li>
+<li><p>Extensive support for <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm#beans-annotation-config" target="_blank" >configuration through Java 5 annotations</a> to simplify many of the configuration tasks a bring the configuration closer to the code</p></li>
 
-<li><p><a href="http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.htm/" target="_blank" >Extensible XML schema</a> through the use of custom namespaces and namespace handlers. This allows for products like GigaSpaces (or even Spring itself) to create their own XML elements for simplifying the configuration of their specific components instead of using the plain Spring XML syntax
+<li><p><a href="http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.htm" target="_blank" >Extensible XML schema</a> through the use of custom namespaces and namespace handlers. This allows for products like GigaSpaces (or even Spring itself) to create their own XML elements for simplifying the configuration of their specific components instead of using the plain Spring XML syntax
 Naturally, GigaSpaces XAP also leverages the extensibility of the above two mechanisms and enables users to configure the processing unit through GigaSpaces-specific XML elements and Java 5 annotations.</p></li>
 </ul>
 

@@ -100,7 +100,7 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 }
 </code></pre>
 
-<p>All of the processing unit <a href="./deploying-and-running-overview.htm/">runtime modes</a> provide support for the <code>ClusterInfo</code> and <code>ClusterInfoAware</code> interfaces by default. Built-in GigaSpaces components make use of this feature. User-defined beans can make use of this information as well (for example, to connect to a specific database based on the ID of the processing unit instance).</p>
+<p>All of the processing unit <a href="deploying-and-running-overview.htm">runtime modes</a> provide support for the <code>ClusterInfo</code> and <code>ClusterInfoAware</code> interfaces by default. Built-in GigaSpaces components make use of this feature. User-defined beans can make use of this information as well (for example, to connect to a specific database based on the ID of the processing unit instance).</p>
 
  <a id="ClusterInfoContext">&#160;</a>
 
@@ -119,7 +119,7 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 
 <h1 id="space-construction-and-clusterinfo">Space Construction and ClusterInfo</h1>
 
-<p>The <a href="./the-space-configuration.htm/">Space component</a> implements the <code>ClusterInfoAware</code>, and uses it in order to construct an embedded space by mapping <code>ClusterInfo</code> properties to Space URL properties (if provided). Here is a mapping from <code>ClusterInfo</code> to Space URL properties:</p>
+<p>The <a href="the-space-configuration.htm">Space component</a> implements the <code>ClusterInfoAware</code>, and uses it in order to construct an embedded space by mapping <code>ClusterInfo</code> properties to Space URL properties (if provided). Here is a mapping from <code>ClusterInfo</code> to Space URL properties:</p>
 
 <table>
 <thead>
@@ -159,7 +159,7 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 
 <h1 id="clusterinfo-xml-injection">ClusterInfo XML Injection</h1>
 
-<p>When running the processing unit in any of the <a href="./deploying-and-running-overview.htm/">runtime modes</a>, <code>ClusterInfo</code> can also be used directly within the Spring XML configuration. In a similar manner, properties can be injected. Here is an example of how this can be used:</p>
+<p>When running the processing unit in any of the <a href="deploying-and-running-overview.htm">runtime modes</a>, <code>ClusterInfo</code> can also be used directly within the Spring XML configuration. In a similar manner, properties can be injected. Here is an example of how this can be used:</p>
 
 <pre><code class="language-xml">&lt;bean id="myBean" class="MyBean"&gt;
     &lt;property name="connectionUrl" value="testconnection_${clusterInfo.runningNumber}" /&gt;
@@ -216,7 +216,7 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 
 <h1 id="processing-unit-container-injection">Processing Unit Container Injection</h1>
 
-<p>Each of the <a href="./deploying-and-running-overview.htm/">runtime modes</a> supports the injection of <code>ClusterInfo</code>. However, when running in <a href="./running-in-standalone-mode.htm/">standalone mode</a> or <a href="../started/xap-debug.htm/">within your IDE</a>, the <code>-cluster</code> parameter controls the clustering aspects of the processing unit instance(s). Below is a list of the parameters you can specify for the standalone and IDE runtime modes, and how they are mapped the <code>ClusterInfo</code> properties:</p>
+<p>Each of the <a href="deploying-and-running-overview.htm">runtime modes</a> supports the injection of <code>ClusterInfo</code>. However, when running in <a href="running-in-standalone-mode.htm">standalone mode</a> or <a href="../started/xap-debug.htm">within your IDE</a>, the <code>-cluster</code> parameter controls the clustering aspects of the processing unit instance(s). Below is a list of the parameters you can specify for the standalone and IDE runtime modes, and how they are mapped the <code>ClusterInfo</code> properties:</p>
 
 <table>
 <thead>
@@ -251,7 +251,7 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more details on how to use the <code>-cluster</code> option, see the <a href="./deploying-and-running-overview.htm/">processing unit runtime modes section</a></p>
+  <p>For more details on how to use the <code>-cluster</code> option, see the <a href="deploying-and-running-overview.htm">processing unit runtime modes section</a></p>
 </div>
 
 </body>

@@ -22,7 +22,7 @@ space.Change(idQuery, new ChangeSet().Increment("Count", 1));
 
 <h1 id="the-query-template">The Query Template</h1>
 
-<p>The change operation can receive any <a href="./querying-the-space.htm/">query template</a> for matching a single or multiple objects that have to be changed by the operation.</p>
+<p>The change operation can receive any <a href="querying-the-space.htm">query template</a> for matching a single or multiple objects that have to be changed by the operation.</p>
 
 <h1 id="the-change-set">The Change Set</h1>
 
@@ -60,7 +60,7 @@ space.Change(idQuery, new ChangeSet().Increment("Balance.Euro", 5.2D));
 <p>Each operation in the change set acts on a specified string path. This path points to the property that needs to be changed and it has the following semantic:</p>
 
 <ol>
-<li><span class="tc-bold">First-level property</span> - A path with no ".' character in it points to a first-level property, If the property specified by this path is not part of the object, it is treated as a dynamic property (see <a href="./poco-dynamic-properties.htm/">Dynamic Properties</a>). If the object doesn't support dynamic properties, an exception is generated.</li>
+<li><span class="tc-bold">First-level property</span> - A path with no ".' character in it points to a first-level property, If the property specified by this path is not part of the object, it is treated as a dynamic property (see <a href="poco-dynamic-properties.htm">Dynamic Properties</a>). If the object doesn't support dynamic properties, an exception is generated.</li>
 <li><span class="tc-bold">Nested property</span> - A path that contains a ".' character is considered a path to a nested property. The location process of the final property that needs to be changed is done recursively by activating the properties, specified by the split of the path using the ".' character, one at a time until reaching the targeted end property.</li>
 <li><span class="tc-bold">Nested Dictionary property</span> - A path that contains ".' may also point to keys inside a dictionary, meaning the following path - "Attributes.Color' - will look for key named "Color' if the property named "Attribute' in the object is actually a dictionary. This also affects nested properties.</li>
 </ol>
@@ -155,7 +155,7 @@ space.Change(idQuery, new ChangeSet().Increment("Balance.Euro", 5.2D));
 
 <h1 id="using-change-with-the-embedded-model">Using Change with the Embedded Model</h1>
 
-<p>With the <a href="/sbp/modeling-your-data.htm/#embedded-vs-non-embedded-relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicated or the async-replicated cluster schema).</p>
+<p>With the <a href="/sbp/modeling-your-data.htm#embedded-vs-non-embedded-relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicated or the async-replicated cluster schema).</p>
 
 <p>The Change API reduces the CPU utilization on the primary side, reduces the serialization overhead, and reduces the garbage collection activity on both the primary and backup. This significantly improves the overall system stability.</p>
 
@@ -186,7 +186,7 @@ if (changeResult.NumberOfChangedEntries == 0)
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to <a href="./change-api-advanced.htm/">Change API Advanced</a>.</p>
+  <p>For more information, refer to <a href="change-api-advanced.htm">Change API Advanced</a>.</p>
 </div>
 
 <h1 id="changeexception">ChangeException</h1>
@@ -271,7 +271,7 @@ catch(ChangeException e)
 
 <h1 id="change-and-optimistic-locking">Change and Optimistic Locking</h1>
 
-<p>The <code>Change</code> operation has the same semantics as a regular Space <code>Update</code> operation when it comes to <a href="./transaction-optimistic-locking.htm/">Optimistic Locking</a>. It increases the version of the changed object, and the expected version can be specified in the ID query when optimistic locking is required.</p>
+<p>The <code>Change</code> operation has the same semantics as a regular Space <code>Update</code> operation when it comes to <a href="transaction-optimistic-locking.htm">Optimistic Locking</a>. It increases the version of the changed object, and the expected version can be specified in the ID query when optimistic locking is required.</p>
 
 <pre><code class="language-csharp">ISpaceProxy space = // ... obtain a space reference
 Guid id = ...;

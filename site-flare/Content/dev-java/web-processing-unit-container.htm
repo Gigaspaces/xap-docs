@@ -5,7 +5,7 @@
 <h1>Web Processing Unit Container</h1>
   
 
-<p>XAP's integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the <a href="./deploying-onto-the-service-grid.htm/">Service Grid Processing Unit Container</a>.</p>
+<p>XAP's integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the <a href="deploying-onto-the-service-grid.htm">Service Grid Processing Unit Container</a>.</p>
 
 <p>The integration allows you to make use of the following Service Grid features:</p>
 
@@ -17,11 +17,11 @@
 
 <p>The web application itself is a pure, JEE based, web application. The application can be the most generic web application, and automatically make use of the Service Grid features. The web application can define a Space (either embedded or remote) very easily (either using Spring or not).</p>
 
-<p>The web container used behind the scenes is <a href="http://www.eclipse.org/jetty/" target="_blank" >Jetty</a> (with other containers coming in the near future). This page will list the common usage and configuration of web containers. Jetty specific configuration and usage can be found <a href="./web-jetty-processing-unit-container.htm/">here</a>.</p>
+<p>The web container used behind the scenes is <a href="http://www.eclipse.org/jetty/" target="_blank" >Jetty</a> (with other containers coming in the near future). This page will list the common usage and configuration of web containers. Jetty specific configuration and usage can be found <a href="web-jetty-processing-unit-container.htm">here</a>.</p>
 
 <h1 id="deployment">Deployment</h1>
 
-<p>The integration can either deploy a packaged WAR file or an exploded WAR file. In order to deploy packaged WAR file, it can be specified using one of the deployment mechanisms (UI/CLI/Programmatic, see more <a href="./deploying-onto-the-service-grid.htm/#deployDirections">here</a>). When deploying a WAR file, it goes through the following steps until it gets to the GSC:</p>
+<p>The integration can either deploy a packaged WAR file or an exploded WAR file. In order to deploy packaged WAR file, it can be specified using one of the deployment mechanisms (UI/CLI/Programmatic, see more <a href="deploying-onto-the-service-grid.htm#deployDirections">here</a>). When deploying a WAR file, it goes through the following steps until it gets to the GSC:</p>
 
 <div class="tc-admon-note">
   
@@ -125,7 +125,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>In some cases, multiple Processing Units use the same JAR files.In such cases it makes sense to place these JAR files in a central location accessible by all the Processing Units rather than packaging them individually with each of the Processing Units. <a href="./the-processing-unit-structure-and-configuration.htm/#sharing-libraries-between-multiple-processing-units">Read more</a></p>
+  <p>In some cases, multiple Processing Units use the same JAR files.In such cases it makes sense to place these JAR files in a central location accessible by all the Processing Units rather than packaging them individually with each of the Processing Units. <a href="the-processing-unit-structure-and-configuration.htm#sharing-libraries-between-multiple-processing-units">Read more</a></p>
 </div>
 
 <h1 id="bootstrap-context-listener">Bootstrap Context Listener</h1>
@@ -174,7 +174,7 @@ spaceConfigurer.destroy();
 
 <h2 id="using-pu-xml">Using pu.xml</h2>
 
-<p>A web application is still just a processing unit. This means that a <span class="tc-bold">META-INF/spring/pu.xml</span> can be added, which can be used to define a <a href="./the-space-configuration.htm/">Space</a>. Accessing the beans is relatively simple as they are automatically added to the web application context and can be accessed from there. The key they are stored under is the bean id that each bean corresponds to.</p>
+<p>A web application is still just a processing unit. This means that a <span class="tc-bold">META-INF/spring/pu.xml</span> can be added, which can be used to define a <a href="the-space-configuration.htm">Space</a>. Accessing the beans is relatively simple as they are automatically added to the web application context and can be accessed from there. The key they are stored under is the bean id that each bean corresponds to.</p>
 
 <p>Here is an example that starts an embedded Space as part of the web application within the <code>pu.xml</code>. The following is the content of the <code>pu.xml</code></p>
 
@@ -213,7 +213,7 @@ spaceConfigurer.destroy();
 
 <p>In order to create a single point of view, in terms of clients connecting to a server, a load balancer is usually used. While there are many different types of load balancers (both hardware and software), solving the load balancing problem is not new (i.e. it is not something that is introduced because the web application is deployed on GigaSpaces). Examples of how to configure load balancers can be found in specific web container sections.</p>
 
-<p>GigaSpaces also comes with a built in integration with Apache httpd load balancer as described in the <a href="./apache-load-balancer-agent.htm/">Apache Load Balancer Agent</a> section.</p>
+<p>GigaSpaces also comes with a built in integration with Apache httpd load balancer as described in the <a href="apache-load-balancer-agent.htm">Apache Load Balancer Agent</a> section.</p>
 
 </body>
 </html>

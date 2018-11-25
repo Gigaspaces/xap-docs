@@ -7,7 +7,7 @@
 
 <table class="tc-borderless">
   <tr>
-    <td><p>The polling event container is an implementation of the <a href="http://enterpriseintegrationpatterns.com/PollingConsumer.htm/">polling consumer pattern</a>  which uses the space to receive events. The container performs polling receive operations against the Space. If a receive operation succeeds (a value is returned from the receive operation), the <a href="./data-event-listener.htm/">Data Event Listener</a> is invoked with the event. A polling event operation is mainly used when simulating Queue semantics, or when using the master-worker design pattern.</p>
+    <td><p>The polling event container is an implementation of the <a href="http://enterpriseintegrationpatterns.com/PollingConsumer.htm">polling consumer pattern</a>  which uses the space to receive events. The container performs polling receive operations against the Space. If a receive operation succeeds (a value is returned from the receive operation), the <a href="data-event-listener.htm">Data Event Listener</a> is invoked with the event. A polling event operation is mainly used when simulating Queue semantics, or when using the master-worker design pattern.</p>
 </td>
     <td><img src="../Resources/Static/attachment_files/polling_container_basic.jpg" alt="" title="" /></td>
   </tr>
@@ -124,7 +124,7 @@ pollingEventListenerContainer.destroy();
   <p><code>EventDriven</code>, <code>@Polling</code>, and <code>@Notify</code> cannot be placed on interface classes. Place them on the implementation class instead.</p>
 </div>
 
-<p>The above example performs single take operations (see below) using the provided template (a <code>Data</code> object with its processed flag set to <code>false</code>). If the take operation succeeds (a value is returned), the <code>SimpleListener</code> is invoked. The operations are performed on the configured <a href="./the-gigaspace-interface-overview.htm/">GigaSpace</a> bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).</p>
+<p>The above example performs single take operations (see below) using the provided template (a <code>Data</code> object with its processed flag set to <code>false</code>). If the take operation succeeds (a value is returned), the <code>SimpleListener</code> is invoked. The operations are performed on the configured <a href="the-gigaspace-interface-overview.htm">GigaSpace</a> bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).</p>
 
 <h1 id="primary-backup">Primary/Backup</h1>
 
@@ -141,12 +141,12 @@ pollingEventListenerContainer.destroy();
 
 <div class="tc-admon-refer">
   
-  <p>For more details, refer to <a href="./fifo-grouping.htm/">FIFO Grouping</a>.</p>
+  <p>For more details, refer to <a href="fifo-grouping.htm">FIFO Grouping</a>.</p>
 </div>
 
 <h1 id="static-template-definition">Static Template Definition</h1>
 
-<p>When performing receive operations, a template is defined. This creates a virtualized subset of data within the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="./query-sql.htm/">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
+<p>When performing receive operations, a template is defined. This creates a virtualized subset of data within the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.htm">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Annotation" style="padding:10px"><pre><code class="language-java">@EventDriven @Polling
 public class SimpleListener {
@@ -526,7 +526,7 @@ public class SimpleListener {
 
 <h2 id="non-blocking-receive-handler">Non-Blocking Receive Handler</h2>
 
-<p>When working with a partitioned cluster and configuring the remote polling container to work against the <a href="./the-gigaspace-interface-overview.htm/#Clustered Flag">whole cluster</a>, blocking operations (take with a timeout&gt;0) are not allowed (when the routing field is not set on the template or SQLQuery). The default receive operation handlers support performing the receive operation in a non-blocking manner, by sleeping between non-blocking operations. For example, the <code>SingleTakeReceiveOperationHandler</code> performs a non-blocking take operation against the Space and then sleeps for a configurable amount of time. The <a href="/sbp/master-worker-pattern.htm/">Master-Worker Pattern</a> is a classic scenario where non-blocking mode is used.</p>
+<p>When working with a partitioned cluster and configuring the remote polling container to work against the <a href="the-gigaspace-interface-overview.htm#Clustered Flag">whole cluster</a>, blocking operations (take with a timeout&gt;0) are not allowed (when the routing field is not set on the template or SQLQuery). The default receive operation handlers support performing the receive operation in a non-blocking manner, by sleeping between non-blocking operations. For example, the <code>SingleTakeReceiveOperationHandler</code> performs a non-blocking take operation against the Space and then sleeps for a configurable amount of time. The <a href="/sbp/master-worker-pattern.htm">Master-Worker Pattern</a> is a classic scenario where non-blocking mode is used.</p>
 
 <table class="tc-borderless"><tr><td style="width:50%;"><p><span class="tc-bold">Step 1</span>: Master sends requests to be processed by the workers implemented using the polling container.</p>
 
@@ -971,12 +971,12 @@ public class SimpleListener {
 
 <div class="tc-admon-refer">
   
-  <p>Learn more using about <code>TriggerOperationsHandler</code> using an example application on the <a href="/sbp/dynamic-polling-container-templates-using-triggeroperationhandler.htm/">Patterns wiki</a></p>
+  <p>Learn more using about <code>TriggerOperationsHandler</code> using an example application on the <a href="/sbp/dynamic-polling-container-templates-using-triggeroperationhandler.htm">Patterns wiki</a></p>
 </div>
 
 <h1 id="default-values-of-polling-container-configuration-parameters">Default Values of Polling Container Configuration Parameters</h1>
 
-<p>The default values for all of the polling container configuration parameters such as <code>concurrent-consumers, active-when-primary, receive-timeout</code> and others can be found in the JavaDoc (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/polling/SimplePollingEventListenerContainer.htm/">SimplePollingEventListenerContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/AbstractEventListenerContainer.htm/">AbstractEventListenerContainer</a>.</p>
+<p>The default values for all of the polling container configuration parameters such as <code>concurrent-consumers, active-when-primary, receive-timeout</code> and others can be found in the JavaDoc (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/polling/SimplePollingEventListenerContainer.htm">SimplePollingEventListenerContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/AbstractEventListenerContainer.htm">AbstractEventListenerContainer</a>.</p>
 
 <p>For example, <code>concurrent-consumers</code> default value is documented in the method <code>SimplePollingEventListenerContainer.setConcurrentConsumers(int)</code></p>
 
@@ -1003,7 +1003,7 @@ The number of partitions and the distribution of data affect latency; many parti
 
 <div class="tc-admon-refer">
   
-  <p>An example is described <a href="/sbp/master-worker-pattern.htm/#example-2-designated-workers">here</a> in the Solutions and Patterns section.</p>
+  <p>An example is described <a href="/sbp/master-worker-pattern.htm#example-2-designated-workers">here</a> in the Solutions and Patterns section.</p>
 </div>
 
 <h1 id="additional-resources">Additional Resources</h1>

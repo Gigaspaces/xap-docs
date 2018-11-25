@@ -22,7 +22,7 @@
 
 <div class="tc-admon-note">
   
-  <p>Intel's Optane DC is not yet available in the market, so to use the GigaSpaces PMEM driver you need to emulate PMEM on your machine. For information on how to do this, see the section on <a href="https://pmem.io/2016/02/22/pm-emulation.htm/">how to emulate Persistent Memory</a> on Intel's Persistent Memory Programming project website.</p>
+  <p>Intel's Optane DC is not yet available in the market, so to use the GigaSpaces PMEM driver you need to emulate PMEM on your machine. For information on how to do this, see the section on <a href="https://pmem.io/2016/02/22/pm-emulation.htm">how to emulate Persistent Memory</a> on Intel's Persistent Memory Programming project website.</p>
 
 <p>If you would like to receive early access to the Optane PC hardware for evaluation purposes, contact us to <a href="https://www.gigaspaces.com/request-demo">request a demo</a> via the GigaSpaces website.</p>
 </div>
@@ -90,11 +90,11 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 </div>
 </div>
 
-<p>The general <a href="./memoryxtend-overview.htm/#configuration">MemoryXtend configuration options</a> also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.</p>
+<p>The general <a href="memoryxtend-overview.htm#configuration">MemoryXtend configuration options</a> also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.</p>
 
 <div class="tc-admon-note">
   
-  <p>For an example of how to configure the on-heap cache properties, see the <a href="./memoryxtend-overview.htm/#on-heap-cache">MemoryXtend overview</a> topic.</p>
+  <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.htm#on-heap-cache">MemoryXtend overview</a> topic.</p>
 </div>
 
 <h2 id="defining-the-memory-pool-size">Defining the Memory Pool Size</h2>
@@ -115,8 +115,8 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 <p>The amount of used memory can be tracked with the following monitoring and administration tools:</p>
 
 <ul>
-<li>Metrics - The <code>space_blobstore_off-heap_used-bytes_total</code> metric, as described on the <a href="./metrics-bundled.htm/#blobstore-operations">Metrics</a> page.</li>
-<li>Admin API - Thru <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/space/SpaceInstanceStatistics.htm/#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
+<li>Metrics - The <code>space_blobstore_off-heap_used-bytes_total</code> metric, as described on the <a href="metrics-bundled.htm#blobstore-operations">Metrics</a> page.</li>
+<li>Admin API - Thru <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/admin/space/SpaceInstanceStatistics.htm#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
 <li>Web Management Console - In the Space instances view, right-click any of the columns in the table and add the <span class="tc-bold">Used Off-Heap</span> column.</li>
 </ul>
 

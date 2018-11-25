@@ -77,7 +77,7 @@
 
 <h1 id="initial-space-load">Initial Space Load</h1>
 
-<p>When the space is started, restarted, or cleaned, the system can initially fill the space with space objects that are likely to be required by the application. You can specify the data to loaded using the <code>ExternalDataSource.initialLoad</code> method that is called once the space is started. See the <a href="./space-persistency-initial-load.htm/">Space Persistency Initial Load</a> for details. The space is not available for clients, until the data load process has been completed.</p>
+<p>When the space is started, restarted, or cleaned, the system can initially fill the space with space objects that are likely to be required by the application. You can specify the data to loaded using the <code>ExternalDataSource.initialLoad</code> method that is called once the space is started. See the <a href="space-persistency-initial-load.htm">Space Persistency Initial Load</a> for details. The space is not available for clients, until the data load process has been completed.</p>
 
 <div class="tc-admon-tip">
   
@@ -99,7 +99,7 @@
 
 <h1 id="eliminating-resonance-affect-when-using-mirror-service">Eliminating Resonance Affect when Using Mirror Service</h1>
 
-<p>When using the <a href="./asynchronous-persistency-with-the-mirror.htm/">Mirror Service</a>, and the <code>SpaceDatasource</code> is enabled for the space, all data loaded into the space using <code>SpaceDataSource.initialDataLoad</code> while it is being started, <span class="tc-bold">is not replicated back to the Mirror Service</span>.</p>
+<p>When using the <a href="asynchronous-persistency-with-the-mirror.htm">Mirror Service</a>, and the <code>SpaceDatasource</code> is enabled for the space, all data loaded into the space using <code>SpaceDataSource.initialDataLoad</code> while it is being started, <span class="tc-bold">is not replicated back to the Mirror Service</span>.</p>
 
 <h1 id="count-operation">Count Operation</h1>
 
@@ -123,9 +123,9 @@
 
 <h1 id="hibernate-id-generation">Hibernate ID Generation</h1>
 
-<p>Hibernate supports multiple ID generators as detailed in <a href="http://docs.jboss.org/hibernate/core/3.3/reference/en/html/mapping.htm/#mapping-declaration-id">Hibernate documentation</a>. Your hibernate mapping file should use algorithm that is appropriate for your use case.</p>
+<p>Hibernate supports multiple ID generators as detailed in <a href="http://docs.jboss.org/hibernate/core/3.3/reference/en/html/mapping.htm#mapping-declaration-id">Hibernate documentation</a>. Your hibernate mapping file should use algorithm that is appropriate for your use case.</p>
 
-<p>Some generators increase the number of database operations and result into overall adverse performance. You need to watch out for generators + database combinations that automatically disable the batch insert mode transparently as mentioned <a href="http://docs.jboss.org/hibernate/core/3.3/reference/en/html/batch.htm/">here</a>.</p>
+<p>Some generators increase the number of database operations and result into overall adverse performance. You need to watch out for generators + database combinations that automatically disable the batch insert mode transparently as mentioned <a href="http://docs.jboss.org/hibernate/core/3.3/reference/en/html/batch.htm">here</a>.</p>
 
 <p><span class="tc-italic">"Hibernate disables insert batching at the JDBC level transparently if you use an identity identifier generator."</span></p>
 
@@ -144,10 +144,10 @@
 <li>When a space is configured to be persistent, and a <code>POJO</code> is used as the Space Domain class, it must use the <code>SpaceId(autogenerate=false)</code> decoration.</li>
 <li>When running in LRU Cache policy the <code>GigaSpace.count</code> operation using the data within the space only and does not access the space data source (database) to return the object count.</li>
 <li>When a space is configured to be persistent, only Native serialization mode should be used.</li>
-<li>Objects loaded via the <code>SpaceDataSource.initialDataLoad</code> can be expired using the <code>@SpaceLeaseExpiration</code> annotation. See the <a href="./leases-automatic-expiration.htm/">POJO Support - Advanced</a> page for more details.</li>
+<li>Objects loaded via the <code>SpaceDataSource.initialDataLoad</code> can be expired using the <code>@SpaceLeaseExpiration</code> annotation. See the <a href="leases-automatic-expiration.htm">POJO Support - Advanced</a> page for more details.</li>
 <li>When using the Map API, the key must be <code>Serializable</code>.</li>
-<li>The <code>SpaceDataSource.initialDataLoad()</code> loads data into partitioned spaces, by reading all the data into the space and filtering it at the space side. To tune this behavior, you should execute the relevant query from the database on the partition ID, to fetch the relevant result set to load into the space. See the <a href="./space-persistency-initial-load.htm/">Space Persistency Initial Load</a> for more details.</li>
-<li><a href="http://www.hibernate.org/162.htm/">Hibernate Lazy load</a> is not supported when using the <code>DefaultHibernateSpaceDataSource</code> implementation. See <a href="/sbp/space-object-modeling.htm/">Space Object Modeling</a> for more details.</li>
+<li>The <code>SpaceDataSource.initialDataLoad()</code> loads data into partitioned spaces, by reading all the data into the space and filtering it at the space side. To tune this behavior, you should execute the relevant query from the database on the partition ID, to fetch the relevant result set to load into the space. See the <a href="space-persistency-initial-load.htm">Space Persistency Initial Load</a> for more details.</li>
+<li><a href="http://www.hibernate.org/162.htm">Hibernate Lazy load</a> is not supported when using the <code>DefaultHibernateSpaceDataSource</code> implementation. See <a href="/sbp/space-object-modeling.htm">Space Object Modeling</a> for more details.</li>
 <li>When running in <code>ALL_IN_CACHE</code> cache policy mode, optimistic locking is supported - i.e. updates in optimistic locking mode will be rejected, in case the client performs an update with the non-latest version of the entry. The loaded object from the database should include the latest version or the value 1.</li>
 <li>When running a local cache, the client cache will be updated using an optimistic locking mode - i.e. updates will include the correct version of the entry.</li>
 <li>Optimistic locking is not supported when running in <code>LRU</code> cache policy mode, in case the loaded object does not include data within the <code>SpaceVersion</code> field.</li>

@@ -29,11 +29,11 @@
 <p>The space supports the following two cache eviction policies:</p>
 
 <ul>
-<li><a href="./all-in-cache-cache-policy.htm/">ALL IN CACHE Policy</a> (code 1) - Assumes the JVM hosting the Space instance has enough heap to hold all data in memory.</li>
-<li><a href="./lru-cache-policy.htm/">LRU Cache Policy</a> (code 0) - Assumes the JVM hosting the Space instance does not have enough heap to hold all data in memory.</li>
+<li><a href="all-in-cache-cache-policy.htm">ALL IN CACHE Policy</a> (code 1) - Assumes the JVM hosting the Space instance has enough heap to hold all data in memory.</li>
+<li><a href="lru-cache-policy.htm">LRU Cache Policy</a> (code 0) - Assumes the JVM hosting the Space instance does not have enough heap to hold all data in memory.</li>
 </ul>
 
-<p>By default, the ALL IN CACHE policy is used for an in-memory data grid, and LRU Cache policy is used for a persistent Space with <a href="./space-persistency-overview.htm/">Space Persistency</a> enabled.</p>
+<p>By default, the ALL IN CACHE policy is used for an in-memory data grid, and LRU Cache policy is used for a persistent Space with <a href="space-persistency-overview.htm">Space Persistency</a> enabled.</p>
 
 <p>These policies are defined via the the <code>space-config.engine.cache_policy</code> property. The following example describes how it is configured:</p>
 
@@ -115,7 +115,7 @@ When using transient objects, note that they are:</p>
 
 <h1 id="explicit-eviction-of-objects-from-the-space">Explicit Eviction of Objects from the Space</h1>
 
-<p>Objects can be evicted explicitly from the Space by calling a <code>takeMultiple</code> or <code>clear</code> operation on <a href="./the-gigaspace-interface-overview.htm/">the GigaSpace interface</a>, combined with the <a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/client/TakeModifiers.htm/">TakeModifiers.EVICT_ONLY</a> modifier. The <code>clear</code> operation only returns the number of objects actually evicted from the Space. The <code>takeMultiple</code> operation returns the actual objects that were evicted. See the following usage example:</p>
+<p>Objects can be evicted explicitly from the Space by calling a <code>takeMultiple</code> or <code>clear</code> operation on <a href="the-gigaspace-interface-overview.htm">the GigaSpace interface</a>, combined with the <a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/client/TakeModifiers.htm">TakeModifiers.EVICT_ONLY</a> modifier. The <code>clear</code> operation only returns the number of objects actually evicted from the Space. The <code>takeMultiple</code> operation returns the actual objects that were evicted. See the following usage example:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Using clear " style="padding:10px"><pre><code class="language-java">GigaSpace gigaSpace = ...;
 User template = new User();
@@ -149,8 +149,8 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
 <p>The overall Space capacity is not necessarily limited to the capacity of its physical memory. Currently, there are two options for exceeding this limit:</p>
 
 <ul>
-<li><span class="tc-bold">Using an LRU and <a href="./space-persistency-overview.htm/">Space Persistency</a></span> - in this mode, all the Space data is kept in the database so the Space capacity is dependent on database capacity rather than the memory capacity. The Space maintains (in memory) a partial image of the persistent view in an LRU basis.</li>
-<li><span class="tc-bold">Using <a href="../overview/terminology.htm/">Partitioned Space</a></span> - in this mode, the Space utilizes the physical memory of multiple JVMs. This means the application using the Space is able to access all the Space instances transparently, as if they were a single Space with a higher memory capacity.</li>
+<li><span class="tc-bold">Using an LRU and <a href="space-persistency-overview.htm">Space Persistency</a></span> - in this mode, all the Space data is kept in the database so the Space capacity is dependent on database capacity rather than the memory capacity. The Space maintains (in memory) a partial image of the persistent view in an LRU basis.</li>
+<li><span class="tc-bold">Using <a href="../overview/terminology.htm">Partitioned Space</a></span> - in this mode, the Space utilizes the physical memory of multiple JVMs. This means the application using the Space is able to access all the Space instances transparently, as if they were a single Space with a higher memory capacity.</li>
 </ul>
 
 <h1 id="memory-manager-parameters">Memory Manager Parameters</h1>
@@ -247,7 +247,7 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
 
 <tr>
 <td align="left">space-config.engine.initial_load</td>
-<td align="left">When a persistent Space running in LRU cache policy mode is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the <code>space-config.engine.cache_size value</code>. See the <a href="./lru-cache-policy.htm/#Reloading Data">Reloading Data</a> section for details.</td>
+<td align="left">When a persistent Space running in LRU cache policy mode is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the <code>space-config.engine.cache_size value</code>. See the <a href="lru-cache-policy.htm#Reloading Data">Reloading Data</a> section for details.</td>
 <td align="left">50</td>
 <td align="left">LRU</td>
 </tr>

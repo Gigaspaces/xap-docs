@@ -12,7 +12,7 @@
 
 <div class="tc-admon-refer">
   
-  <p><a href="../admin/network-over-firewall.htm/">XAP Over a Firewall</a></p>
+  <p><a href="../admin/network-over-firewall.htm">XAP Over a Firewall</a></p>
 </div>
 
 <p>XAP provides two types of communication filter:</p>
@@ -38,12 +38,12 @@
 
 <h1 id="default-sslfilterfactory">Default SSLFilterFactory</h1>
 
-<p>Since some types of communication filters are not symmetric regarding the client and server, the class <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.htm/">SSLFilterFactory</a> has 2 methods: one to create the communication filter for the client side, and the other for the server side.</p>
+<p>Since some types of communication filters are not symmetric regarding the client and server, the class <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.htm">SSLFilterFactory</a> has 2 methods: one to create the communication filter for the client side, and the other for the server side.</p>
 
 <ul>
-<li><p>public IOFilter <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.htm/#createClientFilter">createClientFilter()</a> throws Exception;</p></li>
+<li><p>public IOFilter <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.htm#createClientFilter">createClientFilter()</a> throws Exception;</p></li>
 
-<li><p>public IOFilter <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.htm/#createServerFilter">createServerFilter()</a> throws Exception;</p></li>
+<li><p>public IOFilter <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.htm#createServerFilter">createServerFilter()</a> throws Exception;</p></li>
 </ul>
 
 <p>If the communication filter needs its own parameters, it can acquire them by directly reading system properties. For example, the supplied SSLFilter needs to get the keystore file, and the password to this file.</p>
@@ -63,9 +63,9 @@
   <p>Refer to the API Reference guide for more details about the reference classes:</p>
 
 <ul>
-<li><p><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/IOSSLFilter.htm/">com.gigaspaces.lrmi.nio.filters.IOSSLFilter</a></p></li>
+<li><p><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/IOSSLFilter.htm">com.gigaspaces.lrmi.nio.filters.IOSSLFilter</a></p></li>
 
-<li><p><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/IOStreamCompressionFilter.htm/">com.gigaspaces.lrmi.nio.filters.IOStreamCompressionFilter</a></p></li>
+<li><p><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/IOStreamCompressionFilter.htm">com.gigaspaces.lrmi.nio.filters.IOStreamCompressionFilter</a></p></li>
 </ul>
 </div>
 
@@ -118,7 +118,7 @@ However, when you wish to run this code with SSL encryption, you should run it w
 
 <div class="tc-admon-refer">
   
-  <p>You can find an example of using <code>SSLFilterFactory</code> with self signed certs <a href="/sbp/ssl-self-signed-cert-example.htm/">here</a>.</p>
+  <p>You can find an example of using <code>SSLFilterFactory</code> with self signed certs <a href="/sbp/ssl-self-signed-cert-example.htm">here</a>.</p>
 </div>
 
 <p>Alternatively if you do not need authentication and just wish to encrypt the data you can omit the keystore and the password and the server will generate the ssl keys on the fly.</p>

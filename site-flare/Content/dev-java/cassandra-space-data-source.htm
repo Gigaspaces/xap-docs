@@ -5,11 +5,11 @@
 <h1>Data Source</h1>
   
 
-<p>A Cassandra based implementation of the <a href="./space-data-source-api.htm/">Space Data Source</a>.</p>
+<p>A Cassandra based implementation of the <a href="space-data-source-api.htm">Space Data Source</a>.</p>
 
 <h1 id="library-dependencies">Library dependencies</h1>
 
-<p>The Cassandra Space Data Source uses <a href="http://code.google.com/a/apache-extras.org/p/cassandra-jdbc/" target="_blank" >Cassandra JDBC Driver</a> and <a href="http://hector-client.github.com/hector/build/html/index.htm/" target="_blank" >Hector Library</a> when interacting with the Cassandra cluster.
+<p>The Cassandra Space Data Source uses <a href="http://code.google.com/a/apache-extras.org/p/cassandra-jdbc/" target="_blank" >Cassandra JDBC Driver</a> and <a href="http://hector-client.github.com/hector/build/html/index.htm" target="_blank" >Hector Library</a> when interacting with the Cassandra cluster.
 include the following in your <code>pom.xml</code></p>
 
 <pre><code class="language-xml">&lt;!-- currently the cassandra-jdbc library is not the central maven repository --&gt;
@@ -47,7 +47,7 @@ include the following in your <code>pom.xml</code></p>
 <h1 id="setup">Setup</h1>
 
 <p>An example of how the Cassandra Space Data Source can be configured for a space that loads data back from Cassandra once initialized and
-also asynchronously persists the data using a mirror (see <a href="./cassandra-space-synchronization-endpoint.htm/">Cassandra Space Synchronization Endpoint</a>).</p>
+also asynchronously persists the data using a mirror (see <a href="cassandra-space-synchronization-endpoint.htm">Cassandra Space Synchronization Endpoint</a>).</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Spring " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -143,7 +143,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 </div>
 </div>
 
-<p>For more details about different configurations see <a href="./space-persistency-overview.htm/">Space Persistency</a>.</p>
+<p>For more details about different configurations see <a href="space-persistency-overview.htm">Space Persistency</a>.</p>
 
 <h1 id="before-you-begin">Before you begin</h1>
 
@@ -171,7 +171,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 <tr>
 <td align="left">hectorClient</td>
-<td align="left">A configured <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/persistency/cassandra/HectorCassandraClient.htm/">HectorCassandraClient</a> bean. see <a href="./cassandra-hector-client.htm/">Hector Cassandra Client</a>.</td>
+<td align="left">A configured <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/persistency/cassandra/HectorCassandraClient.htm">HectorCassandraClient</a> bean. see <a href="cassandra-hector-client.htm">Hector Cassandra Client</a>.</td>
 <td align="left"></td>
 </tr>
 
@@ -195,13 +195,13 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 <tr>
 <td align="left">fixedPropertyValueSerializer</td>
-<td align="left">see <a href="./cassandra-space-synchronization-endpoint.htm/#property-value-serializer">Property Value Serializer</a>.</td>
+<td align="left">see <a href="cassandra-space-synchronization-endpoint.htm#property-value-serializer">Property Value Serializer</a>.</td>
 <td align="left"></td>
 </tr>
 
 <tr>
 <td align="left">dynamicPropertyValueSerializer</td>
-<td align="left">see <a href="./cassandra-space-synchronization-endpoint.htm/#property-value-serializer">Property Value Serializer</a>.</td>
+<td align="left">see <a href="cassandra-space-synchronization-endpoint.htm#property-value-serializer">Property Value Serializer</a>.</td>
 <td align="left"></td>
 </tr>
 </tbody>

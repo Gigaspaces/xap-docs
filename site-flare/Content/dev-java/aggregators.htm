@@ -23,7 +23,7 @@ XAP provides common functionality to perform aggregations across the space. Ther
 <table class="tc-borderless">
   <tr>
     <td><p><br/>
-XAP comes with several built-in Aggregators you may use. The aggregation process executed across all data grid partitions when using a partitioned data grid , or across the proxy master replica when using a replicated data grid. You may rout the aggregation into a specific partition. You may implement also a custom Aggregator that will perform a special aggregation logic on a given field (path) and a given entries set based on a query. Aggregators are specified via the <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/query/aggregators/AggregationSet.htm/">AggregationSet</a> that may have one or more Aggregators listed.</p>
+XAP comes with several built-in Aggregators you may use. The aggregation process executed across all data grid partitions when using a partitioned data grid , or across the proxy master replica when using a replicated data grid. You may rout the aggregation into a specific partition. You may implement also a custom Aggregator that will perform a special aggregation logic on a given field (path) and a given entries set based on a query. Aggregators are specified via the <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/query/aggregators/AggregationSet.htm">AggregationSet</a> that may have one or more Aggregators listed.</p>
 </td>
     <td><img src="../Resources/Static/attachment_files/aggregation1.png" alt="" title="" /></td>
   </tr>
@@ -92,7 +92,7 @@ XAP comes with several built-in Aggregators you may use. The aggregation process
 
 <tr>
 <td align="left">custom</td>
-<td align="left">An extension to the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.htm/">SpaceEntriesAggregator</a>. Return the aggregation for a user defined logic on a given field (path) and a given entries set based on a query.</td>
+<td align="left">An extension to the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.htm">SpaceEntriesAggregator</a>. Return the aggregation for a user defined logic on a given field (path) and a given entries set based on a query.</td>
 </tr>
 </tbody>
 </table>
@@ -103,7 +103,7 @@ XAP comes with several built-in Aggregators you may use. The aggregation process
 
 <h1 id="usage">Usage</h1>
 
-<p>Here are some aggregation examples using the <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/extensions/QueryExtension.htm/">QueryExtension</a></p>
+<p>Here are some aggregation examples using the <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/extensions/QueryExtension.htm">QueryExtension</a></p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Application " style="padding:10px"><pre><code class="language-java">import static org.openspaces.extensions.QueryExtension.*;
 ...
@@ -282,7 +282,7 @@ public class Person {
 
 <h1 id="group-aggregation">Group Aggregation</h1>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/query/aggregators/GroupByAggregator.htm/">GroupByAggregator</a> is used in conjunction with the aggregate functions to group the result-set by one or more columns. Here is an example:</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/query/aggregators/GroupByAggregator.htm">GroupByAggregator</a> is used in conjunction with the aggregate functions to group the result-set by one or more columns. Here is an example:</p>
 
 <pre><code class="language-java">import static org.openspaces.extensions.QueryExtension.*;
 import com.gigaspaces.query.aggregators.GroupByAggregator;
@@ -307,7 +307,7 @@ for (GroupByValue group : groupByResult) {
 }
 </code></pre>
 
-<p>You can also use the <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/query/aggregators/GroupByFilter.htm/">GroupByFilter</a> to restrict the groups of selected objects to only those whose condition is TRUE similar to the SQL <code>HAVING</code> Clause.</p>
+<p>You can also use the <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/query/aggregators/GroupByFilter.htm">GroupByFilter</a> to restrict the groups of selected objects to only those whose condition is TRUE similar to the SQL <code>HAVING</code> Clause.</p>
 
 <pre><code class="language-java">// Select AVG(Salary) , Count(*) from Employees Where companyId = 10 group by Department Having AVG(Salary) &gt; 18,000
 SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,"companyId = 10");
@@ -332,7 +332,7 @@ for (GroupByValue group : groupByResult) {
 
 <h1 id="distinct-aggregation">Distinct Aggregation</h1>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/query/aggregators/DistinctAggregator.htm/">DistinctAggregator</a> is used in conjunction with the aggregate functions to perform a distinct select by one or more columns. Here is an example:</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/query/aggregators/DistinctAggregator.htm">DistinctAggregator</a> is used in conjunction with the aggregate functions to perform a distinct select by one or more columns. Here is an example:</p>
 
 <pre><code class="language-java">import static org.openspaces.extensions.QueryExtension.distinct;
 
@@ -380,12 +380,12 @@ for (GroupByValue group : groupByResult) {
 
 <div class="tc-admon-refer">
   
-  <p><a href="./query-sql.htm/#routing">SQL Query Routing</a></p>
+  <p><a href="query-sql.htm#routing">SQL Query Routing</a></p>
 </div>
 
 <h1 id="custom-aggregation">Custom Aggregation</h1>
 
-<p>You may extend the <a href="[%=Links.ApiJavaDoc%]/index.htm/?/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.htm/">SpaceEntriesAggregator</a> to execute user defined aggregation logic on a given field (path) and a given entries set based on a query.</p>
+<p>You may extend the <a href="[%=Links.ApiJavaDoc%]/index.htm?/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.htm">SpaceEntriesAggregator</a> to execute user defined aggregation logic on a given field (path) and a given entries set based on a query.</p>
 
 <p>The example below shows a<code>String</code> field concatenation aggregator - for each entry extracts the field (path) value and concatenates with the previous values extracted.</p>
 
@@ -454,7 +454,7 @@ public class ConcatAggregator extends SpaceEntriesAggregator&lt;String&gt; {
 
 <div class="tc-admon-refer">
   
-  <p>For more examples see the Services &amp; Best Practices <a href="/sbp/aggregators-custom.htm/">Custom Aggregator</a></p>
+  <p>For more examples see the Services &amp; Best Practices <a href="/sbp/aggregators-custom.htm">Custom Aggregator</a></p>
 </div>
 
 <h2 id="change-code-without-restarts">Change code without restarts</h2>
@@ -556,7 +556,7 @@ public class ConcatAggregator extends SpaceEntriesAggregator&lt;String&gt; {
 
 <div class="tc-admon-refer">
   
-  <p><a href="./the-space-no-restart.htm/">Change code without restarts</a></p>
+  <p><a href="the-space-no-restart.htm">Change code without restarts</a></p>
 </div>
 
 <h1 id="considerations">Considerations</h1>
@@ -565,7 +565,7 @@ public class ConcatAggregator extends SpaceEntriesAggregator&lt;String&gt; {
 
 <div class="tc-admon-refer">
   
-  <p>For more information see <a href="./custom-serialization.htm/">Custom Serialization</a>.</p>
+  <p>For more information see <a href="custom-serialization.htm">Custom Serialization</a>.</p>
 </div>
 
 </body>

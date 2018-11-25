@@ -9,7 +9,7 @@
 
 <p>This scenario is different from the optimistic locking protocol since we assume with the pessimistic locking protocol, that every object that is read and retrieved from the space will eventually be updated where the transaction duration is relatively very short.</p>
 
-<p>To enforce a sole reader and sole updater for the object we explicitly lock the object via a transaction using the <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/j_spaces/core/client/ReadModifiers.htm/">ReadModifiers.EXCLUSIVE_READ_LOCK</a>.</p>
+<p>To enforce a sole reader and sole updater for the object we explicitly lock the object via a transaction using the <a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/client/ReadModifiers.htm">ReadModifiers.EXCLUSIVE_READ_LOCK</a>.</p>
 
 <p>When performing read operations without locking the object via a transaction, users can immediately perform an update operation, without having to wait for other users to complete their transaction (since there is none). However, there is no guarantee that the update operation will be performed on the latest version of the object.</p>
 
@@ -28,7 +28,7 @@
 
 <div class="tc-admon-note">
   
-  <p>Having the above executed at the space side via <a href="./executor-based-remoting.htm/">Executor Based Remoting</a> or <a href="./task-execution-overview.htm/">Task Executors</a> is highly recommended. This will shorten the transaction time period since all space operations will be executed against a colocated space.</p>
+  <p>Having the above executed at the space side via <a href="executor-based-remoting.htm">Executor Based Remoting</a> or <a href="task-execution-overview.htm">Task Executors</a> is highly recommended. This will shorten the transaction time period since all space operations will be executed against a colocated space.</p>
 </div>
 
 <h1 id="example">Example</h1>

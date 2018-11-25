@@ -5,7 +5,7 @@
 <h1>Operations</h1>
   
 
-<p>XAP provides a simple Space API using the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/">GigaSpace</a> interface for interacting with the Space.</p>
+<p>XAP provides a simple Space API using the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace</a> interface for interacting with the Space.</p>
 
 <p>The interface includes the following main operations:</p>
 
@@ -16,8 +16,8 @@
 </td>
 <td style="width:50%;"><p><span class="tc-bold">Change objects in Space:</span><br/>
 <a href="#change">change</a> one object in Space<br/>
-          <a href="./change-api-overview.htm/">changeMultiple</a> objects in Space <br/>
-<a href="./change-api-overview.htm/">asynchronous change</a> of objects</p>
+          <a href="change-api-overview.htm">changeMultiple</a> objects in Space <br/>
+<a href="change-api-overview.htm">asynchronous change</a> of objects</p>
 </td>
 </tr></table>
 
@@ -119,7 +119,7 @@
 
 <h2 id="time-to-live">Time To Live</h2>
 
-<p>To write an object to the Space with a limited time to live, specify <a href="./leases-automatic-expiration.htm/">a lease value</a> (in milliseconds). The object will expire automatically from the Space when the lease is finished.</p>
+<p>To write an object to the Space with a limited time to live, specify <a href="leases-automatic-expiration.htm">a lease value</a> (in milliseconds). The object will expire automatically from the Space when the lease is finished.</p>
 
 <pre><code class="language-java">   gigaSpace.write(myObject, 10000)
 </code></pre>
@@ -161,8 +161,8 @@
 <li><p>Exception handling - the operation many throw the following exceptions:</p>
 
 <ul>
-<li><a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/WriteMultiplePartialFailureException.htm/">WriteMultiplePartialFailureException</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/WriteMultipleException.htm/">WriteMultipleException</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/WriteMultiplePartialFailureException.htm">WriteMultiplePartialFailureException</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/WriteMultipleException.htm">WriteMultipleException</a></li>
 </ul></li>
 </ul>
 
@@ -183,7 +183,7 @@
 
 <h2 id="asynchronous-write">Asynchronous Write</h2>
 
-<p>An asynchronous <code>write</code> operation can be implemented using a <a href="./task-execution-overview.htm/">Task</a>, where the <code>Task</code> implementation include a write operation. With this approach the <code>Task</code> is sent to the space and executed in an asynchronous manner. The write operation itself will be completed when both the primary and the backup acknowledge the operation. This activity is performed as a background activity from the client perspective.</p>
+<p>An asynchronous <code>write</code> operation can be implemented using a <a href="task-execution-overview.htm">Task</a>, where the <code>Task</code> implementation include a write operation. With this approach the <code>Task</code> is sent to the space and executed in an asynchronous manner. The write operation itself will be completed when both the primary and the backup acknowledge the operation. This activity is performed as a background activity from the client perspective.</p>
 
 <h3 id="example-1">Example</h3>
 
@@ -194,7 +194,7 @@
 
 <div class="tc-admon-note">
   
-  <p>Writing an object to a Space may generate <a href="./notify-container-overview.htm/">notifications</a> to registered objects.</p>
+  <p>Writing an object to a Space may generate <a href="notify-container-overview.htm">notifications</a> to registered objects.</p>
 </div>
 
 <p><span class="tc-bold">Method summary</span></p>
@@ -207,7 +207,7 @@
 
 </code></pre>
 
-<p>Writes new objects to the Space, returning its LeaseContexts.<a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/#writeMultiple(T[])">Java API</a></p>
+<p>Writes new objects to the Space, returning its LeaseContexts.<a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm#writeMultiple(T[])">Java API</a></p>
 
 <pre><code class="language-java">&lt;T&gt; LeaseContext&lt;T&gt;[] writeMultiple(T[] entries) throws DataAccessException
 &lt;T&gt; LeaseContext&lt;T&gt;[] writeMultiple(T[] entries, long[] leases, WriteModifiers modifiers) throws DataAccessException
@@ -247,13 +247,13 @@
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/WriteModifiers.htm/">WriteModifiers</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/WriteModifiers.htm">WriteModifiers</a></td>
 <td align="left">Provides modifiers to customize the behavior of write operations</td>
 <td align="left">UPDATE_OR_WRITE</td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/LeaseContext.htm/">LeaseContext</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/LeaseContext.htm">LeaseContext</a></td>
 <td align="left">LeaseContext is a return-value encapsulation of a write operation.</td>
 <td align="left"></td>
 </tr>
@@ -264,7 +264,7 @@
 
 <h1 id="the-change-operation">The Change Operation</h1>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm/">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.htm/?com/gigaspaces/client/ChangeSet.htm/">ChangeSet</a> allows updating existing objects in a Space, by specifying only the required change instead of passing the entire updated object.
+<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/client/ChangeSet.htm">ChangeSet</a> allows updating existing objects in a Space, by specifying only the required change instead of passing the entire updated object.
 This reduces the required network traffic between the client and the Space, and the network traffic generated from replicating the changes between the Space instances (e.g between the primary Space instance and its backup).</p>
 
 <p><span class="tc-bold">Example</span></p>
@@ -279,7 +279,7 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
 
 <div class="tc-admon-refer">
   
-  <p><a href="./change-api-overview.htm/">The Change API</a></p>
+  <p><a href="change-api-overview.htm">The Change API</a></p>
 </div>
 
  <a id="read">&#160;</a>
@@ -292,7 +292,7 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
 
 <p>Each invocation of <code>read</code> may return a new object even if the same object is matched in the Space.</p>
 
-<p>If you want to read objects in the same order that they were written to the Space, perform the read objects in <a href="./fifo-overview.htm/">FIFO mode</a>.</p>
+<p>If you want to read objects in the same order that they were written to the Space, perform the read objects in <a href="fifo-overview.htm">FIFO mode</a>.</p>
 
 <div class="tc-admon-note">
   
@@ -308,7 +308,7 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
 <li>By SQLQuery</li>
 </ul>
 
-<p>To learn more about the different options, refer to <a href="./querying-the-space.htm/">Querying the Space</a></p>
+<p>To learn more about the different options, refer to <a href="querying-the-space.htm">Querying the Space</a></p>
 
 <p><span class="tc-bold">Example</span></p>
 
@@ -376,7 +376,7 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
 <li>Boosts the performance, because it perform multiple operations using one call. These methods return the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, these batch operations can be up to 10 times faster than multiple single-based operations.</li>
 <li>Should be handled with care, because they can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client process. Use the <a href="#space-iterator">GSIterator</a> to return the result in batches (paging) in such cases.</li>
 <li><span class="tc-bold">Does not support timeout</span> operations. The simple way to achieve this is by calling the <code>read</code> operation first with the proper timeout, and if non-null values are returned, perform the batch operation.</li>
-<li>Exception handling - operation may throw the following exceptions: <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/ReadMultipleException.htm/">ReadMultipleException</a></li>
+<li>Exception handling - operation may throw the following exceptions: <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/ReadMultipleException.htm">ReadMultipleException</a></li>
 </ul>
 
  <a id="readIfExists">&#160;</a>
@@ -402,9 +402,9 @@ If at the end of that time no value can be returned that would not interfere wit
 
 <h2 id="asynchronous-read">Asynchronous Read</h2>
 
-<p>The GigaSpace interface supports asynchronous (non-blocking) read operations through the GigaSpace interface. It returns a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.htm/">Future&lt;T&gt;</a> object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.</p>
+<p>The GigaSpace interface supports asynchronous (non-blocking) read operations through the GigaSpace interface. It returns a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.htm">Future&lt;T&gt;</a> object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.</p>
 
-<p>Alternatively, asyncRead also accept an implementation of <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.htm/">AsyncFutureListener</a>, which will have its <code>AsyncFutureListener.onResult</code> method called when the result has been populated. This does not affect the return type of the <code>Future&lt;T&gt;</code>, but provides an additional mechanism for handling the asynchronous response.</p>
+<p>Alternatively, asyncRead also accept an implementation of <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.htm">AsyncFutureListener</a>, which will have its <code>AsyncFutureListener.onResult</code> method called when the result has been populated. This does not affect the return type of the <code>Future&lt;T&gt;</code>, but provides an additional mechanism for handling the asynchronous response.</p>
 
 <p><span class="tc-bold">Example</span></p>
 
@@ -490,20 +490,20 @@ If at the end of that time no value can be returned that would not interfere wit
 
 <tr>
 <td align="left">query</td>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/ISpaceQuery.htm/">ISpaceQuery</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/ISpaceQuery.htm">ISpaceQuery</a></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.htm/">AsyncFutureListener</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.htm">AsyncFutureListener</a></td>
 <td align="left">Allows registering for a callback on an AsyncFuture, to be notified when a result arrives.</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ReadModifiers.htm/">ReadModifiers</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ReadModifiers.htm">ReadModifiers</a></td>
 <td align="left">Provides modifiers to customize the behavior of read operations.</td>
 <td align="left">NONE</td>
 <td align="left"></td>
@@ -578,9 +578,9 @@ If at the end of that time no value can be returned that would not interfere wit
 
 <div class="tc-admon-note">
   
-  <p>If you want to take objects from the Space in the same order they were written to the Space, perform the take objects in <a href="./fifo-support.htm/">FIFO mode</a>.</p>
+  <p>If you want to take objects from the Space in the same order they were written to the Space, perform the take objects in <a href="fifo-support.htm">FIFO mode</a>.</p>
 
-<p>Taking an object from the space may generate <a href="./notify-container-overview.htm/">notifications</a> to registered objects/queries.</p>
+<p>Taking an object from the space may generate <a href="notify-container-overview.htm">notifications</a> to registered objects/queries.</p>
 </div>
 
 <p>The take operation can be performed with the following options:</p>
@@ -594,7 +594,7 @@ If at the end of that time no value can be returned that would not interfere wit
 
 <div class="tc-admon-refer">
   
-  <p>To learn more about the different options, refer to <a href="./querying-the-space.htm/">Querying the Space</a>.</p>
+  <p>To learn more about the different options, refer to <a href="querying-the-space.htm">Querying the Space</a>.</p>
 </div>
 
 <p><span class="tc-bold">Example</span></p>
@@ -696,9 +696,9 @@ If at the end of that time no value can be returned that would not interfere wit
 
 <h2 id="asynchronous-take">Asynchronous Take</h2>
 
-<p>The GigaSpace interface supports asynchronous (non-blocking) take operations through the GigaSpace interface. It returns a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.htm/">Future&lt;T&gt;</a> object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.</p>
+<p>The GigaSpace interface supports asynchronous (non-blocking) take operations through the GigaSpace interface. It returns a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.htm">Future&lt;T&gt;</a> object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.</p>
 
-<p>Alternatively, asyncTake also accept an implementation of <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.htm/">AsyncFutureListener</a>, which will have its <code>AsyncFutureListener.onResult</code> method called when the result has been populated. This does not affect the return type of the <code>Future&lt;T&gt;</code>, but provides an additional mechanism for handling the asynchronous response.</p>
+<p>Alternatively, asyncTake also accept an implementation of <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.htm">AsyncFutureListener</a>, which will have its <code>AsyncFutureListener.onResult</code> method called when the result has been populated. This does not affect the return type of the <code>Future&lt;T&gt;</code>, but provides an additional mechanism for handling the asynchronous response.</p>
 
 <p><span class="tc-bold">Example</span></p>
 
@@ -782,20 +782,20 @@ If at the end of that time no value can be returned that would not interfere wit
 
 <tr>
 <td align="left">query</td>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/ISpaceQuery.htm/">ISpaceQuery</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/ISpaceQuery.htm">ISpaceQuery</a></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.htm/">AsyncFutureListener</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.htm">AsyncFutureListener</a></td>
 <td align="left">Allows registering for a callback on an AsyncFuture to be notified when a result arrives.</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.htm/">TakeModifiers</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.htm">TakeModifiers</a></td>
 <td align="left">Provides modifiers to customize the behavior of take operations.</td>
 <td align="left">NONE</td>
 <td align="left"></td>
@@ -803,7 +803,7 @@ If at the end of that time no value can be returned that would not interfere wit
 </tbody>
 </table>
 
-<p>For further details about each of the available modifiers, see <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.htm/">TakeModifiers</a>.</p>
+<p>For further details about each of the available modifiers, see <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.htm">TakeModifiers</a>.</p>
 
 <div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Method summary..." style="padding:10px;"><p>Take by template:</p>
 
@@ -919,7 +919,7 @@ void clear(ISpaceQuery&lt;T&gt; query) throws DataAccessException
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ClearModifiers.htm/">ClearModifiers</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ClearModifiers.htm">ClearModifiers</a></td>
 <td align="left">Provides modifiers to customize the behavior of the clear operations.</td>
 <td align="left">NONE</td>
 </tr>
@@ -990,7 +990,7 @@ int count(ISpaceQuery&lt;T&gt; query) throws DataAccessException
 </tr>
 
 <tr>
-<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/CountModifiers.htm/">CountModifiers</a></td>
+<td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/CountModifiers.htm">CountModifiers</a></td>
 <td align="left">Provides modifiers to customize the behavior of the count operations.</td>
 <td align="left">NONE</td>
 </tr>
@@ -1024,7 +1024,7 @@ int counterValue = wordount.getMycounter();
 
 <div class="tc-admon-refer">
   
-  <p><a href="./the-space-counters.htm/">The Space Counters</a></p>
+  <p><a href="the-space-counters.htm">The Space Counters</a></p>
 </div>
 
  <a id="aggregators">&#160;</a>
@@ -1093,7 +1093,7 @@ public class Person {
 
 <div class="tc-admon-refer">
   
-  <p><a href="./aggregators.htm/">Aggregators</a></p>
+  <p><a href="aggregators.htm">Aggregators</a></p>
 </div>
 
 <h1 id="async-extension">Async Extension</h1>

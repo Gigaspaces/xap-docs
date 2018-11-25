@@ -66,14 +66,14 @@ See below an example of a change operation which multiplies an integer property 
 
 <h1 id="the-name-of-a-custom-change-operation">The Name of a Custom Change Operation</h1>
 
-<p>The custom operation is treated like the built-in change operations (in fact the build in implementations are using the same mechanism), therefore the operation should have a unique name which is used in all the relevant places as described in the <a href="./change-api-advanced.htm/">Change API Advanced Page</a>, such as configuring which operations are supported by a <code>SpaceSynchronizationEndpoint</code> implementation, using it inside space and replication filters to identify which custom change operation is executed, etc.</p>
+<p>The custom operation is treated like the built-in change operations (in fact the build in implementations are using the same mechanism), therefore the operation should have a unique name which is used in all the relevant places as described in the <a href="change-api-advanced.htm">Change API Advanced Page</a>, such as configuring which operations are supported by a <code>SpaceSynchronizationEndpoint</code> implementation, using it inside space and replication filters to identify which custom change operation is executed, etc.</p>
 
 <h1 id="mandatory-implementation-requirements">Mandatory Implementation Requirements</h1>
 
 <p>When implementing a custom change operation, the following guidelines must be followed:</p>
 
 <p>The provided <code>MutableServerEntry</code> is wrapping the actual object which is kept in space, therefore it is crucial to understand when a value is retrieved from the entry
-it points to the actual reference in the data structure of the Space. The content of this reference should not be changed as it will directly affect the object in Space and will break data integrity, transaction management and visibility scoping (e.g. transaction abort will not restore the previous value). Changing a value should always be done via the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/server/MutableServerEntry.htm/#setPathValue(String, Object)">MutableServerEntry</a>.
+it points to the actual reference in the data structure of the Space. The content of this reference should not be changed as it will directly affect the object in Space and will break data integrity, transaction management and visibility scoping (e.g. transaction abort will not restore the previous value). Changing a value should always be done via the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/server/MutableServerEntry.htm#setPathValue(String, Object)">MutableServerEntry</a>.
 Moreover, if you want to change a property within that value by invoking a method on that object (e.g. if the value is a list, adding an item to the list), you must first clone the fetched value, and then invoke the method on the cloned copy. Otherwise, you will change the existing data structure in the space without going through the proper data update mechanism and will potentially break data integrity.</p>
 
 <p>Below you can find an example that adds the element 2 into an ArrayList that exists in the entry under a property named "listProperty". The result sent to client (if requested) is the size of the collection after the change. Note that we clone the ArrayList before modifying it as explained above.</p>
@@ -110,7 +110,7 @@ If the operation is not structured that way, the state can be inconsistent in th
 
 <h1 id="custom-operation-and-space-integration-points">Custom Operation and Space Integration Points</h1>
 
-<p>Using a custom operation with a <a href="../admin/cluster-replication-filters.htm/">Replication Filter</a>, <a href="./the-space-filters.htm/">Space Filter</a> and <a href="./space-synchronization-endpoint-api.htm/">Space Synchronization Endpoint</a> is supported
+<p>Using a custom operation with a <a href="../admin/cluster-replication-filters.htm">Replication Filter</a>, <a href="the-space-filters.htm">Space Filter</a> and <a href="space-synchronization-endpoint-api.htm">Space Synchronization Endpoint</a> is supported
 and behaves the same as the built-in operations. You can get a reference to the instance of the <code>CustomChangeOperation</code> by checking its name (or <code>instanceof</code>) and casting to the specific type.</p>
 
 <pre><code class="language-java">DataSyncChangeSet dataSyncChangeSet = ChangeDataSyncOperation.getChangeSet(dataSyncOperation);
@@ -214,7 +214,7 @@ public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
 
 <div class="tc-admon-refer">
   
-  <p><a href="./the-space-no-restart.htm/">Change code without restarts</a></p>
+  <p><a href="the-space-no-restart.htm">Change code without restarts</a></p>
 </div>
 
 </body>

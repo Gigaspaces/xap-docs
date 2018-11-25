@@ -9,7 +9,7 @@
 
 <div class="tc-admon-note">
   
-  <p>We recommend that you <a href="http://download.oracle.com/javaee/6/tutorial/doc/bnbpz.htm/">familiarize yourself with JPA</a> before reading this section. We also suggest that you review the <a href="/sbp/first-jpa-app.htm/">XAP PetClinic JPA Tutorial</a>, which describes how a standard JPA application (the Spring PetClinic) can be adapted to XAP JPA and deployed to the XAP runtime environment.</p>
+  <p>We recommend that you <a href="http://download.oracle.com/javaee/6/tutorial/doc/bnbpz.htm">familiarize yourself with JPA</a> before reading this section. We also suggest that you review the <a href="/sbp/first-jpa-app.htm">XAP PetClinic JPA Tutorial</a>, which describes how a standard JPA application (the Spring PetClinic) can be adapted to XAP JPA and deployed to the XAP runtime environment.</p>
 </div>
 
 <h1 id="xap-jpa-configuration">XAP JPA Configuration</h1>
@@ -88,7 +88,7 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("gigaspaces", 
 
 <h3 id="injection-using-spring">Injection using Spring</h3>
 
-<p>You can inject either an <code>EntityManager</code> or <code>EntityManagerFactory</code> using Spring. Before reading this, we recommend that you familiarize yourself with <a href="http://static.springsource.org/spring/docs/3.0.x/reference/orm.htm/#orm-jpa">Spring's JPA support</a>.</p>
+<p>You can inject either an <code>EntityManager</code> or <code>EntityManagerFactory</code> using Spring. Before reading this, we recommend that you familiarize yourself with <a href="http://static.springsource.org/spring/docs/3.0.x/reference/orm.htm#orm-jpa">Spring's JPA support</a>.</p>
 
 <p>The following example shows how to inject a Space-based <code>EntityManagerFactory</code>. The Spring XML configuration file declares a Space, an <code>EntityManagerFactory</code>, a transaction manager, and a JPA service bean (this is our DAO):</p>
 
@@ -156,7 +156,7 @@ public class JpaService {
 
 <div class="tc-admon-refer">
   
-  <p>For detailed information regarding the <code>persistence.xml</code> file, refer to the <a href="http://openjpa.apache.org/builds/2.0.0/apache-openjpa-2.0.0/docs/manual/jpa_overview_persistence.htm/#jpa_overview_persistence_xml">OpenJPA Manual</a>.</p>
+  <p>For detailed information regarding the <code>persistence.xml</code> file, refer to the <a href="http://openjpa.apache.org/builds/2.0.0/apache-openjpa-2.0.0/docs/manual/jpa_overview_persistence.htm#jpa_overview_persistence_xml">OpenJPA Manual</a>.</p>
 </div>
 
 <h2 id="listing-your-persistent-classes">Listing Your Persistent Classes</h2>
@@ -201,12 +201,12 @@ public class JpaService {
 <ol>
 <li>Enhance at build time using an Ant or a Maven script.</li>
 <li>Enhance at runtime  using OpenJPA's Java agent enhancer.</li>
-<li>When using Spring, you can <a href="http://static.springsource.org/spring/docs/3.0.x/reference/orm.htm/#orm-jpa-setup-lcemfb">specify a <code>LoadTimeWeaver</code></a> that will enhance the classes at load time.</li>
+<li>When using Spring, you can <a href="http://static.springsource.org/spring/docs/3.0.x/reference/orm.htm#orm-jpa-setup-lcemfb">specify a <code>LoadTimeWeaver</code></a> that will enhance the classes at load time.</li>
 </ol>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p>The first option (enhance at build time) is the best in terms of performance and suitability for the XAP runtime environment.For detailed information about how to enhance your entities, refer to the <a href="http://openjpa.apache.org/entity-enhancement.htm/">OpenJPA Entity Enhancement page</a>.</p>
+  <p>The first option (enhance at build time) is the best in terms of performance and suitability for the XAP runtime environment.For detailed information about how to enhance your entities, refer to the <a href="http://openjpa.apache.org/entity-enhancement.htm">OpenJPA Entity Enhancement page</a>.</p>
 </div>
 
 <h1 id="xap-jpa-entities">XAP JPA Entities</h1>
@@ -248,7 +248,7 @@ public class JpaService {
 
 <div class="tc-admon-note">
   
-  <p>Indexes should only be declared in the owning entity of a relationship. Examples are available on the <a href="./jpa-relationships.htm/">JPA Relationships</a> page.</p>
+  <p>Indexes should only be declared in the owning entity of a relationship. Examples are available on the <a href="jpa-relationships.htm">JPA Relationships</a> page.</p>
 </div>
 
 <p>THe following is an example of a basic JPA Entity:</p>
@@ -298,7 +298,7 @@ public class Trade {
 
 <div class="tc-admon-refer">
   
-  <p>For auto-generated ID declaration and complex object ID declaration, refer to <a href="./jpa-entity-id.htm/">JPA Entity ID</a>.</p>
+  <p>For auto-generated ID declaration and complex object ID declaration, refer to <a href="jpa-entity-id.htm">JPA Entity ID</a>.</p>
 </div>
 
 <p>The following is an example of a JPA Owner entity with a one-to-many relationship:</p>
@@ -472,7 +472,7 @@ Vehicle result2 = (Vehicle) query2.getSingleResult();
 
 <h1 id="interoperability">Interoperability</h1>
 
-<p>The XAP JPA implementation is fully interoperable with the XAP native <a href="./pojo-overview.htm/">POJO API</a>.
+<p>The XAP JPA implementation is fully interoperable with the XAP native <a href="pojo-overview.htm">POJO API</a>.
 For instance, you can persist a JPA entity and read it using the native POJO-driven Space API:</p>
 
 <pre><code class="language-java">@Entity
@@ -565,9 +565,9 @@ result = gigaspace.read(query);
 <div class="tc-admon-refer">
   
   <ul>
-<li>SQLQuery syntax-like queries (<a href="./query-sql.htm/">SQLQuery</a>).</li>
-<li>XAP Tasks (<a href="./task-execution-overview.htm/">Task Execution over the Space</a>).</li>
-<li>XAP Dynamic Scripts (<a href="./task-dynamic-language.htm/">Dynamic Language Tasks</a>).</li>
+<li>SQLQuery syntax-like queries (<a href="query-sql.htm">SQLQuery</a>).</li>
+<li>XAP Tasks (<a href="task-execution-overview.htm">Task Execution over the Space</a>).</li>
+<li>XAP Dynamic Scripts (<a href="task-dynamic-language.htm">Dynamic Language Tasks</a>).</li>
 </ul>
 </div>
 
@@ -588,7 +588,7 @@ author = (Author) query.getSingleResult();
 
 <div class="tc-admon-refer">
   
-  <p>For more details about the SQLQuery syntax, refer to the <a href="./query-sql.htm/">SQLQuery</a> page.</p>
+  <p>For more details about the SQLQuery syntax, refer to the <a href="query-sql.htm">SQLQuery</a> page.</p>
 </div>
 
 <h2 id="task-execution">Task Execution</h2>
@@ -659,7 +659,7 @@ Integer result = (Integer) query.getSingleResult(); // Task execution always ret
 
 <div class="tc-admon-refer">
   
-  <p>For more information about XAP tasks, refer to <a href="./task-execution-overview.htm/">Task Execution over the Space</a>.</p>
+  <p>For more information about XAP tasks, refer to <a href="task-execution-overview.htm">Task Execution over the Space</a>.</p>
 </div>
 
 <h2 id="dynamic-script-execution">Dynamic Script Execution</h2>
@@ -685,14 +685,14 @@ Integer result = (Integer) query.getSingleResult();  // Script execution always 
 
 <div class="tc-admon-refer">
   
-  <p>For more information about dynamic script execution, refer to <a href="./task-dynamic-language.htm/">Dynamic Language Tasks</a>.</p>
+  <p>For more information about dynamic script execution, refer to <a href="task-dynamic-language.htm">Dynamic Language Tasks</a>.</p>
 </div>
 
 <h1 id="xap-jpa-limitations">XAP JPA Limitations</h1>
 
 <div class="tc-admon-refer">
   
-  <p>For a list of unsupported JPA features and limitations,  refer to <a href="./jpa-limitations.htm/">XAP JPA Limitations</a>.</p>
+  <p>For a list of unsupported JPA features and limitations,  refer to <a href="jpa-limitations.htm">XAP JPA Limitations</a>.</p>
 </div>
 
 </body>

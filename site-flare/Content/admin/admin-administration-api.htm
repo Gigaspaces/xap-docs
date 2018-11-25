@@ -5,7 +5,7 @@
 <h1>Administration API</h1>
   
 
-<p>The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.htm/#gsa">XAP Agent</a>, <a href="../overview/the-runtime-environment.htm/#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.htm/#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a>, Processing Unit, and Spaces.</p>
+<p>The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.htm#gsa">XAP Agent</a>, <a href="../overview/the-runtime-environment.htm#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.htm#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>, Processing Unit, and Spaces.</p>
 
 <p><span class="tc-bold">Dependencies</span></p>
 
@@ -20,7 +20,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.htm/">Maven Artifacts</a>.</p>
+  <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
 </div>
 
 <h1 id="examples">Examples</h1>
@@ -276,14 +276,14 @@ public void space() {
 
 <div class="tc-admon-refer">
   
-  <p>A fully running example of a <a href="/sbp/scaling-agent.htm/">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
+  <p>A fully running example of a <a href="/sbp/scaling-agent.htm">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
 </div>
 
 <h1 id="admin-construction">Admin Construction</h1>
 
 <p>The Admin API uses the <code>AdminFactory</code> in order to create <code>Admin</code> instances. After you finish working with the <code>Admin</code>, its <code>Admin#close()</code> method should be called.</p>
 
-<p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.htm/#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
+<p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
 
 <h1 id="discovery-process">Discovery Process</h1>
 
@@ -371,7 +371,7 @@ public void space() {
 <pre><code class="language-java">Admin admin = new AdminFactory().addGroup("gigaspaces").credentials("user", "password").createAdmin();
 </code></pre>
 
-<p>For security other than username/password, refer to the <a href="../security/custom-authentication.htm/">Authentication</a> topic in the <a href="../security/index.htm/">Security</a> section of the Administration guide.</p>
+<p>For security other than username/password, refer to the <a href="../security/custom-authentication.htm">Authentication</a> topic in the <a href="../security/index.htm">Security</a> section of the Administration guide.</p>
 
 <h2 id="space-deployment">Space Deployment</h2>
 

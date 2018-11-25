@@ -7,11 +7,11 @@
 
 <p>GigaSpaces XAP is shipped with built-in support for <a href="http://influxdb.com/" target="_blank" >InfluxDB</a> v0.9. This page explains how to configure XAP to report metrics to InfluxDB.</p>
 
-<p>Configuration takes place in <code>metrics.xml</code>, which resides in <code>XAP_HOME/config/metrics</code>. For more information see <a href="./metrics-configuration.htm/">Configuration</a>.</p>
+<p>Configuration takes place in <code>metrics.xml</code>, which resides in <code>XAP_HOME/config/metrics</code>. For more information see <a href="metrics-configuration.htm">Configuration</a>.</p>
 
 <h1 id="usage">Usage</h1>
 
-<p>InfluxDB provides an <a href="https://influxdb.com/docs/v0.9/guides/writing_data.htm/" target="_blank" >HTTP API</a> for writing data, which is implemented by XAP. For example, if InfluxDB is installed on <code>localhost</code> and you want to report metrics to the <code>mydb</code> database, use the following configuration:</p>
+<p>InfluxDB provides an <a href="https://influxdb.com/docs/v0.9/guides/writing_data.htm" target="_blank" >HTTP API</a> for writing data, which is implemented by XAP. For example, if InfluxDB is installed on <code>localhost</code> and you want to report metrics to the <code>mydb</code> database, use the following configuration:</p>
 
 <pre><code class="language-xml">&lt;metrics-configuration&gt;
     &lt;reporters&gt;
@@ -33,7 +33,7 @@
 
 <h3 id="retention-policy">Retention Policy</h3>
 
-<p>InfluxDB uses <a href="https://influxdb.com/docs/v0.9/concepts/glossary.htm/#retention-policy" target="_blank" >retention policies</a> to define how long the data is stored and how it's replicated accross the cluster. You can configure a <code>retention-policy</code> property to instruct the reporter which retention policy to write to. If not set, the default retention policy of the database will be used.</p>
+<p>InfluxDB uses <a href="https://influxdb.com/docs/v0.9/concepts/glossary.htm#retention-policy" target="_blank" >retention policies</a> to define how long the data is stored and how it's replicated accross the cluster. You can configure a <code>retention-policy</code> property to instruct the reporter which retention policy to write to. If not set, the default retention policy of the database will be used.</p>
 
 <h3 id="report-length">Report Length</h3>
 
@@ -41,7 +41,7 @@
 
 <h3 id="udp">UDP</h3>
 
-<p>InfluxDB allows you to <a href="https://influxdb.com/docs/v0.9/write_protocols/udp.htm/" target="_blank" >write data through UDP</a>. Note that by default, no InfluxDB ports are open to UDP. To configure InfluxDB to support writes over UDP you must adjust its config file. Once you do, you need to configure XAP InfluxDB reporter to use <code>udp</code> by adding a <code>&lt;property name="protocol" value="udp"/&gt;</code> property to the configuration. You should also specify the port you've set in InfluxDB config file.</p>
+<p>InfluxDB allows you to <a href="https://influxdb.com/docs/v0.9/write_protocols/udp.htm" target="_blank" >write data through UDP</a>. Note that by default, no InfluxDB ports are open to UDP. To configure InfluxDB to support writes over UDP you must adjust its config file. Once you do, you need to configure XAP InfluxDB reporter to use <code>udp</code> by adding a <code>&lt;property name="protocol" value="udp"/&gt;</code> property to the configuration. You should also specify the port you've set in InfluxDB config file.</p>
 
 <p>Note that when using <code>udp</code> the database is configured for the UDP endpoint at the InfluxDB config file, so there's no need to configure it in XAP.</p>
 

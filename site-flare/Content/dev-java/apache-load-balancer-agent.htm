@@ -7,11 +7,11 @@
 
 <p>XAP comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.</p>
 
-<p>The integration dynamically creates and updates the  <a href="http://httpd.apache.org/docs/2.2/mod/mod_proxy_balancer.htm/" target="_blank" >mod_proxy_balancer</a> configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.</p>
+<p>The integration dynamically creates and updates the  <a href="http://httpd.apache.org/docs/2.2/mod/mod_proxy_balancer.htm" target="_blank" >mod_proxy_balancer</a> configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.</p>
 
 <p>General information on how to enable the mod_proxy load balancer and configuration can be found in the <a href="https://wiki.eclipse.org/Jetty/Howto/Configure_mod_proxy" target="_blank" >Jetty mod_proxy docs</a>. Note, the load balancer actual configuration of specific balancer members are generated automatically as explained below.</p>
 
-<p>Similar agents can be implemented for other HTTP load-balancers such as <a href="http://www.f5.com" target="_blank" >F5</a>, <a href="http://www.radware.com" target="_blank" >Radware</a>,<a href="http://www.cisco.com/en/US/products/ps6906" target="_blank" >CISCO ACE</a>, <a href="http://www.barracudanetworks.com" target="_blank" >Barracuda</a> etc., using the <a href="./administration-and-monitoring-overview.htm/">Administration and Monitoring API</a>. See the <a href="/sbp/web-load-balancer-agent-pu.htm/">Web Load Balancer Agent PU</a> for details.</p>
+<p>Similar agents can be implemented for other HTTP load-balancers such as <a href="http://www.f5.com" target="_blank" >F5</a>, <a href="http://www.radware.com" target="_blank" >Radware</a>,<a href="http://www.cisco.com/en/US/products/ps6906" target="_blank" >CISCO ACE</a>, <a href="http://www.barracudanetworks.com" target="_blank" >Barracuda</a> etc., using the <a href="administration-and-monitoring-overview.htm">Administration and Monitoring API</a>. See the <a href="/sbp/web-load-balancer-agent-pu.htm">Web Load Balancer Agent PU</a> for details.</p>
 
 <h1 id="how-it-works">How it Works?</h1>
 

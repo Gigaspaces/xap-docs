@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+<head><title></title></head>
 <body>
 <h1>Routing In Partitioned Spaces</h1>
   
 
-<p>A <a href="../overview/terminology.htm/">partitioned space</a> provides the ability to perform space operations against multiple spaces from a single proxy transparently. The primary goal of the partitioned space is to provide unlimited In-Memory space storage size and group objects into the same partition to speed up performance. The initial intention is to write data into the partitioned space, and route query operations based on the template data.</p>
+<p>A <a href="../overview/terminology.htm">partitioned space</a> provides the ability to perform space operations against multiple spaces from a single proxy transparently. The primary goal of the partitioned space is to provide unlimited In-Memory space storage size and group objects into the same partition to speed up performance. The initial intention is to write data into the partitioned space, and route query operations based on the template data.</p>
 
 <p>Note that in such a configuration, the different spaces defined as partitions are not aware of each other ("Share Nothing") - the client proxy is the one that is aware of the partitioned space configuration.</p>
 
@@ -17,7 +17,7 @@
 
 <p>In order to accomplish that a <span class="tc-bold">routing property</span> can be defined on the entry type. When the proxy is asked to write an entry, it uses the entry's routing property's hash code to determine the relevant partition for it:</p>
 
-<pre><code class="language-java">Target partition space ID = safeABS(routing field hashcode) % (number of partitions)
+<pre xml:space="preserve"><code class="language-java">Target partition space ID = safeABS(routing field hashcode) % (number of partitions)
 
 int safeABS( int value)
 {
@@ -25,7 +25,7 @@ int safeABS( int value)
 }
 </code></pre>
 
-<p>The routing property can be explicitly set using the <code>@SpaceRouting</code> annotation for <a href="./pojo-overview.htm/">POJO entries</a> or via the <code>SpaceTypeDescriptorBuilder</code> for <a href="./document-api.htm/">document entries</a>. If the routing property is not explicitly set, the space id property is used for routing. If the space id property is not defined, the first indexed property (alphabetically) is used for routing, otherwise the first property (alphabetically) is used for routing.</p>
+<p>The routing property can be explicitly set using the <code>@SpaceRouting</code> annotation for <a href="pojo-overview.htm">POJO entries</a> or via the <code>SpaceTypeDescriptorBuilder</code> for <a href="document-api.htm">document entries</a>. If the routing property is not explicitly set, the space id property is used for routing. If the space id property is not defined, the first indexed property (alphabetically) is used for routing, otherwise the first property (alphabetically) is used for routing.</p>
 
 <div class="tc-admon-note">
   
@@ -35,7 +35,7 @@ int safeABS( int value)
 <div class="tc-admon-note">
   
   <p>An auto-generated space ID can be used for routing as well. If the space ID is not defined in a document type, it will be implicitly defined to auto-generate the ID and routing information. (In earlier versions this was not supported, and was ignored in the implicit routing property selection mechanism.)</p>
-</div>}</p>
+</div>}
 
 <p>In some scenarios, the data model does not require sophisticated partitioning, and simple space-id-based partitioning is all that's needed (hence the default). In other scenarios this is not enough. For example, suppose we have a <span class="tc-bold">Customer</span> class with a <span class="tc-bold">customerId</span>, and an <span class="tc-bold">Order</span> class with an <span class="tc-bold">orderId</span> and <span class="tc-bold">customerId</span>, and we want all the orders of each customer to be co-located with it in the same partition. In that case we'd explicitly set the routing property of <span class="tc-bold">Order</span> to <span class="tc-bold">customerId</span> to ensure they're co-located.</p>
 
@@ -49,7 +49,7 @@ int safeABS( int value)
 
 <div class="tc-admon-refer">
   
-  <p>See <a href="../admin/clustered-vs-non-clustered-proxies.htm/#Writing New Objects from a Collocated Business Logic">Writing New Objects from a Collocated Business Logic</a> for details.</p>
+  <p>See <a href="../admin/clustered-vs-non-clustered-proxies.htm#Writing New Objects from a Collocated Business Logic">Writing New Objects from a Collocated Business Logic</a> for details.</p>
 </div>
 
  <a id="Writing">&#160;</a>
@@ -85,7 +85,7 @@ int safeABS( int value)
 
 <div class="tc-admon-refer">
   
-  <p>For more details, see <a href="./space-persistency-initial-load.htm/">Space Persistency Initial Load</a>.</p>
+  <p>For more details, see <a href="space-persistency-initial-load.htm">Space Persistency Initial Load</a>.</p>
 </div>
 
 <h1 id="non-partitioned-operations">Non-Partitioned Operations</h1>

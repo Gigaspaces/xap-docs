@@ -20,23 +20,23 @@
 - configures the set of objects to be archived.<br/>
 - supports Space fail-over, and Big-Data storage unavailability.<br/>
 - The persisted objects, can then be read by 3rd party tools directly from the Big-Data storage.<br/>
-- Big-Data storage is abstracted with the <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/archive/ArchiveOperationHandler.htm/">ArchiveOperationHandler</a> interface.<br/>
-- <a href="./cassandra-archive-operation-handler.htm/">Cassandra Archive Operation Handler</a> implementation is available out of the box.<br/>
-- <a href="./mongodb-archive-operation-handler.htm/">MongoDB Archive Operation Handler</a> implementation is available out of the box.</p>
+- Big-Data storage is abstracted with the <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/archive/ArchiveOperationHandler.htm">ArchiveOperationHandler</a> interface.<br/>
+- <a href="cassandra-archive-operation-handler.htm">Cassandra Archive Operation Handler</a> implementation is available out of the box.<br/>
+- <a href="mongodb-archive-operation-handler.htm">MongoDB Archive Operation Handler</a> implementation is available out of the box.</p>
 
 <h2 id="archive-container-vs-space-persistency">Archive Container vs Space Persistency</h2>
 
-<p>The Archive Container differs from <a href="./space-persistency-overview.htm/">Space Persistency</a> in the following ways:</p>
+<p>The Archive Container differs from <a href="space-persistency-overview.htm">Space Persistency</a> in the following ways:</p>
 
 <ul>
 <li>Persisted objects are not read back from the Big-Data storage into the Space.</li>
-<li>Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the <a href="./space-persistency-overview.htm/">Space Persistency</a>).</li>
-<li>Archive Container uses the <a href="./polling-container-overview.htm/">Polling Container</a> behind the scenes, which can be co-located with each space partition.</li>
+<li>Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the <a href="space-persistency-overview.htm">Space Persistency</a>).</li>
+<li>Archive Container uses the <a href="polling-container-overview.htm">Polling Container</a> behind the scenes, which can be co-located with each space partition.</li>
 </ul>
 
 <h2 id="archive-container-running-side-by-side-with-space-persistency">Archive Container running side-by-side with Space Persistency</h2>
 
-<p>There are use-cases in which the same Space uses both an Archive Container and Space Persistency. Normally types that are archived by the Archive Container, should not be handled by Space Persistency. Hence, these types should be marked as <a href="./transient-entries.htm/">Transient</a>.
+<p>There are use-cases in which the same Space uses both an Archive Container and Space Persistency. Normally types that are archived by the Archive Container, should not be handled by Space Persistency. Hence, these types should be marked as <a href="transient-entries.htm">Transient</a>.
 In cases where the same type is handled by both, configure the Archive Container and EDS to modify a different table/keyspace.</p>
 
 <h1 id="configuration">Configuration</h1>
@@ -194,7 +194,7 @@ configurer.destroy();
 </div>
 
 <p>The example above removes (takeMultiple) objects with a certain timestamp member value from space and writes them onto Cassandra.
-The takeMultiple operations are performed on the configured <a href="./the-gigaspace-interface-overview.htm/">GigaSpace</a> bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
+The takeMultiple operations are performed on the configured <a href="the-gigaspace-interface-overview.htm">GigaSpace</a> bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
 The archive operation is performed on the bean that implements the ArchiveOpertaionHandler interface, in this case the CassandraArchiveOperationHandler bean.</p>
 
 <p>For a  real-world example consult the streaming big data example :</p>
@@ -215,7 +215,7 @@ The archive operation is performed on the bean that implements the ArchiveOperta
 
 <h1 id="static-template-definition">Static Template Definition</h1>
 
-<p>When removing objects from the space, a template is defined, creating a virtualized subset of data within the space that matches it. GigaSpaces supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. GigaSpaces allows the use of <a href="./query-sql.htm/">SQLQuery</a> in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:</p>
+<p>When removing objects from the space, a template is defined, creating a virtualized subset of data within the space that matches it. GigaSpaces supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. GigaSpaces allows the use of <a href="query-sql.htm">SQLQuery</a> in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-java">@Archive
 public class ProcessedTweetsFilter {
@@ -294,12 +294,12 @@ If the archive handler does not support batch archiving, or if the archive conta
 
 <h1 id="default-values-of-archive-container-configuration-parameters">Default Values of Archive Container Configuration Parameters</h1>
 
-<p>The default values for all of the polling container configuration parameters such as <code>concurrent-consumers, batch-size, receive-timeout</code> and others can be found in the JavaDoc (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/archive/ArchivePollingContainer.htm/">ArchivePollingContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/polling/SimplePollingEventListenerContainer.htm/">SimplePollingEventListenerContainer</a> and  <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/events/polling/AbstractPollingEventListenerContainer.htm/">AbstractPollingEventListenerContainer</a>.
+<p>The default values for all of the polling container configuration parameters such as <code>concurrent-consumers, batch-size, receive-timeout</code> and others can be found in the JavaDoc (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/archive/ArchivePollingContainer.htm">ArchivePollingContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/events/polling/SimplePollingEventListenerContainer.htm">SimplePollingEventListenerContainer</a> and  <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/events/polling/AbstractPollingEventListenerContainer.htm">AbstractPollingEventListenerContainer</a>.
 For example, <code>concurrent-consumers</code> default value is documented in the method <code>SimplePollingEventListenerContainer.setConcurrentConsumers(int)</code></p>
 
 <h1 id="fifo-grouping">FIFO Grouping</h1>
 
-<p>The FIFO Grouping designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, it lets you have a higher level of granularity by having FIFO queue maintained according to a specific value of a specific property. For more details see <a href="./fifo-grouping.htm/">FIFO grouping</a>.</p>
+<p>The FIFO Grouping designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, it lets you have a higher level of granularity by having FIFO queue maintained according to a specific value of a specific property. For more details see <a href="fifo-grouping.htm">FIFO grouping</a>.</p>
 
 <h1 id="concurrent-consumers">Concurrent Consumers</h1>
 
@@ -308,7 +308,7 @@ In order to archive objects using multiple consumer threads, in the same order t
 
 <ul>
 <li>You may start multiple archive containers consuming data in FIFO manner , each running a single consumer thread using different (mutually exclusive) templates.</li>
-<li>You may use one archive container with multiple consumer threads and enable FIFO Grouping. The FIFO order of each value is not broken. See <a href="./fifo-grouping.htm/">FIFO Grouping</a> page for more details.</li>
+<li>You may use one archive container with multiple consumer threads and enable FIFO Grouping. The FIFO order of each value is not broken. See <a href="fifo-grouping.htm">FIFO Grouping</a> page for more details.</li>
 </ul>
 
 <p>Here is an example of an archive container with 3 concurrent consumers and 5 maximum concurrent consumers and fifo grouping enabled:</p>

@@ -123,7 +123,7 @@ The following table lists the EDS interfaces methods replaced by the new Space P
 
 <h1 id="configuration-changes">Configuration Changes</h1>
 
-<p>When using <a href="./space-persistency-overview.htm/">Space Persistency</a> - the same space properties used to configure the EDS can be used with two exceptions:</p>
+<p>When using <a href="space-persistency-overview.htm">Space Persistency</a> - the same space properties used to configure the EDS can be used with two exceptions:</p>
 
 <ul>
 <li><p>"space-config.external-data-source.usage" specifies the EDS operation mode (read-only or read-write) is no longer used and the operation mode is determined by whether a <code>SpaceSynchronizationEndpoint</code> implementation has been specified or not. If it has been specified it means the operation mode is "read-write', otherwise "read-only'.</p></li>
@@ -133,7 +133,7 @@ The following table lists the EDS interfaces methods replaced by the new Space P
 
 <h1 id="built-in-hibernate-implementation">Built In Hibernate Implementation</h1>
 
-<p>GigaSpaces provides a built in Hibernate EDS implementation. This implementation has been adjusted to work with the new <a href="./space-persistency-overview.htm/">Space Persistency</a> APIs. Therefore, two new Hibernate implementation classes were created: <code>DefaultHibernateSpaceDataSource</code> and <code>DefaultHibernateSpaceSynchronizationEndpoint</code>.</p>
+<p>GigaSpaces provides a built in Hibernate EDS implementation. This implementation has been adjusted to work with the new <a href="space-persistency-overview.htm">Space Persistency</a> APIs. Therefore, two new Hibernate implementation classes were created: <code>DefaultHibernateSpaceDataSource</code> and <code>DefaultHibernateSpaceSynchronizationEndpoint</code>.</p>
 
 <p>The following example shows how to configure a space with a Hibernate <code>SpaceDataSource</code> and a Mirror service with a Hibernate <code>SpaceSynchronizationEndpoint</code>:</p>
 

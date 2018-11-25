@@ -39,7 +39,7 @@ spring-security-config-location = ../config/security/security-config.xml
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p>For convenience, the template properties <code>config/security/spring-security.properties</code> can be renamed to <code>security.properties</code> or referenced using a system property (see <a href="./security-configurations.htm/">Security Configurations</a>).</p>
+  <p>For convenience, the template properties <code>config/security/spring-security.properties</code> can be renamed to <code>security.properties</code> or referenced using a system property (see <a href="security-configurations.htm">Security Configurations</a>).</p>
 </div>
 
 <h1 id="logging">Logging</h1>
@@ -84,7 +84,7 @@ public class Main {
 
 <h1 id="gigaspaces-security-authorities">GigaSpaces Security Authorities</h1>
 
-<p>GigaSpaces provides a set of <a href="./security-authorities.htm/">Security Authorities</a> which can be stored as a String in any external directory. Much like the Spring's Security <code>GrantedAuthority</code> s which translate to and from a String.</p>
+<p>GigaSpaces provides a set of <a href="security-authorities.htm">Security Authorities</a> which can be stored as a String in any external directory. Much like the Spring's Security <code>GrantedAuthority</code> s which translate to and from a String.</p>
 
 <p>Lets take for example a Box-Office employee which has <code>READ</code> privileges, for class "eg.cinema.Movie".
 We convert the class expression using the <code>WildcardExpressionToFilterConverter</code> methods. This converter takes in an expression, for example a regular expression expressing the permitted classes the employee can read.</p>

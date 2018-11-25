@@ -5,7 +5,7 @@
 <h1>Hibernate Integration</h1>
   
 
-<p>XAP comes with a built in implementation of <a href="./space-persistency-overview.htm/">Space Persistency</a> APIs for Hibernate. This implementation is an extension of the <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> classes. The implementation allows a custom objects persistency using Hibernate mappings.</p>
+<p>XAP comes with a built in implementation of <a href="space-persistency-overview.htm">Space Persistency</a> APIs for Hibernate. This implementation is an extension of the <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> classes. The implementation allows a custom objects persistency using Hibernate mappings.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/HibernateSpacedataSource.jpg" alt="HibernateSpacedataSource.jpg" /></p>
 </div>
@@ -14,13 +14,13 @@
 
 <h1 id="default-hibernate-space-persistency-implementation">Default Hibernate Space Persistency Implementation</h1>
 
-<p><code>DefaultHibernateSpaceDataSource</code> and <code>Default</code> based on <a href="http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/Session.htm/">Hibernate Session</a>.</p>
+<p><code>DefaultHibernateSpaceDataSource</code> and <code>Default</code> based on <a href="http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/Session.htm">Hibernate Session</a>.</p>
 
 <h1 id="stateless-hibernate-space-persistency-implementation">Stateless Hibernate Space Persistency Implementation</h1>
 
-<p><code>StatelessHibernateSpaceDataSource</code> and <code>Stateless</code> based on Hibernate <a href="http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/StatelessSession.htm/">StatelessSession</a>. This implementation is faster than the <code>Default Hibernate Space Persistency Implementation</code>, but it does not have first level cache, as well as does not perform any cascading operations (both in read operations as well as dirty operations).</p>
+<p><code>StatelessHibernateSpaceDataSource</code> and <code>Stateless</code> based on Hibernate <a href="http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/StatelessSession.htm">StatelessSession</a>. This implementation is faster than the <code>Default Hibernate Space Persistency Implementation</code>, but it does not have first level cache, as well as does not perform any cascading operations (both in read operations as well as dirty operations).</p>
 
-<p>The <code>Hibernate Space Persistency Implementation</code> is used both with the <a href="./direct-persistency.htm/">Synchronous</a> and the <a href="./asynchronous-persistency-with-the-mirror.htm/">Asynchronous Persistency</a> modes.</p>
+<p>The <code>Hibernate Space Persistency Implementation</code> is used both with the <a href="direct-persistency.htm">Synchronous</a> and the <a href="asynchronous-persistency-with-the-mirror.htm">Asynchronous Persistency</a> modes.</p>
 
 <h1 id="configuration">Configuration</h1>
 
@@ -153,7 +153,7 @@
   <p>Make sure your POJO @SpaceId is defined on the same property as the Hibernate @Id. This is necessary for proper object mapping.</p>
 </div>
 
-<p>See the <a href="./modeling-your-data.htm/">POJO Metadata</a> for details about these decorations.</p>
+<p>See the <a href="modeling-your-data.htm">POJO Metadata</a> for details about these decorations.</p>
 
 <pre><code class="language-java">package com.mycompany.app.common;
 
@@ -273,13 +273,13 @@ public class Data {
 
 <tr>
 <td align="left">augmentInitialLoadEntries</td>
-<td align="left">Since 10.0. Feature flag for intelligent partition-specific initial load of entries. Read <a href="./space-persistency-initial-load.htm/#controlling-the-initial-load">here</a> for more details.</td>
+<td align="left">Since 10.0. Feature flag for intelligent partition-specific initial load of entries. Read <a href="space-persistency-initial-load.htm#controlling-the-initial-load">here</a> for more details.</td>
 <td align="left">true</td>
 </tr>
 
 <tr>
 <td align="left">initialLoadQueryScanningBasePackages</td>
-<td align="left">Since 10.0. A list of base packages to be scanned for special initial load query methods. Read <a href="./space-persistency-initial-load.htm/#controlling-the-initial-load">here</a> for more details.</td>
+<td align="left">Since 10.0. A list of base packages to be scanned for special initial load query methods. Read <a href="space-persistency-initial-load.htm#controlling-the-initial-load">here</a> for more details.</td>
 <td align="left"></td>
 </tr>
 </tbody>

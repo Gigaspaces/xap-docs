@@ -6,9 +6,9 @@
   
 
 <p>The standalone processing unit container allows you to run a processing unit in standalone mode, which means that the processing unit constructs its own dedicated classloader, and automatically includes it its classpath all of the jar files located under the processing unit's <code>lib</code> directory.
-It's implementation class is <a href="[%=Links.ApiJavaDoc%]/org/openspaces/pu/container/standalone/StandaloneProcessingUnitContainer.htm/">StandaloneProcessingUnitContainer</a>.</p>
+It's implementation class is <a href="[%=Links.ApiJavaDoc%]/org/openspaces/pu/container/standalone/StandaloneProcessingUnitContainer.htm">StandaloneProcessingUnitContainer</a>.</p>
 
-<p>The standalone processing unit container is built around Spring's <code>ApplicationContext</code> with several extensions relevant to GigaSpaces, such as <a href="./obtaining-cluster-information.htm/">ClusterInfo</a>.
+<p>The standalone processing unit container is built around Spring's <code>ApplicationContext</code> with several extensions relevant to GigaSpaces, such as <a href="obtaining-cluster-information.htm">ClusterInfo</a>.
 It contains a <code>main()</code> method and can be started from an external script or programmatically by using the <code>ProcessingUnitContainerProvider</code> abstraction.</p>
 
 <p>It should be used when you would like to run your processing unit in a non-managed environment (outside of the service grid) or from within your own code, and still benefit from the automatic classpath creation as with the managed mode.</p>
@@ -30,7 +30,7 @@ It contains a <code>main()</code> method and can be started from an external scr
 <tbody>
 <tr>
 <td align="left">-config [configLocation]</td>
-<td align="left">Allows you to set/add a processing unit deployment descriptor location.<br/>Follows the Spring <a href="http://static.springframework.org/spring/docs/2.5.x/reference/resources.htm/#resources-resourceloader">Resource Loader</a> including <a href="http://static.springframework.org/spring/docs/2.5.x/reference/resources.htm/#resources-app-ctx-wildcards-in-resource-paths">ant style patterns</a>. This parameter can be specified multiple times.<br/>The default is <span class="tc-bold">classpath*:/META-INF/spring/pu.xml</span>.</td>
+<td align="left">Allows you to set/add a processing unit deployment descriptor location.<br/>Follows the Spring <a href="http://static.springframework.org/spring/docs/2.5.x/reference/resources.htm#resources-resourceloader">Resource Loader</a> including <a href="http://static.springframework.org/spring/docs/2.5.x/reference/resources.htm#resources-app-ctx-wildcards-in-resource-paths">ant style patterns</a>. This parameter can be specified multiple times.<br/>The default is <span class="tc-bold">classpath*:/META-INF/spring/pu.xml</span>.</td>
 </tr>
 
 <tr>
@@ -40,12 +40,12 @@ It contains a <code>main()</code> method and can be started from an external scr
 
 <tr>
 <td align="left">-properties [property file location]</td>
-<td align="left">Allows you to <a href="./deployment-properties.htm/">inject properties</a> to the processing unit at deployment time.</td>
+<td align="left">Allows you to <a href="deployment-properties.htm">inject properties</a> to the processing unit at deployment time.</td>
 </tr>
 
 <tr>
 <td align="left">-properties embed://[property1 name]=[property1 value]; <br/> [property2 name]=[property2 value]</td>
-<td align="left">Allows you to <a href="./deployment-properties.htm/">directly inject properties</a> to the processing unit at startup time.</td>
+<td align="left">Allows you to <a href="deployment-properties.htm">directly inject properties</a> to the processing unit at startup time.</td>
 </tr>
 </tbody>
 </table>

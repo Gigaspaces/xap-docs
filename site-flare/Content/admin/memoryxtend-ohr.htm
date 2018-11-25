@@ -56,11 +56,11 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 </div>
 </div>
 
-<p>The  general <a href="./memoryxtend-overview.htm/#configuration">MemoryXtend configuration options</a> also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.</p>
+<p>The  general <a href="memoryxtend-overview.htm#configuration">MemoryXtend configuration options</a> also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.</p>
 
 <div class="tc-admon-note">
   
-  <p>For an example of how to configure the on-heap cache properties, see the <a href="./memoryxtend-overview.htm/#on-heap-cache">MemoryXtend overview</a> topic.</p>
+  <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.htm#on-heap-cache">MemoryXtend overview</a> topic.</p>
 </div>
 
 <h2 id="defining-the-memory-threshold">Defining the Memory Threshold</h2>
@@ -78,7 +78,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
 <div class="tc-admon-important">
   
-  <p>If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular <a href="../dev-java/memory-management-overview.htm/">memory manager</a>.</p>
+  <p>If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular <a href="../dev-java/memory-management-overview.htm">memory manager</a>.</p>
 </div>
 
 <h1 id="advanced-configuration">Advanced Configuration</h1>
@@ -143,8 +143,8 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 <p>The amount of used off-heap memory can be tracked using the following:</p>
 
 <ul>
-<li>Metrics - The <code>space_blobstore_off-heap_used-bytes_total</code> metric, as described on the <a href="./metrics-bundled.htm/#blobstore-operations">Metrics</a> page.</li>
-<li>Admin API - Thru <a href="[%=Links.ApiJavaDoc%]/index.htm/?org/openspaces/admin/space/SpaceInstanceStatistics.htm/#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
+<li>Metrics - The <code>space_blobstore_off-heap_used-bytes_total</code> metric, as described on the <a href="metrics-bundled.htm#blobstore-operations">Metrics</a> page.</li>
+<li>Admin API - Thru <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/admin/space/SpaceInstanceStatistics.htm#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
 <li>Web Management Console - In the Space instances view, right-click any of the columns in the table and add the <span class="tc-bold">Used Off-Heap</span> column.</li>
 </ul>
 
