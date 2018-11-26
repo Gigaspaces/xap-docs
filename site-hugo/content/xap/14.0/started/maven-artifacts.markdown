@@ -70,7 +70,7 @@ This section lists Premium artifacts. The group ID for these artifacts is `com.g
 |------------------|---------------------|---|
 | xap-near-cache-spring | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar | [Client Side Caching](../dev-java/client-side-caching.html) |
 | xap-near-cache 		  | ${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar | [Client Side Caching](../dev-java/client-side-caching.html) |
-| xap-security		  | ${XAP_HOME}/lib/optional/security/xap-security.jar | [Security](../security/) |
+| xap-security		  | ${XAP_HOME}/lib/optional/security/xap-security.jar | [Security](../security/index.html) |
 | xap-zookeeper		  | ${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar | [Consistency-biased leader election](../admin/leader-election-consistency-biased.html) |
 | xap-admin 			  | ${XAP_HOME}/lib/platform/service-grid/xap-admin.jar | [Admin API](../dev-java/administration-and-monitoring-overview.html)|
 

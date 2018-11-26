@@ -51,7 +51,7 @@ The following is an example of a target vector, and a matching vector found usin
 {{% panel %}}![custommatching.jpg](/attachment_files/sbp/custommatching.jpg){{% /panel %}}
 
 {{% tip %}}
-To scale the system, deploy the Space in a [partitioned cluster schema](/product_overview/terminology.html). This allows queries such as matching to be executed across all the partitions in parallel, speeding up the query execution time.
+To scale the system, deploy the Space in a [partitioned cluster schema](../overview/terminology.html). This allows queries such as matching to be executed across all the partitions in parallel, speeding up the query execution time.
 {{% /tip %}}
 
 The **Application** tab shows the full query usage. This allows the `Comparable.compareTo` implementation to be performed on a smaller candidate subset of objects.

@@ -390,7 +390,7 @@ When a cluster uses partitioned topology, the data is partitioned across multipl
 com.gigaspaces.cluster.active_election.level = INFO
 ```
 
-When there are multiple instances (primary/backup(s)), an Active-Election process is used by the cluster members to determine which member acts as the primary instance. Additional information regarding the Active-Election process is available [here](./split-brain-and-primary-resolution.html).
+When there are multiple instances (primary/backup(s)), an Active-Election process is used by the cluster members to determine which member acts as the primary instance. 
 
 ### POJO
 

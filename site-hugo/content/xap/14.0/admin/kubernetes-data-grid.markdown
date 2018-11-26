@@ -8,7 +8,7 @@ weight: 200
 
 
 {{%note%}}
-The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the [Getting Started](../xap/14.0/started/) section before performing the tasks described here.
+The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the [Getting Started](../xap/14.0/started/index.html) section before performing the tasks described here.
 {{%/note%}}
 
 This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a [Helm chart](https://docs.helm.sh/developing_charts/#charts). You can deploy the full InsightEdge platform, which includes the data grid, using the Helm chart available in the GigaSpaces Helm repository.
@@ -370,7 +370,7 @@ helm install insightedge -f customValues.yaml --name hello
 ```
 ### Overriding the Processing Unit Properties
 
-It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit [Deployment Properties](https://docs.gigaspaces.com/xap/14.0/dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) topic), so you can override these properties using the Helm chart.  
+It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit [Deployment Properties](../dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit) topic), so you can override these properties using the Helm chart.  
 
 After defining the properties as placeholders, use the `key1=value1;key2=value2` format to pass the override values to the Helm chart using either the `--set insightedge-pu.properties=<your key-value pairs>` command, or using a custom YAML file.
 
@@ -386,7 +386,7 @@ To get the IP address of your minikube, type the `minikube ip` command in the co
 
 `http://<minikube ip>:8090`
 
-For information on how to use the REST Manager API, see the [Administration Tools](../xap/14.0/admin/admin-tools.html) section of the documentation. 
+For information on how to use the REST Manager API, see the [Administration Tools](../admin/admin-tools.html) section of the documentation. 
 
 ### GigaSpaces Command Line Interface
 
@@ -408,7 +408,7 @@ To view the Data Type statistics, type the following command:
 ./insightedge --server=test-space-xap-manager-hs space info --type-stats test-space
 ```
 
-For more information about the GigaSpaces CLI and available commands, see the [Administration Tools](../xap/14.0/admin/admin-tools.html) section of the documentation. 
+For more information about the GigaSpaces CLI and available commands, see the [Administration Tools](../admin/admin-tools.html) section of the documentation. 
 
 ## Advanced Monitoring Using Kubernetes Tools
 

@@ -11,7 +11,7 @@ along with {{%exurl "Apache ZooKeeper""http://zookeeper.apache.org/"%}} and an e
 
 In addition to simplifying setup and management, the Manager also provides the following benefits:
 
-* Space leader election uses Apache Zookeeper instead of the LUS, providing a more robust process (consistent when network partitions occur), and eliminating [split brains](./split-brain-and-primary-resolution.html).
+* Space leader election uses Apache Zookeeper instead of the LUS, providing a more robust process (consistent when network partitions occur), and eliminating [split brain.
 * When using MemoryXtend, the last primary will automatically be stored in Apache Zookeeper (instead of having to set up a shared NFS and configure the Processing Unit to use it).
 * The GSM uses Apache Zookeeper for leader election (instead of the active-active topology used today). This provides a more robust process (consistent when network partitions occur). Also, having a single leader GSM means that the general behaviour is more deterministic and logs are easier to read.
 * REST API for managing the environment remotely from any platform.
