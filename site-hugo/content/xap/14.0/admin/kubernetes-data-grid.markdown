@@ -8,7 +8,7 @@ weight: 200
 
 
 {{%note%}}
-The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the [Getting Started](../xap/14.0/started/index.html) section before performing the tasks described here.
+The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the [Getting Started](../started/index.html) section before performing the tasks described here.
 {{%/note%}}
 
 This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a [Helm chart](https://docs.helm.sh/developing_charts/#charts). You can deploy the full InsightEdge platform, which includes the data grid, using the Helm chart available in the GigaSpaces Helm repository.
