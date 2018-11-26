@@ -62,15 +62,15 @@ These properties are injected through the following in the notebook:
 ```
 ## InsightEdge JDBC Interpreter
 
-Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with InsightEdge comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook.  The queries are executed by the [InsightEdge SQL Driver](sql-query-intro.html).   
+Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with InsightEdge comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook.  The queries are executed by the [InsightEdge SQL Driver](../dev-java/sql-query-intro.html).   
 
 ### Configuring the JDBC Interpreter
 
 The JDBC interpreter connects to the data grid via a JDBC URL. To configure the URL value to point to the data grid, do the following:
 
 1. In the Apache Zeppelin web interface, navigate to the Interpreters section.
-1. Select the insightedge_jdbc interpreter, and click Edit.
-1. Edit the `default.url` parameter as follows: `jdbc:insightedge:spaceName=<space-name>
+1. Select the insightedge_jdbc interpreter, and click **Edit**.
+1. Edit the `default.url` parameter as follows: `jdbc:insightedge:spaceName=<space-name>`
 1. Save the changes you made to the interpreter.
 
 ### Querying the Data Grid in Notebooks
