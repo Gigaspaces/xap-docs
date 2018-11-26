@@ -159,8 +159,8 @@ The messaging grid aspect of the Space provides messaging capabilities such as:
 1. Event-Driven capabilities - the ability to build event-driven processing applications. This model enables fast (in-memory-based) asynchronous modular processing, resulting in a very efficient and scalable processing paradigm.
 1. Asynchronous production and consumption of information.
 1. One-to-one, Many-to-One, One-to-Many and Many-to-Many relationships.
-1. FIFO  ordering. [Java version](../dev-java/fifo-overview.html.html) \|[ .NET version](../dev-dotnet/fifo-overview.html)
-1. Transaction Management [Java version](../dev-java/transaction-overview.html.html) \|[ .NET version](../dev-dotnet/transaction-overview.html.html)
+1. FIFO  ordering. [Java version](../dev-java/fifo-overview..html) \|[ .NET version](../dev-dotnet/fifo-overview.html)
+1. Transaction Management [Java version](../dev-java/transaction-overview..html) \|[ .NET version](../dev-dotnet/transaction-overview..html)
 
 The core APIs used for messaging are the OpenSpaces [Notify](../dev-java/notify-container-overview.html) and [Polling](../dev-java/polling-container-overview.html) Containers. In addition, a [JMS 1.1 implementation](../dev-java/messaging-support.html) API is available to be used with existing JMS based applications. More information can be found in the [Messaging and Events](../dev-java/messaging-support.html) section.
 

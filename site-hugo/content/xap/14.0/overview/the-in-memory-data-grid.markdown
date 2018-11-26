@@ -395,7 +395,7 @@ GigaSpaces XAP supports the following data grid topologies:
 {{% /section%}}
 
 {{%refer%}}
-For more information, refer to Local Cache [Java version](../dev-java/local-cache.html.html) \|[ .NET version](../dev-dotnet/local-cache.html.html).
+For more information, refer to Local Cache [Java version](../dev-java/local-cache..html) \|[ .NET version](../dev-dotnet/local-cache..html).
 {{%/refer%}}
 
 ### Local View
