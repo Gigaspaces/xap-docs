@@ -22,8 +22,9 @@ MemoryXtend is designed as a pluggable architecture, supporting multiple impleme
 In addition, MemoryXtend uses an LRU cache for data entries, so entries that are read frequently can be retrieved directly from the in-memory storage.
 
 {{%align center%}}
-![memstorage](/attachment_files/blobstore/xap-memoryxtend-howitworks.png)
-{{%/align%}}
+<img src="/attachment_files/admin/memoryxtend-2018.png" width=624" height="526" />
+{{%/align  %}}
+
 
 MemoryXtend offers the following storage driver options:
 
@@ -238,7 +239,7 @@ In addition, persistency requires the settings described in the sections below.
 
 If a GSC or a machine running a GSC restarts, there is no guarantee the XAP instance running within the GSC will be provisioned to the same machine where it was running before. When MemoryXtend is used in a non-persistent manner, this isn't problematic because the instance recovers from the primary, but if MemoryXtend is set to `persistent=true`, you must ensure that the instance is provisioned on the same machine where it was located before, so it can recover from the correct device, which is usually local to the machine.
  
-{{% note "Info"%}}
+{{% note%}}
 Central Storage mode allows you to use MemoryXtend without configuring the Machine-Instance Affinity.
 {{% /note %}}
 
@@ -288,7 +289,7 @@ The following `sla.xml` shows a partitioned (2 partitions) data grid without bac
 {{%/tab%}}
 {{%/tabs%}}
 
-{{% note "Deployment with SLA"%}}
+{{% note %}}
 Make sure you provide the `sla.xml` location at deploy time (`-sla` deploy command option), or locate it at the root of the Processing Unit JAR or under the `META-INF/spring` directory, alongside the Processing Unit's `pu.xml` file.
 {{% /note %}}
 

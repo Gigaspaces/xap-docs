@@ -15,7 +15,7 @@ XAP offers interoperability between documents and POJOs via the Space - it is po
 <img src="/attachment_files/document_arch2.jpg" width=574" height="280" />
 {{%/align  %}}
 
-{{% tip "Tip"%}}
+{{% tip %}}
 In previous releases the `ExternalEntry` class was used to achieve this functionality. Starting with 8.0, the `SpaceDocument` class should be used to accomplish these needs in a simpler and safer manner, whereas `ExternalEntry` has been deprecated and should no longer be used.
 {{%/tip%}}
 
@@ -130,7 +130,7 @@ SpaceDocument[] documents = gigaSpace.readByIds(
         ids, QueryResultType.DOCUMENT)).getResultsArray();
 ```
 
-{{% note "Info"%}}
+{{% note "%}}
 The original `readById` (and related methods) signatures are not suited for document types, because they require a concrete Java class. They always return POJO(s).
 {{%/note%}}
 
