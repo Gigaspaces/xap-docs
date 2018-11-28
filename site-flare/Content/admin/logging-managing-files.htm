@@ -7,7 +7,7 @@
 
 <p>The log file names, location and format are all properties of the Java log <code>Handler</code>. GigaSpaces uses a rolling file handler implemented by the class <code>com.gigaspaces.logger.</code><code>RollingFileHandler</code><code>, which is based on Java's</code>java.util.logging.FileHandler`, but with extended functionality. It provides two policies that can trigger a "rollover" to a new file, and a customizable extension point for backing up files.</p>
 
-<h1 id="rolling-over-to-a-new-file">Rolling Over to a New File</h1>
+<h1><a name="rolling-over-to-a-new-file">&#160;</a>Rolling Over to a New File</h1>
 
 <p>The rollover mechanism is based on two policies, whichever policy is triggered first:</p>
 
@@ -16,14 +16,14 @@
 <li>Time based rolling policy (default is daily)</li>
 </ul>
 
-<h1 id="formatter-property"><code>formatter</code> Property</h1>
+<h1><a name="formatter-property">&#160;</a><code>formatter</code> Property</h1>
 
 <p>The default log output formatting is determined by <code>GSSimpleFormatter</code> (see <a href="logging-formatting-messages.htm">Formatting Log Messages</a>).</p>
 
 <pre><code class="language-bash">com.gigaspaces.logger.RollingFileHandler.formatter = com.gigaspaces.logger.GSSimpleFormatter
 </code></pre>
 
-<h1 id="filename-pattern-property"><code>filename-pattern</code> Property</h1>
+<h1><a name="filename-pattern-property">&#160;</a><code>filename-pattern</code> Property</h1>
 
 <p>The file name pattern can be configured to include a placeholder for properties to resolve, such as homedir, host, pid and date. Each placeholder is identified by a set of curly brackets {..}. It may also be a placeholder for a custom defined property.</p>
 
@@ -35,7 +35,7 @@
 <pre><code class="language-bash">-Dcom.gigaspaces.logger.RollingFileHandler.filename-pattern.date=yyyy-MM-dd
 </code></pre>
 
-<h2 id="customization-examples">Customization Examples</h2>
+<h2><a name="customization-examples">&#160;</a>Customization Examples</h2>
 
 <p><span class="tc-bold">1.</span> One possible customization that might be of interest is to separate the log files into folders named after the host names.
 To achieve this, the pattern would need to have the {host} placeholder as one of the directory paths - as follows:</p>
@@ -76,28 +76,28 @@ Set a <code>\{mycustom\</code>} property placeholder with the following system p
   <p>The property value will have illegal path characters removed. (e.g. <code>/\:*?"&lt;&gt;|</code>)</p>
 </div>
 
-<h1 id="append-property"><code>append</code> Property</h1>
+<h1><a name="append-property">&#160;</a><code>append</code> Property</h1>
 
 <p>The append property specifies if output should be appended to an existing file. Default is set to false. Thus, if a file already exists by this name, a unique incrementing index to resolve the conflict will be concatenated. It will be added at the end of the filename replacing ".log" with "__{unique}.log" or at the end of the filename if the pattern doesn't end with ".log".</p>
 
 <pre><code class="language-bash">com.gigaspaces.logger.RollingFileHandler.append = false
 </code></pre>
 
-<h1 id="size-rolling-policy-property"><code>size-rolling-policy</code> Property</h1>
+<h1><a name="size-rolling-policy-property">&#160;</a><code>size-rolling-policy</code> Property</h1>
 
 <p>The file size rolling policy can be configured to roll the file when a size limit is reached. It specifies an approximate maximum amount to write (in bytes) to any one file. If this is zero, then there is no limit. If the property is omitted, then a default of 2MB is assumed.</p>
 
 <pre><code class="language-bash">com.gigaspaces.logger.RollingFileHandler.size-rolling-policy = 2000000
 </code></pre>
 
-<h1 id="time-rolling-policy-property"><code>time-rolling-policy</code> Property</h1>
+<h1><a name="time-rolling-policy-property">&#160;</a><code>time-rolling-policy</code> Property</h1>
 
 <p>The time based rolling policy can be configured to roll the file based on a certain recurring schedule. The time policy can be set to one of the following values: daily, weekly, monthly or yearly. If the property is omitted, then the default pattern of "daily" is assumed; meaning a daily rollover (at midnight). For example, if "monthly" is configured, the file will rollover at the beginning of each month.</p>
 
 <pre><code class="language-bash">com.gigaspaces.logger.RollingFileHandler.time-rolling-policy = daily
 </code></pre>
 
-<h1 id="backup-policy-property"><code>backup-policy</code> Property</h1>
+<h1><a name="backup-policy-property">&#160;</a><code>backup-policy</code> Property</h1>
 
 <p>A backup-policy can be configured to backup files. By default a <span class="tc-bold">NullBackupPolicy</span> is configured, which does nothing. It can be replaced by a <span class="tc-bold">DeleteBackupPolicy</span> to keep a backup of files for a specified period. The <span class="tc-bold">BackupPolicy</span> interface allows custom implementations to be plugged-in.</p>
 
@@ -108,7 +108,7 @@ com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
 
 <p>For more information see <a href="logging-backing-custom-policy.htm">Backing-up Files With a Custom Policy</a></p>
 
-<h1 id="debug-level-property"><code>debug-level</code> Property</h1>
+<h1><a name="debug-level-property">&#160;</a><code>debug-level</code> Property</h1>
 
 <p>The debug level (configured to one of logging Levels) is the level in which debug messages are displayed to the "standard" output stream. By default the level is configured to "CONFIG" which displays the log file name.</p>
 
@@ -119,7 +119,7 @@ com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
 
 <p>This can also be overridden by a system property.</p>
 
-<h1 id="system-property-overrides">System Property Overrides</h1>
+<h1><a name="system-property-overrides">&#160;</a>System Property Overrides</h1>
 
 <p>Any of the logger properties can be configured by a system property override, specified as follows:</p>
 
@@ -131,7 +131,7 @@ com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
 <pre><code class="language-bash">-Dcom.gigaspaces.logger.RollingFileHandler.debug-level=OFF
 </code></pre>
 
-<h1 id="ui-logging">UI - Logging</h1>
+<h1><a name="ui-logging">&#160;</a>UI - Logging</h1>
 
 <p>The <a href="gigaspaces-management-center.htm">GigaSpaces Management Center</a> and the <a href="web-management-console.htm">Web Management Console</a> are not part of the services, and their configuration should be done separately in the <code>gs-ui.sh</code> or  <code>gs-ui.bat</code> file for the GigaSpaces Management Center, and the<code>gs-webui.sh</code> or <code>gs-webui.bat</code> file for the Web Management Console.</p>
 

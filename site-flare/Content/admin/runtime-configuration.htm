@@ -7,7 +7,7 @@
 
 <p>This section describes the available XAP runtime configuration parameters.</p>
 
- <a id="GSRuntimeEnv">&#160;</a>
+ <a name="GSRuntimeEnv">&#160;</a>
 
 <p>The basic unit of deployment in the GigaSpaces XAP platform is the <a href="../dev-java/the-processing-unit-overview.htm">Processing Unit</a>.</p>
 
@@ -18,7 +18,7 @@
   <p>When developing your Processing Unit, we recommend <a href="../started/xap-debug.htm">running and debugging the Processing Unit within your IDE</a>. Deploy it to the Service Grid when you want to test it in the real-life runtime environment, and for production.</p>
 </div>
 
-<h1 id="architecture">Architecture</h1>
+<h1><a name="architecture">&#160;</a>Architecture</h1>
 
 <p>The Service
 Grid is composed of the following components:</p>
@@ -48,17 +48,17 @@ Grid components</li>
 
 <div class="tc-align-center"></div>
 
- <a id="gsm">&#160;</a>
+ <a name="gsm">&#160;</a>
 
-<h2 id="grid-service-manager">Grid Service Manager</h2>
+<h2><a name="grid-service-manager">&#160;</a>Grid Service Manager</h2>
 
 <p>When a Processing Unit is uploaded to the Grid Service Manager (GSM), it analyzes the deployment descriptor and determines how many instances of the Processing Unit should be created, and which <a href="#gsc">containers</a> should host them. The GSM then ships the Processing Unit code to the relevant containers, and instructs them to instantiate the Processing Unit instances. This phase in the deployment process is called <span class="tc-italic">provisioning</span>.</p>
 
 <p>After it is provisioned, the GSM continuously monitors the Processing Unit instances to verify that they are functioning properly. When a certain instance fails, the GSM identifies it and re-provisions the failed instance to another GSC, in order to enforce the Processing Unit's SLA.</p>
 
- <a id="gsc">&#160;</a>
+ <a name="gsc">&#160;</a>
 
-<h2 id="grid-service-container">Grid Service Container</h2>
+<h2><a name="grid-service-container">&#160;</a>Grid Service Container</h2>
 
 <p>The Grid Service Container (GSC) can be thought of as a node on the Service Grid, which is controlled by the <a href="#gsm">GSM</a>. The GSM sends deployment and un-deployment commands of the Processing Unit instances to the GSC. The GSC reports its status to the GSM.</p>
 
@@ -66,9 +66,9 @@ Grid components</li>
 
 <p>It is common to start several GSCs on the same physical machine, depending on the machine CPU and memory resources. The deployment of multiple GSCs on a single or multiple machines creates a virtual Service Grid. The GSCs provide a layer of abstraction on top of the physical layer of machines. This enables deploying clusters in various deployment typologies for enterprise data centers and public clouds.</p>
 
- <a id="lus">&#160;</a>
+ <a name="lus">&#160;</a>
 
-<h2 id="the-lookup-service">The Lookup Service</h2>
+<h2><a name="the-lookup-service">&#160;</a>The Lookup Service</h2>
 
 <p>The Lookup Service (LUS) provides a means for services to discover each other. Each service can query the LUS for other services, and register itself in the LUS so other services can find it. For example, the GSM queries the LUS to find active GSCs.</p>
 
@@ -78,9 +78,9 @@ Grid components</li>
 
 <p>For more information on the LUS, refer to <a href="the-lookup-service.htm">The Lookup Service</a>.</p>
 
- <a id="gsa">&#160;</a>
+ <a name="gsa">&#160;</a>
 
-<h2 id="grid-service-agent">Grid Service Agent</h2>
+<h2><a name="grid-service-agent">&#160;</a>Grid Service Agent</h2>
 
 <p>The Grid Service Agent (gs-agent) is a process manager that can spawn and manage Service Grid processes (operating-system-level processes) such as the <a href="#gsm">GSM</a>, <a href="#gsc">GSC</a>, and <a href="#lus">LUS</a>. Typically, the gs-agent is started with the host machine's startup. Using the agent, you can bootstrap the entire cluster very easily, and start and stop additional GSCs, GSMs and LUSs as necessary.</p>
 
@@ -88,7 +88,7 @@ Grid components</li>
 
 <p>The gs-agent exposes the ability to start, restart, and kill a process either using the <a href="../dev-java/administration-and-monitoring-overview.htm">Administration and Monitoring API</a> or the XAP Management Center.</p>
 
-<h1 id="high-availability">High Availability</h1>
+<h1><a name="high-availability">&#160;</a>High Availability</h1>
 
 <p>High availability is acheived via redundancy. We recommend setting up and starting three XAP Managers (refer to <a href="xap-manager.htm#high-availability">XAP Manager High Availability</a>).</p>
 
@@ -99,9 +99,9 @@ Grid components</li>
 <li><a href="gsm-configuration.htm">Global vs. Local GSM</a></li>
 </ul>
 
-<h1 id="advanced">Advanced</h1>
+<h1><a name="advanced">&#160;</a>Advanced</h1>
 
-<h2 id="process-management">Process Management</h2>
+<h2><a name="process-management">&#160;</a>Process Management</h2>
 
 <p>The gs-agent manages operating system processes. There are two types of process management, local and global.</p>
 

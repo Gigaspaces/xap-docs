@@ -13,7 +13,7 @@ It contains a <code>main()</code> method and can be started from an external scr
 
 <p>It should be used when you would like to run your processing unit in a non-managed environment (outside of the service grid) or from within your own code, and still benefit from the automatic classpath creation as with the managed mode.</p>
 
-<h1 id="executable-standaloneprocessingunitcontainer">Executable StandaloneProcessingUnitContainer</h1>
+<h1><a name="executable-standaloneprocessingunitcontainer">&#160;</a>Executable StandaloneProcessingUnitContainer</h1>
 
 <p>The <code>StandaloneProcessingUnitContainer</code> provides an executable <code>main()</code> method that allows it to be run directly. The <code>main()</code> method uses the <code>StandaloneProcessingUnitContainerProvider</code> and command-line conventions in order to create the <code>StandaloneProcessingUnitContainer</code>. A required parameter is the processing unit location, pointing to the file-system location of the processing unit directory. The following is a list of all the possible command-line parameters available:</p>
 
@@ -50,7 +50,7 @@ It contains a <code>main()</code> method and can be started from an external scr
 </tbody>
 </table>
 
-<h1 id="starting-the-standalone-processing-unit-container-via-the-pu-instance-shell-script">Starting the Standalone Processing Unit Container via the pu-instance Shell Script</h1>
+<h1><a name="starting-the-standalone-processing-unit-container-via-the-pu-instance-shell-script">&#160;</a>Starting the Standalone Processing Unit Container via the pu-instance Shell Script</h1>
 
 <p>GigaSpaces comes with the <code>pu-instance</code> shell script, which uses the <code>StandaloneProcessingUnitContainer</code> in order to run a processing unit directly from the command line.</p>
 
@@ -78,7 +78,7 @@ It contains a <code>main()</code> method and can be started from an external scr
 
 <p>The above example starts a processing unit instance (with an embedded space) in a partitioned cluster schema, with one primary and one backup. It also uses an external properties file to inject property values at startup time.</p>
 
-<h1 id="starting-a-standaloneprocessingunitcontainer-programmatically">Starting a StandaloneProcessingUnitContainer Programmatically</h1>
+<h1><a name="starting-a-standaloneprocessingunitcontainer-programmatically">&#160;</a>Starting a StandaloneProcessingUnitContainer Programmatically</h1>
 
 <p>Here is an example of using a <code>ProcessingUnitContainerProvider</code> in order to create a standalone processing unit container programmatically with two partitions:</p>
 
@@ -104,7 +104,7 @@ container.close();
 
 <p>The <code>StandaloneProcessingUnitContainerProvider</code> is constructed with a file-system path to the processing unit jar file. It constructs a new classloader and adds all the jar files in the processing unit's <code>lib</code> directory to it automatically.</p>
 
-<h1 id="disabling-embedded-lookup-service">Disabling Embedded Lookup Service</h1>
+<h1><a name="disabling-embedded-lookup-service">&#160;</a>Disabling Embedded Lookup Service</h1>
 
 <p>The StandaloneProcessingUnitContainer automatically starts an embedded Lookup service. If you intend to use a separate Lookup service you can disable the embedded Lookup service by passing the setting the <code>com.j_spaces.core.container.directory_services.jini_lus.enabled</code> system property to false. This property can also be set within the Space definition:</p>
 

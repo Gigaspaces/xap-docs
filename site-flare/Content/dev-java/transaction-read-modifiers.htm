@@ -32,7 +32,7 @@
 
 <p>These modifiers can be set either at the proxy level - <code>IJSpace.setReadModifiers(int)</code>, or at the operation level (e.g. using one of <code>IJSpace</code> read <code>readIfExists</code> <code>readMultiple</code> count methods with a modifiers parameter).</p>
 
-<h1 id="spring-xap-readmodifiers">Spring - XAP ReadModifiers</h1>
+<h1><a name="spring-xap-readmodifiers">&#160;</a>Spring - XAP ReadModifiers</h1>
 
 <p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.htm" target="_blank" >Spring TransactionDefinition</a> Mapping to XAP ReadModifiers:</p>
 
@@ -67,7 +67,7 @@
   <p><code>SERIALIZABLE</code>isolation is not supported.No exception is currently thrown when used.</p>
 </div>
 
-<h1 id="repeatable-read">Repeatable Read</h1>
+<h1><a name="repeatable-read">&#160;</a>Repeatable Read</h1>
 
 <p><code>REPEATABLE_READ</code> is the default modifier, defined by the JavaSpaces specification.</p>
 
@@ -75,14 +75,14 @@
 
 <p>Transactions using the <code>REPEATABLE_READ</code> isolation level wait until the object that is write-locked by other transactions are unlocked before they acquire their own locks. This prevents them from reading "dirty" data. In addition, because other transactions cannot update or delete an object that is locked by a transaction using the <code>REPEATABLE_READ</code> isolation level, non-repeatable read situations are avoided.</p>
 
-<h1 id="dirty-read">Dirty Read</h1>
+<h1><a name="dirty-read">&#160;</a>Dirty Read</h1>
 
 <p>The JavaSpaces specification defines the visibility of object for read operations as follows:
 A read operation performed under a <code>null</code> transaction can only access space objects that are not write-locked by non-null transactions. In other words, space objects that were written or taken by active transactions (transactions that have not been committed or rolled back) are not visible to the user performing a read operation.</p>
 
 <p>Sometimes it is desirable for non-transactional read operations to have full visibility of the objects in the space. The <code>DIRTY_READ</code> modifier, once set, enables read/<code>readIfExists</code>/<code>readMultiple</code>/count operations under a <code>null</code> transaction to have this complete visibility.</p>
 
-<h2 id="code-example">Code Example</h2>
+<h2><a name="code-example">&#160;</a>Code Example</h2>
 
 <pre><code class="language-java">// write something under txn X and commit, making it publicly visible
 space.write( something, txnX, Lease.FOREVER);
@@ -99,7 +99,7 @@ space.read( tmpl, null, ReadModifiers.DIRTY_READ);
 // Note: using the same txn (txn Y) will return matches that are visible under the transaction
 </code></pre>
 
-<h1 id="read-committed">Read Committed</h1>
+<h1><a name="read-committed">&#160;</a>Read Committed</h1>
 
 <p>The <code>READ_COMMITTED</code> modifier enables a read-committed isolation level in read operations.</p>
 
@@ -117,7 +117,7 @@ space.read( tmpl, null, ReadModifiers.DIRTY_READ);
 
 <p><code>readIfExists</code> has less space objects to wait for, unless these are new objects under an uncommitted transaction.</p>
 
-<h2 id="locking-and-blocking-rules">Locking and Blocking Rules</h2>
+<h2><a name="locking-and-blocking-rules">&#160;</a>Locking and Blocking Rules</h2>
 
 <table>
 <thead>
@@ -269,7 +269,7 @@ space.read( tmpl, null, ReadModifiers.DIRTY_READ);
 </ul>
 </div>
 
-<h2 id="code-example-1">Code Example</h2>
+<h2><a name="code-example-1">&#160;</a>Code Example</h2>
 
 <p>The examples below assumes you are using <code>IJSpace</code> interface that is available via the <code>GigaSpaces.getSpace()</code>. If you are using the <code>GigaSpaces</code> interface and Spring automatic transaction demarcation, you will not need to specify the transaction object explicitly. Still, the blocking rules will be enforced.</p>
 
@@ -288,7 +288,7 @@ space.read( tmpl, txnZ, ReadModifiers.READ_COMMITTED);
 // Note: using the same txn (txn Y) will return matches that are visible under the transaction
 </code></pre>
 
-<h1 id="exclusive-read-lock">Exclusive Read Lock</h1>
+<h1><a name="exclusive-read-lock">&#160;</a>Exclusive Read Lock</h1>
 
 <p>The Exclusive Read Lock is similar to select for update SQL for RDBMS, or update lock with ODBMS.</p>
 
@@ -310,7 +310,7 @@ space.read( tmpl, txnZ, ReadModifiers.READ_COMMITTED);
   <p>Starting with XAP 7.1.2 GigaSpaces throws <code>java.lang.IllegalArgumentException</code>: Using EXCLUSIVE_READ_LOCK modifier without a transaction is illegal exception as a protection mechanism when performing exclusive read <span class="tc-bold">without</span> using a transaction. You must use a transaction when using exclusive read lock.</p>
 </div>
 
-<h2 id="code-example-2">Code Example</h2>
+<h2><a name="code-example-2">&#160;</a>Code Example</h2>
 
 <pre><code class="language-java">IJSpace space = ...
 space.setReadModifiers(ReadModifiers.EXCLUSIVE_READ_LOCK);
@@ -328,7 +328,7 @@ If (lock1!= null)
         + lock1.getId());
 </code></pre>
 
-<h3 id="match-by-id-throw-partial-failure">MATCH_BY_ID &amp; THROW_PARTIAL_FAILURE</h3>
+<h3><a name="match-by-id-throw-partial-failure">&#160;</a>MATCH_BY_ID &amp; THROW_PARTIAL_FAILURE</h3>
 
 <p>The matching behavior can be changed by adding one of these modifiers.</p>
 

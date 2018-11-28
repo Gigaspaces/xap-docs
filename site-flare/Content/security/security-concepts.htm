@@ -7,7 +7,7 @@
 
 <p>This section provides the concepts used throught this security guide, and present the basic interfaces.</p>
 
-<h1 id="authentication">Authentication</h1>
+<h1><a name="authentication">&#160;</a>Authentication</h1>
 
 <p>Authentication is the process of establishing and confirming the authenticity of a <span class="tc-italic">principal</span>. A <span class="tc-italic">principal</span> in XAP terms, means a user (human or software) performing an action in your application. XAP's authentication layer is equipped with standard encryption algorithms (such as AES and MD5), and can be customized to integrate with other security standards (i.e. Spring Security).</p>
 
@@ -31,13 +31,13 @@
 
 <p>Further correspondence are done via this authenticated session context. The service has security interceptors which intercept each method call to verify the granted privileges. An <code>AccessDeniedException</code> is thrown if the user lacks sufficient privileges to perform an operation.</p>
 
-<h1 id="authorization">Authorization</h1>
+<h1><a name="authorization">&#160;</a>Authorization</h1>
 
 <p>Authorization refers to the process of deciding whether a principal is allowed to perform an action/operation. A principal is first established by the authentication process, and then authorized by the authorization decision process, when performing actions. The authorization layer is used to intercept unauthorized access to data and restrict operations. It also maps users to specific authorities and allows grouping of authorities into roles.</p>
 
 <p>XAP Security architecture has been designed to meet the needs of enterprise application security. XAP provides a complete experience throughout all the components, for a useful, configurable and extend-able security system.</p>
 
-<h1 id="encryption">Encryption</h1>
+<h1><a name="encryption">&#160;</a>Encryption</h1>
 
 <p>A two-way encryption is used to protect the credentials passed as part of the authentication process. The <code>UserDetails</code> object is encrypted before it is sent along the stream, and decrypted at the service. Of course, it is best to use <span class="tc-bold">SSL</span> for transport layer security, but nevertheless we ensure these details are encrypted. The two-way encryption is done using a private key available to both client and server. A generated AES compliant key can be kept in a <code>gs-keystore.key</code> file located in the classpath. See <code>ContentEncoder</code> interface for more details.</p>
 

@@ -108,7 +108,7 @@ A major benefit of using scripting or dynamic languages is the ability to simply
 </div>
 </div>
 
-<h1 id="what-is-a-script">What is a Script</h1>
+<h1><a name="what-is-a-script">&#160;</a>What is a Script</h1>
 
 <p><code>Script</code> is a simple interface that is defined within the OpenSpaces scripting over remoting support. It has the following basic methods:</p>
 
@@ -162,11 +162,11 @@ A major benefit of using scripting or dynamic languages is the ability to simply
 <li><code>ResourceLazyLoadingScript</code>: A lazy loading script that uses Spring abstraction on top of a resource. The script resource location uses Spring notations for location (similar to a URL, with the addition of the <code>classpath:</code> prefix).</li>
 </ul>
 
-<h1 id="exposing-javascript-scripting-service">Exposing JavaScript Scripting Service</h1>
+<h1><a name="exposing-javascript-scripting-service">&#160;</a>Exposing JavaScript Scripting Service</h1>
 
 <p>OpenSpaces scripting over remoting support has a built in service that allows to expose the execution of scripting code. The service is implemented using the <code>DefaultScriptingExecutor</code> class. The executor supports several scripting languages out of the box, allows to cache compiled scripts, and automatically expose common beans as script parameters.</p>
 
-<h2 id="local-script-executor">Local Script Executor</h2>
+<h2><a name="local-script-executor">&#160;</a>Local Script Executor</h2>
 
 <p>The <code>DefaultScriptingExecutor</code> holds one or more <code>LocalScriptExecutor</code>. A <code>LocalScriptExecutor</code> implementation is an abstraction on top of an actual scripting language (such as groovy or jruby). OpenSpaces scripting support comes with built in local executors for groovy, jruby, and Java 6 <code>ScriptEngine</code> abstraction.</p>
 
@@ -174,7 +174,7 @@ A major benefit of using scripting or dynamic languages is the ability to simply
 
 <p>The Java 6 local script executor is a special case as in-itself it allows to execute several scripting engines types. The <code>DefaultScriptingExecutor</code> handles that by trying to offload the execution of an unidentified type to the <code>Jsr223LocalScriptExecutor</code>. Unidentified type is one that has no specific <code>LocalScriptExecutor</code> configured for it within the <code>DefaultScriptingExecutor</code>. This means that if one wishes to execute a JavaScript script that comes built in with Java 6, the type for the script should be <code>JavaScript</code> (and not Jsr223).</p>
 
-<h2 id="script-execution-parameters">Script Execution Parameters</h2>
+<h2><a name="script-execution-parameters">&#160;</a>Script Execution Parameters</h2>
 
 <p>The <code>Script</code> interface allows to define specific parameters per script. The <code>DefaultScriptingExecutor</code> can be configured with a set of parameters that is passed to each script execution. A <code>setParameters</code> that accepts a Map can be passed to each script.</p>
 
@@ -187,13 +187,13 @@ A major benefit of using scripting or dynamic languages is the ability to simply
   <p>A quick note regarding usage of <code>GigaSpace</code> beans. The clustered flag plays an important role when using it. This basically allows to control if the script execution of <code>GigaSpace</code> operations works only against its clustered member space, or against the whole cluster.</p>
 </div>
 
-<h2 id="script-compilation-caching">Script Compilation Caching</h2>
+<h2><a name="script-compilation-caching">&#160;</a>Script Compilation Caching</h2>
 
 <p>If a scripting engine support compilation of scripting, the <code>DefaultScriptingExecutor</code> allows caching of compiled scripts for faster execution. The actual caching of scripts is abstracted using <code>CompiledScriptCache</code> interface, and has default LRU type cache built in.</p>
 
 <p>The compilation is done based on a flag on the <code>Script</code> interface (which defaults to true), and if cached, the "key" of the cache is the script name. This means that if a script was changed, it needs to be executed with a different script name in order for it to recompile and take affect.</p>
 
-<h1 id="scripting-on-the-client-side">Scripting on the Client Side</h1>
+<h1><a name="scripting-on-the-client-side">&#160;</a>Scripting on the Client Side</h1>
 
 <p>Using scripting on the client side is very similar to how similar remoting services are used. There are two types of proxies, <code>executor-proxy</code> and <code>event-driven-proxy</code>, and there are specific scripting annotations that allow to simplify the injection of scripting proxies.</p>
 
@@ -248,7 +248,7 @@ ScriptingExecutor  executor = new ExecutorScriptingProxyConfigurer (gigaSpace).s
 
 <p>The different components implemented by scripting basically enables all the different scripting client side features which we will cover in the next sections. The annotation based injection is a much simplified way to use scripting on the client side and is shown in the Overview section.</p>
 
-<h2 id="routing-index">Routing Index</h2>
+<h2><a name="routing-index">&#160;</a>Routing Index</h2>
 
 <p>The <code>Script</code> interface allows to set a routing index which controls, both in async and sync mode (not in broadcast mode), where the execution of the script is directed. Here is a simple example of it:</p>
 
@@ -257,7 +257,7 @@ ScriptingExecutor  executor = new ExecutorScriptingProxyConfigurer (gigaSpace).s
 
 <p>This causes the routing to go the the second member (assuming hash based routing is configured). Naturally, most often a business level routing will be used, for example, direct a script that executed on a certain share to a partition based on the share symbol.</p>
 
-<h2 id="lazy-loading-of-scripts">Lazy Loading of Scripts</h2>
+<h2><a name="lazy-loading-of-scripts">&#160;</a>Lazy Loading of Scripts</h2>
 
 <p>The <code>StaticResourceScript</code> holds the actual script contents and it gets passed for each execution of the script. If script supports caching, there is no need to pass the actual contents of the script on each execution, since once the script was compiled, only its parameters and other values are required, not the actual script. The <code>LazyLoadingRemoteInvocationAspect</code> aspect (on the client side) with the <code>ResourceLazyLoadingScript</code> script type allow for such behavior. As an example:</p>
 

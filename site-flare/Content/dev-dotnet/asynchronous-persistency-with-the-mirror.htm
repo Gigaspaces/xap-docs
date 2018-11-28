@@ -30,7 +30,7 @@
 
 <p>The above share the <span class="tc-bold">same</span> <a href="space-persistency-overview.htm">Space Persistency</a> settings but have different space settings. See the <a href="hibernate-space-persistency.htm">NHibernate Space Persistency</a> for details how to use the built-in <code>HibernateExternalDataSource</code>.</p>
 
-<h1 id="the-data-grid-processing-unit">The Data-Grid Processing Unit</h1>
+<h1><a name="the-data-grid-processing-unit">&#160;</a>The Data-Grid Processing Unit</h1>
 
 <p>The <code>cluster-config.mirror-service</code> <code>space</code> settings specify the interaction between the IMDG primary spaces and the Mirror Service. The <code>mirror="true"</code> <code>space</code> element tag enables the replication mechanism from the IMDG Primary spaces to the Mirror Service. Once the <code>mirror="true"</code> is specified, all IMDG members will be Mirror aware and will be delegating their activities into the Mirror service. The IMDG primary instance will replicate the operations that have been logged within the primary redo log every <code>interval-millis</code> amount of time or <code>interval-opers</code> amount of operations. Both of these mechanisms are always active and the first one that is breached triggers the replication event.</p>
 
@@ -154,7 +154,7 @@
   <p>Enabling replication into the mirror without starting the Mirror will generate a backlog within the primary space (and backup). Please avoid running in this configuration.</p>
 </div>
 
-<h1 id="the-mirror-processing-unit">The Mirror Processing Unit</h1>
+<h1><a name="the-mirror-processing-unit">&#160;</a>The Mirror Processing Unit</h1>
 
 <p>The Mirror Service is constructed using the <code>Mirrors</code> tag. The Mirror Service itself is <span class="tc-bold">not</span> a regular Space. It is dispatching the operations which have been replicated from the IMDG primary spaces to the data source (i.e. Database). The Mirror Service should be constructed as a separate processing unit, which includes only its definition.</p>
 
@@ -216,7 +216,7 @@
 <li>The configuration above should exist within the mirror PU <code>pu.config</code> file.</li>
 </ul>
 
-<h2 id="mirror-undeploy">Mirror Undeploy</h2>
+<h2><a name="mirror-undeploy">&#160;</a>Mirror Undeploy</h2>
 
 <p>When cluster is un deployed, the mirror service must be un deployed last. This will ensure that all data is persisted properly through mirror async persistency.
 Before primary space is un deployed/redeployed, all data changes are flushed to mirror. This operation is limited by timeout that can be configured using the following property:</p>
@@ -225,7 +225,7 @@ Before primary space is un deployed/redeployed, all data changes are flushed to 
 &lt;add Name="cluster-config.groups.group.repl-policy.async-replication.async-channel-shutdown-timeout" Value="300000"/&gt;
 </code></pre>
 
-<h1 id="optimizing-the-mirror-activity">Optimizing the Mirror Activity</h1>
+<h1><a name="optimizing-the-mirror-activity">&#160;</a>Optimizing the Mirror Activity</h1>
 
 <div class="tc-admon-important">
   <p class="tc-admon-title">Database Update Rate </p>
@@ -259,7 +259,7 @@ To use this optimization you need to set the following space property:</li>
 <pre><code class="language-xml">&lt;add Name="cluster-config.mirror-service.supports-partial-update" Value="true"/&gt;
 </code></pre>
 
-<h1 id="mirror-monitoring">Mirror Monitoring</h1>
+<h1><a name="mirror-monitoring">&#160;</a>Mirror Monitoring</h1>
 
 <p>The activity of the mirror service can be monitored using the <a href="../dev-java/administration-and-monitoring-overview.htm#administrationand-monitoring-api-nonitoring-the-mirror-service">Administration and monitoring API</a>. This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.</p>
 

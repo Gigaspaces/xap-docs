@@ -31,7 +31,7 @@
   <p>Having the above executed at the space side via <a href="executor-based-remoting.htm">Executor Based Remoting</a> or <a href="task-execution-overview.htm">Task Executors</a> is highly recommended. This will shorten the transaction time period since all space operations will be executed against a colocated space.</p>
 </div>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>See below example illustrating the usage of the exclusive locking mode implementing pessimistic locking:</p>
 
@@ -73,7 +73,7 @@ public void executeOrders(Integer orderIDs[]) throws Exception
 }
 </code></pre>
 
-<h1 id="important-considerations">Important Considerations</h1>
+<h1><a name="important-considerations">&#160;</a>Important Considerations</h1>
 
 <ul>
 <li>Starting with XAP 7.1.2 GigaSpaces throws <code>java.lang.IllegalArgumentException: Using EXCLUSIVE_READ_LOCK modifier without a transaction is illegal</code> exception as a protection mechanism when performing exclusive read <span class="tc-bold">without</span> using a transaction. You must use a transaction when using exclusive read lock.</li>

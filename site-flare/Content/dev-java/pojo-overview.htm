@@ -7,7 +7,7 @@
 
 <p>The XAP interface fully supports POJOs. In terms of preconditions, your POJO classes must follow the JavaBeans conventions (have a no-argument constructor) and declare a getter and setter to every field you want saved on the Space. The POJO class doesn't have to implement <code>java.io.Serializable</code>, but its properties must. This is necessary because the POJOs fields are extracted when written to the Space, and stored in a special tuple format that enables the Space to index and analyze them more easily. Therefore the actual POJO is not sent over the network, but rather its properties.</p>
 
-<h1 id="metadata">Metadata</h1>
+<h1><a name="metadata">&#160;</a>Metadata</h1>
 
 <p>When writing POJOs to the Space, you can provide some metadata about the POJO's class to the Space, using Java 5 annotations or an XML configuration. This overview uses annotation to provide metadata. For a complete reference to POJO annotations and XML configuration, refer to the <a href="modeling-your-data.htm">POJO Metadata</a> section.</p>
 
@@ -37,7 +37,7 @@
   <p>When using annotations and the gs.xml file to define metadata, the metadata in the gs.xml will be used and the annotations will be ignored. <span class="tc-bold">It is not recommended to use the two metadata definitions for a Space class at the same time</span>.</p>
 </div>
 
-<h2 id="primitives-vs-wrapper-classes-for-pojo-properties">Primitives vs. Wrapper Classes for POJO Properties</h2>
+<h2><a name="primitives-vs-wrapper-classes-for-pojo-properties">&#160;</a>Primitives vs. Wrapper Classes for POJO Properties</h2>
 
 <p>XAP supports both primitives (<code>int</code>, <code>long</code>, <code>double</code>, <code>float</code>, etc.), and primitive wrappers (<code>java.lang.Integer</code>, <code>java.lang.Double</code>, etc.). In general, it is recommended that you use the primitive wrapper. This enables you to use the <code>null</code> values as a wildcard when using template matching.</p>
 
@@ -78,7 +78,7 @@ public class Person {
 }
 </code></pre>
 
-<h1 id="pojo-rules">POJO Rules</h1>
+<h1><a name="pojo-rules">&#160;</a>POJO Rules</h1>
 
 <p>When using a POJO as a Space domain class, follow these guidelines:</p>
 
@@ -94,7 +94,7 @@ public class Person {
 <li>A POJO class must implement the <code>Serializable</code>  interface if used as a parameter for a remote call (<a href="space-based-remoting-overview.htm">Space Based Remoting</a>).</li>
 </ul>
 
-<h2 id="controlling-space-class-fields-introduction">Controlling Space Class Fields Introduction</h2>
+<h2><a name="controlling-space-class-fields-introduction">&#160;</a>Controlling Space Class Fields Introduction</h2>
 
 <p>To force XAP to ignore a POJO field when the Space class is introduced to the Space, use one of the following:</p>
 
@@ -103,7 +103,7 @@ public class Person {
 <li><code>@SpaceClass(includeProperties=IncludeProperties.EXPLICIT)</code> class-level annotation and use the <code>@SpaceProperty()</code> with each getter method for fields that should be considered part of the Space class.</li>
 </ul>
 
-<h2 id="space-pojo-class-metadata-data-file">Space POJO Class Metadata Data File</h2>
+<h2><a name="space-pojo-class-metadata-data-file">&#160;</a>Space POJO Class Metadata Data File</h2>
 
 <p>POJO Space mapping files <code>gs.xml</code> files can be loaded from:</p>
 
@@ -112,17 +112,17 @@ public class Person {
 <li>The same package where the class file is located using the format <code>&lt;&lt;Class Name&gt;&gt;.gs.xml</code>.</li>
 </ul>
 
-<h2 id="user-defined-space-class-fields">User-Defined Space Class Fields</h2>
+<h2><a name="user-defined-space-class-fields">&#160;</a>User-Defined Space Class Fields</h2>
 
 <p>You may have user-defined data types (non-primitive data types) with your Space class. These should implement the <code>Serializable</code> or <code>Externalizable</code> interface. The user-defined class nested fields can be used with queries, and can be indexed. See the <a href="query-sql.htm#Nested Properties">Nested Properties</a> and the <a href="indexing.htm#Nested Properties Indexing">Nested Properties Indexing</a> section for details.</p>
 
-<h2 id="reference-handling">Reference Handling</h2>
+<h2><a name="reference-handling">&#160;</a>Reference Handling</h2>
 
 <p>When running in embedded mode, Space object fields <span class="tc-bold">are passed by reference</span> to the Space. Extra caution should be taken with non-primitive, non-mutable fields such as collections (<code>HashTable, Vector</code>). Changes made to those fields outside the context of the Space affect the value of those fields in the Space, and may result in unexpected behavior.</p>
 
 <p>For example, index lists aren't maintained because the Space is unaware of the modified field values. For those fields, it is recommended to pass a cloned value rather then the reference itself. Passing a cloned value is important when several threads access the Object fields, for example application threads and replication threads.</p>
 
-<h2 id="non-indexed-fields">Non-Indexed Fields</h2>
+<h2><a name="non-indexed-fields">&#160;</a>Non-Indexed Fields</h2>
 
 <p>Non-indexed fields that are not used for queries should be placed within a user-defined class (payload object), and have their getter and setter placed within the payload class. This improves the read/write performance because these fields aren't introduced to the Space class model.</p>
 
@@ -131,7 +131,7 @@ public class Person {
   <p><a href="indexing-overview.htm">Indexing</a> is <span class="tc-bold">critical</span> for good performance over large Spaces. Don't forget to index properly with the @SpaceIndex(type=SpaceIndexType.EQUAL) or @SpaceIndex(type=SpaceIndexType.ORDERED) annotation, or use the gs.xml equivalent.</p>
 </div>
 
-<h1 id="jini-entry">Jini Entry</h1>
+<h1><a name="jini-entry">&#160;</a>Jini Entry</h1>
 
 <div class="tc-admon-important">
   

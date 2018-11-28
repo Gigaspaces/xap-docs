@@ -5,7 +5,7 @@
 <h1>Storage Types</h1>
   
 
-<h1 id="available-storage-types">Available Storage Types</h1>
+<h1><a name="available-storage-types">&#160;</a>Available Storage Types</h1>
 
 <p>Each non-primitive space object property can be assigned a storage type decoration which determines how it is serialized and stored in the space. There are 3 storage types that are available:</p>
 
@@ -26,7 +26,7 @@
 <p><br/>
 The default storage type can be determined for the entire space and/or for a specific space class. If a default storage type is not defined for the space, then the default value is OBJECT. Each property for which a storage type was not defined gets the class's default storage type if that exists and the space storage type if it doesn't.</p>
 
-<h1 id="why-use-a-storage-type-different-than-object">Why Use a Storage Type Different than OBJECT</h1>
+<h1><a name="why-use-a-storage-type-different-than-object">&#160;</a>Why Use a Storage Type Different than OBJECT</h1>
 
 <p>There are a few motivations for changing the default storage type for a certain property:</p>
 
@@ -41,7 +41,7 @@ When using the <code>COMPRESSED</code> storage type, the Space automatically com
 When a certain class which serves as a space property is likely to change over time, you may want to store it in the space as a serialized object, making the property opaque to the space so it doesn't attempt to load the property class at all. In such a case, the user is responsible for version compatibility between different serialized forms of the same class.</p></li>
 </ul>
 
-<h1 id="storage-types">Storage Types</h1>
+<h1><a name="storage-types">&#160;</a>Storage Types</h1>
 
 <table>
 <thead>
@@ -73,7 +73,7 @@ When a certain class which serves as a space property is likely to change over t
 </tbody>
 </table>
 
-<h2 id="embedded-mode">Embedded Mode</h2>
+<h2><a name="embedded-mode">&#160;</a>Embedded Mode</h2>
 
 <ul>
 <li><p>Native mode - non-primitive Space Object field types are not serialized - the space stores the references of the non-primitive fields. This mode provides the best performance. In multi-threaded environments, be careful when accessing the non-primitive fields after their parent Object has been stored into the space.</p></li>
@@ -81,13 +81,13 @@ When a certain class which serves as a space property is likely to change over t
 <li><p>Full Serialization mode - non-primitive Space Object field types are serialized - the space stores a clone of the fields object. This impacts the performance.</p></li>
 </ul>
 
-<h3 id="reading-and-changing-object-in-embedded-mode-without-writing-it-back">Reading and Changing Object in Embedded Mode without Writing it Back</h3>
+<h3><a name="reading-and-changing-object-in-embedded-mode-without-writing-it-back">&#160;</a>Reading and Changing Object in Embedded Mode without Writing it Back</h3>
 
 <p>GigaSpaces do not store the object reference within the space, but stores the object non-primitive references and the primitive fields data within the space within a document based structure. When having multiple threads accessing the same object simultaneously, you should clone the object after you read it and use the clone copy when updating the writing it back into the space.
 If you read an object from the space and change it without writing it back, you might modify one of its complex type fields that another thread holding its reference.
 (other thread might be replication thread...If there is also an index on this field the index won't be updated...)</p>
 
-<h2 id="remote-mode">Remote mode</h2>
+<h2><a name="remote-mode">&#160;</a>Remote mode</h2>
 
 <p>In remote mode, the Object's non-primitive fields are serialized where the serialization mode determine how it is done:</p>
 
@@ -97,7 +97,7 @@ If you read an object from the space and change it without writing it back, you 
 <li>Compressed mode - non-primitive fields are compressed before being sent to the space at the client side. These are stored in compressed form within the space.</li>
 </ul>
 
-<h1 id="setting-space-level-storage-type">Setting Space-Level Storage Type</h1>
+<h1><a name="setting-space-level-storage-type">&#160;</a>Setting Space-Level Storage Type</h1>
 
 <p>Specifying space level storage type can be done using any of the following:</p>
 
@@ -127,7 +127,7 @@ If you read an object from the space and change it without writing it back, you 
 </div>
 </div>
 
-<h1 id="setting-property-level-storage-type">Setting Property-Level Storage Type</h1>
+<h1><a name="setting-property-level-storage-type">&#160;</a>Setting Property-Level Storage Type</h1>
 
 <p>Specifying property level storage type can be done using annotations or via the <code>gs.xml</code> file:</p>
 
@@ -170,7 +170,7 @@ public class Person
 <li>The blog property will default to <code>OBJECT</code> storage type because no storage type was specified for that property or for its containing class (assuming that the space serialization type is <code>OBJECT</code>).</li>
 </ul>
 
-<h1 id="setting-class-level-storage-type">Setting Class-Level Storage Type</h1>
+<h1><a name="setting-class-level-storage-type">&#160;</a>Setting Class-Level Storage Type</h1>
 
 <p>Specifying call level storage type can be done using annotations or via the <code>gs.xml</code> file:</p>
 
@@ -188,7 +188,7 @@ public class Person
 </div>
 </div>
 
-<h1 id="setting-a-storage-type-for-document-properties">Setting a Storage Type for Document Properties</h1>
+<h1><a name="setting-a-storage-type-for-document-properties">&#160;</a>Setting a Storage Type for Document Properties</h1>
 
 <p>Specifying a document property's storage type done by passing it as a parameter to the <code>SpaceTypeDescriptorBuilder.addFixedProperty</code> method when creating the type descriptor:</p>
 
@@ -220,11 +220,11 @@ public class Person
 <li>When creating a document using a POJO, the property storage types will be determined by the POJO definition.</li>
 </ul>
 
-<h1 id="inheritance">Inheritance</h1>
+<h1><a name="inheritance">&#160;</a>Inheritance</h1>
 
 <p>A property's storage type is inherited by its containing class' sub classes. Overriding the storage type is not allowed (i.e. if a property has <code>COMPRESSED</code> storage type in a super class it is also the storage type of that property in a sub class and an attempt to change it will cause an exception to be thrown by the space).</p>
 
-<h1 id="constraints">Constraints</h1>
+<h1><a name="constraints">&#160;</a>Constraints</h1>
 
 <ul>
 <li>The following types must have the <code>OBJECT</code> storage type:

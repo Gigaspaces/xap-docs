@@ -15,7 +15,7 @@
 <li><a href="aggregators.htm#custom-aggregation">Custom Aggregator</a></li>
 </ul>
 
-<h1 id="task-execution">Task Execution</h1>
+<h1><a name="task-execution">&#160;</a>Task Execution</h1>
 
 <p>The annotation can be used when defining task execution. For example, annotate your task with <code>@SupportCodeChange(id="1")</code>. When the code changes, set the annotation to <code>@SupportCodeChange(id="2")</code>, and the Space will load the new task.</p>
 
@@ -64,7 +64,7 @@ public class DynamicTask implements Task&lt;Integer&gt; {
   <p>For detailed information about task execution, see the <a href="task-execution-overview.htm">Task Execution</a> topic.</p>
 </div>
 
-<h1 id="custom-change">Custom Change</h1>
+<h1><a name="custom-change">&#160;</a>Custom Change</h1>
 
 <p>The annotation can be used for custom change operations, as demonstrated in the example below.</p>
 
@@ -151,7 +151,7 @@ public class MultiplyIntegerChangeOperation extends CustomChangeOperation {
   <p>For detailed information about the Custom Change operation, see the <a href="change-api-custom-operation.htm">Custom Change</a> topic.</p>
 </div>
 
-<h1 id="custom-aggregation">Custom Aggregation</h1>
+<h1><a name="custom-aggregation">&#160;</a>Custom Aggregation</h1>
 
 <p>The annotation can also be used for custom aggregation operations, as demonstrated by the following example.</p>
 
@@ -254,7 +254,7 @@ public class ConcatAggregator extends SpaceEntriesAggregator&lt;String&gt; {
   <p>For detailed information about how to use custom aggregators, see the <a href="aggregators.htm">Aggregators</a> topic.</p>
 </div>
 
-<h1 id="number-of-caches">Number of Caches</h1>
+<h1><a name="number-of-caches">&#160;</a>Number of Caches</h1>
 
 <p>The default limit of class loaders (caches) is 3. when this limit is breached, the oldest cache is evicted in favor of the new one.
 This value can be modified via the following Space properties:</p>
@@ -288,7 +288,7 @@ This value can be modified via the following Space properties:</p>
   <p><code>@SupportCodeChange</code> annotations without an ID or with <code>id=""</code> are not cached.</p>
 </div>
 
-<h1 id="limitations">Limitations</h1>
+<h1><a name="limitations">&#160;</a>Limitations</h1>
 
 <ul>
 <li>When using <code>@SupportCodeChange</code>, no new types can be introduced to the Space.</li>

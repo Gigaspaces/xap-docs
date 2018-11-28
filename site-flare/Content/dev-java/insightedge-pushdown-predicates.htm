@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Pushdown Predicates</h1>
   
 
 <p>InsightEdge enhances the Agile Spark pushdown predicate capability by leveraging our native advanced indexing mechanism, to retrieve only relevant data entries when running a query (filter). This ability to filter directly on the source (instead of on the target as is done in the vanilla Apache Spark architecture) dramatically improves performance and reduces network overhead.</p>
 
-<h1 id="indexing">Indexing</h1>
+<h1><a name="indexing">&#160;</a>Indexing</h1>
 
 <p>Pushdown predicates are dependent on indexing the relevant fields. The indexing can be adjusted to improve performance further, as described in the <a href="indexing-overview.htm">Indexing</a> section. You can also refer to the <a href="insightedge-modeling.htm">Data Modeling</a> topic.</p>
 
-<h1 id="pushing-predicates-to-the-data-grid">Pushing Predicates to the Data Grid</h1>
+<h1><a name="pushing-predicates-to-the-data-grid">&#160;</a>Pushing Predicates to the Data Grid</h1>
 
 <p>When executing a query in InsightEdge, the following predicates are pushed down to the grid level.</p>
 
@@ -33,29 +33,29 @@
 
 <p>For more information about the geospatial predicates, refer to the <a href="insightedge-geospatial.htm">GeoSpatial API</a> topic.</p>
 
-<h1 id="rdd-api">RDD API</h1>
+<h1><a name="rdd-api">&#160;</a>RDD API</h1>
 
 <p>To use the pushdown predicates with RDD, you can use the gridSql API as shown in the following example. With this API, the queries are performed in the data grid.</p>
 
-<pre xml:space="preserve"><code class="language-scala">val rdd1 = sc.gridSql[Product]("quantity &gt; 0")...
+<pre><code class="language-scala">val rdd1 = sc.gridSql[Product]("quantity &gt; 0")...
 
 val rdd2 = sc.gridSql[Product]("quantity &gt; ? and featuredProduct = ?", Seq(10, true))
 </code></pre>
 
-<h2 id="geospatial-api-support">Geospatial API Support</h2>
+<h2><a name="geospatial-api-support">&#160;</a>Geospatial API Support</h2>
 
 <p>When using the geospatial API with the RDD API, the predicate is pushed down to the grid and the filtering is done on the data grid side. The gridSql API receives a Data Grid SQL query.</p>
 
-<pre xml:space="preserve"><code class="language-scala">val rdd = sc.gridSql[SpatialData]("location spatial:within ?", Seq(circle(point(10,10), 10)))
+<pre><code class="language-scala">val rdd = sc.gridSql[SpatialData]("location spatial:within ?", Seq(circle(point(10,10), 10)))
 </code></pre>
 
 <p>For more information about these types of queries, refer to the <a href="insightedge-rdd.htm">RDD API</a> topic.</p>
 
-<h1 id="dataframe-dataset-apis">DataFrame/DataSet APIs</h1>
+<h1><a name="dataframe-dataset-apis">&#160;</a>DataFrame/DataSet APIs</h1>
 
 <p>When using the DataFrame or DataSet APIs, filters are performed in the client side (executors). If you choose to work with these APIs, use the regular syntax of the <span class="tc-bold">filter</span> and <span class="tc-bold">where</span> APIs. InsightEdge pushes down the supported predicates to the grid level.</p>
 
-<pre xml:space="preserve"><code class="language-scala">//DataFrame
+<pre><code class="language-scala">//DataFrame
 val df = spark.read.grid[Product].where("quantity &gt; 0")
 
 //Dataset
@@ -66,22 +66,23 @@ val ds = spark.read.grid[Product].as[Product].where("quantity &gt; 0")
   
   <p>When using the custom function syntax for filtering, the filtering itself is performed on the client side, not in the data grid.</p>
 
-<pre xml:space="preserve"><code class="language-scala">//This does not use pushdown predicates and is performed in the client side.
+<pre><code class="language-scala">//This does not use pushdown predicates and is performed in the client side.
 spark.read.grid[Product].as[Product].filter(p =&gt; p.quantity &gt; 0).count()
 </code></pre>
+</p>
 </div>
 
-<h2 id="geospatial-api-support-1">Geospatial API Support</h2>
+<h2><a name="geospatial-api-support-1">&#160;</a>Geospatial API Support</h2>
 
 <p>Although this API is supported, the predicates are not pushed down to the data grid and therefore filtering is done on the client side.</p>
 
-<pre xml:space="preserve"><code class="language-scala">val df = sqlContext.read.grid[SpatialData]
+<pre><code class="language-scala">val df = sqlContext.read.grid[SpatialData]
 val data = df.filter(df("location") geoWithin circle(point(10,10), 10))
 </code></pre>
 
 <p>For more information about using geospatial predicates with these APIs, refer to the <a href="insightedge-datasets.htm">Dataset API</a> and <a href="insightedge-dataframes.htm">DataFrame API</a> topics.</p>
 
-<h2 id="aggregations">Aggregations</h2>
+<h2><a name="aggregations">&#160;</a>Aggregations</h2>
 
 <p>Currently, Apache Spark does not push down aggregation queries (<code>groupBy</code>, <code>count</code>, etc.) to the data source. When this functionality becomes available in Apache Spark, it can also be used in InsightEdge.</p>
 

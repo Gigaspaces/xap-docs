@@ -22,7 +22,7 @@
   <p>Persisting data to the data is explained in the <a href="space-synchronization-endpoint-api.htm">Space Synchronization Endpoint API</a> page.</p>
 </div>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
 <p>Space data source configuration can be done using a Spring bean or via code as shown in the following examples:</p>
 
@@ -50,11 +50,11 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("space
 </div>
 </div>
 
-<h1 id="the-spacedatasource-api">The SpaceDataSource API</h1>
+<h1><a name="the-spacedatasource-api">&#160;</a>The SpaceDataSource API</h1>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/datasource/SpaceDataSource.htm">SpaceDataSource</a> abstract class should be extended in order to provide a custom behavior where needed.</p>
 
-<h1 id="initial-metadata-load">Initial Metadata Load</h1>
+<h1><a name="initial-metadata-load">&#160;</a>Initial Metadata Load</h1>
 
 <p>The space data source API provides a way to introduce types to the space on its initialization before initial data load occurs. This is necessary since many data source solutions work in a document fashion (For example, Cassandra) where no POJOs are involved.</p>
 
@@ -85,7 +85,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("space
 }
 </code></pre>
 
-<h1 id="reading-from-the-data-source">Reading From The Data Source</h1>
+<h1><a name="reading-from-the-data-source">&#160;</a>Reading From The Data Source</h1>
 
 <p>When the space needs to read data from the data source the <code>SpaceDataSource.getDataIterator</code> is invoked. The method receives a <code>DataSourceQuery</code> instance parameter which specifies the type the query is for and allows to get a SQL query, Object template or a SpaceDocument representation of the query.</p>
 
@@ -115,7 +115,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("space
 }
 </code></pre>
 
-<h1 id="read-from-data-source-by-id">Read From Data Source By Id</h1>
+<h1><a name="read-from-data-source-by-id">&#160;</a>Read From Data Source By Id</h1>
 
 <p>The space data source API includes the <code>getById</code> method which gets invoked whenever the space needs to read an object from the data source by its Id. An example for this case is when a write operation has been executed and the space needs to make sure the written object does not already exist in the data source (LRU mode).</p>
 
@@ -139,7 +139,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("space
 }
 </code></pre>
 
-<h1 id="data-types-inheritance">Data Types Inheritance</h1>
+<h1><a name="data-types-inheritance">&#160;</a>Data Types Inheritance</h1>
 
 <p>The space data source implementation can specify whether it supports data types inheritance using the <code>SpaceDataSource.supportsInheritance</code> method (default=true).
 When a data source does not support types inheritance it means that when the space queries the data source it needs to provide it with information regarding the derived types of the queried type. This is done simply by invoking the <code>getDataIterator</code> for all the derived types of the queried type. For example, a Person and Student classes where Student extends Person, if Person was queried and the data source does not support inheritance, <code>getDataIterator</code> will be invoked twice - for Student and for Person since Student is derived from Person. If the data source supports inheritance, <code>getDataIterator</code> will be invoked only once with Person as its type.</p>

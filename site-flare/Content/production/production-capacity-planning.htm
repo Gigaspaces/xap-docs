@@ -26,7 +26,7 @@
   <p>It is not necessary to specify the maximum number of partitions for services that are not co-located with IMDG instances. These can be scaled dynamically without having to specify maximum instances.</p>
 </div>
 
-<h1 id="object-footprint-within-the-imdg">Object Footprint Within the IMDG</h1>
+<h1><a name="object-footprint-within-the-imdg">&#160;</a>Object Footprint Within the IMDG</h1>
 
 <p>The object footprint within the IMDG is determined based on the following:</p>
 
@@ -38,7 +38,7 @@
 <li>The object UID size - the UID is a string-based field, and consumes about 35 characters. You may have the object UID based on your own unique ID.</li>
 </ul>
 
-<h2 id="calculating-the-object-footprint">Calculating the Object Footprint</h2>
+<h2><a name="calculating-the-object-footprint">&#160;</a>Calculating the Object Footprint</h2>
 
 <p>The best way to determine the exact object footprint is via a simple test that allows you to perform some extrapolation when running the application in production.</p>
 
@@ -125,7 +125,7 @@
 </ul>
 </div>
 
-<h1 id="active-clients-vs-cores-vs-heap-size">Active Clients vs. Cores vs. Heap Size</h1>
+<h1><a name="active-clients-vs-cores-vs-heap-size">&#160;</a>Active Clients vs. Cores vs. Heap Size</h1>
 
 <p>The IMDG kernel is a highly multi-threaded process, and therefore has a relatively large number of active threads handling incoming requests. These requests can come from remote clients or co-located clients, such as:</p>
 
@@ -142,7 +142,7 @@
 
 <p>A machine running 4 quad-core cores with fast CPUs (3GHz clock) can handle 20-30 concurrent collocated clients and 100-150 concurrent remote clients without any special delay. This JVM configuration should have at least a 2-3GB heap size to handle the IMDG data and additional resources that utilize the memory. With the above, we assume the application business logic is very simple and does not have any IO operations, and the IMDG persistency mode is asynchronous.</p>
 
-<h1 id="calculating-the-number-of-imdg-partitions">Calculating the Number of IMDG Partitions</h1>
+<h1><a name="calculating-the-number-of-imdg-partitions">&#160;</a>Calculating the Number of IMDG Partitions</h1>
 
 <p>Calculating the number of IMDG partitions required by an application is essentially on the maximum number of machines available. Theoretically, in an ideal world where you have unlimited budget and resources, you might have a dedicated machine per IMDG instance hosted within a dedicated Grid Container (GSC). In the real world, in order to avoid a large hardware budget, you can initially have multiple IMDG instances running on the same machine within a single GSC. This deployment topology can be modified later to move closer to the ideal of a dedicated GSC hosting a single IMDG instance (one IMDG instance per GSC).</p>
 
@@ -176,7 +176,7 @@
 <li>Total number of GSCs - total number of GSCs that are initially running when deploying the data grid.</li>
 </ul>
 
-<h2 id="example-1-basic-capacity-planning">Example 1 - Basic Capacity Planning</h2>
+<h2><a name="example-1-basic-capacity-planning">&#160;</a>Example 1 - Basic Capacity Planning</h2>
 
 <p>In this example, there are initially 2 machines used to run the IMDG application. 10 machines may be allocated for the project within the next 12 months. Each machine has 32GB of RAM with 4 quad-core CPUs. This provides a total of 64GB of RAM. Later, when all 10 machines are available, there will be a potential 320GB of total memory. The memory is used both by the primary IMDG and the backup IMDG instances (exact replica of the primary machines).</p>
 
@@ -198,7 +198,7 @@
 
 <p>Being able to determine the number of IMDG partitions prior to the application deployment allows you to have exact knowledge of how your routing field values should be distributed, and how your data will be partitioned across the different JVMs that will be hosting your data in memory.</p>
 
-<h2 id="example-2-capacity-planning-when-running-on-the-cloud">Example 2 - Capacity Planning when Running on the Cloud</h2>
+<h2><a name="example-2-capacity-planning-when-running-on-the-cloud">&#160;</a>Example 2 - Capacity Planning when Running on the Cloud</h2>
 
 <p>In a cloud environment, you have access to essentially unlimited resources. You can spin up new virtual machines and have practically unlimited amounts of memory and CPU power. In this type of environment, calculating the maximum number of IMDG partitions is not based on the maximum number of machines you might have allocated for your project because theoretically, you can have an unlimited number of machines started on the cloud to host your IMDG. Still, you must have some value for the maximum number of IMDG partitions when deploying your application. In this case, calculate the number of IMDG partitions based on the amount of memory your application might generate and store within the IMDG.</p>
 
@@ -222,7 +222,7 @@
 
 <p>When using machines with 32GB of RAM, 4 machines are needed to run enough primary IMDG instances to store 111GB of data in memory, and another 4 machines are needed for the backup IMDG instances. For a 64-bit operating system, the numbers are 5 GSCs, each having a 6GB maximum heap size for a total of 40 GSCs (5 X 4 X 2). With 20 GSCs used to run primary instances, it is reasonable to target 80 as the potential final number of partitions needed (each GSC will initially host 4 IMDG instances). This means that we have 160 IMDG instances (half primary and half backups) hosted within 40 GSCs. Theoretically, this allows us to expand the IMDG to run across 160 machines (one GSC per machine). This means 160 X 10GB as the heap size = 1.6TB of IMDG memory capacity to host the IMDG objects.  This is a huge amount of capacity for the IMDG, and actually 10 times larger than the estimated size. It provides a lot of room for error in case our initial memory utilization was wrong.</p>
 
-<h1 id="used-memory-utility">Used Memory Utility</h1>
+<h1><a name="used-memory-utility">&#160;</a>Used Memory Utility</h1>
 
 <p>Checking the used memory on all primary instances can be done using the following (we assume we have one GSC per primary instance):</p>
 

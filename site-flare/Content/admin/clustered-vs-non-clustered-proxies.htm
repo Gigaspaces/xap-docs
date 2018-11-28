@@ -27,11 +27,11 @@
 
 <p>You can use the <code>clustered</code> property to control this behavior or use the API to use a non-clustered embedded proxy to create a clustered proxy. This allows the collocated business logic to access the entire cluster to perform cluster wide operations. Clustered and Non-Clustered proxies may be used with a <a href="../dev-java/task-execution-overview.htm">Task</a>, <a href="../dev-java/executor-based-remoting.htm">Service</a>, <a href="../dev-java/notify-container-overview.htm">Notify Container</a> , <a href="../dev-java/polling-container-overview.htm">Polling Container</a> and any other Collocated business logic.</p>
 
-<h1 id="creating-a-clustered-proxy">Creating a Clustered Proxy</h1>
+<h1><a name="creating-a-clustered-proxy">&#160;</a>Creating a Clustered Proxy</h1>
 
 <p>You may use Spring based configuration or API to create a Clustered Proxy.</p>
 
-<h2 id="using-spring">Using Spring</h2>
+<h2><a name="using-spring">&#160;</a>Using Spring</h2>
 
 <p>When using a Spring based <code>pu.xml</code> to construct the <a href="../dev-java/the-gigaspace-interface-overview.htm">GigaSpace</a> bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered <code>GigaSpace</code> bean:</p>
 
@@ -40,7 +40,7 @@
 &lt;os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/&gt;
 </code></pre>
 
-<h2 id="using-an-api">Using an API</h2>
+<h2><a name="using-an-api">&#160;</a>Using an API</h2>
 
 <p>The <code>GigaSpace.getClustered()</code> method allows you to get a cluster wide proxy from a non-clustered proxy. In such a case the <code>@GigaSpaceContext</code> should be used to inject the non-clustered <code>GigaSpace</code> bean or the <code>@TaskGigaSpace</code> when executing a <code>Task</code> that is invoked at the space side.</p>
 
@@ -87,15 +87,15 @@ gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
 }
 </code></pre>
 
-<h1 id="why-do-i-ant-a-clustered-proxy">Why Do I @ant a Clustered Proxy?</h1>
+<h1><a name="why-do-i-ant-a-clustered-proxy">&#160;</a>Why Do I @ant a Clustered Proxy?</h1>
 
 <p>A clustered proxy provides you access to the entire cluster rather than a specific partition. Once you will need to read/write/take/clear/execute against the entire cluster you must use a clustered proxy.</p>
 
-<h1 id="performance-considerations-of-a-clustered-proxy">Performance Considerations of a Clustered Proxy</h1>
+<h1><a name="performance-considerations-of-a-clustered-proxy">&#160;</a>Performance Considerations of a Clustered Proxy</h1>
 
 <p>With a remote client, serialization and network activity will impact the performance when writing/reading data. With a collocated non-clustered proxy serialization and network activity will not happen when the client code interacts with the embedded space so these should not be considered, but they will be considered when the embedded space has a backup pair. Here the replication activity will be impacted by the serialization and network activity. Still, this would be a single network hop rather than two when having a remote client.</p>
 
-<h1 id="protective-mode-exception-when-using-a-non-clustered-proxy">Protective Mode Exception when Using a Non-Clustered Proxy</h1>
+<h1><a name="protective-mode-exception-when-using-a-non-clustered-proxy">&#160;</a>Protective Mode Exception when Using a Non-Clustered Proxy</h1>
 
 <p>To protect a user using a non-clustered proxy from writing or updating objects using a wrong routing field value, GigaSpaces runs by default in Protective Mode. This will throw the <code>ProtectiveModeException</code> and block users from getting into such scenarios. You can turn off this behavior by using the following: <code>com.gs.protectiveMode.wrongEntryRoutingUsage=false</code>.</p>
 
@@ -111,11 +111,11 @@ gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
 <p><span class="tc-bold">The ProtectiveModeException Exception</span><br/>
 Exception in thread "main" com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - the routing value in the written entry of type "com.test.Data' does not match this space partition id. The value within the entry's routing property named "id' is 1 which matches partition id 2 while current partition id is 1. Having a mismatching routing value would result in a remote client not being able to locate this entry as the routing value will not match the partition the entry is located. (you can disable this protection, though it is not recommended, by setting the following system property: com.gs.protectiveMode.wrongEntryRoutingUsage=false)</p>
 
-<h1 id="using-both-clustered-and-non-clustered-proxies">Using Both Clustered and Non-clustered Proxies</h1>
+<h1><a name="using-both-clustered-and-non-clustered-proxies">&#160;</a>Using Both Clustered and Non-clustered Proxies</h1>
 
 <p>There are scenarios where a collocated component (Remote Service, Task, Event Container) will have both a clustered proxy and a non-clustered embedded proxy. The clustered proxy will be used to interact with the entire cluster where the non-clustered embedded proxy will be used to bootstrap the space and interact only with the local partition.</p>
 
-<h2 id="example">Example</h2>
+<h2><a name="example">&#160;</a>Example</h2>
 
 <p>With our examples below we will use this simple Space Class:</p>
 
@@ -141,7 +141,7 @@ this.id = id;
   <p>When there is no explicit <code>@SpaceRouting</code> declared, the method annotated as the <code>@SpaceId</code> is used as the <code>@SpaceRouting</code> method.</p>
 </div>
 
-<h2 id="remote-service-usage-of-a-clustered-and-a-non-clustered-proxy">Remote Service Usage of a Clustered and a Non-Clustered Proxy</h2>
+<h2><a name="remote-service-usage-of-a-clustered-and-a-non-clustered-proxy">&#160;</a>Remote Service Usage of a Clustered and a Non-Clustered Proxy</h2>
 
 <p>With this example the <code>pu.xml</code> includes the following:</p>
 
@@ -251,7 +251,7 @@ Service call - routing 1 partition 2 gigaSpaceRemote - total visible objects:2
 Service call - routing 1 partition 2 gigaSpaceEmbed - total visible objects:1
 </code></pre>
 
-<h2 id="distributedtask-usage-of-a-clustered-and-a-non-clustered-proxy">DistributedTask Usage of a Clustered and a Non-Clustered Proxy</h2>
+<h2><a name="distributedtask-usage-of-a-clustered-and-a-non-clustered-proxy">&#160;</a>DistributedTask Usage of a Clustered and a Non-Clustered Proxy</h2>
 
 <p>Our <code>DistributedTask</code> implements <a href="../dev-java/obtaining-cluster-information.htm">ClusterInfoAware</a>. This allows it to be injected with the <code>ClusterInfo</code> that provides information about the cluster topology and the local partition ID. Here is how the <code>DistributedTask</code> looks:</p>
 
@@ -337,7 +337,7 @@ From Task Execute - partition 1 gigaSpaceRemote - total visible objects:2
 From Task Execute - partition 2 gigaSpaceRemote - total visible objects:2
 </code></pre>
 
-<h2 id="event-container-usage-of-a-clustered-and-a-non-clustered-proxy">Event Container Usage of a Clustered and a Non-Clustered Proxy</h2>
+<h2><a name="event-container-usage-of-a-clustered-and-a-non-clustered-proxy">&#160;</a>Event Container Usage of a Clustered and a Non-Clustered Proxy</h2>
 
 <p>With this example the <code>pu.xml</code> includes the following:</p>
 
@@ -423,7 +423,7 @@ Got event! Data [id=1]
 From Notify Container - partition 2 Counting total space objects using a Clustered proxy :1
 </code></pre>
 
-<h1 id="writing-new-objects-from-co-located-business-logic">Writing New Objects from Co-located Business Logic</h1>
+<h1><a name="writing-new-objects-from-co-located-business-logic">&#160;</a>Writing New Objects from Co-located Business Logic</h1>
 
 <p>When writing new objects from a collocated business logic with a partitioned space, the routing field must "match" the collocated space instance. See below example loading data into the space using a <code>DistributedTask</code> injected with a collocated proxy.</p>
 

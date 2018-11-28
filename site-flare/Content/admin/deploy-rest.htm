@@ -5,19 +5,19 @@
 <h1>Deploy with REST</h1>
   
 
-<h1 id="deploy-resource">deploy resource</h1>
+<h1><a name="deploy-resource">&#160;</a>deploy resource</h1>
 
-<h2 id="syntax">Syntax</h2>
+<h2><a name="syntax">&#160;</a>Syntax</h2>
 
 <pre><code class="language-bash">curl -X POST [name] [resource jar/war/zip file / directory location / name] [url/deployments]
 </code></pre>
 
-<h2 id="description">Description</h2>
+<h2><a name="description">&#160;</a>Description</h2>
 
 <p>A resource (Processing Unit) can be easily deployed onto the Service Grid. In order to deploy a resource, the Processing Unit must follow the <a href="../dev-java/the-processing-unit-structure-and-configuration.htm">processing unit directory structure</a>.
 Before deploying the processing unit you will need to jar it and then specify that jar file as the resource to the <code>POST</code> command. The deployment process will upload the jar file to all the GSMs it finds and unpack it under the <code>deploy</code> directory. It will then issue the deploy command.</p>
 
-<h2 id="options">Options</h2>
+<h2><a name="options">&#160;</a>Options</h2>
 
 <table>
 <thead>
@@ -86,18 +86,18 @@ Before deploying the processing unit you will need to jar it and then specify th
  }' 'http://localhost:8090/v1/deployments'
 </code></pre>
 
-<h1 id="deploy-space">deploy space</h1>
+<h1><a name="deploy-space">&#160;</a>deploy space</h1>
 
-<h2 id="syntax-1">Syntax</h2>
+<h2><a name="syntax-1">&#160;</a>Syntax</h2>
 
 <pre><code class="language-bash"> curl -X POST  [url/spaces] [space name] [options]
 </code></pre>
 
-<h2 id="description-1">Description</h2>
+<h2><a name="description-1">&#160;</a>Description</h2>
 
 <p>A Space only Processing Unit can be easily deployed onto the Service Grid.</p>
 
-<h2 id="options-1">Options</h2>
+<h2><a name="options-1">&#160;</a>Options</h2>
 
 <table>
 <thead>
@@ -152,14 +152,14 @@ Before deploying the processing unit you will need to jar it and then specify th
 <pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces?name=mySpace&amp;partitions=4&amp;backups=true&amp;requiresIsolation=true'
 </code></pre>
 
-<h1 id="undeploy-resource">undeploy resource</h1>
+<h1><a name="undeploy-resource">&#160;</a>undeploy resource</h1>
 
-<h2 id="syntax-2">Syntax</h2>
+<h2><a name="syntax-2">&#160;</a>Syntax</h2>
 
 <pre><code class="language-bash">curl -X DELETE [url]/deployments/resource_name
 </code></pre>
 
-<h2 id="description-2">Description</h2>
+<h2><a name="description-2">&#160;</a>Description</h2>
 
 <p>Undeploys an <a href="../dev-java/deploying-onto-the-service-grid.htm#Application Deployment and Processing Unit Dependencies">application</a> from the service grid, while respecting pu dependency order.</p>
 

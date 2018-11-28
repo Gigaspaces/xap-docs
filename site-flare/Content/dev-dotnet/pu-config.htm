@@ -5,7 +5,7 @@
 <h1>Configuration</h1>
   
 
-<h1 id="getting-started">Getting Started</h1>
+<h1><a name="getting-started">&#160;</a>Getting Started</h1>
 
 <p>Creating a processing unit is simple:</p>
 
@@ -33,7 +33,7 @@
   <p>Upgrading from older versions The processing unit configuration scheme has been simplified in version 10.0, and the previous scheme is still supported for backwards compatibility but it depracated. If you're upgrading from older versions it is recommended to update your PU configuration accordingly.</p>
 </div>
 
-<h1 id="embedded-spaces">Embedded Spaces</h1>
+<h1><a name="embedded-spaces">&#160;</a>Embedded Spaces</h1>
 
 <p>The processing unit can be configured to create an embedded space, which will be created when the PU is deployed and destroyed when the PU is undeployed:</p>
 
@@ -44,7 +44,7 @@
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
-<h3 id="cluster-mode">Cluster Mode</h3>
+<h3><a name="cluster-mode">&#160;</a>Cluster Mode</h3>
 
 <p>When creating an embedded space, the default proxy is created in <span class="tc-bold">direct</span> mode, meaning it targets only the collocated cluster member. To target the entire cluster, set the <code>Mode</code> tag to <span class="tc-bold">Clustered</span>:</p>
 
@@ -55,7 +55,7 @@
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
-<h3 id="cluster-aware">Cluster aware</h3>
+<h3><a name="cluster-aware">&#160;</a>Cluster aware</h3>
 
 <p>When a processing unit is deployed, the configured embedded spaces are created using the injected cluster information. To force an embedded space to ignore that cluster info, use the <code>ClusterInfoAware</code> tag:</p>
 
@@ -66,7 +66,7 @@
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
-<h3 id="space-properties">Space Properties</h3>
+<h3><a name="space-properties">&#160;</a>Space Properties</h3>
 
 <p>When creating a space you can override space properties values using the <code>Properties</code> tag:</p>
 
@@ -82,7 +82,7 @@
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
-<h1 id="space-proxies">Space Proxies</h1>
+<h1><a name="space-proxies">&#160;</a>Space Proxies</h1>
 
 <p>The processing unit can be configured to connect to a remote space (hosted by another processing unit, for example):</p>
 
@@ -93,9 +93,9 @@
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
- <a id="eventcontainers">&#160;</a>
+ <a name="eventcontainers">&#160;</a>
 
-<h1 id="event-listeners">Event Listeners</h1>
+<h1><a name="event-listeners">&#160;</a>Event Listeners</h1>
 
 <p>An <a href="event-processing.htm">event listener container</a> is one of the most commonly used GigaSpaces components as part of a processing unit. Similarly to the other components, such event containers can be automatically detected, created and managed by the container -
 it will automatically detect classes decorated with <code>EventDriven</code> attributes (<code>PollingEventDriven</code> or <code>NotifyEventDriven</code>) and create corresponding event containers for them.</p>
@@ -127,7 +127,7 @@ public class MyEventListener
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
-<h1 id="security">Security</h1>
+<h1><a name="security">&#160;</a>Security</h1>
 
 <p>To access a secured space the <code>Credentials</code> tag is used:</p>
 
@@ -146,7 +146,7 @@ public class MyEventListener
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
-<h1 id="assembly-scanning">Assembly Scanning</h1>
+<h1><a name="assembly-scanning">&#160;</a>Assembly Scanning</h1>
 
 <p>By default, all the assemblies packaged with the processing unit will be scanned to automatically create processing unit components, event listener containers and remoting services. In some scenarios you may want to change this. For example:</p>
 

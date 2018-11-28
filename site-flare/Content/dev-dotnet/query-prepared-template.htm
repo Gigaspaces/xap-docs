@@ -14,18 +14,18 @@
   <p>In previous versions the <code>Snapshot()</code> method was also used as a workaround for using SQLQuery with blocking operations. Starting 8.0 SQLQuery supports blocking operations out of the box so that workaround is no longer required.</p>
 </div>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>Use <code>ISpaceProxy.Snapshot</code> to create a prepared template from an object template or a <a href="query-sql.htm">SqlQuery</a>.</p>
 
-<h4 id="creating-a-prepared-template-from-an-object">Creating a prepared template from an object</h4>
+<h4><a name="creating-a-prepared-template-from-an-object">&#160;</a>Creating a prepared template from an object</h4>
 
 <pre><code class="language-csharp">    Person template= new Person();
     template.Age = 21;
     IPreparedTemplate&lt;Person&gt; preparedTemplate = proxy.Snapshot(template);
 </code></pre>
 
-<h4 id="creating-a-prepared-template-from-sqlquery">Creating a prepared template from SqlQuery</h4>
+<h4><a name="creating-a-prepared-template-from-sqlquery">&#160;</a>Creating a prepared template from SqlQuery</h4>
 
 <pre><code class="language-csharp">    SqlQuery&lt;Person&gt; query = new SqlQuery&lt;Person&gt;(personTemplate, "Age &gt;= ?");
     query.SetParameter(1, 21);
@@ -39,7 +39,7 @@
 
 <p>After creating the prepared template, it can be passed as a template to the Read, Take, ReadMultiple, TakeMultiple, Count and Clear operations, as well as a template when registering for notification.</p>
 
-<h4 id="taking-an-object-from-the-space-using-the-prepared-template">Taking an object from the space using the prepared template</h4>
+<h4><a name="taking-an-object-from-the-space-using-the-prepared-template">&#160;</a>Taking an object from the space using the prepared template</h4>
 
 <pre><code class="language-csharp">    Person person = proxy.Take(preparedTemplate);
 </code></pre>

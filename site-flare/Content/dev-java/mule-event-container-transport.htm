@@ -56,7 +56,7 @@
 <pre><code class="language-xml">&lt;os-eventcontainer:connector name="gigaSpacesConnector"/&gt;
 </code></pre>
 
-<h1 id="inbound-component">Inbound Component</h1>
+<h1><a name="inbound-component">&#160;</a>Inbound Component</h1>
 
 <p>OpenSpaces inbound component is based on either the polling event container or the notify event container. It registers itself as a listener to one of them. Here is an example of configuring a polling event container within the <code>spring:beans</code> Mule definition:</p>
 
@@ -92,11 +92,11 @@
 &lt;/model&gt;
 </code></pre>
 
-<h2 id="threading-model">Threading Model</h2>
+<h2><a name="threading-model">&#160;</a>Threading Model</h2>
 
 <p>By default, this inbound transport based on the event container uses the threading model defined within the event container definitions. There is an option to set <code>workManager=true</code>, which results in offloading the processing of a request to a managed Mule thread. This is currently not recommended.</p>
 
-<h1 id="outbound-component">Outbound Component</h1>
+<h1><a name="outbound-component">&#160;</a>Outbound Component</h1>
 
 <p>The outbound endpoint is used for updating or writing POJO messages back to the Space.</p>
 
@@ -119,7 +119,7 @@
 
 <p>There is option to configure <code>writeLease</code> (defaults to <code>FOREVER</code>), <code>updateOrWrite</code> (defaults to <code>true</code>), and <code>updateTimeout</code> (defaults to <code>0</code>) parameters.</p>
 
-<h1 id="transaction-support">Transaction Support</h1>
+<h1><a name="transaction-support">&#160;</a>Transaction Support</h1>
 
 <p>Since the inbound component is based on the event containers, transaction support can be enabled using the event container transaction support. Learn how to do this with the <a href="polling-container-overview.htm#OpenSpacesEventsComponent-PollingContainer-TransactionSupport">polling container</a>.</p>
 
@@ -170,7 +170,7 @@
 
 <p>In the above example, the Mule transaction factory used is Spring-based, wrapping the Spring <code>PlatformTransactionManager</code>. For more information regarding OpenSpaces support for transactions (including XA), see the <a href="transaction-overview.htm">OpenSpaces Core Component - Transaction Manager</a> section.</p>
 
-<h1 id="full-example">Full Example</h1>
+<h1><a name="full-example">&#160;</a>Full Example</h1>
 
 <p>In this example, POJO messages are received (<code>SimpleMessage</code>) from the Space, with their <code>read</code> flag set to <code>false</code>. The <code>MessageReader</code> service then processes the messages (and among other operations, sets the <code>read</code> flag to <code>true</code>). Finally, the <code>MessageReader</code> result is written back to the Space.</p>
 
@@ -234,11 +234,11 @@
 &lt;/mule&gt;
 </code></pre>
 
-<h1 id="message-metadata">Message Metadata</h1>
+<h1><a name="message-metadata">&#160;</a>Message Metadata</h1>
 
 <p>OpenSpaces mule event transport supports sending and receiving metadata using Mule. Since we are working with pure POJOs, these should implement the <code>MessageHeader</code> interface in order to include metadata. OpenSpaces Mule integration comes with a simple base class that already implements the <code>MessageHeader</code> interface called <code>AbstractMessageHeader</code>.</p>
 
-<h1 id="transformer">Transformer</h1>
+<h1><a name="transformer">&#160;</a>Transformer</h1>
 
 <p>In order to transfer the metadata from the <code>UMOMessage</code> to the outgoing message via the OpenSpaces outbound endpoint, the transport is configured with a default outbound transformer called <code>org.openspaces.esb.mule.transformers.OpenSpacesTransformer</code>. The transformer copies the metadata from the <code>UMOMessage</code> to the transformed object, and assumes that the return object is the payload that is contained within the <code>UMOMessage</code>.</p>
 

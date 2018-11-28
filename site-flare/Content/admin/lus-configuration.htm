@@ -10,9 +10,9 @@
   <p>This page explains how to setup multiple LUSs manually to achieve high availability. This technique is still supported, but outdated, and will be phased out in the future. It's highly recommended to use <a href="xap-manager.htm">XAP Manager</a> instead, which is both easier to use and provides superior <a href="xap-manager.htm#high-availability">high availability</a>.</p>
 </div>
 
- <a id="global-lus">&#160;</a>
+ <a name="global-lus">&#160;</a>
 
-<h1 id="global-lus">Global LUS</h1>
+<h1><a name="global-lus">&#160;</a>Global LUS</h1>
 
 <p>When you would like to have a fully dynamic elastic environment where the lookup service (LUS) may be running on <span class="tc-bold">any machine</span> on the network to serve multiple LUS machine failure (for existing machines or to be started in the future) you should consider using the <span class="tc-bold">global</span> LUS setup.</p>
 
@@ -21,7 +21,7 @@ Another alternative is to use unicast based lookup discovery and specify with th
 
 <p>With the global LUS setup you should have two LUSs running across your service grid - these are running in <span class="tc-bold">active-active</span> configuration. This means all agents are equal with their setup. They will be communicating with each other to preserve the exact amount of specified LUSs. Once a running LUS failed (as a result of machine termination, or LUS process failure) , a different agent that is not currently running a LUS will be starting a LUS to enforce the SLA specified at the agent startup. The <code>timeout</code> space URL property (i.e. <code>jini://*/*/DataGridName?timeout=10000</code>) or <code>lookup-timeout</code> Spring property with the <code>pu.xml</code> allows you to specify the LUS multicast discovery timeout.</p>
 
-<h1 id="global-setup-example">Global Setup Example</h1>
+<h1><a name="global-setup-example">&#160;</a>Global Setup Example</h1>
 
 <p>With the following example we have <code>Machine A</code>, <code>Machine B</code>, <code>Machine C</code> and <code>Machine D</code> running the service grid.</p>
 
@@ -35,13 +35,13 @@ Another alternative is to use unicast based lookup discovery and specify with th
 <p>Upon startup the agents will decide which ones will run a LUS and which won't.
 To enable this dynamic setup you should have multicast enabled between all service grid machines and also between client applications machines and service grid machines. To differentiate between different service grids running on the same network you should specify a unique <code>XAP_LOOKUP_GROUPS</code> environment variable value for the service grid machines before starting the agent. The client application should specify the right group via the URL (i.e. <code>jini://*/*/DataGridName?groups=myGroup</code>) or via the <code>lookup-groups</code> spring property as part of the pu.xml.</p>
 
- <a id="local-lus">&#160;</a>
+ <a name="local-lus">&#160;</a>
 
-<h1 id="local-lus">Local LUS</h1>
+<h1><a name="local-lus">&#160;</a>Local LUS</h1>
 
 <p>With the local lookup service setup you should specify a list of known machines to run the LUS. This list (two recommended) should be configured on the service grid via the <code>XAP_LOOKUP_LOCATORS</code> environment variable (comma delimited) and also with the client application space URL (i.e. <code>jini://LUS_HOST1, LUS_HOST2/*/DataGridName</code>) or via the <code>lookup-locators</code> Spring property .</p>
 
-<h1 id="local-setup-example">Local Setup Example</h1>
+<h1><a name="local-setup-example">&#160;</a>Local Setup Example</h1>
 
 <p>With the following example we have <code>Machine A</code>, <code>Machine B</code>, <code>Machine C</code> and <code>Machine D</code> running the service grid.  We would like to start two LUSs across these machines. We have decided that <code>Machine A</code> and <code>Machine D</code> will be running a LUS.</p>
 

@@ -5,11 +5,11 @@
 <h1>Example Project</h1>
   
 
-<h1 id="overview">Overview</h1>
+<h1><a name="overview">&#160;</a>Overview</h1>
 
 <p>Here is an example project that shows how XAP Scala can be used in a real project and how Scala and Java code might be integrated.</p>
 
-<h1 id="openspaces-maven-plugin-project">OpenSpaces Maven plugin project</h1>
+<h1><a name="openspaces-maven-plugin-project">&#160;</a>OpenSpaces Maven plugin project</h1>
 
 <p>The project is based on a template project of <code>basic</code> type from the <code>XAP Maven plugin</code>. A few changes were introduced:</p>
 
@@ -19,9 +19,9 @@
 <li>Build process of <code>common</code> and <code>verifier</code> modules was modified to handle Scala and mixed Java/Scala modules, respectively.</li>
 </ul>
 
-<h1 id="build-run">Build &amp; run</h1>
+<h1><a name="build-run">&#160;</a>Build &amp; run</h1>
 
-<h2 id="requirements">Requirements</h2>
+<h2><a name="requirements">&#160;</a>Requirements</h2>
 
 <ol>
 <li>JDK in version at least 1.6 is required to build the project.</li>
@@ -31,7 +31,7 @@
 
 <p>Please note that Scala is not required to build the project, since requried libraries will be downloaded by <code>maven</code>.</p>
 
-<h2 id="build-and-run-steps">Build and run steps</h2>
+<h2><a name="build-and-run-steps">&#160;</a>Build and run steps</h2>
 
 <ol>
 <li>Download <a href="https://github.com/Gigaspaces/xap-scala/archive/10.2.0_ga_build13800_07_28_2015.zip">xap-scala</a> and unzip it.</li>
@@ -42,9 +42,9 @@
 <li>Deploy the project on the grid (from <code>$XAP_SCALA/example/gs-openspaces-scala-example</code>): <code>mvn os:deploy -Dgroups=$XAP_LOOKUP_GROUPS</code>.</li>
 </ol>
 
-<h1 id="xap-scala-features">XAP Scala features</h1>
+<h1><a name="xap-scala-features">&#160;</a>XAP Scala features</h1>
 
-<h2 id="constructor-based-properties">Constructor based properties</h2>
+<h2><a name="constructor-based-properties">&#160;</a>Constructor based properties</h2>
 
 <p><code>Common</code> module defines Space classes used by other modules. Please note, that the classes are written in Scala and are used in other Scala and Java modules as well. All of these classes are translated to <code>bytecode</code> and therefore can be used interchangeably.</p>
 
@@ -80,7 +80,7 @@
 }
 </code></pre>
 
-<h2 id="predicate-based-queries">Predicate based queries</h2>
+<h2><a name="predicate-based-queries">&#160;</a>Predicate based queries</h2>
 
 <p>The <code>verifier</code> module extends the pipeline presented in the baseline project (the one created by the <code>OpenSpaces Maven plugin</code>). The <code>Verifier</code> picks up processed <code>Data</code> instances and tries to verify them. The objects that pass the verification process are then modified (<code>verified</code> set to <code>true</code>) and saved along with a new, immutable <code>Verification</code> object. The objects that failed during verification process are removed from the Space. The <code>verifier</code> uses the new feature - predicate based queries - to access the Space in a more readable and natural way (especially for functional languages such as Scala):</p>
 
@@ -107,11 +107,11 @@ val unverifiedData = gigaSpace.predicate.readMultiple { data: Data =&gt; data.pr
   <p>Please note that <code>gigaSpace</code> from the code above is an instance of ScalaEnhancedGigaSpaceWrapper - a wrapper around GigaSpace introduced in XAP Scala.</p>
 </div>
 
-<h1 id="building-scala-and-mixed-java-scala-modules">Building Scala and mixed Java/Scala modules</h1>
+<h1><a name="building-scala-and-mixed-java-scala-modules">&#160;</a>Building Scala and mixed Java/Scala modules</h1>
 
 <p>The build configuration in Scala or Java/Scala modules is almost as simple in case of pure Java modules.</p>
 
-<h2 id="scala-module">Scala module</h2>
+<h2><a name="scala-module">&#160;</a>Scala module</h2>
 
 <p>The <code>common</code> module is a pure Scala module. The <code>maven-compiler-plugin</code> has been replaced by <code>scala-maven-plugin</code>. The build configuration from the <code>pom.xml</code> for the <code>common</code> has the following form:</p>
 
@@ -141,7 +141,7 @@ val unverifiedData = gigaSpace.predicate.readMultiple { data: Data =&gt; data.pr
 
 <p>where <code>scalaBinaryVersion</code> is a property defined in a parent pom file (in this case it is <code>2.11</code>).</p>
 
-<h2 id="java-scala-module">Java-Scala module</h2>
+<h2><a name="java-scala-module">&#160;</a>Java-Scala module</h2>
 
 <p>The <code>verifier</code> module is a mixed Java-Scala module, where Scala classes call Java classes. This configuration can be used when a separate task is implemented in Java and it only needs to be called from other parts of application. In case of this project, Java module is simulated by <code>VerifierEngine</code> class and, for ease of use, it is executed by Scala <code>verifier</code>.</p>
 

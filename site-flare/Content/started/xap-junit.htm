@@ -7,7 +7,7 @@
 
 <p>When creating unit tests with XAP you will use an <code>Embedded Space</code> that is internally represented by the <code>IntegratedProcessingUnitContainer</code> class and a reference to this Space will be available through a class implementing the <code>GigaSpace</code> interface. This allows you to read / write objects to that Space just as you normally would in any XAP application.</p>
 
-<h1 id="simple-test">Simple test</h1>
+<h1><a name="simple-test">&#160;</a>Simple test</h1>
 
 <p>Here is an example of a simple JUnit test:</p>
 
@@ -97,7 +97,7 @@ public class TestXAP {
 
 <p><br/></p>
 
-<h1 id="partition-routing-test">Partition/Routing test</h1>
+<h1><a name="partition-routing-test">&#160;</a>Partition/Routing test</h1>
 
 <p>Testing partitioning and routing can be accomplished by using the <code>IntegratedProcessingUnitContainerProvider</code>. You can start multiple partitions by defining with the <code>ClusterInfo</code> the number of members of a cluster.</p>
 
@@ -145,7 +145,7 @@ public class TestXAP {
 
 <p>You can verify that the 4 partitions exists by starting the <a href="../admin/gigaspaces-management-center.htm">Management Center</a></p>
 
-<h1 id="lookup-service">Lookup Service</h1>
+<h1><a name="lookup-service">&#160;</a>Lookup Service</h1>
 
 <p>The StandaloneProcessingUnitContainer automatically starts an embedded Lookup service. If you intend to use a separate Lookup service you can disable the embedded Lookup service by passing the setting the <code>com.j_spaces.core.container.directory_services.jini_lus.enabled</code> system property to false. This property can also be set within the Space definition:</p>
 

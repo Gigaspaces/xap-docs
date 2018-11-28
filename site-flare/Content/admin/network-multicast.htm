@@ -34,7 +34,7 @@ Refer to the <a href="network-multicast-is-available.htm">How to Determine Wheth
   <p>In case you want to <span class="tc-bold">disable the Jini Lookup Service Multicast announcements</span> please refer to <a href="network-lookup-service-configuration.htm#Multicast Settings">this</a> section in the Wiki.</p>
 </div>
 
-<h1 id="to-multicast-or-to-not-multicast">To Multicast or to not Multicast?</h1>
+<h1><a name="to-multicast-or-to-not-multicast">&#160;</a>To Multicast or to not Multicast?</h1>
 
 <p>Multicast is not a mandatory with XAP. It is used as a secondary mechanism for lookup service discovery. Unicast is the other mechanism. Both are turned on by default on the client side and on the service grid side (GSM,GSC,LUS).</p>
 
@@ -54,7 +54,7 @@ Refer to the <a href="network-multicast-is-available.htm">How to Determine Wheth
 
 <p>If you can't have multicast enabled within your network you should disable it on the client side and on the service grid side. It will save some CPU activity performed continuously.</p>
 
-<h1 id="multicast-on-linux">Multicast on Linux</h1>
+<h1><a name="multicast-on-linux">&#160;</a>Multicast on Linux</h1>
 
 <p>In some cases, Linux distributions do not have multicast enabled by default and the <code>/etc/hosts</code> file does not include the IP address associated with the server's hostname. An error that is frequently met is: <code>hostname associated with the localhost</code> in <code>/etc/hosts</code>. The machine's hostname in <code>/etc/hosts</code> should be associated with the IP address set to the server's network interface, or to the external static NAT IP address of the server (the address clients should connect to).
 Make sure the <code>/etc/hosts</code> has the machine's IP, together with the IP: <code>127.0.0.1</code>.</p>
@@ -162,7 +162,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
   <p>By default multicast is not allowed between the virtual machines, so the unicast should be configured instead</p>
 </div>
 
-<h1 id="windows-configuration">Windows Configuration</h1>
+<h1><a name="windows-configuration">&#160;</a>Windows Configuration</h1>
 
 <p>To enable multicasting from a token ring on a Windows® 2000 workstation to any Windows 98/NT machine, set the <code>TrFunctionalMcastAddress</code> parameter to <code>0</code> in the Windows 2000 registry:</p>
 
@@ -177,13 +177,13 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 <li>Close the <span class="tc-bold">Registry Editor</span>.</li>
 </ol>
 
-<h1 id="time-to-live-ttl-value">Time-To-Live (TTL) Value</h1>
+<h1><a name="time-to-live-ttl-value">&#160;</a>Time-To-Live (TTL) Value</h1>
 
 <p>The <a href="http://en.wikipedia.org/wiki/Time_to_live">multicast Time-To-Live (TTL)</a> value specifies the number of routers (hops) that multicast traffic is permitted to pass through before expiring on the network. For each router (hop), the original specified TTL is decremented by one (1). When its TTL reaches a value of zero (0), each multicast datagram expires and is no longer forwarded through the network to other subnets.</p>
 
 <p>The problem of multicasts/broadcasts not passing the router/switch is a well known issue - most routers (Cisco, 3Com, etc) have multicast forwarding disabled by default - otherwise the networks will be flooded with packets coming from very distant locations. To get it delivered all over the globe takes below 30 hops, so TTL 20 means delivery to more than half of it. It is very common that network experts in large networks hate the flooding problem caused by multicasts/broadcasts sent with the large TTL, and block it.</p>
 
-<h1 id="packet-sniffer-network-analyzer-tool">Packet Sniffer/Network Analyzer Tool</h1>
+<h1><a name="packet-sniffer-network-analyzer-tool">&#160;</a>Packet Sniffer/Network Analyzer Tool</h1>
 
 <p><a href="http://www.wireshark.org/">Wireshark (formerly Ethereal)</a> - accumulates years of network analyzing experience and is far more mature and known than other tools. It is a cross-platform packet sniffer/network analyzer tool (used both in Windows and Unix/Linux). It allows you to examine data from a live network, or from a capture file on disk. You can interactively browse the capture data, viewing summary and detail information for each packet. It has several powerful features, including a rich display filter language and the ability to view the reconstructed stream of a TCP session.</p>
 

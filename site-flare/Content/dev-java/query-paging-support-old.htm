@@ -41,7 +41,7 @@ for (;;)
 }
 </code></pre>
 
-<h1 id="the-iteratorbuilder">The IteratorBuilder</h1>
+<h1><a name="the-iteratorbuilder">&#160;</a>The IteratorBuilder</h1>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/IteratorBuilder.htm">IteratorBuilder</a> is a utility builder class for the GSIterator. It allows to use method chaining for simple configuration of an iterator and then call iterate() to get the actual iterator.</p>
 
@@ -57,7 +57,7 @@ for (;;)
 
 <p>The maximum number of objects to pull from the space can be controlled using <code>bufferSize(int)</code> and defaults to <code>100</code>.</p>
 
-<h1 id="the-iteratorscope">The IteratorScope</h1>
+<h1><a name="the-iteratorscope">&#160;</a>The IteratorScope</h1>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/client/iterator/IteratorScope.htm">IteratorScope</a> determines the scope of a GSIterator. Here are the supported options:</p>
 
@@ -67,7 +67,7 @@ for (;;)
 <li><code>FUTURE</code> - Indicates that the iterator will ignore entries currently in the space, and process future changes.</li>
 </ul>
 
-<h1 id="the-gsiterator">The GSIterator</h1>
+<h1><a name="the-gsiterator">&#160;</a>The GSIterator</h1>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/client/GSIterator.htm">GSIterator</a> will initially contain some population of objects. These objects can be retrieved by calling <code>next</code> method. A successful call to <code>next</code> method will remove the returned object from the iteration result set. An iterator can end up in one of two terminal states, <code>invalidated</code> or <code>exhausted</code>.</p>
 
@@ -75,7 +75,7 @@ for (;;)
 
 <p>Between the time an iterator is created and the time it reaches a terminal state, objects may be added by the space. However, an object that is removed by a next call may be added back to the iterator if its uniqueness is equivalent. The space may also update or remove objects that haven't yet been returned by a <code>next</code> call, and are not part of the buffered set.</p>
 
-<h2 id="using-gsiterator-with-sqlquery">Using GSIterator with SQLQuery</h2>
+<h2><a name="using-gsiterator-with-sqlquery">&#160;</a>Using GSIterator with SQLQuery</h2>
 
 <p>When using the <code>GSIterator</code> with SQLQuery only <a href="query-sql.htm#Simple Queries - Supported and Non-Supported Operators">simple SQL queries</a> are supported:
     (field1 &lt; value1) AND (field2 &gt; value2) AND (field3 == values3)...
@@ -89,29 +89,29 @@ The following operators <span class="tc-bold">are not supported</span> when usin
 <li><code>ORDER BY</code></li>
 </ul>
 
-<h2 id="initialization">Initialization</h2>
+<h2><a name="initialization">&#160;</a>Initialization</h2>
 
 <p>When a <code>GSIterator</code> is created, a match set is formulated. The match set initially contains all of the objects within the space that match one or more of the collection templates and are not locked by conflicting transactions (unless using the <code>FUTURE</code> IteratorScope mode, i.e., no initial contents). Each element of the matched set will be returned at most once.</p>
 
-<h2 id="hasnext-next-and-next-timeout">hasNext(), next() and next(timeout)</h2>
+<h2><a name="hasnext-next-and-next-timeout">&#160;</a>hasNext(), next() and next(timeout)</h2>
 
 <p>Calling <code>hasNext()</code> returns <code>true</code> if next returns a non-null element rather than throwing an exception. Calling next removes one element from the matched set and returns it to the caller. Calling <code>next(timeout)</code> blocks next. The iteration is said to be complete if the match set becomes empty or next calls limit (buffer size) has removed Entries from the match set. A <code>next</code> call returns <code>null</code> only if the iteration is complete.</p>
 
-<h2 id="take-and-space-object-lease-expiration">take() and Space Object Lease Expiration</h2>
+<h2><a name="take-and-space-object-lease-expiration">&#160;</a>take() and Space Object Lease Expiration</h2>
 
 <p>A space object may be, but is not required to be, removed from the match set without being returned by a <code>next</code> call if it is removed from the space or is locked by a conflicting transaction. <code>GSIterator</code> <span class="tc-bold">does not remove</span> the object after it has been buffered.</p>
 
-<h2 id="notifications">Notifications</h2>
+<h2><a name="notifications">&#160;</a>Notifications</h2>
 
 <p>GSIterator register each of the templates in the templates collection for notification. If a matching object was written to the space after the GSIterator was created, the object will be added to the result set. An object that was locked under a conflicting transaction before or after the GSIterator was created and the lock was released before the iteration was complete will also be added to the result set.</p>
 
 <p>A matching that arrived from a notification event will interrupt any blocking <code>next(timeout)</code> operation. If a take operation was called or an object lease timeout, the object will be removed from the next iteration result set.</p>
 
-<h2 id="iterator-lease">Iterator Lease</h2>
+<h2><a name="iterator-lease">&#160;</a>Iterator Lease</h2>
 
 <p>In most cases, the iterator will be leased and the lease proxy object can be obtained by calling the <code>getLease()</code> method. Cancelling or letting the lease expire will destroy the iterator; thus no notifications from here on will be accounted for, and all subsequent calls to <code>hasNext()</code> will return <code>false</code>. If there is a lease associated with the iterator, clients should not assume that completing the iteration will destroy it and should instead call cancel or let the lease expire when the end of the iteration is reached. A lease <code>renewal(timeout)</code> is used to renew a lease for an additional period of time. This duration is not added to the original lease, but is used to determine a new expiration time for the existing lease. If a lease has expired or has been canceled, a renewal is not allowed.</p>
 
-<h2 id="transactions">Transactions</h2>
+<h2><a name="transactions">&#160;</a>Transactions</h2>
 
 <p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template/SQLQuery will not be included as part of the matched set.</p>
 

@@ -14,7 +14,7 @@
 <li>A producer can use a message more than once. Each call to the <code>MessageProducer.send()</code> method with the same <code>Message</code> instance writes a new message to the space.</li>
 </ul>
 
-<h3 id="supported-jms-message-types">Supported JMS Message Types</h3>
+<h3><a name="supported-jms-message-types">&#160;</a>Supported JMS Message Types</h3>
 
 <p>The following message types are supported by GigaSpaces:</p>
 
@@ -26,11 +26,11 @@
 <li><code>MapMessage</code> – transports a self-defining set of name-value pairs, where names equal strings and values equal Java primitive types.</li>
 </ul>
 
-<h3 id="unsupported-jms-message-types">Unsupported JMS Message Types</h3>
+<h3><a name="unsupported-jms-message-types">&#160;</a>Unsupported JMS Message Types</h3>
 
 <p><code>StreamMessage</code> is not supported. <code>StreamMessage</code> transports a stream of Java primitive values, to be filled and read sequentially. Unlike a <code>BytesMessage</code>, a <code>StreamMessage</code> is aware of the type of primitives that are stored in it, and throws an exception if an attempt is made to read bytes and convert them to the wrong primitive.</p>
 
-<h3 id="message-compression">Message Compression</h3>
+<h3><a name="message-compression">&#160;</a>Message Compression</h3>
 
 <p>Compression for JMS text-message body-data has been supported since GigaSpaces version 5.1. The message's body is compressed only if its size is larger than a configured value (threshold).</p>
 

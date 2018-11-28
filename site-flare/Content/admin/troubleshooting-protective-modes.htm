@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Protective Modes</h1>
   
@@ -9,53 +9,60 @@
 
 <p>For such cases the <span class="tc-bold">Protective Mode</span> was introduced. The validation is on by default, but can be disabled using a system property. This protects new users from repeating old mistakes, and encourages existing users to fix their code (yet allows them to disable the protection if they choose so).</p>
 
-<h2 id="disabling-the-protective-mode">Disabling the Protective Mode</h2>
+<h2><a name="disabling-the-protective-mode">&#160;</a>Disabling the Protective Mode</h2>
 
 <p>To disable a protective mode you will need to use the relevant system property. See below example how this can be applied:</p>
 
-<div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Java" style="padding: 10px;"><p><span class="tc-bold">Linux:</span></p>
+<div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Java" style="padding:10px;"><p><span class="tc-bold">Linux:</span></p>
 
-<pre xml:space="preserve"><code class="language-bash">export XAP_GSC_OPTIONS=-Dcom.gs.protectiveMode.typeWithoutId=false -Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false -Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
+<pre><code class="language-bash">export XAP_GSC_OPTIONS=-Dcom.gs.protectiveMode.typeWithoutId=false -Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false -Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
 </code></pre>
 
 <p><span class="tc-bold">Windows:</span></p>
 
-<pre xml:space="preserve"><code class="language-bash">set XAP_GSC_OPTIONS=-Dcom.gs.protectiveMode.typeWithoutId=false -Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false -Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
+<pre><code class="language-bash">set XAP_GSC_OPTIONS=-Dcom.gs.protectiveMode.typeWithoutId=false -Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false -Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
 </code></pre>
 </div>
-<div title=".NET" style="padding: 10px;"><p>The <code>ServiceGrid.config</code> should have the following</p>
+<div title=".NET" style="padding:10px;"><p>The <code>ServiceGrid.config</code> should have the following</p>
 
-<pre xml:space="preserve"><code class="language-bash">&lt;JvmSettings&gt;   &lt;JvmCustomOptions&gt;      &lt;add Option="-Dcom.gs.protectiveMode.typeWithoutId=false"/&gt;      &lt;add Option="-Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false"/&gt;      &lt;add Option="-Dcom.gs.protectiveMode.primitiveWithoutNullValue=false"/&gt;   &lt;/JvmCustomOptions&gt;&lt;/JvmSettings&gt;
+<pre><code class="language-bash">&lt;JvmSettings&gt;
+   &lt;JvmCustomOptions&gt;
+      &lt;add Option="-Dcom.gs.protectiveMode.typeWithoutId=false"/&gt;
+      &lt;add Option="-Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false"/&gt;
+      &lt;add Option="-Dcom.gs.protectiveMode.primitiveWithoutNullValue=false"/&gt;
+   &lt;/JvmCustomOptions&gt;
+&lt;/JvmSettings&gt;
 </code></pre>
 </div>
 </div></div>
 
-<h1 id="spaceid-property-decoration-validation">SpaceId property Decoration Validation</h1>
+<h1><a name="spaceid-property-decoration-validation">&#160;</a>SpaceId property Decoration Validation</h1>
 
-<p>The <code>SpaceId</code> property is essential for update operations. XAP also has a rich set of operations that use the <code>SpaceId</code> value to perform read/take/update very efficiently without fetching the entire object (aka <code>Change API</code>). Since XAP 9.1 the following is enforced by the protective mode:</p>
+<p>The <code>SpaceId</code> property is essential for update operations. XAP also has a rich set of operations that use the <code>SpaceId</code> value to perform read/take/update very efficiently without fetching the entire object (aka <code>Change API</code>).  Since XAP 9.1 the following is enforced by the protective mode:</p>
 
 <p>Writing an entry to the space without a space ID <a href="../dev-java/query-by-id.htm">Java version</a> |<a href="../dev-dotnet/query-by-id.htm"> .NET version</a> is error-prone - it can lead to duplicate entries, bad performance and more. In case your application contains objects without an <code>SpaceId</code> value you'll get the following exception:</p>
 
-<pre xml:space="preserve"><code class="language-bash">com.gigaspaces.client.protective.ProtectiveModeException: Cannot introduce a type named 'MyClass' without an id property defined...
+<pre><code class="language-bash">com.gigaspaces.client.protective.ProtectiveModeException: Cannot introduce a type named 'MyClass' without an id property defined...
 </code></pre>
 
 <div class="tc-admon-note">
   
   <p>It is highly recommended that you modify them and add a <code>SpaceId</code> decoration. If this is not feasible, it can be disabled using the following system property:</p>
 
-<pre xml:space="preserve"><code class="language-bash">-Dcom.gs.protectiveMode.typeWithoutId=false
+<pre><code class="language-bash">-Dcom.gs.protectiveMode.typeWithoutId=false
 </code></pre>
+</p>
 </div>
 
-<h1 id="space-routing-property-validation">Space Routing Property Validation</h1>
+<h1><a name="space-routing-property-validation">&#160;</a>Space Routing Property Validation</h1>
 
 <p>The <code>Space Routing</code> property is used to partition the data across different partitions. It is recommended to define such property explicitly to control how data is partitioned and avoid common mistakes like writing data to the wrong partition.</p>
 
-<p>See more info on <code>routing property</code>  <a href="../dev-java/routing-in-partitioned-spaces.htm">Java version</a> |<a href="../dev-dotnet/routing-in-partitioned-spaces.htm"> .NET version</a>.</p>
+<p>See more info on <code>routing property</code> <a href="../dev-java/routing-in-partitioned-spaces.htm">Java version</a> |<a href="../dev-dotnet/routing-in-partitioned-spaces.htm"> .NET version</a>.</p>
 
 <p>Starting with XAP 9.7 a new protective mode has been added to protect against writing entries with a <code>null</code> value routing. In case your application contains objects without a routing value you'll get the following exception:</p>
 
-<pre xml:space="preserve"><code class="language-bash">com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - no routing value provided when writing an entry of type `MyClass` in a partitioned space.
+<pre><code class="language-bash">com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - no routing value provided when writing an entry of type `MyClass` in a partitioned space.
 </code></pre>
 
 <p>A Space routing value should be specified before writing the space. Missing routing value would result in a remote client not being able to locate this entry as the routing value will not match the partition the entry is located.</p>
@@ -64,13 +71,14 @@
   
   <p>It is highly recommended that you modify them and add a routing value. If this is not feasible, you can disable it using the following system property:</p>
 
-<pre xml:space="preserve"><code class="language-bash">-Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false
+<pre><code class="language-bash">-Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false
 </code></pre>
+</p>
 </div>
 
 <p>In case your application writes directly to one of the partitions and assigns the wrong routing value you'll get the following exception:</p>
 
-<pre xml:space="preserve"><code class="language-bash">com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - the routing value in the written entry of type 'MyClass' does not match this space partition id. The value within the entry's routing property named 'symbol' is 100 which matches partition id 1 while current partition id is 2...
+<pre><code class="language-bash">com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - the routing value in the written entry of type 'MyClass' does not match this space partition id. The value within the entry's routing property named 'symbol' is 100 which matches partition id 1 while current partition id is 2...
 </code></pre>
 
 <p>It is highly recommended that you modify them and set the right routing.</p>
@@ -84,11 +92,12 @@
   
   <p>If this is not feasible, and you know what you're doing, it can be disabled using the following system property:</p>
 
-<pre xml:space="preserve"><code class="language-bash">-Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false
+<pre><code class="language-bash">-Dcom.gs.protectiveMode.wrongEntryRoutingUsage=false
 </code></pre>
+</p>
 </div>
 
-<h1 id="primitive-types-validation">Primitive Types Validation</h1>
+<h1><a name="primitive-types-validation">&#160;</a>Primitive Types Validation</h1>
 
 <p>If you must use primitive property types, then assign null values. This is enforced by the protective mode since 9.7.</p>
 
@@ -100,7 +109,7 @@
 
 <p>If your application uses template matching with such types, you'll get the following exception:</p>
 
-<pre xml:space="preserve"><code class="language-java">com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - template matching on type MyClass is illegal because it has primitive properties without null value: id (int)...
+<pre><code class="language-java">com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - template matching on type MyClass is illegal because it has primitive properties without null value: id (int)...
 </code></pre>
 
 <p>It is highly recommended that you define <code>nullValue</code> where appropriate, or switch to SQLQuery <a href="../dev-java/query-sql.htm">Java version</a> |<a href="../dev-dotnet/query-sql.htm"> .NET version</a> instead.</p>
@@ -109,8 +118,9 @@
   
   <p>If this is not feasible, this protective mode can be disabled using the following system property:</p>
 
-<pre xml:space="preserve"><code class="language-bash">-Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
+<pre><code class="language-bash">-Dcom.gs.protectiveMode.primitiveWithoutNullValue=false
 </code></pre>
+</p>
 </div>
 
 </body>

@@ -9,7 +9,7 @@
 
 <p>You should be familiar with LDAP before trying to use it with Spring Security. There are some concepts involved in setting up an LDAP server. To get you started you can take a look at a free LDAP server <code>OpenLDAP</code>, or the Apache Directory Project <code>ApacheDS</code> which also comes with a convenient browser.</p>
 
-<h1 id="ldap-data-interchange-format-ldif">LDAP Data Interchange Format (LDIF)</h1>
+<h1><a name="ldap-data-interchange-format-ldif">&#160;</a>LDAP Data Interchange Format (LDIF)</h1>
 
 <p>The LDAP Data Interchange Format (LDIF) is a standard data interchange format for representing LDAP directory content. Here is a snippet of an <code>ldif</code> that demonstrates how users and groups are associated with GigaSpaces granted authorities.</p>
 
@@ -47,7 +47,7 @@ userPassword: koala
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/SpringSecurity-LDAP.png" alt="SpringSecurity-LDAP.png" /></p>
 </div>
 
-<h1 id="configure-spring-to-use-an-ldap-server">Configure Spring to Use an LDAP Server</h1>
+<h1><a name="configure-spring-to-use-an-ldap-server">&#160;</a>Configure Spring to Use an LDAP Server</h1>
 
 <p>Spring Security supports authentication against LDAP through <code>LdapAuthenticationProvider</code>, an authentication provider that knows how to check user credentials against and LDAP repository.</p>
 
@@ -67,7 +67,7 @@ userPassword: koala
   <p>An LDAP Spring Security configuration file can be found under &lt;XAP ROOT&gt;/config/security/ldap-security-config.xml</p>
 </div>
 
-<h2 id="authenticating-with-ldap-binding">Authenticating with LDAP Binding</h2>
+<h2><a name="authenticating-with-ldap-binding">&#160;</a>Authenticating with LDAP Binding</h2>
 
 <p>Spring Security comes with an <code>LdapAuthenticator</code> implementation called <code>BindAuthenticator</code>. <code>Bindauthenticator</code> uses an LDAP bind operator to bind as a user to the LDAP server. This approach relies on the LDAP server to authenticate the user's credentials.</p>
 
@@ -91,7 +91,7 @@ userPassword: koala
 
 <p>The <code>userDnPatterns</code> property is used to tell the authenticator how to find a user in LDAP. In this case we are only using a single DN pattern. For example, if the username is Edward, the DN used to bind to LDAP will be <code>uid=Edward,ou=people</code> relative to the initial context <code>dc=example,dc=com</code>.</p>
 
-<h2 id="authenticating-by-comparing-passwords">Authenticating by Comparing Passwords</h2>
+<h2><a name="authenticating-by-comparing-passwords">&#160;</a>Authenticating by Comparing Passwords</h2>
 
 <p>Spring Security also supports authentication by password comparison with <code>PasswordComparisonAuthenticator</code>. <code>PasswordComparisonAuthenticator</code> compares the supplied password with a password attribute (<code>userpassword</code>, by default) in the user record. The password is encoded using the password encoder, by default <code>LdapShaPasswordEncoder</code>.</p>
 
@@ -117,7 +117,7 @@ userPassword: koala
 &lt;/bean&gt;
 </code></pre>
 
-<h2 id="declaring-the-populator">Declaring the Populator</h2>
+<h2><a name="declaring-the-populator">&#160;</a>Declaring the Populator</h2>
 
 <p>Once the user identity is confirmed, <code>LdapAuthenticationProvider</code> must retrieve a list of the user's granted authorities. Spring Security comes with <code>DefaultLdapAuthoritiesPopulator</code>. Here's how a populator is configured:</p>
 
@@ -148,7 +148,7 @@ userPassword: koala
 
 <p>Configured this way, the <code>DefaultLdapAuthoritiesPopulator</code> will retrieve all groups (roles) that the user is a member of - that is, all groups that have a <code>member</code> attribute with the user's DN.</p>
 
-<h3 id="additional-roles">Additional Roles</h3>
+<h3><a name="additional-roles">&#160;</a>Additional Roles</h3>
 
 <p>The <code>DefaultLdapAuthoritiesPopulator</code> allows us to obtain any additional roles for the given user (on top of those obtained from the standard search implemented by this class). This is done by overriding <code>getAdditionalRoles</code> to return the extra roles which will be merged with those returned by the group search.</p>
 

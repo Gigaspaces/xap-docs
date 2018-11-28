@@ -7,7 +7,7 @@
 
 <p>XAP support executing tasks in a collocated Space (processing unit that started an embedded Space). Space tasks can be executed either directly on a specific cluster member using typical routing value. Space tasks can also be distributed, which means it is executed in a "broadcast" mode on all the primary cluster members concurrently and reduced to a single result on the client side, which is also known as the map reduce pattern which is used in many applications that does parallel processing. Space tasks are dynamic in terms of content, it contains user code that will be executed at the Space as is.</p>
 
-<h1 id="space-task-api">Space Task API</h1>
+<h1><a name="space-task-api">&#160;</a>Space Task API</h1>
 
 <p>The <code>ISpaceTask</code> interface is defined as follows:</p>
 
@@ -51,7 +51,7 @@ The assembly that contains the task needs to be in the domain of the processing 
 int count = spaceProxy.Execute(new CountTask("hello world"), 2);
 </code></pre>
 
-<h1 id="distributed-task">Distributed Task</h1>
+<h1><a name="distributed-task">&#160;</a>Distributed Task</h1>
 
 <p>A <code>IDistributedSpaceTask</code> is a space task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different execution.</p>
 
@@ -116,7 +116,7 @@ it will print the message in each node and it will return the summary of the cou
 long count = spaceProxy.Execute(new DistributedCountTask("hello world"));
 </code></pre>
 
-<h1 id="results-filter">Results Filter</h1>
+<h1><a name="results-filter">&#160;</a>Results Filter</h1>
 
 <p>When executing a distributed space task, results arrive in an asynchronous manner and once all the results have arrived, the <code>ISpaceTaskResultsReducer</code> is used to reduce them. The <code>ISpaceTasukResultsFilter</code> can be used as a callback and filter mechanism to be invoked for each result that arrives.</p>
 
@@ -146,7 +146,7 @@ public enum SpaceTaskFilterDecision
 
 <p>The filter can also be used as a way to be identify that results have arrived and we can do something within our application as a result of that. Note, in this case, make sure that heavy processing should be performed on a separate (probably pooled) thread.</p>
 
-<h1 id="transactions">Transactions</h1>
+<h1><a name="transactions">&#160;</a>Transactions</h1>
 
 <p>Space tasks fully support transactions, an execute request can receive a
 transaction from the client and it will be delegated into the task execution it self once it is being executed at the space node.</p>
@@ -185,11 +185,11 @@ public class ClearMyObjectTask : ISpaceTask&lt;int&gt;
 }
 </code></pre>
 
-<h1 id="asynchronous-execution">Asynchronous Execution</h1>
+<h1><a name="asynchronous-execution">&#160;</a>Asynchronous Execution</h1>
 
 <p>A space task can also be executed asynchronously with the corresponding <code>BeginExecute</code> <code>EndExecute</code> method. This follows the standard .NET asynchronous API, once the execution is complete the execute invoker is notified by the async result which is received from the <code>BeginExecute</code> method or to a supplied callback. This will be similar to executing a task in a separate thread, allowing to continue local process while waiting for the result to be calculated at the space nodes.</p>
 
-<h4 id="executing-asynchronous-space-using-async-result">Executing asynchronous space using async result</h4>
+<h4><a name="executing-asynchronous-space-using-async-result">&#160;</a>Executing asynchronous space using async result</h4>
 
 <pre><code class="language-csharp">ISpaceProxy spaceProxy = // obtain a proxy to a space
 //Execute the task on all the primary nodes with in the cluster
@@ -200,7 +200,7 @@ IAsyncResult&lt;long&gt; asyncResult = spaceProxy.BeginExecute(new DistributedCo
 long count = spaceProxy.EndExecute(asyncResult);
 </code></pre>
 
-<h4 id="executing-asynchronous-space-using-async-result-wait-handle">Executing asynchronous space using async result wait handle</h4>
+<h4><a name="executing-asynchronous-space-using-async-result-wait-handle">&#160;</a>Executing asynchronous space using async result wait handle</h4>
 
 <pre><code class="language-csharp">ISpaceProxy spaceProxy = // obtain a proxy to a space
 //Execute the task on all the primary nodes with in the cluster
@@ -213,7 +213,7 @@ asyncResult.AsyncWaitHandle.WaitOne();
 long count = spaceProxy.EndExecute(asyncResult);
 </code></pre>
 
-<h4 id="executing-asynchronous-space-using-async-call-back-and-a-state-object">Executing asynchronous space using async call back and a state object</h4>
+<h4><a name="executing-asynchronous-space-using-async-call-back-and-a-state-object">&#160;</a>Executing asynchronous space using async call back and a state object</h4>
 
 <pre><code class="language-csharp">ISpaceProxy spaceProxy = // obtain a proxy to a space
 //Execute the task on all the primary nodes with in the cluster

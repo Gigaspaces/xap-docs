@@ -1,27 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Using the InsightEdge Web Notebook</h1>
   
 
 <p>This section describes how to use the interactive Apache Zeppelin Web Notebook with InsightEdge.</p>
 
-<h1 id="starting-the-web-notebook">Starting the Web Notebook</h1>
+<h1><a name="starting-the-web-notebook">&#160;</a>Starting the Web Notebook</h1>
 
 <p>The InsightEdge Apache Zeppelin web notebook can be started in any of the following ways:</p>
 
 <ul>
-<li>Run the <code>insightedge demo</code> command; the web notebook is started automatically at <a href="http://localhost:9090" target="_blank">localhost:9090</a>.</li>
+<li>Run the <code>insightedge demo</code> command; the web notebook is started automatically at <a href="http://localhost:9090" target="_blank" >localhost:9090</a>.</li>
 <li>Start the web notebook manually at any time by running <code>zeppelin.sh/cmd</code> from the <code>&lt;XAP HOME&gt;/insightedge/zeppelin/bin</code> directory.</li>
 </ul>
 
-<p>When Apache Zeppelin is running, you can browse to <a href="http://localhost:9090" target="_blank">localhost:9090</a> and start exploring the pre-built notebooks:</p>
+<p>When Apache Zeppelin is running, you can browse to <a href="http://localhost:9090" target="_blank" >localhost:9090</a> and start exploring the pre-built notebooks:</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/Zeppelin_examples_100.png" alt="image" /></p>
 </div>
 
-<h1 id="connecting-a-new-apache-zeppelin-notebook-to-insightedge">Connecting a New Apache Zeppelin Notebook to InsightEdge</h1>
+<h1><a name="connecting-a-new-apache-zeppelin-notebook-to-insightedge">&#160;</a>Connecting a New Apache Zeppelin Notebook to InsightEdge</h1>
 
 <p>If you want to create a new Apache Zeppelin web notebook instead of using the example notebooks that come packaged with InsightEdge, there are two ways to run a Zeppelin notebook against InsightEdge:</p>
 
@@ -30,7 +30,7 @@
 <li>Write an SQL query that is interpreted by the InsightEdge JDBC interpreter (which is run directly against the data grid).</li>
 </ul>
 
-<h2 id="initializing-the-spark-context">Initializing the Spark Context</h2>
+<h2><a name="initializing-the-spark-context">&#160;</a>Initializing the Spark Context</h2>
 
 <p>In order to establish the connection between Apache Zeppelin through Apache Spark and then to the data grid, each notebook should start with a paragraph that injects the InsightEdge settings to the Spark context. Important settings include the following properties:</p>
 
@@ -46,7 +46,7 @@
 <li><code>InsightEdge</code> class:</li>
 </ul>
 
-<pre xml:space="preserve"><code class="language-scala">    case class InsightEdgeConfig(
+<pre><code class="language-scala">    case class InsightEdgeConfig(
                                  spaceName: String,
                                  lookupGroups: Option[String] = None,
                                  lookupLocators: Option[String] = None)
@@ -56,7 +56,7 @@
 <li>Apache Zeppelin mandatory initialization paragraph:</li>
 </ul>
 
-<pre xml:space="preserve"><code class="language-scala">    %spark
+<pre><code class="language-scala">    %spark
     import org.insightedge.spark.implicits.all._
     import org.insightedge.spark.context.InsightEdgeConfig
     
@@ -67,33 +67,33 @@
     sc.initializeInsightEdgeContext(ieConfig)
 </code></pre>
 
-<h2 id="insightedge-jdbc-interpreter">InsightEdge JDBC Interpreter</h2>
+<h2><a name="insightedge-jdbc-interpreter">&#160;</a>InsightEdge JDBC Interpreter</h2>
 
-<p>Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with InsightEdge comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook. The queries are executed by the <a href="sql-query-intro.htm">InsightEdge SQL Driver</a>.</p>
+<p>Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with InsightEdge comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook.  The queries are executed by the <a href="sql-query-intro.htm">InsightEdge SQL Driver</a>.</p>
 
-<h3 id="configuring-the-jdbc-interpreter">Configuring the JDBC Interpreter</h3>
+<h3><a name="configuring-the-jdbc-interpreter">&#160;</a>Configuring the JDBC Interpreter</h3>
 
 <p>The JDBC interpreter connects to the data grid via a JDBC URL. To configure the URL value to point to the data grid, do the following:</p>
 
 <ol>
 <li>In the Apache Zeppelin web interface, navigate to the Interpreters section.</li>
 <li>Select the insightedge_jdbc interpreter, and click Edit.</li>
-<li>Edit the <code>default.url</code> parameter as follows: `jdbc:insightedge:spaceName=<space-name /></li>
+<li>Edit the <code>default.url</code> parameter as follows: `jdbc:insightedge:spaceName=<space-name></li>
 <li>Save the changes you made to the interpreter.</li>
 </ol>
 
-<h3 id="querying-the-data-grid-in-notebooks">Querying the Data Grid in Notebooks</h3>
+<h3><a name="querying-the-data-grid-in-notebooks">&#160;</a>Querying the Data Grid in Notebooks</h3>
 
 <p>When the JDBC interpreter is properly configured, Zeppelin paragraphs that are bound to the <code>%insightedge_jdbc</code> interpreter can run SQL queries directly on the data grid.</p>
 
-<h1 id="using-the-web-notebook">Using the Web Notebook</h1>
+<h1><a name="using-the-web-notebook">&#160;</a>Using the Web Notebook</h1>
 
 <p>The Apache Zeppelin web notebook comes with sample notes. We recommend that you review them, and then use them as a template for your own notes. There are several things you should take into account.</p>
 
 <ul>
 <li><p>The data grid model can be declared in a notebook using the <code>%define</code> interpreter:</p>
 
-<pre xml:space="preserve"><code class="language-scala">%define
+<pre><code class="language-scala">%define
 package model.v1
 
 import org.insightedge.scala.annotation._
@@ -109,20 +109,20 @@ case class Product(
 }
 </code></pre>
 
-<pre xml:space="preserve"><code class="language-scala">%spark
+<pre><code class="language-scala">%spark
 import model.v1._
 </code></pre></li>
 
 <li><p>You can load external .JARs from the Spark interpreter settings, or with the <code>z.load("/path/to.jar")</code> command:</p>
 
-<pre xml:space="preserve"><code class="language-scala">%dep
+<pre><code class="language-scala">%dep
 z.load("insightedge/examples/jars/insightedge-examples.jar")
 </code></pre></li>
 </ul>
 
 <div class="tc-admon-refer">
   
-  <p>For more details, refer to <a href="https://zeppelin.apache.org/docs/latest/interpreter/spark.htm#dependency-management" target="_blank">Zeppelin Dependency Management</a>.</p>
+  <p>For more details, refer to <a href="https://zeppelin.apache.org/docs/latest/interpreter/spark.htm#dependency-management" target="_blank" >Zeppelin Dependency Management</a>.</p>
 </div>
 
 <ul>

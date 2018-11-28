@@ -7,11 +7,11 @@
 
 <p>This page demonstrates how to implement and use a custom metric reporter. For demonstration purposes we'll show a reporter which writes metrics to a text file.</p>
 
-<h1 id="implementation">Implementation</h1>
+<h1><a name="implementation">&#160;</a>Implementation</h1>
 
 <p>A custom metric reporter implementation requires overriding two classes: <code>MetricReporter</code> and <code>MetricReporterFactory</code>. The custom <code>MetricReporter</code> accepts metric snapshots and reports them as it wishes. The <code>MetricReporterFactory</code> is used to encapsulate configuration and instantiate the <code>MetricReporter</code>.</p>
 
-<h3 id="filereporterfactory">FileReporterFactory</h3>
+<h3><a name="filereporterfactory">&#160;</a>FileReporterFactory</h3>
 
 <p>The <code>FileReporterFactory</code> extends <code>MetricReporterFactory</code> in order to create a reporter (in this case, a <code>FileReporter</code>) instance with the relevant settings. This being a <span class="tc-italic">file</span> reporter, we'll obviously want to let the user choose the target file. For example:</p>
 
@@ -39,7 +39,7 @@
 
 <p>Note that we're overriding the <code>load(Properties properties)</code> method to load the <code>path</code> property from the configuration file.</p>
 
-<h3 id="filereporter">FileReporter</h3>
+<h3><a name="filereporter">&#160;</a>FileReporter</h3>
 
 <p>Implementing a reporter requires creating a constructor to configure the reporter using the reporter factory, and overriding the <code>report(List&lt;MetricRegistrySnapshot&gt; snapshots)</code> method to traverse the metrics data and actually report it (in this case, writing it to a file). For example:</p>
 
@@ -169,7 +169,7 @@ public class FileReporter extends MetricReporter {
 </div>
 </div></div>
 
-<h1 id="usage">Usage</h1>
+<h1><a name="usage">&#160;</a>Usage</h1>
 
 <p>Now that we have a custom reporter implementation we need to configure the system to use it. This is done via the <code>metrics.xml</code> configuration file (located under <code>XAP_HOME/config/metrics</code> by default), at the <code>reporters</code> element. For example, to create a file reporter named <code>myReporter</code> which writes results to <code>c:\gigaspaces\metrics-output.txt</code>:</p>
 

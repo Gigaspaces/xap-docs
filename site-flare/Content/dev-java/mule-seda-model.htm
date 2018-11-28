@@ -18,7 +18,7 @@ xsi:schemaLocation="
 http://www.openspaces.org/schema/mule/os-seda http://www.openspaces.org/schema/8.0/mule/3.1/mule-os-seda.xsd&gt;
 </code></pre>
 
-<h1 id="space-mode-aware-service">Space Mode Aware Service</h1>
+<h1><a name="space-mode-aware-service">&#160;</a>Space Mode Aware Service</h1>
 
 <p>When working in an SBA architecture, where each Mule Processing Unit works with (and starts) an embedded Space cluster member, some cluster members are actually the backup members (in a primary-backup topology). In such a case, operations performed directly against the Space cluster member are not allowed (clustered operations are, of course, allowed). Many times, we want to start services that work directly against the cluster member only when they are working directly with a primary cluster member. For more details, see the <a href="the-space-configuration.htm#proxy">OpenSpaces Core Component - Space</a> section.</p>
 
@@ -49,7 +49,7 @@ http://www.openspaces.org/schema/mule/os-seda http://www.openspaces.org/schema/8
 
 <p>In the above example we have two services: <code>spaceAwareService</code> and <code>plainService</code>. <code>spaceAwareService</code> only starts if the Space it is working against is a primary cluster member. <code>plainService</code> works in any case (which is fine if it uses the <code>clusteredGigaSpace</code> bean).</p>
 
-<h1 id="enhanced-seda-model">Enhanced SEDA Model</h1>
+<h1><a name="enhanced-seda-model">&#160;</a>Enhanced SEDA Model</h1>
 
 <p>OpenSpaces enhanced SEDA model allows storing of SEDA queues on top of the Space. This allows you to have a highly available and fault-tolerant SEDA implementation with the benefits of fast, in-memory, virtualized Space queue implementations.</p>
 
@@ -106,7 +106,7 @@ http://www.openspaces.org/schema/mule/os-seda http://www.openspaces.org/schema/8
 
 <p>In the above example, the fact that we are using the <code>os-seda:model</code>, and in it <code>os-seda:service</code> means that the <code>os-seda:service</code> instance queue is a virtualized queue stored in the Space.</p>
 
-<h1 id="transaction-support">Transaction Support</h1>
+<h1><a name="transaction-support">&#160;</a>Transaction Support</h1>
 
 <p>The operations performed on the Space when working with the SEDA virtualized queue are all performed using the <code>GigaSpace</code> bean. <code>GigaSpace</code> supports <a href="the-gigaspace-interface-overview.htm#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions">declarative transactions</a> when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as its built-in transaction management strategy allows you to use OpenSpaces with <a href="transaction-overview.htm">different transaction managers</a>, including XA.</p>
 

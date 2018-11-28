@@ -25,7 +25,7 @@
 ...
 </code></pre>
 
-<h1 id="configuring-the-security-manager">Configuring the Security Manager</h1>
+<h1><a name="configuring-the-security-manager">&#160;</a>Configuring the Security Manager</h1>
 
 <p>The Spring security configurations are loaded using Spring's <code>FileSystemXmlApplicationContext</code> taking the context definition files from the file system or from URLs. The location of the configuration file is set using the <code>spring-security-config-location</code> property; if not set, a default <code>security-config.xml</code> is considered (if present).</p>
 
@@ -42,14 +42,14 @@ spring-security-config-location = ../config/security/security-config.xml
   <p>For convenience, the template properties <code>config/security/spring-security.properties</code> can be renamed to <code>security.properties</code> or referenced using a system property (see <a href="security-configurations.htm">Security Configurations</a>).</p>
 </div>
 
-<h1 id="logging">Logging</h1>
+<h1><a name="logging">&#160;</a>Logging</h1>
 
 <p>Any configurations that are applied can be seen by setting the logging level to CONFIG (see xap_logging.properties):</p>
 
 <pre><code class="language-java">com.gigaspaces.security.level = CONFIG
 </code></pre>
 
-<h1 id="testing-the-spring-based-security-bridge">Testing the Spring-based Security Bridge</h1>
+<h1><a name="testing-the-spring-based-security-bridge">&#160;</a>Testing the Spring-based Security Bridge</h1>
 
 <p>Before launching up a whole full-blown application, you may want to test that the bridge is actually working to your satisfaction. For example, that the users, roles, and authorities are extracted correctly, etc. For this, you don't even need a GigaSpaces instance.</p>
 
@@ -82,7 +82,7 @@ public class Main {
   <p>When running a standalone test, you will need to include the following jars in your classpath: &lt;XAP ROOT&gt;/lib/optional/security/spring-security-core-*.jar , &lt;XAP ROOT&gt;/lib/optional/spring/*.jar , &lt;XAP ROOT&gt;/lib/required/*.jar</p>
 </div>
 
-<h1 id="gigaspaces-security-authorities">GigaSpaces Security Authorities</h1>
+<h1><a name="gigaspaces-security-authorities">&#160;</a>GigaSpaces Security Authorities</h1>
 
 <p>GigaSpaces provides a set of <a href="security-authorities.htm">Security Authorities</a> which can be stored as a String in any external directory. Much like the Spring's Security <code>GrantedAuthority</code> s which translate to and from a String.</p>
 

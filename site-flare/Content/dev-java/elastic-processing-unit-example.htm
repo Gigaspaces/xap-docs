@@ -8,7 +8,7 @@
 <p>This example deploys a partitioned data grid across several machines. It demonstrates the Elastic PU elasticity, continuous high-availability and even data (primary) distribution across all existing resources available for the grid.
 As long as there is enough memory resources across the available machines, the data grid primary and backup instances will be provisioned , ensuring no data loss while spreading the instances evenly.</p>
 
-<h1 id="setup">Setup</h1>
+<h1><a name="setup">&#160;</a>Setup</h1>
 
 <table class="tc-borderless"><tr><td style="width:60%;"><ul>
 <li>XAP 12<br/></li>
@@ -26,7 +26,7 @@ As long as there is enough memory resources across the available machines, the d
 </td>
 </tr></table>
 
-<h1 id="flow">Flow</h1>
+<h1><a name="flow">&#160;</a>Flow</h1>
 
 <table class="tc-borderless"><tr><td style="width:60%;"><ol>
 <li>Start 4 VMs</li>
@@ -46,7 +46,7 @@ As long as there is enough memory resources across the available machines, the d
 </td>
 </tr></table>
 
-<h1 id="starting-the-agent">Starting the agent</h1>
+<h1><a name="starting-the-agent">&#160;</a>Starting the agent</h1>
 
 <p>Management node (XAP-1)</p>
 
@@ -58,9 +58,9 @@ As long as there is enough memory resources across the available machines, the d
 <pre><code class="language-bash%">./gs-agent.sh 
 </code></pre>
 
-<h1 id="elastic-pu">Elastic PU</h1>
+<h1><a name="elastic-pu">&#160;</a>Elastic PU</h1>
 
-<h2 id="the-space-pu-xml">The Space pu.xml</h2>
+<h2><a name="the-space-pu-xml">&#160;</a>The Space pu.xml</h2>
 
 <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -81,7 +81,7 @@ As long as there is enough memory resources across the available machines, the d
 &lt;/beans&gt;
 </code></pre>
 
-<h2 id="deploying-the-elastic-pu">Deploying the elastic PU</h2>
+<h2><a name="deploying-the-elastic-pu">&#160;</a>Deploying the elastic PU</h2>
 
 <p>The following command will start a stateful elastic PU with 8 partitions:</p>
 
@@ -92,49 +92,49 @@ As long as there is enough memory resources across the available machines, the d
 
 <p><img src="../Resources/Static/attachment_files/epu/example3.png" alt="image" /></p>
 
-<h1 id="shutting-down-xap-4">Shutting down XAP 4</h1>
+<h1><a name="shutting-down-xap-4">&#160;</a>Shutting down XAP 4</h1>
 
 <p>Lets shut down instance 4. You will see in the web management console, that all instances have been distributed evenly across the rest of the available resources:</p>
 
 <p><img src="../Resources/Static/attachment_files/epu/example4.png" alt="image" /></p>
 
-<h2 id="pu-instances-distribution">PU Instances Distribution</h2>
+<h2><a name="pu-instances-distribution">&#160;</a>PU Instances Distribution</h2>
 
 <p>You can see that all primary and backup instances have been provisioned into the other remaining VM's:</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/epu/example5.png" alt="image" /></p>
 </div>
 
-<h1 id="shutting-down-xap-3">Shutting down XAP 3</h1>
+<h1><a name="shutting-down-xap-3">&#160;</a>Shutting down XAP 3</h1>
 
 <p>Lets shut down instance 3. Again look at the web management console:
 <img src="../Resources/Static/attachment_files/epu/example6.png" alt="image" /></p>
 
 <p>You can see that all primary and backup instances have been provisioned into the other remaining VM's:</p>
 
-<h2 id="pu-instances-distribution-1">PU Instances Distribution</h2>
+<h2><a name="pu-instances-distribution-1">&#160;</a>PU Instances Distribution</h2>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/epu/example7.png" alt="image" /></p>
 </div>
 
-<h1 id="restart-xap-3">Restart XAP 3</h1>
+<h1><a name="restart-xap-3">&#160;</a>Restart XAP 3</h1>
 
 <p>Once you restart this instance, you will see that the existing primaries and backup instances are rebalanced over all three servers:</p>
 
 <p><img src="../Resources/Static/attachment_files/epu/example8.png" alt="image" /></p>
 
-<h2 id="pu-instances-distribution-2">PU Instances Distribution</h2>
+<h2><a name="pu-instances-distribution-2">&#160;</a>PU Instances Distribution</h2>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/epu/example9.png" alt="image" /></p>
 </div>
 
-<h1 id="restart-xap-4">Restart XAP 4</h1>
+<h1><a name="restart-xap-4">&#160;</a>Restart XAP 4</h1>
 
 <p>Again, you will see that the existing primaries and backup instances are rebalanced over all four servers:</p>
 
 <p><img src="../Resources/Static/attachment_files/epu/example10.png" alt="image" /></p>
 
-<h2 id="pu-instances-distribution-3">PU Instances Distribution</h2>
+<h2><a name="pu-instances-distribution-3">&#160;</a>PU Instances Distribution</h2>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/epu/example11.png" alt="image" /></p>
 </div>

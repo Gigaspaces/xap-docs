@@ -9,15 +9,15 @@
 
 <p>Events are generated when objects are written, updated or taken from the space. With this framework you select events based on its content and designate a method that would be triggered as a result of that event, all through a simple and non-intrusive configuration. There are three main event handlers that are available:</p>
 
-<h1 id="notify-container">Notify Container</h1>
+<h1><a name="notify-container">&#160;</a>Notify Container</h1>
 
 <p>The Notify Container is the equivalent of a publish/subscribe semantics. An event listener is registered with the space that declares the type of events it is interested in. Upon receiving an event the listener is triggered. In this case all registered matching subscribers will be notified at the same time.</p>
 
-<h1 id="polling-container">Polling Container</h1>
+<h1><a name="polling-container">&#160;</a>Polling Container</h1>
 
 <p>The Polling Container is the equivalent of a point to point paradigm. Unlike the notify container, the Polling Container blocks contentiously on space connection until a matching event arrives. Polling containers ensures that one and only one listener will be triggered per event even if there are more then one listener that matches that event. The entry will be removed from the space when the listener is invoked.</p>
 
-<h1 id="archive-container">Archive Container</h1>
+<h1><a name="archive-container">&#160;</a>Archive Container</h1>
 
 <p>The archive container is a mechanism built on top of a polling container to transfer historical data into Big-Data storage (for example Cassandra). The typical scenario is when streaming vast number of raw events through the Space, enriching them and then moving them to a Big-Data storage. Typically, there is no intention of keeping them in the space nor querying them in the space.</p>
 
@@ -26,7 +26,7 @@
   <p><a href="../dev-java/archive-container.htm">The Archive Container</a></p>
 </div>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>Lets take our online processing service; we want to create a notification container that receives events when a payment has been cancelled.
 First, we define the Notifier Container.</p>
@@ -181,7 +181,7 @@ public class AuditListener {
   <p><a href="../dev-java/event-processing.htm">Event Processing</a></p>
 </div>
 
-<h1 id="fifo-support">FIFO Support</h1>
+<h1><a name="fifo-support">&#160;</a>FIFO Support</h1>
 
 <p>Sometimes it is necessary to process events in the order the way they have been created. By default events are not ordered. XAP supports FIFO (First In, First Out) processing of events.  To enable FIFO operations you can turn on FIFO support for classes which will participate in such operations.</p>
 
@@ -201,7 +201,7 @@ public class Payment implements Serializable {
   <p><a href="../dev-java/fifo-support.htm">FIFO Support</a></p>
 </div>
 
-<h1 id="jms">JMS</h1>
+<h1><a name="jms">&#160;</a>JMS</h1>
 
 <p>In addition to the polling containers you can also use a JMS facade on top of the space to deliver events. The JMS facade is designed to enable integration with external feeders that cannot or were not designed to work with the space based API.</p>
 
@@ -210,7 +210,7 @@ public class Payment implements Serializable {
   <p><a href="../dev-java/messaging-support.htm">Messaging Support</a></p>
 </div>
 
-<h1 id="master-worker-pattern">Master Worker Pattern</h1>
+<h1><a name="master-worker-pattern">&#160;</a>Master Worker Pattern</h1>
 
 <table class="tc-borderless">
   <tr>

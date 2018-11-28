@@ -12,7 +12,7 @@
   <p>Some security features are part of the open source edition, while others are only available with the commercial (licensed) editions.</p>
 </div>
 
-<h1 id="security-infrastructure-for-open-source-editions">Security Infrastructure for Open Source Editions</h1>
+<h1><a name="security-infrastructure-for-open-source-editions">&#160;</a>Security Infrastructure for Open Source Editions</h1>
 
 <p>The GigaSpaces applictions come with a basic security infrastructure that can be configured to suit the needs of your organization. You can secure the <a href="securing-your-data.htm">data layer</a>, which includes the Spaces and Processing Units, by defining the following elements for user authorities and roles:</p>
 
@@ -27,7 +27,7 @@
 
 <p>The open source editions do not include a security implementation. A <a href="security-ref-impl.htm">reference implementation</a> is provided instead.</p>
 
-<h1 id="security-implementations-for-commercial-editions">Security Implementations for Commercial Editions</h1>
+<h1><a name="security-implementations-for-commercial-editions">&#160;</a>Security Implementations for Commercial Editions</h1>
 
 <p>The commercial editions of XAP and InsightEdge come with an Admin API that can be used for administration and monitoring. Additionally, the following interfaces can also be used:</p>
 
@@ -48,7 +48,7 @@
   <p>Refer to <a href="../admin/admin-tools.htm">Administration Tools</a> for details about the configuration options.</p>
 </div>
 
-<h2 id="securable-layers">Securable Layers</h2>
+<h2><a name="securable-layers">&#160;</a>Securable Layers</h2>
 
 <p>XAP security can be applied in three separate layers. You can enable security for any of the layers individually, or you can enable all of them for maximum security.</p>
 
@@ -58,7 +58,7 @@
 <li>The <a href="securing-the-transport-layer-using-ssl.htm">transport layer</a> - Provides a generic network filter with SSL support.</li>
 </ul>
 
-<h2 id="configuring-security">Configuring Security</h2>
+<h2><a name="configuring-security">&#160;</a>Configuring Security</h2>
 
 <p>Security is configured via a property file that includes required and custom properties. For more information, refer to the following parts of the Security section in this Administration guide:</p>
 
@@ -80,7 +80,7 @@ This implementation stores the user credentials in a local file and can be used 
 <li>For other custom security implementations, refer to <a href="custom-security.htm">Custom Security</a>. One such custom security implementation is the <a href="spring-security-bridge.htm">Spring Security Bridge</a>.</li>
 </ul>
 
-<h2 id="dependencies">Dependencies</h2>
+<h2><a name="dependencies">&#160;</a>Dependencies</h2>
 
 <p>In order to use the security implementation, include the <code>${XAP_HOME}/lib/optional/security/xap-security.jar</code> file on your classpath or use Maven dependencies:</p>
 
@@ -96,11 +96,11 @@ This implementation stores the user credentials in a local file and can be used 
   <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
 </div>
 
-<h2 id="hello-world-example">Hello World Example</h2>
+<h2><a name="hello-world-example">&#160;</a>Hello World Example</h2>
 
 <p>The <a href="securing-the-helloworld-example.htm">Hello World</a> example provides a step-by-step guide to deploying a Processing Unit with a secured Space, accessing it from a remote proxy, and declaring principals using the administration tools.</p>
 
-<h2 id="spring-security">Spring Security</h2>
+<h2><a name="spring-security">&#160;</a>Spring Security</h2>
 
 <p>Spring Security is one of the most mature and widely used Spring projects. GigaSpaces provides a Spring-based security bridge to enable an extensible implementation to LDAP (Lightweight Directory Access Protocol) or database authentication.</p>
 

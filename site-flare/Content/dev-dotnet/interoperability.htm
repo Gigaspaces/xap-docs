@@ -7,7 +7,7 @@
 
 <p>XAP supports easy and efficient communication and access across projects that include a combination of Java, .NET and C++ platforms, while also maintaining the benefits of the XAP scale-out application server.</p>
 
-<h1 id="designing-interoperable-classes">Designing Interoperable Classes</h1>
+<h1><a name="designing-interoperable-classes">&#160;</a>Designing Interoperable Classes</h1>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="C#" style="padding:10px"><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
 
@@ -48,17 +48,17 @@ namespace MyCompany.MyProject.Entities
 </div>
 </div>
 
-<h2 id="guidelines-and-restrictions">Guidelines and Restrictions</h2>
+<h2><a name="guidelines-and-restrictions">&#160;</a>Guidelines and Restrictions</h2>
 
 <p>Follow these guidelines and restrictions in this section to enable platform interoperability.</p>
 
-<h3 id="class-name">Class Name</h3>
+<h3><a name="class-name">&#160;</a>Class Name</h3>
 
 <p>The full class name (including package\namespace) in all platforms should be identical.</p>
 
 <p>Java packages use a different naming convention than .NET namespaces, therefore it is recommended to use the <code>SpaceClass(AliasName="")</code> feature to map a .NET class to the respective Java class.</p>
 
-<h3 id="properties-and-fields">Properties and Fields</h3>
+<h3><a name="properties-and-fields">&#160;</a>Properties and Fields</h3>
 
 <p>The properties/fields stored in the Space on all platforms should be identical.</p>
 
@@ -66,7 +66,7 @@ namespace MyCompany.MyProject.Entities
 
 <p>Java properties start with a lowercase letter, whereas .NET properties usually start with an uppercase letter. It is therefore recommended to use the <code>SpaceProperty(AliasName="")</code> feature to map a property/field name from .NET to Java.</p>
 
-<h3 id="types">Types</h3>
+<h3><a name="types">&#160;</a>Types</h3>
 
 <p>Only the types listed in the table below are supported. If one of your fields uses a different type, you can use the class only in a homogeneous environment. Arrays of these types are also supported.</p>
 
@@ -76,7 +76,7 @@ namespace MyCompany.MyProject.Entities
 
 <p>Some of the types have different characteristics in .NET and Java (signed\unsigned, nullable\not nullable, precision, etc.). This can lead to runtime exceptions (for example, trying to store <code>null</code> in a .NET structure) or unexpected results (for example, copying values between signed and unsigned fields).</p>
 
-<h1 id="supported-types-for-matching-and-interoperability">Supported Types for Matching and Interoperability</h1>
+<h1><a name="supported-types-for-matching-and-interoperability">&#160;</a>Supported Types for Matching and Interoperability</h1>
 
 <p>The following types are supported by the Space for matching and interoperability.</p>
 
@@ -274,7 +274,7 @@ namespace MyCompany.MyProject.Entities
   <p>Java 8's <code>LocalDate</code>, <code>LocalTime</code>, and <code>LocalDateTime</code> are currently not interoperable with the .NET DateTime class.</p>
 </div>
 
-<h1 id="array-and-collection-support">Array and Collection Support</h1>
+<h1><a name="array-and-collection-support">&#160;</a>Array and Collection Support</h1>
 
 <p>The following collections are mapped for interoperability.</p>
 

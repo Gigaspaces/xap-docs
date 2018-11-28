@@ -13,14 +13,14 @@
   </tr>
 </table>
 
-<h1 id="life-cycle-events">Life Cycle Events</h1>
+<h1><a name="life-cycle-events">&#160;</a>Life Cycle Events</h1>
 
 <p>The notify container life cycle events are described below. You can implement each one to perform the required activity.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/notify_container_life_cycle.jpg" alt="polling_container_basic.jpg" /></p>
 </div>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
 <p>Here is a simple example of how to configure the notify event container:</p>
 
@@ -123,7 +123,7 @@ notifyEventListenerContainer.destroy();
 
 <p>The above example registers with the Space for write notifications using the provided template (a <code>Data</code> object with its processed flag set to <span class="tc-bold">false</span>). If a notification occurs, the <code>SimpleListener</code> is invoked. Registration for notifications is performed on the configured <a href="the-gigaspace-interface-overview.htm">GigaSpace</a> bean. (In this case, if working in a clustered topology, the notification is performed directly on the cluster member.)</p>
 
-<h1 id="general-guidelines">General Guidelines</h1>
+<h1><a name="general-guidelines">&#160;</a>General Guidelines</h1>
 
 <p>A notify listener configured in <a href="#fifo-events">non-FIFO</a> mode uses a thread that is maintained via a <a href="#scaling-notification-delivery">thread pool</a>. If the notify container <a href="#template-definition">template/query</a> matches a large number of Space objects within a short period of time, you may consume the entire thread pool.</p>
 
@@ -133,7 +133,7 @@ notifyEventListenerContainer.destroy();
 
 <p>To prevent this, the notify listener implementation should have <a href="#batch-events">batching enabled</a>, where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a <a href="polling-container-overview.htm#notify-verses-polling-container">polling container</a> should be considered, as this is a more controlled event handler.</p>
 
-<h1 id="template-definition">Template Definition</h1>
+<h1><a name="template-definition">&#160;</a>Template Definition</h1>
 
 <p>When performing receive operations a template is defined, creating a virtualized subset of data in the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.htm">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
 
@@ -192,7 +192,7 @@ public class SimpleListener {
   <p>A polling or notify container can have only one template. If you need multiple event handlers, you must either create another container or use the <a href="session-based-messaging-api.htm#Registering Large Number of Listeners">Session Based Messaging API</a>, which supports multiple listeners with a single session. If you use multiple polling containers, make sure the different templates don't overlap each other.</p>
 </div>
 
-<h1 id="multiple-event-handlers">Multiple Event Handlers</h1>
+<h1><a name="multiple-event-handlers">&#160;</a>Multiple Event Handlers</h1>
 
 <p>YOu can define multiple event handlers for a notify container. If you have a superclass with subclasses, and you want to define event handlers for each subclass, define the
 event template for the superclass and a <code>@SpaceDataEvent</code> for each subclass.</p>
@@ -228,7 +228,7 @@ public class NotifyExample {
 }
 </code></pre>
 
-<h1 id="multiple-values-template">Multiple Values Template</h1>
+<h1><a name="multiple-values-template">&#160;</a>Multiple Values Template</h1>
 
 <p>You can use a <code>SQLQuery</code> that has an <code>IN</code> operator with multiple values to register a template with multiple values. This is a simple alternative to using multiple notify containers. See the following example:</p>
 
@@ -285,11 +285,11 @@ SimpleNotifyEventListenerContainer notifyEventListenerContainer =
 </div>
 </div>
 
-<h1 id="freeing-up-notify-container-resources">Freeing Up Notify Container Resources</h1>
+<h1><a name="freeing-up-notify-container-resources">&#160;</a>Freeing Up Notify Container Resources</h1>
 
 <p>To free up the resources used by the notify container, make sure you close it properly. Some good life cycle events within which to place the <code>destroy()</code> call are the <code>@PreDestroy</code> or <code>DisposableBean.destroy()</code> methods.</p>
 
-<h1 id="notify-container-life-cycle">Notify Container Life Cycle</h1>
+<h1><a name="notify-container-life-cycle">&#160;</a>Notify Container Life Cycle</h1>
 
 <p>The Notify Event Listener container supports several life cycle methods. These methods allow you to create, start, stop, and destroy the listener programmatically.  There is also the <code>setActiveWhenPrimary</code> life cycle mode that binds the container to the Space mode when set to <span class="tc-bold">TRUE</span>, starting it when the Space mode is in primary mode and stopping it otherwise.</p>
 
@@ -407,7 +407,7 @@ Mon Aug 01 08:54:40 CAT 2016:10 -  isActive:true isRunning:true notifyContainer 
 Mon Aug 01 08:54:40 CAT 2016:10 -  isActive:false isRunning:false notifyContainer destroyed
 </code></pre>
 
-<h1 id="masking-notifications">Masking Notifications</h1>
+<h1><a name="masking-notifications">&#160;</a>Masking Notifications</h1>
 
 <p>The notify container allows you to mask the operations (which are performed against the Space) that should cause notifications. By default, if none are defined then notifications are sent for write operations. The possible operations are:</p>
 
@@ -520,7 +520,7 @@ public class SimpleListener {
 </div>
 </div>
 
-<h2 id="the-unmatched-notifyactiontype">The UNMATCHED NotifyActionType</h2>
+<h2><a name="the-unmatched-notifyactiontype">&#160;</a>The UNMATCHED NotifyActionType</h2>
 
 <p>The <code>UNMATCHED</code> <code>NotifyActionType</code> should be used when you want to receive notifications for objects whose value has been updated, where the object that initially matched the template no longer matches the template.</p>
 
@@ -534,7 +534,7 @@ public class SimpleListener {
 
 <p>You must include <code>UNMATCHED NotifyActionType</code> to receive a notification when the status of an object changes from <code>true</code> to <code>false</code>.</p>
 
-<h1 id="scaling-notification-delivery">Scaling Notification Delivery</h1>
+<h1><a name="scaling-notification-delivery">&#160;</a>Scaling Notification Delivery</h1>
 
 <p>To increase the number of Space threads that handle notification delivery, increase the value of the <code>space-config.engine.notify_max_threads</code> Space property. The default is 128 threads.</p>
 
@@ -623,7 +623,7 @@ In your <code>pu.xml</code> file you can define a <code>ThreadPoolTaskExecutor</
 </div>
 </div>
 
-<h1 id="batch-events">Batch Events</h1>
+<h1><a name="batch-events">&#160;</a>Batch Events</h1>
 
 <p>OpenSpaces, through the <a href="session-based-messaging-api.htm">Session Based Messaging API</a>, allows batch notifications. Batching causes the Space to accumulate the notifications on the Space side for the specified operation(s) with objects that match the template/SQL criteria. When a certain amount of time has elapsed or a certain amount of objects have accumulated, the events are sent to the client.</p>
 
@@ -695,7 +695,7 @@ public class SimpleListener {
 </div>
 </div>
 
-<h2 id="passing-an-array-as-is">Passing an Array As Is</h2>
+<h2><a name="passing-an-array-as-is">&#160;</a>Passing an Array As Is</h2>
 
 <p>When batching is enabled, an array of Entries is received from the notification. By default, the notify container serializes the execution of the array into an invocation of the event listener for each element in the array. If you want the event to operate on the entire array (receive the array as a parameter), the <code>pass-array-as-is</code> configuration attribute should be set to <code>true</code>.</p>
 
@@ -725,7 +725,7 @@ public class SimpleListener {
 }
 </code></pre>
 
-<h1 id="fifo-events">FIFO Events</h1>
+<h1><a name="fifo-events">&#160;</a>FIFO Events</h1>
 
 <p>By default, the notify event container runs in non-FIFO mode. This means the event listener is called simultaneously by multiple threads if there are concurrent notifications sent from the Space. To have sequential event listener calls, run the notify event container in FIFO mode.</p>
 
@@ -796,7 +796,7 @@ public class SimpleListener {
   <p>For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the <a href="fifo-support.htm">Space FIFO support</a> section.</p>
 </div>
 
-<h1 id="re-registering-after-complete-space-shutdown-and-restart">Re-Registering after Complete Space Shutdown and Restart</h1>
+<h1><a name="re-registering-after-complete-space-shutdown-and-restart">&#160;</a>Re-Registering after Complete Space Shutdown and Restart</h1>
 
 <p>The Notify Container can recover from partial disconnections such as failover automatically, but if the entire cluster is shut down and restarted, the event registrations are lost and the notify container must be restarted.</p>
 
@@ -875,7 +875,7 @@ public class SimpleListener {
 
 <p>For more information, see <a href="session-based-messaging-api.htm#disconnections">Auto Renew</a>.</p>
 
-<h1 id="resending-notifications-after-a-space-client-disconnection">Resending Notifications after a Space-Client Disconnection</h1>
+<h1><a name="resending-notifications-after-a-space-client-disconnection">&#160;</a>Resending Notifications after a Space-Client Disconnection</h1>
 
 <p>When a network failure occurs and the Space can't communicate with the client, the Space attempts to trigger the remote client listener several times. The <code>space-config.notifier-retries</code> property controls the number of re-try attempts. The default value is 3 attempts.</p>
 
@@ -888,7 +888,7 @@ public class SimpleListener {
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h1 id="durable-notifications">Durable Notifications</h1>
+<h1><a name="durable-notifications">&#160;</a>Durable Notifications</h1>
 
 <p>Due to the asynchronous nature of notification delivery, when a primary Space fails right after replicating an operation to the backup Space and before sending the notification to the registered client, the backup Space may not be able to send the missing notifications because it is in the process of moving to primary mode. As a result, during this very short period of time the registered client might not receive events that occurred in the primary Space and were replicated to the backup Space.</p>
 
@@ -961,7 +961,7 @@ public class SimpleListener {
   <p>For more information, refer to <a href="durable-notifications.htm">Durable Notifications</a>.</p>
 </div>
 
-<h1 id="take-on-notify">Take on Notify</h1>
+<h1><a name="take-on-notify">&#160;</a>Take on Notify</h1>
 
 <p>The notify event container can be configured to automatically perform a take on the notification data event. The container can also be configured to filter out events if the take operation returns <code>null</code>. (This usually happens when several clients receive this event, and only one succeeds with the take.)</p>
 
@@ -1029,7 +1029,7 @@ public class SimpleListener {
 </div>
 </div>
 
-<h1 id="event-metadata">Event Metadata</h1>
+<h1><a name="event-metadata">&#160;</a>Event Metadata</h1>
 
 <p>When registering for notifications using the unified event session API (or using plain notify registration), the following interface must be implemented:</p>
 
@@ -1077,15 +1077,15 @@ public class BatchListener {
 }
 </code></pre>
 
-<h1 id="notify-container-configuration-parameters-default-values">Notify Container Configuration Parameters- Default Values</h1>
+<h1><a name="notify-container-configuration-parameters-default-values">&#160;</a>Notify Container Configuration Parameters- Default Values</h1>
 
 <p>The default values for all of the notify container configuration parameters, such as <code>perform-take-on-notify</code>, <code>ignore-event-on-null-take</code> and others, can be found in the API reference guide (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/notify/SimpleNotifyEventListenerContainer.htm">SimpleNotifyEventListenerContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/notify/AbstractNotifyEventListenerContainer.htm">AbstractNotifyEventListenerContainer</a>.</p>
 
 <p>For example, the <code>perform-take-on-notify</code> default value is documented in the method <code>SimpleNotifyEventListenerContainer.setPerformTakeOnNotify(boolean)</code>.</p>
 
-<h1 id="additional-resources">Additional Resources</h1>
+<h1><a name="additional-resources">&#160;</a>Additional Resources</h1>
 
-<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:http://www.youtube.com/watch?v=GwLfDYgl6f8," />
+<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=GwLfDYgl6f8," />
 
 </body>
 </html>

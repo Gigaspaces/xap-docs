@@ -35,7 +35,7 @@ against this property:</p>
   <p>See <a href="query-geospatial.htm">Geospatial queries</a>  for more information on how geospatial queries work.</p>
 </div>
 
-<h1 id="nested-index">Nested Index</h1>
+<h1><a name="nested-index">&#160;</a>Nested Index</h1>
 
 <p>An index can be defined on a nested property to improve performance of nested queries. Nested properties indexing uses an additional attribute - <code>path()</code>.
 This attribute represents the path of the property within the nested object.</p>
@@ -108,7 +108,7 @@ public class Location {
         GasStation station = gigaSpace.read(query);
 </code></pre>
 
-<h1 id="combining-spatial-and-standard-predicates">Combining Spatial and Standard Predicates</h1>
+<h1><a name="combining-spatial-and-standard-predicates">&#160;</a>Combining Spatial and Standard Predicates</h1>
 
 <p>Suppose our <code>GasStation</code> class contains a <code>price</code> property as well, and we want to enhance our query and find nearby gas stations whose price is lower than a certain threshold. We can simply add the relevant predicate to the query's criteria:</p>
 

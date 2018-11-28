@@ -7,7 +7,7 @@
 
 <p>In distributed applications on a network, where there may be partial failures of the network or of components, there needs to be a way for components to be timed out if they have failed, or have become unreachable. Lease is a basic mechanism GigaSpaces provides to address this problem. GigaSpaces provides this functionality using Jini technology.</p>
 
-<h1 id="lease-basics">Lease Basics</h1>
+<h1><a name="lease-basics">&#160;</a>Lease Basics</h1>
 
 <p>The essential idea behind a lease is fairly simple.</p>
 
@@ -27,7 +27,7 @@
 <li>Specifying the Lease interface constant ANY, indicates that no particular lease time is desired and that the grantor of the lease should supply a time that is most convenient for the grantor. (GigaSpaces converts leases with ANY constant to FOREVER leases).</li>
 </ul>
 
-<h1 id="space-object-lease">Space Object Lease</h1>
+<h1><a name="space-object-lease">&#160;</a>Space Object Lease</h1>
 
 <p>Leases can be used for objects written to GigaSpaces cluster. All the write operations in <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace</a> interface support Lease. Lease duration is an argument that is passed to the write operations and they return a Lease Context which can be used to manage the Leases.</p>
 
@@ -49,7 +49,7 @@ MyMessage message3 = new MyMessage();
 LeaseContext&lt;MyMessage&gt; lease3 = gigaSpace.write(message3, Lease.FOREVER);
 </code></pre>
 
-<h1 id="getting-lease-expiration-date">Getting Lease Expiration Date</h1>
+<h1><a name="getting-lease-expiration-date">&#160;</a>Getting Lease Expiration Date</h1>
 
 <p>You may use the <code>Lease.getExpiration</code> to retrieve the time where the space object will expire. See below simple example - It writes a space into the space with 10 seconds lease and later prints how much time is left for the space object to remain in space before it will expire:</p>
 
@@ -68,7 +68,7 @@ while(true)
 }
 </code></pre>
 
-<h1 id="manually-managing-space-object-lease">Manually Managing Space Object Lease</h1>
+<h1><a name="manually-managing-space-object-lease">&#160;</a>Manually Managing Space Object Lease</h1>
 
 <p>GigaSpaces API returns the <code>LeaseContext</code> after every write operation/update operation. Space Object Leases can be renewed or cancelled based on the application needs.</p>
 
@@ -102,9 +102,9 @@ gigaSpace.writeMultiple(processedLowPriorityOrders,
         UpdateModifiers.UPDATE_OR_WRITE); // Update existing object
 </code></pre>
 
- <a id="LeaseRenewalManager">&#160;</a>
+ <a name="LeaseRenewalManager">&#160;</a>
 
-<h1 id="managing-leases-using-leaserenewalmanager">Managing Leases using LeaseRenewalManager</h1>
+<h1><a name="managing-leases-using-leaserenewalmanager">&#160;</a>Managing Leases using LeaseRenewalManager</h1>
 
 <p>LeaseRenewalManager provides systematic renewal and management of a set of leases associated with one or more remote entities on behalf of a local entity.</p>
 
@@ -151,7 +151,7 @@ gigaSpace.writeMultiple(processedLowPriorityOrders,
 <li>The renewal manager tries to renew the lease and gets a bad object exception, bad invocation exception, or LeaseException.</li>
 </ul>
 
-<h3 id="configuring-leaserenewalmanager">Configuring LeaseRenewalManager</h3>
+<h3><a name="configuring-leaserenewalmanager">&#160;</a>Configuring LeaseRenewalManager</h3>
 
 <p>LeaseRenewalManager supports <a href="[%=Links.ApiJavaDoc%]/index.htm?net/jini/config/Configuration.htm">Configuration</a> entries, with component "net.jini.lease.LeaseRenewalManager":</p>
 
@@ -189,7 +189,7 @@ gigaSpace.writeMultiple(processedLowPriorityOrders,
 </tbody>
 </table>
 
-<h3 id="lease-renewal-algorithm">Lease Renewal Algorithm</h3>
+<h3><a name="lease-renewal-algorithm">&#160;</a>Lease Renewal Algorithm</h3>
 
 <p>The time at which a lease is scheduled for renewal is based on the expiration time of the lease, possibly adjusted to account for the latency of the renewal call. The configuration entry roundTripTime, which defaults to ten seconds, represents the total time to make the remote call.</p>
 
@@ -242,7 +242,7 @@ gigaSpace.writeMultiple(processedLowPriorityOrders,
 <p>Otherwise, the last lease is renewed directly.
 The TaskManager that manages the renewal threads has a bound on the number of simultaneous threads it will support. The renewal time of leases may be adjusted earlier in time to reduce the likelihood that the renewal of a lease will be delayed due to exhaustion of the thread pool. Actual renewal times are determined by starting with the lease with the latest (farthest off) desired renewal time and working backwards. When computing the actual renewal time for a lease, the renewals of all leases with later renewal times, which will be initiated during the round trip time of the current lease's renewal, are considered. If using the desired renewal time for the current lease would result in more in-progress renewals than the number of threads allowed, the renewal time of the current lease is shifted earlier in time, such that the maximum number of threads is not exceeded.</p>
 
-<h3 id="example">Example</h3>
+<h3><a name="example">&#160;</a>Example</h3>
 
 <p>Following example shows a client writing <code>Order</code>'s to the space with a limited lease. It uses a LeaseRenewalManager to renew the Lease for the <code>Order</code>. It also uses a LeaseListener which is triggered in case LeaseRenewalManager runs into errors renewing a lease. Example source can be downloaded from <a href="/download_files/LeaseRenewalManager.zip">here</a>.</p>
 
@@ -421,7 +421,7 @@ private static final class LeaseRenewalConfiguration implements Configuration {
 
 <p>API page for <a href="[%=Links.ApiJavaDoc%]/net/jini/lease/LeaseRenewalManager.htm">LeaseRenewalManager</a> has additional information.</p>
 
-<h1 id="lease-expiration-notifications">Lease Expiration Notifications</h1>
+<h1><a name="lease-expiration-notifications">&#160;</a>Lease Expiration Notifications</h1>
 
 <p>Getting events once the space object lease expired can be done using the <a href="notify-container-overview.htm">Notify Container</a>. See example below:</p>
 
@@ -468,7 +468,7 @@ SimpleNotifyEventListenerContainer notifyEventListenerContainer = new SimpleNoti
 
 <p>Notifications for expired space objects are delivered both from the primary and backup space instances. In some cases you may want to handle notifications sent only from the primary instances. The <a href="/download_files/LeaseExpirationNotificationExample.zip">lease expiration notification example</a> show how you can identify from which instance (primary or a backup) the lease expiration notifications has been sent.</p>
 
-<h1 id="space-object-lease-with-a-persistent-space">Space Object Lease with a Persistent Space</h1>
+<h1><a name="space-object-lease-with-a-persistent-space">&#160;</a>Space Object Lease with a Persistent Space</h1>
 
 <p>When Objects are written to a Persistent Space (backed by a permanent store using ExternalDataSource), objects are written to the permanent store and removed from the space once lease expires. To avoid reloading the expired data into space objects should use @SpaceLeaseExpiration annotation.</p>
 
@@ -480,7 +480,7 @@ SimpleNotifyEventListenerContainer notifyEventListenerContainer = new SimpleNoti
 <li>when running with <code>blobstore</code> (SSD or local file implementation) expired space objects are removed from the <code>blobstore</code>.</li>
 </ul>
 
-<h1 id="lease-manager">Lease Manager</h1>
+<h1><a name="lease-manager">&#160;</a>Lease Manager</h1>
 
 <p>You can control how often this thread invokes the invalidation process. This involves iterating through all the expired space objects since the last invalidation cycle, and allowing the JVM garbage collector to release the memory consumed for the object. To configure the Lease Manager interval use the following:</p>
 

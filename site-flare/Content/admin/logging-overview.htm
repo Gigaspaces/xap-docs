@@ -14,18 +14,18 @@
 
 <p>XAP makes logging calls using the Java platform's core logging facilities. For a detailed explanation of the Java logging framework, refer to <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.htm" target="_blank" >Java Logging Overview</a> on the Oracle website.</p>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
 <p>The logging configuration is initialized using a configuration file that is read at startup. This configuration file is in the standard <code>java.util.Properties</code> format. It configures custom versions of both <code>java.util.logging.Handler</code> and <code>java.util.logging.Formatter</code>, and default levels for frequently used loggers (categories).</p>
 
-<h2 id="default-configuration">Default Configuration</h2>
+<h2><a name="default-configuration">&#160;</a>Default Configuration</h2>
 
 <p>The default XAP logger configuration file is located under:</p>
 
 <pre><code class="language-bash">&lt;XAP-HOME&gt;/config/log/xap_logging.properties
 </code></pre>
 
-<h2 id="overriding-the-default-configuration">Overriding the Default Configuration</h2>
+<h2><a name="overriding-the-default-configuration">&#160;</a>Overriding the Default Configuration</h2>
 
 <p>The configuration defined in the <code>xap_logging.properties</code> file may be overridden either by using system properties, or by providing an external configuration file with overrides. This external configuration file should be located in the classpath under:</p>
 
@@ -42,7 +42,7 @@
   <p>The recommended way to define system properties when starting service grid components is to wrap the original script, e.g. <code>gsc.sh(bat)</code> with a wrapper script which include the EXT_JAVA_OPTIONS variable. The <code>setenv.sh(bat)</code> script, which is used by these components, will pick these options automatically and use them as JVM arguments.</p>
 </div>
 
-<h2 id="overriding-the-configuration-file">Overriding the Configuration File</h2>
+<h2><a name="overriding-the-configuration-file">&#160;</a>Overriding the Configuration File</h2>
 
 <p>Your own configuration file may also be used instead of the platform's default. This is done by setting the configuration file location using a system property:</p>
 
@@ -62,14 +62,14 @@ export XAP_LOGS_CONFIG_FILE=myfile.properties
 <pre><code class="language-bash">-Dcom.gs.logging.disabled=true
 </code></pre>
 
-<h1 id="troubleshooting">Troubleshooting</h1>
+<h1><a name="troubleshooting">&#160;</a>Troubleshooting</h1>
 
 <p>To troubleshoot and detect which logging properties file was loaded and from where, set the following system property to <span class="tc-bold">true</span>. This property already exists in the scripts (for convenience) and by default is set to <span class="tc-bold">false</span>.</p>
 
 <pre><code class="language-bash">-Dcom.gs.logging.debug=true
 </code></pre>
 
-<h2 id="verbose-system-report">Verbose System Report</h2>
+<h2><a name="verbose-system-report">&#160;</a>Verbose System Report</h2>
 
 <p>Whenever a service grid component is started, it prints a system report in its log file. Increasing the log level from INFO to CONFIG or beyond will generate a verbose report and include all system properties and environment variables, which can be useful for troubleshooting.</p>
 
@@ -78,7 +78,7 @@ export XAP_LOGS_CONFIG_FILE=myfile.properties
 <pre><code class="language-bash">com.gigaspaces.grid.gsc.level = CONFIG
 </code></pre>
 
-<h1 id="handlers">Handlers</h1>
+<h1><a name="handlers">&#160;</a>Handlers</h1>
 
 <p>Out of the box, XAP configures its logging with two log Handlers,</p>
 
@@ -89,13 +89,13 @@ export XAP_LOGS_CONFIG_FILE=myfile.properties
 
 <p>Java util logging supports other handlers. MemoryHandler, SocketHandler or any other handler can be used instead of the above. For more information about handlers, refer to this Oracle topic on <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/technotes/guides/logging/">logging</a>. You can also use one of the <a href="http://java-source.net/open-source/logging" target="_blank" >open source logging frameworks</a> that supports java.util.logging.</p>
 
-<h1 id="formatters">Formatters</h1>
+<h1><a name="formatters">&#160;</a>Formatters</h1>
 
 <p>Formatters are in charge of formatting the log messages and adding metadata to them (date, time, level, etc).
 XAP configures the logging handler's <code>formatter</code> property with a single <code>Formatter</code> implementation class:
 <code>com.gigaspaces.logger.GSSimpleFormatter</code>. This formatter class is based on the <code>java.util.logging.SimpleFormatter</code> class. Refer to <a href="logging-formatting-messages.htm">Formatting Log Messages</a> for more details.</p>
 
-<h1 id="exception-visibility">Exception Visibility</h1>
+<h1><a name="exception-visibility">&#160;</a>Exception Visibility</h1>
 
 <p>XAP prints exception stack traces for log messages with level <code>SEVERE</code> or higher.</p>
 
@@ -106,7 +106,7 @@ XAP configures the logging handler's <code>formatter</code> property with a sing
 
 <p>The stack trace of a <code>java.lang.RuntimeException</code> is always be logged, regardless of the level definition.</p>
 
-<h1 id="logging-management-at-runtime">Logging Management at Runtime</h1>
+<h1><a name="logging-management-at-runtime">&#160;</a>Logging Management at Runtime</h1>
 
 <p>You can change various logger level settings while the system is up and running, without having to restart. This can be very useful in production environments when you have to troubleshoot the system, but cannot restart it.</p>
 
@@ -135,7 +135,7 @@ XAP configures the logging handler's <code>formatter</code> property with a sing
 <li>Set the specified logger to the specified new level.</li>
 </ul>
 
-<h1 id="logging-level">Logging Level</h1>
+<h1><a name="logging-level">&#160;</a>Logging Level</h1>
 
 <p>The <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/logging/Level.htm">logging level</a> class defines a set of standard logging levels that can be used to control logging output. The logging levels are ordered, and are specified by ordered integers/constants.</p>
 
@@ -158,7 +158,7 @@ XAP configures the logging handler's <code>formatter</code> property with a sing
 
 <p>In addition, there is a level <span class="tc-bold">OFF</span> that can be used to turn off logging, and a level <span class="tc-bold">ALL</span> that can be used to enable logging of all messages.</p>
 
-<h1 id="logging-categories">Logging Categories</h1>
+<h1><a name="logging-categories">&#160;</a>Logging Categories</h1>
 
 <p>The following logging categories are supported:</p>
 
@@ -178,7 +178,7 @@ XAP configures the logging handler's <code>formatter</code> property with a sing
 
 <p>the following sections describe the different modules, their logging names, and their default logging levels.</p>
 
-<h2 id="client-general">Client General</h2>
+<h2><a name="client-general">&#160;</a>Client General</h2>
 
 <pre><code class="language-bash">com.gigaspaces.client.level = INFO
 com.gigaspaces.client.cluster.liveness.level = INFO
@@ -188,7 +188,7 @@ com.gigaspaces.client.cluster.liveness.level = INFO
 Liveness check is functionality that runs inside a GigaSpaces proxy (usually held by a client connecting to a Space) to keep track of the cluster members.
 Additional information about the GigaSpaces proxy can be found <a href="tuning-proxy-connectivity.htm">here</a>.</p>
 
-<h2 id="net-api">.NET API</h2>
+<h2><a name="net-api">&#160;</a>.NET API</h2>
 
 <p>The logging configuration file includes declarations of the loggers available at the bridge between .NET and Java.</p>
 
@@ -198,37 +198,37 @@ com.gigaspaces.bridge.pbsexecuter.level = INFO
 com.gigaspaces.dotnet.pu.level = INFO
 </code></pre>
 
-<h2 id="openspaces">OpenSpaces</h2>
+<h2><a name="openspaces">&#160;</a>OpenSpaces</h2>
 
 <pre><code class="language-bash">org.openspaces.level = INFO
 </code></pre>
 
 <p>OpenSpaces wraps the core product with Spring, which enables applying Spring configuration and the Spring life cycle to XAP applications.</p>
 
-<h2 id="pu">PU</h2>
+<h2><a name="pu">&#160;</a>PU</h2>
 
 <pre><code class="language-bash">org.openspaces.pu.container.support.level = WARNING
 org.openspaces.pu.container.jee.context.ProcessingUnitWebApplicationContext.level = WARNING
 </code></pre>
 
-<h2 id="spring">Spring</h2>
+<h2><a name="spring">&#160;</a>Spring</h2>
 
 <p>GigaSpaces Spring application logging</p>
 
 <pre><code class="language-bash">com.gigaspaces.spring.level = WARNING
 </code></pre>
 
-<h2 id="hibernate">Hibernate</h2>
+<h2><a name="hibernate">&#160;</a>Hibernate</h2>
 
 <pre><code>org.hibernate.level = WARNING
 </code></pre>
 
-<h2 id="jms-api">JMS API</h2>
+<h2><a name="jms-api">&#160;</a>JMS API</h2>
 
 <pre><code class="language-bash">com.gigaspaces.jms.level = INFO
 </code></pre>
 
-<h2 id="comunication-protocol">Comunication Protocol</h2>
+<h2><a name="comunication-protocol">&#160;</a>Comunication Protocol</h2>
 
 <pre><code class="language-bash">com.gigaspaces.lrmi.nio.filters.SSLFilterFactory.level = INFO
 com.gigaspaces.lrmi.level = INFO
@@ -246,7 +246,7 @@ com.gigaspaces.lrmi.channel.manager.level = INFO
 com.gigaspaces.lrmi.channel.protocol.level = INFO
 </code></pre>
 
-<h2 id="class-loader">Class Loader</h2>
+<h2><a name="class-loader">&#160;</a>Class Loader</h2>
 
 <pre><code class="language-bash">com.gigaspaces.core.classloadercleaner.level = INFO
 com.gigaspaces.core.classloadercache.level = INFO
@@ -255,9 +255,9 @@ com.gigaspaces.core.classloadercache.level = INFO
 <p>XAP applications run as part of a XAP runtime container, and are packaged using the structure described <a href="../dev-java/the-processing-unit-structure-and-configuration.htm">here</a>.
 Application JARs/classes are packaged in different folders, and some of the classes may be loaded as part of GigaSpaces containers (GSCs). There are multiple class loaders involved when an application is running. More information about the class loaders and their hierarchy can be found <a href="../dev-java/the-processing-unit-structure-and-configuration.htm">here</a>.</p>
 
-<h2 id="space">Space</h2>
+<h2><a name="space">&#160;</a>Space</h2>
 
-<h3 id="core-and-kernel">Core and Kernel</h3>
+<h3><a name="core-and-kernel">&#160;</a>Core and Kernel</h3>
 
 <pre><code class="language-bash">com.gigaspaces.core.engine.level = INFO
 com.gigaspaces.core.lease.level = INFO
@@ -271,14 +271,14 @@ com.gigaspaces.container.level = INFO
 
 <p>Core runtime for the GigaSpaces Space component. The above loggers relate to this component and some aspects of this engine, including lease, object types, and Memory Manager.</p>
 
-<h3 id="filters">Filters</h3>
+<h3><a name="filters">&#160;</a>Filters</h3>
 
 <pre><code class="language-bash">com.gigaspaces.filters.level = INFO
 </code></pre>
 
 <p>The Space filters are described here <a href="../dev-java/the-space-filters.htm">Java version</a> |<a href="../dev-dotnet/the-space-filters.htm"> .NET version</a>.</p>
 
-<h3 id="persistency">Persistency</h3>
+<h3><a name="persistency">&#160;</a>Persistency</h3>
 
 <pre><code class="language-bash">com.gigaspaces.persistent.level = INFO
 com.gigaspaces.persistent.shared_iterator.level = INFO
@@ -287,21 +287,21 @@ org.hibernate.level = WARNING
 
 <p>The GigaSpaces persistence options are explained here <a href="../dev-java/space-persistency-overview.htm">Java version</a> |<a href="../dev-dotnet/space-persistency-overview.htm"> .NET version</a>. One of the packaged External Data Source implementations uses Hibernate. It is called Hibernate External Data Source, which is described <a href="../dev-java/hibernate-space-persistency.htm">here</a>.</p>
 
-<h3 id="query">Query</h3>
+<h3><a name="query">&#160;</a>Query</h3>
 
 <pre><code class="language-bash">com.gigaspaces.query.level = INFO
 </code></pre>
 
 <p>XAP supports SQL queries on data in the Space, and the logger corresponds to this functionality <a href="../dev-java/query-sql.htm">Java version</a> |<a href="../dev-dotnet/query-sql.htm"> .NET version</a>.</p>
 
-<h3 id="lru-and-eviction">LRU and Eviction</h3>
+<h3><a name="lru-and-eviction">&#160;</a>LRU and Eviction</h3>
 
 <pre><code class="language-bash">com.gigaspaces.cache.level = INFO
 </code></pre>
 
 <p>More information about the LRU policy and eviction behavior is available <a href="../dev-java/lru-cache-policy.htm">here</a>.</p>
 
-<h3 id="notifications">Notifications</h3>
+<h3><a name="notifications">&#160;</a>Notifications</h3>
 
 <pre><code class="language-bash">com.gigaspaces.core.notify.level = INFO
 </code></pre>
@@ -309,14 +309,14 @@ org.hibernate.level = WARNING
 <p>The Notification mechanism can be used to identify events related to Space data (write, update, take, etc). Notifications are typically used with a <a href="../dev-java/notify-container-overview.htm">Notify Container</a>.
 Notifications can also be used via Session-based messaging, which is discussed in detail <a href="../dev-java/session-based-messaging-api.htm">here</a>.</p>
 
-<h3 id="fifo">FIFO</h3>
+<h3><a name="fifo">&#160;</a>FIFO</h3>
 
 <pre><code class="language-bash">com.gigaspaces.core.fifo.level = INFO
 </code></pre>
 
 <p>FIFO functionality is applicable for write, read and event (notifications), and is discussed  in detail here <a href="../dev-java/fifo-support.htm">Java version</a> |<a href="../dev-dotnet/fifo-support.htm"> .NET version</a>.</p>
 
-<h3 id="replication">Replication</h3>
+<h3><a name="replication">&#160;</a>Replication</h3>
 
 <pre><code class="language-bash">com.gigaspaces.core.cluster.replication.level = INFO
 com.gigaspaces.core.cluster.replication.redolog.level = INFO
@@ -327,35 +327,35 @@ com.gigaspaces.core.cluster.sync_replication.level = INFO
 
 <p>Replication between Spaces is one of the core features of XAP, and is explained in detail <a href="replication.htm">here</a>.</p>
 
-<h3 id="partitioning">Partitioning</h3>
+<h3><a name="partitioning">&#160;</a>Partitioning</h3>
 
 <pre><code class="language-bash">com.gigaspaces.core.cluster.partition.level = INFO
 </code></pre>
 
 <p>When a cluster uses partitioned topology, the data is partitioned across multiple Space instances. More information about topologies is available <a href="../overview/the-runtime-environment.htm#topologies">here</a>.</p>
 
-<h3 id="active-election">Active-Election</h3>
+<h3><a name="active-election">&#160;</a>Active-Election</h3>
 
 <pre><code class="language-bash">com.gigaspaces.cluster.active_election.level = INFO
 </code></pre>
 
 <p>When there are multiple instances (primary/backup(s)), an Active-Election process is used by the cluster members to determine which member acts as the primary instance. Additional information regarding the Active-Election process is available <a href="split-brain-and-primary-resolution.htm">here</a>.</p>
 
-<h3 id="pojo">POJO</h3>
+<h3><a name="pojo">&#160;</a>POJO</h3>
 
 <pre><code class="language-bash">com.gigaspaces.pojo.level = INFO
 </code></pre>
 
 <p>This logger corresponds to XAP POJO support. More information is available <a href="../dev-java/pojo-overview.htm">here</a>.</p>
 
-<h3 id="xa-manager">XA Manager</h3>
+<h3><a name="xa-manager">&#160;</a>XA Manager</h3>
 
 <pre><code class="language-bash">com.gigaspaces.core.xa.level = INFO
 </code></pre>
 
 <p>This logger corresponda to the XA Transaction manager running in the Space. More information is available here <a href="../dev-java/transaction-overview.htm">Java version</a> |<a href="../dev-dotnet/transaction-overview.htm"> .NET version</a>.</p>
 
-<h3 id="jini-dist-tx-manager">Jini Dist. TX Manager</h3>
+<h3><a name="jini-dist-tx-manager">&#160;</a>Jini Dist. TX Manager</h3>
 
 <pre><code class="language-bash">com.sun.jini.mahalo.startup.level = INFO
 com.sun.jini.mahalo.destroy.level = INFO
@@ -363,7 +363,7 @@ com.sun.jini.mahalo.destroy.level = INFO
 
 <p>This logger is for the Jini Distributed Transaction manager. More information is available here <a href="../dev-java/transaction-overview.htm">Java version</a> |<a href="../dev-dotnet/transaction-overview.htm"> .NET version</a>.</p>
 
-<h3 id="spaceurl-spacevalidator-spaceurlparser">SpaceURL, SpaceValidator, SpaceURLParser</h3>
+<h3><a name="spaceurl-spacevalidator-spaceurlparser">&#160;</a>SpaceURL, SpaceValidator, SpaceURLParser</h3>
 
 <pre><code class="language-bash">com.gigaspaces.common.spaceurl.level = INFO
 com.gigaspaces.common.spacefinder.level = INFO
@@ -373,16 +373,16 @@ com.gigaspaces.common.resourceloader.level = INFO
 
 <p>The SpaceURL and its constraints are explained here <a href="../dev-java/the-space-configuration.htm">Java version</a> |<a href="../dev-dotnet/the-space-configuration.htm"> .NET version</a>. Other loggers are related to this one, and are applicable when a client is trying to create a Space proxy using a URL.</p>
 
-<h3 id="multicast-notifications">Multicast Notifications</h3>
+<h3><a name="multicast-notifications">&#160;</a>Multicast Notifications</h3>
 
 <pre><code class="language-bash">com.gigaspaces.worker.multicast.level = INFO
 </code></pre>
 
 <p>Space notifications support multicast mode, and this logger corresponds to multicast <a href="../dev-java/session-based-messaging-api.htm#AdvancedOptions">functionality</a>.</p>
 
-<h1 id="runtime">Runtime</h1>
+<h1><a name="runtime">&#160;</a>Runtime</h1>
 
-<h2 id="service-container-general">Service Container - General</h2>
+<h2><a name="service-container-general">&#160;</a>Service Container - General</h2>
 
 <pre><code class="language-bash">com.gigaspaces.grid.space.SpaceHandler.level = FINE
 org.jini.rio.level = INFO
@@ -392,7 +392,7 @@ com.gigaspaces.grid.lookup.level = INFO
 com.gigaspaces.management.level = INFO
 </code></pre>
 
-<h2 id="lookup-service">Lookup Service</h2>
+<h2><a name="lookup-service">&#160;</a>Lookup Service</h2>
 
 <pre><code class="language-bash">com.gigaspaces.core.lookupmanager.level = INFO
 com.sun.jini.reggie.level = INFO
@@ -407,7 +407,7 @@ com.sun.jini.thread.TaskManager.level = INFO
 
 <p>The Lookup Service (LUS) is a runtime registry of GigaSpaces components. Each component registers itself to a LUS, which provides visibility to other components. For example, a GSM discovers a GSC by looking at an entry in the LUS, and a GSC discovers a GSM in a similar way. More information about the LUS is available <a href="../overview/the-runtime-environment.htm#lus">here</a>.</p>
 
-<h2 id="gsm">GSM</h2>
+<h2><a name="gsm">&#160;</a>GSM</h2>
 
 <pre><code class="language-bash">com.gigaspaces.grid.gsm.level = INFO
 com.gigaspaces.grid.gsm.peer.level = INFO
@@ -421,7 +421,7 @@ org.jini.rio.tools.webster.level = INFO
 
 <p>The GigaSpaces Manager (GSM) manages the applications and maintains the SLAs for deployments. More information about the GSM is available <a href="../overview/the-runtime-environment.htm#gsm">here</a>.</p>
 
-<h2 id="gsc">GSC</h2>
+<h2><a name="gsc">&#160;</a>GSC</h2>
 
 <pre><code class="language-bash">com.gigaspaces.grid.gsc.level = INFO
 com.gigaspaces.grid.gsc.GSCFaultDetectionHandler.level = INFO
@@ -431,21 +431,21 @@ org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level = INFO
 
 <p>The GigaSpaces Container (GSC) is the runtime environment for GigaSpaces applications. More information about GSCs is available <a href="../overview/the-runtime-environment.htm#gsc">here</a>.</p>
 
-<h2 id="esm">ESM</h2>
+<h2><a name="esm">&#160;</a>ESM</h2>
 
 <pre><code class="language-bash">org.openspaces.grid.esm.level = INFO
 </code></pre>
 
 <p>The Elastic Service Manager (ESM) is an implementation of the Elastic Middleware Services. It is built on top of the existing administrative API exposed by the GigaSpaces components. See the <a href="../dev-java/elastic-processing-unit-overview.htm">Elastic Service Manager</a> page for more details.</p>
 
-<h2 id="gsa">GSA</h2>
+<h2><a name="gsa">&#160;</a>GSA</h2>
 
 <pre><code class="language-bash">com.gigaspaces.grid.gsa.level = INFO
 </code></pre>
 
 <p>The GigaSpaces Agent (GSA) acts as a process manager that can spawn and manage Service Grid processes (operating-system-level processes), such as the GigaSpaces Manager (GSM), GigaSpaces Container (GSC), and Lookup Service (LUS). More information about the GSA is available <a href="../overview/the-runtime-environment.htm#gsa">here</a>.</p>
 
-<h1 id="replication-1">Replication</h1>
+<h1><a name="replication-1">&#160;</a>Replication</h1>
 
 <pre><code class="language-bash">com.gigaspaces.replication.channel.level = INFO
 com.gigaspaces.replication.channel.verbose.level = INFO
@@ -456,21 +456,21 @@ com.gigaspaces.replication.group.level = INFO
 com.gigaspaces.replication.backlog.level = INFO
 </code></pre>
 
-<h1 id="metrics">Metrics</h1>
+<h1><a name="metrics">&#160;</a>Metrics</h1>
 
 <pre><code class="language-bash">com.gigaspaces.metrics.manager.level = INFO
 com.gigaspaces.metrics.registry.level = INFO
 com.gigaspaces.metrics.sampler.level = INFO
 </code></pre>
 
-<h1 id="security">Security</h1>
+<h1><a name="security">&#160;</a>Security</h1>
 
 <pre><code class="language-bash">com.gigaspaces.security.level = INFO
 </code></pre>
 
 <p>This logger corresponds to the security of GigaSpaces components. This includes configuration and runtime execution of security functionality. More information regarding GigaSpaces security is available <a href="../security/">here</a>.</p>
 
-<h1 id="web-container">Web Container</h1>
+<h1><a name="web-container">&#160;</a>Web Container</h1>
 
 <p>Any web application default logging level (the logger name for web applications is web.<code>[processing unit name].[instance id]</code>).</p>
 
@@ -480,7 +480,7 @@ org.mortbay.level = WARNING
 
 <p>XAP uses a Jetty container to provide support for Web applications. These loggers correspond to the Web Container. More information about GigaSpaces Web Application support is available <a href="../dev-java/web-jetty-processing-unit-container.htm">here</a>.</p>
 
-<h1 id="mule-integration">Mule Integration</h1>
+<h1><a name="mule-integration">&#160;</a>Mule Integration</h1>
 
 <pre><code class="language-bash">org.mule.level = WARNING
 org.mule.MuleServer.level = INFO
@@ -490,7 +490,7 @@ org.openspaces.esb.mule.level = WARNING
 
 <p>These loggers correspond to the Mule integration. More information about Mule integration is available in the <a href="../dev-java/mule-esb.htm">Mule ESB</a> and <a href="../dev-java/mule-processing-unit.htm">Mule Processing Unit</a> topics.</p>
 
-<h1 id="management">Management</h1>
+<h1><a name="management">&#160;</a>Management</h1>
 
 <p>For GUI, browser, cluster view, and JMX logging:</p>
 
@@ -504,7 +504,7 @@ com.gigaspaces.jmx.level = INFO
 
 <p>These loggers correspond to the XAP Management Center. Additional information regarding the user interface is available <a href="gigaspaces-management-center.htm">here</a>.</p>
 
-<h1 id="persistence">Persistence</h1>
+<h1><a name="persistence">&#160;</a>Persistence</h1>
 
 <p>For persistence logging:</p>
 
