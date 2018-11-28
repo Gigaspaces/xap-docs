@@ -12,15 +12,15 @@
 
 <p>Monitoring network and usage activity during runtime gives you the ability to track which client is invoking which methods on each service (e.g a space serving remote client request such as read/write). Which can be very useful to identify issues, such as which remote proxy is causing a high load on a specific space. Or investigating version conflicts and so on. This monitoring exposes the details for both inbound and outbound communication, allowing you to track the activity of the remote clients on services hosted on a specific Jvm, or alternatively track the activity of the proxies in a specific Jvm on remote services.</p>
 
-<h1><a name="enabling-lrmi-monitoring">&#160;</a>Enabling LRMI Monitoring</h1>
+<h1 id="enabling-lrmi-monitoring">Enabling LRMI Monitoring</h1>
 
 <p>The monitoring itself is not enabled by default since it introduces some overhead (though not significant) to the system which needs to monitor and track and incoming and outgoing lrmi invocations. In order to enable the monitoring there are three ways to do so:</p>
 
-<h2><a name="system-property">&#160;</a>System Property</h2>
+<h2 id="system-property">System Property</h2>
 
 <p>Up front by providing a system property when starting the relevant components (gs-agent, Grid service Manager/Container) - the following system property "com.gs.transport_protocol.lrmi.monitorActivity=true' should be set in order to do so.</p>
 
-<h2><a name="api">&#160;</a>API</h2>
+<h2 id="api">API</h2>
 
 <p>Using the Admin API during runtime you can enable or disable the LRMI monitoring, for example enabling LRMI monitoring for Jvms hosting a specific processing unit.</p>
 
@@ -39,7 +39,7 @@ for(ProcessingUnitInstance puInstance : processingUnit)
 }
 </code></pre>
 
-<h2><a name="jmx">&#160;</a>JMX</h2>
+<h2 id="jmx">JMX</h2>
 
 <p>For GSC that contains a space instance, you can also access the GSC via JMX using JConsole for instance and enable or disable the LRMI monitoring as shown in the image.</p>
 
@@ -47,11 +47,11 @@ for(ProcessingUnitInstance puInstance : processingUnit)
 
 <p>Note that when enabling it via JMX it will enable the monitoring for the entire Jvm and not just the space that was used to enable the monitoring.</p>
 
-<h1><a name="retrieving-lrmi-monitoring-details">&#160;</a>Retrieving LRMI Monitoring Details</h1>
+<h1 id="retrieving-lrmi-monitoring-details">Retrieving LRMI Monitoring Details</h1>
 
 <p>There are three ways to retrieve the LRMI monitoring details, all of which requires that the relevant Jvm will have the LRMI monitoring enabled which as done as described previously.</p>
 
-<h2><a name="using-dump">&#160;</a>Using Dump</h2>
+<h2 id="using-dump">Using Dump</h2>
 
 <p>When generating a <a href="../dev-java/dump.htm">Dump</a> and the LRMI monitoring is enabled if the network dump is selected then the dump will include the LRMI monitoring details. When generating the dump it should include the <code>Network Dump</code> in it in order to contain the LRMI monitoring details. In the generated dump the "network.txt' file will include, among other things, the LRMI monitoring details and it will look similar to this:</p>
 
@@ -129,7 +129,7 @@ bytes generated traffic=432 bytes total traffic=1.04 kilobytes
 bytes generated traffic=238 bytes total traffic=291 bytes
 </code></pre>
 
-<h2><a name="api-1">&#160;</a>API</h2>
+<h2 id="api-1">API</h2>
 
 <p>Using the Admin API, you can retrieve the monitoring details as typed classes, following the above example you can get LRMI monitoring of Jvms hosting a specific processing unit.</p>
 
@@ -153,11 +153,11 @@ for(ProcessingUnitInstance puInstance : processingUnit)
 
 <p>The details included by API are exactly the same as shown in the network dump, as a matter of fact, the network dump is simply the <code>toString()</code> of the <code>LRMIMonitoringDetails</code> class</p>
 
-<h2><a name="jmx-1">&#160;</a>JMX</h2>
+<h2 id="jmx-1">JMX</h2>
 
 <p>JMX can also be accessed to get the details, however in a digested string format which looks like the content of the network dump file, this can be done via JConsole in the same way you enable the LRMI monitoring, you invoke the <code>fetchMonitoringDetails</code> operation instead.</p>
 
-<h1><a name="monitoring-content">&#160;</a>Monitoring Content</h1>
+<h1 id="monitoring-content">Monitoring Content</h1>
 
 <p>As showed in the above dump file, the monitoring details contains the following:</p>
 

@@ -46,11 +46,11 @@ var result = spaceProxy.Take&lt;Person&gt;(query.ToSpaceQuery());
   <p>Only LINQ queries that can be translated to an equivalent <a href="query-sql.htm">SQLQuery</a> are supported. A LINQ query that cannot be translated will throw an exception at runtime with a message which indicates which part of the query is not supported.</p>
 </div>
 
-<h1><a name="indexing">&#160;</a>Indexing</h1>
+<h1 id="indexing">Indexing</h1>
 
 <p>It is highly recommended to use indexes on relevant properties to increase performance. For more information see <a href="indexing.htm">Indexing</a>.</p>
 
-<h1><a name="supported-linq-operators">&#160;</a>Supported LINQ operators</h1>
+<h1 id="supported-linq-operators">Supported LINQ operators</h1>
 
 <p>The following LINQ operators are supported:</p>
 
@@ -65,7 +65,7 @@ var result = spaceProxy.Take&lt;Person&gt;(query.ToSpaceQuery());
 <li><a href="http://msdn.microsoft.com/en-us/library/system.linq.queryable.where">Where</a> - Specifies the criteria used for querying the space (see <a href="#predicates">predicates</a>)</li>
 </ul>
 
-<h1><a name="predicates">&#160;</a>Predicates</h1>
+<h1 id="predicates">Predicates</h1>
 
 <p>The XAP LINQ provider supports various operators, as explained below.
 For the following code samples, assume the following classes are defined:</p>
@@ -97,7 +97,7 @@ public class Car
 
 </code></pre>
 
-<h2><a name="equality-operators">&#160;</a>Equality Operators</h2>
+<h2 id="equality-operators">Equality Operators</h2>
 
 <p>Use the standard <code>==</code> and <code>!=</code> operators for equals/not equals conditions, respectively. For example, to query for entries whose <span class="tc-italic">Name</span> is <span class="tc-italic">"Smith"</span>:</p>
 
@@ -106,7 +106,7 @@ public class Car
             select p; 
 </code></pre>
 
-<h2><a name="comparison-operators">&#160;</a>Comparison Operators</h2>
+<h2 id="comparison-operators">Comparison Operators</h2>
 
 <p>Use the standard <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, and <code>&lt;=</code> for comparisons, respectively. For example, to query for entries whose <span class="tc-italic">NumOfChildren</span> is greater than <span class="tc-italic">2</span>:</p>
 
@@ -115,7 +115,7 @@ public class Car
             select p; 
 </code></pre>
 
-<h2><a name="conditional-operators">&#160;</a>Conditional Operators</h2>
+<h2 id="conditional-operators">Conditional Operators</h2>
 
 <p>Use the standard <code>&amp;&amp;</code> and <code>||</code> for conditional and/or expressions, respectively. For example, to query for entries whose <span class="tc-italic">Name</span> is <span class="tc-italic">"Smith"</span> and <span class="tc-italic">NumOfChildren</span> is greater than <span class="tc-italic">2</span>:</p>
 
@@ -124,7 +124,7 @@ public class Car
             select p; 
 </code></pre>
 
-<h2><a name="nested-paths">&#160;</a>Nested Paths</h2>
+<h2 id="nested-paths">Nested Paths</h2>
 
 <p>Nested paths can be traversed and queried using the dot (<code>.</code>) notation. For example, to query for entries whose <span class="tc-italic">HomeAddress</span>'s <span class="tc-italic">Street</span> equals <span class="tc-italic">Main</span>:</p>
 
@@ -145,7 +145,7 @@ public class Car
   <p>By default user-defined types are stored in the space in a binary format, which cannot be queried. If the path includes a user-defined type, the relevant property's storage type should be set to <span class="tc-italic">Document</span>. For more information refer to <a href="poco-storage-type.htm">Property Storage Type</a>.</p>
 </div>
 
-<h2><a name="sub-strings">&#160;</a>Sub-strings</h2>
+<h2 id="sub-strings">Sub-strings</h2>
 
 <p>The <a href="http://msdn.microsoft.com/en-us/library/System.String" target="_blank" >System.String</a> methods <a href="http://msdn.microsoft.com/en-us/library/dy85x1sa" target="_blank" >Contains(String)</a>,
 <a href="http://msdn.microsoft.com/en-us/library/baketfxw" target="_blank" >StartsWith(String)</a> and
@@ -161,7 +161,7 @@ public class Car
   <p>The <code>StartsWith</code> and <code>EndsWith</code> methods have multiple overloads, but only the single-parameter overload is supported in this LINQ provider.</p>
 </div>
 
-<h2><a name="collection-membership">&#160;</a>Collection Membership</h2>
+<h2 id="collection-membership">Collection Membership</h2>
 
 <p>The <a href="http://msdn.microsoft.com/en-us/library/bb352880" target="_blank" >Enumerable.Contains(T value)</a> extension method can be used to check if any of the collection match a specific value. For example, to query for entries whose <span class="tc-italic">Aliases</span> contains <span class="tc-italic">"Smith"</span>:</p>
 
@@ -189,7 +189,7 @@ public class Car
   <p>By default user-defined types are stored in the space in a binary format, which cannot be queried. If the path includes a user-defined type, the relevant property's storage type should be set to <span class="tc-italic">Document</span>. For more information refer to <a href="poco-storage-type.htm">Property Storage Type</a>.</p>
 </div>
 
-<h1><a name="projection">&#160;</a>Projection</h1>
+<h1 id="projection">Projection</h1>
 
 <p>Projection is useful when only a subset of an entry's properties are required - instead of returning the entire entry, the query can declare which properties should be returned. This information is passed down all the way to the server which executes the query and yields the results, so that only the relevant properties are transmitted back, which reduces network traffic and improves performance.</p>
 
@@ -215,7 +215,7 @@ query.Projections = new List&lt;String&gt; {"Id", "HomeAddress"};
 
 <p>In this case the result is the original type (<code>Person</code>), but only the projected properties are set and the rest of the properties are nulls (or default values).</p>
 
-<h1><a name="batch-results">&#160;</a>Batch results</h1>
+<h1 id="batch-results">Batch results</h1>
 
 <p>Consider the following query:</p>
 
@@ -249,7 +249,7 @@ foreach (var person in query)
   <p>Batching is suitable for large result sets, but on small ones it actually slows performance down, as it require multiple remote calls to the space to retrieve the data instead of fetching it all at once.</p>
 </div>
 
-<h1><a name="aggregation">&#160;</a>Aggregation</h1>
+<h1 id="aggregation">Aggregation</h1>
 
 <p>XAP lets you perform aggregations across the Space.
 There is no need to retrieve the entire data set from the Space to the client side , iterate the result set and perform the aggregation.

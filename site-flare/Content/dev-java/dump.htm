@@ -19,7 +19,7 @@ dumpResult.download(new File("target/dump.zip"), null);
 
 <p>The above example generates dump that will include a simple "summary" information (JVM information and stats, for example), a thread dump, all the logs associated with the given runtime component, and all the processing unit instances running (applied to a GSC).</p>
 
-<h1><a name="dump-provider">&#160;</a>Dump Provider</h1>
+<h1 id="dump-provider">Dump Provider</h1>
 
 <p>Most of the elements within the Admin API implement the <code>DumpProvider</code> interface, allowing to generate dump information. This include discrete elements such as <code>GridServiceContainer</code>, or <code>GridServiceManager</code>, but also includes compound elements such as <code>GridServiceManagers</code> and even <code>Admin</code>. This means that quite easily, a dump for a one or more runtime components already grouped by the Admin API can be easily performed. Here are some examples:</p>
 
@@ -49,7 +49,7 @@ dumpResult.add(gridServiceAgent3.dump(...));
 dumpResult.download(new File("target/compound.zip", null);
 </code></pre>
 
-<h1><a name="dump-processors">&#160;</a>Dump Processors</h1>
+<h1 id="dump-processors">Dump Processors</h1>
 
 <p>The dump process occurs in stages within the runtime component. Each stage is called a processor and the following is a list of all the different processors:</p>
 
@@ -106,7 +106,7 @@ DumpResult dumpResult = admin.generateDump("test", context, "summary", "log");
   <p>The above code will generate a dump, including the last 200 log entries which the log dump processor will process.</p>
 </div>
 
-<h1><a name="dump-file-structure">&#160;</a>Dump File Structure</h1>
+<h1 id="dump-file-structure">Dump File Structure</h1>
 
 <p>The dump file structure would look like this:</p>
 
@@ -167,7 +167,7 @@ DumpResult dumpResult = admin.generateDump("test", context, "summary", "log");
             2010-09-19~08.22-gigaspaces-lus_4-10.10.10.249-24127.log
 </code></pre>
 
-<h1><a name="dump-configuration">&#160;</a>Dump configuration</h1>
+<h1 id="dump-configuration">Dump configuration</h1>
 
 <p>You can configure XAP to generate a heap dump when memory shortage occurs.</p>
 
@@ -207,14 +207,14 @@ DumpResult dumpResult = admin.generateDump("test", context, "summary", "log");
 Refer to <a href="../admin/space-jmx-management.htm">JMX Management</a></p>
 </div>
 
-<h1><a name="gigaspaces-management-center">&#160;</a>GigaSpaces Management Center</h1>
+<h1 id="gigaspaces-management-center">GigaSpaces Management Center</h1>
 
 <div class="tc-admon-refer">
   
   <p>The dump can be created via the <a href="../admin/gigaspaces-dump.htm">GigaSpaces Management Center</a>.</p>
 </div>
 
-<h1><a name="web-management-console">&#160;</a>Web Management Console</h1>
+<h1 id="web-management-console">Web Management Console</h1>
 
 <div class="tc-admon-refer">
   

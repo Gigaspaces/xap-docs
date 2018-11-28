@@ -27,7 +27,7 @@
   <p>XAP currently supports only one communication filter, and this filter is applied to all the connections in the JVM.</p>
 </div>
 
-<h1><a name="usage">&#160;</a>Usage</h1>
+<h1 id="usage">Usage</h1>
 
 <p>The way to load and enable the communication filter, is by setting the system property <code>com.gs.lrmi.filter.factory</code>. The value should be the <code>communication filter factory</code> class name.</p>
 
@@ -36,7 +36,7 @@
 <pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
 
-<h1><a name="default-sslfilterfactory">&#160;</a>Default SSLFilterFactory</h1>
+<h1 id="default-sslfilterfactory">Default SSLFilterFactory</h1>
 
 <p>Since some types of communication filters are not symmetric regarding the client and server, the class <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.htm">SSLFilterFactory</a> has 2 methods: one to create the communication filter for the client side, and the other for the server side.</p>
 
@@ -126,7 +126,7 @@ However, when you wish to run this code with SSL encryption, you should run it w
 <pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
 
-<h1><a name="choosing-the-encryption-protocol">&#160;</a>Choosing the encryption protocol</h1>
+<h1 id="choosing-the-encryption-protocol">Choosing the encryption protocol</h1>
 
 <p>It is also possible to select the encryption protocol (<code>TLSv1.1</code>, <code>TLSv1.2</code> etc) by setting the <code>com.gs.lrmi.filter.security.protocol</code> system property to the required protocol.
 In case this property is not set XAP will use the generic <code>TLS</code> protocol.</p>

@@ -5,7 +5,7 @@
 <h1>KubeGrid</h1>
   
 
-<h1><a name="overview">&#160;</a>Overview</h1>
+<h1 id="overview">Overview</h1>
 
 <p>Kubernetes is an open-source orchestration system for automating the deployment, scaling and management of containerized applications. It can be used as an alternative to the GigaSpaces service grid for deploying and orchestrating InsightEdge and the XAP data grid in a cloud-native environment.</p>
 
@@ -19,7 +19,7 @@
 Through the persistent volume driver, InsightEdge’s intelligent MemoryXtend multi-tier storage offering lets customers configure data prioritization according to the application’s business logic. This ensures that the most relevant data resides in the fastest data storage tier for optimized TCO.
 -->
 
-<h1><a name="architecture">&#160;</a>Architecture</h1>
+<h1 id="architecture">Architecture</h1>
 
 <p>KubeGrid, GigaSpace’s Kubernetes-based deployment option, utilizes the key features of the Kubernetes platform mentioned above to set up and run the data grid. KubeGrid can also auto-deploy data services and frameworks, such as Spark Drivers and Spark Executors, to enable Spark machine learning and Spark SQL.</p>
 
@@ -43,7 +43,7 @@ Through the persistent volume driver, InsightEdge’s intelligent MemoryXtend mu
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/kubernetes/data-pod.png" width="235" height="278" /></p>
 </div>
 
-<h2><a name="functionality">&#160;</a>Functionality</h2>
+<h2 id="functionality">Functionality</h2>
 
 <p>KubeGrid enforces SLA-driven capabilities that leverage the Kubernetes controllers and schedulers.This enables defining the following for environment stability:</p>
 
@@ -64,7 +64,7 @@ Through the persistent volume driver, InsightEdge’s intelligent MemoryXtend mu
 - Pod Disruption Budget to provide system stability by limiting voluntary disruptions, so that a homogeneous set of Pods is always up and available.
 -->
 
-<h2><a name="automatic-pod-failover">&#160;</a>Automatic Pod Failover</h2>
+<h2 id="automatic-pod-failover">Automatic Pod Failover</h2>
 
 <p>KubeGrid supports automatic Pod failover behavior. The following example describes the failover behavior for a 2,1 primary/backup topology. When Pod anti-affinity is defined, the Pods are distributed over multiple nodes so that each primary/backup pair is hosted on different nodes.</p>
 
@@ -85,7 +85,7 @@ The acting primary Data Pod B returns to backup status.
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/kubernetes/pod-failback.png" width="610" height="373" /></p>
 </div>
 
-<h2><a name="running-spark-on-kubegrid-for-insightedge-applications">&#160;</a>Running Spark on KubeGrid for InsightEdge Applications</h2>
+<h2 id="running-spark-on-kubegrid-for-insightedge-applications">Running Spark on KubeGrid for InsightEdge Applications</h2>
 
 <p>Kubernetes has native support for Apache Spark. When you submit a Spark application, the following occurs:</p>
 

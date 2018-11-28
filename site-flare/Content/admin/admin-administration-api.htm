@@ -23,7 +23,7 @@
   <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
 </div>
 
-<h1><a name="examples">&#160;</a>Examples</h1>
+<h1 id="examples">Examples</h1>
 
 <p>Tee following code examples show how the Admin API can be used to display information on the currently deployed services/components:</p>
 
@@ -279,19 +279,19 @@ public void space() {
   <p>A fully running example of a <a href="/sbp/scaling-agent.htm">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
 </div>
 
-<h1><a name="admin-construction">&#160;</a>Admin Construction</h1>
+<h1 id="admin-construction">Admin Construction</h1>
 
 <p>The Admin API uses the <code>AdminFactory</code> in order to create <code>Admin</code> instances. After you finish working with the <code>Admin</code>, its <code>Admin#close()</code> method should be called.</p>
 
 <p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
 
-<h1><a name="discovery-process">&#160;</a>Discovery Process</h1>
+<h1 id="discovery-process">Discovery Process</h1>
 
 <p>When the <code>Admin</code> is created, it starts to receive discovery events from all the advertised services/components within its lookup groups and lookup locators. The events occur asynchronously and the data model within the Admin API gets initialized in the background with services coming and going.</p>
 
 <p>This means that just creating the <code>Admin</code> and calling a specific "getter" for a data structure might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>waitFor</code> method that allows waiting for a specific number of services to be up. When navigating the data model, the Admin API provides its most up-to-date state of the system it is monitoring.</p>
 
-<h1><a name="domain-model">&#160;</a>Domain Model</h1>
+<h1 id="domain-model">Domain Model</h1>
 
 <p>The Admin Domain Model has representation to all the XAP-level main actors. They include:</p>
 
@@ -302,7 +302,7 @@ public void space() {
   <p>The <code>Admin</code> functionality is designed to interact with a service grid deployment. For <code>StandaloneProcessingUnitContainer</code> and <code>IntegratedProcessingUnitContainer</code>, components such as <code>GridServiceAgent</code> and <code>GridServiceManager</code> are not started by default, therefore portions of the Admin functionality aren't available.</p>
 </div>
 
-<h2><a name="accessing-the-domain-model">&#160;</a>Accessing the Domain Model</h2>
+<h2 id="accessing-the-domain-model">Accessing the Domain Model</h2>
 
 <p>There are two ways to use the Admin API to access information:</p>
 
@@ -358,11 +358,11 @@ public void space() {
 
 <p>Last, the <code>Admin</code> interface provides a one-stop method called <code>addEventListener</code> that accepts an <code>AdminListener</code>. Most event listeners implement this interface. You can create a class that implements several chosen listener interfaces, call the <code>addEventListener</code> method, and they will automatically be added to their respective components. For example, if our listener implements <code>GridServiceContainerAddedEventListener</code> and <code>GridServiceManagerAddedEventListener</code>, the listener will automatically be added to the <code>GridServiceManagers</code> and <code>GridServiceContainers</code>.</p>
 
-<h1><a name="security">&#160;</a>Security</h1>
+<h1 id="security">Security</h1>
 
 <p>If you are using the Admnistration API in a secured environment, there are several things that must be taken into consideration when accessing the service grid or deploying grid components (Spaces and Processing Units).</p>
 
-<h2><a name="constructing-the-admin-instance">&#160;</a>Constructing the Admin Instance</h2>
+<h2 id="constructing-the-admin-instance">Constructing the Admin Instance</h2>
 
 <p>When using a secured Service Grid, the <code>Admin</code> instance needs to be constructed with a <span class="tc-italic">principal</span> which is granted sufficient privileges based on the operations being performed using the administration API. For example, grant <code>Manage Grid</code> to start a Grid Service Manager (GSM) and grant <code>Provision PU</code> to deploy a processing unit.</p>
 
@@ -373,7 +373,7 @@ public void space() {
 
 <p>For security other than username/password, refer to the <a href="../security/custom-authentication.htm">Authentication</a> topic in the <a href="../security/index.htm">Security</a> section of the Administration guide.</p>
 
-<h2><a name="space-deployment">&#160;</a>Space Deployment</h2>
+<h2 id="space-deployment">Space Deployment</h2>
 
 <p>Deploying a secured Space:</p>
 
@@ -387,7 +387,7 @@ admin.getGridServiceManagers().deploy(new SpaceDeployment("mySpace").secured(tru
 admin.getGridServiceManagers().deploy(new SpaceDeployment("mySpace").userDetails("myUser", "myPassword"));
 </code></pre>
 
-<h2><a name="processing-unit-deployment">&#160;</a>Processing Unit Deployment</h2>
+<h2 id="processing-unit-deployment">Processing Unit Deployment</h2>
 
 <p>Deploying a secured Processing Unit. This will deploy a Processing Unit with a secured embedded Space.</p>
 

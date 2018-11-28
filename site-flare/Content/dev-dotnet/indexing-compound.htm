@@ -66,7 +66,7 @@
   <p>If one of the query conditions makes use of the <code>IN</code> operator, compound indexes will be ignored. Separate indexes should be created.</p>
 </div>
 
-<h2><a name="creating-a-compound-index-using-annotation">&#160;</a>Creating a Compound Index Using Annotation</h2>
+<h2 id="creating-a-compound-index-using-annotation">Creating a Compound Index Using Annotation</h2>
 
 <p>Compound indexes can be defined using annotations. The <code>CompoundSpaceIndex</code> annotation should be used. The annotation is a type-level annotation.</p>
 
@@ -86,7 +86,7 @@ public class WithCompoundIndex
 }
 </code></pre>
 
-<h2><a name="creating-a-compound-index-using-gs-xml">&#160;</a>Creating a Compound Index Using gs.xml</h2>
+<h2 id="creating-a-compound-index-using-gs-xml">Creating a Compound Index Using gs.xml</h2>
 
 <p>A Compound Index can be defined within the gs.xml configuration file.</p>
 
@@ -103,7 +103,7 @@ public class WithCompoundIndex
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
 
-<h2><a name="creating-compound-indexing-for-a-space-document">&#160;</a>Creating Compound Indexing for a Space Document</h2>
+<h2 id="creating-compound-indexing-for-a-space-document">Creating Compound Indexing for a Space Document</h2>
 
 <p>You can add a Compound Space Index to a Space document.</p>
 
@@ -122,7 +122,7 @@ descriptorBuilder.AddCompoundIndex(new []{ "IntProp", "StringProp" });
 descriptorBuilder.AddCompoundIndex(new []{ "LongProp", "StringProp" });
 </code></pre>
 
-<h1><a name="query-execution-flow">&#160;</a>Query Execution Flow</h1>
+<h1 id="query-execution-flow">Query Execution Flow</h1>
 
 <p>When a read, take, read multiple, or take multiple call is performed, a template is used to locate matching Space objects. The template might have multiple field values - some might include values and some might not (i.e. <code>null</code> field values acting as wildcards). The fields that do not include values are ignored during the matching process. In addition, some class fields might be indexed and some might not be indexed.</p>
 

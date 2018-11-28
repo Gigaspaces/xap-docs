@@ -5,7 +5,7 @@
 <h1>XAP as Windows Service</h1>
   
 
-<h1><a name="common-scenarios">&#160;</a>Common Scenarios</h1>
+<h1 id="common-scenarios">Common Scenarios</h1>
 
 <p>GigaSpaces infrastructure can be started using a GigaSpaces Grid Service Agent as explained in <a href="../overview/the-runtime-environment.htm#gsa">GSA page</a>. When using Windows based OS for running GigaSpaces infrastructure, users want to convert GSA into a windows service for following common reasons,</p>
 
@@ -15,11 +15,11 @@
 <li>GSA process should restart automatically after a machine restart and all GigaSpaces infrastructure should be available without user/administrator intervention.</li>
 </ol>
 
-<h1><a name="psexec">&#160;</a>psexec</h1>
+<h1 id="psexec">psexec</h1>
 
 <p>If your requirement is only item 1 and/or 2 above, you can use psexec (SysInternals/Microsoft tool, <a href="http://technet.microsoft.com/en-us/sysinternals/bb897553">http://technet.microsoft.com/en-us/sysinternals/bb897553</a>). When you start the GSA using psexec from a remote machine in the network the process does not open command windows and does not get terminated on a logoff of the user.</p>
 
-<h1><a name="windows-service">&#160;</a>Windows Service</h1>
+<h1 id="windows-service">Windows Service</h1>
 
 <p>If you need to fulfill all 3 reasons above, then you have to create a windows service for GSA.</p>
 
@@ -37,7 +37,7 @@
 </ul>
 </div>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1 id="example">Example</h1>
 
 <p>An example GSA windows service configuration created using <a href="http://wrapper.tanukisoftware.org/">Java Service Wrapper</a> can be downloaded from <a href="/download_files/myApp.zip">here</a>. It was created using the <a href="http://wrapper.tanukisoftware.com/doc/english/integrate-simple-win.htm#allTogether">instructions</a> on Tanuki software website.</p>
 
@@ -64,7 +64,7 @@
 <li>Use the <code>UninstallGSAService-NT.bat</code> script to uninstall the service.</li>
 </ul>
 
-<h1><a name="other-information">&#160;</a>Other Information</h1>
+<h1 id="other-information">Other Information</h1>
 
 <ul>
 <li>It is recommended that the <code>deploy</code> command be run manually instead of defining this as a windows service.</li>

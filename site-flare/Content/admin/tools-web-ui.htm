@@ -11,7 +11,7 @@
 
 <p>The Web Management Console application is located under <code>XAP root/tools/gs-webui</code>. This directory contains the web application itself (in the form of a standard JEE .WAR file), and a launcher library and shell scripts used to start it in standalone mode (see below).</p>
 
-<h1><a name="starting-the-web-management-console-on-a-local-machine">&#160;</a>Starting the Web Management Console on a Local Machine</h1>
+<h1 id="starting-the-web-management-console-on-a-local-machine">Starting the Web Management Console on a Local Machine</h1>
 
 <p>When you first start using InsightEdge or XAP, you may prefer to run the Web Management Console on your local machine instead of on a web server. Simply click the <code>gs-webui.sh(bat)</code> script to start a Jetty web container with the Web Management Console application running within it. After the user interface starts, there's no need to deploy or perform any additional steps.</p>
 
@@ -20,9 +20,9 @@
   <p>In standalone mode, the web container listens by default on port 8099. To view the Web Management Console point your browser to <code>http://&lt;standalone server host&gt;:8099</code>, where <code>&lt;standalone server host&gt;</code> is the host on which you launched the <code>gs-webui</code> script. In this mode, the default context path for the Web Management Console is the root context path ("/").</p>
 </div>
 
-<h1><a name="security">&#160;</a>Security</h1>
+<h1 id="security">Security</h1>
 
-<h2><a name="enabling-security">&#160;</a>Enabling Security</h2>
+<h2 id="enabling-security">Enabling Security</h2>
 
 <p>The Web Management Console (Web-UI) allows for a secured access when the security <code>enabled</code> property is set. This property should be configured using <code>EXT_JAVA_OPTIONS</code> in <code>setenv</code> script and is applied to all XAP <a href="../security/securing-the-grid-services.htm">Grid Components</a>.</p>
 
@@ -36,7 +36,7 @@
   <p>The Lookup groups and Locators are loaded from the <code>setenv/setenv-overrides</code> script. ץ Lookup groups and Lookup Locators can be configured in the configuration files described in <a href="../started/common-environment-variables.htm#extension">Configure Lookup Groups and Locators</a>.</p>
 </div>
 
-<h2><a name="security-properties-file">&#160;</a>Security Properties File</h2>
+<h2 id="security-properties-file">Security Properties File</h2>
 
 <p>The security properties file is used to configure the <code>SecurityManager</code>, which is responsible for the authentication and authorization process. The <code>security.properties</code> file is common to all components and is usually located under <code>&lt;XAP root&gt;/config/security/security.properties</code>. To only affect the Web Management Console, use <code>webui-security.properties</code> instead.</p>
 
@@ -48,7 +48,7 @@
 <p>By setting <code>-Dcom.gs.security.properties-file</code> the property file will be located as a direct path (e.g. <code>~/home/user/my-security.properties</code>),
 a resource (e.g. "my-security.properties") in the classpath or in the classpath under <code>config/security</code>.</p>
 
-<h2><a name="custom-credentials">&#160;</a>Custom Credentials</h2>
+<h2 id="custom-credentials">Custom Credentials</h2>
 
 <p>An authentication mechanism might require a different set of actions to be taken on the provided credentials (username/password). A custom extension can be provided for this, as described in the <a href="../security/custom-authentication.htm">Authentication</a> page of the <a href="../security/index.htm">Security</a> section.</p>
 
@@ -59,7 +59,7 @@ a resource (e.g. "my-security.properties") in the classpath or in the classpath 
 <pre><code class="language-bash">gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address=myServer
 </code></pre>
 
-<h2><a name="ssl-connection">&#160;</a>SSL Connection</h2>
+<h2 id="ssl-connection">SSL Connection</h2>
 
 <p>In order to run the web-ui server with SSL ( using the HTTPS protocol instead of HTTP), the following parameters must be provided as arguments to the <code>gs-webui</code> script:</p>
 
@@ -101,11 +101,11 @@ gs-webui.bat
 </div>
 </div>
 
-<h1><a name="deploying-the-web-application">&#160;</a>Deploying the Web Application</h1>
+<h1 id="deploying-the-web-application">Deploying the Web Application</h1>
 
 <p>When you reach the stage of a proper deployment, or are preparing to move to production, you can deploy the Web Management Console as described below.</p>
 
-<h2><a name="xap-runtime-environment">&#160;</a>XAP Runtime Environment</h2>
+<h2 id="xap-runtime-environment">XAP Runtime Environment</h2>
 
 <p>To deploy the Web Management Console to the XAP <a href="the-runtime-environment.htm">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;XAP root&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
 
@@ -124,7 +124,7 @@ gs-webui.bat
   <p>For more information about XAP's web application support, refer to the <a href="../dev-java/web-application-overview.htm">Web Application Support</a> section in the Developer Guide.</p>
 </div>
 
-<h2><a name="third-party-jee-servlet-container">&#160;</a>Third-Party JEE Servlet Container</h2>
+<h2 id="third-party-jee-servlet-container">Third-Party JEE Servlet Container</h2>
 
 <p>You can deploy the Web Management Console to a third-party servlet container, for example, Apache Tomcat (must be Tomcat 8 and above in order to support Java 8). Consult your web container documentation for deployment instructions.</p>
 
@@ -148,7 +148,7 @@ gs-webui.bat
 
 <p><img src="../Resources/Static/attachment_files/web-console/main-page-12.3.png" alt="xap-login-inline.png" /></p>
 
-<h1><a name="supported-web-browsers">&#160;</a>Supported Web Browsers</h1>
+<h1 id="supported-web-browsers">Supported Web Browsers</h1>
 
 <p>The Web Management Console supports the following web browsers:</p>
 
@@ -158,17 +158,17 @@ gs-webui.bat
 <li>Microsoft Internet Explorer 10 or higher</li>
 </ul>
 
-<h1><a name="runtime-considerations">&#160;</a>Runtime Considerations</h1>
+<h1 id="runtime-considerations">Runtime Considerations</h1>
 
-<h2><a name="deployment-location-of-the-web-application">&#160;</a>Deployment Location of the Web Application</h2>
+<h2 id="deployment-location-of-the-web-application">Deployment Location of the Web Application</h2>
 
 <p>The web application communicates with the runtime components of the XAP cluster, and receives notification from the XAP <a href="../overview/the-runtime-environment.htm#lus">lookup service</a>. Therefore, it is highly recommended to run the web application in the same network segment of the other cluster components. This does not affect the web browser client, which communicates with the web application using standard HTTP and can be located anywhere, provided that it has access to the web application.</p>
 
-<h2><a name="running-via-a-reverse-proxy">&#160;</a>Running via a Reverse Proxy</h2>
+<h2 id="running-via-a-reverse-proxy">Running via a Reverse Proxy</h2>
 
 <p>YOu can set up a reverse proxy for the Web Management Console. This may be preferable in certain scenarios, such as when access to the Web Management Console is done via a gateway. Reverse proxy setups are currently available and tested only on the Apache web server.</p>
 
-<h2><a name="configuring-the-proxy">&#160;</a>Configuring the Proxy</h2>
+<h2 id="configuring-the-proxy">Configuring the Proxy</h2>
 
 <p>Enable the relevant modules, by uncommenting (or adding) the following lines inside <code>httpd.conf</code>:</p>
 
@@ -202,7 +202,7 @@ LoadModule  proxy_http_module    modules/mod_proxy_http.so
 &lt;/VirtualHost&gt;
 </code></pre>
 
-<h2><a name="debugging-your-proxy">&#160;</a>Debugging Your Proxy</h2>
+<h2 id="debugging-your-proxy">Debugging Your Proxy</h2>
 
 <p>You can dump logging information to custom files on the Apache server by adding the following rules:</p>
 
@@ -215,15 +215,15 @@ LoadModule  proxy_http_module    modules/mod_proxy_http.so
 
 <p>For more information on Apache's reverse proxy configuration, refer to <a href="http://www.apachetutor.org/admin/reverseproxies" target="_blank" >the corresponding entry</a> on the Apache Tutor website.</p>
 
-<h1><a name="customizing-the-configuration-options">&#160;</a>Customizing the Configuration Options</h1>
+<h1 id="customizing-the-configuration-options">Customizing the Configuration Options</h1>
 
 <p>The Web Management Console has an out-of-the-box default configuration that can be used with any standard environment. However, when preparing for deployment, you may want to customize certain configuration options to suit your specific organization needs.</p>
 
-<h2><a name="localizing-the-user-interface">&#160;</a>Localizing the User Interface</h2>
+<h2 id="localizing-the-user-interface">Localizing the User Interface</h2>
 
 <p>In addition to the default English, the Web Management Console supports localization to Chinese. You can define the language in which the user interface is displayed by either creating a new configuration file, or modifying the existing configuration file.</p>
 
-<h3><a name="creating-a-new-configuration-file">&#160;</a>Creating a New Configuration File</h3>
+<h3 id="creating-a-new-configuration-file">Creating a New Configuration File</h3>
 
 <ol>
 <li><p>Create a new XML file with the following contents:</p>
@@ -266,7 +266,7 @@ bin\gs-webui.bat
 </div>
 </div>
 
-<h3><a name="updating-the-existing-configuration-file">&#160;</a>Updating the Existing Configuration File</h3>
+<h3 id="updating-the-existing-configuration-file">Updating the Existing Configuration File</h3>
 
 <ol>
 <li>Open the <span class="tc-bold">xap-webui-[version-build].war</span> archive (located under <code>[XAP_HOME]/tools/gs-webui</code>) for exploring and navigate to <code>/WEB-INF/lib</code>.</li>
@@ -290,7 +290,7 @@ bin\gs-webui.bat
 </code></pre></li>
 </ol>
 
-<h2><a name="specifying-a-custom-port">&#160;</a>Specifying a Custom Port</h2>
+<h2 id="specifying-a-custom-port">Specifying a Custom Port</h2>
 
 <p>To override the default port, you can either use the <code>org.openspaces.launcher.port</code> system property (by defining WEBUI_PORT variable), or specify <code>-port &lt;listen port&gt;</code> as an argument to the <code>gs-webui</code> script. Here is an example on how it's done (starting to listen on port 80):</p>
 
@@ -312,7 +312,7 @@ gs-webui.bat
 </div>
 </div>
 
-<h2><a name="binding-to-a-specific-host">&#160;</a>Binding to a Specific Host</h2>
+<h2 id="binding-to-a-specific-host">Binding to a Specific Host</h2>
 
 <p>To bind to specific host, you can either use the <code>org.openspaces.launcher.bind-address</code> system property (by defining BIND_ADDRESS variable), or specify <code>-bind-address &lt;myhost&gt;</code> as an argument to the <code>gs-webui</code> script.
 Default used bind address is 0.0.0.0 .
@@ -336,7 +336,7 @@ gs-webui.bat
 </div>
 </div>
 
-<h2><a name="operational-statistics-confuguration">&#160;</a>Operational Statistics Confuguration</h2>
+<h2 id="operational-statistics-confuguration">Operational Statistics Confuguration</h2>
 
 <p>The Web Management server uses the Administration API to collect the operational statistics that are displayed in the Web Management Console. By default the Admin instance collects only two kinds of statistics, Space and SpaceInstance. These are the only other statistics that can be viewed using the Web Management Console.</p>
 

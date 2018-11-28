@@ -24,9 +24,9 @@
 
 <p>Both the In-line cache and the Side cache support the common deployment topologies: <a href="terminology.htm#primary-backup-data-grid">replicated</a>, <a href="terminology.htm#partitioned-data-grid">partitioned</a> and <a href="terminology.htm#primary-backup-partitioned-data-grid">primary-backup partitioned</a>.</p>
 
- <a name="in-line">&#160;</a>
+ <a id="in-line">&#160;</a>
 
-<h1><a name="in-line-cache">&#160;</a>In-line Cache</h1>
+<h1 id="in-line-cache">In-line Cache</h1>
 
 <p>With this mechanism, the IMDG is the system of record. The database data is loaded into the IMDG when it is started. The IMDG is responsible for loading the data and pushing updates back into the database. The database can be updated synchronously or asynchronously.</p>
 
@@ -61,7 +61,7 @@
 <li><a href="../dev-java/map-api.htm">Map API</a> - GigaSpaces Key/Value (JCache/Hashtable) API.</li>
 </ul>
 
-<h2><a name="when-should-you-use-an-in-line-cache">&#160;</a>When Should You Use an In-Line Cache?</h2>
+<h2 id="when-should-you-use-an-in-line-cache">When Should You Use an In-Line Cache?</h2>
 
 <p>An in-line cache is very useful when:</p>
 
@@ -70,9 +70,9 @@
 <li>The original data model of the data within the database (or any other data source) is similar to the data model of the objects in memory. <a href="../dev-java/space-persistency-overview.htm">Space Persistency</a> will work very well; the data will be loaded automatically from the database into the cache, and every change to the data in the cache will be propagated to the database behind the scenes.</li>
 </ul>
 
- <a name="side-cache">&#160;</a>
+ <a id="side-cache">&#160;</a>
 
-<h1><a name="side-cache">&#160;</a>Side Cache</h1>
+<h1 id="side-cache">Side Cache</h1>
 
 <p>With this mechanism, the application is responsible for maintaining the data in the cache:</p>
 
@@ -112,7 +112,7 @@
 <li><a href="/sbp/gigaspaces-for-hibernate-orm-users.htm">Hibernate</a> - Leveraging GigaSpaces as Hibernate 2nd Level Cache.</li>
 </ul>
 
-<h2><a name="when-should-you-use-a-side-cache">&#160;</a>When Should You Use a Side Cache?</h2>
+<h2 id="when-should-you-use-a-side-cache">When Should You Use a Side Cache?</h2>
 
 <p>A side cache is very useful when:</p>
 
@@ -121,9 +121,9 @@
 <li>The original data model of the data within the database (or any other data source) is very different than the data model of the objects in-memory. In this case, the built-in <a href="../dev-java/space-persistency-overview.htm">Space Persistency</a> implementation  may not be relevant. A customized mapping logic should be implemented on the client application side to load data from the database and push it into the cache.</li>
 </ul>
 
- <a name="client-cache">&#160;</a>
+ <a id="client-cache">&#160;</a>
 
-<h1><a name="client-cache">&#160;</a>Client Cache</h1>
+<h1 id="client-cache">Client Cache</h1>
 
 <p>Together with the in-line cache and side cache scenarios, you can also use a client cache. This client cache may host data loaded from any IMDG partition. The client cache data access does not involve any serialization or network calls.</p>
 
@@ -160,11 +160,11 @@
   <p>By default, client cache is not enabled.</p>
 </div>
 
-<h2><a name="when-should-you-use-a-client-cache">&#160;</a>When Should You Use a Client Cache?</h2>
+<h2 id="when-should-you-use-a-client-cache">When Should You Use a Client Cache?</h2>
 
 <p>Client cache should be used when most of the application activities (above 80%) involve reading data (a read-mostly scenario). When having repeated read activities for the same data (using <code>readById</code> operation), the client cache provides excellent performance boost (up to 100 times faster compared to when a client cache is not used). You should not use client cache if there are relatively large amounts of data updates or removal operations, because the overhead of the client cache updates will affect overall application performance.</p>
 
-<h1><a name="cache-refresh-options">&#160;</a>Cache Refresh Options</h1>
+<h1 id="cache-refresh-options">Cache Refresh Options</h1>
 
 <p>When running the cache in LRU cache policy mode, you may need to expire or evict the cache data. This ensures that you don't load the cache with unnecessary data. Another reason to expire or evict the cache data is to ensure that the memory allocated for the cache (JVM heap size) can accommodate the most valuable objects required by your applications.</p>
 
@@ -182,21 +182,21 @@
 </ul></li>
 </ul>
 
-<h2><a name="refresh-data-using-lru-and-timer">&#160;</a>Refresh Data using LRU and Timer</h2>
+<h2 id="refresh-data-using-lru-and-timer">Refresh Data using LRU and Timer</h2>
 
 <p>With this approach, data is pushed into the cache in a periodic manner via a timer. The timer fetches relevant data that was recently updated within the database and pushes it into the cache.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/overview/refresh-data-timer.png" width="714" height="250" /></p>
 </div>
 
-<h2><a name="refresh-data-using-a-queue">&#160;</a>Refresh Data using a Queue</h2>
+<h2 id="refresh-data-using-a-queue">Refresh Data using a Queue</h2>
 
 <p>Any updates made to the database are also written to a queue. Refresher client consumes the messages on the queue and applies these changes to space.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/overview/refresh-data-queue.png" width="554" height="503" /></p>
 </div>
 
-<h2><a name="refresh-data-using-database-change-notifications">&#160;</a>Refresh Data using Database Change Notifications</h2>
+<h2 id="refresh-data-using-database-change-notifications">Refresh Data using Database Change Notifications</h2>
 
 <p>Oracle and several other databases support <a href="/sbp/oracle-delta-server.htm">Database Change Notifications</a>, where a client can register a listener for changes to data. Any changes made to the database will trigger the listener defined in a DCN Client. The Listener can in turn write these messages into the space.</p>
 

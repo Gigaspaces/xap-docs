@@ -16,7 +16,7 @@
 
 <p>Evicting an object from the space requires the space engine to lock the LRU chain during the object removal, and to update the relevant indexes. This means that the eviction based on <span class="tc-bold">available memory</span> that is done in batches, might impact the space responsiveness to client requests. Still, you might need to use this in case you can't estimate the amount of objects within the space.</p>
 
-<h1><a name="when-lru-cache-policy-should-be-used">&#160;</a>When LRU Cache Policy Should be Used</h1>
+<h1 id="when-lru-cache-policy-should-be-used">When LRU Cache Policy Should be Used</h1>
 
 <p>For applications that use a very large backend database, leveraging the space as a front-end distributed cache using the <code>LRU</code> cache policy can speed up read activity while keeping some of the data in memory. In this case - the motivation is to <span class="tc-bold">access the database in the most optimal manner</span> when performing data access operations against the space to reduce the load on the database as much as you can.</p>
 
@@ -35,11 +35,11 @@
 
 <p>Constructing read operations using <code>SQLQuery</code> with <code>Order by</code>, <code>Group by</code> is not recommended either, because in many cases it requires traversing the entire result data set on the client side. In such cases, the preferred option is to perform the query directly against the database and select only the IDs, and then retrieve the actual data from space using the <code>readById</code> or <code>readByIds</code> operations. When working with a partitioned space, it is recommended to store the routing value in a separate database column, and select it as so that the <code>readById</code> or <code>readByIds</code> operations will be more efficient.</p>
 
-<h1><a name="eviction-and-primary-backup-multi-replica-setup">&#160;</a>Eviction and Primary-Backup Multi-Replica Setup</h1>
+<h1 id="eviction-and-primary-backup-multi-replica-setup">Eviction and Primary-Backup Multi-Replica Setup</h1>
 
 <p>The eviction activity running with the LRU policy is performed independently by each Space instance. There is no replication activity associated with the eviction activity. This means that when a primary instance performs an eviction activity, the evicted objects may not be evicted from the backup instance and vice versa. This can result in different object counts between the primary and backup instances (or different replicas). The LRU mechanism assumes a that a database is used to store all the data, where a cache miss triggers a data reload (via the data source or client activity) from the database.</p>
 
-<h1><a name="the-memory-only-search-modifier">&#160;</a>The <code>MEMORY_ONLY_SEARCH</code> Modifier</h1>
+<h1 id="the-memory-only-search-modifier">The <code>MEMORY_ONLY_SEARCH</code> Modifier</h1>
 
 <p>The <code>MEMORY_ONLY_SEARCH</code> modifier may be used to instruct the space to limit the query / template matching performed with read/take/clear/change operations to the data stored only in memory and not the space's backend persistence store (database). This give you the flexibility of minimizing the database load in cases where this modifier can be applied.</p>
 
@@ -78,7 +78,7 @@ Data result3[] = gigaspace.takeMultiple(query , 1000 , TakeModifiers.EVICT_ONLY.
 
 <p>The <code>TakeModifiers.EVICT_ONLY</code> and <code>ClearModifiers.EVICT_ONLY</code> should be used as well with the <code>take</code> and <code>clear</code> operations to remove matching entries only from the memory and not from the persistent store.</p>
 
-<h1><a name="how-lru-eviction-works">&#160;</a>How LRU Eviction Works</h1>
+<h1 id="how-lru-eviction-works">How LRU Eviction Works</h1>
 
 <p>LRU eviction has 2 eviction strategies:</p>
 
@@ -90,7 +90,7 @@ Provides VERY deterministic behavior of the garbage collection and memory used a
 <p><span class="tc-bold">Based on the amount of available memory the JVM hosting the space has</span> <br/>
 When using this strategy, you should perform some tuning to provide deterministic behavior. This strategy is turned on when the <code>space-config.engine.memory_usage.enabled</code> value is <code>true</code>. Setting it to <code>primary-only</code> means it's enabled on the primary instance and disabled on the backup. If the backup becomes the primary it's automatically enabled. This strategy is very complicated to use when you have multiple spaces running within the same JVM.</p>
 
-<h2><a name="the-eviction-flow">&#160;</a>The Eviction Flow</h2>
+<h2 id="the-eviction-flow">The Eviction Flow</h2>
 
 <p>LRU eviction based on the amount of available memory, performs the following:</p>
 
@@ -121,7 +121,7 @@ When using this strategy, you should perform some tuning to provide deterministi
 <pre><code class="language-bash">Used_memory_rate = (Runtime.totalMemory() - Runtime.freeMemory() * 100.0) / Runtime.maxMemory()
 </code></pre>
 
-<h1><a name="spacememoryshortageexception">&#160;</a>SpaceMemoryShortageException</h1>
+<h1 id="spacememoryshortageexception">SpaceMemoryShortageException</h1>
 
 <p>The <code>org.openspaces.core.SpaceMemoryShortageException</code> (which wraps the <code>com.j_spaces.core.MemoryShortageException</code>) is thrown when:</p>
 
@@ -145,7 +145,7 @@ used memory: 1497 mb
   <p>The <span class="tc-bold">_DCache</span> prefix is part of the space name - it indicates that the exception is thrown from the client local cache. In this case, increase the <code>space-config.engine.memory_usage.retry_count</code> to a larger number. For more information, refer to the <a href="../production/production-local-cache-policy.htm">Local Cache Policy</a> page in the <a href="../production/index.htm">Moving into Production Checklist</a> section.</p>
 </div>
 
-<h1><a name="monitoring-the-space-memory-manager-activity">&#160;</a>Monitoring the Space Memory Manager Activity</h1>
+<h1 id="monitoring-the-space-memory-manager-activity">Monitoring the Space Memory Manager Activity</h1>
 
 <p>You can monitor the memory manager activity for a space running in LRU mode by moving the <code>com.gigaspaces.memory-manager</code> logging entry to <code>FINE</code>.
 It displays log entries when evicting objects (starting, during, and when completing the eviction cycle), and when waiting for incoming activities. See below example for log entries displayed once an eviction cycle is executed:</p>
@@ -172,7 +172,7 @@ Available memory[%]85.46128254359517 evicted all entries.
   <p>To change the <code>com.gigaspaces.memory-manager</code> logging level back to its default value set it back to <code>INFO</code>.</p>
 </div>
 
-<h1><a name="controlling-the-eviction-behavior">&#160;</a>Controlling the Eviction Behavior</h1>
+<h1 id="controlling-the-eviction-behavior">Controlling the Eviction Behavior</h1>
 
 <p>The <code>space-config.engine.memory_usage</code> properties provides options for controlling the space memory utilization, and allows you to evict objects from the space. Objects are evicted when the number of cached objects reaches its maximum size, or when memory usage reaches its limit.
 These are the default parameters given for memory usage. They should be in the following order:</p>
@@ -201,14 +201,14 @@ These are the default parameters given for memory usage. They should be in the f
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h1><a name="lru-touch-activity">&#160;</a>LRU Touch Activity</h1>
+<h1 id="lru-touch-activity">LRU Touch Activity</h1>
 
 <p>LRU touch activity kicks-in when the percentage of objects within the space exceeds <span class="tc-bold">space-config.engine.lruTouchThreshold</span> where the <span class="tc-bold">space-config.engine.cache_size</span> is the max amount. This avoid the overhead involved with the LRU activity. A 0 value means always touch, 100 means no touch at all.
 The default value of the <code>space-config.engine.lruTouchThreshold</code> is 50 which means the LRU touch activity will kick-in when the amount of objects within the space will cross half of the amount specified by the <code>space-config.engine.cache_size</code> value.</p>
 
 <p>When setting the <code>space-config.engine.lruTouchThreshold</code> value as <span class="tc-bold">100</span>, it turns the eviction to run in a FIFO mode.</p>
 
-<h1><a name="reloading-data">&#160;</a>Reloading Data</h1>
+<h1 id="reloading-data">Reloading Data</h1>
 
 <p>When a persistent space (using <a href="space-persistency-overview.htm">Space Persistency</a>), running in <span class="tc-bold">LRU cache policy mode</span>, is started/deployed, it loads data from the underlying data source before being available for clients to access. The default behavior is to load data up to 50% of the <code>space-config.engine.cache_size</code> value.</p>
 
@@ -232,7 +232,7 @@ The default value of the <code>space-config.engine.lruTouchThreshold</code> is 5
 
 <p>The <code>space-config.engine.initial_load_class</code> property can be used to specify specific class(s) data to load.</p>
 
-<h1><a name="how-can-i-get-deterministic-behavior-during-eviction-of-objects">&#160;</a>How can I get Deterministic Behavior During Eviction of Objects?</h1>
+<h1 id="how-can-i-get-deterministic-behavior-during-eviction-of-objects">How can I get Deterministic Behavior During Eviction of Objects?</h1>
 
 <p>In order to have deterministic behavior of the memory manager when evicting objects, based on the amount of free memory in such a way that it:</p>
 
@@ -285,7 +285,7 @@ The default value of the <code>space-config.engine.lruTouchThreshold</code> is 5
 <li>have a relatively large value for the <code>space-config.engine.memory_usage.retry_yield_time</code>. A value of 200 (ms) is a good number.</li>
 </ul>
 
-<h1><a name="garbage-collection-behavior-and-space-response-time-tango">&#160;</a>Garbage Collection Behavior and Space Response Time Tango</h1>
+<h1 id="garbage-collection-behavior-and-space-response-time-tango">Garbage Collection Behavior and Space Response Time Tango</h1>
 
 <p>In general, when the JVM garbage collection is called, there is a chance that clients accessing the space are affected.
 If the JVM is not using the incremental GC mode (i.e. regular behavior), the GC has the famous chain saw behavior - rapid memory reclaim of the recently evicted/referenced objects. This means a quick garbage collection, potentially having delays at the client side, or phantom OOME in the case that the JVM has not managed to evict fast enough.</p>
@@ -312,7 +312,7 @@ If the JVM is not using the incremental GC mode (i.e. regular behavior), the GC 
   <p>If you can estimate the amount of objects the space holds, and use the eviction based on the maximum number of objects within the space, this allows you to eliminate the  hiccups, and provide a very deterministic and constant response time.</p>
 </div>
 
-<h1><a name="space-config-engine-memory-usage-explicit-gc">&#160;</a>space-config.engine.memory_usage.explicit-gc</h1>
+<h1 id="space-config-engine-memory-usage-explicit-gc">space-config.engine.memory_usage.explicit-gc</h1>
 
 <p>The memory manager has a very delicate feature, called the <code>explicit-gc</code>. When enabled, the space performs an explicit Garbage Collection (GC) call before checking how much memory is used. When turned on, this blocks clients from accessing the space during the GC activity. This can cause a domino affect, resulting in un-needed failover, or client total hang. The problem  is severe in a clustered environment, where both the primary and backup space JVM make an explicit GC call at the same time, holding back the primary from both serving the client, and from sending operations to the backup.</p>
 

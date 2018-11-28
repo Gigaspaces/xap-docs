@@ -7,14 +7,14 @@
 
 <p>Following is a short demo of what can be done with the XAP scala shell. It should be noted that this shell is a regular Scala REPL with some initial imports and initialization code.</p>
 
-<h1><a name="demo-setup">&#160;</a>Demo Setup</h1>
+<h1 id="demo-setup">Demo Setup</h1>
 
 <ul>
 <li>Run <code>$GS_HOME/bin/gs-agent.sh</code> (or <code>.bat</code>)</li>
 <li>Start the shell <code>$GS_HOME/tools/scala/shell.sh</code> (or <code>.bat</code>)</li>
 </ul>
 
-<h1><a name="the-demo">&#160;</a>The Demo</h1>
+<h1 id="the-demo">The Demo</h1>
 
 <pre><code class="language-scala">java version "1.8.0_45"
 Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
@@ -73,39 +73,39 @@ xap&gt; val dataContent = res3.get
 dataContent: String = my data content
 </code></pre>
 
-<h1><a name="configuration">&#160;</a>Configuration</h1>
+<h1 id="configuration">Configuration</h1>
 
 <p>It is possible to customize the initialization code, the shutdown code and the initial imports.
 XAP 10.2 introduced alternative method to customize initialization code along with initial imports.</p>
 
-<h2><a name="standard-method">&#160;</a>Standard method</h2>
+<h2 id="standard-method">Standard method</h2>
 
 <p>XAP REPL during initialization phase will load imports from initial imports file and then execute init code. The end of shell session
 will be preceded by execution of shutdown code.</p>
 
-<h4><a name="initial-imports">&#160;</a>Initial imports</h4>
+<h4 id="initial-imports">Initial imports</h4>
 
 <p>By default the initial imports will be loaded from <code>$GS_HOME/tools/scala/conf/repl-imports.conf</code>. This location can be overridden by the system property: <code>org.os.scala.repl.imports</code>. Each import should be in its own line. (empty lines and lines beginning with <code>#</code> are ignored)</p>
 
-<h4><a name="init-code">&#160;</a>Init code</h4>
+<h4 id="init-code">Init code</h4>
 
 <p>By default the initialization code will be loaded from <code>$GS_HOME/tools/scala/conf/init-code.scala</code>. This location can be overridden by the system property: <code>org.os.scala.repl.initcode</code>.</p>
 
-<h4><a name="shutdown-code">&#160;</a>Shutdown code</h4>
+<h4 id="shutdown-code">Shutdown code</h4>
 
 <p>By default the shutdown code will be loaded from <code>$GS_HOME/tools/scala/conf/shutdown-code.scala</code>. This location can be overridden by the system property: <code>org.os.scala.repl.shutdowncode</code>.</p>
 
-<h2><a name="new-method">&#160;</a>New method</h2>
+<h2 id="new-method">New method</h2>
 
 <p>The difference between the two methods is that the new one does not use a file with initial imports. Those imports
 should be placed in initialization code script (with import prefix added). Alternative method is used if system property <code>org.os.scala.repl.newinitstyle</code> is set as "yes', "on' or "true'.</p>
 
-<h4><a name="init-code-1">&#160;</a>Init code</h4>
+<h4 id="init-code-1">Init code</h4>
 
 <p>By default the initialization code will be loaded from <code>$GS_HOME/tools/scala/conf/new-init-code.scala</code>. This location can be overridden by the system property: <code>org.os.scala.repl.initcode</code>.
 Please note that new init code script should also contain necessary imports.</p>
 
-<h4><a name="shutdown-code-1">&#160;</a>Shutdown code</h4>
+<h4 id="shutdown-code-1">Shutdown code</h4>
 
 <p>Please refer to <code>Shutdown code</code> described above in the standard method.</p>
 

@@ -5,7 +5,7 @@
 <h1>Advanced Configuration</h1>
   
 
-<h1><a name="custom-mirror-service-name">&#160;</a>Custom Mirror Service Name</h1>
+<h1 id="custom-mirror-service-name">Custom Mirror Service Name</h1>
 
 <p>A Mirror Service can be configured per Space cluster. You can't have multiple Mirror services configured for the same space cluster.</p>
 
@@ -49,7 +49,7 @@
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
-<h1><a name="multiple-mirrors">&#160;</a>Multiple Mirrors</h1>
+<h1 id="multiple-mirrors">Multiple Mirrors</h1>
 
 <p>In some cases you may need to asynchronously persist data both into a relational database and a file, or persist the data into a relational database and transfer some of the data into some other system.</p>
 
@@ -60,11 +60,11 @@
   <p>See the <a href="/sbp/mirror-monitor.htm">Mirror Monitor</a> for a simple example how such approach should be implemented.</p>
 </div>
 
-<h1><a name="usage-scenarios">&#160;</a>Usage Scenarios</h1>
+<h1 id="usage-scenarios">Usage Scenarios</h1>
 
 <table class="tc-borderless">
   <tr>
-    <td><h3><a name="writing-asynchronously-to-the-mirror-data-source">&#160;</a>Writing Asynchronously to the Mirror Data Source</h3>
+    <td><h3 id="writing-asynchronously-to-the-mirror-data-source">Writing Asynchronously to the Mirror Data Source</h3>
 
 <p>The following is a schematic flow of a synchronous replicated cluster with three members, which are communicating with a Mirror Service:</p>
 </td>
@@ -74,7 +74,7 @@
 
 <table class="tc-borderless">
   <tr>
-    <td><h3><a name="reading-from-the-data-source">&#160;</a>Reading from the Data Source</h3>
+    <td><h3 id="reading-from-the-data-source">Reading from the Data Source</h3>
 
 <p>The Mirror Service space is used to asynchronously <span class="tc-bold">persist</span> data into the data source. As noted elsewhere, the Mirror is <span class="tc-bold">not</span> a regular space, and should <span class="tc-bold">not</span> be interacted with directly. Thus, data can't be read from the data source using the Mirror Service space. Nonetheless, the data might be read by other spaces which are configured with a space data source.</p>
 
@@ -88,7 +88,7 @@
 
 <table class="tc-borderless">
   <tr>
-    <td><h3><a name="partitioning-over-a-central-mirror-data-source">&#160;</a>Partitioning Over a Central Mirror Data Source</h3>
+    <td><h3 id="partitioning-over-a-central-mirror-data-source">Partitioning Over a Central Mirror Data Source</h3>
 
 <p>When partitioning data, each partition asynchronously replicates data into the Mirror Service. Each partition can read back data that belongs to it (according to the load-balancing policy defined).</p>
 
@@ -98,9 +98,9 @@
   </tr>
 </table>
 
- <a name="dist-txn-mirror">&#160;</a>
+ <a id="dist-txn-mirror">&#160;</a>
 
-<h1><a name="considerations-and-known-issues">&#160;</a>Considerations and Known Issues</h1>
+<h1 id="considerations-and-known-issues">Considerations and Known Issues</h1>
 
 <div class="tc-admon-refer">
   
@@ -117,9 +117,9 @@
 <li>The Mirror does not load data back into the space. The <code>ExternalDataSource</code> implementation of the space should be used to initialize the space when started.</li>
 </ul>
 
-<h1><a name="troubleshooting">&#160;</a>Troubleshooting</h1>
+<h1 id="troubleshooting">Troubleshooting</h1>
 
-<h2><a name="log-messages">&#160;</a>Log Messages</h2>
+<h2 id="log-messages">Log Messages</h2>
 
 <p>The space persistency logging level can be modified as part of the <code>&lt;XAP-Root&gt;\Net vX.x\Config\Log\xap_logging.properties</code> file. By default, it is set to <code>INFO</code>:</p>
 
@@ -154,7 +154,7 @@
 </tbody>
 </table>
 
-<h1><a name="failover-handling">&#160;</a>Failover Handling</h1>
+<h1 id="failover-handling">Failover Handling</h1>
 
 <p>This section describes how the GigaSpaces Mirror Service handles different failure scenarios. The following table lists the services involved, and how the failure is handled in the cluster.</p>
 
@@ -196,7 +196,7 @@
 </tbody>
 </table>
 
-<h1><a name="unlikely-failure-scenarios">&#160;</a>Unlikely Failure Scenarios</h1>
+<h1 id="unlikely-failure-scenarios">Unlikely Failure Scenarios</h1>
 
 <p>The following failure scenarios are highly unlikely. However, it might be useful to understand how such scenarios are handled by GigaSpaces. This is detailed in the table below.</p>
 

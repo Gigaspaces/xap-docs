@@ -14,7 +14,7 @@
   <p>When using the <a href="space-persistency-overview.htm">Space Persistency</a> feature, you might not want all space objects to be persistent or to be delivered to some data source. The Space Persistency feature makes sure transient space objects are not persisted or delivered to the data source.</p>
 </div>
 
-<h1><a name="pojo">&#160;</a>POJO</h1>
+<h1 id="pojo">POJO</h1>
 
 <p>The following example marks an entire class transient (i.e. non-persistent):</p>
 
@@ -43,7 +43,7 @@ public class MyData {
 <li>Having a space Class using the <code>persist=true</code> and memory (transient) based spaces, will not generate any errors or exceptions, but will not write these into any persistent store. The Entries will be transient.</li>
 </ul>
 
-<h1><a name="space-document">&#160;</a>Space Document</h1>
+<h1 id="space-document">Space Document</h1>
 
 <pre><code class="language-java">   SpaceDocument doc = new SpaceDocument("Entity");
    ......       

@@ -18,7 +18,7 @@
 
 <p>The OpenSpaces API supports two types of remoting, distinguished by the underlying implementation used to send the remote call. The first is called <a href="executor-based-remoting.htm">Executor-Based Remoting</a>, and the second is called <a href="event-driven-remoting.htm">Event-Driven Remoting</a>.</p>
 
-<h1><a name="choosing-the-correct-remoting-mechanism">&#160;</a>Choosing the Correct Remoting Mechanism</h1>
+<h1 id="choosing-the-correct-remoting-mechanism">Choosing the Correct Remoting Mechanism</h1>
 
 <p>This section explains when you should choose to use each of the remoting implementations. As far as the calling code is concerned, the choice between the implementations is transparent and requires only configuration changes.</p>
 
@@ -35,9 +35,9 @@
 <li>When unexpected bursts of invocations are a probable scenario, using <a href="event-driven-remoting.htm">Event-Driven Remoting</a> may prove worthwhile, because invocations are not processed as they occur; they are "queued" in the Space and are processed by the polling container when resources are available. By limiting the number of threads of the polling container, you can ensure that the invocations don't monopolize the CPU of the Space. (The <a href="administrative-alerts.htm">Alerts</a> API can help monitor this situation.)</li>
 </ul>
 
-<h1><a name="additional-resources">&#160;</a>Additional Resources</h1>
+<h1 id="additional-resources">Additional Resources</h1>
 
-<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=-07-0PXUoeM," />
+<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:http://www.youtube.com/watch?v=-07-0PXUoeM," />
 
 </body>
 </html>

@@ -9,7 +9,7 @@
 
 <p>Configuration takes place in <code>metrics.xml</code>, which resides in <code>XAP_HOME/config/metrics</code>. For more information see <a href="metrics-configuration.htm">Configuration</a>.</p>
 
-<h1><a name="usage">&#160;</a>Usage</h1>
+<h1 id="usage">Usage</h1>
 
 <p>InfluxDB provides an <a href="https://influxdb.com/docs/v0.9/guides/writing_data.htm" target="_blank" >HTTP API</a> for writing data, which is implemented by XAP. For example, if InfluxDB is installed on <code>localhost</code> and you want to report metrics to the <code>mydb</code> database, use the following configuration:</p>
 
@@ -23,23 +23,23 @@
 &lt;/metrics-configuration&gt;
 </code></pre>
 
-<h3><a name="port">&#160;</a>Port</h3>
+<h3 id="port">Port</h3>
 
 <p>The InfluxDB HTTP API is bounded to port <code>8086</code> by default. If you've configured your InfluxDB instance to use a different port you should modify the reporter configuration accordingly and add a <code>&lt;property name="port" value="nnnn"/&gt;</code> with the new port.</p>
 
-<h3><a name="security">&#160;</a>Security</h3>
+<h3 id="security">Security</h3>
 
 <p>InfluxDB security is disabled by default. Should you choose to enable it, add a <code>username</code> and <code>password</code> properties to the configuration to specify the credentials which will be used by the reporter.</p>
 
-<h3><a name="retention-policy">&#160;</a>Retention Policy</h3>
+<h3 id="retention-policy">Retention Policy</h3>
 
 <p>InfluxDB uses <a href="https://influxdb.com/docs/v0.9/concepts/glossary.htm#retention-policy" target="_blank" >retention policies</a> to define how long the data is stored and how it's replicated accross the cluster. You can configure a <code>retention-policy</code> property to instruct the reporter which retention policy to write to. If not set, the default retention policy of the database will be used.</p>
 
-<h3><a name="report-length">&#160;</a>Report Length</h3>
+<h3 id="report-length">Report Length</h3>
 
 <p>The InfluxDB reporter batches multiple metrics within each report to maximize performance, up to a maximum value determined by the <code>max-report-length</code> property. The default value is <code>65507</code> (based on <a href="http://en.wikipedia.org/wiki/User_Datagram_Protocol" target="_blank" >UDP max length</a>), and usually should not be changed.</p>
 
-<h3><a name="udp">&#160;</a>UDP</h3>
+<h3 id="udp">UDP</h3>
 
 <p>InfluxDB allows you to <a href="https://influxdb.com/docs/v0.9/write_protocols/udp.htm" target="_blank" >write data through UDP</a>. Note that by default, no InfluxDB ports are open to UDP. To configure InfluxDB to support writes over UDP you must adjust its config file. Once you do, you need to configure XAP InfluxDB reporter to use <code>udp</code> by adding a <code>&lt;property name="protocol" value="udp"/&gt;</code> property to the configuration. You should also specify the port you've set in InfluxDB config file.</p>
 

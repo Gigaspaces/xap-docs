@@ -7,9 +7,9 @@
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/client/ChangeSet.htm">ChangeSet</a> allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object.</p>
 
-<h3><a name="additional-resources">&#160;</a>Additional Resources</h3>
+<h3 id="additional-resources">Additional Resources</h3>
 
-<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=k2zGdUi_ntU," />
+<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:http://www.youtube.com/watch?v=k2zGdUi_ntU," />
 
 <table class="tc-borderless">
   <tr>
@@ -23,9 +23,9 @@ This reduces the required network traffic between the client and the Space, and 
 <p>Moreover, using this API also can prevent having to read the existing object prior to the change operation, because the change operation can specify how to change the existing property without knowing its current value. For instance, implementing atomic <a href="the-space-counters.htm">Counters</a> can be done by increasing a counter property of an integer property by some delta. Another example is adding a value to a collection.
 The change API supports <a href="transaction-overview.htm">transactions</a> in the same way the other Space operation supports it, using a transactional <code>GigaSpace</code> instance.</p>
 
- <a name="change">&#160;</a>
+ <a id="change">&#160;</a>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1 id="example">Example</h1>
 
 <p>The following example demonstrates how to increment by one the <code>count</code> property of an object of type <code>WordCount</code>, with ID <code>myID</code>.</p>
 
@@ -35,11 +35,11 @@ IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(WordCount.class,
 space.change(idQuery, new ChangeSet().increment("count", 1));
 </code></pre>
 
-<h1><a name="query-template">&#160;</a>Query Template</h1>
+<h1 id="query-template">Query Template</h1>
 
 <p>The change operation can receive any <a href="querying-the-space.htm">query template</a> for matching a single object or multiple objects that need to be changed by the operation.</p>
 
-<h1><a name="change-set">&#160;</a>Change Set</h1>
+<h1 id="change-set">Change Set</h1>
 
 <p>The change operation requires a <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/client/ChangeSet.htm">ChangeSet</a> that describes the changes that have to be made after locating the object specified by the query template.
 The <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/client/ChangeSet.htm">ChangeSet</a> contains a predefined set of operations that can be invoked to alter the object. The set can contain one or more changes that will be applied sequentially to the object.
@@ -74,7 +74,7 @@ IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, r
 space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
 </code></pre>
 
-<h2><a name="specifying-the-path">&#160;</a>Specifying the Path</h2>
+<h2 id="specifying-the-path">Specifying the Path</h2>
 
 <p>Each operation in the change set acts on a specified string path. This path points to the property that needs to be changed, and has the following semantic:</p>
 
@@ -105,7 +105,7 @@ space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
 
 <p>In this case, the key <code>euro</code> inside the map behind the balance will be increased by 5.2.</p>
 
-<h2><a name="available-operations">&#160;</a>Available Operations</h2>
+<h2 id="available-operations">Available Operations</h2>
 
 <table>
 <thead>
@@ -173,11 +173,11 @@ space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
 </tbody>
 </table>
 
-<h1><a name="change-api-with-the-embedded-model">&#160;</a>Change API with the Embedded Model</h1>
+<h1 id="change-api-with-the-embedded-model">Change API with the Embedded Model</h1>
 
 <p>With the <a href="/sbp/modeling-your-data.htm#Embedded vs. Non-Embedded Relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the Change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances. This significantly improves the overall system stability.</p>
 
-<h1><a name="change-result">&#160;</a>Change Result</h1>
+<h1 id="change-result">Change Result</h1>
 
 <p>The change operations returns a <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/client/ChangeResult.htm">ChangeResult</a> object that provides information regarding the effect of the change operation.</p>
 
@@ -220,7 +220,7 @@ if (changeResult.getNumberOfChangedEntries() == 0)
   <p>For more information, refer to <a href="change-api-advanced.htm">Advanced Implementations</a>.</p>
 </div>
 
-<h1><a name="changeexception">&#160;</a>ChangeException</h1>
+<h1 id="changeexception">ChangeException</h1>
 
 <p>Upon any error, a <code>ChangeException</code> is thrown containing the following details:</p>
 
@@ -258,9 +258,9 @@ if (changeResult.getNumberOfChangedEntries() == 0)
 
 <p>The <code>getErrors</code> property contains the general reasons for failed change operations that do not apply to a specific object, such as not being able to access the Space.</p>
 
- <a name="changeMultiple">&#160;</a>
+ <a id="changeMultiple">&#160;</a>
 
-<h1><a name="multiple-changes-in-a-single-operation">&#160;</a>Multiple Changes in a Single Operation</h1>
+<h1 id="multiple-changes-in-a-single-operation">Multiple Changes in a Single Operation</h1>
 
 <p>Multiple changes can be applied in one <code>change</code> operation by setting up multiple operations in the change set. Do this by chaining the changes as follows:</p>
 
@@ -273,7 +273,7 @@ space.change(idQuery, new ChangeSet().increment("someIntProperty", 1)
 
 <p>The changes are applied to the object sequentially (and atomically), keeping the order applied in the <code>ChangeSet</code>.</p>
 
-<h1><a name="changing-the-object-s-lease">&#160;</a>Changing the Object's Lease</h1>
+<h1 id="changing-the-object-s-lease">Changing the Object's Lease</h1>
 
 <p>By default, the change operation doesn't modify the existing remaining lease of the changed entries. In order to change the lease, a new lease should be specified in the <code>ChangeSet</code> using the <code>lease</code> operation.</p>
 
@@ -287,7 +287,7 @@ space.change(idQuery, new ChangeSet().lease(1000)...);
 
 <p>The above example sets the lease of the changed object to one second from the time the change operation takes effect.</p>
 
-<h1><a name="change-with-timeout">&#160;</a>Change with Timeout</h1>
+<h1 id="change-with-timeout">Change with Timeout</h1>
 
 <p>A timeout can be passed to the <code>change</code> operation. This timeout will only be used if any of the objects to be changed is locked under a transaction that is not from the current thread context. In this case, all objects that are not locked are  changed, and the operation is blocked until one of the following two events happens:</p>
 
@@ -321,7 +321,7 @@ catch(ChangeException e)
 }
 </code></pre>
 
-<h1><a name="optimistic-locking">&#160;</a>Optimistic Locking</h1>
+<h1 id="optimistic-locking">Optimistic Locking</h1>
 
 <p>The <code>change</code> operation has the same semantics as a regular Space <code>update</code> operation regarding <a href="transaction-optimistic-locking.htm">Optimistic Locking</a>. It increases the version of the changed object, and the expected version can be specified in the ID query when optimistic locking is needed.</p>
 
@@ -355,11 +355,11 @@ catch(ChangeException e)
   <p>In order to prevent constructor overload ambiguity, when using an ID query with version, the Space routing property must also be specified. If the object has no Space routing, then its Space ID property is the routing property and it should be used, as shown in the previous example.</p>
 </div>
 
-<h1><a name="notifications">&#160;</a>Notifications</h1>
+<h1 id="notifications">Notifications</h1>
 
 <p>Change is delivered as a regular update notification, with the state of the object after the change was applied.</p>
 
-<h1><a name="modifiers">&#160;</a>Modifiers</h1>
+<h1 id="modifiers">Modifiers</h1>
 
 <p>The following modifiers can be used with the change operation:</p>
 
@@ -371,9 +371,9 @@ there is no guarantee that the change operation is successful, as this mode does
 are propagated to the underlying external data source.</li>
 </ul>
 
- <a name="asynchronousChange">&#160;</a>
+ <a id="asynchronousChange">&#160;</a>
 
-<h1><a name="asynchronous-change">&#160;</a>Asynchronous Change</h1>
+<h1 id="asynchronous-change">Asynchronous Change</h1>
 
 <table class="tc-borderless"><tr><td style="width:65%;"><p>The <code>change</code> operation has also an asynchronous API, in which the operation is dispatched to the server and the result is returned asynchronously via a listener or a future.</p>
 </td>
@@ -414,12 +414,12 @@ AsyncFutureListener&lt;ChangeResult&lt;Account&gt;&gt; myListener = new AsyncFut
 space.asyncChange(idQuery, new ChangeSet().increment("balance.euro", 5.2D), myListener);
 </code></pre>
 
-<h1><a name="spacesynchronizationendpoint">&#160;</a>SpaceSynchronizationEndpoint</h1>
+<h1 id="spacesynchronizationendpoint">SpaceSynchronizationEndpoint</h1>
 
 <p>A SpaceSynchronizationEndpoint implementation can support change operations, and make use of lighter replication between the Space and the mirror.
 For more information on how to implement this, refer to the <a href="change-api-advanced.htm">Advanced Implementations</a> topic.</p>
 
-<h1><a name="replication-filter">&#160;</a>Replication Filter</h1>
+<h1 id="replication-filter">Replication Filter</h1>
 
 <p>Change passes through the <a href="../admin/cluster-replication-filters.htm">Replication Filter</a> like other operations, and can be discarded on the replication level, for example.</p>
 
@@ -428,7 +428,7 @@ For more information on how to implement this, refer to the <a href="change-api-
   <p>For more information on how to handle change in replication filters, refer to the <a href="change-api-advanced.htm">Advanced Implementations</a> topic.</p>
 </div>
 
-<h1><a name="add-and-get-operations">&#160;</a>Add and Get Operations</h1>
+<h1 id="add-and-get-operations">Add and Get Operations</h1>
 
 <p>A common usage pattern is to increment a numeric property of a specific entry, and then to need the updated value after the increment was applied.
 Using the <code>addAndGet</code> operation, you can meet this need using a single method call to get atomic add and get operation semantics.</p>
@@ -448,14 +448,14 @@ Integer newCounter = ChangeExtension.addAndGet(space, idQuery, "counter", 1);
   <p>You can use <code>import static org.openspaces.extensions.ChangeExtension.</code> so that you don't have to prefix the call with `ChangeExtension'.</p>
 </div>
 
-<h1><a name="considerations">&#160;</a>Considerations</h1>
+<h1 id="considerations">Considerations</h1>
 
 <ol>
 <li>If replicated to a gateway and a conflict occurs, the change operation only supports the built-in <code>abort</code> resolution as <code>override</code> in change case may result with an inconsistent state of the object.</li>
 <li>The change operation is converted to a regular update when delegated to a synchronous data source.</li>
 </ol>
 
-<h1><a name="limitations">&#160;</a>Limitations</h1>
+<h1 id="limitations">Limitations</h1>
 
 <p><code>rownum</code>   is not supported with the Changeset SQLQuery operation.</p>
 

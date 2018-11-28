@@ -7,7 +7,7 @@
 
 <p>A custom change operation lets the user implement his own change operation in case the built-in operations (increment, add, remove, set, etc.) do not suffice. This is a very powerful capability but it must be used with extreme caution.</p>
 
-<h1><a name="implementing-and-using-a-custom-change-operation">&#160;</a>Implementing and Using a Custom Change Operation</h1>
+<h1 id="implementing-and-using-a-custom-change-operation">Implementing and Using a Custom Change Operation</h1>
 
 <p>The implementation should extend the abstract <code>CustomChangeOperation</code> class and implement both the <code>getName</code> and <code>change</code> methods.
 See below an example of a change operation which multiplies an integer property value:</p>
@@ -64,11 +64,11 @@ See below an example of a change operation which multiplies an integer property 
     }));
 </code></pre>
 
-<h1><a name="the-name-of-a-custom-change-operation">&#160;</a>The Name of a Custom Change Operation</h1>
+<h1 id="the-name-of-a-custom-change-operation">The Name of a Custom Change Operation</h1>
 
 <p>The custom operation is treated like the built-in change operations (in fact the build in implementations are using the same mechanism), therefore the operation should have a unique name which is used in all the relevant places as described in the <a href="change-api-advanced.htm">Change API Advanced Page</a>, such as configuring which operations are supported by a <code>SpaceSynchronizationEndpoint</code> implementation, using it inside space and replication filters to identify which custom change operation is executed, etc.</p>
 
-<h1><a name="mandatory-implementation-requirements">&#160;</a>Mandatory Implementation Requirements</h1>
+<h1 id="mandatory-implementation-requirements">Mandatory Implementation Requirements</h1>
 
 <p>When implementing a custom change operation, the following guidelines must be followed:</p>
 
@@ -104,11 +104,11 @@ on variables that may change between executions, such as system time, random, ma
 If the operation is not structured that way, the state can be inconsistent in the different locations after being replicate.</p>
 </div>
 
-<h1><a name="space-security">&#160;</a>Space Security</h1>
+<h1 id="space-security">Space Security</h1>
 
 <p>Custom change operation lets you run custom code on the space, hence the space security privilege required in order to execute a custom change operation is <code>EXECUTE</code> (the same role which allows executing space tasks).</p>
 
-<h1><a name="custom-operation-and-space-integration-points">&#160;</a>Custom Operation and Space Integration Points</h1>
+<h1 id="custom-operation-and-space-integration-points">Custom Operation and Space Integration Points</h1>
 
 <p>Using a custom operation with a <a href="../admin/cluster-replication-filters.htm">Replication Filter</a>, <a href="the-space-filters.htm">Space Filter</a> and <a href="space-synchronization-endpoint-api.htm">Space Synchronization Endpoint</a> is supported
 and behaves the same as the built-in operations. You can get a reference to the instance of the <code>CustomChangeOperation</code> by checking its name (or <code>instanceof</code>) and casting to the specific type.</p>
@@ -125,7 +125,7 @@ for(ChangeOperation operation : operations) {
 }
 </code></pre>
 
-<h1><a name="change-code-without-restarts">&#160;</a>Change code without restarts</h1>
+<h1 id="change-code-without-restarts">Change code without restarts</h1>
 
 <p>When executing a change over the space, the code is loaded from the remote client and cached for future executions.
 Since the code is cached, modifications are ignored, and users are forced to restart the space whenever they modify the code.</p>

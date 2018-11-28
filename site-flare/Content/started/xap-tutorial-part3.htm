@@ -9,7 +9,7 @@
 
 <p>XAP includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns. It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications. All services follow the POJO/Spring based abstraction approach which includes dependency injection and annotations.</p>
 
-<h1><a name="task-execution">&#160;</a>Task Execution</h1>
+<h1 id="task-execution">Task Execution</h1>
 
 <p>Task Execution provides a fine-grained API for performing ad-hoc parallel execution of user defined tasks. This framework should be used in the following scenarios:</p>
 
@@ -104,7 +104,7 @@
 </div>
 </div>
 
-<h4><a name="task-routing">&#160;</a>Task Routing</h4>
+<h4 id="task-routing">Task Routing</h4>
 
 <p>By nature, task execution is broadcasted to all partitions in the space. You can route a task directly to one of the partitions of the space. Here is an example demonstrating how to route a task to a partition:</p>
 
@@ -121,7 +121,7 @@
   <p><a href="../dev-java/task-execution-overview.htm">Task Execution over the Space</a></p>
 </div>
 
-<h1><a name="distributed-task">&#160;</a>Distributed Task</h1>
+<h1 id="distributed-task">Distributed Task</h1>
 
 <p>A DistributedTask is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions.</p>
 
@@ -178,7 +178,7 @@
   <p><a href="../dev-java/aggregators.htm">Aggregators</a></p>
 </div>
 
-<h4><a name="executorbuilder">&#160;</a>ExecutorBuilder</h4>
+<h4 id="executorbuilder">ExecutorBuilder</h4>
 
 <p>The executor builder allows to combine several task executions (both distributed ones and non distributed ones) into a seemingly single execution (with a reduce phase).</p>
 
@@ -187,7 +187,7 @@
   <p><a href="../dev-java/task-execution-overview.htm">Task Execution over the Space</a></p>
 </div>
 
-<h1><a name="space-based-remoting">&#160;</a>Space-Based Remoting</h1>
+<h1 id="space-based-remoting">Space-Based Remoting</h1>
 
 <p>Spring provides support for various remoting technologies. XAP uses the same concepts to provide remoting, using the space as the underlying protocol.</p>
 
@@ -204,7 +204,7 @@
 
 <p>In this tutorial will look at an Executor based Remoting service.</p>
 
-<h4><a name="defining-the-contract">&#160;</a>Defining the contract</h4>
+<h4 id="defining-the-contract">Defining the contract</h4>
 
 <p>In order to support remoting, the first step is to define the contract between the client and the server. Here is an example of a payment service:</p>
 
@@ -213,7 +213,7 @@
 }
 </code></pre>
 
-<h4><a name="implement-the-service">&#160;</a>Implement the Service</h4>
+<h4 id="implement-the-service">Implement the Service</h4>
 
 <p>Next, an implementation of this contract needs to be provided. This implementation will "live" on the server side. Here is a sample implementation:</p>
 
@@ -226,7 +226,7 @@ public class PaymentProcessor implements IPaymentProcessor {
 }
 </code></pre>
 
-<h4><a name="exporting-the-service">&#160;</a>Exporting the service</h4>
+<h4 id="exporting-the-service">Exporting the service</h4>
 
 <p>The service is exported to the server with the Spring configuration. Here is an example:</p>
 
@@ -245,7 +245,7 @@ public class PaymentProcessor implements IPaymentProcessor {
 &lt;os-remoting:service-exporter id="serviceExporter" /&gt;
 </code></pre>
 
-<h4><a name="client-side-invocation">&#160;</a>Client-side invocation</h4>
+<h4 id="client-side-invocation">Client-side invocation</h4>
 
 <p>On the client side the remoting proxy is injected with the @ExecutorProxy annotation:</p>
 

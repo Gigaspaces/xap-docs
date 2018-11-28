@@ -7,7 +7,7 @@
 
 <p>GigaSpaces applications provide continuous high-availability even when the infrastructure processes or entire (physical/virtual) machines fail. This capability is provided <span class="tc-bold">out of the box</span> but does require some attention to configuration to meet the needs of your specific application.</p>
 
-<h1><a name="n-1-and-n-2-configurations">&#160;</a>N+1 and N+2 Configurations</h1>
+<h1 id="n-1-and-n-2-configurations">N+1 and N+2 Configurations</h1>
 
 <p>When determining the optimal high-availability configuration for your particular application, you have to balance the cost of additional hardware (or virtual machines) against the risk of downtime. In most cases, it pays to have additional resources available to avoid downtime, which can compromise system health and result in instability, poor reliability, no durability, and incompleteness.</p>
 
@@ -17,19 +17,19 @@
 
 <p>When deploying an elastic PU, GSCs are created on the fly and missing PU instances will be provisioned into these newly started GSCs. In this case, the primary and backup instances are automatically distributed evenly across all machines.</p>
 
-<h1><a name="grid-failure-handling-strategy">&#160;</a>Grid Failure Handling Strategy</h1>
+<h1 id="grid-failure-handling-strategy">Grid Failure Handling Strategy</h1>
 
 <p>When deploying your XAP-based system in production, you should consider the following failure handling strategies to determine which is the worst case scenario that should be taken into account for your specific environment. Your final failover plan should address, GSC, Machine/VM, and complete Data Center failure.</p>
 
-<h2><a name="single-gsc-failure">&#160;</a>Single GSC Failure</h2>
+<h2 id="single-gsc-failure">Single GSC Failure</h2>
 
 <p>This is the simplest scenario to plan for, and is generally sufficent for small deployments that are not mission critical, and do not require continuous high-availability to survive multiple failures. The GSA will manage the GSC life-cycle locally or globally and accomadate GSC failure. This assumes you are using static PU deployment.</p>
 
-<h2><a name="multiple-gsc-failures">&#160;</a>Multiple GSC Failures</h2>
+<h2 id="multiple-gsc-failures">Multiple GSC Failures</h2>
 
 <p>To accommodate a failure scenario that involves continuous operation if more than one GSC fails at a time, you should deploy your production environment using an Elastic PU. This method will initiate GSCs as needed on available VMs or hardware machines, enabling the system to survive multiple failures and support dynamic scaling.</p>
 
-<h2><a name="complete-vm-machine-failure">&#160;</a>Complete VM/Machine Failure</h2>
+<h2 id="complete-vm-machine-failure">Complete VM/Machine Failure</h2>
 
 <p>In a scenario where an entire machine failing could be damaging to your system, deploy Elastic PU deployment and configure <code>XAP init.d setup</code>. This will initiate the GigaSpaces XAP agent when the failed machine restarts.</p>
 
@@ -38,7 +38,7 @@
   <p>The Cloudify platform can be used to automate XAP installation and configuration of the machine upon recovery.</p>
 </div>
 
-<h2><a name="complete-data-center-failure">&#160;</a>Complete Data Center Failure</h2>
+<h2 id="complete-data-center-failure">Complete Data Center Failure</h2>
 
 <p>This is a catastrophic failure scenario and it is important to automate the recovery process as much as possible. Use Elastic PU together with <code>XAP init.d setup</code> in order to get machines up and running. Then perform data replication over the WAN using the WAN Gateway to restore the data.</p>
 
@@ -47,23 +47,23 @@
   <p>The Cloudify platform can be used to automate XAP installation and configuration of the data center upon recovery.</p>
 </div>
 
-<h1><a name="guaranteed-notifications">&#160;</a>Guaranteed Notifications</h1>
+<h1 id="guaranteed-notifications">Guaranteed Notifications</h1>
 
 <p>When using notifications (notify container, session messaging API), should enable Guaranteed Notifications to address a primary Space failure while sending notifications. This allows the backup (when promoted to a primary), to continue notification delivery. Guaranteed Notifications are managed on the client side.</p>
 
 <p>When considering a notify container that is embedded with the Space, note that guaranteed notifications are not supported in this scenario. This means that upon failure, notifications that have been send might not be fully processed. In this case, blocking read/asychronous read should be considered as an alternative to notifications.</p>
 
-<h1><a name="balanced-primary-backup-provisioning">&#160;</a>Balanced Primary-Backup Provisioning</h1>
+<h1 id="balanced-primary-backup-provisioning">Balanced Primary-Backup Provisioning</h1>
 
 <p>To plan for failure of the data grid nodes or a machine running XAP, you should consider having even distribution of the primary and backup instances across all existing machines running XAP. This will ensure balanced CPU utilization across all XAP machines. The Elastic PU should be used to deploy the data grid, because it supports even primary/backup distribution automatically when a XAP machine fails and when a new one added to the grid. In this case, spare GSCs on each XAP machine are not required.</p>
 
-<h1><a name="cpu-utilization">&#160;</a>CPU Utilization</h1>
+<h1 id="cpu-utilization">CPU Utilization</h1>
 
 <p>CPU utilization should not exceed 40% on average, to support complete machine/VM failure. This buffer will enable the machines running XAP to cope with the additional capacity required when one or more machines running the grid fail or go through maintenance.</p>
 
-<h1><a name="local-xap-component-failure">&#160;</a>Local XAP Component Failure</h1>
+<h1 id="local-xap-component-failure">Local XAP Component Failure</h1>
 
-<h2><a name="lus">&#160;</a>LUS</h2>
+<h2 id="lus">LUS</h2>
 
 <p>To enable failover on LUS (Lookup Service) failure, at least two LUSs should be started for redundancy. You can use global or local <a href="../admin/lus-configuration.htm">LUS configuration</a> to ensure that two LUS will be running.</p>
 
@@ -71,37 +71,37 @@
 
 <p>You can configure the lookup discovery intervals using the <code>com.gigaspaces.unicast.interval</code> property.</p>
 
-<h2><a name="gsa">&#160;</a>GSA</h2>
+<h2 id="gsa">GSA</h2>
 
 <p>The GSA acts as a process manager, watching the GSC, LUS, ESM, and GSM processes.  GSA failure is a very rare scenario. If it happens, you should look for unusual hardware, operating system, or JDK failure that may have caused it. To address GSA failure you should run it as a service so that the operating system will restart it automatically if it fails (see how you can run it as a Windows Service or a Linux Service).</p>
 
-<h2><a name="gsm">&#160;</a>GSM</h2>
+<h2 id="gsm">GSM</h2>
 
 <p>The GSM is responsible for deployment and provisioning of deployed PUs(stateless, statefull). The GSM is utilized during deploymnt, PU failure, and PU migration from one GSC to another. To support high availability, you should have two GSMs started per grid. You can use either global or local <a href="../admin/gsm-configuration.htm">GSM configuration</a> to ensure that two GSM will be running. In most cases, global GSM configuration is recommended unless you require hot deploy functionality.</p>
 
-<h2><a name="esm">&#160;</a>ESM</h2>
+<h2 id="esm">ESM</h2>
 
 <p>The ESM is responsible for Elastic PU provisioning when deployed, and rebalances Space instances if a PU scales up/down/in/out or when a GSA fails or starts. When the ESM fails, it is restarted automatically using one of the existing agents.</p>
 
-<h1><a name="xap-distributed-transactions">&#160;</a>XAP Distributed Transactions</h1>
+<h1 id="xap-distributed-transactions">XAP Distributed Transactions</h1>
 
 <p>XAP Distributed Transactions involve a  remote or local XAP Distributed Transaction Manager and one or more data grid. With a remote Distributed Transaction Manager, you should consider running at least two remote transaction managers. It is recommended to use a local Distributed Transaction Manager as it makes the overall architecture simpler.</p>
 
-<h1><a name="xa-transactions">&#160;</a>XA Transactions</h1>
+<h1 id="xa-transactions">XA Transactions</h1>
 
 <p>XA Transactions involves the XA transaction manager, XAP data grid node(s) and some additional participant(s). The transaction manager is usually deployed independently. The transaction manager can fail, so it should be deployed in a high availability configuration. Client code should support transaction manager failure by caching relevant transaction exceptions, and retrying the activity by aborting the old transaction, starting a new transaction, executing relevant operations and committing. Atomikos and JBoss transaction managers are XAP certified and recommended.</p>
 
-<h1><a name="wan-gateway-failure">&#160;</a>WAN Gateway Failure</h1>
+<h1 id="wan-gateway-failure">WAN Gateway Failure</h1>
 
 <p>The WAN gateway acts as a broker, and is responsible for replicating activities conducted in the local data grid in another (remote) data grid. The WAN Gateway does not hold state, so its failure does not result any data loss. However if it fails, data is not replicated between the source and destination data grid. The WAN Gateway does not have to be deployed in a cluster configuration (aka primary-backup). By default, XAP will try to start the WAN Gateway if it fails. The WAN Gateway is usually configured to use a specific port on specific machine(s), therefore you should configure the WAN Gateway PU to be provisioned on specific machine(s).</p>
 
-<h1><a name="mirror-service-failure">&#160;</a>Mirror Service Failure</h1>
+<h1 id="mirror-service-failure">Mirror Service Failure</h1>
 
 <p>The Mirror Service is like the WAN Gateway, acting as a broker. It is responsible for persisting activities conducted in the data grid into external data sources, such as a database.</p>
 
 <p>The Mirror Service does not hold state, so its failure does not result in data loss. However, Mirror Service failure means data will not get stored in the external data source. The mirror does not have to be deployed in a cluster configuration (aka primary-backup). By default, XAP will try to start the Mirror Service if it fails. In many cases the Mirror Service accesses a database, which may be set to accept connections only from specific machines with specific ports. To address this, configure the database to allow connections from all machines that may run the Mirror Service, which is all XAP machines by default.</p>
 
-<h1><a name="split-brain">&#160;</a>Split Brain</h1>
+<h1 id="split-brain">Split Brain</h1>
 
 <div class="tc-admon-important">
   

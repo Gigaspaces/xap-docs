@@ -186,19 +186,19 @@ foreach (IMachine machine in admin.Machines)
   <p>Refer to <a href="scaling-agent-example.htm">Scaling Agent Example</a> for a fully running example that comes with the product.</p>
 </div>
 
-<h1><a name="admin-construction">&#160;</a>Admin Construction</h1>
+<h1 id="admin-construction">Admin Construction</h1>
 
 <p>Use <code>ServiceGridAdminBuilder</code> to create <code>IServiceGridAdmin</code> instances. After working with the <code>IServiceGridAdmin</code> is done, its <code>IServiceGridAdmin.Dispose()</code> method should be called.</p>
 
 <p>The Admin API discovers all the advertised services from the Lookup Services. In order to define which lookup groups are used, the <code>ServiceGridAdminBuilder.Groups.Add</code> can be used. The lookup locators can also be used for a non-multicast-enabled environment, using <code>ServiceGridAdminBuilder.Locators.Add</code>. If the services started are secured, the username and password can also be set in the Admin API.</p>
 
-<h1><a name="discovery-process">&#160;</a>Discovery Process</h1>
+<h1 id="discovery-process">Discovery Process</h1>
 
 <p>When the <code>IServiceGridAdmin</code> is created, it starts to receive discovery events of all the advertised services/components within its lookup groups/lookup locators. The events occur asynchronously, and the data model within the Admin API gets initialized in the background with services coming and going.</p>
 
 <p>This means that just creating the <code>IServiceGridAdmin</code>, and calling a specific get property for a data structure, might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>WaitFor</code> method that allows them to wait for a specific number of services to be up. When navigating the data model, the Admin API provides the most up-to-date state of the system that it is monitoring.</p>
 
-<h1><a name="domain-model">&#160;</a>Domain Model</h1>
+<h1 id="domain-model">Domain Model</h1>
 
 <p>The Service Grid Admin Domain Model has representation to the main actors at different XAP levels. They include:</p>
 
@@ -346,7 +346,7 @@ foreach (IMachine machine in admin.Machines)
 </tbody>
 </table>
 
-<h1><a name="accessing-the-domain-model">&#160;</a>Accessing the Domain Model</h1>
+<h1 id="accessing-the-domain-model">Accessing the Domain Model</h1>
 
 <p>There are two ways the Service Grid Admin API can be used to access information the Admin API can provide:</p>
 
@@ -392,7 +392,7 @@ void Spaces_SpaceModeChanged(object sender, SpaceModeChangedEventArgs e)
 
 <p>Of course, we can register the same event listener on a specific <code>ISpace</code> topology, or event on a specific <code>ISpaceInstance</code>.</p>
 
-<h1><a name="details-and-statistics">&#160;</a>Details and Statistics</h1>
+<h1 id="details-and-statistics">Details and Statistics</h1>
 
 <ul>
 <li>Some components in the Admin API can provide statistics. For example, an <code>ISpaceInstance</code> can provide statistics on how many times the read API was called on it. Statistics change over time, and in order to get them, either the property for the statistics can be used, or a statistics listener can be registered for statistics change events.</li>

@@ -9,7 +9,7 @@
 Users placing some free text into a form and later the system allows users to search for records that includes one or more words within a free text field.
 A simple way to enable such a search without using a regular expression query that my have some overhead can be done by using an array or a collection of String.</p>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1 id="example">Example</h1>
 
 <p>Our Space class includes the following - note the <span class="tc-bold">words</span> and the <span class="tc-bold">freeText</span> fields:</p>
 
@@ -63,7 +63,7 @@ proxy.Write(data);
 
 <p>With the above approach you avoid the overhead with regular expression queries.</p>
 
-<h1><a name="indexing">&#160;</a>Indexing</h1>
+<h1 id="indexing">Indexing</h1>
 
 <p>To speed up the query you can create an <a href="indexing-collections.htm">index</a> on the fields you want to search.</p>
 
@@ -98,7 +98,7 @@ proxy.Write(data);
   <p>The same approach can be implemented also with the <a href="document-overview.htm">SpaceDocument</a>.</p>
 </div>
 
-<h1><a name="regular-expressions">&#160;</a>Regular Expressions</h1>
+<h1 id="regular-expressions">Regular Expressions</h1>
 
 <p>You can query the space using the SQL <code>like</code> operator or <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.htm" target="_blank" >Java Regular Expression</a> Query syntax.</p>
 
@@ -117,7 +117,7 @@ SqlQuery&lt;MyClass&gt; query = new SqlQuery&lt;MyClass&gt;("Name rlike '(a|c).*
 
 <p>All the supported methods and options above are relevant also for using <code>rlike</code> with <code>SqlQuery</code>.</p>
 
-<h1><a name="case-insensitive-query">&#160;</a>Case Insensitive Query</h1>
+<h1 id="case-insensitive-query">Case Insensitive Query</h1>
 
 <p>Implementing case insensitive queries can be done via:</p>
 

@@ -7,7 +7,7 @@
 
 <p>In distributed applications on a network, where there may be partial failures of the network or of components, there needs to be a way for components to be timed out if they have failed, or have become unreachable. Lease is a basic mechanism GigaSpaces provides to address this problem. GigaSpaces provides this functionality using Jini technology.</p>
 
-<h1><a name="lease-basics">&#160;</a>Lease Basics</h1>
+<h1 id="lease-basics">Lease Basics</h1>
 
 <p>The essential idea behind a lease is fairly simple.</p>
 
@@ -27,7 +27,7 @@
 <li>Specifying the Lease interface constant ANY, indicates that no particular lease time is desired and that the grantor of the lease should supply a time that is most convenient for the grantor. (GigaSpaces converts leases with ANY constant to FOREVER leases).</li>
 </ul>
 
-<h1><a name="space-object-lease">&#160;</a>Space Object Lease</h1>
+<h1 id="space-object-lease">Space Object Lease</h1>
 
 <p>Leases can be used for objects written to an XAP cluster. All the write operations in <a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_ISpaceProxy.htm">ISpaceProxy</a> interface support Lease. Lease duration is an argument that is passed to the write operations and they return a Lease Context which can be used to manage the Leases.</p>
 
@@ -47,7 +47,7 @@ MyMessage message3 = new MyMessage ();
 ILeaseContext&lt;MyMessage&gt; lease3 = spaceProxy.Write (message3, long.MaxValue);
 </code></pre>
 
-<h1><a name="getting-lease-expiration-date">&#160;</a>Getting Lease Expiration Date</h1>
+<h1 id="getting-lease-expiration-date">Getting Lease Expiration Date</h1>
 
 <p>You may use the <code>Lease.getExpiration</code> to retrieve the time where the space object will expire. See below simple example - It writes a space into the space with 10 seconds lease and later prints how much time is left for the space object to remain in space before it will expire:</p>
 
@@ -68,7 +68,7 @@ while(true)
 }
 </code></pre>
 
-<h1><a name="manually-managing-space-object-lease">&#160;</a>Manually Managing Space Object Lease</h1>
+<h1 id="manually-managing-space-object-lease">Manually Managing Space Object Lease</h1>
 
 <p>GigaSpaces API returns the <code>ILeaseContext</code> after every write operation/update operation. Space Object Leases can be renewed or cancelled based on the application needs.</p>
 
@@ -102,7 +102,7 @@ spaceProxy.WriteMultiple(processedLowPriorityOrders,
         WriteModifiers.UpdateOrWrite); // Update existing object
 </code></pre>
 
- <a name="LeaseRenewalManager">&#160;</a>
+ <a id="LeaseRenewalManager">&#160;</a>
 
 </body>
 </html>

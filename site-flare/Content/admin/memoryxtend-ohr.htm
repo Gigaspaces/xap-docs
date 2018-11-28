@@ -5,7 +5,7 @@
 <h1>MemoryXtend for Off-Heap RAM</h1>
   
 
-<h1><a name="overview">&#160;</a>Overview</h1>
+<h1 id="overview">Overview</h1>
 
 <p>The MemoryXtend off-heap storage driver stores Space objects in RAM, outside the Java heap. This has two benefits:</p>
 
@@ -17,7 +17,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/blobstore/ohr3.png" alt="image" /></p>
 </div>
 
-<h1><a name="basic-configuration">&#160;</a>Basic Configuration</h1>
+<h1 id="basic-configuration">Basic Configuration</h1>
 
 <p>You can create a Space with the MemoryXtend off-heap storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' that can use up to 20GB of off-heap RAM:</p>
 
@@ -63,7 +63,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
   <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.htm#on-heap-cache">MemoryXtend overview</a> topic.</p>
 </div>
 
-<h2><a name="defining-the-memory-threshold">&#160;</a>Defining the Memory Threshold</h2>
+<h2 id="defining-the-memory-threshold">Defining the Memory Threshold</h2>
 
 <p>In order to use off-heap storage, you must define the amount of memory to allocate, for example. <code>20g</code>. Use the following sizing units:</p>
 
@@ -81,7 +81,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
   <p>If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular <a href="../dev-java/memory-management-overview.htm">memory manager</a>.</p>
 </div>
 
-<h1><a name="advanced-configuration">&#160;</a>Advanced Configuration</h1>
+<h1 id="advanced-configuration">Advanced Configuration</h1>
 
 <p>As part of fine-tuning the MemoryXtend functionality, you can control the balance between memory utilization and system performance. This is useful because there are two ways to update the value of an object in the off-heap memory:</p>
 
@@ -96,7 +96,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
 <p>The default threshold is 50B.</p>
 
-<h2><a name="example">&#160;</a>Example</h2>
+<h2 id="example">Example</h2>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -138,7 +138,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 </div>
 </div>
 
-<h1><a name="monitoring">&#160;</a>Monitoring</h1>
+<h1 id="monitoring">Monitoring</h1>
 
 <p>The amount of used off-heap memory can be tracked using the following:</p>
 

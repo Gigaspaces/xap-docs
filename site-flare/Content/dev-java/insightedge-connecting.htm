@@ -7,7 +7,7 @@
 
 <p>This section describes how to connect your Spark application to the Data Grid.</p>
 
-<h1><a name="creating-the-insightedgeconfig">&#160;</a>Creating the InsightEdgeConfig</h1>
+<h1 id="creating-the-insightedgeconfig">Creating the InsightEdgeConfig</h1>
 
 <p>To connect the Spark application to the Data Grid, use <code>import org.insightedge.spark.implicits.all._</code> to enable the Spark-to-DataGrid specific API and configure <code>SparkConf</code> with the <code>InsightEdgeConfig</code> object:</p>
 
@@ -50,7 +50,7 @@ val sparkConf = new SparkConf().setAppName("sample-app").setMaster("spark://127.
 </tbody>
 </table>
 
-<h1><a name="creating-the-sparkcontext">&#160;</a>Creating the SparkContext</h1>
+<h1 id="creating-the-sparkcontext">Creating the SparkContext</h1>
 
 <p>Create <code>SparkContext</code> as you usually do with a pure Spark application:</p>
 
@@ -61,7 +61,7 @@ val sparkConf = new SparkConf().setAppName("sample-app").setMaster("spark://127.
 
 <p>Now you are all set and can start using the <code>SparkContext</code> with the extended functionality.</p>
 
-<h1><a name="closing-the-sparkcontext">&#160;</a>Closing the SparkContext</h1>
+<h1 id="closing-the-sparkcontext">Closing the SparkContext</h1>
 
 <p>When you are done interacting with the <code>SparkContext</code>, close it and all connections to Data Grid with:</p>
 

@@ -39,7 +39,7 @@ For example (using the distributed transaction manager):</p>
   <p>It is highly recommended to read the <a href="http://static.springframework.org/spring/docs/3.0.x/reference/transaction.htm" target="_blank" >transaction management chapter</a> in the Spring reference documentation.</p>
 </div>
 
-<h1><a name="transaction-provider">&#160;</a>Transaction Provider</h1>
+<h1 id="transaction-provider">Transaction Provider</h1>
 
 <p>OpenSpaces provides a pluggable transaction provider using the following interface:</p>
 
@@ -56,7 +56,7 @@ For example (using the distributed transaction manager):</p>
 <pre><code class="language-java">gigaSpace.getSpace().take(obj, gigaSpace.getCurrentTransaction(), 1000);
 </code></pre>
 
-<h1><a name="isolation-level">&#160;</a>Isolation Level</h1>
+<h1 id="isolation-level">Isolation Level</h1>
 
 <p>XAP supports three isolation levels: <code>READ_UNCOMMITTED</code>, <code>READ_COMMITTED</code> and <code>REPEATABLE_READ</code> (default). When using <code>GigaSpace</code>, the default isolation level that it will perform under can be defined in the following manner:</p>
 

@@ -27,7 +27,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/alerts-flow-diagram.png" alt="alerts-flow-diagram.png" /></p>
 </div>
 
-<h1><a name="predefined-alerts">&#160;</a>Predefined Alerts</h1>
+<h1 id="predefined-alerts">Predefined Alerts</h1>
 
 <p>XAP is packaged with a number of predefined alerts whose thresholds are configurable. XAP does not currently allow for custom alerts defined by the user. Alerts can be either raised or resolved. For example, a CPU alert can be raised when the CPU utilization on a certain host crosses a certain threshold (say 80%) for a predefined amount of time. This alert can be resolved when the CPU utilization goes below another threshold (say 30%) for a predefined amount of time.</p>
 
@@ -82,7 +82,7 @@
 </tbody>
 </table>
 
-<h1><a name="static-configuration">&#160;</a>Static Configuration</h1>
+<h1 id="static-configuration">Static Configuration</h1>
 
 <p>The static configuration for the predefined alerts mentioned above is defined in the <code>&lt;XAP Root&gt;/config/alerts/alerts.xml</code> file. It includes the default settings for each alert.</p>
 
@@ -103,11 +103,11 @@ The alert is configured with a high threshold of 80% and a low threshold of 60% 
 
 <p>Since GigaSpaces XAP is working in a distributed environment, an alert is identified with a specific component (machine, JVM, Space, etc.).</p>
 
-<h1><a name="viewing-alerts">&#160;</a>Viewing Alerts</h1>
+<h1 id="viewing-alerts">Viewing Alerts</h1>
 
 <p>You can view alerts in the Web Management Console. For information, refer to <a href="../admin/web-management-view-alerts.htm">Viewing Alerts</a> in the Administration Guide.</p>
 
-<h1><a name="listening-for-alerts">&#160;</a>Listening for Alerts</h1>
+<h1 id="listening-for-alerts">Listening for Alerts</h1>
 
 <p>Alerts can be consumed using a registered event listener by registering with the <code>AlertManager</code> component (which is part of the <a href="administration-and-monitoring-overview.htm">Administration and Monitoring API</a>. The listener will be notified of alerts that have been triggered.</p>
 
@@ -145,7 +145,7 @@ The file argument can be:</p>
 <p>The default parser parses the XML file. If needed, you can implement a different parser (see <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/config/parser/AlertConfigurationParser.htm">AlertConfigurationParser</a> interface).
 The <code>alertTriggered</code> method is called upon each alert triggered.</p>
 
-<h1><a name="the-alert-event">&#160;</a>The Alert Event</h1>
+<h1 id="the-alert-event">The Alert Event</h1>
 
 <p>The <code>org.openspaces.admin.alert.Alert</code> instance includes the following set of properties:</p>
 
@@ -220,7 +220,7 @@ The <code>alertTriggered</code> method is called upon each alert triggered.</p>
   <p><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/AlertSeverity.htm">AlertSeverity</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/AlertStatus.htm">AlertStatus</a></p>
 </div>
 
-<h1><a name="runtime-configuration">&#160;</a>Runtime Configuration</h1>
+<h1 id="runtime-configuration">Runtime Configuration</h1>
 
 <p>The static alert configurations are parsed using the <code>XmlAlertConfigurationParser</code>. This pre-configures the alert manager with all the alerts found in the <code>alerts.xml</code>.</p>
 
@@ -233,25 +233,25 @@ The <code>alertTriggered</code> method is called upon each alert triggered.</p>
 
 <p>Alert configuration settings can be changed (at runtime) for a pre-configured/pre-defined alert type.</p>
 
-<h2><a name="enabling-and-disabling-of-an-alert">&#160;</a>Enabling and Disabling of an alert</h2>
+<h2 id="enabling-and-disabling-of-an-alert">Enabling and Disabling of an alert</h2>
 
 <p>A pre-configured but <span class="tc-bold">disabled</span> alert can be easily enabled, but an already <span class="tc-bold">enabled</span> alert type will need to be <span class="tc-bold">disabled</span> prior to setting a new configuration.</p>
 
-<h2><a name="enable-a-disabled-predefined-alert">&#160;</a>Enable a Disabled Predefined Alert</h2>
+<h2 id="enable-a-disabled-predefined-alert">Enable a Disabled Predefined Alert</h2>
 
 <p>For a predefined but disabled alert, enable it by specifying the alert Class type. The configuration settings that were predefined will be used.</p>
 
 <pre><code class="language-java">alertManager.enableAlert(CpuUtilizationAlertConfiguration.class);
 </code></pre>
 
-<h2><a name="disable-a-predefined-enabled-alert">&#160;</a>Disable a Predefined Enabled Alert</h2>
+<h2 id="disable-a-predefined-enabled-alert">Disable a Predefined Enabled Alert</h2>
 
 <p>Too disable an existing alert (yet keep its configuration), use the following code:</p>
 
 <pre><code class="language-java">alertManager.disableAlert(CpuUtilizationAlertConfiguration.class);
 </code></pre>
 
-<h2><a name="re-configure-a-predefined-alert">&#160;</a>Re-configure a predefined alert</h2>
+<h2 id="re-configure-a-predefined-alert">Re-configure a predefined alert</h2>
 
 <p>For a predefined alert, obtain the current configuration, change the settings and re-configure the <code>AlertManager</code>.
 In the background, the enabled alert will be disabled, set and re-enabled with the new configuration.</p>
@@ -261,7 +261,7 @@ config.setHighThresholdPerc(85);
 alertManager.configure(config);
 </code></pre>
 
-<h2><a name="configure-and-enable-a-predefined-disabled-alert">&#160;</a>Configure and enable a predefined disabled alert</h2>
+<h2 id="configure-and-enable-a-predefined-disabled-alert">Configure and enable a predefined disabled alert</h2>
 
 <p>If predefined settings need to be changed, get the configuration, change the settings, enable and re-configure.</p>
 
@@ -271,7 +271,7 @@ config.setEnabled(true); //don't forget
 alertManager.configure(config);
 </code></pre>
 
-<h2><a name="configure-an-undefined-alert">&#160;</a>Configure an Undefined Alert</h2>
+<h2 id="configure-an-undefined-alert">Configure an Undefined Alert</h2>
 
 <p>For an alert which wasn't defined in the original set of alerts, create a new configuration with required settings and call configure.</p>
 
@@ -283,7 +283,7 @@ config.setEnabled(true);
 alertManager.configure(config);
 </code></pre>
 
-<h2><a name="using-the-alertconfigurer">&#160;</a>Using the <code>AlertConfigurer</code></h2>
+<h2 id="using-the-alertconfigurer">Using the <code>AlertConfigurer</code></h2>
 
 <p>For a more fluent API, <code>AlertConfigurer</code> implementations provide chaining methods.</p>
 

@@ -10,7 +10,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/devguide/space-filter.png" width="478" height="336" /></p>
 </div>
 
-<h1><a name="space-filters">&#160;</a>Space Filters</h1>
+<h1 id="space-filters">Space Filters</h1>
 
 <p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="the-space-filters-metadata.htm">Space Filters</a>. It uses the space support for a <code>FilterProvider</code>, which is a wrapper for an <code>ISpaceFilter</code> implementation and its characteristics (such as priority, <code>activeWhenBackup</code>). This allows you to provide space filters without changing the space schema.</p>
 
@@ -19,7 +19,7 @@
   <p>Space Filters can only be used with embedded spaces.</p>
 </div>
 
-<h2><a name="ispacefilter">&#160;</a>ISpaceFilter</h2>
+<h2 id="ispacefilter">ISpaceFilter</h2>
 
 <p>An actual implementation of the <code>ISpaceFilter</code> interface can be provided using the <code>SpaceFilterProviderFactory</code> class. Here is a very simple example of an <code>ISpaceFilter</code> implementation:</p>
 
@@ -84,7 +84,7 @@
 </div>
 </div>
 
-<h1><a name="delegate-filters">&#160;</a>Delegate Filters</h1>
+<h1 id="delegate-filters">Delegate Filters</h1>
 
 <p>OpenSpaces comes with delegate implementations of <code>ISpaceFilter</code>, allowing you to use either annotations or explicit method listings in order to use POJOs as space filters.</p>
 
@@ -209,11 +209,11 @@
 </div>
 </div>
 
-<h1><a name="accessing-a-space-within-a-space-filter">&#160;</a>Accessing a Space within a Space Filter</h1>
+<h1 id="accessing-a-space-within-a-space-filter">Accessing a Space within a Space Filter</h1>
 
 <p>Accessing a space within a space filter can cause a cycle construction exception, since the space can not be injected to the filter (because the space was not constructed yet). There are options to solve this with pure Spring, but OpenSpaces provides a simpler option by using the <a href="pojo-grid-annotations.htm">GigaSpacesLateContext</a> annotation.</p>
 
-<h1><a name="space-replication-filters">&#160;</a>Space Replication Filters</h1>
+<h1 id="space-replication-filters">Space Replication Filters</h1>
 
 <p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="../admin/cluster-replication-filters.htm">Cluster Replication Filters</a>. It uses the space support for a <code>ReplicationFilterProvider</code> which is a wrapper for an <code>IReplicationFilter</code> implementation and its characteristics (such as <code>activeWhenBackup</code>). This allows you to provide space replication filters without changing the space schema.</p>
 

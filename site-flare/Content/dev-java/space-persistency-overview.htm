@@ -42,7 +42,7 @@
 <p>If you are upgrading from a version of XAP prior to 9.7, refer to the <a href="migrating-from-external-data-source-api.htm">Migrating From External Data Source API</a> page.</p>
 </div>
 
-<h1><a name="space-persistency-api">&#160;</a>Space Persistency API</h1>
+<h1 id="space-persistency-api">Space Persistency API</h1>
 
 <p>The Space Persistency API contains two abstract classes that should be extended in order to customize the Space persistency functionality.
 The ability to customize the Space persistency functionality allows XAP to interact with any external application or data source.</p>
@@ -121,11 +121,11 @@ The ability to customize the Space persistency functionality allows XAP to inter
   <p>XAP's built in Hibernate Persistency implementation is an extension of the SpaceDataSource and SpaceSynchronizationEndpoint classes. For detailed API information, refer to <a href="space-data-source-api.htm">Space Data Source API</a> and <a href="space-synchronization-endpoint-api.htm">Space Synchronization Endpoint API</a>.</p>
 </div>
 
-<h1><a name="rdbms-space-persistency">&#160;</a>RDBMS Space Persistency</h1>
+<h1 id="rdbms-space-persistency">RDBMS Space Persistency</h1>
 
 <p>XAP comes with a built-in implementation of <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> called <a href="hibernate-space-persistency.htm">Hibernate Space Persistency</a>. See <a href="space-persistency-initial-load.htm">Space Persistency Initial Load</a> to allow the Space to pre-load its data. You can also use splitter data source <code>SpaceDataSourceSplitter</code>, which allows you to split data sources according to entry type.</p>
 
-<h1><a name="nosql-db-space-persistency">&#160;</a>NoSQL DB Space Persistency</h1>
+<h1 id="nosql-db-space-persistency">NoSQL DB Space Persistency</h1>
 
 <p>The <a href="cassandra-space-persistency.htm">Cassandra Space Persistency Solution</a> allows applications to push  long-term data into the Cassandra database in an asynchronous manner, without affecting the application response time, and to also load data from the Cassandra database after the XAP data grid is started or in a lazy manner when there is a cache miss when reading data from the XAP data grid.</p>
 

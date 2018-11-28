@@ -7,7 +7,7 @@
 
 <p>Bootstrapping a site from another site is a process in which one site space is starting fresh and it is being populated with the data of another site space. This can be useful after a very long disconnection where the replication redo-log in the source spaces that replicates to this site was dropped due to breaching capacity limitations, and the disconnected site should start fresh. Or some initiated downtime due to some maintenance of one site which should bootstrap once it is restarted.</p>
 
-<h1><a name="how-it-works">&#160;</a>How It Works</h1>
+<h1 id="how-it-works">How It Works</h1>
 
 <p>A bootstrap of a site is being done via a gateway sink of that site and the gateway sink of the site that the bootstrap should be done from. Therefore, both sites must have a deployed gateway sink.</p>
 
@@ -29,7 +29,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan-bootstrap-sync.jpg" alt="wan-bootstrap-sync.jpg" /></p>
 </div>
 
-<h1><a name="initiating-a-bootstrap">&#160;</a>Initiating a Bootstrap</h1>
+<h1 id="initiating-a-bootstrap">Initiating a Bootstrap</h1>
 
 <p>Unlike regular space recovery, where a backup or replicated space performs a recovery, a bootstrap has much more implications and therefore it is an administrative command executed by the user on demand.</p>
 

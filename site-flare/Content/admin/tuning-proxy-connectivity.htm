@@ -21,7 +21,7 @@
 <li>If the data grid topology is partitioned, route the operation to the relevant partition(s) and aggregate the partitions results. (For example: a <span class="tc-bold">count</span> operation is broadcasted concurrently to each partition, results are accumulated implicitly and when the last partition result arrives the operation is completed).</li>
 </ul>
 
-<h1><a name="configuration">&#160;</a>Configuration</h1>
+<h1 id="configuration">Configuration</h1>
 
 <p>The space proxy router behavior is controlled using the following configuration properties, which can be specified as part of the <a href="../dev-java/the-space-configuration.htm#proxy">Space Component</a> or via API:</p>
 
@@ -99,7 +99,7 @@
  
 </div>
 
-<h1><a name="communication-disruptions">&#160;</a>Communication Disruptions</h1>
+<h1 id="communication-disruptions">Communication Disruptions</h1>
 
 <p>When the space resides in the same process as the client (a.k.a. embedded space), communication disruptions are impossible since no network is involved. However, when the space resides in a different process, communication between the client and the space may be disrupted for various reasons (machine was restarted or disconnected, space was shut down, processing unit was relocated, etc.). In such cases the space proxy router initiates an <span class="tc-italic">active server lookup</span> procedure, in which all the potential servers are sampled concurrently until an available active server is discovered. If the active server lookup procedure exceeds the predefined timeout and no active server was found, the operation will be terminated and an exception will be thrown. The active server lookup timeout can be configured using the space-config.proxy.router.active-server-lookup-timeout property.</p>
 
@@ -113,31 +113,31 @@
   <p>When searching for an active server the default interval between samples is 100 milliseconds. If your system demands shorter failure detection, the sampling interval can be configured using the <code>space-config.proxy.router.active-server-lookup-sampling-interval</code> property (see <a href="#configuration">Configuration</a>). <span class="tc-bold">Note</span>: This settings does not affect the failover duration (i.e. how long it takes for a backup space to become primary), it only affects how long it takes for a space proxy to discover the new primary space. For more information refer to <a href="troubleshooting-failure-detection.htm">Failure Detection</a>.</p>
 </div>
 
-<h2><a name="partitioned-space">&#160;</a>Partitioned Space</h2>
+<h2 id="partitioned-space">Partitioned Space</h2>
 
 <p>A partitioned space is treated as a combination of routers (one per partition), so in fact connectivity management is encapsulated per partition as explained above.</p>
 
-<h2><a name="batch-operations">&#160;</a>Batch Operations</h2>
+<h2 id="batch-operations">Batch Operations</h2>
 
 <p>When executing a batch operation (write multiple, read multiple, etc.) on a partition cluster, if one or more partitions are not available, a partial failure exception will be thrown according to the operation (e.g. WriteMultipleException for write multiple), detailing which part of the operation was successful and which was not.</p>
 
-<h2><a name="blocking-operations">&#160;</a>Blocking Operations</h2>
+<h2 id="blocking-operations">Blocking Operations</h2>
 
 <p>When executing blocking operations (such as read/take operation with a timeout &gt; 0 or <a href="../dev-java/polling-container-overview.htm">Polling Container</a>), keep in mind that the operation's timeout argument determines the maximum time to wait for a matching entry in the space, whereas the space proxy configuration <code>active-server-lookup-timeout</code> determines the maximum time to wait for an active server. These timeouts are separate and do not affect each other. Moreover, if a failover occurs while the operation is blocked on a server, it will be re-invoked on the new active server with the original timeout, ignoring the amount of time the client already spent waiting for a matching object before the client was disconnected.</p>
 
-<h2><a name="notifications">&#160;</a>Notifications</h2>
+<h2 id="notifications">Notifications</h2>
 
 <p>If communication is disrupted during the notification registration process, it is handled in the same manner as the other operations (i.e. proxy automatically looks for an active space up to the configured timeout). However, if communication is disrupted afterwards, other mechanisms are needed to ensure communication is restored and events are not lost. For more information refer to <a href="../dev-java/notify-container-overview.htm">Notify Container</a> and <a href="../dev-java/session-based-messaging-api.htm">Session Based Messaging API</a>.</p>
 
-<h2><a name="local-cache-view">&#160;</a>Local Cache/View</h2>
+<h2 id="local-cache-view">Local Cache/View</h2>
 
 <p>When using <a href="../dev-java/client-side-caching.htm">Client side caching</a>, the connection management is different because cache staleness needs to be considered as well. For information refer to <a href="../dev-java/local-cache.htm">Local Cache</a> or <a href="../dev-java/local-view.htm">Local View</a>.</p>
 
-<h2><a name="unicast-lookup-service">&#160;</a>Unicast Lookup Service</h2>
+<h2 id="unicast-lookup-service">Unicast Lookup Service</h2>
 
 <p>The space proxy router uses the <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a> to locate data grid members. The lookup service uses either <a href="network-multicast.htm">multicast</a> or <a href="network-unicast-discovery.htm">unicast</a> discovery (default is multicast). When a unicast lookup service is restarted, the space proxy will automatically re-discover after a while. If you need to better understand that process and  fine-tune it, refer to <a href="network-unicast-discovery.htm#configuring-lookup-discovery-intervals">Configuring lookup discovery intervals</a>.</p>
 
-<h1><a name="load-balancing">&#160;</a>Load balancing</h1>
+<h1 id="load-balancing">Load balancing</h1>
 
 <p>In active-passive (a.k.a. primary-backup) topologies there's never more than a single cluster member which can serve the request, so there's no need for a load balancer. In active-active (fully replicated) topologies, all the cluster members are identical replicas of the data, which means the proxy can use a load balancer to choose which cluster member will serve the operation.</p>
 
@@ -150,7 +150,7 @@
 
 <p>Configuring the load balancer type is done using the <code>space-config.proxy.router.load-balancer-type</code> space property.</p>
 
-<h2><a name="reconnection-algorithm">&#160;</a>Reconnection Algorithm</h2>
+<h2 id="reconnection-algorithm">Reconnection Algorithm</h2>
 
 <p>In general, the change can be summarized as follows: instead of "On failure, retry the operation up to 10 times with 2 seconds sleep between retries", we have "On failure, wait up to 20 seconds until an active space comes up, and sample all potential spaces each 100 milliseconds".</p>
 
@@ -163,7 +163,7 @@
   <p>All the old properties/settings used to configure number of retries and interval between retries are ignored in the new router. If those settings are customized in your system and you're upgrading to 9.0.1, you should figure out what timeout you want and use the new space properties to set it.</p>
 </div>
 
-<h2><a name="custom-load-balance-strategies">&#160;</a>Custom Load Balance Strategies</h2>
+<h2 id="custom-load-balance-strategies">Custom Load Balance Strategies</h2>
 
 <p>The old router supported complex configuration allowing users to define custom load balance and routing strategies per operation. The new router ignores all that configuration - when using partitioned data grid routing is always done according to a hash-based policy applied to the routing property.</p>
 

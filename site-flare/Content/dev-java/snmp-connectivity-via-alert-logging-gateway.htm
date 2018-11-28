@@ -11,15 +11,15 @@ A recommended approach for such integration would be to construct a listener tha
 <p>The main advantage with this approach is the ability to use an extensive set of out-of-box log appenders that translates log messages into different protocols and APIs to be consumed by third party products.
 <img src="../Resources/Static/attachment_files/AlertsLoggerBridge.jpg" alt="AlertsLoggerBridge.jpg" /></p>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1 id="example">Example</h1>
 
 <p>The <code>AlertLoggingGateway</code> example project provided with the GigaSpaces distribution using an existing <code>Log4J</code> Appender (SnmpTrapAppender) to convert log messages into SNMP traps, resulting in the alerts propagated to a third party network management solution.</p>
 
 <p><img src="../Resources/Static/attachment_files/SNMP_Appender.jpg" alt="SNMP_Appender.jpg" /></p>
 
-<h2><a name="alertslogginggatway-components">&#160;</a>AlertsLoggingGatway components</h2>
+<h2 id="alertslogginggatway-components">AlertsLoggingGatway components</h2>
 
-<h4><a name="snmptraptransmitter">&#160;</a>SnmpTrapTransmitter</h4>
+<h4 id="snmptraptransmitter">SnmpTrapTransmitter</h4>
 
 <p>The <span class="tc-bold">SnmpTrapTransmitter</span> is a XAP PU responsible for the generic Alert-to-Log bridging. It does that by listening to all alerts in its alert filter file. Any incoming alerts are simply writing to commons logging log. Notice that, being generic in nature, the SnmpTrapTransmitter can be reused without any changes in similar projects.
 SnmpTrapTransmitter exposes the following configuration parameters:</p>
@@ -67,7 +67,7 @@ SnmpTrapTransmitter exposes the following configuration parameters:</p>
 }
 </code></pre>
 
-<h4><a name="snmptrapsender">&#160;</a>SnmpTrapSender</h4>
+<h4 id="snmptrapsender">SnmpTrapSender</h4>
 
 <p>The <span class="tc-bold">SnmpTrapSender</span> is a utility class that implements the SnmpTrapAppender's <code>SnmpTrapSenderFacade</code> interface with an implementation that queues and asynchronously transmits Alerts as SNMP traps. The SNMP transmission method - <code>sendTrap()</code> - uses snmp4j library as its underlying implementation.</p>
 
@@ -93,7 +93,7 @@ SnmpTrapTransmitter exposes the following configuration parameters:</p>
 
 </code></pre>
 
-<h1><a name="logging">&#160;</a>Logging</h1>
+<h1 id="logging">Logging</h1>
 
 <p>The <span class="tc-bold">Commons-logging.properties</span> file is a commons logging configuration file which re-directs its calls to a log4j logger. In our example this file contains redirection of commons-logging to log4j as the SNMP trapper we use is on top of log4j.
 <span class="tc-bold">log4j.properties</span> is a log4j configuration file which delegates log writes to the SNMPTrapAppender, resulting in SNMP traps.</p>
@@ -109,7 +109,7 @@ log4j.appender.TRAP_LOG.layout=org.apache.log4j.PatternLayout
 log4j.appender.TRAP_LOG.layout.ConversionPattern=%d,%p,%t,%c,%m%n
 </code></pre>
 
-<h1><a name="running-the-example">&#160;</a>Running the Example</h1>
+<h1 id="running-the-example">Running the Example</h1>
 
 <p>The example is located under <code>&lt;XAP root&gt;/tools/alert-integration</code>. To run it you should do the following:</p>
 
@@ -126,7 +126,7 @@ log4j.appender.TRAP_LOG.layout.ConversionPattern=%d,%p,%t,%c,%m%n
 <li>Start-up your SNMP server to intercept and view incoming traps. If you use MIB browser enter the Trap Receiver (Ctrl-I) and make sure it is configured to listen on the right IP and port.</li>
 </ol>
 
-<h1><a name="external-dependencies">&#160;</a>External Dependencies</h1>
+<h1 id="external-dependencies">External Dependencies</h1>
 
 <ol>
 <li>log4j version &gt;= 1.2.14</li>

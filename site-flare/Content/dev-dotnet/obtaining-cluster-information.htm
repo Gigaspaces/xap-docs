@@ -9,7 +9,7 @@
 However, in some cases you may want your processing unit to be aware of it.
 This mechanism is also used internally by the platform to maintain the clustering information when deploying a space for example.</p>
 
-<h1><a name="available-cluster-information">&#160;</a>Available Cluster Information</h1>
+<h1 id="available-cluster-information">Available Cluster Information</h1>
 
 <p>As mentioned above the cluster information is passed to the components of each processing unit instance via an instance of the <code>GigaSpaces.Core.ClusterInfo</code> class, which holds the following information:</p>
 
@@ -59,7 +59,7 @@ This mechanism is also used internally by the platform to maintain the clusterin
   <p><code>null</code> value for one of these properties means that they are not applicable for the processing unit instance at hand or the used deployment topology.</p>
 </div>
 
-<h1><a name="obtaining-the-cluster-information">&#160;</a>Obtaining the Cluster Information</h1>
+<h1 id="obtaining-the-cluster-information">Obtaining the Cluster Information</h1>
 
 <p>The cluster information is injected to the processing unit container at runtime and is available throughout it's lifecycle using the singleton <code>ProcessingUnitContainer.Current.ClusterInfo</code>.</p>
 

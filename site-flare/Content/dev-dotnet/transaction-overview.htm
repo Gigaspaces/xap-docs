@@ -15,7 +15,7 @@
   </tr>
 </table>
 
-<h1><a name="usage">&#160;</a>Usage</h1>
+<h1 id="usage">Usage</h1>
 
 <p>Suppose we have an order processing system, and we need to validate incoming orders before they continue to be processed. Our code could look something like this:</p>
 
@@ -74,7 +74,7 @@
 
 <p>Finally, we now have to provide a transaction manager when invoking <code>ProcessNewOrder()</code>. This can be done by invoking <code>GigaSpacesFactory.CreateDistributedTransactionManager()</code>. It isn't necessary to create a transaction manager each time we create a transaction, so it was left out of the method. The transaction manager is usually created once upon application initialization, and used throughout the application.</p>
 
-<h1><a name="timeout">&#160;</a>Timeout</h1>
+<h1 id="timeout">Timeout</h1>
 
 <p>In some circumstances, the application may hang before the transaction is committed or aborted, which means that entries that were affected by the transactions are locked away from other users. To prevent this, create the transaction with a timeout, so that when the timeout expires the transaction is automatically rolled back and all entries are released.</p>
 
@@ -90,7 +90,7 @@ txnManager.Create(5 ** 60 ** 1000);
 txnManager.DefaultLeaseTime = 5 ** 60 ** 1000;
 </code></pre>
 
-<h1><a name="isolation-levels">&#160;</a>Isolation Levels</h1>
+<h1 id="isolation-levels">Isolation Levels</h1>
 
 <p>When performing read operations with transactions, the transaction isolation level can be set using the Read Modifiers:</p>
 
@@ -153,7 +153,7 @@ public void readWithTransaction()
 }
 </code></pre>
 
-<h1><a name="viewing-transactions">&#160;</a>Viewing Transactions</h1>
+<h1 id="viewing-transactions">Viewing Transactions</h1>
 
 <div class="tc-admon-note">
   

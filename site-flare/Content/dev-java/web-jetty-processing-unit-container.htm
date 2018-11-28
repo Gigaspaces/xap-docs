@@ -10,14 +10,14 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/web_app_archi.jpg" alt="web_app_archi.jpg" /></p>
 </div>
 
- <a name="jetty-version">&#160;</a>
+ <a id="jetty-version">&#160;</a>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Jetty Version</p>
   <p>The XAP 12.3 installation package includes Jetty version 9.2.24v20180105.</p>
 </div>
 
-<h2><a name="dependencies">&#160;</a>Dependencies</h2>
+<h2 id="dependencies">Dependencies</h2>
 
 <p>In order to use this feature, include the <code>${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty.jar</code> file in your classpath, or use Maven dependencies:</p>
 
@@ -33,7 +33,7 @@
   <p>For more information about dependencies, refer to <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
 </div>
 
-<h1><a name="jetty-instance-handling">&#160;</a>Jetty Instance Handling</h1>
+<h1 id="jetty-instance-handling">Jetty Instance Handling</h1>
 
 <p>Jetty itself is configured using Spring, and allows you to control all aspects of both the Jetty instance created, and the web application context. Jetty instances can be created (by default) in one of two modes. The first is <span class="tc-italic">plain</span>, where a Jetty instance is created for each web processing unit instance running within a GSC. The second is <span class="tc-italic">shared</span>, where a single Jetty instance is created and shared between all the different Web Processing Unit instances running on the same Grid Service Container. A custom Jetty instantiation and handling can also be configured.</p>
 
@@ -41,7 +41,7 @@
 
 <p>In order to configure a custom Jetty configuration, a <code>jetty.pu.xml</code> should be added to <code>META-INF/spring</code> within the WAR file. Both plain and shared mode correspond to a built-in jetty.pu.xml file that exists within the XAP JAR file (explained below).</p>
 
-<h1><a name="plain-instantiation-mode">&#160;</a>Plain Instantiation Mode</h1>
+<h1 id="plain-instantiation-mode">Plain Instantiation Mode</h1>
 
 <p>Plain mode (the simplest and the default mode) creates a Jetty instance for each Web Processing Unit instance (web application). The mode configuration parameters are in the data grid JAR file under <code>org/openspaces/pu/container/jee/jetty/jetty.plain.pu.xml</code>.</p>
 
@@ -51,7 +51,7 @@
 
 <p>There are many features that are exposed and can control how plain mode is used. The following is a simple explanation of all the different parts within the <code>jetty.plain.pu.xml</code>.</p>
 
-<h2><a name="configuration-properties">&#160;</a>Configuration Properties</h2>
+<h2 id="configuration-properties">Configuration Properties</h2>
 
 <p>The <code>jetty.plain.pu.xml</code> has multiple deploy-time properties that can be used to control it, with their respective default values.</p>
 
@@ -83,7 +83,7 @@
   <p>You can control the size of the data a client can push to the server using the <code>org.eclipse.jetty.server.Request.maxFormContentSize</code> property.</p>
 </div>
 
-<h2><a name="port-numbers">&#160;</a>Port Numbers</h2>
+<h2 id="port-numbers">Port Numbers</h2>
 
 <pre><code class="language-xml">&lt;bean id="port" class="org.openspaces.pu.container.jee.PortGenerator"&gt;
     &lt;property name="basePort" value="${web.port}" /&gt;
@@ -110,7 +110,7 @@
   <p>To find out during runtime which port Jetty actually uses, call <code>getServletContext().getAttribute("jetty.port.actual")</code>.</p>
 </div>
 
-<h2><a name="jetty-instance">&#160;</a>Jetty Instance</h2>
+<h2 id="jetty-instance">Jetty Instance</h2>
 
 <pre><code class="language-xml">&lt;bean id="jettyHolder" class="org.openspaces.pu.container.jee.jetty.SharedJettyHolder"&gt; 
     &lt;constructor-arg ref="jetty" /&gt; 
@@ -172,7 +172,7 @@
 
 <p>The connector name can be retrieved from <code>ServletContext</code> with the  attribute name <code>jetty.MYCONNECTOR1.port.actual</code>. Connectors ports are saved within <code>ServletContext</code> according to the name, and can be retrieved with the attribute name <code>jetty.[CONNECTOR_NAME].port.actual</code>.</p>
 
-<h2><a name="web-context">&#160;</a>Web Context</h2>
+<h2 id="web-context">Web Context</h2>
 
 <pre><code class="language-xml">&lt;&lt;bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext"&gt;
  &lt;property name="contextPath" ref="context" /&gt;
@@ -202,7 +202,7 @@
   <p>In plain mode, the context path can be the same for all different instances of the web application, even if they are running on the same GSC (JVM).</p>
 </div>
 
-<h2><a name="jetty-maven-plugin">&#160;</a>Jetty Maven Plugin</h2>
+<h2 id="jetty-maven-plugin">Jetty Maven Plugin</h2>
 
 <p>If you are using Maven to create, compile, package and run unit tests, or to execute and deploy a Processing Unit that is a web application, make sure that inside your WAR file there are no Jetty JARs. In your project <code>pom.xml</code>,  <span class="tc-bold">exclude</span> <code>jetty-all</code> inside the <code>com.gigaspaces</code> dependency.</p>
 
@@ -221,7 +221,7 @@
 &lt;/dependency&gt;
 </code></pre>
 
-<h2><a name="examples">&#160;</a>Examples</h2>
+<h2 id="examples">Examples</h2>
 
 <p>The following deployment scenario examples show how plain mode works. Assume we have a web application packaged as WAR, called <span class="tc-bold">petclinic</span>. 4 GSCs are started, 2 on each machine. We then deploy 4 instances of the petclinic application.</p>
 
@@ -229,7 +229,7 @@
 
 <p>Now, lets assume that the first machine fails. This means that the first 2 web applications (8080 and 8081) are no longer running. The end result of this failure is that the 2 web application instances running on the machine that failed (each on its own GSC), are deployed on the existing machine (assuming no SLA is defined). One of the GSCs on the machine that is still up will run on port 8080, and the other will run on port 8081. As you can see, the port number correlates to the instance number of the web application, and not to a specific location.</p>
 
-<h1><a name="shared-instantiation-mode">&#160;</a>Shared Instantiation Mode</h1>
+<h1 id="shared-instantiation-mode">Shared Instantiation Mode</h1>
 
 <p>Shared mode creates a single Jetty instance per GSC (JVM). The mode configuration parameters are in the data grid JAR file, under <code>org/openspaces/pu/container/jee/jetty/jetty.shared.pu.xml</code>. The benefits of this mode are obvious as only one instance of Jetty is created per JVM (plain mode also shares some resources between different Jetty instances).</p>
 
@@ -239,7 +239,7 @@
 
 <p>There are many features that are exposed and can control how shared mode can be used. The following is an explanation of the properties in the <code>jetty.shared.pu.xml</code>.</p>
 
-<h2><a name="configuration-properties-1">&#160;</a>Configuration Properties</h2>
+<h2 id="configuration-properties-1">Configuration Properties</h2>
 
 <p>The first part of the <code>jetty.shared.pu.xml</code> is the different deploy-time properties that can be used to control it, with their respective default values.</p>
 
@@ -268,7 +268,7 @@
 
 <p>All the above properties can be controlled during deployment (or by adding a <code>META-INF/spring/pu.properties</code> file). What they actually control (though very evident from the name) will be explained in the following sections.</p>
 
-<h2><a name="port-numbers-1">&#160;</a>Port Numbers</h2>
+<h2 id="port-numbers-1">Port Numbers</h2>
 
 <pre><code class="language-xml">&lt;bean id="port" class="org.openspaces.pu.container.jee.PortGenerator"&gt;
     &lt;property name="basePort" value="${web.port}" /&gt;
@@ -288,7 +288,7 @@
 &lt;/bean&gt;
 </code></pre>
 
-<h2><a name="jetty-instance-1">&#160;</a>Jetty Instance</h2>
+<h2 id="jetty-instance-1">Jetty Instance</h2>
 
 <pre><code class="language-xml">&lt;bean id="jettyHolder" class="org.openspaces.pu.container.jee.jetty.SharedJettyHolder"&gt;
     &lt;constructor-arg ref="jetty" /&gt;

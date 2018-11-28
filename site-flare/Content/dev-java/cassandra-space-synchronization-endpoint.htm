@@ -7,7 +7,7 @@
 
 <p>A Cassandra based implementation of the <a href="space-synchronization-endpoint-api.htm">Space Synchronization Endpoint</a>.</p>
 
-<h1><a name="library-dependencies">&#160;</a>Library dependencies</h1>
+<h1 id="library-dependencies">Library dependencies</h1>
 
 <p>The Cassandra Space Synchronization Endpoint uses the <a href="http://hector-client.github.com/hector/build/html/index.htm" target="_blank" >Hector Library</a> For communicating with the Cassandra cluster.
 Include the following in your <code>pom.xml</code></p>
@@ -69,7 +69,7 @@ Include the following in your <code>pom.xml</code></p>
 </div>
 </div>
 
-<h1><a name="setup">&#160;</a>Setup</h1>
+<h1 id="setup">Setup</h1>
 
 <p>An example of how the Cassandra Space Synchronization Endpoint can be configured within a mirror.</p>
 
@@ -137,7 +137,7 @@ IJSpace mirror = new EmbeddedSpaceConfigurer("mirror-service")
 
 <p>For more details about different configurations see <a href="space-persistency-overview.htm">Space Persistency</a>.</p>
 
-<h2><a name="cassandraspacesynchronizationendpoint-properties">&#160;</a>CassandraSpaceSynchronizationEndpoint Properties</h2>
+<h2 id="cassandraspacesynchronizationendpoint-properties">CassandraSpaceSynchronizationEndpoint Properties</h2>
 
 <table>
 <thead>
@@ -175,9 +175,9 @@ IJSpace mirror = new EmbeddedSpaceConfigurer("mirror-service")
 </tbody>
 </table>
 
- <a name="Property-Value-Serializer">&#160;</a>
+ <a id="Property-Value-Serializer">&#160;</a>
 
-<h3><a name="property-value-serializer">&#160;</a>Property Value Serializer</h3>
+<h3 id="property-value-serializer">Property Value Serializer</h3>
 
 <p>By default when serializing object/document properties to column values, the following serialization logic is applied:</p>
 
@@ -213,11 +213,11 @@ Object fromByteBuffer(ByteBuffer byteBuffer);
   <p>Overriding the property value serializers in the <code>Cassandra Space Synchronization Endpoint</code> must be followed by overriding the same serializers in the <code>Cassandra Space Data Source</code>. Failure to do so will prevent the <code>Cassandra Space Data Source</code> from properly deserializing values read from Cassandra.</p>
 </div>
 
- <a name="Flattened-Properties-Filter">&#160;</a>
+ <a id="Flattened-Properties-Filter">&#160;</a>
 
-<h2><a name="flattened-properties-filter">&#160;</a>Flattened Properties Filter</h2>
+<h2 id="flattened-properties-filter">Flattened Properties Filter</h2>
 
-<h3><a name="introduction">&#160;</a>Introduction</h3>
+<h3 id="introduction">Introduction</h3>
 
 <p>When a type is introduced to the <code>Cassandra Space Synchronzation Endpoint</code>, the type's fixed properties will be introspected and the final result will be a mapping from this type's nested properties to column family columns.
 The default behavior of this mapping is explained in the following example.
@@ -314,7 +314,7 @@ public class Address {
 </tbody>
 </table>
 
-<h2><a name="customization">&#160;</a>Customization</h2>
+<h2 id="customization">Customization</h2>
 
 <p>It is possible to override the above behavior by providing a <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/persistency/cassandra/meta/mapping/filter/FlattenedPropertiesFilter.htm">FlattenedPropertiesFilter</a> implementation.
 The implementations is used during type introspection when a type is first introduced to the synchronization endpoint and whenever an entry of that type is written which contains dynamic properties.</p>
@@ -336,9 +336,9 @@ boolean isDynamic();
 int getCurrentNestingLevel();
 </code></pre>
 
- <a name="Column-Family-Name-Converter">&#160;</a>
+ <a id="Column-Family-Name-Converter">&#160;</a>
 
-<h2><a name="column-family-name-converter">&#160;</a>Column Family Name Converter</h2>
+<h2 id="column-family-name-converter">Column Family Name Converter</h2>
 
 <p>Due to implementation details of Cassandra regarding Column Families there are certain limitations when converting a type name (e.g: <code>com.example.data.Person</code>) to a column family name. Among these limitations is a 48 characters max length limitation and invalid characters in the name (such as ".').
 The behavior for converting a type name to a column family name when creating a column family is defined by the interface <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/persistency/cassandra/meta/conversion/ColumnFamilyNameConverter.htm">ColumnFamilyNameConverter</a>.
@@ -349,7 +349,7 @@ This interface is defined by 1 method:</p>
 
 <p>The default implementation is: <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/persistency/cassandra/meta/conversion/DefaultColumnFamilyNameConverter.htm">DefaultColumnFamilyNameConverter</a>.</p>
 
-<h1><a name="considerations">&#160;</a>Considerations</h1>
+<h1 id="considerations">Considerations</h1>
 
 <ul>
 <li>Collections and Maps are not flattened and are serialized as blobs using java object serialization mechanism.</li>

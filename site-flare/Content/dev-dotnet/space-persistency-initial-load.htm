@@ -35,11 +35,11 @@
   <p>The Initial Load is supported with the <code>partitioned</code> cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups you can use the <code>partitioned</code> and have ZERO as the amount of backups.</p>
 </div>
 
-<h1><a name="controlling-the-initial-load">&#160;</a>Controlling the Initial Load</h1>
+<h1 id="controlling-the-initial-load">Controlling the Initial Load</h1>
 
 <p>By default all the entries are loaded from the database into the space, but sometimes only a subset of the data is relevant for the space. This section explains how to control which data is loaded.</p>
 
-<h2><a name="initial-load-entries">&#160;</a>Initial Load Entries</h2>
+<h2 id="initial-load-entries">Initial Load Entries</h2>
 
 <p>The <code>NHibernateExternalDataSource</code> can be configured to load only specific types by configuring the property <code>InitialLoadEntries</code> with a list of fully-qualified type names. For example, to load only entries of type <code>MyEntry</code>:</p>
 
@@ -70,7 +70,7 @@
 &lt;/ProcessingUnit&gt;
 </code></pre>
 
-<h2><a name="overriding-the-initialload-method">&#160;</a>Overriding the InitialLoad method</h2>
+<h2 id="overriding-the-initialload-method">Overriding the InitialLoad method</h2>
 
 <p>To implement your own Initial Load when using the NHibernate <code>ExternalDataSource</code> you can override the <code>InitialLoad</code> method to construct one or more <code>IDataEnumerator</code>. For example:</p>
 
@@ -88,7 +88,7 @@
 }
 </code></pre>
 
-<h1><a name="partitioned-cluster">&#160;</a>Partitioned Cluster</h1>
+<h1 id="partitioned-cluster">Partitioned Cluster</h1>
 
 <p>When using a partitioned cluster, each space partition stores a subset of the data, based on the entry routing property hash code value. Each partition performs its own initial load process and checks each loaded entry to verify it belongs to that partition - entries which do not belong are discarded.</p>
 

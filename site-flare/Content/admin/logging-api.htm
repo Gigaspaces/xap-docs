@@ -24,7 +24,7 @@ for (LogEntry logEntry : logEntries.logEntries()) {
 
 <p>The above example uses the Admin API in order to get the GridServiceContainer we wish to extract the logs from, and then extracts all the log entries ("log lines") between 8 AM and 9 AM on November 15.</p>
 
-<h1><a name="on-log-entry-log-entries-and-matchers">&#160;</a>On Log Entry, Log Entries, and Matchers</h1>
+<h1 id="on-log-entry-log-entries-and-matchers">On Log Entry, Log Entries, and Matchers</h1>
 
 <p>At the base of the logging support is the <code>LogEntry</code> class. <code>LogEntry</code> represents an entry or a "row" in the results that are returned as part of the logging API call.</p>
 
@@ -77,13 +77,13 @@ while (true) {
 }).start();
 </code></pre>
 
-<h1><a name="logging-extraction-process">&#160;</a>Logging Extraction Process</h1>
+<h1 id="logging-extraction-process">Logging Extraction Process</h1>
 
 <p>Logging are extracted by running the provided matchers on the server side on the machine where the process is running. This can, potentially, be a heavy operation. For that reason, when using the Admin API, logging for runtime components will be automatically extracted by the Grid Service Agent if there is a Grid Service Agent that started the runtime component. If there isn't a Grid Service Agent that started the runtime component, then the logging extraction will be executed on the actual runtime component.</p>
 
 <p>All logging extraction enabled runtime components implement the <code>LogProviderGridComponent</code> interface. The default <code>logEntries</code> method automatically uses the above mentioned logic. The <code>logEntriesDirect</code> method will always execute on the runtime component, without trying to go to the agent if the runtime component was started by one.</p>
 
-<h1><a name="grid-service-agent">&#160;</a>Grid Service Agent</h1>
+<h1 id="grid-service-agent">Grid Service Agent</h1>
 
 <div class="tc-admon-note">
   

@@ -29,7 +29,7 @@ In order to use this feature, include the <code>${XAP_HOME}/lib/optional/map/xap
 
 <p>There are multiple runtime configurations you may use when caching your data within the space:</p>
 
-<h1><a name="gigamap-with-a-remote-space">&#160;</a>GigaMap with a Remote Space</h1>
+<h1 id="gigamap-with-a-remote-space">GigaMap with a Remote Space</h1>
 
 <p>A client communicating with a remote space performs all its operation via a remote connection. The remote space can be partitioned (with or without backups) or replicated (sync or async replication based).</p>
 
@@ -62,7 +62,7 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 </div>
 </div>
 
-<h2><a name="gigamap-with-an-embedded-space">&#160;</a>GigaMap with an Embedded Space</h2>
+<h2 id="gigamap-with-an-embedded-space">GigaMap with an Embedded Space</h2>
 
 <p>A client communicating with a an embedded space performs all its operation via local connection. There is no network overhead when using this approach.</p>
 
@@ -103,7 +103,7 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 
 <p>A simple way to use the embedded space in a clustered architecture would be by packaging your application as a Processing Unit and deploy it using the relevant SLA.</p>
 
-<h2><a name="gigamap-with-a-local-near-cache">&#160;</a>GigaMap with a Local (Near) Cache</h2>
+<h2 id="gigamap-with-a-local-near-cache">GigaMap with a Local (Near) Cache</h2>
 
 <p>The <code>GigaMap</code> support <a href="local-cache.htm">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that will be used with the <code>get</code> operations implicitly. The local cache will be loaded on demand or when you perform a <code>put</code> operation (when the <span class="tc-bold">putFirst</span> option is activated).</p>
 
@@ -212,11 +212,11 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 </tbody>
 </table>
 
-<h1><a name="multiple-gigamaps">&#160;</a>Multiple GigaMaps</h1>
+<h1 id="multiple-gigamaps">Multiple GigaMaps</h1>
 
 <p>You may have several <code>GigaMap</code> used with your application, each with different characteristics , all will be interacting with the same remote space. In this case each <code>GigaMap</code> should use different set of keys. If you want to use same keys for these different maps, each should use a different space.</p>
 
-<h1><a name="gigamap-operations">&#160;</a>GigaMap Operations</h1>
+<h1 id="gigamap-operations">GigaMap Operations</h1>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.htm">GigaMap</a> provides the exact semantic as the <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.htm">java.util.Map</a> interface: clear, containsKey, put, putAll, get and remove methods. In addition it includes the lock , putAndUnlock , and the unlock methods.</p>
 
@@ -229,7 +229,7 @@ gigaMap.lock(key);
 gigaMap.unlock(key);
 </code></pre>
 
-<h1><a name="time-to-live-ttl">&#160;</a>Time to Live - TTL</h1>
+<h1 id="time-to-live-ttl">Time to Live - TTL</h1>
 
 <p>An entry within the cache is immortal by default. You can specify as part of the put operation a specific time for the entry to be alive within the cache. Once this time elapsed, it will be expired automatically. The time unit to specify the TTL is milliseconds.</p>
 
@@ -237,7 +237,7 @@ gigaMap.unlock(key);
 gigaMap.put(key , value , 5000);
 </code></pre>
 
-<h1><a name="declarative-transactions">&#160;</a>Declarative Transactions</h1>
+<h1 id="declarative-transactions">Declarative Transactions</h1>
 
 <p>There is no need to provide a Jini transaction object for the different map operations. <code>GigaMap</code> with the different OpenSpaces <a href="transaction-overview.htm">transaction managers</a> and Spring allow simple declarative definition of transactions. This means that if there is an ongoing transaction running, most operations performed using the <code>GigaMap</code> interface join it, using Spring's rich transaction support.</p>
 
@@ -246,7 +246,7 @@ gigaMap.put(key , value , 5000);
   <p>It is highly recommended to read the <a href="http://static.springframework.org/spring/docs/2.0.x/reference/transaction.htm">transaction management chapter</a> in the Spring reference documentation.</p>
 </div>
 
-<h2><a name="transaction-provider">&#160;</a>Transaction Provider</h2>
+<h2 id="transaction-provider">Transaction Provider</h2>
 
 <p>OpenSpaces provides a pluggable transaction provider using the following interface:</p>
 
@@ -263,7 +263,7 @@ gigaMap.put(key , value , 5000);
 <pre><code class="language-java">gigaMap.getMap().put("key", "value", gigaMap.getCurrentTransaction(), 1000);
 </code></pre>
 
-<h2><a name="transaction-isolation-level">&#160;</a>Transaction Isolation Level</h2>
+<h2 id="transaction-isolation-level">Transaction Isolation Level</h2>
 
 <p>GigaSpaces supports three isolation levels: <code>READ_UNCOMMITTED</code>, <code>READ_COMMITTED</code> and <code>REPEATABLE_READ</code> (default). When using <code>GigaMap</code>, the default isolation level it is performed under can be defined in the following manner:</p>
 
@@ -318,7 +318,7 @@ public class DefaultFooService implements FooService {
 
 <p>In the above example, any operation performed using <code>GigaMap</code> in the <code>updateFoo</code> method automatically works under the <code>READ_COMMITTED</code> isolation level.</p>
 
-<h1><a name="lock-api">&#160;</a>Lock API</h1>
+<h1 id="lock-api">Lock API</h1>
 
 <p>The <code>GigaMap</code> support the Lock API allowing you to establish a distributed lock on a global key. The <code>GigaMap</code> Lock API include the following methods:</p>
 
@@ -346,7 +346,7 @@ System.out.println("After unLock:Is key "  + key+ " locked:" + gigaMap.isLocked(
   <p>The Lock API using transactions to ensure isolation and data consistency.</p>
 </div>
 
-<h1><a name="gigaspace-api-vs-gigamap-api">&#160;</a>GigaSpace API vs. GigaMap API</h1>
+<h1 id="gigaspace-api-vs-gigamap-api">GigaSpace API vs. GigaMap API</h1>
 
 <p>Here is a simple comparison between the GigaMap API vs. the <a href="the-gigaspace-interface-overview.htm">GigaSpace API</a>:</p>
 
@@ -562,7 +562,7 @@ System.out.println("After unLock:Is key "  + key+ " locked:" + gigaMap.isLocked(
 
 <p>* via <code>IMap.getMasterSpace()</code></p>
 
-<h1><a name="clustered-flag">&#160;</a>Clustered Flag</h1>
+<h1 id="clustered-flag">Clustered Flag</h1>
 
 <p>When configuring a <code>GigaMap</code> with an embedded clustered space or with a remote clustered space, a clustered <code>GigaMap</code> proxy is created. A clustered proxy is a smart proxy that may perform operations against the entire cluster when needed. The <code>put</code> operation will be routing the key and value to the relevant partition (using the key hashcode to calculate the target partition).</p>
 
@@ -612,7 +612,7 @@ IMap clusteredMap = new MapConfigurer(space).clustered(true).createMap();
 
 <p>The above example shows a typical scenario where the clustered flag is used. Within a Processing Unit, an application might need to access both the cluster member and the whole cluster directly.</p>
 
-<h1><a name="exception-hierarchy">&#160;</a>Exception Hierarchy</h1>
+<h1 id="exception-hierarchy">Exception Hierarchy</h1>
 
 <p>OpenSpaces is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.htm#dao-exceptions" target="_blank" >consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
 

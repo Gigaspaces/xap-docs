@@ -7,17 +7,17 @@
 
 <p>This topic explains how the XAP and InsightEdge environments are configured, and how to customize them to suit your specific application needs.</p>
 
-<h2><a name="xap">&#160;</a>XAP</h2>
+<h2 id="xap">XAP</h2>
 
 <p>The XAP environment configuration is maintained by a configuration script file called <code>setenv</code>, located in the <code>XAP_HOME/bin</code> directory. Each XAP script invokes this script to load the XAP configuration. If you are developing a  standalone XAP client, it is recommended to use the <code>setenv</code> utility to derive the commonly used XAP libraries and setup environment.</p>
 
 <p>To use this utility, you can simply call it from within your script file.</p>
 
-<h2><a name="insightedge">&#160;</a>InsightEdge</h2>
+<h2 id="insightedge">InsightEdge</h2>
 
 <p>The InsightEdge environment configuration is maintained by a configuration script file called <code>insightedge-env</code>, located in the <code>XAP_HOME/insightedge/conf</code> directory. Each InsightEdge script invokes this script to load the InsightEdge configuration. Additionally, <code>insightedge-env</code> starts by invoking the XAP <code>setenv</code> configuration script, so all of the XAP environment configuration is also applied.</p>
 
-<h1><a name="customizing-the-environment-variables">&#160;</a>Customizing the Environment Variables</h1>
+<h1 id="customizing-the-environment-variables">Customizing the Environment Variables</h1>
 
 <p>During the initial development stages, it is usually unnecessary to change any of the default XAP environment values. However, at some point the environment will need customization to suit your specific requirements (such as the Grid Service Container heap size).</p>
 
@@ -26,7 +26,7 @@
   <p>Do not make changes to the original <code>setenv</code> script, as it complicates upgrading XAP later on. Instead, use the <code>setenv-overrides</code> script, which is automatically called by <code>setenv</code> and is intended for specifying custom overrides in a safe manner.</p>
 </div>
 
-<h1><a name="xap-environment-variables">&#160;</a>XAP Environment Variables</h1>
+<h1 id="xap-environment-variables">XAP Environment Variables</h1>
 
 <p>The following list describes XAP-related environment variables:</p>
 
@@ -152,7 +152,7 @@
 
 <p><span class="tc-iconexcl">&#160;</span> When running in <code>./gs-agent --manager</code> configuration, this environment variable is ignored.</p>
 
-<h1><a name="insightedge-environment-variables">&#160;</a>InsightEdge Environment Variables</h1>
+<h1 id="insightedge-environment-variables">InsightEdge Environment Variables</h1>
 
 <p>The following list describes InsightEdge-related environment variables:</p>
 
@@ -188,7 +188,7 @@
 
 <p>In addition, you can also use standard Spark environment variables. The InsightEdge platform loads Spark components in a manner that preserves their usage. For example, set <code>SPARK_MASTER_PORT</code> to override the default <code>7077</code> port.</p>
 
-<h1><a name="upgrading-from-previous-versions">&#160;</a>Upgrading from Previous Versions</h1>
+<h1 id="upgrading-from-previous-versions">Upgrading from Previous Versions</h1>
 
 <p>In previous versions, environment variable names were inconsistent, which occasionally led to confusion. Starting with XAP 11.0, all XAP-related environment variables have been renamed with a <code>XAP_</code> prefix, so they're easier to identify. The following table maps the pre-11.0 names to the current names:</p>
 
@@ -258,7 +258,7 @@
 </tbody>
 </table>
 
- <a name="extension">&#160;</a>
+ <a id="extension">&#160;</a>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>

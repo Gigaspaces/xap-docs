@@ -17,11 +17,11 @@
 <li>Non intrusive session management or explicit Data Grid API access for fine grain control - Allows multiple web servers to share the same session in transparent manner</li>
 </ul>
 
-<h1><a name="how-to-enable-xap-s-http-session-management">&#160;</a>How to enable XAP's HTTP Session Management</h1>
+<h1 id="how-to-enable-xap-s-http-session-management">How to enable XAP's HTTP Session Management</h1>
 
 <p>There are several ways to configure Space session based support, depending on the definition of which Space and how the Space was started.</p>
 
-<h2><a name="using-the-deploy-property">&#160;</a>Using the Deploy Property</h2>
+<h2 id="using-the-deploy-property">Using the Deploy Property</h2>
 
 <p>Here is how you can deploy an existing WAR file without changing it (or use Spring) to use XAP HTTP Session Management:</p>
 
@@ -39,7 +39,7 @@
 </div>
 </div>
 
-<h2><a name="using-spring">&#160;</a>Using Spring</h2>
+<h2 id="using-spring">Using Spring</h2>
 
 <p>When deploying, include within the <code>META-INF/spring/pu.properties</code> file the <code>jetty.sessions.spaceUrl</code> property value. This should be set with the space url defining where the sessions will be stored.</p>
 
@@ -47,7 +47,7 @@
 
 <p>In case there is already a Space configured within the web application. For example, defined within <code>META-INF/spring/pu.xml</code>, it can be used as the Space where sessions will be stored as well. In this case, the <code>jetty.sessions.spaceUrl</code> can use the special prefix <code>bean</code>. For example, if the Space was defined as a bean with id of <code>sessionSpace</code>, the  <code>jetty.sessions.spaceUrl</code> can be set to <code>bean://sessionSpace</code>.</p>
 
-<h1><a name="options">&#160;</a>Options</h1>
+<h1 id="options">Options</h1>
 
 <p>Controlling the session Management done via the following properties:</p>
 
@@ -104,11 +104,11 @@
   <p>XAP integration implements Jetty <code>SessionManager</code> and <code>SessionIdManager</code> in <code>GigaSesssionManager</code> and <code>GigaSessionIdManager</code>. When setting the <code>jetty.sessions.spaceUrl</code> they get automatically set as the session manager and session id manager of the web app.</p>
 </div>
 
-<h1><a name="deployment-topologies">&#160;</a>Deployment Topologies</h1>
+<h1 id="deployment-topologies">Deployment Topologies</h1>
 
 <p>The HTTP Session support several Deployment Topologies:</p>
 
-<h2><a name="embedded-replicated">&#160;</a>Embedded Replicated</h2>
+<h2 id="embedded-replicated">Embedded Replicated</h2>
 
 <ul>
 <li>Support only Limited amount of Sessions
@@ -116,7 +116,7 @@
 </div></li>
 </ul>
 
-<h2><a name="partitioned-replicated">&#160;</a>Partitioned+Replicated</h2>
+<h2 id="partitioned-replicated">Partitioned+Replicated</h2>
 
 <ul>
 <li>Session Data is partitioned across multiple machines</li>
@@ -126,7 +126,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/session_partitioned.jpg" alt="session_partitioned.jpg" /></p>
 </div>
 
-<h2><a name="partitioned-replicated-with-local-cache">&#160;</a>Partitioned+Replicated with Local-Cache</h2>
+<h2 id="partitioned-replicated-with-local-cache">Partitioned+Replicated with Local-Cache</h2>
 
 <ul>
 <li><p>Support for read mostly scenario via local cache running within the application server memory address.

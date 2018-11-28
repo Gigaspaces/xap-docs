@@ -24,7 +24,7 @@
 
 <p>The FIFO-Grouping can be used with financial systems to process <span class="tc-bold">trade orders</span>, in healthcare systems to processes <span class="tc-bold">patient medical data</span>, with transportation systems to process <span class="tc-bold">reservations</span>, with airlines systems to process <span class="tc-bold">flight schedule</span> , with billing system to processes <span class="tc-bold">payments</span>, etc. With the flight reservation system scenario several reservations can be processed simultaneously but the reservations of a particular fight must be processed exclusively and in FIFO order.</p>
 
-<h1><a name="how-it-works">&#160;</a>How it works</h1>
+<h1 id="how-it-works">How it works</h1>
 
 <p>FIFO-Grouping ("FG') enables reading/taking certain space entries in FIFO order (by order of insertion), and is mainly used as an enhancement of the openspaces polling-containers.  When a property is declared with the <code>@SpaceFifoGroupingProperty</code> annotation ("the FG designated property'), a read/take operation with the <code>FIFO_GROUPING_POLL</code> modifier will return all space entries that match the selection template in FIFO order. Different values of the FG property define groups of space entries that match that value - FIFO ordering exists within each group and not between different groups.</p>
 
@@ -33,7 +33,7 @@
   <p>The selected group is locked until the operation is terminated- the operation transaction is committed/ aborted.  See the <a href="fifo-grouping.htm#Exclusivity">Exclusivity</a> section for more elaborations.</p>
 </div>
 
-<h1><a name="method-of-operation">&#160;</a>Method Of Operation</h1>
+<h1 id="method-of-operation">Method Of Operation</h1>
 
 <ul>
 <li>FG operations must be performed within transactions.</li>
@@ -44,7 +44,7 @@
 <li><p>If the selecting template (Pojo) has a value for a property other than the FG designated property - this property can be indexed (like for any regular read/take operation) and in addition a <code>@SpaceFifoGroupingIndex</code> annotation can be added  to it  in order to assist in efficient traversal. In this case the system will create a compound index that contains this property and the FG designated property. For example, if a polling container is responsible for all the new reservations (reservations with processingState = NEW), then it is recommended to declare a SpaceFifoGroupingIndex on the processingState property. This would help to achieve better performance when searching for reservations of certain flight that have processingState = NEW.</p></li>
 </ul>
 
-<h1><a name="exclusivity">&#160;</a>Exclusivity</h1>
+<h1 id="exclusivity">Exclusivity</h1>
 
 <p>Once a FG operation returns with a result, the relevant group(s) is locked to other FG threads until the transaction is terminated. The locked group is the group with the value returned in the FG designated property and matching the selecting template.
 <span class="tc-bold">The exclusivity rule is as follows:</span>
@@ -55,11 +55,11 @@ Lets assume we have an Order POJO template with property named label annotated a
 If polling container A got a FG with Label = "LABEL1" using an Order POJO with State property = null, no other FG thread/container will be able to access the FG designated by "LABEL1".
 If on the other hand polling container B got a FG with Label = "LABEL2" using an Order pojo with State property = 0, polling container C will be able to get FG with same label "LABEL2" using an Order pojo with State = 1, since the intersection between the groups is null. Exclusivity is released upon transaction termination.</p>
 
-<h1><a name="interaction-with-non-fifo-grouping-templates">&#160;</a>Interaction with non-FIFO Grouping templates</h1>
+<h1 id="interaction-with-non-fifo-grouping-templates">Interaction with non-FIFO Grouping templates</h1>
 
 <p>When a FG template locks a group, its first entry is locked under a transaction so it cannot be accessed by any destructive space operation. The other entries in the group are not physically locked and may be operated-upon by non FG templates. If a FG template which is intending to lock a group encounters its first entry locked under a transaction by a non FG template - this group is abandoned in order not to create a gap (by skipping the first entry)</p>
 
-<h1><a name="setting-the-fifo-grouping-property">&#160;</a>Setting the FIFO Grouping property</h1>
+<h1 id="setting-the-fifo-grouping-property">Setting the FIFO Grouping property</h1>
 
 <p>Specifying which property of a class is the FG property is done using annotations or gs.xml.</p>
 
@@ -85,7 +85,7 @@ public class FlightReservation
 </div>
 </div>
 
-<h1><a name="setting-fifo-grouping-index">&#160;</a>Setting FIFO Grouping index</h1>
+<h1 id="setting-fifo-grouping-index">Setting FIFO Grouping index</h1>
 
 <p>Specifying which properties of a class are a FG index is done using annotations or gs.xml.</p>
 
@@ -110,29 +110,29 @@ public void setCustomer (Person customer) {this.customer = customer;}
 </div>
 </div>
 
-<h1><a name="working-patterns">&#160;</a>Working Patterns</h1>
+<h1 id="working-patterns">Working Patterns</h1>
 
-<h2><a name="take">&#160;</a>Take</h2>
+<h2 id="take">Take</h2>
 
 <p>Take the first entry from an available FG (openspaces <code>SingleTakeReceiveOperationHandler</code>).
 <span class="tc-bold">Take multiple:</span> take entries from available FG. No ordering between different groups. Entries of same groups may not be in adjacent positions. (openspaces <code>MultiTakeReceiveOperationHandler</code>)</p>
 
-<h2><a name="read">&#160;</a>Read</h2>
+<h2 id="read">Read</h2>
 
 <p>read the first entry from an available FG. In this pattern entry property may be changed and the operation ending with update. For example- a ProcessingState property which is initially  0, some FG polling container querying for 0 and changing it to 1, other container querying for 1 and changing to 2 etc until a container querying for the final state with take. Note that in such implementation the ProcessingState property should better be defined as  <code>@SpaceFifoGroupingIndex</code>.
 (openspaces <code>ExclusiveReadReceiveOperationHandler</code>)</p>
 
-<h2><a name="read-multiple">&#160;</a>Read multiple</h2>
+<h2 id="read-multiple">Read multiple</h2>
 
 <p>read entries from available FG. No ordering between different groups. Entries of same groups may not be in adjacent positions. (openspaces <code>MultiExclusiveReadReceiveOperationHandler</code>)</p>
 
-<h2><a name="notify">&#160;</a>Notify</h2>
+<h2 id="notify">Notify</h2>
 
 <p>FIFO Grouping designed to be used with <span class="tc-bold">Polling container only</span>.  If you are looking getting notifications when consuming objects in FIFO Grouping mode, you should use a polling container running in FIFO Grouping mode that will write "a command object" with a small lease that will trigger a Notify container Running in FIFO mode using the relevant template for the command object.</p>
 
-<h1><a name="query-operations-with-fifo-grouping">&#160;</a>Query operations with FIFO Grouping</h1>
+<h1 id="query-operations-with-fifo-grouping">Query operations with FIFO Grouping</h1>
 
-<h2><a name="using-read-take-modifiers">&#160;</a>Using READ/TAKE modifiers</h2>
+<h2 id="using-read-take-modifiers">Using READ/TAKE modifiers</h2>
 
 <p>To execute read/take operations with FG, use the <code>TakeModifiers.FIFO_GROUPING_POLL</code> modifier. For example:</p>
 
@@ -141,7 +141,7 @@ public void setCustomer (Person customer) {this.customer = customer;}
 
 <p>If class FlightReservation isn't declared with a FG property, an exception will be thrown.</p>
 
-<h2><a name="using-polling-container">&#160;</a>Using Polling container</h2>
+<h2 id="using-polling-container">Using Polling container</h2>
 
 <p>When registering for polling events use the <code>AbstractFifoGroupingReceiveOperationHandler.setUseFifoGrouping(true)</code>
 to instruct the space that events should be sent to the client in FIFO order (grouping by the fifoGroupingProperty that should have been declared for the space class).</p>
@@ -218,11 +218,11 @@ pollingEventListenerContainer.start();
 </div>
 </div>
 
-<h1><a name="spaceindex">&#160;</a>SpaceIndex</h1>
+<h1 id="spaceindex">SpaceIndex</h1>
 
 <p>Declaring both <code>spaceFifoGroupingProperty</code> or <code>SpaceFifoGroupingIndex</code> and <code>spaceIndex</code> (type <code>EQUAL</code> or <code>ORDERED</code>) with the same path will yield one index with the <code>spaceIndex</code> type. Declaring only <code>spaceFifoGroupingProperty</code> or <code>spaceFifoGroupingIndex</code> will yield one index, type <code>EQUAL</code>.</p>
 
-<h1><a name="inheritance">&#160;</a>Inheritance</h1>
+<h1 id="inheritance">Inheritance</h1>
 
 <p>All property's FG declarations (both <code>SpaceFifoGroupingProeprty</code> and <code>SpaceFifoGroupingIndex</code>) are inherited in sub classes.</p>
 
@@ -232,7 +232,7 @@ pollingEventListenerContainer.start();
 For example, declaring <code>SpaceFifoGroupingIndex(path="a")</code>, overriding in subclass and declaring <code>SpaceFifoGroupingIndex(path="b")</code> will yield two FG indexes: property a index and property b index (both of type <code>EQUAL</code> if no <code>SpaceIndex</code> with <code>ORDERED</code> type was declared).</li>
 </ul>
 
-<h1><a name="considerations">&#160;</a>Considerations</h1>
+<h1 id="considerations">Considerations</h1>
 
 <ul>
 <li>FG is not supported with a Space using <a href="lru-cache-policy.htm">LRU Cache policy</a> and <a href="space-persistency-overview.htm">Space Persistency</a> enabled.</li>
@@ -264,7 +264,7 @@ For example, declaring <code>SpaceFifoGroupingIndex(path="a")</code>, overriding
 </ul></li>
 </ul>
 
-<h1><a name="performance-hints">&#160;</a>Performance Hints</h1>
+<h1 id="performance-hints">Performance Hints</h1>
 
 <ul>
 <li>If an indexed-property is used in the FG template - define it as <code>@SpaceFifoGroupingIndex</code> if footprint is not a crucial issue.</li>

@@ -17,11 +17,11 @@
   <p>For more details about JMX, refer to <a href="http://java.sun.com/products/JavaManagement/" target="_blank" >JavaManagement</a>.</p>
 </div>
 
-<h2><a name="manageable-resource">&#160;</a>Manageable Resource</h2>
+<h2 id="manageable-resource">Manageable Resource</h2>
 
 <p>A JMX manageable resource can be an application, an implementation of a service, a device, a user, etc. It is developed in Java, or at least offers a Java wrapper, and must also be implemented by a Java object called a managed bean (MBeans), according to JMX specifications.</p>
 
-<h1><a name="opening-jmx">&#160;</a>Opening JMX</h1>
+<h1 id="opening-jmx">Opening JMX</h1>
 
 <p>Step 1. The easiest way to open JConsole for a specific service is through the GigaSpaces Management Center: <br/>
  - In the Deployments tab, right-click the GSC, GSM, or LookupService tree node, or <br/>
@@ -104,7 +104,7 @@ String jndiURL = containerConfig.jndiUrl;
 Runtime.getRuntime().exec( "jconsole " + jndiURL );
 </code></pre>
 
-<h1><a name="remote-jconsole-connection">&#160;</a>Remote JConsole Connection</h1>
+<h1 id="remote-jconsole-connection">Remote JConsole Connection</h1>
 
 <p>In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable <span class="tc-bold">REMOTE_JMX</span></p>
 
@@ -116,7 +116,7 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
   <p>For a secure JConsole, use -Dcom.gigaspaces.system.registryRetries=1 and -Dcom.gigaspaces.system.registryPort=5001 (same as the -Dcom.sun.management.jmxremote.port).</p>
 </div>
 
-<h1><a name="viewing-thread-cpu-usage-with-jdk-1-6">&#160;</a>Viewing Thread CPU Usage with JDK 1.6</h1>
+<h1 id="viewing-thread-cpu-usage-with-jdk-1-6">Viewing Thread CPU Usage with JDK 1.6</h1>
 
 <p>JConsole includes a <a href="https://arnhem.luminis.eu/top-threads-plugin-for-jconsole/" target="_blank" >plugin</a> that displays CPU usage for each JVM thread. This tab is displayed using the <a href="http://java.sun.com/javase/[%=Versions.java-version%]/docs/technotes/guides/management/jconsole.htm">-pluginpath</a> JConsole parameter (already implemented in GigaSpaces).</p>
 
@@ -140,32 +140,32 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
 
 <p>Below are some example screenshots:</p>
 
-<h2><a name="topthread-jar">&#160;</a>topthread.jar</h2>
+<h2 id="topthread-jar">topthread.jar</h2>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_8_top_threads.jpg" alt="space_JMX_8_top_threads.jpg" /></p>
 </div>
 
-<h2><a name="jtop-jar">&#160;</a>JTop.jar</h2>
+<h2 id="jtop-jar">JTop.jar</h2>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_9_j_top.jpg" alt="space_JMX_9_j_top.jpg" /></p>
 </div>
 
-<h1><a name="mbeans-view">&#160;</a>MBeans View</h1>
+<h1 id="mbeans-view">MBeans View</h1>
 
 <p>The jconsole utility (part of Sun J2SE 5.0 JDK and above) includes a <span class="tc-bold">MBeans</span> view, which allows you to perform space administration operations, and to view and control space attributes. These operations are defined in the <a href="http://www.gigaspaces.com/wiki/download/attachments/15078/JavaSpaceMBeanDescriptors.xml">JavaSpaceMBeanDescriptors.xml</a> file, which exists in the <code>xap-datagrid.jar</code> file. If you do not want a certain operation or attribute to be exposed in the JMX <span class="tc-bold">MBeans</span> tab, simply comment or remove the operation from the XML file.</p>
 
-<h2><a name="space-container-mbean">&#160;</a>Space Container MBean</h2>
+<h2 id="space-container-mbean">Space Container MBean</h2>
 
 <p>The container MBean exposes the space container's attributes and operations. The space container manages the space life cycle.</p>
 
-<h3><a name="attributes-tab">&#160;</a>Attributes Tab</h3>
+<h3 id="attributes-tab">Attributes Tab</h3>
 
 <p>The container <span class="tc-bold">Attributes</span> tab displays a list of container attributes. Attribute values appearing in blue can be controlled, while values in black can not be changed. Red values are unavailable.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_10_IMG994.gif" alt="space_JMX_10_IMG994.gif" /></p>
 </div>
 
-<h3><a name="operations-tab">&#160;</a>Operations Tab</h3>
+<h3 id="operations-tab">Operations Tab</h3>
 
 <p>The container <span class="tc-bold">Operations</span> tab allows you to perform different space container operations:</p>
 
@@ -213,27 +213,27 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_11_IMG995.gif" alt="space_JMX_11_IMG995.gif" /></p>
 </div>
 
-<h3><a name="info-tab">&#160;</a>Info Tab</h3>
+<h3 id="info-tab">Info Tab</h3>
 
 <p>The container <span class="tc-bold">Info</span> tab displays the MBean name and its Java class.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_12_IMG996.gif" alt="space_JMX_12_IMG996.gif" /></p>
 </div>
 
-<h2><a name="space-mbean">&#160;</a>Space MBean</h2>
+<h2 id="space-mbean">Space MBean</h2>
 
 <p>The Space MBean exposes space attributes and operations. You can get the basic space operational settings using this MBean.</p>
 
-<h3><a name="attributes-tab-1">&#160;</a>Attributes Tab</h3>
+<h3 id="attributes-tab-1">Attributes Tab</h3>
 
 <p>The space <span class="tc-bold">Attributes</span> tab displays a list of space attributes/elements by XPath, in the selected space. Attribute values appearing in blue can be controlled, while values in black can not be changed. Red values are unavailable.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_13_IMG993.gif" alt="space_JMX_13_IMG993.gif" /></p>
 </div>
 
- <a name="1">&#160;</a>
+ <a id="1">&#160;</a>
 
-<h3><a name="operations-tab-1">&#160;</a>Operations Tab</h3>
+<h3 id="operations-tab-1">Operations Tab</h3>
 
 <p>The space <span class="tc-bold">Operations</span> tab allows you to perform different space operations:</p>
 
@@ -320,32 +320,32 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_14_IMG997.gif" alt="space_JMX_14_IMG997.gif" /></p>
 </div>
 
-<h3><a name="info-tab-1">&#160;</a>Info Tab</h3>
+<h3 id="info-tab-1">Info Tab</h3>
 
 <p>The space <span class="tc-bold">Info</span> tab displays the MBean name and its Java class.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_15_IMG998.gif" alt="space_JMX_15_IMG998.gif" /></p>
 </div>
 
-<h2><a name="space-mbean-extension">&#160;</a>Space MBean Extension</h2>
+<h2 id="space-mbean-extension">Space MBean Extension</h2>
 
 <p>The Space MBean Extension exposes advanced space attributes – this includes memory management, persistency and communication settings.</p>
 
-<h3><a name="attributes-tab-2">&#160;</a>Attributes Tab</h3>
+<h3 id="attributes-tab-2">Attributes Tab</h3>
 
 <p>The space extensions <span class="tc-bold">Attributes</span> tab displays a list of advanced space attributes/elements by XPath, in the selected space. Attribute values appearing in blue can be controlled, while values in black can not be changed. Red values are unavailable.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_16_IMG999.gif" alt="space_JMX_16_IMG999.gif" /></p>
 </div>
 
-<h3><a name="info-tab-2">&#160;</a>Info Tab</h3>
+<h3 id="info-tab-2">Info Tab</h3>
 
 <p>The space extensions <span class="tc-bold">Info</span> tab displays the MBean name and its Java class.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/space_JMX_17_IMG200.gif" alt="space_JMX_17_IMG200.gif" /></p>
 </div>
 
-<h1><a name="restricting-and-modifying-mbeans">&#160;</a>Restricting and Modifying MBeans</h1>
+<h1 id="restricting-and-modifying-mbeans">Restricting and Modifying MBeans</h1>
 
 <p>There is an option to restrict the access to space and space container operations or attributes; for example, you can decide to hide some of the attributes and configuration, and disable execution of operations.</p>
 
@@ -362,7 +362,7 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
 <li><code>JavaSpaceMBeanDescriptors.xml</code></li>
 </ul>
 
-<h2><a name="settings-to-modify">&#160;</a>Settings to Modify</h2>
+<h2 id="settings-to-modify">Settings to Modify</h2>
 
 <p>Following are some space/space container MBeans <span class="tc-bold">Attributes</span> settings you can modify:</p>
 

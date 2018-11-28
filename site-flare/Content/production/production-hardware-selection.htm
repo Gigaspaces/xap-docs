@@ -81,11 +81,11 @@
 </tbody>
 </table>
 
-<h1><a name="cpu-requirements">&#160;</a>CPU Requirements</h1>
+<h1 id="cpu-requirements">CPU Requirements</h1>
 
 <p>Since most of the application activities are conducted in-memory, the CPU speed affects your application performance fairly drastically. You may have a machine with plenty of CPU cores but a slow CPU clock speed, which eventually slows down the application or the data grid response time. As a basic rule, pick the fastest CPU you can find. The data grid itself and its container are highly multi-threaded components, so it is important to use machines with more than a single core to host the GSC to run your data grid or application. A good number for the amount of GSCs per machine is half of the total number of cores.</p>
 
-<h1><a name="disk-space">&#160;</a>Disk Space</h1>
+<h1 id="disk-space">Disk Space</h1>
 
 <p>With any XAP-based system, log files will be generated. A good best practice is to allocate at least 100MB of free disk size per machine running GigaSpaces applications. Ensure that you delete old log files or move them to a backup location. The XAP data grid may overflow data into the <code>work directory</code> when there is a long replication disconnection or replication delay. The location of the <code>work directory</code> should be on local storage for each XAP node in order to make this replication backlog data always available to the node. The storage should have enough disk space to store the replication backlog as explained in <a href="../admin/controlling-the-replication-redo-log.htm">Controlling the Replication Redo Log</a>.</p>
 

@@ -7,7 +7,7 @@
 
 <p>When querying the space (read/take/notify), the space returns the results to the space proxy in an internal type-neutral format, which the space proxy automatically converts back to the relevant user objects. In general the result type is the same as the query type (e.g reading <code>SqlQuery&lt;Person&gt;</code> returns <code>Person</code> instances). However, since the space supports <span class="tc-bold">type polymorphism</span>, the result may also be of a different subtype which extends the query type (e.g. reading <code>SqlQuery&lt;Person&gt;</code> can return a <code>Student</code> instance  which extends the <code>Person</code> type). Since the result is type-neutral, it contains the type name instead of the actual type, and it is up to the space proxy to resolve the concrete type from the type name. The space proxy first scans the loaded assemblies looking for the type by its name, and if the type is not found it searches the assemblies files in the current location for a matching type. The assemblies scan can be customized via configuration, as explained below.</p>
 
-<h1><a name="customizing-assembly-scanning">&#160;</a>Customizing Assembly scanning</h1>
+<h1 id="customizing-assembly-scanning">Customizing Assembly scanning</h1>
 
 <p>By default all the <code>.dll</code> files in the current location are scanned. This can be customized using the following configuration:</p>
 
@@ -28,7 +28,7 @@
 
 <p>In this example the space proxy will scan <code>File1.dll</code> and all the files which match the <code>MyCompany.\*.dll</code> pattern. In addition, only types whose namespace starts with "MyCompany.MyProject." will be scanned in the <code>MyCompany.\*.dll</code> files.</p>
 
-<h2><a name="disabling-assemblies-scan">&#160;</a>Disabling assemblies scan</h2>
+<h2 id="disabling-assemblies-scan">Disabling assemblies scan</h2>
 
 <p>To disable the assemblies scan altogether, use the following configuration:</p>
 
@@ -44,7 +44,7 @@
 &lt;/configuration&gt;
 </code></pre>
 
-<h2><a name="configuring-at-runtime">&#160;</a>Configuring at Runtime</h2>
+<h2 id="configuring-at-runtime">Configuring at Runtime</h2>
 
 <p>Configuration can also be set at runtime, for example:</p>
 

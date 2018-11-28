@@ -14,7 +14,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/local_view.jpg" alt="local_view.jpg" /></p>
 </div>
 
-<h1><a name="initializing-the-local-view-class">&#160;</a>Initializing the Local View Class</h1>
+<h1 id="initializing-the-local-view-class">Initializing the Local View Class</h1>
 
 <p>Creating a local view is similar to creating an <code>ISpaceProxy</code> instance, except the space should be wrapped with a local view before exposing it as an <code>ISpaceProxy</code>. The local view is configured in code using <code>IReadOnlySpaceProxy</code>. For example:</p>
 
@@ -30,7 +30,7 @@ IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views);
 
 </code></pre>
 
-<h1><a name="local-view-features">&#160;</a>Local View Features</h1>
+<h1 id="local-view-features">Local View Features</h1>
 
 <p>The Local View is a <span class="tc-bold">Read-Only</span> data structure. The following operations are not supported when using local view, and should be performed using a regular space proxy:</p>
 
@@ -40,17 +40,17 @@ IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views);
 <li>Any operation under a transaction.</li>
 </ul>
 
-<h1><a name="memory-management">&#160;</a>Memory Management</h1>
+<h1 id="memory-management">Memory Management</h1>
 
 <p>Data is <span class="tc-bold">never</span> evicted from the local view (the cache policy is hardwired to <code>ALL_IN_CACHE</code>). Therefore, specifying criteria that retrieves large amounts of data from the master space can cause the client to run out of memory.</p>
 
-<h3><a name="preventing-memory-shortages">&#160;</a>Preventing memory shortages</h3>
+<h3 id="preventing-memory-shortages">Preventing memory shortages</h3>
 
 <p>As data is stored in the client application's memory, care must be taken to ensure that the application's memory is sufficient to maintain the data. Certain scenarios can result in a memory shortage. If you create multiple local views in the same client or your local view query is too broad, the application could run out of memory and the <code>MemoryShortageException</code> will be thrown.</p>
 
 <p>To overcome this either refine the local view queries to cache less data or increase the underlying JVM's memory, as explained in <a href="jvm-configuration.htm">Jvm Configuration</a>.</p>
 
-<h1><a name="synchronization">&#160;</a>Synchronization</h1>
+<h1 id="synchronization">Synchronization</h1>
 
 <p>In most cases, the local view uses replication to synchronize with the master space. Replication provides high reliability and stability.</p>
 
@@ -61,7 +61,7 @@ IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views);
 <li>Using a cluster with an Active-Active topology, or a non-clustered space.</li>
 </ul>
 
-<h1><a name="synchronization-batch">&#160;</a>Synchronization Batch</h1>
+<h1 id="synchronization-batch">Synchronization Batch</h1>
 
 <p>Changes in the server are grouped and sent to the client in batches. The following configuration settings control synchronization batching:</p>
 
@@ -87,7 +87,7 @@ IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views, 
 
 </code></pre>
 
-<h1><a name="recovering-from-disconnection">&#160;</a>Recovering From Disconnection</h1>
+<h1 id="recovering-from-disconnection">Recovering From Disconnection</h1>
 
 <p>When the connection between a local view and remote master space is disrupted, the local view starts trying to reconnect with the remote space.</p>
 
@@ -110,7 +110,7 @@ View[] views = new View[] { new View(typeName1, "foo=1"), new View(typeName2, ""
 IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views, myConfig);
 </code></pre>
 
-<h1><a name="server-side-local-view-properties">&#160;</a>Server side local view properties</h1>
+<h1 id="server-side-local-view-properties">Server side local view properties</h1>
 
 <p>This properties can be configured on the space side and they will affect all the local views which are created on top of that space.</p>
 

@@ -13,7 +13,7 @@
 
 <p>Similar agents can be implemented for other HTTP load-balancers such as <a href="http://www.f5.com" target="_blank" >F5</a>, <a href="http://www.radware.com" target="_blank" >Radware</a>,<a href="http://www.cisco.com/en/US/products/ps6906" target="_blank" >CISCO ACE</a>, <a href="http://www.barracudanetworks.com" target="_blank" >Barracuda</a> etc., using the <a href="administration-and-monitoring-overview.htm">Administration and Monitoring API</a>. See the <a href="/sbp/web-load-balancer-agent-pu.htm">Web Load Balancer Agent PU</a> for details.</p>
 
-<h1><a name="how-it-works">&#160;</a>How it Works?</h1>
+<h1 id="how-it-works">How it Works?</h1>
 
 <p>Here is a description of the flow that eventually scales the web application dynamically:</p>
 
@@ -28,7 +28,7 @@
 <li>New HTTP requests will be routed (based on the HTTPD load-balancing policy) into the new web application to serve the users requests.</li>
 </ol>
 
-<h1><a name="usage">&#160;</a>Usage</h1>
+<h1 id="usage">Usage</h1>
 
 <p>The agent resides within <code>XAP</code> Root folder/tools/apache<code>and includes the</code>apache-lb-agent` script. The script should run within the same box where the Apache server is running.</p>
 
@@ -136,7 +136,7 @@ Allow from 127.0.0.1
 
 <p>The agent listens for changes happening in the web application deployment topology running within the Service Grid. If custom lookup groups or lookup locators are used, the agent scripts use the built-in options within the product to change them (for example, in setenv.(bat/sh)).</p>
 
-<h1><a name="load-balancer-configuration">&#160;</a>Load Balancer Configuration</h1>
+<h1 id="load-balancer-configuration">Load Balancer Configuration</h1>
 
 <p>A load-balancer configuration is created for each web application deployed into the service grid. The template used to generate the load-balancer configuration can be found under <code>XAP Root folder/tools/apache/balancer-template.vm</code>. The file is a velocity template, used to generate the actual load-balancer configuration. It is passed with an instance of the <code>org.openspaces.pu.container.jee.lb.apache.LoadBalancerInfo</code> object, which holds all the information regarding the currently deployed web application instances locations.</p>
 

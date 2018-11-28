@@ -20,7 +20,7 @@
   <p>Space operations under transactions will trigger notifications when the transaction commits.</p>
 </div>
 
-<h1><a name="notify-example">&#160;</a>Notify Example</h1>
+<h1 id="notify-example">Notify Example</h1>
 
 <p>In the following example we register a listener to receive notifications when an Employee instance is written or update in the space.
 The client registering the listener will receive a copy of the object written in the space as notification. The object in the space will continue to exist.</p>
@@ -60,7 +60,7 @@ eventListener.destroy();
   <p><a href="notify-container-overview.htm">Notify Container</a></p>
 </div>
 
-<h1><a name="polling-example">&#160;</a>Polling Example</h1>
+<h1 id="polling-example">Polling Example</h1>
 
 <p>This example works just like the notification example above, except that the object is removed from the space:</p>
 
@@ -105,7 +105,7 @@ eventListener.destroy();
   <p><a href="polling-container-overview.htm">Polling Container</a></p>
 </div>
 
-<h1><a name="primary-backup">&#160;</a>Primary/Backup</h1>
+<h1 id="primary-backup">Primary/Backup</h1>
 
 <table class="tc-borderless"><tr><td style="width:60%;"><p>When working in clustered mode (schema) that includes a primary/backup schema, several components within the Processing Unit need to be aware of the current space mode and any changes made to it (such as event containers). Using Spring support for application events, two events are defined within OpenSpaces: <code>BeforeSpaceModeChangeEvent</code> and <code>AfterSpaceModeChangeEvent</code>. Both are raised when a space changes its mode from primary to backup or versa, and holds the current space mode.</p>
 </td>
@@ -148,7 +148,7 @@ spaceConfigurer.destroy();
 </div>
 </div>
 
-<h3><a name="primary-backup-notifications">&#160;</a>Primary Backup Notifications</h3>
+<h3 id="primary-backup-notifications">Primary Backup Notifications</h3>
 
 <p>A bean can implement the following interfaces to get notified about space mode changes:</p>
 
@@ -329,7 +329,7 @@ Thus, the compareAndSet() method can be used to implement a simple synchronizati
 }
 </code></pre>
 
-<h1><a name="listening-for-space-mode-changed-events">&#160;</a>Listening for Space Mode Changed Events</h1>
+<h1 id="listening-for-space-mode-changed-events">Listening for Space Mode Changed Events</h1>
 
 <p>When a remote client is interested to receive events when a space instance changing its runtime mode (from primary to backup or vise versa), it should implement the <code>SpaceModeChangedEventListener</code>. See below how:</p>
 

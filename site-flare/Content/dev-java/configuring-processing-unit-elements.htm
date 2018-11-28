@@ -9,7 +9,7 @@
 
 <p>Each file is used to configure separate aspects of the processing unit. The <code>pu.xml</code> file is used to configure the actual elements that the processing unit contains, e.g. space and space proxies, event handles and remote service. Generally speaking, it contains of the application specific components of the processing unit.</p>
 
-<h1><a name="the-pu-xml-file">&#160;</a>The pu.xml file</h1>
+<h1 id="the-pu-xml-file">The pu.xml file</h1>
 
 <p>This file is a <a href="http://www.springframework.org" target="_blank" >Spring framework</a> XML configuration file. It leverages the Spring framework <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm" target="_blank" >IoC container</a> and extends it by using the Spring <a href="http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.htm" target="_blank" >custom namespace mechanism</a>.</p>
 
@@ -18,7 +18,7 @@
   <p>It is recommended (although not mandatory) that you familiarize yourself with the Spring XML configuration basics. A good place to start is <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.htm" target="_blank" >here</a></p>
 </div>
 
-<h1><a name="pu-xml-contents">&#160;</a>pu.xml Contents</h1>
+<h1 id="pu-xml-contents">pu.xml Contents</h1>
 
 <p>The definitions in the <code>pu.xml</code> file are divided into 2 major categories:</p>
 
@@ -35,7 +35,7 @@
 
 <p>This section focuses on the overall structure of the <code>pu.xml</code> file. The various GigaSpaces components that can be included in the <code>pu.xml</code> (such as <a href="messaging-support.htm">event containers</a>, <a href="space-based-remoting-overview.htm">remote services</a> and others) are covered in detail in their respective sections in the programmer's guide.</p>
 
-<h1><a name="multiple-configuration-options">&#160;</a>Multiple Configuration Options</h1>
+<h1 id="multiple-configuration-options">Multiple Configuration Options</h1>
 
 <p>In recent versions (2.0 and 2.5), the Spring framework has introduced two additional ways to configure your Spring application.</p>
 
@@ -48,7 +48,7 @@ Naturally, GigaSpaces XAP also leverages the extensibility of the above two mech
 
 <p>Throughout this guide, every configuration example will be provided in all of the supported forms (plain Spring, custom namespace element and annotations). See below for an example pu.xml configuration file.</p>
 
-<h1><a name="sample-pu-xml-configuration">&#160;</a>Sample pu.xml Configuration</h1>
+<h1 id="sample-pu-xml-configuration">Sample pu.xml Configuration</h1>
 
 <p>Here's a sample <code>pu.xml</code> configuration file. Note the comments in the file which describe the various elements that appear in it.</p>
 
@@ -100,7 +100,7 @@ Naturally, GigaSpaces XAP also leverages the extensibility of the above two mech
 &lt;/beans&gt;
 </code></pre>
 
-<h1><a name="importing-xml-files-into-the-pu-xml">&#160;</a>Importing xml files into the pu.xml</h1>
+<h1 id="importing-xml-files-into-the-pu-xml">Importing xml files into the pu.xml</h1>
 
 <p>To import one more more xml files into your pu.xml you can use the following:</p>
 

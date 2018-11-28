@@ -25,7 +25,7 @@
   <p>you can <span class="tc-bold">control the replication at the operation level, using configuration only</span>. For more details, refer to the <a href="replication-operations.htm">Replication Operations</a> section.</p>
 </div>
 
-<h1><a name="guidelines-for-cluster-replication-filters">&#160;</a>Guidelines for Cluster Replication Filters</h1>
+<h1 id="guidelines-for-cluster-replication-filters">Guidelines for Cluster Replication Filters</h1>
 
 <ul>
 <li>In order to block a space object to be replicated, assign a <code>ReplicationOperationType.DISCARD</code> value as the operation type.</li>
@@ -37,7 +37,7 @@
 <li>All replication packets are sent according to their replication policy. When either the Interval Milliseconds or the Interval Operations times out, a replication event is executed. <code>ReplicationOperationType.DISCARD</code> packets are sent when a sequence of operations performed on one space does not need to be performed again on the replicated members. For example, when using asynchronous replication mode, a sequence of write and take on the same object does not need to replicated. Therefore, a <code>ReplicationOperationType.DISCARD</code> packet is sent. In contrast, the take operation is always replicated to ensure data consistency.</li>
 </ul>
 
-<h1><a name="statistics-example">&#160;</a>Statistics Example</h1>
+<h1 id="statistics-example">Statistics Example</h1>
 
 <p>The following Replication Filter displays replication activity statistics for outgoing activity (output filter). For each replication target (i.e. mirror , WAN gateway , backup instance), it generates an output (every 5 seconds) that includes info about each replication target , operation , space class , TP , Total operations and Delta since the last sampling.</p>
 
@@ -155,7 +155,7 @@ public class StatsReplicationFilter implements IReplicationFilter {
 [gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
 </code></pre>
 
-<h1><a name="blocking-replication-example">&#160;</a>Blocking Replication  Example</h1>
+<h1 id="blocking-replication-example">Blocking Replication  Example</h1>
 
 <p>The following example will start two spaces replicating data to each other. The replication filter will display the replicated data that is passed through the replication channel. The example displays all objects sent via the output filter. When an object with the data <span class="tc-bold">Block me</span> is passed, it is blocking by setting the replication Operation Type to <code>ReplicationOperationType.DISCARD</code>.</p>
 

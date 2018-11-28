@@ -40,11 +40,11 @@
   <p>The Initial Load is supported with the <code>partitioned</code> cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups set ZERO as the amount of backups.</p>
 </div>
 
-<h1><a name="controlling-the-initial-load">&#160;</a>Controlling the Initial Load</h1>
+<h1 id="controlling-the-initial-load">Controlling the Initial Load</h1>
 
 <p>By default all the entries are loaded from the database into the space, but sometimes only a subset of the data is relevant for the space. This section explains how to control which data is loaded.</p>
 
-<h2><a name="initial-load-entries">&#160;</a>Initial Load Entries</h2>
+<h2 id="initial-load-entries">Initial Load Entries</h2>
 
 <p>The <code>SpaceDataSource</code> can be configured to load only specific types by configuring the property <code>initialLoadEntries</code> with a list of fully-qualified type names. For example, to load only entries of type <code>MyEntry</code>:</p>
 
@@ -59,7 +59,7 @@
 &lt;/bean&gt;
 </code></pre>
 
-<h2><a name="custom-initial-load-queries">&#160;</a>Custom Initial Load Queries</h2>
+<h2 id="custom-initial-load-queries">Custom Initial Load Queries</h2>
 
 <p>A space class can specify a method which determines which data should be loaded into the space (similar to a "where' clause of a SQL query). For example, to load only entries whose <code>foo</code> property is greater than <span class="tc-bold">50</span>:</p>
 
@@ -110,7 +110,7 @@ public class MyClass {
 &lt;/bean&gt;
 </code></pre>
 
-<h2><a name="overriding-the-initialdataload-method">&#160;</a>Overriding the initialDataLoad method</h2>
+<h2 id="overriding-the-initialdataload-method">Overriding the initialDataLoad method</h2>
 
 <p>To implement your own Initial Load when using the Hibernate <code>SpaceDataSource</code> you can override the <code>initialDataLoad</code> method to construct one or more <code>DefaultScrollableDataIterator</code>. For example:</p>
 
@@ -128,7 +128,7 @@ public class MyClass {
 }
 </code></pre>
 
-<h1><a name="partitioned-cluster">&#160;</a>Partitioned Cluster</h1>
+<h1 id="partitioned-cluster">Partitioned Cluster</h1>
 
 <p>When using a partitioned cluster, each space partition stores a subset of the data, based on the entry routing property hash code value. Each partition performs its own initial load process and checks each loaded entry to verify it belongs to that partition - entries which do not belong are discarded.</p>
 
@@ -147,7 +147,7 @@ public class MyClass {
   <p>This mechanism only works for entries whose routing property type is numeric.</p>
 </div>
 
-<h2><a name="custom-initial-load-queries-1">&#160;</a>Custom Initial Load Queries</h2>
+<h2 id="custom-initial-load-queries-1">Custom Initial Load Queries</h2>
 
 <p>When an entry is configured with an explicit custom initial load query using <code>@SpaceInitialLoadQuery</code> as described above, the automatic augmentation is skipped. You can augment the query manually to match only entries for a specific partition:</p>
 
@@ -175,7 +175,7 @@ public class MyClass {
 
 <p>In addition, if you choose to override the <code>initialDataLoad</code> method, note that the <code>SpaceDataSource</code> implements <code>ClusterInfoAware</code>, therefore you have access to the protected <code>ClusterInfo</code> field.</p>
 
-<h1><a name="multi-parallel-initial-load">&#160;</a>Multi-Parallel Initial Load</h1>
+<h1 id="multi-parallel-initial-load">Multi-Parallel Initial Load</h1>
 
 <p>The <code>ConcurrentMultiDataIterator</code> can be used for Multi-Parallel load. This will allow multiple threads to load data into each space primary partition. With the example below 4 threads will be used to load data into the space primary partition , each will handle a different <code>MyDataIterator</code>:</p>
 

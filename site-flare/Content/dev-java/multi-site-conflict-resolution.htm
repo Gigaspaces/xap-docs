@@ -25,7 +25,7 @@ By default, operations that failed due-to transaction locks (EntryLockedUnderTra
 <p><span class="tc-bold">Default Behavior</span><br/>
 The default behavior states that an operation which failed due-to a transaction lock will be retried 5 times with a time interval of 100ms in-between each retry. If no conflict resolver was specified, the default action for all conflicting operations is "abort' so all conflicting operations will automatically be aborted (if an operation which is a part of a transaction fails, the entire transaction scope will be aborted).</p>
 
-<h1><a name="configuration">&#160;</a>Configuration</h1>
+<h1 id="configuration">Configuration</h1>
 
 <p>Configuration is made in the Sink component's element using the "error-handling' sub element. In the following example we'll see how to configure the number of retries to 20 with a time interval of 5 seconds between each retry and set a conflict resolver for the Sink gateway component.</p>
 
@@ -48,7 +48,7 @@ The default behavior states that an operation which failed due-to a transaction 
 &lt;bean id="conflictResolver" class="com.gigaspaces.gateway.sink.MyConflictResolver" /&gt;
 </code></pre>
 
-<h1><a name="conflict-resolver-implementation">&#160;</a>Conflict Resolver Implementation</h1>
+<h1 id="conflict-resolver-implementation">Conflict Resolver Implementation</h1>
 
 <p>Lets examine the following conflict resolver implementation which aborts all conflicts executed from a source named "LONDON" and for other sources aborts on entry version conflict:</p>
 
@@ -75,7 +75,7 @@ The default behavior states that an operation which failed due-to a transaction 
 
 <p>We distinguish between two cases when processing DataConflict operations.</p>
 
-<h2><a name="single-operations">&#160;</a>Single Operations</h2>
+<h2 id="single-operations">Single Operations</h2>
 
 <p>When a single operation faces a conflict, the DataConflict will only hold this particular so conflict.getOperations() will have one operation in it.</p>
 
@@ -93,7 +93,7 @@ londonGigaSpace.write(new Person("Jane Doe"));
 
 <p>In case the conflict resolver didn't resolve an operation (abort or override was not called for this operation) the operation will be aborted.</p>
 
-<h2><a name="transactional-operations">&#160;</a>Transactional Operations</h2>
+<h2 id="transactional-operations">Transactional Operations</h2>
 
 <p>When a transaction is committed, its enough that one of the transaction operation had a conflict and all of the transaction operations will be a part of the DataConflict and therefore when calling <code>conflict.getOperations()</code> all of the transaction operations are returned and its possible to identify the conflicting operations using the DataConflictOperation.hasConflict() method.</p>
 
@@ -174,7 +174,7 @@ ptm.commit(status);
 }
 </code></pre>
 
-<h1><a name="overriding-operations">&#160;</a>Overriding Operations</h1>
+<h1 id="overriding-operations">Overriding Operations</h1>
 
 <p>Overriding conflicting operations has a different behavior for each operation.
 The table below describes override behavior for each case:</p>
@@ -215,7 +215,7 @@ The table below describes override behavior for each case:</p>
 </tbody>
 </table>
 
-<h3><a name="changing-entry-data-on-conflict">&#160;</a>Changing Entry Data On Conflict</h3>
+<h3 id="changing-entry-data-on-conflict">Changing Entry Data On Conflict</h3>
 
 <p>It is possible to change the entry data before overriding the conflicting operation. In the following example, we have gateway replication from NEW-YORK to LONDON. We'll attempt to write a Person object to NEW-YORK which already exists in LONDON and we'll change the conflicting Person
 object properties before overriding the operation:</p>
@@ -248,7 +248,7 @@ public class MyConflictResolver extends com.gigaspaces.cluster.replication.gatew
 }
 </code></pre>
 
-<h1><a name="metadata-conflicts">&#160;</a>Metadata Conflicts</h1>
+<h1 id="metadata-conflicts">Metadata Conflicts</h1>
 
 <p>For both register type descriptor and add indexes conflicts it is not possible to take an action for the conflict
 though you can identify such conflicts using the conflict resolver's onRegisterTypeDescriptorConflict and onAddIndexConflict methods.
@@ -268,14 +268,14 @@ For example:</p>
 }
 </code></pre>
 
-<h1><a name="limitations">&#160;</a>Limitations</h1>
+<h1 id="limitations">Limitations</h1>
 
 <div class="tc-admon-refer">
   
   <p>Please refer to the <a href="multi-site-replication-limitations.htm">Multi-Site Replication Limitations</a> page.</p>
 </div>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1 id="example">Example</h1>
 
 <p>In this example, the pu.xml adds the required space class with the <code>abortClasses</code> property.
 Whenever the target space has conflicting data in comparison to incoming data, it will call the <code>MyConflictResolver.onDataConflict</code> method

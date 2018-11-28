@@ -11,7 +11,7 @@
 
 <p>The Web Management Console application is located under <code>XAP root/tools/gs-webui</code>. This directory contains the web application itself (in the form of a standard JEE .WAR file), and a launcher library and shell scripts used to start it in standalone mode (see below).</p>
 
-<h1><a name="starting-the-web-management-console-on-a-local-machine">&#160;</a>Starting the Web Management Console on a Local Machine</h1>
+<h1 id="starting-the-web-management-console-on-a-local-machine">Starting the Web Management Console on a Local Machine</h1>
 
 <p>When you first start using InsightEdge or XAP, you may prefer to run the Web Management Console on your local machine instead of on a web server. Simply click the <code>gs-webui.sh(bat)</code> script to start a Jetty web container with the Web Management Console application running within it. After the user interface starts, there's no need to deploy or perform any additional steps.</p>
 
@@ -20,9 +20,9 @@
   <p>In standalone mode, the web container listens by default on port 8099. To view the Web Management Console point your browser to <code>http://&lt;standalone server host&gt;:8099</code>, where <code>&lt;standalone server host&gt;</code> is the host on which you launched the <code>gs-webui</code> script. In this mode, the default context path for the Web Management Console is the root context path ("/").</p>
 </div>
 
-<h1><a name="security">&#160;</a>Security</h1>
+<h1 id="security">Security</h1>
 
-<h2><a name="ssl-connection">&#160;</a>SSL Connection</h2>
+<h2 id="ssl-connection">SSL Connection</h2>
 
 <p>In order to run the web-ui server with SSL ( using the HTTPS protocol instead of HTTP), the following parameters must be provided as arguments to the <code>gs-webui</code> script:</p>
 
@@ -64,7 +64,7 @@ gs-webui.bat
 </div>
 </div>
 
-<h2><a name="securing-the-web-dashboard">&#160;</a>Securing the Web Dashboard</h2>
+<h2 id="securing-the-web-dashboard">Securing the Web Dashboard</h2>
 
 <p>If you configured your XAP instance to run in secure mode using the <code>-Dcom.gs.security.enabled=true</code> property, you will see the following login window:</p>
 
@@ -79,11 +79,11 @@ gs-webui.bat
 Lookup groups and Lookup Locators can be configured in the configuration files described in <a href="../started/common-environment-variables.htm#extension">Configure Lookup Groups and Locators</a>.</p>
 </div>
 
-<h1><a name="deploying-the-web-application">&#160;</a>Deploying the Web Application</h1>
+<h1 id="deploying-the-web-application">Deploying the Web Application</h1>
 
 <p>When you reach the stage of a proper deployment, or are preparing to move to production, you can deploy the Web Management Console as described below.</p>
 
-<h2><a name="xap-runtime-environment">&#160;</a>XAP Runtime Environment</h2>
+<h2 id="xap-runtime-environment">XAP Runtime Environment</h2>
 
 <p>To deploy the Web Management Console to the XAP <a href="the-runtime-environment.htm">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;XAP root&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
 
@@ -102,7 +102,7 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
   <p>For more information about XAP's web application support, refer to the <a href="../dev-java/web-application-overview.htm">Web Application Support</a> section in the Developer Guide.</p>
 </div>
 
-<h2><a name="third-party-jee-servlet-container">&#160;</a>Third-Party JEE Servlet Container</h2>
+<h2 id="third-party-jee-servlet-container">Third-Party JEE Servlet Container</h2>
 
 <p>You can deploy the Web Management Console to a third-party servlet container, for example, Apache Tomcat (must be Tomcat 8 and above in order to support Java 8). Consult your web container documentation for deployment instructions.</p>
 
@@ -126,7 +126,7 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
 
 <p><img src="../Resources/Static/attachment_files/web-console/main-page-12.3.png" alt="xap-login-inline.png" /></p>
 
-<h1><a name="supported-web-browsers">&#160;</a>Supported Web Browsers</h1>
+<h1 id="supported-web-browsers">Supported Web Browsers</h1>
 
 <p>The Web Management Console supports the following web browsers:</p>
 
@@ -136,17 +136,17 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
 <li>Microsoft Internet Explorer 10 or higher</li>
 </ul>
 
-<h1><a name="runtime-considerations">&#160;</a>Runtime Considerations</h1>
+<h1 id="runtime-considerations">Runtime Considerations</h1>
 
-<h2><a name="deployment-location-of-the-web-application">&#160;</a>Deployment Location of the Web Application</h2>
+<h2 id="deployment-location-of-the-web-application">Deployment Location of the Web Application</h2>
 
 <p>The web application communicates with the runtime components of the XAP cluster, and receives notification from the XAP <a href="../overview/the-runtime-environment.htm#lus">lookup service</a>. Therefore, it is highly recommended to run the web application in the same network segment of the other cluster components. This does not affect the web browser client, which communicates with the web application using standard HTTP and can be located anywhere, provided that it has access to the web application.</p>
 
-<h2><a name="running-via-a-reverse-proxy">&#160;</a>Running via a Reverse Proxy</h2>
+<h2 id="running-via-a-reverse-proxy">Running via a Reverse Proxy</h2>
 
 <p>YOu can set up a reverse proxy for the Web Management Console. This may be preferable in certain scenarios, such as when access to the Web Management Console is done via a gateway. Reverse proxy setups are currently available and tested only on the Apache web server.</p>
 
-<h2><a name="configuring-the-proxy">&#160;</a>Configuring the Proxy</h2>
+<h2 id="configuring-the-proxy">Configuring the Proxy</h2>
 
 <p>Enable the relevant modules, by uncommenting (or adding) the following lines inside <code>httpd.conf</code>:</p>
 
@@ -180,7 +180,7 @@ LoadModule  proxy_http_module    modules/mod_proxy_http.so
 &lt;/VirtualHost&gt;
 </code></pre>
 
-<h2><a name="debugging-your-proxy">&#160;</a>Debugging Your Proxy</h2>
+<h2 id="debugging-your-proxy">Debugging Your Proxy</h2>
 
 <p>You can dump logging information to custom files on the Apache server by adding the following rules:</p>
 

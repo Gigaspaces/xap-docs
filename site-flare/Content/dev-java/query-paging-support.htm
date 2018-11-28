@@ -19,7 +19,7 @@
   <p>This page describes the new space iterator which is intended to replace the old <code>GSIterator</code> starting 10.1. Information about the old GSIterator is available <a href="query-paging-support-old.htm">here</a>.</p>
 </div>
 
-<h1><a name="usage">&#160;</a>Usage</h1>
+<h1 id="usage">Usage</h1>
 
 <p>Use the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace</a> <code>iterator(template)</code> method to create an iterator of all the objects in the space which match the template (either <a href="query-sql.htm">SQLQuery</a> or <a href="query-template-matching.htm">template</a>). This results in a <code>SpaceIterator&lt;T&gt;</code> which implements both <code>Iterator&lt;T&gt;</code> and <code>Iterable&lt;T&gt;</code>, so a simple <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.htm">for-each loop</a> can be used to iterate the results. For example:</p>
 
@@ -41,17 +41,17 @@
 }
 </code></pre>
 
-<h2><a name="batch-size">&#160;</a>Batch size</h2>
+<h2 id="batch-size">Batch size</h2>
 
 <p>Under the hood the iterator uses batching to fetch entries from the server, then serve the entries from the batch to the client whenever it asks for the next entry. The default batch size is <code>100</code>. You can use a different batch size by calling the <code>gigaSpace.iterator(template, batchSize)</code> overload.</p>
 
-<h2><a name="transactions">&#160;</a>Transactions</h2>
+<h2 id="transactions">Transactions</h2>
 
 <p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template will not be included as part of the matched set.</p>
 
-<h1><a name="limitations">&#160;</a>Limitations</h1>
+<h1 id="limitations">Limitations</h1>
 
-<h3><a name="complex-queries">&#160;</a>Complex queries</h3>
+<h3 id="complex-queries">Complex queries</h3>
 
 <p>The space iterator only supports simple SQL queries. For more information about the differences between simple and complex queries see <a href="query-sql.htm#SimpleQueries">simple SQL queries</a>.</p>
 

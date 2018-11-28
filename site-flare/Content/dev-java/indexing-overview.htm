@@ -7,7 +7,7 @@
 
 <p>When a Space is looking for a match for a read or take operation, it iterates over non-null values in the template, looking for matches in the Space. This process can be time consuming, especially when there are many potential matches. To improve performance, it is possible to index one or more properties. The Space maintains additional data for indexed properties, which shortens the time required to determine a match, thus improving performance.</p>
 
-<h1><a name="choosing-which-properties-to-index">&#160;</a>Choosing which Properties to Index</h1>
+<h1 id="choosing-which-properties-to-index">Choosing which Properties to Index</h1>
 
 <p>One might wonder why properties are not always indexed, or why all the properties in all the classes are not always indexed. The reason is that indexing has its downsides as well:</p>
 
@@ -16,7 +16,7 @@
 <li>An indexed property consumes more resources, specifically memory footprint per entry.</li>
 </ul>
 
-<h1><a name="when-to-use-indexing">&#160;</a>When to Use Indexing</h1>
+<h1 id="when-to-use-indexing">When to Use Indexing</h1>
 
 <p>Naturally the question arises of when to use indexing. Usually it is recommended to index properties that are used in common queries. However, in some scenarios one might favor less footprint, or faster performance for a specific query, and adding/removing an index should be considered.</p>
 
@@ -25,7 +25,7 @@
   <p>Keep in mind that "premature optimization is the root of all evil". It is always recommended to benchmark your code to get better results.</p>
 </div>
 
-<h1><a name="dynamic-indexing">&#160;</a>Dynamic Indexing</h1>
+<h1 id="dynamic-indexing">Dynamic Indexing</h1>
 
 <p>Indexes can be added dynamically during runtime with the <code>GigaSpaceTypeManager</code> interface. This doesn't lock any of the CRUD operations, so system performance is not affected.</p>
 
@@ -34,13 +34,13 @@
   <p>Refer to <a href="the-space-meta-data.htm#modifying-existing-classes">Data Type Metadata</a> for more information.</p>
 </div>
 
-<h1><a name="performance-tips">&#160;</a>Performance Tips</h1>
+<h1 id="performance-tips">Performance Tips</h1>
 
 <p>Properties that are not indexed and not used for queries can be grouped within a user-defined class (also known as payload class). This improves the read/write performance because these properties aren't introduced to the Space class model.</p>
 
-<h1><a name="deprecated-indexing-options">&#160;</a>Deprecated Indexing Options</h1>
+<h1 id="deprecated-indexing-options">Deprecated Indexing Options</h1>
 
-<h2><a name="implicit-indexing">&#160;</a>Implicit Indexing</h2>
+<h2 id="implicit-indexing">Implicit Indexing</h2>
 
 <p>If no properties are indexed explicitly, the Space implicitly indexes the first <span class="tc-bold">n</span> properties (in alphabetical order), where <span class="tc-bold">n</span> is determined by the <code>number-implicit-indexes</code> property in the Space schema.</p>
 
@@ -49,7 +49,7 @@
   <p>Using this feature is not recommended, because adding/removing properties can have unexpected side effects. It is deprecated, and might be removed in future versions.</p>
 </div>
 
-<h1><a name="query-execution-flow">&#160;</a>Query Execution Flow</h1>
+<h1 id="query-execution-flow">Query Execution Flow</h1>
 
 <p>When a <code>read</code>, <code>take</code>, <code>readMultiple</code>, or <code>takeMultiple</code> call is performed, a template is used to locate matching Space objects. The template may have multiple field values - some may include values and some may not (i.e. <code>null</code> field values acting as wildcard). The fields that do not include values are ignored during the matching process. In addition, some class fields may be indexed and some may not be indexed.</p>
 

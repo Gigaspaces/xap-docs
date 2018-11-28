@@ -5,7 +5,7 @@
 <h1>MemoryXtend for PMEM</h1>
   
 
-<h1><a name="overview">&#160;</a>Overview</h1>
+<h1 id="overview">Overview</h1>
 
 <p>Persistent Memory (PMEM) is a new class of memory that combines high capacity and affordability. By expanding affordable system memory capacities (greater than 3TB per CPU socket), end customers can use systems enabled with PMEM to better optimize their workloads by moving and maintaining larger amounts of data closer to the processor, and minimizing the higher latency of fetching data from system storage.</p>
 
@@ -27,7 +27,7 @@
 <p>If you would like to receive early access to the Optane PC hardware for evaluation purposes, contact us to <a href="https://www.gigaspaces.com/request-demo">request a demo</a> via the GigaSpaces website.</p>
 </div>
 
-<h1><a name="prerequisites">&#160;</a>Prerequisites</h1>
+<h1 id="prerequisites">Prerequisites</h1>
 
 <p>The GigaSpaces PMEM driver is based on the libpmem library, which provides low-level persistent memory support. In order to use this driver, you need the following shared libraries installed:</p>
 
@@ -41,7 +41,7 @@
 
 <p>For information about these libraries and how to install them, refer to the Intel Persistent Memory Programming project website at <a href="https://pmem.io/">https://pmem.io/</a>.</p>
 
-<h1><a name="basic-configuration">&#160;</a>Basic Configuration</h1>
+<h1 id="basic-configuration">Basic Configuration</h1>
 
 <div class="tc-admon-note">
   
@@ -97,7 +97,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
   <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.htm#on-heap-cache">MemoryXtend overview</a> topic.</p>
 </div>
 
-<h2><a name="defining-the-memory-pool-size">&#160;</a>Defining the Memory Pool Size</h2>
+<h2 id="defining-the-memory-pool-size">Defining the Memory Pool Size</h2>
 
 <p>In order to use PMEM storage, you must define the amount of memory to allocate, for example. <code>20g</code>. Use the following sizing units:</p>
 
@@ -110,7 +110,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
 <p>Before any operation that requires memory allocation (write, update, and initial load), the memory manager checks how much of the allocated memory has been used. If the threshold has been breached, an <code>OffHeapMemoryShortageException</code> is thrown. Read, take, and clear operations are always allowed.</p>
 
-<h1><a name="monitoring">&#160;</a>Monitoring</h1>
+<h1 id="monitoring">Monitoring</h1>
 
 <p>The amount of used memory can be tracked with the following monitoring and administration tools:</p>
 

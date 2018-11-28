@@ -9,7 +9,7 @@
 
 <p>The memcached support is provided as a template deployment (similar to how basic data grid deployment works), allowing to easily issue commands to deploy a memcached cluster using the CLI, Admin API, or the UI. See "<a href="../admin/the-runtime-environment.htm">The Runtime Environment</a>" for an explanation of the moving parts and components in a GigaSpaces XAP server instance.</p>
 
-<h1><a name="why-use-memcached">&#160;</a>Why Use Memcached?</h1>
+<h1 id="why-use-memcached">Why Use Memcached?</h1>
 
 <p>Memcached is a simple protocol, which makes it naturally cross-platform. This simplicity means a reduction in features, such as failover or distribution of data. The traditional memcached client/server architecture has one memcached client connected to a number of <span class="tc-italic">disconnected</span> memcached server instances, which share no data and are entirely unaware of each other.</p>
 
@@ -28,17 +28,17 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/xap_memcached_router.jpg" alt="xap_memcached_router.jpg" /></p>
 </div>
 
-<h1><a name="using-memcached">&#160;</a>Using Memcached</h1>
+<h1 id="using-memcached">Using Memcached</h1>
 
 <p>Memcached uses a standardized and language-neutral <a href="https://code.google.com/p/memcached/wiki/NewCommands">protocol</a>, providing fourteen commands (six reads, two sets, two updates, one delete, and some status-related commands), issued over a plain text connection. A client application can open a telnet session and use a memcached server with no problems (assuming no errors are made in using the protocol, of course.)</p>
 
 <p>However, since the protocol is simple and well-known, there have been many client libraries written that provide access to memcached services.</p>
 
-<h2><a name="using-memcached-from-java">&#160;</a>Using Memcached from Java</h2>
+<h2 id="using-memcached-from-java">Using Memcached from Java</h2>
 
 <p>There are many memcached clients for Java; the one GigaSpaces' example applications have used is <a href="http://code.google.com/p/xmemcached/">xmemcached</a>.</p>
 
-<h2><a name="maven">&#160;</a>Maven</h2>
+<h2 id="maven">Maven</h2>
 
 <p>If you use Maven, you can include spymemcached as a dependency, by adding a repository reference and a dependency:</p>
 
@@ -75,7 +75,7 @@ String value=(String)c.get("key");
 // note that async versions of get exist as well
 </code></pre>
 
-<h1><a name="deploying">&#160;</a>Deploying</h1>
+<h1 id="deploying">Deploying</h1>
 
 <p>Deploying memcached requires a single parameter, which is the space to use for the memcached data. The parameter is the space url, and can either be an embedded space, or a remote connection url to an already deployed url. Here are some examples to deploy memcached using the CLI:</p>
 
@@ -130,7 +130,7 @@ while (true) {
 }
 </code></pre>
 
-<h1><a name="deployment-descriptor">&#160;</a>Deployment Descriptor</h1>
+<h1 id="deployment-descriptor">Deployment Descriptor</h1>
 
 <p>The memcached deployment descriptor looks as follows, for deployment with a GigaSpaces processing unit:</p>
 
@@ -170,13 +170,13 @@ while (true) {
 
 <p>The <code>MemCacheDaemon</code> start listening on the provided port, and if that port is busy, the next port will be used. The daemon accepts different memcached protocol commands, and translates them into operations on the space.</p>
 
-<h3><a name="local-cache">&#160;</a>Local Cache</h3>
+<h3 id="local-cache">Local Cache</h3>
 
 <p>A local cache is started by default on each instance, and works against the whole cluster. Since memcached clients have no concept of routing and how routing is done by the space, a request can hit a certain instance, and be routed to a different space instance. The idea of the local cache is to improve the performance of "get" requests.</p>
 
 <p>Most memcached clients allow to provide a list of memcached servers to connect to. Another improvement that most of them provides us the ability to have consistent hashing of keys to the same server instance. This can result in both high hit rate on the local cache, and less eviction happening.</p>
 
-<h1><a name="performance">&#160;</a>Performance</h1>
+<h1 id="performance">Performance</h1>
 
 <p>The results below compares native memcached with GigaSpaces memcached:</p>
 
@@ -188,7 +188,7 @@ while (true) {
 <pre><code class="language-java">memslap --concurrency=$i --test=get --servers=$SERVER:$PORT
 </code></pre>
 
-<h2><a name="test-setup">&#160;</a>Test Setup</h2>
+<h2 id="test-setup">Test Setup</h2>
 
 <ul>
 <li>Client: CentOS 5 , 4 x AMD Opteron Dual-core 8220 2.8Ghz , Sun Fire X4600</li>

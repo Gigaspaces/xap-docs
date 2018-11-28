@@ -7,7 +7,7 @@
 
 <p>The Synchronization Endpoint Interceptor allows a custom logic to be plugged in to the Replication Gateway, this can be used for various use cases. One use case is custom handling of distributed transaction consolidation failure events, where one for example, can keep track of such events in some database for later diagnostics and decision. The interceptor is plugged into the target gateway sink upon construction.</p>
 
-<h1><a name="the-interceptor-api">&#160;</a>The Interceptor API</h1>
+<h1 id="the-interceptor-api">The Interceptor API</h1>
 
 <p>The interceptor is an abstract class which may be extended to provide custom behavior only on relevant methods.</p>
 
@@ -41,7 +41,7 @@
 }
 </code></pre>
 
-<h1><a name="how-to-plug-a-custom-interceptor">&#160;</a>How to Plug a Custom Interceptor</h1>
+<h1 id="how-to-plug-a-custom-interceptor">How to Plug a Custom Interceptor</h1>
 
 <p>To use a custom interceptor implementation one should first extends the <code>SynchronizationEndpointInterceptor</code> class and use the subclass in the target gateway <code>pu.xml</code> configuration:</p>
 
@@ -58,16 +58,16 @@
 &lt;/os-gateway:sink&gt;
 </code></pre>
 
-<h1><a name="handling-intercepted-events">&#160;</a>Handling Intercepted events</h1>
+<h1 id="handling-intercepted-events">Handling Intercepted events</h1>
 
 <p>There are three events the interceptor can receive and act upon</p>
 
-<h2><a name="on-transaction-consolidation-failure">&#160;</a>On Transaction Consolidation Failure</h2>
+<h2 id="on-transaction-consolidation-failure">On Transaction Consolidation Failure</h2>
 
 <p>This event is triggered upon distributed transaction consolidation failure, refer to <a href="multi-site-replication-overview.htm#Configuring and Deploying the Gateway">Gateway and Distributed Transactions</a> for more info about scenarios triggering this event.
 The interceptor can get data about the current transaction participant (transaction part in a specific partition) for which the consolidation had failed and decide whether to commit or abort this participant data independently of the other participants. This is done by interacting with the <code>ConsolidationParticipantData</code> which is passed to the method as argument. This object contains all the relevant data, such as the operations and entries that are under this transaction participant, transaction metadata which contains its id, the source which participate in this transaction etc.</p>
 
-<h2><a name="after-transaction-synchronization">&#160;</a>After Transaction Synchronization</h2>
+<h2 id="after-transaction-synchronization">After Transaction Synchronization</h2>
 
 <p>This event is triggered after the entire transaction is successfully replicated to the final target and the <code>TransactionData</code> contains all the data that the transaction consists of, including metadata and the source of the transaction.</p>
 
@@ -76,11 +76,11 @@ The interceptor can get data about the current transaction participant (transact
   <p>When a consolidated transaction is executed, the source will contain the name of one of the participants.</p>
 </div>
 
-<h2><a name="after-operations-batch-synchronization">&#160;</a>After Operations Batch Synchronization</h2>
+<h2 id="after-operations-batch-synchronization">After Operations Batch Synchronization</h2>
 
 <p>This event is triggered after a batch of non transactional operations were successfully replicated to the final target, the operations batching is determined by the gateway logic and is not reflecting the original client batch of operations if such existed. However, it maintains the original order of operations in the source. The <code>OperationsBatchData</code> contains the relevant data, which is the batch of operations itself and the source of this operations.</p>
 
-<h1><a name="the-data-sync-operation">&#160;</a>The Data Sync Operation</h1>
+<h1 id="the-data-sync-operation">The Data Sync Operation</h1>
 
 <p>Each of the above intercepted events contains a data item that includes the relevant data synchronization operations. A transaction contains the operations that are executed within its boundaries. A batch of operations contains the list of operations that were synchronized in this batch. Each of this operations is a <code>DataSyncOperation</code> which expose the details of the single data synchronization operation.</p>
 
@@ -139,7 +139,7 @@ The interceptor can get data about the current transaction participant (transact
 Before calling each of the <code>getDataAsDocument</code>, <code>getDataAsObject</code> and <code>getTypeDescriptor</code>, the corresponding "supports" methods must be called to verify that the operation indeed applies to the current entry.
 An invocation of <code>getDataAsObject</code> if the <code>supportsDataAsObject</code> methods return false, will throw an <code>UnsupportOperationException</code>.</p>
 
-<h1><a name="example-of-an-interceptor-handling-consolidation-failure-events">&#160;</a>Example of an Interceptor Handling Consolidation Failure events</h1>
+<h1 id="example-of-an-interceptor-handling-consolidation-failure-events">Example of an Interceptor Handling Consolidation Failure events</h1>
 
 <p>The following example will demonstrate how to implement an interceptor that stores in some external data store the list of distributed transactions that failed to consolidate and aborts them for later manual decision. Note, that there is a regular case where consolidation may show a false failure as described in <a href="multi-site-replication-overview.htm#Configuring and Deploying the Gateway">Gateway and Distributed Transactions</a>. This example will handle this case as well.</p>
 

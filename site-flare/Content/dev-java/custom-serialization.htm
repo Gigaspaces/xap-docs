@@ -38,7 +38,7 @@ The Externalization mechanism stores all the metadata, but writes out only the l
 
 <p><br/></p>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1 id="example">Example</h1>
 
 <p>Here is an example; the <code>Person</code> class has an <code>Address</code> property that is being externalized.</p>
 
@@ -138,7 +138,7 @@ public class Person {
 </div>
 </div>
 
-<h1><a name="kryo-serialization">&#160;</a>Kryo Serialization</h1>
+<h1 id="kryo-serialization">Kryo Serialization</h1>
 
 <p><a href="https://github.com/EsotericSoftware/kryo" target="_blank" >Kryo</a> is a fast and efficient object graph serialization framework for Java. You can use this framework to serialize your objects with XAP.
 Using the same example from above, the <code>writeExternal</code>  and <code>readExternal</code> methods of the <code>Address</code> class make use of the <code>KryoSerializers</code>.</p>

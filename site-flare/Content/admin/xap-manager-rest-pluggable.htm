@@ -7,7 +7,7 @@
 
 <p>The REST Manager API is extensible so that custom methods can be added. Developers can implement a plain Java class with <a href="https://github.com/jax-rs" target="_blank" >JAX-RS</a> annotations.</p>
 
-<h1><a name="sample-implementation">&#160;</a>Sample Implementation</h1>
+<h1 id="sample-implementation">Sample Implementation</h1>
 
 <p>Follow the instructions below to create a sample extension for the REST Manager API:</p>
 
@@ -42,7 +42,7 @@ public class BasicPluggableOperationTest {
 
 <p>Note that some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
 
-<h1><a name="configuration">&#160;</a>Configuration</h1>
+<h1 id="configuration">Configuration</h1>
 
 <p>When the XAP Manager starts, it scans the <code>$XAP_HOME/lib/platform/manager/plugins</code> for classes in the jar files with the JAX-RS annotations and registers them.
 You can override the location using the following system property:</p>
@@ -50,7 +50,7 @@ You can override the location using the following system property:</p>
 <pre><code class="language-bash">com.gs.manager.rest.plugins.path="pathToJar"
 </code></pre>
 
-<h1><a name="response">&#160;</a>Response</h1>
+<h1 id="response">Response</h1>
 
 <p>In the example above the method returns a String, and in addition it implicitly returns an HTTP code 200 (OK). If you need to explicitly specify the HTTP result code, use <code>org.openspaces.admin.rest.Response</code> instead of a <code>String</code>.</p>
 
@@ -76,7 +76,7 @@ public Response report(@QueryParam("hostname") String hostname) {
   <p>Make sure you use <code>org.openspaces.admin.rest.Response</code> and not JAX-RS Response.</p>
 </div>
 
-<h1><a name="security">&#160;</a>Security</h1>
+<h1 id="security">Security</h1>
 
 <p>To define security privileges for a custom method, you have to import <code>org.openspaces.admin.rest.PrivilegeRequired</code> and <code>org.openspaces.admin.rest.RestPrivileges</code>, and use <code>@PrivilegeRequired</code>.
 The <code>@PrivilegeRequired</code> annotation accepts a <code>RestPrivileges</code> enum that corresponds to the Security privileges.</p>
@@ -105,11 +105,11 @@ public class PluggableSecuredContoller {
 }
 </code></pre>
 
-<h1><a name="jax-rs-support">&#160;</a>JAX-RS Support</h1>
+<h1 id="jax-rs-support">JAX-RS Support</h1>
 
 <p>The <code>JAX-RS</code> API is used for extension support because it is a well-known standard and commonly used by developers. The sections below list the annotations that are supported, and those that are not supported.</p>
 
-<h2><a name="supported-annotations">&#160;</a>Supported Annotations</h2>
+<h2 id="supported-annotations">Supported Annotations</h2>
 
 <p>The following JAX-RS annotations are supported:</p>
 
@@ -128,7 +128,7 @@ public class PluggableSecuredContoller {
 </ul></li>
 </ul>
 
-<h2><a name="unsupported-annotations">&#160;</a>Unsupported Annotations</h2>
+<h2 id="unsupported-annotations">Unsupported Annotations</h2>
 
 <p>The following JAX-RS annotations are not supported:</p>
 

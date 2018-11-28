@@ -14,20 +14,20 @@
   <p>The REST service is not supported with embedded space thus we recommend using it as a separate processing unit.</p>
 </div>
 
-<h1><a name="deploment-options">&#160;</a>Deploment Options</h1>
+<h1 id="deploment-options">Deploment Options</h1>
 
-<h2><a name="deploy-via-cli">&#160;</a>Deploy via CLI</h2>
+<h2 id="deploy-via-cli">Deploy via CLI</h2>
 
 <div class="tc-admon-refer">
   
   <p>See full instructions <a href="../admin/rest-deploy-command-line-interface.htm">here</a></p>
 </div>
 
-<h2><a name="deploy-using-a-template">&#160;</a>Deploy using a template</h2>
+<h2 id="deploy-using-a-template">Deploy using a template</h2>
 
 <p>A pre-configured processing unit template is provided and can be found at <code>{XAP_HOME}/deploy/templates/rest</code></p>
 
-<h2><a name="deploy-rest-service-as-part-of-a-custom-processing-unit">&#160;</a>Deploy REST Service as part of a custom Processing Unit</h2>
+<h2 id="deploy-rest-service-as-part-of-a-custom-processing-unit">Deploy REST Service as part of a custom Processing Unit</h2>
 
 <p>A REST Service can be started as part of a custom processing unit by specifying the <code>&lt;os-core:rest &gt;</code> annotation as following:</p>
 
@@ -40,7 +40,7 @@
 <pre><code class="language-xml">&lt;os-core:rest id="mySpaceRestService" space-name="mySpace" port="8081" lookup-groups="myGroups" /&gt;
 </code></pre>
 
-<h4><a name="os-core-rest-attributes">&#160;</a>&lt;os-core:rest&gt; attributes</h4>
+<h4 id="os-core-rest-attributes">&lt;os-core:rest&gt; attributes</h4>
 
 <table>
 <thead>
@@ -86,7 +86,7 @@
 
 <p>*giga-space and space-name attributes can not be used together.</p>
 
-<h1><a name="date-support">&#160;</a>Date Support</h1>
+<h1 id="date-support">Date Support</h1>
 
 <p>Date string is parsed with a different parser from XAP's parser. Therefore, a date format must be defined.</p>
 
@@ -101,7 +101,7 @@
 &lt;/os-core:rest&gt;
 </code></pre>
 
-<h1><a name="nested-spacedocument">&#160;</a>Nested SpaceDocument</h1>
+<h1 id="nested-spacedocument">Nested SpaceDocument</h1>
 
 <p>The REST API supports writing nested SpaceDocument.</p>
 
@@ -118,7 +118,7 @@
 }
 </code></pre>
 
-<h1><a name="api-and-playground">&#160;</a>API and Playground</h1>
+<h1 id="api-and-playground">API and Playground</h1>
 
 <p>Once the REST Processing Unit is deployed, you can browse the API and test its methods by accessing the main page at: <code>http://&lt;rest-instance-host-address&gt;:&lt;rest-port&gt;/</code>.</p>
 
@@ -131,7 +131,7 @@
   <p>Browse the offline API documentation <a href="rest-service-api.htm">here</a></p>
 </div>
 
-<h1><a name="limitations">&#160;</a>Limitations</h1>
+<h1 id="limitations">Limitations</h1>
 
 <ul>
 <li>In case that the ports were in use, the deployment will fail.</li>
@@ -141,14 +141,14 @@
 <li>Currently there is no support for connecting to a secured space.</li>
 </ul>
 
-<h1><a name="removed-apis">&#160;</a>Removed APIs</h1>
+<h1 id="removed-apis">Removed APIs</h1>
 
 <p>The REST service was a dependant project until version 10.1.0.
 Since then, it is an official part of the product.</p>
 
 <p>Tasks API were removed, Pojo and Document API were merged with no support for Pojo writing.</p>
 
-<h1><a name="war-deployment-and-customization">&#160;</a>WAR Deployment and Customization</h1>
+<h1 id="war-deployment-and-customization">WAR Deployment and Customization</h1>
 
 <p>Another option is to deploy the REST service as <a href="web-application-overview.htm">Web Processing Unit</a>.</p>
 

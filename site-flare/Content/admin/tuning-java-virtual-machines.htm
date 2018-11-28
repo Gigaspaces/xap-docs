@@ -9,19 +9,19 @@
 
 <p>Even though JVM tuning is dependent on the JVM provider, general tuning concepts apply to all JVMs.</p>
 
-<h1><a name="garbage-collector">&#160;</a>Garbage Collector</h1>
+<h1 id="garbage-collector">Garbage Collector</h1>
 
 <p>The garbage collector is the key to effectively managing the JVM memory system, which is the ultimate goal of JVM tuning. Garbage collection is the process of clearing dead objects from the heap, thus releasing that space for new objects.</p>
 
-<h2><a name="application-throughput">&#160;</a>Application Throughput</h2>
+<h2 id="application-throughput">Application Throughput</h2>
 
 <p>The garbage collector is optimized for application throughput. This means that the garbage collector works as effectively as possible, giving as many CPU resources to the Java threads as possible. This may, however, cause non-deterministic pauses when the garbage collector stops all Java threads for garbage collection. The throughput priority should be used when non-deterministic pauses do not impact the application's behavior.</p>
 
-<h2><a name="pause-time">&#160;</a>Pause Time</h2>
+<h2 id="pause-time">Pause Time</h2>
 
 <p>The garbage collector is optimized to limit the length of each garbage collection pause where all Java threads are stopped for garbage collection. This may result in lower application throughput, as the garbage collector uses more CPU resources in total than when running with the throughput priority. The pause time priority should be used when the application depends on an even performance.</p>
 
-<h1><a name="why-and-when-to-perform-this-task">&#160;</a>Why and When to Perform this Task</h1>
+<h1 id="why-and-when-to-perform-this-task">Why and When to Perform this Task</h1>
 
 <p>GigaSpaces, being a Java process, requires a Java virtual machine (JVM) to run. As part of configuring  GigaSpaces, you can fine-tune settings that enhance system use of the JVM. A JVM provides the runtime execution environment for Java-based applications. GigaSpaces can run on JVMs from different JVM providers. When GigaSpaces starts it writes information about the JVM, including the JVM provider information, into this  log file and the standard output.
 Even though JVM tuning is dependent on the JVM provider, general tuning concepts apply to all JVMs.
@@ -34,7 +34,7 @@ These general concepts include:</p>
 <li>Garbage collection - A key feature of Java is its garbage-collected heap, which takes care of freeing dynamically allocated memory that is no longer referenced. Because the heap is garbage-collected, Java programmers don't have to explicitly free allocated memory.</li>
 </ul>
 
-<h2><a name="optimize-startup-performance-and-runtime-performance">&#160;</a>Optimize Startup Performance and Runtime Performance</h2>
+<h2 id="optimize-startup-performance-and-runtime-performance">Optimize Startup Performance and Runtime Performance</h2>
 
 <p>In some environments, it is more important to optimize the startup performance of GigaSpaces rather than the runtime performance. In other environments, it is more important to optimize the runtime performance. By default, IBM JVMs are optimized for runtime performance while HotSpot based JVMs are optimized for startup performance.</p>
 
@@ -42,7 +42,7 @@ These general concepts include:</p>
 
 <p>It is hard to provide a specific runtime performance impact statement because the compilers might recompile class methods during runtime execution based upon the compiler's determination that recompiling might provide better performance. Ultimately, the size of the application will have a major influence on the amount of runtime degradation. Smaller applications have a higher probability of having their methods recompiled. Larger applications are less likely to have their methods recompiled.</p>
 
-<h2><a name="set-heap-size">&#160;</a>Set Heap Size</h2>
+<h2 id="set-heap-size">Set Heap Size</h2>
 
 <p>Generally, you may want to set the maximum heap size as high as possible, but not so high that it causes page faults for the application or for some other application on the same computer. Heap sizing is accomplished by using the <code>-Xms</code> (minimum heap size) and <code>-Xmx</code> (maximum heap size) options. The following command line parameters are useful for setting the heap size.</p>
 
@@ -54,7 +54,7 @@ These general concepts include:</p>
 
 <p>The size you should specify for the heap depends on your heap usage over time. In cases where the heap size changes frequently, you might improve performance if you specify the same value for the <code>Xms</code> and <code>Xmx</code> parameters.</p>
 
-<h2><a name="garbage-collection">&#160;</a>Garbage Collection</h2>
+<h2 id="garbage-collection">Garbage Collection</h2>
 
 <div class="tc-admon-note">
   
@@ -73,13 +73,13 @@ These general concepts include:</p>
   <p>For more details, see <a href="../production/production-jvm-tuning.htm">JVM Tuning</a> in the <a href="../production/index.htm">Moving into Production</a> section.</p>
 </div>
 
-<h1><a name="soft-references-cleanup">&#160;</a>Soft References Cleanup</h1>
+<h1 id="soft-references-cleanup">Soft References Cleanup</h1>
 
 <p>Softly reachable objects will remain alive for some amount of time after the last time they were referenced. The default value is one second (1000) of lifetime per free megabyte in the heap. This value can be adjusted using the <code>-XX:SoftRefLRUPolicyMSPerMB</code> flag, which accepts integer values representing milliseconds per MB of free memory.</p>
 
 <p>If the application using large amount of <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/lang/ref/SoftReference.htm">Soft references</a> you may want to tune the <code>-XX:SoftRefLRUPolicyMSPerMB</code> to have a smaller value than the default.</p>
 
-<h1><a name="usebiasedlocking-jvm-option">&#160;</a>UseBiasedLocking JVM Option</h1>
+<h1 id="usebiasedlocking-jvm-option">UseBiasedLocking JVM Option</h1>
 
 <p>The <code>UseBiasedLocking</code> JVM option impacts GigaSpaces performance when running synchronized replication (and also one-way mode) when used with <span class="tc-bold">Solaris 10</span>. Please avoid using this option with clients accessing the space and space servers JVM.</p>
 
@@ -92,7 +92,7 @@ These general concepts include:</p>
 
 <p>Some applications with significant amounts of un contended synchronization may attain significant speedups with this flag enabled; some applications with certain patterns of locking may see slowdowns, though attempts have been made to minimize the negative impact.</p>
 
-<h1><a name="tuning-64-bit-jvm">&#160;</a>Tuning 64-bit JVM</h1>
+<h1 id="tuning-64-bit-jvm">Tuning 64-bit JVM</h1>
 
 <p>On 64-bit systems, the call stack for each thread is allocated with 1MB of memory space. Most threads do not use that much space. Using the <code>-XX:ThreadStackSize=256k</code> flag, you can decrease the stack size to 256k to allow more threads.</p>
 
@@ -100,7 +100,7 @@ These general concepts include:</p>
 
 <p>The -XX:+UseCompressedOops option can improve performance of the 64-bit JRE when the Java object heap is less than 32 gigabytes in size. In this case, HotSpot compresses object references to 32 bits, reducing the amount of data that it must process. Available in Sun JVM since JDK6u14.</p>
 
-<h1><a name="references">&#160;</a>References</h1>
+<h1 id="references">References</h1>
 
 <p><span class="tc-bold">General</span></p>
 

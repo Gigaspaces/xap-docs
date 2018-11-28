@@ -7,7 +7,7 @@
 
 <p>InsightEdge has a Python API available via PySpark. Its functionality is limited to the DataFrame API.</p>
 
-<h1><a name="interactive-use">&#160;</a>Interactive Use</h1>
+<h1 id="interactive-use">Interactive Use</h1>
 
 <p>There are two options for analyzing data interactively in Python:</p>
 
@@ -16,11 +16,11 @@
 <li>command line shell</li>
 </ul>
 
-<h1><a name="zeppelin-notebook">&#160;</a>Zeppelin Notebook</h1>
+<h1 id="zeppelin-notebook">Zeppelin Notebook</h1>
 
 <p>To develop notebooks in Python, use the <code>%pyspark</code> interpreter in the Zeppelin web notebook. See the <code>InsightEdge python example</code> notebook as a reference example.</p>
 
-<h1><a name="command-line-shell">&#160;</a>Command Line Shell</h1>
+<h1 id="command-line-shell">Command Line Shell</h1>
 
 <p>To start the command line shell, run the <code>./bin/insightedge-pyspark</code> script in the InsightEdge directory.</p>
 
@@ -46,7 +46,7 @@
 </div>
 </div>
 
-<h1><a name="saving-and-loading-dataframes-in-python">&#160;</a>Saving and Loading DataFrames in Python</h1>
+<h1 id="saving-and-loading-dataframes-in-python">Saving and Loading DataFrames in Python</h1>
 
 <p>To operate on InsightEdge DataFrames, use the regular PySpark DataFrame API with the <code>org.apache.spark.sql.insightedge</code> format, and specify Data Grid <code>collection</code> or <code>class</code> options. For example,</p>
 
@@ -74,7 +74,7 @@ gridDf.show()
 </div>
 </div>
 
-<h1><a name="self-contained-applications">&#160;</a>Self-Contained Applications</h1>
+<h1 id="self-contained-applications">Self-Contained Applications</h1>
 
 <p>To develop a self-contained submittable application, use the regular PySpark and configure the InsightEdge settings in <code>SparkConf</code>:</p>
 

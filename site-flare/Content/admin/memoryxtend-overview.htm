@@ -5,7 +5,7 @@
 <h1>MemoryXtend</h1>
   
 
-<h1><a name="overview">&#160;</a>Overview</h1>
+<h1 id="overview">Overview</h1>
 
 <p>In a traditional deployment, all XAP entries are stored in JVM heaps to provide the fastest performance possible. However, as data grows in size and numbers, the following issues become noticeable:</p>
 
@@ -16,7 +16,7 @@
 
 <p>The MemoryXtend (blobstore) storage model allows an external storage medium (one that does not reside on the JVM heap) to store the Space data. This section describes the general MemoryXtend architecture and functionality, and its off-heap RAM, hSSD, and PMEM implementations.</p>
 
-<h1><a name="implementation">&#160;</a>Implementation</h1>
+<h1 id="implementation">Implementation</h1>
 
 <p>MemoryXtend is designed as a pluggable architecture, supporting multiple implementations of off-heap storage (also called blobstore). Space entries are stored in the blobstore (a wrapper around SSD/HDD storage or direct memory buffer regions), while the indexes are stored in the managed JVM heap. This allows queries that leverage indexes to minimize off-heap penalty, because most of the work is done in-memory and only matched entries are loaded from the off-heap storage.</p>
 
@@ -33,7 +33,7 @@
 <li><a href="memoryxtend-pmem.htm">MemoryXtend for PMEM</a> - For storing data in PMEM memory.</li>
 </ul>
 
-<h1><a name="class-level-settings">&#160;</a>Class-Level Settings</h1>
+<h1 id="class-level-settings">Class-Level Settings</h1>
 
 <p>When MemoryXtend is configured for a Space, all entries stored in that Space are stored using the MemoryXtend settings. This is somewhat slower than entries stored in-memory with the traditional XAP storage mechanism. In certain scenarios, it makes sense to use MemoryXtend for some classes but not for others. For example, a user may have a limited amount of <code>Customer</code> entries, but a lot of <code>Order</code> entries, and therefore may want to disable MemoryXtend for the <code>Customer</code> entries. This can be done via the Space class metadata. For example:</p>
 
@@ -51,7 +51,7 @@ public class Customer {
 </div>
 </div>
 
-<h1><a name="on-heap-cache">&#160;</a>On-Heap Cache</h1>
+<h1 id="on-heap-cache">On-Heap Cache</h1>
 
 <p>MemoryXtend comes with a built-in, LRU-based cache that stores objects on-heap for faster access. The following table describes the blobstore cache configuration options.</p>
 
@@ -103,7 +103,7 @@ public class Customer {
 </tbody>
 </table>
 
-<h2><a name="example">&#160;</a>Example</h2>
+<h2 id="example">Example</h2>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -141,7 +141,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 </div>
 </div>
 
-<h2><a name="default-cache-lru">&#160;</a>Default Cache - LRU</h2>
+<h2 id="default-cache-lru">Default Cache - LRU</h2>
 
 <p>By default the cache uses an LRU strategy to cache and evict entries. The cache size is controlled by two settings:</p>
 
@@ -160,7 +160,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
 <p>10GB * 20% / 2KB = ((10 * 1024 * 1024 * 1024) * 0.2) / (2 * 1024) = <span class="tc-bold">1,048,576</span></p>
 
-<h2><a name="user-defined-cache">&#160;</a>User-Defined Cache</h2>
+<h2 id="user-defined-cache">User-Defined Cache</h2>
 
 <p>The <code>blob-store-cache-query</code> option enables customizing the cache contents. You can define a set of SQL queries, so that only objects that fit the queries:</p>
 
@@ -216,7 +216,7 @@ blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE 
 Entries inserted to blobstore cache: 80.
 </code></pre>
 
-<h2><a name="cache-metrics">&#160;</a>Cache Metrics</h2>
+<h2 id="cache-metrics">Cache Metrics</h2>
 
 <p>The concept of cache <span class="tc-italic">hit</span> and cache <span class="tc-italic">miss</span> is very important for cache analysis. A hit occurs when querying data that is stored in the cache. A miss occurs when querying data that is stored on disk.</p>
 
@@ -235,18 +235,18 @@ Entries inserted to blobstore cache: 80.
 <p>By modifying the custom queries, the cache efficiency (maximizing hits and minimizing misses) can be improved. To keep track of the cache efficiency, key metrics are measured and stored, including hits, total misses, and hot data misses.
 For information about XAP metrics and how to use them, refer to the <a href="metrics-overview.htm">Metrics</a> section of this guide.</p>
 
-<h2><a name="data-recovery-on-restart">&#160;</a>Data Recovery on Restart</h2>
+<h2 id="data-recovery-on-restart">Data Recovery on Restart</h2>
 
 <p>The MemoryXtend architecture allows for data persisted on the blobstore to be available for the data grid upon restart. To enable this, you have to enable the <code>persistent</code> option in the blobstore policy.</p>
 
 <pre><code class="language-xml">  &lt;os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore"&gt;
 </code></pre>
 
-<h2><a name="lazy-load">&#160;</a>Lazy Load</h2>
+<h2 id="lazy-load">Lazy Load</h2>
 
 <p>If no custom queries are defined, the <span class="tc-italic">lazy load</span> approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on disk exceeds what can fit into memory.</p>
 
-<h1><a name="persistence-and-recovery">&#160;</a>Persistence and Recovery</h1>
+<h1 id="persistence-and-recovery">Persistence and Recovery</h1>
 
 <p>When using a cluster with backups for high availability, if one of the nodes fails and restarts, it automatically locates the primary node and copies all the data from it so it can serve as a backup again. This process is called <span class="tc-italic">recovery</span>. The more data in the Space, the longer recovery takes, and if MemoryXtend is used this is no longer a RAM-only process. The primary Space must iterate through its MemoryXtend instance to fetch all the data for the backup node performing the recovery.</p>
 
@@ -261,7 +261,7 @@ For information about XAP metrics and how to use them, refer to the <a href="met
 
 <p>In addition, persistency requires the settings described in the sections below.</p>
 
-<h2><a name="machine-instance-affinity">&#160;</a>Machine-Instance Affinity</h2>
+<h2 id="machine-instance-affinity">Machine-Instance Affinity</h2>
 
 <p>If a GSC or a machine running a GSC restarts, there is no guarantee the XAP instance running within the GSC will be provisioned to the same machine where it was running before. When MemoryXtend is used in a non-persistent manner, this isn't problematic because the instance recovers from the primary, but if MemoryXtend is set to <code>persistent=true</code>, you must ensure that the instance is provisioned on the same machine where it was located before, so it can recover from the correct device, which is usually local to the machine.</p>
 
@@ -315,7 +315,7 @@ For information about XAP metrics and how to use them, refer to the <a href="met
   <p>Make sure you provide the <code>sla.xml</code> location at deploy time (<code>-sla</code> deploy command option), or locate it at the root of the Processing Unit JAR or under the <code>META-INF/spring</code> directory, alongside the Processing Unit's <code>pu.xml</code> file.</p>
 </div>
 
-<h2><a name="last-primary">&#160;</a>Last Primary</h2>
+<h2 id="last-primary">Last Primary</h2>
 
 <p>When a Space instance starts as part of a primary-backup cluster, it undergoes a process called <span class="tc-italic">active election</span> to determine if it should be a primary or a backup instance. Generally speaking, the first instance that is loaded is the primary, and the rest are backups. If a persistent system is restarted in an orderly manner (meaning all the data was flushed to both the primary and backup instances before shutting down), it doesn't matter which instance becomes primary, because they are all identical. However, if both the primary and backup instances crash unexpectedly for some reason and then restart, it is important to ensure that the last instance that was primary before the crash is elected primary again, because it holds a more accurate version of the data.</p>
 
@@ -380,11 +380,11 @@ For information about XAP metrics and how to use them, refer to the <a href="met
 </div>
 </div>
 
-<h1><a name="supported-xap-apis">&#160;</a>Supported XAP APIs</h1>
+<h1 id="supported-xap-apis">Supported XAP APIs</h1>
 
 <p>All XAP APIs are supported with the blobstore configuration. This includes the Space (POJO and Document), JDBC, JPA, JMS, and Map APIs. In addition, all co-located business logic functionality (event containers, task executors, remoting services, aggregators, etc.) are fully supported.</p>
 
-<h1><a name="limitations">&#160;</a>Limitations</h1>
+<h1 id="limitations">Limitations</h1>
 
 <ul>
 <li>MemoryXtend and <a href="../dev-java/direct-persistency.htm">Direct Persistency</a> configuration is not supported.</li>

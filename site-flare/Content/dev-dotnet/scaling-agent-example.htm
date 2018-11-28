@@ -15,11 +15,11 @@
 
 <div class="tc-align-center"><img src="../Resources/Static/attachment_files/dotnet/scaling agent .net.jpg" alt="scaling agent .net.jpg" /></div>
 
-<h1><a name="how-the-scaling-agent-works">&#160;</a>How the Scaling Agent Works</h1>
+<h1 id="how-the-scaling-agent-works">How the Scaling Agent Works</h1>
 
 <p>The scaling agent periodically samples the throughput of feeds that are processed by the running application instances, and compares the average throughput per instance to a specific threshold. If the average throughput is larger than the pre-defined threshold, which is part of the processing unit configuration, the scaling agent scales up the application by starting a new GSC, and by increasing the amount of instances (see the <code>ScaleUp()</code> method). The sampling is done by letting the feed processor implement the <code>IServiceMonitorsProvider</code> interface, which exposes the public API that is used by the agent.</p>
 
-<h2><a name="scaling-agent-implementation">&#160;</a>Scaling Agent Implementation</h2>
+<h2 id="scaling-agent-implementation">Scaling Agent Implementation</h2>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Code " style="padding:10px"><pre><code class="language-csharp">[BasicProcessingUnitComponent( Name = "Agent" )]
 public class Agent : IDisposable
@@ -158,7 +158,7 @@ public class Agent : IDisposable
 </div>
 </div>
 
-<h2><a name="feed-processor">&#160;</a>Feed Processor</h2>
+<h2 id="feed-processor">Feed Processor</h2>
 
 <p>The processor waits for new feeds to be fed into the cluster, and acts upon such an event. Since the processor throughput needs to be monitored by the agent, the processor implements the <code>IServiceMonitorsProvider</code> interface to expose its throughput for external query.</p>
 
@@ -256,7 +256,7 @@ public class FeedProcessorTpMonitor : IServiceMonitors
 }
 </code></pre>
 
-<h1><a name="running-the-example">&#160;</a>Running the Example</h1>
+<h1 id="running-the-example">Running the Example</h1>
 
 <p>The example consists of the following parts:</p>
 
@@ -281,12 +281,12 @@ The Scaling Agent monitors the deployed Processors and scales them up on demand.
 <li>At this stage, the entire application is deployed and waiting for new feeds to be processed. Start a feeder by executing <code>&lt;XAP.NET installation&gt;\Examples\ScalingAgent\RunFeeder.bat</code>. Use the feeder user interface to specify the rate of feeding, in order to simulate different loads on the cluster.</li>
 </ol>
 
-<h2><a name="feeder-application">&#160;</a>Feeder Application</h2>
+<h2 id="feeder-application">Feeder Application</h2>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/dotnet/ScalingAgentFeeder.jpg" alt="ScalingAgentFeeder.jpg" /></p>
 </div>
 
-<h2><a name="agent-application">&#160;</a>Agent Application</h2>
+<h2 id="agent-application">Agent Application</h2>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/dotnet/ScalingAgentConsole.jpg" alt="ScalingAgentConsole.jpg" /></p>
 </div>

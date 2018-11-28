@@ -7,7 +7,7 @@
 
 <p>In this part of the tutorial we will demonstrate how to create a Space and how you can interact with it. We will also demonstrate how you can improve your Space search performance by using indexes and returning partial results.</p>
 
-<h1><a name="creating-a-space">&#160;</a>Creating a Space</h1>
+<h1 id="creating-a-space">Creating a Space</h1>
 
 <p>Let's create a Space called "xapTutorialSpace' that is co-located within an application. This type of Space is called embedded Space.</p>
 
@@ -48,11 +48,11 @@ In both cases, updates are performed (objects are added/updated/removed) on the 
   <p><a href="../dev-dotnet/client-side-caching.htm">Client Side Caching</a></p>
 </div>
 
-<h1><a name="the-space-object">&#160;</a>The Space Object</h1>
+<h1 id="the-space-object">The Space Object</h1>
 
 <p>XAP supports two types of objects that can interact with the Space, PONOs and Documents.</p>
 
-<h1><a name="pono">&#160;</a>PONO</h1>
+<h1 id="pono">PONO</h1>
 
 <p>Any PONO can be used to interact with the Space. The PONO needs to implement a default constructor, setters and getters for every property you want to store in the Space.</p>
 
@@ -81,7 +81,7 @@ using GigaSpaces.Core.Metadata;
 }
 </code></pre>
 
-<h4><a name="the-spaceid">&#160;</a>The SpaceId</h4>
+<h4 id="the-spaceid">The SpaceId</h4>
 
 <p>The Space generates a unique identifier (UID) for every object in one of the following ways:</p>
 
@@ -96,7 +96,7 @@ using GigaSpaces.Core.Metadata;
   <p><a href="../dev-dotnet/poco-object-id.htm">Space Object Id</a></p>
 </div>
 
-<h4><a name="defining-routing">&#160;</a>Defining Routing</h4>
+<h4 id="defining-routing">Defining Routing</h4>
 
 <p>Partitioning is used when the total number of objects is too big to be stored in a single Space. In this case we will divide the data into several partitions. By designating an attribute on the Space class as a partitioning key, the Space proxy will then know to which partition a particular instance of the Space class belongs to. The Space proxy uses the entry's routing attribute hash code to determine the corresponding partition for it.</p>
 
@@ -110,7 +110,7 @@ using GigaSpaces.Core.Metadata;
   <p><a href="../admin/data-partitioning.htm">Data Partitioning</a></p>
 </div>
 
-<h1><a name="space-document">&#160;</a>Space Document</h1>
+<h1 id="space-document">Space Document</h1>
 
 <p>The XAP document API exposes the Space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike PONOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.</p>
 
@@ -177,11 +177,11 @@ namespace xaptutorial.model
   <p><a href="../dev-dotnet/document-object-interoperability.htm">Document Object Interoperability</a></p>
 </div>
 
-<h1><a name="interacting-with-the-space">&#160;</a>Interacting with the Space</h1>
+<h1 id="interacting-with-the-space">Interacting with the Space</h1>
 
 <p>All Space operations are relevant to both the PONO and Document.</p>
 
-<h4><a name="writing-an-object-to-space">&#160;</a>Writing an object to Space:</h4>
+<h4 id="writing-an-object-to-space">Writing an object to Space:</h4>
 
 <p>When writing an object to the Space, the object is created in Space if it does not exist. If it already exists in Space it will be updated. This is the default behavior of the write operation.</p>
 
@@ -238,7 +238,7 @@ namespace xaptutorial.model
   <p><a href="../dev-dotnet/the-space-operations.htm">The Space Operations</a></p>
 </div>
 
-<h4><a name="updating-an-object-in-space">&#160;</a>Updating an object in Space</h4>
+<h4 id="updating-an-object-in-space">Updating an object in Space</h4>
 
 <p>When you want to update only a couple of attributes on an object in Space, you can use the change operation and update specific fields or even nested fields or modify collections and maps without having to supply the entire collection or map for the operation. With the following change operation example it is not necessary to read the object first from the Space to update it. The Change API reduces a normal two step operation to a one step operation. This operation can vastly improve performance when you have an object with many attributes and you only need to update one or a couple of attributes.</p>
 
@@ -267,7 +267,7 @@ namespace xaptutorial.model
   <p><a href="../dev-dotnet/change-api-overview.htm">The Change API</a></p>
 </div>
 
-<h1><a name="querying-the-space">&#160;</a>Querying the Space</h1>
+<h1 id="querying-the-space">Querying the Space</h1>
 
 <p>Now we are ready to query the Space. XAP provides several ways to perform queries against the Space:</p>
 
@@ -277,7 +277,7 @@ namespace xaptutorial.model
 <li>Query by SQL</li>
 </ul>
 
-<h4><a name="query-by-id">&#160;</a>Query by ID</h4>
+<h4 id="query-by-id">Query by ID</h4>
 
 <p>This is the simplest and fasted way to retrieve objects from the Space.</p>
 
@@ -298,7 +298,7 @@ namespace xaptutorial.model
 }
 </code></pre>
 
-<h4><a name="query-by-template">&#160;</a>Query by Template</h4>
+<h4 id="query-by-template">Query by Template</h4>
 
 <p>Template matching (match by example) is a simple way to query the Space. The template is a PONO of the desired entry type, and the attributes which are set on the template (i.e. not null) are matched against the respective attributes of entries of the same type in the Space. Attributes with null values are ignored (not matched).</p>
 
@@ -327,7 +327,7 @@ namespace xaptutorial.model
   <p>Template Matching support inheritance relationships, so that entries of a sub-class are visible in the context of the super class, but not the other way around.</p>
 </div>
 
-<h4><a name="sql-query">&#160;</a>SQL Query</h4>
+<h4 id="sql-query">SQL Query</h4>
 
 <p>The SQLQuery class is used to query the Space with an SQL-like syntax. The query statement includes only the WHERE statement part. An SQLQuery is composed from the class of entry to query and an expression in SQL syntax.</p>
 
@@ -352,7 +352,7 @@ public User[] sqlFindUsersByNameLike() {
 }
 </code></pre>
 
-<h4><a name="parameterized-queries">&#160;</a>Parameterized Queries</h4>
+<h4 id="parameterized-queries">Parameterized Queries</h4>
 
 <p>You can separate the values for the SQL criteria expression by placing a "?' symbol instead of the actual value in the expression. When executing the query, the conditions that includes "?' are replaced with the corresponding parameter values supplied via the setParameter  method.</p>
 
@@ -372,7 +372,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
 }
 </code></pre>
 
-<h4><a name="nested-property-queries">&#160;</a>Nested property queries</h4>
+<h4 id="nested-property-queries">Nested property queries</h4>
 
 <p>Many times a class has embedded classes as attributes. You can query for attributes within the embedded classes. Matching a nested attribute is done by specifying a Path which describes how to obtain its value. For example, our user class has an embedded attribute of an Address that has a zipCode attribute.</p>
 
@@ -425,7 +425,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
 }
 </code></pre>
 
-<h4><a name="nested-collections">&#160;</a>Nested Collections</h4>
+<h4 id="nested-collections">Nested Collections</h4>
 
 <p>It is possible to query embedded collections. Our user class has a collection groups that he belongs to. We can query the Space for all users that belong to a certain group:</p>
 
@@ -442,7 +442,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
   <p><a href="../dev-dotnet/query-sql.htm">SQL Query</a></p>
 </div>
 
-<h4><a name="query-returning-partial-results">&#160;</a>Query returning partial results</h4>
+<h4 id="query-returning-partial-results">Query returning partial results</h4>
 
 <p>In some cases when querying the Space for objects only specific attributes of an objects are required and not the entire object (delta read). For that purpose the Projection API can be used where you can specify which attributes are of interest and the Space will only populate these attributes with the actual data when the result is returned back to the user. This approach reduces network overhead and can vastly improve performance.</p>
 
@@ -456,7 +456,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
 }
 </code></pre>
 
-<h4><a name="document-queries">&#160;</a>Document Queries</h4>
+<h4 id="document-queries">Document Queries</h4>
 
 <p>You can also query the Space for documents. Just like the PONO queries, you can use query by ID, template and SQLQuery.</p>
 
@@ -486,7 +486,7 @@ public SpaceDocument[] readProductsBySQL() {
   <p><a href="../dev-dotnet/document-api.htm">The Document API</a></p>
 </div>
 
-<h4><a name="linq-queries">&#160;</a>LINQ Queries</h4>
+<h4 id="linq-queries">LINQ Queries</h4>
 
 <p>XAP includes a custom LINQ provider, which enables developers to take advantage of their existing C# skills to query the Space without learning a new language.  Here is an example :</p>
 
@@ -507,11 +507,11 @@ public SpaceDocument[] readProductsBySQL() {
   <p><a href="../dev-dotnet/query-linq.htm">LINQ Query</a></p>
 </div>
 
-<h4><a name="removing-objects-from-space">&#160;</a>Removing Objects from Space</h4>
+<h4 id="removing-objects-from-space">Removing Objects from Space</h4>
 
 <p>To remove objects from a Space you can use the take or the clear operation.</p>
 
-<h4><a name="take-operation">&#160;</a>Take operation</h4>
+<h4 id="take-operation">Take operation</h4>
 
 <p>The take operation returns an object and removes it from the Space. XAP provides several options for the take operation:</p>
 
@@ -541,7 +541,7 @@ public User[] takeUsersBySQL() {
 }
 </code></pre>
 
-<h4><a name="clear-operation">&#160;</a>Clear operation</h4>
+<h4 id="clear-operation">Clear operation</h4>
 
 <p>The clear operation removes objects from a Space without returning them.
 Here are some examples:</p>
@@ -563,7 +563,7 @@ public void clearAllObjectInSpace() {
 }
 </code></pre>
 
-<h4><a name="aggregation">&#160;</a>Aggregation</h4>
+<h4 id="aggregation">Aggregation</h4>
 
 <p>The Aggregators allow you to perform the entire aggregation activity at the Space side avoiding any data retrieval back to the client side. Only the result of each aggregation activity performed with each partition is returned back to the client side where all the results are reduced and returned to the client application.</p>
 
@@ -593,15 +593,15 @@ Person youngestPersonInSpace = queryable.MinEntry(p =&gt; p.Age);
   <p><a href="../dev-dotnet/aggregators.htm">Aggregators</a></p>
 </div>
 
-<h1><a name="indexing">&#160;</a>Indexing</h1>
+<h1 id="indexing">Indexing</h1>
 
 <p>To improve performance, it is possible to index one or more attributes for an object. The Space maintains additional data for indexed attributes, which shortens the time required to determine a match resulting in improved performance. However, indexes consume more resources and impacts the write operations performance.</p>
 
-<h4><a name="inheritance">&#160;</a>Inheritance</h4>
+<h4 id="inheritance">Inheritance</h4>
 
 <p>By default, a properties index is inherited in sub classes (i.e. if an attribute is indexed in a super class, it is also indexed in a sub class). If you need to change the index type of an attribute in a subclass you can override the attribute and annotate it with <code>[SpaceIndex]</code> using the requested index type (to disable indexing use NONE).</p>
 
-<h4><a name="basic-index">&#160;</a>Basic Index</h4>
+<h4 id="basic-index">Basic Index</h4>
 
 <p>There are three basic index types provided:</p>
 
@@ -656,7 +656,7 @@ using GigaSpaces.Core.Metadata;
 }
 </code></pre>
 
-<h4><a name="compound-indexing">&#160;</a>Compound Indexing</h4>
+<h4 id="compound-indexing">Compound Indexing</h4>
 
 <p>A Compound Index is a Space index composed from several attributes or nested attributes. Each attribute of a compound index is called a segment and each segment is described by its path.</p>
 
@@ -690,7 +690,7 @@ SqlQuery&lt;User&gt; query = new SqlQuery&lt;User&gt;("Name = 'John Doe' AND Cre
   <p><a href="../dev-dotnet/indexing.htm">Indexing Objects</a></p>
 </div>
 
-<h1><a name="best-practice">&#160;</a>Best Practice</h1>
+<h1 id="best-practice">Best Practice</h1>
 
 <p><span class="tc-bold">When you code your Space classes make sure:</span></p>
 

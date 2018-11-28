@@ -13,7 +13,7 @@
   </tr>
 </table>
 
-<h1><a name="library-dependencies">&#160;</a>Library dependencies</h1>
+<h1 id="library-dependencies">Library dependencies</h1>
 
 <p>The Cassandra Archive Operation Handler uses the <a href="http://hector-client.github.com/hector/build/html/index.htm" target="_blank" >Hector Library</a> for communicating with the Cassandra cluster.
 Include the following in your <code>pom.xml</code></p>
@@ -75,7 +75,7 @@ Include the following in your <code>pom.xml</code></p>
 </div>
 </div>
 
-<h1><a name="setup">&#160;</a>Setup</h1>
+<h1 id="setup">Setup</h1>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-archive-cassandra:cassandra-archive-handler id="cassandraArchiveHandler"
   giga-space="gigaSpace"
@@ -114,7 +114,7 @@ archiveContainer.destroy();
 </div>
 </div>
 
-<h1><a name="cassandraarchiveoperationhandler-properties">&#160;</a>CassandraArchiveOperationHandler Properties</h1>
+<h1 id="cassandraarchiveoperationhandler-properties">CassandraArchiveOperationHandler Properties</h1>
 
 <table>
 <thead>
@@ -162,7 +162,7 @@ archiveContainer.destroy();
 </tbody>
 </table>
 
-<h2><a name="property-value-serializer">&#160;</a>Property Value Serializer</h2>
+<h2 id="property-value-serializer">Property Value Serializer</h2>
 
 <p>By default when serializing object/document properties to column values, the following serialization logic is applied:</p>
 
@@ -180,7 +180,7 @@ Object fromByteBuffer(ByteBuffer byteBuffer);
 
 <p>Properties will only be serialized by the custom serializer if their type does not match a primitive type in Cassandra.</p>
 
-<h1><a name="known-limitations">&#160;</a>Known Limitations</h1>
+<h1 id="known-limitations">Known Limitations</h1>
 
 <p>The CassandraArchiveHandler has the following known limitations:
  *  The archiver must not write two different entries with the same ID. This would corrupt the entry in Cassandra.

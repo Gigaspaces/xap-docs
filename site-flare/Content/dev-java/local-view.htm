@@ -30,7 +30,7 @@
 <li>Any operation under a transaction</li>
 </ul>
 
-<h1><a name="usage">&#160;</a>Usage</h1>
+<h1 id="usage">Usage</h1>
 
 <p>Creating a local view is similar to creating a <a href="the-gigaspace-interface-overview.htm">GigaSpace</a> instance, except that the Space is wrapped with a local view before exposing it as a <code>GigaSpace</code>. The local view can be configured via Spring using <code>LocalViewSpaceFactoryBean</code> or the <code>&lt;os-core:local-view&gt;</code> Spring tag, or in code using <code>LocalViewSpaceConfigurer</code>. For example:</p>
 
@@ -92,11 +92,11 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 </div>
 </div>
 
-<h1><a name="memory-management">&#160;</a>Memory Management</h1>
+<h1 id="memory-management">Memory Management</h1>
 
 <p>Data is never evicted from the local view (the cache policy is hardwired to <code>ALL_IN_CACHE</code>). Therefore, specifying a criteria that retrieves large amounts of data from the master Space can cause the client to run out of memory.</p>
 
-<h2><a name="multiple-instances-within-the-same-client">&#160;</a>Multiple Instances within the Same Client</h2>
+<h2 id="multiple-instances-within-the-same-client">Multiple Instances within the Same Client</h2>
 
 <p>It can be problematic to run multiple local view instances (for different master Spaces) within the same client without allocating reasonable headroom for the local view to operate. This will manifest in <code>MemoryShortageException</code> being thrown sporadically.</p>
 
@@ -108,7 +108,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 
 <p>If the JVM running client X's available memory exceeds the <code>write_only_block_percentage</code> threshold, a <code>MemoryShortageException</code> is thrown when the listener on the client side (for LV1 or LV2) that receives the notifications with the new/updated objects tries to write them to the relevant local view. In this case, the client might not even perform an explicit read. It will have a "phantom" <code>MemoryShortageException</code> thrown that is a result of new/updated objects written to the Space by other clients (or by itself). Even if LV2 is cleared somehow (as a result of objects taken from Space B), a <code>MemoryShortageException</code> is thrown on the client side when new objects are written to Space A.</p>
 
-<h1><a name="synchronization">&#160;</a>Synchronization</h1>
+<h1 id="synchronization">Synchronization</h1>
 
 <p>The local view uses <a href="../admin/replication.htm">replication</a> instead of <a href="session-based-messaging-api.htm">notifications</a> to synchronize with the master Space, because replication provides higher reliability than notification. In general, this is an implementation detail that should not concern the user, except for the following cases:</p>
 
@@ -119,9 +119,9 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 
 <p>In these cases, the local view automatically reverts to notification-based synchronization.</p>
 
-<h2><a name="configuration">&#160;</a>Configuration</h2>
+<h2 id="configuration">Configuration</h2>
 
-<h3><a name="server-side-local-view-properties">&#160;</a>Server-Side Local View Properties</h3>
+<h3 id="server-side-local-view-properties">Server-Side Local View Properties</h3>
 
 <p>The following properties can be configured on the Space side, and will affect all the local views that are created on top of that Space.</p>
 
@@ -155,11 +155,11 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 </tbody>
 </table>
 
-<h3><a name="notifications">&#160;</a>Notifications</h3>
+<h3 id="notifications">Notifications</h3>
 
 <p>If local view synchronization is done using notifications, the round-trip-time can be configured using the <code>space-config.dist-cache.events.lease-renew.round-trip-time</code> custom property. For more information about this setting refer to <a href="session-based-messaging-api.htm">Session Based Messaging API</a>.</p>
 
-<h2><a name="batch-synchronization">&#160;</a>Batch Synchronization</h2>
+<h2 id="batch-synchronization">Batch Synchronization</h2>
 
 <p>Changes in the server are grouped and sent to the client in batches. The following configuration settings controls synchronization batching:</p>
 
@@ -177,13 +177,13 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 &lt;/os-core:local-view&gt;
 </code></pre>
 
-<h1><a name="monitoring-the-connection">&#160;</a>Monitoring the Connection</h1>
+<h1 id="monitoring-the-connection">Monitoring the Connection</h1>
 
 <p>The local view requires a constant connection to the master Space in order to keep the data synchronized. Short, intermittent disconnections may occur that don't significantly affect data syncing. In this case, the client application can continue to read data from the local view. A lengthy disconnection means the data in the local view isn't synced with the master Space, so the local view doesn't accept operations from the client and instead throws an exception.</p>
 
 <p>The <code>max-disconnection-duration</code> parameter defines for how long the local view can be disconnected from the master Space before the view is no longer viable.</p>
 
-<h2><a name="connection-states">&#160;</a>Connection States</h2>
+<h2 id="connection-states">Connection States</h2>
 
 <p>The local view connection can be in any of the following states:</p>
 
@@ -194,7 +194,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 <li>CLOSED -  The local view is permanently closed. Operations on the view throw exceptions stating that the view is closed.</li>
 </ul>
 
-<h2><a name="configuring-the-maximum-disconnection-duration">&#160;</a>Configuring the Maximum Disconnection Duration</h2>
+<h2 id="configuring-the-maximum-disconnection-duration">Configuring the Maximum Disconnection Duration</h2>
 
 <p>When the connection between a local view and remote master Space is disrupted, the local view starts trying to reconnect with the remote Space. As long as the disconnection period is shorter than the <code>max-disconnection-duration</code> value, querying the local view will return a result, although it isn't guaranteed to be in sync with the master Space. If the disconnection period exceeds the <code>max-disconnection-duration</code> value, the local view cannot be queried.</p>
 
@@ -205,7 +205,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 &lt;/os-core:local-view&gt;
 </code></pre>
 
-<h2><a name="recovering-from-disconnection">&#160;</a>Recovering from Disconnection</h2>
+<h2 id="recovering-from-disconnection">Recovering from Disconnection</h2>
 
 <p>When the connection to the remote master Space is restored, the local view reloads all its data from the master Space (this is the same behavior as in the initialization process) before restoring the state to active. This ensures that the local view is consistent when it is accessed.</p>
 
@@ -214,7 +214,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
   <p>When the synchronization is replication-based (default), the local view is resilient to failover because if a primary Space fails and a backup Space replaces it before the maximum disconnection duration expires, the local view remains intact during the failover process. When the synchronization is notification-based, this is not guaranteed because notifications may be lost during the failover process.</p>
 </div>
 
-<h2><a name="local-view-monitor-interface">&#160;</a>Local View Monitor Interface</h2>
+<h2 id="local-view-monitor-interface">Local View Monitor Interface</h2>
 
 <p>You can do the following using the <code>LocalViewMonitor</code> interface:</p>
 
@@ -223,7 +223,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
 <li>Add and remove connection state listeners.</li>
 </ul>
 
-<h3><a name="reading-the-connection-state">&#160;</a>Reading the Connection State</h3>
+<h3 id="reading-the-connection-state">Reading the Connection State</h3>
 
 <p>The code snippet below demonstrates how to use the Local View Monitor to read the local view connection state:</p>
 
@@ -246,7 +246,7 @@ LocalViewMonitor localViewMonitor = localViewSpaceConfigurer.getLocalViewMonitor
 LocalViewConnectionState localViewConnectionState = localViewMonitor.getConnectionState();
 </code></pre>
 
-<h3><a name="adding-a-connection-state-listener-to-the-local-view">&#160;</a>Adding a Connection State Listener to the Local View</h3>
+<h3 id="adding-a-connection-state-listener-to-the-local-view">Adding a Connection State Listener to the Local View</h3>
 
 <p>The <code>LocalViewConnectionStateListener</code> interface is a simple one-method interface:</p>
 
@@ -285,7 +285,7 @@ localViewMonitor.addConnectionStateListener(mySimpleListener);
 localViewMonitor.removeConnectionStateListener(mySimpleListener);
 </code></pre>
 
-<h1><a name="considerations">&#160;</a>Considerations</h1>
+<h1 id="considerations">Considerations</h1>
 
 <p>When a local view contains complex objects (nested structure), it is recommended to perform a deep clone after these have been read to allow incoming updates to refresh the state of the cached objects (copy on read).
 The client application should use the cloned object, because the original object returned back from the read operation holds a reference used by the local view.</p>

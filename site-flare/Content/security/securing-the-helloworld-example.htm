@@ -12,18 +12,18 @@
   <p>The example distribution can be found under <code>&lt;XAP root&gt;/examples/helloworld</code>.</p>
 </div>
 
-<h1><a name="overview">&#160;</a>Overview</h1>
+<h1 id="overview">Overview</h1>
 
 <p>We have a processor bean that will process <code>HelloObjects</code> - it works with a polling container to talk to with a Space, all inside of a <code>Helloworld</code> Processing Unit. External to that process is the <code>Feeder</code> application, which gets a remote proxy to the Space and uses it to write objects (#1). The <code>HelloObject</code> written to the Space becomes interesting to the polling container. The polling container will take it out of the Space (#2), hand it to the <code>HelloWorld</code> processor bean for processing, and then write the results back to the Space (#3). In this case a <code>ProcessedHelloObject</code>. Later, our feeder application can read the results (#4) and print them out to the screen.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/helloworld.png" alt="helloworld.png" /></p>
 </div>
 
-<h1><a name="what-needs-to-be-secured">&#160;</a>What needs to be secured?</h1>
+<h1 id="what-needs-to-be-secured">What needs to be secured?</h1>
 
 <p>Obviously we want to protect the Space data (containing both <code>HelloObject</code> and <code>ProcessedHelloObject</code>). We need to first define the Space as secured. The processor beans' polling container needs to be granted <code>Take</code> access for <code>HelloObject</code> and <code>Write</code> access for <code>ProcessedHelloObject</code>. Secondly, the <code>Feeder</code> which gains a remote proxy to the Space, needs to be granted <code>Write</code> access for <code>HelloObject</code> and <code>Read</code> access for <code>ProcessedHelloObject</code>.</p>
 
-<h1><a name="securing-the-space">&#160;</a>Securing the Space</h1>
+<h1 id="securing-the-space">Securing the Space</h1>
 
 <p>Lets define a secured space in <code>hello-processor/META-INF/spring/pu.xml</code> by adding the <code>secured</code> namespace property. This can also be accomplished by adding the <code>secured</code> Space URL property.</p>
 
@@ -33,7 +33,7 @@
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h1><a name="granting-access-to-the-embedded-polling-container">&#160;</a>Granting access to the embedded polling container</h1>
+<h1 id="granting-access-to-the-embedded-polling-container">Granting access to the embedded polling container</h1>
 
 <p>Accessing the secured space requires a <span class="tc-italic">principal</span>. In this case the <span class="tc-italic">principal</span> is the processor beans' polling container.
 Lets assume the principals' credentials are: <code>username</code>="helloProcessor" and <code>password</code>="helloWorld".</p>
@@ -45,7 +45,7 @@ Lets assume the principals' credentials are: <code>username</code>="helloProcess
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h1><a name="granting-access-to-the-feeder">&#160;</a>Granting access to the Feeder</h1>
+<h1 id="granting-access-to-the-feeder">Granting access to the Feeder</h1>
 
 <p>The <code>Feeder</code> in this example is not a processing unit. It is just an external process acquiring a remote proxy to the Space.
 Lets take a look at the <code>Feeder</code> constructor.</p>
@@ -64,7 +64,7 @@ Lets take a look at the <code>Feeder</code> constructor.</p>
 }
 </code></pre>
 
-<h1><a name="protecting-user-password">&#160;</a>Protecting User/Password</h1>
+<h1 id="protecting-user-password">Protecting User/Password</h1>
 
 <p>With production environment the user/password used by the application (for database or space access) should be passed into the application at the deploy time. This will make sure the user/password will never be stored on file and be accessible.</p>
 
@@ -87,7 +87,7 @@ Using the CLI deploy command embed the username and password matching the placeh
 &gt; gs deploy -properties embed://myusername=testing;mypassword=1234 myPU.jar
 </code></pre>
 
-<h1><a name="declaring-the-principals">&#160;</a>Declaring the principals</h1>
+<h1 id="declaring-the-principals">Declaring the principals</h1>
 
 <p>Managing the users and their authorities can either be done using the UI or API.</p>
 
@@ -107,7 +107,7 @@ The "helloFeeder" user will be granted <code>Write</code> access for <code>Hello
 
 <p><img src="../Resources/Static/attachment_files/helloWorldUsers.png" alt="helloWorldUsers.png" /></p>
 
-<h1><a name="running-the-example">&#160;</a>Running the Example</h1>
+<h1 id="running-the-example">Running the Example</h1>
 
 <p>There are a couple of deployment options. For example deploying using the ant build script or the UI.</p>
 
@@ -123,7 +123,7 @@ The "helloFeeder" user will be granted <code>Write</code> access for <code>Hello
 <li>Run the build <code>run-feeder</code> target</li>
 </ol>
 
-<h1><a name="secured-service-grid">&#160;</a>Secured Service Grid</h1>
+<h1 id="secured-service-grid">Secured Service Grid</h1>
 
 <p>To complete this example, we will give a brief overview of what needs to be done to deploy into a secured Service Grid.</p>
 

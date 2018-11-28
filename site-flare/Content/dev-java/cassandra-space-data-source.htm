@@ -7,7 +7,7 @@
 
 <p>A Cassandra based implementation of the <a href="space-data-source-api.htm">Space Data Source</a>.</p>
 
-<h1><a name="library-dependencies">&#160;</a>Library dependencies</h1>
+<h1 id="library-dependencies">Library dependencies</h1>
 
 <p>The Cassandra Space Data Source uses <a href="http://code.google.com/a/apache-extras.org/p/cassandra-jdbc/" target="_blank" >Cassandra JDBC Driver</a> and <a href="http://hector-client.github.com/hector/build/html/index.htm" target="_blank" >Hector Library</a> when interacting with the Cassandra cluster.
 include the following in your <code>pom.xml</code></p>
@@ -44,7 +44,7 @@ include the following in your <code>pom.xml</code></p>
 &lt;/dependency&gt;
 </code></pre>
 
-<h1><a name="setup">&#160;</a>Setup</h1>
+<h1 id="setup">Setup</h1>
 
 <p>An example of how the Cassandra Space Data Source can be configured for a space that loads data back from Cassandra once initialized and
 also asynchronously persists the data using a mirror (see <a href="cassandra-space-synchronization-endpoint.htm">Cassandra Space Synchronization Endpoint</a>).</p>
@@ -145,13 +145,13 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 
 <p>For more details about different configurations see <a href="space-persistency-overview.htm">Space Persistency</a>.</p>
 
-<h1><a name="before-you-begin">&#160;</a>Before you begin</h1>
+<h1 id="before-you-begin">Before you begin</h1>
 
 <p>Before deploying your Processing Unit, please do the following:</p>
 
 <p>Copy the <code>xap-cassandra.jar</code> from <code>lib\optional\cassandra</code> to <code>lib\optional\pu-common</code>.</p>
 
-<h1><a name="cassandraspacedatasource-properties">&#160;</a>CassandraSpaceDataSource Properties</h1>
+<h1 id="cassandraspacedatasource-properties">CassandraSpaceDataSource Properties</h1>
 
 <table>
 <thead>
@@ -207,9 +207,9 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 </tbody>
 </table>
 
-<h1><a name="considerations">&#160;</a>Considerations</h1>
+<h1 id="considerations">Considerations</h1>
 
-<h2><a name="general-limitations">&#160;</a>General limitations</h2>
+<h2 id="general-limitations">General limitations</h2>
 
 <ul>
 <li>Extended indexes are not supported. (If one is set on a property, it will be treated as Basic index).</li>
@@ -217,7 +217,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpa
 <li>Unindexed properties cannot be queried.</li>
 </ul>
 
-<h2><a name="cache-miss-query-limitations">&#160;</a>Cache miss Query limitations</h2>
+<h2 id="cache-miss-query-limitations">Cache miss Query limitations</h2>
 
 <p>Supported queries:</p>
 

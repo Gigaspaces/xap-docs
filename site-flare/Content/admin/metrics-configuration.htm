@@ -7,7 +7,7 @@
 
 <p>XAP provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice, which can then be analysed and used to identity trends in the system behaviour. Before you can start using the metrics framework you will need to first setup and configure InfluxDB &amp; Grafana to work with XAP. You can follow this guide <a href="web-management-monitoring.htm">here</a> on how to do this.</p>
 
-<h1><a name="overview">&#160;</a>Overview</h1>
+<h1 id="overview">Overview</h1>
 
 <p>The Metrics framework is composed of <span class="tc-bold">Metrics</span>, <span class="tc-bold">Metric Samplers</span> and <span class="tc-bold">Metric Reporters</span>.</p>
 
@@ -17,11 +17,11 @@
 
 <p>A <span class="tc-bold">Metric Reporter</span> receives a snapshot of metrics values from the sampler and reports them to wherever it wishes. XAP is bundled with an <a href="metrics-influxdb-reporter.htm">InfluxDB Reporter</a>, and users can implement additional <a href="metrics-custom-reporter.htm">custom reporters</a> as they wish.</p>
 
-<h1><a name="configuration">&#160;</a>Configuration</h1>
+<h1 id="configuration">Configuration</h1>
 
 <p>By default, Metrics configuration is loaded from <code>XAP_HOME/config/metrics/metrics.xml</code>. This location can be overridden using the <code>com.gigaspaces.metrics.config</code> system property.</p>
 
-<h2><a name="samplers">&#160;</a>Samplers</h2>
+<h2 id="samplers">Samplers</h2>
 
 <p>A <span class="tc-bold">Metric Sampler</span> is denoted by a name, and has two properties which determine its behaviour:</p>
 
@@ -47,7 +47,7 @@
 &lt;/metrics-configuration&gt;
 </code></pre>
 
-<h2><a name="assigning-metrics-to-samplers">&#160;</a>Assigning Metrics to Samplers</h2>
+<h2 id="assigning-metrics-to-samplers">Assigning Metrics to Samplers</h2>
 
 <p>By default, metrics are assigned to the <code>default</code> sampler. A metric can be configured to use a different sampler. For example, to assign the "free memory' metric to the <code>high</code> sampler:</p>
 

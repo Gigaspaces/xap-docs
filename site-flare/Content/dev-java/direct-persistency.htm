@@ -54,9 +54,9 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/data-grid-sync-persist_non_central_dbNew.jpg" alt="data-grid-sync-persist_non_central_dbNew.jpg" /></p>
 </div>
 
- <a name="central">&#160;</a>
+ <a id="central">&#160;</a>
 
-<h1><a name="central-database">&#160;</a>Central Database</h1>
+<h1 id="central-database">Central Database</h1>
 
 <p>With the central database topology, a single database instance is used to store all the IMDG data. In this case only the primary IMDG instance will update the database. The backup IMDG instance will not update the database. The backup IMDG instance will update the database only once it will turn to be a primary in case of a failure or shutdown of the primary IMDG instance.</p>
 
@@ -82,9 +82,9 @@
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
- <a name="distributed">&#160;</a>
+ <a id="distributed">&#160;</a>
 
-<h1><a name="distributed-databases">&#160;</a>Distributed Databases</h1>
+<h1 id="distributed-databases">Distributed Databases</h1>
 
 <p>With the distributed databases topology, each IMDG instance uses its own database instance to store its data. In this case both the primary and the backup IMDG instances will update the database once IMDG operation is called or being replicated (to the backup).</p>
 
@@ -115,7 +115,7 @@
   <p>See the <a href="space-persistency-overview.htm">Space Persistency</a> section for full details about the properties you may configure.</p>
 </div>
 
-<h1><a name="supported-options">&#160;</a>Supported Options</h1>
+<h1 id="supported-options">Supported Options</h1>
 
 <p>The following table lists the supported options:</p>
 

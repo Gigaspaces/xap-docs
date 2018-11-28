@@ -5,7 +5,7 @@
 <h1>Advanced</h1>
   
 
-<h1><a name="obtaining-change-detailed-results">&#160;</a>Obtaining Change detailed results</h1>
+<h1 id="obtaining-change-detailed-results">Obtaining Change detailed results</h1>
 
 <p>By default, the change result will only contain the number of entries which were changed during the operation. In order to get more details (requires more network traffic) the ChangeModifiers.ReturnDetailedResults should be used. When using this modifier the result will contain the list of entries which were changed including the change affect that took place on each entry.
 You can use this in order to know what was the affect, for instance what is the value of a numeric property after the increment operation was applied on it.</p>
@@ -92,7 +92,7 @@ foreach(IChangedEntryDetails&lt;Account&gt; changedEntryDetails in changeResult.
 </tbody>
 </table>
 
-<h1><a name="add-and-get-operation">&#160;</a>Add and Get operation</h1>
+<h1 id="add-and-get-operation">Add and Get operation</h1>
 
 <p>A common usage pattern is to increment a numeric property of a specific entry and needing the updated value after the increment was applied.
 Using the <code>AddAndGet</code> operation you can do that using one method call and get an atomic add and get operation semantics.

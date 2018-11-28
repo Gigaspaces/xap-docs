@@ -17,9 +17,9 @@
   <p>The output-filter can be used also to modify the replicated data before it is arriving the target site. When using a <code>SpaceDocument</code> the modified field must be a predefined field described with the document schema (fixed field).</p>
 </div>
 
-<h1><a name="using-the-filter">&#160;</a>Using the Filter</h1>
+<h1 id="using-the-filter">Using the Filter</h1>
 
-<h3><a name="filtering-objects">&#160;</a>Filtering Objects</h3>
+<h3 id="filtering-objects">Filtering Objects</h3>
 
 <p>With the example below a replication filter is used with the source space (output-filter). The New-York space is configured not to replicate the Stock object type to London site. This Stock object type still being replicated to all other location replication targets (backup/mirror) and also to the remote Hong Kong gateway. The filtering can be determined also based on the content of the replicated object or any other custom business logic.</p>
 
@@ -73,7 +73,7 @@
 </div>
 </div>
 
-<h3><a name="filtering-space-events">&#160;</a>Filtering Space Events</h3>
+<h3 id="filtering-space-events">Filtering Space Events</h3>
 
 <p>You can choose which Space events (Take, Lease Expiration etc) are replicated. In the example below we define a filter that prevents the <code>DISCARD</code> and <code>LEASE_EXPIRATION</code> events to be replicated:</p>
 

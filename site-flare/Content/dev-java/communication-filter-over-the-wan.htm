@@ -12,12 +12,12 @@
 <li>Securing the network using SSL in case the communication between the sites is going over open WAN (not via VPN or other underlying encryption mechanisms).</li>
 </ol>
 
-<h1><a name="selecting-the-filter">&#160;</a>Selecting the Filter</h1>
+<h1 id="selecting-the-filter">Selecting the Filter</h1>
 
 <p>For compression the <code>com.gigaspaces.lrmi.nio.filters.IOStreamCompressionFilterFactory</code> should be used and for encryption <code>com.gigaspaces.lrmi.nio.filters.SSLFilterFactory</code> should be used.
 In both cases, you need to specify to which remote addresses this filter should be used, this is done be creating a config file which describes these addresses, putting it in the class path of the GSC (usually could be under <code>&lt;XAP Install&gt;/config</code> directory and pointing to it with a system property.</p>
 
-<h1><a name="address-matcher-file-format">&#160;</a>Address Matcher File Format</h1>
+<h1 id="address-matcher-file-format">Address Matcher File Format</h1>
 
 <p>Each line in the file represents a regular expression which will be applied on the remote address when a connection is established. If any of the regular expressions in the file matches that address, the filter will be created on this communication channel.</p>
 
@@ -36,7 +36,7 @@ The address matcher should look like this:</p>
 
 <p>This file can contain more than one line and can be commented using the # char at the beginning of the line.</p>
 
-<h1><a name="configuring-the-gateway-gsc">&#160;</a>Configuring the Gateway GSC</h1>
+<h1 id="configuring-the-gateway-gsc">Configuring the Gateway GSC</h1>
 
 <p>If you are starting your own GSC that will host the gateway processing unit, you should start it with the following system properties:</p>
 

@@ -5,7 +5,7 @@
 <h1>Advanced Configuration</h1>
   
 
-<h1><a name="custom-mirror-service-name">&#160;</a>Custom Mirror Service Name</h1>
+<h1 id="custom-mirror-service-name">Custom Mirror Service Name</h1>
 
 <p>A Mirror Service can be configured per Space cluster. You can't have multiple Mirror services configured for the same space cluster.</p>
 
@@ -38,7 +38,7 @@
 &lt;/os-core:space&gt;
 </code></pre>
 
-<h1><a name="implementing-a-custom-mirror-data-source">&#160;</a>Implementing a Custom Mirror Data Source</h1>
+<h1 id="implementing-a-custom-mirror-data-source">Implementing a Custom Mirror Data Source</h1>
 
 <p>XAP has a built in <a href="hibernate-space-persistency.htm">Hibernate Space Persistency</a> implementation which is a <code>SpaceSynchronizationEndpoint</code> extension. You can implement your own Mirror very easily to accommodate your exact needs. See example below:</p>
 
@@ -108,7 +108,7 @@ public class MirrorSpaceSynchronizationEndpoint extends SpaceSynchronizationEndp
   <p>Throwing <code>java.lang.RuntimeException</code> from the <code>onTransactionSynchronization</code> or <code>onOperationsBatchSynchronization</code> methods of the <code>SpaceSynchronizationEndpoint</code> implementation will signal the primary to keep the replicated data within its redo log and retry the replication operation. Your code should support this in case it fails (for example database transaction failure).</p>
 </div>
 
-<h1><a name="multiple-mirrors">&#160;</a>Multiple Mirrors</h1>
+<h1 id="multiple-mirrors">Multiple Mirrors</h1>
 
 <p>In some cases you may need to asynchronously persist data both into a relational database and a file, or persist the data into a relational database and transfer some of the data into some other system.</p>
 
@@ -126,7 +126,7 @@ public class MirrorSpaceSynchronizationEndpoint extends SpaceSynchronizationEndp
   <p>See the <a href="/sbp/distributed-mirror.htm">Distributed Mirror</a> for an example how to configure this scenario.</p>
 </div>
 
-<h1><a name="handling-mirror-exceptions">&#160;</a>Handling Mirror Exceptions</h1>
+<h1 id="handling-mirror-exceptions">Handling Mirror Exceptions</h1>
 
 <p>Since the space synchronization endpoint configured for the mirror service communicates with the database, it may run into database related errors, such as constraint violations, wrong class mappings (if the Hibernate-based space synchronization endpoint implementation is used), or other database-related errors.</p>
 
@@ -153,7 +153,7 @@ public class MirrorSpaceSynchronizationEndpoint extends SpaceSynchronizationEndp
 
 <p>With the above, we use the <code>SpaceSynchronizationEndpointExceptionHandler</code>, and wrap the <code>DefaultHibernateSpaceSynchronizationEndpoint</code> with it (and pass that to the space). On the <code>SpaceSynchronizationEndpointExceptionHandler</code>, we set our own implementation of the <code>ExceptionHandler</code>, to be called when there is an exception. With the <code>ExceptionHandler</code> you can decide what to do with the Exception: "swallow it", execute some logic, or re-throw it.</p>
 
-<h2><a name="testing-space-persistence-in-the-mirror">&#160;</a>Testing Space Persistence in the Mirror</h2>
+<h2 id="testing-space-persistence-in-the-mirror">Testing Space Persistence in the Mirror</h2>
 
 <p>A configured mirror will repeatedly try to store things in the database. If there is an unrecoverable failure (such as an invalid mapping or a constraint issue), this can cause the redo log to grow, eventually resulting in overflow of the redo to disk, and then, when the predefined disk capacity is exhausted, leading to a rejection of any non-read space operation (similar to how the memory manager works). The exception that clients will see in this case is <code>RedologCapacityExceededException</code> (which inherits from <code>ResourceCapacityExceededException</code>).</p>
 
@@ -161,7 +161,7 @@ public class MirrorSpaceSynchronizationEndpoint extends SpaceSynchronizationEndp
 
 <p>That said, the easiest thing to do is test your persistence in the mirror.</p>
 
-<h1><a name="mirror-behavior-with-distributed-transactions">&#160;</a>Mirror Behavior with Distributed Transactions</h1>
+<h1 id="mirror-behavior-with-distributed-transactions">Mirror Behavior with Distributed Transactions</h1>
 
 <p>When using the Distributed Transaction Manager and persisting data through the mirror service, each partition sends its transaction data to the Mirror on commit. The mirror service receives the replication messages in bulk from each partition that participated in the transaction. In order to keep database data consistent when persisting the data, these bulks should to be consolidated at the mirror service.</p>
 
@@ -186,7 +186,7 @@ public class MirrorSpaceSynchronizationEndpoint extends SpaceSynchronizationEndp
 
 <p>Setting this property will cause a <code>SpaceSynchronizationEndpoint.onTransactionSynchronization</code> invocation for each transaction separately.</p>
 
-<h1><a name="getting-the-transaction-metadata">&#160;</a>Getting the Transaction Metadata</h1>
+<h1 id="getting-the-transaction-metadata">Getting the Transaction Metadata</h1>
 
 <p>The following demonstrates how the transaction metadata can be retrieved:</p>
 
@@ -255,7 +255,7 @@ public interface TransactionUniqueId
 }
 </code></pre>
 
-<h2><a name="mirror-distributed-transaction-consolidation-atomic-transaction-delegation">&#160;</a>Mirror Distributed Transaction Consolidation - Atomic Transaction Delegation</h2>
+<h2 id="mirror-distributed-transaction-consolidation-atomic-transaction-delegation">Mirror Distributed Transaction Consolidation - Atomic Transaction Delegation</h2>
 
 <p>Once a the entire distributed transaction content arriving from each data grid partition participating in the transaction into the mirror to be persist, you may consolidate it to perform one database transaction rather several separate database transactions. This keeps the database data consistent and reduce database overhead.</p>
 
@@ -307,7 +307,7 @@ public interface TransactionUniqueId
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h1><a name="distributed-transaction-consolidation-example">&#160;</a>Distributed Transaction Consolidation Example:</h1>
+<h1 id="distributed-transaction-consolidation-example">Distributed Transaction Consolidation Example:</h1>
 
 <pre><code class="language-java">public class MySpaceSynchronizationEndpoint extends SpaceSynchronizationEndpoint {
 
@@ -387,11 +387,11 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
   <p>Setting both <code>dist-tx-wait-timeout-millis</code> and <code>dist-tx-wait-for-opers</code> to unlimited (or very high value) is risky and may cause replication backlog accumulation due to a packet which is unconsolidated and waits for consolidation which may never occur due to various reasons.</p>
 </div>
 
-<h1><a name="usage-scenarios">&#160;</a>Usage Scenarios</h1>
+<h1 id="usage-scenarios">Usage Scenarios</h1>
 
 <table class="tc-borderless">
   <tr>
-    <td><h4><a name="writing-synchronously-to-the-mirror-data-source">&#160;</a>Writing Synchronously to the Mirror Data Source</h4>
+    <td><h4 id="writing-synchronously-to-the-mirror-data-source">Writing Synchronously to the Mirror Data Source</h4>
 
 <p>The following is a schematic flow of a synchronous replicated cluster with three members, which are communicating with a Mirror Service:</p>
 </td>
@@ -401,7 +401,7 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
 
 <table class="tc-borderless">
   <tr>
-    <td><h4><a name="reading-from-the-data-source">&#160;</a>Reading from the Data Source</h4>
+    <td><h4 id="reading-from-the-data-source">Reading from the Data Source</h4>
 
 <p>The Mirror Service space is used to asynchronously <span class="tc-bold">persist</span> data into the data source. As noted elsewhere, the Mirror is <span class="tc-bold">not</span> a regular space, and should <span class="tc-bold">not</span> be interacted with directly. Thus, data can't be read from the data source using the Mirror Service space. Nonetheless, the data might be read by other spaces which are configured with a space data source.</p>
 
@@ -415,7 +415,7 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
 
 <table class="tc-borderless">
   <tr>
-    <td><h4><a name="partitioning-over-a-central-mirror-data-source">&#160;</a>Partitioning Over a Central Mirror Data Source</h4>
+    <td><h4 id="partitioning-over-a-central-mirror-data-source">Partitioning Over a Central Mirror Data Source</h4>
 
 <p>When partitioning data, each partition asynchronously replicates data into the Mirror Service. Each partition can read back data that belongs to it (according to the load-balancing policy defined).</p>
 
@@ -425,9 +425,9 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
   </tr>
 </table>
 
- <a name="dist-txn-mirror">&#160;</a>
+ <a id="dist-txn-mirror">&#160;</a>
 
-<h1><a name="considerations-and-known-issues">&#160;</a>Considerations and Known Issues</h1>
+<h1 id="considerations-and-known-issues">Considerations and Known Issues</h1>
 
 <ul>
 <li>The Mirror Service cannot be used with a single space. It is supported with the <code>async-replicated</code>, and <code>partitioned</code> cluster schemas.</li>
@@ -444,9 +444,9 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
   <p><a href="space-persistency-advanced-topics.htm#limits">Space persistency considerations</a> also apply to the Mirror Service.</p>
 </div>
 
-<h1><a name="troubleshooting">&#160;</a>Troubleshooting</h1>
+<h1 id="troubleshooting">Troubleshooting</h1>
 
-<h2><a name="log-messages">&#160;</a>Log Messages</h2>
+<h2 id="log-messages">Log Messages</h2>
 
 <p>The space persistency logging level can be modified as part of the <code>&lt;XAP Root&gt;\config\log\xap_logging.properties</code> file. By default, it is set to <code>java.util.logging.Level.INFO</code>:</p>
 
@@ -481,7 +481,7 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
 </tbody>
 </table>
 
-<h1><a name="failover-handling">&#160;</a>Failover Handling</h1>
+<h1 id="failover-handling">Failover Handling</h1>
 
 <p>This section describes how the GigaSpaces Mirror Service handles different failure scenarios. The following table lists the services involved, and how the failure is handled in the cluster.</p>
 
@@ -523,7 +523,7 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
 </tbody>
 </table>
 
-<h1><a name="unlikely-failure-scenarios">&#160;</a>Unlikely Failure Scenarios</h1>
+<h1 id="unlikely-failure-scenarios">Unlikely Failure Scenarios</h1>
 
 <p>The following failure scenarios are highly unlikely. However, it might be useful to understand how such scenarios are handled by GigaSpaces. This is detailed in the table below.</p>
 

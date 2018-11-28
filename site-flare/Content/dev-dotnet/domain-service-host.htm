@@ -7,7 +7,7 @@
 
 <p>The domain service host is used to host services within the hosting processing unit domain which are exposed for remote invocation. A service is an implementation of one or more interfaces which acts upon the service contract. Each service can be hosted by publishing it through the domain service host later to be invoked by a remote client.</p>
 
-<h1><a name="defining-the-contract">&#160;</a>Defining the Contract</h1>
+<h1 id="defining-the-contract">Defining the Contract</h1>
 
 <p>In order to support remoting, the first step is to define the contract between the client and the server. In our case, the contract is a simple interface. Here is an example:</p>
 
@@ -23,7 +23,7 @@
   <p>The <code>Data</code> object should be <code>Serializable</code></p>
 </div>
 
-<h1><a name="implementing-the-contract">&#160;</a>Implementing the Contract</h1>
+<h1 id="implementing-the-contract">Implementing the Contract</h1>
 
 <p>Next, an implementation of this contract needs to be provided. This implementation will "live" on the server side. Here is a sample implementation:</p>
 
@@ -38,7 +38,7 @@ public class DataProcessor : IDataProcessor
 }
 </code></pre>
 
-<h1><a name="hosting-the-service-in-the-grid">&#160;</a>Hosting the Service in the Grid</h1>
+<h1 id="hosting-the-service-in-the-grid">Hosting the Service in the Grid</h1>
 
 <p>The next step is hosting the service in the grid. Hosting the service is done on the server side using a processing unit, all types which has the [SpaceRemotingService] attribute, will automatically be created and hosted:</p>
 
@@ -64,11 +64,11 @@ public class DataProcessor : IDataProcessor
 }
 </code></pre>
 
-<h1><a name="service-lookup-name">&#160;</a>Service Lookup Name</h1>
+<h1 id="service-lookup-name">Service Lookup Name</h1>
 
 <p>By default, the service will be published under the interfaces it implements, its lookup names will be the full name of the interfaces types it implements. In some scenarios it may be needed to specify a different lookup name, for instance, when there are two hosted services that implement the same interface. There are a few options to specify a different lookup name. When choosing one of the following options for alternative lookup name, the service will only be hosted under the alternative lookup names overriding the default behavior of investigating which interfaces the provided service implements.</p>
 
-<h2><a name="service-attribute">&#160;</a>Service Attribute</h2>
+<h2 id="service-attribute">Service Attribute</h2>
 
 <p>A different lookup name can be specified by the [SpaceRemotingService] <code>LookupName</code> property:</p>
 
@@ -79,21 +79,21 @@ public class DataProcessor : IDataProcessor
 }
 </code></pre>
 
-<h2><a name="publish-lookup-names">&#160;</a>Publish Lookup Names</h2>
+<h2 id="publish-lookup-names">Publish Lookup Names</h2>
 
 <p>When publishing a service it is possible to specify a list of lookup names to publish it under as part of the <code>Publish</code> method arguments:</p>
 
 <pre><code class="language-csharp">DomainServiceHost.Host.Publish(new DataProcessor(), "MyDataProcessor", "MySpecialDataProcessor");
 </code></pre>
 
-<h2><a name="publish-for-specific-types">&#160;</a>Publish For Specific Types</h2>
+<h2 id="publish-for-specific-types">Publish For Specific Types</h2>
 
 <p>Alternatively, a service can be hosted under specific types instead of querying all the interfaces it implements, This can be achieved with the <code>Publish</code> method as well:</p>
 
 <pre><code class="language-csharp">DomainServiceHost.Host.Publish(new DataProcessor(), typeof(IDataProcessor), typeof(IMyService));
 </code></pre>
 
-<h1><a name="un-publishing-a-service">&#160;</a>Un publishing a Service</h1>
+<h1 id="un-publishing-a-service">Un publishing a Service</h1>
 
 <p>Once the processing unit that hosts the service is unloaded, all the services within that pu are also removed.
 However, it is possible to explicitly un publish a service during the processing unit life cycle if needed, this is done by the <code>Unpublish</code> method, with the specific registration of the service that we want to un publish.</p>
@@ -103,7 +103,7 @@ However, it is possible to explicitly un publish a service during the processing
 DomainServiceHost.Host.Un publish(registration);
 </code></pre>
 
-<h1><a name="execution-aspects">&#160;</a>Execution Aspects</h1>
+<h1 id="execution-aspects">Execution Aspects</h1>
 
 <p>Space based remoting allows you to inject different "aspects" that can wrap the invocation of a remote method on the client side, as well as wrapping the execution of an invocation on the server side. The different aspect can add custom logic to the execution, for instance, logging or security.</p>
 

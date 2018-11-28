@@ -10,7 +10,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_use_cases.jpg" alt="wan_use_cases.jpg" /></p>
 </div>
 
-<h2><a name="gateway-features">&#160;</a>Gateway Features</h2>
+<h2 id="gateway-features">Gateway Features</h2>
 
 <p>The XAP Gateway features the following:</p>
 
@@ -30,7 +30,7 @@
 understand how to establish replication between different networks.</p>
 </div>
 
-<h1><a name="supported-topologies">&#160;</a>Supported Topologies</h1>
+<h1 id="supported-topologies">Supported Topologies</h1>
 
 <p>This page provides two sample multi-space replication topologies. These are not the only supported topologies. In fact, the permutations of topologies are quite extensive, and we've chosen to demonstrate two of the more common topologies which can also serve as a basis for other topologies as required by the user:</p>
 
@@ -49,7 +49,7 @@ understand how to establish replication between different networks.</p>
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan_topologies.jpg" alt="wan_topologies.jpg" /></p>
 </div>
 
-<h1><a name="configuring-a-space-with-gateway-targets">&#160;</a>Configuring a Space With Gateway Targets</h1>
+<h1 id="configuring-a-space-with-gateway-targets">Configuring a Space With Gateway Targets</h1>
 
 <p>A replication from one space to the another is basically a replication from a space to a target gateway. The source space is decoupled from the target space. Instead, it is configured to replicate to target space's gateway, the gateway is in charge of dispatching the incoming replication packets to the relevant target space. Each space needs to be made aware of the target gateways to which it replicates the data, by specifying the target gateways in the source space configuration.</p>
 
@@ -94,11 +94,11 @@ If you are not interested in having backups running but have the replication to 
 
 <p>Note that when there are no backups running any failure of the primary might cause a loss of data.</p>
 
-<h1><a name="configuring-and-deploying-the-gateway">&#160;</a>Configuring and Deploying the Gateway</h1>
+<h1 id="configuring-and-deploying-the-gateway">Configuring and Deploying the Gateway</h1>
 
 <p>A gateway needs to be deployed as a processing unit per space (though, one gateway processing unit can be used to replicate into more than one space), and it is composed by the sink component which is in charge of dispatching incoming replication from remote spaces into the targeted space.</p>
 
-<h2><a name="gateway-basic-configuration">&#160;</a>Gateway Basic Configuration</h2>
+<h2 id="gateway-basic-configuration">Gateway Basic Configuration</h2>
 
 <p>Following the above example, here we demonstrate how to configure the gateway processing unit in New York, which needs to send replication to London and Hong Kong and also receive replication from the other spaces.</p>
 
@@ -112,11 +112,11 @@ If you are not interested in having backups running but have the replication to 
 &lt;/os-gateway:sink&gt;
 </code></pre>
 
-<h2><a name="gateway-and-the-mirror-service">&#160;</a>Gateway and the Mirror Service</h2>
+<h2 id="gateway-and-the-mirror-service">Gateway and the Mirror Service</h2>
 
 <p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.htm">Mirror Service</a> are two different components which can co-exist together without any effect on each other. A gateway is just another reliable asynchronous target. Due to this fact, we will not discuss or demonstrate mirror service along side with a gateway because they do not contradict each other or require any special configuration when used in the same space cluster.</p>
 
-<h2><a name="gateway-and-distributed-transactions">&#160;</a>Gateway and Distributed Transactions</h2>
+<h2 id="gateway-and-distributed-transactions">Gateway and Distributed Transactions</h2>
 
 <p>By default the gateway will preserve distributed transactions atomicity (distributed transactions consolidation), this can be disabled by adding the following property to the space configuration:</p>
 
@@ -198,7 +198,7 @@ In order to prevent this potential delay, it is possible to set a timeout parame
 packet which is unconsolidated and waits for consolidation which may never occur.</p>
 </div>
 
-<h1><a name="master-slave-topology">&#160;</a>Master-Slave Topology</h1>
+<h1 id="master-slave-topology">Master-Slave Topology</h1>
 
 <p>With this architecture, we have a master-slave topology where all data is being manipulated in one space, and two other spaces are reading the data but not updating it. In other words, the "other spaces" - the slaves - should not replicate data to the other gateways.</p>
 
@@ -334,7 +334,7 @@ packet which is unconsolidated and waits for consolidation which may never occur
 </div>
 </div>
 
-<h1><a name="multi-master-topology">&#160;</a>Multi-Master Topology</h1>
+<h1 id="multi-master-topology">Multi-Master Topology</h1>
 
 <p>With this architecture, we will have a multi-master topology where data is being generated and manipulated in all spaces.</p>
 
@@ -493,7 +493,7 @@ packet which is unconsolidated and waits for consolidation which may never occur
 </div>
 </div>
 
-<h1><a name="filtering-replication-between-gateways">&#160;</a>Filtering Replication Between Gateways</h1>
+<h1 id="filtering-replication-between-gateways">Filtering Replication Between Gateways</h1>
 
 <p>In some cases, there can be data that should not be replicated between the spaces but should still be replicated locally to the backup or a mirror service. Hence, specifying the object is not replicated does not fit. Since a replication channel to a gateway is like any other replication channel, a custom <a href="../admin/cluster-replication-filters.htm">Replication Filter</a> at the source space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
 
@@ -507,7 +507,7 @@ packet which is unconsolidated and waits for consolidation which may never occur
   <p>This link refers to multi-site replication, where replication is done indirectly via local gateway delegator to the target gateway sink. However the subject in this context is the same for both cases.</p>
 </div>
 
-<h1><a name="bootstrap-one-space-from-another-space">&#160;</a>Bootstrap One Space From Another Space</h1>
+<h1 id="bootstrap-one-space-from-another-space">Bootstrap One Space From Another Space</h1>
 
 <p>Bootstrapping a space from another space is a process in which one space is starting fresh and it is being populated with the data of another space. This can be useful after a very long disconnection where the replication redo-log in the source spaces that replicates to this space was dropped due to breaching capacity limitations, and the disconnected space should start fresh. Other reasons may be an explicit planned downtime due-to some maintenance of one space which lead to a complete system bootstrap once restarted.
 Or bootstrapping a new version of an application where a gateway target is added dynamically to an existing space, and the new space will bootstrap from the existing one and once finished traffic is diverted to the new space.</p>
@@ -517,7 +517,7 @@ Or bootstrapping a new version of an application where a gateway target is added
   <p>For full details of how to enable the bootstrap mechanism refer to <a href="replication-gateway-lan-bootstrapping-process.htm">Replication Gateway Bootstrapping Process</a></p>
 </div>
 
-<h1><a name="changing-replication-topology-during-runtime">&#160;</a>Changing Replication Topology During Runtime</h1>
+<h1 id="changing-replication-topology-during-runtime">Changing Replication Topology During Runtime</h1>
 
 <p>The topology might change during runtime, for instance a new space can be added and the existing spaces should be familiar with it and start replicating to it and receive replication from it. On the other hand a space can be removed and the existing should stop holding replication backlog for it and drop it from their list of gateway targets.</p>
 
@@ -531,7 +531,7 @@ Or bootstrapping a new version of an application where a gateway target is added
   <p>This link refers to multi-site replication, where replication is done indirectly via local gateway delegator to the target gateway sink. However the subject in this context is the same for both cases.</p>
 </div>
 
-<h1><a name="additional-resources">&#160;</a>Additional Resources</h1>
+<h1 id="additional-resources">Additional Resources</h1>
 
 <p><a href="multi-site-replication-overview.htm">Multi Site Replication</a></p>
 

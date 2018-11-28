@@ -12,7 +12,7 @@
   <p>Do not confuse this with <a href="document-object-interoperability.htm">Document-Object interoperability</a>, which is a different feature.</p>
 </div>
 
-<h1><a name="creating-the-extension-class">&#160;</a>Creating the Extension Class</h1>
+<h1 id="creating-the-extension-class">Creating the Extension Class</h1>
 
 <p>Let's create a type-safe document wrapper for the <span class="tc-bold">Product</span> type described in the <a href="document-api.htm">Document Support</a> page. The extensions are:</p>
 
@@ -54,7 +54,7 @@
 }
 </code></pre>
 
-<h1><a name="registering-the-extension-class">&#160;</a>Registering the Extension Class</h1>
+<h1 id="registering-the-extension-class">Registering the Extension Class</h1>
 
 <p>If your only intention is to write/update document entries, creating the extension class is sufficient - from the space's perspective it is equivalent to a <code>SpaceDocument</code> instance. However, if you attempt to read/take entries from the space, the results will be <code>SpaceDocument</code> instances, and the cast to <code>ProductDocument</code> will throw an exception.
 To overcome that, we need to include the document wrapper type in the type introduction:</p>
@@ -72,7 +72,7 @@ To overcome that, we need to include the document wrapper type in the type intro
 
 <p>This wrapper type-registration is kept in the proxy and not propagated to the server, so that from the server's perspective this is still a virtual document type with no affiliated Concrete object class.</p>
 
-<h1><a name="using-the-extension-class">&#160;</a>Using the Extension Class</h1>
+<h1 id="using-the-extension-class">Using the Extension Class</h1>
 
 <p>The following code snippet demonstrate usage of the <code>ProductDocument</code> extensions we've created to write and read documents from the space.</p>
 
@@ -95,7 +95,7 @@ To overcome that, we need to include the document wrapper type in the type intro
 }
 </code></pre>
 
-<h1><a name="inheritance-support">&#160;</a>Inheritance  Support</h1>
+<h1 id="inheritance-support">Inheritance  Support</h1>
 
 <p>SpaceDocument query supports inheritance relationships so that entries of a sub-class are visible in the context of the super class, but not the other way around. For example, suppose class EmployeeDoc extends class PersonDoc and PersonDoc extends from <code>SpaceDocument</code>, you can register
 the the sub classes in the following way:</p>

@@ -12,7 +12,7 @@ GigaSpaces XAP.NET is packaged as a standard Windows Installer package (.msi fil
 
 <p>Once you accept the licence agreement, you will be asked to choose a setup type. Select "Complete' to install all the features in the default path (C:\GigaSpaces\XAP.NET X.x.x). Selecting "Custom' will allow you to customize the installation path, which features will be installed, and more.</p>
 
-<h1><a name="starting-a-service-grid">&#160;</a>Starting a Service Grid</h1>
+<h1 id="starting-a-service-grid">Starting a Service Grid</h1>
 
 <p>A Data Grid requires a <a href="../overview/the-in-memory-data-grid.htm">Service Grid</a> to host it. A service grid is composed of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.htm#gsa">Service Grid Agent</a> (or <code>GSA</code>), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.</p>
 
@@ -23,7 +23,7 @@ GigaSpaces XAP.NET is packaged as a standard Windows Installer package (.msi fil
   <p>XAP provides a web-based tool for monitoring and management. From the <code>bin</code> folder start <code>Gs-webui.exe</code>, then browse to <code>http://localhost:8099</code>. Click the "Login' button and take a look at the <span class="tc-italic">Dashboard</span> and <span class="tc-italic">Hosts</span> tabs - you'll see the service grid components created on your machine.</p>
 </div>
 
-<h1><a name="deploying-the-data-grid">&#160;</a>Deploying the Data Grid</h1>
+<h1 id="deploying-the-data-grid">Deploying the Data Grid</h1>
 
 <p>The Data grid can be deployed from command line, from the web management tool or via an Administration API. In this tutorial we'll use the command line.</p>
 
@@ -36,9 +36,9 @@ GigaSpaces XAP.NET is packaged as a standard Windows Installer package (.msi fil
 
 <p>If you're using the web console mentioned above to see what's going on, you'll see the data grid has been deployed.</p>
 
-<h1><a name="interacting-with-the-data-grid">&#160;</a>Interacting with the Data Grid</h1>
+<h1 id="interacting-with-the-data-grid">Interacting with the Data Grid</h1>
 
-<h3><a name="setting-up-your-ide">&#160;</a>Setting up your IDE</h3>
+<h3 id="setting-up-your-ide">Setting up your IDE</h3>
 
 <p>Launch Visual Studio, create a new C# <span class="tc-italic">Console Application</span> and add a reference to <span class="tc-bold">GigaSpaces.Core.dll</span> from <code>C:\GigaSpaces\[%=Versions.gshome-net-directory%]\NET v4.0\Bin</code>. If you're new to Visual Studio and .NET, follow these instructions:</p>
 
@@ -59,7 +59,7 @@ GigaSpaces XAP.NET is packaged as a standard Windows Installer package (.msi fil
   <p>If you're using XAP.NET x64, note that the <a href="http://connect.microsoft.com/VisualStudio/feedback/details/455103/new-c-console-application-targets-x86-by-default" target="_blank" >default platform for Console Applications is x86</a>, and you must <a href="http://msdn.microsoft.com/en-us/library/ms185328.aspx" target="_blank" >change it to x64</a>.</p>
 </div>
 
-<h3><a name="implementing-a-pono">&#160;</a>Implementing a PONO</h3>
+<h3 id="implementing-a-pono">Implementing a PONO</h3>
 
 <p>Any PONO can be stored in the space, so long as it has a default constructor and an ID property. For this tutorial let's define a <code>Person</code> class with the following properties:</p>
 
@@ -76,7 +76,7 @@ public class Person
 
 <p>Note that we've annotated the <code>Ssn</code> property with a custom XAP.NET attribute (<code>[SpaceID]</code>) to mark it as the entries ID.</p>
 
-<h3><a name="interacting-with-the-grid">&#160;</a>Interacting with the grid</h3>
+<h3 id="interacting-with-the-grid">Interacting with the grid</h3>
 
 <p>First, let's establish a connection to the data grid we've deployed:</p>
 
@@ -104,7 +104,7 @@ Person[] results = spaceProxy.ReadMultiple(new Person());
 
 <p>If you're using the web console mentioned above to see what's going on, you'll see two entries stored in the grid, one in each partition.</p>
 
-<h3><a name="hahahugoshortcode-6hbhb-full-source-code">&#160;</a> <a name="source">&#160;</a> Full Source Code</h3>
+<h3 id="hahahugoshortcode-6hbhb-full-source-code"> <a id="source">&#160;</a> Full Source Code</h3>
 
 <div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Program.cs" style="padding:10px;"><pre><code class="language-csharp">using System;
 using System.Linq;
