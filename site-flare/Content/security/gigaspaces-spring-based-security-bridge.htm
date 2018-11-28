@@ -14,14 +14,14 @@
 
 <p>The Spring Security XML configuration file contains the <code>AuthenticationManager</code>, <code>ProviderManager</code> and <code>AuthenticationProvider</code> references. The authentication manager is discovered by the GigaSpaces Spring Security bridge (i.e. it iterates through all the types of authentication manager and plugs it in automatically).</p>
 
-<pre><code class="language-java">&lt;beans&gt;
-    &lt;bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager"&gt;
-    &lt;property name="providers"&gt;
-        &lt;list&gt;
-        &lt;ref bean="myAuthenticationProvider" /&gt;
-    &lt;/list&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
+<pre><code class="language-java">&lt;bean id="authenticationManager" 
+class="org.springframework.security.authentication.ProviderManager"&gt; 
+&lt;constructor-arg&gt; 
+&lt;list&gt; 
+&lt;ref bean="ldapAuthenticationProvider"/&gt; 
+&lt;/list&gt; 
+&lt;/constructor-arg&gt; 
+&lt;/bean&gt; 
 ...
 </code></pre>
 
@@ -31,14 +31,14 @@
 
 <p>As with all GigaSpaces security configurations, they must be placed in a properties file. In order to configure the security manager to use the Spring Security bridge, we set the <code>security-manager.class</code> property along with the expected <code>spring-security-config-location</code> property.</p>
 
-<pre><code class="language-java">com.gs.security.security-manager.class = org.openspaces.security.spring.SpringSecurityManager
+<pre><code class="language-java">com.gs.security.security-manager.class = org.gigaspaces.security.spring.SpringSecurityManager
 spring-security-config-location = ../config/security/security-config.xml
 </code></pre>
 
 <p>This is all the configuration required to enable the use of the Spring-based security bridge. The rest is part of the Spring Security configuration XML file.</p>
 
 <div class="tc-admon-note">
-  <p class="tc-admon-title">Info</p>
+  
   <p>For convenience, the template properties <code>config/security/spring-security.properties</code> can be renamed to <code>security.properties</code> or referenced using a system property (see <a href="security-configurations.htm">Security Configurations</a>).</p>
 </div>
 

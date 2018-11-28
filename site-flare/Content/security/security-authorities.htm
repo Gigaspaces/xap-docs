@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Authorities and Privileges</h1>
   
 
 <p><span class="tc-bold">Authority</span> refers to a grouping of privileges. A <span class="tc-bold">Privilege</span> (permission) is a granted right to perform an operation/action on a resource. For example, a user may have a read privileges to access data.</p>
 
-<pre xml:space="preserve"><code class="language-java">public interface Authority {
+<pre><code class="language-java">public interface Authority {
 
     /**
      * @return a representation of the granted authority
@@ -23,8 +23,8 @@
 <table>
 <thead>
 <tr>
-<th />
-<th />
+<th></th>
+<th></th>
 </tr>
 </thead>
 
@@ -91,7 +91,7 @@ But if we read using a <code>Rectangle</code> template, only it and its subclass
 
 <p>This should be considered when you <span class="tc-bold">allow</span> a Class-Filter for <span class="tc-italic">matching</span> operations (<span class="tc-bold">Read</span>, <span class="tc-bold">Take</span>, <span class="tc-bold">Alter</span>).</p>
 
-<p>But, when you <span class="tc-bold">deny</span> a Class more caution should be taken. If you <span class="tc-bold">deny</span> a <code>Rectangle</code> Class from being read it means you can't perform read with this class. But it does not mean you cannot perform read with <code>Square</code>. Moreover, it does not mean that <code>Rectangle</code> won't be returned in the result set when performing read with <code>Shape</code>. If your packages are flexible you can deny using wildcard matching or package matching. Otherwise you need to <span class="tc-bold">deny</span>  <span class="tc-italic">all</span> classes in the hierarchy.</p>
+<p>But, when you <span class="tc-bold">deny</span> a Class more caution should be taken. If you <span class="tc-bold">deny</span> a <code>Rectangle</code> Class from being read it means you can't perform read with this class. But it does not mean you cannot perform read with <code>Square</code>. Moreover, it does not mean that <code>Rectangle</code> won't be returned in the result set when performing read with <code>Shape</code>. If your packages are flexible you can deny using wildcard matching or package matching. Otherwise you need to <span class="tc-bold">deny</span> <span class="tc-italic">all</span> classes in the hierarchy.</p>
 
 <h4 id="example">Example</h4>
 
@@ -99,7 +99,7 @@ But if we read using a <code>Rectangle</code> template, only it and its subclass
 
 <p>Here is a simple user with read + write privileges construction:</p>
 
-<pre xml:space="preserve"><code class="language-java">UserDetails user = new User("John Smith", "password", 
+<pre><code class="language-java">UserDetails user = new User("John Smith", "password", 
                         new SpaceAuthority(SpacePrivilege.READ), 
                         new SpaceAuthority(SpacePrivilege.WRITE));
 </code></pre>
@@ -111,13 +111,14 @@ This method is <span class="tc-bold"><span class="tc-italic">not mandatory</span
 
 <p>See <a href="security-directory-manager.htm">Users and Roles</a> section for more details.</p>
 
-<pre xml:space="preserve"><code class="language-java">interface SecurityManager {
+<pre><code class="language-java">interface SecurityManager {
     ...
     DirectoryManager createDirectoryManager(UserDetails userDetails) throws AuthenticationException, 
                                                                                AccessDeniedException;
 ...
 }
 </code></pre>
+</p>
 </div>
 
 <h2 id="role-authority">Role Authority</h2>
@@ -126,13 +127,13 @@ This method is <span class="tc-bold"><span class="tc-italic">not mandatory</span
 
 <p>For example, lets define a guest role with read privileges assigned to an anonymous user:</p>
 
-<pre xml:space="preserve"><code class="language-java">RoleDetails role = new Role("guest", new SpaceAuthority(SpacePrivilege.READ));
+<pre><code class="language-java">RoleDetails role = new Role("guest", new SpaceAuthority(SpacePrivilege.READ));
 UserDetails user = new User("anonymous", new RoleAuthority("guest"));
 </code></pre>
 
 <p>And define a contributor, with read and write privileges:</p>
 
-<pre xml:space="preserve"><code class="language-java">RoleDetails role = new Role("contributor", new SpaceAuthority(SpacePrivilege.READ), new SpaceAuthority(SpacePrivilege.WRITE));
+<pre><code class="language-java">RoleDetails role = new Role("contributor", new SpaceAuthority(SpacePrivilege.READ), new SpaceAuthority(SpacePrivilege.WRITE));
 UserDetails user = new User("gigaspacer", new RoleAuthority("contributor"));
 </code></pre>
 
@@ -146,8 +147,8 @@ In general, one can have both management capabilities, but in some organizations
 <table>
 <thead>
 <tr>
-<th />
-<th />
+<th></th>
+<th></th>
 </tr>
 </thead>
 

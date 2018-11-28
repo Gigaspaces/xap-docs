@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Routing In Partitioned Spaces</h1>
   
@@ -17,7 +17,7 @@
 
 <p>In order to accomplish that a <span class="tc-bold">routing property</span> can be defined on the entry type. When the proxy is asked to write an entry, it uses the entry's routing property's hash code to determine the relevant partition for it:</p>
 
-<pre xml:space="preserve"><code class="language-java">Target partition space ID = safeABS(routing field hashcode) % (number of partitions)
+<pre><code class="language-java">Target partition space ID = safeABS(routing field hashcode) % (number of partitions)
 
 int safeABS( int value)
 {
@@ -35,7 +35,7 @@ int safeABS( int value)
 <div class="tc-admon-note">
   
   <p>An auto-generated space ID can be used for routing as well. If the space ID is not defined in a document type, it will be implicitly defined to auto-generate the ID and routing information. (In earlier versions this was not supported, and was ignored in the implicit routing property selection mechanism.)</p>
-</div>}
+</div>}</p>
 
 <p>In some scenarios, the data model does not require sophisticated partitioning, and simple space-id-based partitioning is all that's needed (hence the default). In other scenarios this is not enough. For example, suppose we have a <span class="tc-bold">Customer</span> class with a <span class="tc-bold">customerId</span>, and an <span class="tc-bold">Order</span> class with an <span class="tc-bold">orderId</span> and <span class="tc-bold">customerId</span>, and we want all the orders of each customer to be co-located with it in the same partition. In that case we'd explicitly set the routing property of <span class="tc-bold">Order</span> to <span class="tc-bold">customerId</span> to ensure they're co-located.</p>
 

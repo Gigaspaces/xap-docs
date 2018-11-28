@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Consistency Biased</h1>
   
@@ -76,7 +76,7 @@
 <p>A primary Space may resume activity only if its session has not yet expired. Otherwise it terminates and becomes re-instantiated as a backup Space by the managing GSM.</p>
 
 <p>The failover time (of a backup Space until it is elected as primary) is a function of the session timeout plus the time it takes for the state to change. On a LAN network, this has been measured on average to be 35 seconds with the above default settings. This is twice as fast as Lookup-Service-based election.
-</p><div class="tc-admon-note">
+<div class="tc-admon-note">
   
   <p>A shorter failover time is not always advantageous. It may cause short network disconnections to trigger unnecessary failovers, which can affect system stability. Change the defaults only after careful consideration, and adjust the values to suit your network capabilities and applicative requirements.</p>
 </div>

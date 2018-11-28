@@ -22,7 +22,7 @@
 
 <p>In addition, MemoryXtend uses an LRU cache for data entries, so entries that are read frequently can be retrieved directly from the in-memory storage.</p>
 
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/blobstore/xap-memoryxtend-howitworks.png" alt="memstorage" /></p>
+<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/admin/memoryxtend-2018.png" width="624" height="526" /></p>
 </div>
 
 <p>MemoryXtend offers the following storage driver options:</p>
@@ -266,7 +266,7 @@ For information about XAP metrics and how to use them, refer to the <a href="met
 <p>If a GSC or a machine running a GSC restarts, there is no guarantee the XAP instance running within the GSC will be provisioned to the same machine where it was running before. When MemoryXtend is used in a non-persistent manner, this isn't problematic because the instance recovers from the primary, but if MemoryXtend is set to <code>persistent=true</code>, you must ensure that the instance is provisioned on the same machine where it was located before, so it can recover from the correct device, which is usually local to the machine.</p>
 
 <div class="tc-admon-note">
-  <p class="tc-admon-title">Info</p>
+  
   <p>Central Storage mode allows you to use MemoryXtend without configuring the Machine-Instance Affinity.</p>
 </div>
 
@@ -311,7 +311,7 @@ For information about XAP metrics and how to use them, refer to the <a href="met
 </div>
 
 <div class="tc-admon-note">
-  <p class="tc-admon-title">Deployment with SLA</p>
+  
   <p>Make sure you provide the <code>sla.xml</code> location at deploy time (<code>-sla</code> deploy command option), or locate it at the root of the Processing Unit JAR or under the <code>META-INF/spring</code> directory, alongside the Processing Unit's <code>pu.xml</code> file.</p>
 </div>
 
