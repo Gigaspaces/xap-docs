@@ -152,7 +152,7 @@ The **Help** menu provides the following options
 |Syntax|Description|
 |:-----|:----------|
 |About|provides product version information.|
-|Online Help|opens the [GigaSpaces Online Help homepage](../dev-java).|
+|Online Help|opens the [GigaSpaces Online Help homepage](../dev-java/index.html).|
 
 ## Button Toolbar
 

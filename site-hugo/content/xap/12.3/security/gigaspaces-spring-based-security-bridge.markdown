@@ -6,12 +6,6 @@ parent: spring-security-bridge.html
 weight: 200
 ---
 
-
-
-
-
-
-
 You may have noticed that Spring's Security `AuthenticationProvider` and `AuthenticationManager`, aren't much different from the GigaSpaces `com.gigaspaces.security.SecurityManager`. In Fact, they share a similar `authentication` method that handles authentication.
 
 The `org.openspaces.security.spring.SpringSecurityManager` is a the GigaSpaces Spring Security bridge (between Spring Security and GigaSpaces Security Manager). It relies on the Spring Security XML configuration file for its context definitions. The Spring Security configuration resides in a standalone XML file.
@@ -24,14 +18,14 @@ The Spring Security XML configuration file contains the `AuthenticationManager`,
 
 
 ```java
-<beans>
-    <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
-    <property name="providers">
-        <list>
-	    <ref bean="myAuthenticationProvider" />
-	</list>
-    </property>
-</bean>
+<bean id="authenticationManager" 
+class="org.springframework.security.authentication.ProviderManager"> 
+<constructor-arg> 
+<list> 
+<ref bean="ldapAuthenticationProvider"/> 
+</list> 
+</constructor-arg> 
+</bean> 
 ...
 ```
 
@@ -43,7 +37,7 @@ As with all GigaSpaces security configurations, they must be placed in a propert
 
 
 ```java
-com.gs.security.security-manager.class = org.openspaces.security.spring.SpringSecurityManager
+com.gs.security.security-manager.class = org.gigaspaces.security.spring.SpringSecurityManager
 spring-security-config-location = ../config/security/security-config.xml
 ```
 

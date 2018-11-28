@@ -6,12 +6,6 @@ parent: spring-security-bridge.html
 weight: 200
 ---
 
-
-
-
-
-
-
 You may have noticed that Spring's Security `AuthenticationProvider` and `AuthenticationManager`, aren't much different from the GigaSpaces `com.gigaspaces.security.SecurityManager`. In Fact, they share a similar `authentication` method that handles authentication.
 
 The `org.openspaces.security.spring.SpringSecurityManager` is a the GigaSpaces Spring Security bridge (between Spring Security and GigaSpaces Security Manager). It relies on the Spring Security XML configuration file for its context definitions. The Spring Security configuration resides in a standalone XML file.
@@ -24,14 +18,14 @@ The Spring Security XML configuration file contains the `AuthenticationManager`,
 
 
 ```java
-<beans>
-    <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
-    <property name="providers">
-        <list>
-	    <ref bean="myAuthenticationProvider" />
-	</list>
-    </property>
-</bean>
+<bean id="authenticationManager" 
+class="org.springframework.security.authentication.ProviderManager"> 
+<constructor-arg> 
+<list> 
+<ref bean="ldapAuthenticationProvider"/> 
+</list> 
+</constructor-arg> 
+</bean> 
 ...
 ```
 
@@ -43,13 +37,13 @@ As with all GigaSpaces security configurations, they must be placed in a propert
 
 
 ```java
-com.gs.security.security-manager.class = org.openspaces.security.spring.SpringSecurityManager
+com.gs.security.security-manager.class = org.gigaspaces.security.spring.SpringSecurityManager
 spring-security-config-location = ../config/security/security-config.xml
 ```
 
 This is all the configuration required to enable the use of the Spring-based security bridge. The rest is part of the Spring Security configuration XML file.
 
-{{% note "Info"%}}
+{{% note%}}
  For convenience, the template properties `config/security/spring-security.properties` can be renamed to `security.properties` or referenced using a system property (see [Security Configurations](./security-configurations.html)).
 {{% /note %}}
 
@@ -92,7 +86,7 @@ public class Main {
 }
 ```
 
-{{% note "Note"%}}
+{{% note%}}
  When running a standalone test, you will need to include the following jars in your classpath: &lt;XAP ROOT&gt;/lib/optional/security/spring-security-core-\*.jar , &lt;XAP ROOT&gt;/lib/optional/spring/\*.jar , &lt;XAP ROOT&gt;/lib/required/\*.jar
 {{% /note %}}
 

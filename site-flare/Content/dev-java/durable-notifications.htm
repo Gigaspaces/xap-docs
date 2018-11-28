@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Durable Notifications</h1>
   
@@ -16,7 +16,7 @@ These differences are described in the following sections.</p>
 
 <p>Using the <code>com.gigaspaces.events.EventSessionConfig</code> set the durable notifications flag to true.</p>
 
-<pre xml:space="preserve"><code class="language-java">EventSessionConfig config = new EventSessionConfig();
+<pre><code class="language-java">EventSessionConfig config = new EventSessionConfig();
 config.setDurableNotifications(true);
 DataEventSession session = space.newDataEventSession(config);
 </code></pre>
@@ -25,7 +25,7 @@ DataEventSession session = space.newDataEventSession(config);
 
 <p>Durable notifications are always sent as batches over the network (even if the client will receive them one by one), so tuning these parameters might be beneficial in certain cases.</p>
 
-<pre xml:space="preserve"><code class="language-java">EventSessionConfig#setBatch(int size, long delay, int pendingThreshold)
+<pre><code class="language-java">EventSessionConfig#setBatch(int size, long delay, int pendingThreshold)
 </code></pre>
 
 <table>
@@ -43,7 +43,7 @@ DataEventSession session = space.newDataEventSession(config);
 <td align="left">size</td>
 <td align="left">The upper bound for the amount of notifications sent in each batch (Note: events that occurred under transactions will be sent on commit and the entire transaction is counted as one operation for the upper bound).</td>
 <td align="left">5000</td>
-<td align="left" />
+<td align="left"></td>
 </tr>
 
 <tr>
@@ -57,12 +57,12 @@ DataEventSession session = space.newDataEventSession(config);
 <td align="left">pendingThreshold</td>
 <td align="left">The maximum amount of notifications the server holds before he wakes up and starts sending the notifications.</td>
 <td align="left">100</td>
-<td align="left" />
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
 
-<pre xml:space="preserve"><code class="language-java">EventSessionConfig config = new EventSessionConfig();
+<pre><code class="language-java">EventSessionConfig config = new EventSessionConfig();
 config.setDurableNotifications(true);
 config.setBatch(5000, 10, 100);
 </code></pre>
@@ -71,12 +71,12 @@ config.setBatch(5000, 10, 100);
 
 <p>In order to receive a notification upon disconnection, use the following:</p>
 
-<pre xml:space="preserve"><code class="language-java">setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener)
+<pre><code class="language-java">setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener)
 </code></pre>
 
 <div class="tc-admon-important">
   <p class="tc-admon-title">Deprecated since XAP 9.7</p>
-  <p /><pre xml:space="preserve"><code class="language-java">setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener, long renewExpiration, long renewDuration, long renewRTT)
+  <p><pre><code class="language-java">setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener, long renewExpiration, long renewDuration, long renewRTT)
 </code></pre>
 
 <p>Setting <code>renewExpiration</code>, <code>renewDuration</code> and <code>renewRTT</code> is not recommended. Please use the method described above for auto renewal.</p>
@@ -96,7 +96,7 @@ config.setBatch(5000, 10, 100);
 <td align="left">renew</td>
 <td align="left">Must be set to <code>true</code> in order to receive disconnection notifications.</td>
 <td align="left">false</td>
-<td align="left" />
+<td align="left"></td>
 </tr>
 
 <tr>
@@ -116,8 +116,8 @@ config.setBatch(5000, 10, 100);
 <tr>
 <td align="left">renewRTT</td>
 <td align="left">Ignored</td>
-<td align="left" />
-<td align="left" />
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
@@ -125,7 +125,7 @@ config.setBatch(5000, 10, 100);
 
 <p>An example of a LeaseListener implementation:</p>
 
-<pre xml:space="preserve"><code class="language-java">public class MyLeaseListener implements LeaseListener {
+<pre><code class="language-java">public class MyLeaseListener implements LeaseListener {
 
     DataEventSession session;
 
@@ -147,7 +147,7 @@ config.setBatch(5000, 10, 100);
 <h1 id="limitations-and-requirements">Limitations and Requirements</h1>
 
 <ul>
-<li>Durable Notification does not support an embedded Space, it can only be used with a remote proxy. Use a <a href="polling-container-overview.htm">Polling container</a> as an alternative.</li>
+<li>Durable Notification does not support an embedded Space, it can only be used with a remote proxy.  Use a <a href="polling-container-overview.htm">Polling container</a> as an alternative.</li>
 <li>The durable notifications feature is available only for primary backup topologies.</li>
 <li>Notifications are always sent as batches over the network. (even if the client will receive them one by one)</li>
 <li>Only Unicast communication type is supported.</li>

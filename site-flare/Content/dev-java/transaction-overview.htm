@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Transactions</h1>
   
@@ -8,7 +8,7 @@
 <table class="tc-borderless">
   <tr>
     <td><p>The Spring Framework provides a transaction manager abstraction using the <code>PlatformTransactionManager</code> interface with several different built-in implementations, such as JDBC Data Source and JTA. XAP provides several implementations for Spring's <code>PlatformTransactionManager</code>, allowing you to use the XAP's local and Jini Distributed Transaction Managers.
-By implementing Spring's <code>PlatformTransactionManager</code>, the XAP API allows users to utilize Spring's rich support for <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-declarative" target="_blank">declarative transaction management</a>. The declarative transaction support can be easily utilized with the <a href="the-gigaspace-interface-overview.htm">GigaSpace Interface</a>.</p>
+By implementing Spring's <code>PlatformTransactionManager</code>, the XAP API allows users to utilize Spring's rich support for <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-declarative" target="_blank" >declarative transaction management</a>. The declarative transaction support can be easily utilized with the <a href="the-gigaspace-interface-overview.htm">GigaSpace Interface</a>.</p>
 
 <p>When using Spring declarative transaction, a proxy is generated for the classes annotated with <code>@Transactional</code> methods. In this case, <span class="tc-bold">only external method calls</span> coming in through the proxy are intercepted. This means that "self-invocation', i.e. a method within the target object calling some other method of the target object, won't lead to an actual transaction at runtime even if the invoked method is marked with <code>@Transactional</code>.</p>
 </td>
@@ -21,10 +21,14 @@ By implementing Spring's <code>PlatformTransactionManager</code>, the XAP API al
   <p>In order to make <a href="the-gigaspace-interface-overview.htm">The GigaSpace Interface </a> transactional, the transaction manager must be provided to it when constructing the GigaSpace bean.
 The following should be added to your <code>pu.xml</code> to enable the configuration of transactional behavior based on annotations:</p>
 
-<pre xml:space="preserve"><code class="language-xml">&lt;beans ....
+<pre><code class="language-xml">&lt;beans ....
        xmlns:tx="http://www.springframework.org/schema/tx"
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring%].xsd"&gt;       &lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;&lt;/beans&gt;
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring%].xsd"&gt;
+
+       &lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
+&lt;/beans&gt;
 </code></pre>
+</p>
 </div>
 
 <h2 id="transaction-manager-types">Transaction Manager Types</h2>
@@ -33,17 +37,28 @@ The following should be added to your <code>pu.xml</code> to enable the configur
 
 <h1 id="constructing-the-xap-transaction-manager">Constructing the XAP Transaction Manager</h1>
 
-<p>The distributed <a href="https://river.apache.org/release-doc/current/specs/html/txn-spec.htm" target="_blank">Jini Transaction Manager</a> starts an embedded distributed (Mahalo) <span class="tc-bold">Jini Transaction Manager</span>, which is then wrapped with an implementation of the Spring <code>PlatformTransactionManager</code>. This transaction manager is used to perform distributed transactions spanning multiple Space instances.</p>
+<p>The distributed <a href="https://river.apache.org/release-doc/current/specs/html/txn-spec.htm" target="_blank" >Jini Transaction Manager</a> starts an embedded distributed (Mahalo) <span class="tc-bold">Jini Transaction Manager</span>, which is then wrapped with an implementation of the Spring <code>PlatformTransactionManager</code>. This transaction manager is used to perform distributed transactions spanning multiple Space instances.</p>
 
 <p>The following is an example of how it can be defined in a Spring application context:</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;&lt;os-core:distributed-tx-manager id="transactionManager" /&gt;&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+&lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
 </code></pre>
 </div>
-<div title="Plain XML" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;    &lt;property name="name" value="space"  /&gt;&lt;/bean&gt;&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.DistributedJiniTransactionManager" /&gt;&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;    &lt;property name="space" ref="space" /&gt;    &lt;property name="transactionManager" ref="transactionManager" /&gt;&lt;/bean&gt;
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space"  /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.DistributedJiniTransactionManager" /&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="transactionManager" ref="transactionManager" /&gt;
+&lt;/bean&gt;
 </code></pre>
 </div>
-<div title="Code" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
+<div title="  Code " style="padding:10px"><pre><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
 PlatformTransactionManager ptm = new DistributedJiniTxManagerConfigurer().transactionManager();
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm).gigaSpace();
 </code></pre>
@@ -56,13 +71,26 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>For example, to change the default timeout to 2 minutes, use the following configuration:</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;&lt;os-core:distributed-tx-manager id="transactionManager" default-timeout="120"/&gt;&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+&lt;os-core:distributed-tx-manager id="transactionManager" default-timeout="120"/&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
 </code></pre>
 </div>
-<div title="Plain XML" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;    &lt;property  name="name" value="space" /&gt;&lt;/bean&gt;&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.DistributedJiniTransactionManager"&gt;    &lt;property name="defaultTimeout" value="120" /&gt;&lt;/bean&gt;&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;    &lt;property name="space" ref="space" /&gt;    &lt;property name="transactionManager" ref="transactionManager" /&gt;&lt;/bean&gt;
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property  name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.DistributedJiniTransactionManager"&gt;
+    &lt;property name="defaultTimeout" value="120" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="transactionManager" ref="transactionManager" /&gt;
+&lt;/bean&gt;
 </code></pre>
 </div>
-<div title="Code" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
+<div title="Code" style="padding:10px"><pre><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
 PlatformTransactionManager ptm = new DistributedJiniTxManagerConfigurer().defaultTimeout(120).transactionManager();
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm).gigaSpace();
 </code></pre>
@@ -87,13 +115,26 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>The following is an example of how it can be defined in a Spring application context:</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;&lt;os-core:jini-tx-manager id="transactionManager" lookup-timeout="5000" /&gt;&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
+<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+&lt;os-core:jini-tx-manager id="transactionManager" lookup-timeout="5000" /&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
 </code></pre>
 </div>
-<div title="Plain XML" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;    &lt;property name="name" value="space" /&gt;&lt;/bean&gt;&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.LookupJiniTransactionManager"&gt;    &lt;property name="lookupTimeout" value="5000" /&gt;&lt;/bean&gt;&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;    &lt;property name="space" ref="space" /&gt;    &lt;property name="transactionManager" ref="transactionManager" /&gt;&lt;/bean&gt;
+<div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.LookupJiniTransactionManager"&gt;
+    &lt;property name="lookupTimeout" value="5000" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="transactionManager" ref="transactionManager" /&gt;
+&lt;/bean&gt;
 </code></pre>
 </div>
-<div title="Code" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
+<div title="Code" style="padding:10px"><pre><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
 PlatformTransactionManager ptm = new LookupJiniTxManagerConfigurer().lookupTimeout(5000).transactionManager();
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm).gigaSpace();
 </code></pre>
@@ -113,13 +154,34 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>The following is an example of how this can be configured:</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;&lt;os-core:distributed-tx-manager id="transactionManager" &gt;    &lt;os-core:renew pool-size="2" duration="1000" round-trip-time="500" /&gt;&lt;/os-core:distributed-tx-manager&gt;&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+&lt;os-core:distributed-tx-manager id="transactionManager" &gt;
+    &lt;os-core:renew pool-size="2" duration="1000" round-trip-time="500" /&gt;
+&lt;/os-core:distributed-tx-manager&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
 </code></pre>
 </div>
-<div title="Plain XML" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;    &lt;property name="name" value="space" /&gt;&lt;/bean&gt;&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.DistributedJiniTransactionManager"&gt;    &lt;property name="leaseRenewalConfig"&gt;        &lt;bean class="org.openspaces.core.transaction.manager.TransactionLeaseRenewalConfig"&gt;            &lt;property name="poolSize" value="2" /&gt;            &lt;proeprty name="renewRTT" value="500" /&gt;            &lt;property name="renewDuration" value="1000" /&gt;        &lt;/bean&gt;    &lt;/property&gt;&lt;/bean&gt;&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;    &lt;property name="space" ref="space" /&gt;    &lt;property name="transactionManager" ref="transactionManager" /&gt;&lt;/bean&gt;
+<div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.DistributedJiniTransactionManager"&gt;
+    &lt;property name="leaseRenewalConfig"&gt;
+        &lt;bean class="org.openspaces.core.transaction.manager.TransactionLeaseRenewalConfig"&gt;
+            &lt;property name="poolSize" value="2" /&gt;
+            &lt;proeprty name="renewRTT" value="500" /&gt;
+            &lt;property name="renewDuration" value="1000" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="transactionManager" ref="transactionManager" /&gt;
+&lt;/bean&gt;
 </code></pre>
 </div>
-<div title="Code" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
+<div title="Code" style="padding:10px"><pre><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
 TransactionLeaseRenewalConfig config = new TransactionLeaseRenewalConfig();
 config.setPoolSize(2);
 config.setRenewDuration(1000);
@@ -138,13 +200,32 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>XAP can be used within an XA transaction using JTA. The OpenSpaces API allows you to work with Spring's <code>JTATransactionManager</code> and provides support for declarative transaction management. The following is an example of how OpenSpaces JTA support can be used (using JOTM):</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;&lt;bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean" /&gt;&lt;bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"&gt;    &lt;property name="userTransaction" ref="jotm" /&gt;&lt;/bean&gt;&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
+<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+&lt;bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean" /&gt;
+&lt;bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"&gt;
+    &lt;property name="userTransaction" ref="jotm" /&gt;
+&lt;/bean&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
 </code></pre>
 </div>
-<div title="Plain XML" style="padding: 10px;"><pre xml:space="preserve"><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;    &lt;property name="name" value="space" /&gt;&lt;/bean&gt;&lt;bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean" /&gt;&lt;bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"&gt;    &lt;property name="userTransaction" ref="jotm" /&gt;&lt;/bean&gt;&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;    &lt;property name="space" ref="space" /&gt;    &lt;property name="transactionManager" ref="transactionManager" /&gt;&lt;/bean&gt;
+<div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean" /&gt;
+
+&lt;bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"&gt;
+    &lt;property name="userTransaction" ref="jotm" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="transactionManager" ref="transactionManager" /&gt;
+&lt;/bean&gt;
 </code></pre>
 </div>
-<div title="Code" style="padding: 10px;"><pre xml:space="preserve"><code class="language-java">UserTransaction userTransaction = ... //get UserTransaction via JDNI / instantiation
+<div title="Code" style="padding:10px"><pre><code class="language-java">UserTransaction userTransaction = ... //get UserTransaction via JDNI / instantiation
 PlatformTransactionManager ptm = new JtaTransactionManager(userTransaction);
 EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm).gig
@@ -171,17 +252,23 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>Starting with Spring 3, you can specify multiple Transaction managers within the same Spring context (pu.xml) and use the <code>@Transactional</code> annotation. If you use multiple Transaction managers, make sure you specify the name of the transaction manager your class/method should use:</p>
 
-<pre xml:space="preserve"><code class="language-java">&lt;os-core:distributed-tx-manager id=" txManager1" /&gt;&lt;os-core:giga-space id="gigaspace" space="space"  tx-manager="txManager1"/&gt;&lt;tx:annotation-driven transaction-manager=" txManager1" /&gt;&lt;os-core:distributed-tx-manager id=" txManager2" /&gt;&lt;os-core:giga-space id="gigaspace2" space="space"  tx-manager="txManager2"/&gt;&lt;tx:annotation-driven transaction-manager=" txManager2" /&gt;
+<pre><code class="language-java">&lt;os-core:distributed-tx-manager id=" txManager1" /&gt;
+&lt;os-core:giga-space id="gigaspace" space="space"  tx-manager="txManager1"/&gt;
+&lt;tx:annotation-driven transaction-manager=" txManager1" /&gt;
+
+&lt;os-core:distributed-tx-manager id=" txManager2" /&gt;
+&lt;os-core:giga-space id="gigaspace2" space="space"  tx-manager="txManager2"/&gt;
+&lt;tx:annotation-driven transaction-manager=" txManager2" /&gt;
 </code></pre>
 
-<pre xml:space="preserve"><code class="language-java">@Transactional(value="txManager1")
+<pre><code class="language-java">@Transactional(value="txManager1")
 public String getFoo()
 {
     return dao.find("foo");
 }
 </code></pre>
 
-<pre xml:space="preserve"><code class="language-java">@Transactional(value="txManager2")
+<pre><code class="language-java">@Transactional(value="txManager2")
 public String getFoo()
 {
     return dao.find("foo");
@@ -201,7 +288,7 @@ public String getFoo()
 
 <p>The following is an example of how a method should be annotated to support declarative transaction management:</p>
 
-<pre xml:space="preserve"><code class="language-java">@Transactional (propagation=Propagation.REQUIRED)
+<pre><code class="language-java">@Transactional (propagation=Propagation.REQUIRED)
 public void myTransactionalMethod(Object data) {
   gigaSpace.write(mySpaceObject);
   gigaSpace.take(mytemplate);
@@ -218,7 +305,8 @@ public void myTransactionalMethod(Object data) {
 <li>If you try to call an annotated method from within the same class, for example calling it on <code>this</code>, no transaction will be started because your code actually accesses a direct reference and not a proxied bean.</li>
 </ol>
 
-<pre xml:space="preserve"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans"
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -230,35 +318,48 @@ public void myTransactionalMethod(Object data) {
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring%].xsd
-       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;    &lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;    &lt;!-- Defines a distributed Jini transaction manager. --&gt;    &lt;os-core:distributed-tx-manager id="transactionManager"/&gt;        &lt;bean id="transactionalBean" class="MyClass"/&gt;        &lt;bean id="callingBean" class="MyOtherClass"&gt;            &lt;property name="myClass" ref="transactionalBean"/&gt;        &lt;/bean&gt;    &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;&lt;/beans&gt;
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;
+
+    &lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+
+    &lt;!-- Defines a distributed Jini transaction manager. --&gt;
+    &lt;os-core:distributed-tx-manager id="transactionManager"/&gt;
+        &lt;bean id="transactionalBean" class="MyClass"/&gt;
+        &lt;bean id="callingBean" class="MyOtherClass"&gt;
+            &lt;property name="myClass" ref="transactionalBean"/&gt;
+        &lt;/bean&gt;
+    &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;
+&lt;/beans&gt;
 </code></pre>
 
 <p>You can also annotate beans exposed via <a href="space-based-remoting-overview.htm">space based remoting</a>. If you include the <code>&lt;tx:annotation-driven&gt;</code> element in your <code>pu.xml</code> file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.</p>
 
 <h1 id="programmatic-transaction-management">Programmatic Transaction Management</h1>
 
-<p>If you don't want to leverage <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-declarative" target="_blank">Spring's declarative transaction management</a>, or have an application that is not configured by Spring, you can start, commit and roll back transactions explicitly from within your code by using Spring's transaction API.</p>
+<p>If you don't want to leverage <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-declarative" target="_blank" >Spring&#39;s declarative transaction management</a>, or have an application that is not configured by Spring, you can start, commit and roll back transactions explicitly from within your code by using Spring's transaction API.</p>
 
 <p>Here is how you should use the Transaction manager via the API:</p>
 
 <p><span class="tc-bold">1.</span> Create a Transaction Manager using:</p>
 
-<pre xml:space="preserve"><code class="language-java">PlatformTransactionManager ptm = new DistributedJiniTxManagerConfigurer().transactionManager();
+<pre><code class="language-java">PlatformTransactionManager ptm = new DistributedJiniTxManagerConfigurer().transactionManager();
 </code></pre>
 
 <p>or get a reference to an exiting Transaction Manager:</p>
 
-<pre xml:space="preserve"><code class="language-java">PlatformTransactionManager ptm = new LookupJiniTxManagerConfigurer().lookupTimeout(5000).transactionManager();
+<pre><code class="language-java">PlatformTransactionManager ptm = new LookupJiniTxManagerConfigurer().lookupTimeout(5000).transactionManager();
 </code></pre>
 
 <p><span class="tc-bold">2.</span> Create a <code>GigaSpace</code> using the relevant API and have the "transactionManager' associated with it:</p>
 
-<pre xml:space="preserve"><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).transactionManager(ptm).gigaSpace();
+<pre><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).transactionManager(ptm).gigaSpace();
 </code></pre>
 
 <p>The following is a full example where the <code>GigaSpace</code> is used to execute Space operations and rollback/commit using the <code>DistributedJiniTxManagerConfigurer</code> created, without having Spring involved:</p>
 
-<pre xml:space="preserve"><code class="language-java">//get reference to a GigaSpace instance - with the example below we use a remote proxy
+<pre><code class="language-java">//get reference to a GigaSpace instance - with the example below we use a remote proxy
 GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).transactionManager(ptm).gigaSpace();
 
 //get a reference to a XAP PlatformTransactionManager instance as described in step one above.
@@ -281,7 +382,7 @@ ptm.commit(status);
 
 <div class="tc-admon-refer">
   
-  <p>You can also use Spring's <a href="http://static.springframework.org/spring/docs/2.5.x/api/org/springframework/transaction/support/TransactionTemplate.htm" target="_blank">TransactionTemplate</a> if you prefer. This is documented in full in the <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-programmatic" target="_blank">Spring reference guide</a>.</p>
+  <p>You can also use Spring's <a href="http://static.springframework.org/spring/docs/2.5.x/api/org/springframework/transaction/support/TransactionTemplate.htm" target="_blank" >TransactionTemplate</a> if you prefer. This is documented in full in the <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-programmatic" target="_blank" >Spring reference guide</a>.</p>
 </div>
 
 <div class="tc-admon-note">
@@ -291,7 +392,7 @@ ptm.commit(status);
 
 <h1 id="spring-transactiondefinition-mapping-to-xap-readmodifiers">Spring TransactionDefinition Mapping to XAP ReadModifiers</h1>
 
-<p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.htm" target="_blank">Spring TransactionDefinition</a> Mapping to XAP ReadModifiers:</p>
+<p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.htm" target="_blank" >Spring TransactionDefinition</a> Mapping to XAP ReadModifiers:</p>
 
 <table>
 <thead>
@@ -339,19 +440,23 @@ ptm.commit(status);
 <li>Set the following option to <code>true</code> in your container schema:</li>
 </ul>
 
-<pre xml:space="preserve"><code class="language-xml">&lt;embedded-services&gt;...
-&lt;mahalo&gt;    &lt;!-- If true, will start an embedded Mahalo Jini Transaction Manager. Default value: false --&gt;    &lt;start-embedded-mahalo&gt;${com.gs.start-embedded-mahalo}&lt;/start-embedded-mahalo&gt;&lt;/mahalo&gt;
+<pre><code class="language-xml">&lt;embedded-services&gt;
+...
+&lt;mahalo&gt;
+    &lt;!-- If true, will start an embedded Mahalo Jini Transaction Manager. Default value: false --&gt;
+    &lt;start-embedded-mahalo&gt;${com.gs.start-embedded-mahalo}&lt;/start-embedded-mahalo&gt;
+&lt;/mahalo&gt;
 </code></pre>
 
 <ul>
 <li><p>Set the following option as a JVM argument:</p>
 
-<pre xml:space="preserve"><code class="language-java">-Dcom.gs.start-embedded-mahalo=true
+<pre><code class="language-java">-Dcom.gs.start-embedded-mahalo=true
 </code></pre></li>
 
 <li><p>Set XPath in the <code>&lt;XAP Root&gt;\config\gs.properties</code> file:</p>
 
-<pre xml:space="preserve"><code class="language-java">com.j_spaces.core.container.embedded-services.mahalo.start-embedded-mahalo=true
+<pre><code class="language-java">com.j_spaces.core.container.embedded-services.mahalo.start-embedded-mahalo=true
 </code></pre></li>
 </ul>
 

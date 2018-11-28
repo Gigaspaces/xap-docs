@@ -15,7 +15,7 @@ GigaSpaces InsightEdge and XAP are implemented using Java, and require the follo
 - Java version 8
 - Any operating system that is supported by Java (for example Linux/Unix, Microsoft Windows, and Apple Mac OS/X)
 
-XAP.NET requires [Microsoft .NET Framework 4.0](http://msdn.microsoft.com/en-us/vstudio/aa496123) or later. Additional information is provided in the [Installation](../dev-dotnet/installation-overview.html) section of the [XAP.NET Guide](../dev-dotnet). 
+XAP.NET requires [Microsoft .NET Framework 4.0](http://msdn.microsoft.com/en-us/vstudio/aa496123) or later. Additional information is provided in the [Installation](../dev-dotnet/installation-overview.html) section of the [XAP.NET Guide](../dev-dotnet/index.html). 
 
 For information on VMWare support, refer to the [VMWare guidelines](vmware-guidelines.html).
 

@@ -7,7 +7,7 @@
 
 <div class="tc-admon-note">
   
-  <p>The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the <a href="../xap/14.0/started/">Getting Started</a> section before performing the tasks described here.</p>
+  <p>The topics in this section assume basic knowledge of InsightEdge and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the <a href="../started/index.htm">Getting Started</a> section before performing the tasks described here.</p>
 </div>
 
 <p>This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full InsightEdge platform, which includes the data grid, using the Helm chart available in the GigaSpaces Helm repository.</p>
@@ -370,7 +370,7 @@ Moreover, since Helm is open source, there are many community charts available w
 
 <h3 id="overriding-the-processing-unit-properties">Overriding the Processing Unit Properties</h3>
 
-<p>It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit <a href="https://docs.gigaspaces.com/xap/14.0/dev-java/deployment-properties.htm#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
+<p>It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit <a href="../dev-java/deployment-properties.htm#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
 
 <p>After defining the properties as placeholders, use the <code>key1=value1;key2=value2</code> format to pass the override values to the Helm chart using either the <code>--set insightedge-pu.properties=&lt;your key-value pairs&gt;</code> command, or using a custom YAML file.</p>
 
@@ -386,7 +386,7 @@ Moreover, since Helm is open source, there are many community charts available w
 
 <p><code>http://&lt;minikube ip&gt;:8090</code></p>
 
-<p>For information on how to use the REST Manager API, see the <a href="../xap/14.0/admin/admin-tools.htm">Administration Tools</a> section of the documentation.</p>
+<p>For information on how to use the REST Manager API, see the <a href="../admin/admin-tools.htm">Administration Tools</a> section of the documentation.</p>
 
 <h3 id="gigaspaces-command-line-interface">GigaSpaces Command Line Interface</h3>
 
@@ -406,7 +406,7 @@ Moreover, since Helm is open source, there are many community charts available w
 <pre><code class="language-bash">./insightedge --server=test-space-xap-manager-hs space info --type-stats test-space
 </code></pre>
 
-<p>For more information about the GigaSpaces CLI and available commands, see the <a href="../xap/14.0/admin/admin-tools.htm">Administration Tools</a> section of the documentation.</p>
+<p>For more information about the GigaSpaces CLI and available commands, see the <a href="../admin/admin-tools.htm">Administration Tools</a> section of the documentation.</p>
 
 <h2 id="advanced-monitoring-using-kubernetes-tools">Advanced Monitoring Using Kubernetes Tools</h2>
 

@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>Using the InsightEdge Web Notebook</h1>
   
@@ -12,11 +12,11 @@
 <p>The InsightEdge Apache Zeppelin web notebook can be started in any of the following ways:</p>
 
 <ul>
-<li>Run the <code>insightedge demo</code> command; the web notebook is started automatically at <a href="http://localhost:9090" target="_blank">localhost:9090</a>.</li>
+<li>Run the <code>insightedge demo</code> command; the web notebook is started automatically at <a href="http://localhost:9090" target="_blank" >localhost:9090</a>.</li>
 <li>Start the web notebook manually at any time by running <code>zeppelin.sh/cmd</code> from the <code>&lt;XAP HOME&gt;/insightedge/zeppelin/bin</code> directory.</li>
 </ul>
 
-<p>When Apache Zeppelin is running, you can browse to <a href="http://localhost:9090" target="_blank">localhost:9090</a> and start exploring the pre-built notebooks:</p>
+<p>When Apache Zeppelin is running, you can browse to <a href="http://localhost:9090" target="_blank" >localhost:9090</a> and start exploring the pre-built notebooks:</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/Zeppelin_examples_100.png" alt="image" /></p>
 </div>
@@ -46,7 +46,7 @@
 <li><code>InsightEdge</code> class:</li>
 </ul>
 
-<pre xml:space="preserve"><code class="language-scala">    case class InsightEdgeConfig(
+<pre><code class="language-scala">    case class InsightEdgeConfig(
                                  spaceName: String,
                                  lookupGroups: Option[String] = None,
                                  lookupLocators: Option[String] = None)
@@ -56,7 +56,7 @@
 <li>Apache Zeppelin mandatory initialization paragraph:</li>
 </ul>
 
-<pre xml:space="preserve"><code class="language-scala">    %spark
+<pre><code class="language-scala">    %spark
     import org.insightedge.spark.implicits.all._
     import org.insightedge.spark.context.InsightEdgeConfig
     
@@ -69,7 +69,7 @@
 
 <h2 id="insightedge-jdbc-interpreter">InsightEdge JDBC Interpreter</h2>
 
-<p>Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with InsightEdge comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook. The queries are executed by the <a href="sql-query-intro.htm">InsightEdge SQL Driver</a>.</p>
+<p>Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with InsightEdge comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook.  The queries are executed by the <a href="../dev-java/sql-query-intro.htm">InsightEdge SQL Driver</a>.</p>
 
 <h3 id="configuring-the-jdbc-interpreter">Configuring the JDBC Interpreter</h3>
 
@@ -77,8 +77,8 @@
 
 <ol>
 <li>In the Apache Zeppelin web interface, navigate to the Interpreters section.</li>
-<li>Select the insightedge_jdbc interpreter, and click Edit.</li>
-<li>Edit the <code>default.url</code> parameter as follows: `jdbc:insightedge:spaceName=<space-name /></li>
+<li>Select the insightedge_jdbc interpreter, and click <span class="tc-bold">Edit</span>.</li>
+<li>Edit the <code>default.url</code> parameter as follows: <code>jdbc:insightedge:spaceName=&lt;space-name&gt;</code></li>
 <li>Save the changes you made to the interpreter.</li>
 </ol>
 
@@ -93,7 +93,7 @@
 <ul>
 <li><p>The data grid model can be declared in a notebook using the <code>%define</code> interpreter:</p>
 
-<pre xml:space="preserve"><code class="language-scala">%define
+<pre><code class="language-scala">%define
 package model.v1
 
 import org.insightedge.scala.annotation._
@@ -109,20 +109,20 @@ case class Product(
 }
 </code></pre>
 
-<pre xml:space="preserve"><code class="language-scala">%spark
+<pre><code class="language-scala">%spark
 import model.v1._
 </code></pre></li>
 
 <li><p>You can load external .JARs from the Spark interpreter settings, or with the <code>z.load("/path/to.jar")</code> command:</p>
 
-<pre xml:space="preserve"><code class="language-scala">%dep
+<pre><code class="language-scala">%dep
 z.load("insightedge/examples/jars/insightedge-examples.jar")
 </code></pre></li>
 </ul>
 
 <div class="tc-admon-refer">
   
-  <p>For more details, refer to <a href="https://zeppelin.apache.org/docs/latest/interpreter/spark.htm#dependency-management" target="_blank">Zeppelin Dependency Management</a>.</p>
+  <p>For more details, refer to <a href="https://zeppelin.apache.org/docs/latest/interpreter/spark.htm#dependency-management" target="_blank" >Zeppelin Dependency Management</a>.</p>
 </div>
 
 <ul>

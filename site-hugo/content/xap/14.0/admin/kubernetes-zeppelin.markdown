@@ -25,8 +25,8 @@ The queries are executed by the [InsightEdge SQL Driver](../dev-java/sql-query-i
 The JDBC interpreter connects to the data grid via a JDBC URL. To configure the URL value to point to the data grid in the Kubernetes environment, do the following:
 
 1. In the Apache Zeppelin web interface, navigate to the Interpreters section.
-1. Select the insightedge_jdbc interpreter, and click Edit.
-1. Edit the `default.url` parameter as follows: `jdbc:insightedge:spaceName=<space-name>
+1. Select the insightedge_jdbc interpreter, and click **Edit**.
+1. Edit the `default.url` parameter as follows: `jdbc:insightedge:spaceName=<space-name>`
 1. Save the changes you made to the interpreter.
 
 ## Querying the Data Grid in Notebooks

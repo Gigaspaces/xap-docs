@@ -231,7 +231,7 @@ To define security privileges for a custom method, you have to import `org.opens
 The `@PrivilegeRequired` annotation accepts a `RestPrivileges` enum that corresponds to the Security privileges. 
 
 {{%refer%}}
-For more information about security, see the [Security Guide](../security/).
+For more information about security, see the [Security Guide](../security/index.html).
 {{%/refer%}}
 
 For example:

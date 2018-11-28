@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-<head><title></title></head>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
 <body>
 <h1>XAP Manager</h1>
   
 
 <p>The XAP Manager (or simply The Manager) is a component that stacks together the <a href="../overview/the-runtime-environment.htm#lus">LUS</a> and <a href="../overview/the-runtime-environment.htm#gsm">GSM</a>
-along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeeper</a> and an embedded web application which hosts an admin instance with a <a href="xap-manager-rest.htm">RESTful management API</a> on top of it.</p>
+along with <a href="http://zookeeper.apache.org/" target="_blank" >Apache ZooKeeper</a> and an embedded web application which hosts an admin instance with a <a href="xap-manager-rest.htm">RESTful management API</a> on top of it.</p>
 
 <p>In addition to simplifying setup and management, the Manager also provides the following benefits:</p>
 
 <ul>
-<li>Space leader election uses Apache Zookeeper instead of the LUS, providing a more robust process (consistent when network partitions occur), and eliminating <a href="split-brain-and-primary-resolution.htm">split brains</a>.</li>
+<li>Space leader election uses Apache Zookeeper instead of the LUS, providing a more robust process (consistent when network partitions occur), and eliminating [split brain.</li>
 <li>When using MemoryXtend, the last primary will automatically be stored in Apache Zookeeper (instead of having to set up a shared NFS and configure the Processing Unit to use it).</li>
 <li>The GSM uses Apache Zookeeper for leader election (instead of the active-active topology used today). This provides a more robust process (consistent when network partitions occur). Also, having a single leader GSM means that the general behaviour is more deterministic and logs are easier to read.</li>
 <li>REST API for managing the environment remotely from any platform.</li>
@@ -21,10 +21,10 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
 
 <p>The easiest way to get started is to run a standalone Manager on your machine - simply run the following command:</p>
 
-<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding: 10px;"><pre xml:space="preserve"><code class="language-bash">./gs-agent.sh --manager-local
+<div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash">./gs-agent.sh --manager-local
 </code></pre>
 </div>
-<div title="Windows" style="padding: 10px;"><pre xml:space="preserve"><code class="language-bash">gs-agent.bat --manager-local
+<div title="Windows" style="padding:10px"><pre><code class="language-bash">gs-agent.bat --manager-local
 </code></pre>
 </div>
 </div>
@@ -78,8 +78,8 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
 
 <tr>
 <td>Zookeeper</td>
-<td><code>com.gs.manager.zookeeper.discovery.port</code><br /><code>com.gs.manager.zookeeper.leader-election.port</code></td>
-<td>2888<br />3888</td>
+<td><code>com.gs.manager.zookeeper.discovery.port</code><br/><code>com.gs.manager.zookeeper.leader-election.port</code></td>
+<td>2888<br/>3888</td>
 </tr>
 
 <tr>
@@ -92,9 +92,9 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
 
 <div class="tc-admon-note">
   
-  <p>Apache Zookeeper requires that each Manager can reach the other Managers. If you change the Apache Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the <code>XAP_MANAGER_SERVERS</code> environment variable. For example:</p>
+  <p>Apache Zookeeper requires that each Manager can reach the other Managers. If you change the Apache Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the <code>XAP_MANAGER_SERVERS</code> environment variable.  For example:</p>
 
-<pre xml:space="preserve"><code class="language-bash">XAP_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200"
+<pre><code class="language-bash">XAP_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200"
 </code></pre>
 
 <p>When using this syntax in Unix/Linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.</p>
@@ -109,7 +109,7 @@ The default Zookeeper port is 2181.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more information about Apache Zookeeper configuration, see <a href="https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.htm#sc_configuration" target="_blank">ZooKeeper configuration</a>.</p>
+  <p>For more information about Apache Zookeeper configuration, see <a href="https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.htm#sc_configuration" target="_blank" >ZooKeeper configuration</a>.</p>
 </div>
 
 <h3 id="zookeeper-configuration-file">Zookeeper Configuration File</h3>
@@ -227,8 +227,9 @@ so if you’re upgrading for bug fixes/other features and don’t want the manag
 
 <p>To change between selector strategies, use the following system property (org.jini.rio.monitor.serviceResourceSelector). For example, to set the strategy to the on prior to 12.1, assign the following when loading the manager (in <code>XAP_MANAGER_OPTIONS</code> environment variable):</p>
 
-<pre xml:space="preserve"><code class="language-bash">-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector
+<pre><code class="language-bash">-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector
 </code></pre>
+</p>
 </div>
 
 <h1 id="faq">FAQ</h1>
