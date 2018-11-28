@@ -82,6 +82,10 @@ var terms = [{
     "replace": '.htm'
   },
   {
+    "find": /<h(\d) id="(.+?)">/g,
+    "replace": '<h$1><a name="$2">&#160;</a>'
+  },
+  {
     "find": /<\/(table|thead|tbody|tr|th|td|div|ul)>[\s\s]*?<\/p>/g,
     "replace": '</$1>'
   },
