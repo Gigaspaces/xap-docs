@@ -15,7 +15,7 @@
   <p>In previous releases the <code>ExternalEntry</code> class was used to achieve this functionality. Starting with 8.0, the <code>SpaceDocument</code> class should be used to accomplish these needs in a simpler and safer manner, whereas <code>ExternalEntry</code> has been deprecated and should no longer be used.</p>
 </div>
 
-<h1 id="requirements">Requirements</h1>
+<h1><a name="requirements">&#160;</a>Requirements</h1>
 
 <p>When working with documents, the user is in charge of creating and registering the Space type descriptor manually before interacting with the document types. When working with POJOs, the system implicitly generates a Space type descriptor for the POJO's class using annotations or <code>gs.xml</code> files when the class is used for the first time. In order to inter-operate, the same type descriptor should be used for both POJOs and documents.</p>
 
@@ -29,13 +29,13 @@ int count = gigaSpace.count(template);
 
 <p>If the POJO's class is not available in the classpath or in the data grid, the application throws an exception indicating that there is no type descriptor registered for the specified type. In this case, it is possible to manually create a matching type descriptor using the <code>SpaceTypeDescriptorBuilder</code> and register it in the Space. However, this is not recommended because it essentially requires duplicating all the POJO settings and maintaining them if the POJO changes.</p>
 
-<h1 id="query-result-type">Query Result Type</h1>
+<h1><a name="query-result-type">&#160;</a>Query Result Type</h1>
 
 <p>When no interoperability is involved this is a trivial matter - Querying a POJO type returns POJOs, querying a document type returns documents.</p>
 
 <p>When we want to mix and match, we need semantics to determine to query result type - POJO or document.</p>
 
-<h2 id="template-query">Template Query</h2>
+<h2><a name="template-query">&#160;</a>Template Query</h2>
 
 <p>Template query result types are determined by the template class - if the template is an instance of a <code>SpaceDocument</code>, the results will be documents, otherwise they will be POJOs.</p>
 
@@ -48,7 +48,7 @@ SpaceDocument[] documents = gigaSpace.readMultiple(
     new SpaceDocument(Product.class.getName()), Integer.MAX_VALUE);
 </code></pre>
 
-<h3 id="sql-query">SQL Query</h3>
+<h3><a name="sql-query">&#160;</a>SQL Query</h3>
 
 <p>The <code>SQLQuery</code> class has been enhanced with a <code>QueryResultType</code> parameter. The following options are available:</p>
 
@@ -78,7 +78,7 @@ SpaceDocument document = gigaSpace.read(
 
 <p>This strategy both preserves backwards compatibility and simplifies non-interoperability scenarios, which are more common than interoperability scenarios.</p>
 
-<h3 id="id-based-query">ID-Based Query</h3>
+<h3><a name="id-based-query">&#160;</a>ID-Based Query</h3>
 
 <p>In order to support ID queries for documents, the <code>IdQuery</code> class has been introduced, which encapsulates the type, ID, routing and a <code>QueryResultType</code>. New <code>GigaSpace</code> signatures have been added for <code>readById</code>, <code>readIfExistsById</code>, <code>takeById</code>, <code>takeIfExistsById</code>. The result type is determined by the <code>QueryResultType</code>, similar to <code>SQLQuery</code>.</p>
 

@@ -5,7 +5,7 @@
 <h1>GS-Agent</h1>
   
 
- <a id="GSRuntimeEnv">&#160;</a>
+ <a name="GSRuntimeEnv">&#160;</a>
 
 <p>A processing unit is deployed onto the XAP runtime environment, which is called the <a href="../overview/the-runtime-environment.htm">Service Grid</a>. It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.</p>
 
@@ -14,11 +14,11 @@
   <p>The gs-agent script is deprecated as of version 14.0, as noted in the <a href="../rn/whats-new.htm">Release Notes</a>. Use the <code>xap host run-agent</code> or <code>insightedge host run-agent</code> command in the <a href="tools-cli.htm">new CLI</a> instead.</p>
 </div>
 
-<h1 id="usage">Usage</h1>
+<h1><a name="usage">&#160;</a>Usage</h1>
 
 <p>To start a Service Grid on a machine, launch the <code>gs-agent</code> utility located in the <code>$XAP_HOME/bin</code> folder. This will start the <a href="../overview/the-runtime-environment.htm#gsa">Grid Service Agent</a>, which is responsible of starting and managing the other Service Grid components (GSC, GSM, etc.). Command-line arguments are used to specify which Service Grid components should be started and managed. In general, <code>--process_type=n</code> will start <code>n</code> instances of the specified <code>process_type</code>. Use the <code>global</code> keyword (e.g. <code>--global.process_type=n</code>) to specify that the agent should coordinate with other running agents the hosting and management of that service. Let's look at common use cases:</p>
 
-<h2 id="help">Help</h2>
+<h2><a name="help">&#160;</a>Help</h2>
 
 <p>Run gs-agent with <code>--help</code> or <code>-h</code> to see all available options:</p>
 
@@ -30,7 +30,7 @@
 </div>
 </div>
 
-<h2 id="manager">Manager</h2>
+<h2><a name="manager">&#160;</a>Manager</h2>
 
 <p>To start a single manager on the local machine (useful for dev and testing):</p>
 
@@ -66,7 +66,7 @@ gs-agent --manager --gsc=2
 
 <p>(Note that you also need to configure the <code>XAP_MANAGER_SERVERS</code> to the list of designated manager servers)</p>
 
-<h2 id="without-manager">Without Manager</h2>
+<h2><a name="without-manager">&#160;</a>Without Manager</h2>
 
 <p>If you cannot use the manager for some reason, but you still want high-availability, you can pick a couple of hosts to serve for management, and start a LUS and GSM on them:</p>
 
@@ -106,7 +106,7 @@ gs-agent --global.lus=2 --global.gsm=2 --gsc=2
 </div>
 </div>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
 <p>Service Grid configuration is often composed of two layers: system-wide configuration and component-specific configuration.</p>
 
@@ -139,7 +139,7 @@ call gs-agent.bat
 </div>
 </div>
 
-<h1 id="customizing-gsa-components">Customizing GSA Components</h1>
+<h1><a name="customizing-gsa-components">&#160;</a>Customizing GSA Components</h1>
 
 <p>GSA manages different process types. Each process type is defined within the <code>$XAP_HOME/config/gsa</code> directory in an xml file that identifies the process type by its name.</p>
 
@@ -230,7 +230,7 @@ call gs-agent.bat
 <li><code>environment</code> -adds an environment variable. For example, <code>&lt;environment name="XAP_GSC_OPTIONS"&gt;-Xmx1024m&lt;/environment&gt;</code> can be used to override the memory for the GSC.</li>
 </ul>
 
-<h1 id="advanced-configuration">Advanced Configuration</h1>
+<h1><a name="advanced-configuration">&#160;</a>Advanced Configuration</h1>
 
 <p>In some scenarios you'll need to have several "flavors' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.</p>
 

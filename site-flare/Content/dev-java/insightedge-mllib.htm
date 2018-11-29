@@ -7,7 +7,7 @@
 
 <p>This section describes how to reuse ML models with the Data Grid. You can train your model, save it to the Data Grid and then reuse it in different Spark contexts.</p>
 
-<h1 id="saving-ml-model-to-data-grid">Saving ML model to Data Grid</h1>
+<h1><a name="saving-ml-model-to-data-grid">&#160;</a>Saving ML model to Data Grid</h1>
 
 <p>To save Spark ML/MLlib model to the Data Grid, use <code>saveToGrid</code> method on your model. The model is serialized with the default Java serialization mechanism, so the models stored on Spark workers (i.e. those that have a reference to RDD or DataFrame) are not currently supported.</p>
 
@@ -29,7 +29,7 @@ model.saveToGrid(sc, "KMeansModel")
 </div>
 </div>
 
-<h1 id="loading-ml-model-from-data-grid">Loading ML model from Data Grid</h1>
+<h1><a name="loading-ml-model-from-data-grid">&#160;</a>Loading ML model from Data Grid</h1>
 
 <p>To load an ML model from the Data Grid, use <code>SparkContext.loadMLModel[R]</code>. The type parameter <code>R</code> is an ML model class.</p>
 

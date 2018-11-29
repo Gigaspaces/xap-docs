@@ -5,26 +5,26 @@
 <h1>Tableau Integration</h1>
   
 
-<h1 id="overview">Overview</h1>
+<h1><a name="overview">&#160;</a>Overview</h1>
 
 <p>Organizations often require quick insight into data to understand the business impact, and don't want to waste valuable time consulting their corporate IT team. With the <a href="sql-query-intro.htm">In-Grid SQL Query</a> feature,
 this can be done using the data stored in the XAP in-memory data grid. <a href="https://www.tableau.com/">Tableau</a> can be connected to the data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a visual format.</p>
 
 <p>This topic describes how to set up an integration of Tableau with InsightEdge in a Microsoft Windows environment, so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.</p>
 
-<h2 id="architecture">Architecture</h2>
+<h2><a name="architecture">&#160;</a>Architecture</h2>
 
 <p>Tableau can connect to the data grid using the SQL-99-compatible JDBC driver that is provided with the In-Grid SQL Query feature. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC connection is needed to convert ODBC requests from Tableau into JDBC requests for the InsightEdge JDBC driver. The Easysoft ODBC-JDBC gateway has been evaluated and certified for use with InsightEdge, and is used in the integration described here.</p>
 
 <p><img src="../Resources/Static/attachment_files/sbp/tableau/diagram.png" width="386" height="134" /></p>
 
-<h2 id="sample-data-set">Sample Data Set</h2>
+<h2><a name="sample-data-set">&#160;</a>Sample Data Set</h2>
 
 <p>In this example, a familiar <code>Simple - Superstore</code> Tableau users data set is used. The original schema is too simple to show the join capabilities, so the model was updated with location information that is referenced by the orders entity. The updated schema is as follows:</p>
 
 <p><img src="../Resources/Static/attachment_files/sbp/tableau/schema.png" width="389" height="151" /></p>
 
-<h1 id="integrating-tableau-with-insightedge">Integrating Tableau with InsightEdge</h1>
+<h1><a name="integrating-tableau-with-insightedge">&#160;</a>Integrating Tableau with InsightEdge</h1>
 
 <p>In order to integrate Tableau with InsightEdge, you need a data grid that is up and running, and you need access to it. After setting up and starting InsightEdge, do the following to create the necessary environment to integrate Tableau and view data:</p>
 
@@ -35,11 +35,11 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
 <li>Perform a query on the data grid via Tableau, and view the results.</li>
 </ul>
 
-<h2 id="configuring-insightedge-locally">Configuring InsightEdge Locally</h2>
+<h2><a name="configuring-insightedge-locally">&#160;</a>Configuring InsightEdge Locally</h2>
 
 <p>Before you deploy the data grid for the purpose of this demo, you should install the InsightEdge <a href="../started/insightedge-first-app.htm#project-dependencies">dependencies</a>.</p>
 
-<h3 id="deploying-the-data-grid">Deploying the Data Grid</h3>
+<h3><a name="deploying-the-data-grid">&#160;</a>Deploying the Data Grid</h3>
 
 <p>The first step is deploying a data grid and creating a Space.</p>
 
@@ -58,7 +58,7 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
 <li>Type <code>insightedge space deploy --partitions=2 tableauSpace</code> to create a Space with the name <code>tableauSpace</code>.<br /></li>
 </ol>
 
-<h3 id="populating-the-space">Populating the Space</h3>
+<h3><a name="populating-the-space">&#160;</a>Populating the Space</h3>
 
 <p>After the Space is created, it needs to be populated with sample data, so that you can later run queries on this data via Tableau.</p>
 
@@ -80,7 +80,7 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
 <p><img src="../Resources/Static/attachment_files/sbp/tableau/xap_1.png" width="371" height="68" /></p></li>
 </ol>
 
-<h3 id="adding-the-insightedge-jdbc-client-jar-to-the-classpath">Adding the InsightEdge JDBC Client JAR to the Classpath</h3>
+<h3><a name="adding-the-insightedge-jdbc-client-jar-to-the-classpath">&#160;</a>Adding the InsightEdge JDBC Client JAR to the Classpath</h3>
 
 <p>When connecting to the data grid, the ODBC-JDBC gateway runs the InsightEdge JDBC custom driver. In order to make the driver visible to the ODBC-JDBC gateway, you have to create a special JAR file for use when configuring the gateway in Microsoft Windows.</p>
 
@@ -93,7 +93,7 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
 <br /></li>
 </ol>
 
-<h2 id="setting-up-the-odbc-jdbc-connection">Setting Up the ODBC-JDBC Connection</h2>
+<h2><a name="setting-up-the-odbc-jdbc-connection">&#160;</a>Setting Up the ODBC-JDBC Connection</h2>
 
 <p>Follow these instructions to download, install, and set up the Easysoft ODBC-JDBC gateway.</p>
 
@@ -102,7 +102,7 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
   <p>If you don't want to use the Easysoft ODBC-JDBC Gateway, you can use your preferred bridge implementation.</p>
 </div>
 
-<h3 id="installing-the-easysoft-odbc-jdbc-gateway">Installing the Easysoft ODBC-JDBC Gateway</h3>
+<h3><a name="installing-the-easysoft-odbc-jdbc-gateway">&#160;</a>Installing the Easysoft ODBC-JDBC Gateway</h3>
 
 <p><span class="tc-bold">To download and install the Easysoft ODBC-JDBC gateway:</span></p>
 
@@ -114,7 +114,7 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
 <li><p>Install the gateway on your local machine.</p></li>
 </ol>
 
-<h3 id="requesting-an-easysoft-license">Requesting an EasySoft License</h3>
+<h3><a name="requesting-an-easysoft-license">&#160;</a>Requesting an EasySoft License</h3>
 
 <p>After you install the Easysoft gateway on your machine, you must request a trial license in order to run the application.</p>
 
@@ -145,7 +145,7 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
 
 <p>Look in your email spam section for the license. At this point, your user account is updated and you have access to the ODBC-JDBC gateway software for the duration of the trial license period.</p>
 
-<h3 id="configuring-the-odbc-jdbc-gateway">Configuring the ODBC-JDBC Gateway</h3>
+<h3><a name="configuring-the-odbc-jdbc-gateway">&#160;</a>Configuring the ODBC-JDBC Gateway</h3>
 
 <p>After you have installed the gateway software and obtained a trial license, you have to configure the gateway to point to the required data source.</p>
 
@@ -194,13 +194,13 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
 <li><p>Click <span class="tc-bold">OK</span> in the ODBC Data Source Administrator window.</p></li>
 </ol>
 
-<h2 id="setting-up-tableau">Setting Up Tableau</h2>
+<h2><a name="setting-up-tableau">&#160;</a>Setting Up Tableau</h2>
 
 <p>Download and install <a href="https://www.tableau.com/">Tableau</a> desktop.</p>
 
 <p>After the data grid has been populated with the sample data, and the ODBC-JDBC Gateway has been configured to connect to InsightEdge, you can configure Tableau to read the data and display it in a graphic visual format. You can then query the data grid and see the activity that occurs under the hood when Tableau accesses it as a SQL database and reads the requested data.</p>
 
-<h3 id="configuring-the-data-source">Configuring the Data Source</h3>
+<h3><a name="configuring-the-data-source">&#160;</a>Configuring the Data Source</h3>
 
 <p>Tableau has to be configured to use the ODBC-JDBC gateway as the data source.</p>
 
@@ -244,7 +244,7 @@ this can be done using the data stored in the XAP in-memory data grid. <a href="
 <p><img src="../Resources/Static/attachment_files/sbp/tableau/tableau_1.png" width="229" height="155" /></p></li>
 </ol>
 
-<h3 id="querying-the-data-grid">Querying the Data Grid</h3>
+<h3><a name="querying-the-data-grid">&#160;</a>Querying the Data Grid</h3>
 
 <p>Before performing a query on the data grid, you can use the GigaSpaces Management Center to look at the Space that contains the sample data. At this point, there have been no read operations.</p>
 

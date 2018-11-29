@@ -28,7 +28,7 @@
 
 <p><img src="../Resources/Static/attachment_files/rest-admin/rest-admin-2.png" alt="image" /></p>
 
-<h1 id="long-running-operations">Long-Running Operations</h1>
+<h1><a name="long-running-operations">&#160;</a>Long-Running Operations</h1>
 
 <p>In the Admin API, long-running operations (for example, <code>deploy</code> and <code>undeploy</code>) are asynchronous with no future or callback. You can either track progress manually, or use various ‘andWait’ overloads (for example, <code>deployAndWait</code>). The REST Manager API  cannot use <code>andWait</code> so you must poll for completion, but each such operation behaves differently.</p>
 
@@ -44,7 +44,7 @@ The request exposes additional useful information:</p>
 
 <p>By default, the system keeps up to 100,000 completed requests (configurable), and purges the oldest as needed.</p>
 
-<h1 id="processing-unit-deployment-and-upload">Processing Unit Deployment and Upload</h1>
+<h1><a name="processing-unit-deployment-and-upload">&#160;</a>Processing Unit Deployment and Upload</h1>
 
 <p>Deploying a Processing Unit requires uploading a resource (JAR/WAR/ZIP) to the XAP Manager, but due to technical issues we currently can’t include both a binary file and a JSON payload in the same REST operation.
 Instead, there are two operations:</p>
@@ -57,11 +57,11 @@ Instead, there are two operations:</p>
 <p>This also means that when you undeploy a Processing Unit, the resource does not get deleted. If you want to delete it you must execute a separate REST operation (if you want to undeploy/redeploy with the same JAR. there’s no need to remove it).
 Currently you cannot delete/replace a JAR file if a deployed Processing Unit is using it.</p>
 
-<h1 id="security">Security</h1>
+<h1><a name="security">&#160;</a>Security</h1>
 
 <p>The REST component is part of the XAP Manager, and inherits the XAP Manager security configuration. As the REST uses an HTTP protocol, it is best to configure SSL to allow for HTTPS (secure access).</p>
 
-<h2 id="enabling-security">Enabling Security</h2>
+<h2><a name="enabling-security">&#160;</a>Enabling Security</h2>
 
 <p>The REST Manager API allows for secured access and operations when the security <code>enabled</code> property is set.
 This property should be configured using the <code>EXT_JAVA_OPTIONS</code> in the <code>setenv</code> script, and is applied to all XAP <a href="../security/securing-the-grid-services.htm">Grid Components</a>.</p>
@@ -74,7 +74,7 @@ This property should be configured using the <code>EXT_JAVA_OPTIONS</code> in th
 <p>By default, to get you up and running, if nothing was configured the fallback security implementation
 uses a local file to save credentials (see <a href="../security/default-file-based-security-implementation-ext.htm">File-Based Security</a>.</p>
 
-<h2 id="ssl-configuration">SSL Configuration</h2>
+<h2><a name="ssl-configuration">&#160;</a>SSL Configuration</h2>
 
 <p>Basic authentication does not encrypt user credentials, so running a XAP Manager in a secure environment without SSL is a security hazard;
 The system detects this and aborts. You must <span class="tc-bold">explicitly</span> enable or disable the SSL by setting the system property <code>com.gs.manager.rest.ssl.enabled</code>.</p>
@@ -129,7 +129,7 @@ you can provide your own jetty.xml file via a system property.</p>
 </tbody>
 </table>
 
-<h2 id="security-properties-file">Security Properties File</h2>
+<h2><a name="security-properties-file">&#160;</a>Security Properties File</h2>
 
 <p>The security properties file is used to configure the <code>SecurityManager</code>, that is responsible for the authentication and authorization process.
 The <code>security.properties</code> file is common to all components and is usually located under <code>&lt;XAP root&gt;/config/security/security.properties</code>.</p>
@@ -147,7 +147,7 @@ To only affect the Grid components, use the <code>grid-security.properties</code
 <p>By setting <code>-Dcom.gs.security.properties-file</code> the property file will be located as a direct path (e.g. <code>~/home/user/my-security.properties</code>),
 a resource (e.g. "my-security.properties") in the classpath or in the classpath under <code>config/security</code>.</p>
 
-<h1 id="operations">Operations</h1>
+<h1><a name="operations">&#160;</a>Operations</h1>
 
 <p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local XAP Manager.</p>
 
@@ -167,7 +167,7 @@ the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/inde
 <li>Spark - See the <a href="http://localhost:8090/v2/index.htm#/Spark" target="_blank" >Spark</a> page.</li>
 </ul>
 
-<h1 id="online-editor">Online Editor</h1>
+<h1><a name="online-editor">&#160;</a>Online Editor</h1>
 
 <p>You can download the <code>yaml</code> configuration file from  <a href="http://localhost:8090/v2/xap-manager-api.yaml" target="_blank" >http://localhost:8090/v2/xap-manager-api.yaml</a>
 and import or copy and past the yaml content into the <a href="http://editor.swagger.io/#!/" target="_blank" >Swagger Editor</a>.</p>
@@ -178,11 +178,11 @@ and import or copy and past the yaml content into the <a href="http://editor.swa
 
 <p><img src="../Resources/Static/attachment_files/rest-admin/generate-client-code.png" alt="image" /></p>
 
-<h1 id="extending-the-rest-manager-api">Extending The REST Manager API</h1>
+<h1><a name="extending-the-rest-manager-api">&#160;</a>Extending The REST Manager API</h1>
 
 <p>The REST Manager API is extensible so that custom methods can be added. Developers can implement a plain Java class with <a href="https://github.com/jax-rs" target="_blank" >JAX-RS</a> annotations.</p>
 
-<h2 id="sample-implementation">Sample Implementation</h2>
+<h2><a name="sample-implementation">&#160;</a>Sample Implementation</h2>
 
 <p>Follow the instructions below to create a sample extension for the REST Manager API:</p>
 
@@ -217,7 +217,7 @@ public class BasicPluggableOperationTest {
 
 <p>Note that some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
 
-<h2 id="configuration">Configuration</h2>
+<h2><a name="configuration">&#160;</a>Configuration</h2>
 
 <p>When the XAP Manager starts, it scans the <code>$XAP_HOME/lib/platform/manager/plugins</code> for classes in the jar files with the JAX-RS annotations and registers them.
 You can override the location using the following system property:</p>
@@ -225,7 +225,7 @@ You can override the location using the following system property:</p>
 <pre><code class="language-bash">com.gs.manager.rest.plugins.path="pathToJar"
 </code></pre>
 
-<h2 id="response">Response</h2>
+<h2><a name="response">&#160;</a>Response</h2>
 
 <p>In the example above the method returns a String, and in addition it implicitly returns an HTTP code 200 (OK). If you need to explicitly specify the HTTP result code, use <code>org.openspaces.admin.rest.Response</code> instead of a <code>String</code>.</p>
 
@@ -251,7 +251,7 @@ public Response report(@QueryParam("hostname") String hostname) {
   <p>Make sure you use <code>org.openspaces.admin.rest.Response</code> and not JAX-RS Response.</p>
 </div>
 
-<h2 id="security-1">Security</h2>
+<h2><a name="security-1">&#160;</a>Security</h2>
 
 <p>To define security privileges for a custom method, you have to import <code>org.openspaces.admin.rest.PrivilegeRequired</code> and <code>org.openspaces.admin.rest.RestPrivileges</code>, and use <code>@PrivilegeRequired</code>.
 The <code>@PrivilegeRequired</code> annotation accepts a <code>RestPrivileges</code> enum that corresponds to the Security privileges.</p>
@@ -280,11 +280,11 @@ public class PluggableSecuredContoller {
 }
 </code></pre>
 
-<h2 id="jax-rs-support">JAX-RS Support</h2>
+<h2><a name="jax-rs-support">&#160;</a>JAX-RS Support</h2>
 
 <p>The <code>JAX-RS</code> API is used for extension support because it is a well-known standard and commonly used by developers. The sections below list the annotations that are supported, and those that are not supported.</p>
 
-<h3 id="supported-annotations">Supported Annotations</h3>
+<h3><a name="supported-annotations">&#160;</a>Supported Annotations</h3>
 
 <p>The following JAX-RS annotations are supported:</p>
 
@@ -303,7 +303,7 @@ public class PluggableSecuredContoller {
 </ul></li>
 </ul>
 
-<h3 id="unsupported-annotations">Unsupported Annotations</h3>
+<h3><a name="unsupported-annotations">&#160;</a>Unsupported Annotations</h3>
 
 <p>The following JAX-RS annotations are not supported:</p>
 

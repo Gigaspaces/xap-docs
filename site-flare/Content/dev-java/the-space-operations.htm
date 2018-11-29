@@ -49,7 +49,7 @@
 <td style="width:50%;"></td>
 </tr></table>
 
-<h1 id="simpler-api">Simpler API</h1>
+<h1><a name="simpler-api">&#160;</a>Simpler API</h1>
 
 <p>The <code>GigaSpace</code> interface provides a simpler Space API by utilizing Java 5 generics, and allowing sensible defaults. Here are some examples of the Space operations as defined within <code>GigaSpace</code>:</p>
 
@@ -66,13 +66,13 @@
 
 <p>In the example above, the take operation can be performed without specifying a timeout. The default take timeout is <code>0</code> (no wait), and can be overridden when configuring the <code>GigaSpace</code> factory. In a similar manner, the read timeout and write lease can be specified.</p>
 
- <a id="write">&#160;</a>
+ <a name="write">&#160;</a>
 
-<h1 id="the-write-operation">The Write Operation</h1>
+<h1><a name="the-write-operation">&#160;</a>The Write Operation</h1>
 
 <p>In order to write objects to the Space, use the write method of the GigaSpace interface. The write method is used to write objects if these are introduced for the first time, or to update them if they already exist in the Space. In order to override the default semantics, use the overloaded write methods that accept update modifiers such as WriteModifiers.UPDATE_ONLY.</p>
 
-<h2 id="pojo-example">POJO Example</h2>
+<h2><a name="pojo-example">&#160;</a>POJO Example</h2>
 
 <p>The following example writes an <code>Employee</code> object to the Space:</p>
 
@@ -83,7 +83,7 @@
     LeaseContext&lt;Employee&gt; lc = space.write(employee);
 </code></pre>
 
-<h2 id="spacedocument-example">SpaceDocument Example</h2>
+<h2><a name="spacedocument-example">&#160;</a>SpaceDocument Example</h2>
 
 <p>Here is an example how you create a SpaceDocument, register it with the Space, and then write it to the Space:</p>
 
@@ -117,22 +117,22 @@
     LeaseContext&lt;SpaceDocument&gt; lc = space.write(document);
 </code></pre>
 
-<h2 id="time-to-live">Time To Live</h2>
+<h2><a name="time-to-live">&#160;</a>Time To Live</h2>
 
 <p>To write an object to the Space with a limited time to live, specify <a href="leases-automatic-expiration.htm">a lease value</a> (in milliseconds). The object will expire automatically from the Space when the lease is finished.</p>
 
 <pre><code class="language-java">   gigaSpace.write(myObject, 10000)
 </code></pre>
 
- <a id="writeMultiple">&#160;</a>
+ <a name="writeMultiple">&#160;</a>
 
- <a id="writeMultiple">&#160;</a>
+ <a name="writeMultiple">&#160;</a>
 
-<h2 id="write-multiple">Write Multiple</h2>
+<h2><a name="write-multiple">&#160;</a>Write Multiple</h2>
 
 <p>When writing a batch of objects to the Space, these should be placed into an array to be used by the <code>GigaSpace.writeMultiple</code> operation. The returned array will include the corresponding <code>LeaseContext</code> object.</p>
 
-<h2 id="example">Example</h2>
+<h2><a name="example">&#160;</a>Example</h2>
 
 <pre><code class="language-java">   Employee emps[] = new Employee[2];
    emps[0] = new Employee("Last Name A", new Integer(10));
@@ -166,7 +166,7 @@
 </ul></li>
 </ul>
 
-<h2 id="return-previous-value">Return Previous Value</h2>
+<h2><a name="return-previous-value">&#160;</a>Return Previous Value</h2>
 
 <p>When updating an object that already exists in the Space, in some scenarios it is useful to get the previous value of the object (before the update). This previous value is returned in result <code>LeaseContext.getObject()</code> when using the <code>RETURN_PREV_ON_UPDATE</code> modifier.</p>
 
@@ -179,13 +179,13 @@
   <p>In most scenarios the previous value is irrelevant, therefore the default behavior is not to return it (i.e. <code>LeaseContext.getObject()</code> return null). The <code>RETURN_PREV_ON_UPDATE</code> modifier is used to indicate that the previous value should be returned.</p>
 </div>
 
- <a id="asynchronousWrite">&#160;</a>
+ <a name="asynchronousWrite">&#160;</a>
 
-<h2 id="asynchronous-write">Asynchronous Write</h2>
+<h2><a name="asynchronous-write">&#160;</a>Asynchronous Write</h2>
 
 <p>An asynchronous <code>write</code> operation can be implemented using a <a href="task-execution-overview.htm">Task</a>, where the <code>Task</code> implementation include a write operation. With this approach the <code>Task</code> is sent to the space and executed in an asynchronous manner. The write operation itself will be completed when both the primary and the backup acknowledge the operation. This activity is performed as a background activity from the client perspective.</p>
 
-<h3 id="example-1">Example</h3>
+<h3><a name="example-1">&#160;</a>Example</h3>
 
 <pre><code class="language-java">  GigaSpace space = new GigaSpaceConfigurer (new SpaceProxyConfigurer("space"))).gigaSpace();
   MyClass obj = new MyClass(1,"AAA");
@@ -214,7 +214,7 @@
 ......
 </code></pre>
 
-<h2 id="modifiers">Modifiers</h2>
+<h2><a name="modifiers">&#160;</a>Modifiers</h2>
 
 <p>The write operations can be configured with different modifiers:</p>
 
@@ -260,9 +260,9 @@
 </tbody>
 </table>
 
- <a id="change">&#160;</a>
+ <a name="change">&#160;</a>
 
-<h1 id="the-change-operation">The Change Operation</h1>
+<h1><a name="the-change-operation">&#160;</a>The Change Operation</h1>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.htm">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/client/ChangeSet.htm">ChangeSet</a> allows updating existing objects in a Space, by specifying only the required change instead of passing the entire updated object.
 This reduces the required network traffic between the client and the Space, and the network traffic generated from replicating the changes between the Space instances (e.g between the primary Space instance and its backup).</p>
@@ -282,9 +282,9 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
   <p><a href="change-api-overview.htm">The Change API</a></p>
 </div>
 
- <a id="read">&#160;</a>
+ <a name="read">&#160;</a>
 
-<h1 id="the-read-operation">The Read Operation</h1>
+<h1><a name="the-read-operation">&#160;</a>The Read Operation</h1>
 
 <p>Read operations query the Space for an object that matches the criteria provided. If a match is found, a copy of the matching object is returned. If no match is found, null is returned. Passing a null reference as the template will match any object.</p>
 
@@ -336,9 +336,9 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
     Employee e = space.read(query);
 </code></pre>
 
- <a id="readMultiple">&#160;</a>
+ <a name="readMultiple">&#160;</a>
 
-<h2 id="read-multiple">Read Multiple</h2>
+<h2><a name="read-multiple">&#160;</a>Read Multiple</h2>
 
 <p>The GigaSpace interface provides simple way to perform bulk read operations. You can read a large amount of objects in one call.</p>
 
@@ -379,9 +379,9 @@ space.change(idQuery, new ChangeSet().set("firstName", "John"));
 <li>Exception handling - operation may throw the following exceptions: <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/ReadMultipleException.htm">ReadMultipleException</a></li>
 </ul>
 
- <a id="readIfExists">&#160;</a>
+ <a name="readIfExists">&#160;</a>
 
-<h2 id="readifexists">ReadIfExists</h2>
+<h2><a name="readifexists">&#160;</a>ReadIfExists</h2>
 
 <p>A readIfExists operation will return a matching object, or a null if there is currently no matching object in the Space.</p>
 
@@ -398,9 +398,9 @@ If at the end of that time no value can be returned that would not interfere wit
     Employee e = space.readIfExists(query);
 </code></pre>
 
- <a id="asynchronousRead">&#160;</a>
+ <a name="asynchronousRead">&#160;</a>
 
-<h2 id="asynchronous-read">Asynchronous Read</h2>
+<h2><a name="asynchronous-read">&#160;</a>Asynchronous Read</h2>
 
 <p>The GigaSpace interface supports asynchronous (non-blocking) read operations through the GigaSpace interface. It returns a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.htm">Future&lt;T&gt;</a> object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.</p>
 
@@ -426,7 +426,7 @@ If at the end of that time no value can be returned that would not interfere wit
     }
 </code></pre>
 
-<h2 id="passing-an-asyncfuturelistener-with-java-8-lambda-syntax">Passing an AsyncFutureListener with Java 8 Lambda Syntax</h2>
+<h2><a name="passing-an-asyncfuturelistener-with-java-8-lambda-syntax">&#160;</a>Passing an AsyncFutureListener with Java 8 Lambda Syntax</h2>
 
 <pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
     employee.setFirstName("first name");
@@ -448,7 +448,7 @@ If at the end of that time no value can be returned that would not interfere wit
     }
 </code></pre>
 
-<h2 id="modifiers-1">Modifiers</h2>
+<h2><a name="modifiers-1">&#160;</a>Modifiers</h2>
 
 <p>The read operations can be configured with different modifiers.</p>
 
@@ -562,9 +562,9 @@ If at the end of that time no value can be returned that would not interfere wit
 </div>
 </div></div>
 
- <a id="take">&#160;</a>
+ <a name="take">&#160;</a>
 
-<h1 id="the-take-operation">The Take Operation</h1>
+<h1><a name="the-take-operation">&#160;</a>The Take Operation</h1>
 
 <p>The <code>take</code> operations behave exactly like the corresponding <code>read</code> operations, except that the matching object is removed from the Space on one atomic operation. Two <code>take</code> operations will never return copies of the same object, although if two equivalent objects were in the Space, the two <code>take</code> operations could return equivalent objects.</p>
 
@@ -623,9 +623,9 @@ If at the end of that time no value can be returned that would not interfere wit
     Employee e = space.take(query);
 </code></pre>
 
- <a id="takeMultiple">&#160;</a>
+ <a name="takeMultiple">&#160;</a>
 
-<h2 id="take-multiple">Take Multiple</h2>
+<h2><a name="take-multiple">&#160;</a>Take Multiple</h2>
 
 <p>The GigaSpace interface provides simple way to perform bulk take operations. You may take large amount of objects in one call.</p>
 
@@ -673,9 +673,9 @@ If at the end of that time no value can be returned that would not interfere wit
 <li>In the event of a take error, DataAccessException will wrap a TakeMultipleException, accessible via DataAccessException.getRootCause().</li>
 </ul>
 
- <a id="takeIfExists">&#160;</a>
+ <a name="takeIfExists">&#160;</a>
 
-<h2 id="takeifexists">TakeIfExists</h2>
+<h2><a name="takeifexists">&#160;</a>TakeIfExists</h2>
 
 <p>A takeIfExists operation will return a matching object, or a null if there is currently no matching object in the Space.</p>
 
@@ -692,9 +692,9 @@ If at the end of that time no value can be returned that would not interfere wit
     Employee e = space.takeIfExists(query);
 </code></pre>
 
- <a id="asynchronousTake">&#160;</a>
+ <a name="asynchronousTake">&#160;</a>
 
-<h2 id="asynchronous-take">Asynchronous Take</h2>
+<h2><a name="asynchronous-take">&#160;</a>Asynchronous Take</h2>
 
 <p>The GigaSpace interface supports asynchronous (non-blocking) take operations through the GigaSpace interface. It returns a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.htm">Future&lt;T&gt;</a> object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.</p>
 
@@ -719,7 +719,7 @@ If at the end of that time no value can be returned that would not interfere wit
     }
 </code></pre>
 
-<h2 id="passing-an-asyncfuturelistener-with-java-8-lambda-syntax-1">Passing an AsyncFutureListener with Java 8 Lambda Syntax</h2>
+<h2><a name="passing-an-asyncfuturelistener-with-java-8-lambda-syntax-1">&#160;</a>Passing an AsyncFutureListener with Java 8 Lambda Syntax</h2>
 
 <pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
     employee.setFirstName("first name");
@@ -740,7 +740,7 @@ If at the end of that time no value can be returned that would not interfere wit
     }
 </code></pre>
 
-<h2 id="modifiers-2">Modifiers</h2>
+<h2><a name="modifiers-2">&#160;</a>Modifiers</h2>
 
 <p>The take operations can be configured with different modifiers.</p>
 
@@ -856,9 +856,9 @@ If at the end of that time no value can be returned that would not interfere wit
 </div>
 </div></div>
 
- <a id="clear">&#160;</a>
+ <a name="clear">&#160;</a>
 
-<h1 id="the-clear-operation">The Clear Operation</h1>
+<h1><a name="the-clear-operation">&#160;</a>The Clear Operation</h1>
 
 <p>You can use <code>GigaSpace.clear</code> to remove objects from the Space. When using the clear operation, no object/objects are returned.</p>
 
@@ -926,9 +926,9 @@ void clear(ISpaceQuery&lt;T&gt; query) throws DataAccessException
 </tbody>
 </table>
 
- <a id="count">&#160;</a>
+ <a name="count">&#160;</a>
 
-<h1 id="the-count-operation">The Count Operation</h1>
+<h1><a name="the-count-operation">&#160;</a>The Count Operation</h1>
 
 <p>You can use <code>GigaSpace.count</code> to count objects in a Space.</p>
 
@@ -997,9 +997,9 @@ int count(ISpaceQuery&lt;T&gt; query) throws DataAccessException
 </tbody>
 </table>
 
- <a id="counters">&#160;</a>
+ <a name="counters">&#160;</a>
 
-<h1 id="counters">Counters</h1>
+<h1><a name="counters">&#160;</a>Counters</h1>
 
 <p>The <code>ISpaceProxy.Change</code> API allows you to increment or decrement an Numerical field within your Space object or Document. This change may operate on a numeric property only (byte, short, int, long, float, double) or their corresponding Boxed variation. To maintain a counter, use the Change operation with the <code>ChangeSet</code> increment/decrement method that adds/subtract the provided numeric value to the existing counter.</p>
 
@@ -1027,9 +1027,9 @@ int counterValue = wordount.getMycounter();
   <p><a href="the-space-counters.htm">The Space Counters</a></p>
 </div>
 
- <a id="aggregators">&#160;</a>
+ <a name="aggregators">&#160;</a>
 
-<h1 id="aggregators">Aggregators</h1>
+<h1><a name="aggregators">&#160;</a>Aggregators</h1>
 
 <p>There is no need to retrieve the entire data set from the Space to the client side, iterate the result set and perform the aggregation. This would be an expensive activity as it might return large amounts of data to the client application. The Aggregators allow you to perform the entire aggregation activity on the Space side, avoiding any data retrieval back to the client side.</p>
 
@@ -1096,7 +1096,7 @@ public class Person {
   <p><a href="aggregators.htm">Aggregators</a></p>
 </div>
 
-<h1 id="async-extension">Async Extension</h1>
+<h1><a name="async-extension">&#160;</a>Async Extension</h1>
 
 <p>When running with Java 8, it is possible to have an even simpler Space API with the <code>AsyncExtension</code>. AsyncExtension substituts the Space <code>AsyncFuture</code> with the Java8 <code>CompletableFuture</code> and thus can make the code more fluent.</p>
 

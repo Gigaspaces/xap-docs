@@ -17,14 +17,14 @@
 <li>SLA monitor based dynamic allocation and de-allocation of web application instances.</li>
 </ul>
 
-<h1 id="deployment">Deployment</h1>
+<h1><a name="deployment">&#160;</a>Deployment</h1>
 
 <p>The web application itself is a pure, JEE based, web application. The application can be the most generic web application, and automatically make use of the Service Grid features.</p>
 
 <p>Here is an example how you can deploy a web application on top of the service grid.
 We can accomplish this in three ways; by command line, with the admin UI or with the REST API:</p>
 
-<h2 id="command-line-deployment">Command line deployment</h2>
+<h2><a name="command-line-deployment">&#160;</a>Command line deployment</h2>
 
 <p>You deploy a war file just like you deploy a pu jar.</p>
 
@@ -44,7 +44,7 @@ We can accomplish this in three ways; by command line, with the admin UI or with
 </div>
 </div>
 
-<h2 id="deploy-with-web-management-console">Deploy with Web Management Console</h2>
+<h2><a name="deploy-with-web-management-console">&#160;</a>Deploy with Web Management Console</h2>
 
 <p>You can deploy a war file just like a PU with the Web Management Console:</p>
 
@@ -74,7 +74,7 @@ We can accomplish this in three ways; by command line, with the admin UI or with
 </td>
 </tr></table>
 
-<h3 id="using-a-space">Using a Space</h3>
+<h3><a name="using-a-space">&#160;</a>Using a Space</h3>
 
 <p>The web application can define a space either embedded or remote using Spring or direct in java code. There are several ways how a space and other components can be used and configured within a web application. Here are some scenarios:</p>
 
@@ -123,7 +123,7 @@ A web application is still just a processing unit. This means that a META-INF/sp
   <p><a href="../dev-java/web-application-overview.htm">Web Application Support</a></p>
 </div>
 
-<h1 id="jetty-instance">Jetty Instance</h1>
+<h1><a name="jetty-instance">&#160;</a>Jetty Instance</h1>
 
 <table class="tc-borderless"><tr><td style="width:80%;"><p>Jetty itself is configured using Spring, and allows you to control all aspects of both the Jetty instance created, and the web application context. There are two flavors of how Jetty instances are created (by default). The first is the plain mode, where a Jetty instance is created for each web processing unit instance running within a GSC. The second is the shared mode, where a single Jetty instance is created, and shared between all the different web processing unit instances running on the same GSC. A custom Jetty instantiation and handling can also be configured.</p>
 </td>
@@ -136,7 +136,7 @@ A web application is still just a processing unit. This means that a META-INF/sp
   <p><a href="../dev-java/web-application-overview.htm">Web Application Support</a></p>
 </div>
 
-<h1 id="http-session-management">HTTP Session management</h1>
+<h1><a name="http-session-management">&#160;</a>HTTP Session management</h1>
 
 <p>The XAP-Jetty integration comes with a support for storing the javax.servlet.http.HttpSession in the Space allowing supporting session replication and failover between different web application instances deployed into GigaSpaces containers.</p>
 
@@ -150,7 +150,7 @@ A web application is still just a processing unit. This means that a META-INF/sp
 <li>Non intrusive session management or explicit Data Grid API access for fine grain control - Allows multiple web servers to share the same session in transparent manner</li>
 </ul>
 
-<h3 id="enabling-http-session-management">Enabling HTTP Session Management</h3>
+<h3><a name="enabling-http-session-management">&#160;</a>Enabling HTTP Session Management</h3>
 
 <p>There are several ways to configure Space session based support, depending on the definition of which space and how the space was started.</p>
 
@@ -171,7 +171,7 @@ Here is how you can deploy an existing WAR file without changing it (or use Spri
 When deploying, include within the META-INF/spring/pu.properties file the jetty.sessions.spaceUrl property value. This should be set with the space url defining where the sessions will be stored.</li>
 </ul>
 
-<h3 id="deploying-with-the-web-admin-ui">Deploying with the Web Admin UI:</h3>
+<h3><a name="deploying-with-the-web-admin-ui">&#160;</a>Deploying with the Web Admin UI:</h3>
 
 <table class="tc-borderless"><tr><td style="width:25%;"><p>Deploy http Space</p>
 
@@ -220,7 +220,7 @@ When deploying, include within the META-INF/spring/pu.properties file the jetty.
   <p><a href="../dev-java/http-session-management.htm">HTTP Session Management</a></p>
 </div>
 
-<h1 id="load-balancing">Load Balancing</h1>
+<h1><a name="load-balancing">&#160;</a>Load Balancing</h1>
 
 <table class="tc-borderless"><tr><td style="width:80%;"><p>When deploying a highly available web site, usually a load balancer is used to load balance requests between at least two instances of a web containers that run the web applications. When using XAP to deploy web applications, running more than one instance of a web application becomes very easy. XAP comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.</p>
 

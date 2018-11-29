@@ -5,13 +5,13 @@
 <h1>Nested Property Index</h1>
   
 
-<h1 id="overview">Overview</h1>
+<h1><a name="overview">&#160;</a>Overview</h1>
 
 <p>An index can be defined on a nested property to improve performance of nested queries - this is highly recommended.</p>
 
 <p>Nested properties indexing uses an additional <code>[SpaceIndex]</code> attribute - <code>Path</code>.</p>
 
-<h1 id="the-spaceindex-path-attribute">The SpaceIndex.Path Attribute</h1>
+<h1><a name="the-spaceindex-path-attribute">&#160;</a>The SpaceIndex.Path Attribute</h1>
 
 <p>The <code>Path</code> attribute represents the path of the property within the nested object.</p>
 
@@ -78,11 +78,11 @@ public class Person
   <p><a href="query-sql.htm#nested-object-query">SQL Query netsed Objects</a></p>
 </div>
 
-<h1 id="nested-objects">Nested Objects</h1>
+<h1><a name="nested-objects">&#160;</a>Nested Objects</h1>
 
 <p>By default, nested objects are kept in a binary form inside the space. In order to support nested matching, the relevant property should be stored as document, or as object if it is in an interoperability scenario and it has a corresponding Java class.</p>
 
-<h1 id="dictionary-based-nested-properties">Dictionary based Nested Properties</h1>
+<h1><a name="dictionary-based-nested-properties">&#160;</a>Dictionary based Nested Properties</h1>
 
 <p>The same indexing techniques above are also applicable to Dictionary-based nested properties, which means that in the example above the <code>Info</code> and <code>Address</code> classes could be replaced with a <code>Dictionary&lt;String,Object&gt;</code>, with the dictionary keys representing the property names.</p>
 

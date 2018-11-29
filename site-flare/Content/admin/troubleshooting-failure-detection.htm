@@ -21,7 +21,7 @@
 
 <p>It takes XAP a few seconds to recover from process failure or a machine crash. In case of network cable disconnection, the client first has to detect that it has been disconnected from the machine running the space. Therefore, recovery time in this case is longer.</p>
 
-<h1 id="reducing-failure-detection-time">Reducing Failure Detection Time</h1>
+<h1><a name="reducing-failure-detection-time">&#160;</a>Reducing Failure Detection Time</h1>
 
 <p>Configuring failure detection time can help you handle extreme failure scenarios more effectively. For example, in extreme cases of network disconnection, you might want the failover process to take 2-3 seconds.</p>
 
@@ -68,11 +68,11 @@ If you would like to reduce the failover time , you should use the following for
   <p>For additional tuning options please contact the <a href="http://www.gigaspaces.com/supportcenter">GigaSpaces Support Team</a>.</p>
 </div>
 
-<h1 id="failure-detection-parameters">Failure Detection Parameters</h1>
+<h1><a name="failure-detection-parameters">&#160;</a>Failure Detection Parameters</h1>
 
-<h2 id="space-side-parameters">Space-Side Parameters</h2>
+<h2><a name="space-side-parameters">&#160;</a>Space-Side Parameters</h2>
 
-<h3 id="active-election-parameters">Active Election Parameters</h3>
+<h3><a name="active-election-parameters">&#160;</a>Active Election Parameters</h3>
 
 <p>The following parameters in the cluster schema active election  block regard failure detection and recovery:</p>
 
@@ -124,15 +124,15 @@ If you would like to reduce the failover time , you should use the following for
 </tbody>
 </table>
 
-<h2 id="client-side-parameters">Client-Side Parameters</h2>
+<h2><a name="client-side-parameters">&#160;</a>Client-Side Parameters</h2>
 
-<h3 id="proxy-connectivity">Proxy Connectivity</h3>
+<h3><a name="proxy-connectivity">&#160;</a>Proxy Connectivity</h3>
 
 <p>The <a href="tuning-proxy-connectivity.htm">Proxy Connectivity</a> defines the settings in which the system checks the liveness of space members.</p>
 
-<h3 id="watchdog-parameters">Watchdog Parameters</h3>
+<h3><a name="watchdog-parameters">&#160;</a>Watchdog Parameters</h3>
 
-<h2 id="service-grid-parameters">Service Grid Parameters</h2>
+<h2><a name="service-grid-parameters">&#160;</a>Service Grid Parameters</h2>
 
 <p>The Service Grid uses two complementary mechanisms for service detections – the Lookup Service and fault-detection handlers.</p>
 
@@ -155,7 +155,7 @@ com.gigaspaces.grid.gsm.GSMFaultDetectionHandler.level = INFO
 org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level = INFO
 </code></pre>
 
-<h2 id="jini-lookup-service-parameters">Jini Lookup Service Parameters</h2>
+<h2><a name="jini-lookup-service-parameters">&#160;</a>Jini Lookup Service Parameters</h2>
 
 <p>The <code>LeaseRenewalManager</code> in the <code>advanced-space.config</code> file is also related to failure detection and recovery:</p>
 
@@ -183,7 +183,7 @@ org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level = INFO
 </tbody>
 </table>
 
-<h2 id="lookup-service-unicast-discovery-parameters">Lookup Service Unicast Discovery Parameters</h2>
+<h2><a name="lookup-service-unicast-discovery-parameters">&#160;</a>Lookup Service Unicast Discovery Parameters</h2>
 
 <p>When a Jini Lookup Service fails and is brought back online, a client (such as a GSC, space or a client with a space proxy) needs to re-discover it. It uses Jini unicast discovery retrying to connect to the failed remote lookup service. The default unicast retry protocol provides a graduating approach, increasing the amount of time to wait before the next discovery attempts are made - upon each invocation, eventually reaching a maximum time interval over which discovery is re-tried. In this way, the network is not flooded with unicast discovery requests referencing a lookup service that may not be available for quite some time (if ever).</p>
 

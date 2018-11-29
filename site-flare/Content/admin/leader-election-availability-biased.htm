@@ -21,9 +21,9 @@
   </tr>
 </table>
 
-<h1 id="split-brain-and-primary-resolution">Split Brain and Primary Resolution</h1>
+<h1><a name="split-brain-and-primary-resolution">&#160;</a>Split Brain and Primary Resolution</h1>
 
-<h2 id="split-brain-scenario">Split Brain Scenario</h2>
+<h2><a name="split-brain-scenario">&#160;</a>Split Brain Scenario</h2>
 
 <p>Split brain occurs when there are two or more primary instances running for the same partition. In most cases the reason for such behavior would be a network disruption that does not allow each space instance to communicate with all lookup services running. Usually you will have each space instance communicating with a different lookup service rather all of them (two in most cases).</p>
 
@@ -38,7 +38,7 @@
   <p>Data resolution occurs between two different clusters using the WAN gateway as a replication channel. In this case a <a href="../dev-java/multi-site-conflict-resolution.htm">conflict resolution</a> is executed.</p>
 </div>
 
-<h2 id="primary-resolution">Primary Resolution</h2>
+<h2><a name="primary-resolution">&#160;</a>Primary Resolution</h2>
 
 <p>XAP provides built-in recovery policies after a split-brain has been detected. The default policy "discard-least-consistent" determines which of the two primaries should remain or be discarded. However, the "suspend-partition-primaries" policy suspends all interaction with the primaries until split-brain is resolved manually.</p>
 
@@ -53,7 +53,7 @@
 &lt;/os-core:space&gt;
 </code></pre>
 
-<h3 id="discard-least-consistent-policy">Discard Least Consistent Policy</h3>
+<h3><a name="discard-least-consistent-policy">&#160;</a>Discard Least Consistent Policy</h3>
 
 <p>The primary which is found to be "least consistent" is discarded and XAP will instantiate it as a backup Space.
 The steps for reaching a conclusion are outlined.</p>
@@ -72,7 +72,7 @@ The steps for reaching a conclusion are outlined.</p>
 
 <p>The system reviewing the primary instance names and choosing the one with the lowest lexical value to be the primary.</p>
 
-<h3 id="suspend-partition-primaries-policy">Suspend Partition Primaries Policy</h3>
+<h3><a name="suspend-partition-primaries-policy">&#160;</a>Suspend Partition Primaries Policy</h3>
 
 <p>Both primary Space instances are suspended (see <a href="quiescemode.htm">Quiesce</a> for reference), awaiting manual resolution.</p>
 
@@ -119,7 +119,7 @@ ProcessingUnit pu = ...
 pu.unquiesce(new QuiesceRequest("split-brain resolved"));
 </code></pre>
 
-<h2 id="common-causes-of-split-brain">Common Causes of Split-Brain</h2>
+<h2><a name="common-causes-of-split-brain">&#160;</a>Common Causes of Split-Brain</h2>
 
 <p>Below are the most common causes for Split-Brain scenarios and ways to detect them.</p>
 
@@ -143,7 +143,7 @@ pu.unquiesce(new QuiesceRequest("split-brain resolved"));
 </ul></li>
 </ul>
 
-<h2 id="islands">Islands</h2>
+<h2><a name="islands">&#160;</a>Islands</h2>
 
 <p>In events of network or failures, the system might get into unexpected behavior, also called Islands, which are extreme and need special handling. Here are two islands scenarios you might encounter:</p>
 

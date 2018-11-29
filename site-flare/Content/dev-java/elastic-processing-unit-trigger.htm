@@ -5,17 +5,17 @@
 <h1>Scale Triggers</h1>
   
 
-<h1 id="manual-capacity-scale-trigger">Manual Capacity Scale Trigger</h1>
+<h1><a name="manual-capacity-scale-trigger">&#160;</a>Manual Capacity Scale Trigger</h1>
 
 <p>The system administrator may specify the memory and/or CPU core resources required for the processing unit in production. This should be specified during the deployment time, and could be specified also anytime after the deployment. The memory capacity trigger affects the number of provisioned containers. If there are not enough machines to host the provisioned containers the trigger also affects the number of provisioned machines. The number of CPUs affect directly the number of provisioned machines (even if it means that some of the machines have unused memory).</p>
 
 <p>When specifying both memory and cores capacity requirements as part of the deploy and scale routines, the EPU will <span class="tc-bold">be deployed successfully</span> only when <span class="tc-bold">both memory and cores</span> resources can be allocated (sufficient amount of memory and cores across the available machines). If you would like to the memory capacity requirements to take precedence on the cores capacity requirements, have lower values for the cores capacity requirements than the exact existing cores count.</p>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>Here is an example how you can scale a deployed EPU memory and CPU capacity.</p>
 
-<h4 id="step-1-deploy-the-pu">Step 1 - Deploy the PU:</h4>
+<h4><a name="step-1-deploy-the-pu">&#160;</a>Step 1 - Deploy the PU:</h4>
 
 <p>We deploy the PU having 512GB as the maximum total amount of memory utilized both for primary and backup instances where the entire system should consume maximum of 32 cores. At start only 128GB and 8 cores will be utilized.</p>
 
@@ -35,7 +35,7 @@
 pu.waitForSpace().waitFor(pu.getTotalNumberOfInstances());
 </code></pre>
 
-<h4 id="step-2-increase-the-memory-capacity-from-128gb-to-256gb-and-number-of-cores-from-8-to-16">Step 2 - Increase the memory capacity from 128GB to 256GB and number of cores from 8 to 16:</h4>
+<h4><a name="step-2-increase-the-memory-capacity-from-128gb-to-256gb-and-number-of-cores-from-8-to-16">&#160;</a>Step 2 - Increase the memory capacity from 128GB to 256GB and number of cores from 8 to 16:</h4>
 
 <pre><code class="language-java">ProcessingUnit pu = admin.getProcessingUnits().waitFor("myPU", 5,TimeUnit.SECONDS); //get the PU
 // increasing the memory capacity will start new containers
@@ -46,7 +46,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
          .create());
 </code></pre>
 
-<h4 id="step-3-increase-the-memory-capacity-from-256gb-to-512gb-and-number-of-cores-from-16-to-32">Step 3 - Increase the memory capacity from 256GB to 512GB and number of cores from 16 to 32:</h4>
+<h4><a name="step-3-increase-the-memory-capacity-from-256gb-to-512gb-and-number-of-cores-from-16-to-32">&#160;</a>Step 3 - Increase the memory capacity from 256GB to 512GB and number of cores from 16 to 32:</h4>
 
 <pre><code class="language-java">ProcessingUnit pu = admin.getProcessingUnits().waitFor("myPU", 5,TimeUnit.SECONDS); //get the PU
 // scales out to more CPU cores (existing containers are terminated on existing machines and
@@ -57,7 +57,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
          .create());
 </code></pre>
 
-<h4 id="step-4-decrease-the-memory-capacity-and-cpu-capacity">Step 4 - Decrease the memory capacity and CPU capacity:</h4>
+<h4><a name="step-4-decrease-the-memory-capacity-and-cpu-capacity">&#160;</a>Step 4 - Decrease the memory capacity and CPU capacity:</h4>
 
 <pre><code class="language-java">ProcessingUnit pu = admin.getProcessingUnits().waitFor("myPU", 5,TimeUnit.SECONDS); //get the PU
 pu.scale(new ManualCapacityScaleConfigurer()
@@ -66,7 +66,7 @@ pu.scale(new ManualCapacityScaleConfigurer()
          .create());
 </code></pre>
 
-<h1 id="eager-scale-trigger">Eager Scale Trigger</h1>
+<h1><a name="eager-scale-trigger">&#160;</a>Eager Scale Trigger</h1>
 
 <p>Eager trigger scales the EPU on all available machines and new machines joining the GigaSpaces Grid. Each new machine running a GigaSpaces agent automatically starts a new container hosting the EPU partition instance(s) relocated from some other container. To use the Eager Scale Trigger you should scale the EPU using the <code>EagerScaleConfigurer</code>:</p>
 

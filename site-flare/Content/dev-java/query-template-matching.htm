@@ -15,7 +15,7 @@
 If you require additional query options refer to <a href="query-sql.htm">SQLQuery</a>.</p>
 </div>
 
-<h1 id="examples">Examples</h1>
+<h1><a name="examples">&#160;</a>Examples</h1>
 
 <p>The following examples assume the default constructor of <span class="tc-bold">Person</span> initializes all its properties to <code>null</code>.</p>
 
@@ -44,11 +44,11 @@ Person person = gigaspace.read(template);
 <pre><code class="language-java">gigaspace.clear(null);
 </code></pre>
 
-<h1 id="indexes">Indexes</h1>
+<h1><a name="indexes">&#160;</a>Indexes</h1>
 
 <p>GigaSpaces XAP includes a sophisticated built-in real-time indexing engine (regardless whether the space is persistent or not) that maintains a hash and btree like indexes for each indexed Space Class attribute. If you store a large number of Space objects from the same class type in the space, consider defining one or more indexes for attributes used with template matching or <a href="query-sql.htm">SQL Query</a>. Defining indexes will improve the <code>read,take,readMultiple,takeMultiple,clear,count</code> operations response time significantly. Remember, indexes impact <code>write</code> and <code>take</code> operations response time, so choose your indexed fields carefully - each index has an overhead. GigaSpaces support index for equality , comparison (bigger/less than) queries and support <a href="indexing.htm">Regular Index</a> for a specific field and a <a href="indexing.htm#Compound Indexing">Compound Index</a> for multiple fields. Indexes can be defined for space class root level object or for a nested field allowing you to query different type of objects ("join") using the same query without any performance penalty.</p>
 
-<h1 id="inheritance-support">Inheritance Support</h1>
+<h1><a name="inheritance-support">&#160;</a>Inheritance Support</h1>
 
 <p>Template Matching support inheritance relationships, so that entries of a sub-class are visible in the context of the super class, but not the other way around.
 For example, suppose class <span class="tc-bold">Citizen</span> extend class <span class="tc-bold">Person</span>:</p>
@@ -66,12 +66,12 @@ int numberOfCitizens = gigaSpace.count(new Citizen());
   <p>Since all classes extends <code>Object</code>, a template of type <code>Object</code> will match all the entries in the space.</p>
 </div>
 
-<h1 id="partitioned-cluster">Partitioned cluster</h1>
+<h1><a name="partitioned-cluster">&#160;</a>Partitioned cluster</h1>
 
 <p>When querying a partitioned cluster using a template, it is possible to use the routing property to control whether the query is broadcasted to the entire cluster or executed against a specific partition.
 For more information see <a href="routing-in-partitioned-spaces.htm">Routing In Partitioned Spaces</a>.</p>
 
-<h1 id="primitive-types">Primitive Types</h1>
+<h1><a name="primitive-types">&#160;</a>Primitive Types</h1>
 
 <p>Properties with primitive types pose a problem - a primitive type cannot be set to null. For example, suppose class <span class="tc-bold">Person</span> has property <span class="tc-bold">age</span> of type <span class="tc-bold">int</span>, and we wrote the following piece of code which writes and reads a person:</p>
 
@@ -109,7 +109,7 @@ Person p = gigaSpace.read(new Person());
 It is highly recommended to use the  primitive wrapper classes instead of primitives to simplify the code and avoid user errors.</p>
 </div>
 
-<h1 id="nested-template-matching">Nested Template Matching</h1>
+<h1><a name="nested-template-matching">&#160;</a>Nested Template Matching</h1>
 
 <p>Nested template matching is not supported - to match nested properties, collections and arrays use <a href="query-sql.htm">SQLQuery</a>.</p>
 

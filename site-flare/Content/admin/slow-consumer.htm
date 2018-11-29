@@ -7,7 +7,7 @@
 
 <p>The Space includes a special mechanism that detects clients that cannot consume the notifications sent fast enough - i.e. slow consumers.</p>
 
-<h1 id="handling-slow-consumers">Handling Slow Consumers</h1>
+<h1><a name="handling-slow-consumers">&#160;</a>Handling Slow Consumers</h1>
 
 <p>Traditionally, messaging-oriented middleware products have several methods for handling slow consumers:</p>
 
@@ -28,7 +28,7 @@
 
 <p>This approach is not feasible with traditional messaging systems, since the notion of "current-state' does not exists. The space on the other hand, maintains the current state inevitably and therefore it makes much more sense to handle slow consumer by <span class="tc-bold">disconnecting it from the space server</span>. Once the client is ready, allow it to reconnect, initializes its status by reading the relevant data set from the space, re-register for notifications and resume the notifications delivery.</p>
 
-<h1 id="how-does-it-work">How Does It Work?</h1>
+<h1><a name="how-does-it-work">&#160;</a>How Does It Work?</h1>
 
 <p>When sending notifications to clients, the space includes a special mechanism that detects clients that cannot consume the notification sent fast enough - i.e. a slow consumer.</p>
 
@@ -52,9 +52,9 @@
 
 <p>When the LRMI thread pool queue size in the client side reached its limit (client can't consume incoming notifications), the client will stop consuming incoming network packets. This in return will initiate the slow consumer mechanism at the space side that will cancel the client notify registration.</p>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
-<h2 id="server-side">Server Side</h2>
+<h2><a name="server-side">&#160;</a>Server Side</h2>
 
 <p>To enable and tune the slow consumer mechanism, you should configure the LRMI layer at the server side with the following JVM system properties:</p>
 
@@ -105,7 +105,7 @@
 Ensure that you are not adding the services.config file to your server class path, as this may cause the slow consumer to be turned on by default.</p>
 </div>
 
-<h2 id="client-side">Client Side</h2>
+<h2><a name="client-side">&#160;</a>Client Side</h2>
 
 <p>You should configure the following JVM system properties at the <span class="tc-bold">client side</span>. These specify the capacity of the LRMI thread pool, and set a specific limit. This allows the client to block incoming requests once the capacity is reached, in this case an incoming notification invocation. This will trigger the slow consumer mechanism at the server side since that client will stop receiving new notification invocations.</p>
 

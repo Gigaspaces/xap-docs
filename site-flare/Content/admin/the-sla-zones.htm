@@ -61,7 +61,7 @@
 
 <p>When using the host or zone requirements, note that more than one requirement can be defined (for example, to define a set of machines this Processing Unit can be deployed to; define the machine's CPU utilization limit; and define the GSC's memory usage limit ).</p>
 
-<h1 id="using-zones">Using Zones</h1>
+<h1><a name="using-zones">&#160;</a>Using Zones</h1>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/zones.jpg" alt="zones.jpg" /></p>
 </div>
@@ -149,7 +149,7 @@ for (GridServiceAgent gridServiceAgent : agents) {
 </tbody>
 </table>
 
-<h1 id="max-instances-per-zone">Max Instances per Zone</h1>
+<h1><a name="max-instances-per-zone">&#160;</a>Max Instances per Zone</h1>
 
 <p>The SLA definition allows to define maximum instances of a processing unit per zone. The semantics of the setting is different when using a processing unit that has an embedded space with primary / backup, and all other cases (non backup processing unit with embedded space, and plain processing units).</p>
 
@@ -186,7 +186,7 @@ for (GridServiceAgent gridServiceAgent : agents) {
 
 <p>In the above case, the primary and the backup will not run on the same zone. If the primary of partition 1 was started on zone1, then the backup of partition 1 will be started on zone2. This comes very handy when defining rack aware deployments.</p>
 
-<h1 id="requires-isolation">Requires Isolation</h1>
+<h1><a name="requires-isolation">&#160;</a>Requires Isolation</h1>
 
 <p>If <code>requires isolation</code> is true a, single processing unit instance takes exclusivity on a given GSC and only it can be deployed onto this GSC, (like GSC -Dcom.gigaspaces.grid.gsc.serviceLimit=1)</p>
 
@@ -210,7 +210,7 @@ gs&gt; deploy -requires-isolation true myPU
 </div>
 </div>
 
-<h1 id="instance-level-requirements">Instance Level Requirements</h1>
+<h1><a name="instance-level-requirements">&#160;</a>Instance Level Requirements</h1>
 
 <p>You can also define SLA deployment requirements on per processing unit instance basis. Here is an example:</p>
 
@@ -277,7 +277,7 @@ gs&gt; deploy -requires-isolation true myPU
 
 <p>The above example verifies that the <span class="tc-bold">first instance</span> is deployed to a specific machine (specified by its IP address), and its <span class="tc-bold">second instance</span> for the same partition is deployed to a different machine. All instances share the "general" requirements of CPU and memory. The first instance <span class="tc-bold">might be</span> the primary and the second might be the backup, but there is no guarantee these will remain primary/backup as these are runtime properties and might change during the life-cycle of the clustered space. The activation property of the space (primary or backup) is determined once the instance is deployed and is not controlled by the GSM but as part of the primary election process.</p>
 
-<h1 id="zone-based-partitioning-provisioning">Zone Based Partitioning Provisioning</h1>
+<h1><a name="zone-based-partitioning-provisioning">&#160;</a>Zone Based Partitioning Provisioning</h1>
 
 <p>To accommodate partitions with different size we can use the zones configuration to provision each partition into a different zone. Each zone will be associated with GSCs having a different heap size (Xmx). The assumption here is a GSCs hosting a single partition instance (primary or a backup instance). With the following example we deploy a cluster with 3 partitions where each partition deployed into a different zone: Small (1GB GSC), Medium (2GB GSC ) and Large (3GB GSC).</p>
 

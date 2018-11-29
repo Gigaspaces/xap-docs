@@ -21,7 +21,7 @@
 <li>Submit the Spark jobs for the examples.</li>
 </ol>
 
-<h2 id="kubernetes-container-image">Kubernetes Container Image</h2>
+<h2><a name="kubernetes-container-image">&#160;</a>Kubernetes Container Image</h2>
 
 <p>InsightEdge provides a Docker image designed to be used in a container runtime environment, such as Kubernetes. This Docker image is used in the examples below to demonstrate how to submit the Apache Spark <code>SparkPi</code> example and the InsightEdge <code>SaveRDD</code> example.</p>
 
@@ -30,7 +30,7 @@
 <pre><code>--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%]
 </code></pre>
 
-<h2 id="getting-the-kubernetes-master-url">Getting the Kubernetes Master URL</h2>
+<h2><a name="getting-the-kubernetes-master-url">&#160;</a>Getting the Kubernetes Master URL</h2>
 
 <p>You can get the the Kubernetes master URL using kubectl. Type the following command to print out the URL that will be used in the Spark and InsightEdge examples when submitting Spark jobs to the Kubernetes scheduler.</p>
 
@@ -39,7 +39,7 @@
 
 <p>Sample output: <code>Kubernetes master is running at https://192.168.99.100:8443</code></p>
 
-<h2 id="configuring-the-kubernetes-service-accounts">Configuring the Kubernetes Service Accounts</h2>
+<h2><a name="configuring-the-kubernetes-service-accounts">&#160;</a>Configuring the Kubernetes Service Accounts</h2>
 
 <p>In Kubernetes clusters with RBAC enabled, users can configure Kubernetes RBAC roles and service accounts used by the various Spark jobs on Kubernetes components to access the Kubernetes API server.</p>
 
@@ -58,7 +58,7 @@
 <pre><code>--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark
 </code></pre>
 
-<h2 id="deploying-the-data-grid-on-kubernetes">Deploying the Data Grid on Kubernetes</h2>
+<h2><a name="deploying-the-data-grid-on-kubernetes">&#160;</a>Deploying the Data Grid on Kubernetes</h2>
 
 <p>Run the following Helm command in the command window to start a basic data grid called <code>demo</code>:</p>
 
@@ -70,11 +70,11 @@
 <pre><code>--conf spark.insightedge.space.manager=demo
 </code></pre>
 
-<h2 id="submitting-spark-jobs-with-insightedge-submit">Submitting Spark Jobs with InsightEdge Submit</h2>
+<h2><a name="submitting-spark-jobs-with-insightedge-submit">&#160;</a>Submitting Spark Jobs with InsightEdge Submit</h2>
 
 <p>The <code>insightedge-submit</code> script is located in the InsightEdge home directory, in <code>insightedge/bin</code>. This script is similar to the <code>spark-submit</code> command used by Spark users to submit Spark jobs. The following examples run both a pure Spark example and an InsightEdge example by calling this script.</p>
 
-<h3 id="sparkpi-example">SparkPi Example</h3>
+<h3><a name="sparkpi-example">&#160;</a>SparkPi Example</h3>
 
 <p>Run the following InsightEdge submit script for the SparkPi example. This example specifies a JAR file with a specific URI that uses the <code>local://</code> scheme. This URI is the location of the example JAR that is already available in the Docker image. If your application’s dependencies are all hosted in remote locations (like HDFS or HTTP servers), you can use the appropriate remote URIs, such as <code>https://path/to/examples.jar</code>.</p>
 
@@ -94,7 +94,7 @@ local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-[%=V
 <pre><code>--conf spark.kubernetes.driver.pod.name=spark-pi-driver
 </code></pre>
 
-<h3 id="saverdd-example">SaveRDD Example</h3>
+<h3><a name="saverdd-example">&#160;</a>SaveRDD Example</h3>
 
 <p>Run the following InsightEdge submit script for the SaveRDD example, which generates "N" products, converts them to RDD, and saves them to the data grid. This example has the following configuration:</p>
 
@@ -125,7 +125,7 @@ local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 <pre><code>../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats demo
 </code></pre>
 
-<h4 id="improved-configuration-options">Improved Configuration Options</h4>
+<h4><a name="improved-configuration-options">&#160;</a>Improved Configuration Options</h4>
 
 <div class="tc-admon-note">
   
@@ -134,7 +134,7 @@ local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
 <p>The following simplified configuration options can be used with the <code>insightedge-submit</code> script.</p>
 
-<h5 id="space-name">Space Name</h5>
+<h5><a name="space-name">&#160;</a>Space Name</h5>
 
 <p>The insightedge-submit script now accepts any Space name when running an InsightEdge example in Kubernetes.</p>
 

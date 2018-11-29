@@ -20,7 +20,7 @@
   <p>GigaSpaces XAP.NET contains some of the GigaSpaces XAP components. Its logging level needs to be configured separately – this is described in the <a href="../admin/logging-overview.htm">Logging</a> topic of the Administration guide.</p>
 </div>
 
-<h1 id="default-configuration">Default Configuration</h1>
+<h1><a name="default-configuration">&#160;</a>Default Configuration</h1>
 
 <p>The logger component loads the configuration during initialization. If it does not find a source element named <code>GigaSpaces.Core</code>, it loads a default configuration, which sets the trace level to <code>Information</code>, and configures an <code>EventLogTraceListener</code> with <code>source=GigaSpaces.Core</code>, (similar to the configuration shown in the basic example).</p>
 
@@ -29,7 +29,7 @@
   <p>If the Windows Event Log does not contain the specified source, it is automatically created. However, you need administrator permissions to create a source in the Event Log. If you don't create this source, the default configuration is not used. We recommend that you use an administrator's profile the first time you use the product on a machine, to make sure the source is created. Subsequent runs do not require high level permissions.</p>
 </div>
 
-<h1 id="advanced-configuration">Advanced Configuration</h1>
+<h1><a name="advanced-configuration">&#160;</a>Advanced Configuration</h1>
 
 <p>Here are some features/scenarios which might be useful:</p>
 

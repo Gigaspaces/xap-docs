@@ -16,7 +16,7 @@
 }
 </code></pre>
 
-<h2 id="space-authority">Space Authority</h2>
+<h2><a name="space-authority">&#160;</a>Space Authority</h2>
 
 <p>The <span class="tc-bold">Space Authority</span> consists of privileges for operation on space (stored) data. The operations are divided into five groups of interest.</p>
 
@@ -63,11 +63,11 @@
 
 <p>When you grant a privilege you are allowing the user to perform the operation on the space. If you wish to restrict the operation to certain classes, a "Class-Filter' may be defined.</p>
 
-<h4 id="restricting-of-privileges">Restricting of privileges</h4>
+<h4><a name="restricting-of-privileges">&#160;</a>Restricting of privileges</h4>
 
 <p>A "Class-Filter' <span class="tc-bold">allows</span> or <span class="tc-bold">denies</span> operations on certain classes based on their fully qualified name, package name, or wild-card manipulation. For example, you may define a user with <span class="tc-bold">Read</span> privileges for Class <code>com.gigaspaces.office.Employee</code>, <span class="tc-bold">Write</span> privileges for Package <code>com.gigaspaces.vacations.\*</code> and <span class="tc-bold">Take</span> privileges for a match of <code>com.gigaspaces.sickdays*</code>. You may also define a user which is <span class="tc-bold">denied</span> of reading <code>com.gigaspaces.salary.*</code>.</p>
 
-<h4 id="class-filter-matching-using-hierarchy">Class-Filter matching using Hierarchy</h4>
+<h4><a name="class-filter-matching-using-hierarchy">&#160;</a>Class-Filter matching using Hierarchy</h4>
 
 <p>When performing a matching operation (e.g. space read), a template is supplied. Matches can be returned also from subclasses of this template.
 Take for example, the following hierarchy:</p>
@@ -93,7 +93,7 @@ But if we read using a <code>Rectangle</code> template, only it and its subclass
 
 <p>But, when you <span class="tc-bold">deny</span> a Class more caution should be taken. If you <span class="tc-bold">deny</span> a <code>Rectangle</code> Class from being read it means you can't perform read with this class. But it does not mean you cannot perform read with <code>Square</code>. Moreover, it does not mean that <code>Rectangle</code> won't be returned in the result set when performing read with <code>Shape</code>. If your packages are flexible you can deny using wildcard matching or package matching. Otherwise you need to <span class="tc-bold">deny</span> <span class="tc-italic">all</span> classes in the hierarchy.</p>
 
-<h4 id="example">Example</h4>
+<h4><a name="example">&#160;</a>Example</h4>
 
 <p>The <code>UserDetails.getAuthorities()</code> method lists the granted authorities of a user. An <code>Authority</code> represents a grouping of privileges. For example, a <code>SpaceAuthority</code> consists of write, read, execute privileges. Each of these can be specifically assigned to a user. These authorities are populated upon a user's authentication process.</p>
 
@@ -121,7 +121,7 @@ This method is <span class="tc-bold"><span class="tc-italic">not mandatory</span
 </p>
 </div>
 
-<h2 id="role-authority">Role Authority</h2>
+<h2><a name="role-authority">&#160;</a>Role Authority</h2>
 
 <p>The <code>RoleAuthrority</code> represents a logical name for a role. This provides an authorities-to-role grouping. The <code>RoleDetails</code> defines the authorities belonging to a specific role.</p>
 
@@ -139,7 +139,7 @@ UserDetails user = new User("gigaspacer", new RoleAuthority("contributor"));
 
 <p>This separation between users and roles allows to store the <code>RoleDetails</code> independent to the <code>UserDetails</code>.</p>
 
-<h2 id="system-authority">System Authority</h2>
+<h2><a name="system-authority">&#160;</a>System Authority</h2>
 
 <p>The <span class="tc-bold">System Authority</span> consists of two privileges and defines the distinction between a user who is allowed to define roles and a user which is only allowed to assign user's to predefined roles.
 In general, one can have both management capabilities, but in some organizations this separation may be required.</p>

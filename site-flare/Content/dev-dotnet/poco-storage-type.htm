@@ -45,7 +45,7 @@ Example:</p>
   <p>Indexing a property with a <code>Binary</code> / <code>BinaryCustom</code> / <code>Compressed</code> storage type is not supported. For more information about indexing see <a href="indexing.htm">Indexing</a>.</p>
 </div>
 
-<h1 id="interoperability">Interoperability</h1>
+<h1><a name="interoperability">&#160;</a>Interoperability</h1>
 
 <p>StorageType can be defined on .NET classes and C++ classes, but it currently cannot be defined on POJOs (planned for future releases).</p>
 
@@ -57,13 +57,13 @@ Example:</p>
 <li><code>BinaryCustom</code> and <code>Compressed</code> are currently only supported for .NET proxies, with partial interop with java and C++ as described above.</li>
 </ul>
 
-<h1 id="defaults">Defaults</h1>
+<h1><a name="defaults">&#160;</a>Defaults</h1>
 
 <p>There is a list of types which have "premium citizenship' in the <code>PBS</code> protocol, which means all platforms know how to read/write them. These are: all the primitives (int, DateTime, string, etc,), nullables (Nullable&lt;int&gt;, Nullable&lt;DateTime&gt;, etc), arrays/collections/lists/maps/dictionaries of such. All of these types default to Object storage types.</p>
 
 <p>Any other type is assumed to be a user defined type, and its default storage type will be BinaryCustom, to make sure a novice user will have no trouble working with it. Setting it to Object would required the user to provide the space with an equivalent POJO class, so the space would be able to store it, and this is something most .NET users don't care about. Setting it to Binary might provide faster result, but it have some limitations (e.g. complex object graphs which contains the same object twice, or cycles).</p>
 
-<h1 id="performance-considerations">Performance Considerations</h1>
+<h1><a name="performance-considerations">&#160;</a>Performance Considerations</h1>
 
 <ul>
 <li><code>Binary</code> is supposed to be the fastest (almost) always, because the server side doesn't need to deserialize/serialize on write/read.</li>

@@ -10,7 +10,7 @@
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/Executor.jpg" alt="Executor.jpg" /></p>
 </div>
 
-<h1 id="the-executor-proxy">The executor-proxy</h1>
+<h1><a name="the-executor-proxy">&#160;</a>The executor-proxy</h1>
 
 <p>The <code>executor-proxy</code> should be created on the client side to interact with the remote service. It can be created via Spring namespace, Spring Bean or via API.</p>
 
@@ -166,7 +166,7 @@
 &lt;/bean&gt;
 </code></pre>
 
-<h1 id="defining-the-contract">Defining the Contract</h1>
+<h1><a name="defining-the-contract">&#160;</a>Defining the Contract</h1>
 
 <p>In order to support remoting, the first step is to define the contract between the client and the server. In our case, the contract is a simple Java interface. Here is an example:</p>
 
@@ -184,7 +184,7 @@
   <p>The <code>Data</code> object should be <code>Serializable</code>, or better yet, <code>Externalizable</code> (for better performance).</p>
 </div>
 
-<h1 id="implementing-the-contract">Implementing the Contract</h1>
+<h1><a name="implementing-the-contract">&#160;</a>Implementing the Contract</h1>
 
 <p>Next, an implementation of this contract needs to be provided. This implementation will "live" on the server side. Here is a sample implementation:</p>
 
@@ -211,7 +211,7 @@ public class DataProcessor implements IDataProcessor {
 
 <p>The XML tab corresponds to exporting the service using an xml configuration (explained in the next section). The Annotation tab corresponds to exporting the service using annotations.</p>
 
-<h1 id="exporting-the-service-over-the-space">Exporting the Service Over the Space</h1>
+<h1><a name="exporting-the-service-over-the-space">&#160;</a>Exporting the Service Over the Space</h1>
 
 <p>The next step is exporting the service over the space. Exporting the service is done on the server side. As with other Spring remoting support, exporting the service and the mechanism of exporting the service is a configuration-time decision. Here is an example of a Spring XML configuration:</p>
 
@@ -267,7 +267,7 @@ public class DataProcessor implements IDataProcessor {
   <p>Exporting services is done on a Processing Unit (or a Spring application context) that starts an embedded space.</p>
 </div>
 
-<h1 id="using-the-service-on-the-client-side">Using the Service on the Client Side</h1>
+<h1><a name="using-the-service-on-the-client-side">&#160;</a>Using the Service on the Client Side</h1>
 
 <p>In order to use the exported <code>IDataProcessor</code> on the client side, beans should use the <code>IDataProcessor</code> interface directly:</p>
 
@@ -352,7 +352,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 </div>
 </div>
 
-<h2 id="remote-routing-handler">Remote Routing Handler</h2>
+<h2><a name="remote-routing-handler">&#160;</a>Remote Routing Handler</h2>
 
 <p>Many times, space remoting is done by exporting services in a space with a partitioned cluster topology. The service is exported when working directly with a cluster member (and not against the whole space cluster). When working with such a topology, the client side remoting automatically generates a random routing index value. In order to control the routing index, the following interface can be implemented:</p>
 
@@ -434,7 +434,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 </div>
 </div>
 
-<h2 id="routing-annotation">Routing Annotation</h2>
+<h2><a name="routing-annotation">&#160;</a>Routing Annotation</h2>
 
 <p>The option, above, using the remote routing handler is very handy when not using annotations (broadcasting). OpenSpaces remoting also supports the <code>@Routing</code> annotation in order to define which parameter controls the routing. Here is an example:</p>
 
@@ -459,13 +459,13 @@ dataRemoting.setDataProcessor(dataProcessor);
   <p>Using a <a href="document-api.htm">SpaceDocument</a> as the annotated routing argument will cause an Exception since the <code>SpaceDocument</code> class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. To avoid the Exception, simply extend the <code>SpaceDocument</code> class as described in <a href="document-extending.htm">Extending Space Documents</a> and then define the relevant <code>getProperty</code> method in the extension class. Alternatively, an Exception can be avoided by implementing a <code>RemoteRoutingHandler</code>, as described above.</p>
 </div>
 
-<h1 id="asynchronous-execution">Asynchronous Execution</h1>
+<h1><a name="asynchronous-execution">&#160;</a>Asynchronous Execution</h1>
 
 <p>OpenSpaces executor remoting supports asynchronous execution of remote services using the <code>AsyncFuture</code> interface (which extends the <code>java.util.concurrent.Future</code> interface). Since the remoting implementation is asynchronous by nature, a <code>Future</code> can be used to execute remote services asynchronously.</p>
 
 <p>Since the definition of the interface acts as the contract between the client and the server, asynchronous invocation requires the interface to also support the same business method, returning a <code>Future</code> or <code>AsyncFuture</code> instead of its actual return value. The asynchronous nature is only relevant on the client side, provided by the asynchronous nature of OpenSpaces remoting. There are two options to implement such behavior:</p>
 
-<h2 id="different-service-interfaces">Different Service Interfaces</h2>
+<h2><a name="different-service-interfaces">&#160;</a>Different Service Interfaces</h2>
 
 <p>The client and the server can have a different service interface definition under the same package and under the same name. The server includes the actual implementation:</p>
 
@@ -494,7 +494,7 @@ dataRemoting.setDataProcessor(dataProcessor);
   <p>When using different services, it is important to include the interface definition in the processing unit <code>lib</code> directory (or the compiled classes root directory), so that both client and server use their own definitions and don't share a single one.</p>
 </div>
 
-<h2 id="single-service-interface">Single Service Interface</h2>
+<h2><a name="single-service-interface">&#160;</a>Single Service Interface</h2>
 
 <p>Both the client and server share the same interface, with the interface holding both synchronous and asynchronous services. Here is an example:</p>
 
@@ -513,7 +513,7 @@ If the regular method looks as follows:
 <code>Future&lt;T&gt; asyncDoSomething(String arg)</code>.
 In other words, the regular method should be prefixed with <code>async</code> and the return value should be a <code>Future</code> of the original return value (unless it's <code>void</code>, in which case it stays <code>void</code>).</p>
 
-<h1 id="server-side-services-injection">Server Side Services Injection</h1>
+<h1><a name="server-side-services-injection">&#160;</a>Server Side Services Injection</h1>
 
 <p>Each parameter of a remote service can be dynamically injected as if it were a bean defined within the server side (where the service is actually executed) context. This allows you to utilize server side resources and state, within the actual invocation. In order to enable such injection the service interface should either be annotated with <code>AutowireArguments</code> annotation, or implement the marker interface <code>AutowireArgumentsMarker</code>. Let's see an example:</p>
 
@@ -550,7 +550,7 @@ public interface MyService {
 }
 </code></pre>
 
-<h1 id="transactional-execution">Transactional Execution</h1>
+<h1><a name="transactional-execution">&#160;</a>Transactional Execution</h1>
 
 <p>Executor remoting supports transactional execution of services. On the client side, if there is an ongoing declarative transaction during the service invocation (a Space based transaction), the service will be executed under the same transaction. The transaction itself is passed to the server and any Space related operations (performed using <code>GigaSpace</code>) will be executed under the same transaction. The transaction lifecycle itself is controlled on the client side (declaratively) and is committed / rolled back only on the client side. (Note, exceptions on the server side will simply propagate to the client side, and will cause a rollback only if the client "decides" so.)</p>
 
@@ -634,11 +634,11 @@ public class MyService implements IMyService {
 }
 </code></pre>
 
-<h1 id="execution-aspects">Execution Aspects</h1>
+<h1><a name="execution-aspects">&#160;</a>Execution Aspects</h1>
 
 <p>Space based remoting allows you to inject "aspects" that can wrap the invocation of a remote method on the client side, as well as wrapping the execution of an invocation on the server side.</p>
 
-<h2 id="the-client-invocation-aspect">The Client Invocation Aspect</h2>
+<h2><a name="the-client-invocation-aspect">&#160;</a>The Client Invocation Aspect</h2>
 
 <p>The client invocation aspect interface is shown below. You should implement this interface and wire and instance of the implementing class to the client side remote proxy, as explained below:</p>
 
@@ -710,9 +710,9 @@ dataRemoting.setDataProcessor(dataProcessor);
 <p>The instance of the class that implements the <code>RemoteInvocationAspect</code> interface will be called by the framework prior to the invocation on the client side. Note that it is up to the aspect implementation to decide whether or not the call should proceed.
 If the aspect implementation decides to proceed with the call it should call <code>method.invoke()</code> on the provided <code>method</code> argument. Otherwise the call to the server will not be performed.</p>
 
- <a id="serverExecutionApect">&#160;</a>
+ <a name="serverExecutionApect">&#160;</a>
 
-<h2 id="the-server-invocation-aspect">The Server Invocation Aspect</h2>
+<h2><a name="the-server-invocation-aspect">&#160;</a>The Server Invocation Aspect</h2>
 
 <p>The server side invocation aspect interface is shown below. You should implement this interface and wire and instance of the implementing class to the server side service exporter (this is the component that is responsible for exposing your service bean to remote clients):</p>
 
@@ -774,7 +774,7 @@ If the aspect implementation decides to proceed with the call it should call <co
 <p>The instance of the class that implements the <code>ServiceExecutionAspect</code> interface will be called by the framework prior to the invocation of the service bean on the server side. Note that it is up to the aspect implementation to decide whether or not the call should proceed.
 If the aspect implementation decides to proceed with the call it should call <code>method.invoke()</code> on the provided <code>method</code> argument. Otherwise the call to the service bean will not be performed.</p>
 
-<h1 id="the-metadata-handler">The Metadata Handler</h1>
+<h1><a name="the-metadata-handler">&#160;</a>The Metadata Handler</h1>
 
 <p>When executing a service using Space based remoting, a set of one or more metadata arguments (in the form of a <code>java.lang.Object</code> array) can be passed to the server with the remote invocation. This feature is very handy when you want to pass certain metadata with every remote call that is not part of the arguments of the method you call. A prime example for using meta arguments is security – i.e. passing security credentials as meta arguments, and using a server side aspect to authorize the execution or to log who actually called the method.</p>
 
@@ -848,7 +848,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 
 <p>The way to access the meta arguments on the server side is to configure a <a href="#serverExecutionApect">server side execution aspect</a> by implementing the <code>ServiceExecutionAspect</code> and wiring it on the server side as shown <a href="#serverExecutionApect">above</a>. To access the meta arguments, you should call <code>SpaceRemotingInvocation.getMetaArguments()</code> on the <code>invocation</code> argument provided to the server side aspect.</p>
 
-<h1 id="broadcast-remoting">Broadcast Remoting</h1>
+<h1><a name="broadcast-remoting">&#160;</a>Broadcast Remoting</h1>
 
 <p>When using executor remoting, a remote invocation can be broadcasted to all active (primary) cluster members. Each Service instance is invoked and return a result to its called which in turn reduce these and pass the final result to the application.</p>
 
@@ -917,7 +917,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 </div>
 </div>
 
-<h2 id="the-remote-result-reducer">The Remote Result Reducer</h2>
+<h2><a name="the-remote-result-reducer">&#160;</a>The Remote Result Reducer</h2>
 
 <p>When broadcasting remote invocations to all active cluster members, and the remote method returns a result, on the client side an array of all remote results needs to be processed. By default, the first result is returned, and it can be overridden using the <code>return-first-result</code> flag (which will then return the array of responses). The executor remoting proxy allows for a pluggable remote result reducer that can reduce a collection of remoting results into a single one. Here is the defined interface:</p>
 
@@ -939,7 +939,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 }
 </code></pre>
 
-<h1 id="failover">Failover</h1>
+<h1><a name="failover">&#160;</a>Failover</h1>
 
 <p>In case of a Primary Backup clusters and Partitioned Sync2Backup clusters, when there is failure of primary space partition, remoting request is transparently forwarded to the backup.</p>
 
@@ -969,7 +969,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 }
 </code></pre>
 
-<h1 id="considerations">Considerations</h1>
+<h1><a name="considerations">&#160;</a>Considerations</h1>
 
 <p>If the remote method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as <code>Externalizable</code> for the returned value object or use libraries such as <a href="https://github.com/EsotericSoftware/kryo">kryo</a>.</p>
 
@@ -978,7 +978,7 @@ dataRemoting.setDataProcessor(dataProcessor);
   <p>For more information see <a href="custom-serialization.htm">Custom Serialization</a>.</p>
 </div>
 
-<h1 id="working-examples">Working Examples</h1>
+<h1><a name="working-examples">&#160;</a>Working Examples</h1>
 
 <div class="tc-admon-refer">
   

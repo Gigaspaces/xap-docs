@@ -17,7 +17,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank" >Apache ZooKee
 <li>REST API for managing the environment remotely from any platform.</li>
 </ul>
 
-<h1 id="getting-started">Getting Started</h1>
+<h1><a name="getting-started">&#160;</a>Getting Started</h1>
 
 <p>The easiest way to get started is to run a standalone Manager on your machine - simply run the following command:</p>
 
@@ -42,7 +42,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank" >Apache ZooKee
   <p>The local Manager is intended for local use on the developer's machine, so it binds to <code>localhost</code> and is not accessible from other machines. If you want to start a Manager and access it from other hosts, follow the procedure described in <span class="tc-bold">High Availability</span> below with a single host.</p>
 </div>
 
-<h1 id="high-availability">High Availability</h1>
+<h1><a name="high-availability">&#160;</a>High Availability</h1>
 
 <p>In a production environment, you'll probably want a cluster of Managers on multiple hosts to ensure high availability. You'll need 3 machines (an odd number is required to ensure a quorum during network partitions). For example, suppose you’ve selected machines alpha, bravo and charlie to host the managers:</p>
 
@@ -54,9 +54,9 @@ along with <a href="http://zookeeper.apache.org/" target="_blank" >Apache ZooKee
 
 <p>Starting more than one Manager on the same host is not supported.</p>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
-<h2 id="ports">Ports</h2>
+<h2><a name="ports">&#160;</a>Ports</h2>
 
 <p>The following ports can be modified using system properties, e.g. via the <code>setenv-overrides</code> script located in <code>$XAP_HOME/bin</code>:</p>
 
@@ -100,7 +100,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank" >Apache ZooKee
 <p>When using this syntax in Unix/Linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.</p>
 </div>
 
-<h2 id="apache-zookeeper">Apache Zookeeper</h2>
+<h2><a name="apache-zookeeper">&#160;</a>Apache Zookeeper</h2>
 
 <p>Apache ZooKeeper's behavior is governed by its configuration file (<code>zoo.cfg</code>).
 When using XAP Manager, an embedded Zookeeper instance is started using a default configuration located at <code>$XAP_HOME/config/zookeeper/zoo.cfg</code>.
@@ -112,7 +112,7 @@ The default Zookeeper port is 2181.</p>
   <p>For more information about Apache Zookeeper configuration, see <a href="https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.htm#sc_configuration" target="_blank" >ZooKeeper configuration</a>.</p>
 </div>
 
-<h3 id="zookeeper-configuration-file">Zookeeper Configuration File</h3>
+<h3><a name="zookeeper-configuration-file">&#160;</a>Zookeeper Configuration File</h3>
 
 <p>The ZooKeeper configuration file <code>zoo.cfg</code> is preset with the following parameters.</p>
 
@@ -176,7 +176,7 @@ The default Zookeeper port is 2181.</p>
 </tbody>
 </table>
 
-<h2 id="zookeeper-client">ZooKeeper Client</h2>
+<h2><a name="zookeeper-client">&#160;</a>ZooKeeper Client</h2>
 
 <p>The Manager stack uses the ZooKeeper leader election to select a leader among the Grid Service Managers. The leader GSM will act as the managing (active) GSM of the deployed Processing Units.
 The ZooKeeper quorum ensures that there will only be one elected Manager. In the absence of a quorum, and until a GSM is elected leader, the GSMs will only monitor the cluster.
@@ -213,7 +213,7 @@ As a participant of the ZooKeeper leader election, the GSM is configurable using
 </tbody>
 </table>
 
-<h1 id="backwards-compatibility">Backwards Compatibility</h1>
+<h1><a name="backwards-compatibility">&#160;</a>Backwards Compatibility</h1>
 
 <p>The Manager is offered side-by-side with the existing stack (GSM, LUS, etc.). We think this is a better way of working with XAP, and we want new users and customers to work solely with it.
 On the same note we understand that it requires some effort from existing users which upgrade to 12.1 (probably not too much, mostly on changing the scripts they use to start the environment),
@@ -232,17 +232,17 @@ so if you’re upgrading for bug fixes/other features and don’t want the manag
 </p>
 </div>
 
-<h1 id="faq">FAQ</h1>
+<h1><a name="faq">&#160;</a>FAQ</h1>
 
-<h3 id="q-why-do-i-need-3-managers-in-previous-versions-2-lus-2-gsm-was-enough-for-high-availability">Q. Why do I need 3 Managers? In previous versions 2 LUS + 2 GSM was enough for high availability.</h3>
+<h3><a name="q-why-do-i-need-3-managers-in-previous-versions-2-lus-2-gsm-was-enough-for-high-availability">&#160;</a>Q. Why do I need 3 Managers? In previous versions 2 LUS + 2 GSM was enough for high availability.</h3>
 
 <p>With an even number of managers, consistency cannot be assured in case of a network partition, hence the need for 3 Managers.</p>
 
-<h3 id="q-i-want-higher-availability-can-i-use-5-managers-instead-of-3">Q. I want higher availability - can I use 5 Managers instead of 3?</h3>
+<h3><a name="q-i-want-higher-availability-can-i-use-5-managers-instead-of-3">&#160;</a>Q. I want higher availability - can I use 5 Managers instead of 3?</h3>
 
 <p>Theoretically this is possible (Apache Zookeeper supports this), but currently this is not supported in XAP - starting 5 managers would also start 5 Lookup Services, which will lead to excessive chatiness and performance drop. This issue is in our backlog, though - if it's important for you please contact support or your sales rep to vote it up.</p>
 
-<h3 id="q-can-i-use-a-load-balancer-in-front-of-the-rest-api">Q. Can I use a load balancer in front of the REST API?</h3>
+<h3><a name="q-can-i-use-a-load-balancer-in-front-of-the-rest-api">&#160;</a>Q. Can I use a load balancer in front of the REST API?</h3>
 
 <p>Yes. However, make sure to use sticky sessions, as some of the operations (e.g. upload/deploy) take time to propogate to the other Managers.</p>
 

@@ -28,13 +28,13 @@
   <p>You can use the <a href="../admin/space-gigaspaces-cli.htm">SQL Command Line</a> to query and fetch data from the IMDG. The SQL Command Line using the XAP JDBC Driver when accessing the IMDG.</p>
 </div>
 
-<h2 id="using-existing-sql-code-and-porting-to-external-systems">Using Existing SQL Code and Porting to External Systems</h2>
+<h2><a name="using-existing-sql-code-and-porting-to-external-systems">&#160;</a>Using Existing SQL Code and Porting to External Systems</h2>
 
 <p>The JDBC interface is mostly used to enable access to the Space through standard SQL tools and programming interfaces. You can write SQL commands against the Space, and the same code will in many (simple) cases be compatible with other SQL implementations.</p>
 
 <p>Porting existing JDBC code to the Space is certainly doable (but would require some level of adaptation depending on the specifics of the case and the complexity of the SQL queries). For legacy applications, it may still be easier than porting existing code to leverage the space technology directly. The SQL support is limited, therefore this path should be taken with caution.</p>
 
-<h1 id="getting-the-xap-jdbc-connection">Getting the XAP JDBC Connection</h1>
+<h1><a name="getting-the-xap-jdbc-connection">&#160;</a>Getting the XAP JDBC Connection</h1>
 
 <p>In order to get the JDBC connection you should use the following JDBC Driver classname:</p>
 
@@ -77,7 +77,7 @@ while (rs.next()) {
   <p>There is no need to deal with JDBC connection polling when using XAP JDBC driver.</p>
 </div>
 
-<h2 id="embedding-the-query-processor-within-the-application">Embedding the Query Processor Within the Application</h2>
+<h2><a name="embedding-the-query-processor-within-the-application">&#160;</a>Embedding the Query Processor Within the Application</h2>
 
 <p>By default, the Query Processor is running server side.
 It is possible to set the Query Processor to run embedded within the application by passing a parameter to the JDBC driver:</p>
@@ -94,7 +94,7 @@ conn = DriverManager.getConnection(url, properties);
   <p>It is also possible to set the "com.gs.embeddedQP.enabled" connection property as a System property (the connection property overrides the system property).</p>
 </div>
 
-<h1 id="transaction-support">Transaction Support</h1>
+<h1><a name="transaction-support">&#160;</a>Transaction Support</h1>
 
 <p>The XAP JDBC Driver supports the following transaction managers:</p>
 
@@ -150,7 +150,7 @@ props.put("gs.tx_manager_type", "distributed");
 Connection conn = DriverManager.getConnection("jdbc:gigaspaces:url:jini://*/*/mySpace", props);
 </code></pre>
 
-<h1 id="getting-the-jdbc-connection-from-a-space-proxy">Getting the JDBC Connection from a Space Proxy</h1>
+<h1><a name="getting-the-jdbc-connection-from-a-space-proxy">&#160;</a>Getting the JDBC Connection from a Space Proxy</h1>
 
 <p>You can get an XAP JDBC connection from a Space proxy using the <code>com.j_spaces.jdbc.driver.GConnection</code>. See the following example:</p>
 
@@ -167,7 +167,7 @@ connection.setUseSingleSpace(true); //false = cluster, true=single
     throws SQLException
 </code></pre>
 
-<h1 id="combining-the-space-api-with-the-jdbc-api">Combining the Space API with the JDBC API</h1>
+<h1><a name="combining-the-space-api-with-the-jdbc-api">&#160;</a>Combining the Space API with the JDBC API</h1>
 
 <p>The following example uses the Space API <a href="task-execution-overview.htm">DistributedTask</a> with the JDBC API. With this example we use map/reduce approach to query the Space using the JDBC API, but send the JDBC query to be executed within the Space. This approach scales very well when the Space has multiple partitions, eliminating the need to retrieve the actual Space objects from the Space to evaluate the query. Retrieving objects from the Space involves network latency and serialization overhead.</p>
 
@@ -266,7 +266,7 @@ String[] result_str = result.get();
 System.out.println("The Result:" + Arrays.asList(result_str));
 </code></pre>
 
-<h1 id="sql-to-java-type-mapping">SQL- to-Java Type Mapping</h1>
+<h1><a name="sql-to-java-type-mapping">&#160;</a>SQL- to-Java Type Mapping</h1>
 
 <p>The XAP JDBC Driver translates in runtime a Space object into a relational table representation.</p>
 
@@ -370,7 +370,7 @@ System.out.println("The Result:" + Arrays.asList(result_str));
 </tbody>
 </table>
 
-<h1 id="supported-features">Supported Features</h1>
+<h1><a name="supported-features">&#160;</a>Supported Features</h1>
 
 <p><span class="tc-bold">XAP JDBC supports the following</span>:</p>
 
@@ -441,7 +441,7 @@ int result = stmt.executeUpdate("UPDATE PERSON SET VERSION = VERSION + 1 WHERE I
 <li>All JDBC basic types including Blob and Clob.</li>
 </ul>
 
-<h1 id="regular-expression">Regular Expression</h1>
+<h1><a name="regular-expression">&#160;</a>Regular Expression</h1>
 
 <p>XAP supports query using regular expression. You may use <code>like</code> or <code>rlike</code> expressions with your JDBC queries.</p>
 
@@ -463,7 +463,7 @@ st.setString(1, "today\u0027s.*");
 ResultSet rs = st.executeQuery();
 </code></pre>
 
-<h1 id="text-search">Text Search</h1>
+<h1><a name="text-search">&#160;</a>Text Search</h1>
 
 <p>XAP 12.1 introduced full text search capability leveraging the <a href="http://lucene.apache.org" target="_blank" >Lucene</a> search engine library supporting the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.htm#package_description" target="_blank" >Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
 
@@ -481,11 +481,11 @@ ResultSet rs = st.executeQuery();
 /....        
 </code></pre>
 
-<h1 id="indexing">Indexing</h1>
+<h1><a name="indexing">&#160;</a>Indexing</h1>
 
 <p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE,  and IS NULL statements. For more information, see <a href="indexing.htm">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code>statements.</p>
 
-<h1 id="partitioning-support">Partitioning Support</h1>
+<h1><a name="partitioning-support">&#160;</a>Partitioning Support</h1>
 
 <p>In order to partition the data and route operations to the correct partition, specify a "routing column" for each table. The "routing column" is specified through one of three mechanisms:</p>
 
@@ -495,7 +495,7 @@ ResultSet rs = st.executeQuery();
 <li>If there is no indexed column, the first column as part of the CREATE TABLE will be the routing field.</li>
 </ol>
 
-<h1 id="nested-field-query">Nested Field Query</h1>
+<h1><a name="nested-field-query">&#160;</a>Nested Field Query</h1>
 
 <p>You may use as part of the JDBC select statement nested fields. These could be a Map type fields or user-defined data type fields within the Space object. See the following example of a Space class with a nested Map and a nested object fields. Both are indexed:</p>
 
@@ -585,7 +585,7 @@ while (rs.next()) {
 }
 </code></pre>
 
-<h1 id="unsupported-features">Unsupported Features</h1>
+<h1><a name="unsupported-features">&#160;</a>Unsupported Features</h1>
 
 <p>The XAP JDBC Driver does not support the following:</p>
 
@@ -614,11 +614,11 @@ while (rs.next()) {
 As a workaround, construct a JDBC query that includes a relevant <code>WHERE</code> part.</p>
 </div>
 
-<h1 id="jdbc-reserved-words">JDBC Reserved Words</h1>
+<h1><a name="jdbc-reserved-words">&#160;</a>JDBC Reserved Words</h1>
 
 <p>This section lists the JDBC reserved keywords, data types, separators and operators.</p>
 
-<h2 id="keywords">Keywords</h2>
+<h2><a name="keywords">&#160;</a>Keywords</h2>
 
 <pre><code class="language-bash">ALTER ADD AND ASC BETWEEN BY CREATE CALL DROP DEFAULT_NULL DESC DISTINCT
 END FROM GROUP IN IS LIKE RLIKE MAX MIN NOT NULL OR ORDER SELECT SUBSTR SUM SYSDATE
@@ -626,18 +626,18 @@ UPPER WHERE COUNT DELETE EXCEPTION ROWNUM INDEX INSERT INTO SET TABLE TO_CHAR
 TO_NUMBER FOR_UPDATE UPDATE UNION VALUES COMMIT ROLLBACK PRIMARY_KEY UID USING
 </code></pre>
 
-<h2 id="data-types">Data Types</h2>
+<h2><a name="data-types">&#160;</a>Data Types</h2>
 
 <pre><code class="language-bash">date datetime  time float double number decimal boolean integer varchar varchar2
 char timestamp long clob blob empty_clob() empty_blob() lob true false
 </code></pre>
 
-<h2 id="separators-and-operators">Separators and Operators</h2>
+<h2><a name="separators-and-operators">&#160;</a>Separators and Operators</h2>
 
 <pre><code class="language-bash">:=  || ; . ROWTYPE ~ &lt; &lt;= &gt;  &gt;= =&gt; != &lt;&gt; \(+\) ( ) \* / + - ? \{ \}
 </code></pre>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
 <p>The JDBC Driver should be configured using the following properties. These should be part of the <a href="the-space-configuration.htm#proxy">The Space Component</a> configuration when deployed:</p>
 
@@ -731,7 +731,7 @@ char timestamp long clob blob empty_clob() empty_blob() lob true false
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h1 id="jdbc-error-codes">JDBC Error Codes</h1>
+<h1><a name="jdbc-error-codes">&#160;</a>JDBC Error Codes</h1>
 
 <p>The following is a list of JDBC error codes and their descriptions:</p>
 

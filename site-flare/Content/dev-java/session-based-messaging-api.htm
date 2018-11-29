@@ -59,33 +59,33 @@
 
 <p>The sender of the message can write an Entry with a limited lease time to the space. The recipients receive the Entry through the remote event. New recipients have the opportunity to get old messages from the space through read. The messages are cleaned automatically by the expiration mechanism.</p>
 
-<h1 id="supported-topologies">Supported Topologies</h1>
+<h1><a name="supported-topologies">&#160;</a>Supported Topologies</h1>
 
 <p>Event registration is available with all supported space topologies. Each topology allows the client to receive the event. Still, there are behaviors you should be aware of when deploying the application.</p>
 
-<h2 id="single-remote-space">Single Remote Space</h2>
+<h2><a name="single-remote-space">&#160;</a>Single Remote Space</h2>
 
 <p>When registering for notifications with a remote space, the space performs a remote call when delivering the event to the client application.</p>
 
-<h2 id="embedded-space">Embedded Space</h2>
+<h2><a name="embedded-space">&#160;</a>Embedded Space</h2>
 
 <p>When the client registers for notifications running in the same JVM as the space, no remote calls are involved. This allows fast notification delivery without serialization of the object that started the event.</p>
 
-<h2 id="replicated-space">Replicated Space</h2>
+<h2><a name="replicated-space">&#160;</a>Replicated Space</h2>
 
 <p>When deploying a replicated space, you might want to replicate notify registration from the source space (primary) to the replica (backup space), allowing the replica space to continue and send notifications in case the source space failed.</p>
 
 <p>Receiving events occurs as a result of data replication, and not directly from a client-space operation. This is popular in WAN-based applications, where a remote client running in the remote site wants to be notified when an operation occurs in the source space, without getting the actual notification from the remote source space, but from a replica space that is located at its local site.</p>
 
-<h2 id="partitioned-space">Partitioned Space</h2>
+<h2><a name="partitioned-space">&#160;</a>Partitioned Space</h2>
 
 <p>The most common requirement when deploying partitioned spaces is to register the notification to all partitions, and receive the notifications from all partitions when a matching event is identified. This is the default behavior of the partitioned space.</p>
 
-<h2 id="local-cache">Local Cache</h2>
+<h2><a name="local-cache">&#160;</a>Local Cache</h2>
 
 <p>When registering for notifications using a proxy running in the [local cache], notifications are delivered from the master space. Any matching event in the master space is delivered to the registered client. Events in the local cache are not delivered to the registered client, unless you specifically register for events by getting the local cache proxy.</p>
 
-<h2 id="local-view">Local View</h2>
+<h2><a name="local-view">&#160;</a>Local View</h2>
 
 <p>When registering for notifications using a proxy running in the [local view], notifications are delivered from the local view. These do not involve remote calls and are based on activities performed in the local view. The events do not affect the remote master space or other clients accessing the master space. The events delivered from the local view are relatively fast, and do not involve serialization. Since notifications received from the local view are based on the local view query filter, the registered client might not receive events that other clients, registered for notifications using the master space, receive.</p>
 
@@ -94,7 +94,7 @@
   <p>The Local view uses the replication mechanism to update the local view.</p>
 </div>
 
-<h1 id="register-for-notifications">Register for Notifications</h1>
+<h1><a name="register-for-notifications">&#160;</a>Register for Notifications</h1>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="DataEventSession" style="padding:10px"><p>Sessions are created with the <code>space.newDataEventSession</code> method.
 Every session is configured according to an <code>EventSessionConfig</code> object and is bound to a transaction.</p>
@@ -277,7 +277,7 @@ Object getSource()
 </div>
 </div>
 
-<h1 id="receive-the-event">Receive the Event</h1>
+<h1><a name="receive-the-event">&#160;</a>Receive the Event</h1>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="RemoteEventListener" style="padding:10px"><p>The <code>RemoteEventListener</code> interface should to be implemented to receive the notification from the space. The class implementing this interface does not need to be the object that originally registered interest in the occurrence of an event. To allow the notification of an event's occurrence to be sent to an entity other than the one that made the interest registration, the registration call needs to accept a destination parameter, which indicates to which object the notification should be sent. This parameter must be an object which supports the <code>RemoteEventListener</code> interface.</p>
 
@@ -341,11 +341,11 @@ public void notify(RemoteEvent theEvent) throws UnknownEventException, RemoteExc
 </div>
 </div>
 
-<h1 id="notify-recovery">Notify-Recovery</h1>
+<h1><a name="notify-recovery">&#160;</a>Notify-Recovery</h1>
 
 <p>When a partitioned space is started each partition getting list of existing notify registrations from the other partitions. This is useful when the partition fails and restarted. This avoids the client side to re-issue a new notify registrations against the restarted partition. If you are not using notifications or running a partitioned space with backups you may disable this mechanism using the cluster-config.notify-recovery property (boolean property). This will speed up the space deployment time since when a partition looking for the other partitions and these have not been started yet, it might take some time for the entire clustered space to be fully available. By default this property is enabled (true).</p>
 
-<h1 id="cancelling-registration-and-closing-the-session">Cancelling Registration and Closing the Session</h1>
+<h1><a name="cancelling-registration-and-closing-the-session">&#160;</a>Cancelling Registration and Closing the Session</h1>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Cancelling Notify Registration" style="padding:10px"><p>To cancel the notify registration, call the following:</p>
 
@@ -363,7 +363,7 @@ public void notify(RemoteEvent theEvent) throws UnknownEventException, RemoteExc
 </div>
 </div>
 
-<h1 id="filtering-events">Filtering Events</h1>
+<h1><a name="filtering-events">&#160;</a>Filtering Events</h1>
 
 <p>The session messaging API allows for space-side notify filtering. To control the events delivered to the client, implement the <code>INotifyDelegatorFilter</code> interface, pass the object implementing the <code>INotifyDelegatorFilter</code>, and return a <code>false</code> value from the <code>INotifyDelegatorFilter.process</code> for events you do not want to be sent to the registered client.</p>
 
@@ -452,9 +452,9 @@ public class MyNotifyFilter implements INotifyDelegatorFilter
 </div>
 </div>
 
-<h1 id="advanced-options">Advanced Options</h1>
+<h1><a name="advanced-options">&#160;</a>Advanced Options</h1>
 
-<h2 id="registering-large-number-of-listeners">Registering Large Number of Listeners</h2>
+<h2><a name="registering-large-number-of-listeners">&#160;</a>Registering Large Number of Listeners</h2>
 
 <p>When having a system that requires  large number of listeners (above few hundreds) the <code>Multiplex</code> communication mode should be used. With this mode the amount of resources (threads) used to invoke the listener are shared between all the session listeners. This approach reduces the memory footprint of the client considerably. This option avoiding the need to construct multiple [notify containers|notify container] that may consume large amount of resources when having many of these created. See below how the <code>MULTIPLEX</code> communication mode should be used:</p>
 
@@ -470,7 +470,7 @@ public class MyNotifyFilter implements INotifyDelegatorFilter
  }
 </code></pre>
 
-<h2 id="auto-re-register-notifications-after-space-failure">Auto Re-Register Notifications After Space Failure</h2>
+<h2><a name="auto-re-register-notifications-after-space-failure">&#160;</a>Auto Re-Register Notifications After Space Failure</h2>
 
 <p>Event Session under the hood uses Notification Registration. When a remote client with an independent life cycle creates a Event Session and is terminated, the registration remains in the space. This may create an overhead for the space once there are other clients registered with many templates.</p>
 
@@ -555,25 +555,25 @@ setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener, long renewExp
 
 </code></pre>
 
-<h2 id="slow-consumer">Slow Consumer</h2>
+<h2><a name="slow-consumer">&#160;</a>Slow Consumer</h2>
 
 <p>The <a href="../admin/slow-consumer.htm">Slow Consumer</a> mechanism allows XAP to identify clients that cannot receive events and cancel their notify registration. This avoids system instability and out of memory problems.</p>
 
-<h2 id="transient-notify-registration">Transient Notify Registration</h2>
+<h2><a name="transient-notify-registration">&#160;</a>Transient Notify Registration</h2>
 
 <p>Notify registrations are consider to be Transient.
 Transient registrations are not persistent, and aren't recovered once the space is restarted.</p>
 
-<h2 id="stale-notify-registration">Stale Notify Registration</h2>
+<h2><a name="stale-notify-registration">&#160;</a>Stale Notify Registration</h2>
 
 <p>When the space detects a stale notify registration (clients that registered for a notify registration but do not respond to the triggered event), the notify registration is cancelled.
 If you need to terminate the notify registration before the lease expires, it is recommended to use the <code>DataEventSession removeListener(EventRegistration registration)</code> method. This cancels the registration lease.</p>
 
-<h2 id="notifications-with-transactions">Notifications with Transactions</h2>
+<h2><a name="notifications-with-transactions">&#160;</a>Notifications with Transactions</h2>
 
 <p>When performing operations using transactions while performing notify registration using a <code>null</code> transaction object, matching events are delivered to clients only when the transaction is committed. Matching events for notify registration using a transaction object are triggered immediately when the operation is called using the same transaction object that is used as part of the notify registration.</p>
 
-<h2 id="long-notification-lease-time">Long Notification Lease Time</h2>
+<h2><a name="long-notification-lease-time">&#160;</a>Long Notification Lease Time</h2>
 
 <p>Use <code>Lease.FOREVER</code> as the notify registration lease time carefully. Registration for notifications is cancelled automatically when the notification object invalidates – i.e. is cleared by the garbage collector. With abnormal termination of the application, the garbage collector cannot finalize the registration object. This might lead to delays when delivering notifications to live clients, because the space accumulates notification registrations without the ability to clear these once they are invalidated.</p>
 
@@ -595,11 +595,11 @@ If you need to terminate the notify registration before the lease expires, it is
 
 <p>To reduce the amount of stale registrations, register notification with a reasonable lease time (30 seconds - 2 minutes can be a good interval), and renew these using the <a href="[%=Links.ApiJavaDoc%]/index.htm?net/jini/lease/LeaseRenewalManager.htm">LeaseRenewalManager</a> every 30 seconds - 2 minutes. This ensures that once the client exists in an abnormal manner, the registration automatically expires and is removed, reducing the chance to fully consume the notification thread pool and delay notification delivery to live clients.</p>
 
-<h2 id="improving-notification-speed">Improving Notification Speed</h2>
+<h2><a name="improving-notification-speed">&#160;</a>Improving Notification Speed</h2>
 
 <p>When the space is running in a different JVM than the client that is registered for the notifications, remote calls between the space and the notified client are involved. This means that the object that triggered the notification sent as part of the <code>RemoteEvent</code> is serialized at the space side, and de-serialized at the client side when delivered to the client. To minimize the impact of the serialization process, it is recommended to implement the <code>Externalizable</code> interface – this optimizes the footprint of the delivered packet across the network.</p>
 
-<h2 id="fifo-based-notifications">FIFO-Based Notifications</h2>
+<h2><a name="fifo-based-notifications">&#160;</a>FIFO-Based Notifications</h2>
 
 <p>When registering for notifications in FIFO mode, a special thread at the client side is responsible for delivering the events to the listener in FIFO order. By default, the space uses a dedicated thread pool to trigger the events at the client side, where the client itself is using another thread pool to call the listener notify method implementation.</p>
 
@@ -610,7 +610,7 @@ If you need to terminate the notify registration before the lease expires, it is
   <p>For the custom client-side FIFO-based notifications example, send a request to support@gigaspaces.com.</p>
 </div>
 
-<h2 id="notification-reliability">Notification Reliability</h2>
+<h2><a name="notification-reliability">&#160;</a>Notification Reliability</h2>
 
 <p>Notifications are asynchronous by nature. The client that triggered the notification is unaware of the notification delivery, and does not wait for an acknowledgement from the client receiving the notification for successful arrival of the event before continuing with its operation – i.e., when process A registers for notification delivery, and B writes an Entry to the space, process B does not wait for process A to receive the notification before taking control after the write operation. Process B might perform additional space operations before process A receives the notification.</p>
 
@@ -626,7 +626,7 @@ If you need to terminate the notify registration before the lease expires, it is
 <li><code>trigger-notify-templates</code> – boolean value. Set to <code>true</code> if you want to trigger matching notification templates when Entries are written to the space, because of replication (and thus causing remote events to be generated and sent to the notify template listeners). If set to <code>true</code>, triggering occurs; if set to <code>false</code>, triggering does not occur.</li>
 </ul>
 
-<h3 id="replicate-notify-template-and-trigger-notify-template">Replicate Notify Template and Trigger Notify Template</h3>
+<h3><a name="replicate-notify-template-and-trigger-notify-template">&#160;</a>Replicate Notify Template and Trigger Notify Template</h3>
 
 <p>The replication settings allows replicating notification registration, and the ability to trigger events that are a result of replication (and not a direct client operation) from a source space.</p>
 
@@ -672,7 +672,7 @@ If you need to terminate the notify registration before the lease expires, it is
 
 <p>This might result in more events than you initially intended. You can use the source of the event to check which space triggered it.</p>
 
-<h2 id="durable-notifications-notification-delivery-during-failover">Durable Notifications - Notification Delivery During Failover</h2>
+<h2><a name="durable-notifications-notification-delivery-during-failover">&#160;</a>Durable Notifications - Notification Delivery During Failover</h2>
 
 <p>Due to the asynchronous nature of notification delivery, when a primary space fails right after replicating an operation to the backup space and before sending the notification to the registered client, the backup space might not be able to send the missing notifications, since it is in the process of moving to active mode. This means that during this very short period of time, the registered client might not receive events that occurred in the primary space and were replicated to the backup space.</p>
 
@@ -686,7 +686,7 @@ If you need to terminate the notify registration before the lease expires, it is
 <p>Durable notifications are based on the replication mechanism and as such have some different semantics regarding other <code>EventSessionConfig</code> parameters.
 For further details see <a href="durable-notifications.htm">Durable Notifications</a>.</p>
 
-<h2 id="the-unmatched-notifyactiontype">The UNMATCHED NotifyActionType</h2>
+<h2><a name="the-unmatched-notifyactiontype">&#160;</a>The UNMATCHED NotifyActionType</h2>
 
 <p>The <code>UNMATCHED</code> <code>NotifyActionType</code> should be used when you would like to receive notifications for objects which got their value been updated where the object that was initially matches the template no longer matches the template.</p>
 
@@ -698,7 +698,7 @@ For further details see <a href="durable-notifications.htm">Durable Notification
 
 <p>You have to include the <code>UNMATCHED NotifyActionType</code> to receive a notification when the object changing <code>status=true</code> to <code>status=false</code>.</p>
 
-<h2 id="the-matched-update-notifyactiontype">The MATCHED_UPDATE NotifyActionType</h2>
+<h2><a name="the-matched-update-notifyactiontype">&#160;</a>The MATCHED_UPDATE NotifyActionType</h2>
 
 <p>The <code>MATCHED_UPDATE</code> <code>NotifyActionType</code> should be used to receive notifications for entries that match a given notify template after being updated and did not match before that update.</p>
 
@@ -716,7 +716,7 @@ For further details see <a href="durable-notifications.htm">Durable Notification
 
 <p>NOTIFY_MATCHED_UPDATE and NOTIFY_UPDATE cannot be used together for the same listener.</p>
 
-<h2 id="the-rematched-update-notifyactiontype">The REMATCHED_UPDATE NotifyActionType</h2>
+<h2><a name="the-rematched-update-notifyactiontype">&#160;</a>The REMATCHED_UPDATE NotifyActionType</h2>
 
 <p>The <code>REMATCHED_UPDATE</code> <code>NotifyActionType</code> should be used to receive notifications for entries that match a given notify template after being updated and that were also a match before that update.</p>
 

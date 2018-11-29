@@ -5,7 +5,7 @@
 <h1>Setting up your IDE</h1>
   
 
-<p> <a id="0">&#160;</a>
+<p> <a name="0">&#160;</a>
 Follow the instructions in this tutorial to prepare your development environment.</p>
 
 <div class="tc-admon-note">
@@ -13,7 +13,7 @@ Follow the instructions in this tutorial to prepare your development environment
   <p><span class="tc-bold">Ensure you have a JDK installed</span>. You will need Java 8 or higher, latest update is recommended.</p>
 </div>
 
-<h1 id="checking-your-jdk-version">Checking your JDK Version</h1>
+<h1><a name="checking-your-jdk-version">&#160;</a>Checking your JDK Version</h1>
 
 <p>To check your installed Java version:</p>
 
@@ -36,17 +36,17 @@ Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)
 
 <p>If your installed JDK version is lower then 1.5 or none is installed, see below on how to install one.</p>
 
-<h1 id="installing-a-proper-jdk-java-development-kit">Installing a Proper JDK (Java Development Kit)</h1>
+<h1><a name="installing-a-proper-jdk-java-development-kit">&#160;</a>Installing a Proper JDK (Java Development Kit)</h1>
 
 <ol>
 <li>To install JDK 1.6, download and install <a href="http://java.sun.com/javase/downloads/index.jsp"><span class="tc-bold">JDK 6 Update X</span></a>
- <a id="1">&#160;</a></li>
+ <a name="1">&#160;</a></li>
 <li><span class="tc-bold">Download and unzip the latest XAP release</span> from the <a href="http://www.gigaspaces.com/LatestProductVersion">downloads page</a>.
- <a id="2">&#160;</a></li>
+ <a name="2">&#160;</a></li>
 <li><span class="tc-bold">Install a Java IDE</span>. If you don't have an IDE installed, you can <a href="http://www.eclipse.org/downloads">download and unzip the Eclipse IDE for Java Developers</a>, or the <a href="http://www.jetbrains.com/idea/download/index.htm">IntelliJ IDEA</a> IDE (we recommend the Ultimate Edition because of its excellent Spring framework support). If you're using Eclipse, it is also recommended to install the <a href="http://www.springsource.com/developer/sts">Spring Tool Suite plugin for Eclipse</a>.</li>
 </ol>
 
-<h1 id="running-the-application-inside-eclipse-ide">Running the Application inside Eclipse IDE</h1>
+<h1><a name="running-the-application-inside-eclipse-ide">&#160;</a>Running the Application inside Eclipse IDE</h1>
 
 <ol>
 <li>Start Eclipse. The <span class="tc-bold">Workspace Launcher</span> window opens.</li>
@@ -70,7 +70,7 @@ Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)
 <li>Close the remaining windows.</li>
 </ol>
 
-<h1 id="classpath">Classpath</h1>
+<h1><a name="classpath">&#160;</a>Classpath</h1>
 
 <p>The XAP libraries are located under <code>XAP_HOME/lib</code>. There are three sub-directories:</p>
 
@@ -80,19 +80,19 @@ Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)
 <li><code>lib/platform</code> - JAR files that are used only by the XAP platform.</li>
 </ul>
 
-<h2 id="compilation">Compilation</h2>
+<h2><a name="compilation">&#160;</a>Compilation</h2>
 
 <p>In order to compile and run XAP applications, all the JAR files under the <code>XAP_HOME/lib/required</code> directory should be included in your compile and run time classpaths. Additional JAR files that you may need for development are located at <code>XAP_HOME/lib/optional</code>.</p>
 
-<h2 id="runtime-processing-unit">Runtime - Processing Unit</h2>
+<h2><a name="runtime-processing-unit">&#160;</a>Runtime - Processing Unit</h2>
 
 <p>When an application is deployed as a Processing Unit, there is no need to add XAP-specific JAR files to the Processing Unit classpath. If such are added under the Processing Unit's <code>lib</code> directory, the system will remove those JAR files and  replace them with the system's JARs for compatibility.</p>
 
-<h2 id="runtime-standalone">Runtime - Standalone</h2>
+<h2><a name="runtime-standalone">&#160;</a>Runtime - Standalone</h2>
 
 <p>When running a standalone client that accesses XAP, ensure that all the JARs located under the <code>XAP_HOME/lib/required</code> directory are part of the JVM's classpath. This also holds true for remote Space clients that are used from another JVM (such as a standalone web container). If your client is a JEE web application that is not running within the XAP runtime environment, or more specifically a GSC, you must include these JARs in your application's <code>WEB-INF/lib</code> directory.</p>
 
-<h1 id="maven">Maven</h1>
+<h1><a name="maven">&#160;</a>Maven</h1>
 
 <p>XAP is Maven-friendly. It is built using Maven, which can be easily used by developers constructing XAP applications.</p>
 

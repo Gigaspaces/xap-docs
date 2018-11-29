@@ -7,7 +7,7 @@
 
 <p>A MongoDB based implementation of the <a href="space-data-source-api.htm">Space Data Source</a>.</p>
 
-<h1 id="library-dependencies">Library dependencies</h1>
+<h1><a name="library-dependencies">&#160;</a>Library dependencies</h1>
 
 <p>The MongoDB Space Data Source uses <a href="http://docs.mongodb.org/ecosystem/drivers/java/">MongoDB Driver</a> For communicating with the MongoDB cluster.</p>
 
@@ -47,7 +47,7 @@
     &lt;/dependencies&gt;
 </code></pre>
 
-<h1 id="setup">Setup</h1>
+<h1><a name="setup">&#160;</a>Setup</h1>
 
 <p>An example of how the MongoDB Space Data Source can be configured for a space that loads data back from MongoDB once initialized and
 also asynchronously persists the data using a mirror (see <a href="mongodb-space-synchronization-endpoint.htm">MongoDB Space Synchronization Endpoint</a>)).</p>
@@ -125,7 +125,7 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
 
 <p>For more details about different configurations see <a href="space-persistency-overview.htm">Space Persistency</a>.</p>
 
-<h1 id="before-you-begin">Before you begin</h1>
+<h1><a name="before-you-begin">&#160;</a>Before you begin</h1>
 
 <p>Before deploying your Processing Unit, please do the following:</p>
 
@@ -135,7 +135,7 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
 <li><code>mongo-java-driver-[%=Versions.mongo-java-driver%].jar</code> from <a href="http://docs.mongodb.org/ecosystem/drivers/java/">mongoDB's website</a> .</li>
 </ol>
 
-<h1 id="mongospacedatasource-properties">MongoSpaceDataSource Properties</h1>
+<h1><a name="mongospacedatasource-properties">&#160;</a>MongoSpaceDataSource Properties</h1>
 
 <table>
 <thead>
@@ -155,15 +155,15 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
 </tbody>
 </table>
 
-<h2 id="considerations">Considerations</h2>
+<h2><a name="considerations">&#160;</a>Considerations</h2>
 
-<h3 id="general-limitations">General limitations</h3>
+<h3><a name="general-limitations">&#160;</a>General limitations</h3>
 
 <ul>
 <li>All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the JVM the Space is running on.</li>
 </ul>
 
-<h3 id="cache-miss-query-limitations">Cache miss Query limitations</h3>
+<h3><a name="cache-miss-query-limitations">&#160;</a>Cache miss Query limitations</h3>
 
 <p>Supported queries:</p>
 
@@ -187,13 +187,13 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
   <p>Java types Short, Float, BigDecimal and BigInt supported only =,&lt;&gt; queries &gt;,&lt;,&gt;=,&lt;= is not supported.</p>
 </div>
 
-<h1 id="unsupported-queries">Unsupported queries</h1>
+<h1><a name="unsupported-queries">&#160;</a>Unsupported queries</h1>
 
 <ul>
 <li>Contains is unsupported</li>
 </ul>
 
-<h1 id="mongo-as-a-service">Mongo As a Service</h1>
+<h1><a name="mongo-as-a-service">&#160;</a>Mongo As a Service</h1>
 
 <p>There are some Mongo DB hosting services that run on the cloud, and you can connect to them from your deployment environment for free. For example: <a href="https://mongolab.com">mongolab</a></p>
 

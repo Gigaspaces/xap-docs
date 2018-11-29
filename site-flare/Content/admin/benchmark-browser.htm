@@ -36,7 +36,7 @@
 
 <p>These options and tabs are described in the sections below.</p>
 
-<h1 id="settings-tab">Settings Tab</h1>
+<h1><a name="settings-tab">&#160;</a>Settings Tab</h1>
 
 <p>The <span class="tc-bold">Settings</span> tab allows you to configure the benchmark parameters.</p>
 
@@ -58,7 +58,7 @@
 
 <p>These areas are detailed in the sections below.</p>
 
-<h2 id="options">Options</h2>
+<h2><a name="options">&#160;</a>Options</h2>
 
 <p>The Benchmark view <span class="tc-bold">Options</span> area provides the following options:</p>
 
@@ -83,7 +83,7 @@
 
 <p>The numbers in the <span class="tc-bold">Iterations</span>, <span class="tc-bold">Sampling rate</span>, and <span class="tc-bold">Read/Take timeout</span> boxes are in thousands, and the number in the <span class="tc-bold">Entry size</span> box is in bytes.</p>
 
-<h2 id="lease">Lease</h2>
+<h2><a name="lease">&#160;</a>Lease</h2>
 
 <p>Checking the <span class="tc-bold">Return Lease</span> check defines that operations performed in the space also create a <code>Lease</code> object. You can specify the expiration time of the lease in the <span class="tc-bold">Lease Time</span> area, or check the <span class="tc-bold">FOREVER Lease</span> check box, which means the lease will not expire unless you remove it from the space.</p>
 
@@ -92,7 +92,7 @@
   <p>Checking the <span class="tc-bold">Return Lease</span> check box might decrease performance.</p>
 </div>
 
-<h2 id="admin-operations">Admin Operations</h2>
+<h2><a name="admin-operations">&#160;</a>Admin Operations</h2>
 
 <ul>
 <li><p><span class="tc-bold">Use Clustered Proxy</span> – <span class="tc-bold">relevant only when working with clustered spaces</span>. This option defines that all operations in the cluster are performed on a clustered proxy, which is responsible for routing the operation to the relevant member/members. If a clustered proxy is not used, operations are performed directly on the selected cluster member, and not on the whole cluster.</p></li>
@@ -102,9 +102,9 @@
 <li><p><span class="tc-bold">Display Thread TP</span> – this check box instructs the <a href="#graph-tab"><span class="tc-bold">Graph</span> tab</a> to display the throughput of each thread separately. Different threads are represented by different colors.</p></li>
 </ul>
 
-<h2 id="operations">Operations</h2>
+<h2><a name="operations">&#160;</a>Operations</h2>
 
-<h3 id="javaspaces-api">JavaSpaces API</h3>
+<h3><a name="javaspaces-api">&#160;</a>JavaSpaces API</h3>
 
 <p>JavaSpaces operations use an Entry with 2 attributes:</p>
 
@@ -129,7 +129,7 @@
   <p>The referral to objects above means either Entries or POJOs, depending on the specified <span class="tc-bold">Object Format</span>.</p>
 </div>
 
-<h3 id="map-api">Map API</h3>
+<h3><a name="map-api">&#160;</a>Map API</h3>
 
 <p>Map operations put an object with 2 attributes (value object) and a string key into the space.</p>
 
@@ -143,15 +143,15 @@
 <li><span class="tc-bold">Put and Remove</span> – puts Entries into the space, and removes Entries from the space. For example, defining 20,000 iterations in the <span class="tc-bold">Iterations</span> text box puts 2,000 Entries in the space, and removes those 2,000 Entries from the space.</li>
 </ul>
 
-<h3 id="parallel-operations">Parallel Operations</h3>
+<h3><a name="parallel-operations">&#160;</a>Parallel Operations</h3>
 
 <p>The <span class="tc-bold">Parallel operations</span> check box is relevant only for <span class="tc-bold">Write and Read</span>, <span class="tc-bold">Write and Take</span>, <span class="tc-bold">Put and Get</span>, and <span class="tc-bold">Put and Remove</span> operations. When selecting this option, the operations are conducted simultaneously – i.e., a thread is spawned for the write operation, another one for the read operation, and these are executed at the same time, allowing the read thread to read an Entry that has been written by the write thread.</p>
 
-<h3 id="repeat-read-get-operation">Repeat Read/Get Operation</h3>
+<h3><a name="repeat-read-get-operation">&#160;</a>Repeat Read/Get Operation</h3>
 
 <p>This option is relevant for the read or get operations. Specify the number of times to repeat the operation. This option allows you to benchmark the local cache.</p>
 
-<h2 id="transaction">Transaction</h2>
+<h2><a name="transaction">&#160;</a>Transaction</h2>
 
 <p>The <span class="tc-bold">Transaction</span> area allows you to perform operations under transactions:</p>
 
@@ -174,11 +174,11 @@ In the <span class="tc-bold">Txn Manager URL</span> text box, specify the host n
   <p>For more details on transactions, refer to <a href="../dev-java/transaction-overview.htm">Transaction Manager</a>.</p>
 </div>
 
-<h2 id="master-local">Master-Local</h2>
+<h2><a name="master-local">&#160;</a>Master-Local</h2>
 
 <p>Distributed cache is relevant when using read or get operations. This option starts a local cache in the Space Browser's VM. When a read or get operation is called, the Entry is first searched for at the local cache. If the Entry is not found at the local cache, it is searched for at the master space and sent back to the browser. Any subsequent read for the Entry is conducted from the local cache.</p>
 
-<h2 id="results-output">Results Output</h2>
+<h2><a name="results-output">&#160;</a>Results Output</h2>
 
 <p>To save the benchmark sample readings into a file, check the <span class="tc-bold">Save results to file</span> check box, and specify a file. This generates a file with the results in tab-separated values.</p>
 
@@ -187,7 +187,7 @@ In the <span class="tc-bold">Txn Manager URL</span> text box, specify the host n
   <p>The benchmark results are printed to an Excel file, which allows you to easily sort your results. To do this, open your printed Excel file, and select *<span class="tc-italic">Filter</span> &gt; <span class="tc-bold">AutoFilter</span> from the <span class="tc-bold">Data</span> menu at the top.</p>
 </div>
 
-<h2 id="configuration">Configuration</h2>
+<h2><a name="configuration">&#160;</a>Configuration</h2>
 
 <p>The <span class="tc-bold">Configuration</span> area allows you to save specific options you selected in the <span class="tc-italic">Service View</span>, instead of having to re-select them every time you run a new benchmark. You can save these options by clicking the <span class="tc-bold">New</span> button. In the <span class="tc-bold">New Configuration</span> dialog type the name of your choice, for example, <code>myConfiguration</code>:</p>
 
@@ -201,7 +201,7 @@ In the <span class="tc-bold">Txn Manager URL</span> text box, specify the host n
 
 <p>You can add as many configurations as you like, and select the one you want to use from the drop-down menu. You can also delete or rename existing configurations using the <span class="tc-bold">Delete</span> and <span class="tc-bold">Rename</span> buttons.</p>
 
-<h1 id="table-tab">Table Tab</h1>
+<h1><a name="table-tab">&#160;</a>Table Tab</h1>
 
 <p>The <span class="tc-bold">Table</span> tab allows you to view the benchmark results in tabular format. The table provides the throughput for write, read, or take operations, and the client process memory available during the test period.</p>
 
@@ -210,7 +210,7 @@ In the <span class="tc-bold">Txn Manager URL</span> text box, specify the host n
 
 <p>To clear the <span class="tc-bold">Table</span> tab, click the <span class="tc-bold">Clear</span> button.</p>
 
-<h1 id="graph-tab">Graph Tab</h1>
+<h1><a name="graph-tab">&#160;</a>Graph Tab</h1>
 
 <p>The <span class="tc-bold">Graph</span> tab allows you to view the benchmark results using graphs. The graphs provided show the throughput for write/read/take operations and the client process memory available during the test period.</p>
 
@@ -219,7 +219,7 @@ In the <span class="tc-bold">Txn Manager URL</span> text box, specify the host n
 
 <p>To clear the <span class="tc-bold">Graph</span> tab, click the <span class="tc-bold">Clear</span> button.</p>
 
-<h1 id="summary-tab">Summary Tab</h1>
+<h1><a name="summary-tab">&#160;</a>Summary Tab</h1>
 
 <p>The <span class="tc-bold">Summary</span> tab includes the benchmark results summary.</p>
 
@@ -232,17 +232,17 @@ In the <span class="tc-bold">Txn Manager URL</span> text box, specify the host n
 
 <p>To clear the <span class="tc-bold">Summary</span> tab, click the <span class="tc-bold">Clear</span> button.</p>
 
-<h1 id="starting-or-stopping-the-benchmark">Starting or Stopping the Benchmark</h1>
+<h1><a name="starting-or-stopping-the-benchmark">&#160;</a>Starting or Stopping the Benchmark</h1>
 
 <p>After completing the benchmark settings, click the <span class="tc-bold">Start</span> button to invoke the selected operation(s) based on the configuration defined in the <span class="tc-bold">Settings</span> tab.</p>
 
 <p>To stop the currently running benchmark, click the <span class="tc-bold">Stop</span> button.</p>
 
-<h1 id="progress-bar">Progress Bar</h1>
+<h1><a name="progress-bar">&#160;</a>Progress Bar</h1>
 
 <p>The progress bar at the bottom of the <span class="tc-bold">Service view</span> displays the current benchmark status.</p>
 
-<h1 id="benchmark-cli-utility">Benchmark CLI Utility</h1>
+<h1><a name="benchmark-cli-utility">&#160;</a>Benchmark CLI Utility</h1>
 
 <p>The benchmark utility provides a good tool for running performance benchmarks on the cache in various scenarios. This program performs a loop of write/put and read/get, or take/remove operations from a space, according to a different set of parameters. The result is the average time it took to perform the operations. You can define a sampling rate to allow you to track the intermediate performance while the benchmark example is running. You may also dump the results into a file to be converted into graphs and analyzed using a spreadsheet and analysis tools.</p>
 

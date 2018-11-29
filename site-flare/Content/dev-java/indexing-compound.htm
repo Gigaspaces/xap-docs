@@ -67,7 +67,7 @@ public class Data {
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/compu_index_bench.jpg" alt="compu_index_bench.jpg" /></p>
 </div>
 
-<h1 id="using-gs-xml">Using gs.xml</h1>
+<h1><a name="using-gs-xml">&#160;</a>Using gs.xml</h1>
 
 <p>A Compound Index can be defined within the gs.xml configuration file. Example: The following a <code>gs.xml</code> describing a POJO named Data having a compound index composed from two segments:</p>
 
@@ -79,7 +79,7 @@ public class Data {
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
 
-<h1 id="dynamic-properties">Dynamic Properties</h1>
+<h1><a name="dynamic-properties">&#160;</a>Dynamic Properties</h1>
 
 <p>A Compound Space Index of <a href="dynamic-properties.htm">Dynamic Properties</a> can be created via annotations. Here is an example:</p>
 
@@ -114,7 +114,7 @@ public class PaymentOrder {
 }
 </code></pre>
 
-<h1 id="space-document">Space Document</h1>
+<h1><a name="space-document">&#160;</a>Space Document</h1>
 
 <p>A Compound Space Index of a <a href="document-api.htm">space Document</a> can be described by <code>pu.xml</code> configuration file. Example:</p>
 
@@ -125,7 +125,7 @@ public class PaymentOrder {
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h2 id="dynamic-creation">Dynamic Creation</h2>
+<h2><a name="dynamic-creation">&#160;</a>Dynamic Creation</h2>
 
 <p>A Compound Space Index can be added dynamically using the <code>GigaSpaceTypeManager</code> interface. Example:</p>
 
@@ -135,14 +135,14 @@ public class PaymentOrder {
 
 <p>As the <code>CompoundIndex</code> is a subclass of the <code>SpaceIndex</code>, the <code>asyncAddIndex</code> method signature has not been changed.</p>
 
-<h1 id="considerations">Considerations</h1>
+<h1><a name="considerations">&#160;</a>Considerations</h1>
 
 <ol>
 <li>An index segment cannot be a collection or a path within collection.</li>
 <li>All compound index segments must have an <code>Object</code> <code>StorageType</code>.</li>
 </ol>
 
-<h1 id="limitations">Limitations</h1>
+<h1><a name="limitations">&#160;</a>Limitations</h1>
 
 <div class="tc-admon-important">
   

@@ -7,7 +7,7 @@
 
 <p>In some cases when querying the space for objects, only specific properties of objects are required and not the entire object (delta read). The same scenario is also relevant when subscribing for notifications on space data changes, where only specific properties are of interest to the subscriber. For that purpose the Projection API can be used where one can specify which properties are of interest and the space will only populate these properties with the actual data when the result is returned back to the user. This approach reduces network overhead , garbage memory generation and serialization CPU overhead.</p>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>Projections are supported using a <a href="query-sql.htm">SqlQuery</a> or <a href="query-by-id.htm">ID Queries</a>. Below is a simple example that demonstrates reading a <code>Person</code> object where only the "FirstName' and "LastName' properties are returned with the query result array. All other <code>Person</code> properties will not be returned:</p>
 
@@ -52,21 +52,21 @@ SpaceDocument docresult[] = space.ReadMultiple(docQuery);
 SpaceDocument docresult[] = space.ReadMultiple(docQuery);
 </code></pre>
 
-<h1 id="supported-operations">Supported Operations</h1>
+<h1><a name="supported-operations">&#160;</a>Supported Operations</h1>
 
 <p>A projection is defined for any operation that returns data from the Space. Therefore id-based or query-based operations support projections. You can use the Projection API with <code>Read</code>,<code>Take</code>,<code>ReadById</code>,<code>TakeById</code>,<code>ReadMultiple</code> and <code>TakeMultiple</code> operations. When performing a <code>Take</code> operation with projection, the entire Object will be removed from the space, but the result returned to the user will contain only the projected properties.</p>
 
 <p>You can use projections with a <a href="notify-container-overview.htm">Notify Container</a>, when subscribing to notifications. You can use it with a <a href="polling-container-overview.htm">Polling Container</a>, when consuming Space Objects. You can also create a <a href="local-view.htm">Local View</a> with templates or a <code>View</code> using projections. The local view will maintain the relevant objects, but the view of the data will contain only the projected properties.
 Both dynamic and fixed properties can be specified - the syntax is the same. As a result, when providing a property name which is not part of the property set, it will be treated as a dynamic property: That is, if there is no like-named dynamic property present on a query result Object, then the property will be ignored entirely (and no Exception will be thrown). Please note that a result may contain multiple objects, each with a different combination of properties (fixed and/or dynamic) - each object will be treated individually when applying projections to it.</p>
 
-<h1 id="considerations">Considerations</h1>
+<h1><a name="considerations">&#160;</a>Considerations</h1>
 
 <ol>
 <li>You can't use a projection on <a href="local-cache.htm">Local Cache</a>, as the Local Cache needs to contain fully constructed objects. Reconstructing an Object locally with projection would only negatively impact performance.</li>
 <li>You can't use a projection to query a Local View for the same reason as for Local Cache. However, you can create a Local View with a projection template in which case the Local View will contain the Objects in their projected form.</li>
 </ol>
 
-<h1 id="working-examples">Working Examples</h1>
+<h1><a name="working-examples">&#160;</a>Working Examples</h1>
 
 <div class="tc-admon-refer">
   

@@ -41,7 +41,7 @@ In order to use this feature, include the <code>${XAP_HOME}/lib/optional/full-te
   <p>For more information on dependencies see <a href="../started/maven-artifacts.htm">Maven Artifacts</a></p>
 </div>
 
-<h1 id="examples">Examples</h1>
+<h1><a name="examples">&#160;</a>Examples</h1>
 
 <p>Text search queries are available through the <code>text:</code> extension to the <a href="query-sql.htm">SQL query syntax</a>.</p>
 
@@ -74,11 +74,11 @@ query.setParameter(1, "space");
 query.setParameter(1, "blog");
 </code></pre>
 
-<h1 id="supported-search-operations">Supported Search Operations</h1>
+<h1><a name="supported-search-operations">&#160;</a>Supported Search Operations</h1>
 
 <p>XAP supports the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.htm#package_description" target="_blank" >Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
 
-<h1 id="nested-properties">Nested Properties</h1>
+<h1><a name="nested-properties">&#160;</a>Nested Properties</h1>
 
 <p>In the example below, the <code>author</code> is a property of type <code>Person</code>  which is a property of <code>NewsArticle</code>:</p>
 
@@ -132,7 +132,7 @@ query.setParameter(1, "Friedrich");
 query.setParameter(2, "Durrenmatt");
 </code></pre>
 
-<h1 id="combining-text-and-standard-predicates">Combining Text and Standard Predicates</h1>
+<h1><a name="combining-text-and-standard-predicates">&#160;</a>Combining Text and Standard Predicates</h1>
 
 <p>Suppose our <code>NewsArticle</code> class contains a articleNumber property as well, and we want to enhance our query and find the NewsArticle with a articleNumber. We can simply add the relevant predicate to the query’s criteria:</p>
 
@@ -141,7 +141,7 @@ query.setParameter(1, "deployment");
 query.setParameter(2, new Long(1000));  
 </code></pre>
 
-<h1 id="analyzer">Analyzer</h1>
+<h1><a name="analyzer">&#160;</a>Analyzer</h1>
 
 <p>An <a href="http://lucene.apache.org/core/5_3_0/core/org/apache/lucene/analysis/package-summary.htm#package_description" target="_blank" >Analyzer</a> is responsible for supplying a TokenStream which can be consumed by the indexing and searching processes in Lucene. There are several different <a href="https://lucene.apache.org/core/3_0_3/api/core/org/apache/lucene/analysis/Analyzer.htm" target="_blank" >Analyzers</a> available.</p>
 
@@ -201,14 +201,14 @@ public class NewsArticle {
   <p>If the <code>@SpaceTextAnalyzer</code> annotation is omitted, the <code>StandardAnalyzer</code> is applied.</p>
 </div>
 
-<h1 id="indexing">Indexing</h1>
+<h1><a name="indexing">&#160;</a>Indexing</h1>
 
 <div class="tc-admon-refer">
   
   <p>The performance of text search queries can be vastly improved by indexing the relevant  properties. For detailed information see See <a href="indexing-text-search.htm">Indexing</a> for more information.</p>
 </div>
 
-<h1 id="space-document">Space Document</h1>
+<h1><a name="space-document">&#160;</a>Space Document</h1>
 
 <p>The text search is also supported with <a href="document-overview.htm">Space Documents</a>. Lets take the above example of the <code>NewsArticle</code> and use it as a <code>SpaceDocument</code>:</p>
 
@@ -254,7 +254,7 @@ SpaceDocument result = this.gigaSpace.read(query);
   <p>Refer to <a href="document-overview.htm">SpaceDocument</a> for more information on SpaceDocument.</p>
 </div>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
 <table>
 <thead>

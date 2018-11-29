@@ -31,11 +31,11 @@ The following should be added to your <code>pu.xml</code> to enable the configur
 </p>
 </div>
 
-<h2 id="transaction-manager-types">Transaction Manager Types</h2>
+<h2><a name="transaction-manager-types">&#160;</a>Transaction Manager Types</h2>
 
 <p>XAP provides several transaction managers, and changing the implementation you work with is just a matter of changing the the configuration. The different types of transaction managers that are supported by XAP are described further on in this topic. Each transaction manager implements Spring's <code>PlatformTransactionManager</code> interface and therefore supports the Spring transaction framework (see below).</p>
 
-<h1 id="constructing-the-xap-transaction-manager">Constructing the XAP Transaction Manager</h1>
+<h1><a name="constructing-the-xap-transaction-manager">&#160;</a>Constructing the XAP Transaction Manager</h1>
 
 <p>The distributed <a href="https://river.apache.org/release-doc/current/specs/html/txn-spec.htm" target="_blank" >Jini Transaction Manager</a> starts an embedded distributed (Mahalo) <span class="tc-bold">Jini Transaction Manager</span>, which is then wrapped with an implementation of the Spring <code>PlatformTransactionManager</code>. This transaction manager is used to perform distributed transactions spanning multiple Space instances.</p>
 
@@ -65,7 +65,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 </div>
 </div>
 
-<h2 id="timeout-values">Timeout Values</h2>
+<h2><a name="timeout-values">&#160;</a>Timeout Values</h2>
 
 <p>The Jini distributed (Mahalo) transaction manager allows setting the default timeout value for transactions. A timeout value is used when a transaction is not committed/rolled back (for example, due to a JVM crash) to control when the transaction will be discarded. By default, the timeout value is 90 and is set in seconds.</p>
 
@@ -109,7 +109,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>When using Jini-based transactions, a timeout value can be set for both the commit and abort operations. This values can also be set on the transaction manager.</p>
 
-<h1 id="connecting-to-the-xap-transaction-manager">Connecting to the XAP Transaction Manager</h1>
+<h1><a name="connecting-to-the-xap-transaction-manager">&#160;</a>Connecting to the XAP Transaction Manager</h1>
 
 <p>The Jini Transaction Manager Lookup allows you to use the Jini lookup mechanism in order to lookup a Jini Transaction Manager that is present somewhere in the cluster (as opposed to being started locally in your application), which is then wrapped with an implementation of the Spring <code>PlatformTransactionManager</code>. This transaction manager is usually used in order to obtain a remote Jini Mahalo transaction manager for distributed transactions spanning multiple Space instances.</p>
 
@@ -148,7 +148,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>When using Jini-based transactions, a timeout value can be set for both the commit and abort operations. This values can also be set on the transaction manager.</p>
 
-<h1 id="renewing-transactions">Renewing Transactions</h1>
+<h1><a name="renewing-transactions">&#160;</a>Renewing Transactions</h1>
 
 <p>Jini transactions allow you to configure automatic renewing of ongoing transactions. This feature is very useful if you have to configure a long transaction timeout, and have it expire earlier in case of a complete failure (for example, a JVM crash). Expiring the transaction is important so objects held under a transaction lock are released as soon as possible.</p>
 
@@ -196,7 +196,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
 
 <p>More information regarding Lease Renewal Manager can be found <a href="leases-automatic-expiration.htm#LeaseRenewalManager">here</a>.</p>
 
-<h1 id="xa-jta-support">XA/JTA Support</h1>
+<h1><a name="xa-jta-support">&#160;</a>XA/JTA Support</h1>
 
 <p>XAP can be used within an XA transaction using JTA. The OpenSpaces API allows you to work with Spring's <code>JTATransactionManager</code> and provides support for declarative transaction management. The following is an example of how OpenSpaces JTA support can be used (using JOTM):</p>
 
@@ -248,7 +248,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
   <p>See the <a href="/sbp/jta-xa-example.htm">JTA-XA Example</a> for fully running demonstration how to integrate XAP with an external JMS Server.</p>
 </div>
 
-<h1 id="multiple-transaction-managers">Multiple Transaction Managers</h1>
+<h1><a name="multiple-transaction-managers">&#160;</a>Multiple Transaction Managers</h1>
 
 <p>Starting with Spring 3, you can specify multiple Transaction managers within the same Spring context (pu.xml) and use the <code>@Transactional</code> annotation. If you use multiple Transaction managers, make sure you specify the name of the transaction manager your class/method should use:</p>
 
@@ -275,7 +275,7 @@ public String getFoo()
 }
 </code></pre>
 
-<h1 id="how-to-demarcate-transactions-in-your-code">How to Demarcate Transactions in Your Code</h1>
+<h1><a name="how-to-demarcate-transactions-in-your-code">&#160;</a>How to Demarcate Transactions in Your Code</h1>
 
 <p>There are two ways to demarcate the transaction boundaries in your code:</p>
 
@@ -284,7 +284,7 @@ public String getFoo()
 <li>Programmatically create the required transaction manager (see below) and a <code>TransactionDefinition</code> instance, and call the Space operations you would to perform under a transaction.</li>
 </ol>
 
-<h1 id="declarative-transaction-demarcation">Declarative Transaction Demarcation</h1>
+<h1><a name="declarative-transaction-demarcation">&#160;</a>Declarative Transaction Demarcation</h1>
 
 <p>The following is an example of how a method should be annotated to support declarative transaction management:</p>
 
@@ -336,7 +336,7 @@ public void myTransactionalMethod(Object data) {
 
 <p>You can also annotate beans exposed via <a href="space-based-remoting-overview.htm">space based remoting</a>. If you include the <code>&lt;tx:annotation-driven&gt;</code> element in your <code>pu.xml</code> file, it will be processed as any other bean and the remoting mechanism will use the proxied instance, thus making the remote call to the bean transactional.</p>
 
-<h1 id="programmatic-transaction-management">Programmatic Transaction Management</h1>
+<h1><a name="programmatic-transaction-management">&#160;</a>Programmatic Transaction Management</h1>
 
 <p>If you don't want to leverage <a href="http://static.springframework.org/spring/docs/2.5.x/reference/transaction.htm#transaction-declarative" target="_blank" >Spring&#39;s declarative transaction management</a>, or have an application that is not configured by Spring, you can start, commit and roll back transactions explicitly from within your code by using Spring's transaction API.</p>
 
@@ -390,7 +390,7 @@ ptm.commit(status);
   <p>When using Programmatic Transaction Management you should be expecting to handle the <code>org.springframework.transaction.TransactionException</code> that will have the exact reason as an instance of <code>net.jini.core.transaction.TransactionException</code>. This has the following subclasses exceptions: CannotAbortException, CannotCommitException, CannotJoinException, CannotNestException, CrashCountException, TimeoutExpiredException,UnknownTransactionException.</p>
 </div>
 
-<h1 id="spring-transactiondefinition-mapping-to-xap-readmodifiers">Spring TransactionDefinition Mapping to XAP ReadModifiers</h1>
+<h1><a name="spring-transactiondefinition-mapping-to-xap-readmodifiers">&#160;</a>Spring TransactionDefinition Mapping to XAP ReadModifiers</h1>
 
 <p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.htm" target="_blank" >Spring TransactionDefinition</a> Mapping to XAP ReadModifiers:</p>
 
@@ -425,14 +425,14 @@ ptm.commit(status);
 </tbody>
 </table>
 
-<h1 id="viewing-transactions">Viewing Transactions</h1>
+<h1><a name="viewing-transactions">&#160;</a>Viewing Transactions</h1>
 
 <div class="tc-admon-refer">
   
   <p>You can view and inspect ongoing Space transactions with the <a href="../admin/gigaspaces-browser-transaction-view.htm">GigaSpaces Management Center</a>.</p>
 </div>
 
-<h1 id="starting-embedded-mahalo">Starting Embedded Mahalo</h1>
+<h1><a name="starting-embedded-mahalo">&#160;</a>Starting Embedded Mahalo</h1>
 
 <p>You can enable this option in one of the following ways:</p>
 

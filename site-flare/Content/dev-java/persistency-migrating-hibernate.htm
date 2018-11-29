@@ -88,15 +88,15 @@
   <p>The space can be used as a <a href="/sbp/gigaspaces-for-hibernate-orm-users.htm">Hibernate second level cache</a>.</p>
 </div>
 
-<h1 id="caching-policies-and-space-persistency">Caching policies and Space Persistency</h1>
+<h1><a name="caching-policies-and-space-persistency">&#160;</a>Caching policies and Space Persistency</h1>
 
 <p><a href="space-persistency-overview.htm">Space Persistency</a> supports the <span class="tc-bold">All In Cache</span> and <span class="tc-bold">LRU</span> <a href="memory-management-overview.htm">Cache policies</a>.</p>
 
-<h2 id="all-in-cache-policy">All In Cache Policy</h2>
+<h2><a name="all-in-cache-policy">&#160;</a>All In Cache Policy</h2>
 
 <p>With the <a href="all-in-cache-cache-policy.htm">All In Cache policy</a>, the assumption is the Space holds the entire data in memory. In this case, the space communicated with the data source at startup, and loads all the data. If data within the space is updated/added/removed, the space is calling the <a href="space-synchronization-endpoint-api.htm">SpaceSynchronizationEndpoint</a> implementation to update the underlying data source. All data activities leveraging the data in memory.</p>
 
-<h2 id="lru-cache-policy-read-ahead">LRU Cache Policy - Read-Ahead</h2>
+<h2><a name="lru-cache-policy-read-ahead">&#160;</a>LRU Cache Policy - Read-Ahead</h2>
 
 <p>LRU persistency model is based on the eviction model: <span class="tc-bold">Some</span> of the data stored In-Memory (based on auto expiration mechanism or explicit data eviction) and <span class="tc-bold">ALL</span> the data stored on disk where the preferred disk media is a database. You may leverage Hibernate as the mapping layer when data is persist or have a custom persistency mapping implemented leveraging the <a href="space-data-source-api.htm">Space Data Source API</a>.</p>
 
@@ -130,7 +130,7 @@
 
 <p>In both cases (ALL_IN_CACHE and LRU cache policy), you can <a href="space-persistency-initial-load.htm">customize the data load phase</a> to speed up the space initialization phase.</p>
 
-<h1 id="space-persistency">Space Persistency</h1>
+<h1><a name="space-persistency">&#160;</a>Space Persistency</h1>
 
 <p>The space can load data from data sources, store data into data sources, and persist data into a relational data source or any other media via a custom <a href="space-synchronization-endpoint-api.htm">SpaceSynchronizationEndpoint</a> implementation. <a href="space-persistency-overview.htm">Space Persistency</a> a built-in implementation using <a href="hibernate-space-persistency.htm">Hibernate</a>, to store data in an existing data source and in the space. Data is loaded from the data source during space initialization (via the <code>SpaceDataSource</code> implementation), and from then onwards the application works with the space directly. Meanwhile, the data source is constantly updated with all the changes made in the space (via the <code>SpaceSynchronizationEndpoint</code> implementation). This is the recommended model.</p>
 

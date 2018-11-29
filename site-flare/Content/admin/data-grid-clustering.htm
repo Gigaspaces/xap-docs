@@ -5,7 +5,7 @@
 <h1>Data Grid Clustering</h1>
   
 
-<h1 id="overview">Overview</h1>
+<h1><a name="overview">&#160;</a>Overview</h1>
 
 <p>XAP's data grid clustering, scalability and high availability are based on the following concepts:</p>
 
@@ -34,13 +34,13 @@
 <li>The transaction boundary is preserved when data is replicated from a primary instance to the backup instance, when persisting the data or when replicating the data to a remote site over the WAN (<a href="../dev-java/multi-site-replication-overview.htm">WAN Gateway</a>).</li>
 </ul>
 
-<h1 id="consistency">Consistency</h1>
+<h1><a name="consistency">&#160;</a>Consistency</h1>
 
-<h2 id="under-concurrent-updates">Under Concurrent Updates</h2>
+<h2><a name="under-concurrent-updates">&#160;</a>Under Concurrent Updates</h2>
 
 <p>To ensure consistency when there are concurrent updates on the same data record, each individual record is mapped to a single logical partition at each given point in time.  To ensure scalability, different records of the same logical table are written to multiple partitions in parallel, as described above. Each partition supports the various locking semantics (pessimistic, optimistic (versioning), dirty-read) etc. to control the concurrent access of the same record within the context of a single partition.</p>
 
-<h2 id="between-two-or-more-replicas">Between Two or More Replicas</h2>
+<h2><a name="between-two-or-more-replicas">&#160;</a>Between Two or More Replicas</h2>
 
 <p>To ensure continuous high availability, XAP keeps one or more copies of the data.</p>
 
@@ -48,25 +48,25 @@
 
 <p>XAP uses synchronous backup to avoid the above-described scenario.  The performance overhead of synchronous replication is fixed, and is not related to the size of the cluster (each partition replicates data only to its backup replica). Data replication to the database is kept asynchronous to reduce the overhead of writing to disk.</p>
 
-<h1 id="transaction-consistency">Transaction Consistency</h1>
+<h1><a name="transaction-consistency">&#160;</a>Transaction Consistency</h1>
 
 <p>Single operations or groups of operations can be executed under transactions. This ensures that the ACID properties are preserved. Transactions can be made local to each partition. If local, they are bound to the scope of a single partition and are highly optimized in terms of performance. Transactions can also span between nodes, however in this case the overhead is higher.</p>
 
-<h1 id="ordering">Ordering</h1>
+<h1><a name="ordering">&#160;</a>Ordering</h1>
 
 <p>All operations are ordered based on the time they were written. This is specifically relevant to ensure the consistency between the in-memory cluster and the long-term storage, which is updated asynchronously.</p>
 
-<h1 id="availability">Availability</h1>
+<h1><a name="availability">&#160;</a>Availability</h1>
 
-<h2 id="primary-failure">Primary Failure</h2>
+<h2><a name="primary-failure">&#160;</a>Primary Failure</h2>
 
 <p>XAP keeps one or more replica nodes as a hot backup. The hot backup takes over immediately if a primary node fails. The hot backup nodes use synchronous replication to ensure that there is no data loss before failover takes place.</p>
 
-<h2 id="backup-failure">Backup Failure</h2>
+<h2><a name="backup-failure">&#160;</a>Backup Failure</h2>
 
 <p>When a backup node fails, the primary continues to serve requests and log the operation in a redo-log. In parallel, a new backup is provisioned on demand to take over from the failed backup. This involves a provisioning process in which a new backup is created, and a recovery process during which the backup gets its state.</p>
 
-<h2 id="failure-of-multiple-nodes">Failure of Multiple Nodes</h2>
+<h2><a name="failure-of-multiple-nodes">&#160;</a>Failure of Multiple Nodes</h2>
 
 <p>To increase availability, some of the NoSQL variants suggest at least three or more replicas per partition. This enables handling simultaneous failure of multiple nodes. This topology comes with a huge overhead; for each terabyte of data, there are two terabytes of redundant information for backup purposes. Additionally (and equally importantly), there is the consistent overhead of keeping all the replicas up to date.</p>
 
@@ -74,25 +74,25 @@
 
 <p>As soon the node starts, it first initiates a primary election protocol to assign the master node within its group, and only then boots up. The startup process includes a recovery stage, during which the node recovers its state from either the master node or the available replicas. The source node also stores all the updates that occurred from the time the recovery began in a redo log, and replays all updates to fill in the gap that was created when the node started its recovery process.</p>
 
-<h2 id="client-failure">Client Failure</h2>
+<h2><a name="client-failure">&#160;</a>Client Failure</h2>
 
 <p>Clients use a cluster-aware proxy to communicate with the cluster. This smart proxy ensures that a write or read operation is always routed to one of the available partitions. The routing happens implicitly, so the client is not exposed to a failover scenario.</p>
 
-<h2 id="lookup-discovery-protocol">Lookup Discovery Protocol</h2>
+<h2><a name="lookup-discovery-protocol">&#160;</a>Lookup Discovery Protocol</h2>
 
 <p>The XAP cluster discovery mechanism is based on the Jini specification. Services use the discovery protocol to find nodes within the cluster, and to share the cluster state among all the nodes.</p>
 
-<h1 id="network-partition-tolerance">Network Partition Tolerance</h1>
+<h1><a name="network-partition-tolerance">&#160;</a>Network Partition Tolerance</h1>
 
-<h2 id="between-primary-and-backup">Between Primary and Backup</h2>
+<h2><a name="between-primary-and-backup">&#160;</a>Between Primary and Backup</h2>
 
 <p>If the connection between two nodes fails, the primary node logs all the transactions into a FIFO queue known as the redo log. As soon as communication betwween the nodes is re-established, all the data gets replayed to the backup. If the backup fails completely, the system starts a new instance as described above.</p>
 
-<h2 id="with-long-term-persistency">With Long-Term Persistency</h2>
+<h2><a name="with-long-term-persistency">&#160;</a>With Long-Term Persistency</h2>
 
 <p>If communication with the long-term persistency data store fails, the replica logs all the operations until the connection is re-established. The log is also replicated to a backup node, to ensure that data isn't lost if the primary partition fails before the data was successfully committed to long-term data storage.</p>
 
-<h2 id="between-two-or-more-data-center-sites">Between Two or More Data Center Sites</h2>
+<h2><a name="between-two-or-more-data-center-sites">&#160;</a>Between Two or More Data Center Sites</h2>
 
 <p>The standard reference scenario for partition tolerance is one in which two sites reside in two separate geographic locations, and continue to work independently in case of network partition. Howevet, there are actually two types of multi-site deployments to consider, which are fundamentally different regarding the network partition:</p>
 
@@ -103,7 +103,7 @@
 
 <p>The recommended approach for dealing with multi-site network partition is fairly different for each of these scenarios.</p>
 
-<h3 id="disaster-recovery-site">Disaster Recovery Site</h3>
+<h3><a name="disaster-recovery-site">&#160;</a>Disaster Recovery Site</h3>
 
 <p>Disaster recovery sites are very much like any node in a local network, but often reside in different network segments and have higher latency than local networks. Nodes within a cluster can be tagged with a zone tag to mark their data-center affinity. The system can use this information to automatically provision primary and backup nodes between the two sites. It will use the zone tag to ensure that the primary and backup sites are always spread between two data centers.</p>
 
@@ -113,7 +113,7 @@
 <li><p>Partition Tolerance - The system will continue to function even in a scenario where an entire site fails or become disconnected. The system continues to work through the available site.  The system also rebalances itself as soon as  communication is re-established between both sites, so that the load is once again evenly distributed.</p></li>
 </ul>
 
-<h3 id="geographically-distributed-sites-over-internet-wan">Geographically Distributed Sites over Internet WAN</h3>
+<h3><a name="geographically-distributed-sites-over-internet-wan">&#160;</a>Geographically Distributed Sites over Internet WAN</h3>
 
 <p>In this scenario, nodes are spread over Internet connections where the SLAs are lower and latency is significantly higher. Therefore, it is impractical to treat all of the nodes as a single cluster, as in the Disaster Recover Site scenario. Using a federated cluster deployment (a cluster of clusters) is preferable, with asynchronous replication to synchronize the multiple sites and avoid the extreme latency overhead.</p>
 
@@ -130,9 +130,9 @@
   <p>Consistency under concurrent updates between two sites can also be handled using versioning. In this case it is assumed that the latest version wins, or that the system delegates the decision for resolving conflicting updates to the application.  This complex scenario is beyond the scope of this topic.</p>
 </div>
 
-<h1 id="handling-extreme-failure">Handling Extreme Failure</h1>
+<h1><a name="handling-extreme-failure">&#160;</a>Handling Extreme Failure</h1>
 
-<h2 id="multiple-node-failures-at-the-same-time">Multiple Node Failures at the Same Time</h2>
+<h2><a name="multiple-node-failures-at-the-same-time">&#160;</a>Multiple Node Failures at the Same Time</h2>
 
 <p>In a scenario where both the primary and backup instances of a given partition fail at the same time, this cluster is considered non-functional and operations to it are blocked until the cluster becomes functional again. In this case, it is acceptable to compromise on certain aspects of availability for the sake of consistency.</p>
 
@@ -143,7 +143,7 @@
   <p>When a proper disaster recovery site setup is implemented where primaries and their backups never run on the same site, the chance of experiencing this type of extreme failure is close to zero, and is the equivalent of having the two sites down at the same time.</p>
 </div>
 
-<h2 id="recovery-from-total-failure">Recovery from Total Failure</h2>
+<h2><a name="recovery-from-total-failure">&#160;</a>Recovery from Total Failure</h2>
 
 <p>When the entire system crashes, it boots itself either from the long-term persistent storage or from a snapshot (new). If this happens, some of the data that was kept in memory and has not yet been delivered to the long-term persistent storage may be lost.</p>
 

@@ -7,14 +7,14 @@
 
 <p>Jini is a network architecture for the construction of distributed systems where scale, rate of change and complexity of interactions within and between networks are extremely important and cannot be satisfactorily addressed by existing technologies. Jini technology provides a flexible infrastructure for delivering services in a network, and for creating spontaneous interactions between clients that use these services regardless of their hardware or software implementations.</p>
 
-<h1 id="dynamic-network-architecture">Dynamic Network Architecture</h1>
+<h1><a name="dynamic-network-architecture">&#160;</a>Dynamic Network Architecture</h1>
 
 <p>Traditional network architecture is static in nature. Network designers know in advance which computer hardware and software will participate in a specific customer solution, and the network infrastructure is built in accordance with this concept. For example, in the Client/Server network architecture, specific server resources are designated to be served to clients on request, while other software units are indigenous on the clients.
 Dynamic network architecture recognizes that to achieve the best customer solution, it is better not to decide in advance the specific hardware and software that will participate in the solution. Because of the multiplicity of software and hardware available on the network that could participate in the solution, it is advantageous to defer the decision until the software or hardware is actually required. The idea is to have the solution itself seek on the network the components and resources it requires, choosing them on the basis of availability, performance and quality. Should the selected components and resources degrade or fail during execution, the solution can replace them while continuing to operate, increasing the reliability of the solution.</p>
 
 <p>It is difficult to draw a network connection diagram for such a solution, because it changes constantly during the solution's execution as the system connects, disconnects and reconnects to various network hardware and software – hence <span class="tc-bold">dynamic</span> network architecture.</p>
 
-<h1 id="service-oriented-architecture">Service-Oriented Architecture</h1>
+<h1><a name="service-oriented-architecture">&#160;</a>Service-Oriented Architecture</h1>
 
 <p>Service-oriented architecture (SOA) is the dynamic network architecture discussed above as applied to software components. An executing solution seeks on the network the software services it requires, choosing them on the basis of availability, performance and quality.</p>
 
@@ -23,7 +23,7 @@ Dynamic network architecture recognizes that to achieve the best customer soluti
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/about_jini1.gif" alt="about_jini1.gif" /></p>
 </div>
 
-<h1 id="network-federation-and-infrastructure">Network Federation and Infrastructure</h1>
+<h1><a name="network-federation-and-infrastructure">&#160;</a>Network Federation and Infrastructure</h1>
 
 <p>In order to support the operation of a dynamic network architecture or an SOA, a new concept of networking and supporting infrastructure is required. The traditional concept of a network administrator residing on a specific computer and performing the majority of maintenance functions is not viable in an architecture in which computers can be readily exchanged.</p>
 
@@ -47,7 +47,7 @@ Dynamic network architecture recognizes that to achieve the best customer soluti
   <p>For a detailed explanation of these services, refer to the <a href="#1">Key Jini Services</a> section below.</p>
 </div>
 
-<h1 id="a-java-based-technology">A Java-Based Technology</h1>
+<h1><a name="a-java-based-technology">&#160;</a>A Java-Based Technology</h1>
 
 <p>As the following block diagram shows, the Jini technology is made possible by the characteristics of the Java language, in particular:</p>
 
@@ -66,9 +66,9 @@ Dynamic network architecture recognizes that to achieve the best customer soluti
   <p>For more details, refer to the <a href="#2">JavaSpaces</a> section below.</p>
 </div>
 
-<h1 id="jini-architecture">Jini Architecture</h1>
+<h1><a name="jini-architecture">&#160;</a>Jini Architecture</h1>
 
-<h2 id="registering-a-service">Registering a Service</h2>
+<h2><a name="registering-a-service">&#160;</a>Registering a Service</h2>
 
 <p>This section discusses the fundamental issue of how services connect and register with the network in a SOA.</p>
 
@@ -81,7 +81,7 @@ Dynamic network architecture recognizes that to achieve the best customer soluti
 <li>Client</li>
 </ul>
 
-<h2 id="service-proxy">Service Proxy</h2>
+<h2><a name="service-proxy">&#160;</a>Service Proxy</h2>
 
 <p>To register a service, a provider needs to supply two items – a set of attributes that describe the service being registered and a service proxy.</p>
 
@@ -92,7 +92,7 @@ Dynamic network architecture recognizes that to achieve the best customer soluti
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/about_jini3.gif" alt="about_jini3.gif" /></p>
 </div>
 
-<h2 id="registering-and-using-a-service">Registering and Using a Service</h2>
+<h2><a name="registering-and-using-a-service">&#160;</a>Registering and Using a Service</h2>
 
 <p>The following diagram shows how a service provider registers a service with the Lookup Service, and how a client subsequently locates the service at the Lookup Service and begins working with the service.</p>
 
@@ -101,27 +101,27 @@ Dynamic network architecture recognizes that to achieve the best customer soluti
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/about_jini4.gif" alt="about_jini4.gif" /></p>
 </div>
 
- <a id="1">&#160;</a>
+ <a name="1">&#160;</a>
 
-<h1 id="key-jini-services">Key Jini Services</h1>
+<h1><a name="key-jini-services">&#160;</a>Key Jini Services</h1>
 
 <p>This section discusses the key Jini services and their role in creating a dynamic service oriented architecture.</p>
 
-<h2 id="lookup-service">Lookup Service</h2>
+<h2><a name="lookup-service">&#160;</a>Lookup Service</h2>
 
 <p>In a dynamic federation in which services can join and leave at any time, up-to-date lookup registry is necessary.</p>
 
 <p>The Lookup Service is the primary means for client programs to find services in the federation, and is the foundation for providing user interfaces through which users and administrators can discover and interact with services in the federation. Descriptive service information stored in the Lookup Service helps clients decide whether to use the service or not.</p>
 
- <a id="3">&#160;</a>
+ <a name="3">&#160;</a>
 
-<h3 id="interfaces-and-classes">Interfaces and Classes</h3>
+<h3><a name="interfaces-and-classes">&#160;</a>Interfaces and Classes</h3>
 
 <p>The Lookup Service has the following interfaces:
 The <code>ServiceRegistrar</code> interface provides methods to register service items, find items that match a template, receive event notifications when items are modified, and incrementally explore the collection of items along the three major axes: Entry class, attribute value, and service type.
 The <code>ServiceRegistration</code> interface allows a registered service item to be manipulated and provides methods to return the service ID for the service, return the lease that controls the service registration, allow the lease to be renewed or cancelled, add specified attribute sets to the registered service item and delete all of the service item's existing attributes and replace them with the specified attribute sets.</p>
 
-<h2 id="discovery-and-join">Discovery and Join</h2>
+<h2><a name="discovery-and-join">&#160;</a>Discovery and Join</h2>
 
 <p>Because of the multiplicity of federations on the network and their dynamic nature, a client requires assistance to find the Lookup Service of the appropriate federation.</p>
 
@@ -135,7 +135,7 @@ The <code>ServiceRegistration</code> interface allows a registered service item 
 <li><span class="tc-bold">Multicast announcement protocol</span> – used to announce the presence of a Lookup Service on a local network.</li>
 </ul>
 
-<h3 id="interfaces-and-classes-1">Interfaces and Classes</h3>
+<h3><a name="interfaces-and-classes-1">&#160;</a>Interfaces and Classes</h3>
 
 <p>The discovery service has the following interfaces:</p>
 
@@ -143,7 +143,7 @@ The <code>ServiceRegistration</code> interface allows a registered service item 
 
 <p>The <code>com.sun.jini.discovery</code> package supports multicast discovery and provides a set of constraints, low-level utility classes, and provider interfaces for participating in versions 1 and 2 of the multicast request, multicast announcement, and unicast discovery protocols.</p>
 
-<h2 id="entry-interface">Entry Interface</h2>
+<h2><a name="entry-interface">&#160;</a>Entry Interface</h2>
 
 <p>A dynamic federation requires simple but powerful search schemes and methods. The Entry interface makes it possible to use template-matching search schemes that are suited to network-wide searches.</p>
 
@@ -161,7 +161,7 @@ The <code>ServiceRegistration</code> interface allows a registered service item 
 
 <p>Fields with values must be matched exactly, whereas wildcards <code>null</code> values) match any value.</p>
 
-<h2 id="leasing">Leasing</h2>
+<h2><a name="leasing">&#160;</a>Leasing</h2>
 
 <p>In distributed applications on a network, where there may be partial failures of the network or of components, there needs to be a way for components to be timed out if they have failed, or have become unreachable.</p>
 
@@ -175,7 +175,7 @@ The <code>ServiceRegistration</code> interface allows a registered service item 
 <li>Specifying a particular duration. The lease grantor is required to grant a lease of no more than the requested period of time.</li>
 </ul>
 
-<h3 id="interfaces-and-classes-2">Interfaces and Classes</h3>
+<h3><a name="interfaces-and-classes-2">&#160;</a>Interfaces and Classes</h3>
 
 <p>The leasing service has the main interface <code>Lease</code>, which provides methods to cancel the lease, to get the expiry time and to renew the lease:</p>
 
@@ -186,7 +186,7 @@ The <code>ServiceRegistration</code> interface allows a registered service item 
   <p>Transactions, Entries and notifications use the leasing mechanism.</p>
 </div>
 
-<h2 id="remote-events">Remote Events</h2>
+<h2><a name="remote-events">&#160;</a>Remote Events</h2>
 
 <p>For dynamic network environments,  the notifications of events from remote objects may arrive in different orders on different clients, or may not arrive at all. Further, the object requiring the event notification may not want to have that notification as soon as possible, but only on a schedule determined by the recipient and may want the notification of the event to be sent to a third network party.</p>
 
@@ -209,7 +209,7 @@ The <code>ServiceRegistration</code> interface allows a registered service item 
 <li>The event generator fires an remote event to the listener to indicate the kind of event that occurred.</li>
 </ol>
 
-<h3 id="interfaces-and-classes-3">Interfaces and Classes</h3>
+<h3><a name="interfaces-and-classes-3">&#160;</a>Interfaces and Classes</h3>
 
 <p>The distributed events service has the following interfaces:</p>
 
@@ -224,7 +224,7 @@ The <code>ServiceRegistration</code> interface allows a registered service item 
   <p>The <code>NotifyDelegator</code> uses the above interfaces and classes.</p>
 </div>
 
-<h2 id="transaction-processing-service">Transaction Processing Service</h2>
+<h2><a name="transaction-processing-service">&#160;</a>Transaction Processing Service</h2>
 
 <p>When remote network members participate in a transaction it is important to enforce a consistent model of operations. Then, in case one member participant fails, the transaction can be reliably aborted, ensuring that no partial results are written.
 The Transaction Processing Service supports a two-phase commit model on a dynamic network.</p>
@@ -233,7 +233,7 @@ The Transaction Processing Service supports a two-phase commit model on a dynami
 
 <p>A transaction <span class="tc-bold">completes</span> when any entity either <span class="tc-bold">commits</span> or <span class="tc-bold">aborts</span> the transaction. If a transaction commits successfully, then all operations performed under that transaction will complete. Aborting a transaction means that all operations performed under that transaction will appear never to have happened.</p>
 
-<h3 id="interfaces-and-classes-4">Interfaces and Classes</h3>
+<h3><a name="interfaces-and-classes-4">&#160;</a>Interfaces and Classes</h3>
 
 <p>The Transaction service has the following interfaces:</p>
 
@@ -243,9 +243,9 @@ The Transaction Processing Service supports a two-phase commit model on a dynami
 
 <p>The <code>TransactionManager</code> interface is used for managers of the two-phase commit protocol for top-level transactions and contains methods to create, abort, and commit transactions, and to join a transaction that is managed by this transaction manager.</p>
 
- <a id="2">&#160;</a>
+ <a name="2">&#160;</a>
 
-<h1 id="javaspaces">JavaSpaces</h1>
+<h1><a name="javaspaces">&#160;</a>JavaSpaces</h1>
 
 <p>Building distributed applications with conventional network tools usually entails passing messages between processes or invoking methods on remote objects.</p>
 

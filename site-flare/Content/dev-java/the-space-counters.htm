@@ -18,7 +18,7 @@
 <p>There is no need to use a transaction when getting the counter value as the counter is atomic.
 If the counter property does not exists, the delta will be set as its initial state. This simple API allows you to maintain counters with minimal impact on the system performance as it is replicating only the <code>ChangeSet</code> command and not the entire space object to the backup copy when running a clustered data-grid.</p>
 
-<h1 id="incrementing">Incrementing</h1>
+<h1><a name="incrementing">&#160;</a>Incrementing</h1>
 
 <p>Incrementing a Counter done using the <code>ChangeSet().increment</code> call:</p>
 
@@ -28,7 +28,7 @@ IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(WordCount.class,
 space.change(idQuery, new ChangeSet().increment("mycounter", 1));
 </code></pre>
 
-<h1 id="decrementing">Decrementing</h1>
+<h1><a name="decrementing">&#160;</a>Decrementing</h1>
 
 <p>Decrementing a Counter done using the <code>ChangeSet().decrement</code> call:</p>
 
@@ -38,7 +38,7 @@ IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(WordCount.class,
 space.change(idQuery, new ChangeSet().decrement("mycounter", 1));
 </code></pre>
 
-<h1 id="clearing">Clearing</h1>
+<h1><a name="clearing">&#160;</a>Clearing</h1>
 
 <p>Clearing the Counter value done using the <code>ChangeSet().unset</code> call:</p>
 
@@ -48,7 +48,7 @@ IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(WordCount.class,
 space.change(idQuery, new ChangeSet().unset("mycounter"));
 </code></pre>
 
-<h1 id="getting-the-value">Getting the value</h1>
+<h1><a name="getting-the-value">&#160;</a>Getting the value</h1>
 
 <p>Getting the Counter value done via the read call:</p>
 
@@ -86,11 +86,11 @@ int counterValue = wordount.getMycounter();
 int counterValue= future.get();
 </code></pre>
 
-<h1 id="pre-loading">Pre-Loading</h1>
+<h1><a name="pre-loading">&#160;</a>Pre-Loading</h1>
 
 <p>When pre-loading the space via the <a href="space-persistency-initial-load.htm">External Data Source initial-load</a> you may need to construct Counters data. The <code>initialLoad</code> method allows you to implement the logic to generate the counter data and load it into the space after the actual data been loaded from the external data source (database).</p>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>With the following example the <code>Counter</code> class wraps the <code>GigaSpace.change</code> operation providing simple <code>increment</code>,<code>decrement</code>,<code>get</code> and <code>unset</code> methods to manage counters. The example using an <a href="document-extending.htm">extended SpaceDocument</a> as the space object storing the counters data. To retrieve the counter existing value a <a href="task-execution-overview.htm">Task</a> is used. To launch the example run the <code>CounterTest</code> unit test.</p>
 
