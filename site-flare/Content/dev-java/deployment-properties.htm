@@ -12,7 +12,7 @@
   <p>One of the core values of GigaSpaces XAP processing unit model is that a processing unit need not be changed at all in the transition from the development environment (namely your IDE) to the production environment. This feature, along with others, is one of the enablers of this behavior.</p>
 </div>
 
-<h1 id="defining-property-place-holders-in-your-processing-unit">Defining Property Place Holders in Your Processing Unit</h1>
+<h1><a name="defining-property-place-holders-in-your-processing-unit">&#160;</a>Defining Property Place Holders in Your Processing Unit</h1>
 
 <p>Property injection to the processing unit's configuration is supported at the Spring application context scope, which means that it can be applied to all of the components configured in the <a href="configuring-processing-unit-elements.htm">processing unit's configuration file</a> (whether GigaSpaces out of the box components like the space, space proxy or event containers, or user-defined beans).</p>
 
@@ -62,7 +62,7 @@
 
 <p>The various <a href="deploying-and-running-overview.htm">processing unit runtime modes</a> all provide support for injecting property values instead of place holders. There are several ways to define the values for the property place holders, depending on how you choose to run/deploy your processing unit.</p>
 
-<h2 id="using-a-properties-file">Using a <code>.properties</code> File</h2>
+<h2><a name="using-a-properties-file">&#160;</a>Using a <code>.properties</code> File</h2>
 
 <p>If you would like your properties to be configured in a dedicated file this can be done in various ways.</p>
 
@@ -102,7 +102,7 @@ When deploying via the UI, click "Next" in the first screen of the deployment wi
 <p>Also note that the parsing of the SLA element happens on the deploy tool side, so the properties should be available on the deploy tool side.</p>
 </div>
 
-<h1 id="using-deployment-properties-to-override-space-schema-and-cluster-schema">Using Deployment Properties to Override Space Schema and Cluster Schema</h1>
+<h1><a name="using-deployment-properties-to-override-space-schema-and-cluster-schema">&#160;</a>Using Deployment Properties to Override Space Schema and Cluster Schema</h1>
 
 <p>When a <a href="the-space-configuration.htm">Space</a> is created, two major groups of configuration elements determine its runtime configuration: the space schema and the cluster schema. The cluster schema controls the space clustering topology (partitioned or replicated), whether the replication to its replicas is synchronous or asynchronous, and various other aspects that control its clustering behavior. The space schema on the other hand, controls other elements which are not related to the space clustering topology, such as the eviction strategy (LRU, ALL_IN_CACHE), whether or not its persistent, etc.</p>
 

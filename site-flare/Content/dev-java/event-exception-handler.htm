@@ -105,7 +105,7 @@ public class SimpleListener {
 </div>
 </div>
 
-<h1 id="using-the-event-exception-handler">Using the Event Exception Handler</h1>
+<h1><a name="using-the-event-exception-handler">&#160;</a>Using the Event Exception Handler</h1>
 
 <p>One of the main use cases that an Exception Handler can be used for is to filter out poison messages. For example, with a polling container, if the event data (the message) can't be processed, and the polling container is transactional, it will continue to retry the message indefinitely. It will start a transaction, perform a take, try and process the message, throwing an exception in the process, and rolling back the transaction causing the take operation to be rolled back.</p>
 
@@ -119,7 +119,7 @@ public class SimpleListener {
 
 <p>Its important to note that the exception handler <code>onException</code> and <code>onSuccess</code> operate under the existing on going transaction started by the polling container. Doing something outside of a transaction can be done by using a <code>GigaSpace</code> instance that is not associated with a transaction manager.</p>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>Here is an example where we create Purchase Orders that need to be processed. The <code>NewOrderProcessor</code> will try to process the Purchase Order. If the processing fails it will retry two times. If it can't process the order a <code>PoProcessException</code> is thrown that will be handled by the <code>PoEventExceptionHandler</code>.
 The PoEventExceptionHandler will update the <code>state</code> of the PurchaseOrder to <code>UNPROCESSABLE</code> and write it back into the Space. The order will not be seen by the <code>NewOrderProcessor</code> again since its template specified the status to be <code>NEW</code>.</p>

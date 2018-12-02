@@ -9,7 +9,7 @@
 
 <p>For Linux environments, if you don't have the correct file descriptor settings, there will be <span class="tc-bold">Too many open files</span> error messages in the XAP processes log files or on the client side. Low file descriptor values will affect application stability, along with the ability of clients to connect to the XAP in-memory data grid.  Set both the <span class="tc-bold">System</span> level File Descriptor Limit and the <span class="tc-bold">Process</span> level File Descriptor Limit to high values to avoid these problems (see below for instructions).</p>
 
-<h1 id="system-file-descriptor-limit">System File Descriptor Limit</h1>
+<h1><a name="system-file-descriptor-limit">&#160;</a>System File Descriptor Limit</h1>
 
 <p>To change the number of file descriptors in Linux, as the <code>root</code> user edit the following line in the <code>/etc/sysctl.conf</code> file:</p>
 
@@ -33,7 +33,7 @@
 <pre><code class="language-bash">sysctl fs.file-max
 </code></pre>
 
-<h1 id="process-file-descriptor-limit">Process File Descriptor Limit</h1>
+<h1><a name="process-file-descriptor-limit">&#160;</a>Process File Descriptor Limit</h1>
 
 <p>The Linux OS by default has a relatively small number of file descriptors available and max user processes (1024). You should make sure that your standalone clients, or GSA/GSM/GSC/LUS using a user account which have its <span class="tc-bold">maximum open file descriptors (open files) and max user processes</span> configured to a high value. A good value is 32768.</p>
 
@@ -56,7 +56,7 @@
 
 <p>See <a href="https://rtcamp.com/tutorials/linux/increase-open-files-limit/">increase-open-files-limit</a> for more details.</p>
 
-<h1 id="monitoring-utilized-file-descriptors">Monitoring Utilized File Descriptors</h1>
+<h1><a name="monitoring-utilized-file-descriptors">&#160;</a>Monitoring Utilized File Descriptors</h1>
 
 <p>You can monitor the <code>MaxFileDescriptorCount</code> and <code>OpenFileDescriptorCount</code> using the JConsole:</p>
 

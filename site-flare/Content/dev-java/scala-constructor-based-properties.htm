@@ -7,7 +7,7 @@
 
 <p>The <code>com.gigaspaces.annotation.pojo.SpaceClassConstructor</code> annotation on a constructor will cause the data class properties analysis to be based on properties found in the constructor (instead of getters/setters). This allows data class properties to be immutable.</p>
 
-<h1 id="usage">Usage</h1>
+<h1><a name="usage">&#160;</a>Usage</h1>
 
 <p>Following is an example of such data class.</p>
 
@@ -42,7 +42,7 @@ case class Data @SpaceClassConstructor() (
 )
 </code></pre>
 
-<h1 id="considerations">Considerations</h1>
+<h1><a name="considerations">&#160;</a>Considerations</h1>
 
 <ul>
 <li>Each property defined in the specified constructor must have a matching bean getter method. This method can be generated automatically by the compiler by using the <code>@BeanProperty</code> annotation. If custom behavior is required, the getter method can be written explicitly.</li>

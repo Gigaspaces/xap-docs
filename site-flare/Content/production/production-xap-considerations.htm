@@ -5,7 +5,7 @@
 <h1>XAP Considerations</h1>
   
 
-<h1 id="the-runtime-environment-gsa-lus-gsm-and-gsc">The Runtime Environment (GSA, LUS, GSM and GSC)</h1>
+<h1><a name="the-runtime-environment-gsa-lus-gsm-and-gsc">&#160;</a>The Runtime Environment (GSA, LUS, GSM and GSC)</h1>
 
 <p>In a dynamic environment where you want to start <a href="../overview/the-runtime-environment.htm#gsc">GSCs</a> and <a href="../overview/the-runtime-environment.htm#gsm">GSMs</a> remotely, manually, or dynamically, the <a href="../overview/the-runtime-environment.htm#gsa">GSA</a> is the only component that should be running on the machine hosting the <a href="../admin/the-runtime-environment.htm">XAP runtime environment</a>. This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.</p>
 
@@ -26,7 +26,7 @@
   <p>The recommended number of GSCs a machine should host is <span class="tc-bold">half of the amount</span> of total CPU cores, each having no more than a 10GB maximum heap size.</p>
 </div>
 
-<h2 id="configuring-the-runtime-environment">Configuring the Runtime Environment</h2>
+<h2><a name="configuring-the-runtime-environment">&#160;</a>Configuring the Runtime Environment</h2>
 
 <p>JVM parameters (system properties, heap settings, etc.) that are shared between all components are best set using the <code>EXT_JAVA_OPTIONS</code> environment variable. Specific GSA JVM parameters can be easily passed using <code>XAP_GSA_OPTIONS</code> which will be appended to <code>EXT_JAVA_OPTIONS</code>. As good practice, add all the components' environment variables ( <code>XAP_GSA_OPTIONS</code>, <code>XAP_GSM_OPTIONS</code>, <code>XAP_GSC_OPTIONS</code>, <code>XAP_LUS_OPTIONS</code>) within the GSA script, or in a wrapper script and the values will be passed to corresponding components.</p>
 
@@ -58,9 +58,9 @@ call gs-agent.bat
   <p>The above LUS configuration will serve up to 50 partitions running on 100 GSCs.With larger environments you must increase the heap size and perform GC tuning.</p>
 </div>
 
- <a id="RunningMultipleGroups">&#160;</a>
+ <a name="RunningMultipleGroups">&#160;</a>
 
-<h2 id="running-multiple-groups">Running Multiple Groups</h2>
+<h2><a name="running-multiple-groups">&#160;</a>Running Multiple Groups</h2>
 
 <p>You may have a set of LUS/GSM managing GSCs associated to a specific group. To "break" your network into 2 groups, start the GigaSpaces XAP runtime environment as follows:</p>
 
@@ -92,9 +92,9 @@ gs deploy-space -cluster schema=partitioned total_members=2 spaceY
 
 <p><br/></p>
 
- <a id="RunningMultipleLocators">&#160;</a>
+ <a name="RunningMultipleLocators">&#160;</a>
 
-<h2 id="running-multiple-locators">Running Multiple Locators</h2>
+<h2><a name="running-multiple-locators">&#160;</a>Running Multiple Locators</h2>
 
 <p>You may have a set of LUS/GSM managing GSCs associated to a specific locator. To "break" your network into 2 groups using different lookup locators, start the GigaSpaces XAP runtime environment as follows:</p>
 
@@ -137,7 +137,7 @@ gs deploy-space -cluster schema=partitioned total_members=2 spaceY
 
 <p>The Lookup Service runs by default as a standalone JVM process started by the GSA. You can also embed it to run together with the GSM. In general, you should run two Lookup Services per system. Running more than two Lpokup Services may cause increased overhead due to the chatting and heartbeat mechanism performed between the services and the lookup service, to signal the existence of the service.</p>
 
-<h1 id="zones">Zones</h1>
+<h1><a name="zones">&#160;</a>Zones</h1>
 
 <p>The <a href="../admin/the-sla-zones.htm">XAP zone</a> allows you to "label" a running GSC(s) before starting it. The XAP <span class="tc-bold">zone</span> should be used to isolate applications and a data grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs, where they all share the <span class="tc-bold">same set of LUSs and GSMs</span>.</p>
 
@@ -162,9 +162,9 @@ gs-agent --gsc=2
 </div>
 </div></div>
 
- <a id="RunningMultipleZones">&#160;</a>
+ <a name="RunningMultipleZones">&#160;</a>
 
-<h2 id="running-multiple-zones">Running Multiple Zones</h2>
+<h2><a name="running-multiple-zones">&#160;</a>Running Multiple Zones</h2>
 
 <p>You may have a set of LUS/GSM managing multiple zones (recommended) or have a separate LUS/GSM set per zone. If you have a set of LUS/GSM managing multiple zones, you should run them as follows:</p>
 
@@ -181,7 +181,7 @@ gs-agent.sh --gsc=2
 </div>
 </div></div>
 
-<h1 id="runtime-file-location">Runtime File Location</h1>
+<h1><a name="runtime-file-location">&#160;</a>Runtime File Location</h1>
 
 <p>XAP generates some files while the system is running. You can change the location of the generated files using the following system properties:</p>
 
@@ -250,18 +250,18 @@ gs-agent.sh --gsc=2
   <p>You can use <code>com.gigaspaces.lib.platform.ext</code> and the <code>com.gs.pu-common</code> to decrease the deployment time if your processing unit <span class="tc-bold">contains many third-party JAR files</span>. In this case, each GSC will download the processing unit JAR file (along with all the JARs it depends on) to its local working directory from the GSM. In large deployments spanning tens or hundreds of GSCs, this can be very time consuming. In these cases,  consider <span class="tc-bold">placing the JARs on which your processing unit depends</span> in a shared location on your network, and then point the <code>com.gs.pu-common</code> or <code>com.gigaspaces.lib.platform.ext</code> directory to this location.</p>
 </div>
 
-<h1 id="pu-packaging-and-classpath">PU Packaging and CLASSPATH</h1>
+<h1><a name="pu-packaging-and-classpath">&#160;</a>PU Packaging and CLASSPATH</h1>
 
-<h2 id="user-pu-application-libraries">User PU Application Libraries</h2>
+<h2><a name="user-pu-application-libraries">&#160;</a>User PU Application Libraries</h2>
 
 <p>A <a href="../dev-java/the-processing-unit-structure-and-configuration.htm">Processing Unit</a> JAR file, or a <a href="../dev-java/web-jetty-processing-unit-container.htm">Web Application</a> WAR file should include (within its lib folder) all the necessary JARs required for the application. Resource files should be placed within one of the JAR files within the PU JAR, located under the lib folder. In addition, the PU JAR should include the pu.xml within the <code>META-INF\spring</code> folder.
 In order to close LRMI threads when closing application, use:LRMIManager.shutdown().</p>
 
-<h2 id="data-grid-pu-libraries">Data Grid PU Libraries</h2>
+<h2><a name="data-grid-pu-libraries">&#160;</a>Data Grid PU Libraries</h2>
 
 <p>When deploying a data grid PU, it is recommended to include all space classes and their dependency classes as part a PU JAR file. This PU JAR file should include a pu.xml within the META-INF\spring, to include the space declarations and relevant tuning parameters.</p>
 
-<h2 id="gs-ui-libraries">GS-UI Libraries</h2>
+<h2><a name="gs-ui-libraries">&#160;</a>GS-UI Libraries</h2>
 
 <p>It is recommended to include all space classes and their dependency classes as part of the GS-UI CLASSAPTH . This ensures that you can query the data via the GS-UI. To set the GS-UI classpath, set the <code>POST_CLASSPATH</code> variable prior to calling the GS-UI script to have the application JARs locations.</p>
 
@@ -270,7 +270,7 @@ In order to close LRMI threads when closing application, use:LRMIManager.shutdow
   <p>To avoid having to load the same library into each PU instance classloader running within the GSC, you should place common libraries (such as JDBC driver, logging libraries, Hibernate libraries and their dependencies) in the <code>&lt;gigaspaces-xap root&gt;\lib\optional\pu-common</code> folder. You can specify the location of this folder using the <code>com.gs.pu-common</code> system property.</p>
 </div>
 
-<h1 id="space-memory-management">Space Memory Management</h1>
+<h1><a name="space-memory-management">&#160;</a>Space Memory Management</h1>
 
 <p>The Space supports two <a href="../dev-java/memory-management-overview.htm">memory management</a> modes:</p>
 
@@ -300,7 +300,7 @@ In order to close LRMI threads when closing application, use:LRMIManager.shutdow
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h1 id="distributing-the-primary-spaces">Distributing the Primary Spaces</h1>
+<h1><a name="distributing-the-primary-spaces">&#160;</a>Distributing the Primary Spaces</h1>
 
 <p>By default, when running GSCs on multiple machines and deploying a Space with backups, XAP tries to provision primary Dpaces to all available GSCs across all the machines.
 The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</code> deploy parameters should be set when deploying your data grid, to determine how the deployed Processing Unit (e.g. Space) is provisioned into the different running GSCs.</p>
@@ -318,7 +318,7 @@ The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</c
   <p>After a machine startup (where GSCs are started), when the ESM is not used to deploy the IMDG, spaces do not "re balance" across all the machines to have an even number of primaries per machine. You may have machines running more (or all) primaries, and another machine running only backups.</p>
 </div>
 
-<h1 id="total-max-instances-per-vm">Total Max Instances per VM</h1>
+<h1><a name="total-max-instances-per-vm">&#160;</a>Total Max Instances per VM</h1>
 
 <p>This parameter controls the total amount of PU instances that can be instantiated within a GSC. This is very different than the <code>max-instances-per-vm</code>, which controls how many instances a partition may have within a GSC.  To control the Total Max PU Instances hosted by a GSC, use the <code>com.gigaspaces.grid.gsc.serviceLimit</code> system property and set its value before starting the GigaSpaces agent:</p>
 
@@ -332,9 +332,9 @@ The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</c
 <p>By using <code>com.gigaspaces.grid.gsc.serviceLimit=1</code>, you may avoid a scenario where a new Space or failed Space instance is provisioned in a GSC that already hosts a Space instance. This scenario may result in <span class="tc-bold">Memory Shortage Exception</span> or <span class="tc-bold">Out of Memory Error</span> and may cause a provisioning failure.</p>
 </div>
 
-<h3 id="rebalancing-dynamic-data-redistribution">Rebalancing - Dynamic Data Redistribution</h3>
+<h3><a name="rebalancing-dynamic-data-redistribution">&#160;</a>Rebalancing - Dynamic Data Redistribution</h3>
 
-<h4 id="automatic-rebalancing">Automatic Rebalancing</h4>
+<h4><a name="automatic-rebalancing">&#160;</a>Automatic Rebalancing</h4>
 
 <p>XAP supports automatic discovery, rebalancing (also referred to as Dynamic Redistribution of Data) and expansion/contraction of the IMDG <span class="tc-bold">while the application is running</span>. When deploying an IMDG, the system partitions the data (and the co-located business logic) into logical partitions. You can define the number of logical partitions or let XAP calculate this number.</p>
 
@@ -353,7 +353,7 @@ The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</c
   <p>When using the <a href="../dev-java/elastic-processing-unit-overview.htm">Elastic Processing Unit</a>, instances will be continuously rebalanced across all available machines.</p>
 </div>
 
-<h1 id="log-files">Log Files</h1>
+<h1><a name="log-files">&#160;</a>Log Files</h1>
 
 <p>XAP generates log files for each running component . This includes the GSA, GSC, GSM, Lookup Service and client-side components. By default, the log files are created within the <code>&lt;gigaspaces-xap-root&gt;\logs</code> folder. After some time, you may end up with a large number of files that are difficult to maintain and search. it is recommended to back up or delete old log files. You can use the <a href="../admin/logging-backing-custom-policy.htm">logging backup policy</a> to manage your log files.</p>
 

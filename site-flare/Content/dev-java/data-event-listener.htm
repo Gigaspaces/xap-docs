@@ -15,7 +15,7 @@ XAP provides a single interface for Space Data event listeners used by different
   </tr>
 </table>
 
-<h1 id="space-data-event-listener">Space Data Event Listener</h1>
+<h1><a name="space-data-event-listener">&#160;</a>Space Data Event Listener</h1>
 
 <p>At their core, all different event containers should support raising event to an implementation of <code>SpaceDataEventContainer</code>. It is a simple interface described below:</p>
 
@@ -69,7 +69,7 @@ XAP provides a single interface for Space Data event listeners used by different
 </div>
 </div>
 
-<h1 id="pojo-event-listener-adapters">POJO Event Listener Adapters</h1>
+<h1><a name="pojo-event-listener-adapters">&#160;</a>POJO Event Listener Adapters</h1>
 
 <p>OpenSpaces comes with two built in event adapters, the first supporting annotations and the second supporting method listing. Here is a simple example of an event listener implementation using annotations:</p>
 
@@ -143,7 +143,7 @@ XAP provides a single interface for Space Data event listeners used by different
 </div>
 </div>
 
-<h2 id="adapter-method-parameter-s">Adapter Method Parameter's</h2>
+<h2><a name="adapter-method-parameter-s">&#160;</a>Adapter Method Parameter's</h2>
 
 <p>The adapter method callback can accept zero or more parameters following the same order and types of the <code>SpaceDataEventListener</code>. Since the different adapters use reflection to invoke the event method, specific types can be used as the data event (based on the template provided to the event container). For example, if we define a template that matches <code>Trade</code> objects, our listener can use it directly:</p>
 
@@ -156,7 +156,7 @@ XAP provides a single interface for Space Data event listeners used by different
 }
 </code></pre>
 
-<h2 id="adapter-method-return-value">Adapter Method Return Value</h2>
+<h2><a name="adapter-method-return-value">&#160;</a>Adapter Method Return Value</h2>
 
 <p>The adapter method callback can have a return value which will automatically be written back to the Space. The return value can either be a single object (which will cause write to be called) or an array of objects (which will cause writeMultiple to be called).</p>
 
@@ -205,7 +205,7 @@ XAP provides a single interface for Space Data event listeners used by different
 </div>
 </div>
 
-<h2 id="multiple-event-methods">Multiple Event Methods</h2>
+<h2><a name="multiple-event-methods">&#160;</a>Multiple Event Methods</h2>
 
 <p>A single class can have several method event listeners all with the same name. This allows for automatic matching based on the data event type. Here is an example using annotations:</p>
 
@@ -228,7 +228,7 @@ XAP provides a single interface for Space Data event listeners used by different
   <p>When using a single event method, the event adapter will cache the reflection information in order to invoke the method. In case multiple methods are used, no caching of the reflection information can be done, so a slight performance impact can be experienced.</p>
 </div>
 
-<h1 id="task-executor-event-listener-adapter">Task Executor Event Listener Adapter</h1>
+<h1><a name="task-executor-event-listener-adapter">&#160;</a>Task Executor Event Listener Adapter</h1>
 
 <p>OpenSpaces comes with an event adapter that allows you to delegate the execution of an event listener to a different task executor (a thread pool). It is handy when using the notify container and wanting to release the notification thread. Here is how it can be configured:</p>
 

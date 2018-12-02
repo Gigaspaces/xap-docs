@@ -30,7 +30,7 @@
 
 <p>To learn more about XAP port usage, refer to <a href="network-ports.htm">How to Control the Used Ports</a>.</p>
 
-<h1 id="xap-firewall-settings">XAP Firewall Settings</h1>
+<h1><a name="xap-firewall-settings">&#160;</a>XAP Firewall Settings</h1>
 
 <p><span class="tc-bold">To enable all XAP components to work over a firewall and control all network activity through explicitly defined static ports:</span></p>
 
@@ -57,7 +57,7 @@
   <p>As per IANA standards, port numbers are based on three ranges: System Ports (0-1023), User Ports (1024-49151), and the Dynamic and/or Private Ports (49152-65535). Select your port range from the available user ports or dynamic ports.</p>
 </div>
 
-<h2 id="listener-ports-per-xap-component">Listener Ports per XAP Component</h2>
+<h2><a name="listener-ports-per-xap-component">&#160;</a>Listener Ports per XAP Component</h2>
 
 <table>
 <thead>
@@ -85,9 +85,9 @@
 </tbody>
 </table>
 
-<h2 id="required-configuration-modifications">Required Configuration Modifications</h2>
+<h2><a name="required-configuration-modifications">&#160;</a>Required Configuration Modifications</h2>
 
-<h3 id="bin-gs-sh-script-modifications">bin/gs.sh Script Modifications</h3>
+<h3><a name="bin-gs-sh-script-modifications">&#160;</a>bin/gs.sh Script Modifications</h3>
 
 <p>Add the following system properties to the command line:</p>
 
@@ -139,7 +139,7 @@
 -Dcom.gigaspaces.start.httpPort=7104
 </code></pre>
 
-<h3 id="bin-gs-ui-sh-gui-script-modifications-optional">bin/gs-ui.sh GUI Script Modifications (Optional)</h3>
+<h3><a name="bin-gs-ui-sh-gui-script-modifications-optional">&#160;</a>bin/gs-ui.sh GUI Script Modifications (Optional)</h3>
 
 <p>These modifications are only needed when a GUI client should connect through the firewall. Add the following system properties to the command line:</p>
 
@@ -179,14 +179,14 @@
 -Dcom.gigaspaces.start.httpPort=7104
 </code></pre>
 
-<h3 id="bin-setenv-sh-script-modifications-mandatory">bin/setenv.sh Script Modifications (Mandatory)</h3>
+<h3><a name="bin-setenv-sh-script-modifications-mandatory">&#160;</a>bin/setenv.sh Script Modifications (Mandatory)</h3>
 
 <p>Lookup locators unicast discovery port should be the same as defined in <code>gs.sh</code>, for example:</p>
 
 <pre><code class="language-bash">XAP_LOOKUP_LOCATORS=server111:7102; export XAP_LOOKUP_LOCATORS
 </code></pre>
 
-<h3 id="lrmi-communication-protocol-port-range-setting-modifications">LRMI Communication Protocol Port Range Setting Modifications</h3>
+<h3><a name="lrmi-communication-protocol-port-range-setting-modifications">&#160;</a>LRMI Communication Protocol Port Range Setting Modifications</h3>
 
 <p>The <code>com.gigaspaces.start.httpPort</code> Webster port number property can be defined by overriding as shown below, or using a system property:</p>
 

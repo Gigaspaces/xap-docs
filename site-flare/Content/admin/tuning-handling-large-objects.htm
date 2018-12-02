@@ -12,16 +12,16 @@
   <p>The <code>com.gs.transport_protocol.lrmi.maxBufferSize</code> system property controls the chunk size. See the <a href="tuning-communication-protocol.htm#maxBufferSize">Communication Protocol</a> for details.</p>
 </div>
 
-<h2 id="memory-allocation-behavior">Memory Allocation Behavior</h2>
+<h2><a name="memory-allocation-behavior">&#160;</a>Memory Allocation Behavior</h2>
 
 <p>During the data transfer activity the space leverage non-heap buffers to transfer the data (NIO direct buffer) into the target process, but due-to the serialization behavior, the entire data object maintained for a short duration within the JVM heap. These in-transit buffers will be cleared once the JVM garbage collector will request these (weak reference). To allow this activity to have enough memory headroom, you should increase the Space and client heap size to accommodate these transit buffers. The heap size headroom required would be:</p>
 
 <pre><code class="language-bash">Maximum number of concurrent connections X Maximum Object size
 </code></pre>
 
-<h1 id="large-objects-examples">Large Objects Examples</h1>
+<h1><a name="large-objects-examples">&#160;</a>Large Objects Examples</h1>
 
-<h2 id="using-gigaspace-api-to-store-large-files-within-the-space">Using GigaSpace API to store large files within the space</h2>
+<h2><a name="using-gigaspace-api-to-store-large-files-within-the-space">&#160;</a>Using GigaSpace API to store large files within the space</h2>
 
 <pre><code class="language-java">public class SpaceFile {
 
@@ -124,7 +124,7 @@ public static void bytesTofile(byte[] content, String fileName) {
 }
 </code></pre>
 
-<h2 id="using-jdbc-blob-to-store-large-files-within-the-space">Using JDBC BLOB to Store Large Files within the Space</h2>
+<h2><a name="using-jdbc-blob-to-store-large-files-within-the-space">&#160;</a>Using JDBC BLOB to Store Large Files within the Space</h2>
 
 <pre><code class="language-java">Class.forName("com.j_spaces.jdbc.driver.GDriver").newInstance();
 String url = "jdbc:gigaspaces:url:jini://*/*/mySpace";

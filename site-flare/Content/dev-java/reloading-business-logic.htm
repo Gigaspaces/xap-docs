@@ -13,7 +13,7 @@
 For service reloading to work, common classes have to be copied to the &lt;GigaSpacesRoot&gt;/lib/platform/ext folder</p>
 </div>
 
-<h1 id="configuring-reloadable-business-logic">Configuring Reloadable Business Logic</h1>
+<h1><a name="configuring-reloadable-business-logic">&#160;</a>Configuring Reloadable Business Logic</h1>
 
 <p>Lets assume we have business logic that we would like to reload at some point in time after our Processing Unit has been deployed. Here is an example of such business logic:</p>
 
@@ -67,7 +67,7 @@ For service reloading to work, common classes have to be copied to the &lt;GigaS
 &lt;/beans&gt;
 </code></pre>
 
-<h1 id="reloading-business-logic">Reloading Business Logic</h1>
+<h1><a name="reloading-business-logic">&#160;</a>Reloading Business Logic</h1>
 
 <p>When there is a change in business logic for any beans defined in the refreshable context and these changes are ready to be applied to the cluster, copy the new classes into the GigaSpaces deploy folder of GSM machine(s) and work folder of each cluster node (default location, &lt;GigaSpacesRoot&gt;/work/processing-units/&lt;puInstance&gt;) and execute the reload command as below:</p>
 
@@ -76,7 +76,7 @@ For service reloading to work, common classes have to be copied to the &lt;GigaS
 
 <p>As a result of the above command, all the beans defined in the refreshable context are destroyed and fresh copies of these beans are re-created using the new class definitions in the work folder. Your new version of business logic is now ready without brining down the cluster.</p>
 
-<h1 id="other-considerations">Other Considerations</h1>
+<h1><a name="other-considerations">&#160;</a>Other Considerations</h1>
 
 <ul>
 <li>Refreshable context works only for business logic changes. You cannot modify the data model using this approach.</li>

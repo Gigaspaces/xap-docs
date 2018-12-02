@@ -7,7 +7,7 @@
 
 <p>GigaSpaces XAP.NET offers a collection of system properties which can be used to tweak the system's behavior. For a list of system properties refer to <a href="../admin/system-properties.htm">System Properties List</a>. This page discusses various options of defining and overriding system properties configuration.</p>
 
-<h1 id="using-application-configuration-file">Using Application Configuration File</h1>
+<h1><a name="using-application-configuration-file">&#160;</a>Using Application Configuration File</h1>
 
 <p>Like most .NET libraries, GigaSpaces XAP.NET configuration is based on <a href="http://msdn.microsoft.com/en-us/library/ms229689.aspx" target="_blank" >Application Configuration Files</a>. To set system properties via the configuration file:</p>
 
@@ -46,7 +46,7 @@
 &lt;/configuration&gt;
 </code></pre>
 
-<h1 id="reading-and-changing-configuration-at-runtime">Reading and changing configuration at runtime</h1>
+<h1><a name="reading-and-changing-configuration-at-runtime">&#160;</a>Reading and changing configuration at runtime</h1>
 
 <p>The Xml configuration is mapped to a .NET Object model, which can be viewed and changed at runtime. This can be useful for logging the configuration settings, setting a specific configuration based on some business logic, etc.</p>
 
@@ -76,7 +76,7 @@ if (zones == "foo")
 
 <p>In addition, the <code>GigaSpacesFactory.Initialize()</code> method can be used to initialize XAP.NET explicitly and finalize changes (this is optional - if not called explicitly, this method will be called implicitly by GigaSpaces automatically when needed).</p>
 
-<h1 id="macros">Macros</h1>
+<h1><a name="macros">&#160;</a>Macros</h1>
 
 <p>Continuing the previous example, say we have not one but five applications which we want to configure with the same zones. We want to be able to change the zones in a single place which affects all those applications. This is where  macros are useful.</p>
 
@@ -109,7 +109,7 @@ if (zones == "foo")
 
 <p>GigaSpaces automatically scans property values for macros and replaces them with macro values.</p>
 
-<h1 id="base-configuration-files">Base Configuration Files</h1>
+<h1><a name="base-configuration-files">&#160;</a>Base Configuration Files</h1>
 
 <p>Continuing the previous example, say we want to add more system properties to be shared by all applications. Instead of having to edit each application configuration file, we prefer a single configuration file which contains shared settings. This is where Base Configuration Files come handy.</p>
 
@@ -143,7 +143,7 @@ if (zones == "foo")
 &lt;/configuration&gt;
 </code></pre>
 
-<h3 id="overriding-settings-from-a-base-configuration">Overriding settings from a base configuration</h3>
+<h3><a name="overriding-settings-from-a-base-configuration">&#160;</a>Overriding settings from a base configuration</h3>
 
 <p>Suppose that we have five applications using this base configuration file, and now we want to add a sixth application with one small difference - the property "SomeProperty' should be "OtherValue' and not "SomeValue1'. What do we do?</p>
 

@@ -7,15 +7,15 @@
 
 <p>The Space's Messaging and Events support provides messaging handlers that simplify event driven programming. Events are generated when objects are written, updated or taken from the space. With this framework you select events based on its content and designate a method that would be triggered as a result of that event, all through a simple and non-intrusive configuration. There are two main event handlers that are available:</p>
 
-<h1 id="notify-container">Notify Container</h1>
+<h1><a name="notify-container">&#160;</a>Notify Container</h1>
 
 <p>The Notify Container is the equivalent of a publish/subscribe semantics. An event listener is registered with the space that declares the type of events it is interested in. Upon receiving an event the listener is triggered. In this case all registered matching subscribers will be notified at the same time.</p>
 
-<h1 id="polling-container">Polling Container</h1>
+<h1><a name="polling-container">&#160;</a>Polling Container</h1>
 
 <p>The Polling Container is the equivalent of a point to point paradigm. Unlike the notify container, the Polling Container blocks contentiously on space connection until a matching event arrives. Polling containers ensures that one and only one listener will be triggered per event even if there are more then one listener that matches that event. The entry will be removed from the space when the listener is invoked.</p>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>Lets take our online processing service; we want to create a notification container that receives events when a payment has been cancelled.
 First, we define the Notifier Container.</p>
@@ -169,7 +169,7 @@ public class AuditListener {
   <p><a href="../dev-dotnet/event-processing.htm">Event Processing</a></p>
 </div>
 
-<h1 id="fifo-support">FIFO Support</h1>
+<h1><a name="fifo-support">&#160;</a>FIFO Support</h1>
 
 <p>Sometimes it is necessary to process events in the order the way they have been created. By default events are not ordered. XAP supports FIFO (First In, First Out) processing of events.  To enable FIFO operations you can turn on FIFO support for classes which will participate in such operations.</p>
 
@@ -201,7 +201,7 @@ namespace xaptutorial.model
   <p><a href="../dev-dotnet/fifo-support.htm">FIFO Support</a></p>
 </div>
 
-<h1 id="master-worker-pattern">Master Worker Pattern</h1>
+<h1><a name="master-worker-pattern">&#160;</a>Master Worker Pattern</h1>
 
 <table class="tc-borderless">
   <tr>

@@ -9,7 +9,7 @@
 The proxy provides a simpler space API using the <a href="[%=Links.ApiJavaDoc%]/index.htm">GigaSpace</a> interface.
 It is created with a Space URL and optional parameters.</p>
 
-<h1 id="the-space-url">The Space URL</h1>
+<h1><a name="the-space-url">&#160;</a>The Space URL</h1>
 
 <p>In order to locate a space you need to specify its URL. The SpaceURL is used as part of the space proxy and is set using the UrlSpaceFactoryBean.</p>
 
@@ -61,7 +61,7 @@ It is created with a Space URL and optional parameters.</p>
   <p>Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the <a href="../admin/network-multicast.htm">How to Configure Multicast</a> section for details on how to enable multicast.</p>
 </div>
 
-<h3 id="examples">Examples</h3>
+<h3><a name="examples">&#160;</a>Examples</h3>
 
 <p><span class="tc-bold">Accessing Remote Space Using Jini Lookup Service - Unicast Discovery</span></p>
 
@@ -91,7 +91,7 @@ jini://LookupServiceHostName1:port1,....LookupServiceHostName n:port n/*/space_n
 jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1:port,LookupServiceHostName2:port,LookupServiceHostName3:port
 </code></pre>
 
-<h3 id="space-container-notation">Space Container Notation</h3>
+<h3><a name="space-container-notation">&#160;</a>Space Container Notation</h3>
 
 <p>The Space URL uses the following notation to start a space: <code>/./&lt;Space Name&gt;</code>. For example: <code>/./mySpace</code></p>
 
@@ -110,9 +110,9 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
 <pre><code class="language-bash">java://localhost:10098/mySpace_container/mySpace?schema=default
 </code></pre>
 
- <a id="url">&#160;</a>
+ <a name="url">&#160;</a>
 
-<h1 id="url-properties">URL Properties</h1>
+<h1><a name="url-properties">&#160;</a>URL Properties</h1>
 
 <p>The following are optional property string values:</p>
 
@@ -280,7 +280,7 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
 </div>
 </div>
 
-<h3 id="overriding-default-configuration-using-general-properties">Overriding Default Configuration Using General Properties</h3>
+<h3><a name="overriding-default-configuration-using-general-properties">&#160;</a>Overriding Default Configuration Using General Properties</h3>
 
 <p>The space allows you to override specific schema configuration element values using the <code>Properties</code> object, that uses an XPath-like navigation as the name value. The <code>UrlSpaceFactoryBean</code> allows you to set the <code>Properties</code> object, specifying it within the Spring configuration.</p>
 
@@ -331,9 +331,9 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
 <li><a href="space-persistency-advanced-topics.htm#Properties">Persistency Settings</a></li>
 </ul>
 
- <a id="proxy">&#160;</a>
+ <a name="proxy">&#160;</a>
 
-<h1 id="the-space-proxy-the-gigaspace-bean">The Space Proxy - The GigaSpace Bean</h1>
+<h1><a name="the-space-proxy-the-gigaspace-bean">&#160;</a>The Space Proxy - The GigaSpace Bean</h1>
 
 <p>The <code>GigaSpace</code> Spring Bean provides a simple way to configure a proxy to be injected into the relevant Bean.</p>
 
@@ -367,7 +367,7 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
   <p>The application is always injected with <code>os-core:giga-space</code> bean that wraps always a <code>os-core:space</code>.</p>
 </div>
 
-<h1 id="proxy-properties">Proxy Properties</h1>
+<h1><a name="proxy-properties">&#160;</a>Proxy Properties</h1>
 
 <p>The <code>GigaSpace</code> Bean can have the following elements:</p>
 
@@ -520,7 +520,7 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
 </div>
 </div>
 
-<h3 id="examples-1">Examples</h3>
+<h3><a name="examples-1">&#160;</a>Examples</h3>
 
 <p>Here are some examples on how to configure the Space URL and the proxy:</p>
 
@@ -569,7 +569,7 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
   <p>The application is always injected with <code>os-core:giga-space</code> bean that wraps always a <code>os-core:space</code>.</p>
 </div>
 
-<h1 id="default-operation-modifiers">Default Operation Modifiers</h1>
+<h1><a name="default-operation-modifiers">&#160;</a>Default Operation Modifiers</h1>
 
 <p>You may configure default modifiers for the different operations in the <code>GigaSpace</code> interface. The default modifiers can be configured in the following manner:</p>
 
@@ -642,7 +642,7 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 <li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ChangeModifiers.htm">ChangeModifiers</a></li>
 </ul>
 
-<h1 id="exception-hierarchy">Exception Hierarchy</h1>
+<h1><a name="exception-hierarchy">&#160;</a>Exception Hierarchy</h1>
 
 <p>OpenSpaces is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.htm#dao-exceptions" target="_blank" >consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
 
@@ -656,7 +656,7 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 
 <p>A default implementation of the exception translator is automatically used, which translates most of the relevant exceptions into either Spring data access exceptions, or concrete OpenSpaces runtime exceptions (in the <code>org.openspaces.core</code> package).</p>
 
-<h3 id="exception-handling-for-batch-operations">Exception handling for Batch Operations</h3>
+<h3><a name="exception-handling-for-batch-operations">&#160;</a>Exception handling for Batch Operations</h3>
 
 <p>Batch operations many throw the following Exceptions. Make sure you catch these and act appropriately:</p>
 
@@ -668,7 +668,7 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 <li><a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/core/ClearException.htm">ClearException</a></li>
 </ul>
 
-<h1 id="basic-guidelines">Basic Guidelines</h1>
+<h1><a name="basic-guidelines">&#160;</a>Basic Guidelines</h1>
 
 <ul>
 <li>The variable represents a remote or embedded space proxy (for a single space or clustered) and <span class="tc-bold">should be constructed only</span> once throughout the lifetime of the application process.</li>

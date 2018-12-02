@@ -10,7 +10,7 @@
 <p>To provide other custom security implementations see the <a href="custom-security.htm">Custom Security</a> section.
 One such custom security implementation is the <a href="spring-security-bridge.htm">Spring Security Bridge</a>.</p>
 
-<h1 id="getting-started">Getting Started</h1>
+<h1><a name="getting-started">&#160;</a>Getting Started</h1>
 
 <p>The default security file-based directory is first created when you try to manage the security directory (either using the UI or API).</p>
 
@@ -23,14 +23,14 @@ The <code>.fsm</code> is an abbreviation of File Security Manager.</p>
 
 <p>When a secured component is started, it looks for the security configuration properties in order to instantiate the security implementation. The default implementation does not require a properties file to exist, but it is essential if you would want to provide overrides to any of the extensions. The security configuration properties file is implementation specific. Here we describe the properties related to the file-based security manager implementation.</p>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
 <p>Any configurations that are applied can be seen by setting the logging level to CONFIG (see <code>xap_logging.properties</code>):</p>
 
 <pre><code class="language-java">com.gigaspaces.security.level = CONFIG
 </code></pre>
 
-<h2 id="directory-file-location-configuration">Directory file location Configuration</h2>
+<h2><a name="directory-file-location-configuration">&#160;</a>Directory file location Configuration</h2>
 
 <p>The location of the directory file and its name are configurable using the <code>com.gs.security.fs.file-service.file-path</code> property key. The <code>file-path</code> is either a direct path to a file, relative path (to <code>bin</code>) or a resource in the classpath.</p>
 
@@ -48,15 +48,15 @@ You should specify in the UI (manage security) the path to security configuratio
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/security_namagement_config_file.jpg" alt="security_namagement_config_file.jpg" /></p>
 </div>
 
-<h1 id="custom-extensions">Custom Extensions</h1>
+<h1><a name="custom-extensions">&#160;</a>Custom Extensions</h1>
 
 <p>There are some handy extension points which allow you to modify some of the defaults we have considered, and replace them with your suitable requirements. These are extensions which are relevant to this specific File-based implementation. It might not be relevant for other security implementations.</p>
 
-<h2 id="encodings">Encodings</h2>
+<h2><a name="encodings">&#160;</a>Encodings</h2>
 
 <p>The Encoding mechanism is separated into two - password encoding and file-content encoding. Both of these can be changed.</p>
 
-<h3 id="password-encoding">Password Encoding</h3>
+<h3><a name="password-encoding">&#160;</a>Password Encoding</h3>
 
 <p>The password encoder is used to encode the passwords stored in the file-based directory.
 The default password encoding algorithm is MD5. This is a one-way hash function that is used to encrypt the passwords when they are stored in the directory, and encrypt the passwords for authentication validation.</p>
@@ -74,7 +74,7 @@ The default password encoding algorithm is MD5. This is a one-way hash function 
 <pre><code class="language-java">com.gs.security.fs.password-encoder.class = eg.MyPasswordEncoder
 </code></pre>
 
-<h3 id="content-encoding">Content Encoding</h3>
+<h3><a name="content-encoding">&#160;</a>Content Encoding</h3>
 
 <p>The content encoder is used to encode/decode the user details, roles and authorities stored in the file-based directory.
 The default content encoding algorithm is AES 128-bit. This is a two-way function that requires a private key to encrypt and decrypt.</p>
@@ -94,7 +94,7 @@ The default content encoding algorithm is AES 128-bit. This is a two-way functio
 <pre><code class="language-java">com.gs.security.fs.content-encoder.class = eg.MyContentEncoder
 </code></pre>
 
-<h2 id="url-file-service">URL File Service</h2>
+<h2><a name="url-file-service">&#160;</a>URL File Service</h2>
 
 <p>By default, we load a file from the local file system. We also provide a means to "download" a file from a URL. If you want to further customize, you can implement the <code>FileService</code> interface.</p>
 
@@ -114,7 +114,7 @@ com.gs.security.fs.file-service.url = http://www.gigaspaces.com/download/attachm
   <p>You will need to manage the security directory as a local file, upload the file to an HTTP server, and only then configure your services with the above properties. If your HTTP server allows write-access, then the <code>URLFileService</code> can also be used for managing your directory; the <code>writeToFile</code> method (see interface) will use the output stream to write through this connection.</p>
 </div>
 
-<h2 id="custom-file-service">Custom File Service</h2>
+<h2><a name="custom-file-service">&#160;</a>Custom File Service</h2>
 
 <p>The <code>FileService</code> interface defines access to the security directory file:</p>
 

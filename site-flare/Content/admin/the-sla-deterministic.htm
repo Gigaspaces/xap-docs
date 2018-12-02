@@ -9,7 +9,7 @@
 
 <p>In some cases, you may want to explicitly define the location of the primary and backup instances. A simple approach is using zones, setting one zone to host the primary instances and another zone to host the backup instances. These zones do not determine specific physical machines to host the primary/backup instances, but rather a logical group of GSCs associated with a specific zone, once started. Usually, the zone reflects machines located in specific different racks, or different data centers that are nearby and have very fast and reliable connectivity between them.</p>
 
-<h1 id="when-to-use-deterministic-deployment">When to Use Deterministic Deployment</h1>
+<h1><a name="when-to-use-deterministic-deployment">&#160;</a>When to Use Deterministic Deployment</h1>
 
 <p>The Primary-Backup Zone Controller approach is intended for use with  mostly read scenarios (80% read), where the latency between the sites is extremely low (below 1-2 milliseconds) with high bandwidth capacity.</p>
 
@@ -17,18 +17,18 @@
 
 <p>When corporate policy requires leveraging remote sites for disaster recovery or remote client access, most systems will have their data grid's primary and backup instances (using synchronous replication mode) within the same LAN (master data grid).There will be another grid and its data grid (not sharing the same lookup service or GSM with the master data grid) running as a slave data grid, where the <a href="/sbp/wan-replication-gateway.htm">WAN Replication Gateway</a> is used to replicate data between the master and slave data grid asynchronously. With multi-master architecture, the WAN Replication Gateway may run a conflict resolver to handle concurrent updates of the same object at both sites.</p>
 
-<h1 id="controlling-primary-backup-location">Controlling Primary/Backup Location</h1>
+<h1><a name="controlling-primary-backup-location">&#160;</a>Controlling Primary/Backup Location</h1>
 
 <p>The Primary-Backup Zone Controller used with Deterministic Deployment should be deployed with the data grid Processing Unit. The controller allows you to specify a specific zone for primary instances and a different zone for backup instances. When the Primary-Backup Zone Controller is deployed/started, it relocates all the primary instances to GSCs that are associated with the primary zone and later relocates all the backup instances to GSCs that are associated with the backup zone. The Primary-Backup Zone Controller periodically checks the status of the deployed data grid and relocates relevant instances as needed.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/admin/primary-backup-zones.png" alt="primary-backup-zones.png" /></p>
 </div>
 
-<h1 id="example">Example</h1>
+<h1><a name="example">&#160;</a>Example</h1>
 
 <p>This example deploys a partitioned data grid with two partitions and a backup, where <code>Zone A</code> hosts the primary instances.</p>
 
-<h2 id="modifying-the-configuration-files">Modifying the Configuration Files</h2>
+<h2><a name="modifying-the-configuration-files">&#160;</a>Modifying the Configuration Files</h2>
 
 <p>First, add the following snippet to your Processing Unit.</p>
 
@@ -56,7 +56,7 @@
 </div>
 </div>
 
-<h2 id="setting-up-the-zones">Setting Up the Zones</h2>
+<h2><a name="setting-up-the-zones">&#160;</a>Setting Up the Zones</h2>
 
 <p>Two zones (zone1, zone2) need to be defined:</p>
 
@@ -86,7 +86,7 @@ gs-agent --gsc=2
 </div>
 </div>
 
-<h2 id="deploying-the-processing-unit">Deploying the Processing Unit</h2>
+<h2><a name="deploying-the-processing-unit">&#160;</a>Deploying the Processing Unit</h2>
 
 <div class="tc-admon-note">
   
@@ -95,7 +95,7 @@ gs-agent --gsc=2
 
 <p>When deployed, all primary instances will be allocated in zone <code>A</code> and backups in zone <code>B</code>. If the primary instance fails, the order is restored using restart.</p>
 
-<h1 id="multiple-primary-zones">Multiple Primary Zones</h1>
+<h1><a name="multiple-primary-zones">&#160;</a>Multiple Primary Zones</h1>
 
 <p>Several primary zones can be specified:</p>
 
@@ -104,7 +104,7 @@ gs-agent --gsc=2
 
 <p>Primary instances will be provisioned in the configured order - A,C,D.</p>
 
-<h1 id="limitations">Limitations</h1>
+<h1><a name="limitations">&#160;</a>Limitations</h1>
 
 <p>Deterministic deployment has the following limitations:</p>
 

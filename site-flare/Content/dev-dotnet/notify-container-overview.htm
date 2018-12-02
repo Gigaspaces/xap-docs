@@ -80,7 +80,7 @@ notifyEventListenerContainer.Dispose();
 
 <p>The above example registers with the Space for write notifications using the provided template, which can be any .NET object (in this case, a <code>Data</code> object with its processed flag set to <code>false</code>). If a notification occurs, the <code>SimpleListener</code> is invoked. Registration for notifications is performed on the supplied Space proxy.</p>
 
-<h1 id="primary-backup">Primary/Backup</h1>
+<h1><a name="primary-backup">&#160;</a>Primary/Backup</h1>
 
 <p>The notify event container registers for notifications only when the relevant Space it is working against is in primary mode. When the Space is in backup mode, no registration occurs. If the Space moves from backup mode to primary mode, the container registers for notifications, and if it moved to backup mode, the registrations are canceled.</p>
 
@@ -89,7 +89,7 @@ notifyEventListenerContainer.Dispose();
   <p>This mostly applies when working with an embedded Space directly with a cluster member. When working with a clustered Space (performing operations against the whole cluster), the mode of the Space is always primary.</p>
 </div>
 
-<h1 id="template-definition">Template Definition</h1>
+<h1><a name="template-definition">&#160;</a>Template Definition</h1>
 
 <p>When performing receive operations, a template is defined, creating a virtualized subset of data in the Space, matching it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.htm">SqlQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
 
@@ -126,7 +126,7 @@ notifyEventListenerContainer.Template = query;
 </div>
 </div>
 
-<h1 id="masking-notifications">Masking Notifications</h1>
+<h1><a name="masking-notifications">&#160;</a>Masking Notifications</h1>
 
 <p>The notify container allows you to mask which operations should cause notifications when performed against the Space. By default (if none is defined), notifications are sent for write operations. The operations are <code>write</code> (an entry matching the template has been written to the Space), <code>update</code> (an entry matching the template has been updated in the Space), <code>take</code> (an entry matching the template has been taken from the Space), <code>lease expiration</code> (an entry matching the template lease has been expired), and <code>all</code>. The following is an example of the notify container configured to trigger notifications for both write and update operations:</p>
 
@@ -160,7 +160,7 @@ notifyEventListenerContainer.NotifyType = DataEventType.Write | DataEventType.Up
 </div>
 </div>
 
-<h1 id="batch-events">Batch Events</h1>
+<h1><a name="batch-events">&#160;</a>Batch Events</h1>
 
 <p>The notify container, through the unified event API, allows batching of notifications. Batching causes the Space to accumulate the notifications, and when a certain amount of time has passed or a certain size is reached, causes the events to be raised to the client. Batching is very useful when working with a remote Space, since it reduces the network round-trip operations. Moreover, when using Batch notification, it is possible (but not mandatory) to work with the <a href="event-listener-container.htm#BatchDataEventArrived">BatchDataEventArrived</a> instead, and handle a batch of notifications at once.</p>
 
@@ -214,7 +214,7 @@ notifyEventListenerContainer.BatchDataEventArrived += new DelegateDataEventArriv
 </div>
 </div>
 
-<h1 id="fifo-events">FIFO Events</h1>
+<h1><a name="fifo-events">&#160;</a>FIFO Events</h1>
 
 <p>The notify event container can register for events or notifications, and have the events delivered in a FIFO order.</p>
 
@@ -268,7 +268,7 @@ notifyEventListenerContainer.EventSessionConfig = sessionConfig;
 </div>
 </div>
 
-<h1 id="durable-notifications">Durable Notifications</h1>
+<h1><a name="durable-notifications">&#160;</a>Durable Notifications</h1>
 
 <p>Durable notification allows configuring the notify container to withstand failover and short network disconnections with no notifications lost.</p>
 
@@ -317,7 +317,7 @@ notifyEventListenerContainer.EventSessionConfig = sessionConfig;
 </div>
 </div>
 
-<h1 id="take-on-notify">Take on Notify</h1>
+<h1><a name="take-on-notify">&#160;</a>Take on Notify</h1>
 
 <p>The notify event container can be configured to automatically perform a take on the notification data event. It can also be further configured to filter out events if the take operation returns <code>null</code>. (This usually happens when several clients receive this event, and only one succeeds with the take.)</p>
 
@@ -354,9 +354,9 @@ notifyEventListenerContainer.IgnoreEventOnNullTake = true;
 </div>
 </div>
 
- <a id="SpaceDataEventArgs">&#160;</a>
+ <a name="SpaceDataEventArgs">&#160;</a>
 
-<h1 id="space-data-event-args">Space Data Event Args</h1>
+<h1><a name="space-data-event-args">&#160;</a>Space Data Event Args</h1>
 
 <p>The notify container uses the XAP <a href="the-space-notifications.htm">data event session API</a> under the hood. When a notification is triggered, it contains <code>SpaceDataEventArgs</code>, which holds more information about the notification itself, such as the template and the DataEventType (for example, whether this notification was triggered by a write or an update operation). When using the notify container, it is possible to receive that additional information as a parameter of the event listener method:</p>
 
@@ -412,7 +412,7 @@ notifyEventListenerContainer.Dispose();
 </div>
 </div>
 
-<h1 id="queued-event-handling">Queued Event Handling</h1>
+<h1><a name="queued-event-handling">&#160;</a>Queued Event Handling</h1>
 
 <p>When a notification is received, it occurs asynchronously in a separate thread. That thread is part of the Space proxy resource pool that is in charge of receiving and executing notifications code. As a result, special care should be taken when the event listening method execution is not very short, because it could hold the proxy resource for too long and eventually exhaust it, which causes notifications to get lost. If the event listening method needs to execute code that takes some time, it is recommended to use the <code>QueuedEventHandling</code> feature.</p>
 
@@ -470,7 +470,7 @@ notifyEventListenerContainer.CloneEventListenersPerThread = true;
 </div>
 </div>
 
-<h1 id="handling-exceptions">Handling Exceptions</h1>
+<h1><a name="handling-exceptions">&#160;</a>Handling Exceptions</h1>
 
 <p>During the life-cycle of the polling container, two types of exceptions might be thrown:</p>
 
@@ -481,7 +481,7 @@ notifyEventListenerContainer.CloneEventListenersPerThread = true;
 
 <p>A User Exception is an exception that occurs during the invocation of the user event listener. A Container Exception is an exception that occurs anywhere else during the life-cycle of the container (for example, during the receive or trigger operation handler).</p>
 
-<h2 id="subscribing-to-the-containerexceptionoccurred-event">Subscribing to the ContainerExceptionOccurred Event</h2>
+<h2><a name="subscribing-to-the-containerexceptionoccurred-event">&#160;</a>Subscribing to the ContainerExceptionOccurred Event</h2>
 
 <p>It is possible to be notified when a container exception occurs by subscribing to the ContainerExceptionOccurred event, and getting a reference to the exception.</p>
 
@@ -516,7 +516,7 @@ notifyEventListenerContainer.ContainerExceptionOccured += ExceptionHandler;
 </div>
 </div>
 
-<h2 id="subscribing-to-the-userexceptionoccured-event">Subscribing to the UserExceptionOccured Event</h2>
+<h2><a name="subscribing-to-the-userexceptionoccured-event">&#160;</a>Subscribing to the UserExceptionOccured Event</h2>
 
 <p>It is possible to be notified when a user exception occurs by subscribing to the UserExceptionOccurred event. This arguments of this event contain the entire <code>DataEventArgs</code> of the original <code>DataEventArrived</code>. By default, any event that is thrown inside the event listener scope results in transaction rollback if the container is set to be transactional. This can be overridden if the user exception handler sets the event state to "ignored".</p>
 
@@ -551,7 +551,7 @@ notifyEventListenerContainer.UserExceptionOccured += ExceptionHandler;
 </div>
 </div>
 
-<h1 id="default-values-of-notify-container-configuration-parameters">Default Values of Notify Container Configuration Parameters</h1>
+<h1><a name="default-values-of-notify-container-configuration-parameters">&#160;</a>Default Values of Notify Container Configuration Parameters</h1>
 
 <p>The default values for all of the notify container configuration parameters, such as <code>perform-take-on-notify</code>, <code>ignore-event-on-null-take</code>, and others can be found in the API docs. Each property has a corresponding Default&lt;property name&gt; const field that sets the default value of the property.</p>
 

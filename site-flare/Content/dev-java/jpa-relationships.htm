@@ -22,7 +22,7 @@ Setting cascading globally can also be done in orm.xml:</p>
   <p>Further information can be found on the <a href="/sbp/modeling-your-data.htm">Modeling your data</a> page.</p>
 </div>
 
-<h1 id="embedded">Embedded</h1>
+<h1><a name="embedded">&#160;</a>Embedded</h1>
 
 <p>In the following example we have a Store entity which has an embedded Address property.
 In this case, the Address property is saved as is within Store.</p>
@@ -93,7 +93,7 @@ Query query = em.createQuery("SELECT store FROM com.gigaspaces.objects.Store sto
 List&lt;Store&gt; result = (List&lt;Store&gt;) query.getResultList();
 </code></pre>
 
-<h1 id="one-to-one">One-to-One</h1>
+<h1><a name="one-to-one">&#160;</a>One-to-One</h1>
 
 <p>The JPA One-to-one relationship is very similar to an embedded relationship except for the fact that when querying
 the owner entity it is possible to use an Inner Join.</p>
@@ -168,7 +168,7 @@ List&lt;Order&gt; orders = (List&lt;Order&gt;) query.getResultList();
   <p>We defined an ordered index on Invoice.sum and therefore the above query takes advantage of the defined index.</p>
 </div>
 
-<h1 id="one-to-many">One-to-Many</h1>
+<h1><a name="one-to-many">&#160;</a>One-to-Many</h1>
 
 <p>The JPA one-to-many relationship means that the owner of the relationship stores the owned entities in a collection within itself.</p>
 
@@ -241,18 +241,18 @@ Author result = (Author) query.getSingleResult();
   <p>We defined an index on Book.id and therefore the above query takes advantage of the defined index.</p>
 </div>
 
-<h1 id="limitations">Limitations</h1>
+<h1><a name="limitations">&#160;</a>Limitations</h1>
 
-<h3 id="working-with-embedded-entities">Working with Embedded Entities</h3>
+<h3><a name="working-with-embedded-entities">&#160;</a>Working with Embedded Entities</h3>
 
 <p>When working with embedded entities its not possible to call JPA methods on owned entities.</p>
 
-<h3 id="owned-many-to-many-relationship">Owned Many-to-Many Relationship</h3>
+<h3><a name="owned-many-to-many-relationship">&#160;</a>Owned Many-to-Many Relationship</h3>
 
 <p>Owned many-to-many relationship is not supported because the XAP data model doesn't permit it.
 It is possible to implement such a relation by explicitly setting the IDs for each of the relationship participants.</p>
 
-<h3 id="unowned-relationships">Unowned Relationships</h3>
+<h3><a name="unowned-relationships">&#160;</a>Unowned Relationships</h3>
 
 <p>Unowned relationships where each part of the relation is represented as a Data Type in Space is not supported.</p>
 

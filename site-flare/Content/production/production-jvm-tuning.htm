@@ -28,19 +28,19 @@ Guest OS Memory + JVM Memory for all GSCs + JVM Memory for GSM + JVM Memory for 
 JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrentThreads * (-Xss) + "extra memory"
 </code></pre>
 
-<h2 id="space-object-footprint">Space Object Footprint</h2>
+<h2><a name="space-object-footprint">&#160;</a>Space Object Footprint</h2>
 
 <p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this, refer to <a href="production-capacity-planning.htm">Capacity Planning</a>.</p>
 
-<h3 id="using-a-compound-index-to-reduce-the-index-footprint">Using a Compound Index to Reduce the Index Footprint</h3>
+<h3><a name="using-a-compound-index-to-reduce-the-index-footprint">&#160;</a>Using a Compound Index to Reduce the Index Footprint</h3>
 
 <p>A Compound Index can be used with <span class="tc-bold">AND</span> queries to speed up the query execution time. This approach combines multiple fields into a single index. Using a Compound Index avoids having multiple indexes on multiple fields, which in turn can reduce the index footprint.</p>
 
-<h3 id="usecompressedoops-jvm-option">UseCompressedOops JVM Option</h3>
+<h3><a name="usecompressedoops-jvm-option">&#160;</a>UseCompressedOops JVM Option</h3>
 
 <p>The <code>-XX:+UseCompressedOops</code> allows a 64-bit JVM heap size of up to 32GB to use a 32-bit reference address. This can reduce the overall footprint by 20-40%.</p>
 
-<h3 id="compressed-storage-mode">Compressed Storage Mode</h3>
+<h3><a name="compressed-storage-mode">&#160;</a>Compressed Storage Mode</h3>
 
 <p>Compressed Storage mode can be used to reduce the footprint of non-primitive fields when stored within the Space. This option compress the data on the client, where data stays compressed in the Space and is decompressed when it is read back on the client side. This approach may affect performance.</p>
 
@@ -49,11 +49,11 @@ JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrent
   <p>This option is not available for XAP.NET.</p>
 </div>
 
-<h3 id="customized-initial-load">Customized Initial Load</h3>
+<h3><a name="customized-initial-load">&#160;</a>Customized Initial Load</h3>
 
 <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduce the amount of garbage generated during this process.</p>
 
-<h3 id="redo-log-sizing">Redo Log Sizing</h3>
+<h3><a name="redo-log-sizing">&#160;</a>Redo Log Sizing</h3>
 
 <p>The amount of redo log data depends on the following:</p>
 
@@ -65,11 +65,11 @@ JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrent
 
 <p>The redo logs swap over to the hard disk at some point, therefore is it recommended to place its location on an SSD drive. Do not use a regular hard drive to store redo log data. The redo log data footprint is similar to the actual raw data footprint without indexes.</p>
 
-<h2 id="jvm-basic-settings">JVM Basic Settings</h2>
+<h2><a name="jvm-basic-settings">&#160;</a>JVM Basic Settings</h2>
 
 <p>This section provides examples of the JVM settings that are recommended for applications that generate A large number of temporary objects. In such situations, you afford long pauses due to garbage collection activity. These settings are appropriate for cases where you are running a IMDG, or when the business logic and the IMDG are co-located. For example, an IMDG with co-located Polling/Notify containers, Task executors, or Service remoting.</p>
 
-<h3 id="jdk-1-6">JDK 1.6</h3>
+<h3><a name="jdk-1-6">&#160;</a>JDK 1.6</h3>
 
 <p>The following JVM settings are for CMS mode, and are useful for low-latency scenarios:</p>
 
@@ -79,7 +79,7 @@ JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrent
 -XX:+CMSClassUnloadingEnabled -XX:+CMSParallelRemarkEnabled
 </code></pre>
 
-<h3 id="jdk-1-7-1-8">JDK 1.7 - 1.8</h3>
+<h3><a name="jdk-1-7-1-8">&#160;</a>JDK 1.7 - 1.8</h3>
 
 <p>The following JVM settings are for g1 mode, and are useful for low-latency scenarios:</p>
 
@@ -98,11 +98,11 @@ SUN -XX:+HeapDumpOnOutOfMemoryError -XX:OnOutOfMemoryError="kill -9 %p"
 JROCKIT -XXexitOnOutOfMemory</p>
 </div>
 
-<h2 id="young-generation-size-xmn">Young Generation Size (Xmn)</h2>
+<h2><a name="young-generation-size-xmn">&#160;</a>Young Generation Size (Xmn)</h2>
 
 <p>This setting controls the size of the heap allocated for the young generation objects (all the objects that have a short lifetime). Young generation objects are in a specific location in the heap, where the garbage collector passes frequently. All new objects are created in the young generation region (called "eden"). When an object survives (is still "alive") after more than 2-3 gc cleaning cycles, it will be moved to the "old generation" region; these objects are called "survivors". A recommended value for the <code>Xmn</code> should be 33% of the <code>Xmx</code> value.</p>
 
-<h2 id="thread-stack-tuning-xss">Thread Stack Tuning (Xss)</h2>
+<h2><a name="thread-stack-tuning-xss">&#160;</a>Thread Stack Tuning (Xss)</h2>
 
 <p>In many cases, the thread stack size needs to be tuned because the default size is too high. In Java SE 6 OS, the default thread stack size on Sparc is 512k for 32-bit VMs, and 1024k for 64-bit VMs. On x86 Solaris/Linux OS, the thread stack size is 320k for 32-bit VMs and 1024k for 64-bit VMs.</p>
 
@@ -114,7 +114,7 @@ You can reduce your thread stack size by running with the -Xss option. For examp
 
 <p>In some versions of Microsoft Windows, the OS may round up thread stack sizes using very coarse granularity. If the requested size is less than the default size by 1K or more, the stack size is rounded up to the default; otherwise, the stack size is rounded up to a multiple of 1MB. 64k is the least amount of stack space allowed per thread.</p>
 
-<h2 id="extra-memory">Extra Memory</h2>
+<h2><a name="extra-memory">&#160;</a>Extra Memory</h2>
 
 <p>Extra memory is the memory required for NIO direct memory buffers, JIT code cache, classloaders, Socket Buffers (receive/send), JNI, and GC internal info.
 Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p>
@@ -129,7 +129,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p>
 
 <p>With large objects and batch operations (readMultiple, writeMultiple, Space Iterator) increasing the maxBufferSize may improve system performance.</p>
 
-<h3 id="maxdirectmemorysize">MaxDirectMemorySize</h3>
+<h3><a name="maxdirectmemorysize">&#160;</a>MaxDirectMemorySize</h3>
 
 <p>This JVM option specifies the maximum total size of java.nio (New I/O package) direct buffer allocations. It is used with network data transfer and serialization activity.</p>
 
@@ -158,7 +158,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p>
   <p>It is highly recommended to use the latest JDK release when using these options.</p>
 </div>
 
-<h2 id="capturing-detailed-garbage-collection-statistics">Capturing Detailed Garbage Collection Statistics</h2>
+<h2><a name="capturing-detailed-garbage-collection-statistics">&#160;</a>Capturing Detailed Garbage Collection Statistics</h2>
 
 <p>To capture detailed information about garbage collection and how it is performing, add the following parameters to the JVM settings:</p>
 
@@ -167,7 +167,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p>
 
 <p>Modify the path and file names appropriately. You must use a different file name for each invocation in order to not overwrite the files from multiple processes.</p>
 
-<h2 id="soft-references-lru-policy">Soft References LRU Policy</h2>
+<h2><a name="soft-references-lru-policy">&#160;</a>Soft References LRU Policy</h2>
 
 <p>In order to provide the highest level of performance, XAP takes advantage of features in the Java language that allow for effective caching in the face of memory demands. In particular, the <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/ref/SoftReference.htm">SoftReference</a> class is used to store data until there is a need for explicit garbage collection, at which point the data stored in soft references will be collected if possible. The system default is 1000, which represents the amount of time (in milliseconds) that objects will survive past their last reference. <code>-XX:SoftRefLRUPolicyMSPerMB</code> is the parameter that allows you to determine how much data is cached by allowing the JVM to control how long it endures; it is recommended to set this value to <span class="tc-bold">500</span> in active, dynamic systems:</p>
 
@@ -176,7 +176,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p>
 
 <p>The above means that softly reachable objects will remain alive for 500 milliseconds after the last time they were referenced.</p>
 
-<h2 id="permanent-generation-space">Permanent Generation Space</h2>
+<h2><a name="permanent-generation-space">&#160;</a>Permanent Generation Space</h2>
 
 <p>For applications that use relatively large amounts of third-party libraries (for example, the PU uses a large amount of JARs), the default permanent generation space size may not be adequate. If this is so, increase the permanent generation space size. Additionally, refer to the suggested parameters above that should be used together with the other CMS parameters (-XX:+CMSClassUnloadingEnabled). The following are suggested values:</p>
 

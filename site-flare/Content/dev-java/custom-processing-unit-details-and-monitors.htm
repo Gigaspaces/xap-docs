@@ -7,7 +7,7 @@
 
 <p>A Processing Unit can implement the <code>ServiceDetailsProvider</code> and <code>ServiceMonitorsProvider</code> interfaces to expose information to calling APIs or to be viewable in the web-UI.</p>
 
-<h1 id="service-details">Service Details</h1>
+<h1><a name="service-details">&#160;</a>Service Details</h1>
 
 <p>A <a href="[%=Links.ApiJavaDoc%]/org/openspaces/pu/service/ServiceDetails.htm">ServiceDetails</a> describes <span class="tc-bold">static</span> information the processing unit would like to expose. This is fetched only once in the life-cycle of the processing unit, usually when it starts up.</p>
 
@@ -15,7 +15,7 @@
 
 <p>The <code>ServiceDetails</code> are used to describe the service being monitored.</p>
 
-<h1 id="service-monitors">Service Monitors</h1>
+<h1><a name="service-monitors">&#160;</a>Service Monitors</h1>
 
 <p>A <a href="[%=Links.ApiJavaDoc%]/org/openspaces/pu/service/ServiceMonitors.htm">ServiceMonitors</a> describes <span class="tc-bold">runtime</span> information the processing unit would like to expose. This is fetched periodically using the <a href="administration-and-monitoring-overview.htm">Administration and Monitoring API</a>.</p>
 
@@ -77,7 +77,7 @@
 }
 </code></pre>
 
-<h1 id="custom-properties-in-the-web-based-dashboard">Custom Properties in the Web Based Dashboard</h1>
+<h1><a name="custom-properties-in-the-web-based-dashboard">&#160;</a>Custom Properties in the Web Based Dashboard</h1>
 
 <p>For the service monitors to be shown in the <a href="../admin/web-management-console.htm">web based dashboard</a>, a bean class which is declared in your <a href="configuring-processing-unit-elements.htm">processing unit's <code>pu.xml</code></a> should extend one or both of the <code>CustomServiceDetails</code> and <code>CustomServiceMonitors</code> interfaces. The system will expose the data provided by these interface via the admin API and the web based dashboard.
 <code>CustomServiceDetails</code> and <code>CustomServiceMonitors</code> must have same id. Both of them must have default constructor.</p>

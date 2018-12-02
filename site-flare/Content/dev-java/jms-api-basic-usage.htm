@@ -14,7 +14,7 @@
 
 <p>In JMS 1.0.2, each domain used a separate set of interfaces. JMS 1.1 presents the unified model, that unites the usage of both domains under a single set of interfaces. GigaSpaces XAP JMS implementation supports both the unified model, and the separate domains.</p>
 
-<h3 id="basic-jms-workflow">Basic JMS Workflow</h3>
+<h3><a name="basic-jms-workflow">&#160;</a>Basic JMS Workflow</h3>
 
 <ol>
 <li>Obtain/create a <code>ConnectionFactory</code> instance.</li>
@@ -42,7 +42,7 @@
 <li><p>When the application finishes, release all resources by closing the connection.</p></li>
 </ol>
 
-<h3 id="using-unified-messaging-model-jms-1-1">Using Unified Messaging Model (JMS 1.1)</h3>
+<h3><a name="using-unified-messaging-model-jms-1-1">&#160;</a>Using Unified Messaging Model (JMS 1.1)</h3>
 
 <div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="JMS 1.1" style="padding:10px;"><pre><code class="language-java">ConnectionFactory connectionFactory = // obtain
 Connection connection = connectionFactory.createConnection();
@@ -82,9 +82,9 @@ connection.close();
 </div>
 </div></div>
 
-<h3 id="using-separate-domains-jms-1-0-2">Using Separate Domains (JMS 1.0.2)</h3>
+<h3><a name="using-separate-domains-jms-1-0-2">&#160;</a>Using Separate Domains (JMS 1.0.2)</h3>
 
-<h4 id="publish-subscribe">Publish/Subscribe</h4>
+<h4><a name="publish-subscribe">&#160;</a>Publish/Subscribe</h4>
 
 <div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Publish/Subscribe" style="padding:10px;"><pre><code class="language-java">TopicConnectionFactory topicConnectionFactory = // obtain
 TopicConnection topicConnection = topicConnectionFactory.createTopicConnection();
@@ -125,7 +125,7 @@ topicConnection.close();
 </div>
 </div></div>
 
-<h4 id="point-to-point">Point to Point</h4>
+<h4><a name="point-to-point">&#160;</a>Point to Point</h4>
 
 <div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Point to Point" style="padding:10px;"><pre><code class="language-java">QueueConnectionFactory queueConnectionFactory = // obtain
 QueueConnection queueConnection = queueConnectionFactory.createQueueConnection();

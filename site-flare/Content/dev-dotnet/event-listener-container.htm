@@ -11,10 +11,10 @@
 </td>
 </tr></table>
 
-<p> <a id="DataEventArrived">&#160;</a>
- <a id="DataEventHandler">&#160;</a></p>
+<p> <a name="DataEventArrived">&#160;</a>
+ <a name="DataEventHandler">&#160;</a></p>
 
-<h1 id="dataeventarrived">DataEventArrived</h1>
+<h1><a name="dataeventarrived">&#160;</a>DataEventArrived</h1>
 
 <p>The <code>IEventListenerContainer</code> interface exposes the <code>DataEventArrived</code> event, where the various implementers invoke (according to their internal logic, which determines when a space data event arrived occurs). The event argument contains the <code>data</code> object, which can be any .NET object, that triggered this event. The event subscription is done with a listener method that has the <code>DataEventHandler</code> delegate constraints, which follows the .NET event handler's conventions.</p>
 
@@ -35,9 +35,9 @@ container.DataEventArrived += MyEventHandler;
 
 <p>The sender is the actual container that sent this event (Can be casted to IEventListenerContainer), the DataEventArgs contains the argument of the event, such as the event data object, the space proxy the event received from and so on.</p>
 
- <a id="BatchDataEventArrived">&#160;</a>
+ <a name="BatchDataEventArrived">&#160;</a>
 
-<h2 id="batch-event">Batch Event</h2>
+<h2><a name="batch-event">&#160;</a>Batch Event</h2>
 
 <p>Sometimes it is better to use batch events, for instance to improve network traffic. This is done by subscribing to the <code>BatchDataEventArrived</code> event. This event invokes a listener method that receives a batch of event data in one invocation. The different implementers of the <code>IEventListenerContainer</code> interface have their own logic of when to use batch events and when to use regular events.</p>
 
@@ -57,19 +57,19 @@ container.BatchDataEventArrived += MyBatchEventHandler;
 }
 </code></pre>
 
- <a id="EventListenerContainerFactory">&#160;</a>
+ <a name="EventListenerContainerFactory">&#160;</a>
 
-<h1 id="event-listener-container-factory">Event Listener Container Factory</h1>
+<h1><a name="event-listener-container-factory">&#160;</a>Event Listener Container Factory</h1>
 
 <p>One of the ways to create an event listener container is to use the <code>EventListenerContainerFactory.CreateContainer</code> method. The factory creates a container from a supplied listener class, which is marked with attributes that are used to configure and create the container. This is demonstrated in the <a href="polling-container-overview.htm">Polling Container Component page</a> and the <a href="notify-container-overview.htm">Notify Container Component page</a>.</p>
 
-<h1 id="data-event-handler-adapters">Data Event Handler Adapters</h1>
+<h1><a name="data-event-handler-adapters">&#160;</a>Data Event Handler Adapters</h1>
 
 <p>In many scenarios, the event triggers a processing operation and its result should be written or updated back to the space. Since this scenario is very common, there are two built-in adapters that adapt a user method, which has a return value, and then automatically writes (or updates) the result back to the space.</p>
 
- <a id="eventhandleradapter">&#160;</a>
+ <a name="eventhandleradapter">&#160;</a>
 
-<h2 id="dynamicmethod-dataeventarrived-adapter">DynamicMethod DataEventArrived Adapter</h2>
+<h2><a name="dynamicmethod-dataeventarrived-adapter">&#160;</a>DynamicMethod DataEventArrived Adapter</h2>
 
 <p>The <code>DynamicMethodDataEventArrivedAdapter&lt;TData&gt;</code> is an internal class that is used by the <code>EventListenerContainerFactory</code>. This class dynamically creates a wrapper method over user methods that are marked with the <a href="#dataeventhandler-attribute">DataEventHandler attribute</a>. If the user method has a return value which is not null, the wrapper is automatically written to the space, with configurable parameters (see  <a href="#dataeventhandler-attribute">DataEventHandler attribute</a>). This adapter gives you the ability to write the event listening method receiving only the parameters that you need.</p>
 
@@ -120,9 +120,9 @@ container.BatchDataEventArrived += MyBatchEventHandler;
 <pre><code class="language-csharp">public EnrichedData ProcessData(Data event, ISpaceProxy proxy, ITransaction tx, SpaceDataEventArgs&lt;object&gt; args, IEventListenerContainer container)
 </code></pre>
 
- <a id="DelegateDataEventArrivedAdapter">&#160;</a>
+ <a name="DelegateDataEventArrivedAdapter">&#160;</a>
 
-<h2 id="delegate-dataeventarrived-adapter">Delegate DataEventArrived Adapter</h2>
+<h2><a name="delegate-dataeventarrived-adapter">&#160;</a>Delegate DataEventArrived Adapter</h2>
 
 <p>The <code>DelegateDataEventArrivedAdapter&lt;TData, TResult&gt;</code> receives a delegate to a method that receives similar event args as the <code>DataEventHandler</code>, but also returns a result of type <code>TResult</code>. If the result is not null, it is automatically written to the space, with configurable parameters (see <a href="#dataeventhandler-attribute">DataEventHandler attribute</a>). After the adapter is created, its <code>WriteBackDataEventHandler</code> method adapts the supplied method, while adding the write back logic, and it can be used as the delegate when subscribing to the <a href="#DataEventArrived">DataEventArrived event</a>.</p>
 
@@ -143,9 +143,9 @@ container.DataEventArrived = new DelegateDataEventArrivedAdapter&lt;Data, Data&g
 
 <p>The result can also be an array, and the appropriate multiple operation is executed (WriteMultiple or UpdateMultiple).</p>
 
- <a id="DataEventHandlerAttribute">&#160;</a>
+ <a name="DataEventHandlerAttribute">&#160;</a>
 
-<h2 id="dataeventhandler-attribute">DataEventHandler attribute</h2>
+<h2><a name="dataeventhandler-attribute">&#160;</a>DataEventHandler attribute</h2>
 
 <p>The DataEventHandler attribute has two roles. The first is to mark a method to be subscribed to the <a href="#DataEventArrived">DataEventArrived event</a>, when using the <a href="#EventListenerContainerFactory">EventListenerContainerFactory</a>. The second role is to determine the write back behavior of the marked method result. This behavior has three configurable parameters:</p>
 

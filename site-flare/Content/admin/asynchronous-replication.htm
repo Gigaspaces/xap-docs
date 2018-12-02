@@ -7,7 +7,7 @@
 
 <p>In asynchronous replication, operations are performed in the source space instance, and acknowledgement is immediately returned to the client. Operations are accumulated in the source space and sent asynchronously to the target space, after a defined period of time has elapsed, or after a defined number of operations have been performed (the first one of these that occurs). This replication type offers the highest performance at the cost of possible data lose of latest operations if the source space instance fails (sudden crash) while transferring the accumulated operations to the target space. Another problem is data coherency - the source and the target do not have identical data all the time.</p>
 
-<h1 id="how-to-turn-on-asynchronous-replication">How to Turn on Asynchronous Replication?</h1>
+<h1><a name="how-to-turn-on-asynchronous-replication">&#160;</a>How to Turn on Asynchronous Replication?</h1>
 
 <p>In general you should have the <code>cluster-config.groups.group.repl-policy.replication-mode</code> property set to <code>async</code>. See below example:</p>
 
@@ -25,13 +25,13 @@
   <p>In addition you should change <code>cluster-config.groups.group.repl-policy.processing-type</code> to <code>global-order</code> if async replication is used between primary and its backup.</p>
 </div>
 
-<h1 id="when-to-use-asynchronous-replication">When to Use Asynchronous Replication</h1>
+<h1><a name="when-to-use-asynchronous-replication">&#160;</a>When to Use Asynchronous Replication</h1>
 
 <p>Asynchronous replication provides fastest performance because the replication is executed asynchronously to the operation. However, this comes with a cost
 of possible data loss of recent operations upon unexpected failures (sudden crash). Therefore, an application that is using asynchronous replication
 must be aware to this fact.</p>
 
-<h1 id="how-asynchronous-replication-works">How Asynchronous Replication Works</h1>
+<h1><a name="how-asynchronous-replication-works">&#160;</a>How Asynchronous Replication Works</h1>
 
 <ol>
 <li>A destructive space operation is called.</li>
@@ -59,15 +59,15 @@ must be aware to this fact.</p>
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/replication-matrix-IMG504.jpg" alt="replication-matrix-IMG504.jpg" /></p>
 </div>
 
-<h1 id="handling-disconnections-and-errors">Handling Disconnections and Errors</h1>
+<h1><a name="handling-disconnections-and-errors">&#160;</a>Handling Disconnections and Errors</h1>
 
 <p>Due to the asynchronous nature of the replication channel, when a replication target space instance is unavailable (disconnection) or some error occurred during the processing of the replication data at the target the channel will keep operating in the same way, it will keep the operation in the redo log until it succeeds replicating the operations.</p>
 
-<h1 id="behavior-during-recovery">Behavior During Recovery</h1>
+<h1><a name="behavior-during-recovery">&#160;</a>Behavior During Recovery</h1>
 
 <p>In the previous scenario, a target space instance might become unavailable because it has been restarted or relocated due to various reason (failure, manual/automatic relocation). In the default settings, when that target space instance will restart, it will perform a recovery from a source space instance. In primary backup topology it will be the primary space instance, in active active topology it can be any space instance. The target space instance will not be available until the source channel redo log size is almost empty, thus making sure that once the target space is available and visible, the number of operations that might be lost if a failure occurs will be minimal.</p>
 
-<h1 id="controlling-the-asynchronous-worker">Controlling the Asynchronous worker</h1>
+<h1><a name="controlling-the-asynchronous-worker">&#160;</a>Controlling the Asynchronous worker</h1>
 
 <p>The asynchronous worker of the channel can wake up and start replicating for two reasons:</p>
 
@@ -119,7 +119,7 @@ must be aware to this fact.</p>
 &lt;/os-core:embedded-space&gt;
 </code></pre>
 
-<h1 id="flushing-of-pending-replication-during-shutdown">Flushing of Pending Replication During Shutdown</h1>
+<h1><a name="flushing-of-pending-replication-during-shutdown">&#160;</a>Flushing of Pending Replication During Shutdown</h1>
 
 <p>When a source space instance is closed, it may have pending replication packets in its redo log because there were still not replicated. During this process, the space instance will stop accepting new operations and try to gracefully shutdown the replication channel and wait for all pending replication packets to be sent before completely shutting down. This graceful shutdown timeout can be configured with the following property:</p>
 

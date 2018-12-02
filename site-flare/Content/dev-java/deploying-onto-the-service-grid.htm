@@ -20,7 +20,7 @@
   <p>You can use the <a href="/sbp/universal-deployer.htm">GigaSpaces Universal Deployer</a> to deploy complex multi processing unit applications.</p>
 </div>
 
-<h1 id="the-deployment-process">The Deployment Process</h1>
+<h1><a name="the-deployment-process">&#160;</a>The Deployment Process</h1>
 
 <p>Once built according to the processing unit <a href="the-processing-unit-structure-and-configuration.htm">directory structure</a>, the processing unit can be deployed via the various deployment tools available in GigaSpaces XAP (<a href="../admin/gigaspaces-management-center.htm">UI</a>, <a href="../admin/deploy-command-line-interface.htm">CLI</a>, Ant, <a href="../started/installation-maven-overview.htm">Maven</a> or the <a href="administration-and-monitoring-overview.htm">Admin API</a>).</p>
 
@@ -33,15 +33,15 @@
 <p>However,   XAP also supports the deployment of exploded processing units. (The deployment tool will package the processing unit directories into a jar file automatically). Another option to deploy a processing unit is by placing the exploded processing unit under the deploy directory of each of the GSMs and issuing  a deploy command with the processing unit name (the name of the directory under the deploy directory).</p>
 </div>
 
-<h1 id="distribution-of-processing-unit-binaries-to-the-running-gscs">Distribution of Processing Unit Binaries to the Running GSCs</h1>
+<h1><a name="distribution-of-processing-unit-binaries-to-the-running-gscs">&#160;</a>Distribution of Processing Unit Binaries to the Running GSCs</h1>
 
 <p>By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the <code>&amp;lt;XAP Root&amp;gt;/work/processing-units</code> directory (The location of this directory can be overridden via the <code>com.gs.work</code> system property).</p>
 
 <p>Downloading the processing unit archive to the GSC is the recommended option, but it can be disabled. In order to disable it, the <code>pu.download</code> <a href="deployment-properties.htm">deployment property</a>  should be set to <code>false</code>. This will not download the entire archive to the GSC, but will force the GSC to load the processing unit classes one at a time from the GSM via a URLClassLoader.</p>
 
- <a id="deployDirections">&#160;</a>
+ <a name="deployDirections">&#160;</a>
 
-<h1 id="processing-unit-deployment-using-various-deployment-tools">Processing Unit Deployment using various Deployment Tools</h1>
+<h1><a name="processing-unit-deployment-using-various-deployment-tools">&#160;</a>Processing Unit Deployment using various Deployment Tools</h1>
 
 <p>GigaSpaces provides several options to deploy a processing unit onto the Service Grid. Below you can find a simple deployment example with the various deployment tools for deploying a processing unit archive called <code>myPU.jar</code> located in the <code>/opt/gigaspaces</code> directory:</p>
 
@@ -87,11 +87,11 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
 </div>
 </div>
 
-<h1 id="elastic-processing-unit-deployment-using-the-admin-api">Elastic Processing Unit Deployment using the Admin API</h1>
+<h1><a name="elastic-processing-unit-deployment-using-the-admin-api">&#160;</a>Elastic Processing Unit Deployment using the Admin API</h1>
 
 <p>When deploying a partitioned Processing Unit or a partitioned Space it is recommended to use the new <a href="elastic-processing-unit-overview.htm">Elastic Processing Unit</a>. This can be done via the <a href="administration-and-monitoring-overview.htm">Admin API</a>. The following example shows how to deploy a processing unit as an Elastic PU.</p>
 
-<h2 id="step-1-start-a-gigaspaces-agent-on-each-machine">Step 1 - Start a GigaSpaces agent on each machine:</h2>
+<h2><a name="step-1-start-a-gigaspaces-agent-on-each-machine">&#160;</a>Step 1 - Start a GigaSpaces agent on each machine:</h2>
 
 <p>You should have <span class="tc-bold">one GigaSpaces agent</span> running the ESM. No GSCs should be started.</p>
 
@@ -111,7 +111,7 @@ nohup ${XAP_HOME}/bin/gs-agent.sh --global.esm=1 --global.gsm=2 --global.lus=2 &
 </div>
 </div>
 
-<h2 id="step-2-run-the-deployment-code">Step 2 - Run the deployment code:</h2>
+<h2><a name="step-2-run-the-deployment-code">&#160;</a>Step 2 - Run the deployment code:</h2>
 
 <pre><code class="language-java">// Wait for the discovery of the managers and at least one agent
 Admin admin = new AdminFactory().addGroup("myGroup").create();
@@ -140,7 +140,7 @@ ProcessingUnit pu = gsm.deploy(
 pu.waitForSpace().waitFor(pu.getTotalNumberOfInstances());
 </code></pre>
 
-<h2 id="step-3-scale-the-pu-by-increasing-the-memory-and-cpu-capacity">Step 3 - Scale the PU by increasing the memory and CPU capacity:</h2>
+<h2><a name="step-3-scale-the-pu-by-increasing-the-memory-and-cpu-capacity">&#160;</a>Step 3 - Scale the PU by increasing the memory and CPU capacity:</h2>
 
 <pre><code class="language-java">// Scale in runtime to the desired memory and CPU capacity
 pu.scale(
@@ -151,7 +151,7 @@ pu.scale(
 );
 </code></pre>
 
-<h2 id="step-4-to-undeploy-the-processing-unit-run-the-following">Step 4 - To undeploy the Processing Unit run the following:</h2>
+<h2><a name="step-4-to-undeploy-the-processing-unit-run-the-following">&#160;</a>Step 4 - To undeploy the Processing Unit run the following:</h2>
 
 <pre><code class="language-java">// Wait up to 10 seconds for the processing unit to be discovered
 ProcessingUnit pu = admin.getProcessingUnits()
@@ -166,7 +166,7 @@ if (pu != null) {
 
 <p>Since we are un deploying an Elastic Processing Unit, this will also terminate all the GSCs hosting the PU.</p>
 
-<h1 id="hot-deploy">Hot Deploy</h1>
+<h1><a name="hot-deploy">&#160;</a>Hot Deploy</h1>
 
 <p>To enable business continuity in a better manner, having system upgrade without any downtime, here is a simple procedure you should follow when you would like to perform a hot deploy, upgrading a PU that includes both a business logic and a collocated embedded space:</p>
 
@@ -180,7 +180,7 @@ if (pu != null) {
 
 <p>You can script the above procedure via the <a href="administration-and-monitoring-overview.htm">Administration and Monitoring API</a>, allowing you to perform system upgrade without downtime.</p>
 
-<h2 id="restart-a-running-pu-via-the-gs-ui">Restart a running PU via the GS-UI</h2>
+<h2><a name="restart-a-running-pu-via-the-gs-ui">&#160;</a>Restart a running PU via the GS-UI</h2>
 
 <p>To restart a running PU (all instances) via the GS-UI you should:</p>
 
@@ -206,7 +206,7 @@ if (pu != null) {
   <p>The Space class can't be changed with hot deploy, only business logic.</p>
 </div>
 
-<h2 id="restart-a-running-pu-via-the-admin-api">Restart a running PU via the Admin API</h2>
+<h2><a name="restart-a-running-pu-via-the-admin-api">&#160;</a>Restart a running PU via the Admin API</h2>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnitInstance.htm">ProcessingUnitInstance</a> includes few <code>restart</code> methods you may use to restart a PU instance:</p>
 
@@ -284,7 +284,7 @@ public class PUReatartMain {
   <p>The <a href="/sbp/xap-hot-deploy.htm">XAP Hot Deploy</a> tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach , placing new PU code on the GSM PU deploy folder and later restart each PU instance.</p>
 </div>
 
-<h1 id="application-deployment-and-processing-unit-dependencies">Application Deployment and Processing Unit Dependencies</h1>
+<h1><a name="application-deployment-and-processing-unit-dependencies">&#160;</a>Application Deployment and Processing Unit Dependencies</h1>
 
 <p>An application is a logical abstraction that groups one or more Processing Units. Application allows:</p>
 
@@ -294,7 +294,7 @@ public class PUReatartMain {
 <li>Undeployment of application processing units in reverse dependency order</li>
 </ol>
 
-<h2 id="web-user-interface">Web User Interface</h2>
+<h2><a name="web-user-interface">&#160;</a>Web User Interface</h2>
 
 <p>Each application gets its own page in the web user interface which includes a symbol for each processing unit, and a directed arrow showing the dependencies between the deployed processing unites. See the example below where the feeder PU depends on the Space PU (feeder-&gt;space).
 <img src="../Resources/Static/attachment_files/feeder_space.png" alt="feeder_space.png" /></p>
@@ -302,7 +302,7 @@ public class PUReatartMain {
 <p>The feeder instance is deployed only after the space is deployed
 <img src="../Resources/Static/attachment_files/feeder_space2.png" alt="feeder_space2.png" /></p>
 
-<h2 id="deployment-dependencies">Deployment Dependencies</h2>
+<h2><a name="deployment-dependencies">&#160;</a>Deployment Dependencies</h2>
 
 <p>The sample code below deploys an application named "data-app" which consists of a space and a feeder processing unit. The feeder processing unit instances are deployed only after the space deployment is complete (each partition has both a primary and a backup space instance).</p>
 
@@ -400,7 +400,7 @@ for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
 
 <p>The reason for imposing this dependency is that the space proxy bean in the feeder processing unit would fail to initialize if the space is not available. However, this restriction could be too severe since the feeder is a singleton processing unit. For example, if a container with the feeder and a space instance fails, the space is still available (the backup is elected to primary). However the feeder is not re-deployed until the space has all instances running, which will not happen unless a container is (re)started.</p>
 
-<h2 id="adaptive-sla">Adaptive SLA</h2>
+<h2><a name="adaptive-sla">&#160;</a>Adaptive SLA</h2>
 
 <p>The feeder can relax this restriction, by specifying a dependency of at least one instance per partition. Now the feeder is redeployed as long as the space has a minimum of one instance per partition. The downside of this approach is that during initial deployment there is a small time gap in which the feeder writes data to the space while there is only one copy of the data (one instance per partition).</p>
 
@@ -499,13 +499,13 @@ for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
 </div>
 </div>
 
-<h2 id="undeployment-order">Undeployment Order</h2>
+<h2><a name="undeployment-order">&#160;</a>Undeployment Order</h2>
 
 <p>When it is time to undeploy dataApp, we would like the feeder to undeploy first, and only then the space. This would reduce the number of false warnings in the feeder complaining that the space is not available. The command <code>dataApp.undeployAndWait(3, TimeUnit.MINUTES)</code> un deploys the application in reverse dependency order and waits for at most 3 minutes for all processing unit instances to gracefully shutdown.</p>
 
 <p>In the example above, the feeder instance will complete the teardown of all the spring beans, and only then the space would undeploy.</p>
 
-<h1 id="monitoring-deployment-progress">Monitoring Deployment Progress</h1>
+<h1><a name="monitoring-deployment-progress">&#160;</a>Monitoring Deployment Progress</h1>
 
 <p>The deployment progress can be monitored using the events provided by the Admin API. There are 4 provision events on a processing unit instance:</p>
 
@@ -533,7 +533,7 @@ admin.addEventListener(new ProcessingUnitInstanceProvisionStatusChangedEventList
 
 <p>A compound listener (implements several interfaces) can be registered using the <code>Admin.addEventListener(...)</code>.</p>
 
-<h1 id="monitoring-processing-unit-instance-fault-detection">Monitoring Processing Unit instance Fault-detection</h1>
+<h1><a name="monitoring-processing-unit-instance-fault-detection">&#160;</a>Monitoring Processing Unit instance Fault-detection</h1>
 
 <p>Using the member-alive-indicator (see <a href="../admin/the-sla-overview.htm">Monitoring the Liveness of Processing Unit Instances</a>  ) the Grid Service Manager (GSM) actively monitors each processing unit instance. When an "is alive" check fails, it <span class="tc-bold">suspects</span> that the processing unit instance is no longer alive, and retries to contact it (using the configured retries and timeouts in pu.xml under <code>os-sla:member-alive-indicator</code>). When all retries fail, the GSM reports that it <span class="tc-bold">detected</span> a failure and tries to re-deploy it on an available Grid Service Container (GSC).</p>
 

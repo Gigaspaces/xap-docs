@@ -23,7 +23,7 @@
   <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
 </div>
 
-<h1 id="examples">Examples</h1>
+<h1><a name="examples">&#160;</a>Examples</h1>
 
 <p>Tee following code examples show how the Admin API can be used to display information on the currently deployed services/components:</p>
 
@@ -279,19 +279,19 @@ public void space() {
   <p>A fully running example of a <a href="/sbp/scaling-agent.htm">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
 </div>
 
-<h1 id="admin-construction">Admin Construction</h1>
+<h1><a name="admin-construction">&#160;</a>Admin Construction</h1>
 
 <p>The Admin API uses the <code>AdminFactory</code> in order to create <code>Admin</code> instances. After you finish working with the <code>Admin</code>, its <code>Admin#close()</code> method should be called.</p>
 
 <p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
 
-<h1 id="discovery-process">Discovery Process</h1>
+<h1><a name="discovery-process">&#160;</a>Discovery Process</h1>
 
 <p>When the <code>Admin</code> is created, it starts to receive discovery events from all the advertised services/components within its lookup groups and lookup locators. The events occur asynchronously and the data model within the Admin API gets initialized in the background with services coming and going.</p>
 
 <p>This means that just creating the <code>Admin</code> and calling a specific "getter" for a data structure might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>waitFor</code> method that allows waiting for a specific number of services to be up. When navigating the data model, the Admin API provides its most up-to-date state of the system it is monitoring.</p>
 
-<h1 id="domain-model">Domain Model</h1>
+<h1><a name="domain-model">&#160;</a>Domain Model</h1>
 
 <p>The Admin Domain Model has representation to all the XAP-level main actors. They include:</p>
 
@@ -328,7 +328,7 @@ public void space() {
 </td>
 </tr></table>
 
- <a id="GridServiceAgentLink">&#160;</a>
+ <a name="GridServiceAgentLink">&#160;</a>
 
 <table>
 <thead>
@@ -361,7 +361,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="GridServiceAgentsLink">&#160;</a>
+ <a name="GridServiceAgentsLink">&#160;</a>
 
 <table>
 <thead>
@@ -394,7 +394,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="GridServiceManagerLink">&#160;</a>
+ <a name="GridServiceManagerLink">&#160;</a>
 
 <table>
 <thead>
@@ -427,7 +427,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="GridServiceManagersLink">&#160;</a>
+ <a name="GridServiceManagersLink">&#160;</a>
 
 <table>
 <thead>
@@ -460,7 +460,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="GridServiceContainerLink">&#160;</a>
+ <a name="GridServiceContainerLink">&#160;</a>
 
 <table>
 <thead>
@@ -493,7 +493,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="GridServiceContainersLink">&#160;</a>
+ <a name="GridServiceContainersLink">&#160;</a>
 
 <table>
 <thead>
@@ -526,7 +526,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="LookupServiceLink">&#160;</a>
+ <a name="LookupServiceLink">&#160;</a>
 
 <table>
 <thead>
@@ -559,7 +559,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="LookupServicesLink">&#160;</a>
+ <a name="LookupServicesLink">&#160;</a>
 
 <table>
 <thead>
@@ -592,7 +592,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="ProcessingUnitLink">&#160;</a>
+ <a name="ProcessingUnitLink">&#160;</a>
 
 <table>
 <thead>
@@ -625,7 +625,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="ProcessingUnitInstanceLink">&#160;</a>
+ <a name="ProcessingUnitInstanceLink">&#160;</a>
 
 <table>
 <thead>
@@ -658,7 +658,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="ProcessingUnitsLink">&#160;</a>
+ <a name="ProcessingUnitsLink">&#160;</a>
 
 <table>
 <thead>
@@ -691,7 +691,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="SpaceLink">&#160;</a>
+ <a name="SpaceLink">&#160;</a>
 
 <table>
 <thead>
@@ -724,7 +724,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="SpaceInstanceLink">&#160;</a>
+ <a name="SpaceInstanceLink">&#160;</a>
 
 <table>
 <thead>
@@ -757,7 +757,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="SpacesLink">&#160;</a>
+ <a name="SpacesLink">&#160;</a>
 
 <table>
 <thead>
@@ -790,7 +790,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="VirtualMachineLink">&#160;</a>
+ <a name="VirtualMachineLink">&#160;</a>
 
 <table>
 <thead>
@@ -823,7 +823,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="VirtualMachinesLink">&#160;</a>
+ <a name="VirtualMachinesLink">&#160;</a>
 
 <table>
 <thead>
@@ -856,7 +856,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="MachineLink">&#160;</a>
+ <a name="MachineLink">&#160;</a>
 
 <table>
 <thead>
@@ -889,7 +889,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="MachinesLink">&#160;</a>
+ <a name="MachinesLink">&#160;</a>
 
 <table>
 <thead>
@@ -922,7 +922,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="OperatingSystemLink">&#160;</a>
+ <a name="OperatingSystemLink">&#160;</a>
 
 <table>
 <thead>
@@ -955,7 +955,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="OperatingSystemsLink">&#160;</a>
+ <a name="OperatingSystemsLink">&#160;</a>
 
 <table>
 <thead>
@@ -988,7 +988,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="TransportLink">&#160;</a>
+ <a name="TransportLink">&#160;</a>
 
 <table>
 <thead>
@@ -1021,7 +1021,7 @@ public void space() {
 </tbody>
 </table>
 
- <a id="TransportsLink">&#160;</a>
+ <a name="TransportsLink">&#160;</a>
 
 <table>
 <thead>
@@ -1059,7 +1059,7 @@ public void space() {
   <p>The <code>Admin</code> functionality is designed to interact with a service grid deployment. For <code>StandaloneProcessingUnitContainer</code> and <code>IntegratedProcessingUnitContainer</code>, components such as <code>GridServiceAgent</code> and <code>GridServiceManager</code> are not started by default, therefore portions of the Admin functionality aren't available.</p>
 </div>
 
-<h1 id="accessing-the-domain-model">Accessing the Domain Model</h1>
+<h1><a name="accessing-the-domain-model">&#160;</a>Accessing the Domain Model</h1>
 
 <p>There are two ways to use the Admin API to access information:</p>
 
@@ -1115,7 +1115,7 @@ public void space() {
 
 <p>Last, the <code>Admin</code> interface provides a one-stop method called <code>addEventListener</code> that accepts an <code>AdminListener</code>. Most event listeners implement this interface. You can create a class that implements several chosen listener interfaces, call the <code>addEventListener</code> method, and they will automatically be added to their respective components. For example, if our listener implements <code>GridServiceContainerAddedEventListener</code> and <code>GridServiceManagerAddedEventListener</code>, the listener will automatically be added to the <code>GridServiceManagers</code> and <code>GridServiceContainers</code>.</p>
 
-<h1 id="details-and-statistics">Details and Statistics</h1>
+<h1><a name="details-and-statistics">&#160;</a>Details and Statistics</h1>
 
 <ul>
 <li><p>Some components in the Admin API can provide statistics. For example, a <code>SpaceInstance</code> can provide statistics on how many times the read API was called on it. Statistics change over time, and in order to get them either the "getter" for the Statistics can be used, or a statistics listener can be registered for statistics change events.</p></li>
@@ -1139,7 +1139,7 @@ public void space() {
 <li><p>The <code>Admin</code> interface also implements the <code>StatisticsMonitor</code> interface. Calling <code>startMonitor</code> on it will cause all holders to start monitoring. These include <code>Spaces</code>, <code>VirtualMachines</code>, <code>Transports</code>, and <code>OperatingSystems</code>.</p></li>
 </ul>
 
-<h1 id="space-runtime-statistics">Space Runtime Statistics</h1>
+<h1><a name="space-runtime-statistics">&#160;</a>Space Runtime Statistics</h1>
 
 <p>The Space maintains statistics information about all the data types (for example, Space class types) it stores, and the amount of Space objects stored in memory for each data type. The following example shows how to retrieve this data. This approach eliminates the need to use the <code>GigaSpace.Count()</code>, which is relatively expensive, with Spaces that store large number of objects.</p>
 
@@ -1189,7 +1189,7 @@ static class SpacePartitionsComperator implements Comparator&lt;SpacePartition&g
 }
 </code></pre>
 
-<h1 id="memoryxtend-statistics">MemoryXtend Statistics</h1>
+<h1><a name="memoryxtend-statistics">&#160;</a>MemoryXtend Statistics</h1>
 
 <p>If you have a system that utilizes MemoryXtend, you can monitor the performance of the off-heap storage and the external disk storage. For a list of available blobstore operation statistics, see the <a href="../admin/metrics-bundled.htm#blobstore-operations">Predefined Metrics</a> page in the Administration guide.</p>
 
@@ -1227,7 +1227,7 @@ if (blobStoreStorageStatistics instanceof RocksDBBlobStoreStatistics) {
 }
 </code></pre>
 
-<h1 id="monitoring-the-mirror-service">Monitoring the Mirror Service</h1>
+<h1><a name="monitoring-the-mirror-service">&#160;</a>Monitoring the Mirror Service</h1>
 
 <p>You can monitor various aspects of the mirror service using the Admin API.</p>
 
@@ -1261,7 +1261,7 @@ if (blobStoreStorageStatistics instanceof RocksDBBlobStoreStatistics) {
   <p>For more information, refer to the API documentation on <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/cluster/replication/async/mirror/MirrorStatistics.htm">MirrorStatistics</a>.</p>
 </div>
 
-<h1 id="pu-status-changed-events">PU Status Changed Events</h1>
+<h1><a name="pu-status-changed-events">&#160;</a>PU Status Changed Events</h1>
 
 <p>You can receive notifications about the deployment status of a Processing Unit. An event listener can be attached to the Admin API that delivers events describing the current and previous <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/admin/pu/DeploymentStatus.htm">DeploymentStatus</a> of a Processing Unit.
 Here is an example:</p>
@@ -1295,7 +1295,7 @@ Here is an example:</p>
 </div>
 </div>
 
-<h1 id="monitoring-processing-unit-health">Monitoring Processing Unit Health</h1>
+<h1><a name="monitoring-processing-unit-health">&#160;</a>Monitoring Processing Unit Health</h1>
 
 <p>For monitoring purposes, the Processing Unit can be queried to show its deployment status, number of actual instances vs. planned, and more details per Processing Unit instance. The planned vs. actual represents the current state, and querying this API returns an updated result each time a scheduled update is done by the underlying Admin. A plan changes on increments, decrements, restarts and relocation of instances.</p>
 
@@ -1308,9 +1308,9 @@ Here is an example:</p>
     properties.put("SLA", processingUnit.getNumberOfInstances() + (processingUnit.getNumberOfBackups()&gt;0 ? "," + processingUnit.getNumberOfBackups(): ""));
 </code></pre>
 
- <a id="servicemonitors">&#160;</a>
+ <a name="servicemonitors">&#160;</a>
 
-<h1 id="service-monitors">Service Monitors</h1>
+<h1><a name="service-monitors">&#160;</a>Service Monitors</h1>
 
 <p>The Admin API allows you to monitor XAP services. The information is available through the <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/admin/pu/ProcessingUnitInstanceStatistics.htm">ProcessingUnitInstanceStatistics</a>.</p>
 

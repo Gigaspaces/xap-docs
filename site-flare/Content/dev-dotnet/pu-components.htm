@@ -5,7 +5,7 @@
 <h1>Components</h1>
   
 
-<h1 id="overview">Overview</h1>
+<h1><a name="overview">&#160;</a>Overview</h1>
 
 <p>Packaging user-defined code in a processing unit is done using components. A <span class="tc-bold">Component</span> is essentially a class decorated with a <code>BasicProcessingUnitComponent</code> attribute:</p>
 
@@ -21,7 +21,7 @@ public class MyComponent
 
 <p>When a processing unit is deployed, it scans all the assemblies in its working directory for classes decorated with <code>BasicProcessingUnitComponent</code> and instantiates them. In addition, the component instance is managed and tracked by the processing unit.</p>
 
-<h1 id="life-cycle">Life cycle</h1>
+<h1><a name="life-cycle">&#160;</a>Life cycle</h1>
 
 <p>The supported life cycle events for the component are:</p>
 
@@ -41,7 +41,7 @@ public class MyComponent
 
 <p>The component name can be used by other components to obtain a reference to it. For example, an additional component <code>Foo</code> uses the <code>ContainerInitialized</code> method to obtain a reference to <code>MyComponent</code>:</p>
 
-<h1 id="multiple-components">Multiple Components</h1>
+<h1><a name="multiple-components">&#160;</a>Multiple Components</h1>
 
 <p>If more than one component is used, the component can be assigned with a name which can be used to obtain a reference to its runtime instance. For example:</p>
 
@@ -65,7 +65,7 @@ public class Bar
 
 </code></pre>
 
-<h1 id="space-proxies">Space Proxies</h1>
+<h1><a name="space-proxies">&#160;</a>Space Proxies</h1>
 
 <p>If the processing unit contains an embedded space or space proxy definition, you can use the container to obtain a reference to those proxies. For example:</p>
 
@@ -89,7 +89,7 @@ public class MyComponent
 }
 </code></pre>
 
-<h1 id="space-life-cycle-events">Space Life Cycle Events</h1>
+<h1><a name="space-life-cycle-events">&#160;</a>Space Life Cycle Events</h1>
 
 <p>In a topology with backup spaces, it is quite common to have a business logic co-located with an embedded space instance, that should be activated only when the embedded space instance mode is primary. The built-in event listener container work that way; they only start to operate when the co-located embedded space becomes primary. It is quite common to have different custom logic that should be notified upon space mode change events and act accordingly (for instance, start some monitoring process of the co-located space instance). The container will detect automatically methods marked with a space mode changed attribute ([PostPrimary], [BeforePrimary], [PostBackup] and [BeforeBackup]) and it will invoke these methods once the space instance mode is changed.</p>
 

@@ -9,7 +9,7 @@
 
 <p>The Spring Framework provides a transaction manager abstraction using the PlatformTransactionManager interface with several different built-in implementations, such as JDBC Data Source and JTA. XAP provides several implementations for Spring's PlatformTransactionManager, allowing you to use the XAP Distributed Transaction Manager and the Jini Distributed Transaction Manager. XAP can also be used within an XA transaction manager using JTA.</p>
 
-<h1 id="transaction-management">Transaction Management</h1>
+<h1><a name="transaction-management">&#160;</a>Transaction Management</h1>
 
 <p>XAP provides several transaction managers, and changing the implementation you work with is just a matter of changing the configuration. In this part of the tutorial will use XAP's Distributed Transaction Manager to demonstrate some of the features and capabilities.</p>
 
@@ -33,7 +33,7 @@
   <p>In order to make the XAP Interface transactional, the transaction manager must be provided to it when constructing the GigaSpace bean. You also need to add &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;  to enable the configuration of transactional behavior based on annotations.</p>
 </div>
 
-<h3 id="transaction-demarcation">Transaction Demarcation</h3>
+<h3><a name="transaction-demarcation">&#160;</a>Transaction Demarcation</h3>
 
 <p>In your Java code you can annotate your class or methods with the Spring <code>@Transactional</code> annotation and configure Spring to process the annotation such that every call to the annotated methods will be automatically performed under a transaction. The transaction starts before the method is called and commits when the method call returns. If an exception is thrown from the method the transaction is rolled back automatically. Note that you can control various aspects of the transaction like propagation by using the attributes of the <code>@Transactional</code> annotation.</p>
 
@@ -52,7 +52,7 @@ public void createPayment() {
 
 <p>If an exception is thrown in this example, the object that was written into the space will be rolled back.</p>
 
-<h3 id="transaction-propagation">Transaction propagation</h3>
+<h3><a name="transaction-propagation">&#160;</a>Transaction propagation</h3>
 
 <p>Normally all code executed within a transaction runs in the same transaction scope. However, there are several options specifying behavior if a transactional method is executed when a transaction context already exists. For example, simply running in the existing transaction (the most common case); or suspending the existing transaction and creating a new transaction.</p>
 
@@ -74,11 +74,11 @@ public void createNewPayment() {
   <p><a href="../dev-java/transaction-overview.htm">Transaction management</a></p>
 </div>
 
-<h1 id="event-processing">Event Processing</h1>
+<h1><a name="event-processing">&#160;</a>Event Processing</h1>
 
 <p>All event containers support transactions.</p>
 
-<h3 id="polling-container">Polling container</h3>
+<h3><a name="polling-container">&#160;</a>Polling container</h3>
 
 <p>Both the receive operation and the actual event action can be configured to be performed under a transaction. Transaction support is required when, for example, an exception occurs in the event listener, and the receive operation needs to be rolled back (and the actual data event is returned to the space). Adding transaction support is very simple in the polling container, and can be done by injecting a transaction manager into it. Let's take our payment polling container and make it transactional.</p>
 
@@ -109,7 +109,7 @@ public class PaymentListener {
   <p><a href="../dev-java/polling-container-overview.htm">Polling Container</a></p>
 </div>
 
-<h3 id="notify-container">Notify Container</h3>
+<h3><a name="notify-container">&#160;</a>Notify Container</h3>
 
 <p>Just like the Polling container, both the receive operation and the actual event action can be configured to be performed under a transaction. However, in case an error occurs (rollback), the notification is lost and not sent again.</p>
 
@@ -118,7 +118,7 @@ public class PaymentListener {
   <p><a href="../dev-java/notify-container-overview.htm">Notify Container</a></p>
 </div>
 
-<h1 id="task-execution">Task Execution</h1>
+<h1><a name="task-execution">&#160;</a>Task Execution</h1>
 
 <p>Executors fully support transactions similar to other XAP operations. Once an execute operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on and added declaratively to it. This means that any XAP operation performed within the task execute operation will automatically join the transaction started on the client side.</p>
 
@@ -127,7 +127,7 @@ public class PaymentListener {
   <p><a href="../dev-java/task-execution-overview.htm">Task Execution over the Space</a></p>
 </div>
 
-<h1 id="remoting-service">Remoting Service</h1>
+<h1><a name="remoting-service">&#160;</a>Remoting Service</h1>
 
 <p>Executor remoting supports transactional execution of services. On the client side, if there is an ongoing declarative transaction during the service invocation (a Space based transaction), the service will be executed under the same transaction. The transaction itself is passed to the server and any Space related operations (performed using XAP) will be executed under the same transaction.</p>
 
@@ -136,11 +136,11 @@ public class PaymentListener {
   <p><a href="../dev-java/space-based-remoting-overview.htm">Space Based Remoting</a></p>
 </div>
 
-<h1 id="concurrency">Concurrency</h1>
+<h1><a name="concurrency">&#160;</a>Concurrency</h1>
 
 <p>Locking of objects occurs in multi-user systems to preserve the integrity of changes, so that changes made by one process do not accidentally overwrite changes made by another process. XAP provides two strategies for locking objects: Optimistic and pessimistic. The focus is on optimistic locking, the preferred strategy in the XAP context.</p>
 
-<h3 id="optimistic-locking">Optimistic Locking</h3>
+<h3><a name="optimistic-locking">&#160;</a>Optimistic Locking</h3>
 
 <p>With optimistic locking, you write your business logic allowing multiple users to read the same object at the same time, but allow only one user to update the object successfully. The assumption is that there will be a relatively large number of users trying to read the same object, but a low probability of having a small number of users trying to update the same object at the same time. In the case of multiple users trying to update the same object at the same time, the one(s) that try to update a non-recent object version fail.</p>
 
@@ -187,7 +187,7 @@ public class Account {
   <p><a href="../dev-java/transaction-optimistic-locking.htm">Transactions Optimistic Locking</a></p>
 </div>
 
-<h3 id="pessimistic-locking">Pessimistic Locking</h3>
+<h3><a name="pessimistic-locking">&#160;</a>Pessimistic Locking</h3>
 
 <p>The pessimistic locking protocol provides data consistency in a multi user transactional environment. It should be used when there might be a large number of clients trying to read and update the same object(s) at the same time. This protocol utilize the system resources (CPU, network) in a very efficient manner both at the client and space server side.
 This scenario is different from the optimistic locking protocol since we assume with the pessimistic locking protocol, that every object that is read and retrieved from the space will eventually be updated where the transaction duration is relatively very short.</p>

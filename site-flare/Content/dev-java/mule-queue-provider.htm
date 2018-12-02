@@ -26,7 +26,7 @@ xsi:schemaLocation="...
 http://www.openspaces.org/schema/mule/os-queue http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mule/[%=Versions.mule%]/mule-os-queue.xsd"&gt;
 </code></pre>
 
-<h1 id="connector">Connector</h1>
+<h1><a name="connector">&#160;</a>Connector</h1>
 
 <p>The OpenSpaces queue connector is used to define the Space this queue transport works against. It uses OpenSpaces <code>GigaSpace</code> bean in order to interact with the Space. Here is an example of how it can be defined:</p>
 
@@ -46,7 +46,7 @@ http://www.openspaces.org/schema/mule/os-queue http://www.openspaces.org/schema/
 For any adapters that wraps a non-Serializable object such as JMS , EMail, Servlet and anything that uses Streams make sure you use inbound transformer before serialization.</p>
 </div>
 
-<h1 id="inbound-component">Inbound Component</h1>
+<h1><a name="inbound-component">&#160;</a>Inbound Component</h1>
 
 <p>The OpenSpaces queue inbound component is very simple once the queue connector is set. Here is an example:</p>
 
@@ -62,7 +62,7 @@ For any adapters that wraps a non-Serializable object such as JMS , EMail, Servl
 &lt;/model&gt;
 </code></pre>
 
-<h1 id="outbound-component">Outbound Component</h1>
+<h1><a name="outbound-component">&#160;</a>Outbound Component</h1>
 
 <p>The OpenSpaces queue outbound component is very simple to configure once the queue connector is set. Here is an example:</p>
 
@@ -80,7 +80,7 @@ For any adapters that wraps a non-Serializable object such as JMS , EMail, Servl
 &lt;/model&gt;
 </code></pre>
 
-<h1 id="mule-messaging-styles-support">Mule Messaging Styles Support</h1>
+<h1><a name="mule-messaging-styles-support">&#160;</a>Mule Messaging Styles Support</h1>
 
 <p>The queue supports the mule messaging styles - request-response and one-way.
 The messaging style can be configured on the endpoints in the following way:</p>
@@ -101,7 +101,7 @@ The messaging style can be configured on the endpoints in the following way:</p>
 
 <p>For further information see <a href="https://developer.mulesoft.com/" target="_blank" >Mulesoft</a>.</p>
 
-<h1 id="transaction-support">Transaction Support</h1>
+<h1><a name="transaction-support">&#160;</a>Transaction Support</h1>
 
 <p>Operations performed on the Space when working with a virtualized queue are all performed using the <code>GigaSpace</code> bean. The <code>GigaSpace</code> bean supports <a href="the-gigaspace-interface-overview.htm#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions">declarative transactions</a> when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as due to its built-in transaction management strategy, which allows you to use OpenSpaces with <a href="transaction-overview.htm">different transaction managers</a>, including XA.</p>
 
@@ -139,7 +139,7 @@ The messaging style can be configured on the endpoints in the following way:</p>
 
 <p>The above example defines a Mule <code>transactionFactory</code>, which is used to handle transactions within Mule. Since the <code>giga-space</code> bean is aware of it, any operations performed on it using the <code>os-queue</code> result in joining an existing transaction if one is in progress.</p>
 
-<h1 id="full-example">Full Example</h1>
+<h1><a name="full-example">&#160;</a>Full Example</h1>
 
 <p>The example below will uses two components: <code>Appender1</code> and <code>Appender2</code>. The 2 services that wrap the components use the OpenSpaces queue transport as both the inbound and outbound transports.</p>
 

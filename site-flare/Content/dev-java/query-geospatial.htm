@@ -27,7 +27,7 @@ In order to use this feature, include the <code>${XAP_HOME}/lib/optional/spatial
   <p>For more information on dependencies see <a href="../started/maven-artifacts.htm">Maven Artifacts</a></p>
 </div>
 
-<h1 id="getting-started">Getting Started</h1>
+<h1><a name="getting-started">&#160;</a>Getting Started</h1>
 
 <p>Suppose we want to write an application to locate nearby gas stations.  First, we create a <code>GasStation</code> class which includes the location and address of the gas station:</p>
 
@@ -93,7 +93,7 @@ public class GasStation {
 }
 </code></pre>
 
-<h1 id="shapes">Shapes</h1>
+<h1><a name="shapes">&#160;</a>Shapes</h1>
 
 <p>XAP supports the following shapes:</p>
 
@@ -174,7 +174,7 @@ import org.openspaces.spatial.shapes.Rectangle;
   Polygon polygon = polygon(point(-10,10), point(0, 10), point(10,-10));
 </code></pre>
 
-<h1 id="queries">Queries</h1>
+<h1><a name="queries">&#160;</a>Queries</h1>
 
 <p>Spatial queries are available through the <code>spatial:</code> extension to the <a href="query-sql.htm">SQL query syntax</a>. The following operations are supported:</p>
 
@@ -204,7 +204,7 @@ import org.openspaces.spatial.shapes.Rectangle;
 </tbody>
 </table>
 
-<h1 id="intersect">Intersect</h1>
+<h1><a name="intersect">&#160;</a>Intersect</h1>
 
 <p>The intersection between <span class="tc-textblue">shape1</span> and shape2 is not empty, some or all of shape1 overlaps some or all of shape2.</p>
 
@@ -254,7 +254,7 @@ public class CircleProperty {
 </div>
 </div>
 
-<h2 id="spatial-queries">Spatial queries</h2>
+<h2><a name="spatial-queries">&#160;</a>Spatial queries</h2>
 
 <pre><code class="language-java"> public void testIntersect() {
     LineString lineString = lineString(point(20, -10), point(20, 5),point(0,5),point(0,20) );
@@ -303,7 +303,7 @@ public class CircleProperty {
  }
 </code></pre>
 
-<h2 id="within">Within</h2>
+<h2><a name="within">&#160;</a>Within</h2>
 
 <p><span class="tc-textblue">Shape1</span> is contained within shape2 including its boundaries.</p>
 
@@ -374,7 +374,7 @@ public class LineProperty extends AbstractProperty {
 </div>
 </div>
 
-<h2 id="spatial-queries-1">Spatial queries</h2>
+<h2><a name="spatial-queries-1">&#160;</a>Spatial queries</h2>
 
 <p>Will use a spatial query to find the shapes stored in the Space that are within a circle:</p>
 
@@ -393,7 +393,7 @@ public class LineProperty extends AbstractProperty {
 }
 </code></pre>
 
-<h1 id="geofencing">Geofencing</h1>
+<h1><a name="geofencing">&#160;</a>Geofencing</h1>
 
 <p>Geofencing allows automatic alerts to be generated based on the defined coordinates of a geographic area.</p>
 
@@ -417,7 +417,7 @@ SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerCon
     }).notifyContainer();
 </code></pre>
 
-<h1 id="wkt-support">WKT Support</h1>
+<h1><a name="wkt-support">&#160;</a>WKT Support</h1>
 
 <p>The <code>ShapeFactory</code> also supports parsing <a href="https://en.wikipedia.org/wiki/Well-known_text" target="_blank" >WKT</a></p>
 
@@ -466,7 +466,7 @@ Shape s5 = ShapeFactory.parse("POLYGON ((0.0 0.0, 0.0 5.0, 2.5 2.5, 5.0 5.0, 5.0
 Shape s6 = ShapeFactory.parse("BUFFER (POINT (0.0 0.0), 5.0)",ShapeFormat.WKT);
 </code></pre>
 
-<h1 id="geojson-support">GeoJson Support</h1>
+<h1><a name="geojson-support">&#160;</a>GeoJson Support</h1>
 
 <p>The <code>ShapeFactory</code> also supports parsing  <a href="http://geojson.org/" target="_blank" >GeoJson</a> strings into shapes. For example:</p>
 
@@ -484,21 +484,21 @@ ShapeFactory.parse("{\"type\":\"Polygon\",\"coordinates\":[[[0.0,0.0],[0.0,5.0],
 ShapeFactory.parse("{\"type\":\"Circle\",\"coordinates\":[0.0,0.0],\"radius\":5.0}", ShapeFormat.GEOJSON);
 </code></pre>
 
-<h1 id="configuration">Configuration</h1>
+<h1><a name="configuration">&#160;</a>Configuration</h1>
 
-<h2 id="lucene">Lucene</h2>
+<h2><a name="lucene">&#160;</a>Lucene</h2>
 
 <p>XAP uses <a href="https://lucene.apache.org/" target="_blank" >Lucene</a> to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Spatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.</p>
 
-<h3 id="store-directory">Store Directory</h3>
+<h3><a name="store-directory">&#160;</a>Store Directory</h3>
 
 <p>Lucene indexing is stored in a <span class="tc-bold">Store Directory</span>. Lucene supports different Store Directory implementations, but recommends using the <a href="https://lucene.apache.org/core/5_3_0/core/org/apache/lucene/store/MMapDirectory.htm" target="_blank" >MMapDirectory</a>, which is what XAP uses by default.</p>
 
-<h3 id="file-system">File System</h3>
+<h3><a name="file-system">&#160;</a>File System</h3>
 
 <p>Lucene indexes are stored in the file system. When used within a processing unit deployed on the service grid, these files are stored within the processing unit working folder, and automatically deleted if/when the processing unit is undeployed. When there's no service grid involved, the files are stored in a unique folder under <code>user.home</code>. This location can be explicitly set using the <code>space-config.spatial.lucene.storage.location</code> space property.</p>
 
-<h1 id="indexing">Indexing</h1>
+<h1><a name="indexing">&#160;</a>Indexing</h1>
 
 <div class="tc-admon-refer">
   
