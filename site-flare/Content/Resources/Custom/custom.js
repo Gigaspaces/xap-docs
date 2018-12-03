@@ -1,12 +1,12 @@
 (function (w) {
   var _self = {
     props: {
-      version: '1.0',
+      version: '1.0.1',
       prefix: 'TOPNAV:::',
       debug: true,
       domain: "\.gigaspaces\.com",
       isIframe: window.self !== window.top,
-      prodVer: location.href.match(/\/(\d+?[\.\d]*?)\//)[1] || null,
+      prodVer: (new RegExp(/\/(\d+?[\.\d]*?)\//).test(location.href)) ? location.href.match(/\/(\d+?[\.\d]*?)\//)[1] : null,
       scrollToTopMin: 200
     },
     log: function () {
@@ -41,8 +41,10 @@
     },
     methods: {
       breadcrumb: function () {
-        var prodVerUrl = location.href.match(/(^.*?)\/(\d+?[\.\d]*?)\//)[1];
-        $('<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span><a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + _self.props.prodVer + '</a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>').prependTo('.breadcrumbs');
+        if (new RegExp(/(^.*?)\/(\d+?[\.\d]*?)\//).test(location.href)) {
+          var prodVerUrl = location.href.match(/(^.*?)\/(\d+?[\.\d]*?)\//)[1];
+          $('<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span><a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + _self.props.prodVer + '</a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>').prependTo('.breadcrumbs');
+        }
         $('.breadcrumbs').prependTo('.main-section');
       },
       scrollToTop: function () {
