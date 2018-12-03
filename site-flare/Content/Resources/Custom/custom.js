@@ -6,7 +6,7 @@
       debug: true,
       domain: "\.gigaspaces\.com",
       isIframe: window.self !== window.top,
-      prodVer: location.href.match(/\/(\d+?[\.\d]*?)\//)[1],
+      prodVer: location.href.match(/\/(\d+?[\.\d]*?)\//)[1] || null,
       scrollToTopMin: 200
     },
     log: function () {

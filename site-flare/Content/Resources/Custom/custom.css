@@ -42,9 +42,15 @@ h1:first-of-type {
   overflow: auto;
   padding: 0px 15px;
 }/* Main Navigation Menu */
+ul.sidenav li {
+  margin-top: 0;
+}
 .off-canvas-accordion .is-accordion-submenu-parent>a {
   padding-left: 2em;
   padding-right: 0;
+}
+.off-canvas-accordion a:hover {
+  text-decoration: underline;
 }
 .is-accordion-submenu-parent>a span.submenu-toggle-container {
   left: 0;
@@ -70,13 +76,14 @@ h1:first-of-type {
 .sideContent ul.menu._Skins_HTML5___Side_Menu.mc-component {
   width: auto;
 }
-ul.sidenav li.is-accordion-submenu-parent>a span.submenu-toggle {
+ul.sidenav li.is-accordion-submenu-parent:not([aria-expanded])>a span.submenu-toggle,
+ul.sidenav li.is-accordion-submenu-parent[aria-expanded="false"]>a span.submenu-toggle {
   border-left-color: #000000;
   border-left-width: 5px;
   border-bottom-width: 5px;
   border-top-color: transparent;
 }
-ul.sidenav li.is-accordion-submenu-parent>a span.submenu-toggle {
+ul.sidenav li.is-accordion-submenu-parent[aria-expanded="true"]>a span.submenu-toggle {
   border-top-color: transparent;
   border-bottom-color: #000000;
   border-bottom-width: 5px;
