@@ -5,7 +5,7 @@
 <h1>Paging Support - GSIterator</h1>
   
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/IteratorBuilder.htm">IteratorBuilder</a> with the <a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/client/GSIterator.htm">GSIterator</a>  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/IteratorBuilder.html">IteratorBuilder</a> with the <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/GSIterator.html">GSIterator</a>  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.</p>
 
 <p>There are scenarios where the conventional read operation that returns a single space object does not fit and there is a need to return a collection of entries from the space. Generally, an iterator should be used in cases where returning all the entries in one result with the <code>readMultiple</code> operation will consume too much memory on the client or introduce too much latency before the first space object could be processed.</p>
 
@@ -43,7 +43,7 @@ for (;;)
 
 <h1><a name="the-iteratorbuilder">&#160;</a>The IteratorBuilder</h1>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/IteratorBuilder.htm">IteratorBuilder</a> is a utility builder class for the GSIterator. It allows to use method chaining for simple configuration of an iterator and then call iterate() to get the actual iterator.</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/IteratorBuilder.html">IteratorBuilder</a> is a utility builder class for the GSIterator. It allows to use method chaining for simple configuration of an iterator and then call iterate() to get the actual iterator.</p>
 
 <p>By default, when no template is added (using <code>addTemplate</code>), a <code>null</code> template will be used to iterate over all the content of the Space.</p>
 
@@ -59,7 +59,7 @@ for (;;)
 
 <h1><a name="the-iteratorscope">&#160;</a>The IteratorScope</h1>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/index.htm?com/gigaspaces/client/iterator/IteratorScope.htm">IteratorScope</a> determines the scope of a GSIterator. Here are the supported options:</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/index.html?com/gigaspaces/client/iterator/IteratorScope.html">IteratorScope</a> determines the scope of a GSIterator. Here are the supported options:</p>
 
 <ul>
 <li><code>CURRENT</code> - Indicates that the iterator will process entries currently in the space, and ignores future changes.</li>
@@ -69,7 +69,7 @@ for (;;)
 
 <h1><a name="the-gsiterator">&#160;</a>The GSIterator</h1>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/client/GSIterator.htm">GSIterator</a> will initially contain some population of objects. These objects can be retrieved by calling <code>next</code> method. A successful call to <code>next</code> method will remove the returned object from the iteration result set. An iterator can end up in one of two terminal states, <code>invalidated</code> or <code>exhausted</code>.</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/GSIterator.html">GSIterator</a> will initially contain some population of objects. These objects can be retrieved by calling <code>next</code> method. A successful call to <code>next</code> method will remove the returned object from the iteration result set. An iterator can end up in one of two terminal states, <code>invalidated</code> or <code>exhausted</code>.</p>
 
 <p>A leased iterator which expires is considered as invalidated. A canceled iterator is an exhausted iterator and will have no more entities added to it. Calling next on an iterator with either state always returns null or it may throw one of the allowed exceptions. In particular next(timeout) may throw NoSuchObjectException to indicate that no object has been found during the allowed timeout. There is no guarantee that once next(timeout) throws a NoSuchObjectException, or next returns null, all future calls on that instance will do the same.</p>
 
@@ -77,7 +77,7 @@ for (;;)
 
 <h2><a name="using-gsiterator-with-sqlquery">&#160;</a>Using GSIterator with SQLQuery</h2>
 
-<p>When using the <code>GSIterator</code> with SQLQuery only <a href="query-sql.htm#Simple Queries - Supported and Non-Supported Operators">simple SQL queries</a> are supported:
+<p>When using the <code>GSIterator</code> with SQLQuery only <a href="query-sql.html#Simple Queries - Supported and Non-Supported Operators">simple SQL queries</a> are supported:
     (field1 &lt; value1) AND (field2 &gt; value2) AND (field3 == values3)...
 The following operators <span class="tc-bold">are not supported</span> when using <code>GSIterator</code>:</p>
 

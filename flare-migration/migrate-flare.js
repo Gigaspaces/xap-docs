@@ -79,7 +79,7 @@ var terms = [{
   },
   {
     "find": /\.html/g,
-    "replace": '.htm'
+    "replace": '.html'
   },
   {
     "find": /<h(\d) id="(.+?)">/g,
@@ -222,7 +222,7 @@ function writeHTM(sFilename, result) {
     fh.Delete();
   }
 
-  sFilename = sFilename.substr(0, sFilename.length - 1);
+  sFilename = sFilename.substr(0, sFilename.length);
   fh = fso.CreateTextFile(sFilename, true);
   fh.Write(result.html);
   fh.Close();

@@ -5,7 +5,7 @@
 <h1>Replication Filters</h1>
   
 
-<p>When constructing a replicated space topology you may need to call some business logic when data is replicated. GigaSpaces provides the <code>IReplicationFilter</code> plug-in interface <a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/cluster/IReplicationFilter.htm">com.j_spaces.core.cluster.IReplicationFilter</a>, that allows you to build business logic that is called when data is sent through the replication channel.</p>
+<p>When constructing a replicated space topology you may need to call some business logic when data is replicated. GigaSpaces provides the <code>IReplicationFilter</code> plug-in interface <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilter.html">com.j_spaces.core.cluster.IReplicationFilter</a>, that allows you to build business logic that is called when data is sent through the replication channel.</p>
 
 <p>The <code>IReplicationFilter</code> methods are called before data is sent to the replication channel from the source space (output mode) and after coming out from the replication channel - i.e. before written to the target space (input mode). The replication filter should implement the <code>IReplicationFilter</code> interface methods.</p>
 
@@ -15,14 +15,14 @@
 <p>The replication filter can be used to monitor or alter the data passed through the replication channel. The replication channel passes <code>IReplicationFilterEntry</code> objects that store the replicated data. You should <code>DefaultReplicationFilterProviderFactory</code> and set its Replication Filter implementation when constructing the Space. You can use the same replication filter implementation class for both input and output replication modes. Here are the classes you will be using with your Replication Filter implementation:</p>
 
 <ul>
-<li><a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/cluster/IReplicationFilterEntry.htm">IReplicationFilterEntry</a> – stores the space object data that is passed into the <code>IReplicationFilter</code>.</li>
-<li><a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/cluster/IReplicationFilter.htm">IReplicationFilter</a> – a replication filter is an interface called when a replication event is triggered. Two types of replication filters can be defined – an input replication and an output replication. If both of the classes specified (for input and output) are the same, only one filter object will be used for both input and output replication.</li>
-<li><a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/cluster/ReplicationFilterException.htm">ReplicationFilterException</a> – the <code>ReplicationFilterException</code> is thrown when there are errors that occur in the replication filter.  Errors can happen in the source or target space. The error is wrapped as part of the <code>ReplicationFilterException</code> and thrown back to the client. The <code>ReplicationFilterException</code> includes methods that includes information about the origin of the error, replication mode (input/output), the implementation class and the underlying exception. The <code>ReplicationFilterException.getCause()</code> should be used to retrieve the original exception that occurred.</li>
+<li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilterEntry.html">IReplicationFilterEntry</a> – stores the space object data that is passed into the <code>IReplicationFilter</code>.</li>
+<li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilter.html">IReplicationFilter</a> – a replication filter is an interface called when a replication event is triggered. Two types of replication filters can be defined – an input replication and an output replication. If both of the classes specified (for input and output) are the same, only one filter object will be used for both input and output replication.</li>
+<li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/ReplicationFilterException.html">ReplicationFilterException</a> – the <code>ReplicationFilterException</code> is thrown when there are errors that occur in the replication filter.  Errors can happen in the source or target space. The error is wrapped as part of the <code>ReplicationFilterException</code> and thrown back to the client. The <code>ReplicationFilterException</code> includes methods that includes information about the origin of the error, replication mode (input/output), the implementation class and the underlying exception. The <code>ReplicationFilterException.getCause()</code> should be used to retrieve the original exception that occurred.</li>
 </ul>
 
 <div class="tc-admon-refer">
   
-  <p>you can <span class="tc-bold">control the replication at the operation level, using configuration only</span>. For more details, refer to the <a href="replication-operations.htm">Replication Operations</a> section.</p>
+  <p>you can <span class="tc-bold">control the replication at the operation level, using configuration only</span>. For more details, refer to the <a href="replication-operations.html">Replication Operations</a> section.</p>
 </div>
 
 <h1><a name="guidelines-for-cluster-replication-filters">&#160;</a>Guidelines for Cluster Replication Filters</h1>

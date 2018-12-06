@@ -13,12 +13,12 @@
 <p>XAP uses multicast in the following cases:</p>
 
 <ul>
-<li><a href="../dev-java/deploying-onto-the-service-grid.htm">When deploying to the service grid</a> XAP uses multicast to discover the <a href="network-lookup-service-configuration.htm">Lookup Service</a>, and register their proxies.</li>
-<li>Clients use multicast to discover the <a href="network-lookup-service-configuration.htm">Lookup Service</a> and look up a matching service proxy (such as the space).</li>
+<li><a href="../dev-java/deploying-onto-the-service-grid.html">When deploying to the service grid</a> XAP uses multicast to discover the <a href="network-lookup-service-configuration.html">Lookup Service</a>, and register their proxies.</li>
+<li>Clients use multicast to discover the <a href="network-lookup-service-configuration.html">Lookup Service</a> and look up a matching service proxy (such as the space).</li>
 </ul>
 
 <p><span class="tc-bold">What should I do in order to determine if multicast is enabled on my environment?</span><br/>
-Refer to the <a href="network-multicast-is-available.htm">How to Determine Whether Multicast is Available</a> section for more details.</p>
+Refer to the <a href="network-multicast-is-available.html">How to Determine Whether Multicast is Available</a> section for more details.</p>
 
 <p>To enable the important capabilities above, you should enable multicast on machines running clients, spaces or services.</p>
 
@@ -31,7 +31,7 @@ Refer to the <a href="network-multicast-is-available.htm">How to Determine Wheth
 
 <div class="tc-admon-note">
   
-  <p>In case you want to <span class="tc-bold">disable the Jini Lookup Service Multicast announcements</span> please refer to <a href="network-lookup-service-configuration.htm#Multicast Settings">this</a> section in the Wiki.</p>
+  <p>In case you want to <span class="tc-bold">disable the Jini Lookup Service Multicast announcements</span> please refer to <a href="network-lookup-service-configuration.html#Multicast Settings">this</a> section in the Wiki.</p>
 </div>
 
 <h1><a name="to-multicast-or-to-not-multicast">&#160;</a>To Multicast or to not Multicast?</h1>
@@ -137,7 +137,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 <div class="tc-admon-note">
   
   <p>On Redhat systems you can configure this route statically via the network setup configuration tools – see:
-<a href="http://www.redhat.com/docs/manuals/linux/RHL-7.2-Manual/custom-guide/ch-network-config.htm">redhat - Chapter 6. Network Configuration</a>.</p>
+<a href="http://www.redhat.com/docs/manuals/linux/RHL-7.2-Manual/custom-guide/ch-network-config.html">redhat - Chapter 6. Network Configuration</a>.</p>
 </div>
 
 <p>Alternatively, try executing the command above as part of a startup script in <code>/etc/rc.d/\*</code>.</p>
@@ -191,7 +191,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
   <p class="tc-admon-title">TTL</p>
   <p>To find TTL, you should monitor some traffic (start-stop on the proper interface), in the monitoring log. Choose the packet you are interested in, and look at its IP layer - TTL (and other parameters) are shown.</p>
 
-<p>The <span class="tc-bold">default TTL value is 3</span> (was 15). See <a href="network-lookup-service-configuration.htm#LookupServiceConfiguration-MulticastSettings">Multicast Settings</a> section for details of how to modify that value.</p>
+<p>The <span class="tc-bold">default TTL value is 3</span> (was 15). See <a href="network-lookup-service-configuration.html#LookupServiceConfiguration-MulticastSettings">Multicast Settings</a> section for details of how to modify that value.</p>
 </div>
 
 </body>

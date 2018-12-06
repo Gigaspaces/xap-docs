@@ -5,14 +5,14 @@
 <h1>Administrative Alerts</h1>
   
 
-<p>The alert mechanism provides the ability to receive alerts on various problematic conditions at runtime by using the <a href="administration-and-monitoring-overview.htm">Administration and Monitoring API</a>. The alerts give indication for the "health state" of the system.</p>
+<p>The alert mechanism provides the ability to receive alerts on various problematic conditions at runtime by using the <a href="administration-and-monitoring-overview.html">Administration and Monitoring API</a>. The alerts give indication for the "health state" of the system.</p>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Runtime Model </p>
-  <p>The alerts rules are running within the <code>Admin</code> instance which the user created. GigaSpaces does not run an alert service that is running behind the scenes. If you would like to register for alerts in your production system, the recommended way to do it is to deploy your alert listener to the GigaSpaces <a href="../admin/the-runtime-environment.htm">The Runtime Environment</a> in the form of a <a href="the-processing-unit-structure-and-configuration.htm">processing unit</a>.</p>
+  <p>The alerts rules are running within the <code>Admin</code> instance which the user created. GigaSpaces does not run an alert service that is running behind the scenes. If you would like to register for alerts in your production system, the recommended way to do it is to deploy your alert listener to the GigaSpaces <a href="../admin/the-runtime-environment.html">The Runtime Environment</a> in the form of a <a href="the-processing-unit-structure-and-configuration.html">processing unit</a>.</p>
 </div>
 
-<p>The <a href="administration-and-monitoring-overview.htm">Administration and Monitoring API</a> provides events and statistics on top of which "rules' can be applied to trigger an alert when required.</p>
+<p>The <a href="administration-and-monitoring-overview.html">Administration and Monitoring API</a> provides events and statistics on top of which "rules' can be applied to trigger an alert when required.</p>
 
 <ul>
 <li><p><span class="tc-bold">Events</span> such as <code>ReplicationStatusChangedEvent</code> indicate that the <code>ReplicationStatus</code> has changed (e.g. ACTIVE, DISABLED, DISCONNECTED). From this event, an alert trigger can be written to raise an alert if replication has disconnected, and to resolve an alert once replication has reconnected (ref. <span class="tc-bold">Predefined Alerts</span> below).</p></li>
@@ -105,15 +105,15 @@ The alert is configured with a high threshold of 80% and a low threshold of 60% 
 
 <h1><a name="viewing-alerts">&#160;</a>Viewing Alerts</h1>
 
-<p>You can view alerts in the Web Management Console. For information, refer to <a href="../admin/web-management-view-alerts.htm">Viewing Alerts</a> in the Administration Guide.</p>
+<p>You can view alerts in the Web Management Console. For information, refer to <a href="../admin/web-management-view-alerts.html">Viewing Alerts</a> in the Administration Guide.</p>
 
 <h1><a name="listening-for-alerts">&#160;</a>Listening for Alerts</h1>
 
-<p>Alerts can be consumed using a registered event listener by registering with the <code>AlertManager</code> component (which is part of the <a href="administration-and-monitoring-overview.htm">Administration and Monitoring API</a>. The listener will be notified of alerts that have been triggered.</p>
+<p>Alerts can be consumed using a registered event listener by registering with the <code>AlertManager</code> component (which is part of the <a href="administration-and-monitoring-overview.html">Administration and Monitoring API</a>. The listener will be notified of alerts that have been triggered.</p>
 
 <div class="tc-admon-refer">
   
-  <p><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/Alert.htm">Alert</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/AlertManager.htm">AlertManager</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/config/parser/XmlAlertConfigurationParser.htm">XmlAlertConfigurationParser</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/events/AlertTriggeredEventListener.htm">AlertTriggeredEventListener</a></p>
+  <p><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/Alert.html">Alert</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/AlertManager.html">AlertManager</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/config/parser/XmlAlertConfigurationParser.html">XmlAlertConfigurationParser</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/events/AlertTriggeredEventListener.html">AlertTriggeredEventListener</a></p>
 </div>
 
 <pre><code class="language-java"> Admin admin = new AdminFactory().createAdmin();
@@ -142,7 +142,7 @@ The file argument can be:</p>
 </ul>
 </div>
 
-<p>The default parser parses the XML file. If needed, you can implement a different parser (see <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/config/parser/AlertConfigurationParser.htm">AlertConfigurationParser</a> interface).
+<p>The default parser parses the XML file. If needed, you can implement a different parser (see <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/config/parser/AlertConfigurationParser.html">AlertConfigurationParser</a> interface).
 The <code>alertTriggered</code> method is called upon each alert triggered.</p>
 
 <h1><a name="the-alert-event">&#160;</a>The Alert Event</h1>
@@ -217,7 +217,7 @@ The <code>alertTriggered</code> method is called upon each alert triggered.</p>
 
 <div class="tc-admon-refer">
   
-  <p><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/AlertSeverity.htm">AlertSeverity</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/AlertStatus.htm">AlertStatus</a></p>
+  <p><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/AlertSeverity.html">AlertSeverity</a>, <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/alert/AlertStatus.html">AlertStatus</a></p>
 </div>
 
 <h1><a name="runtime-configuration">&#160;</a>Runtime Configuration</h1>

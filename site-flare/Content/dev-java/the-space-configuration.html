@@ -6,7 +6,7 @@
   
 
 <p>When a client connects to a space, a proxy is created that holds a connection to the space. All client interaction is performed through this proxy.
-The proxy provides a simpler space API using the <a href="[%=Links.ApiJavaDoc%]/index.htm">GigaSpace</a> interface.
+The proxy provides a simpler space API using the <a href="[%=Links.ApiJavaDoc%]/index.html">GigaSpace</a> interface.
 It is created with a Space URL and optional parameters.</p>
 
 <h1><a name="the-space-url">&#160;</a>The Space URL</h1>
@@ -58,7 +58,7 @@ It is created with a Space URL and optional parameters.</p>
 
 <div class="tc-admon-refer">
   
-  <p>Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the <a href="../admin/network-multicast.htm">How to Configure Multicast</a> section for details on how to enable multicast.</p>
+  <p>Make sure your network and machines running GigaSpaces are configured to have multicast enabled. See the <a href="../admin/network-multicast.html">How to Configure Multicast</a> section for details on how to enable multicast.</p>
 </div>
 
 <h3><a name="examples">&#160;</a>Examples</h3>
@@ -146,7 +146,7 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
 
 <tr>
 <td align="left"><code>locators</code></td>
-<td align="left">Instructs the started space or a client to locate the Jini Lookup Service on specific host name and port. For more details please refer to <a href="../admin/network-unicast-discovery.htm#HowtoConfigureUnicastDiscovery-Configuringthelookuplocatorsproperty">How to Configure Unicast Discovery</a> page.</td>
+<td align="left">Instructs the started space or a client to locate the Jini Lookup Service on specific host name and port. For more details please refer to <a href="../admin/network-unicast-discovery.html#HowtoConfigureUnicastDiscovery-Configuringthelookuplocatorsproperty">How to Configure Unicast Discovery</a> page.</td>
 <td align="left"></td>
 </tr>
 
@@ -324,11 +324,11 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
 <p>Popular overrides:</p>
 
 <ul>
-<li><a href="memory-management-overview.htm#Memory Manager Parameters">Memory Manager Settings</a></li>
-<li><a href="../admin/replication-parameters.htm">Replication Settings</a></li>
-<li><a href="../admin/controlling-the-replication-redo-log.htm#Redo Log Capacity Configuration">Replication Redo-log Settings</a></li>
-<li><a href="../admin/tuning-proxy-connectivity.htm#Configuration">Proxy Connectivity Settings</a></li>
-<li><a href="space-persistency-advanced-topics.htm#Properties">Persistency Settings</a></li>
+<li><a href="memory-management-overview.html#Memory Manager Parameters">Memory Manager Settings</a></li>
+<li><a href="../admin/replication-parameters.html">Replication Settings</a></li>
+<li><a href="../admin/controlling-the-replication-redo-log.html#Redo Log Capacity Configuration">Replication Redo-log Settings</a></li>
+<li><a href="../admin/tuning-proxy-connectivity.html#Configuration">Proxy Connectivity Settings</a></li>
+<li><a href="space-persistency-advanced-topics.html#Properties">Persistency Settings</a></li>
 </ul>
 
  <a name="proxy">&#160;</a>
@@ -391,7 +391,7 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
 
 <tr>
 <td align="left">clustered</td>
-<td align="left">Boolean. <a href="../admin/clustered-vs-non-clustered-proxies.htm">Cluster flag</a>. Controlling if this GigaSpace will work with a clustered view of the space or directly with a cluster member. By default if this flag is not set it will be set automatically by this factory. It will be set to true if the space is an embedded one AND the space is not a local cache proxy. It will be set to false otherwise (i.e. the space is not an embedded space OR the space is a local cache proxy)</td>
+<td align="left">Boolean. <a href="../admin/clustered-vs-non-clustered-proxies.html">Cluster flag</a>. Controlling if this GigaSpace will work with a clustered view of the space or directly with a cluster member. By default if this flag is not set it will be set automatically by this factory. It will be set to true if the space is an embedded one AND the space is not a local cache proxy. It will be set to false otherwise (i.e. the space is not an embedded space OR the space is a local cache proxy)</td>
 <td align="left">NO</td>
 <td align="left">true for remote proxy , false for embedded proxy</td>
 </tr>
@@ -412,7 +412,7 @@ jini://LookupServiceHostName1:port1/*/space name?locators=LookupServiceHostName1
 
 <tr>
 <td align="left">default-write-lease</td>
-<td align="left">Numerical Value. Sets the default <a href="leases-automatic-expiration.htm">space object lease</a> (TTL) for <code>write(Object)</code> operation.</td>
+<td align="left">Numerical Value. Sets the default <a href="leases-automatic-expiration.html">space object lease</a> (TTL) for <code>write(Object)</code> operation.</td>
 <td align="left">NO</td>
 <td align="left">FOREVER. TimeUnit:millsec</td>
 </tr>
@@ -634,17 +634,17 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 <p>For further details on each of the available modifiers see:</p>
 
 <ul>
-<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ReadModifiers.htm">ReadModifiers</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/WriteModifiers.htm">WriteModifiers</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.htm">TakeModifiers</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/CountModifiers.htm">CountModifiers</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ClearModifiers.htm">ClearModifiers</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ChangeModifiers.htm">ChangeModifiers</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ReadModifiers.html">ReadModifiers</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/WriteModifiers.html">WriteModifiers</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.html">TakeModifiers</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/CountModifiers.html">CountModifiers</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ClearModifiers.html">ClearModifiers</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ChangeModifiers.html">ChangeModifiers</a></li>
 </ul>
 
 <h1><a name="exception-hierarchy">&#160;</a>Exception Hierarchy</h1>
 
-<p>OpenSpaces is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.htm#dao-exceptions" target="_blank" >consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
+<p>OpenSpaces is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.html#dao-exceptions" target="_blank" >consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
 
 <p>OpenSpaces provides a pluggable exception translator using the following interface:</p>
 
@@ -661,11 +661,11 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 <p>Batch operations many throw the following Exceptions. Make sure you catch these and act appropriately:</p>
 
 <ul>
-<li><a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/core/WriteMultiplePartialFailureException.htm">WriteMultiplePartialFailureException</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/core/WriteMultipleException.htm">WriteMultipleException</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/core/ReadMultipleException.htm">ReadMultipleException</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/core/TakeMultipleException.htm">TakeMultipleException</a></li>
-<li><a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/core/ClearException.htm">ClearException</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/WriteMultiplePartialFailureException.html">WriteMultiplePartialFailureException</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/WriteMultipleException.html">WriteMultipleException</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/ReadMultipleException.html">ReadMultipleException</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/TakeMultipleException.html">TakeMultipleException</a></li>
+<li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/ClearException.html">ClearException</a></li>
 </ul>
 
 <h1><a name="basic-guidelines">&#160;</a>Basic Guidelines</h1>
@@ -674,7 +674,7 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 <li>The variable represents a remote or embedded space proxy (for a single space or clustered) and <span class="tc-bold">should be constructed only</span> once throughout the lifetime of the application process.</li>
 <li>You should treat the variable as a singleton to be shared across multiple different threads within your application.</li>
 <li>The interface is thread safe and there is no need to create a GigaSpace variable per application thread.</li>
-<li>In case the space has been fully terminated (no backup or primary instances running any more) the client space proxy will try to reconnect to the space up to a predefined timeout based on the <a href="../admin/tuning-proxy-connectivity.htm">Proxy Connectivity</a> settings. If it fails to reconnect, an error will be displayed.</li>
+<li>In case the space has been fully terminated (no backup or primary instances running any more) the client space proxy will try to reconnect to the space up to a predefined timeout based on the <a href="../admin/tuning-proxy-connectivity.html">Proxy Connectivity</a> settings. If it fails to reconnect, an error will be displayed.</li>
 <li>Within a single Processing Unit (or Spring application context), several GigaSpace instances can be defined, each with different characteristics, all will be interacting with the same remote space.</li>
 </ul>
 

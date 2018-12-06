@@ -57,7 +57,7 @@ eventListener.destroy();
 
 <div class="tc-admon-refer">
   
-  <p><a href="notify-container-overview.htm">Notify Container</a></p>
+  <p><a href="notify-container-overview.html">Notify Container</a></p>
 </div>
 
 <h1><a name="polling-example">&#160;</a>Polling Example</h1>
@@ -102,7 +102,7 @@ eventListener.destroy();
 
 <div class="tc-admon-refer">
   
-  <p><a href="polling-container-overview.htm">Polling Container</a></p>
+  <p><a href="polling-container-overview.html">Polling Container</a></p>
 </div>
 
 <h1><a name="primary-backup">&#160;</a>Primary/Backup</h1>
@@ -117,7 +117,7 @@ eventListener.destroy();
 
 <div class="tc-admon-note">
   
-  <p>OpenSpaces also provides the <a href="space-mode-context-loader.htm">Space Mode Context Loader</a>, which can load the Spring application context when it has become primary, and unload it when it moves to backup.</p>
+  <p>OpenSpaces also provides the <a href="space-mode-context-loader.html">Space Mode Context Loader</a>, which can load the Spring application context when it has become primary, and unload it when it moves to backup.</p>
 </div>
 
 <p>In embedded mode, the space factory bean registers with the space for space mode changes. The registration is performed on the actual space instance (and not a clustered proxy of it), and any events raised are translated to the equivalent OpenSpaces space mode change events. In remote mode, a single primary event is raised.</p>
@@ -333,7 +333,7 @@ Thus, the compareAndSet() method can be used to implement a simple synchronizati
 
 <p>When a remote client is interested to receive events when a space instance changing its runtime mode (from primary to backup or vise versa), it should implement the <code>SpaceModeChangedEventListener</code>. See below how:</p>
 
-<p>Registering for the event using the <a href="administration-and-monitoring-overview.htm">Administration API</a>:</p>
+<p>Registering for the event using the <a href="administration-and-monitoring-overview.html">Administration API</a>:</p>
 
 <pre><code class="language-java">Admin admin = new AdminFactory().createAdmin();
 Space space = admin.getSpaces().waitFor(spaceName, 10, TimeUnit.SECONDS);

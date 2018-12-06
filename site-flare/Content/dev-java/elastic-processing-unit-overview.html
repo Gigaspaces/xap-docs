@@ -7,7 +7,7 @@
 
 <div class="tc-admon-note">
   
-  <p>The Elastic Processing Unit is deprecated as of version 12.1, as noted in the <a href="/release_notes/121upgrading.htm">Release Notes</a>.</p>
+  <p>The Elastic Processing Unit is deprecated as of version 12.1, as noted in the <a href="/release_notes/121upgrading.html">Release Notes</a>.</p>
 </div>
 
 <p>An Elastic Processing Unit (EPU) is a Processing Unit with additional capabilities that simplify its deployment across multiple machines. Containers and machine resources such as Memory and CPU are automatically provisioned based on Memory and CPU requirements. When a machine failure occurs, or when scale requirements change, new machines are provisioned and the Processing Unit deployment distribution is balanced automatically. The PU scale is triggered by modifying the requirements through an API call. From that point in time, the EPU continuously maintains the specified capacity (indefinitely, or until the next scale trigger).</p>
@@ -54,16 +54,16 @@
 
 <div class="tc-admon-note">
   
-  <p>For a quick start, follow the <a href="deploying-onto-the-service-grid.htm#elastic-processing-unit-deployment-using-the-admin-api">Elastic Processing Unit deployment example</a>.
+  <p>For a quick start, follow the <a href="deploying-onto-the-service-grid.html#elastic-processing-unit-deployment-using-the-admin-api">Elastic Processing Unit deployment example</a>.
 When using the EPU, XAP manages the <span class="tc-bold">entire</span> life cycle of the container. When the EPU is deployed, containers are started and the EPU instances are provisioned into these containers. When the EPU scales up, additional containers are started and instances are relocated into these containers. When the EPU is un-deployed, all the containers associated with the EPU are automatically terminated.</p>
 </div>
 
 <p>This section discusses the following topics:</p>
 
 <ul>
-<li><a href="elastic-processing-unit-deploy.htm">Deployment</a> - describes the required deployment parameters and capacity planning considerations.</li>
-<li><a href="elastic-processing-unit-trigger.htm">Scale Triggers</a> - describes how to scale a PU after it has been deployed.</li>
-<li><a href="elastic-processing-unit-provisioning.htm">Machine Provisioning</a> - describes how to start the XAP agent on each machine, plug-in development for different cloud providers, and the algorithm that re-balances the PU across the machines.</li>
+<li><a href="elastic-processing-unit-deploy.html">Deployment</a> - describes the required deployment parameters and capacity planning considerations.</li>
+<li><a href="elastic-processing-unit-trigger.html">Scale Triggers</a> - describes how to scale a PU after it has been deployed.</li>
+<li><a href="elastic-processing-unit-provisioning.html">Machine Provisioning</a> - describes how to start the XAP agent on each machine, plug-in development for different cloud providers, and the algorithm that re-balances the PU across the machines.</li>
 </ul>
 
 <h1><a name="considerations">&#160;</a>Considerations</h1>

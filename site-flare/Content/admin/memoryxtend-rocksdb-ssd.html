@@ -124,21 +124,21 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
 <tr>
 <td align="left">central-storage</td>
-<td align="left">Specifies whether the deployment strategy is for <a href="memoryxtend-rocksdb-ssd.htm#central-storage">central storage</a> (i.e. SAN configuration) or <a href="memoryxtend-rocksdb-ssd.htm#local-storage">local storage</a> on each grid machine (default).</td>
+<td align="left">Specifies whether the deployment strategy is for <a href="memoryxtend-rocksdb-ssd.html#central-storage">central storage</a> (i.e. SAN configuration) or <a href="memoryxtend-rocksdb-ssd.html#local-storage">local storage</a> on each grid machine (default).</td>
 <td align="left">false</td>
 <td align="left">optional</td>
 </tr>
 
 <tr>
 <td align="left">db-options</td>
-<td align="left">Specifies the tuning parameters for the persistent data store in the underlying blobstore. This includes SST formats, compaction settings and flushes. See the <a href="memoryxtend-rocksdb-ssd.htm#performance-tuning">Performance Tuning</a> section for details.</td>
+<td align="left">Specifies the tuning parameters for the persistent data store in the underlying blobstore. This includes SST formats, compaction settings and flushes. See the <a href="memoryxtend-rocksdb-ssd.html#performance-tuning">Performance Tuning</a> section for details.</td>
 <td align="left"></td>
 <td align="left">optional</td>
 </tr>
 
 <tr>
 <td align="left">data-column-family-options</td>
-<td align="left">Specifies the tuning parameters for the LSM logic and memory tables. See the <a href="memoryxtend-rocksdb-ssd.htm#performance-tuning">Performance Tuning</a> section for details.</td>
+<td align="left">Specifies the tuning parameters for the LSM logic and memory tables. See the <a href="memoryxtend-rocksdb-ssd.html#performance-tuning">Performance Tuning</a> section for details.</td>
 <td align="left"></td>
 <td align="left">optional</td>
 </tr>
@@ -154,7 +154,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
 <div class="tc-admon-note">
   
-  <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.htm#on-heap-cache">MemoryXtend overview</a> topic.</p>
+  <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.html#on-heap-cache">MemoryXtend overview</a> topic.</p>
 </div>
 
 <h1><a name="off-heap-cache">&#160;</a>Off-Heap Cache</h1>
@@ -185,14 +185,14 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
 <div class="tc-admon-important">
   
-  <p>If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular <a href="../dev-java/memory-management-overview.htm">memory manager</a>.</p>
+  <p>If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular <a href="../dev-java/memory-management-overview.html">memory manager</a>.</p>
 </div>
 
 <p>The amount of used off-heap memory can be tracked using the following:</p>
 
 <ul>
-<li>Metrics - The <code>space_blobstore_off-heap-cache_used-bytes_total</code> metric, as described on the <a href="metrics-bundled.htm#blobstore-operations">Metrics</a> page.</li>
-<li>Administration API - Thru <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/admin/space/SpaceInstanceStatistics.htm#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
+<li>Metrics - The <code>space_blobstore_off-heap-cache_used-bytes_total</code> metric, as described on the <a href="metrics-bundled.html#blobstore-operations">Metrics</a> page.</li>
+<li>Administration API - Thru <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/admin/space/SpaceInstanceStatistics.html#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
 <li>Web Management Console - In the Space instances view, right-click any of the columns in the table and add the <span class="tc-bold">Used Off-Heap Cache</span> column.</li>
 </ul>
 

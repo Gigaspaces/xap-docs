@@ -5,7 +5,7 @@
 <h1>Nested Properties</h1>
   
 
-<p>The <a href="query-sql.htm">SQL Query</a> page shows how to express complex queries on flat Space entries (e.g. entries that are composed of scalar types like integers and strings), but in reality Space entries are often composed of more complex types.
+<p>The <a href="query-sql.html">SQL Query</a> page shows how to express complex queries on flat Space entries (e.g. entries that are composed of scalar types like integers and strings), but in reality Space entries are often composed of more complex types.
 For example, a <span class="tc-bold">Person</span> class may have:</p>
 
 <ul>
@@ -14,7 +14,7 @@ For example, a <span class="tc-bold">Person</span> class may have:</p>
 <li>A <span class="tc-bold">groups</span> property of type <code>List&lt;String&gt;</code>, encapsulating various groups the person belongs to.</li>
 </ul>
 
-<p>An application would likely need to execute queries which involve such properties (e.g. a person which lives in city X, or is part of some group Y, or has a specific home phone number). This page explains how GigaSpaces <a href="query-sql.htm">SQLQuery</a> can be used to express such queries.</p>
+<p>An application would likely need to execute queries which involve such properties (e.g. a person which lives in city X, or is part of some group Y, or has a specific home phone number). This page explains how GigaSpaces <a href="query-sql.html">SQLQuery</a> can be used to express such queries.</p>
 
 <h1><a name="matching-paths">&#160;</a>Matching Paths</h1>
 
@@ -92,7 +92,7 @@ public class Person {
 <div class="tc-admon-note">
   
   <p>The index is specified on top of the <span class="tc-bold">address</span> property, therefore the <code>path</code> is "<span class="tc-bold">city</span>" rather than "<span class="tc-bold">address.city</span>".
-For more information, see the <a href="indexing.htm#Nested Properties Indexing">Nested Properties Indexing</a> topic under <a href="indexing.htm">Indexing</a>.</p>
+For more information, see the <a href="indexing.html#Nested Properties Indexing">Nested Properties Indexing</a> topic under <a href="indexing.html">Indexing</a>.</p>
 </div>
 
 <div class="tc-admon-important">
@@ -145,7 +145,7 @@ public class Person {
 <div class="tc-admon-note">
   
   <p>The index is specified on top of the <span class="tc-bold">phoneNumbers</span> property, therefore the <code>path</code> is "<span class="tc-bold">home</span>" rather than "<span class="tc-bold">phoneNumbers.home</span>".
-For more information see the <a href="indexing.htm#Nested properties indexing">Nested Properties Indexing</a> section under <a href="indexing.htm">Indexing</a>.</p>
+For more information see the <a href="indexing.html#Nested properties indexing">Nested Properties Indexing</a> section under <a href="indexing.html">Indexing</a>.</p>
 </div>
 
  <a name="collection-support">&#160;</a>
@@ -253,7 +253,7 @@ public List&lt;Car&gt; getCars() {
   
   <p>The index is specified on top of the <span class="tc-bold">cars</span> property, therefore the <code>path</code> is [<span class="tc-italic">].company rather than cars[</span>].company**.
 The bigger the collection, the more memory is required to store the index at the server (since each item is indexed). Use with caution!
-For more information see the <a href="indexing.htm#Collection Indexing">Collection Indexing</a> topic under <a href="indexing.htm">Indexing</a>.</p>
+For more information see the <a href="indexing.html#Collection Indexing">Collection Indexing</a> topic under <a href="indexing.html">Indexing</a>.</p>
 </div>
 
 <h1><a name="limitations">&#160;</a>Limitations</h1>

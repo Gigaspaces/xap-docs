@@ -9,7 +9,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>You may find an Event Driven Remoting example in the <a href="/sbp/event-driven-remoting-example.htm">Event Driven Remoting Example best practice</a> section.</p>
+  <p>You may find an Event Driven Remoting example in the <a href="/sbp/event-driven-remoting-example.html">Event Driven Remoting Example best practice</a> section.</p>
 </div>
 
 <h1><a name="defining-the-contract">&#160;</a>Defining the Contract</h1>
@@ -125,7 +125,7 @@ public class DataProcessor implements IDataProcessor {
 </div>
 </div>
 
-<p>Exporting the service as a remote space service uses the <a href="polling-container-overview.htm">event polling container</a>. The polling container automatically listens to internal <code>EventDrivenSpaceRemotingEntry</code> objects, and writes back an updated <code>EventDrivenSpaceRemotingEntry</code> to the space. All polling event container features, such as transactions and different receive handlers can be used with Space remoting.</p>
+<p>Exporting the service as a remote space service uses the <a href="polling-container-overview.html">event polling container</a>. The polling container automatically listens to internal <code>EventDrivenSpaceRemotingEntry</code> objects, and writes back an updated <code>EventDrivenSpaceRemotingEntry</code> to the space. All polling event container features, such as transactions and different receive handlers can be used with Space remoting.</p>
 
 <h2><a name="exporting-a-service-non-collocated-with-the-space">&#160;</a>Exporting a Service Non-Collocated with the Space</h2>
 
@@ -360,7 +360,7 @@ dataRemoting.setDataProcessor(dataProcessor);
 
 <div class="tc-admon-note">
   
-  <p>Using a <a href="document-api.htm">SpaceDocument</a> as the annotated routing argument will cause an exception since the <code>SpaceDocument</code> class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. The solution is either to extend the <code>SpaceDocument</code> class as described in <a href="document-extending.htm">Extending Space Documents</a>, and define the relevant <code>getProperty</code> method in the extension class, or use the <code>RemoteRoutingHandler</code> mentioned above.</p>
+  <p>Using a <a href="document-api.html">SpaceDocument</a> as the annotated routing argument will cause an exception since the <code>SpaceDocument</code> class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. The solution is either to extend the <code>SpaceDocument</code> class as described in <a href="document-extending.html">Extending Space Documents</a>, and define the relevant <code>getProperty</code> method in the extension class, or use the <code>RemoteRoutingHandler</code> mentioned above.</p>
 </div>
 
 <h1><a name="server-side-services-injection">&#160;</a>Server Side Services Injection</h1>
@@ -688,7 +688,7 @@ In other words, the regular method should be prefixed with <code>async</code> an
 
 <p>In case of a Primary Backup clusters and Partitioned Sync2Backup clusters, when there is failure of primary space partition, remoting request is transparently forwarded to the backup.</p>
 
-<p>Event Driven Remoting proxy is aware of each partition in the cluster and connection with the failed primary partition will get interrupted/disconnected in case of a failure. Proxy recognizes failure and redirects the request to the backup partition. When the backup becomes ready (any warmup code that needs to run and is ready to accept operations), it will accept this request and process the request. All of this failover behavior is done within the GigaSpaces proxy code and client does not need any extra logic. For more information refer to <a href="../admin/tuning-proxy-connectivity.htm">Proxy Connectivity</a>.</p>
+<p>Event Driven Remoting proxy is aware of each partition in the cluster and connection with the failed primary partition will get interrupted/disconnected in case of a failure. Proxy recognizes failure and redirects the request to the backup partition. When the backup becomes ready (any warmup code that needs to run and is ready to accept operations), it will accept this request and process the request. All of this failover behavior is done within the GigaSpaces proxy code and client does not need any extra logic. For more information refer to <a href="../admin/tuning-proxy-connectivity.html">Proxy Connectivity</a>.</p>
 
 <p>If the backup space does not become ready to accept requests within the configured number of retries, execute request will fail with an Exception.</p>
 
@@ -698,7 +698,7 @@ In other words, the regular method should be prefixed with <code>async</code> an
 
 <div class="tc-admon-refer">
   
-  <p>For more information see <a href="custom-serialization.htm">Custom Serialization</a>.</p>
+  <p>For more information see <a href="custom-serialization.html">Custom Serialization</a>.</p>
 </div>
 
 </body>

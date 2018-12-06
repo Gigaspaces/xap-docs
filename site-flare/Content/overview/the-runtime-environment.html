@@ -7,13 +7,13 @@
 
  <a name="GSRuntimeEnv">&#160;</a>
 
-<p>The basic unit of deployment in the GigaSpaces XAP platform is the <a href="../dev-java/the-processing-unit-overview.htm">Processing Unit</a>.</p>
+<p>The basic unit of deployment in the GigaSpaces XAP platform is the <a href="../dev-java/the-processing-unit-overview.html">Processing Unit</a>.</p>
 
 <p>Once packaged, a processing unit is deployed onto the GigaSpaces runtime environment, which is called the <span class="tc-italic">Service Grid</span>. It is responsible for materializing the processing unit's configuration, provisioning its instances to the runtime infrastructure and making sure they continue to run properly over time.</p>
 
 <div class="tc-admon-note">
   
-  <p>When developing your processing unit, you can <a href="../started/xap-debug.htm">run and debug the processing unit within your IDE</a>. You will typically deploy it to the GigaSpaces runtime environment when it's ready for production or when you want to run it in the real-life runtime environment</p>
+  <p>When developing your processing unit, you can <a href="../started/xap-debug.html">run and debug the processing unit within your IDE</a>. You will typically deploy it to the GigaSpaces runtime environment when it's ready for production or when you want to run it in the real-life runtime environment</p>
 </div>
 
 <h1><a name="architecture">&#160;</a>Architecture</h1>
@@ -34,7 +34,7 @@ It then ships the processing unit code to the running <span class="tc-italic">GS
 
 <p>Finally, the <span class="tc-italic">GSA</span> <a href="#gsa">Grid Service Agent</a> component is used to start and manage the other components of the Service Grid (i.e. GSC, GSM, LUS). Typically, the GSA is started with the hosting machine's startup. Using the agent, you can bootstrap the entire cluster very easily, and start and stop additional GSCs, GSMs and lookup services at will.</p>
 
-<p>All of the above components are fully manageable from the GigaSpaces management interfaces such as the <a href="../admin/tools-desktop-ui.htm">UI</a>, CLI and <a href="../dev-java/administration-and-monitoring-overview.htm">Admin API</a>.</p>
+<p>All of the above components are fully manageable from the GigaSpaces management interfaces such as the <a href="../admin/tools-desktop-ui.html">UI</a>, CLI and <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a>.</p>
 
  <a name="gsm">&#160;</a>
 
@@ -73,9 +73,9 @@ It then ships the processing unit code to the running <span class="tc-italic">GS
 
 <p>Service registrations in the LUS are lease-based, and each service periodically renews its lease. That way, if a service hangs or disconnects from the LUS, its registration will be cancelled when the lease expires.</p>
 
-<p>The Lookup Service can be configured for either a <a href="../admin/network-multicast.htm">multicast</a> or <a href="../admin/network-unicast-discovery.htm">unicast</a> environment (default is multicast).</p>
+<p>The Lookup Service can be configured for either a <a href="../admin/network-multicast.html">multicast</a> or <a href="../admin/network-unicast-discovery.html">unicast</a> environment (default is multicast).</p>
 
-<p>Another important attribute in that context is the <span class="tc-italic">lookup group</span>. The lookup group is a logical grouping of all the components that belong to the same runtime cluster. Using lookup groups, you can run multiple deployments on the same physical infrastructure, without them interfering with one another. For more details please refer to <a href="../admin/network-lookup-service-configuration.htm">Lookup Service Configuration</a>.</p>
+<p>Another important attribute in that context is the <span class="tc-italic">lookup group</span>. The lookup group is a logical grouping of all the components that belong to the same runtime cluster. Using lookup groups, you can run multiple deployments on the same physical infrastructure, without them interfering with one another. For more details please refer to <a href="../admin/network-lookup-service-configuration.html">Lookup Service Configuration</a>.</p>
 
 <div class="tc-admon-note">
   
@@ -107,7 +107,7 @@ It then ships the processing unit code to the running <span class="tc-italic">GS
 
 <p>Usually, a single GSA is run per machine. If you're setting up multiple Service Grids separated by <a href="#lus">Lookup Groups or Locators</a>, you'll probably start a GSA per machine per group.</p>
 
-<p>The GSA exposes the ability to start, restart, and kill a process either using the <a href="../dev-java/administration-and-monitoring-overview.htm">Administration API</a> or the GigaSpaces Management Center.</p>
+<p>The GSA exposes the ability to start, restart, and kill a process either using the <a href="../dev-java/administration-and-monitoring-overview.html">Administration API</a> or the GigaSpaces Management Center.</p>
 
 <h2><a name="process-management">&#160;</a>Process Management</h2>
 
@@ -120,11 +120,11 @@ It then ships the processing unit code to the running <span class="tc-italic">GS
 <h1><a name="optional-components">&#160;</a>Optional Components</h1>
 
 <ul>
-<li><p>The Elastic Service Manager (ESM) manages the <a href="../dev-java/elastic-processing-unit-overview.htm">Elastic Processing Unit</a> together with the GSM.</p></li>
+<li><p>The Elastic Service Manager (ESM) manages the <a href="../dev-java/elastic-processing-unit-overview.html">Elastic Processing Unit</a> together with the GSM.</p></li>
 
-<li><p>The <a href="../dev-java/apache-load-balancer-agent.htm">Apache Load Balancer Agent</a> is used when deploying web applications.</p></li>
+<li><p>The <a href="../dev-java/apache-load-balancer-agent.html">Apache Load Balancer Agent</a> is used when deploying web applications.</p></li>
 
-<li><p>The Transaction Manager (TXM) is an optional component. When executing transactions that spans multiple space partitions you should use the Jini Transaction Manager or the Distributed Transaction Manager. See the <a href="../dev-java/transaction-overview.htm">Transaction Management</a> section for details.</p></li>
+<li><p>The Transaction Manager (TXM) is an optional component. When executing transactions that spans multiple space partitions you should use the Jini Transaction Manager or the Distributed Transaction Manager. See the <a href="../dev-java/transaction-overview.html">Transaction Management</a> section for details.</p></li>
 </ul>
 
 </body>

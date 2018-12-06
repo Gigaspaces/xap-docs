@@ -7,7 +7,7 @@
 
 <h1><a name="secured-space">&#160;</a>Secured Space</h1>
 
-<p>A secured embedded Space protects access (to data), which is granted only to users with sufficient privileges. When a remote Space proxy connects to a secured Space, it must provide security credentials (usually the username and password, as explained in <a href="custom-security.htm">Custom Security</a> regarding extensions).</p>
+<p>A secured embedded Space protects access (to data), which is granted only to users with sufficient privileges. When a remote Space proxy connects to a secured Space, it must provide security credentials (usually the username and password, as explained in <a href="custom-security.html">Custom Security</a> regarding extensions).</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="space"&gt;
     &lt;os-core:security username="sa" password="adaw@##$" /&gt;
@@ -125,7 +125,7 @@ security.password=password
 
 <h2><a name="protecting-user-password">&#160;</a>Protecting User/Password</h2>
 
-<p>Leaving the username and password exposed (in pu.xml/pu.properties) isn't secure. A preferred implementation is to supply the credentials during deployment. The GigaSpaces Management Center, CLI, and Admin API administration tools provide comprehensive support for deploying a secured Processing Unit (refer to <a href="../admin/admin-service-grid-security.htm">Accessing a Secured Service Grid</a>).</p>
+<p>Leaving the username and password exposed (in pu.xml/pu.properties) isn't secure. A preferred implementation is to supply the credentials during deployment. The GigaSpaces Management Center, CLI, and Admin API administration tools provide comprehensive support for deploying a secured Processing Unit (refer to <a href="../admin/admin-service-grid-security.html">Accessing a Secured Service Grid</a>).</p>
 
 <p>Here is how the CLI deploy command would look like:</p>
 
@@ -151,7 +151,7 @@ security.password=password
 
 <h1><a name="local-cache">&#160;</a>Local Cache</h1>
 
-<p>The local cache <a href="../dev-java/local-cache.htm">Java version</a> |<a href="../dev-dotnet/local-cache.htm"> .NET version</a> is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have Read privileges.
+<p>The local cache <a href="../dev-java/local-cache.html">Java version</a> |<a href="../dev-dotnet/local-cache.html"> .NET version</a> is a read-only service on top of a remote Space. Thus, the local cache "creator" needs to have Read privileges.
 Security is enforced by the remote Space, and the proxy should be acquired by supplying the username and password.</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Local Cache Configurer" style="padding:10px"><pre><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space").credentials("user", "password");
@@ -206,7 +206,7 @@ GigaSpace localView = new GigaSpaceConfigurer(configurer.localView()).gigaSpace(
 
 <h1><a name="space-filters">&#160;</a>Space Filters</h1>
 
-<p>Space Filters <a href="../dev-java/the-space-filters.htm">Java version</a> |<a href="../dev-dotnet/the-space-filters.htm"> .NET version</a> are interceptors inside the XAP Space that allow implementation of user-defined logic based on Space events. Some filters need to perform operations on the embedded Space. If secured, the filter needs sufficient privileges for its operations.</p>
+<p>Space Filters <a href="../dev-java/the-space-filters.html">Java version</a> |<a href="../dev-dotnet/the-space-filters.html"> .NET version</a> are interceptors inside the XAP Space that allow implementation of user-defined logic based on Space events. Some filters need to perform operations on the embedded Space. If secured, the filter needs sufficient privileges for its operations.</p>
 
 <p>The username and password supplied when creating a Space are used to <span class="tc-italic">implicitly</span> create a secured Space. The security privileges of the specified user are propagated to the filter. If the user has Read privileges, then the filter can perform a <code>space.read(..)</code> on its embedded Space.</p>
 
@@ -370,7 +370,7 @@ These privileges should be sufficient for operations being performed by the filt
 
 <h1><a name="task-execution-over-the-space">&#160;</a>Task Execution over the Space</h1>
 
-<p>Tasks <a href="../dev-java/task-execution-overview.htm">Java version</a> |<a href="../dev-dotnet/task-execution-overview.htm"> .NET version</a> can be executed in a co-located, asynchronous manner within the Space (Processing Unit with an embedded Space). To execute a task, you must have Execute privileges. Execution can be restricted to certain tasks by applying "Class-Filter'. There is no need to define specific privileges for operations being performed by the task on the Space.</p>
+<p>Tasks <a href="../dev-java/task-execution-overview.html">Java version</a> |<a href="../dev-dotnet/task-execution-overview.html"> .NET version</a> can be executed in a co-located, asynchronous manner within the Space (Processing Unit with an embedded Space). To execute a task, you must have Execute privileges. Execution can be restricted to certain tasks by applying "Class-Filter'. There is no need to define specific privileges for operations being performed by the task on the Space.</p>
 
 <p>The following is a simple implementation of a task that performs a "count' operation on the Space.</p>
 
@@ -396,15 +396,15 @@ These privileges should be sufficient for operations being performed by the filt
 
 <h1><a name="executor-based-remoting">&#160;</a>Executor-Based Remoting</h1>
 
-<p>Executor-based remoting <a href="../dev-java/executor-based-remoting.htm">Java version</a> |<a href="../dev-dotnet/executor-based-remoting.htm"> .NET version</a> allows you to use remote invocations of POJO services with the Space as the transport layer, using OpenSpaces Executors. To invoke a service method, you must have Execute privileges for class <code>org.openspaces.remoting.ExecutorRemotingTask</code>.</p>
+<p>Executor-based remoting <a href="../dev-java/executor-based-remoting.html">Java version</a> |<a href="../dev-dotnet/executor-based-remoting.html"> .NET version</a> allows you to use remote invocations of POJO services with the Space as the transport layer, using OpenSpaces Executors. To invoke a service method, you must have Execute privileges for class <code>org.openspaces.remoting.ExecutorRemotingTask</code>.</p>
 
 <h1><a name="event-driven-remoting">&#160;</a>Event-Driven Remoting</h1>
 
-<p><a href="../dev-java/event-driven-remoting.htm">Event-driven remoting</a> allows you to use remote invocations of POJO services with the Space as the transport layer, using a polling container on the Space side to process the invocations. Under the wires, event-driven remoting uses the Space write and take capabilities. As such, you must have Write and Take privileges (at both ends) for class <code>org.openspaces.remoting.EventDrivenSpaceRemotingEntry</code>.</p>
+<p><a href="../dev-java/event-driven-remoting.html">Event-driven remoting</a> allows you to use remote invocations of POJO services with the Space as the transport layer, using a polling container on the Space side to process the invocations. Under the wires, event-driven remoting uses the Space write and take capabilities. As such, you must have Write and Take privileges (at both ends) for class <code>org.openspaces.remoting.EventDrivenSpaceRemotingEntry</code>.</p>
 
 <h1><a name="jdbc-driver">&#160;</a>JDBC Driver</h1>
 
-<p>XAP allows applications to connect using a <a href="../dev-java/jdbc-driver.htm">JDBC driver</a>. A XAP JDBC driver accepts SQL statements, translates them into Space operations, and returns standard result sets. To acquire a connection to a remote secured Space, provide the credentials (username and password) as parameters to the connection.</p>
+<p>XAP allows applications to connect using a <a href="../dev-java/jdbc-driver.html">JDBC driver</a>. A XAP JDBC driver accepts SQL statements, translates them into Space operations, and returns standard result sets. To acquire a connection to a remote secured Space, provide the credentials (username and password) as parameters to the connection.</p>
 
 <pre><code class="language-java">Class.forName("com.j_spaces.jdbc.driver.GDriver").newInstance();
 String url = "jdbc:gigaspaces:url:jini://*/*/space";
@@ -415,7 +415,7 @@ Statement st = conn.createStatement();
 
 <div class="tc-admon-note">
   
-  <p>An alternative method for querying the Space using SQL syntax is the <a href="../dev-java/query-sql.htm">SQLQuery</a> class, with a privileged GigaSpace proxy.</p>
+  <p>An alternative method for querying the Space using SQL syntax is the <a href="../dev-java/query-sql.html">SQLQuery</a> class, with a privileged GigaSpace proxy.</p>
 </div>
 
 </body>

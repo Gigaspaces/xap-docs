@@ -17,9 +17,9 @@
 
 <h2><a name="user-manager-interface">&#160;</a>User Manager interface</h2>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/DirectoryManager.htm">DirectoryManager</a> interface provides a means to managing users using the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/UserManager.htm">UserManager</a> API. Access should be granted only to users with <code>MANAGE_USERS</code> authority.</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/DirectoryManager.html">DirectoryManager</a> interface provides a means to managing users using the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/UserManager.html">UserManager</a> API. Access should be granted only to users with <code>MANAGE_USERS</code> authority.</p>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/UserManager.htm">UserManager</a> interface has simple methods for declaring users:</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/UserManager.html">UserManager</a> interface has simple methods for declaring users:</p>
 
 <pre><code class="language-java">public interface UserManager {
     ...
@@ -33,9 +33,9 @@
 
 <h2><a name="role-manager-interface">&#160;</a>Role Manager interface</h2>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/DirectoryManager.htm">DirectoryManage</a> interface provides a means to managing roles using the <code>RoleManager</code> API. Access should be granted only to users with <span class="tc-bold">MANAGE_ROLES</span> authority.</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/DirectoryManager.html">DirectoryManage</a> interface provides a means to managing roles using the <code>RoleManager</code> API. Access should be granted only to users with <span class="tc-bold">MANAGE_ROLES</span> authority.</p>
 
-<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/RoleManager.htm">RoleManager</a> interface has simple methods for declaring roles:</p>
+<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/RoleManager.html">RoleManager</a> interface has simple methods for declaring roles:</p>
 
 <pre><code class="language-java">public interface RoleManager {
     ...
@@ -49,7 +49,7 @@
 
 <h2><a name="using-the-api">&#160;</a>Using the API</h2>
 
-<p>The directory manager is accessible via the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/SecurityManager.htm">SecurityManager</a>. In the example below, the user <code>admin/admin</code> has both <code>MANAGE_USERS</code> and <code>MANAGE_ROLES</code>. We will use this user to gain access to the directory manager. Also, we have two default implementations <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/User.htm">User</a> and <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/Role.htm">Role</a> implementing <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/UserDetails.htm">UserDetails</a> and <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/RoleDetails.htm">RoleDetails</a> respectively.</p>
+<p>The directory manager is accessible via the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/SecurityManager.html">SecurityManager</a>. In the example below, the user <code>admin/admin</code> has both <code>MANAGE_USERS</code> and <code>MANAGE_ROLES</code>. We will use this user to gain access to the directory manager. Also, we have two default implementations <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/User.html">User</a> and <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/Role.html">Role</a> implementing <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/UserDetails.html">UserDetails</a> and <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/RoleDetails.html">RoleDetails</a> respectively.</p>
 
 <pre><code class="language-java">Properties securityProperties = new Properties();
 SecurityManager securityManager = SecurityFactory.createSecurityManager(securityProperties);
@@ -57,7 +57,7 @@ SecurityManager securityManager = SecurityFactory.createSecurityManager(security
 DirectoryManager directoryManager = securityManager.createDirectoryManager(new User("admin", "admin"));
 </code></pre>
 
-<p>We can now add a new user using the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/UserManager.htm">UserManager</a> API. "Alice" will be added with <code>READ</code> authority for class "eg.ClassA".</p>
+<p>We can now add a new user using the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/UserManager.html">UserManager</a> API. "Alice" will be added with <code>READ</code> authority for class "eg.ClassA".</p>
 
 <pre><code class="language-java">UserManager userManager = directoryManager.getUserManager();
 
@@ -66,7 +66,7 @@ userManager.createUser(new User("alice", "password",
     ));
 </code></pre>
 
-<p>A role can be declared using the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/RoleManager.htm">RoleManager</a> API. The "author" role will be added with <code>READ, WRITE, TAKE</code> authorities for class "eg.ClassA".</p>
+<p>A role can be declared using the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/security/directory/RoleManager.html">RoleManager</a> API. The "author" role will be added with <code>READ, WRITE, TAKE</code> authorities for class "eg.ClassA".</p>
 
 <pre><code class="language-java">RoleManager roleManager = directoryManager.getRoleManager();
 

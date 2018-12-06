@@ -5,7 +5,7 @@
 <h1>Clustered vs Non-Clustered Proxies</h1>
   
 
-<p>When deploying a Processing Unit(PU) configured with an embedded <a href="../dev-java/the-space-configuration.htm">Space</a> with a clustered SLA or when running a remote clustered space, a clustered <code>GigaSpace</code> proxy is created.</p>
+<p>When deploying a Processing Unit(PU) configured with an embedded <a href="../dev-java/the-space-configuration.html">Space</a> with a clustered SLA or when running a remote clustered space, a clustered <code>GigaSpace</code> proxy is created.</p>
 
 <p>A clustered proxy is a smart proxy that performs operations against the entire cluster when needed.</p>
 
@@ -25,7 +25,7 @@
 
 <p>The decision of working directly with a cluster member or against the whole cluster is done in the <code>GigaSpace</code> level. The <code>GigaSpacesFactoryBean</code> provides a clustered flag with the following logic as the default value: If the space is started in embedded mode (for example, <code>/./space</code>), the clustered flag is set to <code>false</code>. When the space is looked up in a remote protocol (i.e. <code>jini://*/*/space</code>, the clustered flag is set to <code>true</code>.</p>
 
-<p>You can use the <code>clustered</code> property to control this behavior or use the API to use a non-clustered embedded proxy to create a clustered proxy. This allows the collocated business logic to access the entire cluster to perform cluster wide operations. Clustered and Non-Clustered proxies may be used with a <a href="../dev-java/task-execution-overview.htm">Task</a>, <a href="../dev-java/executor-based-remoting.htm">Service</a>, <a href="../dev-java/notify-container-overview.htm">Notify Container</a> , <a href="../dev-java/polling-container-overview.htm">Polling Container</a> and any other Collocated business logic.</p>
+<p>You can use the <code>clustered</code> property to control this behavior or use the API to use a non-clustered embedded proxy to create a clustered proxy. This allows the collocated business logic to access the entire cluster to perform cluster wide operations. Clustered and Non-Clustered proxies may be used with a <a href="../dev-java/task-execution-overview.html">Task</a>, <a href="../dev-java/executor-based-remoting.html">Service</a>, <a href="../dev-java/notify-container-overview.html">Notify Container</a> , <a href="../dev-java/polling-container-overview.html">Polling Container</a> and any other Collocated business logic.</p>
 
 <h1><a name="creating-a-clustered-proxy">&#160;</a>Creating a Clustered Proxy</h1>
 
@@ -33,7 +33,7 @@
 
 <h2><a name="using-spring">&#160;</a>Using Spring</h2>
 
-<p>When using a Spring based <code>pu.xml</code> to construct the <a href="../dev-java/the-gigaspace-interface-overview.htm">GigaSpace</a> bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered <code>GigaSpace</code> bean:</p>
+<p>When using a Spring based <code>pu.xml</code> to construct the <a href="../dev-java/the-gigaspace-interface-overview.html">GigaSpace</a> bean to be injected into the other relevant beans the following should be used to create a clustered and a non-clustered <code>GigaSpace</code> bean:</p>
 
 <pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
 &lt;os-core:giga-space id="nonClusteredGigaSpace" space="space"/&gt;
@@ -154,7 +154,7 @@ this.id = id;
 &lt;os-remoting:service-exporter id="serviceExporter" /&gt;
 </code></pre>
 
-<p>Our Service using the <a href="../dev-java/the-space-notifications.htm">@PostPrimary</a> to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the <a href="../dev-java/obtaining-cluster-information.htm">@ClusterInfoContext</a> that provides information about the cluster topology and the local partition ID.</p>
+<p>Our Service using the <a href="../dev-java/the-space-notifications.html">@PostPrimary</a> to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the <a href="../dev-java/obtaining-cluster-information.html">@ClusterInfoContext</a> that provides information about the cluster topology and the local partition ID.</p>
 
 <p>Here is how the service interface looks like:</p>
 
@@ -253,7 +253,7 @@ Service call - routing 1 partition 2 gigaSpaceEmbed - total visible objects:1
 
 <h2><a name="distributedtask-usage-of-a-clustered-and-a-non-clustered-proxy">&#160;</a>DistributedTask Usage of a Clustered and a Non-Clustered Proxy</h2>
 
-<p>Our <code>DistributedTask</code> implements <a href="../dev-java/obtaining-cluster-information.htm">ClusterInfoAware</a>. This allows it to be injected with the <code>ClusterInfo</code> that provides information about the cluster topology and the local partition ID. Here is how the <code>DistributedTask</code> looks:</p>
+<p>Our <code>DistributedTask</code> implements <a href="../dev-java/obtaining-cluster-information.html">ClusterInfoAware</a>. This allows it to be injected with the <code>ClusterInfo</code> that provides information about the cluster topology and the local partition ID. Here is how the <code>DistributedTask</code> looks:</p>
 
 <p>The <code>pu.xml</code> includes the following:</p>
 
@@ -349,7 +349,7 @@ From Task Execute - partition 2 gigaSpaceRemote - total visible objects:2
 &lt;context:component-scan base-package="com.test"/&gt;
 </code></pre>
 
-<p>Our Event Container (notify container) uses the <a href="../dev-java/the-space-notifications.htm#Primary Backup Notifications">@PostPrimary</a> to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the <a href="../dev-java/obtaining-cluster-information.htm">@ClusterInfoContext</a> that provides information about the cluster topology and the local partition ID.</p>
+<p>Our Event Container (notify container) uses the <a href="../dev-java/the-space-notifications.html#Primary Backup Notifications">@PostPrimary</a> to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the <a href="../dev-java/obtaining-cluster-information.html">@ClusterInfoContext</a> that provides information about the cluster topology and the local partition ID.</p>
 
 <p>Here is how the event container looks:</p>
 

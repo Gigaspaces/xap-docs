@@ -11,7 +11,7 @@
 
 <h1><a name="jvm-location">&#160;</a>Jvm Location</h1>
 
-<p>GigaSpaces XAP.NET is bundled with <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.htm">Oracle Java SE 8 update 121</a>, aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):</p>
+<p>GigaSpaces XAP.NET is bundled with <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html">Oracle Java SE 8 update 121</a>, aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):</p>
 
 <ol>
 <li>Edit the <code>Settings.xml</code> file (located in <code>&lt;XapNet&gt;\config\Settings.xml</code>).</li>
@@ -27,9 +27,9 @@
 
 <h1><a name="jvm-settings">&#160;</a>Jvm Settings</h1>
 
-<p>Unlike .NET applications, which are compiled to executable files, java applications are compiled to <code>.class</code> or <code>.jar</code> files which are executed using the <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/java.htm" target="_blank" >Java Application Launcher</a> (<code>java.exe</code>) tool. This tool supports various options which control the way the application is executed, such as memory allocation, garbage collection and more.</p>
+<p>Unlike .NET applications, which are compiled to executable files, java applications are compiled to <code>.class</code> or <code>.jar</code> files which are executed using the <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html" target="_blank" >Java Application Launcher</a> (<code>java.exe</code>) tool. This tool supports various options which control the way the application is executed, such as memory allocation, garbage collection and more.</p>
 
-<p>XAP.NET tools and applications use <a href="http://java.sun.com/javase/6/docs/technotes/guides/jni/index.htm" target="_blank" >Java Native Interface (JNI)</a> instead of <code>java.exe</code> to launch the JVM and execute java code, and use the Application Configuration File to load JVM settings.</p>
+<p>XAP.NET tools and applications use <a href="http://java.sun.com/javase/6/docs/technotes/guides/jni/index.html" target="_blank" >Java Native Interface (JNI)</a> instead of <code>java.exe</code> to launch the JVM and execute java code, and use the Application Configuration File to load JVM settings.</p>
 
 <p>To configure JVM settings, add a <code>GigaSpaces</code> section to the application configuration file:</p>
 
@@ -111,7 +111,7 @@ If <code>Mode</code> is set to <code>Custom</code>, the <code>&lt;XapNet.Runtime
 
 <h2><a name="jvmclasspath">&#160;</a>JvmClassPath</h2>
 
-<p>The <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/classpath.htm">class path</a> is the path that Java searches for classes and other resource files. It is usually specified as a semicolon-separated list of paths. The <code>JvmSettings</code> offers a more readable solution in the form of <code>JvmClassPath</code>. The following examples are equivalent:</p>
+<p>The <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/classpath.html">class path</a> is the path that Java searches for classes and other resource files. It is usually specified as a semicolon-separated list of paths. The <code>JvmSettings</code> offers a more readable solution in the form of <code>JvmClassPath</code>. The following examples are equivalent:</p>
 
 <pre><code class="language-java">java.exe -classpath C:\Foo;C:\Bar
 </code></pre>

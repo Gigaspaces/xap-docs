@@ -7,7 +7,7 @@
 
 <div class="tc-admon-refer">
   <p class="tc-admon-title">Interacting with a Secured Grid</p>
-  <p>In order to interact with a secured grid you need to login first. See <a href="command-line-interface-cli-security.htm">Using the CLI in a Secured Environment</a>.</p>
+  <p>In order to interact with a secured grid you need to login first. See <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>.</p>
 </div>
 
 <h1><a name="application">&#160;</a>application</h1>
@@ -19,7 +19,7 @@
 
 <h2><a name="description">&#160;</a>Description</h2>
 
-<p>Deploys an <a href="../dev-java/deploying-onto-the-service-grid.htm#Application Deployment and Processing Unit Dependencies">application</a>, which deploys one or more processing units in dependency order onto the service grid.</p>
+<p>Deploys an <a href="../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies">application</a>, which deploys one or more processing units in dependency order onto the service grid.</p>
 
 <div class="tc-admon-note">
   
@@ -80,7 +80,7 @@ processor.jar
 &lt;/beans&gt;
 </code></pre>
 
-<p>A <a href="../dev-java/elastic-processing-unit-provisioning.htm">dedicated machine provisioning</a> config can be provided to elastic space/pu element:</p>
+<p>A <a href="../dev-java/elastic-processing-unit-provisioning.html">dedicated machine provisioning</a> config can be provided to elastic space/pu element:</p>
 
 <pre><code class="language-xml">&lt;os-admin:discovered-machine-provisioning-config id="myConfig" grid-service-agents-zones="zone1,zone2" reserved-memory-capacity-per-machine-in-mb="1024"/&gt;
 
@@ -89,7 +89,7 @@ processor.jar
 &lt;/os-admin:elastic-space&gt;
 </code></pre>
 
-<p>You can also use the <a href="../dev-java/elastic-processing-unit-provisioning.htm#shared-machine-provisioning">shared machine provisioning</a> config that allows two processing units to share the same machine:</p>
+<p>You can also use the <a href="../dev-java/elastic-processing-unit-provisioning.html#shared-machine-provisioning">shared machine provisioning</a> config that allows two processing units to share the same machine:</p>
 
 <pre><code class="language-xml">&lt;os-admin:discovered-machine-provisioning-config id="myConfig" grid-service-agents-zones="zone1,zone2" reserved-memory-capacity-per-machine-in-mb="1024"/&gt;
 
@@ -134,13 +134,13 @@ processor.jar
 
 <tr>
 <td align="left">-secured</td>
-<td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.htm">Using the CLI in a Secured Environment</a>)</td>
+<td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>)</td>
 <td align="left">-secured [true/false]</td>
 </tr>
 
 <tr>
 <td align="left">-user -password</td>
-<td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.htm">Using the CLI in a Secured Environment</a>)</td>
+<td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>)</td>
 <td align="left">-user xxx -password yyyy</td>
 </tr>
 </tbody>
@@ -155,7 +155,7 @@ processor.jar
 
 <h2><a name="description-1">&#160;</a>Description</h2>
 
-<p>Undeploys an <a href="../dev-java/deploying-onto-the-service-grid.htm#Application Deployment and Processing Unit Dependencies">application</a> from the service grid, while respecting pu dependency order.</p>
+<p>Undeploys an <a href="../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies">application</a> from the service grid, while respecting pu dependency order.</p>
 
 <h2><a name="example-1">&#160;</a>Example</h2>
 
@@ -196,13 +196,13 @@ processor.jar
 
 <tr>
 <td align="left">-secured</td>
-<td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.htm">Using the CLI in a Secured Environment</a>)</td>
+<td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>)</td>
 <td align="left">-secured [true/false]</td>
 </tr>
 
 <tr>
 <td align="left">-user -password</td>
-<td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.htm">Using the CLI in a Secured Environment</a></td>
+<td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a></td>
 <td align="left">-user xxx -password yyyy</td>
 </tr>
 </tbody>
@@ -212,7 +212,7 @@ processor.jar
 
 <div class="tc-admon-note">
   
-  <p>The Elastic Processing Unit is deprecated as of version 12.1, as noted in the <a href="/release_notes/121upgrading.htm">Release Notes</a>.</p>
+  <p>The Elastic Processing Unit is deprecated as of version 12.1, as noted in the <a href="/release_notes/121upgrading.html">Release Notes</a>.</p>
 </div>
 
 <h2><a name="syntax-2">&#160;</a>Syntax</h2>
@@ -324,7 +324,7 @@ processor.jar
 
 <tr>
 <td align="left">-user -password</td>
-<td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.htm">Using the CLI in a Secured Environment</a></td>
+<td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a></td>
 <td align="left">-user xxx -password yyyy</td>
 </tr>
 
@@ -460,7 +460,7 @@ processor.jar
 
 <tr>
 <td align="left">-user -password</td>
-<td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.htm">Using the CLI in a Secured Environment</a></td>
+<td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a></td>
 <td align="left">-user xxx -password yyyy</td>
 </tr>
 

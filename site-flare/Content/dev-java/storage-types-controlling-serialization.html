@@ -93,7 +93,7 @@ If you read an object from the space and change it without writing it back, you 
 
 <ul>
 <li>Native mode - non-primitive Object fields are serialized using Java Serialization. These are de-serialized at the space side before they are stored inside the space.</li>
-<li>Full mode - supports the <a href="http://river.apache.org">JavaSpace specification</a>. When serialized, non-primitive fields are wrapped with a <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/rmi/MarshalledObject.htm">MarshaledObject</a>. The MarshalledObject is de-serialized at the space side before it is stored, allowing you to perform matching using these fields. This mode is slower compared other options.</li>
+<li>Full mode - supports the <a href="http://river.apache.org">JavaSpace specification</a>. When serialized, non-primitive fields are wrapped with a <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/rmi/MarshalledObject.html">MarshaledObject</a>. The MarshalledObject is de-serialized at the space side before it is stored, allowing you to perform matching using these fields. This mode is slower compared other options.</li>
 <li>Compressed mode - non-primitive fields are compressed before being sent to the space at the client side. These are stored in compressed form within the space.</li>
 </ul>
 

@@ -14,7 +14,7 @@
 
 <h1><a name="security-infrastructure-for-open-source-editions">&#160;</a>Security Infrastructure for Open Source Editions</h1>
 
-<p>The GigaSpaces applictions come with a basic security infrastructure that can be configured to suit the needs of your organization. You can secure the <a href="securing-your-data.htm">data layer</a>, which includes the Spaces and Processing Units, by defining the following elements for user authorities and roles:</p>
+<p>The GigaSpaces applictions come with a basic security infrastructure that can be configured to suit the needs of your organization. You can secure the <a href="securing-your-data.html">data layer</a>, which includes the Spaces and Processing Units, by defining the following elements for user authorities and roles:</p>
 
 <ul>
 <li>Data access privileges</li>
@@ -25,7 +25,7 @@
 
 <p>You can also configure auditing for operations on the data grid, and secure the SSL transport layer.</p>
 
-<p>The open source editions do not include a security implementation. A <a href="security-ref-impl.htm">reference implementation</a> is provided instead.</p>
+<p>The open source editions do not include a security implementation. A <a href="security-ref-impl.html">reference implementation</a> is provided instead.</p>
 
 <h1><a name="security-implementations-for-commercial-editions">&#160;</a>Security Implementations for Commercial Editions</h1>
 
@@ -45,7 +45,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>Refer to <a href="../admin/admin-tools.htm">Administration Tools</a> for details about the configuration options.</p>
+  <p>Refer to <a href="../admin/admin-tools.html">Administration Tools</a> for details about the configuration options.</p>
 </div>
 
 <h2><a name="securable-layers">&#160;</a>Securable Layers</h2>
@@ -53,9 +53,9 @@
 <p>XAP security can be applied in three separate layers. You can enable security for any of the layers individually, or you can enable all of them for maximum security.</p>
 
 <ul>
-<li>The <a href="securing-your-data.htm">data layer</a> - You can declare a secured Space or Processing Unit.</li>
-<li>The <a href="securing-the-grid-services.htm">grid layer</a> - You can declare the data grid as secured. Includes the grid components (GSA, GSM, GSC, XAP Manager).</li>
-<li>The <a href="securing-the-transport-layer-using-ssl.htm">transport layer</a> - Provides a generic network filter with SSL support.</li>
+<li>The <a href="securing-your-data.html">data layer</a> - You can declare a secured Space or Processing Unit.</li>
+<li>The <a href="securing-the-grid-services.html">grid layer</a> - You can declare the data grid as secured. Includes the grid components (GSA, GSM, GSC, XAP Manager).</li>
+<li>The <a href="securing-the-transport-layer-using-ssl.html">transport layer</a> - Provides a generic network filter with SSL support.</li>
 </ul>
 
 <h2><a name="configuring-security">&#160;</a>Configuring Security</h2>
@@ -63,10 +63,10 @@
 <p>Security is configured via a property file that includes required and custom properties. For more information, refer to the following parts of the Security section in this Administration guide:</p>
 
 <ul>
-<li><a href="security-configurations.htm">Space and Processing Unit</a> - Includes configuration options for the properties file.</li>
-<li><a href="security-configurations-ext.htm">Grid components</a> - Includes configuration options for the grid components.</li>
-<li><a href="../admin/tools-web-ui.htm#security">Web Management Console</a> - Includes configurations for authenticating with secure XAP components.</li>
-<li><a href="../admin/admin-rest-manager-api.htm#security">REST Manager API</a> - Includes security and SSL configurations for secured RESTful API support.<br /></li>
+<li><a href="security-configurations.html">Space and Processing Unit</a> - Includes configuration options for the properties file.</li>
+<li><a href="security-configurations-ext.html">Grid components</a> - Includes configuration options for the grid components.</li>
+<li><a href="../admin/tools-web-ui.html#security">Web Management Console</a> - Includes configurations for authenticating with secure XAP components.</li>
+<li><a href="../admin/admin-rest-manager-api.html#security">REST Manager API</a> - Includes security and SSL configurations for secured RESTful API support.<br /></li>
 </ul>
 
 <p>When no property file is configured, there is a fallback implementation mainly used for testing or to get you started.
@@ -75,9 +75,9 @@ This implementation stores the user credentials in a local file and can be used 
 <p>Refer to the following sections for more information about the XAP security implementations:</p>
 
 <ul>
-<li>To read more about the XAP file-based configuration options, refer to <a href="default-file-based-security-implementation-ext.htm">Default File-Based Security</a>.</li>
-<li>To write your own implementation, refer to <a href="security-ref-impl.htm">Reference Implementation</a>, which uses MongoDB.</li>
-<li>For other custom security implementations, refer to <a href="custom-security.htm">Custom Security</a>. One such custom security implementation is the <a href="spring-security-bridge.htm">Spring Security Bridge</a>.</li>
+<li>To read more about the XAP file-based configuration options, refer to <a href="default-file-based-security-implementation-ext.html">Default File-Based Security</a>.</li>
+<li>To write your own implementation, refer to <a href="security-ref-impl.html">Reference Implementation</a>, which uses MongoDB.</li>
+<li>For other custom security implementations, refer to <a href="custom-security.html">Custom Security</a>. One such custom security implementation is the <a href="spring-security-bridge.html">Spring Security Bridge</a>.</li>
 </ul>
 
 <h2><a name="dependencies">&#160;</a>Dependencies</h2>
@@ -93,12 +93,12 @@ This implementation stores the user credentials in a local file and can be used 
 
 <div class="tc-admon-refer">
   
-  <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.htm">Maven Artifacts</a>.</p>
+  <p>For more information on dependencies, refer to <a href="../started/maven-artifacts.html">Maven Artifacts</a>.</p>
 </div>
 
 <h2><a name="hello-world-example">&#160;</a>Hello World Example</h2>
 
-<p>The <a href="securing-the-helloworld-example.htm">Hello World</a> example provides a step-by-step guide to deploying a Processing Unit with a secured Space, accessing it from a remote proxy, and declaring principals using the administration tools.</p>
+<p>The <a href="securing-the-helloworld-example.html">Hello World</a> example provides a step-by-step guide to deploying a Processing Unit with a secured Space, accessing it from a remote proxy, and declaring principals using the administration tools.</p>
 
 <h2><a name="spring-security">&#160;</a>Spring Security</h2>
 
@@ -106,7 +106,7 @@ This implementation stores the user credentials in a local file and can be used 
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to <a href="spring-security-bridge.htm">Spring Security Bridge</a>.</p>
+  <p>For more information, refer to <a href="spring-security-bridge.html">Spring Security Bridge</a>.</p>
 </div>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/security/spring-based-security.png" alt="spring-based-security.png" /></p>

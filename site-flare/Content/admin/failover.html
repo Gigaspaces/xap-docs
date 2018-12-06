@@ -14,8 +14,8 @@
 <p>Failover and Recovery process includes the following steps (we assume spaces deployed using the SLA driven container (GSC and GSM):</p>
 
 <ol>
-<li>Backup identifies that the primary space is not available and moving itself to a primary mode. For information on speeding up this step refer to <a href="troubleshooting-failure-detection.htm">Failure Detection</a>.</li>
-<li>Space proxy router discovers the new primary space and routs the request to it. For information on speeding up this step refer to <a href="tuning-proxy-connectivity.htm">Proxy Connectivity</a>.</li>
+<li>Backup identifies that the primary space is not available and moving itself to a primary mode. For information on speeding up this step refer to <a href="troubleshooting-failure-detection.html">Failure Detection</a>.</li>
+<li>Space proxy router discovers the new primary space and routs the request to it. For information on speeding up this step refer to <a href="tuning-proxy-connectivity.html">Proxy Connectivity</a>.</li>
 <li>GSM identifies the backup space is missing and provision new space into existing GSC - preferably empty GSC or based on predefined SLA. You can tune this step by modifying the GSM settings.</li>
 <li>Backup started. It is looking for the look service and register itself.</li>
 <li>Backup identifies that a primary space exists (goes through primary election process) and moves itself into backup mode. If there are multiple GSMs and bad network or wrong locators configuration – you might end up here with split-brain scenario where you have multiple primaries running.</li>

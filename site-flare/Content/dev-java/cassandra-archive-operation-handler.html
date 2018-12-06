@@ -7,7 +7,7 @@
 
 <table class="tc-borderless">
   <tr>
-    <td><p>The <a href="archive-container.htm">Archive Container</a> can be configured to work against Cassandra (without writing any extra code). The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/archive/ArchiveOperationHandler.htm">ArchiveOperationHandler interface</a> abstracts the Big-Data storage from the <a href="archive-container.htm">Archive Container</a>. The Cassandra Archive Operation Handler implements this interface by <a href="#property-value-serializer">serializing</a> space objects into Cassandra.</p>
+    <td><p>The <a href="archive-container.html">Archive Container</a> can be configured to work against Cassandra (without writing any extra code). The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/archive/ArchiveOperationHandler.html">ArchiveOperationHandler interface</a> abstracts the Big-Data storage from the <a href="archive-container.html">Archive Container</a>. The Cassandra Archive Operation Handler implements this interface by <a href="#property-value-serializer">serializing</a> space objects into Cassandra.</p>
 </td>
     <td><img src="../Resources/Static/attachment_files/archive-container-cassandra.jpg" alt="" title="" /></td>
   </tr>
@@ -15,7 +15,7 @@
 
 <h1><a name="library-dependencies">&#160;</a>Library dependencies</h1>
 
-<p>The Cassandra Archive Operation Handler uses the <a href="http://hector-client.github.com/hector/build/html/index.htm" target="_blank" >Hector Library</a> for communicating with the Cassandra cluster.
+<p>The Cassandra Archive Operation Handler uses the <a href="http://hector-client.github.com/hector/build/html/index.html" target="_blank" >Hector Library</a> for communicating with the Cassandra cluster.
 Include the following in your <code>pom.xml</code></p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  hector using log4j " style="padding:10px"><pre><code class="language-xml">&lt;dependency&gt;
@@ -127,7 +127,7 @@ archiveContainer.destroy();
 <tbody>
 <tr>
 <td align="left">gigaSpace</td>
-<td align="left">GigaSpace reference used for type descriptors. see <a href="archive-container.htm#configuration">Archive Container</a></td>
+<td align="left">GigaSpace reference used for type descriptors. see <a href="archive-container.html#configuration">Archive Container</a></td>
 </tr>
 
 <tr>
@@ -152,12 +152,12 @@ archiveContainer.destroy();
 
 <tr>
 <td align="left">flattenedPropertiesFilter</td>
-<td align="left">see <a href="cassandra-space-synchronization-endpoint.htm#flattened-properties-filter">Flattened Properties Filter</a>.</td>
+<td align="left">see <a href="cassandra-space-synchronization-endpoint.html#flattened-properties-filter">Flattened Properties Filter</a>.</td>
 </tr>
 
 <tr>
 <td align="left">columnFamilyNameConverter</td>
-<td align="left">see <a href="cassandra-space-synchronization-endpoint.htm#column-family-name-converter">Column Family Name Converter</a>.</td>
+<td align="left">see <a href="cassandra-space-synchronization-endpoint.html#column-family-name-converter">Column Family Name Converter</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -171,7 +171,7 @@ archiveContainer.destroy();
 <li>Otherwise, the value will be serialized using standard java Object serialization mechanism.</li>
 </ul>
 
-<p>It is possible to override this default behavior by providing a custom implementation of <a href="[%=Links.ApiJavaDoc%]/index.htm?org/openspaces/persistency/cassandra/meta/types/dynamic/PropertyValueSerializer.htm">PropertyValueSerializer</a>.
+<p>It is possible to override this default behavior by providing a custom implementation of <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/persistency/cassandra/meta/types/dynamic/PropertyValueSerializer.html">PropertyValueSerializer</a>.
 This interface is defined by these 2 methods:</p>
 
 <pre><code class="language-java">ByteBuffer toByteBuffer(Object value);

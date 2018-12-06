@@ -11,7 +11,7 @@
 
 <div class="tc-admon-tip">
   <p class="tc-admon-title">Non-Mirrored Entries </p>
-  <p>When using the <a href="space-persistency-overview.htm">Space Persistency</a> feature, you might not want all space objects to be persistent or to be delivered to some data source. The Space Persistency feature makes sure transient space objects are not persisted or delivered to the data source.</p>
+  <p>When using the <a href="space-persistency-overview.html">Space Persistency</a> feature, you might not want all space objects to be persistent or to be delivered to some data source. The Space Persistency feature makes sure transient space objects are not persisted or delivered to the data source.</p>
 </div>
 
 <h1><a name="pojo">&#160;</a>POJO</h1>
@@ -38,7 +38,7 @@ public class MyData {
 </code></pre>
 
 <ul>
-<li>Transient Space objects can be constructed using the <code>@SpacePersist</code> on the relevant getter method. See the <a href="modeling-your-data.htm">POJO Metadata</a> for details.</li>
+<li>Transient Space objects can be constructed using the <code>@SpacePersist</code> on the relevant getter method. See the <a href="modeling-your-data.html">POJO Metadata</a> for details.</li>
 <li>Transient objects will be evicted from the space only by explicit take/clear operation.</li>
 <li>Having a space Class using the <code>persist=true</code> and memory (transient) based spaces, will not generate any errors or exceptions, but will not write these into any persistent store. The Entries will be transient.</li>
 </ul>

@@ -12,7 +12,7 @@
 
 <h2><a name="gateway-delegator">&#160;</a>Gateway Delegator</h2>
 
-<p>The gateway's delegator main purpose is to delegate outgoing replication from one site to another. The need for the delegator arises from the common gateway usage topology, which is replicating data between different data grids across the WAN. In this case, usually each data grid space instance machine cannot open a direct socket to the remote site, therefor it uses the local delegator which is deployed on the local network in order to create a replication connection to the remote site. The machine on which the delegator is deployed, should have access to the remote site(s) over the WAN and the ability to open sockets with the ports for discovery and communication which are configured in the gateway. Because the delegator is an outgoing communication point for replication, it is also used in the <a href="replication-gateway-bootstrapping-process.htm">Bootstrap</a> process to delegate the bootstrap related communication from the bootstrapped target site to the bootstrap source site.</p>
+<p>The gateway's delegator main purpose is to delegate outgoing replication from one site to another. The need for the delegator arises from the common gateway usage topology, which is replicating data between different data grids across the WAN. In this case, usually each data grid space instance machine cannot open a direct socket to the remote site, therefor it uses the local delegator which is deployed on the local network in order to create a replication connection to the remote site. The machine on which the delegator is deployed, should have access to the remote site(s) over the WAN and the ability to open sockets with the ports for discovery and communication which are configured in the gateway. Because the delegator is an outgoing communication point for replication, it is also used in the <a href="replication-gateway-bootstrapping-process.html">Bootstrap</a> process to delegate the bootstrap related communication from the bootstrapped target site to the bootstrap source site.</p>
 
 <p>The delegator configuration block in the gateway <code>pu.xml</code> looks as follows:</p>
 
@@ -28,7 +28,7 @@
 
 <h2><a name="gateway-sink">&#160;</a>Gateway Sink</h2>
 
-<p>The gateway sink main purpose is to handle incoming replication activity, which is received by a remote gateway delegator from a remote site, and dispatches it into the local data grid. The sink has a special proxy to the local data grid that it uses in order to dispatch the replication into the data grid. The sink is also used the <a href="replication-gateway-bootstrapping-process.htm">Bootstrap</a> process in both ends, it is used to initiate the bootstrap process and to fill in the local data grid with the data. It is also used at the bootstrap source site as the communication mediator between the remote sink and the local data grid which is used as the source for bootstrapping.</p>
+<p>The gateway sink main purpose is to handle incoming replication activity, which is received by a remote gateway delegator from a remote site, and dispatches it into the local data grid. The sink has a special proxy to the local data grid that it uses in order to dispatch the replication into the data grid. The sink is also used the <a href="replication-gateway-bootstrapping-process.html">Bootstrap</a> process in both ends, it is used to initiate the bootstrap process and to fill in the local data grid with the data. It is also used at the bootstrap source site as the communication mediator between the remote sink and the local data grid which is used as the source for bootstrapping.</p>
 
 <p>The sink configuration block in the gateway <code>pu.xml</code> looks as follows:</p>
 
@@ -81,7 +81,7 @@
 
 <p>The host and discovery port are used for the lookup process only, the communication port is used for the actual replication process after the relevant gateway component have discovered its target (e.g a delegator locates the target sink). The discovery and communication port should be permitted in the firewalls between the lookup services machines and between the gateway, when using the default, the lookup services are started inside the gateways, so this ports needs to be permitted between the gateway machines only.</p>
 
-<p>When using the default configuration, in which the gateway starts the lookup service as embedded, the gateway should be deployed on the machine specified in its lookup entry as the <code>host</code> attribute, this can be achieved by having a <a href="../overview/the-runtime-environment.htm#gsa">GigaSpaces Agent</a> running on that machine with a dedicated zone, and configuring the gateway to be deployed to that specific zone (see <a href="../admin/the-sla-overview.htm">Configuring the Processing Unit SLA</a>). Once deployed, the gateway will check if the <a href="../overview/the-runtime-environment.htm#gsc">Container</a> it was deployed into is started with the proper ports, if not it will relocate itself to a proper container, and it may instantiate a new container managed by the agent on that machine if needed.</p>
+<p>When using the default configuration, in which the gateway starts the lookup service as embedded, the gateway should be deployed on the machine specified in its lookup entry as the <code>host</code> attribute, this can be achieved by having a <a href="../overview/the-runtime-environment.html#gsa">GigaSpaces Agent</a> running on that machine with a dedicated zone, and configuring the gateway to be deployed to that specific zone (see <a href="../admin/the-sla-overview.html">Configuring the Processing Unit SLA</a>). Once deployed, the gateway will check if the <a href="../overview/the-runtime-environment.html#gsc">Container</a> it was deployed into is started with the proper ports, if not it will relocate itself to a proper container, and it may instantiate a new container managed by the agent on that machine if needed.</p>
 
 <p>The communication port is optional, if there is no firewall between the gateways or all ports are permitted, this is not needed. Its purpose is to ease the gateway deployment by having the gateway automatically detect whether it is instantiated a GSC which was started with the specified communication port (LRMI), and if not it will spawn a new GSC with the correct LRMI port and relocate itself into that GSC thus saving you the need to pre-start a GSC with this specific port. If the GSC that is supposed to host the gateway is already configured with the right LRMI port, or alternatively, the communication port is not defined, the gateway will not spawn a new GSC and will not relocate itself.</p>
 
@@ -198,7 +198,7 @@ In this case, the <code>start-embedded-lus="false"</code> should be used and the
 
 <p>In this configuration we have specifies that the delegator to Hong Kong should be routed via New York. This chaining can contain one or more delegators, i.e New York delegator could have been connected to Hong Kong via some other 4th site. The Hong Kong gateway should be configured in the same way. Another important thing to notice is that the lookup entry for Hong Kong is removed in London's gateway since it should never lookup Hong Kong directly.</p>
 
-<p>In Direct delegation can be used by a <a href="replication-gateway-bootstrapping-process.htm">Bootstrap</a> in the same manner, since the gateway sink in the bootstrapping site is using the local delegator in order to locate the bootstrap source site sink and therefor it will go through the same delegation path.</p>
+<p>In Direct delegation can be used by a <a href="replication-gateway-bootstrapping-process.html">Bootstrap</a> in the same manner, since the gateway sink in the bootstrapping site is using the local delegator in order to locate the bootstrap source site sink and therefor it will go through the same delegation path.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/wan-delegation.jpg" alt="wan-delegation.jpg" /></p>
 </div>
@@ -263,17 +263,17 @@ Additionally, one can bundle two different gateways (i.e gateway components, sin
 
 <h1><a name="nat-configuration">&#160;</a>NAT Configuration</h1>
 
-<p>When having Network Address Translation (NAT) data transit across different routing devices over the WAN, you should use the <a href="../admin/network-over-nat.htm">NAT mapping configuration</a> with your WAN Gateway. Each site gateway should have a NAT mapping file that maps the remote site local IP to the public IP, therefore each site should have a different mapping file because it should not map its own local IP to the public IP. Additionally, in each site you should place the public IP in the Gateway lookup element of the remote sites Gateway, and the local IP in the lookup element of the local site Gateway, once again, in this case the gateways lookup element in the pu.xml of the Gateways will not be symmetric since the local gateway lookup element should contain the local IP at each site. After the lookup process is done, both Gateways connect directly as usual.</p>
+<p>When having Network Address Translation (NAT) data transit across different routing devices over the WAN, you should use the <a href="../admin/network-over-nat.html">NAT mapping configuration</a> with your WAN Gateway. Each site gateway should have a NAT mapping file that maps the remote site local IP to the public IP, therefore each site should have a different mapping file because it should not map its own local IP to the public IP. Additionally, in each site you should place the public IP in the Gateway lookup element of the remote sites Gateway, and the local IP in the lookup element of the local site Gateway, once again, in this case the gateways lookup element in the pu.xml of the Gateways will not be symmetric since the local gateway lookup element should contain the local IP at each site. After the lookup process is done, both Gateways connect directly as usual.</p>
 
 <h1><a name="security">&#160;</a>Security</h1>
 
 <div class="tc-admon-refer">
   
   <p><span class="tc-bold">Space PU Security</span><br/>
-Before addressing the gateway security,  make sure your Space PU is deployed as secured.  Fore more details see <a href="../security/securing-your-data.htm#processing-unit">Security</a></p>
+Before addressing the gateway security,  make sure your Space PU is deployed as secured.  Fore more details see <a href="../security/securing-your-data.html#processing-unit">Security</a></p>
 </div>
 
-<p>On Multiple Site topologies, securing grid components and data grids is done as described in XAP <a href="../security/index.htm">Security</a> page. When using a secured environment it is required to provide security credentials for the Gateway components (Sink &amp; Delegator).
+<p>On Multiple Site topologies, securing grid components and data grids is done as described in XAP <a href="../security/index.html">Security</a> page. When using a secured environment it is required to provide security credentials for the Gateway components (Sink &amp; Delegator).
 The security credentials are used for accessing a secured data grid and for performing administrative operations such as creating a new GSC for the gateway components if necessary.</p>
 
 <p>Providing the security credentials can be done in two ways:</p>

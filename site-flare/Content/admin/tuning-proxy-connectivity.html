@@ -15,7 +15,7 @@
 <p>The space proxy router has the following responsibilities:</p>
 
 <ul>
-<li>Obtain the data grid topology from the initial connection, and connect to the other data grid members implicitly on demand via the <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a>.</li>
+<li>Obtain the data grid topology from the initial connection, and connect to the other data grid members implicitly on demand via the <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>.</li>
 <li>If an operation cannot be executed because a space is not available, try to reconnect. If the connection cannot be restored during a predefined timeout, throw an appropriate exception.</li>
 <li>If the data grid topology is primary-backup, and the operation cannot be executed because a primary space is not available, try to reconnect. If the connection cannot be restored during a predefined timeout, throw an appropriate exception.</li>
 <li>If the data grid topology is partitioned, route the operation to the relevant partition(s) and aggregate the partitions results. (For example: a <span class="tc-bold">count</span> operation is broadcasted concurrently to each partition, results are accumulated implicitly and when the last partition result arrives the operation is completed).</li>
@@ -23,7 +23,7 @@
 
 <h1><a name="configuration">&#160;</a>Configuration</h1>
 
-<p>The space proxy router behavior is controlled using the following configuration properties, which can be specified as part of the <a href="../dev-java/the-space-configuration.htm#proxy">Space Component</a> or via API:</p>
+<p>The space proxy router behavior is controlled using the following configuration properties, which can be specified as part of the <a href="../dev-java/the-space-configuration.html#proxy">Space Component</a> or via API:</p>
 
 <table>
 <thead>
@@ -110,7 +110,7 @@
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Optimizing Failure Detection</p>
-  <p>When searching for an active server the default interval between samples is 100 milliseconds. If your system demands shorter failure detection, the sampling interval can be configured using the <code>space-config.proxy.router.active-server-lookup-sampling-interval</code> property (see <a href="#configuration">Configuration</a>). <span class="tc-bold">Note</span>: This settings does not affect the failover duration (i.e. how long it takes for a backup space to become primary), it only affects how long it takes for a space proxy to discover the new primary space. For more information refer to <a href="troubleshooting-failure-detection.htm">Failure Detection</a>.</p>
+  <p>When searching for an active server the default interval between samples is 100 milliseconds. If your system demands shorter failure detection, the sampling interval can be configured using the <code>space-config.proxy.router.active-server-lookup-sampling-interval</code> property (see <a href="#configuration">Configuration</a>). <span class="tc-bold">Note</span>: This settings does not affect the failover duration (i.e. how long it takes for a backup space to become primary), it only affects how long it takes for a space proxy to discover the new primary space. For more information refer to <a href="troubleshooting-failure-detection.html">Failure Detection</a>.</p>
 </div>
 
 <h2><a name="partitioned-space">&#160;</a>Partitioned Space</h2>
@@ -123,19 +123,19 @@
 
 <h2><a name="blocking-operations">&#160;</a>Blocking Operations</h2>
 
-<p>When executing blocking operations (such as read/take operation with a timeout &gt; 0 or <a href="../dev-java/polling-container-overview.htm">Polling Container</a>), keep in mind that the operation's timeout argument determines the maximum time to wait for a matching entry in the space, whereas the space proxy configuration <code>active-server-lookup-timeout</code> determines the maximum time to wait for an active server. These timeouts are separate and do not affect each other. Moreover, if a failover occurs while the operation is blocked on a server, it will be re-invoked on the new active server with the original timeout, ignoring the amount of time the client already spent waiting for a matching object before the client was disconnected.</p>
+<p>When executing blocking operations (such as read/take operation with a timeout &gt; 0 or <a href="../dev-java/polling-container-overview.html">Polling Container</a>), keep in mind that the operation's timeout argument determines the maximum time to wait for a matching entry in the space, whereas the space proxy configuration <code>active-server-lookup-timeout</code> determines the maximum time to wait for an active server. These timeouts are separate and do not affect each other. Moreover, if a failover occurs while the operation is blocked on a server, it will be re-invoked on the new active server with the original timeout, ignoring the amount of time the client already spent waiting for a matching object before the client was disconnected.</p>
 
 <h2><a name="notifications">&#160;</a>Notifications</h2>
 
-<p>If communication is disrupted during the notification registration process, it is handled in the same manner as the other operations (i.e. proxy automatically looks for an active space up to the configured timeout). However, if communication is disrupted afterwards, other mechanisms are needed to ensure communication is restored and events are not lost. For more information refer to <a href="../dev-java/notify-container-overview.htm">Notify Container</a> and <a href="../dev-java/session-based-messaging-api.htm">Session Based Messaging API</a>.</p>
+<p>If communication is disrupted during the notification registration process, it is handled in the same manner as the other operations (i.e. proxy automatically looks for an active space up to the configured timeout). However, if communication is disrupted afterwards, other mechanisms are needed to ensure communication is restored and events are not lost. For more information refer to <a href="../dev-java/notify-container-overview.html">Notify Container</a> and <a href="../dev-java/session-based-messaging-api.html">Session Based Messaging API</a>.</p>
 
 <h2><a name="local-cache-view">&#160;</a>Local Cache/View</h2>
 
-<p>When using <a href="../dev-java/client-side-caching.htm">Client side caching</a>, the connection management is different because cache staleness needs to be considered as well. For information refer to <a href="../dev-java/local-cache.htm">Local Cache</a> or <a href="../dev-java/local-view.htm">Local View</a>.</p>
+<p>When using <a href="../dev-java/client-side-caching.html">Client side caching</a>, the connection management is different because cache staleness needs to be considered as well. For information refer to <a href="../dev-java/local-cache.html">Local Cache</a> or <a href="../dev-java/local-view.html">Local View</a>.</p>
 
 <h2><a name="unicast-lookup-service">&#160;</a>Unicast Lookup Service</h2>
 
-<p>The space proxy router uses the <a href="../overview/the-runtime-environment.htm#lus">Lookup Service</a> to locate data grid members. The lookup service uses either <a href="network-multicast.htm">multicast</a> or <a href="network-unicast-discovery.htm">unicast</a> discovery (default is multicast). When a unicast lookup service is restarted, the space proxy will automatically re-discover after a while. If you need to better understand that process and  fine-tune it, refer to <a href="network-unicast-discovery.htm#configuring-lookup-discovery-intervals">Configuring lookup discovery intervals</a>.</p>
+<p>The space proxy router uses the <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a> to locate data grid members. The lookup service uses either <a href="network-multicast.html">multicast</a> or <a href="network-unicast-discovery.html">unicast</a> discovery (default is multicast). When a unicast lookup service is restarted, the space proxy will automatically re-discover after a while. If you need to better understand that process and  fine-tune it, refer to <a href="network-unicast-discovery.html#configuring-lookup-discovery-intervals">Configuring lookup discovery intervals</a>.</p>
 
 <h1><a name="load-balancing">&#160;</a>Load balancing</h1>
 

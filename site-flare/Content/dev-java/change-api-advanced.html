@@ -7,7 +7,7 @@
 
 <h1><a name="change-and-spacesynchronizationendpoint">&#160;</a>Change and SpaceSynchronizationEndpoint</h1>
 
-<p>A <code>SpaceSynchronizationEndpoint</code> implementation can make use of the <a href="change-api-overview.htm">Change API</a> and support change operation, this way allowing the network utilization to be more optimized by sending only the change set to the mirror service instead of the fully updated object. By default the mirror service starts in a mode which does not support change, hence, any change operation done on the space is being replicated as a regular update to the mirror service. You could provide an implementation that does support change and configure the space to send the supported change operations to the mirror with only the required data to apply the change. Following is an example of how can one obtain the change set from a <code>DataSyncOperation</code>.</p>
+<p>A <code>SpaceSynchronizationEndpoint</code> implementation can make use of the <a href="change-api-overview.html">Change API</a> and support change operation, this way allowing the network utilization to be more optimized by sending only the change set to the mirror service instead of the fully updated object. By default the mirror service starts in a mode which does not support change, hence, any change operation done on the space is being replicated as a regular update to the mirror service. You could provide an implementation that does support change and configure the space to send the supported change operations to the mirror with only the required data to apply the change. Following is an example of how can one obtain the change set from a <code>DataSyncOperation</code>.</p>
 
 <p>Asynchronous Persistence</p>
 
@@ -158,7 +158,7 @@
 
 <h1><a name="change-and-replication-filters">&#160;</a>Change and Replication Filters</h1>
 
-<p>When using <a href="../admin/cluster-replication-filters.htm">Replication Filter</a>, one can extract the <code>DataSyncChangeSet</code> from the <code>IReplicationFilterEntry</code> in the same way as extracting it from a <code>DataSyncOperation</code> by using the
+<p>When using <a href="../admin/cluster-replication-filters.html">Replication Filter</a>, one can extract the <code>DataSyncChangeSet</code> from the <code>IReplicationFilterEntry</code> in the same way as extracting it from a <code>DataSyncOperation</code> by using the
 <code>ChangeDataSyncOperation</code> class in the following way:</p>
 
 <pre><code class="language-java">public class MyReplicationFilter implements IReplicationFilter {
@@ -177,7 +177,7 @@
 
 <h1><a name="change-and-space-filters">&#160;</a>Change and Space Filters</h1>
 
-<p><a href="the-space-filters.htm">Space Filter</a> can intercept a <code>FilterOperationCodes.BEFORE_CHANGE</code> and <code>FilterOperationCodes.AFTER_CHANGE</code> events, and in that events the <code>DataSyncChangeSet</code> can be extracted from the ISpaceFilterEntry using the <code>ChangeDataSyncOperation.getChangeSet(IFilterEntry)</code> method.</p>
+<p><a href="the-space-filters.html">Space Filter</a> can intercept a <code>FilterOperationCodes.BEFORE_CHANGE</code> and <code>FilterOperationCodes.AFTER_CHANGE</code> events, and in that events the <code>DataSyncChangeSet</code> can be extracted from the ISpaceFilterEntry using the <code>ChangeDataSyncOperation.getChangeSet(IFilterEntry)</code> method.</p>
 
 </body>
 </html>

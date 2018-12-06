@@ -18,7 +18,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For a general explanation of the GigaSpaces XAP product architecture, refer to  <a href="product-architecture.htm">XAP Architecture</a>.</p>
+  <p>For a general explanation of the GigaSpaces XAP product architecture, refer to  <a href="product-architecture.html">XAP Architecture</a>.</p>
 </div>
 
  <a name="components">&#160;</a>
@@ -37,12 +37,12 @@
 <p>To achieve these goals, OpenSpaces adds the following components to the Spring development environment:</p>
 
 <ul>
-<li><a href="../dev-java/the-processing-unit-overview.htm">Processing Unit</a> – the core unit of work. Encapsulates the middleware together with the business logic in a single unit of scaling and failover.</li>
-<li><a href="the-runtime-environment.htm#gsc">SLA-Driven Container</a> – a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.</li>
-<li><a href="the-in-memory-data-grid.htm">In-Memory Data Grid</a> – provides in-memory distributed data storage.</li>
-<li><a href="../dev-java/messaging-support.htm">Declarative Event Containers</a> – for triggering events from the space into POJOs in pull or push mode.</li>
-<li><a href="../dev-java/space-based-remoting-overview.htm">Remoting</a> – utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.</li>
-<li><a href="../dev-java/transaction-overview.htm">Declarative transaction support</a> for GigaSpaces In-Memory Data Grid.</li>
+<li><a href="../dev-java/the-processing-unit-overview.html">Processing Unit</a> – the core unit of work. Encapsulates the middleware together with the business logic in a single unit of scaling and failover.</li>
+<li><a href="the-runtime-environment.html#gsc">SLA-Driven Container</a> – a lightweight container that enables dynamic deployment of Processing Units over a pool of machines, based on machine availability, CPU utilization, and other hardware and software criteria.</li>
+<li><a href="the-in-memory-data-grid.html">In-Memory Data Grid</a> – provides in-memory distributed data storage.</li>
+<li><a href="../dev-java/messaging-support.html">Declarative Event Containers</a> – for triggering events from the space into POJOs in pull or push mode.</li>
+<li><a href="../dev-java/space-based-remoting-overview.html">Remoting</a> – utilizes the space as the underlying transport for invoking remote methods on the POJO services inside the Processing Unit. This approach allows the client to invoke methods on a service even if it changes physical location, and enables re-routing of requests to available services in case of failover.</li>
+<li><a href="../dev-java/transaction-overview.html">Declarative transaction support</a> for GigaSpaces In-Memory Data Grid.</li>
 </ul>
 
 <h2><a name="core-middleware">&#160;</a>Core Middleware</h2>
@@ -66,7 +66,7 @@
 
 <tbody>
 <tr>
-<td align="left"><a href="../dev-java/query-sql.htm">Extended and Standard Query</a> based on SQL, and ability to connect to IMDG using standard JDBC connector.</td>
+<td align="left"><a href="../dev-java/query-sql.html">Extended and Standard Query</a> based on SQL, and ability to connect to IMDG using standard JDBC connector.</td>
 <td align="left">Makes the IMDG accessible to standard reporting tools, and makes accessing the IMDG just like accessing a JDBC-compatible database, reducing the learning curve.</td>
 </tr>
 
@@ -76,12 +76,12 @@
 </tr>
 
 <tr>
-<td align="left"><a href="../admin/tools-desktop-ui.htm">GigaSpaces Management Center</a> – central management, monitoring and control of all IMDG instances on the network.</td>
+<td align="left"><a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a> – central management, monitoring and control of all IMDG instances on the network.</td>
 <td align="left">Allows the entire IMDG to be controlled and viewed from an administrator's console.</td>
 </tr>
 
 <tr>
-<td align="left"><a href="../dev-java/asynchronous-persistency-with-the-mirror.htm">Mirror Service</a> – transparent persistence of data from the entire IMDG to a legacy database or other data source.</td>
+<td align="left"><a href="../dev-java/asynchronous-persistency-with-the-mirror.html">Mirror Service</a> – transparent persistence of data from the entire IMDG to a legacy database or other data source.</td>
 <td align="left">Allows seamless integration with existing reporting and back-office systems.</td>
 </tr>
 
@@ -94,7 +94,7 @@
 
 <ul>
 <li><span class="tc-bold">Messaging Grid</span> – enables services to communicate and share information across the distributed In-Memory Data Grid. Supports a variety of messaging scenarios using the JavaSpaces or JMS API.</li>
-<li><a href="/sbp/xap-order-management-tutorial.htm">Parallel Processing</a> – enables parallel execution of low latency, high-throughput business transactions, using the Master-Worker pattern.</li>
+<li><a href="/sbp/xap-order-management-tutorial.html">Parallel Processing</a> – enables parallel execution of low latency, high-throughput business transactions, using the Master-Worker pattern.</li>
 </ul>
 
 <h2><a name="sla-driven-container">&#160;</a>SLA-Driven Container</h2>
@@ -198,7 +198,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more details, refer to <a href="../dev-java/executor-based-remoting.htm">Executor Based Remoting</a>.</p>
+  <p>For more details, refer to <a href="../dev-java/executor-based-remoting.html">Executor Based Remoting</a>.</p>
 </div>
 
 <h2><a name="remote-client-interaction-options">&#160;</a>Remote Client Interaction Options</h2>
@@ -209,7 +209,7 @@
 <li><span class="tc-bold">Remote client running in a Processing Unit on an SLA-Driven Container</span> – a client can be deployed in its own Processing Unit, like the server instances, except that the client references services residing in remote Processing Units. In this mode the client is deployed and runs in an SLA-Driven Container, just like the server instances.</li>
 <li><span class="tc-bold">Remote client running in a standalone processing unit</span> – the client still runs in a processing unit, but outside the container. This allows it to leverage Processing Unit facilities to simplify its logic – facilities such as the space abstraction and transactions – without being dependent on the container. This mode can be useful for rich clients running as Swing applications, as web containers, and so on.</li>
 <li><span class="tc-bold">Plain Java clients, J2EE</span> – this can be either a regular POJO client that interacts with the space, or a Session Bean that obtains a reference to the space through the GigaSpaces SpaceFinder method, and uses that reference to interact with the space directly.</li>
-<li><a href="../dev-java/index.htm">.NET</a>** – GigaSpaces provides .NET libraries that enable direct interaction with services via the space, just like a POJO client.</li>
+<li><a href="../dev-java/index.html">.NET</a>** – GigaSpaces provides .NET libraries that enable direct interaction with services via the space, just like a POJO client.</li>
 </ul>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/Remote Clients.jpg" alt="Remote Clients.jpg" /></p>
@@ -233,7 +233,7 @@ This means that all or major parts of your application's data are stored in the 
 <li>Continuous High-Availability - Zero downtime of your data access layer with the ability to survive system failures without any data loss.</li>
 </ul>
 
-<p>The <a href="caching-scenarios.htm">Caching Scenarios</a> describes the different caching options GigaSpaces support.</p>
+<p>The <a href="caching-scenarios.html">Caching Scenarios</a> describes the different caching options GigaSpaces support.</p>
 
 <h1><a name="characteristics-of-a-space">&#160;</a>Characteristics of a Space</h1>
 
@@ -261,7 +261,7 @@ With asynchronous replication, this replication is done in a separate thread, an
 
 <p>The space is an in-memory data grid. As such its capacity is limited to the sum of the memory capacity of all the JVMs on which the space instances run.
 In many cases, you have to deal with larger portions of data, or load a subset of a larger data set, which resides in an external data source such as a relational database, into the space.
-The space supports many <a href="../dev-java/space-persistency-overview.htm">persistency options</a>, allowing you to easily configure how it interacts with an external relational database, or a more exotic source of data.
+The space supports many <a href="../dev-java/space-persistency-overview.html">persistency options</a>, allowing you to easily configure how it interacts with an external relational database, or a more exotic source of data.
 It supports the following options, from which you can choose:</p>
 
 <ul>
@@ -273,7 +273,7 @@ It supports the following options, from which you can choose:</p>
 
 <h2><a name="eviction-policy-and-memory-management">&#160;</a>Eviction Policy and Memory Management</h2>
 
-<p>Since the space is memory-based, it is essential to verify that it does not overflow and crash. The space has a number of <a href="../dev-java/memory-management-overview.htm">facilities</a> to manage its memory and make sure it does not overflow.
+<p>Since the space is memory-based, it is essential to verify that it does not overflow and crash. The space has a number of <a href="../dev-java/memory-management-overview.html">facilities</a> to manage its memory and make sure it does not overflow.
 The first one is the eviction policy. The space supports two eviction policies: <code>ALL_IN_CACHE</code> and <code>LRU</code> (Least Recently Used). With the <code>LRU</code> policy, the space starts to evict the least used entries when it becomes full. The <code>ALL_IN_CACHE</code> policy never evicts anything from the space.
 The memory manager allows you to define numerous thresholds that control when entries are evicted (in case you use <code>LRU</code>), or when the space simply blocks clients from adding data to it.
 Combined, these two facilities enable you to better control your environment and make sure that the memory of the space instances in your cluster does not overflow.</p>
@@ -283,12 +283,12 @@ Combined, these two facilities enable you to better control your environment and
 <p>GigaSpaces and its Space-Based-Architecture embrace the <a href="http://en.wikipedia.org/wiki/Reactive_programming" target="_blank" >reactive programming</a> approach. The following falls under reactive programming with GigaSpaces:</p>
 
 <ul>
-<li><a href="../dev-java/data-event-listener.htm">Data Event Listener</a> - <a href="../dev-java/polling-container-overview.htm">Polling Container</a>, <a href="../dev-java/notify-container-overview.htm">Notify Container</a></li>
-<li><a href="caching-scenarios.htm">Local View and Local Cache</a></li>
-<li><a href="../dev-java/mule-esb.htm">Mule ESB Integration</a></li>
-<li><a href="../dev-java/task-execution-overview.htm">Task Execution over the Space</a></li>
-<li><a href="../dev-java/the-gigaspace-interface-overview.htm#asynchronous-operations">Asynchronous Operations</a></li>
-<li><a href="/sbp/xap-drools-integration.htm">Drools Rule Engine Integration</a> - Available from a 3rd party.</li>
+<li><a href="../dev-java/data-event-listener.html">Data Event Listener</a> - <a href="../dev-java/polling-container-overview.html">Polling Container</a>, <a href="../dev-java/notify-container-overview.html">Notify Container</a></li>
+<li><a href="caching-scenarios.html">Local View and Local Cache</a></li>
+<li><a href="../dev-java/mule-esb.html">Mule ESB Integration</a></li>
+<li><a href="../dev-java/task-execution-overview.html">Task Execution over the Space</a></li>
+<li><a href="../dev-java/the-gigaspace-interface-overview.html#asynchronous-operations">Asynchronous Operations</a></li>
+<li><a href="/sbp/xap-drools-integration.html">Drools Rule Engine Integration</a> - Available from a 3rd party.</li>
 </ul>
 
 <h1><a name="apis-to-access-the-space">&#160;</a>APIs to Access the Space</h1>
@@ -296,27 +296,27 @@ Combined, these two facilities enable you to better control your environment and
 <p>The space supports a number of APIs to allow for maximum flexibility to space clients when accessing the space:</p>
 
 <ul>
-<li>The core <a href="../dev-java/the-gigaspace-interface-overview.htm">Space API</a>, which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the space entries are simply Java objects. This API supports transactions.</li>
+<li>The core <a href="../dev-java/the-gigaspace-interface-overview.html">Space API</a>, which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the space entries are simply Java objects. This API supports transactions.</li>
 </ul>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Accessing the Space from Other Languages</p>
-  <p>The code space API is also supported in <a href="../dev-dotnet/index.htm">XAP.NET</a>. This allows clients to access the space via these languages. It also supports <a href="../dev-java/interoperability-overview.htm">interoperability</a> between languages, so in effect you can write an object to the space using one language, and read it with another, say Java</p>
+  <p>The code space API is also supported in <a href="../dev-dotnet/index.html">XAP.NET</a>. This allows clients to access the space via these languages. It also supports <a href="../dev-java/interoperability-overview.html">interoperability</a> between languages, so in effect you can write an object to the space using one language, and read it with another, say Java</p>
 </div>
 
 <ul>
-<li>The <a href="../dev-java/jpa-api-overview.htm">JPA API</a> allows you to use JPA annotations and execute JPQL queries on the space</li>
-<li>The <a href="../dev-java/document-api.htm">Document API</a> allows you to develop your application in a schema-less manner. Using map-like objects, you can add attributes to data types in runtime.</li>
-<li>The <a href="../dev-java/map-api.htm">Map API</a> allows you to access entries using a key/value approach. This is only recommended for specific scenarios where you only retrieve objects based on their IDs and would settle for the Map interface which is very limited in functionality compared to the core Space API. This API supports transactions.</li>
-<li>The <a href="../dev-java/jdbc-driver.htm">JDBC API</a> allows you to access the space in a similar way to how you would access a relational database (note that it has a number of limitations).</li>
+<li>The <a href="../dev-java/jpa-api-overview.html">JPA API</a> allows you to use JPA annotations and execute JPQL queries on the space</li>
+<li>The <a href="../dev-java/document-api.html">Document API</a> allows you to develop your application in a schema-less manner. Using map-like objects, you can add attributes to data types in runtime.</li>
+<li>The <a href="../dev-java/map-api.html">Map API</a> allows you to access entries using a key/value approach. This is only recommended for specific scenarios where you only retrieve objects based on their IDs and would settle for the Map interface which is very limited in functionality compared to the core Space API. This API supports transactions.</li>
+<li>The <a href="../dev-java/jdbc-driver.html">JDBC API</a> allows you to access the space in a similar way to how you would access a relational database (note that it has a number of limitations).</li>
 </ul>
 
 <h1><a name="services-on-top-of-the-space">&#160;</a>Services on Top of the Space</h1>
 
 <p>Building on top of the core API, the Space also provides higher level services  onto the application. These services, along with the space's basic capabilities, provide the full stack of middleware features that you can build your application with.
-<a href="../dev-java/task-execution-overview.htm">The Task Execution API</a> allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
-<a href="../dev-java/messaging-support.htm">Event containers</a> use the core API's operations and abstract your code from all the low level details involved in handling the event, such as event registration with the space, transaction initiation, etc. This has the benefit of abstracting your code from the lower level API and allows it to focus on your business logic and the application behavior.
-<a href="../dev-java/space-based-remoting-overview.htm">Space-Based Remoting</a> allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.</p>
+<a href="../dev-java/task-execution-overview.html">The Task Execution API</a> allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
+<a href="../dev-java/messaging-support.html">Event containers</a> use the core API's operations and abstract your code from all the low level details involved in handling the event, such as event registration with the space, transaction initiation, etc. This has the benefit of abstracting your code from the lower level API and allows it to focus on your business logic and the application behavior.
+<a href="../dev-java/space-based-remoting-overview.html">Space-Based Remoting</a> allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.</p>
 
 <h1><a name="spring-integration">&#160;</a>Spring Integration</h1>
 
@@ -326,8 +326,8 @@ In addition, the higher level services (remoting and event processing), are also
 
 <h1><a name="the-space-as-the-foundation-for-space-based-architecture">&#160;</a>The Space as the Foundation for Space-Based Architecture</h1>
 
-<p>Besides its ability to function as an in-memory data grid, the Space's core features and the services on top of it, form the foundation for <a href="/sbp/a-typical-sba-application.htm">Space-Based Architecture (SBA)</a>. By using SBA, you can gain performance and scalability benefits not available with traditional tier-based architectures, even when these include an in-memory data grid, such as the Space.
-The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-unit-overview.htm">Processing Unit</a>. The Space can be embedded into the processing unit, or accessed remotely from it. When embedded into the processing unit, local services, such as event handler and service bean exposed remotely over the space, can interact with the local space instance to achieve unparalleled performance and scalability. The Space's built-in support for data partitioning is used to distribute the data and processing across the nodes, and for scaling the application.</p>
+<p>Besides its ability to function as an in-memory data grid, the Space's core features and the services on top of it, form the foundation for <a href="/sbp/a-typical-sba-application.html">Space-Based Architecture (SBA)</a>. By using SBA, you can gain performance and scalability benefits not available with traditional tier-based architectures, even when these include an in-memory data grid, such as the Space.
+The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-unit-overview.html">Processing Unit</a>. The Space can be embedded into the processing unit, or accessed remotely from it. When embedded into the processing unit, local services, such as event handler and service bean exposed remotely over the space, can interact with the local space instance to achieve unparalleled performance and scalability. The Space's built-in support for data partitioning is used to distribute the data and processing across the nodes, and for scaling the application.</p>
 
 <p>Different applications might have different caching requirements. Some applications require on-demand loading from an external, slower data source, due to limited memory; others use the cache for read-mostly purposes; transactional applications need a cache that handles both write and read operations, maintains consistency and serves as the application's system of record.</p>
 
@@ -352,7 +352,7 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
 </div>
 
 <ul>
-<li><span class="tc-bold">GigaSpaces Container (GSC)</span> - a generic container that can run one or more <a href="../dev-java/the-processing-unit-overview.htm">processing units</a>. A space instances usually runs within processing unit. The GSC is launched on each machine that participates in the space cluster, and hosts the space instances.</li>
+<li><span class="tc-bold">GigaSpaces Container (GSC)</span> - a generic container that can run one or more <a href="../dev-java/the-processing-unit-overview.html">processing units</a>. A space instances usually runs within processing unit. The GSC is launched on each machine that participates in the space cluster, and hosts the space instances.</li>
 </ul>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/DGA-ServiceGridDataGrid.jpg" alt="DGA-ServiceGridDataGrid.jpg" /></p>
@@ -389,7 +389,7 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
 
 <div class="tc-admon-refer">
   
-  <p>For more details on how to configure the replication mechanisms of the Space, refer to <a href="../admin/replication.htm">Replication</a> in the <a href="../admin/index.htm">Administration Guide</a>.</p>
+  <p>For more details on how to configure the replication mechanisms of the Space, refer to <a href="../admin/replication.html">Replication</a> in the <a href="../admin/index.html">Administration Guide</a>.</p>
 </div>
 
 <h1><a name="data-grid-topologies">&#160;</a>Data Grid Topologies</h1>
@@ -482,7 +482,7 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to Local Cache <a href="../dev-java/local-cache.htm">Java version</a> |<a href="../dev-dotnet/local-cache.htm"> .NET version</a>.</p>
+  <p>For more information, refer to Local Cache <a href="../dev-java/local-cache.html">Java version</a> |<a href="../dev-dotnet/local-cache.html"> .NET version</a>.</p>
 </div>
 
 <h3><a name="local-view">&#160;</a>Local View</h3>
@@ -514,7 +514,7 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to Local View <a href="../dev-java/local-view.htm">Java version</a> |<a href="../dev-dotnet/local-view.htm"> .NET version</a>.</p>
+  <p>For more information, refer to Local View <a href="../dev-java/local-view.html">Java version</a> |<a href="../dev-dotnet/local-view.html"> .NET version</a>.</p>
 </div>
 
 <p>The topologies above are provided in the GigaSpaces product as predefined cluster schemas. The schema names are:</p>

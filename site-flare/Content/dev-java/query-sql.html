@@ -9,12 +9,12 @@
 
 <div class="tc-admon-note">
   
-  <p>For the full documentation of the class's methods and constructors, see <a href="[%=Links.ApiJavaDoc%]/index.htm?com/j_spaces/core/client/SQLQuery.htm">Javadoc</a>.</p>
+  <p>For the full documentation of the class's methods and constructors, see <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/SQLQuery.html">Javadoc</a>.</p>
 </div>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p>The XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to <a href="sql-query-intro.htm">In-Grid SQL Query</a>.</p>
+  <p>The XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to <a href="sql-query-intro.html">In-Grid SQL Query</a>.</p>
 </div>
 
 <h1><a name="examples">&#160;</a>Examples</h1>
@@ -46,7 +46,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
 
 <div class="tc-admon-refer">
   
-  <p>For an example of <code>SQLQuery</code> with <code>EventSession</code>, refer to the <a href="session-based-messaging-api.htm#SQLQuery Template Registration">Session Based Messaging API</a> section.</p>
+  <p>For an example of <code>SQLQuery</code> with <code>EventSession</code>, refer to the <a href="session-based-messaging-api.html#SQLQuery Template Registration">Session Based Messaging API</a> section.</p>
 </div>
 
 <h1><a name="supported-space-operations">&#160;</a>Supported Space Operations</h1>
@@ -75,7 +75,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
 <ul>
 <li><code>AND</code> / <code>OR</code> operators to combine two or more conditions.</li>
 <li>All basic logical operations to create conditions: <code>=, &lt;&gt;, &lt;, &gt;, &gt;=, &lt;=, like, NOT like, is null, is NOT null, IN</code>.</li>
-<li><a href="aggregators.htm">Aggregate</a> functions: COUNT, MAX, MIN, SUM, AVG</li>
+<li><a href="aggregators.html">Aggregate</a> functions: COUNT, MAX, MIN, SUM, AVG</li>
 <li><code>BETWEEN</code></li>
 <li><code>ORDER BY (ASC | DESC)</code> for multiple properties. Supported only by readMultiple. <code>ORDER BY</code> supports also nested object fields. <code>ORDER BY</code> supports <code>NULLS LAST</code> to control the order behavior of a field when its value is <code>null</code>.</li>
 <li><code>GROUP BY</code> - performs DISTINCT on the properties. Supported only by readMultiple. <code>GROUP BY</code> supports also nested object fields.</li>
@@ -83,7 +83,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
 <li><code>rownum</code> - limits the number of rows to select.</li>
 <li>Sub queries.</li>
 <li>"." used to indicate a double data type.</li>
-<li><a href="indexing.htm">Regular Index</a> and a <a href="indexing.htm#Compound Indexing">Compound Index</a> - Index a single property or multiple properties to improve query execution time.</li>
+<li><a href="indexing.html">Regular Index</a> and a <a href="indexing.html#Compound Indexing">Compound Index</a> - Index a single property or multiple properties to improve query execution time.</li>
 </ul>
 
 <h1><a name="unsupported-sql-features">&#160;</a>Unsupported SQL Features</h1>
@@ -91,13 +91,13 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
 <p>SQLQuery does <span class="tc-bold">not</span> support the following:</p>
 
 <ul>
-<li>Multiple tables select - This is supported with the <a href="jdbc-driver.htm">JDBC API</a>.</li>
-<li>DISTINCT - This is supported with the <a href="jdbc-driver.htm">JDBC API</a>.</li>
+<li>Multiple tables select - This is supported with the <a href="jdbc-driver.html">JDBC API</a>.</li>
+<li>DISTINCT - This is supported with the <a href="jdbc-driver.html">JDBC API</a>.</li>
 <li>The SQL statements: VIEW, TRIGGERS, EXISTS, NOT, CREATE USER, GRANT, REVOKE, SET PASSWORD, CONNECT USER, ON.</li>
 <li>Constraints: NOT NULL, IDENTITY, UNIQUE, PRIMARY KEY, Foreign Key/REFERENCES, NO ACTION, CASCADE, SET NULL, SET DEFAULT, CHECK.</li>
 <li>Set operations: Union, Minus, Union All.</li>
-<li>Advanced Aggregate Functions: STDEV, STDEVP, VAR, VARP, FIRST, LAST. These may be implemented via <a href="aggregators.htm#custom-aggregation">Custom Aggregation</a>.</li>
-<li>Using a non constant right-hand side comparison operator. This can be implemented via <a href="aggregators.htm#custom-aggregation">Custom Aggregation</a>.</li>
+<li>Advanced Aggregate Functions: STDEV, STDEVP, VAR, VARP, FIRST, LAST. These may be implemented via <a href="aggregators.html#custom-aggregation">Custom Aggregation</a>.</li>
+<li>Using a non constant right-hand side comparison operator. This can be implemented via <a href="aggregators.html#custom-aggregation">Custom Aggregation</a>.</li>
 <li>LEFT OUTER JOIN</li>
 <li>RIGHT OUTER JOIN</li>
 <li>INNER JOIN</li>
@@ -115,7 +115,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
 
 <h1><a name="indexing">&#160;</a>Indexing</h1>
 
-<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE, or IS NULL statements. For more information, see <a href="indexing.htm">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code> statement.</p>
+<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE, or IS NULL statements. For more information, see <a href="indexing.html">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code> statement.</p>
 
 <h1><a name="parameterized-queries">&#160;</a>Parameterized Queries</h1>
 
@@ -181,7 +181,7 @@ query.setParameter(2,collection);
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to <a href="query-nested-properties.htm">Query Nested Properties</a>.</p>
+  <p>For more information, refer to <a href="query-nested-properties.html">Query Nested Properties</a>.</p>
 </div>
 
 <h1><a name="enum-properties">&#160;</a>Enum Properties</h1>
@@ -239,11 +239,11 @@ space-config.QueryProcessor.time_format
 &lt;/beans&gt;
 </code></pre>
 
-<p>These Space properties should be configured with a valid Java format pattern, as defined in the <a href="http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.htm" target="_blank" >official Java language documentation</a>.</p>
+<p>These Space properties should be configured with a valid Java format pattern, as defined in the <a href="http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.html" target="_blank" >official Java language documentation</a>.</p>
 
 <div class="tc-admon-note">
   
-  <p>The <code>space-config.QueryProcessor.date_format</code> property used when your query includes a String representing the date. Date properties are often used for comparison (greater/less than). Consider using <a href="indexing.htm">ordered indexing</a> to boost performance.</p>
+  <p>The <code>space-config.QueryProcessor.date_format</code> property used when your query includes a String representing the date. Date properties are often used for comparison (greater/less than). Consider using <a href="indexing.html">ordered indexing</a> to boost performance.</p>
 </div>
 
 <h2><a name="the-sysdate-property">&#160;</a>The Sysdate Property</h2>
@@ -252,7 +252,7 @@ space-config.QueryProcessor.time_format
 
 <ul>
 <li>For Windows, there is a <a href="http://technet.microsoft.com/en-us/library/cc773061%28WS.10%29.aspx" target="_blank" >windows service</a> that deals with clock synchronization.</li>
-<li>For Linux, there is a <a href="http://www.brennan.id.au/09-Network_Time_Protocol.htm#starting" target="_blank" >daemon service</a> that deals with clock synchronization.</li>
+<li>For Linux, there is a <a href="http://www.brennan.id.au/09-Network_Time_Protocol.html#starting" target="_blank" >daemon service</a> that deals with clock synchronization.</li>
 </ul>
 
 <div class="tc-admon-note">
@@ -426,13 +426,13 @@ space-config.QueryProcessor.time_format
 
 <div class="tc-admon-important">
   
-  <p>Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable with the .NET DateTime class. <a href="../dev-dotnet/interoperability.htm#supported-types-for-matching-and-interoperability
-.htm">.NET Interoperability</a></p>
+  <p>Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable with the .NET DateTime class. <a href="../dev-dotnet/interoperability.html#supported-types-for-matching-and-interoperability
+.html">.NET Interoperability</a></p>
 </div>
 
 <h1><a name="aggregators">&#160;</a>Aggregators</h1>
 
-<table class="tc-borderless"><tr><td style="width:60%;"><p><a href="aggregators.htm">Aggregators</a> allows you to perform aggregations (Average, Max, Min, Sum, Group By, Having) on a relatively large Space object data set. A query (SQLQuery or template) may be specified to determine the exact subset of Space objects to iterate while performing the aggregation. Aggregators support single and compound based execution and a fully customized Aggregation.</p>
+<table class="tc-borderless"><tr><td style="width:60%;"><p><a href="aggregators.html">Aggregators</a> allows you to perform aggregations (Average, Max, Min, Sum, Group By, Having) on a relatively large Space object data set. A query (SQLQuery or template) may be specified to determine the exact subset of Space objects to iterate while performing the aggregation. Aggregators support single and compound based execution and a fully customized Aggregation.</p>
 </td>
 <td style="width:40%;"><p><img src="../Resources/Static/attachment_files/built-in-Compound-aggregators.jpg" alt="aggreg.jpg" /></p>
 </td>
@@ -484,7 +484,7 @@ MyClass[] result = gigaspace.readMultiple(query);
 
 <h2><a name="compound-index">&#160;</a>Compound Index</h2>
 
-<p>When having an <span class="tc-bold">AND</span> query or a template that use two or more fields for matching, a <a href="indexing.htm#Compound Indexing">Compound Index</a> may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a <a href="query-template-matching.htm">Template</a> uses these properties.</p>
+<p>When having an <span class="tc-bold">AND</span> query or a template that use two or more fields for matching, a <a href="indexing.html#Compound Indexing">Compound Index</a> may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a <a href="query-template-matching.html">Template</a> uses these properties.</p>
 
 <h2><a name="re-using-sqlquery">&#160;</a>Re-using SQLQuery</h2>
 
@@ -511,7 +511,7 @@ OR
 
 <div class="tc-admon-refer">
   
-  <p>For details on how to use the projection API, refer to <a href="query-partial-results.htm">Getting Partial Results Using Projection API</a></p>
+  <p>For details on how to use the projection API, refer to <a href="query-partial-results.html">Getting Partial Results Using Projection API</a></p>
 </div>
 
  <a name="SimpleQueries">&#160;</a>
@@ -532,8 +532,8 @@ A query is considered complex if it contains one or more of the following:</p>
 <ul>
 <li>Snapshot</li>
 <li>Blocking operations</li>
-<li><a href="session-based-messaging-api.htm">Notifications</a></li>
-<li><a href="query-paging-support.htm">GSIterator</a></li>
+<li><a href="session-based-messaging-api.html">Notifications</a></li>
+<li><a href="query-paging-support.html">GSIterator</a></li>
 </ul>
 
 <h1><a name="interface-classes">&#160;</a>Interface Classes</h1>

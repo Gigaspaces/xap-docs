@@ -81,7 +81,7 @@ IDataEventSession dataEventSession = proxy.CreateDataEventSession(eventSessionCo
 
 <ul>
 <li>The space that holds the listener registration template, is no longer available.</li>
-<li>The proxy that receives the notifications can't handle the amount of incoming events, and creates a <a href="../admin/slow-consumer.htm">slow consumer</a> scenario, which causes the space to disconnect the listener.</li>
+<li>The proxy that receives the notifications can't handle the amount of incoming events, and creates a <a href="../admin/slow-consumer.html">slow consumer</a> scenario, which causes the space to disconnect the listener.</li>
 </ul>
 
 <p>In order to detect and handle listener disconnection, the <span class="tc-bold">auto renewal</span> mechanism can be used.</p>
@@ -91,7 +91,7 @@ IDataEventSession dataEventSession = proxy.CreateDataEventSession(eventSessionCo
 <ul>
 <li>The client process terminated unexpectedly, and didn't un register its listener. After the lease expires, the notify template is removed from the space, instead of staying alive forever.</li>
 <li>If the space is no longer available, then the client is notified that it couldn't renew the listener lease.</li>
-<li>If the client causes a <a href="../admin/slow-consumer.htm">slow consumer</a> scenario, and as a result its listener has been disconnected by the space, then the client is notified that it couldn't renew the listener lease, and it can reregister to the event.</li>
+<li>If the client causes a <a href="../admin/slow-consumer.html">slow consumer</a> scenario, and as a result its listener has been disconnected by the space, then the client is notified that it couldn't renew the listener lease, and it can reregister to the event.</li>
 </ul>
 
 <p><span class="tc-bold">Configuring data event session with auto renewal</span>
@@ -117,7 +117,7 @@ eventSessionConfig.AutoRenewRTT = 5000;  // deprecated
 
 <h2><a name="managing-high-notifications-throughput">&#160;</a>Managing High Notifications Throughput</h2>
 
-<p>When a notification is sent from the space to the client, the callback method is executed inside a thread that belongs to the resource pool of the proxy. As a result, this thread is occupied until the callback method returns. As a good practice, it is recommended to create the callback method that returns as fast as possible, otherwise the resources pool of the proxy can be choked, and cause a <a href="../admin/slow-consumer.htm">slow consumer</a> scenario. If the notifications should trigger a long running job, it is better to put this job in a queue, and handle it in a client thread later on.</p>
+<p>When a notification is sent from the space to the client, the callback method is executed inside a thread that belongs to the resource pool of the proxy. As a result, this thread is occupied until the callback method returns. As a good practice, it is recommended to create the callback method that returns as fast as possible, otherwise the resources pool of the proxy can be choked, and cause a <a href="../admin/slow-consumer.html">slow consumer</a> scenario. If the notifications should trigger a long running job, it is better to put this job in a queue, and handle it in a client thread later on.</p>
 
 <p>It is possible to reduce network traffic, and concurrent threads that handle notifications, by using the batch notification mechanism. Instead of sending each notification separately, notifications are grouped together in the space, and sent as one batch.</p>
 

@@ -9,12 +9,12 @@
 
 <h1><a name="metadata">&#160;</a>Metadata</h1>
 
-<p>When writing POJOs to the Space, you can provide some metadata about the POJO's class to the Space, using Java 5 annotations or an XML configuration. This overview uses annotation to provide metadata. For a complete reference to POJO annotations and XML configuration, refer to the <a href="modeling-your-data.htm">POJO Metadata</a> section.</p>
+<p>When writing POJOs to the Space, you can provide some metadata about the POJO's class to the Space, using Java 5 annotations or an XML configuration. This overview uses annotation to provide metadata. For a complete reference to POJO annotations and XML configuration, refer to the <a href="modeling-your-data.html">POJO Metadata</a> section.</p>
 
 <p>Here is an overview of the most commonly used POJO annotations:</p>
 
 <ul>
-<li><p><code>@SpaceClass</code>: Class level annotation - Optional. Used to mark a class that is written to the Space (by default if you write a class to the Space, it is marked as such automatically). Use this to provide additional metadata at the class level, such as whether or not this class is persisted to a database if <a href="space-persistency-overview.htm">Persistency</a> is configured on the Space.</p></li>
+<li><p><code>@SpaceClass</code>: Class level annotation - Optional. Used to mark a class that is written to the Space (by default if you write a class to the Space, it is marked as such automatically). Use this to provide additional metadata at the class level, such as whether or not this class is persisted to a database if <a href="space-persistency-overview.html">Persistency</a> is configured on the Space.</p></li>
 
 <li><p><code>@SpaceId</code>: The identifier property of the POJO. This property uniquely identifies the POJO within the Space, and is similar to a primary key in a database. You can choose between an application-generated ID (<code>autoGenerate=false</code>), and an automatically generated ID (<code>autoGenerate=true</code>).</p></li>
 
@@ -29,7 +29,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>For more information about POJO metadata, refer to <a href="modeling-your-data.htm">Modeling your Data</a>.</p>
+  <p>For more information about POJO metadata, refer to <a href="modeling-your-data.html">Modeling your Data</a>.</p>
 </div>
 
 <div class="tc-admon-important">
@@ -91,7 +91,7 @@ public class Person {
 <li>The ID field can be determined using the <code>@SpaceId</code> annotation or the <code>id</code> tag.</li>
 <li>The <code>SpaceId</code> field can be <code>java.lang.String</code> type, or any other type that implements the <code>toString()</code> that provides a unique value.</li>
 <li>The <code>@Spaceid</code> annotation or <code>id</code> tag must be declared when performing update operations.</li>
-<li>A POJO class must implement the <code>Serializable</code>  interface if used as a parameter for a remote call (<a href="space-based-remoting-overview.htm">Space Based Remoting</a>).</li>
+<li>A POJO class must implement the <code>Serializable</code>  interface if used as a parameter for a remote call (<a href="space-based-remoting-overview.html">Space Based Remoting</a>).</li>
 </ul>
 
 <h2><a name="controlling-space-class-fields-introduction">&#160;</a>Controlling Space Class Fields Introduction</h2>
@@ -114,7 +114,7 @@ public class Person {
 
 <h2><a name="user-defined-space-class-fields">&#160;</a>User-Defined Space Class Fields</h2>
 
-<p>You may have user-defined data types (non-primitive data types) with your Space class. These should implement the <code>Serializable</code> or <code>Externalizable</code> interface. The user-defined class nested fields can be used with queries, and can be indexed. See the <a href="query-sql.htm#Nested Properties">Nested Properties</a> and the <a href="indexing.htm#Nested Properties Indexing">Nested Properties Indexing</a> section for details.</p>
+<p>You may have user-defined data types (non-primitive data types) with your Space class. These should implement the <code>Serializable</code> or <code>Externalizable</code> interface. The user-defined class nested fields can be used with queries, and can be indexed. See the <a href="query-sql.html#Nested Properties">Nested Properties</a> and the <a href="indexing.html#Nested Properties Indexing">Nested Properties Indexing</a> section for details.</p>
 
 <h2><a name="reference-handling">&#160;</a>Reference Handling</h2>
 
@@ -128,7 +128,7 @@ public class Person {
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Indexing</p>
-  <p><a href="indexing-overview.htm">Indexing</a> is <span class="tc-bold">critical</span> for good performance over large Spaces. Don't forget to index properly with the @SpaceIndex(type=SpaceIndexType.EQUAL) or @SpaceIndex(type=SpaceIndexType.ORDERED) annotation, or use the gs.xml equivalent.</p>
+  <p><a href="indexing-overview.html">Indexing</a> is <span class="tc-bold">critical</span> for good performance over large Spaces. Don't forget to index properly with the @SpaceIndex(type=SpaceIndexType.EQUAL) or @SpaceIndex(type=SpaceIndexType.ORDERED) annotation, or use the gs.xml equivalent.</p>
 </div>
 
 <h1><a name="jini-entry">&#160;</a>Jini Entry</h1>

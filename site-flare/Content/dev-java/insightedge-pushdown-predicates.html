@@ -9,7 +9,7 @@
 
 <h1><a name="indexing">&#160;</a>Indexing</h1>
 
-<p>Pushdown predicates are dependent on indexing the relevant fields. The indexing can be adjusted to improve performance further, as described in the <a href="indexing-overview.htm">Indexing</a> section. You can also refer to the <a href="insightedge-modeling.htm">Data Modeling</a> topic.</p>
+<p>Pushdown predicates are dependent on indexing the relevant fields. The indexing can be adjusted to improve performance further, as described in the <a href="indexing-overview.html">Indexing</a> section. You can also refer to the <a href="insightedge-modeling.html">Data Modeling</a> topic.</p>
 
 <h1><a name="pushing-predicates-to-the-data-grid">&#160;</a>Pushing Predicates to the Data Grid</h1>
 
@@ -31,7 +31,7 @@
 <li><code>GeoContains</code></li>
 </ul>
 
-<p>For more information about the geospatial predicates, refer to the <a href="insightedge-geospatial.htm">GeoSpatial API</a> topic.</p>
+<p>For more information about the geospatial predicates, refer to the <a href="insightedge-geospatial.html">GeoSpatial API</a> topic.</p>
 
 <h1><a name="rdd-api">&#160;</a>RDD API</h1>
 
@@ -49,7 +49,7 @@ val rdd2 = sc.gridSql[Product]("quantity &gt; ? and featuredProduct = ?", Seq(10
 <pre><code class="language-scala">val rdd = sc.gridSql[SpatialData]("location spatial:within ?", Seq(circle(point(10,10), 10)))
 </code></pre>
 
-<p>For more information about these types of queries, refer to the <a href="insightedge-rdd.htm">RDD API</a> topic.</p>
+<p>For more information about these types of queries, refer to the <a href="insightedge-rdd.html">RDD API</a> topic.</p>
 
 <h1><a name="dataframe-dataset-apis">&#160;</a>DataFrame/DataSet APIs</h1>
 
@@ -80,7 +80,7 @@ spark.read.grid[Product].as[Product].filter(p =&gt; p.quantity &gt; 0).count()
 val data = df.filter(df("location") geoWithin circle(point(10,10), 10))
 </code></pre>
 
-<p>For more information about using geospatial predicates with these APIs, refer to the <a href="insightedge-datasets.htm">Dataset API</a> and <a href="insightedge-dataframes.htm">DataFrame API</a> topics.</p>
+<p>For more information about using geospatial predicates with these APIs, refer to the <a href="insightedge-datasets.html">Dataset API</a> and <a href="insightedge-dataframes.html">DataFrame API</a> topics.</p>
 
 <h2><a name="aggregations">&#160;</a>Aggregations</h2>
 

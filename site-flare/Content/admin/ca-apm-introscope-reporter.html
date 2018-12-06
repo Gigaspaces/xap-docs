@@ -134,7 +134,7 @@ For example, using EPA CA Introscope can monitor directory servers, operating sy
 
 <h2><a name="integration-with-xap">&#160;</a>Integration with XAP</h2>
 
-<p>XAP provides a well defined point of integration - <a href="metrics-custom-reporter.htm">custom reporter</a>. The integration is implemented based on XAP metrix framework:
+<p>XAP provides a well defined point of integration - <a href="metrics-custom-reporter.html">custom reporter</a>. The integration is implemented based on XAP metrix framework:
 - <code>IntroscopeRepoter</code> - the main class that handles sending metrics inherits from <code>MetricReporter</code>,
 - <code>IntroscopeRepoterFactory</code> - a class that creates reporters derives from <code>MetricReporterFactory</code>.</p>
 
@@ -185,7 +185,7 @@ However, XAP-apm-introscope uses only the most basic ones - <code>LongCounter</c
 
 <h3><a name="hierarchy-insertion">&#160;</a>Hierarchy insertion</h3>
 
-<p>XAP reports tens of different predefined metrics per machine that belongs to a grid, deployed processing units or Space (you can find more information <a href="metrics-bundled.htm">here</a>). Additionally, there might be also custom metrics defined by users. Even for one machine, number of metrics becomes too high for human-being to track them easily in webview in flat format. Hierarchy is inserted by modifying metric name - it has the given format:</p>
+<p>XAP reports tens of different predefined metrics per machine that belongs to a grid, deployed processing units or Space (you can find more information <a href="metrics-bundled.html">here</a>). Additionally, there might be also custom metrics defined by users. Even for one machine, number of metrics becomes too high for human-being to track them easily in webview in flat format. Hierarchy is inserted by modifying metric name - it has the given format:</p>
 
 <pre><code class="language-yaml">RESOURCE_SEGMENT_1|...|RESOURCE_SEGMENT_N:METRIC_NAME
 </code></pre>

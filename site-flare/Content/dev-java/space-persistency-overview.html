@@ -12,7 +12,7 @@
 <li>The Space synchronization endpoint component handles changes made within the Space delegation to the persistency layer.</li>
 </ul>
 
-<p>XAP's Space persistency provides the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/datasource/SpaceDataSource.htm">SpaceDataSource</a> and <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/sync/SpaceSynchronizationEndpoint.htm">SpaceSynchronizationEndpoint</a> classes, which can be extended and then used to load data and store data into an existing data source. Data is <a href="space-persistency-initial-load.htm">loaded from the data source</a> during space initialization (<code>SpaceDataSource</code>), and from then onwards the application works with the Space directly.</p>
+<p>XAP's Space persistency provides the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/datasource/SpaceDataSource.html">SpaceDataSource</a> and <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/sync/SpaceSynchronizationEndpoint.html">SpaceSynchronizationEndpoint</a> classes, which can be extended and then used to load data and store data into an existing data source. Data is <a href="space-persistency-initial-load.html">loaded from the data source</a> during space initialization (<code>SpaceDataSource</code>), and from then onwards the application works with the Space directly.</p>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/data-grid-initial-loadNew.jpg" alt="data-grid-initial-loadNew.jpg" /></p>
 </div>
@@ -22,14 +22,14 @@
 <p>Persistency can be configured to run in Synchronous or Asynchronous mode:</p>
 
 <ul>
-<li>Synchronous Mode - see <a href="direct-persistency.htm">Direct Persistency</a></li>
+<li>Synchronous Mode - see <a href="direct-persistency.html">Direct Persistency</a></li>
 </ul>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/data-grid-sync-persistNew.jpg" alt="data-grid-sync-persistNew.jpg" /></p>
 </div>
 
 <ul>
-<li>Asynchronous Mode - see  <a href="asynchronous-persistency-with-the-mirror.htm">Asynchronous Persistency with the Mirror</a></li>
+<li>Asynchronous Mode - see  <a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency with the Mirror</a></li>
 </ul>
 
 <div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/data-grid-async-persistNew.jpg" alt="data-grid-async-persistNew.jpg" /></p>
@@ -39,7 +39,7 @@
   <p class="tc-admon-title">Synchronous verses Asynchronous</p>
   <p>The difference between Synchronous and Asynchronous persistency mode is the way data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the <code>SpaceDataSource</code>/<code>SpaceSynchronizationEndpoint</code> to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a <span class="tc-bold">reliable</span> asynchronous manner using the mirror service as a write-behind activity. This mode provides maximum performance.</p>
 
-<p>If you are upgrading from a version of XAP prior to 9.7, refer to the <a href="migrating-from-external-data-source-api.htm">Migrating From External Data Source API</a> page.</p>
+<p>If you are upgrading from a version of XAP prior to 9.7, refer to the <a href="migrating-from-external-data-source-api.html">Migrating From External Data Source API</a> page.</p>
 </div>
 
 <h1><a name="space-persistency-api">&#160;</a>Space Persistency API</h1>
@@ -118,18 +118,18 @@ The ability to customize the Space persistency functionality allows XAP to inter
 
 <div class="tc-admon-refer">
   
-  <p>XAP's built in Hibernate Persistency implementation is an extension of the SpaceDataSource and SpaceSynchronizationEndpoint classes. For detailed API information, refer to <a href="space-data-source-api.htm">Space Data Source API</a> and <a href="space-synchronization-endpoint-api.htm">Space Synchronization Endpoint API</a>.</p>
+  <p>XAP's built in Hibernate Persistency implementation is an extension of the SpaceDataSource and SpaceSynchronizationEndpoint classes. For detailed API information, refer to <a href="space-data-source-api.html">Space Data Source API</a> and <a href="space-synchronization-endpoint-api.html">Space Synchronization Endpoint API</a>.</p>
 </div>
 
 <h1><a name="rdbms-space-persistency">&#160;</a>RDBMS Space Persistency</h1>
 
-<p>XAP comes with a built-in implementation of <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> called <a href="hibernate-space-persistency.htm">Hibernate Space Persistency</a>. See <a href="space-persistency-initial-load.htm">Space Persistency Initial Load</a> to allow the Space to pre-load its data. You can also use splitter data source <code>SpaceDataSourceSplitter</code>, which allows you to split data sources according to entry type.</p>
+<p>XAP comes with a built-in implementation of <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> called <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a>. See <a href="space-persistency-initial-load.html">Space Persistency Initial Load</a> to allow the Space to pre-load its data. You can also use splitter data source <code>SpaceDataSourceSplitter</code>, which allows you to split data sources according to entry type.</p>
 
 <h1><a name="nosql-db-space-persistency">&#160;</a>NoSQL DB Space Persistency</h1>
 
-<p>The <a href="cassandra-space-persistency.htm">Cassandra Space Persistency Solution</a> allows applications to push  long-term data into the Cassandra database in an asynchronous manner, without affecting the application response time, and to also load data from the Cassandra database after the XAP data grid is started or in a lazy manner when there is a cache miss when reading data from the XAP data grid.</p>
+<p>The <a href="cassandra-space-persistency.html">Cassandra Space Persistency Solution</a> allows applications to push  long-term data into the Cassandra database in an asynchronous manner, without affecting the application response time, and to also load data from the Cassandra database after the XAP data grid is started or in a lazy manner when there is a cache miss when reading data from the XAP data grid.</p>
 
-<p>The GigaSpaces Cassandra Space Peristency Solution leverages the <a href="http://www.datastax.com/docs/0.8/dml/using_cql">Cassandra CQL</a>, <a href="http://code.google.com/a/apache-extras.org/p/cassandra-jdbc">Cassandra JDBC Driver</a> and the <a href="http://hector-client.github.com/hector/build/html/index.htm">Cassandra Hector Library</a>. Every application's write or take operation against the data grid is delegated into the Mirror service that uses the Cassandra Mirror implementation to push the changes into the Cassandra database.</p>
+<p>The GigaSpaces Cassandra Space Peristency Solution leverages the <a href="http://www.datastax.com/docs/0.8/dml/using_cql">Cassandra CQL</a>, <a href="http://code.google.com/a/apache-extras.org/p/cassandra-jdbc">Cassandra JDBC Driver</a> and the <a href="http://hector-client.github.com/hector/build/html/index.html">Cassandra Hector Library</a>. Every application's write or take operation against the data grid is delegated into the Mirror service that uses the Cassandra Mirror implementation to push the changes into the Cassandra database.</p>
 
 </body>
 </html>

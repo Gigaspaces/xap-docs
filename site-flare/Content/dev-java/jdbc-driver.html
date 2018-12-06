@@ -9,23 +9,23 @@
 
 <div class="tc-admon-note">
   
-  <p>This JDBC driver is not SQL-99 compliant. SQL-99 compliant query functionality is available in the InsightEdge Enterprise edition. Refer to the SQLQuery and <a href="../dev-java/sql-query-intro.htm">JDBC Driver</a> topics in the Developer Guide.</p>
+  <p>This JDBC driver is not SQL-99 compliant. SQL-99 compliant query functionality is available in the InsightEdge Enterprise edition. Refer to the SQLQuery and <a href="../dev-java/sql-query-intro.html">JDBC Driver</a> topics in the Developer Guide.</p>
 </div>
 
 <p>Applications can access the XAP data grid using the JDBC API; data written to the IMDG using the JDBC API can also be accessed using other APIs.</p>
 
 <div class="tc-admon-note">
   
-  <p>An alternative way of querying the Space using SQL syntax is the <a href="query-sql.htm">SQLQuery</a> class. This class allows you to perform SQL queries directly against Space objects, without adding O/R mapping complexity.</p>
+  <p>An alternative way of querying the Space using SQL syntax is the <a href="query-sql.html">SQLQuery</a> class. This class allows you to perform SQL queries directly against Space objects, without adding O/R mapping complexity.</p>
 </div>
 
-<p>JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the Space, beyond the template matching provided by the <a href="the-gigaspace-interface-overview.htm">The GigaSpace Interface</a>.</p>
+<p>JDBC support in XAP is centered around the Space-Based Architecture - its main motivation is to enable more sophisticated querying of the Space, beyond the template matching provided by the <a href="the-gigaspace-interface-overview.html">The GigaSpace Interface</a>.</p>
 
 <p>XAP is not a full-fledged relational database and it does not support the full SQL92 standard (see <a href="#supported-features">JDBC Supported Features</a>). However, the existing SQL support is extremely useful for applications that need to execute queries on a Space for real-time queries.</p>
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p>You can use the <a href="../admin/space-gigaspaces-cli.htm">SQL Command Line</a> to query and fetch data from the IMDG. The SQL Command Line using the XAP JDBC Driver when accessing the IMDG.</p>
+  <p>You can use the <a href="../admin/space-gigaspaces-cli.html">SQL Command Line</a> to query and fetch data from the IMDG. The SQL Command Line using the XAP JDBC Driver when accessing the IMDG.</p>
 </div>
 
 <h2><a name="using-existing-sql-code-and-porting-to-external-systems">&#160;</a>Using Existing SQL Code and Porting to External Systems</h2>
@@ -48,7 +48,7 @@
 
 <div class="tc-admon-note">
   
-  <p>For more details on the Space URL, refer to the <a href="the-space-configuration.htm">Space URL</a> page.</p>
+  <p>For more details on the Space URL, refer to the <a href="the-space-configuration.html">Space URL</a> page.</p>
 </div>
 
 <p>Example:</p>
@@ -169,7 +169,7 @@ connection.setUseSingleSpace(true); //false = cluster, true=single
 
 <h1><a name="combining-the-space-api-with-the-jdbc-api">&#160;</a>Combining the Space API with the JDBC API</h1>
 
-<p>The following example uses the Space API <a href="task-execution-overview.htm">DistributedTask</a> with the JDBC API. With this example we use map/reduce approach to query the Space using the JDBC API, but send the JDBC query to be executed within the Space. This approach scales very well when the Space has multiple partitions, eliminating the need to retrieve the actual Space objects from the Space to evaluate the query. Retrieving objects from the Space involves network latency and serialization overhead.</p>
+<p>The following example uses the Space API <a href="task-execution-overview.html">DistributedTask</a> with the JDBC API. With this example we use map/reduce approach to query the Space using the JDBC API, but send the JDBC query to be executed within the Space. This approach scales very well when the Space has multiple partitions, eliminating the need to retrieve the actual Space objects from the Space to evaluate the query. Retrieving objects from the Space involves network latency and serialization overhead.</p>
 
 <p>With the example below we execute the following query:</p>
 
@@ -274,7 +274,7 @@ System.out.println("The Result:" + Arrays.asList(result_str));
 <li>All Java class attributes are translated into their corresponding SQL types.</li>
 <li>Class names are translated into table names.</li>
 <li>Field names are translated into column names.</li>
-<li>Indexed columns are translated into indexed fields. Make sure the <code>btree</code> index is turned on, allowing fast processing of bigger than/less than queries. For more details, refer to the <a href="indexing.htm#Extended Indexing">Indexing</a> section.</li>
+<li>Indexed columns are translated into indexed fields. Make sure the <code>btree</code> index is turned on, allowing fast processing of bigger than/less than queries. For more details, refer to the <a href="indexing.html#Extended Indexing">Indexing</a> section.</li>
 </ul>
 
 <p>The following information represents the SQL-to-Java mapping conducted at runtime when a table is created via the JDBC driver.</p>
@@ -454,7 +454,7 @@ int result = stmt.executeUpdate("UPDATE PERSON SET VERSION = VERSION + 1 WHERE I
 <code>%</code> - match any string of any length (including zero length)
 <code>_</code> - match on a single character</p>
 
-<p>Querying the Space using the <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/regex/Pattern.htm">Java Regular Expression</a> provides more options than the SQL <code>like</code> operator. The Query syntax is done using the <code>rlike</code> operator.</p>
+<p>Querying the Space using the <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/regex/Pattern.html">Java Regular Expression</a> provides more options than the SQL <code>like</code> operator. The Query syntax is done using the <code>rlike</code> operator.</p>
 
 <p>When you search for Space objects with String fields that include a <span class="tc-bold">single quote</span>, your query should use Parameterized Query. In the following example, we are searching for all <code>Data</code> objects that include the value <code>today's</code> with their <code>myTextField</code>:</p>
 
@@ -465,7 +465,7 @@ ResultSet rs = st.executeQuery();
 
 <h1><a name="text-search">&#160;</a>Text Search</h1>
 
-<p>XAP 12.1 introduced full text search capability leveraging the <a href="http://lucene.apache.org" target="_blank" >Lucene</a> search engine library supporting the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.htm#package_description" target="_blank" >Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
+<p>XAP 12.1 introduced full text search capability leveraging the <a href="http://lucene.apache.org" target="_blank" >Lucene</a> search engine library supporting the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description" target="_blank" >Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
 
 <p>Text search queries are available through the <code>text:</code> extension:</p>
 
@@ -483,14 +483,14 @@ ResultSet rs = st.executeQuery();
 
 <h1><a name="indexing">&#160;</a>Indexing</h1>
 
-<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE,  and IS NULL statements. For more information, see <a href="indexing.htm">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code>statements.</p>
+<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE,  and IS NULL statements. For more information, see <a href="indexing.html">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code>statements.</p>
 
 <h1><a name="partitioning-support">&#160;</a>Partitioning Support</h1>
 
 <p>In order to partition the data and route operations to the correct partition, specify a "routing column" for each table. The "routing column" is specified through one of three mechanisms:</p>
 
 <ol>
-<li>A POJO with a <a href="modeling-your-data.htm">@SpaceRouting</a> field can be sent to the space via the <code>snapshot</code> call prior to calling the JDBC API.</li>
+<li>A POJO with a <a href="modeling-your-data.html">@SpaceRouting</a> field can be sent to the space via the <code>snapshot</code> call prior to calling the JDBC API.</li>
 <li>Create the table through JDBC; the first index as part of the CREATE TABLE statement will be the routing field.</li>
 <li>If there is no indexed column, the first column as part of the CREATE TABLE will be the routing field.</li>
 </ol>
@@ -600,8 +600,8 @@ while (rs.next()) {
 <li>Using a constant instead of the column name.</li>
 <li>The <code>INSERT</code> statement does not allow the use of an expression in the <code>VALUES</code> clause.</li>
 <li>"." used to indicate a double data type.</li>
-<li>Using mathematical expressions in the <code>WHERE</code> clause, however the <a href="aggregators.htm">Aggregators</a> functionality can be used.</li>
-<li>Using a non constant right-hand side comparison operator. This can be implemented via <a href="aggregators.htm#custom-aggregation">Custom Aggregation</a>.</li>
+<li>Using mathematical expressions in the <code>WHERE</code> clause, however the <a href="aggregators.html">Aggregators</a> functionality can be used.</li>
+<li>Using a non constant right-hand side comparison operator. This can be implemented via <a href="aggregators.html#custom-aggregation">Custom Aggregation</a>.</li>
 <li><code>LEFT [OUTER] JOIN</code></li>
 <li><code>RIGHT [OUTER] JOIN</code></li>
 <li><code>[INNER] JOIN</code></li>
@@ -639,7 +639,7 @@ char timestamp long clob blob empty_clob() empty_blob() lob true false
 
 <h1><a name="configuration">&#160;</a>Configuration</h1>
 
-<p>The JDBC Driver should be configured using the following properties. These should be part of the <a href="the-space-configuration.htm#proxy">The Space Component</a> configuration when deployed:</p>
+<p>The JDBC Driver should be configured using the following properties. These should be part of the <a href="the-space-configuration.html#proxy">The Space Component</a> configuration when deployed:</p>
 
 <table>
 <thead>

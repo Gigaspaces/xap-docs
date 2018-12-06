@@ -5,7 +5,7 @@
 <h1>Polling Container</h1>
   
 
-<table class="tc-borderless"><tr><td style="width:70%;"><p>The polling event container implements the <a href="event-listener-container.htm">IEventListenerContainer</a> interface. Its life cycle consists of performing polling receive operations against the Space. If a receive operation succeeds (a value is returned from the receive operation), the <a href="event-listener-container.htm#DataEventArrived">DataEventArrived</a> event is invoked. A polling event operation is mainly used when simulating Queue semantics, or when using the master-worker design pattern.</p>
+<table class="tc-borderless"><tr><td style="width:70%;"><p>The polling event container implements the <a href="event-listener-container.html">IEventListenerContainer</a> interface. Its life cycle consists of performing polling receive operations against the Space. If a receive operation succeeds (a value is returned from the receive operation), the <a href="event-listener-container.html#DataEventArrived">DataEventArrived</a> event is invoked. A polling event operation is mainly used when simulating Queue semantics, or when using the master-worker design pattern.</p>
 </td>
 <td style="width:30%;"><p><img src="../Resources/Static/attachment_files/dotnet/Net_polling_cont.jpg" alt="Net_polling_cont.jpg" /></p>
 </td>
@@ -73,7 +73,7 @@ pollingEventListenerContainer.Dispose();
 
 <div class="tc-admon-note">
   <p class="tc-admon-title">Info</p>
-  <p><a href="event-listener-container.htm#DelegateDataEventArrivedAdapter">DelegateDataEventArrivedAdapter</a> is a class that adapts the supplied user method to the <a href="event-listener-container.htm#SpaceDataEventHandler">SpaceDataEventHandler</a> delegate, and contains built-in logic for writing back event results to the Space.</p>
+  <p><a href="event-listener-container.html#DelegateDataEventArrivedAdapter">DelegateDataEventArrivedAdapter</a> is a class that adapts the supplied user method to the <a href="event-listener-container.html#SpaceDataEventHandler">SpaceDataEventHandler</a> delegate, and contains built-in logic for writing back event results to the Space.</p>
 </div>
 </div>
 </div>
@@ -91,11 +91,11 @@ pollingEventListenerContainer.Dispose();
 
 <h1><a name="fifo-grouping">&#160;</a>FIFO Grouping</h1>
 
-<p>The FIFO Grouping is designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, it lets you have a higher level of granularity by having the FIFO queue maintained according to a specific value of a specific property. For more details, refer to <a href="fifo-grouping.htm">FIFO grouping</a>.</p>
+<p>The FIFO Grouping is designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, it lets you have a higher level of granularity by having the FIFO queue maintained according to a specific value of a specific property. For more details, refer to <a href="fifo-grouping.html">FIFO grouping</a>.</p>
 
 <h1><a name="static-template-definition">&#160;</a>Static Template Definition</h1>
 
-<p>When performing receive operations a template is defined, creating a virtualized subset of data within the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.htm">SqlQuery</a> to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
+<p>When performing receive operations a template is defined, creating a virtualized subset of data within the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.html">SqlQuery</a> to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[PollingEventDriven]
 public class SimpleListener
@@ -338,9 +338,9 @@ pollingEventListenerContainer.ReceiveOperationHandler = receiveHandler;
 
 <h2><a name="batch-events">&#160;</a>Batch Events</h2>
 
-<p>Sometimes it is better to use batch events, for example, to improve network traffic. This is done by subscribing to the <a href="event-listener-container.htm#BatchDataEventArrived">BatchDataEventArrived event</a>. This event receives a batch of event data objects in one invocation.</p>
+<p>Sometimes it is better to use batch events, for example, to improve network traffic. This is done by subscribing to the <a href="event-listener-container.html#BatchDataEventArrived">BatchDataEventArrived event</a>. This event receives a batch of event data objects in one invocation.</p>
 
-<p>A prime example is the <code>TakeReceiveOperationHandler</code>, which when <a href="event-listener-container.htm#BatchDataEventArrived">BatchDataEventArrived events</a> are used, returns an array as a result of a <code>TakeMultiple</code> operation . The batch size is determined by the <code>ReceiveBatchSize</code> configuration attribute or property, it is set similar to the above property modifications.</p>
+<p>A prime example is the <code>TakeReceiveOperationHandler</code>, which when <a href="event-listener-container.html#BatchDataEventArrived">BatchDataEventArrived events</a> are used, returns an array as a result of a <code>TakeMultiple</code> operation . The batch size is determined by the <code>ReceiveBatchSize</code> configuration attribute or property, it is set similar to the above property modifications.</p>
 
 <p>The following is an example of batch notifications using <code>ReadReceiveOperationHandler</code>:</p>
 

@@ -20,7 +20,7 @@ http://www.openspaces.org/schema/mule/os-seda http://www.openspaces.org/schema/8
 
 <h1><a name="space-mode-aware-service">&#160;</a>Space Mode Aware Service</h1>
 
-<p>When working in an SBA architecture, where each Mule Processing Unit works with (and starts) an embedded Space cluster member, some cluster members are actually the backup members (in a primary-backup topology). In such a case, operations performed directly against the Space cluster member are not allowed (clustered operations are, of course, allowed). Many times, we want to start services that work directly against the cluster member only when they are working directly with a primary cluster member. For more details, see the <a href="the-space-configuration.htm#proxy">OpenSpaces Core Component - Space</a> section.</p>
+<p>When working in an SBA architecture, where each Mule Processing Unit works with (and starts) an embedded Space cluster member, some cluster members are actually the backup members (in a primary-backup topology). In such a case, operations performed directly against the Space cluster member are not allowed (clustered operations are, of course, allowed). Many times, we want to start services that work directly against the cluster member only when they are working directly with a primary cluster member. For more details, see the <a href="the-space-configuration.html#proxy">OpenSpaces Core Component - Space</a> section.</p>
 
 <p>This is easily achieved using OpenSpaces extensions to the Mule SEDA model. Here is an example:</p>
 
@@ -108,7 +108,7 @@ http://www.openspaces.org/schema/mule/os-seda http://www.openspaces.org/schema/8
 
 <h1><a name="transaction-support">&#160;</a>Transaction Support</h1>
 
-<p>The operations performed on the Space when working with the SEDA virtualized queue are all performed using the <code>GigaSpace</code> bean. <code>GigaSpace</code> supports <a href="the-gigaspace-interface-overview.htm#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions">declarative transactions</a> when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as its built-in transaction management strategy allows you to use OpenSpaces with <a href="transaction-overview.htm">different transaction managers</a>, including XA.</p>
+<p>The operations performed on the Space when working with the SEDA virtualized queue are all performed using the <code>GigaSpace</code> bean. <code>GigaSpace</code> supports <a href="the-gigaspace-interface-overview.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions">declarative transactions</a> when working with Spring transaction managers. Mule can be configured to work with Spring transaction managers as its built-in transaction management strategy allows you to use OpenSpaces with <a href="transaction-overview.html">different transaction managers</a>, including XA.</p>
 
 <p>Here is an example of how working with <code>os-seda</code> using the Space Local Transaction Manager can be configured:</p>
 

@@ -75,8 +75,8 @@ gs-webui.bat
 
 <div class="tc-admon-refer">
   
-  <p>For more information on how to secure the grid services, refer to <a href="../security/securing-the-grid-services.htm">Securing Grid Services</a>.
-Lookup groups and Lookup Locators can be configured in the configuration files described in <a href="../started/common-environment-variables.htm#extension">Configure Lookup Groups and Locators</a>.</p>
+  <p>For more information on how to secure the grid services, refer to <a href="../security/securing-the-grid-services.html">Securing Grid Services</a>.
+Lookup groups and Lookup Locators can be configured in the configuration files described in <a href="../started/common-environment-variables.html#extension">Configure Lookup Groups and Locators</a>.</p>
 </div>
 
 <h1><a name="deploying-the-web-application">&#160;</a>Deploying the Web Application</h1>
@@ -85,7 +85,7 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
 
 <h2><a name="xap-runtime-environment">&#160;</a>XAP Runtime Environment</h2>
 
-<p>To deploy the Web Management Console to the XAP <a href="the-runtime-environment.htm">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;XAP root&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
+<p>To deploy the Web Management Console to the XAP <a href="the-runtime-environment.html">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;XAP root&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
 
 <p>In this case, the Web Management Console actually monitors the runtime environment on which it runs.</p>
 
@@ -99,7 +99,7 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
 
 <div class="tc-admon-refer">
   
-  <p>For more information about XAP's web application support, refer to the <a href="../dev-java/web-application-overview.htm">Web Application Support</a> section in the Developer Guide.</p>
+  <p>For more information about XAP's web application support, refer to the <a href="../dev-java/web-application-overview.html">Web Application Support</a> section in the Developer Guide.</p>
 </div>
 
 <h2><a name="third-party-jee-servlet-container">&#160;</a>Third-Party JEE Servlet Container</h2>
@@ -117,7 +117,7 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
 <li><code>&lt;XAP root&gt;/lib/optional/spring/spring-webmvc-4.1.1.RELEASE.jar</code><br/></li>
 </ol>
 
-<p>By default, these are not part of the the <code>gs-webui.war</code> file because they are automatically included in the classpath of both the standalone container and the XAP <a href="the-runtime-environment.htm">Runtime Environment</a>.</p>
+<p>By default, these are not part of the the <code>gs-webui.war</code> file because they are automatically included in the classpath of both the standalone container and the XAP <a href="the-runtime-environment.html">Runtime Environment</a>.</p>
 </div>
 
 <p>After the web application starts, point your browser to the proper location. For example, if you start the web application using a standalone web container, the default URL is <code>http://&lt;standalone server host&gt;:8099</code>.</p>
@@ -140,7 +140,7 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
 
 <h2><a name="deployment-location-of-the-web-application">&#160;</a>Deployment Location of the Web Application</h2>
 
-<p>The web application communicates with the runtime components of the XAP cluster, and receives notification from the XAP <a href="../overview/the-runtime-environment.htm#lus">lookup service</a>. Therefore, it is highly recommended to run the web application in the same network segment of the other cluster components. This does not affect the web browser client, which communicates with the web application using standard HTTP and can be located anywhere, provided that it has access to the web application.</p>
+<p>The web application communicates with the runtime components of the XAP cluster, and receives notification from the XAP <a href="../overview/the-runtime-environment.html#lus">lookup service</a>. Therefore, it is highly recommended to run the web application in the same network segment of the other cluster components. This does not affect the web browser client, which communicates with the web application using standard HTTP and can be located anywhere, provided that it has access to the web application.</p>
 
 <h2><a name="running-via-a-reverse-proxy">&#160;</a>Running via a Reverse Proxy</h2>
 
@@ -176,7 +176,7 @@ LoadModule  proxy_http_module    modules/mod_proxy_http.so
 
 <pre><code class="language-xml">&lt;VirtualHost *:80&gt;
         ...
-        RedirectMatch /Gs_webui.htm /webui-endpoint/Gs_webui.htm
+        RedirectMatch /Gs_webui.html /webui-endpoint/Gs_webui.html
 &lt;/VirtualHost&gt;
 </code></pre>
 

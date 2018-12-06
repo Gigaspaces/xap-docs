@@ -7,20 +7,20 @@
 
 <h1><a name="overview">&#160;</a>Overview</h1>
 
-<p>Queries are usually indexed and executed using primitive fields (long, float, string, etc.). These fields can be at the root level of the Space object, or embedded within <a href="query-sql.htm#nested-object-query">nested objects</a> in the Space object. You can construct a query using a template object or SQL, to specify the criteria you want to use when the matching phase is performed within the Space when looking for the relevant objects.</p>
+<p>Queries are usually indexed and executed using primitive fields (long, float, string, etc.). These fields can be at the root level of the Space object, or embedded within <a href="query-sql.html#nested-object-query">nested objects</a> in the Space object. You can construct a query using a template object or SQL, to specify the criteria you want to use when the matching phase is performed within the Space when looking for the relevant objects.</p>
 
-<p>However, in some cases you may need a custom data type with custom business logic to find matching objects within the Space, instead of the <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.htm">primitive data type</a> comparison. To allow the Space to invoke your business logic when the matching process is conducted, the <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.htm">Comparable</a> interface should be implemented for a class that stores the data you want to use with your custom business logic.</p>
+<p>However, in some cases you may need a custom data type with custom business logic to find matching objects within the Space, instead of the <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">primitive data type</a> comparison. To allow the Space to invoke your business logic when the matching process is conducted, the <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html">Comparable</a> interface should be implemented for a class that stores the data you want to use with your custom business logic.</p>
 
 <div class="tc-admon-tip">
   
-  <p>The <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.htm">Comparable</a> implementation should not be done for the Space class itself, but for one of its fields.</p>
+  <p>The <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html">Comparable</a> implementation should not be done for the Space class itself, but for one of its fields.</p>
 </div>
 
 <p>You can index the data to speed up the custom matching process; index the field so that its class implements the <code>Comparable</code> interface using the <code>EXTENDED</code> index type as part of the Space class. Indexing the custom type field should be used with caution, because it doesn't support a <code>Comparable.compareTo</code> implementation that performs relative-based matching, which is demonstrated in the example on this page.</p>
 
 <div class="tc-admon-note">
   
-  <p>See the <a href="indexing.htm">Indexing</a> section for additional information about how to enable the <code>EXTENDED</code> index.</p>
+  <p>See the <a href="indexing.html">Indexing</a> section for additional information about how to enable the <code>EXTENDED</code> index.</p>
 </div>
 
 <h1><a name="vector-compare-example">&#160;</a>Vector Compare Example</h1>
@@ -32,7 +32,7 @@
 
 
 
-<p>The object that holds the array implements the <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.htm">Comparable</a> interface. The Space class has a getter method for this field indexing, using the <code>EXTENDED</code> index. The actual query involves indexed fields for several sample data points within the vector, together with the custom field:</p>
+<p>The object that holds the array implements the <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html">Comparable</a> interface. The Space class has a getter method for this field indexing, using the <code>EXTENDED</code> index. The actual query involves indexed fields for several sample data points within the vector, together with the custom field:</p>
 
 <pre><code class="language-java">SQLQuery&lt;Vector&gt; query= new SQLQuery&lt;Vector&gt;(Vector.class ,
         "(x0 &gt; ? AND x0 &lt; ? ) " +
@@ -58,7 +58,7 @@
 
 <div class="tc-admon-tip">
   
-  <p>To scale the system, deploy the Space in a <a href="../overview/terminology.htm">partitioned cluster schema</a>. This allows queries such as matching to be executed across all the partitions in parallel, speeding up the query execution time.</p>
+  <p>To scale the system, deploy the Space in a <a href="../overview/terminology.html">partitioned cluster schema</a>. This allows queries such as matching to be executed across all the partitions in parallel, speeding up the query execution time.</p>
 </div>
 
 <p>The <span class="tc-bold">Application</span> tab shows the full query usage. This allows the <code>Comparable.compareTo</code> implementation to be performed on a smaller candidate subset of objects.</p>

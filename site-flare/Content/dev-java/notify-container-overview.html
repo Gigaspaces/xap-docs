@@ -7,7 +7,7 @@
 
 <table class="tc-borderless">
   <tr>
-    <td><p>The notify event container adopts the Space-inherited support for notifications (continuous query), using a XAP unified event session API. If a notification occurs, the <a href="data-event-listener.htm">data event listener</a> is invoked with the event. A notify event operation is mainly used when simulating topic semantics.</p>
+    <td><p>The notify event container adopts the Space-inherited support for notifications (continuous query), using a XAP unified event session API. If a notification occurs, the <a href="data-event-listener.html">data event listener</a> is invoked with the event. A notify event operation is mainly used when simulating topic semantics.</p>
 </td>
     <td><img src="../Resources/Static/attachment_files/notify_container_basic.jpg" alt="" title="" /></td>
   </tr>
@@ -121,7 +121,7 @@ notifyEventListenerContainer.destroy();
   <p><code>@EventDriven</code>, <code>@Polling</code>, and <code>@Notify</code> cannot be placed on interface classes. Place them on the implementation class instead.</p>
 </div>
 
-<p>The above example registers with the Space for write notifications using the provided template (a <code>Data</code> object with its processed flag set to <span class="tc-bold">false</span>). If a notification occurs, the <code>SimpleListener</code> is invoked. Registration for notifications is performed on the configured <a href="the-gigaspace-interface-overview.htm">GigaSpace</a> bean. (In this case, if working in a clustered topology, the notification is performed directly on the cluster member.)</p>
+<p>The above example registers with the Space for write notifications using the provided template (a <code>Data</code> object with its processed flag set to <span class="tc-bold">false</span>). If a notification occurs, the <code>SimpleListener</code> is invoked. Registration for notifications is performed on the configured <a href="the-gigaspace-interface-overview.html">GigaSpace</a> bean. (In this case, if working in a clustered topology, the notification is performed directly on the cluster member.)</p>
 
 <h1><a name="general-guidelines">&#160;</a>General Guidelines</h1>
 
@@ -131,11 +131,11 @@ notifyEventListenerContainer.destroy();
 
 <p>This behavior should be avoided, as it may throttle the activity or impose large concurrent replication activity (if a backup/replica is running). This in turn can consume a large amount of CPU and network resources within a short period of time. This can be observed with garbage created very quickly, which may cause long pauses due to garbage collection activity.</p>
 
-<p>To prevent this, the notify listener implementation should have <a href="#batch-events">batching enabled</a>, where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a <a href="polling-container-overview.htm#notify-verses-polling-container">polling container</a> should be considered, as this is a more controlled event handler.</p>
+<p>To prevent this, the notify listener implementation should have <a href="#batch-events">batching enabled</a>, where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a <a href="polling-container-overview.html#notify-verses-polling-container">polling container</a> should be considered, as this is a more controlled event handler.</p>
 
 <h1><a name="template-definition">&#160;</a>Template Definition</h1>
 
-<p>When performing receive operations a template is defined, creating a virtualized subset of data in the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.htm">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
+<p>When performing receive operations a template is defined, creating a virtualized subset of data in the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.html">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-java">@EventDriven @Notify
 public class SimpleListener {
@@ -189,7 +189,7 @@ public class SimpleListener {
 
 <div class="tc-admon-note">
   
-  <p>A polling or notify container can have only one template. If you need multiple event handlers, you must either create another container or use the <a href="session-based-messaging-api.htm#Registering Large Number of Listeners">Session Based Messaging API</a>, which supports multiple listeners with a single session. If you use multiple polling containers, make sure the different templates don't overlap each other.</p>
+  <p>A polling or notify container can have only one template. If you need multiple event handlers, you must either create another container or use the <a href="session-based-messaging-api.html#Registering Large Number of Listeners">Session Based Messaging API</a>, which supports multiple listeners with a single session. If you use multiple polling containers, make sure the different templates don't overlap each other.</p>
 </div>
 
 <h1><a name="multiple-event-handlers">&#160;</a>Multiple Event Handlers</h1>
@@ -569,7 +569,7 @@ public class SimpleListener {
 &lt;/os-events:notify-container&gt;
 </code></pre>
 
-<p>You can always delegate the notification processing to a separate application-defined thread pool, if you want to manage the processing thread pool yourself. This can be done by configuring a separate thread pool within your application, for example using <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/scheduling.htm" target="_blank" >Spring&#39;s TaskExecutor abstraction</a>.
+<p>You can always delegate the notification processing to a separate application-defined thread pool, if you want to manage the processing thread pool yourself. This can be done by configuring a separate thread pool within your application, for example using <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/scheduling.html" target="_blank" >Spring&#39;s TaskExecutor abstraction</a>.
 In your <code>pu.xml</code> file you can define a <code>ThreadPoolTaskExecutor</code> and an async listener:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
@@ -625,7 +625,7 @@ In your <code>pu.xml</code> file you can define a <code>ThreadPoolTaskExecutor</
 
 <h1><a name="batch-events">&#160;</a>Batch Events</h1>
 
-<p>OpenSpaces, through the <a href="session-based-messaging-api.htm">Session Based Messaging API</a>, allows batch notifications. Batching causes the Space to accumulate the notifications on the Space side for the specified operation(s) with objects that match the template/SQL criteria. When a certain amount of time has elapsed or a certain amount of objects have accumulated, the events are sent to the client.</p>
+<p>OpenSpaces, through the <a href="session-based-messaging-api.html">Session Based Messaging API</a>, allows batch notifications. Batching causes the Space to accumulate the notifications on the Space side for the specified operation(s) with objects that match the template/SQL criteria. When a certain amount of time has elapsed or a certain amount of objects have accumulated, the events are sent to the client.</p>
 
 <p>Batching is very useful when working with a remote Space, because it reduces the network roundtrip operations.  The downside of this approach is a potential delay when events are delivered to the client.</p>
 
@@ -793,7 +793,7 @@ public class SimpleListener {
 
 <div class="tc-admon-refer">
   
-  <p>For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the <a href="fifo-support.htm">Space FIFO support</a> section.</p>
+  <p>For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the <a href="fifo-support.html">Space FIFO support</a> section.</p>
 </div>
 
 <h1><a name="re-registering-after-complete-space-shutdown-and-restart">&#160;</a>Re-Registering after Complete Space Shutdown and Restart</h1>
@@ -870,10 +870,10 @@ public class SimpleListener {
 
 <div class="tc-admon-note">
   
-  <p>To ensure that the client application reconnects automatically to the Space cluster after it is restarted, you may have to change the default configuration. Refer to <a href="../admin/tuning-proxy-connectivity.htm">Proxy Connectivity</a> for details.</p>
+  <p>To ensure that the client application reconnects automatically to the Space cluster after it is restarted, you may have to change the default configuration. Refer to <a href="../admin/tuning-proxy-connectivity.html">Proxy Connectivity</a> for details.</p>
 </div>
 
-<p>For more information, see <a href="session-based-messaging-api.htm#disconnections">Auto Renew</a>.</p>
+<p>For more information, see <a href="session-based-messaging-api.html#disconnections">Auto Renew</a>.</p>
 
 <h1><a name="resending-notifications-after-a-space-client-disconnection">&#160;</a>Resending Notifications after a Space-Client Disconnection</h1>
 
@@ -951,14 +951,14 @@ public class SimpleListener {
 
 <div class="tc-admon-important">
   
-  <p>Durable Notification does not support embedded Spaces, and can only be used with a remote proxy.  As an alternative, use a <code>Polling Container</code> with <a href="polling-container-overview.htm#trigger-receive-operation">SingleReadReceiveOperationHandler</a>.</p>
+  <p>Durable Notification does not support embedded Spaces, and can only be used with a remote proxy.  As an alternative, use a <code>Polling Container</code> with <a href="polling-container-overview.html#trigger-receive-operation">SingleReadReceiveOperationHandler</a>.</p>
 </div>
 
 <p>Durable notifications are based on the replication mechanism, and therefore have some different semantics regarding other notify container configuration parameters.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more information, refer to <a href="durable-notifications.htm">Durable Notifications</a>.</p>
+  <p>For more information, refer to <a href="durable-notifications.html">Durable Notifications</a>.</p>
 </div>
 
 <h1><a name="take-on-notify">&#160;</a>Take on Notify</h1>
@@ -1079,7 +1079,7 @@ public class BatchListener {
 
 <h1><a name="notify-container-configuration-parameters-default-values">&#160;</a>Notify Container Configuration Parameters- Default Values</h1>
 
-<p>The default values for all of the notify container configuration parameters, such as <code>perform-take-on-notify</code>, <code>ignore-event-on-null-take</code> and others, can be found in the API reference guide (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/notify/SimpleNotifyEventListenerContainer.htm">SimpleNotifyEventListenerContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/notify/AbstractNotifyEventListenerContainer.htm">AbstractNotifyEventListenerContainer</a>.</p>
+<p>The default values for all of the notify container configuration parameters, such as <code>perform-take-on-notify</code>, <code>ignore-event-on-null-take</code> and others, can be found in the API reference guide (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/notify/SimpleNotifyEventListenerContainer.html">SimpleNotifyEventListenerContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/notify/AbstractNotifyEventListenerContainer.html">AbstractNotifyEventListenerContainer</a>.</p>
 
 <p>For example, the <code>perform-take-on-notify</code> default value is documented in the method <code>SimpleNotifyEventListenerContainer.setPerformTakeOnNotify(boolean)</code>.</p>
 
