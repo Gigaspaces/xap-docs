@@ -66,7 +66,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 {{% /tab %}}
 {{% /tabs %}}
 
-The  general [MemoryXtend configuration options](./memoryxtend-overview.html#configuration) also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.
+The  general MemoryXtend configuration options also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.
 
 {{%note%}}
 For an example of how to configure the on-heap cache properties, see the [MemoryXtend overview](./memoryxtend-overview.html#on-heap-cache) topic.

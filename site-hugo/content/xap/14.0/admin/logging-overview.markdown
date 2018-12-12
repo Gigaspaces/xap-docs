@@ -370,7 +370,7 @@ com.gigaspaces.core.cluster.replication.redolog.level = INFO
 com.gigaspaces.core.cluster.sync_replication.level = INFO
 ```
 
-When a cluster topology is replicated, the replication functionality is enabled. More information about topologies is available [here](../overview/the-runtime-environment.html#topologies).
+When a cluster topology is replicated, the replication functionality is enabled. 
 
 Replication between Spaces is one of the core features of XAP, and is explained in detail [here](./replication.html).
 
@@ -381,7 +381,7 @@ Replication between Spaces is one of the core features of XAP, and is explained 
 com.gigaspaces.core.cluster.partition.level = INFO
 ```
 
-When a cluster uses partitioned topology, the data is partitioned across multiple Space instances. More information about topologies is available [here](../overview/the-runtime-environment.html#topologies).
+When a cluster uses partitioned topology, the data is partitioned across multiple Space instances. 
 
 ### Active-Election
 
@@ -439,7 +439,7 @@ The SpaceURL and its constraints are explained here [Java version](../dev-java/t
 com.gigaspaces.worker.multicast.level = INFO
 ```
 
-Space notifications support multicast mode, and this logger corresponds to multicast [functionality](../dev-java/session-based-messaging-api.html#AdvancedOptions).
+Space notifications support multicast mode, and this logger corresponds to multicast [functionality](../dev-java/session-based-messaging-api.html#advanced-options).
 
 #  Runtime
 

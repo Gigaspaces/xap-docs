@@ -53,7 +53,7 @@ The columns to choose from are as follows:
 - **Objects Count** -- the number of objects in the space.
 
 {{% warning %}}
-The **Objects Count** column does not display the number of objects for persistent spaces running in LRU mode (this might result in very high CPU usage). To change this, see the [Menus and Buttons](./gigaspaces-browser-menus-and-buttons.html#Display Persistent LRU Space Metrics) section.
+The **Objects Count** column does not display the number of objects for persistent spaces running in LRU mode (this might result in very high CPU usage). To change this, see the [Menus and Buttons](./gigaspaces-browser-menus-and-buttons.html#display-persistent-lru-space-metrics) section.
 {{%/warning%}}
 
 - **Object Count Delta** -- shows an ascending or descending arrow, if the number of objects in the space is currently growing or being reduced (when objects are either written to or taken from the space). For example, if you are currently taking objects from a certain space, during the take operation, an arrow pointing down appears in this column (see screenshot above).
@@ -106,7 +106,7 @@ Right-clicking a Space container node invokes a context menu containing the foll
 {{% /align %}}
 
 - **Refresh** -- refreshes the tree panel display.
-- **Runtime Configuration Report** -- displays the current configuration of the selected space container (see [Runtime Configuration Report](./gigaspaces-browser-managing-space-container.html#Runtime Configuration Report)).
+- **Runtime Configuration Report** -- displays the current configuration of the selected space container (see [Configuration](./gigaspaces-browser-managing-space-container.html#configuration)).
 - **Launch JConsole** -- launches a [JConsole](./space-jmx-management.html) for the selected space container.
 
 When the space container node is selected, its configuration data is displayed in the configuration panel on the right side.

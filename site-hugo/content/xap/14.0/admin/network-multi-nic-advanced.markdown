@@ -337,7 +337,7 @@ XAP_NIC_ADDRESS=192.168.80.146; export XAP_NIC_ADDRESS
 # Troubleshooting your Configuration
 
 
-{{% refer %}}For information on viewing the exact configuration in which the system is currently running, refer to  [Container Maintenance](./gigaspaces-browser-managing-space-container.html#Runtime Configuration Report).{{% /refer %}}
+{{% refer %}}For information on viewing the exact configuration in which the system is currently running, refer to [Configuration](./gigaspaces-browser-managing-space-container.html#configuration).{{% /refer %}}
 
 ## Logging with RMI_OPTIONS
 

@@ -27,7 +27,7 @@ gs> deploy-application [-user xxx -password yyy] [-secured true/false] applicati
 
 ## Description
 
-Deploys an [application](../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies), which deploys one or more processing units in dependency order onto the service grid.
+Deploys an [application](../dev-java/deploying-onto-the-service-grid.html#app-deployment-pu-dependencies), which deploys one or more processing units in dependency order onto the service grid.
 
 
 ## Options
@@ -98,7 +98,7 @@ gs> undeploy-application application_name
 
 ## Description
 
-Undeploys an [application](../dev-java/deploying-onto-the-service-grid.html#Application Deployment and Processing Unit Dependencies) from the service grid, while respecting pu dependency order.
+Undeploys an [application](../dev-java/deploying-onto-the-service-grid.html#app-deployment-pu-dependencies) from the service grid, while respecting pu dependency order.
 
 
 

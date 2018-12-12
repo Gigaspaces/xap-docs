@@ -412,7 +412,7 @@ For more information about the GigaSpaces CLI and available commands, see the [A
 
 ## Advanced Monitoring Using Kubernetes Tools
 
-You can monitor the status of the various Kubernetes components using the Kubernetes dashboard or kubectl, as described in the [Monitoring the Kubernetes Cluster](#monitoring-the-kubernetes-cluster) section.
+You can monitor the status of the various Kubernetes components using the Kubernetes dashboard or kubectl, as described in the [Monitoring the Kubernetes Cluster](#monitoring-the-data-grid-in-kubernetes) section.
 
 The test-space-xap-manager-hs is one of the Kubernetes services. To list all of the Kubernetes services and exposed ports, type the following command:
 

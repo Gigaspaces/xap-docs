@@ -43,7 +43,7 @@ When you select a group node, the display shows the spaces in the node. When you
 {{% /align %}}
 
 {{% warning %}}
-The view above does not display the number of objects for persistent spaces in LRU mode, since this might result in very high CPU usage. To change this, see the [Menus and Buttons](./gigaspaces-browser-menus-and-buttons.html#Display Persistent LRU Space Metrics) section.
+The view above does not display the number of objects for persistent spaces in LRU mode, since this might result in very high CPU usage. To change this, see the [Menus and Buttons](./gigaspaces-browser-menus-and-buttons.html#display-persistent-lru-space-metrics) section.
 {{%/warning%}}
 
 ## Viewing Information for Entire Cluster

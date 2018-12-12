@@ -371,7 +371,7 @@ With this example the `pu.xml` includes the following:
 <context:component-scan base-package="com.test"/>
 ```
 
-Our Event Container (notify container) uses the [@PostPrimary](../dev-java/the-space-notifications.html#Primary Backup Notifications) to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the [@ClusterInfoContext](../dev-java/obtaining-cluster-information.html) that provides information about the cluster topology and the local partition ID.
+Our Event Container (notify container) uses the [@PostPrimary](../dev-java/the-space-notifications.html#primary-backup-notifications) to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the [@ClusterInfoContext](../dev-java/obtaining-cluster-information.html) that provides information about the cluster topology and the local partition ID.
 
 Here is how the event container looks:
 
