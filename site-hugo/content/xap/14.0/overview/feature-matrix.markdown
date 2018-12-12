@@ -85,6 +85,25 @@ This feature matrix provides a side-by-side comparison of the features available
     <td align="center">✔</td>
   </tr>
   <tr>
+    <td colspan="6"><i>Orchestration</i></td>
+     </tr>
+  <tr>
+    <td>Service grid</td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center">✔</td>
+    <td align="center">✔</td>
+    <td align="center">✔</td>
+  </tr>
+  <tr>
+    <td>Kubernetes</td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center">✔</td>
+    <td align="center">✔</td>
+    <td align="center">✔</td>
+  </tr>
+  <tr>
     <td colspan="6"><i>Rich Extensible Query Language</i></td>
      </tr>
   <tr>
