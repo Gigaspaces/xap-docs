@@ -371,7 +371,7 @@ The connector name can be retrieved from `ServletContext` with the  attribute na
 The bean that is used (and expected to be defined) within the configuration is the `JettyHolder` (it must be named **JettyHolder**). In our case, the `JettyHolder` used is the `SharedJettyHolder`, which creates a single instance of Jetty on the GSC (JVM) level.
 
 
-{{% note "%}}
+{{% note %}}
 This means that the first deployed web application in shared mode controls how the Jetty instance is created.
 {{%/note%}}
 
