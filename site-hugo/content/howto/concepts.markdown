@@ -3,7 +3,7 @@ type: post
 title: Important Concepts
 categories: XAP123OVW
 parent: none
-weight: 100
+weight: 70
 ---
 
 This page describes the GigaSpaces concepts that are important for understanding InsightEdge and XAP, and for building applications based on these GigaSpaces products. 
