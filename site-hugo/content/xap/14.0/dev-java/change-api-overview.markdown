@@ -134,7 +134,7 @@ In this case, the key `euro` inside the map behind the balance will be increased
 
 # Change API with the Embedded Model
 
-With the [embedded model](/sbp/modeling-your-data.html#Embedded vs. Non-Embedded Relationships), updating (as well adding or removing) a nested collection with large number of elements **must use the Change API** because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances. This significantly improves the overall system stability.
+With the [embedded model](/sbp/modeling-your-data.html#embedded-vs-non-embedded-relationships), updating (as well adding or removing) a nested collection with large number of elements **must use the Change API** because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances. This significantly improves the overall system stability.
 
 # Change Result
 

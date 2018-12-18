@@ -168,7 +168,7 @@ For more details about different configurations see [Space Persistency](./space-
 |:-------|:----------|
 |hectorClient|A configured [HectorCassandraClient]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/HectorCassandraClient.html) bean. see [Hector Cassandra Client](./cassandra-hector-client.html).|
 |fixedPropertyValueSerializer|see [Property Value Serializer]( #property-value-serializer).|
-|dynamicPropertyValueSerializer|see [Property Value Serializer](#property-value-Serializer).|
+|dynamicPropertyValueSerializer|see [Property Value Serializer](#property-value-serializer).|
 |flattenedPropertiesFilter| see [Flattened Properties Filter](#flattened-properties-filter).|
 |columnFamilyNameConverter| see [Column Family Name Converter](#column-family-name-converter).|
 

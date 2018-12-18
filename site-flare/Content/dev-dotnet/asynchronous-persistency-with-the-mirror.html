@@ -30,7 +30,7 @@
 
 <p>The above share the <span class="tc-bold">same</span> <a href="space-persistency-overview.html">Space Persistency</a> settings but have different space settings. See the <a href="hibernate-space-persistency.html">NHibernate Space Persistency</a> for details how to use the built-in <code>HibernateExternalDataSource</code>.</p>
 
-<h1><a name="the-data-grid-processing-unit">&#160;</a>The Data-Grid Processing Unit</h1>
+<h1><a name="the-data-grid-processing-unit">&#160;</a>The Data Grid Processing Unit</h1>
 
 <p>The <code>cluster-config.mirror-service</code> <code>space</code> settings specify the interaction between the IMDG primary spaces and the Mirror Service. The <code>mirror="true"</code> <code>space</code> element tag enables the replication mechanism from the IMDG Primary spaces to the Mirror Service. Once the <code>mirror="true"</code> is specified, all IMDG members will be Mirror aware and will be delegating their activities into the Mirror service. The IMDG primary instance will replicate the operations that have been logged within the primary redo log every <code>interval-millis</code> amount of time or <code>interval-opers</code> amount of operations. Both of these mechanisms are always active and the first one that is breached triggers the replication event.</p>
 
@@ -172,7 +172,7 @@
 <tbody>
 <tr>
 <td align="left">OperationGrouping</td>
-<td align="left">Options:<br/>group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).<br/>group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).<br/>See the <a href="async-persistency-mirror-advanced.html#mirror-behavior-with-distributed-transactions">Mirror behavior with Distributed Transactions</a> for details</td>
+<td align="left">Options:<br/>group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).<br/>group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).</td>
 <td align="left">group-by-replication-bulk</td>
 </tr>
 
@@ -261,7 +261,7 @@ To use this optimization you need to set the following space property:</li>
 
 <h1><a name="mirror-monitoring">&#160;</a>Mirror Monitoring</h1>
 
-<p>The activity of the mirror service can be monitored using the <a href="../dev-java/administration-and-monitoring-overview.html#administrationand-monitoring-api-nonitoring-the-mirror-service">Administration and monitoring API</a>. This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.</p>
+<p>The activity of the mirror service can be monitored using the <a href="../dev-java/administration-and-monitoring-overview.html#monitoring-the-mirror-service">Administration and monitoring API</a>. This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.</p>
 
 <p>You may view Mirror and its replication statistics via the <a href="../admin/gigaspaces-management-center.html">GigaSpaces Management Center</a>. Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.</p>
 

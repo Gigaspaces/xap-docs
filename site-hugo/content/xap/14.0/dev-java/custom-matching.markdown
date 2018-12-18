@@ -8,7 +8,7 @@ weight: 330
 
 # Overview
 
-Queries are usually indexed and executed using primitive fields (long, float, string, etc.). These fields can be at the root level of the Space object, or embedded within [nested objects](./query-sql.html#nested-object-query) in the Space object. You can construct a query using a template object or SQL, to specify the criteria you want to use when the matching phase is performed within the Space when looking for the relevant objects.
+Queries are usually indexed and executed using primitive fields (long, float, string, etc.). These fields can be at the root level of the Space object, or embedded within [nested objects](./query-sql.html#nested-properties) in the Space object. You can construct a query using a template object or SQL, to specify the criteria you want to use when the matching phase is performed within the Space when looking for the relevant objects.
 
 However, in some cases you may need a custom data type with custom business logic to find matching objects within the Space, instead of the [primitive data type](http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html) comparison. To allow the Space to invoke your business logic when the matching process is conducted, the [Comparable](http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html) interface should be implemented for a class that stores the data you want to use with your custom business logic.
 

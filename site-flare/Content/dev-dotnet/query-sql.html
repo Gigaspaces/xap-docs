@@ -67,7 +67,7 @@ Person[] persons = proxy.ReadMultiple&lt;Person&gt;(query, 100);
 <p>Blocking operations (i.e. <code>Read</code> or <code>Take</code> with <code>timeout</code> greater than <code>0</code>) are supported with the following restrictions:</p>
 
 <ul>
-<li>Blocking operations on a partitioned space require a routing value (broadcast is not supported). For more information see <a href="#Routing">Routing</a>.</li>
+<li>Blocking operations on a partitioned space require a routing value (broadcast is not supported). For more information see <a href="#routing">Routing</a>.</li>
 <li>Blocking operations on complex queries are not supported. For more information see <a href="#SimpleQueries">Simple Queries</a> definition.</li>
 </ul>
 

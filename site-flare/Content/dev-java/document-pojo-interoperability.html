@@ -120,8 +120,83 @@ SpaceDocument[] documents = gigaSpace.readByIds(
 
 <div class="tc-admon-note">
   
-  <p></p>
+  <p>The original <code>readById</code> (and related methods) signatures are not suited for document types, because they require a concrete Java class. They always return POJO(s).</p>
 </div>
+
+<h1><a name="dynamic-properties">&#160;</a>Dynamic Properties</h1>
+
+<p>When a type descriptor is created from a POJO class, the type descriptor builder checks if the POJO class supports <a href="dynamic-properties.html">Dynamic Properties</a>. If it doesn't, the type descriptor will also not support dynamic properties. If a Space document is created using the same type with a property that is not defined in the POJO and written to the Space, an exception is thrown indicating the property is not defined in the type and the type does not support dynamic properties.</p>
+
+<p>It is possible to manually create a <code>SpaceTypeDescriptor</code> of the POJO using the <code>SpaceTypeDescriptorBuilder</code> and enable dynamic properties. However, if client A writes a document with a dynamic property and client B reads it as a POJO, the dynamic property is ignored, and if client B proceeds to update the entry the dynamic property is deleted from the Space.</p>
+
+<h1><a name="deep-interoperability">&#160;</a>Deep Interoperability</h1>
+
+<p>If the POJO contains properties that are POJO themselves, the Space implicitly converts these properties to Space documents as needed.
+For example:</p>
+
+<pre><code class="language-java">// Create a POJO entry with a POJO property and write it to space:
+Person personPojo = new Person()
+    .setName("smith")
+    .setAddress(new Address()
+        .setCity("New York")
+        .setStreet("Main"));
+gigaSpace.write(personPojo);
+// Read POJO entry as a document:
+SpaceDocument template = new SpaceDocument(Person.class.getName())
+    .setProperty("name", "smith");
+SpaceDocument personDoc = gigaSpace.read(template);
+// Get address document from person document:
+SpaceDocument addressDoc = personDoc.getProperty("address");
+</code></pre>
+
+<p>This works the other way around as well - if a Space document is created with a nested Space document property, it is converted to a POJO with a nested POJO property when read as a POJO.</p>
+
+<p>If you prefer to disable this implicit conversion and preserve the nested POJO instance within document entries, use the <code>@SpaceProperty</code> annotation and set <code>documentSupport</code> to <code>COPY</code>:</p>
+
+<pre><code class="language-java">public class Person {
+    ...
+    @SpaceProperty(documentSupport = SpaceDocumentSupport.COPY)
+    public Address getAddress() {...}
+    public Person setAddress(Address address) {...}
+    ...
+}
+</code></pre>
+
+<p>In this case the result will be:</p>
+
+<pre><code class="language-java">// Write POJO entry same as before
+...
+// Read POJO entry as a document:
+SpaceDocument template = new SpaceDocument(Person.class.getName())
+    .setProperty("name", "smith");
+SpaceDocument personDoc = gigaSpace.read(template);
+// Get address POJO from person document:
+Address addressPojo = personDoc.getProperty("address");
+</code></pre>
+
+<p>The <code>SpaceDocumentSupport</code> can be one of the following:</p>
+
+<ul>
+<li><code>CONVERT</code> – Value is converted to/from a Space document, according to the operation's context.</li>
+<li><code>COPY</code> – Value reference is copied as-is, and no conversion is performed.</li>
+<li><code>DEFAULT</code> – Behavior will be determined automatically according to the object's class.</li>
+</ul>
+
+<p>This behavior applies to arrays and collections as well (for example, if <code>Person</code> has <code>List&lt;Address&gt; getAddresses()</code>, it is converted to a list of address documents).</p>
+
+<h1><a name="local-view-cache">&#160;</a>Local View / Cache</h1>
+
+<p><a href="local-view.html">Local View</a> and <a href="local-cache.html">Local Cache</a> supports both POJOs and Documents. Unlike an embedded Space, the entry is stored in the cache as a user object (either POJO or document), which speeds up query performance because the result entries do not have to be transformed.</p>
+
+<p>When working with POJOs only or Documents only, this is not an issue. However, when working in a mixed POJO-document environment it is important to understand how the objects are stored in cache to assure optimal performance.</p>
+
+<p>Local view is defined by one or more views, which are essentially SQL queries, so the query result type discussed above actually determines if the objects are stored locally as POJOs or documents.</p>
+
+<p>Local cache stores its object locally according to the master Space; If a POJO entry is written to the master Space, it is kept in the local cache as a POJO as well, and if a document entry is written to the master it is kept as document in the local cache. If a user asks the local cache for a document result but the entry is stored as a POJO it will be converted, and vice versa.</p>
+
+<h1><a name="space-filters-and-space-replication-filters">&#160;</a>Space Filters and Space Replication Filters</h1>
+
+<p>Space Filters are supported for Space documents. If the Space type descriptor that is registered in the Space contains the POJO class, the entry is passed to the filter as a POJO. Otherwise, it is passed to the filter as a document.</p>
 
 </body>
 </html>

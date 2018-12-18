@@ -127,7 +127,7 @@ SQLQuery<Person> query = new SQLQuery<Person>(Person.class,
 ```
 
 {{%refer%}}
-[SQL Query Nested Properties](./query-sql.html#Nested Properties)
+[SQL Query Nested Properties](./query-sql.html#nested-properties)
 {{%/refer%}}
 
 

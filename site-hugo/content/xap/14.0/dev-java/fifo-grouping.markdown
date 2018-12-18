@@ -30,14 +30,14 @@ The FIFO-Grouping can be used with financial systems to process **trade orders**
 FIFO-Grouping ('FG') enables reading/taking certain space entries in FIFO order (by order of insertion), and is mainly used as an enhancement of the openspaces polling-containers.  When a property is declared with the `@SpaceFifoGroupingProperty` annotation ('the FG designated property'), a read/take operation with the `FIFO_GROUPING_POLL` modifier will return all space entries that match the selection template in FIFO order. Different values of the FG property define groups of space entries that match that value - FIFO ordering exists within each group and not between different groups.
 
 {{% note "Exclusivity"%}}
-The selected group is locked until the operation is terminated- the operation transaction is committed/ aborted.  See the [Exclusivity](./fifo-grouping.html#Exclusivity) section for more elaborations.
+The selected group is locked until the operation is terminated- the operation transaction is committed/ aborted.  See the [Exclusivity](./fifo-grouping.html#exclusivity) section for more elaborations.
 {{% /note %}}
 
 # Method Of Operation
 
 - FG operations must be performed within transactions.
 - Any class that supports FG is logically divided to groups according to the FG designated property. This property must be indexed and will be automatically indexed by the system if an index definition does not exist for it.  An additional data structure is kept for this property in order to assist in traversing the different groups.
-- In the selecting template a null value will generally be rendered for this property which stands for bring any available group. An available group is any FG that matches the selection template and is not currently locked by another FG thread (see [Exclusivity](./fifo-grouping.html#Exclusivity) section).
+- In the selecting template a null value will generally be rendered for this property which stands for bring any available group. An available group is any FG that matches the selection template and is not currently locked by another FG thread (see [Exclusivity](./fifo-grouping.html#exclusivity) section).
 
 - If the selecting template (Pojo) has a value for a property other than the FG designated property - this property can be indexed (like for any regular read/take operation) and in addition a `@SpaceFifoGroupingIndex` annotation can be added  to it  in order to assist in efficient traversal. In this case the system will create a compound index that contains this property and the FG designated property. For example, if a polling container is responsible for all the new reservations (reservations with processingState = NEW), then it is recommended to declare a SpaceFifoGroupingIndex on the processingState property. This would help to achieve better performance when searching for reservations of certain flight that have processingState = NEW.
 
@@ -52,11 +52,11 @@ Lets assume we have an Order POJO template with property named label annotated a
 If polling container A got a FG with Label = "LABEL1" using an Order POJO with State property = null, no other FG thread/container will be able to access the FG designated by "LABEL1".
 If on the other hand polling container B got a FG with Label = "LABEL2" using an Order pojo with State property = 0, polling container C will be able to get FG with same label "LABEL2" using an Order pojo with State = 1, since the intersection between the groups is null. Exclusivity is released upon transaction termination.
 
-# Interaction with non-FIFO Grouping templates
+# Interaction with Non-FIFO Grouping Templates
 
 When a FG template locks a group, its first entry is locked under a transaction so it cannot be accessed by any destructive space operation. The other entries in the group are not physically locked and may be operated-upon by non FG templates. If a FG template which is intending to lock a group encounters its first entry locked under a transaction by a non FG template - this group is abandoned in order not to create a gap (by skipping the first entry)
 
-# Setting the FIFO Grouping property
+# Setting the FIFO Grouping Property
 
 Specifying which property of a class is the FG property is done using annotations or gs.xml.
 
@@ -93,7 +93,7 @@ public class FlightReservation
 {{% /tab %}}
 {{% /tabs %}}
 
-# Setting FIFO Grouping index
+# Setting the FIFO Grouping index
 
 Specifying which properties of a class are a FG index is done using annotations or gs.xml.
 
@@ -162,7 +162,7 @@ space.take(new FlightReservation(), timeout, TakeModifiers.FIFO_GROUPING_POLL);
 
 If class FlightReservation isn't declared with a FG property, an exception will be thrown.
 
-## Using Polling container
+## Using Polling Container
 
 When registering for polling events use the `AbstractFifoGroupingReceiveOperationHandler.setUseFifoGrouping(true)`
 to instruct the space that events should be sent to the client in FIFO order (grouping by the fifoGroupingProperty that should have been declared for the space class).

@@ -445,7 +445,7 @@ Here is a schematic flow of how two partitions (each a primary-backup pair) asyn
 
 - The Mirror Service cannot be used with a single space. It is supported with the `async-replicated`, and `partitioned` cluster schemas.
 - The Mirror Service is a single space which joins a replication group. The Mirror Service is not a clustered space or part of the replication group declaration.
-- When the Mirror Service is loaded, it does not perform memory recovery. See the [reliability section](#reliability) for more details.
+- When the Mirror Service is loaded, it does not perform memory recovery.
 - [Transient Entries](./transient-entries.html) are not persisted into the data source, just as in any other persistent mode.
 - You should have one Mirror Service running per Data-Grid cluster.
 - The Mirror Service cannot be clustered. Deploying it as a Processing unit ensures its high-availability.

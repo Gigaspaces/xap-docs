@@ -350,8 +350,224 @@
 
 <div class="tc-admon-note">
   
-  <p></p>
+  <p>This means that the first deployed web application in shared mode controls how the Jetty instance is created.</p>
 </div>
+
+<h2><a name="web-context-1">&#160;</a>Web Context</h2>
+
+<pre><code class="language-xml">&lt;bean id="context" class="org.openspaces.pu.container.jee.SharedContextFactory"&gt;
+    &lt;property name="context" value="${web.context}" /&gt;
+    &lt;property name="unique" value="${web.context.unique}" /&gt;
+    &lt;property name="separator" value="${web.context.separator}" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext"&gt;
+        &lt;property name="contextPath" ref="context"/&gt;
+        &lt;property name="war" value="${jee.deployPath}"/&gt;
+        &lt;property name="tempDirectory" value="${jee.deployPath}/WEB-INF/work"/&gt;
+        &lt;property name="copyWebDir" value="${web.context.copyWebDir}"/&gt;
+        &lt;property name="parentLoaderPriority" value="${web.context.classLoader.parentFirst}"/&gt;
+        &lt;property name="configurationClasses"&gt;
+            &lt;list&gt;
+                &lt;value&gt;org.eclipse.jetty.webapp.WebInfConfiguration&lt;/value&gt;
+                &lt;value&gt;org.eclipse.jetty.webapp.WebXmlConfiguration&lt;/value&gt;
+                &lt;value&gt;org.eclipse.jetty.webapp.MetaInfConfiguration&lt;/value&gt;
+                &lt;value&gt;org.eclipse.jetty.webapp.FragmentConfiguration&lt;/value&gt;
+                &lt;value&gt;org.eclipse.jetty.plus.webapp.EnvConfiguration&lt;/value&gt;
+                &lt;value&gt;org.eclipse.jetty.plus.webapp.PlusConfiguration&lt;/value&gt;
+                &lt;value&gt;org.eclipse.jetty.webapp.JettyWebXmlConfiguration&lt;/value&gt;
+                &lt;value&gt;org.eclipse.jetty.annotations.AnnotationConfiguration&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;property name="sessionHandler" ref="secureSessionHandler"/&gt;
+    &lt;/bean&gt;
+</code></pre>
+
+<p>This <code>webAppContext</code> bean controls the actual web context that corresponds to the web application instance being deployed. Its context path is controlled by the <code>context</code> bean, represented by the <code>SharedContextFactory</code> class.</p>
+
+<p>The <code>SharedContextFactory</code> controls the web application context path under which the web application instance is deployed. If the <code>unique</code> flag is set to <code>true</code>, it uses the <code>context</code> path passed, appends the <code>separator</code>, and then appends the web application instance number (the cluster info running number). If the <code>unique</code> flag is set to <code>false</code>, it uses the <code>context</code> passed.</p>
+
+<p>The <code>context</code> passes to the <code>SharedContextFactory</code>, is the property <code>web.context</code>, which defaults to <code>clusterInfo.name</code> (the <code>clusterInfo.name</code> is the name of the Processing Unit and by default uses the WAR file name, but it can be overridden using the <code>override-name</code> feature).</p>
+
+<h1><a name="load-balancing">&#160;</a>Load Balancing</h1>
+
+<p>This section explains how to configure plain mode with Apache and <code>mod_proxy</code> load balancer. Plain mode is used in the example. The first step after installing Apache 2.2 is to enable the <code>mod_proxy</code>, <code>mod_proxy_balancer</code>, and <code>mod_proxy_http</code> (at least) modules.</p>
+
+<p>The second step (as per the link to Jetty documentation) is to set the <code>workerName</code> property of the session ID manager. The Jetty integration automatically sets the <code>workerName</code> (if it is not set explicitly) as the <code>clusterInfo</code> name and the <code>clusterInfo</code> running number. You can override this by configuring the <code>jetty-web.xml</code>. The following examples shows how the <code>jetty-web.xml</code> workerName gets set automatically (if it was configured explicitly):</p>
+
+<pre><code class="language-xml">&lt;Configure class="oorg.eclipse.jetty.webapp.WebAppContext"&gt;
+  &lt;Get name="sessionHandler"&gt;
+    &lt;Get name="sessionManager"&gt;
+      &lt;Call name="setIdManager"&gt;
+        &lt;Arg&gt;
+          &lt;New class="org.eclipse.jetty.server.session.HashSessionIdManager"&gt;
+            &lt;Set name="WorkerName"&gt;${clusterInfo.name}${clusterInfo.runningNumberOffset1}&lt;/Set&gt;
+          &lt;/New&gt;
+        &lt;/Arg&gt;
+      &lt;/Call&gt;
+    &lt;/Get&gt;
+  &lt;/Get&gt;
+&lt;/Configure&gt;
+</code></pre>
+
+<p>Then, the Apache httpd.conf should be modified to enable load balancing, as shown in the following example:</p>
+
+<pre><code class="language-bash">ProxyPass /balancer !
+ProxyPass /petclinic balancer://petclinic_cluster/ stickysession=JSESSIONID nofailover=On
+
+&lt;Proxy balancer://petclinic_cluster&gt;
+    BalancerMember http://machine1:8080/petclinic route=petclinic1
+    BalancerMember http://machine1:8081/petclinic route=petclinic2
+    BalancerMember http://machine2:8080/petclinic route=petclinic1
+    BalancerMember http://machine2:8081/petclinic route=petclinic2
+&lt;/Proxy&gt;
+
+# Proxy Management
+
+&lt;Location /balancer&gt;
+SetHandler balancer-manager
+
+Order Deny,Allow
+Deny from all
+Allow from all
+&lt;/Location&gt;
+
+ProxyStatus On
+&lt;Location /status&gt;
+SetHandler server-status
+
+Order Deny,Allow
+Deny from all
+Allow from all
+&lt;/Location&gt;
+</code></pre>
+
+<p>The above configuration configures the load balancer to direct traffic to <code>/petclinic</code> on <code>machine1</code> and <code>machine2</code>. On both machines, the ports used are <code>8080</code> and <code>8081</code>. This is because of the dynamic nature of the service grid, where web application instance number 1 (which corresponds to port <code>8080</code>) might be deployed on <code>machine1</code> or <code>machine2</code>.</p>
+
+<p>The above provides an overview of how to configure the Apache load balancer by hand. The data grid includes a built-in <a href="apache-load-balancer-agent.html">Apache Load Balancer Agent</a> that provides a dynamic update of Apache, based on changes occurring in the deployment of the web application.</p>
+
+<h1><a name="securing-the-jetty-container">&#160;</a>Securing the Jetty Container</h1>
+
+<h2><a name="configuring-ssl">&#160;</a>Configuring SSL</h2>
+
+<p>Web applications running inside the Jetty container can use SSL. The following example defines the SSLConnector:</p>
+
+<pre><code class="language-xml">&lt;bean id="sslHttpConfig" class="org.eclipse.jetty.server.HttpConfiguration"&gt;
+    &lt;constructor-arg ref="httpConfig"/&gt;
+    &lt;property name="customizers"&gt;
+        &lt;list&gt;
+            &lt;bean class="org.eclipse.jetty.server.SecureRequestCustomizer"/&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="sslContextFactory" class="org.eclipse.jetty.util.ssl.SslContextFactory"&gt;
+    &lt;property name="keyStorePath" value="/path-to/keystore"/&gt;
+    &lt;property name="keyStorePassword" value="storepass"/&gt;
+    &lt;property name="keyManagerPassword" value="keypass"/&gt;
+    &lt;property name="trustStorePath" value="/path-to/keystore"/&gt;
+    &lt;property name="trustStorePassword" value="storepass"/&gt;
+&lt;/bean&gt;
+
+&lt;property name="connectors"&gt;
+     &lt;list&gt;
+         &lt;bean class="org.eclipse.jetty.server.ServerConnector"&gt;
+             &lt;constructor-arg name="server" ref="jetty"/&gt;
+             &lt;constructor-arg name="factories"&gt;
+                &lt;list&gt;
+                    &lt;bean class="org.eclipse.jetty.server.SslConnectionFactory"&gt;
+                        &lt;constructor-arg index="0" ref="sslContextFactory" /&gt;
+                        &lt;constructor-arg index="1" type="java.lang.String"&gt;
+                            &lt;value&gt;http/1.1&lt;/value&gt;
+                        &lt;/constructor-arg&gt;
+                    &lt;/bean&gt;
+                    &lt;bean class="org.eclipse.jetty.server.HttpConnectionFactory"&gt;
+                        &lt;constructor-arg name="config" ref="sslHttpConfig"/&gt;
+                    &lt;/bean&gt;
+                &lt;/list&gt;
+             &lt;/constructor-arg&gt;
+             &lt;property name="port" value="8444"/&gt;
+             &lt;property name="idleTimeout" value="${web.selector.maxIdleTime}"/&gt;
+         &lt;/bean&gt;
+    &lt;/list&gt;
+&lt;/property&gt;
+</code></pre>
+
+<p>You can find a complete Jetty container definition <a href="/download_files/jetty.pu.xml">here</a> and the associated properties file <a href="/download_files/pu.properties">here</a>.</p>
+
+<p>Jetty documentation outlines all the steps involved in configuring SSL. Please refer to the following <a href="https://wiki.eclipse.org/Jetty/Howto/Configure_SSL">page</a> for more information.</p>
+
+<div class="tc-admon-refer">
+  
+  <p>A complete example with a keystore and certificate file included is available <a href="/download_files/jetty-ssl.zip">here</a>.</p>
+</div>
+
+<h2><a name="authentication-and-access-control-using-security-realms">&#160;</a>Authentication and Access Control Using Security Realms</h2>
+
+<p>Security realms allow you to secure your web applications against unauthorized access. Protection is based on authentication that identifies who is requesting access to the web application, and access control that restricts what can be accessed and how it is accessed within the web application.</p>
+
+<p>Jetty supports the following security realms:</p>
+
+<ul>
+<li><a href="http://wiki.eclipse.org/Jetty/Tutorial/Realms#HashLoginService">HashLoginService</a></li>
+<li><a href="http://wiki.eclipse.org/Jetty/Tutorial/Realms#JDBCLoginService">JDBCLoginService</a></li>
+<li><a href="http://wiki.eclipse.org/Jetty/Tutorial/JAAS">JAAS</a></li>
+</ul>
+
+<p>Jetty documentation provides more information about security realms and how to configure them. Refer to the <a href="http://wiki.eclipse.org/Jetty/Feature/Realms">Security Realms</a> and <a href="http://wiki.eclipse.org/Jetty/Tutorial/Realms">Security Realms Tutorial</a> pages for more details.</p>
+
+<h2><a name="custom-jetty-security-examples">&#160;</a>Custom Jetty Security Examples</h2>
+
+<h3><a name="hash-login-example">&#160;</a>Hash Login Example</h3>
+
+<p>The attached <a href="/download_files/webapp-hash-security.zip">example</a> shows a web processing unit configured to use <code>HashLoginService</code>. This uses a security realm file for storing the credentials (user ID and passwords) that are used to authenticate users. Roles authorized for the application are defined in the <code>web.xml</code> file.</p>
+
+<p>Your Jetty configuration should include a SecurityHandler configuration (<code>HashLoginService</code>), as shown in the following example:</p>
+
+<pre><code class="language-xml">&lt;property name="securityHandler"&gt;
+    &lt;bean class="org.eclipse.jetty.security.ConstraintSecurityHandler"&gt;
+        &lt;property name="loginService"&gt;
+            &lt;bean class="org.eclipse.jetty.security.HashLoginService"&gt;
+                &lt;property name="name" value="MyRealm"/&gt;
+                &lt;property name="config" value="${jee.deployPath}/WEB-INF/realm.properties"/&gt;
+                &lt;property name="refreshInterval" value="60"/&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+&lt;/property&gt;
+</code></pre>
+
+<p>The <code>web.xml</code> file should include security-constraint, login-config and roles.</p>
+
+<h3><a name="custom-jaas-security-example">&#160;</a>Custom JAAS Security Example</h3>
+
+<p>The attached <a href="/download_files/webapp-jaas.zip">example</a> shows a web processing unit configured to use <code>JAASLoginService</code> and a custom login module. Authentication requests are passed to the login module, whose behavior can be customized to suit the specific needs of the web application. In this simplistic example, any request with a password of "password" goes through successfully.</p>
+
+<p>Jetty configuration should include SecurityHandler configuration (<code>JAASLoginService</code>), as shown in the following example:</p>
+
+<pre><code class="language-xml">&lt;property name="securityHandler"&gt;
+    &lt;bean class="org.eclipse.jetty.security.ConstraintSecurityHandler"&gt;
+        &lt;property name="loginService"&gt;
+            &lt;bean class="org.eclipse.jetty.plus.jaas.JAASLoginService"&gt;
+                &lt;property name="name" value="${aas.realm.name}" /&gt;
+                &lt;property name="loginModuleName" value="AASLogin" /&gt;
+                &lt;property name="callbackHandlerClass"
+                                 value="org.eclipse.jetty.plus.jaas.callback.DefaultCallbackHandler" /&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+&lt;/property&gt;
+</code></pre>
+
+<p>Login module definition is a configuration file that maps the module name to a Java class implementation, as shown in the following example:</p>
+
+<pre><code class="language-bash">AASLogin {
+          com.gigaspaces.web.jaas.MySecurityModule required
+          debug="true" file="/realm.properties";
+      };
+</code></pre>
+
+<p>The above configuration file should be passed as a JVM system property, <code>java.security.auth.login.config</code> for all the GSCs that host the web application instances (<code>-Djava.security.auth.login.config=\Dev\webapp-jaas\config\login.config</code>).</p>
 
 </body>
 </html>

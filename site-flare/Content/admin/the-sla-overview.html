@@ -58,7 +58,7 @@
 </div>
 </div>
 
-<p>The SLA definition shown above creates four instances of a Processing Unit using the <code>partitioned</code> <a href="../overview/the-runtime-environment.html#topologies">space topology</a>. It defines two partitions (<code>number-of-instances="2"</code>), each with one backup (<code>number-of-backups="1"</code>). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (<code>max-instances-per-vm="1"</code>).</p>
+<p>The SLA definition shown above creates four instances of a Processing Unit using the <span class="tc-italic">partitioned</span> space topology. It defines two partitions (<code>number-of-instances="2"</code>), each with one backup (<code>number-of-backups="1"</code>). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (<code>max-instances-per-vm="1"</code>).</p>
 
 <div class="tc-admon-note">
   
@@ -66,7 +66,7 @@
 </div>
 
 <div class="tc-admon-note">
-  <p class="tc-admon-title">Info</p>
+  
   <p>In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the <a href="../dev-java/administration-and-monitoring-overview.html">Administration and Monitoring API</a> which supports the above and and much more.</p>
 </div>
 
@@ -96,10 +96,9 @@
 
 <p>From the client application's perspective (the one that connects to the Space from another process), the clustering topology is transparent in most cases.</p>
 
-<div class="tc-admon-refer">
+<div class="tc-admon-note">
   
-  <p>Please refer to <a href="../overview/the-runtime-environment.html#topologies">this page</a> for more details about space clustering topologies and guidelines regarding when to use each of the topologies.
-The number-of-backups parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.</p>
+  <p>The <code>number-of-backups</code> parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.</p>
 </div>
 
 <h1><a name="sla-based-distribution-and-provisioning">&#160;</a>SLA-Based Distribution and Provisioning</h1>
