@@ -268,7 +268,7 @@ The XAP JDBC Driver translates in runtime a Space object into a relational table
 - All Java class attributes are translated into their corresponding SQL types.
 - Class names are translated into table names.
 - Field names are translated into column names.
-- Indexed columns are translated into indexed fields. Make sure the `btree` index is turned on, allowing fast processing of bigger than/less than queries. For more details, refer to the [Indexing](./indexing.html#Extended Indexing) section.
+- Indexed columns are translated into indexed fields. Make sure the `btree` index is turned on, allowing fast processing of bigger than/less than queries. For more details, refer to the [Indexing](./indexing-overview.html) section.
 
 The following information represents the SQL-to-Java mapping conducted at runtime when a table is created via the JDBC driver.
 

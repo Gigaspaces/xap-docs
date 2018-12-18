@@ -82,7 +82,7 @@ Between the time an iterator is created and the time it reaches a terminal state
 
 ## Using GSIterator with SQLQuery
 
-When using the `GSIterator` with SQLQuery only [simple SQL queries](./query-sql.html#Simple Queries - Supported and Non-Supported Operators) are supported:
+When using the `GSIterator` with SQLQuery only [simple SQL queries](./query-sql.html#supported-sql-features) are supported:
     (field1 < value1) AND (field2 > value2) AND (field3 == values3)...
 The following operators **are not supported** when using `GSIterator`:
 

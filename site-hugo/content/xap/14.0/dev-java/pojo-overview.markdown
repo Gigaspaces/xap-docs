@@ -106,7 +106,7 @@ POJO Space mapping files `gs.xml` files can be loaded from:
 
 ## User-Defined Space Class Fields
 
-You may have user-defined data types (non-primitive data types) with your Space class. These should implement the `Serializable` or `Externalizable` interface. The user-defined class nested fields can be used with queries, and can be indexed. See the [Nested Properties](./query-sql.html#Nested Properties) and the [Nested Properties Indexing](./indexing.html#Nested Properties Indexing) section for details.
+You may have user-defined data types (non-primitive data types) with your Space class. These should implement the `Serializable` or `Externalizable` interface. The user-defined class nested fields can be used with queries, and can be indexed. See the [Nested Properties](./query-sql.html#nested-properties) and the [Nested Properties Index](./indexing-nested-properties.html) pages for details.
 
 ## Reference Handling
 

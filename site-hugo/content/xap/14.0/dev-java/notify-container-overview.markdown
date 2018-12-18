@@ -212,7 +212,7 @@ public class SimpleListener {
 {{% /tabs %}}
 
 {{% note "Note"%}}
-A polling or notify container can have only one template. If you need multiple event handlers, you must either create another container or use the [Session Based Messaging API](./session-based-messaging-api.html#Registering Large Number of Listeners), which supports multiple listeners with a single session. If you use multiple polling containers, make sure the different templates don't overlap each other.
+A polling or notify container can have only one template. If you need multiple event handlers, you must either create another container or use the [Session Based Messaging API](./session-based-messaging-api.html#registering-large-number-of-listeners), which supports multiple listeners with a single session. If you use multiple polling containers, make sure the different templates don't overlap each other.
 {{% /note %}}
 
 # Multiple Event Handlers
@@ -944,7 +944,7 @@ public class MyLeaseListener implements LeaseListener {
 To ensure that the client application reconnects automatically to the Space cluster after it is restarted, you may have to change the default configuration. Refer to [Proxy Connectivity](../admin/tuning-proxy-connectivity.html) for details.
 {{% /note %}}
 
-For more information, see [Auto Renew](./session-based-messaging-api.html#disconnections).
+For more information, see [Auto Re-Register Notifications After Space Failure](./session-based-messaging-api.html#auto-re-register-notifications-after-space-failure).
 
 # Resending Notifications after a Space-Client Disconnection
 

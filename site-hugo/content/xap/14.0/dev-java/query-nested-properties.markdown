@@ -104,7 +104,7 @@ public class Person {
 
 {{% note%}}
 The index is specified on top of the **address** property, therefore the `path` is "**city**" rather than "**address.city**".
-For more information, see the [Nested Properties Indexing](./indexing.html#Nested Properties Indexing) topic under [Indexing](./indexing.html).
+For more information, see the [Nested Properties Index](./indexing-nested-properties.html) topic.
 {{%/note%}}
 
 {{% warning%}}
@@ -160,7 +160,7 @@ public class Person {
 
 {{% note %}}
 The index is specified on top of the **phoneNumbers** property, therefore the `path` is "**home**" rather than "**phoneNumbers.home**".
-For more information see the [Nested Properties Indexing](./indexing.html#Nested properties indexing) section under [Indexing](./indexing.html).
+For more information see the [Nested Properties Index](./indexing-nested-properties.html) topic.
 {{%/note%}}
 
 {{% anchor collection-support %}}
@@ -287,7 +287,7 @@ public List<Car> getCars() {
 {{% note %}}
 The index is specified on top of the **cars** property, therefore the `path` is \[*\].company rather than cars\[*\].company**.
 The bigger the collection, the more memory is required to store the index at the server (since each item is indexed). Use with caution!
-For more information see the [Collection Indexing](./indexing.html#Collection Indexing) topic under [Indexing](./indexing.html).
+For more information see the [Collection Index](./indexing-collections.html) topic.
 {{%/note%}}
 
 

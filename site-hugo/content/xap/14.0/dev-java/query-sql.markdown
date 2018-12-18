@@ -11,11 +11,9 @@ weight: 300
 
 The `SQLQuery` class is used to query the Space using SQL-like syntax. The query statement includes only the `WHERE` statement part - the selection aspect of a SQL statement is embedded in other parameters for a SQL query.
 
-{{% note "Note" %}}
+{{% note %}}
 For the full documentation of the class's methods and constructors, see [Javadoc]({{% api-javadoc %}}/index.html?com/j_spaces/core/client/SQLQuery.html).
-{{% /note %}}
 
-{{% note "Info"%}}
 The XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to [In-Grid SQL Query](./sql-query-intro.html).
 {{% /note %}}
 
@@ -49,7 +47,7 @@ results = gigaSpace.readMultiple(new SQLQuery<MyClass>(MyClass.class, "num IN (1
 results = gigaSpace.readMultiple(new SQLQuery<MyClass>(MyClass.class, "num > 1 ORDER BY name"));
 ```
 
-{{% refer %}} For an example of `SQLQuery` with `EventSession`, refer to the [Session Based Messaging API](./session-based-messaging-api.html#SQLQuery Template Registration) section.{{% /refer %}}
+{{% refer %}} For an example of `SQLQuery` with `EventSession`, refer to the [Session Based Messaging API](./session-based-messaging-api.html#register-for-notifications) page.{{% /refer %}}
 
 # Supported Space Operations
 
@@ -82,7 +80,7 @@ SQLQuery supports the following:
 - `rownum` - limits the number of rows to select.
 - Sub queries.
 - "." used to indicate a double data type.
-- [Regular Index](./indexing.html) and a [Compound Index](./indexing.html#Compound Indexing) - Index a single property or multiple properties to improve query execution time.
+- [Regular Index](./indexing.html) and a [Compound Index](./indexing-compound.html) - Index a single property or multiple properties to improve query execution time.
 
 # Unsupported SQL Features
 
@@ -466,8 +464,7 @@ public void testLocalDateTime() {
 
 
 {{%warning "Important"%}}
-Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable with the .NET DateTime class. [.NET Interoperability](../dev-dotnet/interoperability.html#supported-types-for-matching-and-interoperability
-.html)
+Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable with the .NET DateTime class. Refer to the [.NET Interoperability](../dev-dotnet/interoperability.html#supported-types-for-matching-and-interoperability) page.
 {{%/warning%}}
 
 # Aggregators
