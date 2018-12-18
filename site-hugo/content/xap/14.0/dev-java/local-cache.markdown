@@ -87,7 +87,7 @@ The local cache uses the entry's version to determine whether the local entry is
 
 The exception is a master Space with [Space persistency](./space-persistency-overview.html) enabled. For example, suppose that an entry in the master Space has version 7, and gets stored in the local cache, then evicted from the master Space and later reloaded from the data source. If the version is not persisted and reloaded, it will be set to 1 and the local cache will ignore upcoming updates on that entry because its cached version is 7. In that case, it is the user's responsibility to make sure that the entry's version is persisted and loaded in the data source, using the following rules:
 
-1. Each POJO class should declare a [SpaceVersion](./pojo-overview.html#JavaSpacesPOJO-POJOAnnotationsandXMLSpaceMappingFileElements) property.
+1. Each POJO class should declare a [SpaceVersion](./pojo-overview.html#metadata) property.
 1. In the database, you should add a `VERSION_ID` column that will be mapped to this property in the corresponding tables. If you are using Hibernate, add the `versionId` property to the hbm.xml file or the `@Version` annotation to the mapped class.
 1. When writing new entries to the Space, it is recommended to use version 0 and let the Space implicitly initialize to version 1.
 1. When using template matching to query the Space, make sure that the template used has the version ID field set to ZERO to make sure the Space will ignore it.
@@ -210,7 +210,7 @@ The  round-trip-time setting can be configured using the `space-config.dist-cach
 
 ## Cache Policy
 
-When using a local cache with `GigaSpace`, the cache policy is set to `LRU` and cannot be changed. When using the local cache with `GigaMap`, the default cache policy is `com.j_spaces.map.eviction.FIFOEvictionStrategy`, and other policies may be used by setting the `space-config.dist-cache.eviction-strategy` custom property. For more details refer to the [Map API](./map-api.html#GigaMap with a Local (Near) Cache).
+When using a local cache with `GigaSpace`, the cache policy is set to `LRU` and cannot be changed. When using the local cache with `GigaMap`, the default cache policy is `com.j_spaces.map.eviction.FIFOEvictionStrategy`, and other policies may be used by setting the `space-config.dist-cache.eviction-strategy` custom property. For more details refer to the [Map API](./map-api.html#gigamap-with-a-local-near-cache).
 
 ## Memory Configuration Properties
 

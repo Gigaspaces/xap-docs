@@ -718,8 +718,8 @@ You may have to modify your site topology during runtime. For example, a new sit
 
 The following pages in this section provide more details on the Multi-Site Replication module:
 
-- [Replication Throughput Capacity](/sbp/wan-replication-gateway.html#Replication Throughput Capacity)
-- [WAN Gateway Replication Benchmark](/sbp/wan-replication-gateway.html#WAN Gateway Replication Benchmark)
+- [Replication Throughput Capacity](/sbp/wan-replication-gateway.html#replication-throughput-capacity)
+- [WAN Gateway Replication Benchmark](/sbp/wan-replication-gateway.html#wan-gateway-replication-benchmark)
 
 You can also view the following video:
 

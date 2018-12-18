@@ -99,8 +99,8 @@ Include the following in your `pom.xml`
 
 |Property|Description|
 |:-------|:----------|
-|gigaSpace| GigaSpace reference used for type descriptors. see [Archive Container](./archive-container.html#Configuration)|
-|config | MongoClientConfiguration reference used to handle the mongodb driver configuration. see [MongoClient](http://api.mongodb.org/java/2.11.2/com/mongodb/MongoClient.html)|
-|db | mongodb database name|
+|gigaSpace| GigaSpace reference used for type descriptors. See Archive Container [Configuration](./archive-container.html#configuration).|
+|config | MongoClientConfiguration reference used to handle the mongodb driver configuration. see [MongoClient](http://api.mongodb.org/java/2.11.2/com/mongodb/MongoClient.html).|
+|db | Mongodb database name.|
 
 

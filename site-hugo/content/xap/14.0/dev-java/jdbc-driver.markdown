@@ -415,7 +415,7 @@ Text search queries are available through the `text:` extension:
 
 # Indexing
 
-It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE,  and IS NULL statements. For more information, see [Indexing](./indexing.html). The above supported query features can leverage indexes except for the `is NOT null` and `NOT IN`statements.
+It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE,  and IS NULL statements. For more information, see [Indexing](./indexing-overview.html). The above supported query features can leverage indexes except for the `is NOT null` and `NOT IN`statements.
 
 
 

@@ -143,7 +143,7 @@ If the notify listener implementation performs a write/update/change/removal of 
  
 This behavior should be avoided, as it may throttle the activity or impose large concurrent replication activity (if a backup/replica is running). This in turn can consume a large amount of CPU and network resources within a short period of time. This can be observed with garbage created very quickly, which may cause long pauses due to garbage collection activity.
  
-To prevent this, the notify listener implementation should have [batching enabled](#batch-events), where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a [polling container](./polling-container-overview.html#notify-verses-polling-container) should be considered, as this is a more controlled event handler.
+To prevent this, the notify listener implementation should have [batching enabled](#batch-events), where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a [polling container](./polling-container-overview.html#notify-vs-polling-container) should be considered, as this is a more controlled event handler.
 
 
 # Template Definition

@@ -137,9 +137,9 @@ There is option to configure `writeLease` (defaults to `FOREVER`), `updateOrWrit
 
 # Transaction Support
 
-Since the inbound component is based on the event containers, transaction support can be enabled using the event container transaction support. Learn how to do this with the [polling container](./polling-container-overview.html#OpenSpacesEventsComponent-PollingContainer-TransactionSupport).
+Since the inbound component is based on the event containers, transaction support can be enabled using the event container transaction support. Learn how to do this with the [polling container](./polling-container-transactions.html).
 
-Any operation performed using the `GigaSpace` interface joins the ongoing transaction started by the event container using its support for [declarative transactions](./the-gigaspace-interface-overview.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions).
+Any operation performed using the `GigaSpace` interface joins the ongoing transaction started by the event container using its support for [declarative transactions](./transaction-overview.html#declarative-transaction-demarcation).
 
 This means that any outbound component operating within a Spring managed transaction automatically joins the transaction since it uses `GigaSpace`. For outbound components that are used with a different inbound component (such as JMS), the Mule Spring transaction manager can be used. Here is an example (note the custom-transaction tag in the inbound and outbound transports):
 
