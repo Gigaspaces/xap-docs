@@ -87,9 +87,9 @@ With the proper configuration the JDBC interpreter can query multiple JDBC data 
  
  As an example, lets configure 3 data grid sources:
  
- 1. "grid_A" data grid, set as default
- 1. "grid_B" data grid
- 1. "grid_C" data grid
+ 1. "grid_A", set as default
+ 1. "grid_B" 
+ 1. "grid_C"
  
  The JDBC interpreter configuration will be:
  
