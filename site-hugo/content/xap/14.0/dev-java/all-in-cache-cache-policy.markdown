@@ -50,4 +50,4 @@ Getting `SpaceMemoryShortageException` when running in `ALL-IN_CACHE` policy mod
 -XX:MaxPermSize=256m -XX:+ExplicitGCInvokesConcurrent -XX:+UseCompressedOops
 ```
 
-When running with large heap size you should tune the memory manager settings. This will avoid throwing `SpaceMemoryShortageException` too early. See the [Handling Large JVM Heap Size](./memory-management-overview.html#HandlingLargeJVMHeapSize) section for details.
+When running with large heap size you should tune the memory manager settings. This will avoid throwing `SpaceMemoryShortageException` too early. See the [Handling Large JVM Heap Size](./memory-management-overview.html#handling-large-jvm-heap-sizes) section for details.

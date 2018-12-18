@@ -31,7 +31,7 @@ Enabling the Mirror Service involves the following:
 
 The above share the **same** [Space Persistency](./space-persistency-overview.html) settings but have different space settings. See the [NHibernate Space Persistency](./hibernate-space-persistency.html) for details how to use the built-in `HibernateExternalDataSource`.
 
-# The Data-Grid Processing Unit
+# The Data Grid Processing Unit
 
 The `cluster-config.mirror-service` `space` settings specify the interaction between the IMDG primary spaces and the Mirror Service. The `mirror="true"` `space` element tag enables the replication mechanism from the IMDG Primary spaces to the Mirror Service. Once the `mirror="true"` is specified, all IMDG members will be Mirror aware and will be delegating their activities into the Mirror service. The IMDG primary instance will replicate the operations that have been logged within the primary redo log every `interval-millis` amount of time or `interval-opers` amount of operations. Both of these mechanisms are always active and the first one that is breached triggers the replication event.
 
@@ -110,7 +110,7 @@ The Mirror settings includes the following options:
 
 | Property | Description | Default |
 |:---------|:------------|:--------|
-|OperationGrouping| Options:<br>group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).<br>group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).<br>See the [Mirror behavior with Distributed Transactions](./async-persistency-mirror-advanced.html#mirror-behavior-with-distributed-transactions) for details| group-by-replication-bulk |
+|OperationGrouping| Options:<br>group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).<br>group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).| group-by-replication-bulk |
 |SourceSpace Name| The name of source space (cluster) this mirror serves | NONE, must be supplied |
 |SourceSpace Partitions| The number of partitions in source space (cluster) this mirror serves | NONE, must be supplied |
 |SourceSpace Backups| The number of backups per partition in source space (cluster) this mirror serves | NONE, must be supplied |
@@ -181,7 +181,7 @@ To use this optimization you need to set the following space property:
 
 # Mirror Monitoring
 
-The activity of the mirror service can be monitored using the [Administration and monitoring API](../dev-java/administration-and-monitoring-overview.html#administrationand-monitoring-api-nonitoring-the-mirror-service). This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.
+The activity of the mirror service can be monitored using the [Administration and monitoring API](../dev-java/administration-and-monitoring-overview.html#monitoring-the-mirror-service). This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.
 
 You may view Mirror and its replication statistics via the [GigaSpaces Management Center](../admin/gigaspaces-management-center.html). Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.
 

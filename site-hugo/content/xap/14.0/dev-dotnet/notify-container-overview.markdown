@@ -8,7 +8,7 @@ weight: 200
 
 {{%section%}}
 {{%column width="70%" %}}
-The notify event container implements the [IEventListenerContainer](./event-listener-container.html) interface, and uses the space inheritance support for notifications, using a GigaSpaces data event session API. If a notification occurs, the [DataEventArrived](./event-listener-container.html#data-event-arrived) event is invoked with the event. A notify event operation is mainly used when simulating Topic semantics.
+The notify event container implements the [IEventListenerContainer](./event-listener-container.html) interface, and uses the space inheritance support for notifications, using a GigaSpaces data event session API. If a notification occurs, the [DataEventArrived](./event-listener-container.html#dataeventarrived) event is invoked with the event. A notify event operation is mainly used when simulating Topic semantics.
 {{%/column%}}
 {{%column width="30%" %}}
 <img src="/attachment_files/dotnet/Net_notify_cont.jpg" width="150" height="200" />

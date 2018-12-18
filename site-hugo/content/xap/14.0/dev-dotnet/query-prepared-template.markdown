@@ -39,7 +39,7 @@ Use `ISpaceProxy.Snapshot` to create a prepared template from an object template
 ```
 
 {{% warning %}}
-Using the `ISpaceProxy.Snapshot` method with complex SQL queries is not supported. For more information see [simple SQL queries](./query-sql.html#Simple SqlQuery).
+Using the `ISpaceProxy.Snapshot` method with complex SQL queries is not supported. For more information see the [Limitations](./query-sql.html#limitations) section of the SqlQuery page.
 {{%/warning%}}
 
 After creating the prepared template, it can be passed as a template to the Read, Take, ReadMultiple, TakeMultiple, Count and Clear operations, as well as a template when registering for notification.

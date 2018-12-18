@@ -25,7 +25,7 @@ Both tools are well tested and common in Windows environment.
 # Packet Sniffer/Network Analyzer Tool
 
 {{% refer %}}
-See [Packet Sniffer/Network Analyzer Tool](./network-multicast.html#Packet) Sniffer/Network Analyzer Tool) section for more details.
+See [Packet Sniffer/Network Analyzer Tool](./network-multicast.html#packet-sniffer-network-analyzer-tool) Sniffer/Network Analyzer Tool) section for more details.
 {{%/refer%}}
 
 # Threads Dumper

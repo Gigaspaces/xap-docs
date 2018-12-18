@@ -14,7 +14,7 @@ weight: 600
 In order to store large files in memory, you should simply load the file into the relevant Data type (byte array , blob) and use the relevant API to write the data into the space. Large objects are treated like any other objects stored within the space.
 
 {{% note "Note"%}}
-The `com.gs.transport_protocol.lrmi.maxBufferSize` system property controls the chunk size. See the [Communication Protocol](./tuning-communication-protocol.html#maxBufferSize) for details.
+The `com.gs.transport_protocol.lrmi.maxBufferSize` system property controls the chunk size. See the [Communication Protocol](./tuning-communication-protocol.html#maxbuffersize) for details.
 {{% /note %}}
 
 ## Memory Allocation Behavior

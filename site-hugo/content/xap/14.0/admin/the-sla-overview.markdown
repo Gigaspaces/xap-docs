@@ -68,13 +68,13 @@ The SLA definition, whether it comes in a separate file or embedded inside the `
 {{% /tab %}}
 {{% /tabs %}}
 
-The SLA definition shown above creates four instances of a Processing Unit using the `partitioned` [space topology](../overview/the-runtime-environment.html#topologies). It defines two partitions (`number-of-instances="2"`), each with one backup (`number-of-backups="1"`). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (`max-instances-per-vm="1"`).
+The SLA definition shown above creates four instances of a Processing Unit using the *partitioned* space topology. It defines two partitions (`number-of-instances="2"`), each with one backup (`number-of-backups="1"`). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (`max-instances-per-vm="1"`).
 
 {{% note "Note"%}}
 It is up to the developer to configure the SLA correctly. Trying to deploy a Processing Unit with a cluster schema that requires backups without specifying `numberOfBackups` will cause the deployment to fail.
 {{%/note%}}
 
-{{% note "Info"%}}
+{{% note %}}
 In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the [Administration and Monitoring API](../dev-java/administration-and-monitoring-overview.html) which supports the above and and much more.
 {{% /note %}}
 
@@ -100,10 +100,9 @@ You can choose from numerous clustering topologies:
 
 From the client application's perspective (the one that connects to the Space from another process), the clustering topology is transparent in most cases.
 
-{{% refer %}}
-Please refer to [this page](../overview/the-runtime-environment.html#topologies) for more details about space clustering topologies and guidelines regarding when to use each of the topologies.
-The number-of-backups parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.
-{{% /refer %}}
+{{% note %}}
+The `number-of-backups` parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.
+{{% /note %}}
 
 # SLA-Based Distribution and Provisioning
 

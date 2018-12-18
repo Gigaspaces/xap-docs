@@ -7,8 +7,6 @@ weight: 100
 ---
 
 
- 
-
 # Custom Mirror Service Name
 
 A Mirror Service can be configured per Space cluster. You can't have multiple Mirror services configured for the same space cluster.
@@ -68,18 +66,17 @@ See the [Mirror Monitor](/sbp/mirror-monitor.html) for a simple example how such
 {{%/refer%}}
 
 
-
 # Usage Scenarios
 
-
 {{%imagertext "/attachment_files/IMG101.gif"%}}
+
 ### Writing Asynchronously to the Mirror Data Source
 
 The following is a schematic flow of a synchronous replicated cluster with three members, which are communicating with a Mirror Service:
 {{%/imagertext%}}
 
-
 {{%imagertext "/attachment_files/IMG103.gif"%}}
+
 ### Reading from the Data Source
 
 
@@ -90,10 +87,9 @@ The data-grid pu.xml needs to be configured to use an **space data source** whic
 Here is a schematic flow of how a Mirror Service asynchronously receives data, to persist into an data source, while the cluster is reading data directly from the data source.
 {{%/imagertext%}}
 
-
 {{%imagertext "/attachment_files/IMG104.gif"%}}
-### Partitioning Over a Central Mirror Data Source
 
+### Partitioning Over a Central Mirror Data Source
 
 When partitioning data, each partition asynchronously replicates data into the Mirror Service. Each partition can read back data that belongs to it (according to the load-balancing policy defined).
 
@@ -110,10 +106,10 @@ Here is a schematic flow of how two partitions (each a primary-backup pair) asyn
 
 - The Mirror Service cannot be used with a single space. It is supported with the `async-replicated`, and `partitioned` cluster schemas.
 - The Mirror Service is a single space which joins a replication group. The Mirror Service is not a clustered space or part of the replication group declaration.
-- When the Mirror Service is loaded, it does not perform memory recovery. See the [reliability section](#reliability) for more details.
+- When the Mirror Service is loaded, it does not perform memory recovery.
 - [Transient Entries](./transient-entries.html) are not persisted into the data source, just as in any other persistent mode.
-- You should have one Mirror Service running per Data-Grid cluster.
-- The Mirror Service cannot be clustered. Deploying it as a Processing unit ensures its high-availability.
+- You should have one Mirror Service running per Data Grid cluster.
+- The Mirror Service cannot be clustered. Deploying it as a Processing Unit ensures its high-availability.
 - The Mirror does not load data back into the space. The `ExternalDataSource` implementation of the space should be used to initialize the space when started.
 
 # Troubleshooting
@@ -137,7 +133,6 @@ Logging is divided according to `Level` as follows:
 | INFO | The default level for informative messages. |
 | CONFIG | Mirror Service-relevant configuration messages. |
 | FINER | Fairly detailed messages of:<br>- **Entering and exiting** interface methods (displaying the parameter's `toString()` method)<br>- **Throwing of exceptions** between the space and the underlying implementation. |
-
 
 
 # Failover Handling

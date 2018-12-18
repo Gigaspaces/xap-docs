@@ -196,7 +196,7 @@ With a system that may trigger a notify listener (that performs remote space acc
 
 
 {{% refer %}}
-If you are using the **notification slow consumer** mechanism, refer to [Slow Consumer](./slow-consumer.html#Configuration -- Server Side) for additional LRMI parameters to configure.
+If you are using the **notification slow consumer** mechanism, refer to [Slow Consumer](./slow-consumer.html#configuration) for additional LRMI parameters to configure.
 {{%/refer%}}
 
 {{% anchor portrange %}}

@@ -101,7 +101,7 @@ public class Person {
 
 {{% note%}}
 Note that since the index is specified on top of the **address** property, the `path` is "**City**" rather than "**Address.City**".
-For more information see the [Nested Properties Indexing](./indexing.html#Nested Properties Indexing) section under [Indexing](./indexing.html).
+For more information see the [Nested Properties Index](./indexing-nested-properties.html) topic.
 {{%/note%}}
 
 {{% warning%}}
@@ -156,7 +156,7 @@ public class Person {
 
 {{% note %}}
 Note that since the index is specified on top of the **PhoneNumbers** property, the `path` is "**Home**" rather than "**PhoneNumbers.Home**".
-For more information see the [Nested Properties Indexing](./indexing.html#Nested properties indexing) section under [Indexing](./indexing.html).
+For more information see the [Nested Properties Index](./indexing-nested-properties.html) topic.
 {{%/note%}}
 
 {{% anchor collection-support %}}
@@ -267,7 +267,7 @@ public List<Car> Cars{set; get;}
 {{% note %}}
 Note that since the index is specified on top of the **cars** property, the `path` is `[*].Company rather than cars[*].Company`.
 The bigger the collection - the more memory is required to store the index at the server (since each item is indexed). Use with caution!
-For more information see the [Collection Indexing](./indexing.html#Collection Indexing) section under [Indexing](./indexing.html).
+For more information, see the [Collection Index](./indexing-collections.html) topic.
 {{%/note%}}
 
 

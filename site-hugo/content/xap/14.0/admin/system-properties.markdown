@@ -145,7 +145,7 @@ Refer to [Tuning the communication protocol](./tuning-communication-protocol.htm
 |LRMI Selector Accept |Responsible for accepting incoming socket connections. |Single Thread|Server|
 |LRMI async Selector  |Client side, handles async invocation, i.e executors, asyncRead/take. |4 Threads|Server|
 |Pending Answers-pool |Responsible for sending a callback to template based waiting  operations (read/take). |space-config.engine.min_threads<br>space-config.engine.max_threads|Server|
-|Notifier-pool        |Responsible to dispatch notification to client side. Used with the `Notify Container` [Java version](../dev-java/notify-container-overview.html) \|[ .NET version](../dev-dotnet/notify-container-overview.html) and [Session Based Messaging API](../dev-java/session-based-messaging-api.html). See the [Scaling Notification Delivery](../dev-java/notify-container-overview.html#Scaling Notification Delivery) for details.| space-config.engine.notify_min_threads<br>space-config.engine.notify_max_threads| Server|
+|Notifier-pool        |Responsible to dispatch notification to client side. Used with the `Notify Container` [Java version](../dev-java/notify-container-overview.html) \|[ .NET version](../dev-dotnet/notify-container-overview.html) and [Session Based Messaging API](../dev-java/session-based-messaging-api.html). See the [Scaling Notification Delivery](../dev-java/notify-container-overview.html#scaling-notification-delivery) for details.| space-config.engine.notify_min_threads<br>space-config.engine.notify_max_threads| Server|
 |Processor-pool       |Pool for space operations post processing that can be done asynchronously to user operation. Transaction cleanup, notifications etc.  |space-config.engine.min_threads<br>space-config.engine.max_threads |Server|
 |Connection-pool      |Pool for regualr space operations execution.  |com.gs.transport_protocol.lrmi.max-threads <br> com.gs.transport_protocol.lrmi.min-threads |Server|
 |Custom pool          |Pool for notify and task execution  |com.gs.transport_protocol.lrmi.custom.<br>threadpool.min-threads<br>com.gs.transport_protocol.lrmi.custom.<br>threadpool.max-threads |Server|
@@ -160,19 +160,19 @@ Refer to [Tuning the communication protocol](./tuning-communication-protocol.htm
 |SLA Monitor Disk|Used by the Service Grid. SLA free disk space monitor|Single Thread|Server|
 |Memory:writer|Used by the Service Grid. SLA Memory monitor|Single Thread|Server| 
 |CPU:writer|Used by the Service Grid. SLA CPU monitor |Single Thread|Server|
-|pollingEventContainer#|Used with the [Polling Container](../dev-java/polling-container-overview.html) | See the [Concurrent Consumers](../dev-java/polling-container-overview.html#Concurrent Consumers)|Client|
+|pollingEventContainer#|Used with the [Polling Container](../dev-java/polling-container-overview.html) | See the [Concurrent Consumers](../dev-java/polling-container-scaling.html)|Client|
 |LeaseRenewalManager Task| Respisible to review resource lease.|One per resource|Client|
 |JoinManager Task| Responsible to communicate with the lookup service|Single thread per client proxy| Client|
 |Liveness-detector| See the [Proxy Connectivity](./tuning-proxy-connectivity.html) for details.|Single thread per client proxy|Client|
 |Liveness-monitor| See the [Proxy Connectivity](./tuning-proxy-connectivity.html) for details.| Single thread per client proxy|Client|
 |LocalTransactionManagerImpl<br>$Reaper SPACE_NAME | A thread that reaps expired transactions entries and other objects| Single thread per space | Server|
 |GSPingManager| Used by the Service Grid| |Server|
-|LeaseManager$Reaper SPACE_NAME |See the [Lease Manager](../dev-java/leases-automatic-expiration.html#Lease Manager) for details |Single Thread per space| Server|
+|LeaseManager$Reaper SPACE_NAME |See the [Lease Manager](../dev-java/leases-automatic-expiration.html#lease-manager) for details |Single Thread per space| Server|
 |Cache PersistentGC|Responsible for backup activities (cleanup indexes)|Single Thread per space|Server|
 |SPACE_NAME BackgroundFifoThread3_Notify=false#|Threads that use segmentation in order to handle background events like handling waiting templates in a fifo fashion | Thread pool per space|Server|
 |SPACE_NAME BackgroundFifoThread3_Notify=true#|Threads that use segmentation in order to handle background notify events  in a fifo fashion|Thread pool per space|Server|
 |Statistics-Task| | | Server|
-|SPACE_NAME Batch Notifier|Used when using batch notifications. See the [Batch Events](../dev-java/notify-container-overview.html#Batch Events) for details.|Single Thread per space|Server|
+|SPACE_NAME Batch Notifier|Used when using batch notifications. See the [Batch Events](../dev-java/notify-container-overview.html#batch-events) for details.|Single Thread per space|Server|
 |ActiveFailureDetector| Responsible for the active election process. See the [Failure Detection](./troubleshooting-failure-detection.html) for details.|Single Thread|Server|
 |ProvisionLeaseManager|Used by the Service Grid|Single Thread|Server|
 |Watchdog|See the [Communication Protocol](./tuning-communication-protocol.html) for details. |Single Thread per proxy|Client|

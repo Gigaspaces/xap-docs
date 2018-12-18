@@ -98,7 +98,7 @@ To change the lookup service listening port use the `com.sun.jini.reggie.initial
 Set the `XAP_LOOKUP_LOCATORS` system property in `<XAP Root>\bin\setenv.bat/sh` to match the port number you defined (in this case, `host:1234`). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly.
 
 {{%refer%}}
-For more information refer to [com.gs.multicast.discoveryPort system property](./network-lookup-service-configuration.html#Multicast Settings).
+For more information, see the description of the [com.gs.multicast.discoveryPort](./network-lookup-service-configuration.html#multicast-settings) system property.
 {{%/refer%}}
 
 # Discovery Intervals

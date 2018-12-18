@@ -25,19 +25,19 @@ A JMX manageable resource can be an application, an implementation of a service,
 Step 1. The easiest way to open JConsole for a specific service is through the GigaSpaces Management Center: <br>
  - In the Deployments tab, right-click the GSC, GSM, or LookupService tree node, or <br>
  - In the Space Browser tab: <br>
- - In the Grid Tree, right-click the relevant [space container node](./gigaspaces-browser-tree-panel-and-configuration-panel.html#Container Node), or <br>
+ - In the Grid Tree, right-click the relevant [space container node](./gigaspaces-browser-tree-panel-and-configuration-panel.html#space-container-node), or <br>
 
 {{% align center %}}
 ![space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg](/attachment_files/space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg) <br>
 {{% /align %}}
 
- - Right-click the relevant [space node](./gigaspaces-browser-tree-panel-and-configuration-panel.html#Space Node) or clustered space node, or <br>
+ - Right-click the relevant [space node](./gigaspaces-browser-tree-panel-and-configuration-panel.html#space-node) or clustered space node, or <br>
 
 {{% align center %}}
 ![space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg](/attachment_files/space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg) <br>
 {{% /align%}}
 
- - Right-click the relevant space from the [space network view](./gigaspaces-browser-tree-panel-and-configuration-panel.html#Spaces Network View): <br>
+ - Right-click the relevant space from the [space network view](./gigaspaces-browser-tree-panel-and-configuration-panel.html#spaces-network-view): <br>
 
 {{% align center %}}
 ![space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg](/attachment_files/space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg)  <br>
@@ -179,7 +179,7 @@ The container **Operations** tab allows you to perform different space container
 |destroySpace | destroys a space in this container (type the space's name in the **spaceName** text box).|
 |createSpace (spaceName, schemaName, clusterConfigURL)| creates a space with a unique name in this container and writes the created space to the appropriate Storage Adapter. (Type the name of the space, the name of the schema, and the cluster configuration URL\\*\\*\\* in the relevant text boxes).|
 |createSpace (spaceName, schemaName) | creates a space with a unique name in this container. |
-|getRuntimeConfigReport |displays a runtime configuration report. For more details, refer to the [Runtime Configuration Report](./gigaspaces-browser-managing-space-container.html#Runtime Configuration Report) section.|
+|getRuntimeConfigReport |displays a runtime configuration report. For more details, refer to the [Configuration](./gigaspaces-browser-managing-space-container.html#configuration) section.|
 
 {{% align center %}}
 ![space_JMX_11_IMG995.gif](/attachment_files/space_JMX_11_IMG995.gif)

@@ -109,13 +109,6 @@ GS_HOME\bin\gs-cli deploy-space  -cluster schema=partitioned total_members=4,1
 When the application write Payment objects into this space, XAP will use the routing information provided `[SpaceRouting]` by the Payment class to route the object to the right partition.
 
 
-
-{{%refer%}}
-[Service Grid](../overview/the-runtime-environment.html#topologies)
-{{%/refer%}}
-
-
-
 # Interacting with the data Grid
 Now we are ready to interact with the data grid. All the examples we explored in the first part of the tutorial can be used to interact with the IMDG. Here is an example how you can connect to the grid from your application:
 

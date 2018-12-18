@@ -32,5 +32,5 @@ Customers can use the Demote capability when writing their rebalancing policies,
 
 
 {{% note %}}
-For instructions on how to demote a Space instance, see the section on [Demoting a Primary Space Instance](./admin-quiesce-pu.html#demoting-a-primary-processing-unit-instance) in the Advanced Maintenance Activities topic.
+For instructions on how to demote a Space instance, see the section on [Demoting a Primary Space Instance](./admin-quiesce-pu.html#demoting-a-primary-space-instance) in the Advanced Maintenance Activities topic.
 {{%/note%}}

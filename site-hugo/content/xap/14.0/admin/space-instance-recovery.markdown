@@ -51,7 +51,7 @@ In case a limited redo log is used the following property defines the maximum si
 
 Completion phase is finished according to the consistency requirements of the replication type.
 
-{{% refer %}}For more info refer to [Synchronous Replication Behavior During Recovery](./synchronous-replication.html#Behavior During Recovery) and [Asynchronous Replication Behavior During Recovery](./asynchronous-replication.html#Behavior During Recovery){{% /refer %}}
+{{% refer %}}For more info refer to [Synchronous Replication Behavior During Recovery](./synchronous-replication.html#behavior-during-recovery) and [Asynchronous Replication Behavior During Recovery](./asynchronous-replication.html#behavior-during-recovery){{% /refer %}}
 
 Once the recovery process is complete, a full report including the total amount of recovered space objects and notify registrations, and their class types, is logged.
 During the recovery process, the source space is available, and the target space is unavailable to clients.
@@ -98,7 +98,7 @@ If the primary space is unavailable for some reason - recovery will be retried  
 - the primary gets reconnected and then the recovery continues normally.
 - the space itself becomes primary and then no recovery is necessary.
 
-Any other failure - [SpaceMemoryShortageException](../dev-java/all-in-cache-cache-policy.html#SpaceMemoryShortageException), Database not available etc. is retried 3 times before failing.
+Any other failure - [SpaceMemoryShortageException](../dev-java/all-in-cache-cache-policy.html), Database not available etc. is retried 3 times before failing.
 
 # Active-Active Topology
 
@@ -118,7 +118,7 @@ With this scenario:
 1. If the database is empty --> target space instance recovers everything from the source.
 1. If database has data --> recover persistent objects from the database + recover transient objects from the source.
 
-For further info and configuration options see [Distributed Databases](../dev-java/direct-persistency.html#Distributed Databases)
+For further info and configuration options see [Distributed Databases](../dev-java/direct-persistency.html#distributed-databases)
 
 ## Space Instance Recovery Failure Handling
 

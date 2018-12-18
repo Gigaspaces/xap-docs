@@ -62,7 +62,7 @@ The [IteratorScope]({{%api-dotnetdoc%}}/T_GigaSpaces_Core_IteratorScope.htm) det
 
 ## Using ISpaceIterator with SQLQuery
 
-When using the `ISpaceIterator` with SQLQuery only [simple SQL queries](./query-sql.html#Simple Queries - Supported and Non-Supported Operators) are supported:
+When using the `ISpaceIterator` with SQLQuery only [simple SQL queries](./query-sql.html#limitations) are supported:
     (field1 < value1) AND (field2 > value2) AND (field3 == values3)...
 The following operators **are not supported** when using `ISpaceIterator`:
 

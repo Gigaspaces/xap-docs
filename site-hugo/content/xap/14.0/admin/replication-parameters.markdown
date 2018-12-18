@@ -68,10 +68,10 @@ weight: 700
 |cluster-config.groups.group.repl-policy.redo-log-capacity | Specifies the total amount of replication packets the redo log can hold for a standard replication target.|150000|
 |cluster-config.groups.group.repl-policy.redo-log-memory-capacity | Specifies the maximum number of replication packets the redo log keeps in memory.|150000|
 |cluster-config.groups.group.repl-policy.redo-log-recovery-capacity | Specifies the total amount of replication packets the redo log can hold for a standard replication target while it is undergoing a recovery process.|5000000|
-|cluster-config.groups.group.repl-policy.on-redo-log-capacity-exceeded | See the [Handling an Increasing Redo Log](./controlling-the-replication-redo-log.html#Handling an Increasing Redo Log) page for details. | drop-oldest |
-|cluster-config.groups.group.repl-policy.on-missing-packets | Options: `ignore`, `recover`. See the [Handling Dropped Replication Packets](./controlling-the-replication-redo-log.html#Handling Dropped Replication Packets) page for details. | recover|
+|cluster-config.groups.group.repl-policy.on-redo-log-capacity-exceeded | See the [Handling an Increasing Redo Log](./controlling-the-replication-redo-log.html#handling-a-increasingly-larger-redo-log) page for details. | drop-oldest |
+|cluster-config.groups.group.repl-policy.on-missing-packets | Options: `ignore`, `recover`. See the [Handling Dropped Replication Packets](./controlling-the-replication-redo-log.html#handling-dropped-replication-packets) page for details. | recover|
 |cluster-config.mirror-service.redo-log-capacity | Specifies the total amount of replication packets the redo log can hold for a mirror service replication target.|1000000|
-|cluster-config.mirror-service.on-redo-log-capacity-exceeded | See the [Handling an Increasing Redo Log](./controlling-the-replication-redo-log.html#Handling an Increasing Redo Log) page for details. | block-operations|
+|cluster-config.mirror-service.on-redo-log-capacity-exceeded | See the [Handling an Increasing Redo Log](./controlling-the-replication-redo-log.html#handling-a-increasingly-larger-redo-log) page for details. | block-operations|
 
 The following  are low-level configuration parameters that relate to the swap redo log mechanism:
 

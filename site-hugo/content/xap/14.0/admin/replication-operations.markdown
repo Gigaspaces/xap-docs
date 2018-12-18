@@ -20,7 +20,7 @@ The replication module used to synchronize the data and state between two space 
 - Committed transactions.
 
 {{% refer %}}
-All the operations that are replicated, are also recovered during the space recovery process. See [Space Instance Recovery](./space-instance-recovery.html)
+All the operations that are replicated are also recovered during the space recovery process. See [Space Instance Recovery](./space-instance-recovery.html).
 {{%/refer%}}
 
 # Which Operations are Not Replicated?
@@ -83,7 +83,7 @@ All possible operations  are - write, take, extend_lease, update, discard, lease
 An empty value means no operations to be replicated.
 {{%/note%}}
 
-- **Instance level granularity** - [replication filters](#replication-filters) can be used to control which objects are replicate and which are not, per object instance.
+- **Instance level granularity** - [replication filters](../admin/cluster-replication-filters.html) can be used to control which objects are replicate and which are not, per object instance.
 
 ## Transactions
 
@@ -154,7 +154,7 @@ For example the take operation only replicates the object ID to minimize the net
 Additional optimizations that can affect the replication performance is the update operation. Regular object updates replicate the whole object state - all the properties even those that were not changed. This can be optimized by using `WriteModifier.PARTIAL_UPDATE` modifier when performing the object update. When this modifier is used, the replication will replicate only the changed properties and not the whole object.
 
 {{% refer %}}
-When mirror is used additional settings are required to support the partial update. See [Optimizing the Mirror Activity](../dev-java/asynchronous-persistency-with-the-mirror.html#Optimizing the Mirror Activity).
+When mirror is used additional settings are required to support the partial update. See [Optimizing the Mirror Activity](../dev-java/asynchronous-persistency-with-the-mirror.html#optimizing-the-mirror-activity).
 {{%/refer%}}
 
 #   Filters
