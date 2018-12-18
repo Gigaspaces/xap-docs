@@ -93,15 +93,15 @@ With the proper configuration the JDBC interpreter can query multiple JDBC data 
  
  The JDBC interpreter configuration will be:
  
- 1. `default.driver=com.gigaspaces.jdbc.Driver` , `default.driver=insightedge:jdbc:url:spaceName=grid_A`
- 1. `B.driver=com.gigaspaces.jdbc.Driver` , `B.driver=insightedge:jdbc:url:spaceName=grid_B`
- 1. `C.driver=com.gigaspaces.jdbc.Driver` , `C.driver=insightedge:jdbc:url:spaceName=grid_C`
+ 1. `default.driver -> com.gigaspaces.jdbc.Driver`, `default.url -> insightedge:jdbc:url:spaceName=grid_A`
+ 1. `B.driver -> com.gigaspaces.jdbc.Driver`, `B.url -> insightedge:jdbc:url:spaceName=grid_B`
+ 1. `C.driver -> com.gigaspaces.jdbc.Driver`, `C.url -> insightedge:jdbc:url:spaceName=grid_C`
  
  This will enable:
  
  1. Paragraphs starting with `%insightedge_jdbc` to query grid_A
  1. Paragraphs starting with `%insightedge_jdbc(B)` to query grid_B
- 1. Paragraphs starting with `%insightedge_jdbc(C)` will query grid_C
+ 1. Paragraphs starting with `%insightedge_jdbc(C)` to query grid_C
  
 
 # Using the Web Notebook
