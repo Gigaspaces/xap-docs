@@ -1,6 +1,6 @@
 ---
 type: post140
-title:  Transaction support
+title:  Transaction Support
 categories: XAP140NET, PRM
 parent: polling-container-overview.html
 weight: 300
@@ -118,5 +118,5 @@ pollingEventListenerContainer.DataEventArrived += new DelegateDataEventArrivedAd
 
 {{% /tabs %}}
 
-{{% refer %}}The order of parameters of the event handling method is strict, please refer to [Dynamic Data Event Handler Adapter](./event-listener-container.html#eventhandler-adapter) for more information about it.{{% /refer %}}
+{{% refer %}}The order of parameters of the event handling method is strict, please refer to [Data Event Handler Adapters](./event-listener-container.html#data-event-handler-adapters) for more information about it.{{% /refer %}}
 

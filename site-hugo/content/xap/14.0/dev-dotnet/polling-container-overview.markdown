@@ -91,8 +91,8 @@ public Data ProcessData(IEventListenerContainer<Data> sender, DataEventArgs<Data
 }
 ```
 
-{{% note "Info"%}}
-[DelegateDataEventArrivedAdapter](./event-listener-container.html#DelegateDataEventArrivedAdapter) is a class that adapts the supplied user method to the [SpaceDataEventHandler](./event-listener-container.html#SpaceDataEventHandler) delegate, and contains built-in logic for writing back event results to the Space.
+{{% note %}}
+[DelegateDataEventArrivedAdapter](./event-listener-container.html#DelegateDataEventArrivedAdapter) is a class that adapts the supplied user method to the [SpaceDataEventHandler](./event-listener-container.html#data-event-handler-adapters) delegate, and contains built-in logic for writing back event results to the Space.
 {{% /note %}}
 
 {{% /tab %}}
