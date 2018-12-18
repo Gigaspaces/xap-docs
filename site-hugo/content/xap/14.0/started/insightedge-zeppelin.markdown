@@ -77,6 +77,33 @@ The JDBC interpreter connects to the data grid via a JDBC URL. To configure the 
 
 When the JDBC interpreter is properly configured, Zeppelin paragraphs that are bound to the `%insightedge_jdbc` interpreter can run SQL queries directly on the data grid.
 
+#### Querying Multiple JDBC Data Sources
+
+With the proper configuration the JDBC interpreter can query multiple JDBC data sources. To define a new data source, add to the interpreter the following properties:
+
+ 1. <data-source-name>.driver=class of jdbc driver applicable to the data source
+ 1. <data-source-name>.url=jdbc connection string to the data source
+ 1. After saving changes, Zeppelin paragraphs starting with `%insightedge_jdbc(<data-source-name>)` will run queries on the added data source
+ 
+ As an example, lets configure 3 data grid sources:
+ 
+ 1. "grid_A", set as default
+ 1. "grid_B" 
+ 1. "grid_C"
+ 
+ The JDBC interpreter configuration will be:
+ 
+ 1. `default.driver -> com.gigaspaces.jdbc.Driver`, `default.url -> insightedge:jdbc:url:spaceName=grid_A`
+ 1. `B.driver -> com.gigaspaces.jdbc.Driver`, `B.url -> insightedge:jdbc:url:spaceName=grid_B`
+ 1. `C.driver -> com.gigaspaces.jdbc.Driver`, `C.url -> insightedge:jdbc:url:spaceName=grid_C`
+ 
+ This will enable:
+ 
+ 1. Paragraphs starting with `%insightedge_jdbc` to query grid_A
+ 1. Paragraphs starting with `%insightedge_jdbc(B)` to query grid_B
+ 1. Paragraphs starting with `%insightedge_jdbc(C)` to query grid_C
+ 
+
 # Using the Web Notebook
 
 The Apache Zeppelin web notebook comes with sample notes. We recommend that you review them, and then use them as a template for your own notes. There are several things you should take into account.
