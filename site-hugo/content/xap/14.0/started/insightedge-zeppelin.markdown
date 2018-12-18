@@ -83,7 +83,7 @@ With the proper configuration the JDBC interpreter can query multiple JDBC data 
 
  1. <data-source-name>.driver=class of jdbc driver applicable to the data source
  1. <data-source-name>.url=jdbc connection string to the data source
- 1. After saving changes, Zeppelin paragraphs starting with `%insightedge_jdbc(<data-source-name>)` will run quries on the added data source
+ 1. After saving changes, Zeppelin paragraphs starting with `%insightedge_jdbc(<data-source-name>)` will run queries on the added data source
  
  As an example, lets configure 3 data grid sources:
  
