@@ -36,7 +36,7 @@ By default, InsightEdge and XAP use multicast network discovery. If your environ
 
 ## Important Tips
 
-Before you begin working with GigaSpaces products, it is recommended to review the [Performance Tuning](../admin/tuning.html) section and apply the required changes in your system. For example, you may need to update the [max file descriptors limit](../admin/tuning-infrastructure.html#Max Processes and File Descriptors Limit) before you begin.
+Before you begin working with GigaSpaces products, it is recommended to review the [Performance Tuning](../admin/tuning.html) section and apply the required changes in your system. For example, you may need to update the [max file descriptors limit](../admin/tuning-infrastructure.html#max-processes-and-file-descriptors-handlers-limit) before you begin.
 
 {{% refer %}}
 It is strongly recommended to read the following sections in addition to the above, which explain how to further fine-tune your environment for better application performance, and how to assess system performance:

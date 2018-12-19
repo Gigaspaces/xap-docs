@@ -24,7 +24,7 @@ Here are the available parameters for an embedded space:
 
 |   Name | Type |  Description |  Default | Required |  See Also |
 |--------|------|--------------|-----------|---------|-----------|
-| id                                    |String|  Used to create the GigaSpace Bean| |Yes| [GigaSpace Bean](#the-space-proxy-the-gigaspace-bean)  |
+| id                                    |String|  Used to create the GigaSpace Bean| |Yes| [GigaSpace Bean](#the-gigaspace-bean)  |
 | space-name                            |String| The space name to use| |Yes ||
 | lookup-groups                         |String|The Jini Lookup Service group to find the space using multicast        || No | [Lookup Service](../admin/network-lookup-service-configuration.html) |
 | lookup-locators                       |String| Instructs the started space to locate the Jini Lookup Service on specific host name and port        ||  No  |[Lookup Service](../admin/network-lookup-service-configuration.html)  |
@@ -46,7 +46,7 @@ Here are the available parameters for an embedded space:
 |all-in-cache-policy | | |
 |lru-cache-policy |||
 |custom-cache-policy|Custom eviction policy API for LRU cache policy mode |[Custom eviction policy](./custom-eviction-policy.html)|
-|blob-store-data-policy| Configuration and Deployment with RocksDB| [MemoryXtend](../admin/memoryxtend-rocksdb-ssd.html#configuration-and-deployment)|
+|blob-store-data-policy| Configuration and Deployment with RocksDB| [MemoryXtend](../admin/memoryxtend-rocksdb-ssd.html#basic-configuration)|
 |attribute-store|Configure a persistent SSD RocksDB add-on with an attribute store|[MemoryXtend](../admin/memoryxtend-overview.html#persistence-and-recovery)|
 |leader-selection|||
 |space-sql-function|Register user defined SQL functions|[SQL Functions](./query-sql-function.html)|
@@ -73,7 +73,7 @@ Here are the available parameters for a remote space:
 
 |   Name | Type |  Description |  Default | Required |  See Also |
 |--------|------|--------------|-----------|---------|-----------|
-| id                                    |String|  Used to create the GigaSpace Bean| |Yes| [GigaSpace Bean](#the-space-proxy-the-gigaspace-bean)  |
+| id                                    |String|  Used to create the GigaSpace Bean| |Yes| [GigaSpace Bean](#the-gigaspace-bean)  |
 | space-name                            |String| The space name to connect to the remote space| |Yes ||
 | instance-id                           | Number     |  The id of the space instance within a cluster to connect to | |  No  ||
 | lookup-groups                         |String|The Jini Lookup Service group to find the space using multicast        || No |  |

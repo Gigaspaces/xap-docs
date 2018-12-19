@@ -25,7 +25,7 @@ weight: 800
 
 - When deployed onto the [Service Grid](./terminology.html#service-grid), self-healing and SLA capabilities are added.
 
-- Full monitoring and management during runtime are available through the [Management UI](./terminology.html#management-ui).
+- Full monitoring and management during runtime are available through the [GigaSpaces Management Center](../admin/tools-desktop-ui.html).
 
 **SBA Implementation with 3 Primary Instances and 1 Backup for Each, Accessed by 2 Client Applications**
 

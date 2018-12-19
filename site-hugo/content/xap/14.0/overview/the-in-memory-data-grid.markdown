@@ -248,7 +248,7 @@ GigaSpaces and its Space-Based-Architecture embrace the {{%exurl "reactive progr
 - [Local View and Local Cache](./caching-scenarios.html)
 - [Mule ESB Integration](../dev-java/mule-esb.html)
 - [Task Execution over the Space](../dev-java/task-execution-overview.html)
-- [Asynchronous Operations](../dev-java/the-gigaspace-interface-overview.html#asynchronous-operations)
+- Asynchronous Operations
 - [Drools Rule Engine Integration](/sbp/xap-drools-integration.html) - Available from a 3rd party.
 
 

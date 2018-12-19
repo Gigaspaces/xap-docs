@@ -23,7 +23,7 @@ Using GigaSpaces IMDG as a cache provides you the following benefits:
 - Less load on the database layer: The cache isolates the database from the application to some extent, so less contention is generated at the database layer.
 - Continuous High-Availability: Zero downtime of your data access layer with the ability to survive system failures without any data loss.
 
-Both the In-line cache and the Side cache support the common deployment topologies: [replicated](./terminology.html#primary-backup-data-grid), [partitioned](./terminology.html#partitioned-data-grid) and [primary-backup partitioned](./terminology.html#primary-backup-partitioned-data-grid).
+Both the In-line cache and the Side cache support the common deployment topologies: replicated, [partitioned](./terminology.html#data-grid-topologies) and [high availability](./terminology.html#data-grid-topologies).
 
 {{%  anchor in-line %}}
 
@@ -163,7 +163,7 @@ Here are few options you may use to refresh the cache:
 - Programmatic expiration - You may expire the object using:
     - `net.jini.core.lease.Lease.cancel()` - You can get the Lease object as a result of a write operation for a new object.
     - `GigaSpace.write` operation for an existing object (update) using a short lease time. See the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface write operation for details.
-    - Take operation with [TakeModifiers.EVICT_ONLY mode](../dev-java/lru-cache-policy.html#explicit-eviction-of-objects-from-the-space). See the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface take operation for details.
+    - Take operation with [TakeModifiers.EVICT_ONLY mode](../dev-java/lru-cache-policy.html#space-config-engine-memory-usage-explicit-gc). See the [GigaSpace]({{% api-javadoc %}}/org/openspaces/core/GigaSpace.html) interface take operation for details.
 
 ## Refresh Data using LRU and Timer
 

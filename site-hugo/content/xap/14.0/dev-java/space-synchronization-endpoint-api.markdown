@@ -96,7 +96,8 @@ There are three events the interceptor can receive and act upon:
 
 ## On Transaction Consolidation Failure
 
-This event is triggered upon distributed transaction consolidation failure, refer to [Mirror](./async-persistency-mirror-advanced.html#Mirror behavior with Distributed Transactions) or [Gateway](./multi-site-replication-overview.html#Configuring and Deploying the Gateway) and Distributed Transactions for more info about scenarios triggering this event.
+This event is triggered upon distributed transaction consolidation failure, refer to [Mirror](./async-persistency-mirror-advanced.html#mirror-behavior-with-distributed-transactions) or [Gateway](./multi-site-replication-overview.html#configuring-and-deploying-the-gateway) and Distributed Transactions for more info about scenarios triggering this event.
+
 The space synchronization endpoint can get data about the current transaction participant (transaction part in a specific partition) for which the consolidation had failed and decide whether to commit or abort this participant data independently of the other participants. This is done by interacting with the `ConsolidationParticipantData` which is passed to the method as argument. This object contains all the relevant data, such as the operations and entries that are under this transaction participant, transaction metadata which contains its id, the source which participate in this transaction etc.
 
 ## After Transaction Synchronization
@@ -151,7 +152,7 @@ public class MySpaceSynchronizationEndpoint extends SpaceSynchronizationEndpoint
 }
 ```
 
-#### Getting the ID and Routing Field values
+#### Getting the ID and Routing Field Values
 
 The `DataSyncOperation` allows you getting the Space ID (Key) and Routing Field values using the `TypeDescriptor` and the `SpaceDocument`. See below example:
 
@@ -212,9 +213,9 @@ public class MySpaceSynchronizationEndpoint extends SpaceSynchronizationEndpoint
 For implementation reference see our built in Hibernate and Cassandra implementations: [DefaultHibernateSpaceSynchronizationEndpoint]({{% api-javadoc %}}/index.html?org/openspaces/persistency/hibernate/DefaultHibernateSpaceSynchronizationEndpoint.html) and [CassandraSpaceSynchronizationEndpoint]({{% api-javadoc %}}/index.html?org/openspaces/persistency/cassandra/CassandraSpaceSynchronizationEndpoint.html) classes.
 {{% /refer %}}
 
-# Example with Failure events
+# Example with Failure Events
 
-The following example will demonstrate how to implement a space synchronization endpoint that stores in some external data store the list of distributed transactions that failed to consolidate and aborts them for later manual decision. Note, that there is a regular case where consolidation may show a false failure as described in [Gateway and Distributed Transactions](./multi-site-replication-overview.html#Configuring and Deploying the Gateway). This example will handle this case as well.
+The following example will demonstrate how to implement a space synchronization endpoint that stores in some external data store the list of distributed transactions that failed to consolidate and aborts them for later manual decision. Note, that there is a regular case where consolidation may show a false failure as described in [Gateway and Distributed Transactions](./multi-site-replication-overview.html#gateway-and-distributed-transactions). This example will handle this case as well.
 
 
 ```java

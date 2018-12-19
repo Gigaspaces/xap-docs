@@ -380,7 +380,7 @@ The GigaSpace interface provides simple way to perform bulk read operations. You
 **Here are a few important considerations when using the batch operation:**
 
 - Boosts the performance, because it perform multiple operations using one call. These methods return the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, these batch operations can be up to 10 times faster than multiple single-based operations.
-- Should be handled with care, because they can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client process. Use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
+- Should be handled with care, because they can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client process. Use the [Space Iterator](./query-paging-support.html) to return the result in batches (paging) in such cases.
 - **Does not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
 - Exception handling - operation may throw the following exceptions: [ReadMultipleException]({{% api-javadoc %}}/org/openspaces/core/ReadMultipleException.html)
  
@@ -657,7 +657,7 @@ To remove a batch of objects without returning them back into the client, use `G
 **Here are a few important considerations when using the batch operation:**
 
 -  Boosts the performance, because it performs multiple operations using one call. This method returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, this batch operation can be up to 10 times faster than multiple single-based operations.
--  Should be handled with care, because it can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client processes. Use the [GSIterator](#space-iterator) to return the result in batches (paging) in such cases.
+-  Should be handled with care, because it can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client processes. Use the [Space Iterator](./query-paging-support.html) to return the result in batches (paging) in such cases.
 -  Should be performed with transactions. This allows the client to roll back the Space to its initial state prior to when the operation was started, in case of a failure.
 -  Operation **dos not support timeout** operations. The simple way to achieve this is by calling the `read` operation first with the proper timeout, and if non-null values are returned, perform the batch operation.
 -  In the event of a take error, DataAccessException will wrap a TakeMultipleException, accessible via DataAccessException.getRootCause().

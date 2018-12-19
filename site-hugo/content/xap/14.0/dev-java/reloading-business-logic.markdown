@@ -12,8 +12,7 @@ weight: 350
 The service reloading feature allows you to reload business logic (Spring beans) without shutting down the application or undeploying a Processing Unit. In order to do this, any reloadable business logic needs to be defined in a special Spring XML file. The Spring XML file is then referenced very similar to the [Space Mode Context Loader](./space-mode-context-loader.html) from inside the pu.xml.
 
 {{% note %}}
-Service Reloading only works when downloading the processing unit to the GSC is disabled (pu.download deploy property should be set to false). For more information on how to do it, see [this page](./deploying-onto-the-service-grid.html#distributionToGSCs).
-For service reloading to work, common classes have to be copied to the &lt;GigaSpacesRoot&gt;/lib/platform/ext folder
+Service Reloading only works when downloading the processing unit to the GSC is disabled (pu.download deploy property should be set to false). For more information on how to do it, see the [Deploying onto the Grid](./deploying-onto-the-service-grid.html#distribution-of-processing-unit-binaries-to-the-running-gscs) page. For service reloading to work, common classes have to be copied to the **&lt;GigaSpacesRoot&gt;/lib/platform/ext** folder.
 {{%/note%}}
 
 # Configuring Reloadable Business Logic
