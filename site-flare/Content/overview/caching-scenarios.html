@@ -22,7 +22,7 @@
 <li>Continuous High-Availability: Zero downtime of your data access layer with the ability to survive system failures without any data loss.</li>
 </ul>
 
-<p>Both the In-line cache and the Side cache support the common deployment topologies: <a href="terminology.html#primary-backup-data-grid">replicated</a>, <a href="terminology.html#partitioned-data-grid">partitioned</a> and <a href="terminology.html#primary-backup-partitioned-data-grid">primary-backup partitioned</a>.</p>
+<p>Both the In-line cache and the Side cache support the common deployment topologies: replicated, <a href="terminology.html#data-grid-topologies">partitioned</a> and <a href="terminology.html#data-grid-topologies">high availability</a>.</p>
 
  <a name="in-line">&#160;</a>
 
@@ -178,7 +178,7 @@
 <ul>
 <li><code>net.jini.core.lease.Lease.cancel()</code> - You can get the Lease object as a result of a write operation for a new object.</li>
 <li><code>GigaSpace.write</code> operation for an existing object (update) using a short lease time. See the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html">GigaSpace</a> interface write operation for details.</li>
-<li>Take operation with <a href="../dev-java/lru-cache-policy.html#explicit-eviction-of-objects-from-the-space">TakeModifiers.EVICT_ONLY mode</a>. See the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html">GigaSpace</a> interface take operation for details.</li>
+<li>Take operation with <a href="../dev-java/lru-cache-policy.html#space-config-engine-memory-usage-explicit-gc">TakeModifiers.EVICT_ONLY mode</a>. See the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html">GigaSpace</a> interface take operation for details.</li>
 </ul></li>
 </ul>
 

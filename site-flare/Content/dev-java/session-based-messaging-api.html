@@ -590,7 +590,7 @@ If you need to terminate the notify registration before the lease expires, it is
 <li><code>space-config.engine.notify_max_threads</code></li>
 </ul>
 
-<p>See the <a href="notify-container-overview.html#Scaling Notification Delivery">Scaling Notification Delivery</a> for details.</p>
+<p>See the <a href="notify-container-overview.html#scaling-notification-delivery">Scaling Notification Delivery</a> for details.</p>
 </div>
 
 <p>To reduce the amount of stale registrations, register notification with a reasonable lease time (30 seconds - 2 minutes can be a good interval), and renew these using the <a href="[%=Links.ApiJavaDoc%]/index.html?net/jini/lease/LeaseRenewalManager.html">LeaseRenewalManager</a> every 30 seconds - 2 minutes. This ensures that once the client exists in an abnormal manner, the registration automatically expires and is removed, reducing the chance to fully consume the notification thread pool and delay notification delivery to live clients.</p>

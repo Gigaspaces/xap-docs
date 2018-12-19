@@ -10,11 +10,8 @@
 <div class="tc-admon-note">
   
   <p>For the full documentation of the class's methods and constructors, see <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/SQLQuery.html">Javadoc</a>.</p>
-</div>
 
-<div class="tc-admon-note">
-  <p class="tc-admon-title">Info</p>
-  <p>The XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to <a href="sql-query-intro.html">In-Grid SQL Query</a>.</p>
+<p>The XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, refer to <a href="sql-query-intro.html">In-Grid SQL Query</a>.</p>
 </div>
 
 <h1><a name="examples">&#160;</a>Examples</h1>
@@ -46,7 +43,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
 
 <div class="tc-admon-refer">
   
-  <p>For an example of <code>SQLQuery</code> with <code>EventSession</code>, refer to the <a href="session-based-messaging-api.html#SQLQuery Template Registration">Session Based Messaging API</a> section.</p>
+  <p>For an example of <code>SQLQuery</code> with <code>EventSession</code>, refer to the <a href="session-based-messaging-api.html#register-for-notifications">Session Based Messaging API</a> page.</p>
 </div>
 
 <h1><a name="supported-space-operations">&#160;</a>Supported Space Operations</h1>
@@ -83,7 +80,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
 <li><code>rownum</code> - limits the number of rows to select.</li>
 <li>Sub queries.</li>
 <li>"." used to indicate a double data type.</li>
-<li><a href="indexing.html">Regular Index</a> and a <a href="indexing.html#Compound Indexing">Compound Index</a> - Index a single property or multiple properties to improve query execution time.</li>
+<li><a href="indexing.html">Regular Index</a> and a <a href="indexing-compound.html">Compound Index</a> - Index a single property or multiple properties to improve query execution time.</li>
 </ul>
 
 <h1><a name="unsupported-sql-features">&#160;</a>Unsupported SQL Features</h1>
@@ -426,8 +423,7 @@ space-config.QueryProcessor.time_format
 
 <div class="tc-admon-important">
   
-  <p>Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable with the .NET DateTime class. <a href="../dev-dotnet/interoperability.html#supported-types-for-matching-and-interoperability
-.html">.NET Interoperability</a></p>
+  <p>Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable with the .NET DateTime class. Refer to the <a href="../dev-dotnet/interoperability.html#supported-types-for-matching-and-interoperability">.NET Interoperability</a> page.</p>
 </div>
 
 <h1><a name="aggregators">&#160;</a>Aggregators</h1>

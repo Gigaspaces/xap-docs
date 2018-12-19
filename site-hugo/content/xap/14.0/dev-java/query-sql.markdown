@@ -471,7 +471,7 @@ Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable
 
 {{%section%}}
 {{%column width="60%" %}}
-[Aggregators](./aggregators.html) allows you to perform aggregations (Average, Max, Min, Sum, Group By, Having) on a relatively large Space object data set. A query (SQLQuery or template) may be specified to determine the exact subset of Space objects to iterate while performing the aggregation. Aggregators support single and compound based execution and a fully customized Aggregation.
+[Aggregators](./aggregators.html) allows you to perform aggregations (Average, Max, Min, Sum, Group By, Having) on a relatively large Space object data set. A query (SQLQuery or template) may be specified to determine the exact subset of Space objects to iterate while performing the aggregation. Aggregators support single and compound-based execution and a fully customized Aggregation.
 
 {{%/column%}}
 {{%column width="40%" %}}
@@ -530,7 +530,7 @@ MyClass[] result = gigaspace.readMultiple(query);
 
 ## Compound Index
 
-When having an **AND** query or a template that use two or more fields for matching, a [Compound Index](./indexing.html#Compound Indexing) may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a [Template](./query-template-matching.html) uses these properties.
+When having an **AND** query or a template that use two or more fields for matching, a [Compound Index](./indexing-compound.html) may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a [Template](./query-template-matching.html) uses these properties.
 
 ## Re-using SQLQuery
 

@@ -33,7 +33,7 @@
 
 <table class="tc-borderless"><tr><td style="width:30%;"><p><img src="../Resources/Static/attachment_files/overview/processing_unit.png" width="154" height="103" /></p>
 </td>
-<td style="width:70%;"><p>A combination of clients and/or an embedded Space instance. This is the fundamental unit of deployment in GigaSpaces XAP. The Processing Unit itself is typically deployed onto the <a href="#service-grid">Service Grid</a>. Once a Processing Unit is deployed, a <span class="tc-bold">Processing Unit instance</span> is the actual runtime entity.</p>
+<td style="width:70%;"><p>A combination of clients and/or an embedded Space instance. This is the fundamental unit of deployment in GigaSpaces XAP. The Processing Unit itself is typically deployed onto the Service Grid. When a Processing Unit is deployed, a <span class="tc-bold">Processing Unit instance</span> is the actual runtime entity.</p>
 </td>
 </tr></table>
 
@@ -41,7 +41,7 @@
 
 <table class="tc-borderless"><tr><td style="width:30%;"><p><img src="../Resources/Static/attachment_files/overview/PU_space.png" width="154" height="103" /></p>
 </td>
-<td style="width:70%;"><p>A deployable package that instantiates an embedded Space instance, also called a data grid instance. A set of embedded Space instances that run within the Processing Units typically form a <a href="#Data Grid">Data Grid</a>.</p>
+<td style="width:70%;"><p>A deployable package that instantiates an embedded Space instance, also called a data grid instance. A set of embedded Space instances that run within the Processing Units typically form a data grid.</p>
 </td>
 </tr></table>
 
@@ -67,7 +67,7 @@
 
 <h2><a name="in-memory-data-grid-imdg">&#160;</a>In-Memory Data Grid (IMDG)</h2>
 
-<p>A set of Space instances, typically running within their respective processing unit instances. The space instances are connected to each other to form a space cluster. The relations between the spaces define the <a href="#Data Grid Topology">Data Grid Topology</a>.</p>
+<p>A set of Space instances, typically running within their respective processing unit instances. The space instances are connected to each other to form a space cluster. The relations between the spaces define the data grid topology.</p>
 
  <a name="Data">&#160;</a>
 
@@ -79,7 +79,7 @@
 
 <table class="tc-borderless"><tr><td style="width:40%;"><p><img src="../Resources/Static/attachment_files/overview/partitioned_data_grid.png"  /></p>
 </td>
-<td style="width:60%;"><p>Each Data Grid instance (partition) holds a different subset of the objects in the data grid. When the objects are written to this data grid, they are routed to the proper partition according to a predefined attribute in the object that acts as the <a href="#Routing">routing</a> index.</p>
+<td style="width:60%;"><p>Each Data Grid instance (partition) holds a different subset of the objects in the data grid. When the objects are written to this data grid, they are routed to the proper partition according to a predefined attribute in the object that acts as the routing index.</p>
 </td>
 </tr></table>
 
@@ -99,7 +99,7 @@
 
 <table class="tc-borderless"><tr><td style="width:45%;"><p><img src="../Resources/Static/attachment_files/overview/partitioned_data_grid_HA.png"  /></p>
 </td>
-<td style="width:55%;"><p>A <a href="#Partitioned Data Grid">partitioned data grid</a>, with one or more <a href="#Primary Backup Data Grid">backup</a> instances for each partition. Each data grid instance (partition) holds a different subset of the objects in the data grid, and replicates this subset to its backup instance/s.</p>
+<td style="width:55%;"><p>A partitioned data grid, with one or more backup instances for each partition. Each data grid instance (partition) holds a different subset of the objects in the data grid, and replicates this subset to its backup instance/s.</p>
 </td>
 </tr></table>
 
@@ -109,7 +109,7 @@
 
  <a name="Processing">&#160;</a>
 
-<p>A container that hosts a <a href="#Processing Unit">Processing Unit</a>. The Processing Unit can run only inside a hosting Processing Unit Container.</p>
+<p>A container that hosts a Processing Unit. The Processing Unit can run only inside a hosting Processing Unit Container.</p>
 
 <h2><a name="types-of-processing-unit-containers">&#160;</a>Types of Processing Unit Containers</h2>
 
@@ -121,26 +121,26 @@
 
 <h3><a name="service-grid-processing-unit-container-sla-driven-container">&#160;</a>Service Grid Processing Unit Container (SLA-Driven Container)</h3>
 
-<p>A Processing Unit Container that runs within a <a href="#GSC">Grid Service Container</a>. It enables running the Processing Unit within a <a href="#service-grid">service grid</a>, which provides self-healing and SLA capabilities to components deployed on it.</p>
+<p>A Processing Unit Container that runs within a Grid Service Container. It enables running the Processing Unit within a service grid, which provides self-healing and SLA capabilities to components deployed on it.</p>
 
  <a name="Service">&#160;</a>
 
 <h3><a name="service-grid">&#160;</a>Service Grid</h3>
 
-<p>A set of <a href="#gsc">Grid Service Containers (GSCs)</a> managed by a <a href="#gsm">Grid Service Manager</a>. The containers host various deployments of <a href="#Processing Unit">Processing Units</a> and <a href="#Data Grid">data grids</a>.
+<p>A set of Grid Service Containers (GSCs) managed by a Grid Service Manager. The containers host various deployments of Processing Units and data grids.
 Each container can be run on a separate physical machine.</p>
 
  <a name="GSC">&#160;</a>
 
 <h3><a name="grid-service-container-gsc">&#160;</a>Grid Service Container (GSC)</h3>
 
-<p>A <a href="#service-grid">service grid</a> component that hosts <a href="#processing-unit">Processing Unit</a> instances. A machine can run one or more <a href="#gsc">GSC</a> processes. Each GSC communicates with a manager component <a href="#gsm">GSM</a>. The GSC receives requests to start/stop a Processing Unit instance, and sends information about the machine that runs it (operating system, processor architecture, current memory and CPU stats), the software installed on it, and the status of Processing Unit instances currently running on it.</p>
+<p>A service grid component that hosts Processing Unit instances. A machine can run one or more GSC processes. Each GSC communicates with a manager component (GSM). The GSC receives requests to start/stop a Processing Unit instance, and sends information about the machine that runs it (operating system, processor architecture, current memory and CPU stats), the software installed on it, and the status of Processing Unit instances currently running on it.</p>
 
  <a name="GSM">&#160;</a>
 
 <h3><a name="grid-service-manager-gsm">&#160;</a>Grid Service Manager (GSM)</h3>
 
-<p>The <a href="#gsm">GSM</a> is a <a href="#service-grid">service grid</a> component that manages a set of <a href="#gsc">Grid Service Containers (GSCs)</a>. A GSM has an API for deploying/undeploying Processing Units. When a GSM is instructed to deploy a Processing Unit, it finds an appropriate, available GSC and tells that GSC to run an instance of that Processing Unit. It then continuously monitors that Processing Unit instance to verify that it is alive, and that the SLA is not breached.</p>
+<p>The GSM is a service grid component that manages a set of Grid Service Containers (GSCs). A GSM has an API for deploying/undeploying Processing Units. When a GSM is instructed to deploy a Processing Unit, it finds an appropriate, available GSC and tells that GSC to run an instance of that Processing Unit. It then continuously monitors that Processing Unit instance to verify that it is alive, and that the SLA is not breached.</p>
 
 </body>
 </html>

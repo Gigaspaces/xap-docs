@@ -11,7 +11,7 @@
 
 <div class="tc-admon-note">
   
-  <p>It is highly recommended to index one or more of the properties used in the template to speed up the matching process. For more information see <a href="indexing.html">Indexing</a>.
+  <p>It is highly recommended to index one or more of the properties used in the template to speed up the matching process. For more information see <a href="indexing-overview.html">Indexing</a>.
 If you require additional query options refer to <a href="query-sql.html">SQLQuery</a>.</p>
 </div>
 
@@ -46,7 +46,7 @@ Person person = gigaspace.read(template);
 
 <h1><a name="indexes">&#160;</a>Indexes</h1>
 
-<p>GigaSpaces XAP includes a sophisticated built-in real-time indexing engine (regardless whether the space is persistent or not) that maintains a hash and btree like indexes for each indexed Space Class attribute. If you store a large number of Space objects from the same class type in the space, consider defining one or more indexes for attributes used with template matching or <a href="query-sql.html">SQL Query</a>. Defining indexes will improve the <code>read,take,readMultiple,takeMultiple,clear,count</code> operations response time significantly. Remember, indexes impact <code>write</code> and <code>take</code> operations response time, so choose your indexed fields carefully - each index has an overhead. GigaSpaces support index for equality , comparison (bigger/less than) queries and support <a href="indexing.html">Regular Index</a> for a specific field and a <a href="indexing.html#Compound Indexing">Compound Index</a> for multiple fields. Indexes can be defined for space class root level object or for a nested field allowing you to query different type of objects ("join") using the same query without any performance penalty.</p>
+<p>GigaSpaces XAP includes a sophisticated built-in real-time indexing engine (regardless whether the space is persistent or not) that maintains a hash and btree like indexes for each indexed Space Class attribute. If you store a large number of Space objects from the same class type in the space, consider defining one or more indexes for attributes used with template matching or <a href="query-sql.html">SQL Query</a>. Defining indexes will improve the <code>read,take,readMultiple,takeMultiple,clear,count</code> operations response time significantly. Remember, indexes impact <code>write</code> and <code>take</code> operations response time, so choose your indexed fields carefully - each index has an overhead. GigaSpaces support index for equality , comparison (bigger/less than) queries and support <a href="indexing.html">Space Index</a> for a specific field and a <a href="indexing-compound.html">Compound Index</a> for multiple fields. Indexes can be defined for space class root level object or for a nested field allowing you to query different type of objects ("join") using the same query without any performance penalty.</p>
 
 <h1><a name="inheritance-support">&#160;</a>Inheritance Support</h1>
 
