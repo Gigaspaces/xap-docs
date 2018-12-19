@@ -27,19 +27,6 @@ Intel's Optane DC is not yet available in the market, so to use the GigaSpaces P
 If you would like to receive early access to the Optane PC hardware for evaluation purposes, contact us to [request a demo](https://www.gigaspaces.com/request-demo) via the GigaSpaces website.
 {{%/note%}}
 
-
-# Prerequisites
-
-The GigaSpaces PMEM driver is based on the libpmem library, which provides low-level persistent memory support. In order to use this driver, you need the following shared libraries installed:
-
-* libpmem
-* libpmemobj
-* libpmempool
-
-Additionally, make sure that `LD_LIBRARY_PATH` includes the above libraries running in your environment.
-
-For information about these libraries and how to install them, refer to the Intel Persistent Memory Programming project website at https://pmem.io/.
-
 # Basic Configuration
 
 {{%note%}}
