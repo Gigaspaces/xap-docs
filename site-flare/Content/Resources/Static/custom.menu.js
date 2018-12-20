@@ -1,4 +1,4 @@
-var versionData = {
+﻿var versionData = {
   '14.0': { 'url': '/xap/14.0/Default.html', 'label': '14.0 Early Access' },
   '12.3': { 'url': '/xap/12.3' },
   '12.2': { 'url': '/xap/12.2' },
@@ -25,5 +25,5 @@ var resourcesData = {
 
 var buttonsData = [
   '<button type="button" onclick="location.href=\'https://github.com/xap\'" class="navbar-btn btn-fork"> <i class="fa fa-github" aria-hidden="true"></i> Fork me on Github </button>',
-  '<button type="button" onclick="location.href=\'http://www.gigaspaces.com/xap-download\'" class="navbar-btn btn-download">Get Latest GA </button>'
+  '<button type="button" onclick="location.href=\'http://www.gigaspaces.com/download-center\'" class="navbar-btn btn-download">Get Latest GA </button>'
 ]
