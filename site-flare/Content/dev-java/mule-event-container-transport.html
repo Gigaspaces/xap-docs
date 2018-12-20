@@ -121,9 +121,9 @@
 
 <h1><a name="transaction-support">&#160;</a>Transaction Support</h1>
 
-<p>Since the inbound component is based on the event containers, transaction support can be enabled using the event container transaction support. Learn how to do this with the <a href="polling-container-overview.html#OpenSpacesEventsComponent-PollingContainer-TransactionSupport">polling container</a>.</p>
+<p>Since the inbound component is based on the event containers, transaction support can be enabled using the event container transaction support. Learn how to do this with the <a href="polling-container-transactions.html">polling container</a>.</p>
 
-<p>Any operation performed using the <code>GigaSpace</code> interface joins the ongoing transaction started by the event container using its support for <a href="the-gigaspace-interface-overview.html#OpenSpacesCoreComponent-GigaSpace-DeclarativeTransactions">declarative transactions</a>.</p>
+<p>Any operation performed using the <code>GigaSpace</code> interface joins the ongoing transaction started by the event container using its support for <a href="transaction-overview.html#declarative-transaction-demarcation">declarative transactions</a>.</p>
 
 <p>This means that any outbound component operating within a Spring managed transaction automatically joins the transaction since it uses <code>GigaSpace</code>. For outbound components that are used with a different inbound component (such as JMS), the Mule Spring transaction manager can be used. Here is an example (note the custom-transaction tag in the inbound and outbound transports):</p>
 

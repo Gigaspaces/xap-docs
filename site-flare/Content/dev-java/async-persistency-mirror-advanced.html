@@ -432,7 +432,7 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
 <ul>
 <li>The Mirror Service cannot be used with a single space. It is supported with the <code>async-replicated</code>, and <code>partitioned</code> cluster schemas.</li>
 <li>The Mirror Service is a single space which joins a replication group. The Mirror Service is not a clustered space or part of the replication group declaration.</li>
-<li>When the Mirror Service is loaded, it does not perform memory recovery. See the <a href="#reliability">reliability section</a> for more details.</li>
+<li>When the Mirror Service is loaded, it does not perform memory recovery.</li>
 <li><a href="transient-entries.html">Transient Entries</a> are not persisted into the data source, just as in any other persistent mode.</li>
 <li>You should have one Mirror Service running per Data-Grid cluster.</li>
 <li>The Mirror Service cannot be clustered. Deploying it as a Processing unit ensures its high-availability.</li>

@@ -175,7 +175,7 @@ space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
 
 <h1><a name="change-api-with-the-embedded-model">&#160;</a>Change API with the Embedded Model</h1>
 
-<p>With the <a href="/sbp/modeling-your-data.html#Embedded vs. Non-Embedded Relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the Change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances. This significantly improves the overall system stability.</p>
+<p>With the <a href="/sbp/modeling-your-data.html#embedded-vs-non-embedded-relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the Change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances. This significantly improves the overall system stability.</p>
 
 <h1><a name="change-result">&#160;</a>Change Result</h1>
 

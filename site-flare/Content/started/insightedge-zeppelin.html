@@ -86,6 +86,54 @@
 
 <p>When the JDBC interpreter is properly configured, Zeppelin paragraphs that are bound to the <code>%insightedge_jdbc</code> interpreter can run SQL queries directly on the data grid.</p>
 
+<h3><a name="querying-multiple-jdbc-data-sources">&#160;</a>Querying Multiple JDBC Data Sources</h3>
+
+<p>You can configure the JDBC interpreter to query multiple JDBC data sources (in addition to the default data source). You define the additional data sources in the notebook by adding the following properties to the interpreter for each data source:</p>
+
+<ul>
+<li><code>&lt;data-source-name&gt;.driver</code> - The class of JDBC driver applicable to the data source</li>
+<li><code>&lt;data-source-name&gt;.url</code> - The JDBC connection string to the data source</li>
+</ul>
+
+<p>After saving your changes, Zeppelin paragraphs starting with <code>%insightedge_jdbc(&lt;data-source-name&gt;)</code> can run queries on the data sources that you added.</p>
+
+<p>For example, let's say we want to query 3 data grid sources:</p>
+
+<ul>
+<li>"grid_A" (this is the default data source)</li>
+<li>"grid_B"</li>
+<li>"grid_C"</li>
+</ul>
+
+<p>Configure Apache Zeppelin in the interpreter section to enable querying one or more of these data sources with the InsightEdge JDBC interpreter. The following key/value pairs enable querying the specified data sources:</p>
+
+<p><span class="tc-bold">grid_A</span> configuration:</p>
+
+<ul>
+<li>Key = <code>default.driver</code>, Value = <code>com.gigaspaces.jdbc.Driver</code></li>
+<li>Key = <code>default.url</code>, Value = <code>insightedge:jdbc:url:spaceName=grid_A</code></li>
+</ul>
+
+<p>Paragraphs starting with <code>%insightedge_jdbc</code> will query Grid A.</p>
+
+<p><span class="tc-bold">grid_B</span> configuration:</p>
+
+<ul>
+<li>Key = <code>B.driver</code>, Value = <code>com.gigaspaces.jdbc.Driver</code></li>
+<li>Key = <code>B.url</code>, Value = <code>insightedge:jdbc:url:spaceName=grid_B</code></li>
+</ul>
+
+<p>Paragraphs starting with <code>%insightedge_jdbc</code> will query Grid B.</p>
+
+<p><span class="tc-bold">grid_C</span> configuration:</p>
+
+<ul>
+<li>Key = <code>C.driver</code>, Value = <code>com.gigaspaces.jdbc.Driver</code></li>
+<li>Key = <code>C.url</code>, Value = <code>insightedge:jdbc:url:spaceName=grid_C</code></li>
+</ul>
+
+<p>Paragraphs starting with <code>%insightedge_jdbc</code> will query Grid C.</p>
+
 <h1><a name="using-the-web-notebook">&#160;</a>Using the Web Notebook</h1>
 
 <p>The Apache Zeppelin web notebook comes with sample notes. We recommend that you review them, and then use them as a template for your own notes. There are several things you should take into account.</p>

@@ -428,7 +428,7 @@ space-config.QueryProcessor.time_format
 
 <h1><a name="aggregators">&#160;</a>Aggregators</h1>
 
-<table class="tc-borderless"><tr><td style="width:60%;"><p><a href="aggregators.html">Aggregators</a> allows you to perform aggregations (Average, Max, Min, Sum, Group By, Having) on a relatively large Space object data set. A query (SQLQuery or template) may be specified to determine the exact subset of Space objects to iterate while performing the aggregation. Aggregators support single and compound based execution and a fully customized Aggregation.</p>
+<table class="tc-borderless"><tr><td style="width:60%;"><p><a href="aggregators.html">Aggregators</a> allows you to perform aggregations (Average, Max, Min, Sum, Group By, Having) on a relatively large Space object data set. A query (SQLQuery or template) may be specified to determine the exact subset of Space objects to iterate while performing the aggregation. Aggregators support single and compound-based execution and a fully customized Aggregation.</p>
 </td>
 <td style="width:40%;"><p><img src="../Resources/Static/attachment_files/built-in-Compound-aggregators.jpg" alt="aggreg.jpg" /></p>
 </td>
@@ -480,7 +480,7 @@ MyClass[] result = gigaspace.readMultiple(query);
 
 <h2><a name="compound-index">&#160;</a>Compound Index</h2>
 
-<p>When having an <span class="tc-bold">AND</span> query or a template that use two or more fields for matching, a <a href="indexing.html#Compound Indexing">Compound Index</a> may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a <a href="query-template-matching.html">Template</a> uses these properties.</p>
+<p>When having an <span class="tc-bold">AND</span> query or a template that use two or more fields for matching, a <a href="indexing-compound.html">Compound Index</a> may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a <a href="query-template-matching.html">Template</a> uses these properties.</p>
 
 <h2><a name="re-using-sqlquery">&#160;</a>Re-using SQLQuery</h2>
 
