@@ -225,7 +225,7 @@ The following example queries for a <span class="tc-bold">Dealer</span> which ha
 
 <div class="tc-admon-important">
   <p class="tc-admon-title">The following is not supported</p>
-  <p><pre><code class="language-java">... = new SqlQuery&lt;Dealer&gt;("Cars[*](company = 'Honda' OR color = 'Red' OR tags[*] = 'Convertible')");
+  <pre><code class="language-java">... = new SqlQuery&lt;Dealer&gt;("Cars[*](company = 'Honda' OR color = 'Red' OR tags[*] = 'Convertible')");
 </code></pre>
 
 <p>As it does not make sense to perform an OR in this case.</p>

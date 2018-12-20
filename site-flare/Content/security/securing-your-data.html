@@ -290,7 +290,7 @@ These privileges should be sufficient for operations being performed by the filt
 
 <p>The filter acquires a GigaSpaces reference on filter initialization. Now the filter can perform operations on the embedded secured Space.</p>
 
-<p><pre><code class="language-java">public class SimpleFilter {
+<pre><code class="language-java">public class SimpleFilter {
     GigaSpace gigaSpace;
     @OnFilterInit
     void init(IJSpace space) {

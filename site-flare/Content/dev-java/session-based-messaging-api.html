@@ -211,18 +211,18 @@ void close() throws RemoteException, UnknownLeaseException;
 
 <p>The <code>DataEventSession</code> interface includes the following methods:</p>
 
-<p><pre><code class="language-java">public interface DataEventSession extends EventSession
+<pre><code class="language-java">public interface DataEventSession extends EventSession
 {
  EventRegistration addListener(Object template,RemoteEventListener listener,long
       lease,MarshalledObject handback,
       INotifyDelegatorFilter filter,NotifyActionType actionTypes)
-         throws RemoteException, TransactionException;</p>
+         throws RemoteException, TransactionException;
 
-<p>EventRegistration addListener(Entry template,RemoteEventListener listener, long lease,MarshalledObject handback,
+EventRegistration addListener(Entry template,RemoteEventListener listener, long lease,MarshalledObject handback,
    INotifyDelegatorFilter filter,NotifyActionType actionTypes)
-     throws RemoteException, TransactionException;</p>
+     throws RemoteException, TransactionException;
 
-<p>void removeListener(EventRegistration registration) throws RemoteException, UnknownLeaseException;
+void removeListener(EventRegistration registration) throws RemoteException, UnknownLeaseException;
 }
 </code></pre>
 </div>
@@ -230,21 +230,21 @@ void close() throws RemoteException, UnknownLeaseException;
 
 <p>A registration of interest in an event that occurs in the scope of a transaction is leased in the same way as other event interest registrations. However, the duration of the registration is the minimum length of the lease and the duration of the transaction. In other words, when the transaction ends (either because of a commit or an abort) the interest registration also ends. This is true even if the lease for the event registration has not expired, and no call has been made to cancel the lease.</p>
 
-<p><pre><code class="language-java">net.jini.core.event.EventRegistration implements Serializable
+<pre><code class="language-java">net.jini.core.event.EventRegistration implements Serializable
 {
 //Returns the identifier that will be used in all RemoteEvents generated for
 //this interest registration.
-long getID()</p>
+long getID()
 
-<p>//Returns the Lease object for this registration.
-lease getLease()</p>
+//Returns the Lease object for this registration.
+lease getLease()
 
-<p>//Returns the value of the sequence number on the event kind that was current
+//Returns the value of the sequence number on the event kind that was current
 // when the registration was granted, allowing comparison with the sequence number
 // in any subsequent notifications.
-long getSequenceNumber()</p>
+long getSequenceNumber()
 
-<p>//Returns the source that will be used in all RemoteEvents generated for this interest registration.
+//Returns the source that will be used in all RemoteEvents generated for this interest registration.
 Object getSource()
 }
 </code></pre>

@@ -35,7 +35,7 @@ int safeABS( int value)
 <div class="tc-admon-note">
   
   <p>An auto-generated space ID can be used for routing as well. If the space ID is not defined in a document type, it will be implicitly defined to auto-generate the ID and routing information. (In earlier versions this was not supported, and was ignored in the implicit routing property selection mechanism.)</p>
-</div>}</p>
+</div>
 
 <p>In some scenarios, the data model does not require sophisticated partitioning, and simple space-id-based partitioning is all that's needed (hence the default). In other scenarios this is not enough. For example, suppose we have a <span class="tc-bold">Customer</span> class with a <span class="tc-bold">customerId</span>, and an <span class="tc-bold">Order</span> class with an <span class="tc-bold">orderId</span> and <span class="tc-bold">customerId</span>, and we want all the orders of each customer to be co-located with it in the same partition. In that case we'd explicitly set the routing property of <span class="tc-bold">Order</span> to <span class="tc-bold">customerId</span> to ensure they're co-located.</p>
 

@@ -69,7 +69,6 @@ val ds = spark.read.grid[Product].as[Product].where("quantity &gt; 0")
 <pre><code class="language-scala">//This does not use pushdown predicates and is performed in the client side.
 spark.read.grid[Product].as[Product].filter(p =&gt; p.quantity &gt; 0).count()
 </code></pre>
-</p>
 </div>
 
 <h2><a name="geospatial-api-support-1">&#160;</a>Geospatial API Support</h2>
