@@ -274,7 +274,7 @@ System.out.println("The Result:" + Arrays.asList(result_str));
 <li>All Java class attributes are translated into their corresponding SQL types.</li>
 <li>Class names are translated into table names.</li>
 <li>Field names are translated into column names.</li>
-<li>Indexed columns are translated into indexed fields. Make sure the <code>btree</code> index is turned on, allowing fast processing of bigger than/less than queries. For more details, refer to the <a href="indexing.html#Extended Indexing">Indexing</a> section.</li>
+<li>Indexed columns are translated into indexed fields. Make sure the <code>btree</code> index is turned on, allowing fast processing of bigger than/less than queries. For more details, refer to the <a href="indexing-overview.html">Indexing</a> section.</li>
 </ul>
 
 <p>The following information represents the SQL-to-Java mapping conducted at runtime when a table is created via the JDBC driver.</p>
@@ -483,7 +483,7 @@ ResultSet rs = st.executeQuery();
 
 <h1><a name="indexing">&#160;</a>Indexing</h1>
 
-<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE,  and IS NULL statements. For more information, see <a href="indexing.html">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code>statements.</p>
+<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE,  and IS NULL statements. For more information, see <a href="indexing-overview.html">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code>statements.</p>
 
 <h1><a name="partitioning-support">&#160;</a>Partitioning Support</h1>
 

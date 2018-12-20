@@ -131,7 +131,7 @@ notifyEventListenerContainer.destroy();
 
 <p>This behavior should be avoided, as it may throttle the activity or impose large concurrent replication activity (if a backup/replica is running). This in turn can consume a large amount of CPU and network resources within a short period of time. This can be observed with garbage created very quickly, which may cause long pauses due to garbage collection activity.</p>
 
-<p>To prevent this, the notify listener implementation should have <a href="#batch-events">batching enabled</a>, where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a <a href="polling-container-overview.html#notify-verses-polling-container">polling container</a> should be considered, as this is a more controlled event handler.</p>
+<p>To prevent this, the notify listener implementation should have <a href="#batch-events">batching enabled</a>, where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a <a href="polling-container-overview.html#notify-vs-polling-container">polling container</a> should be considered, as this is a more controlled event handler.</p>
 
 <h1><a name="template-definition">&#160;</a>Template Definition</h1>
 
@@ -189,7 +189,7 @@ public class SimpleListener {
 
 <div class="tc-admon-note">
   
-  <p>A polling or notify container can have only one template. If you need multiple event handlers, you must either create another container or use the <a href="session-based-messaging-api.html#Registering Large Number of Listeners">Session Based Messaging API</a>, which supports multiple listeners with a single session. If you use multiple polling containers, make sure the different templates don't overlap each other.</p>
+  <p>A polling or notify container can have only one template. If you need multiple event handlers, you must either create another container or use the <a href="session-based-messaging-api.html#registering-large-number-of-listeners">Session Based Messaging API</a>, which supports multiple listeners with a single session. If you use multiple polling containers, make sure the different templates don't overlap each other.</p>
 </div>
 
 <h1><a name="multiple-event-handlers">&#160;</a>Multiple Event Handlers</h1>
@@ -873,7 +873,7 @@ public class SimpleListener {
   <p>To ensure that the client application reconnects automatically to the Space cluster after it is restarted, you may have to change the default configuration. Refer to <a href="../admin/tuning-proxy-connectivity.html">Proxy Connectivity</a> for details.</p>
 </div>
 
-<p>For more information, see <a href="session-based-messaging-api.html#disconnections">Auto Renew</a>.</p>
+<p>For more information, see <a href="session-based-messaging-api.html#auto-re-register-notifications-after-space-failure">Auto Re-Register Notifications After Space Failure</a>.</p>
 
 <h1><a name="resending-notifications-after-a-space-client-disconnection">&#160;</a>Resending Notifications after a Space-Client Disconnection</h1>
 

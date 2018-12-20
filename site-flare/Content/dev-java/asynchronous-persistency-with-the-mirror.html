@@ -148,7 +148,7 @@
 
 <div class="tc-admon-refer">
   
-  <p>See the <a href="space-persistency-advanced-topics.html#Properties">Space Persistency Properties</a> and the <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a> for full details about the EDS properties the you may configure.</p>
+  <p>See the <a href="space-persistency-advanced-topics.html#properties">Space Persistency Properties</a> and the <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a> for full details about the EDS properties the you may configure.</p>
 </div>
 
 <p>You <span class="tc-bold">must use a Data-Grid cluster schema that includes a backup</span> (i.e. <code>partitioned</code>) when running a Mirror Service. Without having backup, the Primary IMDG Spaces <span class="tc-bold">will not</span> replicate their activities to the Mirror Service. For testing purposes, in case you don't want to start backup spaces, you can use the <code>partitioned</code> cluster schema and have 0 as the number of backups - this will still allow the primary spaces to replicate their operations to the Mirror.</p>
@@ -178,7 +178,7 @@
 <tbody>
 <tr>
 <td align="left">operation-grouping</td>
-<td align="left">Options:<br/>group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).<br/>group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).<br/>See the <a href="async-persistency-mirror-advanced.html#Mirror behavior with Distributed Transactions">Mirror behavior with Distributed Transactions</a> for details</td>
+<td align="left">Options:<br/>group-by-space-transaction - Mirror delegating each transaction separately to the data source (database).<br/>group-by-replication-bulk - Mirror delegating all replicated items as one bulk to the data source (database).<br/>See the <a href="async-persistency-mirror-advanced.html#mirror-behavior-with-distributed-transactions">Mirror behavior with Distributed Transactions</a> for details</td>
 <td align="left">group-by-replication-bulk</td>
 </tr>
 
@@ -302,7 +302,7 @@ See com.gigaspaces.sync.DataSyncOperation for more details.</p>
 
 <h1><a name="mirror-monitoring">&#160;</a>Mirror Monitoring</h1>
 
-<p>The activity of the mirror service can be monitored using the <a href="administration-and-monitoring-overview.html#AdministrationandMonitoringAPI-MonitoringtheMirrorService">Administration and monitoring API</a>. This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.</p>
+<p>The activity of the mirror service can be monitored using the <a href="administration-and-monitoring-overview.html#monitoring-the-mirror-service">Administration and monitoring API</a>. This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.</p>
 
 <p>You may view Mirror and its replication statistics via the <a href="../admin/gigaspaces-management-center.html">GigaSpaces Management Center</a>. Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.</p>
 
