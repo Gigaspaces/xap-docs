@@ -1,91 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Viewing Container Information</h1>
-  <p><span class="tc-bold">To view the general container details:</span></p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Command Line Interface" style="padding:10px"><p><span class="tc-bold">List all containers</span></p>
-
-<p><span class="tc-italic">Command:</span></p>
-
-<p><code>xap container list</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This command lists all the containers on the current host.</p>
-
-<p><span class="tc-italic">Input Example:</span></p>
-
-<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap container list
+    <head>
+    </head>
+    <body>
+        <h1>Viewing Container Information</h1>
+        <p><span class="tc-bold">To view the general container details:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-bold">List all containers</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>xap container list</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command lists all the containers on the current host.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap container list
 </code></pre>
-
-<p><span class="tc-italic">Output Example:</span></p>
-
-<p><img src="../Resources/Static/attachment_files/admin/cli-xap-container-list.png" alt="image" /></p>
-
-<p><span class="tc-italic">Parameters and Options:</span></p>
-
-<p>None</p>
-
-<p><span class="tc-bold">List container details</span></p>
-
-<p><span class="tc-italic">Command:</span></p>
-
-<p><code>xap container info &lt;container ID&gt;</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This command lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.</p>
-
-<p><span class="tc-italic">Input Example:</span></p>
-
-<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap container info admin~22200
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-container-list.png" alt="image" class="tc-picture50" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <p>None</p>
+                <p><span class="tc-bold">List container details</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>xap container info &lt;container ID&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap container info admin~22200
 </code></pre>
-
-<p><span class="tc-italic">Output Example:</span></p>
-
-<p><img src="../Resources/Static/attachment_files/admin/cli-xap-container-info.png" alt="image" /></p>
-
-<p><span class="tc-italic">Parameters and Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Item</th>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Parameter</td>
-<td align="left">Container ID</td>
-<td align="left">Provide the ID of container for which you want to see the details.</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<div title="REST Manager API" style="padding:10px"><p><span class="tc-bold">List all containers</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /containers</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists all the containers in the Processing Unit instances.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers'
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-container-info.png" alt="image" class="tc-picture50" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">Container ID</td>
+                            <td align="left">Provide the ID of container for which you want to see the details.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-bold">List all containers</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists all the containers in the Processing Unit instances.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">[
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">[
   {
     "id": "admin~13972",
     "pid": 13972,
@@ -97,29 +90,23 @@
   }
 ]
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<p>None.</p>
-
-<p><span class="tc-bold">List container details</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /containers{id}</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <p>None.</p>
+                <p><span class="tc-bold">List container details</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">{
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
   "id": "admin~13972",
   "pid": 13972,
   "zones": [],
@@ -129,45 +116,38 @@
   ]
 }
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>containerId</td>
-<td>Provide the ID of the Processing Unit instance for which you want to see the container details.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List JVM details for a specific container</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /containers{id}/details/jvm</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists the JVM details for the specified container.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/details/jvm'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the Processing Unit instance for which you want to see the container details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List JVM details for a specific container</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}/details/jvm</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the JVM details for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/details/jvm'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">{
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
   "startTime": 1521364936818,
   "jmxUrl": "service:jmx:rmi:///jndi/rmi://admin:10101/jmxrmi",
   "vmName": "Java HotSpot(TM) 64-Bit Server VM",
@@ -308,45 +288,38 @@
   }
 }
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>containerId</td>
-<td>Provide the ID of the container for which you want to see the JVM details.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List transport details for a specific container</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /containers{id}/details/transport</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists transport details, such as port and thread information, for the specified container.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/details/transport'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the container for which you want to see the JVM details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List transport details for a specific container</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}/details/transport</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists transport details, such as port and thread information, for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/details/transport'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">{
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
   "hostAddress": "172.20.3.93",
   "hostName": "admin",
   "bindHost": "admin",
@@ -356,45 +329,38 @@
   "isSslEnabled": false
 } 
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>containerId</td>
-<td>Provide the ID of the container for which you want to see the transport details.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List JVM statistics for a specific container</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /containers{id}/statistcis/jvm</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists the JVM statistics for the specified container.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/statistics/jvm'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the container for which you want to see the transport details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List JVM statistics for a specific container</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}/statistcis/jvm</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the JVM statistics for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/statistics/jvm'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">{
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
   "timestamp": 1521376850952,
   "uptime": 11914185,
   "memoryHeapCommittedInBytes": 523763712,
@@ -407,45 +373,38 @@
   "gcTime": 290
 }
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>containerId</td>
-<td>Provide the ID of the container for which you want to see the JVM statistics.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List transport statistics for a specific container</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /containers{id}/statistcis/transport</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists the tranport statistics, such as completed tasks and thread information, for the specified container.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/statistics/transport'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the container for which you want to see the JVM statistics.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List transport statistics for a specific container</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}/statistcis/transport</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the tranport statistics, such as completed tasks and thread information, for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/statistics/transport'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">{
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
   "timestamp": 1521376929557,
   "completedTaskCount": 19294,
   "completedTaskPerSecond": 0.000012682590109740723,
@@ -454,93 +413,91 @@
   "queueSize": 0
 }
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>containerId</td>
-<td>Provide the ID of the container for which you want to see the transport statistics.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<div title="Web Management Console" style="padding:10px"><p>The Hosts view provides general overview of the containers that are running in the XAP environment.</p>
-
-<div class="tc-admon-note">
-  
-  <p>For a description of the other information displayed in the Hosts view, see the <a href="admin-service-grid-view-host-information.html">Viewing Host Information</a> topic.</p>
-</div>
-
-<table>
-  <tr>
-    <th>Item</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td colspan="2"><i>Grid Service Container</i></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Name of the GSC.</td>
-  </tr>
-  <tr>
-    <td>CPU</td>
-    <td>Indicator of how much CPU is being used, in %.</td>
-  </tr>
-  <tr>
-    <td>Used Heap (MB)</td>
-    <td>Indicator of how much heap memory the GSC is utilizing, in both MB and %.</td>
-  </tr>
-  <tr>
-    <td>Threads</td>
-    <td>How many threads the GSC has open.</td>
-  </tr>
-  <tr>
-    <td>Processing Units</td>
-    <td>Processing Units and number of Processing Unit instances being hosted by the GSC.</td>
-  </tr>
-  <tr>
-    <td>Primaries &amp; Backups</td>
-    <td>Processing Unit instances being hosted by the GSC, according to primary and backup status.</td>
-  </tr>
-  <tr>
-    <td colspan="2"><i>Grid Service Manager/Lookup Service</i></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Name of the container.</td>
-  </tr>
-  <tr>
-    <td>CPU</td>
-    <td>Indicator of how much CPU is being used, in %.</td>
-  </tr>
-  <tr>
-    <td>Used Heap (MB)</td>
-    <td>Indicator of how much heap memory the container is utilizing, in both MB and %.</td>
-  </tr>
-</table>
-</div>
-
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
-</div>
-
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
-</div>
-</div>
-
-</body>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the container for which you want to see the transport statistics.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <p>The Hosts view provides general overview of the containers that are running in the XAP environment.</p>
+                <div class="tc-admon-note">
+                    <p>For a description of the other information displayed in the Hosts view, see the <a href="admin-service-grid-view-host-information.html">Viewing Host Information</a> topic.</p>
+                </div>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><i>Grid Service Container</i>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Name of the GSC.</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Indicator of how much CPU is being used, in %.</td>
+                    </tr>
+                    <tr>
+                        <td>Used Heap (MB)</td>
+                        <td>Indicator of how much heap memory the GSC is utilizing, in both MB and %.</td>
+                    </tr>
+                    <tr>
+                        <td>Threads</td>
+                        <td>How many threads the GSC has open.</td>
+                    </tr>
+                    <tr>
+                        <td>Processing Units</td>
+                        <td>Processing Units and number of Processing Unit instances being hosted by the GSC.</td>
+                    </tr>
+                    <tr>
+                        <td>Primaries &amp; Backups</td>
+                        <td>Processing Unit instances being hosted by the GSC, according to primary and backup status.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><i>Grid Service Manager/Lookup Service</i>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Name of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Indicator of how much CPU is being used, in %.</td>
+                    </tr>
+                    <tr>
+                        <td>Used Heap (MB)</td>
+                        <td>Indicator of how much heap memory the container is utilizing, in both MB and %.</td>
+                    </tr>
+                </table>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
 </html>

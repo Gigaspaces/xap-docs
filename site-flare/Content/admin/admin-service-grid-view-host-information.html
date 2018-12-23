@@ -1,171 +1,155 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Viewing Host Information</h1>
-  <p>A host is discovered by having a <a href="admin-service-grid-agent.html">Grid Service Agent</a> running on it.</p>
-
-<p><span class="tc-bold">To view host information:</span></p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Command Line Interface" style="padding:10px"><p><span class="tc-bold">List all hosts</span></p>
-
-<p><span class="tc-italic">Command:</span></p>
-
-<p><code>xap host list</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>Lists all the host machines.</p>
-
-<p><span class="tc-italic">Input Example:</span></p>
-
-<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host list
+    <head>
+    </head>
+    <body>
+        <h1>Viewing Host Information</h1>
+        <p>A host is discovered by having a <a href="admin-service-grid-agent.html">Grid Service Agent</a> running on it.</p>
+        <p><span class="tc-bold">To view host information:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-bold">List all hosts</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>xap host list</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>Lists all the host machines.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host list
 </code></pre>
-
-<p><span class="tc-italic">Output Example:</span></p>
-
-<p><img src="../Resources/Static/attachment_files/admin/cli-xap-host-list.png" alt="image" /></p>
-
-<p><span class="tc-italic">Parameters and Options:</span></p>
-
-<p>None</p>
-
-<p><span class="tc-bold">List containers per host</span></p>
-
-<p><span class="tc-italic">Command:</span></p>
-
-<p><code>xap host info --containers &lt;name&gt;</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>Lists all the containers on a specific host machine.</p>
-
-<p><span class="tc-italic">Input Example:</span></p>
-
-<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --containers localhost
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-host-list.png" alt="image" class="tc-picture50" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <p>None</p>
+                <p><span class="tc-bold">List containers per host</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>xap host info --containers &lt;name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>Lists all the containers on a specific host machine.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --containers localhost
 </code></pre>
-
-<p><span class="tc-italic">Output Example:</span></p>
-
-<p><img src="../Resources/Static/attachment_files/admin/cli-xap-host-containers.png" alt="image" /></p>
-
-<p><span class="tc-italic">Parameters and Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Item</th>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Parameter</td>
-<td align="left">name</td>
-<td align="left">Provide the name (or IP address) of the host for which you want to see the list of containers.</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List host operating system information</span></p>
-
-<p><span class="tc-italic">Command:</span></p>
-
-<p><code>xap host info --os &lt;name&gt;</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>Lists all the operating system and related host machine details for a specific host machine, such as OS type, host architecture, OS version, etc.</p>
-
-<p><span class="tc-italic">Input Example:</span></p>
-
-<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --os localhost
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-host-containers.png" alt="image" class="tc-picture50" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">name</td>
+                            <td align="left">Provide the name (or IP address) of the host for which you want to see the list of containers.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List host operating system information</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>xap host info --os &lt;name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>Lists all the operating system and related host machine details for a specific host machine, such as OS type, host architecture, OS version, etc.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --os localhost
 </code></pre>
-
-<p><span class="tc-italic">Output Example:</span></p>
-
-<p><img src="../Resources/Static/attachment_files/admin/cli-xap-host-os.png" alt="image" /></p>
-
-<p><span class="tc-italic">Parameters and Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Item</th>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Parameter</td>
-<td align="left">name</td>
-<td align="left">Name (or IP address) of the host for which you want to see the operating system information.</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List host operating system statistics</span></p>
-
-<p><span class="tc-italic">Command:</span></p>
-
-<p><code>xap host info --os-stats &lt;name&gt;</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>Lists several operating system statistics for a specific host machine, such as free physical memory, memory used, and free swap space.</p>
-
-<p><span class="tc-italic">Input Example:</span></p>
-
-<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --os-stats localhost
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-host-os.png" alt="image" class="tc-picture50" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">name</td>
+                            <td align="left">Name (or IP address) of the host for which you want to see the operating system information.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List host operating system statistics</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>xap host info --os-stats &lt;name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>Lists several operating system statistics for a specific host machine, such as free physical memory, memory used, and free swap space.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --os-stats localhost
 </code></pre>
-
-<p><span class="tc-italic">Output Example:</span></p>
-
-<p><img src="../Resources/Static/attachment_files/admin/cli-xap-host-os-stats.png" alt="image" /></p>
-
-<p><span class="tc-italic">Parameters and Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Item</th>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Parameter</td>
-<td align="left">name</td>
-<td align="left">Name (or IP address) of the host for which you want to see the operating system statistics.</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<div title="REST Manager API" style="padding:10px"><p><span class="tc-bold">List all hosts</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /hosts</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists the name, IP address, and containers for all the hosts in the service grid.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts'
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-host-os-stats.png" alt="image" class="tc-picture50" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">name</td>
+                            <td align="left">Name (or IP address) of the host for which you want to see the operating system statistics.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-bold">List all hosts</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /hosts</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the name, IP address, and containers for all the hosts in the service grid.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">[
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">[
   {
     "name": "admin",
     "address": "172.20.3.93",
@@ -175,29 +159,23 @@
   }
 ]
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<p>None.</p>
-
-<p><span class="tc-bold">View specific host</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /hosts{id}</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists the name, IP address, and containers for a specific host.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <p>None.</p>
+                <p><span class="tc-bold">View specific host</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /hosts{id}</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the name, IP address, and containers for a specific host.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">{
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
   "name": "admin",
   "address": "172.20.3.93",
   "containers": [
@@ -205,45 +183,38 @@
   ]
 }
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>host name</td>
-<td>Provide the host name for which you want to see the general details.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List containers per host</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /hosts{id}/containers</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists the Host ID, Process ID, zones, and Processing Unit instances for containers on a specific host.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/containers'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>host name</td>
+                            <td>Provide the host name for which you want to see the general details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List containers per host</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /hosts{id}/containers</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the Host ID, Process ID, zones, and Processing Unit instances for containers on a specific host.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/containers'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">[
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">[
   {
     "id": "admin~13972",
     "pid": 13972,
@@ -255,45 +226,38 @@
   }
 ]
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>host name</td>
-<td>Provide the host name for which you want to see the container information.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List host operating system information</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /hosts{id}/details/os</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists the container information for a specific host.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/details/os'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>host name</td>
+                            <td>Provide the host name for which you want to see the container information.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List host operating system information</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /hosts{id}/details/os</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the container information for a specific host.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/details/os'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">{
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
   "id": "172.20.3.93",
   "name": "Win32",
   "timeDelta": 0,
@@ -311,45 +275,38 @@
   "vendorVersion": "7"
 }
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>host name</td>
-<td>Provide the host name for which you want to see the operating system information.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-
-<p><span class="tc-bold">List host operating system statistics</span></p>
-
-<p><span class="tc-italic">Path</span></p>
-
-<p><code>GET /hosts{id}/statistcics/os</code></p>
-
-<p><span class="tc-italic">Description:</span></p>
-
-<p>This option lists certain operating system statistics, such as free memory and used memory, for the specified host machine.</p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/statistics/os'
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>host name</td>
+                            <td>Provide the host name for which you want to see the operating system information.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List host operating system statistics</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /hosts{id}/statistcics/os</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists certain operating system statistics, such as free memory and used memory, for the specified host machine.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/hosts/admin/statistics/os'
 </code></pre>
-
-<p><span class="tc-italic">Example Response:</span></p>
-
-<pre><code class="language-bash">{
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
   "timestamp": 1521375496115,
   "adminTimestamp": 1521375496115,
   "freeSwapSpaceSizeInBytes": 28697755648,
@@ -361,147 +318,148 @@
   "actualMemoryUsed": 14446493696
 }
 </code></pre>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>host name</td>
-<td>Provide the host name for which you want to see the operating system statistics.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<div title="Web Management Console" style="padding:10px"><p>The Hosts view provides a general overview of the host machines, Processing Units, and Spaces, and relevant containers..</p>
-
-<div class="tc-admon-note">
-  
-  <p>Container information is explained in the <a href="admin-service-grid-container-information.html">Viewing Container Information</a> topic.</p>
-</div>
-
-<table>
-  <tr>
-    <th>Item</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td colspan="2"><i>Host</i></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Name of the host machine.</td>
-  </tr>
-  <tr>
-    <td>CPU</td>
-    <td>Indicator of how much CPU is being used, in %.</td>
-  </tr>
-  <tr>
-    <td>Memory Utiliz. (GB)</td>
-    <td>Indicator of how much of the host memory is being used, in both GB and %.</td>
-  </tr>
-  <tr>
-    <td>Grid Services</td>
-    <td>List of service grid components that are up and running (Grid Service Agent and containers).</td>
-  </tr>
-  <tr>
-    <td>Processing Units</td>
-    <td>List of Processing Units that are deployed on the host (with the number of running instances).</td>
-  </tr>
-  <tr>
-    <td>Primaries &amp; Backups</td>
-    <td>Number of running Processing Unit instances according to primary and backup status.</td>
-  </tr>
-  <tr>
-    <td colspan="2"><i>Grid Service Agent</i></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Name of the Grid Service Agent.</td>
-  </tr>
-  <tr>
-    <td>CPU</td>
-    <td>Indicator of how much CPU is being used, in %.</td>
-  </tr>
-  <tr>
-    <td>Used Heap (MB)</td>
-    <td>Indicator of how much heap memory the Grid Service Agent is utilizing, in both MB and %.</td>
-  </tr>
-  <tr>
-    <td>Threads</td>
-    <td>How many threads the Grid Service Agent has open.</td>
-  </tr>
-  <tr>
-    <td colspan="2"><i>Space</i></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Name of the Space.</td>
-  </tr>
-  <tr>
-    <td>Type</td>
-    <td>Type of Space (stateful or stateless).</td>
-  </tr>
-  <tr>
-    <td colspan="2"><i>Space Instance</i></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Name of the Space instance.<br/>     
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>host name</td>
+                            <td>Provide the host name for which you want to see the operating system statistics.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <p>The Hosts view provides a general overview of the host machines, Processing Units, and Spaces, and relevant containers..</p>
+                <div class="tc-admon-note">
+                    <p>Container information is explained in the <a href="admin-service-grid-container-information.html">Viewing Container Information</a> topic.</p>
+                </div>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><i>Host</i>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Name of the host machine.</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Indicator of how much CPU is being used, in %.</td>
+                    </tr>
+                    <tr>
+                        <td>Memory Utiliz. (GB)</td>
+                        <td>Indicator of how much of the host memory is being used, in both GB and %.</td>
+                    </tr>
+                    <tr>
+                        <td>Grid Services</td>
+                        <td>List of service grid components that are up and running (Grid Service Agent and containers).</td>
+                    </tr>
+                    <tr>
+                        <td>Processing Units</td>
+                        <td>List of Processing Units that are deployed on the host (with the number of running instances).</td>
+                    </tr>
+                    <tr>
+                        <td>Primaries &amp; Backups</td>
+                        <td>Number of running Processing Unit instances according to primary and backup status.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><i>Grid Service Agent</i>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Name of the Grid Service Agent.</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Indicator of how much CPU is being used, in %.</td>
+                    </tr>
+                    <tr>
+                        <td>Used Heap (MB)</td>
+                        <td>Indicator of how much heap memory the Grid Service Agent is utilizing, in both MB and %.</td>
+                    </tr>
+                    <tr>
+                        <td>Threads</td>
+                        <td>How many threads the Grid Service Agent has open.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><i>Space</i>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Name of the Space.</td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>Type of Space (stateful or stateless).</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><i>Space Instance</i>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Name of the Space instance.<br />     
     For additional information about the Space instance, you can drill through to the Spaces view via the Actions menu.</td>
-  </tr>
-</table>
-
-<p>Additionally, you can view the following information from the Hosts tab in the Processing Units view:</p>
-
-<table>
-  <tr>
-    <th>Item</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td colspan="2">(status icon)</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>OS</td>
-    <td>Icon that indicates which operating system is running on the host machine.</td>
-  </tr>
-  <tr>
-    <td>CPU</td>
-    <td>Indicator of how much CPU is being used, in %.</td>
-  </tr>
-  <tr>
-    <td>Memory (GB)</td>
-    <td>Indicator of how much of the host memory is being used, in both GB and %.</td>
-  </tr>
-  <tr>
-    <td>Core CPUs</td>
-    <td>Number of cores in the CPU.</td>
-  </tr>
-</table>
-</div>
-
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
-</div>
-
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
-</div>
-</div>
-
-</body>
+                    </tr>
+                </table>
+                <p>Additionally, you can view the following information from the Hosts tab in the Processing Units view:</p>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">(status icon)</td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OS</td>
+                        <td>Icon that indicates which operating system is running on the host machine.</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Indicator of how much CPU is being used, in %.</td>
+                    </tr>
+                    <tr>
+                        <td>Memory (GB)</td>
+                        <td>Indicator of how much of the host memory is being used, in both GB and %.</td>
+                    </tr>
+                    <tr>
+                        <td>Core CPUs</td>
+                        <td>Number of cores in the CPU.</td>
+                    </tr>
+                </table>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
 </html>

@@ -1,49 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Replication Filters</h1>
-  
-
-<p>When constructing a replicated space topology you may need to call some business logic when data is replicated. GigaSpaces provides the <code>IReplicationFilter</code> plug-in interface <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilter.html">com.j_spaces.core.cluster.IReplicationFilter</a>, that allows you to build business logic that is called when data is sent through the replication channel.</p>
-
-<p>The <code>IReplicationFilter</code> methods are called before data is sent to the replication channel from the source space (output mode) and after coming out from the replication channel - i.e. before written to the target space (input mode). The replication filter should implement the <code>IReplicationFilter</code> interface methods.</p>
-
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/replicationfilter.jpg" alt="replicationfilter.jpg" /></p>
-</div>
-
-<p>The replication filter can be used to monitor or alter the data passed through the replication channel. The replication channel passes <code>IReplicationFilterEntry</code> objects that store the replicated data. You should <code>DefaultReplicationFilterProviderFactory</code> and set its Replication Filter implementation when constructing the Space. You can use the same replication filter implementation class for both input and output replication modes. Here are the classes you will be using with your Replication Filter implementation:</p>
-
-<ul>
-<li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilterEntry.html">IReplicationFilterEntry</a> – stores the space object data that is passed into the <code>IReplicationFilter</code>.</li>
-<li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilter.html">IReplicationFilter</a> – a replication filter is an interface called when a replication event is triggered. Two types of replication filters can be defined – an input replication and an output replication. If both of the classes specified (for input and output) are the same, only one filter object will be used for both input and output replication.</li>
-<li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/ReplicationFilterException.html">ReplicationFilterException</a> – the <code>ReplicationFilterException</code> is thrown when there are errors that occur in the replication filter.  Errors can happen in the source or target space. The error is wrapped as part of the <code>ReplicationFilterException</code> and thrown back to the client. The <code>ReplicationFilterException</code> includes methods that includes information about the origin of the error, replication mode (input/output), the implementation class and the underlying exception. The <code>ReplicationFilterException.getCause()</code> should be used to retrieve the original exception that occurred.</li>
-</ul>
-
-<div class="tc-admon-refer">
-  
-  <p>you can <span class="tc-bold">control the replication at the operation level, using configuration only</span>. For more details, refer to the <a href="replication-operations.html">Replication Operations</a> section.</p>
-</div>
-
-<h1><a name="guidelines-for-cluster-replication-filters">&#160;</a>Guidelines for Cluster Replication Filters</h1>
-
-<ul>
-<li>In order to block a space object to be replicated, assign a <code>ReplicationOperationType.DISCARD</code> value as the operation type.</li>
-<li>Don't overwrite the <code>m_Key</code> (serial number) field of the packet.</li>
-<li>Object field values (<code>m_FieldsValues</code> array) may be changed, but notice that if the serialization type of the space is not 0 (that is, fields are serialized inside the space) – then each non-native field (i.e. not from the Java.lang package) is stored in the array in a serialized format.</li>
-<li>For outgoing replication packets (output replication Filter), if you want to change  the values of some fields, deep-cloning of the <code>m_FieldsValues</code> array is needed, since the <code>m_FieldsValues</code> is a reference to the array stored in the space internal data structures.</li>
-<li>When using synchronous replication and an error has been occurs at the replication filter implementation, <code>ReplicationFilterException</code> is thrown back into the relevant thread at the client application. The ReplicationFilterException can originate at the source or target space. The ReplicationFilterException will include the relevant information to identify the origin and the underlying exception that caused the problem.</li>
-<li>When using asynchronous replication and an error occurs at the replication filter implementation, the space replication channel will be disabled, and an error will be logged into the space log file and displayed at the space console. The client application continues to function against its source space but there will not be any replication to the target space. In order to enable the replication, you should use the <code>IRemoteJSpaceAdmin.changeReplicationState()</code>.</li>
-<li>All replication packets are sent according to their replication policy. When either the Interval Milliseconds or the Interval Operations times out, a replication event is executed. <code>ReplicationOperationType.DISCARD</code> packets are sent when a sequence of operations performed on one space does not need to be performed again on the replicated members. For example, when using asynchronous replication mode, a sequence of write and take on the same object does not need to replicated. Therefore, a <code>ReplicationOperationType.DISCARD</code> packet is sent. In contrast, the take operation is always replicated to ensure data consistency.</li>
-</ul>
-
-<h1><a name="statistics-example">&#160;</a>Statistics Example</h1>
-
-<p>The following Replication Filter displays replication activity statistics for outgoing activity (output filter). For each replication target (i.e. mirror , WAN gateway , backup instance), it generates an output (every 5 seconds) that includes info about each replication target , operation , space class , TP , Total operations and Delta since the last sampling.</p>
-
-<p>The replication filter:</p>
-
-<pre><code class="language-java">package com.test;
+    <head>
+    </head>
+    <body>
+        <h1>Replication Filters</h1>
+        <p>When constructing a replicated space topology you may need to call some business logic when data is replicated. GigaSpaces provides the <code>IReplicationFilter</code> plug-in interface <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilter.html">com.j_spaces.core.cluster.IReplicationFilter</a>, that allows you to build business logic that is called when data is sent through the replication channel.</p>
+        <p>The <code>IReplicationFilter</code> methods are called before data is sent to the replication channel from the source space (output mode) and after coming out from the replication channel - i.e. before written to the target space (input mode). The replication filter should implement the <code>IReplicationFilter</code> interface methods.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/replicationfilter.jpg" alt="replicationfilter.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The replication filter can be used to monitor or alter the data passed through the replication channel. The replication channel passes <code>IReplicationFilterEntry</code> objects that store the replicated data. You should <code>DefaultReplicationFilterProviderFactory</code> and set its Replication Filter implementation when constructing the Space. You can use the same replication filter implementation class for both input and output replication modes. Here are the classes you will be using with your Replication Filter implementation:</p>
+        <ul>
+            <li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilterEntry.html">IReplicationFilterEntry</a> – stores the space object data that is passed into the <code>IReplicationFilter</code>.</li>
+            <li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilter.html">IReplicationFilter</a> – a replication filter is an interface called when a replication event is triggered. Two types of replication filters can be defined – an input replication and an output replication. If both of the classes specified (for input and output) are the same, only one filter object will be used for both input and output replication.</li>
+            <li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/ReplicationFilterException.html">ReplicationFilterException</a> – the <code>ReplicationFilterException</code> is thrown when there are errors that occur in the replication filter.  Errors can happen in the source or target space. The error is wrapped as part of the <code>ReplicationFilterException</code> and thrown back to the client. The <code>ReplicationFilterException</code> includes methods that includes information about the origin of the error, replication mode (input/output), the implementation class and the underlying exception. The <code>ReplicationFilterException.getCause()</code> should be used to retrieve the original exception that occurred.</li>
+        </ul>
+        <div class="tc-admon-refer">
+            <p>you can <span class="tc-bold">control the replication at the operation level, using configuration only</span>. For more details, refer to the <a href="replication-operations.html">Replication Operations</a> section.</p>
+        </div>
+        <h1><a name="guidelines-for-cluster-replication-filters">&#160;</a>Guidelines for Cluster Replication Filters</h1>
+        <ul>
+            <li>In order to block a space object to be replicated, assign a <code>ReplicationOperationType.DISCARD</code> value as the operation type.</li>
+            <li>Don't overwrite the <code>m_Key</code> (serial number) field of the packet.</li>
+            <li>Object field values (<code>m_FieldsValues</code> array) may be changed, but notice that if the serialization type of the space is not 0 (that is, fields are serialized inside the space) – then each non-native field (i.e. not from the Java.lang package) is stored in the array in a serialized format.</li>
+            <li>For outgoing replication packets (output replication Filter), if you want to change  the values of some fields, deep-cloning of the <code>m_FieldsValues</code> array is needed, since the <code>m_FieldsValues</code> is a reference to the array stored in the space internal data structures.</li>
+            <li>When using synchronous replication and an error has been occurs at the replication filter implementation, <code>ReplicationFilterException</code> is thrown back into the relevant thread at the client application. The ReplicationFilterException can originate at the source or target space. The ReplicationFilterException will include the relevant information to identify the origin and the underlying exception that caused the problem.</li>
+            <li>When using asynchronous replication and an error occurs at the replication filter implementation, the space replication channel will be disabled, and an error will be logged into the space log file and displayed at the space console. The client application continues to function against its source space but there will not be any replication to the target space. In order to enable the replication, you should use the <code>IRemoteJSpaceAdmin.changeReplicationState()</code>.</li>
+            <li>All replication packets are sent according to their replication policy. When either the Interval Milliseconds or the Interval Operations times out, a replication event is executed. <code>ReplicationOperationType.DISCARD</code> packets are sent when a sequence of operations performed on one space does not need to be performed again on the replicated members. For example, when using asynchronous replication mode, a sequence of write and take on the same object does not need to replicated. Therefore, a <code>ReplicationOperationType.DISCARD</code> packet is sent. In contrast, the take operation is always replicated to ensure data consistency.</li>
+        </ul>
+        <h1><a name="statistics-example">&#160;</a>Statistics Example</h1>
+        <p>The following Replication Filter displays replication activity statistics for outgoing activity (output filter). For each replication target (i.e. mirror , WAN gateway , backup instance), it generates an output (every 5 seconds) that includes info about each replication target , operation , space class , TP , Total operations and Delta since the last sampling.</p>
+        <p>The replication filter:</p><pre><code class="language-java">package com.test;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -142,10 +131,7 @@ public class StatsReplicationFilter implements IReplicationFilter {
     }
 }
 </code></pre>
-
-<p>The output generated looks like this:</p>
-
-<pre><code>[gsc][2/6984]   ----&gt; Fri Sep 30 11:52:27 EDT 2016 - wanSpaceUS_container1:wanSpaceUS:
+        <p>The output generated looks like this:</p><pre><code>[gsc][2/6984]   ----&gt; Fri Sep 30 11:52:27 EDT 2016 - wanSpaceUS_container1:wanSpaceUS:
 [gsc][2/6984]   OUTPUT - gateway:GB-TAKE-com.test.Data TP[Obj/sec]:2800.0 Total:875000 - Delta:14000
 [gsc][2/6984]   OUTPUT - gateway:GB-UPDATE-com.test.Data TP[Obj/sec]:3000.0 Total:328000 - Delta:15000
 [gsc][2/6984]   OUTPUT - gateway:GB-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
@@ -154,12 +140,10 @@ public class StatsReplicationFilter implements IReplicationFilter {
 [gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-UPDATE-com.test.Data TP[Obj/sec]:3000.0 Total:328000 - Delta:15000
 [gsc][2/6984]   OUTPUT - wanSpaceUS_container1_1:wanSpaceUS-WRITE-com.test.Data TP[Obj/sec]:3000.0 Total:877000 - Delta:15000
 </code></pre>
-
-<h1><a name="blocking-replication-example">&#160;</a>Blocking Replication  Example</h1>
-
-<p>The following example will start two spaces replicating data to each other. The replication filter will display the replicated data that is passed through the replication channel. The example displays all objects sent via the output filter. When an object with the data <span class="tc-bold">Block me</span> is passed, it is blocking by setting the replication Operation Type to <code>ReplicationOperationType.DISCARD</code>.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  The Space Class " style="padding:10px"><pre><code class="language-java">package com.test;
+        <h1><a name="blocking-replication-example">&#160;</a>Blocking Replication  Example</h1>
+        <p>The following example will start two spaces replicating data to each other. The replication filter will display the replicated data that is passed through the replication channel. The example displays all objects sent via the output filter. When an object with the data <span class="tc-bold">Block me</span> is passed, it is blocking by setting the replication Operation Type to <code>ReplicationOperationType.DISCARD</code>.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  The Space Class " style="padding:10px"><pre><code class="language-java">package com.test;
 
 import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;
@@ -188,8 +172,8 @@ public class MyClass {
         }
 }
 </code></pre>
-</div>
-<div title="  The Application " style="padding:10px"><pre><code class="language-java">package com.test;
+            </div>
+            <div title="  The Application " style="padding:10px"><pre><code class="language-java">package com.test;
 
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
@@ -234,9 +218,8 @@ public class ReplicationFilterTestMain {
     }
 }
 </code></pre>
-</div>
-
-<div title="  The Replication Filter " style="padding:10px"><pre><code class="language-java">package com.test;
+            </div>
+            <div title="  The Replication Filter " style="padding:10px"><pre><code class="language-java">package com.test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -312,8 +295,7 @@ public class RepFilter implements IReplicationFilter{
     }
 }
 </code></pre>
-</div>
-</div>
-
-</body>
+            </div>
+        </div>
+    </body>
 </html>
