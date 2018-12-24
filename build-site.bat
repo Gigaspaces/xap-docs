@@ -7,6 +7,8 @@ mkdir output
 
 echo *** Building hugo site ***
 call run-hugo.bat -d ..\output
+echo *** TEMP rename hugo 14.0 output ***
+move output\xap\14.0 output\xap\14.0-hugo
 
 echo *** Building flare site ***
 "C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild.exe" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
