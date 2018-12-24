@@ -1,5 +1,5 @@
 ﻿var versionData = {
-  '14.0': { 'url': '/xap/14.0/Default.html', 'label': '14.0 Early Access' },
+  '14.0': { 'url': '/xap/14.0/Default.html', 'label': '14.0' },
   '12.3': { 'url': '/xap/12.3' },
   '12.2': { 'url': '/xap/12.2' },
   '12.1': { 'url': '/xap121.html' },
