@@ -4,18 +4,10 @@
     </head>
     <body>
         <h1>Polling Container</h1>
-        <table class="tc-borderless">
-            <tr>
-                <td style="width:70%;">
-                    <p>The polling event container implements the <a href="event-listener-container.html">IEventListenerContainer</a> interface. Its life cycle consists of performing polling receive operations against the Space. If a receive operation succeeds (a value is returned from the receive operation), the <a href="event-listener-container.html#DataEventArrived">DataEventArrived</a> event is invoked. A polling event operation is mainly used when simulating Queue semantics, or when using the master-worker design pattern.</p>
-                </td>
-                <td style="width:30%;">
-                    <p>
-                        <img src="../Resources/Static/attachment_files/dotnet/Net_polling_cont.jpg" alt="Net_polling_cont.jpg" class="tc-thumbnail" />
-                    </p>
-                </td>
-            </tr>
-        </table>
+        <p>The polling event container implements the <a href="event-listener-container.html">IEventListenerContainer</a> interface. Its life cycle consists of performing polling receive operations against the Space. If a receive operation succeeds (a value is returned from the receive operation), the <a href="event-listener-container.html#DataEventArrived">DataEventArrived</a> event is invoked. A polling event operation is mainly used when simulating Queue semantics, or when using the master-worker design pattern.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/dotnet/Net_polling_cont.jpg" alt="Net_polling_cont.jpg" class="tc-picture50" />
+        </div>
         <p>The examples on this page follow a certain pattern. Each code example has two tabs: Using EventListenerContainerFactory, and PollingEventListenerContainer Code Construction.</p>
         <p>The first tab demonstrates how to create and configure a polling container using the <code>EventListenerContainerFactory</code>, and the second tab demonstrates how to build and configure a <code>PollingEventListenerContainer</code> with a constructor and setting the different properties.</p>
         <p>The following is a simple example of polling event container construction:</p>
@@ -75,7 +67,6 @@ pollingEventListenerContainer.Dispose();
         <h1><a name="primary-backup">&#160;</a>Primary/Backup</h1>
         <p>The polling event container performs receive operations only when the relevant Space it is working against is in primary mode. When the Space is in backup mode, no receive operations are performed. If the Space moves from backup mode to primary mode, the receive operations are started.</p>
         <div class="tc-admon-note">
-            <p class="tc-admon-title">Info</p>
             <p>This mostly applies when working with an embedded Space directly with a cluster member. When working with a clustered Space (performing operations against the whole cluster), the mode of the Space is always primary.</p>
         </div>
         <h1><a name="fifo-grouping">&#160;</a>FIFO Grouping</h1>

@@ -17,21 +17,19 @@
         </div>
         <p>Persistency can be configured to run in Synchronous or Asynchronous mode:</p>
         <ul>
-            <li>Synchronous Mode - see <a href="direct-persistency.html">Direct Persistency</a></li>
+            <li>
+                <p>Synchronous Mode - see <a href="direct-persistency.html">Direct Persistency</a></p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/data-grid-sync-persist.jpg" alt="data-grid-sync-persist.jpg" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p>Asynchronous Mode - see  <a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency with the Mirror</a></p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/data-grid-async-persist.jpg" alt="data-grid-async-persist.jpg" class="tc-picture50" />
+                </p>
+            </li>
         </ul>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/data-grid-sync-persist.jpg" alt="data-grid-sync-persist.jpg" class="tc-picture50" />
-            </p>
-        </div>
-        <ul>
-            <li>Asynchronous Mode - see  <a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency with the Mirror</a></li>
-        </ul>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/data-grid-async-persist.jpg" alt="data-grid-async-persist.jpg" class="tc-picture50" />
-            </p>
-        </div>
         <div class="tc-admon-note">
             <p>The difference between Synchronous and Asynchronous persistency mode is the way that data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the <code>ExternalDataSource</code> to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a <span class="tc-bold">reliable</span> asynchronous manner using the mirror Service as a write-behind activity. This mode provides maximum performance.</p>
         </div>
@@ -80,11 +78,11 @@
             </tbody>
         </table>
         <div class="tc-admon-note">
-            <p>For detailed API information, refer to <a href="hibernate-space-persistency.html">External Data Source API</a>.</p>
+            <p>For detailed API information, see the <a href="hibernate-space-persistency.html">External Data Source API</a> page.</p>
         </div>
         <p>XAP comes with a built-in implementation of <code>AbstractExternalDataSource</code> called <a href="hibernate-space-persistency.html">NHibernate Space Persistency</a>.</p>
         <div class="tc-admon-note">
-            <p>Refer to <a href="space-persistency-initial-load.html">Space Persistency Initial Load</a> for information on how to to allow the Space to pre-load its data.</p>
+            <p>Refer to <a href="space-persistency-initial-load.html">Space Persistency Initial Load</a> for information on how to allow the Space to pre-load its data.</p>
         </div>
     </body>
 </html>

@@ -60,7 +60,7 @@ public class Person {
 </code></pre>
         <div class="tc-admon-note">
             <p>Note that since the index is specified on top of the <span class="tc-bold">address</span> property, the <code>path</code> is "<span class="tc-bold">City</span>" rather than "<span class="tc-bold">Address.City</span>".
-For more information see the <a href="indexing-nested-properties.html">Nested Properties Index</a> topic.</p>
+For more information, see the <a href="indexing-nested-properties.html">Nested Properties Index</a> topic.</p>
         </div>
         <div class="tc-admon-important">
             <p>The type of the nested object must be a class - querying interfaces is not supported.
@@ -94,7 +94,7 @@ public class Person {
 </code></pre>
         <div class="tc-admon-note">
             <p>Note that since the index is specified on top of the <span class="tc-bold">PhoneNumbers</span> property, the <code>path</code> is "<span class="tc-bold">Home</span>" rather than "<span class="tc-bold">PhoneNumbers.Home</span>".
-For more information see the <a href="indexing-nested-properties.html">Nested Properties Index</a> topic.</p>
+For more information, see the <a href="indexing-nested-properties.html">Nested Properties Index</a> topic.</p>
         </div><a name="collection-support">&#160;</a>
         <h1><a name="nested-collections">&#160;</a>Nested Collections</h1>
         <p>The GigaSpaces SQL syntax supports a special operand <code>[*]</code>, which is sometimes referred to as the "contains' operand. This operand is used in conjunction with collection properties to indicate that each collection item should be evaluated, and if at least one such item matches, the owner entry is considered as matched.</p>
@@ -129,9 +129,9 @@ The following example queries for a <span class="tc-bold">Dealer</span> which ha
         </div>
         <p>The following example queries for a <span class="tc-bold">Dealer</span> which has a <span class="tc-bold">Car</span> whose <span class="tc-italic">company</span> equals "<span class="tc-bold">Honda</span>" and <span class="tc-bold">color</span> equals "<span class="tc-bold">Red</span>" and one of the Car nested <span class="tc-bold">Tags</span> List equals to "Convertible":</p><pre><code class="language-csharp">... = new SqlQuery&lt;Dealer&gt;("Cars[*](Company = 'Honda' AND Color = 'Red' AND Tags[*] = 'Convertible')");
 </code></pre>
-        <h4><a name="here-is-a-graphical-representation-of-this-query">&#160;</a>Here is a graphical representation of this query:</h4>
+        <p><a name="here-is-a-graphical-representation-of-this-query">&#160;</a>Here is a graphical representation of this query:</p>
         <div class="tc-align-center">
-            <img src="../Resources/Static/attachment_files/nestedquery.jpg" alt="../Resources/Static/attachment_files/nestedquery.jpg" class="tc-picture50" />
+            <img src="../Resources/Static/attachment_files/nestedquery.jpg" alt="../Resources/Static/attachment_files/nestedquery.jpg" class="tc-picture80" />
         </div>
         <div class="tc-admon-important">
             <p>The following is not supported</p><pre><code class="language-java">... = new SqlQuery&lt;Dealer&gt;("Cars[*](company = 'Honda' OR color = 'Red' OR tags[*] = 'Convertible')");
@@ -148,7 +148,8 @@ public List&lt;Car&gt; Cars{set; get;}
         <div class="tc-admon-note">
             <p>Note that since the index is specified on top of the <span class="tc-bold">cars</span> property, the <code>path</code> is <code>[*].Company rather than cars[*].Company</code>.
 The bigger the collection - the more memory is required to store the index at the server (since each item is indexed). Use with caution!
-For more information, see the <a href="indexing-collections.html">Collection Index</a> topic.</p>
+</p>
+            <p>For more information, see the <a href="indexing-collections.html">Collection Index</a> topic.</p>
         </div>
         <h1><a name="limitations">&#160;</a>Limitations</h1>
         <ul>

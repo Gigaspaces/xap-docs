@@ -4,20 +4,10 @@
     </head>
     <body>
         <h1>Event Listener Container</h1>
-        <table class="tc-borderless">
-            <col />
-            <col />
-            <tr>
-                <td>
-                    <p>The <code>IEventListenerContainer</code> interface is an abstraction that allows subscribing to, and receiving events from the space, where in most cases, the business logic doesn't need to be aware of the actual container implementation. The benefit of doing this, is the loose coupling between how the events are received (the different containers), and what to do with a received event (the listener). This interface has two out-of-the-box implementers: <a href="polling-container-overview.html">PollingEventListenerContainer</a> and <a href="notify-container-overview.html">NotifyEventListenerContainer</a>.</p>
-                </td>
-                <td style="width:30%;">
-                    <p>
-                        <img src="../Resources/Static/attachment_files/dotnet/Net_polling_notify_cont.jpg" alt="Net_polling_notify_cont.jpg" class="tc-thumbnail" />
-                    </p>
-                </td>
-            </tr>
-        </table>
+        <p>The <code>IEventListenerContainer</code> interface is an abstraction that allows subscribing to, and receiving events from the space, where in most cases, the business logic doesn't need to be aware of the actual container implementation. The benefit of doing this, is the loose coupling between how the events are received (the different containers), and what to do with a received event (the listener). This interface has two out-of-the-box implementers: <a href="polling-container-overview.html">PollingEventListenerContainer</a> and <a href="notify-container-overview.html">NotifyEventListenerContainer</a>.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/dotnet/Net_polling_notify_cont.jpg" alt="Net_polling_notify_cont.jpg" class="tc-picture50" />
+        </div>
         <p> <a name="DataEventArrived">&#160;</a><a name="DataEventHandler">&#160;</a></p>
         <h1><a name="dataeventarrived">&#160;</a>DataEventArrived</h1>
         <p>The <code>IEventListenerContainer</code> interface exposes the <code>DataEventArrived</code> event, where the various implementers invoke (according to their internal logic, which determines when a space data event arrived occurs). The event argument contains the <code>data</code> object, which can be any .NET object, that triggered this event. The event subscription is done with a listener method that has the <code>DataEventHandler</code> delegate constraints, which follows the .NET event handler's conventions.</p>
