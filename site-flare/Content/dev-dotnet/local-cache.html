@@ -1,22 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Local Cache</h1>
-  
-
-<p><span class="tc-bold">Local Cache</span> is a wrapper class for a space proxy, which increases performance in read-mostly scenarios for read operations that are matched by the <code>SpaceID</code> field or property. The cache stores Entries that are retrieved from the space proxy, and the subsequent retrieval of these Entries is done from the cache without using the proxy. The cache is highly concurrent, and will boosts performance significantly for read-mostly scenarios.</p>
-
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/local_cache.jpg" alt="local_cache.jpg" /></p>
-</div>
-
-<h1><a name="usage">&#160;</a>Usage</h1>
-
-<p>The <code>ILocalCache</code> interface implements the <code>ISpaceProxy</code>, and working with it is exactly the same as working with the <code>ISpaceProxy</code> API. Here's a simple example of creating a local cache and using it:</p>
-
-<p><span class="tc-bold">The data object, in this case a session object:</span></p>
-
-<pre><code class="language-csharp">public class Session
+    <head>
+    </head>
+    <body>
+        <h1>Local Cache</h1>
+        <p><span class="tc-bold">Local Cache</span> is a wrapper class for a space proxy, which increases performance in read-mostly scenarios for read operations that are matched by the <code>SpaceID</code> field or property. The cache stores Entries that are retrieved from the space proxy, and the subsequent retrieval of these Entries is done from the cache without using the proxy. The cache is highly concurrent, and will boosts performance significantly for read-mostly scenarios.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/local_cache.jpg" alt="local_cache.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="usage">&#160;</a>Usage</h1>
+        <p>The <code>ILocalCache</code> interface implements the <code>ISpaceProxy</code>, and working with it is exactly the same as working with the <code>ISpaceProxy</code> API. Here's a simple example of creating a local cache and using it:</p>
+        <p><span class="tc-bold">The data object, in this case a session object:</span>
+        </p><pre><code class="language-csharp">public class Session
 {
   [..]
 
@@ -35,17 +32,13 @@
   }
 }
 </code></pre>
-
-<p>Important properties:</p>
-
-<ul>
-<li>The session has a <code>[SpaceID]</code> property, objects without <code>[SpaceID]</code> will not be stored in the local cache.</li>
-<li>When working with the local cache, it is highly recommended to have a <code>\[SpaceVersion\]</code> property, otherwise Entries stored in the local cache might be of older version than the ones in the space, if they were updated not through the local cache.</li>
-</ul>
-
-<p><span class="tc-bold">Creating and using a local cache:</span></p>
-
-<pre><code class="language-csharp">ISpaceProxy spaceProxy = // create or obtain a reference to a space proxy
+        <p>Important properties:</p>
+        <ul>
+            <li>The session has a <code>[SpaceID]</code> property, objects without <code>[SpaceID]</code> will not be stored in the local cache.</li>
+            <li>When working with the local cache, it is highly recommended to have a <code>\[SpaceVersion\]</code> property, otherwise Entries stored in the local cache might be of older version than the ones in the space, if they were updated not through the local cache.</li>
+        </ul>
+        <p><span class="tc-bold">Creating and using a local cache:</span>
+        </p><pre><code class="language-csharp">ISpaceProxy spaceProxy = // create or obtain a reference to a space proxy
 
 ILocalCache localCache = GigaSpacesFactory.CreateIdBasedLocalCache(spaceProxy);
 Session template = new Session();
@@ -66,12 +59,8 @@ object routing = ... ; // set a routing value
 IReadByIdsResult&lt;Session&gt; result = localCache.ReadByIds&lt;Session&gt;(ids, routing);
 
 </code></pre>
-
-<p>The local cache also recognizes templates which are considered ID-based (A template that is matched against the <code>SpaceID</code> property only), and it optimizes the performance for such templates in the same fashion as the <code>ReadById</code> operation does.</p>
-
-<p>The following code is equivalent to the above but it uses templates:</p>
-
-<pre><code class="language-csharp">...
+        <p>The local cache also recognizes templates which are considered ID-based (A template that is matched against the <code>SpaceID</code> property only), and it optimizes the performance for such templates in the same fashion as the <code>ReadById</code> operation does.</p>
+        <p>The following code is equivalent to the above but it uses templates:</p><pre><code class="language-csharp">...
 Session template = new Session();
 template.SessionId = // session guid
 //Read the Entry from the cache, if a session with this ID is present in the cache it will be retrieved.
@@ -83,36 +72,21 @@ Session session = localCache.Read(template);
 //The Entry is present in the cache and will be read from it.
 Session otherSession = localCache.Read(template);
 </code></pre>
-
-<p>If the supplied template is not ID-based, for instance an <code>SqlQuery</code>, then the Entry will be read from the underlying space proxy without first going through the local cache.</p>
-
-<p>Since the cache needs to investigate the template to decide whether it is considered ID-based template, this imposes some performance impact on the query instead of using the <code>ReadById</code> method.</p>
-
-<h1><a name="eviction">&#160;</a>Eviction</h1>
-
-<p>The Entries stored in the local cache might need to be evicted at some point, due to size limitations, time limitations, etc. This behavior is determined by the eviction strategy the cache has been configured to work with. XAP.NET comes with a few built-in eviction strategies – LRU (Last Recently Used), which is the default strategy, FIFO, LFU, and more. Eviction strategy is a pluggable component that can also be implemented with custom behavior.</p>
-
-<div class="tc-admon-refer">
-  
-  <p>Refer to <a href="cache-eviction-strategy.html">Cache Eviction Strategy</a> for more info.</p>
-</div>
-
- <a name="sync">&#160;</a>
-
-<h1><a name="synchronization-with-a-remote-space">&#160;</a>Synchronization with a remote space</h1>
-
-<p>Once an Entry is loaded into the cache, it is kept synchronized with the remote space by registering for notifications for changes that affect Entries stored in the cache. The state of the internal local cache is updated according to these notifications. This synchronization is done asynchronously, behind the scenes.</p>
-
-<ul>
-<li>This behavior can be turned of by setting the <code>SynchronizeWithRemoteSpace</code> configuration property to false.</li>
-<li>When working with local cache, it is highly recommended to have a <code>[SpaceVersion]</code> property, otherwise Entries stored in the local cache may be of an older version than the ones in the space, if they were updated not through the local cache.</li>
-</ul>
-
-<h1><a name="configuring-the-local-cache">&#160;</a>Configuring the local cache</h1>
-
-<p>The local cache can be configured before it is initialized, by supplying the constructor with a custom <code>IdBasedLocalCacheConfig</code> object. The most common configuration option is the <a href="cache-eviction-strategy.html">eviction strategy</a>.</p>
-
-<pre><code class="language-csharp">ISpaceProxy spaceProxy = // create or obtain a reference to a space proxy
+        <p>If the supplied template is not ID-based, for instance an <code>SqlQuery</code>, then the Entry will be read from the underlying space proxy without first going through the local cache.</p>
+        <p>Since the cache needs to investigate the template to decide whether it is considered ID-based template, this imposes some performance impact on the query instead of using the <code>ReadById</code> method.</p>
+        <h1><a name="eviction">&#160;</a>Eviction</h1>
+        <p>The Entries stored in the local cache might need to be evicted at some point, due to size limitations, time limitations, etc. This behavior is determined by the eviction strategy the cache has been configured to work with. XAP.NET comes with a few built-in eviction strategies – LRU (Last Recently Used), which is the default strategy, FIFO, LFU, and more. Eviction strategy is a pluggable component that can also be implemented with custom behavior.</p>
+        <div class="tc-admon-note">
+            <p>Refer to <a href="cache-eviction-strategy.html">Cache Eviction Strategy</a> for more information.</p>
+        </div><a name="sync">&#160;</a>
+        <h1><a name="synchronization-with-a-remote-space">&#160;</a>Synchronizing with a Remote Space</h1>
+        <p>Once an Entry is loaded into the cache, it is kept synchronized with the remote space by registering for notifications for changes that affect Entries stored in the cache. The state of the internal local cache is updated according to these notifications. This synchronization is done asynchronously, behind the scenes.</p>
+        <ul>
+            <li>This behavior can be turned of by setting the <code>SynchronizeWithRemoteSpace</code> configuration property to false.</li>
+            <li>When working with local cache, it is highly recommended to have a <code>[SpaceVersion]</code> property, otherwise Entries stored in the local cache may be of an older version than the ones in the space, if they were updated not through the local cache.</li>
+        </ul>
+        <h1><a name="configuring-the-local-cache">&#160;</a>Configuring the Local Cache</h1>
+        <p>The local cache can be configured before it is initialized, by supplying the constructor with a custom <code>IdBasedLocalCacheConfig</code> object. The most common configuration option is the <a href="cache-eviction-strategy.html">eviction strategy</a>.</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = // create or obtain a reference to a space proxy
 
 IdBasedLocalCacheConfig cacheConfig = new IdBasedLocalCacheConfig();
 
@@ -120,12 +94,8 @@ IdBasedLocalCacheConfig cacheConfig = new IdBasedLocalCacheConfig();
 
 ILocalCache localCache = GigaSpacesFactory.CreateIdBasedLocalCache(spaceProxy, cacheConfig);
 </code></pre>
-
-<h2><a name="cached-types">&#160;</a>Cached Types</h2>
-
-<p>By default, the local cache stores all object types. However, in some scenarios it may be required to store only specific types in the local cache, while working with the other types by proxy only. It is possible to specify explicitly which types will be cached, by putting the desired types in the <code>IdBasedLocalCacheConfig.CachedTypes</code> list property. For example:</p>
-
-<pre><code class="language-csharp">IdBasedLocalCacheConfig cacheConfig = new IdBasedLocalCacheConfig();
+        <h2><a name="cached-types">&#160;</a>Cached Types</h2>
+        <p>By default, the local cache stores all object types. However, in some scenarios it may be required to store only specific types in the local cache, while working with the other types by proxy only. It is possible to specify explicitly which types will be cached, by putting the desired types in the <code>IdBasedLocalCacheConfig.CachedTypes</code> list property. For example:</p><pre><code class="language-csharp">IdBasedLocalCacheConfig cacheConfig = new IdBasedLocalCacheConfig();
 
 List&lt;Type&gt; cachedTypes = new List&lt;Type&gt;();
 //Classes of type Session will be locally cached
@@ -137,22 +107,15 @@ cacheConfig.CachedTypes = cachedTypes;
 
 ILocalCache localCache = GigaSpacesFactory.CreateIdBasedLocalCache(spaceProxy, cacheConfig);
 </code></pre>
-
-<p>Cached types support inheritance, so there's no need to explicitly add all the types if they derive from one another. Using the <code>Object</code> type will cache everything.</p>
-
-<h1><a name="local-cache-manager">&#160;</a>Local Cache Manager</h1>
-
-<p>The local cache has cache specific managing capabilities which are exposed by the <code>LocalCacheManager</code> property of the cache.
+        <p>Cached types support inheritance, so there's no need to explicitly add all the types if they derive from one another. Using the <code>Object</code> type will cache everything.</p>
+        <h1><a name="local-cache-manager">&#160;</a>Local Cache Manager</h1>
+        <p>The local cache has cache specific managing capabilities which are exposed by the <code>LocalCacheManager</code> property of the cache.
 When using the manager different operations can be done, such as clearing the cache only, querying the local cache only without
 going through the proxy in case of cache miss, evicting entries and more.</p>
-
-<p>Here's an example of how to obtain and interact with the cache manager:</p>
-
-<pre><code class="language-csharp">ILocalCache localCache = // obtain a cache
+        <p>Here's an example of how to obtain and interact with the cache manager:</p><pre><code class="language-csharp">ILocalCache localCache = // obtain a cache
 //Clear the cache if there are more than 10,000 caches entries
 if (localCache.LocalCacheManager.CachedEntriesCount &gt; 10000)
   localCache.LocalCacheManager.ClearLocalCache();
 </code></pre>
-
-</body>
+    </body>
 </html>
