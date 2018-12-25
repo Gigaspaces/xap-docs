@@ -1,49 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Archive Container</h1>
-  
-
-<table class="tc-borderless">
-  <tr>
-    <td><p>The archive container is used to transfer historical data into Big-Data storage (for example Cassandra).</p>
-
-<p>The typical scenario is when streaming vast number of raw events through the Space, enriching them and then moving them to a Big-Data storage. Typically, there is no  intention of keeping them in the space nor querying them in the space.</p>
-</td>
-    <td><img src="../Resources/Static/attachment_files/archive-container.jpg" alt="" title="" /></td>
-  </tr>
-</table>
-
-<p>The Archive Container:<br/>
-- automatically moves objects from the Space to the Big-Data storage.<br/>
-- configures the set of objects to be archived.<br/>
-- supports Space fail-over, and Big-Data storage unavailability.<br/>
-- The persisted objects, can then be read by 3rd party tools directly from the Big-Data storage.<br/>
-- Big-Data storage is abstracted with the <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/archive/ArchiveOperationHandler.html">ArchiveOperationHandler</a> interface.<br/>
-- <a href="cassandra-archive-operation-handler.html">Cassandra Archive Operation Handler</a> implementation is available out of the box.<br/>
-- <a href="mongodb-archive-operation-handler.html">MongoDB Archive Operation Handler</a> implementation is available out of the box.</p>
-
-<h2><a name="archive-container-vs-space-persistency">&#160;</a>Archive Container vs Space Persistency</h2>
-
-<p>The Archive Container differs from <a href="space-persistency-overview.html">Space Persistency</a> in the following ways:</p>
-
-<ul>
-<li>Persisted objects are not read back from the Big-Data storage into the Space.</li>
-<li>Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the <a href="space-persistency-overview.html">Space Persistency</a>).</li>
-<li>Archive Container uses the <a href="polling-container-overview.html">Polling Container</a> behind the scenes, which can be co-located with each space partition.</li>
-</ul>
-
-<h2><a name="archive-container-running-side-by-side-with-space-persistency">&#160;</a>Archive Container running side-by-side with Space Persistency</h2>
-
-<p>There are use-cases in which the same Space uses both an Archive Container and Space Persistency. Normally types that are archived by the Archive Container, should not be handled by Space Persistency. Hence, these types should be marked as <a href="transient-entries.html">Transient</a>.
+    <head>
+    </head>
+    <body>
+        <h1>Archive Container</h1>
+        <p>The archive container is used to transfer historical data into Big-Data storage (for example Cassandra).</p>
+        <p>The typical scenario is when streaming vast number of raw events through the Space, enriching them and then moving them to a Big-Data storage. Typically, there is no  intention of keeping them in the space nor querying them in the space.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/archive-container.jpg" alt="" title="" class="tc-picture50" />
+        </div>
+        <p>The Archive Container:</p>
+        <ul>
+            <li>automatically moves objects from the Space to the Big-Data storage.</li>
+            <li>configures the set of objects to be archived.</li>
+            <li>supports Space fail-over, and Big-Data storage unavailability.</li>
+            <li>The persisted objects, can then be read by 3rd party tools directly from the Big-Data storage.</li>
+            <li>Big-Data storage is abstracted with the <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/archive/ArchiveOperationHandler.html">ArchiveOperationHandler</a> interface.</li>
+            <li><a href="cassandra-archive-operation-handler.html">Cassandra Archive Operation Handler</a> implementation is available out of the box.</li>
+            <li><a href="mongodb-archive-operation-handler.html">MongoDB Archive Operation Handler</a>
+            </li>
+        </ul>
+        <h2><a name="archive-container-vs-space-persistency">&#160;</a>Archive Container vs. Space Persistency</h2>
+        <p>The Archive Container differs from <a href="space-persistency-overview.html">Space Persistency</a> in the following ways:</p>
+        <ul>
+            <li>Persisted objects are not read back from the Big-Data storage into the Space.</li>
+            <li>Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the <a href="space-persistency-overview.html">Space Persistency</a>).</li>
+            <li>Archive Container uses the <a href="polling-container-overview.html">Polling Container</a> behind the scenes, which can be co-located with each space partition.</li>
+        </ul>
+        <h2><a name="archive-container-running-side-by-side-with-space-persistency">&#160;</a>Archive Container Running Side-by-Side with Space Persistency</h2>
+        <p>There are use-cases in which the same Space uses both an Archive Container and Space Persistency. Normally types that are archived by the Archive Container, should not be handled by Space Persistency. Hence, these types should be marked as <a href="transient-entries.html">Transient</a>.
 In cases where the same type is handled by both, configure the Archive Container and EDS to modify a different table/keyspace.</p>
-
-<h1><a name="configuration">&#160;</a>Configuration</h1>
-
-<p>Here is a simple example of an archive container configuration:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-xml">&lt;!-- Enable scan for OpenSpaces and Spring components --&gt;
+        <h1><a name="configuration">&#160;</a>Configuration</h1>
+        <p>Here is a simple example of an archive container configuration:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Annotation " style="padding:10px"><pre><code class="language-xml">&lt;!-- Enable scan for OpenSpaces and Spring components --&gt;
 &lt;context:component-scan base-package="com.mycompany"/&gt;
 
 &lt;!-- Enable support for @Archive annotation --&gt;
@@ -60,9 +50,7 @@ In cases where the same type is handled by both, configure the Archive Container
   hosts="${cassandra.hosts}"
   keyspace="${cassandra.keyspace}"
 /&gt;
-</code></pre>
-
-<pre><code class="language-java">@Archive(batchSize = 100)
+</code></pre><pre><code class="language-java">@Archive(batchSize = 100)
 @TransactionalEvent(timeout = 120)
 public class ExpiredTweetsArchiveContainer {
 
@@ -76,8 +64,8 @@ public class ExpiredTweetsArchiveContainer {
     }
 }
 </code></pre>
-</div>
-<div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space" /&gt;
+            </div>
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space" /&gt;
 
 &lt;os-core:distributed-tx-manager id="transactionManager" space="space"/&gt;
 
@@ -100,9 +88,7 @@ public class ExpiredTweetsArchiveContainer {
 &lt;/os-archive:archive-container&gt;
 
 &lt;bean id="archiveFilter" class="ExpiredTweetsFilter"/&gt;
-</code></pre>
-
-<pre><code class="language-java">public class ExpiredTweetsFilter implements DynamicEventTemplateProvider{
+</code></pre><pre><code class="language-java">public class ExpiredTweetsFilter implements DynamicEventTemplateProvider{
 
     @Override
     public Object getDynamicEventTemplate() {
@@ -114,8 +100,8 @@ public class ExpiredTweetsArchiveContainer {
     }
 }
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
     &lt;property name="name" value="space" /&gt;
 &lt;/bean&gt;
 
@@ -135,9 +121,7 @@ public class ExpiredTweetsArchiveContainer {
   &lt;property name="archiveHandler" ref="cassandraArchiveHandler" /&gt;
 &lt;/bean&gt;
 &lt;bean id="archiveFilter" class="ExpiredTweetsFilter"/&gt;
-</code></pre>
-
-<pre><code class="language-java">public class ExpiredTweetsFilter implements DynamicEventTemplateProvider{
+</code></pre><pre><code class="language-java">public class ExpiredTweetsFilter implements DynamicEventTemplateProvider{
 
     @Override
     public Object getDynamicEventTemplate() {
@@ -149,8 +133,8 @@ public class ExpiredTweetsArchiveContainer {
     }
 }
 </code></pre>
-</div>
-<div title="  Code " style="padding:10px"><pre><code class="language-java">TransactionManager txManager = new DistributedJiniTxManagerConfigurer().transactionManager();
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">TransactionManager txManager = new DistributedJiniTxManagerConfigurer().transactionManager();
 EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(txManager).create();
 
@@ -185,39 +169,30 @@ archiveContainer.destroy();
 cassandraArchiveHandler.destroy();
 configurer.destroy();
 </code></pre>
-</div>
-</div>
-
-<div class="tc-admon-note">
-  
-  <p>For all possible Spring configuration options see the <a href="/api_documentation/">schema definitions</a></p>
-</div>
-
-<p>The example above removes (takeMultiple) objects with a certain timestamp member value from space and writes them onto Cassandra.
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>For all possible Spring configuration options, see the <a href="/api_documentation/">schema definitions</a> in the API documentation.</p>
+        </div>
+        <p>The example above removes (takeMultiple) objects with a certain timestamp member value from space and writes them onto Cassandra.
 The takeMultiple operations are performed on the configured <a href="the-gigaspace-interface-overview.html">GigaSpace</a> bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).
 The archive operation is performed on the bean that implements the ArchiveOpertaionHandler interface, in this case the CassandraArchiveOperationHandler bean.</p>
-
-<p>For a  real-world example consult the streaming big data example :</p>
-
-<ul>
-<li><a href="https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/processor/src/main/resources/META-INF/spring/pu.xml">Big-Data example spring xml file</a></li>
-<li><a href="https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/processor/src/main/java/org/openspaces/bigdata/processor/TweetArchiveFilter.java">Custom Archive Container template and error handler</a></li>
-</ul>
-
-<h1><a name="primary-backup">&#160;</a>Primary/Backup</h1>
-
-<p>The archive container, performs take operations only when the relevant space it is working against is in primary mode. When the space is in backup mode, no take operations are performed. If the space moves from backup mode to primary mode, the take operations are started.</p>
-
-<div class="tc-admon-note">
-  
-  <p>This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.</p>
-</div>
-
-<h1><a name="static-template-definition">&#160;</a>Static Template Definition</h1>
-
-<p>When removing objects from the space, a template is defined, creating a virtualized subset of data within the space that matches it. GigaSpaces supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. GigaSpaces allows the use of <a href="query-sql.html">SQLQuery</a> in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-java">@Archive
+        <p>For a  real-world example consult the streaming big data example :</p>
+        <ul>
+            <li><a href="https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/processor/src/main/resources/META-INF/spring/pu.xml" target="_blank">Big-Data example spring xml file</a>
+            </li>
+            <li><a href="https://github.com/CloudifySource/cloudify-recipes/blob/master/apps/streaming-bigdata/processor/src/main/java/org/openspaces/bigdata/processor/TweetArchiveFilter.java" target="_blank">Custom Archive Container template and error handler</a>
+            </li>
+        </ul>
+        <h1><a name="primary-backup">&#160;</a>Primary/Backup</h1>
+        <p>The archive container, performs take operations only when the relevant space it is working against is in primary mode. When the space is in backup mode, no take operations are performed. If the space moves from backup mode to primary mode, the take operations are started.</p>
+        <div class="tc-admon-note">
+            <p>This mostly applies when working with an embedded space directly with a cluster member. When working with a clustered space (performing operations against the whole cluster), the mode of the space is always primary.</p>
+        </div>
+        <h1><a name="static-template-definition">&#160;</a>Static Template Definition</h1>
+        <p>When removing objects from the space, a template is defined, creating a virtualized subset of data within the space that matches it. GigaSpaces supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. GigaSpaces allows the use of <a href="query-sql.html">SQLQuery</a> in order to query the space, which can be easily used with the event container as the template. Here is an example of how it can be defined:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Annotation " style="padding:10px"><pre><code class="language-java">@Archive
 public class ProcessedTweetsFilter {
 
     @EventTemplate
@@ -229,8 +204,8 @@ public class ProcessedTweetsFilter {
     }
 }
 </code></pre>
-</div>
-<div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-archive:archive-container
+            </div>
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-archive:archive-container
   id="archiveContainer"
   giga-space="gigaSpace"
   archive-handler="cassandraArchiveHandler"
@@ -241,8 +216,8 @@ public class ProcessedTweetsFilter {
 
 &lt;/os-archive:archive-container&gt;
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="archiveContainer" class="org.openspaces.archive.ArchivePollingContainer"&gt;
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="archiveContainer" class="org.openspaces.archive.ArchivePollingContainer"&gt;
 
     &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
     &lt;property name="archiveHandler" ref="cassandraArchiveHandler" /&gt;
@@ -256,64 +231,44 @@ public class ProcessedTweetsFilter {
     &lt;/property&gt;
 &lt;/bean&gt;
 </code></pre>
-</div>
-</div>
-
-<h1><a name="dynamic-template-definition">&#160;</a>Dynamic Template Definition</h1>
-
-<p>When removing objects from the space a dynamic template can be used. A method providing a dynamic template is called before each take operation, and can return a different object in each call.
+            </div>
+        </div>
+        <h1><a name="dynamic-template-definition">&#160;</a>Dynamic Template Definition</h1>
+        <p>When removing objects from the space a dynamic template can be used. A method providing a dynamic template is called before each take operation, and can return a different object in each call.
 The event template object has the same syntax rules as with @EventTemplate.
 See <a href="#configuration">Configuration</a> for a complete example</p>
-
-<h1><a name="batch-operations">&#160;</a>Batch Operations</h1>
-
-<p>Archiving in batches may improve the processing throughput performance. Instead of consuming object one at a time from the space and archiving it, you may consume a batch with multiple objects and process these in one transaction. This may improve the overall throughput rate, but may impact the latency of the individual object archiving time.</p>
-
-<p>The archive operation handler determines if it can archive more than one object at a time by implementing <code>ArchiveOperationHandler.supportsBatchArchiving()</code>.
+        <h1><a name="batch-operations">&#160;</a>Batch Operations</h1>
+        <p>Archiving in batches may improve the processing throughput performance. Instead of consuming object one at a time from the space and archiving it, you may consume a batch with multiple objects and process these in one transaction. This may improve the overall throughput rate, but may impact the latency of the individual object archiving time.</p>
+        <p>The archive operation handler determines if it can archive more than one object at a time by implementing <code>ArchiveOperationHandler.supportsBatchArchiving()</code>.
 If the archive handler supports batch archiving then multiple objects are removed from the space using takeMultiple and handed over to the <code>ArchiveOperationHandler.archive()</code> method.
 If the archive handler does not support batch archiving, or if the archive container batch-size is 1, then batch operation is disabled. Otherwise, batch operation is enabled.</p>
-
-<h1><a name="transaction-support">&#160;</a>Transaction Support</h1>
-
-<p>Both the space take operation and the archive action should be configured to be performed under a transaction. When an exception occurs in the archiver under transaction, the take operation is rolled back and the object is returned to the space. In case of an exception during a batch archive operation, the complete object batch is returned to the space. The next time objects are archived, they would be taken from the space and archived again. This means that the archive operation handler archive needs to do one of the following:</p>
-
-<ul>
-<li><code>ArchiveOperationHandler.supportsBatchArchiving()</code> returns true, and <code>ArchiveOperationHandler.archive()</code> is atomic (meaning that throwing an exception cancels all writes - all or nothing semantics).</li>
-<li><code>ArchiveOperationHandler.supportsBatchArchiving()</code> returns true, and <code>ArchiveOperationHandler.archive()</code> is idempotent (meaning that writing the same objects the second time has no effect).</li>
-<li><code>ArchiveOperationHandler.supportsBatchArchiving()</code> returns false (meaning <code>ArchiveOperationHandler.archive()</code> is served with one object at a time). Even when returning false, there is a possibility of the same object being archived twice in case of a space primary/backup fail-over. So it has to be able to handle this scenario.</li>
-</ul>
-
-<p>When using transactions with archive container a special care should be taken with timeout values. Transactions started by the archive container can have a timeout value associated with them (if not set will default to the default timeout value of the transaction manager, which is 90 Sec). If setting a specific timeout value, make sure the timeout value is higher than receive-timeout and the <code>ArchiveOperationHandler#archive()</code> time together.</p>
-
-<p>Adding transaction support is done by injecting a transaction manager into the archive-container and giga-space beans. See the example at the <a href="#configuration">Configuration</a> section.</p>
-
-<div class="tc-admon-note">
-  
-  <p>Note the timeout value is in seconds as per Spring spec for TransactionDefinition.</p>
-</div>
-
-<h1><a name="default-values-of-archive-container-configuration-parameters">&#160;</a>Default Values of Archive Container Configuration Parameters</h1>
-
-<p>The default values for all of the polling container configuration parameters such as <code>concurrent-consumers, batch-size, receive-timeout</code> and others can be found in the JavaDoc (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/archive/ArchivePollingContainer.html">ArchivePollingContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/events/polling/SimplePollingEventListenerContainer.html">SimplePollingEventListenerContainer</a> and  <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/events/polling/AbstractPollingEventListenerContainer.html">AbstractPollingEventListenerContainer</a>.
+        <h1><a name="transaction-support">&#160;</a>Transaction Support</h1>
+        <p>Both the space take operation and the archive action should be configured to be performed under a transaction. When an exception occurs in the archiver under transaction, the take operation is rolled back and the object is returned to the space. In case of an exception during a batch archive operation, the complete object batch is returned to the space. The next time objects are archived, they would be taken from the space and archived again. This means that the archive operation handler archive needs to do one of the following:</p>
+        <ul>
+            <li><code>ArchiveOperationHandler.supportsBatchArchiving()</code> returns true, and <code>ArchiveOperationHandler.archive()</code> is atomic (meaning that throwing an exception cancels all writes - all or nothing semantics).</li>
+            <li><code>ArchiveOperationHandler.supportsBatchArchiving()</code> returns true, and <code>ArchiveOperationHandler.archive()</code> is idempotent (meaning that writing the same objects the second time has no effect).</li>
+            <li><code>ArchiveOperationHandler.supportsBatchArchiving()</code> returns false (meaning <code>ArchiveOperationHandler.archive()</code> is served with one object at a time). Even when returning false, there is a possibility of the same object being archived twice in case of a space primary/backup fail-over. So it has to be able to handle this scenario.</li>
+        </ul>
+        <p>When using transactions with archive container a special care should be taken with timeout values. Transactions started by the archive container can have a timeout value associated with them (if not set will default to the default timeout value of the transaction manager, which is 90 Sec). If setting a specific timeout value, make sure the timeout value is higher than receive-timeout and the <code>ArchiveOperationHandler#archive()</code> time together.</p>
+        <p>Adding transaction support is done by injecting a transaction manager into the archive-container and giga-space beans. See the example at the <a href="#configuration">Configuration</a> section.</p>
+        <div class="tc-admon-note">
+            <p>Note the timeout value is in seconds as per Spring spec for TransactionDefinition.</p>
+        </div>
+        <h1><a name="default-values-of-archive-container-configuration-parameters">&#160;</a>Default Values of Archive Container Configuration Parameters</h1>
+        <p>The default values for all of the polling container configuration parameters such as <code>concurrent-consumers, batch-size, receive-timeout</code> and others can be found in the JavaDoc (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ArchivePollingContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">SimplePollingEventListenerContainer</a> and  <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">AbstractPollingEventListenerContainer</a>.
 For example, <code>concurrent-consumers</code> default value is documented in the method <code>SimplePollingEventListenerContainer.setConcurrentConsumers(int)</code></p>
-
-<h1><a name="fifo-grouping">&#160;</a>FIFO Grouping</h1>
-
-<p>The FIFO Grouping designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, it lets you have a higher level of granularity by having FIFO queue maintained according to a specific value of a specific property. For more details see <a href="fifo-grouping.html">FIFO grouping</a>.</p>
-
-<h1><a name="concurrent-consumers">&#160;</a>Concurrent Consumers</h1>
-
-<p>By default, the archive container starts a single thread that performs take operations and invokes the archive handler. It can be configured to start several concurrent consumer threads and have an upper limit to the concurrent consumer threads. This provides faster archiving, however, any FIFO behavior that might be configured in the space and/or template is lost.
+        <h1><a name="fifo-grouping">&#160;</a>FIFO Grouping</h1>
+        <p>The FIFO Grouping designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, it lets you have a higher level of granularity by having FIFO queue maintained according to a specific value of a specific property. For more details see <a href="fifo-grouping.html">FIFO grouping</a>.</p>
+        <h1><a name="concurrent-consumers">&#160;</a>Concurrent Consumers</h1>
+        <p>By default, the archive container starts a single thread that performs take operations and invokes the archive handler. It can be configured to start several concurrent consumer threads and have an upper limit to the concurrent consumer threads. This provides faster archiving, however, any FIFO behavior that might be configured in the space and/or template is lost.
 In order to archive objects using multiple consumer threads, in the same order they are written to the Space:</p>
-
-<ul>
-<li>You may start multiple archive containers consuming data in FIFO manner , each running a single consumer thread using different (mutually exclusive) templates.</li>
-<li>You may use one archive container with multiple consumer threads and enable FIFO Grouping. The FIFO order of each value is not broken. See <a href="fifo-grouping.html">FIFO Grouping</a> page for more details.</li>
-</ul>
-
-<p>Here is an example of an archive container with 3 concurrent consumers and 5 maximum concurrent consumers and fifo grouping enabled:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-java">@Archive(batchSize = 100, concurrentConsumers = 3, maxConcurrentConsumers = 5, useFifoGrouping = true)
+        <ul>
+            <li>You may start multiple archive containers consuming data in FIFO manner , each running a single consumer thread using different (mutually exclusive) templates.</li>
+            <li>You may use one archive container with multiple consumer threads and enable FIFO Grouping. The FIFO order of each value is not broken. See <a href="fifo-grouping.html">FIFO Grouping</a> page for more details.</li>
+        </ul>
+        <p>Here is an example of an archive container with 3 concurrent consumers and 5 maximum concurrent consumers and fifo grouping enabled:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Annotation " style="padding:10px"><pre><code class="language-java">@Archive(batchSize = 100, concurrentConsumers = 3, maxConcurrentConsumers = 5, useFifoGrouping = true)
 @TransactionalEvent(timeout = 120)
 public class ExpiredTweetsFilter {
 
@@ -323,14 +278,14 @@ public class ExpiredTweetsFilter {
     }
 }
 </code></pre>
-</div>
-<div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-archive:archive-container id="archiveContainer" giga-space="gigaSpace" batch-size="100"
+            </div>
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-archive:archive-container id="archiveContainer" giga-space="gigaSpace" batch-size="100"
                              concurrent-consumers="3" max-concurrent-consumers="5" useFifoGrouping="true" &gt;
     &lt;!-- ... --&gt;
 &lt;/os-archive:archive-container&gt;
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="archiveContainer" class="org.openspaces.archive.ArchivePollingContainer"&gt;
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="archiveContainer" class="org.openspaces.archive.ArchivePollingContainer"&gt;
     &lt;property name="batchSize" value="100" /&gt;
     &lt;property name="concurrentConsumers" value="3" /&gt;
     &lt;property name="maxConcurrentConsumers" value="5" /&gt;
@@ -338,14 +293,11 @@ public class ExpiredTweetsFilter {
     &lt;!-- ... --&gt;
 &lt;/bean&gt;
 </code></pre>
-</div>
-</div>
-
-<ul>
-<li>Spring pu.xml file header</li>
-</ul>
-
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+            </div>
+        </div>
+        <ul>
+            <li>Spring pu.xml file header</li>
+        </ul><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:os-sla="http://www.openspaces.org/schema/sla"
@@ -362,6 +314,5 @@ public class ExpiredTweetsFilter {
 
 &lt;/beans&gt;
 </code></pre>
-
-</body>
+    </body>
 </html>

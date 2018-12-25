@@ -89,9 +89,6 @@ public class Person
 </code></pre>
             </div>
         </div>
-        <p>
-            <br />
-        </p>
         <h1><a name="group-aggregation">&#160;</a>Group Aggregation</h1>
         <p>The following examples show how to group data in various ways:</p><pre><code class="language-c#">using GigaSpaces.Core.Linq;
 
@@ -126,9 +123,6 @@ var query = from p in spaceProxy.Query&lt;Person&gt;()
                  group p by new { p.Gender, p.Country } into g
                  select new { Max = g.Max(p =&gt; p.Age), TheKey = g.Key, Min = g.Min(p =&gt; p.Age) };
 </code></pre>
-        <p>
-            <br />
-        </p>
         <h1><a name="compound-aggregation">&#160;</a>Compound Aggregation</h1>
         <p>Compound aggregation will execute multiple aggregation operations across the space returning all of the result sets at once. When multiple aggregates are needed the compound aggregation API is significantly faster than calling each individual aggregate.</p>
         <div class="tc-align-center">
