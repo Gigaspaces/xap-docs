@@ -1,97 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Undeploying a Processing Unit</h1>
-  <p><span class="tc-bold">Removing a Processing Unit from the Service Grid</span>.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Command Line Interface" style="padding:10px"><p><span class="tc-italic">Command:</span></p>
-
-<p><code>xap pu undeploy &lt;name&gt;</code></p>
-
-<p><span class="tc-italic">Input Example:</span></p>
-
-<pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu undeploy myPu
+    <head>
+    </head>
+    <body>
+        <h1>Undeploying a Processing Unit</h1>
+        <p><span class="tc-bold">Removing a Processing Unit from the Service Grid</span>.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>xap pu undeploy &lt;name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu undeploy myPu
 </code></pre>
-
-<p><span class="tc-italic">Parameters and Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Item</th>
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Parameter</td>
-<td align="left">name</td>
-<td align="left">The name of the Pu to undeploy</td>
-</tr>
-
-<tr>
-<td align="left">Option</td>
-<td align="left">keep-file</td>
-<td align="left">Keep the undeployed file for future use.</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<div title="REST Manager API" style="padding:10px"><p><span class="tc-italic">Path</span></p>
-
-<p><code>DELETE DELETE /pus/{id}</code></p>
-
-<p><span class="tc-italic">Example Request:</span></p>
-
-<pre><code class="language-bash">curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPU'
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">name</td>
+                            <td align="left">The name of the Pu to undeploy</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Option</td>
+                            <td align="left">keep-file</td>
+                            <td align="left">Keep the undeployed file for future use.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>DELETE DELETE /pus/{id}</code>
+                </p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPU'
 </code></pre>
-
-<p>This example undeploys a Processing Unit  named <span class="tc-bold">myPU</span>.</p>
-
-<p><span class="tc-italic">Options:</span></p>
-
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>name</td>
-<td>Provide the name of the PU you are un deploying.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<div title="Web Management Console" style="padding:10px"><ol>
-<li>In the Processing Units view, highlight the Processing Unit to undeploy.</li>
-<li>Click the <span class="tc-bold">Actions</span> icon and select <span class="tc-bold">Undeploy</span> from the menu.</li>
-<li>Confirm that you want to undeploy the Processing Unit.</li>
-</ol>
-
-<p>When the Processing Unit is undeployed successfully, it no longer appears in the Processing Units view.</p>
-
-<div class="tc-admon-note">
-  
-  <p>You can confirm that the Processing Unit was undeployed by viewing the list of events from the toolbar. If you redeploy the same Processing Unit, all of the deploy and undeploy events appear in the event list for the Processing Unit that is displayed in the Events tab on the side of the view.</p>
-</div>
-</div>
-
-<div title="GigaSpaces Management Center" style="padding:10px"><p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
-</div>
-<div title="Administration API" style="padding:10px"><p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developers Guide.</p>
-</div>
-</div>
-
-</body>
+                <p>This example undeploys a Processing Unit  named <span class="tc-bold">myPU</span>.</p>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>Provide the name of the PU you are un deploying.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In the Processing Units view, highlight the Processing Unit to undeploy.</p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Actions</span> icon and select <span class="tc-bold">Undeploy</span> from the menu.</p>
+                    </li>
+                    <li>
+                        <p>Confirm that you want to undeploy the Processing Unit.</p>
+                    </li>
+                </ol>
+                <p>When the Processing Unit is undeployed successfully, it no longer appears in the Processing Units view.</p>
+                <div class="tc-admon-note">
+                    <p>You can confirm that the Processing Unit was undeployed by viewing the list of events from the toolbar. If you redeploy the same Processing Unit, all of the deploy and undeploy events appear in the event list for the Processing Unit that is displayed in the Events tab on the side of the view.</p>
+                </div>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developers Guide.</p>
+            </div>
+        </div>
+    </body>
 </html>
