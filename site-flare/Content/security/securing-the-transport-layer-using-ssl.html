@@ -1,77 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Securing the Transport Layer</h1>
-  
-
-<p>XAP provides a generic network filter that also provides SSL support, through an SSL communication filter.</p>
-
-<div class="tc-align-center"><p><img src="../Resources/Static/attachment_files/lrmi-filters.jpg" alt="lrmi-filters" /></p>
-</div>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="../admin/network-over-firewall.html">XAP Over a Firewall</a></p>
-</div>
-
-<p>XAP provides two types of communication filter:</p>
-
-<ul>
-<li>Stream-based filter - for a protocol like ZIP. This type of filter does not support a handshake phase.</li>
-<li>Block-based filter - for encryption network filters. These filters do support a handshake phase.</li>
-</ul>
-
-<div class="tc-admon-note">
-  <p class="tc-admon-title">Info</p>
-  <p>XAP currently supports only one communication filter, and this filter is applied to all the connections in the JVM.</p>
-</div>
-
-<h1><a name="usage">&#160;</a>Usage</h1>
-
-<p>The way to load and enable the communication filter, is by setting the system property <code>com.gs.lrmi.filter.factory</code>. The value should be the <code>communication filter factory</code> class name.</p>
-
-<p>For example, to use an SSL communication filter, run XAP with:</p>
-
-<pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
+    <head>
+    </head>
+    <body>
+        <h1>Securing the Transport Layer</h1>
+        <p>XAP provides a generic network filter that also provides SSL support, through an SSL communication filter.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lrmi-filters.jpg" alt="lrmi-filters" class="tc-picture50" />
+            </p>
+        </div>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../admin/network-over-firewall.html">XAP Over a Firewall</a> page.</p>
+        </div>
+        <p>XAP provides two types of communication filter:</p>
+        <ul>
+            <li>
+                <p>Stream-based filter - for a protocol like ZIP. This type of filter does not support a handshake phase.</p>
+            </li>
+            <li>
+                <p>Block-based filter - for encryption network filters. These filters do support a handshake phase.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>XAP currently supports only one communication filter, and this filter is applied to all the connections in the JVM.</p>
+        </div>
+        <h1><a name="usage">&#160;</a>Usage</h1>
+        <p>The way to load and enable the communication filter, is by setting the system property <code>com.gs.lrmi.filter.factory</code>. The value should be the <code>communication filter factory</code> class name.</p>
+        <p>For example, to use an SSL communication filter, run XAP with:</p><pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
-
-<h1><a name="default-sslfilterfactory">&#160;</a>Default SSLFilterFactory</h1>
-
-<p>Since some types of communication filters are not symmetric regarding the client and server, the class <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html">SSLFilterFactory</a> has 2 methods: one to create the communication filter for the client side, and the other for the server side.</p>
-
-<ul>
-<li><p>public IOFilter <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createClientFilter">createClientFilter()</a> throws Exception;</p></li>
-
-<li><p>public IOFilter <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createServerFilter">createServerFilter()</a> throws Exception;</p></li>
-</ul>
-
-<p>If the communication filter needs its own parameters, it can acquire them by directly reading system properties. For example, the supplied SSLFilter needs to get the keystore file, and the password to this file.</p>
-
-<p>It uses the following system properties to get them:</p>
-
-<pre><code class="language-bash">-Dcom.gs.lrmi.filter.security.keystore=keystore.ks
+        <h1><a name="default-sslfilterfactory">&#160;</a>Default SSLFilterFactory</h1>
+        <p>Since some types of communication filters are not symmetric regarding the client and server, the class <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html" target="_blank">SSLFilterFactory</a> has 2 methods: one to create the communication filter for the client side, and the other for the server side.</p>
+        <ul>
+            <li>
+                <p>public IOFilter <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createClientFilter" target="_blank">createClientFilter()</a> throws Exception;</p>
+            </li>
+            <li>
+                <p>public IOFilter <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html#createServerFilter" target="_blank">createServerFilter()</a> throws Exception;</p>
+            </li>
+        </ul>
+        <p>If the communication filter needs its own parameters, it can acquire them by directly reading system properties. For example, the supplied SSLFilter needs to get the keystore file, and the password to this file.</p>
+        <p>It uses the following system properties to get them:</p><pre><code class="language-bash">-Dcom.gs.lrmi.filter.security.keystore=keystore.ks
 -Dcom.gs.lrmi.filter.security.password=password
 </code></pre>
-
-<p>The keystore file is loaded from somewhere in the classpath.</p>
-
-<p>The provided SSLFilter uses keystore type JKS, with key management method SunX509.</p>
-
-<div class="tc-admon-refer">
-  
-  <p>Refer to the API Reference guide for more details about the reference classes:</p>
-
-<ul>
-<li><p><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/IOSSLFilter.html">com.gigaspaces.lrmi.nio.filters.IOSSLFilter</a></p></li>
-
-<li><p><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/IOStreamCompressionFilter.html">com.gigaspaces.lrmi.nio.filters.IOStreamCompressionFilter</a></p></li>
-</ul>
-</div>
-
-<p>Code snippet of the space server.</p>
-
-<pre><code class="language-java">public class SSLServer {
+        <p>The key store file is loaded from somewhere in the classpath.</p>
+        <p>The provided SSLFilter uses key store type JKS, with key management method SunX509.</p>
+        <div class="tc-admon-note">
+            <p>Refer to the API Reference guide for more details about the reference classes:</p>
+            <ul>
+                <li>
+                    <p><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/IOSSLFilter.html" target="_blank">com.gigaspaces.lrmi.nio.filters.IOSSLFilter</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/IOStreamCompressionFilter.html" target="_blank">com.gigaspaces.lrmi.nio.filters.IOStreamCompressionFilter</a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <p>Code snippet of the space server.</p><pre><code class="language-java">public class SSLServer {
     public static void main(String [] args) throws Exception{
         EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("SSLSpace").
                 lookupGroups("ssl_example_group");
@@ -79,10 +66,7 @@
     }
 }
 </code></pre>
-
-<p>Code snippet of the space client.</p>
-
-<pre><code class="language-java">public class SSLClient {
+        <p>Code snippet of the space client.</p><pre><code class="language-java">public class SSLClient {
     public static void main(String [] args) throws Exception{
         UrlSpaceConfigurer configurer =
                   new UrlSpaceConfigurer("jini://localhost/*/SSLSpace).
@@ -107,40 +91,24 @@
     }
 }
 </code></pre>
-
-<p>As you can see, until now there is nothing special in the code – it is the same code as if the SSL was not used.
-However, when you wish to run this code with SSL encryption, you should run it with the following system properties (both server and client), and have the <a href="/download_files/keystore.ks">keystore</a> anywhere in the classpath (both server and client).</p>
-
-<pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
+        <p>As you can see, until now there is nothing special in the code – it is the same code as if the SSL was not used.
+However, when you wish to run this code with SSL encryption, you should run it with the following system properties (both server and client), and have the <a href="/download_files/keystore.ks">keystore</a> anywhere in the classpath (both server and client).</p><pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 -Dcom.gs.lrmi.filter.security.keystore=keystore.ks
 -Dcom.gs.lrmi.filter.security.password=password
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>You can find an example of using <code>SSLFilterFactory</code> with self signed certs <a href="/sbp/ssl-self-signed-cert-example.html">here</a>.</p>
-</div>
-
-<p>Alternatively if you do not need authentication and just wish to encrypt the data you can omit the keystore and the password and the server will generate the ssl keys on the fly.</p>
-
-<pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
+        <div class="tc-admon-note">
+            <p>You can find an example of using <code>SSLFilterFactory</code> with self signed certs <a href="/sbp/ssl-self-signed-cert-example.html">here</a>.</p>
+        </div>
+        <p>Alternatively if you do not need authentication and just wish to encrypt the data you can omit the key store and the password and the server will generate the SSL keys on the fly.</p><pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
-
-<h1><a name="choosing-the-encryption-protocol">&#160;</a>Choosing the encryption protocol</h1>
-
-<p>It is also possible to select the encryption protocol (<code>TLSv1.1</code>, <code>TLSv1.2</code> etc) by setting the <code>com.gs.lrmi.filter.security.protocol</code> system property to the required protocol.
+        <h1><a name="choosing-the-encryption-protocol">&#160;</a>Choosing the Encryption Protocol</h1>
+        <p>It is also possible to select the encryption protocol (<code>TLSv1.1</code>, <code>TLSv1.2</code> etc) by setting the <code>com.gs.lrmi.filter.security.protocol</code> system property to the required protocol.
 In case this property is not set XAP will use the generic <code>TLS</code> protocol.</p>
-
-<div class="tc-admon-tip">
-  
-  <p>In your production environment, you should have the SSLFilterFactory password (or any other secured user access information) protected by passing its value at the deploy time into the pu.xml (where the actual property using a variable) or at the start-up time as an argument to a wrapper script starting the GigaSpaces agent and not place such secured data on file.</p>
-</div>
-
-<p>The indication that SSL is used is the message:</p>
-
-<pre><code class="language-bash">Communication Filters Information:
+        <div class="tc-admon-tip">
+            <p>In your production environment, you should have the SSLFilterFactory password (or any other secured user access information) protected by passing its value at the deploy time into the pu.xml (where the actual property using a variable) or at the start-up time as an argument to a wrapper script starting the GigaSpaces agent and not place such secured data on file.</p>
+        </div>
+        <p>The indication that SSL is used is the message:</p><pre><code class="language-bash">Communication Filters Information:
     CommunicationFilterFactory: com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
-
-</body>
+    </body>
 </html>
