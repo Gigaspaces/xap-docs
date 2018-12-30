@@ -1,77 +1,115 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-    <head>
-    </head>
-    <body>
-        <h1>Command Line Interface</h1>
-        <p>GigaSpaces provides a Command Line Interface (CLI) tool for administering both XAP and InsightEdge. The CLI is based on the REST Manager API, enabling users to administer local, remote, and cloud-based application environments. In addition to the REST Manager API operations, the CLI supports certain administration tasks in the open source application editions.</p>
-        <p>Users that are administering a XAP environment should use the <code>xap</code> script. Users that are administering InsightEdge should use the <code>insightedge</code> CLI script, which contains all of the actions available with the <code>xap</code> script, plus additional options where relevant for administering InsightEdge components.</p>
-        <p>The image below shows the screen that is displayed when you run the <code>xap</code> script.</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/admin/xap-cli.png" alt="image" class="tc-picture80" />
-        </p>
-        <h1><a name="cli-help">&#160;</a>CLI Help</h1>
-        <p>Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the XAP or the InsightEdge script. For example,
+<head></head>
+<body>
+<h1>Command Line Interface</h1>
+  
+
+<p>GigaSpaces provides a Command Line Interface (CLI) tool for administering both XAP and InsightEdge. The CLI is based on the REST Manager API, enabling users to administer local, remote, and cloud-based application environments. In addition to the REST Manager API operations, the CLI supports certain administration tasks in the open source application editions.</p>
+
+<p>Users that are administering a XAP environment should use the <code>xap</code> script. Users that are administering InsightEdge should use the <code>insightedge</code> CLI script, which contains all of the actions available with the <code>xap</code> script, plus additional options where relevant for administering InsightEdge components.</p>
+
+<p>The image below shows the screen that is displayed when you run the <code>xap</code> script.</p>
+
+<p><img src="../Resources/Static/attachment_files/admin/xap-cli.png" alt="image" /></p>
+
+<h1><a name="cli-help">&#160;</a>CLI Help</h1>
+
+<p>Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the XAP or the InsightEdge script. For example,
 the list of commands for <code>insightedge host run-agent --help</code> contains all the actions available under <code>xap host run-agent --help</code>, plus additional options for administering the Spark master and worker components.</p>
-        <h1><a name="cli-configuration">&#160;</a>CLI Configuration</h1>
-        <p>The CLI connects to the REST Manager API using the name or IP address of the Manager server. Configuration is applied from one of the following:</p>
-        <ul>
-            <li>The first server configured in the <code>XAP_MANAGER_SERVERS</code> environment variable.</li>
-            <li>The server configured using <code>--server</code> command line option.</li>
-            <li>The <code>localhost</code> as the server to connect to (if none of the above was applied).</li>
-        </ul>
-        <h1><a name="autocomplete-functionality">&#160;</a>Autocomplete Functionality</h1>
-        <h2><a name="overview">&#160;</a>Overview</h2>
-        <p>Bash completion in the CLI is available for Linux and MacOS X users. After activating the autocomplete feature (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
-        <h3><a name="macos-x-users-only">&#160;</a>MacOS X Users Only</h3>
-        <p>If you are using the CLI in a MacOS X environment, the autocomplete script will only work if bash version 4 is installed on your machine. After installing the required bash version, add the shell to the allowed shells and make it the default shell.</p>
-        <p>When using autocomplete, type <code>./xap [TAB][TAB]</code> or <code>./insightedge [TAB][TAB]</code>.</p>
-        <div class="tc-admon-note">
-            <p>You can add xap as an alias to the <code>.bash_profile</code>, in order to simplify using autocomplete.</p>
-        </div>
-        <h2><a name="activating-the-autocomplete-feature">&#160;</a>Activating the Autocomplete Feature</h2>
-        <p>The autocomplete script is located in <code>&lt;XAP-HOME&gt;/tools/cli</code>. There are two ways to install autocomplete.</p>
-        <h3><a name="method-1-install-only-for-the-current-bash-console">&#160;</a>Method 1 - Install Only for the Current Bash Console</h3>
-        <ol>
-            <li>Go to <code>&lt;XAP-HOME&gt;/tools/cli</code> and source the completion script: <code>source xap-autocomplete</code> or <code>source insightedge-autocomplete</code>.</li>
-            <li>Go to <code>&lt;XAP-HOME&gt;/bin</code> and type: <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>.</li>
-        </ol>
-        <div class="tc-admon-note">
-            <p>When you leave the bash session, autocomplete stops working.</p>
-        </div>
-        <h3><a name="method-2-permanent-installation">&#160;</a>Method 2 - Permanent Installation</h3>
-        <ol>
-            <li>Place the <code>xap-autocomplete</code> or <code>insightedge-autocomplete</code> file in a <code>bash_completion.d</code> folder. The folder may appear in the following locations: <code>/etc/bash_completion.d</code> <code>/usr/local/etc/bash_completion.d</code> <code>~/bash_completion.d</code> (create one if absent).</li>
-            <li>(MacOS X users only) Edit the <code>~/.bash_profile</code> and add the following code: <code>source /usr/local/etc/bash_completion.d/xap-autocomplete</code></li>
-            <li>(MacOS X users only) Reload the bash shell or open a new terminal <code>source ~/.bash_profile</code>.</li>
-            <li>After installing the script, open a new bash console.</li>
-            <li>Go to <code>&lt;XAP-HOME&gt;/bin</code> and type: <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>.</li>
-        </ol>
-        <div class="tc-admon-tip">
-            <ol>
-                <li>If you export the xap or insightedge classpath, autocomplete will work from any directory. If you don't export the classpath, autocomplete works only from the bin directory.</li>
-                <li>You can add a bash alias, for example: <code>alias xap = "cd &lt;XAP-HOME&gt;/bin &amp;&amp; xap"</code></li>
-            </ol>
-        </div>
-        <h2><a name="customizing-the-autocomplete-feature">&#160;</a>Customizing the Autocomplete Feature</h2>
-        <p>If you want to generate a new autocomplete script (for example, if you changed the name of the xap or insightedge script) do so as follows:</p>
-        <p>Go to <code>&lt;XAP-HOME&gt;/tools/cli</code> and run the following command:</p>
-        <p><code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>
-        </p>
-        <p>The <code>MAIN_COMMAND</code> value is different for each product and edition. Use one of the following:</p>
-        <ul>
-            <li>XAP open source - <code>org.gigaspaces.cli.commands.Autocomplete</code></li>
-            <li>XAP Enterprise - <code>com.gigaspaces.cli.commands.Autocomplete</code></li>
-            <li>Insightedge open source - <code>org.insightedge.cli.commands.Autocomplete</code></li>
-            <li>Insightedge Enterprise - <code>com.insightedge.cli.commands.Autocomplete</code></li>
-        </ul>
-        <p><code>ALIAS</code> is optional; use it if you changed the name of the command.</p>
-        <p>After running <code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>, the autocomplete script will appear in <code>&lt;XAP-HOME&gt;/tools/cli</code>.</p>
-        <h1><a name="running-a-local-manager-server">&#160;</a>Running a Local Manager Server</h1>
-        <p>To run a local Manager server and a web browser client, type <code>xap host run-agent --auto</code> or <code>insightedge host run-agent --auto</code>.</p>
-        <p>To view a list of the running agents, type <code>xap host list</code> or <code>insightedge host list</code>.</p>
-        <div class="tc-admon-note">
-            <p>If you've recently upgraded to version 12.3 or higher, note that this is a new version of the CLI tool and uses a different syntax and command set. We encourage using this new version, but if you need information about the old CLI commands, refer to the <a href="command-line-interface.html">GigaSpaces CLI</a> pages in the <a href="admin-legacy-tools.html">Legacy Tools</a> section.</p>
-        </div>
-    </body>
+
+<h1><a name="cli-configuration">&#160;</a>CLI Configuration</h1>
+
+<p>The CLI connects to the REST Manager API using the name or IP address of the Manager server. Configuration is applied from one of the following:</p>
+
+<ul>
+<li>The first server configured in the <code>XAP_MANAGER_SERVERS</code> environment variable.</li>
+<li>The server configured using <code>--server</code> command line option.</li>
+<li>The <code>localhost</code> as the server to connect to (if none of the above was applied).</li>
+</ul>
+
+<h1><a name="autocomplete-functionality">&#160;</a>Autocomplete Functionality</h1>
+
+<h2><a name="overview">&#160;</a>Overview</h2>
+
+<p>Bash completion in the CLI is available for Linux and MacOS X users. After activating the autocomplete feature (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
+
+<h3><a name="macos-x-users-only">&#160;</a>MacOS X Users Only</h3>
+
+<p>If you are using the CLI in a MacOS X environment, the autocomplete script will only work if bash version 4 is installed on your machine. After installing the required bash version, add the shell to the allowed shells and make it the default shell.</p>
+
+<p>When using autocomplete, type <code>./xap [TAB][TAB]</code> or <code>./insightedge [TAB][TAB]</code>.</p>
+
+<div class="tc-admon-note">
+  
+  <p>You can add xap as an alias to the <code>.bash_profile</code>, in order to simplify using autocomplete.</p>
+</div>
+
+<h2><a name="activating-the-autocomplete-feature">&#160;</a>Activating the Autocomplete Feature</h2>
+
+<p>The autocomplete script is located in <code>&lt;XAP-HOME&gt;/tools/cli</code>. There are two ways to install autocomplete.</p>
+
+<h3><a name="method-1-install-only-for-the-current-bash-console">&#160;</a>Method 1 - Install Only for the Current Bash Console</h3>
+
+<ol>
+<li>Go to <code>&lt;XAP-HOME&gt;/tools/cli</code> and source the completion script: <code>source xap-autocomplete</code> or <code>source insightedge-autocomplete</code>.</li>
+<li>Go to <code>&lt;XAP-HOME&gt;/bin</code> and type: <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>.</li>
+</ol>
+
+<div class="tc-admon-note">
+  
+  <p>When you leave the bash session, autocomplete stops working.</p>
+</div>
+
+<h3><a name="method-2-permanent-installation">&#160;</a>Method 2 - Permanent Installation</h3>
+
+<ol>
+<li>Place the <code>xap-autocomplete</code> or <code>insightedge-autocomplete</code> file in a <code>bash_completion.d</code> folder. The folder may appear in the following locations: <code>/etc/bash_completion.d</code> <code>/usr/local/etc/bash_completion.d</code> <code>~/bash_completion.d</code> (create one if absent).</li>
+<li>(MacOS X users only) Edit the <code>~/.bash_profile</code> and add the following code: <code>source /usr/local/etc/bash_completion.d/xap-autocomplete</code></li>
+<li>(MacOS X users only) Reload the bash shell or open a new terminal <code>source ~/.bash_profile</code>.</li>
+<li>After installing the script, open a new bash console.</li>
+<li>Go to <code>&lt;XAP-HOME&gt;/bin</code> and type: <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>.</li>
+</ol>
+
+<div class="tc-admon-tip">
+  <p class="tc-admon-title">Tips</p>
+  <ol>
+<li>If you export the xap or insightedge classpath, autocomplete will work from any directory. If you don't export the classpath, autocomplete works only from the bin directory.</li>
+<li>You can add a bash alias, for example: <code>alias xap = "cd &lt;XAP-HOME&gt;/bin &amp;&amp; xap"</code></li>
+</ol>
+</div>
+
+<h2><a name="customizing-the-autocomplete-feature">&#160;</a>Customizing the Autocomplete Feature</h2>
+
+<p>If you want to generate a new autocomplete script (for example, if you changed the name of the xap or insightedge script) do so as follows:</p>
+
+<p>Go to <code>&lt;XAP-HOME&gt;/tools/cli</code> and run the following command:</p>
+
+<p><code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code></p>
+
+<p>The <code>MAIN_COMMAND</code> value is different for each product and edition. Use one of the following:</p>
+
+<ul>
+<li>XAP open source - <code>org.gigaspaces.cli.commands.Autocomplete</code></li>
+<li>XAP Enterprise - <code>com.gigaspaces.cli.commands.Autocomplete</code></li>
+<li>Insightedge open source - <code>org.insightedge.cli.commands.Autocomplete</code></li>
+<li>Insightedge Enterprise - <code>com.insightedge.cli.commands.Autocomplete</code></li>
+</ul>
+
+<p><code>ALIAS</code> is optional; use it if you changed the name of the command.</p>
+
+<p>After running <code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>, the autocomplete script will appear in <code>&lt;XAP-HOME&gt;/tools/cli</code>.</p>
+
+<h1><a name="running-a-local-manager-server">&#160;</a>Running a Local Manager Server</h1>
+
+<p>To run a local Manager server and a web browser client, type <code>xap host run-agent --auto</code> or <code>insightedge host run-agent --auto</code>.</p>
+
+<p>To view a list of the running agents, type <code>xap host list</code> or <code>insightedge host list</code>.</p>
+
+<div class="tc-admon-note">
+  <p class="tc-admon-title">Info</p>
+  <p>If you've recently upgraded to version 12.3, note that this is a new version of the CLI tool and uses a different syntax and command set. We encourage using this new version, but if you need information about the old CLI commands, refer to the <a href="command-line-interface.html">GigaSpaces CLI</a> pages in the <a href="admin-legacy-tools.html">Legacy Tools</a> section.</p>
+</div>
+
+</body>
 </html>

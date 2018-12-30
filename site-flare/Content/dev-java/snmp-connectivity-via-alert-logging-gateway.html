@@ -1,32 +1,43 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-    <head>
-    </head>
-    <body>
-        <h1>SNMP Alerts</h1>
-        <p>The XAP <code>Alert</code> interface exposes the XAP environment and the application's health state. It allows users to register listeners on one or more alert types and receive notifications once an alert has been raised or has been resolved. You may use this framework to build a custom integration with a third party monitoring products to leverage the XAP alerting system.
+<head></head>
+<body>
+<h1>SNMP Alerts</h1>
+  
+
+<p>The XAP <code>Alert</code> interface exposes the XAP environment and the application's health state. It allows users to register listeners on one or more alert types and receive notifications once an alert has been raised or has been resolved. You may use this framework to build a custom integration with a third party monitoring products to leverage the XAP alerting system.
 A recommended approach for such integration would be to construct a listener that writes the chosen types of alerts into logger mechanism. Examples for such may be the log4j or the commons-logging frameworks.</p>
-        <p>The main advantage with this approach is the ability to use an extensive set of out-of-box log appenders that translates log messages into different protocols and APIs to be consumed by third party products.
-</p>
-        <div class="tc-align-center">
-            <img src="../Resources/Static/attachment_files/AlertsLoggerBridge.jpg" alt="AlertsLoggerBridge.jpg" class="tc-picture100" />
-        </div>
-        <h1><a name="example">&#160;</a>Example</h1>
-        <p>The <code>AlertLoggingGateway</code> example project provided with the GigaSpaces distribution using an existing <code>Log4J</code> Appender (SnmpTrapAppender) to convert log messages into SNMP traps, resulting in the alerts propagated to a third party network management solution.</p>
-        <div class="tc-align-center">
-            <img src="../Resources/Static/attachment_files/SNMP_Appender.jpg" alt="SNMP_Appender.jpg" class="tc-picture100" />
-        </div>
-        <h2><a name="alertslogginggatway-components">&#160;</a>AlertsLoggingGatway Components</h2>
-        <h3><a name="snmptraptransmitter">&#160;</a>SnmpTrapTransmitter</h3>
-        <p>The <span class="tc-bold">SnmpTrapTransmitter</span> is a XAP PU responsible for the generic Alert-to-Log bridging. It does that by listening to all alerts in its alert filter file. Any incoming alerts are simply writing to commons logging log. Notice that, being generic in nature, the SnmpTrapTransmitter can be reused without any changes in similar projects.
+
+<p>The main advantage with this approach is the ability to use an extensive set of out-of-box log appenders that translates log messages into different protocols and APIs to be consumed by third party products.
+<img src="../Resources/Static/attachment_files/AlertsLoggerBridge.jpg" alt="AlertsLoggerBridge.jpg" /></p>
+
+<h1><a name="example">&#160;</a>Example</h1>
+
+<p>The <code>AlertLoggingGateway</code> example project provided with the GigaSpaces distribution using an existing <code>Log4J</code> Appender (SnmpTrapAppender) to convert log messages into SNMP traps, resulting in the alerts propagated to a third party network management solution.</p>
+
+<p><img src="../Resources/Static/attachment_files/SNMP_Appender.jpg" alt="SNMP_Appender.jpg" /></p>
+
+<h2><a name="alertslogginggatway-components">&#160;</a>AlertsLoggingGatway components</h2>
+
+<h4><a name="snmptraptransmitter">&#160;</a>SnmpTrapTransmitter</h4>
+
+<p>The <span class="tc-bold">SnmpTrapTransmitter</span> is a XAP PU responsible for the generic Alert-to-Log bridging. It does that by listening to all alerts in its alert filter file. Any incoming alerts are simply writing to commons logging log. Notice that, being generic in nature, the SnmpTrapTransmitter can be reused without any changes in similar projects.
 SnmpTrapTransmitter exposes the following configuration parameters:</p>
-        <p><span class="tc-bold">AlertFileFilter</span> - the name of Alert filter xml file used to filter Alerts to be logged.<br /><span class="tc-bold">loggerName</span> - the name of the logger to be created.<br /><span class="tc-bold">group</span> - the XAP group for which the Alert listener will be configured.</p><pre><code class="language-xml">  &lt;bean id="SnmpTrapTransmitter" class="org.openspaces.example.alert.logging.snmp.SnmpTrapTransmitter" &gt;
+
+<p><span class="tc-bold">AlertFileFilter</span> - the name of Alert filter xml file used to filter Alerts to be logged.<br/>
+<span class="tc-bold">loggerName</span> - the name of the logger to be created.<br/>
+<span class="tc-bold">group</span> - the XAP group for which the Alert listener will be configured.</p>
+
+<pre><code class="language-xml">  &lt;bean id="SnmpTrapTransmitter" class="org.openspaces.example.alert.logging.snmp.SnmpTrapTransmitter" &gt;
     &lt;property name="alertFileFilter" value="notify-alerts.xml" /&gt;
     &lt;property name="loggerName" value="org.openspaces.example.alert.logging.AlertLoggingGateway" /&gt;
     &lt;property name="group" value="group-name-here" /&gt;
   &lt;/bean&gt;
 </code></pre>
-        <p>Note that if you implement your own variant for this class, for other types of alert interception, you will also have to override the <code>construct()</code> method to register for alerts, the <code>destroy()</code> method to cleanup the registration, and to create your own class implementing the <code>AlertTriggeredEventListener</code> interface in which you will issue the logging calls:</p><pre><code class="language-java">public class SnmpTrapTransmitter {
+
+<p>Note that if you implement your own variant for this class, for other types of alert interception, you will also have to override the <code>construct()</code> method to register for alerts, the <code>destroy()</code> method to cleanup the registration, and to create your own class implementing the <code>AlertTriggeredEventListener</code> interface in which you will issue the logging calls:</p>
+
+<pre><code class="language-java">public class SnmpTrapTransmitter {
 
     private Log logger;
 
@@ -55,8 +66,12 @@ SnmpTrapTransmitter exposes the following configuration parameters:</p>
     }
 }
 </code></pre>
-        <h3><a name="snmptrapsender">&#160;</a>SnmpTrapSender</h3>
-        <p>The <span class="tc-bold">SnmpTrapSender</span> is a utility class that implements the SnmpTrapAppender's <code>SnmpTrapSenderFacade</code> interface with an implementation that queues and asynchronously transmits Alerts as SNMP traps. The SNMP transmission method - <code>sendTrap()</code> - uses snmp4j library as its underlying implementation.</p><pre><code class="language-java">public class SnmpTrapSender implements SnmpTrapSenderFacade {
+
+<h4><a name="snmptrapsender">&#160;</a>SnmpTrapSender</h4>
+
+<p>The <span class="tc-bold">SnmpTrapSender</span> is a utility class that implements the SnmpTrapAppender's <code>SnmpTrapSenderFacade</code> interface with an implementation that queues and asynchronously transmits Alerts as SNMP traps. The SNMP transmission method - <code>sendTrap()</code> - uses snmp4j library as its underlying implementation.</p>
+
+<pre><code class="language-java">public class SnmpTrapSender implements SnmpTrapSenderFacade {
 
     public void addTrapMessageVariable(String trapOID, String trapValue) {
         trapQueue.add(trapValue);
@@ -77,9 +92,13 @@ SnmpTrapTransmitter exposes the following configuration parameters:</p>
     }
 
 </code></pre>
-        <h1><a name="logging">&#160;</a>Logging</h1>
-        <p>The <span class="tc-bold">Commons-logging.properties</span> file is a commons logging configuration file which re-directs its calls to a log4j logger. In our example this file contains redirection of commons-logging to log4j as the SNMP trapper we use is on top of log4j.
-<span class="tc-bold">log4j.properties</span> is a log4j configuration file which delegates log writes to the SNMPTrapAppender, resulting in SNMP traps.</p><pre><code class="language-bash">log4j.rootCategory=INFO,TRAP_LOG
+
+<h1><a name="logging">&#160;</a>Logging</h1>
+
+<p>The <span class="tc-bold">Commons-logging.properties</span> file is a commons logging configuration file which re-directs its calls to a log4j logger. In our example this file contains redirection of commons-logging to log4j as the SNMP trapper we use is on top of log4j.
+<span class="tc-bold">log4j.properties</span> is a log4j configuration file which delegates log writes to the SNMPTrapAppender, resulting in SNMP traps.</p>
+
+<pre><code class="language-bash">log4j.rootCategory=INFO,TRAP_LOG
 log4j.appender.TRAP_LOG=org.apache.log4j.ext.SNMPTrapAppender
 log4j.appender.TRAP_LOG.ImplementationClassName=org.openspaces.example.alert.logging.snmp.SnmpTrapSender
 log4j.appender.TRAP_LOG.ManagementHost=127.0.0.1
@@ -89,54 +108,32 @@ log4j.appender.TRAP_LOG.Threshold=INFO
 log4j.appender.TRAP_LOG.layout=org.apache.log4j.PatternLayout
 log4j.appender.TRAP_LOG.layout.ConversionPattern=%d,%p,%t,%c,%m%n
 </code></pre>
-        <h1><a name="running-the-example">&#160;</a>Running the Example</h1>
-        <p>The example is located under <code>&lt;XAP root&gt;/tools/alert-integration</code>. To run it you should do the following:</p>
-        <ol>
-            <li>
-                <p>Set the "group" value in the pu.xml file to your own XAP group. Optionally you may edit the function <code>registerAlertTrapper()</code> in <code>SnmpTrapTransmitter.java</code> to create your own <code>Admin</code> object in any way you see fit.</p>
-            </li>
-            <li>
-                <p>Optionally edit file <code>notify-alerts.xml</code> to set your own alerts and alert conditions that will be listened to by this example.</p>
-            </li>
-            <li>
-                <p>Optionally edit <code>log4j.properties</code> to set the IP and port used by your SNMP server software (if any).</p>
-            </li>
-            <li>
-                <p>If you do not have an SNMP server software, you should download one for the sake of running and testing this example. iReasoning MIB browser for example (<a href="http://ireasoning.com/mibbrowser.shtml" target="_blank">mibbrowser</a>) provides good basic SNMP trap viewing capabilities with a free personal edition. Make sure you configure log4j.properties to use the same IP and port used by the server.</p>
-            </li>
-            <li>
-                <p>Install XAP's maven dependencies to the local maven repository by executing <code>&lt;XAP root&gt;/tools/maven/installmavenrep.sh(bat)</code></p>
-            </li>
-            <li>
-                <p>Build and pack the example project into a jar file. This can be done by executing the command "mvn" from the project's root directory or performing an equivalent action within your UI. A successful build should result in the creation of the example jar file in target/AlertLoggingGateway.jar.</p>
-            </li>
-            <li>
-                <p>If needed start XAP with at least one running LUS, GSM and GSC belonging to the XAP group declared in item #2.</p>
-            </li>
-            <li>
-                <p>Deploy the example JAR into the GSC.</p>
-            </li>
-            <li>
-                <p>If needed - perform XAP actions that will trigger one or more of the alerts the example is tuned to listen to. Creating a new GSCs is usually a good way for creating a multitude of different alerts.</p>
-            </li>
-            <li>
-                <p>Start-up your SNMP server to intercept and view incoming traps. If you use MIB browser enter the Trap Receiver (Ctrl-I) and make sure it is configured to listen on the right IP and port.</p>
-            </li>
-        </ol>
-        <h1><a name="external-dependencies">&#160;</a>External Dependencies</h1>
-        <ol>
-            <li>
-                <p>log4j version &gt;= 1.2.14</p>
-            </li>
-            <li>
-                <p>snmpTrapAppender version &gt;= 1.2.9</p>
-            </li>
-            <li>
-                <p>snmp4j version &gt;= 1.11.2</p>
-            </li>
-            <li>
-                <p>For the example build process you should have <a href="http://maven.apache.org" target="_blank">Apache Maven</a> installed. You may find it already part of the GigaSpaces folders under <code>\gigaspaces-xap\tools\maven</code>.</p>
-            </li>
-        </ol>
-    </body>
+
+<h1><a name="running-the-example">&#160;</a>Running the Example</h1>
+
+<p>The example is located under <code>&lt;XAP root&gt;/tools/alert-integration</code>. To run it you should do the following:</p>
+
+<ol>
+<li>Set the "group" value in the pu.xml file to your own XAP group. Optionally you may edit the function <code>registerAlertTrapper()</code> in <code>SnmpTrapTransmitter.java</code> to create your own <code>Admin</code> object in any way you see fit.</li>
+<li>Optionally edit file <code>notify-alerts.xml</code> to set your own alerts and alert conditions that will be listened to by this example.</li>
+<li>Optionally edit <code>log4j.properties</code> to set the IP and port used by your SNMP server software (if any).</li>
+<li>If you do not have an SNMP server software, you should download one for the sake of running and testing this example. iReasoning MIB browser for example (<a href="http://ireasoning.com/mibbrowser.shtml" target="_blank" >mibbrowser</a>) provides good basic SNMP trap viewing capabilities with a free personal edition. Make sure you configure log4j.properties to use the same IP and port used by the server.</li>
+<li>Install XAP's maven dependencies to the local maven repository by executing <code>&lt;XAP root&gt;/tools/maven/installmavenrep.sh(bat)</code></li>
+<li>Build and pack the example project into a jar file. This can be done by executing the command "mvn" from the project's root directory or performing an equivalent action within your UI. A successful build should result in the creation of the example jar file in target/AlertLoggingGateway.jar.</li>
+<li>If needed start XAP with at least one running LUS, GSM and GSC belonging to the XAP group declared in item #2.</li>
+<li>Deploy the example JAR into the GSC.</li>
+<li>If needed - perform XAP actions that will trigger one or more of the alerts the example is tuned to listen to. Creating a new GSCs is usually a good way for creating a multitude of different alerts.</li>
+<li>Start-up your SNMP server to intercept and view incoming traps. If you use MIB browser enter the Trap Receiver (Ctrl-I) and make sure it is configured to listen on the right IP and port.</li>
+</ol>
+
+<h1><a name="external-dependencies">&#160;</a>External Dependencies</h1>
+
+<ol>
+<li>log4j version &gt;= 1.2.14</li>
+<li>snmpTrapAppender version &gt;= 1.2.9</li>
+<li>snmp4j version &gt;= 1.11.2</li>
+<li>For the example build process you should have <a href="http://maven.apache.org" target="_blank" >Apache Maven</a> installed. You may find it already part of the GigaSpaces folders under <code>\gigaspaces-xap\tools\maven</code>.</li>
+</ol>
+
+</body>
 </html>

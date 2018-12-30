@@ -14,6 +14,8 @@ h1 {
   font-size: 1.375rem;
   line-height: 30px;
   font-weight: 500;
+}
+h1:first-of-type {
   margin-top: 0px;
 }
 
@@ -143,6 +145,10 @@ a[href^="http"]::after {
   padding-right: 0.5em;
 }
 
+a[name] {
+  display: none;
+}
+
 img {
   height: auto;
   max-width: 100%;
@@ -180,7 +186,8 @@ ul {
   margin-top: 0px;
 }
 
-li {
+li,
+li p {
   margin: 0px;
 }
 
@@ -406,6 +413,11 @@ table td {
   background: #fafafa;
   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
   background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+}
+
+table td ol,
+table td ul {
+  font-size: .75rem;
 }
 
 table tr.even td {
