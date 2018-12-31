@@ -5,27 +5,15 @@
     <body>
         <h1>Availability Biased</h1>
         <p>In this leader election implementation, Space instances register themselves with the Lookup Service (LUS). The Space instances then undergo an active-election process, to discover current Space instances and elect a primary instance.</p>
-        <table style="width: 100%;" class="tc-borderless">
-            <col />
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>The active-election process is a 3-phase procedure:</p>
-                        <ul>
-                            <li>Pending</li>
-                            <li>Prepare</li>
-                            <li>Active</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p>
-                            <img src="../Resources/Static/attachment_files/lus4.jpg" alt="" title="" class="tc-picture80" />
-                        </p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <p>The active-election process is a 3-phase procedure:</p>
+        <ul>
+            <li>Pending</li>
+            <li>Prepare</li>
+            <li>Active</li>
+        </ul>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/lus4.jpg" alt="" title="" class="tc-picture80" />
+        </div>
         <h1><a name="split-brain-and-primary-resolution">&#160;</a>Split Brain and Primary Resolution</h1>
         <h2><a name="split-brain-scenario">&#160;</a>Split Brain Scenario</h2>
         <p>Split brain occurs when there are two or more primary instances running for the same partition. In most cases the reason for such behavior would be a network disruption that does not allow each space instance to communicate with all lookup services running. Usually you will have each space instance communicating with a different lookup service rather all of them (two in most cases).</p>
