@@ -1,79 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Changelog</h1>
-  
-
-<p>This section lists the changes that were made in InsightEdge Platform 14.0.x.</p>
-
-<h1><a name="14-0-0">&#160;</a>14.0.0</h1>
-
-<h1><a name="features-and-enhancements">&#160;</a>Features and Enhancements</h1>
-
-<ul>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13598,"/>: Demote Primary Space to Backup.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13593,"/>: Kubernetes support.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13601,"/>: New MemoryXtend driver for Persistent Memory (PMEM).</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13679,"/>: Change InsightEdge space name in demo mode.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13681,"/>: Migrate InsightEdge examples from separate repo to InsightEdge.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13695,"/>: Upgrade Jetty version to 9.3 latest.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13693,"/>: Deprecate gs-agent script.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13692,"/>: Deprecate legacy command line interface.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13688,"/>: Support querying space data from REST Manager and CLI.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13686,"/>: Enhanced CLI "pu run' command validation to include invalid instances.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13685,"/>: Improve error message for CLI command "pu run' when file not found.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13622,"/>: Support unmanaged Processing Units in Admin API.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13599,"/>: Changed default rownum from 5000 to 10 in Web Management Console.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13644,"/>: Upgrade Zeppelin to 0.8.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13656,"/>: Add Zeppelin InsightEdge JDBC interpreter.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13650,"/>: Add autoCommit property to InsightEdge JDBC Driver (for Zeppelin).</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13309,"/>: New API to initialize InsightEdge from existing Spark context/session.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13667,"/>: Increase ZooKeeper client session timeout setting to 15 seconds.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13588,"/>: Enhanced XAP.NET to support dtd validation via Tls12 url (s3).</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13677,"/>: End Of Life - XAP.NET for .NET v3.5.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13675,"/>: InsightEdge JDBC driver automatically creates an alias for types using short name if not ambigous.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13674,"/>: InsightEdge JDBC driver automatically creates an alias for types using underscores to allow non-escaped usage.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13672,"/>: End Of Life - GigaSpace.getModifiersForIsolationLevel().</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13671,"/>: Deprecation - GSIterator and GigaSpace.iterator().</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13669,"/>: Enhance Deploy command in CLI to auto-zip resource in case it is a directory.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13668,"/>: Reduce Web Management Console (web-ui) memory consumption due to unused statistics.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13666,"/>: Upgrade Spark to 2.3.2.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13637,"/>: Upgrade to Spring Security 4.2.8 and Spring Framework 4.3.19.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13643,"/>: Configure insightedge-submit script to use Platform Manager name instead of lookup locator when running on Kubernetes.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13499,"/>: Reduce replication network traffic by skipping discarded packets.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13618,"/>: Add ChangeSet.isEmpty() to indicate if it contains any change operations.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13619,"/>: Override the IdQuery.equals() default implementation to streamline unit testing.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13602,"/>: Expose Jetty ports in the Admin API (such as the SslSelectChannelConnector used for HTTPS).</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13615,"/>: Run InsightEdge Spark jobs on Kubernetes using the InsightEdge Docker image.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13600,"/>: Add system property to show standalone Spaces in REST Manager API and CLI.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13448,"/>: Enhance logging to reflect replication connection state changes.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13596,"/>: Enhance command line <code>--server</code> option to support <code>host:port</code> format.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13591,"/>: Add a summary to CLI output.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13573,"/>: Improve XAP and InsightEdge demo command behavior when XAP_MANAGER_SERVERS is configured.</li>
-</ul>
-
-<h1><a name="resolved-issues">&#160;</a>Resolved Issues</h1>
-
-<ul>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13689,"/>: InsightEdge JDBC driver does not work with Spark SQL.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13631,"/>: When a transaction aborts due to network failure, it may not release the participating entries immediately.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13658,"/>: Misspelled License in "Licence data is corrupted" error message.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13657,"/>: Typo in XAP Manager system property for configuring ZooKeeper session timeout.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13649,"/>: Fix InsightEdge JDBC Driver initialization to return null when connection fails.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13627,"/>: EXT_JAVA_OPTIONS environment variable is ignored when using OpenJDK with Microsoft Windows.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13661,"/>: SPARK_MOUNTED_CLASSPATH contains incorrect semicolon on Microsoft Windows.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13535,"/>: Null comparison does not work in SQL query when using a nested collection of objects.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13625,"/>: SQL query with Java date/time WHERE clause fails when date/time format property is configured.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13603,"/>: The Web Management Console fails to parse java.util.Date properties.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13404,"/>: Can't generate dump files from user interface after first attempt.</li>
-<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13386,"/>: "Only Live Services Log Dump" doesn't work as expected.</li>
-</ul>
-
-<div class="tc-admon-refer">
-  
-  <p>The complete list of changes is also available in <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank" >JIRA</a>.</p>
-</div>
-
-</body>
+    <head>
+    </head>
+    <body>
+        <h1>Changelog</h1>
+        <p>This section lists the changes that were made in InsightEdge Platform 14.0.x.</p>
+        <h1>14.0.1</h1>
+        <h2>Features and Enhancements</h2>
+        <ul>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13424," />: Support for Java 11.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13742," />: Ephemeral nodes of Space instances aren't removed from Apache ZooKeeper when the Space throws "IllegalStateException: Identified another participant with the same name".</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13733," />: Added a Kubernetes liveness probe to the Data (Processing Unit) and Management Pods.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13736," />: Added a retry for failed connection attempts of discovered services to the Administration API.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13734," />: Support adding Java options to the Data (Processing Unit) and Manager Pods in KubeGrid.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13725," />: Improve KubeGrid pod termination handling.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13722," />: Increase client timeout for all Web Management Console service dump operations.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13720," />: Upgrade Apache Lucene to version 7.5.0.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13719," />: Upgrade Spark Streaming Twitter to version 2.3.2.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-12252," />: Avoid starting security manager by default - permission checks consume a lot of memory in serialization when security manager is on.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13712," />: Support was added to detect SpaceStatusChanged via listener and annotation.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13715," />: Improve network calls when the GSC registers with the GSM.</li>
+        </ul>
+        <h2>Resolved Issues</h2>
+        <ul>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13723," />: When running an aggregation query with multiple columns to a space,  the columns don't stay in the correct order.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13745," />: GigaSpaces Services Manager in XAP.NET fails when trying to stop a service.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13595," />: The REST Manager API creates excess files in the temp directory.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13729," />: NPE when deserializing query result in .NET client.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13717," />: Polling container that is configured via XML doesn't stop when the Space is quiesced/demoted.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13711," />: The Admin API reference in the alert-integration example isn't closed when the example is undeployed.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13659," />: Processing Unit fails to deploy when a namespace is provided for Spring beans .</li>
+        </ul>
+        <p>&#160;</p>
+        <h1><a name="14-0-0">&#160;</a>14.0.0</h1>
+        <h2><a name="features-and-enhancements">&#160;</a>Features and Enhancements</h2>
+        <ul>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13598," />: Demote Primary Space to Backup.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13593," />: Kubernetes support.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13601," />: New MemoryXtend driver for Persistent Memory (PMEM).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13679," />: Change InsightEdge space name in demo mode.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13681," />: Migrate InsightEdge examples from separate repo to InsightEdge.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13695," />: Upgrade Jetty version to 9.3 latest.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13693," />: Deprecate gs-agent script.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13692," />: Deprecate legacy command line interface.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13688," />: Support querying space data from REST Manager and CLI.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13686," />: Enhanced CLI "pu run' command validation to include invalid instances.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13685," />: Improve error message for CLI command "pu run' when file not found.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13622," />: Support unmanaged Processing Units in Admin API.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13599," />: Changed default rownum from 5000 to 10 in Web Management Console.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13644," />: Upgrade Zeppelin to 0.8.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13656," />: Add Zeppelin InsightEdge JDBC interpreter.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13650," />: Add autoCommit property to InsightEdge JDBC Driver (for Zeppelin).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13309," />: New API to initialize InsightEdge from existing Spark context/session.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13667," />: Increase ZooKeeper client session timeout setting to 15 seconds.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13588," />: Enhanced XAP.NET to support dtd validation via Tls12 url (s3).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13677," />: End Of Life - XAP.NET for .NET v3.5.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13675," />: InsightEdge JDBC driver automatically creates an alias for types using short name if not ambigous.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13674," />: InsightEdge JDBC driver automatically creates an alias for types using underscores to allow non-escaped usage.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13672," />: End Of Life - GigaSpace.getModifiersForIsolationLevel().</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13671," />: Deprecation - GSIterator and GigaSpace.iterator().</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13669," />: Enhance Deploy command in CLI to auto-zip resource in case it is a directory.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13668," />: Reduce Web Management Console (web-ui) memory consumption due to unused statistics.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13666," />: Upgrade Spark to 2.3.2.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13637," />: Upgrade to Spring Security 4.2.8 and Spring Framework 4.3.19.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13643," />: Configure insightedge-submit script to use Platform Manager name instead of lookup locator when running on Kubernetes.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13499," />: Reduce replication network traffic by skipping discarded packets.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13618," />: Add ChangeSet.isEmpty() to indicate if it contains any change operations.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13619," />: Override the IdQuery.equals() default implementation to streamline unit testing.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13602," />: Expose Jetty ports in the Admin API (such as the SslSelectChannelConnector used for HTTPS).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13615," />: Run InsightEdge Spark jobs on Kubernetes using the InsightEdge Docker image.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13600," />: Add system property to show standalone Spaces in REST Manager API and CLI.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13448," />: Enhance logging to reflect replication connection state changes.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13596," />: Enhance command line <code>--server</code> option to support <code>host:port</code> format.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13591," />: Add a summary to CLI output.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13573," />: Improve XAP and InsightEdge demo command behavior when XAP_MANAGER_SERVERS is configured.</li>
+        </ul>
+        <h2><a name="resolved-issues">&#160;</a>Resolved Issues</h2>
+        <ul>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13689," />: InsightEdge JDBC driver does not work with Spark SQL.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13631," />: When a transaction aborts due to network failure, it may not release the participating entries immediately.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13658," />: Misspelled License in "Licence data is corrupted" error message.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13657," />: Typo in XAP Manager system property for configuring ZooKeeper session timeout.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13649," />: Fix InsightEdge JDBC Driver initialization to return null when connection fails.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13627," />: EXT_JAVA_OPTIONS environment variable is ignored when using OpenJDK with Microsoft Windows.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13661," />: SPARK_MOUNTED_CLASSPATH contains incorrect semicolon on Microsoft Windows.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13535," />: Null comparison does not work in SQL query when using a nested collection of objects.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13625," />: SQL query with Java date/time WHERE clause fails when date/time format property is configured.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13603," />: The Web Management Console fails to parse java.util.Date properties.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13404," />: Can't generate dump files from user interface after first attempt.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13386," />: "Only Live Services Log Dump" doesn't work as expected.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>The complete list of changes is also available in <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">JIRA</a>.</p>
+        </div>
+    </body>
 </html>
