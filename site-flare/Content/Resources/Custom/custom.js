@@ -90,16 +90,16 @@
         for (var v in versionData) {
           mLabel = versionData[v].label || v;
           mTarget = versionData[v].target || '_self';
-          if (v == _self.props.prodVer)
+          if (v == _self.props.prodVer) {
             vMenu = vMenu.replace('MENU_LABEL', mLabel);
-          else
+            /* Add topic banner */
+            var bannerType = versionData[v].topicBanner;
+            if (bannerType) {
+              $('.bodyContent').prepend($(topicBanner[bannerType]));
+            }
+          } else
             vMenu += '<li><a href="' + versionData[v].url + '" target="' + mTarget + '">' + mLabel + '</a></li>';
-          
-        /* Add topic banner */
-          var bannerType = versionData[v].topicBanner;
-          if (bannerType) {
-            $('.bodyContent').prepend($(topicBanner[bannerType]));
-          }
+
         }
         vMenu += menuEnd;
         $(vMenu).appendTo('.logo-wrapper');
