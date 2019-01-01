@@ -114,8 +114,8 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
 </code></pre>
             </div>
         </div>
-        <p>For more details about different configurations see <a href="space-persistency-overview.html">Space Persistency</a>.</p>
-        <h1><a name="before-you-begin">&#160;</a>Before you begin</h1>
+        <div class="tc-admon-note">For more details about different configurations see <a href="space-persistency-overview.html">Space Persistency</a>.</div>
+        <h1><a name="before-you-begin">&#160;</a>Before You Begin</h1>
         <p>Before deploying your Processing Unit, please do the following:</p>
         <ol>
             <li>Copy the <code>xap-mongodb.jar</code> and <code>antlr4-runtime-[%=Versions.antlr4-runtime%].jar</code> from <code>lib\optional\mongodb</code> to <code>lib\optional\pu-common</code>.</li>
@@ -174,14 +174,11 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
             </li>
         </ul>
         <div class="tc-admon-note">
-            <p class="tc-admon-title">Note:</p>
             <p>Java types Short, Float, BigDecimal and BigInt supported only =,&lt;&gt; queries &gt;,&lt;,&gt;=,&lt;= is not supported.</p>
         </div>
-        <h1><a name="unsupported-queries">&#160;</a>Unsupported queries</h1>
-        <ul>
-            <li>Contains is unsupported</li>
-        </ul>
-        <h1><a name="mongo-as-a-service">&#160;</a>Mongo As a Service</h1>
+        <h1><a name="unsupported-queries">&#160;</a>Unsupported Queries</h1>
+        <p>Contains is unsupported.</p>
+        <h1><a name="mongo-as-a-service">&#160;</a>Mongo as a Service</h1>
         <p>There are some Mongo DB hosting services that run on the cloud, and you can connect to them from your deployment environment for free. For example: <a href="https://mongolab.com">mongolab</a></p>
         <p>In order to configure the connection, you would need to connect using a URI that contains the username and password.</p><pre><code class="language-xml">&lt;bean id="mongoClient"
           class="com.gigaspaces.persistency.MongoClientConnectorBeanFactory"&gt;

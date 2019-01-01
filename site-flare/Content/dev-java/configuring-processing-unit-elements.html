@@ -6,9 +6,9 @@
         <h1>Configuration</h1>
         <p>The processing unit's configuration is expressed using a number of configuration files, namely <code>pu.xml, sla.xml</code> and <code>pu.properties</code>, which are typically located under the <code>META-INF/spring</code> directory within the processing unit jar file.</p>
         <p>Each file is used to configure separate aspects of the processing unit. The <code>pu.xml</code> file is used to configure the actual elements that the processing unit contains, e.g. space and space proxies, event handles and remote service. Generally speaking, it contains of the application specific components of the processing unit.</p>
-        <h1><a name="the-pu-xml-file">&#160;</a>The pu.xml file</h1>
+        <h1><a name="the-pu-xml-file">&#160;</a>The pu.xml File</h1>
         <p>This file is a <a href="http://www.springframework.org" target="_blank">Spring framework</a> XML configuration file. It leverages the Spring framework <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.html" target="_blank">IoC container</a> and extends it by using the Spring <a href="http://static.springframework.org/spring/docs/2.5.x/reference/extensible-xml.html" target="_blank">custom namespace mechanism</a>.</p>
-        <div class="tc-admon-refer">
+        <div class="tc-admon-note">
             <p>It is recommended (although not mandatory) that you familiarize yourself with the Spring XML configuration basics. A good place to start is <a href="http://static.springframework.org/spring/docs/2.5.x/reference/beans.html" target="_blank">here</a></p>
         </div>
         <h1><a name="pu-xml-contents">&#160;</a>pu.xml Contents</h1>
@@ -22,7 +22,6 @@
             </li>
         </ul>
         <div class="tc-admon-note">
-            <p class="tc-admon-title">SLA (Service Level Agreement) definitions </p>
             <p>the <code>pu.xml</code> may also contain <a href="../admin/the-sla-overview.html">SLA definitions</a>. In previous releases, this was the recommended way to define your processing unit's SLA. As of version 7.0, the recommended way to do it is to use a separate sla.xml file, which separates this deployment and runtime aspect from the the processing unit's components. This enables better modularization and reuse of the processing unit.</p>
         </div>
         <p>This section focuses on the overall structure of the <code>pu.xml</code> file. The various GigaSpaces components that can be included in the <code>pu.xml</code> (such as <a href="messaging-support.html">event containers</a>, <a href="space-based-remoting-overview.html">remote services</a> and others) are covered in detail in their respective sections in the programmer's guide.</p>
@@ -86,8 +85,8 @@ Naturally, GigaSpaces XAP also leverages the extensibility of the above two mech
 
 &lt;/beans&gt;
 </code></pre>
-        <h1><a name="importing-xml-files-into-the-pu-xml">&#160;</a>Importing xml files into the pu.xml</h1>
-        <p>To import one more more xml files into your pu.xml you can use the following:</p><pre><code class="language-xml">&lt;import resource="classpath*:/applicationContext-component.xml" /&gt;
+        <h1><a name="importing-xml-files-into-the-pu-xml">&#160;</a>Importing XML Files into the pu.xml</h1>
+        <p>To import one or more XML files into your pu.xml you can use the following:</p><pre><code class="language-xml">&lt;import resource="classpath*:/applicationContext-component.xml" /&gt;
 &lt;import resource="classpath*:/applicationContext-matching.xml"/&gt;
 &lt;import resource="classpath*:/applicationContext-services.xml"/&gt;
 &lt;import resource="classpath*:/applicationContext-jmx.xml" /&gt;
