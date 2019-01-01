@@ -14,7 +14,7 @@ By implementing Spring's <code>PlatformTransactionManager</code>, the XAP API al
             <p>In order to make <a href="the-gigaspace-interface-overview.html">The GigaSpace Interface </a> transactional, the transaction manager must be provided to it when constructing the GigaSpace bean.
 The following should be added to your <code>pu.xml</code> to enable the configuration of transactional behavior based on annotations:</p><pre><code class="language-xml">&lt;beans ....
        xmlns:tx="http://www.springframework.org/schema/tx"
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring%].xsd"&gt;
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring-short%].xsd"&gt;
 
        &lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
 &lt;/beans&gt;
@@ -260,11 +260,11 @@ public void myTransactionalMethod(Object data) {
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:os-events="http://www.openspaces.org/schema/events"
        xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring%].xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring%].xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring%].xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring-short%].xsd
        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;
 
     &lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
