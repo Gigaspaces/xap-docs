@@ -1,0 +1,97 @@
+---
+type: post
+title:  Data Visualization with Grafana
+categories: SBP
+parent: insightedge.html
+weight: 100
+---
+
+|Author|Product Version|Last Updated | Reference | Download |
+|------|-----------|-------------|-----------|:----------:|
+| Ester Atzmon| 14.0 | January 2019| | [InsightEdge-Grafana Connector](https://github.com/Gigaspaces/timeseries-rest)|
+
+# Overview
+
+Data visualization helps people understand the significance of data by placing it in a visual context. Patterns, trends and correlations can be exposed and recognized using data visualization software.
+
+Data visualization software is also important for big data and advanced analytics projects. Businesses need a fast, easy way to get an overview of their data. Visualization is also key for advanced analytics; when implementing advanced predictive analytics or machine learning algorithms, the output needs to be visualized to monitor results and make sure that the data models are performing correctly. 
+
+The InsightEdge Platform can be easily integrated with {{%exurl "Grafana""http://grafana.org"%}}, a graph and dashboard builder for visualizing time-series metrics so users can create, explore, and share their dashboards no matter where the data is stored.  
+
+To use Grafana for data visualization with InsightEdge, you will have to do the following:
+
+1. Download and configure the InsightEdge-Grafana connector.
+1. Download and install the Grafana software.
+1. Download the  JSON data source plugin (available from the Grafana website).
+1. Modify the Grafana client properties file to use the Grafana-InsightEdge connector.
+1. Configure the data source to use the InsightEdge-Grafana connector.
+
+
+# Downloading and Configuring the InsightEdge-Grafana Connector
+
+The first step in integrating InsightEdge with Grafana is to download and configure the connector so that Grafana can access the data from the InsightEdge-based application.
+
+{{%note%}}The configuration files are located in the <host directory>/timeseries-rest/tree/master/src/main/resources folder.{{%/note%}}
+
+To install the InsightEdge-Grafana connector:
+
+1. Clone the contents of the github repo.
+1. In the [grafana-insightedge.properties file](https://github.com/Gigaspaces/timeseries-rest/blob/master/src/main/resources/grafana-insightedge.properties), modify the properties to suit your local evironment (host, port, space name, lookup group, and lookup locator (optional)).
+
+	Sample configuration:	
+	```
+	CONNECTOR_HOST=hostmachine-e7450
+	CONNECTOR_PORT=8082
+	XAP_SPACE_NAME=insightedge-space
+	XAP_LOOKUP_GROUPS=xap-14.0.0
+	#XAP_LOOKUP_LOCATORS=
+	```
+	{{%note%}}The syntax of the URL that is used to configure the simple JSON data source to work with the Space is `http://<yourhost>:<port>/insightedge/metrics`. The variables are based on values you added to the properties file.{{%/note%}}
+
+1. Configure the [tablesData.txt file](https://github.com/Gigaspaces/timeseries-rest/blob/master/src/main/resources/tablesData.txt) that the connector will use to categorize the data. 
+
+	Sample data values:
+	```
+	DailySales,com.gigaspaces.DailySales,longDate,total,product
+	OnTimeDelivery,com.gigaspaces.OnTimeDelivery,longDate,precentage,type
+	WeeklyInventory,com.gigaspaces.WeeklyInventory,longDate,count,type
+	TelemetryVolt,com.gigaspaces.Telemetry,longDate,volt,machineID
+	TelemetryRotate,com.gigaspaces.Telemetry,longDate,rotate,machineID
+	TelemetryPressure,com.gigaspaces.Telemetry,longDate,pressure,machineID
+	TelemetryVibration,com.gigaspaces.Telemetry,longDate,vibration,machineID
+	```
+	Each row represents the following fields in Grafana (the values from the first line of the above sample are provided for reference):
+	- &lt;display name of table as it appears in the dashboard&gt; - `DailySales`
+	- &lt;class name in the Space&gt; - `com.gigaspaces`
+	- &lt;timestamp field in the class (of type long)&gt; - `longDate`
+	- &lt;field name that contains the requested value (of type double)&gt; - `total`
+	- &lt;name of data series&gt; - `product`
+
+
+# Installing and Configuring Grafana Products
+
+## Installing the Grafana Client (Dashboard Application)
+
+Grafana is not bundled with GigaSpaces products, but the product installation is easy and straightforward.
+To install Grafana:
+
+1. Download the application from the Grafanalabs {{%exurl "download page""http://grafana.org/download/"%}}.
+1. Follow the {{%exurl "installation instructions""http://docs.grafana.org/installation/"%}}.
+
+## Installing the JSON Data Source Plugin
+
+After you download and install the dashboard application, download and install the JSON data source plugin from the [Grafana plugin page](https://grafana.com/plugins/simpod-json-datasource). This is a simple one-click procedure directly from the Grafana website.
+
+## Configuring the Grafana Client
+
+After installing the Grafana client and the JSON data source plugin, you must configure the following so that Grafana will work with the InsightEdge connector and visualize the data in the Space:
+
+- Change the default port of the Grafana client to an open port (the default port is usually blocked).
+- Run the Grafana server as described in the Grafana installation instructions, and do the following:
+	- Configure the data source (simple JSON data source) - in the client, add a new data source and for the data source type, select JSON simple data source.
+	- Configure the JSON data source with the URL of the connector, as described in the section [above](#downloading-and-configuring-the-insightedge-grafana-connector).
+
+After you finish configuring the client, you can create new dashboards to view the data from the Space.
+
+
+
