@@ -28,6 +28,14 @@ To use Grafana for data visualization with InsightEdge, you will have to do the 
 
 After making the above changes, you can visualize data from the Space using Grafana dashboards. The following sections provide detailed instructions on integrating InsightEdge and Grafana.
 
+{{%note%}}
+This sample integration was run in the following environment:
+
+- InsightEdge Platform release 14.0.1
+- Grafana version 5.2.4
+- SimpleJson version 1.4.0
+{{%/note%}}
+
 # Downloading and Configuring the InsightEdge-Grafana Connector
 
 The first step in integrating InsightEdge with Grafana is to download and configure the connector so that Grafana can access the data from the InsightEdge-based application.
@@ -59,10 +67,10 @@ To install the InsightEdge-Grafana connector:
 	TelemetryVibration,com.gigaspaces.Telemetry,longDate,vibration,machineID
 	```
 	Each row represents the following fields in Grafana (the values from the first line of the above sample are provided for reference):
-	- &lt;display name of table as it appears in the dashboard&gt; - `TelemetryVolt`
+	- &lt;display name of table as it appears in the dashboard&gt; - `TelemetryPressure`
 	- &lt;class name in the Space&gt; - `com.gigaspaces.Telemetry`
 	- &lt;timestamp field in the class (of type long)&gt; - `longDate`
-	- &lt;field name that contains the requested value (of type double)&gt; - `volt`
+	- &lt;field name that contains the requested value (of type double)&gt; - `pressure`
 	- &lt;name of data series&gt; - `machineID`
 
 
