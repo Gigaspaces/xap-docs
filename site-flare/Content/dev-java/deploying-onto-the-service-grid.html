@@ -27,7 +27,7 @@
             <p>However,   XAP also supports the deployment of exploded processing units. (The deployment tool will package the processing unit directories into a jar file automatically). Another option to deploy a processing unit is by placing the exploded processing unit under the deploy directory of each of the GSMs and issuing  a deploy command with the processing unit name (the name of the directory under the deploy directory).</p>
         </div>
         <h1><a name="distribution-of-processing-unit-binaries-to-the-running-gscs">&#160;</a>Distribution of Processing Unit Binaries to the Running GSCs</h1>
-        <p>By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the <code>&amp;lt;XAP Root&amp;gt;/work/processing-units</code> directory (The location of this directory can be overridden via the <code>com.gs.work</code> system property).</p>
+        <p>By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the <code>&lt;XAP Root&gt;/work/processing-units</code> directory (The location of this directory can be overridden via the <code>com.gs.work</code> system property).</p>
         <p>Downloading the processing unit archive to the GSC is the recommended option, but it can be disabled. In order to disable it, the <code>pu.download</code> <a href="deployment-properties.html">deployment property</a>  should be set to <code>false</code>. This will not download the entire archive to the GSC, but will force the GSC to load the processing unit classes one at a time from the GSM via a URLClassLoader.</p><a name="deployDirections">&#160;</a>
         <h1><a name="processing-unit-deployment-using-various-deployment-tools">&#160;</a>Processing Unit Deployment using various Deployment Tools</h1>
         <p>GigaSpaces provides several options to deploy a processing unit onto the Service Grid. Below you can find a simple deployment example with the various deployment tools for deploying a processing unit archive called <code>myPU.jar</code> located in the <code>/opt/gigaspaces</code> directory:</p>
@@ -59,7 +59,7 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
 </code></pre>
             </div>
             <div title="  GigaSpaces CLI " style="padding:10px">
-                <p>Deploying via the CLI is based on the <code>deploy</code> command. This command accepts various parameters to control the deployment process. These parameters are documented in full in the <a href="../admin/deploy-command-line-interface.html">deploy CLI reference documentation.</a>.</p><pre><code class="language-java">&gt; &amp;lt;XAP Root&amp;gt;/bin/gs.sh(bat) deploy myPU.jar
+                <p>Deploying via the CLI is based on the <code>deploy</code> command. This command accepts various parameters to control the deployment process. These parameters are documented in full in the <a href="../admin/deploy-command-line-interface.html">deploy CLI reference documentation.</a>.</p><pre><code class="language-java">&gt; &lt;XAP Root&gt;/bin/gs.sh(bat) deploy myPU.jar
 </code></pre>
             </div>
             <div title="  GigaSpaces UI " style="padding:10px">
@@ -311,7 +311,7 @@ for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
 </code></pre>
             </div>
             <div title="  GigaSpaces CLI and XML " style="padding:10px">
-                <p>The processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">&gt; &amp;lt;XAP Root&amp;gt;/bin/gs.sh(bat) deploy-application examples/data/dist.zip
+                <p>The processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">&gt; &lt;XAP Root&gt;/bin/gs.sh(bat) deploy-application examples/data/dist.zip
 </code></pre>
                 <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"

@@ -6,7 +6,7 @@
         <h1>Viewing Alerts</h1>
         <p>You can view alerts in the Web Management Console Alerts panel, displayed by XAP Alert groups (alerts are grouped by correlation key), and also generate an alert dump for specific grid components.</p>
         <div class="tc-admon-note">
-            <p>The Web-UI server utilizes the <code>&lt;XAP Root&gt;/config/alerts/alerts.xml</code> configuration file. These configurations apply to any client connecting to the Web-UI at the specified host and port.</p>
+            <p>The Web Management Console server utilizes the <code>&lt;XAP Root&gt;/config/alerts/alerts.xml</code> configuration file. These configurations apply to any client connecting to the Web Management Console at the specified host and port.</p>
         </div>
         <p>Alerts are grouped together by type, such as CPU, Memory, etc. When an alert is raised, it is aggregated with other consecutive alerts of the same type. Previous alerts from the aggregation get "pushed" down (circled in red). A resolved alert "closes" the aggregation (circled in green). A new alert of the same type will trigger a new aggregation.</p>
         <p>Sort the "status' column in ascending order to show the latest unresolved alerts.</p>

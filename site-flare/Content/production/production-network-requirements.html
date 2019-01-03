@@ -46,7 +46,7 @@
                 </tr>
             </tbody>
         </table>
-        <p>Here are examples of how to set different LRMI listening ports for the GS-UI, and another set of ports for the GSA/GSC/GSM/Lookup Service:</p><pre><code class="language-bash"> export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7500
+        <p>Here are examples of how to set different LRMI listening ports for the GigaSpaces Management Center, and another set of ports for the GSA/GSC/GSM/Lookup Service:</p><pre><code class="language-bash"> export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7500
 </code></pre><pre><code class="language-bash"> export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=8000-8100
 </code></pre>
         <p>A running GSC tries to use the first free port out of the port range specified. The same port might be used for several connections (via a multiplexed protocol). If the entire port range is exhausted, an error is displayed.</p>

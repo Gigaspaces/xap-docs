@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Custom Processing Unit</h1>
-        <p>A Processing Unit can implement the <code>ServiceDetailsProvider</code> and <code>ServiceMonitorsProvider</code> interfaces to expose information to calling APIs or to be viewable in the web-UI.</p>
+        <p>A Processing Unit can implement the <code>ServiceDetailsProvider</code> and <code>ServiceMonitorsProvider</code> interfaces to expose information to calling APIs or to be viewable in the Web Management Console.</p>
         <h1><a name="service-details">&#160;</a>Service Details</h1>
         <p>A <a href="[%=Links.ApiJavaDoc%]/org/openspaces/pu/service/ServiceDetails.html">ServiceDetails</a> describes <span class="tc-bold">static</span> information the processing unit would like to expose. This is fetched only once in the life-cycle of the processing unit, usually when it starts up.</p>
         <p>One implementation class a processing unit can extend is the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/pu/service/PlainServiceDetails.html">PlainServiceDetails</a> class. This is a simple straight forward implementation of the <code>ServiceDetails</code> interface, which takes care of fast serialization using Externalizable, provides a handy toString, etc.</p>
