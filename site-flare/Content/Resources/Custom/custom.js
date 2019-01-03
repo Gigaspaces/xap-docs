@@ -1,9 +1,9 @@
 (function (w) {
   var _self = {
     props: {
-      version: '1.0.1',
+      version: '1.0.2',
       prefix: 'TOPNAV:::',
-      debug: true,
+      debug: false,
       domain: "\.gigaspaces\.com",
       isIframe: window.self !== window.top,
       prodVer: (new RegExp(/\/(\d+?[\.\d]*?)\//).test(location.href)) ? location.href.match(/\/(\d+?[\.\d]*?)\//)[1] : null,
@@ -33,7 +33,7 @@
           if (!$('.sideContent .menu .selected').length) return;
           clearInterval(id);
           _self.methods.sidebar();
-        }, 500);
+        }, 1000);
         _self.methods.breadcrumb();
         _self.methods.scrollToTop();
         _self.methods.generateNavItems();
@@ -45,7 +45,8 @@
           var prodVerUrl = location.href.match(/(^.*?)\/(\d+?[\.\d]*?)\//)[1];
           $('<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span><a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + _self.props.prodVer + '</a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>').prependTo('.breadcrumbs');
         }
-        $('.breadcrumbs').prependTo('.main-section');
+        $('.title-bar-container')
+          .append($('.breadcrumbs'));
       },
       scrollToTop: function () {
         $('.body-container').scroll(function () {
