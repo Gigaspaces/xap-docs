@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>InsightEdge-Kubernetes FAQ</h1>
+        <h1>General Questions</h1>
+        <p><b>Which Kubernetes version do you support?</b>
+        </p>
+        <p>GigaSpaces products can be used with Kubernetes release 1.9 or later.</p>
+        <p><b>What is Helm?</b>
+        </p>
+        <p>Helm is a popular package manager for Kubernetes that used to manage the orchestration of an application cluster. GigaSpaces uses Helm to deploy products on Kubernetes.</p>
+        <p>Helm employs a packaging format called a chart, which is a collection of files that describe a related set of Kubernetes resources.</p>
+        <div class="tc-admon-note">
+            <p>For more information about Helm and Helm charts, see the <a href="https://docs.helm.sh/developing_charts/#charts" target="_blank">Helm documentation</a>.</p>
+        </div>
+        <p>Gigaspaces charts are hosted in the GigaSpaces Helm repository. This repository can be added to Helm using the following command:</p>
+        <p><code>helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts</code>
+        </p>
+        <p>The GigaSpaces charts can be fetched and copied to a local disk using the following command:</p>
+        <p><code>helm fetch gigaspaces/insightedge --version=<MadCap:variable name="Versions.helm-version" /> --untar</code>
+        </p>
+        <p><b>Do the InsightEdge and XAP open-source editions support Kubernetes-based deployment?</b>
+        </p>
+        <p>No, only the commercial editions (InsightEdge Platform, XAP&#160;Premium, and XAP&#160;Enterprise)&#160;support Kubernetes. GigaSpaces provides a 24-hour tryme license and a longer (30-day) trial license so you can evaluate these products in the Kubernetes environment.</p>
+        <p><b>How is deploying GigaSpaces products over Kubernetes different from deploying them to the Service Grid? Does Kubernetes support the Grid Service Agent, Grid Service Container, etc.?</b>
+        </p>
+        <p>KubeGrid (the GigaSpaces integration of InsightEdge and XAP with Kubernetes) makes a lot of the Service Grid's high availability features redundant, so there's no need for most of the Service Grid components. KubeGrid was also designed to utilize Kubernetes' scheduling and native controllers to leverage any new features introduced in future releases and the open-source community.</p>
+        <p><b>Do GigaSpaces products support the major cloud providers, such as AWS, Microsoft Azure, and Google Cloud Platform?</b>
+        </p>
+        <p>Kubernetes can be used in any type of environment (on-premise, cloud, or hybrid) and is supported by every major cloud provider, including public cloud platforms like AWS, Microsoft Azure, and GCP. Now that InsightEdge and XAP&#160;can be deployed over Kubernetes, we support all the major cloud providers that can be used with Kubernetes.</p>
+        <h1>Installing the InsightEdge Platform and XAP in Kubernetes</h1>
+        <p><b>What do Helm charts look like in terms of structure and dependencies?</b>
+        </p>
+        <p>A Helm chart has the following directory structure:</p>
+        <blockquote>
+            <p>&lt;the application name&gt;/</p>
+            <p>Chart.yaml          # A YAML file containing information about the chart</p>
+            <p>LICENSE             # OPTIONAL: A plain text file containing the license for the chart</p>
+            <p>README.md           # OPTIONAL: A human-readable README file</p>
+            <p>requirements.yaml   # OPTIONAL: A YAML file listing dependencies for the chart</p>
+            <p>values.yaml         # The default configuration values for this chart</p>
+            <p>charts/             # A directory containing any charts upon which this chart depends.</p>
+            <p>templates/          # A directory of templates that, when combined with values,</p>
+            <p># will generate valid Kubernetes manifest files.</p>
+            <p>templates/NOTES.txt # OPTIONAL: A plain text file containing short usage notes</p>
+        </blockquote>
+        <div class="tc-admon-note">
+            <p>For more information about Helm chart file structure, see this section of the <a href="https://docs.helm.sh/developing_charts/#the-chart-file-structure" target="_blank">Helm documentation</a>.</p>
+        </div>
+        <p><b>What type of Helm charts are included in with InsightEdge and XAP?</b>
+        </p>
+        <p>&#160;</p>
+        <div>
+            <p>insightedge/</p>
+            <p>..charts/</p>
+            <p>….insightedge-pu # this directory contains the chart for a Data Pod.</p>
+            <p>….insightedge-manager # this directory contains the charts for a Manager Pod</p>
+            <p>….insightedge-zeppelin # this directory contains the charts for Zeppelin</p>
+        </div>
+        <p>Since insightedge-pu, insightedge-manager, insightedge-zeppelin are all children of insightedge, by installing insightedge, you get all the above mentioned children.</p>
+        <p>&lt;Inbar TBD - add XAP charts&gt;</p>
+        <p>Can I deploy multiple PUs in a POD?</p>
+        <p>This is theoretically possible but not practical to implement, because it essentially negates the advantages of the Kubernetes architecture.</p>
+        <p>The best practice for a Kubernetes based architecture is each Pod to be the smallest and simplest unit, meaning a single PU. It will allow to auto recovery and auto scale each PU as a standalone, so a out of memory exception or high CPU utilization in one PU won't trigger a Pod recovery or auto scaling by Kubernetes for other PUs.</p>
+        <p>At deployment time, a processing unit jar is provided via a resource url during the helm install. The PU will then be associated with a Data Pod. In this way, a Data Pod contains a single Processing Unit instance.</p>
+    </body>
+</html>
