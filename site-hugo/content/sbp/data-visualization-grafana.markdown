@@ -31,7 +31,7 @@ After making the above changes, you can visualize data from the Space using Graf
 {{%note%}}
 This sample integration was run in the following environment:
 
-- InsightEdge Platform release 14.0.1
+- InsightEdge Platform release 14.0.0
 - Grafana version 5.2.4
 - SimpleJson version 1.4.0
 {{%/note%}}
@@ -40,12 +40,12 @@ This sample integration was run in the following environment:
 
 The first step in integrating InsightEdge with Grafana is to download and configure the connector so that Grafana can access the data from the InsightEdge-based application.
 
-{{%note%}}The configuration files are located in the *<host directory>/timeseries-rest/tree/master/src/main/resources* folder.{{%/note%}}
+{{%note%}}The sample configuration files are located in the *<host directory>/timeseries-rest/tree/master/src/main/resources* folder. When you run the connector, the [Main](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/java/com/gigaspaces/Main.java) requires two paramaters, the path to the grafana-insightedge.properties file and the path to the tableData.txt file (if you create different ones).{{%/note%}}
 
 To install the InsightEdge-Grafana connector:
 
 1. Clone the contents of the github repo.
-1. In the [grafana-insightedge.properties file](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/grafana-insightedge.properties), modify the properties to suit your local evironment (host, port, space name, lookup group, and lookup locator (optional)).
+1. Modify the [grafana-insightedge.properties file](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/grafana-insightedge.properties) to suit your local evironment (host, port, space name, lookup group, and lookup locator (optional)) or create a new properties file.
 
 	Sample configuration:	
 	```
@@ -57,7 +57,7 @@ To install the InsightEdge-Grafana connector:
 	```
 	{{%note%}}The syntax of the URL that is used to configure the simple JSON data source to work with the Space is `http://<yourhost>:<port>/insightedge/metrics`. The variables are based on values you added to the properties file.{{%/note%}}
 
-1. Configure the [tablesData.txt file](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/tablesData.txt) that the connector will use to categorize the data. 
+1. Modify the [tablesData.txt file](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/tablesData.txt) or create a new tableData.txt file that the connector will use to categorize the data. 
 
 	Sample data values:
 	```
