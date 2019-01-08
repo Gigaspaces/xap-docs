@@ -18,12 +18,12 @@
         <p><b>Do the InsightEdge and XAP open-source editions support Kubernetes-based deployment?</b>
         </p>
         <p>No, only the commercial editions (InsightEdge Platform, XAP&#160;Premium, and XAP&#160;Enterprise)&#160;support Kubernetes. GigaSpaces provides a 24-hour tryme license and a longer (30-day) trial license so you can evaluate these products in the Kubernetes environment.</p>
-        <p><b>How is deploying GigaSpaces products over Kubernetes different from deploying them to the Service Grid? Does Kubernetes support the Grid Service Agent, Grid Service Container, etc.?</b>
+        <p><b>How is deploying GigaSpaces products over Kubernetes different from deploying them to the Service Grid? </b>
         </p>
-        <p>KubeGrid (the GigaSpaces integration of InsightEdge and XAP with Kubernetes) makes a lot of the Service Grid's high availability features redundant, so there's no need for most of the Service Grid components. KubeGrid was also designed to utilize Kubernetes' scheduling and native controllers to leverage any new features introduced in future releases and the open-source community.</p>
+        <p>KubeGrid (the GigaSpaces integration of InsightEdge and XAP with Kubernetes) was designed to utilize Kubernetes' scheduling and native controllers to leverage any new features introduced in future releases and the open-source community. Additionally, KubeGrid uses the key features of the Kubernetes platform like cloud-native orchestration automation with self-healing, cooperative multi-tenancy, RBAC authorization, and auto-scaling instead of Service Grid components (such as the Grid Service Agent and Grid Service Manager). </p>
         <p><b>Do GigaSpaces products support the major cloud providers, such as AWS, Microsoft Azure, and Google Cloud Platform?</b>
         </p>
-        <p>Kubernetes can be used in any type of environment (on-premise, cloud, or hybrid) and is supported by every major cloud provider, including public cloud platforms like AWS, Microsoft Azure, and GCP. Now that InsightEdge and XAP&#160;can be deployed over Kubernetes, we support all the major cloud providers that can be used with Kubernetes.</p>
+        <p>Kubernetes can be used in any type of environment (on-premise, cloud, or hybrid) and is supported by every major cloud provider, including public cloud platforms like Amazon EKS, Microsoft Azure AKS and Google's GCP GKE. InsightEdge and XAP&#160;can be deployed over Kubernetes, therefore we support all the major cloud providers that can be used with Kubernetes.</p>
         <h1>Installing the InsightEdge Platform and XAP in Kubernetes</h1>
         <p><b>What do Helm charts look like in terms of structure and dependencies?</b>
         </p>
@@ -82,11 +82,11 @@
         <p>To view system metrics, you can use Grafana with InfluxDB. The integration process for Influxdb and Grafana with InsightEdge and XAP&#160;are described in the Solutions and Best Practices section of the documentation website.</p>
         <p><b>Can  I debug my application and see the application logs in Kubernetes?</b>
         </p>
-        <p>Yes. See the Kubernetes documentation for instructions.</p>
+        <p>Yes. See the Kubernetes <a href="https://kubernetes.io/docs/tasks/#monitoring-logging-and-debugging" target="_blank">documentation</a> for instructions.</p>
         <h1>Using InsightEdge in Kubernetes</h1>
         <p><b>How do I set security rules/RBAC in Kubernetes?</b>
         </p>
-        <p>In a Kubernetes clusters with Role-Based Access Control (RBAC) enabled, users can configure the Kubernetes RBAC roles and service accounts that are used by the various Spark jobs on Kubernetes components to access the Kubernetes API server.</p>
+        <p>In a Kubernetes clusters with Role-Based Access Control (RBAC) enabled, users can configure the Kubernetes RBAC roles and service accounts that are used by the various Spark jobs on Kubernetes components to access the Kubernetes API server. See the Kubernetes <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/" target="_blank">documentation</a> for more information.</p>
         <p><b>Can I submit a Spark Job with dependency JARs locally or remotely?</b>
         </p>
         <p>Spark’s best practice is to package dependencies as an uber-JAR, and deploy them this way (as a single JAR). This best practice applies for InsightEdge.</p>
