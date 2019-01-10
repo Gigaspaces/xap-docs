@@ -27,29 +27,16 @@
         <h1>Installing the InsightEdge Platform and XAP in Kubernetes</h1>
         <p><b>What do Helm charts look like in terms of structure and dependencies?</b>
         </p>
-        <p>A Helm chart has the following directory structure:</p>
-        <blockquote>
-            <p><code>&lt;the application name&gt;/</code>
-            </p>
-            <p><code>Chart.yaml          # A YAML file containing information about the chart</code>
-            </p>
-            <p><code>LICENSE             # OPTIONAL: A plain text file containing the license for the chart</code>
-            </p>
-            <p><code>README.md           # OPTIONAL: A human-readable README file</code>
-            </p>
-            <p><code>requirements.yaml   # OPTIONAL: A YAML file listing dependencies for the chart</code>
-            </p>
-            <p><code>values.yaml         # The default configuration values for this chart</code>
-            </p>
-            <p><code>charts/             # A directory containing any charts upon which this chart depends.</code>
-            </p>
-            <p><code>templates/          # A directory of templates that, when combined with values,</code>
-            </p>
-            <p><code># will generate valid Kubernetes manifest files.</code>
-            </p>
-            <p><code>templates/NOTES.txt # OPTIONAL: A plain text file containing short usage notes</code>
-            </p>
-        </blockquote>
+        <p>A Helm chart has the following directory structure:</p><pre><code class="language-xml">&lt;the application name&gt;/
+  Chart.yaml          # A YAML file containing information about the chart
+  LICENSE             # OPTIONAL: A plain text file containing the license for the chart
+  README.md           # OPTIONAL: A human-readable README file
+  requirements.yaml   # OPTIONAL: A YAML file listing dependencies for the chart
+  values.yaml         # The default configuration values for this chart
+  charts/             # A directory containing any charts upon which this chart depends.
+  templates/          # A directory of templates that, when combined with values,
+                      # will generate valid Kubernetes manifest files.
+  templates/NOTES.txt # OPTIONAL: A plain text file containing short usage notes</code></pre>
         <div class="tc-admon-note">
             <p>For more information about Helm chart file structure, see this section of the <a href="https://docs.helm.sh/developing_charts/#the-chart-file-structure" target="_blank">Helm documentation</a>.</p>
         </div>
