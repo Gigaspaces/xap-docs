@@ -14,7 +14,7 @@ weight: 150
 
 Monitoring a production environment of any system requires inspecting many statistics; InsightEdge and XAP are no different. The Web Management Console collects and displays various data grid metrics by polling the system's components, but these statistics have some limitations:
 
-- **History** - Statistics are polled and aggregated in memory at runtime, so they're limited to a few minutes of history, whereas in production users often need at least several dayss worth of statistics.
+- **History** - Statistics are polled and aggregated in memory at runtime, so they're limited to a few minutes of history, whereas in production users often need at least several days' worth of statistics.
 - **Persistency** - If the web server goes down, all statistics are lost.
 - **Scalability** - The web server gathers statistics by polling each component. This approach is not scalable, and does not behave well on large clusters.
 
@@ -24,6 +24,8 @@ To overcome these limitations, GigaSpaces products include a powerful and versat
 - {{%exurl "Grafana""http://grafana.org"%}} is a graph and dashboard builder for visualizing time-series metrics, which supports InfluxDB (and other data sources).
 
 These third-party applications can be installed in Kubernetes to enable monitoring, analytics and data visualization for InsightEdge and XAP installed with KubeGrid. This topic describes a sample configuration of InfluxDB and Grafana in Kubernetes, using sample dashboards to display data from the data grid.
+
+{{% note%}}The data in the InfluxDB database is lost if the application is undeployed from your system.{{% /note%}}
 
 # Prerequisites
 
@@ -49,7 +51,7 @@ This demo was set up using the following configuration:
 
 Integrating InfluxDB and Grafana for monitoring GigaSpaces products in Kubernetes requires the following steps:
 
-1. Clone the InsightEdge metrics demo from the Github repo to your local machine.
+1. Clone the [InsightEdge metrics demo](https://github.com/Gigaspaces-sbp/kubernetes/tree/master/ie-metrics-demo)) from the Github repo to your local machine.
 1. Install and configure InfluxDB on your local machine and in Kubernetes.
 1. Install and configure Grafana in Kubernetes.
 1. Create a custom Docker image and upload it to your Docker Hub account.
@@ -68,8 +70,9 @@ After installing InfluxDB in Kubernetes, you need to apply port forwarding so th
 
 To install InfluxDB on your local machine:
 
-1. Download the software from {{%exurl "here""https://influxdb.com/download/index.html"%}}.
+1. Download the software from {{%exurl "here""https://portal.influxdata.com/downloads/"%}}.
 1. Follow the {{%exurl "installation instructions""https://influxdb.com/docs/v0.9/introduction/installation.html"%}}.
+1. Make sure that the InfluxDB database service is not running locally (the actual database will be located in the Kubernetes installation).
 
 To install and configure InfluxDB in Kubernetes:
 
@@ -83,7 +86,7 @@ To install and configure InfluxDB in Kubernetes:
 1. Set port forwarding by typing the the following command:
 
 	```
-	kubectl port-forward --namespace default $(kubectl get pods --namespace default -l app=ie-metrics-influxdb -o jsonpath='{ .items[0].metadata.name }') 8086:8086`
+	kubectl port-forward --namespace default $(kubectl get pods --namespace default -l app=ie-metrics-influxdb -o jsonpath='{ .items[0].metadata.name }') 8086:8086
 	```
 	
 1. Run the InfluxDB CLI and do the following to create an InfluxDB database for the demo:
@@ -131,19 +134,19 @@ To prepare the custom Docker image:
 1. Log in to your Docker Hub repository:
 
 	```
-	docker login --username=<your username> --email=<email address associated with dockerhub>
+	sudo docker login --username=<your username>
 	```
 
 1. Build the custom Docker image that will include the modified metrics file:
 
 	```
-	sudo docker build -t <username>/ie-metrics-demo:14.0 .
+	sudo docker build -t <username>/ie-metrics-demo:14.0.1 .
 	sudo docker image ls
 	```
 1. Push the Docker image to your Docker Hub account:
 
 	```
-	sudo docker push <username>/ie-metrics-demo:14.0
+	sudo docker push <username>/ie-metrics-demo:14.0.1
 	```
 
 # Installing InsightEdge with the Custom Docker Image
@@ -163,7 +166,7 @@ To install InsightEdge in Kubernetes:
 	- Download the Helm charts to your local machine. The following command fetches the InsightEdge charts and extracts them:
 	
 	```
-	helm fetch gigaspaces/insightedge --version=14.0 --untar
+	helm fetch gigaspaces/insightedge --version=14.0.1 --untar
 	```
 
 1. 	To instruct Helm to install InsightEdge using the custom Docker image, modify the following property in the `insightedge/charts/insightedge-pu/values.yaml` file, where `<username>` is your Docker Hub account:
@@ -199,7 +202,11 @@ Set the following in the Grafana client so that it will work with the GigaSpaces
 	
 	{{% /note%}}
 	
-1. In the Settings tab of the Data Sources screen, configure the following:
+1. Click the **Settings** icon, then select **Data Sources**.
+1. Click **Add Data Source**. In the Settings tab of the Data Sources/New screen, do the following:
+	
+	- In the **Name** field, type the name of the data source: `ie-metrics-demo`
+	- From the **Type** dropdown list, select `InfluxDB`.
 	- In the **HTTP** area, type the following URL: `http://ie-metrics-influxdb.default:8086`
 	- In the **InfluxDB Details** area, type the database name: `demodb`
 
@@ -209,7 +216,7 @@ Set the following in the Grafana client so that it will work with the GigaSpaces
 	
 **To import the the sample dashboards:**
 
-1. Click **Create** and select the **Import** option.
+1. Click the **Create** icon, then select  **Import**.
 1. In the Import window, click **Upload .json file**.
 1. Navigate to the Space-demo.json file in the cloned InsightEdge metrics demo and select it.
 1. Click **Load**.
@@ -225,7 +232,7 @@ Set the following in the Grafana client so that it will work with the GigaSpaces
 After you finish configuring the Grafana client, you can open the dashboards and view the metrics.
 
 {{% align center%}}
-![space-demo-dashboard.png](/attachment_files/sbp/grafana/space-demo-dashboard.png)
+![space-demo-dashboard.png](/attachment_files/sbp/grafana/pu-demo-dashboard.png)
 {{% /align%}}
 
 
