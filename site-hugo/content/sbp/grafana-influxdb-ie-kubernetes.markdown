@@ -51,7 +51,7 @@ This demo was set up using the following configuration:
 
 Integrating InfluxDB and Grafana for monitoring GigaSpaces products in Kubernetes requires the following steps:
 
-1. Clone the [InsightEdge metrics demo](https://github.com/Gigaspaces-sbp/kubernetes/tree/master/ie-metrics-demo)) from the Github repo to your local machine.
+1. Clone the [InsightEdge metrics demo](https://github.com/Gigaspaces-sbp/kubernetes/tree/master/ie-metrics-demo) from the Github repo to your local machine.
 1. Install and configure InfluxDB on your local machine and in Kubernetes.
 1. Install and configure Grafana in Kubernetes.
 1. Create a custom Docker image and upload it to your Docker Hub account.
@@ -81,7 +81,7 @@ To install and configure InfluxDB in Kubernetes:
 	```
 	helm install --name ie-metrics stable/influxdb
 	```
-	{{% note%}}As this installation is only for the purposes of running the demo, the credentials aren't set.{{% /note%}}
+	{{% note%}}This installation is only for the purposes of running the demo, so the credentials aren't set.{{% /note%}}
 
 1. Set port forwarding by typing the the following command:
 
@@ -98,7 +98,7 @@ To install and configure InfluxDB in Kubernetes:
 
 The next step in the integration is setting up Grafana. This includes installing Grafana in Kubernetes, setting port forwarding and configuring the Grafana client to use InfluxDB and the sample dashboards in the demo.
 
-{{% note%}}Make sure you have alreeady cloned the InsightEdge metrics demo software from Github; you will need the files when you configure the Grafana client.{{% /note%}}
+{{% note%}}Make sure you have already cloned the InsightEdge metrics demo software from Github; you will need the files when you configure the Grafana client.{{% /note%}}
 
 ## Installing Grafana in Kubernetes
 
@@ -140,7 +140,7 @@ To prepare the custom Docker image:
 1. Build the custom Docker image that will include the modified metrics file:
 
 	```
-	sudo docker build -t <username>/ie-metrics-demo:14.0.1 .
+	sudo docker build -t <username>/ie-metrics-demo:14.0.1 
 	sudo docker image ls
 	```
 1. Push the Docker image to your Docker Hub account:
@@ -182,13 +182,13 @@ To install InsightEdge in Kubernetes:
 	helm install insightedge --name demo
 	```
 
-{{% note%}}For more information about the GigaSpaces Helm charts and how to install and configure InsightEdge and XAP in Kubernetes, see the [KubeGrid section]({{% latestadmurl %}}/kubernetes-overview.html) of the product documentation.{{% /note%}}	
+{{% note%}}For more information about the GigaSpaces Helm charts and how to install and configure InsightEdge and XAP in Kubernetes, see the [KubeGrid]({{% latestadmurl %}}/kubernetes-overview.html) section of the product documentation.{{% /note%}}	
 	
 # Using Grafana to View InsightEdge Metrics
 	
 ## Configuring the Grafana Client
 
-Set the following in the Grafana client so that it will work with the GigaSpaces metrics reporter and the sample dashboards from the InsightEdge metrics demo:
+You need to do the following in the Grafana client so that it will work with the GigaSpaces metrics reporter and the sample dashboards from the InsightEdge metrics demo:
 
 - Configure the data source.
 - Import the sample dashboards from the demo package.
@@ -202,7 +202,7 @@ Set the following in the Grafana client so that it will work with the GigaSpaces
 	
 	{{% /note%}}
 	
-1. Click the **Settings** icon, then select **Data Sources**.
+1. Click the **Settings** <img src="/attachment_files/sbp/grafana/settings-icon.png" width="24" height="22" /> icon, then select **Data Sources**.
 1. Click **Add Data Source**. In the Settings tab of the Data Sources/New screen, do the following:
 	
 	- In the **Name** field, type the name of the data source: `ie-metrics-demo`
@@ -211,12 +211,12 @@ Set the following in the Grafana client so that it will work with the GigaSpaces
 	- In the **InfluxDB Details** area, type the database name: `demodb`
 
 {{% align center%}}
-![ie-metrics-demo-datasource.png](/attachment_files/sbp/grafana/ie-metrics-demo-datasource.png)
+<img src="/attachment_files/sbp/grafana/ie-metrics-demo-datasource.png" width="589" height="590" />
 {{% /align%}}
 	
 **To import the the sample dashboards:**
 
-1. Click the **Create** icon, then select  **Import**.
+1. Click the **Create** <img src="/attachment_files/sbp/grafana/create-icon.png" width="24" height="22" /> icon, then select  **Import**.
 1. In the Import window, click **Upload .json file**.
 1. Navigate to the Space-demo.json file in the cloned InsightEdge metrics demo and select it.
 1. Click **Load**.
@@ -224,7 +224,7 @@ Set the following in the Grafana client so that it will work with the GigaSpaces
 1. Repeat the process for the ProcessingUnit-demo.json file.
 	
 {{% align center%}}
-![grafana-import-dashboard.png](/attachment_files/sbp/grafana/grafana-import-dashboard.png)
+<img src="/attachment_files/sbp/grafana/grafana-import-dashboard.png" width="730" height="337" />
 {{% /align%}}
 	
 ## Viewing the Dashboards
