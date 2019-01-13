@@ -5,7 +5,7 @@
     <body>
         <h1>MemoryXtend for Disk (SSD/HDD)</h1>
         <h1><a name="overview">&#160;</a>Overview</h1>
-        <p>XAP MemoryXtend for disk delivers built-in, high-speed persistence that leverages local or attached SSD devices, all-flash-arrays (AFA), or any other disk or memory option. It delivers low latency write and read performance, as well as fast data recovery.  XAP MemoryXtend for disk is based on <a href="http://rocksdb.org/" target="_blank">RocksDB</a>, which is a persistent key/value store optimized for fast storage environments.</p>
+        <p>The MemoryXtend disk storage driver delivers built-in, high-speed persistence that leverages local or attached SSD devices, all-flash-arrays (AFA), or any other disk or memory option. It delivers low latency write and read performance, as well as fast data recovery.  The MemoryXtend disk storage driver is based on <a href="http://rocksdb.org/" target="_blank">RocksDB</a>, which is a persistent key/value store optimized for fast storage environments.</p>
         <h2><a name="architecture-and-components">&#160;</a>Architecture and Components</h2>
         <p>When configured for the disk storage driver, the MemoryXtend architecture tiers the storage of each Space partition instance across two components: a Space partition instance (managed JVM heap) and an embedded key/value store (the blobstore) as shown in the diagram below.</p>
         <div class="tc-align-center">
@@ -14,7 +14,7 @@
             </p>
         </div>
         <div class="tc-admon-note">
-            <p>XAP requires Read/Write permissions to mounted devices/partitions.</p>
+            <p>InsightEdge and XAP require Read/Write permissions to mounted devices/partitions.</p>
         </div>
         <h3><a name="space-partition-instance">&#160;</a>Space Partition Instance</h3>
         <p>The Space partition instance is a JVM heap that acts as an LRU cache against the underlying blobstore. This tier in the architecture stores indexes, Space class metadata, transactions, replication redo logs, leases, and statistics.
@@ -28,7 +28,7 @@ Upon a Space read operation, if the object exists in the JVM heap (i.e. a cache 
             <li><span class="tc-bold">Built-in Cache</span>: MemoryXtend comes with a built-in cache. This cache is part of the Space partition tier, and stores objects in their native form.</li>
         </ul>
         <h1><a name="basic-configuration">&#160;</a>Basic Configuration</h1>
-        <p>Any existing XAP Space can be configured to integrate a blobstore with it. As with a typical Processing Unit, configuration is done using either the <code>pu.xml</code> configuration file, or in the code. For example:</p>
+        <p>Any existing Space can be configured to integrate a blobstore with it. As with a typical Processing Unit, configuration is done using either the <code>pu.xml</code> configuration file, or in the code. For example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -141,7 +141,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.html#on-heap-cache">MemoryXtend overview</a> topic.</p>
         </div>
         <h1><a name="off-heap-cache">&#160;</a>Off-Heap Cache</h1>
-        <p>XAP can cache the values of indexed fields in the process native (off-heap) memory. This optimizes operations that require only indexed values in order to execute, by fetching the data from off-heap instead of disk. The operations that benefit from this optimization are:</p>
+        <p>The data grid can cache the values of indexed fields in the process native (off-heap) memory. This optimizes operations that require only indexed values in order to execute, by fetching the data from off-heap instead of disk. The operations that benefit from this optimization are:</p>
         <ul>
             <li>Read with projection and only indexed fields in query and projection - primary instance optimization</li>
             <li>Take with only indexed fields in query - backup optimization</li>
@@ -319,9 +319,9 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 </code></pre>
         <h1><a name="performance-tuning">&#160;</a>Performance Tuning</h1>
         <h2><a name="persistent-data-store-tuning-parameters">&#160;</a>Persistent Data Store Tuning Parameters</h2>
-        <p>XAP uses the default DBOptions class <code>com.com.gigaspaces.blobstore.rocksdb.config.XAPDBOptions</code>.</p>
+        <p>The data grid uses the default DBOptions class <code>com.com.gigaspaces.blobstore.rocksdb.config.XAPDBOptions</code>.</p>
         <div class="tc-admon-note">
-            <p>A list of configuration properties can be found in  the <a href="https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/DBOptionsInterface.java" target="_blank">org.rocksdb.DBOptionsInterface</a> Java docs.</p>
+            <p>A list of configuration properties can be found in  the <a href="https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/DBOptionsInterface.java" target="_blank">org.rocksdb.DBOptionsInterface</a> API&#160;documentation.</p>
         </div>
         <table>
             <thead>
@@ -363,7 +363,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <h2><a name="lsm-logic-and-memtables-tuning-parameters">&#160;</a>LSM Logic and MemTables Tuning Parameters</h2>
         <p>Below are the values for the default class <code>com.com.gigaspaces.blobstore.rocksdb.config.XAPColumnFamilyOptions</code>.</p>
         <div class="tc-admon-note">
-            <p>A list of configuration properties can be found in  the <a href="https://github.com/facebook/rocksdb/blob/v5.5.1/java/src/main/java/org/rocksdb/AdvancedColumnFamilyOptionsInterface.java">org.rocksdb.ColumnFamilyOptionsInterface</a> Java docs.</p>
+            <p>A list of configuration properties can be found in  the <a href="https://github.com/facebook/rocksdb/blob/v5.5.1/java/src/main/java/org/rocksdb/AdvancedColumnFamilyOptionsInterface.java">org.rocksdb.ColumnFamilyOptionsInterface</a> API&#160;documentation.</p>
         </div>
         <table>
             <thead>
@@ -381,7 +381,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                 </tr>
                 <tr>
                     <td align="left">levelZeroSlowdownWritesTrigger</td>
-                    <td align="left">Soft limit on number of level-0 files. XAP begins to slow down writes at this point. <br />A value &lt; 0 means that no writing slowdown is triggered by the number of files in level-0.</td>
+                    <td align="left">Soft limit on number of level-0 files. The data grid begins to slow down writes at this point. <br />A value &lt; 0 means that no writing slowdown is triggered by the number of files in level-0.</td>
                     <td align="left">8</td>
                 </tr>
                 <tr>
