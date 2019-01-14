@@ -88,16 +88,11 @@ conn = DriverManager.getConnection(url, properties);
                     <td align="left">gs.lookup_tx.timeout</td>
                     <td align="left">Lookup timeout (default=3000)</td>
                 </tr>
-                <tr>
-                    <td align="left">gs.lookup_tx.groups</td>
-                    <td align="left">Lookup groups</td>
-                </tr>
-                <tr>
-                    <td align="left">gs.lookup_tx.locators</td>
-                    <td align="left">Lookup locators</td>
-                </tr>
             </tbody>
         </table>
+        <div class="tc-admon-note">
+            <p>If you want to change the lookup locator for a group, add it explicitly to the URL, for example <code>String url = "jdbc:gigaspaces:url:jini://*/*/mySpace?locators=locator:port"t;</code>.</p>
+        </div>
         <p>Transaction Manager Type Configuration Example:</p><pre><code class="language-java">Class.forName("com.j_spaces.jdbc.driver.GDriver");
 Properties props = new Properties();
 props.put("gs.tx_manager_type", "distributed");

@@ -120,8 +120,10 @@ The transaction manager type can be configured via JDBC's connection properties 
 | gs.tx_manager_type | Transaction manager type: "local"/"distributed"/"lookup_distributed" |
 | gs.lookup_tx.name | Lookup service name |
 | gs.lookup_tx.timeout | Lookup timeout (default=3000) |
-| gs.lookup_tx.groups | Lookup groups |
-| gs.lookup_tx.locators | Lookup locators |
+
+{{% note %}}If you want to change the lookup locator for a group, add it explicitly to the URL, for example:
+
+ `String url = "jdbc:gigaspaces:url:jini://*/*/mySpace?locators=locator:port";`.{{% /note %}}
 
 Transaction Manager Type Configuration Example:
 
