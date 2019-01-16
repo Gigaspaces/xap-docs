@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Deploying InsightEdge in an Amazon EKS Cluster</h1>
+        <p>This topic explains how to deploy InsightEdge using the Amazon Elastic Container Service for Kubernetes (Amazon EKS). </p>
+        <h1>Deploying an Amazon EKS Cluster</h1>
+        <p>To deploy an Amazon EKS cluster, follow the instructions in the <a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html" target="_blank">Getting Started with Amazon EKS</a> section of the AWS user guide. The deployment process requires that you do the following:</p>
+        <ol>
+            <li>
+                <p>Create an AWS&#160;account.</p>
+            </li>
+            <li>
+                <p>Create an InsightEdge Amazon EKS Sservice role. This user role will need sufficient security policies to administer the Amazon EKS cluster.</p>
+            </li>
+            <li>
+                <p>Create the Amazon EKS Cluster VPC for InsightEdge. Note that you will have to create both a cluster stack and a worker node stack in AWS&#160;CloudFormation. </p>
+            </li>
+            <li>
+                <p>Install and configure kubectl for Amazon EKS. This is the tool you will use to perform administration tasks on your Kubernetes cluster.</p>
+            </li>
+            <li>
+                <p>Download and install the latest AWS CL. (This is an optional step but strongly recommended.)</p>
+            </li>
+        </ol>
+        <h1>Deploying InsightEdge in Amazon EKS</h1>
+        <div class="tc-admon-note">
+            <p>This page provides general information on how to deploy InsightEdge in a Kubernetes cluster. For detailed installation and configuration instructions, see <MadCap:xref href="kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</MadCap:xref>.</p>
+        </div>
+        <h2>Prerequisites</h2>
+        <p>Before deploying InsightEdge, ensure that you have the following installed:</p>
+        <ul>
+            <li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a>
+            </li>
+            <li><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
+            </li>
+        </ul>
+        <p>Use the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm fetch gigaspaces/insightedge --version=14.0 --untar</code></pre>
+        <p>You should also verify that your InsightEdge EKS cluster is active using the Amazon EKS console, and that the InsightEdge and worker nodes were created using the CloudFormation console.</p>
+        <h2>Installing InsightEdge </h2>
+        <p>In order to ensure that InsightEdge will work properly in the Amazon EKS environment, the default service type (<code>NodePort</code>) in the InsightEdge Manager and InsightEdge Zeppelin Helm charts must be changed to <code>LoadBalancer</code>.</p>
+        <p class="tc-todo">To install InsightEdge:</p>
+        <ol>
+            <li>Modify the Helm charts:</li>
+            <ol style="list-style-type: lower-alpha;">
+                <li>
+                    <p>Open the <code>insightedge-manager</code> values.yaml file, and change the service type from NodePort to LoadBalancer. The chart should look like this:</p><pre><code class="language-xml"># service: Platform Manager service configuration.
+service:
+   # type: Service type.	
+   type: LoadBalancer</code></pre>
+                </li>
+                <li>Make this same change in the <code>insightedge-zeppelin </code>values.yaml file.</li>
+                <li>Save both files.</li>
+            </ol>
+            <li>
+                <p>Type the following command to deploy InsightEdge in Amazon EKS:</p><pre><code class="language-xml">helm install insightedge --name demo --set pu.partitions=2,pu.ha=true</code></pre>
+            </li>
+        </ol>
+        <h2>Verifying the InsightEdge Installation</h2>
+        <p>After installing InsightEdge, best practice is to check that the Kubernetes services have external IP&#160;addresses, verify that InsightEdge is up and running and that you can open the Apache Zeppelin web notebook. </p>
+        <p class="tc-todo">To verify the InsightEdge installation:</p>
+        <ol>
+            <li>
+                <p>Check that the Kubernetes services have external IP&#160;addresses so the pods can communicate. Type the following command:</p><pre><code>kubectl get svc</code></pre>
+                <p>You should see output that looks similar to this:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/kubernetes/kubectl-get-svc-output.png" class="tc-picture100" />
+                </p>
+            </li>
+            <li>
+                <p>Copy the InsightEdge Manager IP&#160;address to a browser window and add the port number (8090). The Rest Manager API&#160;screen should load.</p>
+                <p>&#160;</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/kubernetes/eks-rest-manager.png" class="tc-picture100" />
+                </p>
+            </li>
+            <li>Perform a simple test by using one of the REST APIs, for example <code>GET/spaces</code>. </li>
+            <li>
+                <p>Copy the InsightEdge Zeppelin IP&#160;address into the browser window and add the port (9090). The InsightEdge Apache Zeppelin web notebook should load.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/kubernetes/eks-zeppelin.png" class="tc-picture100" />
+                </p>
+            </li>
+        </ol>
+        <h2>Deploying the Kubernetes Dashboard</h2>
+        <p>The last step is deploying the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based InsightEdge application. See the Amazon <a href="https://docs.aws.amazon.com/en_us/eks/latest/userguide/dashboard-tutorial.html" target="_blank">dashboard tutorial page</a> for instructions.</p>
+    </body>
+</html>
